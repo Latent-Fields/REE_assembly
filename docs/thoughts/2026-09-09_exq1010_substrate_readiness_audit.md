@@ -1,6 +1,10 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_exq1010_substrate_readiness_audit.md
+Claims registered: INV-109
+
 
 # EXQ-1010 and hippocampal A/B substrate-readiness audit
 

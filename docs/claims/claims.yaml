@@ -102494,3 +102494,732 @@
     aggregation benefit, and social influence converging opinions without increasing accuracy (cited in
     the nearest-neighbour stress test section 6; NOT independently verified here). DO NOT build in V3.
     DO NOT queue an experiment from this entry.
+
+- id: ARC-145
+  title: >-
+    Dynamic information governance: a complete inter-engine interface in REE requires THREE properties,
+    not two -- (1) the decision-relevant content survives the sender's encoding, (2) sender and receiver
+    are mutually legible so a constrained transformation between frozen endpoints exists (ARC-139 /
+    MECH-537 / MECH-538), and (3) the exchange occurs under a routing state that grants the sender
+    causal privilege over that receiver AT THAT MOMENT. Property (3) -- jurisdiction, or temporal/state
+    ACCESS -- is a separate organisational level from content and from legibility, so a representation
+    can be present, decodable, structurally connected to a downstream system, and still unable to affect
+    it; and the corresponding repair is different in kind from an encoder fix or a bridge. The
+    architectural consequence is that REE's effective interface graph is CONSTRUCTED rather than
+    possessed: G_eff(t) is a function of wiring, representational geometry, control state and history,
+    so the same computational substrate can belong to different effective networks at different times.
+    SEPARABILITY FALSIFIER, which is the whole content of the commitment: if a static bridge between
+    frozen endpoints restores the full behavioural phenotype irrespective of when the message is made
+    available, level (3) is unnecessary and this commitment should be withdrawn in favour of ARC-139
+    plus MECH-539 alone.
+  claim_type: architectural_commitment
+  subject: architecture.dynamic_information_governance_jurisdiction
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+  depends_on:
+    - ARC-139        # owns levels (1)-(2): integration requires selective mutual legibility, not sameness
+    - MECH-537       # the communication-subspace level this adds a third level ON TOP of
+    - MECH-538       # bridge complexity L(A->B): the measure of level (2)
+    - MECH-539       # dynamic interface compatibility -- a DIFFERENT third property (transition geometry), distinguished in notes
+    - MECH-534       # the authority field: the state variable in which level (3) would be realised
+    - MECH-547       # receiver-conditioned exposure: conditioning on receiver state, a sibling of conditioning on routing state
+    - SD-091         # control plane must emit a coalition/topology output -- the control-side counterpart
+    - MECH-481       # typed coalition instantiation: temporary functional interaction graphs, the nearest existing G_eff
+    - ARC-084        # typed signed cognifold edges carry gain/gate/precision -- the edge vocabulary level (3) would use
+    - INV-105        # the access ladder: level (3) is a statement about rungs 3-6, phrased architecturally
+    - ARC-142        # cognitive contract: WHAT must be recoverable at a boundary; this says WHEN it may act
+  location: docs/architecture/dynamic_information_governance.md#arc-145
+  notes: >-
+    Registered 2026-09-15 from the 2026-09-10 family (hub sections 2, 4.3, 12, 21; dynamic-routing note
+    sections 1, 7, 14; phase-as-address sections 2, 17); intake
+    evidence/planning/thought_intake_2026-09-10_dynamic_information_governance_propagating_causal_privilege.md.
+
+    WHAT NO EXISTING CLAIM ASSERTS. ARC-139 states that integration requires selective mutual legibility
+    rather than representational sameness -- levels (1) and (2). MECH-539 adds a third requirement that
+    is NOT this one: it asks whether a mapping preserves ACTION-CONDITIONED TRANSITION GEOMETRY, a
+    property of the map, checkable with both endpoints continuously available. ARC-145's level (3) is
+    a property of the OCCASION rather than of the map: the same map, with the same transition geometry,
+    used at the wrong moment or under the wrong organism state. The two are separable by construction --
+    MECH-539's failure signature is `good static + bad dynamic` with the channel continuously open;
+    ARC-145's is `good static AND good dynamic, but only when the message arrives in the right routing
+    state`. MECH-547 conditions the exposed subspace on the RECEIVER'S state; ARC-145 additionally
+    admits conditioning on an organism-level routing/phase coordinate that is not a property of either
+    endpoint (see MECH-561).
+
+    DISTINCT FROM MECH-534, which is the MECHANISM: the authority field as a state variable with
+    persistence, decay and competition. ARC-145 is the architectural requirement that some such level
+    exists and must be diagnosed separately, and it survives even if the field turns out to be a simple
+    scalar schedule rather than MECH-534's graded relational object. Registering both is deliberate: the
+    brief separation the family itself insists on is biological claim / architectural principle /
+    REE-testable mechanism, and conflating the last two is how a routing layer gets built before the
+    diagnostic that justifies it.
+
+    BOUNDING, adopted verbatim from the source: do NOT infer `routing field present => consciousness` or
+    `informational tuning present => consciousness`. SENT-0 stands (REE-v3 is not claimed conscious) and
+    SENT-1 owns the indicator matrix; the most this may ever be is a SENT-1 indicator candidate. The
+    hub's section 7 makes this restriction itself, and it is the reason the claim is phrased about
+    "flexible integrated behaviour", never about experience.
+
+    LITERATURE ANCHOR, UNVERIFIED. The trigger is Misawa et al. (2026), "Awake cortex stabilizes
+    traveling waves for global and reliable information routing", iScience 29(8):116728, reached via a
+    9 Sep 2026 Popular Mechanics article; supporting anchors Bhattacharya et al. 2022 J Cogn Neurosci
+    34(7):1274-1286, Luo & Ester 2025 PNAS 122(30):e2415573122, Mohanta et al. 2024 bioRxiv
+    10.1101/2024.01.09.574848 (preprint), Anastassiou et al. 2011 Nat Neurosci 14:217-223, Buzsaki
+    Anastassiou & Koch 2012 Nat Rev Neurosci 13:407-420. NONE of these was fetched or verified in this
+    pass and NO /lit-pull has been run on them. Per feedback_lit_exp_decoupled a paper resembling REE
+    raises no claim's confidence; these are recorded as MOTIVATION only, and the biological claims
+    (travelling waves, informational tuning, ephaptic coupling, anaesthetic mechanism) are OUT OF DOMAIN
+    for REE and are deliberately NOT registered here.
+
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+  source_documents:
+    - docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+    - docs/thoughts/2026-09-10_dynamic_routing_as_experimental_information_governance.md
+    - docs/thoughts/2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md
+    - evidence/planning/thought_intake_2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+
+
+
+- id: MECH-560
+  title: >-
+    Governed selectivity beats transfer volume: competent integrated behaviour in REE tracks the
+    SELECTIVITY, STABILITY, REPERTOIRE and causal TIMING of directed influence between engines, not the
+    AMOUNT of inter-engine information transferred -- so the decisive experimental signature is a
+    DISSOCIATION at matched traffic, in which endpoint-local content remains decodable, endpoint-local
+    competence remains intact, total inter-module transfer is matched or INCREASED, and integrated
+    behaviour nonetheless degrades in proportion to lost directional selectivity, route stability or
+    motif repertoire. Three degradation modes are predicted to be distinguishable rather than one:
+    FLATTENING (all channels similarly permissive, high volume, no selectivity), DOMINATION (one slow
+    global mode monopolises routing authority, high coherence, low repertoire) and FRAGMENTATION (routes
+    form but do not persist long enough to complete a multi-step transfer; local decodability intact,
+    long-horizon coordination poor). PRIMARY FALSIFIER: if performance is fully explained by total
+    transmitted activity or message count, and route selectivity adds nothing once traffic is matched,
+    this claim is refuted and no routing layer is warranted. SECOND FALSIFIER: if total transfer always
+    FALLS whenever behaviour falls, the high-traffic/low-tuning regime does not exist in REE and the
+    claim's discriminating signature is unreachable.
+  claim_type: mechanism_hypothesis
+  subject: architecture.routing_selectivity_over_transfer_volume
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+  depends_on:
+    - ARC-145      # generalized from: this is the measurable signature of level (3)
+    - MECH-534       # the field whose selectivity/stability/repertoire this claim measures the consequences of
+    - Q-081          # cross-stream organisation question; supplies the surrogate-null discipline this measurement requires
+    - INV-105        # access ladder + mandatory mismatched/zero/moment-matched-random controls, inherited wholesale
+    - GOV-MATCHAUX-1 # matched-capacity control discipline; here extended to matched TRAFFIC as well as matched capacity
+    - MECH-537       # routing failure at the subspace level -- the static sibling of this dynamic claim
+    - MECH-517       # consumer-collapse rival that must be excluded before a routing reading is admissible
+    - MECH-466       # event-relative beats clock-relative coordination: the alignment convention any route measure must use
+  location: docs/architecture/dynamic_information_governance.md#mech-560
+  notes: >-
+    Registered 2026-09-15 from the hub sections 6, 8, 9 (DIG-0/DIG-1/DIG-3), 10 (F1, F8), 17 and 18, and
+    the dynamic-routing note sections 3, 6 and 13.
+
+    WHAT NO EXISTING CLAIM ASSERTS. Searching claims.yaml for "total information", "matched traffic",
+    "information volume", "selectivity above" returns nothing, and no claim states that the amount of
+    inter-engine transfer and its organisation can move in OPPOSITE directions. Q-081 is the closest and
+    is a different question: it asks whether REE's configured multi-rate execution produces SHARED
+    cross-stream organisation or only configured rate separation, and it is agnostic about volume.
+    Q-081's machinery is nevertheless load-bearing here and is adopted rather than re-derived: the
+    constrained-realisation surrogate that preserves per-stream tick grid, marginal distribution and
+    WITHIN-stream autocorrelation while destroying only the BETWEEN-stream relation; the requirement to
+    validate the surrogate against a deliberately-artefactual and a deliberately-injected statistic
+    BEFORE it adjudicates anything; and the a-priori filter ruling out any statistic that is a function
+    of the configured update rates. A routing-selectivity measure over streams that tick at 1, 3 and 10
+    steps is exactly the shape Q-081 warns produces a false positive.
+
+    DISTINCT FROM MECH-227 (anaesthesia as D_V collapse), AND IN TENSION WITH IT -- flagged, not
+    resolved, and MECH-227 is NOT edited by this pass. MECH-227 asserts that anaesthesia drives V(t) to
+    zero globally and collapses D_V to zero; the family's motivating result is the opposite shape (total
+    transfer preserved or increased, organisation degraded). MECH-227 is a BIOLOGICAL/CLINICAL claim
+    about human and animal anaesthesia and is out of REE's test domain; MECH-560 is a claim about REE
+    and asserts nothing about anaesthesia. The two can both be true -- MECH-227's mechanism (B) already
+    names "excessive low-frequency synchrony (delta-dominance)", which is this claim's DOMINATION mode --
+    but the reconciliation is governance and /lit-pull work, not ingestion work. Separately noted for
+    governance: MECH-227 still carries NO epistemic_category and NO implementation_phase, a
+    cluster-consistency gap MECH-225's own currency note raised on 2026-08-08 and which is still open.
+
+    DISTINCT FROM INV-105, which is an EVIDENCE STANDARD over seven access statuses of a variable, not a
+    measure of flow between engines. MECH-560 inherits INV-105's reporting contract in full -- every
+    arm reports all seven rungs, a rescue at rung 4 is never written up as a result at rung 6 or 7 --
+    and adds nothing to it.
+
+    THE INSTRUMENT IS NOT REGISTERED, DELIBERATELY. The hub's routing-fidelity RF(t) and tuning-index
+    TI(t), the six discriminating quantities (amount / selectivity / stability / repertoire /
+    behavioural appropriateness / causal necessity), the DIG-3 lesion family (FLAT, SHUFFLE-TIME,
+    SHUFFLE-EDGE, DOMINANT-SLOW, FRAGMENT, FEEDBACK-CUT) and the dynamic-routing note's lesion ladder
+    A-F are INSTRUMENTS. Following the 2026-09-07 mutual-legibility precedent -- an instrument becomes
+    claim-shaped only when it asserts something about REE -- they belong on the location doc and in the
+    work programme, not in claims.yaml. What is registered is only the assertion they would test.
+
+    ADVERSARIAL CONTROLS THE FAMILY REQUIRES AND THIS CLAIM ADOPTS (dynamic-routing note section 11):
+    a matched one-dimensional global arousal/gain baseline (if one scalar explains everything there is no
+    evidence for a route geometry); matched parameter and compute budgets plus a random recurrent-control
+    field; a content-poor, capacity-constrained routing variable that cannot synthesize new content or
+    read action labels, oracle targets or future outcomes; the receiver-manifold and dynamic-compatibility
+    guards; multiple directed-influence estimators plus temporal surrogates and known synthetic networks,
+    because directed measures hallucinate direction under shared drivers and unequal signal-to-noise; and
+    matched action count, movement, opportunity and episode phase, because high-competence runs trivially
+    contain more activity.
+
+    V3-EXQ-1010 BINDS THIS ENTIRE PROGRAMME AND IS RECORDED HERE SO IT CANNOT BE FORGOTTEN: the trained
+    z_world is NOT an admissible sender (decision-relevant content destroyed at encode time, PASS /
+    H-F-confirmed, run 20260909T195348Z). Content absence must be excluded before any routing failure is
+    claimed; the measured-adequate sources are rawfield25 (primary) and ws250_pca32 (replication).
+
+    LITERATURE ANCHOR UNVERIFIED -- see ARC-145's notes; the Misawa "informational tuning" measure is
+    the methodological inspiration for RF(t)/TI(t) and must not be treated as equivalent to any REE
+    measure without an explicit methodological mapping.
+
+    VERSION ROUTING IS A /governance DECISION, NOT AN INGESTION ONE. The OBSERVATIONAL leg (does
+    unmodified REE show reproducible, context-dependent directed-flow structure that predicts competence
+    above total traffic?) is runnable read-only over recorded trajectories today and argues for v3; the
+    matched-traffic LESION leg needs an experiment-layer gain overlay that does not exist and argues for
+    v4. Set v4 / v3_v4 here pending that decision. DO NOT build in V3. DO NOT queue an experiment from
+    this entry.
+  source_documents:
+    - docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+    - docs/thoughts/2026-09-10_dynamic_routing_as_experimental_information_governance.md
+    - evidence/planning/thought_intake_2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+
+
+
+- id: MECH-561
+  title: >-
+    Phase as an addressing coordinate: the receiver-potent communication subspace between two REE
+    subsystems is indexed by an ENDOGENOUS CYCLIC coordinate that belongs to neither endpoint --
+    S_comm(A -> B | phi, c) rather than S_comm(A -> B) -- so a sender dimension can lie INSIDE the
+    receiver-potent subspace at one phase and OUTSIDE it at another with no change whatever in the
+    sender's representation, and information can be continuously decodable from the sender while its
+    downstream causal effect varies systematically with phi. COROLLARY, which is the sharper and more
+    falsifiable half: TEMPORAL separability can substitute for GEOMETRIC separability, so two
+    concurrently represented streams need not be near-orthogonal in population geometry if they become
+    receiver-effective at different temporal addresses -- predicting a measurable trade-off in which the
+    principal angle between two stream subspaces and their phase-conditioned overlap with S_comm move in
+    opposite directions while behavioural intrusion stays flat. FOUR-CELL VERDICT GRID, pre-registered:
+    GEOMETRY-ONLY (angle changes, phase conditioning adds nothing) / TIMING-ONLY (geometry flat, causal
+    impact alternates with phase) / JOINT (both reorganise and jointly predict intrusion) / NULL (neither
+    beats a static consumer model at matched complexity). FALSIFIERS: a static subspace explains receiver
+    activity and behaviour as well as any phase-conditioned model at matched complexity; a global scalar
+    gain explains it without receiver-specific temporal structure; RANDOM temporal labels do as well as
+    the endogenous coordinate; or the dependence disappears after controlling for ordinary task context,
+    action identity, arousal, or trivial periodicity in environment sampling.
+  claim_type: mechanism_hypothesis
+  subject: representation.phase_conditioned_communication_subspace
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md
+  depends_on:
+    - MECH-537       # the communication subspace this indexes by phase
+    - MECH-547       # sibling conditioner: receiver STATE; this claim conditions on an organism-level cyclic coordinate instead
+    - MECH-225       # distinguished-from: phase-based separation of STREAMS within one substrate, not of a sender->receiver channel
+    - MECH-091       # the E3 heartbeat phase and its salient-event reset -- the primary candidate phi in V3
+    - MECH-108       # BreathOscillator: a second, literally cyclic candidate phi (default OFF, breath_period=0)
+    - ARC-023        # three characteristic rates -- the multi-rate tick grid is the third candidate phi
+    - MECH-466       # rival/convention: event-relative alignment may beat clock-relative; phi must be tested against it
+    - Q-081          # supplies the surrogate-null discipline for any statistic computed over multi-rate streams
+    - INV-105        # access ladder: phase conditioning is a statement about rungs 3-6, and inherits the controls
+    - ARC-145      # generalized from: phase is one candidate coordinate for level (3)
+  location: docs/architecture/dynamic_information_governance.md#mech-561
+  notes: >-
+    Registered 2026-09-15 from the phase-as-address note sections 3, 4, 5, 11, 12, 13 and 17.
+
+    DISTINCT FROM MECH-225, and the distinction is load-bearing. MECH-225 asserts that cross-frequency
+    dynamics separate PERCEPTION, SIMULATION and ACTION-PREPARATION streams over shared representational
+    capacity, and its own what_would_answer splits that into a REE leg (channel-banded routing over
+    shared capacity, with a hallucination-like confusion signature on collapse) and a biology leg (the
+    literal gamma/theta/beta/delta assignment, out of REE's test domain). MECH-561 is about a
+    SENDER-TO-RECEIVER CHANNEL rather than about stream identity within one substrate: it asks whether
+    the subspace of A that B can actually use changes with phi, which MECH-225 does not ask and which can
+    be true even if REE never multiplexes three streams over shared capacity. MECH-225's non-degeneracy
+    precondition (a V4 substrate concurrently encoding at least two streams over shared capacity with an
+    explicit disambiguation mechanism, verified ABSENT in V3) does NOT bind this claim, because phase
+    conditioning of an existing channel needs no shared-capacity multiplexing.
+
+    DISTINCT FROM MECH-547: same functional form, different conditioner. MECH-547's T takes the
+    RECEIVER'S state as an argument, which is a property of an endpoint; MECH-561's phi is an
+    organism-level cyclic coordinate that is a property of neither endpoint. MECH-547's title already
+    lists "temporal phase" among candidate conditioners, so the two OVERLAP and a shared experiment must
+    separate them -- the discriminator is a receiver-state permutation (MECH-547's own control) run
+    ALONGSIDE a phase permutation: if only the receiver permutation destroys the gain, MECH-547 owns the
+    result and this claim is redundant at that locus.
+
+    NOT A NEW ARCHITECTURAL OPTION. docs/thoughts/2026-09-07_mutual_legibility_implementation_assays.md
+    section 18 Option C ("context-gated communication subspaces: different contexts select or rotate the
+    low-rank projection used by a consumer") already names this design, and the 2026-09-07 intake
+    DELIBERATELY left Options A-F unregistered because they are conditional on diagnostics that have not
+    run. That discipline is honoured: what is registered here is the DIAGNOSTIC PROPOSITION with its
+    falsifiers, not the architecture. Option C remains unregistered and unbuilt.
+
+    WHY implementation_phase IS v3, AND WHY /governance SHOULD CONFIRM IT. Two substrate facts measured
+    2026-09-15 make the diagnostic runnable read-only TODAY, which is unusual for this family and is the
+    reason this one entry departs from the v4 default. (i) The P0 instrument now EXISTS: ree-v3
+    experiments/_lib/interface_probe.py (commit a83f2fb, 2026-09-10, on origin/main) supplies
+    cross-validated RRR communication_subspace(), principal_angles(), the L0-L5 bridge_ladder(),
+    causal_replacement(), manifold_guard(), dynamic_compatibility() and per_code_drift(). It has no
+    phase-conditioning ARGUMENT, but a caller can stratify rows by phase bin, call communication_subspace
+    per bin and compare bases with principal_angles -- which is exactly the phase-as-address section 11.2
+    design. (ii) Endogenous cyclic coordinates already exist and are exposed: ree_core/heartbeat/clock.py
+    carries _e3_phase_step with MECH-091's salient-event phase_reset (wiring landed ree-v3 6293b2395248,
+    V3-EXQ-944b PASS on 5 of 6 seeds), _breath_phase_step as a literal cyclic counter over [0,
+    breath_period) with a sweep_active window (MECH-108), and the E1/E2/E3 multi-rate tick grid
+    (ARC-023 / SD-006 phase 1); all are readable via MultiRateClock.get_state(). CAVEAT: breath_period
+    defaults to 0, so the BreathOscillator is OFF in the default configuration and a run intending to use
+    it must enable it; and sweep_active currently modulates the E3 COMMIT THRESHOLD (agent.py ~7316), not
+    any inter-engine message gain, so it is a phase coordinate, not evidence of phase-conditioned
+    communication.
+
+    V3-EXQ-1010 BINDS THE SENDER CHOICE as for the whole family: trained z_world is inadmissible;
+    rawfield25 primary, ws250_pca32 replication.
+
+    LITERATURE ANCHOR UNVERIFIED. The travelling-wave anchors are listed in ARC-145's notes. The
+    "task-uncertainty / feature-interference" result the phase note leans on in sections 4 and 6 is
+    cited WITHOUT a reference anywhere in the source document, so it cannot be checked at all and is
+    recorded as an unattributed motivation; a /lit-pull must identify it before it is cited as support.
+
+    DO NOT build a phase mechanism in V3 -- the source's own architectural restraint is adopted verbatim:
+    observe -> model -> condition -> perturb -> compare simpler rivals -> only then implement. DO NOT
+    queue an experiment from this entry; the diagnostic belongs in the mutual-legibility work programme
+    as a conditional extension of the interface instrument, and /queue-experiment owns any run.
+  source_documents:
+    - docs/thoughts/2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md
+    - docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+    - evidence/planning/thought_intake_2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md
+
+
+
+- id: Q-106
+  title: >-
+    Endogenous or exogenous routing generation: does CLOSING the loop -- letting the routing state be
+    generated partly by the aggregate activity of the very subsystems whose effective connectivity it
+    sets, so that local activity -> field state -> altered effective connectivity -> new activity ->
+    updated field state -- confer any capability that a matched OPEN-LOOP routing schedule cannot
+    reproduce? Pre-registered discriminator: two routing generators whose OUTPUT marginal statistics are
+    matched (gain distribution, temporal autocorrelation, motif dwell time, transition entropy) and whose
+    parameter and compute budgets are matched, one supplied independently of module activity and one
+    evolved from it, compared on robustness to perturbation, speed of reconfiguration after a context
+    change, adaptive routing in unseen contexts, and recovery after a transient lesion -- never on raw
+    task score, which the extra recurrence alone can move. A null here is informative and expected to be
+    common: if both perform identically, endogenous field feedback is unnecessary and the simpler
+    scheduled field should be kept.
+  claim_type: open_question
+  subject: control_plane.endogenous_vs_scheduled_routing_generation
+  polarity: asks
+  status: open
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+  depends_on:
+    - MECH-534       # whose notes assert endogenous recruitment WITHOUT ever testing it against a scheduled control
+    - Q-103          # the sibling fork: what the field CARRIES; this asks how it is GENERATED
+    - MECH-499       # ephaptic/field coherence as content aggregation -- the nearest existing field-feedback claim
+    - MECH-500       # readiness authority: the second existing ephaptic function
+    - MECH-522       # grain-setting: the third; this question is about none of the three, and says so
+  location: docs/architecture/dynamic_information_governance.md#q-106
+  notes: >-
+    Registered 2026-09-15 from the hub sections 3.5, 9 (DIG-6) and 14, and the dynamic-routing note
+    section 9.
+
+    WHAT NO EXISTING CLAIM ASKS. MECH-499, MECH-500 and MECH-522 register three distinct FUNCTIONS an
+    ephaptic-like field might serve (what the actionable now contains; when a branching future is
+    coherent enough to commit; at what grain the now is carved). None asks whether the CIRCULARITY --
+    the field being produced by the activity it regulates -- buys anything over an open-loop schedule
+    with the same output statistics. MECH-534's notes assert that the authority field is "endogenously
+    recruited from the organism's own prediction error, goal progress, residue and learned relevance",
+    and list "field state is exogenously injected rather than recruited" among its falsifiers, but the
+    matched-statistics open-loop CONTROL that would turn that falsifier into a test is nowhere
+    specified. This question supplies it.
+
+    DISCIPLINE THE SOURCE INSISTS ON, adopted: ephaptic coupling is a possible BIOLOGICAL IMPLEMENTATION
+    CLUE, not part of the computational hypothesis, and no result here may be described as evidence that
+    REE has an ephaptic mechanism -- at most that an analogous recurrent field-level organisation is
+    computationally useful. The three levels must stay separate: dynamic information governance is the
+    computational hypothesis (ARC-145); phase-conditioned communication is one candidate dynamical
+    implementation principle (MECH-561); ephaptic coupling is one candidate biological contributor and
+    is OUT OF DOMAIN. The computational principle survives if ephaptic effects turn out minor and
+    regulation is predominantly synaptic, thalamic, inhibitory or neuromodulatory.
+
+    SEQUENCING IS PART OF THE QUESTION: this is the LAST stage of the family's programme (hub section 20;
+    dynamic-routing note stage 5) and should not be opened until the observational, motif, overlay,
+    bridge-interaction and replay stages have produced results. Asking it early would test a field
+    nothing has shown to be load-bearing.
+
+    LITERATURE ANCHORS UNVERIFIED -- Anastassiou et al. 2011 and Buzsaki, Anastassiou & Koch 2012 are
+    the ephaptic anchors; neither was fetched in this pass, and MECH-499/500/522 already carry the same
+    Pinotsis-line bibliography as unverified. DO NOT build in V3. DO NOT queue an experiment from this
+    entry.
+  source_documents:
+    - docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+    - docs/thoughts/2026-09-10_dynamic_routing_as_experimental_information_governance.md
+    - evidence/planning/thought_intake_2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+
+- id: INV-109
+  title: >-
+    A reproduced deterministic RECIPE is not a frozen ENDPOINT: re-running a documented training
+    recipe reconstitutes an operating REGIME, which licenses a within-run paired comparison and
+    nothing whatever about the identity of the artifact a PRIOR run measured. Any claim naming a
+    specific earlier endpoint -- "decoded the 1002/1008 latent", "the same frozen encoder", "the
+    banked representation" -- requires that endpoint's weights and observations to have been
+    PERSISTED and LOADED, not re-derived; where they were re-derived, the admissible statement is
+    bounded to the regime ("the consumer-width values fall in the declared band and the
+    participation ratios match"), and the endpoint-identity claim must be withdrawn. The
+    discriminator is mechanical and cheap: a recorded state hash at both endpoints, re-verified at
+    every evaluation boundary, with a mismatch aborting rather than warning. A pinned substrate
+    COMMIT is not a substitute -- it constrains the code that produced the endpoint, never the
+    endpoint's realised weights, which is why a commit-pinned run can and does report
+    substrate_stable_across_run false.
+  claim_type: invariant
+  invariant_type: universal
+  subject: methodology.endpoint_identity_versus_recipe_reproduction
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_exq1010_substrate_readiness_audit.md
+  depends_on:
+    - INV-105   # the latent-access ladder: INV-105 grades what a PROBE licenses about a VARIABLE; this grades what a re-created ENDPOINT licenses about a PRIOR ENDPOINT -- an orthogonal axis on the same measurement, and the rung that INV-105's seven do not cover
+    - MECH-538  # minimum bridge complexity L(A->B) is DEFINED "between FROZEN endpoints"; without endpoint identity, L is not a well-defined quantity across runs
+    - MECH-547  # the receiver-conditioned diagnostic's whole evidence burden opens with "frozen endpoints"
+    - MECH-548  # the recurrence assay compares cumulative against clean-base application, both of which presuppose a stable base
+    - MECH-540  # assay B's "snapshot endpoints before each evaluation" requirement is this invariant applied to a maintenance experiment
+    - GOV-EQUIV-1  # DISTINGUISHED FROM: GOV-EQUIV-1 governs when two REPRESENTATIONS of one claim may share a truth state; this governs when two REALISATIONS of one artifact may share an identity. Same suspicion, different object
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#inv-109
+  notes: >-
+    From the 2026-09-10 EXQ-1010/hippocampal-A-B substrate-readiness audit (intake
+    evidence/planning/thought_intake_2026-09-09_exq1010_substrate_readiness_audit.md section 5).
+
+    WHAT IT GENERALISES. The audit's own finding, stated at its section 2.6: V3-EXQ-1010 "did not
+    load the exact frozen 1002/1008 endpoint or a banked observation tensor" -- 978 and 1002
+    persisted neither observations nor encoder weights, so the driver re-collects observations and
+    re-runs 60 P0a + 200 P0 + 90 P1 episodes. "Banked" therefore means banked deterministic RECIPE.
+    The reproduction is close enough to certify the intended regime (consumer-width OFF values in
+    the declared 0.60-0.75 band; participation ratios matching 1008) and NOT close enough to be the
+    same object: 1008 ran linux-x86_64-py3.10-torch2.12.0+cpu at substrate hash 875d3044, 1010 ran
+    darwin-arm64-py3.13-torch2.12.0 at 1fdd6171; example weight deltas differ (seed 42, 0.2929618
+    in 1008 against 0.2930078 in 1010); 1010 records substrate_stable_across_run false with two
+    process-snapshot drifts and a 92,134-second identity-resolution lag. None of that invalidates
+    1010's paired within-run capacity comparison. All of it blocks the stronger sentence.
+
+    EXPLICITLY DISTINCT FROM INV-105, and the distinction is the reason to register rather than
+    cross-reference. INV-105's seven rungs all grade one relation: what does this MEASUREMENT license
+    about this VARIABLE in this LATENT. Every rung presupposes that the latent under test is the
+    latent you meant. This invariant is about that presupposition. A session can satisfy INV-105
+    completely -- correct/mismatched/zero/moment-matched-random controls, a dimensionality-matched
+    random-projection floor, the whole ladder -- against a silently different endpoint, and INV-105
+    will not notice. The two are complementary, not nested.
+
+    DISTINCT FROM the substrate-pin machinery, which is why the existing tooling does not already
+    discharge it. experiments/_lib/substrate_pin.py and substrate_scope_guard.py pin the COMMIT; a
+    commit pin constrains the code path and says nothing about the realised weights, and 1010 is the
+    demonstration -- fully pinned, and substrate_stable_across_run still false.
+
+    PARTIALLY INSTRUMENTED ALREADY, which makes this buildable rather than aspirational. Identity:
+    ree-v3 experiments/_lib/interface_probe.py:119 hash_tensor_state (sha256 over a state_dict), whose
+    own docstring at :126-129 states the contract this invariant asserts -- hash before first eval,
+    re-verify at every boundary, abort on mismatch -- and CaptureRecord carries sender_weight_hash
+    and receiver_weight_hash. Persistence: experiments/_lib/probe_warmup.py:254 AgentSurface, :367
+    capture_agent_surface, :395 restore_agent_surface, with a content-keyed torch.save/load cache at
+    :904/:922. What does not exist is the composition of those into a sender-plus-consumer PAIR store,
+    and ree_core has no agent-level save/load at all.
+
+    THE COST OF IGNORING IT IS ALREADY PAID ONCE: the confirmed H-F basis text and several downstream
+    documents describe 1010 as having decoded the banked 1002/1008 latents. That is an inherited
+    sentence, not a measured one.
+
+    DO NOT build in V3 beyond the pair-store composition named above -- there is no mechanism here,
+    this is an interpretive standard. DO NOT queue an experiment from this entry; a universal
+    evidential invariant does not get a falsification experiment (same disposition as INV-105).
+    /governance owns whether it becomes a pre-registration gate.
+
+# =====================================================================================
+# INV-110 -- from docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+# =====================================================================================
+
+- id: INV-110
+  title: >-
+    The interface-repair adjudication standard: a claim that some maintenance process REPAIRED a
+    cross-system mapping -- as opposed to strengthening a memory, triggering a completion, or
+    riding a subspace that never broke -- is admissible only from a single design, or one tightly
+    integrated series, that closes all six links itself, because the confounds differ across
+    preparations and therefore do not cancel when rows are stacked: (1) MEASURED CHANGE in a
+    transfer-relevant direction, which excludes unit turnover, registration noise, behavioural
+    change, and any rotation preserving the receiver-potent subspace; (2) LOCAL PRESERVATION of
+    sender information, sender-local use, and receiver-local memory and competence, at the moment of
+    the cross-system test; (3) ACCESS LOSS measured by a causal receiver-dependent output, never by
+    decodability or correlation; (4) PAIR-SPECIFIC MAINTENANCE, compared against a within-context
+    permutation preserving event count, state occupancy, marginal content, firing and plasticity
+    opportunity and breaking only which sender event pairs with which receiver state; (5) CAUSAL
+    RESTORATION on held-out episodes; (6) RIVAL EXCLUSION at matched budgets. Two consequences bind.
+    First, a GATE-0 LESION PROOF precedes every maintenance arm: the imposed change must degrade
+    causal receiver use while leaving both endpoints locally intact AND be restorable by a known
+    oracle inverse -- if the oracle cannot restore use the lesion is not an interface lesion and the
+    drift model is invalid, if magnitude-matched null-subspace drift degrades use the subspace
+    identification is invalid, and if task-relevant drift does not degrade use there is nothing to
+    repair and the experiment stops. Second, the estimand is the correctly-paired arm beating the
+    MAXIMUM of the permuted-pair, receiver-local-adaptation and local-rehearsal arms, never the
+    unmaintained floor: a correct-pair advantage over the floor alone is equally explained by generic
+    plasticity, extra rehearsal and homeostatic adaptation. Local-memory equivalence is a
+    PROSPECTIVE constraint tested by equivalence tests, never a covariate regressed out afterwards,
+    because conditioning on a treatment-affected memory score is a collider.
+  claim_type: invariant
+  invariant_type: universal
+  subject: methodology.interface_repair_adjudication_standard
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+  depends_on:
+    - INV-105   # the latent-access ladder. INV-105 grades a variable's STATUS at one time; this grades a claim that a mapping was REPAIRED between two times. Its rung 5 (pairing-specific) and its correct/mismatched/zero/moment-matched-random controls are INHERITED wholesale by link 4 and are not restated
+    - MECH-540  # the mechanism this standard adjudicates: sleep as selective interface maintenance. MECH-540's two-interface requirement is preserved inside Gate 0 (one interface drifted and repairable, one stable or affected only in unused coordinates) so a nonspecific plasticity or arousal effect shows on BOTH
+    - MECH-562  # the rival the estimand names: arm F (receiver-local self-healing) is one of the three the correct-pair arm must beat
+    - INV-109   # the frozen endpoints every gate is measured against
+    - ARC-137   # DISTINGUISHED FROM: ARC-137 partitions offline work by OUTCOME (retention / reorganisation / recalibration / behavioural-access repair) and pairs each with a write target, provenance class and distal readout. It is a TAXONOMY of what offline integration does; this is the EVIDENCE BAR for one cell of it, and the two partitions are not the same -- ARC-137's "behavioural-access repair" holds upstream content fixed at ONE system, whereas interface repair is defined over a RELATION between two
+    - MECH-539  # dynamic compatibility -- the durability requirement (rescue at one step, collapse under continued drift, is transient remapping not maintenance) rests on it
+    - MECH-548  # recurrent stability -- same, for repeated closed-loop use
+    - GOV-MATCHAUX-1  # matched-auxiliary discipline; "at matched budgets" in link 6 is that rule applied to maintenance arms
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#inv-110
+  notes: >-
+    From the 2026-09-09 replay-interface-maintenance supplement, sections 2, 5, 6.2, 6.3 and 6.6
+    (intake evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md).
+    The supplement itself registers nothing and says so; this entry extracts the one thing in it that
+    is a standing rule rather than a literature reading or an assay parameter.
+
+    WHY IT EXISTS: the four-way confound. Local consolidation, retrieval triggering or completion,
+    stable routing, and interface repair ALL produce the same observable -- restored downstream
+    performance despite upstream change -- and only the fourth requires pair identity to matter. The
+    supplement's own matrix adjudication is the demonstration that this is not hypothetical: across
+    28 studies and two computational models it found NO row containing the required conjunction, and
+    the three near-bridge families fail for different and non-cancelling reasons (interareal replay
+    without drift; replay intervention with memory as the dependent variable; drift stability without
+    replay). Its verdict, stated as a negative search conclusion and not as proof of absence: "no
+    located biological study genuinely discriminates interface repair from consolidation under
+    matched local-memory quality."
+
+    WHAT IT DOES NOT CLAIM. It takes no position on whether interface repair occurs, in biology or in
+    REE. MECH-540 owns that hypothesis and is untouched. This is the bar, not the verdict -- exactly
+    the relationship INV-105 has to MECH-537.
+
+    THE SHARPEST SINGLE CLAUSE, and the one most likely to be lost if this is paraphrased: do NOT
+    interpret D > B alone. The supplement is explicit that an advantage of correct replay over no
+    maintenance is compatible with generic replay, additional plasticity opportunity, rehearsal and
+    homeostatic adaptation, and that arms F (receiver-local self-repair) and G (local rehearsal and
+    completion) must be run SEPARATELY rather than combined, because one combined comparator cannot
+    say which local mechanism won.
+
+    TWO CLAUSES CARRY A COST WORTH STATING. First, Gate 0 can stop an expensive experiment before any
+    scientific arm runs, and two of its three stop conditions are upstream and cheap to reach -- if
+    relevant drift does not impair native transfer there is no broken interface, and if correct
+    maintenance improves local memory the result is consolidation-contaminated regardless of effect
+    size. That is the point. Second, prospective equating means titrating or excluding blocks until
+    local measures match BEFORE the cross-system evaluation, which costs data.
+
+    BIOLOGICAL ANCHORS, recorded as motivation and NOT independently verified in this pass: the
+    supplement's own matrix. Kali and Dayan 2004 (Nat Neurosci, DOI 10.1038/nn1202) is the closest
+    formal precursor and DECLINES to award unique necessity -- both its maintenance operations,
+    correspondence refresh and ordinary cortical learning on replay, rescue recall in the same
+    simulations, and combining them produces no clear extra benefit. Gridchyn et al. 2020 supplies
+    causal content specificity but damages the local CA1 map, so its local-preservation gate fails.
+    Maingret et al. 2016 and Geva-Sagiv et al. 2023 supply causal timing but begin from a
+    deliberately weak or unequalised memory, so they test consolidation. A lit-pull is owed before any
+    of these is cited as support rather than as motivation.
+
+    ONE MEASUREMENT-VALIDITY COROLLARY, biology-side only and recorded so it is not lost: Widloski and
+    Foster 2025 report that roughly a quarter of detected replay events lack sharp-wave ripples or
+    population bursts and that ripple timing itself depends on the decoded replayed location, so a
+    biological implementation of the pairing arms must target DECODED CONTENT rather than ripple
+    onset -- a ripple-triggered null bounds ripples, not replay.
+
+    DO NOT build in V3 -- there is nothing to build; this is an interpretive standard. DO NOT queue an
+    experiment from this entry. /governance owns whether it becomes a pre-registration gate on any
+    maintenance or repair experiment, and owns the open question of whether it should be folded into
+    INV-105 as a second consequence-set rather than standing alone (the 2026-09-10 GFLAG-0235 ruling
+    on MECH-548's eighth rung is the governing precedent, and it chose forward-reference over
+    amendment).
+
+# =====================================================================================
+# MECH-562 -- from docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+# =====================================================================================
+
+- id: MECH-562
+  title: >-
+    Receiver-local self-healing is the standing rival to every cross-system interface-repair result:
+    a consumer can restore its use of a drifting sender WITHOUT any episodic pair identity, any
+    cross-system label, or any offline replay, by adjusting afferent weights from presynaptic sender
+    activity and its own postsynaptic output under homeostatic error against fixed pre-drift output
+    statistics -- and because this produces the SAME observable as interface repair (downstream
+    performance restored despite upstream change), any REE result attributing a rescue to correctly
+    paired replay must beat a faithful implementation of it at a matched update budget. Its
+    preconditions are its predictions, and they are what make it falsifiable rather than a residual
+    explanation: it needs redundant smooth tuning that continues to tile the represented variable,
+    incremental rather than abrupt change, plasticity at least as fast as drift, and enough sampling
+    or reactivation to estimate the correlations and output statistics -- so its advantage is a
+    function of the DRIFT-RATE-TO-MAINTENANCE-INTERVAL RATIO, and an unswept timescale silently
+    chooses the winner. Three regimes weaken it and are where a genuine pairing effect should be
+    sought: large infrequent drift, drift of the receiver's own scaffold or decoder, and continuous
+    symmetries permitting an unanchored global rotation. Its more durable variants -- population
+    response normalisation, and a stable recurrent predictive model supplying covariance structure --
+    are NOT free local plasticity: they assume a receiver scaffold that is fixed or changes far more
+    slowly than the feed-forward representation, and that assumption is itself a testable
+    architectural commitment, not a background condition.
+  claim_type: mechanism_hypothesis
+  subject: representation.receiver_local_self_healing_readout_adaptation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+  depends_on:
+    - MECH-540  # RIVAL: MECH-540 asserts offline interface maintenance as a third offline job; this asserts the receiver can do the same work locally with no offline phase and no pair identity. Both are deliberately left candidate and neither is prejudged by the other
+    - ARC-139   # the federation principle. Self-healing is the strongest argument that federation can be maintained WITHOUT a maintainer, which makes it the sharpest test of ARC-139's necessity rather than its coherence
+    - MECH-537  # the communication subspace is the object a self-healing readout tracks; a receiver-potent subspace that drift never enters is the degenerate case where no mechanism is needed at all
+    - MECH-538  # bridge complexity: a self-healed readout is an L0/L2 bridge continuously refitted, so L is a moving quantity under this mechanism and single-timepoint L is not well defined
+    - MECH-548  # the durability question: whether a self-healed readout stays calibrated under repeated closed-loop use, or shifts its preferred tuning as the supplement reports it eventually does
+  coupled_with:
+    - INV-110  # reciprocal: the adjudication standard names this mechanism as its arm F (INV-110 depends_on this; the reverse edge would close a cycle under GOV-EDGE-1)
+    - Q-107    # reciprocal: the epistemic limit this mechanism creates (Q-107 depends_on this; reverse edge would close a cycle)
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-562
+  notes: >-
+    From the 2026-09-09 replay-interface-maintenance supplement, sections 3.2, 5.2 and 6.4 (intake
+    evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md).
+
+    VERIFIED ABSENT before registering. grep -n -iE over the 1126-claim registry for "self-healing",
+    "co-adapt", "local adaptation", "homeostatic readout", "invariant subspace|stable subspace",
+    "cortical completion" returns ZERO matches in every case. The nearest neighbours are all about a
+    different object: MECH-120 is nightly synaptic homeostatic DOWN-SCALING (a magnitude operation,
+    not a correspondence-tracking one); MECH-517 and MECH-532 are interface COLLAPSE and missing
+    decompression (static failures of a readout, not its adaptation); MECH-513 is representation-
+    version REINDEXING for episodic memory (an explicit index update, which is the labelled operation
+    this mechanism does without). No REE claim currently says a receiver can repair its own afferents.
+
+    WHY REGISTER A RIVAL. Because the supplement's central negative finding is that the rival has
+    never been excluded, and an unregistered rival is one that gets argued against rather than run
+    against. MECH-540's own notes already concede that the campaign found NO direct biological
+    evidence that sleep reduces a formal bridge-complexity metric between two specialised systems.
+    This entry is the executable comparator that would make a future positive result mean something,
+    and it is written with enough construction detail (the six implementation points of the
+    supplement's section 6.4) that arm F can be built without redesign.
+
+    WHY IT IS A MECHANISM CLAIM ABOUT REE AND NOT ONLY A BIOLOGICAL RIVAL. Every REE consumer that
+    learns from a drifting upstream representation is a candidate instance -- E1 and E2 reading
+    z_world through P0/P1 training, E3 reading E2's action-object space, any downstream reader of
+    ContextMemory. If receiver-local adaptation is doing this work in REE today, then some fraction
+    of what looks like representational improvement in the 978-1010 lineage is readout tracking, and
+    the two are not currently separated anywhere.
+
+    EXTERNAL ANCHORS, motivation only, NOT independently verified in this pass: Rule and O'Leary 2022
+    (PNAS, DOI 10.1073/pnas.2106692119) supply the local rule, with 100 encoding units, drift by
+    Ornstein-Uhlenbeck-like process or abrupt per-feature resampling, plasticity applied after each
+    five of 100 features change -- and the authors themselves describe the Hebbian-homeostatic
+    coupling as an ANSATZ awaiting physiological confirmation. Rule et al. 2020 (eLife, DOI
+    10.7554/eLife.51121) is the empirical precursor in posterior parietal cortex: task information and
+    approximate readout structure outlast individual neural responses, while a non-negligible drift
+    component still degrades a FIXED linear readout. Micou and O'Leary 2026 (PLOS Comput Biol, DOI
+    10.1371/journal.pcbi.1014297) bound it from above -- heavy-tailed sparse tuning jumps can make
+    unsupervised correction EASIER than Gaussian drift -- and explicitly claim no physiological
+    algorithm. Gallego et al. 2020, Keinath et al. 2022 and Peters et al. 2026 (bioRxiv, coordinated
+    cortex-wide drift) supply the adjacent stable-scaffold rival, under which no maintenance mechanism
+    is needed at all. A lit-pull is owed before any is cited as support.
+
+    DO NOT build in V3. DO NOT queue an experiment from this entry: the sequencing in MECH-540 and
+    MECH-548 binds here too -- a waking interface metric must show range and stability at one locus
+    before any maintenance comparison is meaningful, and the assay B specification
+    (evidence/planning/hippocampal_campaign_assay_specifications_20260910.md) is the owner of the arm
+    design.
+
+# =====================================================================================
+# Q-107 -- from docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+# =====================================================================================
+
+- id: Q-107
+  title: >-
+    Can a system distinguish a change in its own code from a change in the world that code
+    represents -- and if it cannot, what is a maintenance mechanism entitled to preserve? A
+    label-free adaptive readout is blind to the difference between a drifting upstream encoding and a
+    genuine change in the latent cause being encoded, so a self-repairing receiver can "correct" a
+    TRUTHFUL update away, restoring an obsolete mapping and reporting it as stability; and an
+    experimenter who scores only restored downstream performance cannot tell those apart either. The
+    question has a sharp REE form: any claim that a maintenance process REPAIRED a mapping must show
+    that the pre-drift mapping was still the CORRECT one, not merely that the receiver converged on
+    something self-consistent -- which requires an anchor outside both endpoints (a ground-truth task
+    target, a preserved external referent, or an explicit provenance marker on the change) that REE
+    does not currently represent anywhere. Whether such an anchor is necessary, or whether
+    self-consistency plus behavioural adequacy is the only coherent criterion available to an embedded
+    system, is open.
+  claim_type: open_question
+  subject: representation.code_change_versus_world_change_indistinguishability
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+  depends_on:
+    - MECH-562  # the mechanism that creates the ambiguity in its sharpest form
+    - INV-110   # the standard whose link 1 (MEASURED CHANGE in a transfer-relevant direction) this question says may be unverifiable from inside
+    - MECH-540    # sleep as selective interface maintenance -- S3 (stable scaffold) and S4 (maladaptive homogenisation) are distinguishable only if this question has an answer
+    - MECH-529    # replay-driven rebucketing: if development legitimately splits or merges categories, then a maintenance mechanism that preserves the old correspondence is preserving an error, and MECH-529 is where the legitimate change originates
+    - GOV-EQUIV-1 # the governance analogue, at the claim layer rather than the representation layer: two views are equivalent only over a DECLARED domain, and divergence must be CLASSIFIED (scope condition / hidden assumption / genuinely new proposition) before evidence transfers. That classification step is exactly what this question asks whether an embedded system can perform on itself
+    - ARC-092     # the clean-base principle at the imagination boundary: no schema update from a consolidation cycle becomes input to the next without a waking checkpoint. A waking checkpoint IS an external anchor, so ARC-092 is REE's one existing partial answer
+  location: docs/architecture/mutual_legibility_communication_subspaces.md#q-107
+  notes: >-
+    From the 2026-09-09 replay-interface-maintenance supplement, sections 5.6 and 8 debt 10 (intake
+    evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md).
+    Named there by Micou and O'Leary 2026 as the ambiguity any local adaptive decoder inherits.
+
+    VERIFIED ABSENT: grep -n -iE for "world change", "latent cause", "code change" over claims.yaml
+    returns two incidental prose hits in unrelated entries (an MSTd cue-integration note and a
+    threshold-calibration note) and no claim on this question.
+
+    WHY IT IS NOT A DUPLICATE OF THE PROVENANCE CLUSTER, which is large (31 claims carry
+    provenance/ancestry/independent-witness in title or subject). That cluster asks whether REE can
+    tell where a piece of CONTENT came from and whether descendants of one observation are being
+    counted as independent witnesses. This asks whether REE can tell whether its own
+    REPRESENTATIONAL SCHEME changed or the world did -- a question about the coordinate system, not
+    about the items expressed in it. The two meet at exactly one point, ARC-092's waking checkpoint,
+    which is listed as a dependency for that reason.
+
+    WHY IT IS NOT A DUPLICATE OF GOV-EQUIV-1, registered 2026-09-08 from the representational-drift
+    and semantic-checksum thought. GOV-EQUIV-1 is a GOVERNANCE rule binding on SESSIONS: when may two
+    representations of one claim share a truth state, and it requires the divergence to be CLASSIFIED
+    by a person or a session with access to both. This question asks whether the ORGANISM can perform
+    the analogous classification on itself with no external adjudicator. GOV-EQUIV-1 presupposes an
+    outside view; this question is about its absence.
+
+    WHAT WOULD MAKE IT TRACTABLE RATHER THAN PHILOSOPHICAL. The supplement's assay B already contains
+    the discriminating manipulation without naming it as such: Gate 0 imposes a KNOWN invertible drift
+    with a KNOWN oracle inverse, which means the experimenter holds the anchor the organism lacks. A
+    minimal REE version is to run the same maintenance arms under two conditions that are
+    indistinguishable to the receiver -- a pure code rotation with the task unchanged, and a genuine
+    task change of matched magnitude -- and ask whether any REE mechanism behaves differently. If none
+    does, the question is answered negatively for the current substrate and the consequence is that
+    every maintenance claim needs an external anchor stated in its design.
+
+    Set epistemic_category substrate_conditional EXPLICITLY (overriding the open_question ->
+    answer_state inference) so narrow_open_question does NOT fire: this is not a V3-tractable question
+    to narrow by experiment -- it awaits the controlled-drift intervention that does not yet exist in
+    ree-v3 (measurement exists at experiments/_lib/interface_probe.py:1012 per_code_drift; imposition
+    does not). DO NOT build in V3. DO NOT queue an experiment from this entry.

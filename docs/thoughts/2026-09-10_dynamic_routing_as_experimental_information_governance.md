@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-10_dynamic_routing_as_experimental_information_governance.md
+Claims registered: MECH-560 (shared with the hub)
+
 # Dynamic routing as experimental information governance
 
 **Date:** 2026-09-10  
-**Status:** thought / assay-generative note; not a claim registration, queue mutation, or `ree_core` implementation instruction  
+**Status:** thought / assay-generative note (ingested 2026-09-15 -- see Intake above); not a claim registration, queue mutation, or `ree_core` implementation instruction  
 **Parent:** `2026-09-10_dynamic_information_governance_propagating_causal_privilege.md`  
 **Related:** `2026-09-07_mutual_legibility_implementation_assays.md`; `2026-09-09_hippocampal_replay_interface_maintenance_supplement.md`; `../../evidence/planning/hippocampal_campaign_assay_specifications_20260910.md`
 

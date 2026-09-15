@@ -1496,6 +1496,15 @@
     "title": "The cognitive contract is BOUNDARY-INDEXED, not one flat universal header: for a handoff from subsystem A to subsystem B the obligation is I_AB = the relations B requires that B cannot cheaply and reliably reconstruct locally, so the contract is properly written as a family of TYPED OBLIGATIONS, C = { A -> B : I_AB, tolerated distortion, receiver capability, fallback behaviour }, one entry per directed interface. A sensory-to-world-model handoff, a hippocampal replay handoff, an E1-to-E2 predictive handoff and a control-plane handoff need not carry the same relational payload, and a relation may be obligatory at one boundary while being locally reconstructable -- and therefore omissible -- at another. The consequence that makes this more than bookkeeping: a DEEP SHARED CORE, if one exists, is an EMPIRICAL OVERLAP to be measured across many heterogeneous interfaces, never a premise; candidates such as value, salience, confidence, commitment and priority may be crucial at particular boundaries without being universal invariants of every internal representation, and a universal reading of the contract systematically over-states their status. Falsifier for the contract programme itself: if useful obligations exist at each boundary but their OVERLAP across the cognitive graph is negligible, boundary-specificity defeats a shared core and the contract is a set of interface specifications rather than an architecture of cognition.",
     "type": "architectural_commitment"
   },
+  "ARC-145": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "architecture.dynamic_information_governance_jurisdiction",
+    "title": "Dynamic information governance: a complete inter-engine interface in REE requires THREE properties, not two -- (1) the decision-relevant content survives the sender's encoding, (2) sender and receiver are mutually legible so a constrained transformation between frozen endpoints exists (ARC-139 / MECH-537 / MECH-538), and (3) the exchange occurs under a routing state that grants the sender causal privilege over that receiver AT THAT MOMENT. Property (3) -- jurisdiction, or temporal/state ACCESS -- is a separate organisational level from content and from legibility, so a representation can be present, decodable, structurally connected to a downstream system, and still unable to affect it; and the corresponding repair is different in kind from an encoder fix or a bridge. The architectural consequence is that REE's effective interface graph is CONSTRUCTED rather than possessed: G_eff(t) is a function of wiring, representational geometry, control state and history, so the same computational substrate can belong to different effective networks at different times. SEPARABILITY FALSIFIER, which is the whole content of the commitment: if a static bridge between frozen endpoints restores the full behavioural phenotype irrespective of when the message is made available, level (3) is unnecessary and this commitment should be withdrawn in favour of ARC-139 plus MECH-539 alone.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "coupled_with": [],
@@ -3702,6 +3711,26 @@
     "status": "candidate",
     "subject": "architecture.convergence_detected_not_trained",
     "title": "Convergence must be DETECTED over a preserved diversity, never TRAINED into the evaluators: any architecture that treats agreement among partly independent routes as evidence thereby creates a gradient toward making those routes agree, and acting on that gradient destroys exactly the independence that gave the agreement its evidential value -- agreement among clones is cheap, agreement among competent differences is not. The constraint therefore binds in five parts: (i) no agreement or consensus objective may be optimised into the evaluators themselves, and a convergence estimator must never become a teacher of its own evidence base; (ii) convergence is computed DIAGNOSTICALLY over evaluator outputs and is an EVENT over diversity, not an endpoint or a training target; (iii) dependency provenance and disagreement history must be preserved rather than compressed away, because they are what make a later agreement interpretable; (iv) a competent dissenting route must retain a protected path to attention that a confident majority cannot close, and protected-veto and irreversibility structure must not be purchasable by many weak agreeing votes; (v) the objective is preservation of COMPETENT NON-REDUNDANT routes -- unique predictive coverage, unique error detection, distinct failure sets, distinct causal paths -- and explicitly NOT maximum diversity, which is satisfiable by noise or contrarian output, nor maximum agreement. The diversity that matters for this purpose is ERROR and CAUSAL diversity, not geometric representational dissimilarity: two systems can differ geometrically and fail identically, or look similar and respond differently under intervention.",
+    "type": "invariant"
+  },
+  "INV-109": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "methodology.endpoint_identity_versus_recipe_reproduction",
+    "title": "A reproduced deterministic RECIPE is not a frozen ENDPOINT: re-running a documented training recipe reconstitutes an operating REGIME, which licenses a within-run paired comparison and nothing whatever about the identity of the artifact a PRIOR run measured. Any claim naming a specific earlier endpoint -- \"decoded the 1002/1008 latent\", \"the same frozen encoder\", \"the banked representation\" -- requires that endpoint's weights and observations to have been PERSISTED and LOADED, not re-derived; where they were re-derived, the admissible statement is bounded to the regime (\"the consumer-width values fall in the declared band and the participation ratios match\"), and the endpoint-identity claim must be withdrawn. The discriminator is mechanical and cheap: a recorded state hash at both endpoints, re-verified at every evaluation boundary, with a mismatch aborting rather than warning. A pinned substrate COMMIT is not a substitute -- it constrains the code that produced the endpoint, never the endpoint's realised weights, which is why a commit-pinned run can and does report substrate_stable_across_run false.",
+    "type": "invariant"
+  },
+  "INV-110": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "methodology.interface_repair_adjudication_standard",
+    "title": "The interface-repair adjudication standard: a claim that some maintenance process REPAIRED a cross-system mapping -- as opposed to strengthening a memory, triggering a completion, or riding a subspace that never broke -- is admissible only from a single design, or one tightly integrated series, that closes all six links itself, because the confounds differ across preparations and therefore do not cancel when rows are stacked: (1) MEASURED CHANGE in a transfer-relevant direction, which excludes unit turnover, registration noise, behavioural change, and any rotation preserving the receiver-potent subspace; (2) LOCAL PRESERVATION of sender information, sender-local use, and receiver-local memory and competence, at the moment of the cross-system test; (3) ACCESS LOSS measured by a causal receiver-dependent output, never by decodability or correlation; (4) PAIR-SPECIFIC MAINTENANCE, compared against a within-context permutation preserving event count, state occupancy, marginal content, firing and plasticity opportunity and breaking only which sender event pairs with which receiver state; (5) CAUSAL RESTORATION on held-out episodes; (6) RIVAL EXCLUSION at matched budgets. Two consequences bind. First, a GATE-0 LESION PROOF precedes every maintenance arm: the imposed change must degrade causal receiver use while leaving both endpoints locally intact AND be restorable by a known oracle inverse -- if the oracle cannot restore use the lesion is not an interface lesion and the drift model is invalid, if magnitude-matched null-subspace drift degrades use the subspace identification is invalid, and if task-relevant drift does not degrade use there is nothing to repair and the experiment stops. Second, the estimand is the correctly-paired arm beating the MAXIMUM of the permuted-pair, receiver-local-adaptation and local-rehearsal arms, never the unmaintained floor: a correct-pair advantage over the floor alone is equally explained by generic plasticity, extra rehearsal and homeostatic adaptation. Local-memory equivalence is a PROSPECTIVE constraint tested by equivalence tests, never a covariate regressed out afterwards, because conditioning on a treatment-affected memory score is a collider.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -9499,6 +9528,36 @@
     "title": "Evidence-dependency topology and downstream-leverage topology are SEPARATE, state-conditioned variables and conflating them misallocates information seeking: \"how many genuinely independent reasons do I currently hold\" (the evidence-source dependency graph) and \"how many distinct consequential consumers would change if this uncertainty were resolved\" (the downstream-leverage graph) are different relations over the same subsystems, so a policy that uses either as a proxy for the other allocates queries, rollouts or experiments badly -- five statistically independent routes can all update one downstream decision, and one correlated cluster can control several genuinely distinct consequences. Four bindings. (1) STRUCTURED DIVERGENCE IS NOT INFORMATION VALUE: disagreement earns allocation weight only after multiplication by expected REDUCIBILITY and decision CONSEQUENCE and correction for how much of the current evidence is genuinely independent; raw disagreement is attracted to irreducible noise and to broken or out-of-domain evaluators, and a divergence signal must separate useful, irreducible and broken-view divergence. (2) COMPETENCE IS DOMAIN-INDEXED: an evaluator must not carry one global trust weight when its competence depends on the current representational or behavioural domain. (3) UNCERTAIN PROVENANCE MUST BE REPRESENTED AS UNCERTAIN: treating noisy ancestry metadata as categorical dependency labels degrades worse than carrying soft dependency probabilities, and the soft form wins by making less COSTLY errors rather than by hitting the optimum more often. (4) BOTH GRAPHS ARE STATE-CONDITIONED: two routes redundant in one context can be independent in another, and two named downstream consumers can be functionally redundant in one state and distinct in another, so a static average relation graph is insufficient. As in MECH-558, exact value-of-information over the true joint model is the ceiling and is not contested.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-560": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "architecture.routing_selectivity_over_transfer_volume",
+    "title": "Governed selectivity beats transfer volume: competent integrated behaviour in REE tracks the SELECTIVITY, STABILITY, REPERTOIRE and causal TIMING of directed influence between engines, not the AMOUNT of inter-engine information transferred -- so the decisive experimental signature is a DISSOCIATION at matched traffic, in which endpoint-local content remains decodable, endpoint-local competence remains intact, total inter-module transfer is matched or INCREASED, and integrated behaviour nonetheless degrades in proportion to lost directional selectivity, route stability or motif repertoire. Three degradation modes are predicted to be distinguishable rather than one: FLATTENING (all channels similarly permissive, high volume, no selectivity), DOMINATION (one slow global mode monopolises routing authority, high coherence, low repertoire) and FRAGMENTATION (routes form but do not persist long enough to complete a multi-step transfer; local decodability intact, long-horizon coordination poor). PRIMARY FALSIFIER: if performance is fully explained by total transmitted activity or message count, and route selectivity adds nothing once traffic is matched, this claim is refuted and no routing layer is warranted. SECOND FALSIFIER: if total transfer always FALLS whenever behaviour falls, the high-traffic/low-tuning regime does not exist in REE and the claim's discriminating signature is unreachable.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-561": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "representation.phase_conditioned_communication_subspace",
+    "title": "Phase as an addressing coordinate: the receiver-potent communication subspace between two REE subsystems is indexed by an ENDOGENOUS CYCLIC coordinate that belongs to neither endpoint -- S_comm(A -> B | phi, c) rather than S_comm(A -> B) -- so a sender dimension can lie INSIDE the receiver-potent subspace at one phase and OUTSIDE it at another with no change whatever in the sender's representation, and information can be continuously decodable from the sender while its downstream causal effect varies systematically with phi. COROLLARY, which is the sharper and more falsifiable half: TEMPORAL separability can substitute for GEOMETRIC separability, so two concurrently represented streams need not be near-orthogonal in population geometry if they become receiver-effective at different temporal addresses -- predicting a measurable trade-off in which the principal angle between two stream subspaces and their phase-conditioned overlap with S_comm move in opposite directions while behavioural intrusion stays flat. FOUR-CELL VERDICT GRID, pre-registered: GEOMETRY-ONLY (angle changes, phase conditioning adds nothing) / TIMING-ONLY (geometry flat, causal impact alternates with phase) / JOINT (both reorganise and jointly predict intrusion) / NULL (neither beats a static consumer model at matched complexity). FALSIFIERS: a static subspace explains receiver activity and behaviour as well as any phase-conditioned model at matched complexity; a global scalar gain explains it without receiver-specific temporal structure; RANDOM temporal labels do as well as the endogenous coordinate; or the dependence disappears after controlling for ordinary task context, action identity, arousal, or trivial periodicity in environment sampling.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-562": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [
+      "INV-110",
+      "Q-107"
+    ],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "representation.receiver_local_self_healing_readout_adaptation",
+    "title": "Receiver-local self-healing is the standing rival to every cross-system interface-repair result: a consumer can restore its use of a drifting sender WITHOUT any episodic pair identity, any cross-system label, or any offline replay, by adjusting afferent weights from presynaptic sender activity and its own postsynaptic output under homeostatic error against fixed pre-drift output statistics -- and because this produces the SAME observable as interface repair (downstream performance restored despite upstream change), any REE result attributing a rescue to correctly paired replay must beat a faithful implementation of it at a matched update budget. Its preconditions are its predictions, and they are what make it falsifiable rather than a residual explanation: it needs redundant smooth tuning that continues to tile the represented variable, incremental rather than abrupt change, plasticity at least as fast as drift, and enough sampling or reactivation to estimate the correlations and output statistics -- so its advantage is a function of the DRIFT-RATE-TO-MAINTENANCE-INTERVAL RATIO, and an unswept timescale silently chooses the winner. Three regimes weaken it and are where a genuine pairing effect should be sought: large infrequent drift, drift of the receiver's own scaffold or decoder, and continuous symmetries permitting an unanchored global rotation. Its more durable variants -- population response normalisation, and a stable recurrent predictive model supplying covariance structure -- are NOT free local plasticity: they assume a receiver scaffold that is fixed or changes far more slowly than the feed-forward representation, and that assumption is itself a testable architectural commitment, not a background condition.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "coupled_with": [],
@@ -10547,6 +10606,24 @@
     "status": "candidate",
     "subject": "provenance.source_attribution_vs_cardinality_dissociation",
     "title": "Are source attribution and evidence cardinality DISSOCIABLE readouts of one provenance manipulation, or does a change in either always drag the other? Specifically: can P(external | representation) move without the effective independent-source count moving (a hallucination-like outcome with no confidence inflation), can the effective source count and calibration move without any change in external-source attribution (a delusion-like outcome with no altered phenomenology), and does a broader self-monitoring failure move both? A null on the dissociation is itself informative, because it would mean provenance errors alter source labels only and evidence cardinality is protected some other way -- which would retire the false-evidence-multiplication branch while leaving the source-monitoring account intact.",
+    "type": "open_question"
+  },
+  "Q-106": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "asked",
+    "status": "open",
+    "subject": "control_plane.endogenous_vs_scheduled_routing_generation",
+    "title": "Endogenous or exogenous routing generation: does CLOSING the loop -- letting the routing state be generated partly by the aggregate activity of the very subsystems whose effective connectivity it sets, so that local activity -> field state -> altered effective connectivity -> new activity -> updated field state -- confer any capability that a matched OPEN-LOOP routing schedule cannot reproduce? Pre-registered discriminator: two routing generators whose OUTPUT marginal statistics are matched (gain distribution, temporal autocorrelation, motif dwell time, transition entropy) and whose parameter and compute budgets are matched, one supplied independently of module activity and one evolved from it, compared on robustness to perturbation, speed of reconfiguration after a context change, adaptive routing in unseen contexts, and recovery after a transient lesion -- never on raw task score, which the extra recurrence alone can move. A null here is informative and expected to be common: if both perform identically, endogenous field feedback is unnecessary and the simpler scheduled field should be kept.",
+    "type": "open_question"
+  },
+  "Q-107": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "representation.code_change_versus_world_change_indistinguishability",
+    "title": "Can a system distinguish a change in its own code from a change in the world that code represents -- and if it cannot, what is a maintenance mechanism entitled to preserve? A label-free adaptive readout is blind to the difference between a drifting upstream encoding and a genuine change in the latent cause being encoded, so a self-repairing receiver can \"correct\" a TRUTHFUL update away, restoring an obsolete mapping and reporting it as stability; and an experimenter who scores only restored downstream performance cannot tell those apart either. The question has a sharp REE form: any claim that a maintenance process REPAIRED a mapping must show that the pre-drift mapping was still the CORRECT one, not merely that the receiver converged on something self-consistent -- which requires an anchor outside both endpoints (a ground-truth task target, a preserved external referent, or an explicit provenance marker on the change) that REE does not currently represent anywhere. Whether such an anchor is necessary, or whether self-consistency plus behavioural adequacy is the only coherent criterion available to an embedded system, is open.",
     "type": "open_question"
   },
   "RA-001": {

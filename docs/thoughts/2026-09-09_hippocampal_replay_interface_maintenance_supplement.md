@@ -1,8 +1,12 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
+Claims registered: INV-110, MECH-562, Q-107
+
 # Replay-dependent maintenance of cross-system access
 
 **Focused adversarial supplement to the hippocampal campaign adjudication**
 **Prepared:** 2026-09-09 (two independent passes); merged 2026-09-10
-**Status:** literature synthesis and assay refinement only. This supplement does not register, implement, queue, score, or promote a claim.
+**Status:** literature synthesis and assay refinement only (ingested 2026-09-15 -- see Intake above). This supplement does not register, implement, queue, score, or promote a claim.
 **Parent:** [hippocampal campaign adjudication](2026-09-09_hippocampal_campaign_adjudication.md)
 **Prior tranches:** [campaign scaffold](../../evidence/planning/hippocampal_translation_maps_biology_campaign_20260909.md), [literature tranche 1](../../evidence/planning/hippocampal_translation_maps_literature_tranche_1.md), [CA1 transformation tranche 2](../../evidence/planning/hippocampal_translation_maps_literature_tranche_2_ca1_transformation.md), and [REE archaeology](2026-09-09_hippocampal_translation_maps_ree_archaeology.md)
 

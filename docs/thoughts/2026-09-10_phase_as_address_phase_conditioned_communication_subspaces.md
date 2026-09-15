@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md
+Claims registered: MECH-561
+
 # Phase as address: oscillatory multiplexing, phase-conditioned communication subspaces, and the temporal organisation of causal privilege
 
 **Date:** 2026-09-10  
-**Status:** synthesis thought; design-generative, not a claim registration, queue mutation, or instruction to modify `ree_core`  
+**Status:** synthesis thought; design-generative (ingested 2026-09-15 -- see Intake above), not a claim registration, queue mutation, or instruction to modify `ree_core`  
 **Parents / related:**
 - `2026-09-10_dynamic_information_governance_propagating_causal_privilege.md`
 - `2026-09-10_dynamic_routing_as_experimental_information_governance.md`

@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-10_dynamic_information_governance_propagating_causal_privilege.md
+Claims registered: ARC-145, MECH-560, MECH-561, Q-106
+
 # Dynamic information governance: propagating causal privilege, anaesthesia, and the routing geometry of cognition
 
 **Date:** 2026-09-10  
-**Status:** raw-to-refined thought; design-generative, not a claim registration and not an instruction to modify `ree_core`  
+**Status:** raw-to-refined thought; design-generative (ingested 2026-09-15 -- see Intake above), not a claim registration and not an instruction to modify `ree_core`  
 **Trigger:** Misawa et al. (2026), *Awake cortex stabilizes traveling waves for global and reliable information routing*, together with the current REE mutual-legibility, hippocampal-interface, anaesthesia, and `z_world` work  
 **Related REE documents:**
 - `2026-09-07_mutual_legibility_implementation_assays.md`

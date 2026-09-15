@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_hippocampal_campaign_adjudication.md
+Claims registered: none (content already owned or not claim-shaped -- see the intake)
+
 
 # Hippocampal relational continuity: campaign adjudication and evidence matrix
 
 **Date:** 2026-09-09  
-**Status:** literature synthesis and assay design; no claim registration, promotion, substrate change, or queue mutation.  
+**Status:** literature synthesis and assay design (ingested 2026-09-15 -- see Intake above); no claim registration, promotion, substrate change, or queue mutation.  
 **Parent:** [campaign scaffold](../../evidence/planning/hippocampal_translation_maps_biology_campaign_20260909.md).  
 **Prior work:** [archaeology](2026-09-09_hippocampal_translation_maps_ree_archaeology.md), [tranche 1](../../evidence/planning/hippocampal_translation_maps_literature_tranche_1.md), [CA1 tranche 2](../../evidence/planning/hippocampal_translation_maps_literature_tranche_2_ca1_transformation.md), [tranche 3: receiver conditioning and temporal relations](../../evidence/planning/hippocampal_translation_maps_literature_tranche_3_receiver_conditioning_temporal.md).  
 **Contents:** adjudication, live-state corrections, biological/computational synthesis, genealogy, 43-source structured matrix, three assay families, provenance boundary, remaining debts.

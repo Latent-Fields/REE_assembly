@@ -1,10 +1,10 @@
 ---
-title: "Mutual Legibility and Communication Subspaces (ARC-139, MECH-537..540, INV-105)"
+title: "Mutual Legibility and Communication Subspaces (ARC-139, MECH-537..540, INV-105; INV-109, INV-110, MECH-562, Q-107)"
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
 nav_order: 16
 status: candidate
-status_asof: 2026-09-08
+status_asof: 2026-09-15
 status_claim: ARC-139
 ---
 
@@ -169,6 +169,59 @@ has demonstrated range and stability -- otherwise it measures the instrument rat
 organism.
 
 ---
+
+## Registered 2026-09-15 from the hippocampal campaign cluster {#hippocampal-campaign-2026-09-15}
+
+Source thoughts: `docs/thoughts/2026-09-09_exq1010_substrate_readiness_audit.md` (INV-109) and
+`docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md` (INV-110, MECH-562,
+Q-107); intakes under `evidence/planning/thought_intake_2026-09-09_*`. The two archaeologies and the
+campaign adjudication registered nothing. Implementation-gap audit at registration: the audit's
+"assay A/B NO-GO, build the instrument first" verdict is SUPERSEDED -- `experiments/_lib/interface_probe.py`
+landed in ree-v3 on 2026-09-10 (RRR subspace, principal angles, L0-L5 bridge ladder, causal replacement,
+manifold guard, dynamic compatibility, TOST). Remaining genuine gaps: no receiver-conditioned `T(A,B)`
+rung (MECH-547 has no instrument), no arm F (receiver-local self-repair), no native-consumer causal
+replacement (caps every result at INV-105 rung 4).
+
+### INV-109 -- a reproduced recipe is not a frozen endpoint {#inv-109}
+
+Re-running a documented training recipe reconstitutes an operating REGIME and licenses a within-run
+paired comparison, never a claim about the identity of the artifact a prior run measured. Naming an
+earlier endpoint requires its weights and observations to have been persisted and loaded; a pinned
+substrate commit constrains the code, not the realised weights. Discriminator: a recorded state hash at
+both endpoints, re-verified at every evaluation boundary, mismatch aborting. Load-bearing for every
+assay defined over "frozen endpoints" (MECH-538, MECH-547, MECH-548, MECH-540). Distinct from GOV-EQUIV-1
+(equivalence of claim representations, not artifacts).
+
+### INV-110 -- the interface-repair adjudication standard {#inv-110}
+
+A repair claim is admissible only from one design (or one tightly integrated series) that closes all
+six links itself: measured change in a transfer-relevant direction; local preservation at both
+endpoints; access loss by a causal receiver-dependent output; pair-specific maintenance against a
+within-context permutation; causal restoration on held-out episodes; rival exclusion at matched budgets.
+A Gate-0 lesion proof (oracle-restorable, null-subspace-drift-insensitive) precedes every maintenance
+arm, and the estimand is the paired arm beating the MAXIMUM of permuted-pair, receiver-local-adaptation
+and local-rehearsal arms, never the unmaintained floor. Local-memory equivalence is a prospective
+equivalence test, never a post-hoc covariate. Standalone rather than an INV-105 amendment, by the
+GFLAG-0235 precedent.
+
+### MECH-562 -- receiver-local self-healing as the standing rival {#mech-562}
+
+A consumer can restore its use of a drifting sender with no pair identity, cross-system label or replay,
+by adjusting afferent weights from sender activity and its own output under homeostatic error against
+pre-drift output statistics. It yields the same observable as interface repair, so any replay-attributed
+rescue must beat a faithful implementation of it at matched update budget. Its preconditions are its
+predictions (redundant smooth tuning, incremental drift, plasticity at least as fast as drift, enough
+sampling), so its advantage is a function of the drift-rate-to-maintenance-interval ratio; an unswept
+timescale silently chooses the winner. Zero prior coverage in the registry. Rival to MECH-540.
+
+### Q-107 -- code change versus world change {#q-107}
+
+Can a system distinguish a change in its own code from a change in the world that code represents, and
+if not, what is a maintenance mechanism entitled to preserve? A label-free adaptive readout can "correct"
+a truthful update away and report it as stability. Any repair claim must show the pre-drift mapping was
+still the correct one, which needs an anchor outside both endpoints that REE does not currently represent.
+Whether such an anchor is necessary, or self-consistency plus behavioural adequacy is the only coherent
+criterion for an embedded system, is open.
 
 ## Failure-class routing
 

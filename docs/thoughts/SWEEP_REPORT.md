@@ -1,25 +1,25 @@
 # Thought Sweep Report
 
-Generated: `2026-09-08T20:00:18.374985Z`
+Generated: `2026-09-15T06:58:20.456247Z`
 
 | metric | count |
 |---|---|
-| total thought files | 243 |
-| processed | 242 |
-| unprocessed | 1 |
+| total thought files | 260 |
+| processed | 260 |
+| unprocessed | 0 |
 | processed missing back-links | 0 |
 
 Back-link forms among processed thoughts:
 
 - `legacy`: 179
-- `intake_header`: 60
+- `intake_header`: 78
 - `frontmatter`: 1
 - `superseded`: 2
 - `none`: 0
 
 ## Unprocessed Queue
 
-- `2026-09-08` `2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md` (status=`unprocessed`)
+- _none_
 
 ## Processed Missing Links
 
@@ -265,7 +265,25 @@ Back-link forms among processed thoughts:
 - `2026-09-07_mutual_legibility_communication_subspaces.md` (1 link(s), form=`intake_header`)
 - `2026-09-07_mutual_legibility_implementation_assays.md` (1 link(s), form=`intake_header`)
 - `2026-09-07_mutual_legibility_implications_and_next_moves.md` (1 link(s), form=`intake_header`)
+- `2026-09-08_candidate_cognitive_invariants.md` (1 link(s), form=`intake_header`)
 - `2026-09-08_deriving_the_cognitive_contract.md` (1 link(s), form=`intake_header`)
+- `2026-09-08_developmental_overcapacity_pruning_sparse_interfaces.md` (1 link(s), form=`intake_header`)
+- `2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_aha_as_cross_model_restructuring.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_convergence_as_general_computational_signal.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_convergence_divergence_as_dual_meta_signal.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_convergence_signal_formal_notes.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_diversity_vs_convergence.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_exq1010_substrate_readiness_audit.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_hippocampal_campaign_adjudication.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_hippocampal_replay_interface_maintenance_supplement.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_hippocampal_translation_interface_archaeology.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_hippocampal_translation_maps_ree_archaeology.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md` (1 link(s), form=`intake_header`)
+- `2026-09-09_shared_reference_frames_and_temporal_gates.md` (1 link(s), form=`intake_header`)
+- `2026-09-10_dynamic_information_governance_propagating_causal_privilege.md` (1 link(s), form=`intake_header`)
+- `2026-09-10_dynamic_routing_as_experimental_information_governance.md` (1 link(s), form=`intake_header`)
+- `2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md` (1 link(s), form=`intake_header`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (1 link(s), form=`superseded`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s), form=`legacy`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s), form=`legacy`)

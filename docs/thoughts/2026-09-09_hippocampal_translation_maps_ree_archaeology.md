@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_hippocampal_translation_maps_ree_archaeology.md
+Claims registered: none (content already owned or not claim-shaped -- see the intake)
+
 # Hippocampal Translation Maps — REE Archaeology
 
 **Date:** 2026-09-09  
-**Status:** archaeology / synthesis; not a claim registration, implementation decision, or experiment-queue mutation  
+**Status:** archaeology / synthesis (ingested 2026-09-15 -- see Intake above); not a claim registration, implementation decision, or experiment-queue mutation  
 **Scope:** internal REE conceptual and experimental genealogy only. Biological adequacy of the resulting synthesis is **not** adjudicated here and requires a separate literature campaign.  
 **Archaeology rule:** distinguish **direct genealogy**, **earlier precursor**, **independent convergence**, and **experimental convergence**. Do not infer historical dependence merely because later ideas resemble earlier ones.
 

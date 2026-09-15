@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_hippocampal_translation_interface_archaeology.md
+Claims registered: none (content already owned or not claim-shaped -- see the intake)
+
 # REE translation-interface archaeology: hippocampal indexing, remapping, and mutual legibility
 
 **Date:** 2026-09-09  
-**Status:** archaeology / synthesis; not a claim registration, implementation decision, or experiment-queue mutation  
+**Status:** archaeology / synthesis (ingested 2026-09-15 -- see Intake above); not a claim registration, implementation decision, or experiment-queue mutation  
 **Scope:** internal REE genealogy of translation-like mechanisms, with emphasis on hippocampal/path-memory functions and their later convergence with representational-interface work  
 **Method:** earliest-currently-evidenced rule. Where repository history was checked, dates refer to the earliest currently evidenced commit carrying the surviving artefact; absence of an earlier surviving artefact is not proof that the idea was never discussed earlier.
 
