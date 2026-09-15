@@ -3009,3 +3009,7 @@ One line per hourly tick. ASCII only.
 2026-09-15T02:42:14Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
 2026-09-15T02:41:17Z SPAWN IGW-20260915-243 skill=/queue-experiment prio=40 uuid=4ae61f5a-5adf-41be-9426-d4a79c8db52c pid=126 worktree=igw-243-proposal-for-mech-016
 2026-09-15T03:06:28Z auto-defer igw-243-proposal-for-mech-016 hash=2b7aecc3e046 for 48h (complete)
+2026-09-15T03:07:42Z complete igw-243-proposal-for-mech-016 spawned->completed outcome=USEFUL_LANDED: marked EVB-1389 (MECH-016) blocked_substrate: F1 zero-point seeded from precisio
+2026-09-15T03:46:17Z GC removed worktree igw-243-proposal-for-mech-016 (removed; branch deleted)
+2026-09-15T03:45:35Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-15T03:46:40Z workset committed (regen -- 255 items, 32 ready, 0 in flight)
