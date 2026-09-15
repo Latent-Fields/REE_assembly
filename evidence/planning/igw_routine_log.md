@@ -3020,3 +3020,7 @@ One line per hourly tick. ASCII only.
 2026-09-15T04:50:29Z GC sweep removed 1 orphan worktree(s), kept 12
 2026-09-15T04:50:29Z SPAWN IGW-20260915-250 skill=/queue-experiment prio=55 uuid=4ea7ca4c-f0ed-416f-82c5-8b0e6f6352e4 pid=91241 worktree=igw-250-confirm-evidence-arc-131-lit-0-8
 2026-09-15T04:54:48Z auto-defer igw-250-confirm-evidence-arc-131-lit-0-8 hash=514c70b6d143 for 48h (complete)
+2026-09-15T04:55:03Z complete igw-250-confirm-evidence-arc-131-lit-0-8 spawned->completed outcome=DUPLICATE: no action: ARC-131 confirming probe V3-EXQ-1038 already queued (ree-v3 95961aa)
+2026-09-15T05:57:16Z GC removed worktree igw-250-confirm-evidence-arc-131-lit-0-8 (removed; branch deleted)
+2026-09-15T05:56:33Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-15T05:56:33Z no eligible item (skipped 255): IGW-20260915-001:skill /governance not allowed; IGW-20260915-005:skill /governance not allowed; IGW-20260915-006:skill /governance not allowed
