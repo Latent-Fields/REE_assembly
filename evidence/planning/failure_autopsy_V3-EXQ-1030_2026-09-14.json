@@ -1,0 +1,239 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-14T23:46:07Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_note": "STAGING-MODE DRAFT (headless, session autopsy-staging-trio-20260914, dispatched by orchestrate-20260914-2323). Routing is NOT finalised; Step 8 interactive gate is OWED. Step 9b was NOT applied to hypothesis_space_registry.v1.json -- the intended append is recorded under hypothesis_space_ledger_pending for the confirming session / next /governance walk.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability_20260914T125657Z_v3",
+      "queue_id": "V3-EXQ-1030",
+      "claim_ids": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "bears_on": [
+        "waypoint_field_consumer_reach:H-wpfield-zworld-interface",
+        "v3_binding_constraint_observation_interface"
+      ],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "none scientifically -- the load-bearing C1 was SUPPRESSED, not failed. C1 `zworld_lift_null` reports met:false while its own cells report measured 0.8 >= threshold 0.6 and n_seeds_met 4 >= required_seeds 3, because `c1 = measurable and (len(null_seeds) >= need)` (driver line 719) and readiness R3 `zworld_probe_extracts_known_signal` was unmet (4/10 cells vs a 0.6 cell fraction). The FAIL is the R3 precondition gate firing, not a criterion missed.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not exercised -- read-across only, unconditionally, exactly as the confirmed failure_autopsy_V3-EXQ-1004_2026-09-05 fan-out instructed and as this driver's own docstring and `evidence_direction_note` state. No REE agent doing subgoal-mode navigation toward a reward, no z_goal, no MECH-116/216/217/426/427 feedback-channel ablation (INV-086's what_would_answer regime), no forced-seed control (MECH-428's what_would_answer regime). Neither claim's hypothesis is touched whatever the z_world verdict.",
+        "biological_reference": "partial -- the question (does a sensory gradient survive a compressive sensory-cortical bottleneck into the representation downstream evaluators read) has a clear biological analogue in thalamocortical/early-visual compression preserving task-relevant gradients. But this run's z_world is trained by a GENERIC anti-collapse recipe (SD-070 P0a, resource-proximity target), not by any pressure to preserve waypoint information -- biologically, a representation is shaped by what the organism must act on, so an untasked bottleneck discarding the untasked gradient is the EXPECTED outcome, not a defect. The probe asks whether the signal is linearly present, not whether it would be present under the relevant developmental pressure.",
+        "prerequisites": "present -- SD-WAYPOINT-FIELD landed and is validated at reader scope (V3-EXQ-1004, confirmed); SD-070 P0a warmup ran in all 10 cells; the encoder-moved guard (R2) met at 10/10.",
+        "implementation": "partial -- the DRIVER's instrumentation is defective in one specific, identified place (readiness R3, see failure_location and learning_extracted). The substrate under test is intact.",
+        "environment": "adequate -- CausalGridWorldV2 12x12, subgoal_mode, 3 waypoints, hazards/resources deliberately left on (the probe is supervised, so the reward-composition confound has no purchase). The _FieldMaskedEnv design (red-team F2) gives a genuinely PAIRED ON/OFF contrast: identical seed, identical env, identical uniform-random action sequence, byte-identical agent init -- confirmed in the manifest by label_counts being identical across arms within every seed. This is a strength of the design, not a defect.",
+        "measurement": "under-instrumented -- THE dominant layer. Two independent defects in the probe instrument, both in the readiness/positive-control apparatus rather than in the DV: (i) R3's target is not present in the feature space it certifies; (ii) the probe fitting budget under-fits z_world specifically. See failure_location and learning_extracted.",
+        "integration": "isolated -- by design. The latent stack is frozen at P1 and nothing downstream (E1/E2/E3) is exercised. Appropriate for a decodability probe; it does mean the run says nothing about whether a CONSUMER could use whatever is there.",
+        "scale": "likely insufficient for the probe, adequate for the substrate -- 40 probe-collection episodes, episode-level 80/20 split, so ~8 held-out episodes per cell and an effective sample size nearer 40 than the nominal 957-1140 steps (z_world is a 0.9-EMA over within-episode state, so step-level samples are heavily autocorrelated). The probe itself gets 150 full-batch Adam steps at lr 5e-3 on unstandardised 32-dim features."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES -- single-bucket, not chargeable to REE. The measurement apparatus is not adequate (the positive control cannot certify what it claims to certify, and the probe under-fits the feature space under test), so neither MECHANISM nor MEASURES is established and the REE bucket cannot be reached. Nothing here licenses any organism-level or claim-level read."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Thalamocortical / early sensory-cortical compression preserving behaviourally-relevant spatial gradients into the representations that downstream evaluative and motor systems read.",
+        "dependencies": [
+          "a training pressure that makes the gradient task-relevant (the analogue of behavioural shaping)",
+          "sufficient representational capacity at the bottleneck",
+          "a readout able to express the code's format (linear-decodability is an assumption, not a given)"
+        ],
+        "is_formal_import": false,
+        "divergence": "The REE instantiation trains the bottleneck on a GENERIC anti-collapse objective (SD-070 P0a, resource-proximity) and then asks whether an UNTASKED gradient survived. Biologically the bottleneck's content is shaped by what the organism is trained to act on; so a null on the untasked channel is a prediction of the reference mechanism, not a surprise -- which is a reason to treat H2's declared null as weaker evidence for an interface DEFECT than the leg's framing assumes, even once the instrument is repaired.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-086": "standard",
+        "MECH-428": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Both claims are PERIPHERAL read-across co-tags on this run, exactly as on V3-EXQ-1004, and the driver says so unconditionally in its own `evidence_direction_note`. `standard` asserts no epistemic suppression, which is the correct verdict: this run neither establishes a substrate ceiling for either claim nor tells us anything about either claim's answer. Recorded explicitly so the R1-R3 counter's per-claim short-circuit excludes this target from the re-derive brake rather than counting a peripheral co-tag.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-086": "non_contributory",
+        "MECH-428": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-09-14, V3-EXQ-1030, FAIL(self-routed substrate_not_ready_requeue), diagnostic] H2 leg (representation axis) of the waypoint_field_consumer_reach fan-out opened by the confirmed failure_autopsy_V3-EXQ-1004_2026-09-05. READ-ACROSS ONLY for this claim, unconditionally and by the driver's own declaration -- no REE agent in subgoal-mode navigation, no z_goal, no feedback-channel ablation, no forced-seed control, so neither INV-086's nor MECH-428's what_would_answer regime is instantiated. The run is ALSO uninterpretable on its own DV: the load-bearing C1 null was suppressed by readiness R3, and this autopsy finds R3 itself mis-specified (its positive-control target, the agent's absolute grid quadrant, lives in body_state[0:2] and is NOT in world_state, which z_world is computed from -- world_state is entirely agent-centred 5x5 windows), so R3 could not certify probe competence in either direction. Independently, the z_world probe sits AT OR BELOW its own test majority-class rate in 6 of 10 cells, so the near-zero ON-OFF lift is a difference between two floor-pinned numbers, not a measured null. H2 therefore remains ALIVE and unresolved. Nothing about either claim's status, confidence or retest state moves on this run.",
+      "per_claim_recommendation": {
+        "INV-086": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "Peripheral read-across co-tag; no claim-layer field moves. INV-086 already carries epistemic_category standard and diagnostic_evidence_adjudicated true from the V3-EXQ-1004 disposition, so ending on either would be an already-true tail. What governance should apply is the evidence_quality_note text drafted above, appended to the existing note, and the citation stamp for this artifact -> stamp this artifact",
+          "status_change": "none -- stays candidate"
+        },
+        "MECH-428": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": true,
+          "change": "Peripheral read-across co-tag; no claim-layer field moves. `pending_retest_after_substrate` STAYS true for the reason the 1004 autopsy already gave (the V3-EXQ-884 retest as 884a has still not run; this run is not that retest and does not bear on it), and this run adds no substrate blocker of its own. epistemic_category standard and diagnostic_evidence_adjudicated true are already set, so neither is an actionable tail. What governance should apply is the drafted evidence_quality_note and the citation stamp for this artifact -> stamp this artifact",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-ZWORLD-SENSE-PATH-PARITY",
+        "title": "SD-070 P0a trains split_encoder.world_encoder on RAW world_state, but agent.sense() reads it through the never-trained world_obs_encoder pre-projection -- train/inference path divergence costing ~0.10 absolute decodability on the pathway E1/E2/E3 actually read",
+        "implementation_hint": "ZWorldP0Trainer._z_world_path (ree_core/latent/zworld_p0.py) trains `split_encoder.world_encoder` directly on RAW `world_state`. Production inference (`REEAgent.sense`, ree_core/agent.py) instead feeds `world_state` through `agent.world_obs_encoder` -- a separately-initialised Linear+ReLU -- and only then into `split_encoder.world_encoder`. The encoder is therefore trained on one input distribution and evaluated on another. Work needed: make the two paths agree -- either train P0a THROUGH `world_obs_encoder` (so the recipe optimises the production path), or bypass `world_obs_encoder` at inference for the z_world path (so production reads the path P0a trained), or train `world_obs_encoder` as part of the P0a recipe. Choosing between them is the build decision and needs the owner of SD-070; all three are `complicated (buildable)`. NOTE the migration cost the 1030 driver's own red-team F5a flagged and which is the reason this was left alone until now: changing the recipe re-touches every driver that depends on it, so the entry should be scheduled, not hot-patched.",
+        "unblocks_claims": [
+          "INV-086",
+          "MECH-428"
+        ],
+        "depends_on_unresolved": [
+          "SD-070"
+        ],
+        "priority_suggested": 2,
+        "severity": "degrading",
+        "severity_rationale": "DELIBERATELY `degrading`, NOT `corrupting`, and the distinction is load-bearing because of blast radius. `corrupting` means a new experiment touching `substrate_paths` is STOP-gated by /queue-experiment Step 2.5c, which matches at MODULE granularity -- and `ree_core/agent.py` is entered by essentially every REE driver, so a `corrupting` stamp here would gate the entire experiment programme, including the repair this autopsy routes and the sibling H1 leg. That asymmetry is the same one the confirmed failure_autopsy_V3-EXQ-1004_2026-09-05 reasoned through for causal_grid_world.py. On the merits `degrading` is also the correct classification: the pre-projection does not make a metric read as a clean null that is secretly invalid -- it uniformly ATTENUATES decodability on the sense() path, and for a question about what the PRODUCTION path carries, measuring through the production path is correct rather than corrupting. What is defective is that the TRAINING path and the INFERENCE path diverge, which degrades what the encoder can deliver and weakens confidence in any z_world-readout magnitude.",
+        "substrate_paths": [
+          "ree_core/agent.py::REEAgent.sense",
+          "ree_core/latent/zworld_p0.py::ZWorldP0Trainer._z_world_path",
+          "experiments/_lib/zworld_p0_warmup.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability_20260914T125657Z_v3",
+          "experiment_type": "v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability",
+          "metric": "Held-out linear-probe accuracy for the 5-way oracle waypoint direction, sense()-path z_world vs direct split_encoder.world_encoder(raw world_state), paired within cell (identical label, identical episode-level split, identical 150-step fitting budget, identical frozen encoder). The direct path wins in 8 of 10 (seed, arm) cells; arm means 0.3832 (sense) vs 0.4838 (direct) in field_off, +0.1006; 0.4023 vs 0.5086 in field_on, +0.1063.",
+          "target": "A working implementation should show no systematic advantage for the direct path -- |mean(direct) - mean(sense)| below the run's own probe-noise band (here ZWORLD_NULL_CEILING = 0.05) in both arms, rather than the ~0.10 gap measured.",
+          "resolved": "open"
+        },
+        "provenance_correction": "STEP 7c RED-TEAM F1, ACTED ON -- this entry was drafted as `action: none` on a rationale that was FACTUALLY WRONG, and the correction is recorded rather than silently swapped. The draft asserted the gap was 'first recorded by the V3-EXQ-1004 autopsy and scoped out there' and that a `create` would duplicate it. Both are false and cheaply checkable: `grep -c world_obs_encoder` returns 0 on BOTH failure_autopsy_V3-EXQ-1004_2026-09-05.md and .json, and 0 on evidence/planning/substrate_queue.json. The finding actually originates in the V3-EXQ-1030 DRIVER's own red-team block (F5a, lines ~100-115), which is this run's own instrument, not a prior adjudication -- so nothing tracks it and there is nothing to duplicate. SECOND CORRECTION, same finding: the draft (and the driver's F5a prose) said `world_obs_encoder` is a layer 'NOTHING in the corpus ever trains'. That is false as stated -- 85 drivers under ree-v3/experiments build an optimiser over `agent.parameters()`, which includes it. The true, lineage-scoped claim is: 0 of the 34 drivers that call `run_zworld_p0` train it (the only one of the 34 that even names it is this driver, in its red-team block), so within the SD-070 P0a lineage the P0a training path and the sense() inference path diverge with nothing reconciling them.",
+        "governance_also_to_decide": "Whether the R3-class defect warrants a standing lint -- a readiness positive control whose target is not present in the feature space it certifies, and (Step 7c F2) whose threshold is absolute where the label balance makes a constant-majority predictor clear it. See learning_extracted items 2 and 11.",
+        "pre_existing_entries_checked": "Step 7b C2 disposition, retained after the flip to `create`. Three substrate_queue entries already unblock INV-086 / MECH-428 as of 2026-09-14 and NONE of them covers this gap or needs amending on this evidence: (a) `waypoint-proximity-field-observable` [prio 1, severity degrading] -- moved to implemented_validated by the confirmed 1004 autopsy; this run is a consumer-reach probe downstream of it and re-confirms the observable rather than reopening it (C0 met 5/5, raw lift 0.2139-0.4239). (b) `SD-094` [prio 2] -- waypoint-arrival detection and ambient contamination; this driver sets subgoal_arrival_position_check=True and trains no policy toward reward, so SD-094 is satisfied and untouched. (c) `SD-092` [prio 3] -- cross-level subgoal credit; not on this run's code path at all (no z_goal, no GoalState, frozen latent stack). Per the amend rule, their severity / substrate_paths are left exactly as governance already has them."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-884_2026-08-03"
+        ],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "note": "R1-R3 recipe run 2026-09-14 from REE_Working over the confirmed corpus (UNSETTLED statuses skipped): MECH-428 = 1 hit (failure_autopsy_V3-EXQ-884_2026-08-03, run v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding_20260803T022131Z_v3); INV-086 = 0 hits. Identical to the count the V3-EXQ-1004 autopsy recorded, as expected -- 1004 added 0 and this autopsy adds 0 as well, both declaring `standard` per-claim, which the counter's per-claim short-circuit excludes. Below the threshold of 2, so the brake does not fire and a same-claim re-queue is not refused. Substantively correct: MECH-428 has still never had a single non-precondition-unmet test, and the re-queue this autopsy recommends (V3-EXQ-1030a) is not a re-test of either claim at all -- it is an instrument repair on a claim-free discrimination leg."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "granularity_debt_cluster.py run 2026-09-14. MECH-428: 2 tagging targets across 2 files (failure_autopsy_V3-EXQ-1004_2026-09-05 -> direction non_contributory / category standard / claim_alignment free-text 'not exercised'; failure_autopsy_V3-EXQ-884_2026-08-03 -> non_contributory / precondition_unmet / claim_alignment 'unclear'). Alignment distribution other=1, unclear=1. INV-086: 1 tagging target (the 1004 one), distribution other=1. NO target reads `weakened` on either claim, and the reader's caution about free-text alignment was discharged by reading both strings: the 1004 string says the claim was NOT EXERCISED (the opposite of weakened) and the 884 string is a literal 'unclear' with its own note attributing the failure to a substrate bug. Per the skill's own rule -- a cluster in which no target reads `weakened` is measurement or implementation debt, not granularity debt -- the trigger does NOT fire. Nor do the signatures differ structurally: all three targets are the same shape (the claim was not exercised / the precondition was unmet)."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "OMITTED DELIBERATELY. This autopsy does not open a new discrimination portfolio: the existing waypoint_field_consumer_reach two-leg portfolio (H1 drive / H2 representation) is unchanged and correct, and the H2 leg it opened has simply not been resolved yet because its instrument failed. The right move is to repair and re-run the SAME leg (V3-EXQ-1030a), not to fan out further. Emitting a fanout_recommendation here would grow an already-registered question's denominator for no scientific gain -- exactly the padding the frozen-set invariants exist to prevent."
+      },
+      "in_flight_work_not_to_re_propose": [
+        "V3-EXQ-1039 -- the SIBLING H1 (drive axis) leg of this same waypoint_field_consumer_reach portfolio. Its driver ALREADY EXISTS ON DISK as ree-v3/experiments/v3_exq_1039_mech428_inv086_waypoint_field_consumer_drive_signal.py and is being queued by a live ree-cloud-5 worker concurrently with this autopsy (2026-09-14); it has not yet scored a run. This autopsy does NOT propose it, does not propose a same-question sibling of it, and its existence does not change the H2 verdict. (Named explicitly because the Step 7b C1 check fires on exactly this shape -- an existing, never-scored driver for the recommended claims left unmentioned -- and the honest disposition is that the driver is the OTHER leg of the portfolio, not the repair this autopsy routes.)",
+        "V3-EXQ-884b -- MECH-428's C1 redesign, being built by another live session concurrently with this autopsy (2026-09-14), following the `exq884a_mech428_c1_structurally_unfailable_redteam_blocking_20260908` and `unfailable_criterion_class_mech428_recommendation_and_systemic_pass_20260911` planning docs. This autopsy does NOT propose it and does not bear on it: V3-EXQ-1030 tests neither MECH-428's hypothesis nor its criterion."
+      ],
+      "learning_extracted": [
+        "R3 IS A MIS-SPECIFIED POSITIVE CONTROL -- the load-bearing finding. R3 `zworld_probe_extracts_known_signal` decodes the agent's absolute grid QUADRANT (from env.agent_x / env.agent_y) out of z_world, on the driver's stated premise that 'agent position is reflected in the local view' (driver `_quadrant_label` docstring, line 420ff). That premise is FALSE, and the environment source says so verbatim: `CausalGridWorldV2._get_observation_dict` puts agent_x/size and agent_y/size in body_state[0] and body_state[1], while world_state is composed exclusively of AGENT-CENTRED 5x5 windows -- local_view (5x5x7 = 175), contamination_view (25), hazard_field_view (25), resource_field_view (25), waypoint_proximity_field_view (25) = 275. z_world is computed from world_state alone (`split_encoder.world_encoder(world_state)`; the driver's own `_direct_zworld` confirms it). Absolute position is therefore reachable from world_state only through (a) the out-of-bounds zero-padding pattern when the agent is within 2 cells of a wall -- the env is non-toroidal by default, but on a 12x12 grid roughly 44% of cells (the interior 8x8) carry no boundary cue at all -- and (b) episode-specific hazard/resource layout, which an EPISODE-LEVEL train/test split deliberately makes non-generalising. So R3 tests a signal that is weakly, non-uniformly and partly non-generalisably present, not one that 'must be decodable if the probe pipeline can extract anything at this scale at all'. The manifest carries the fingerprint: quadrant TRAIN accuracy is 0.521-0.612 in all 10 cells, i.e. the probe cannot fit the supposedly-present signal even on its own training data, and on seed 43 test accuracy (0.762) EXCEEDS train accuracy (0.521) by 0.24 -- a statistic driven by which 8 episodes landed in the test split, not by competence.",
+        "THE R3 DEFECT DOES NOT FLIP THE VERDICT TO 'C1 MET / H2 SUPPORTED', AND THIS IS THE TRAP. With R3 invalidated it is tempting to read C1's own cells (4 of 5 seeds inside the +/-0.05 null band, required 3) as a clean PASS. It is not, because invalidating R3 removes the guard without removing the hazard it was built for: red-team F1 on this driver named exactly the failure mode of an under-fit or scale-starved z_world probe reading OFF ~ ON ~ majority-class in both arms and satisfying C1's null BY CONSTRUCTION. The manifest shows that hazard REALISED. The z_world probe's held-out accuracy is at or BELOW its own test majority-class rate in 6 of 10 cells (seed 44 OFF 0.230 vs 0.498; seed 44 ON 0.350 vs 0.498; seed 45 OFF 0.401 vs 0.463; seed 45 ON 0.381 vs 0.463; seed 46 OFF 0.416 vs 0.518; seed 46 ON 0.458 vs 0.518), and clears it materially in only 2 (seed 42 OFF +0.171, ON +0.140). A near-zero difference between two sub-majority numbers is not a measured null. The correct verdict is that the run is uninterpretable -- which is what the driver self-routed, arriving at the right answer via a control that could not have told it so.",
+        "THE FITTING BUDGET IS NOT SCALE-MATCHED ACROSS THE FEATURE SPACES IT IS COMPARED OVER. All four probes share `PROBE_STEPS = 150` full-batch Adam steps at `PROBE_LR = 5e-3` on UNSTANDARDISED features, but the raw probe reads a 25/50-dim slice bounded in [0,1] while the z_world probes read a 32-dim 0.9-EMA latent whose scale is set by `world_precision_logit` and whatever P0a left. The consequence is visible: the raw ON-arm probe reaches train accuracy 0.743-0.828 under that budget, while the sense()-path DV probe tops out at 0.487-0.576 train and the R3 quadrant probe at 0.521-0.612 (the direct-path probe reaches 0.539-0.692 -- higher, and the reason the range is quoted per probe rather than as one 'z_world-path' band). A comparison whose positive control is fit to 0.83 and whose DV is fit to 0.52 is not controlled for fitting adequacy, whatever it reports.",
+        "A PRECONDITION GATE CAN MAKE A CRITERION'S OWN CELLS READ 'MET' WHILE THE FLAG READS false, AND NOTHING WARNS THE READER. `criteria.C1_zworld_lift_null` in this manifest reads `met: false` next to `measured: 0.8, threshold: 0.6, n_seeds_met: 4, required_seeds: 3` -- because `_score` computes `c1 = measurable and (len(null_seeds) >= need)` and folds the R3 precondition into the criterion boolean while the criterion's reported cells are computed independently of it. Any downstream reader (human or index) that compares measured against threshold gets the opposite answer from the flag. The repair is cheap and worth generalising: when a precondition suppresses a criterion, emit the suppression explicitly on the criterion block (`suppressed_by: <precondition name>`) rather than only flipping `met`.",
+        "FIRST QUANTIFIED COST OF THE SD-070 `agent.sense()` PRE-PROJECTION (driver red-team F5a). The `zworld_direct_probe` -- which mirrors `_z_world_path` exactly and bypasses `agent.world_obs_encoder` -- outperforms the sense()-path probe on the identical label, identical episode split, identical fitting budget and identical frozen encoder in 8 of 10 cells: means 0.4838 vs 0.3832 (OFF, +0.1006) and 0.5086 vs 0.4023 (ON, +0.1063). This is a paired within-cell contrast and is the strongest evidence yet that the untrained pre-projection destroys real information before the trained encoder ever sees it, on the pathway every production consumer (E1/E2/E3) actually reads. SCOPE THE CLAIM CORRECTLY (Step 7c red-team F1): it is NOT true that 'nothing in the corpus ever trains' world_obs_encoder -- 85 drivers build an optimiser over `agent.parameters()`, which includes it. The true claim is lineage-scoped: 0 of the 34 drivers calling `run_zworld_p0` train it, so within the SD-070 P0a lineage the training path (`_z_world_path`, raw world_state) and the inference path (`sense()`, via the pre-projection) diverge with nothing reconciling them. Two caveats keep this from being a verdict: the direct path has no known-signal anchor of its own in this run either, and BOTH paths show a near-null ON-OFF lift (direct-path per-seed lifts -0.003, +0.044, +0.072, 0.000, +0.012), so this locates an absolute information loss, not the specific loss of the waypoint gradient. It is now tracked: recommended_substrate_queue_entry action `create`, severity `degrading`.",
+        "THE `p0a_holdout` BLOCK IS NOT A SUBSTITUTE POSITIVE CONTROL, THOUGH IT LOOKS LIKE ONE. Across all 40 (cell x head) readings it reports balanced accuracies of 0.9869-1.0000 with mean_lift ~0.58 on hazard_present / resource_present / hazard_distance / resource_distance -- tempting to cite as proof that z_world is richly informative and therefore that the probe must be the limiter. It cannot carry that weight: `ZWorldP0Trainer._holdout_report` splits with a FLAT `torch.randperm` over samples, not by episode, so it is exposed to precisely the within-episode near-duplicate leakage that red-team F4 made this driver's own probes split by episode to avoid; and it reads `_z_world_path` (the direct path) through the trainer's OWN heads, not the sense() features the DV uses. Its label balance also makes the raw number flattering -- see item 11. What it does establish is narrower and still useful: the z_world path is not collapsed or degenerate.",
+        "THE PAIRED-ENV DESIGN WORKED AND SHOULD BE KEPT. `_FieldMaskedEnv` (red-team F2) always builds the wide field-enabled env and zeroes the trailing 25 world_state columns under OFF. The manifest confirms it end to end: `label_counts` is byte-identical across arms within every seed (e.g. seed 42: 359/289/269/223/0 in both), `world_obs_dim` is 275 in both arms, and `field_cols_weight_delta` is EXACTLY 0.0 in all five OFF cells (a masked-to-zero input column receives exactly zero gradient) against 2.018-2.160 in all five ON cells. The ON/OFF contrast is genuinely paired at the trajectory level. A per-column reading of the ON deltas is worth recording for the next iteration: the 25 field columns move with norm ~2.09 against ~11.0 for the other 250, i.e. about 0.19 of the other block's norm where an iid per-column expectation would give sqrt(25/250) ~ 0.32 -- suggestive that P0a moves the field columns LESS than the rest, consistent with an untasked channel, but a norm ratio is not a per-column effect size and this must not be read as a measurement.",
+        "THE C0 POSITIVE CONTROL STANDS, BUT ITS OFF ARM IS SUB-TRIVIAL AND THAT SHOULD BE SAID. C0 met 5/5 (per-seed raw lift 0.214-0.424 against a 0.15 floor) and replicates V3-EXQ-1004's input-level finding. Note for the record that the OFF-arm raw probe sits BELOW its own test majority-class rate on 4 of 5 seeds (0.353 vs 0.507; 0.250 vs 0.413; 0.231 vs 0.346; 0.467 vs 0.513), so part of the lift is an OFF-arm floor rather than pure ON-arm signal. The control survives it: the ON arm clears majority on all 5 seeds by +0.131 to +0.267, so the direction and the magnitude are carried by real ON-arm information.",
+        "RECORDING GAP (identical to the one the V3-EXQ-1004 autopsy recorded, still unfixed one iteration later): `elapsed_seconds` is absent from an otherwise complete rec/v1 manifest -- substrate_hash, substrate_commit, substrate_identity, machine, machine_class, config, seeds, recording_schema all present (`validate_recording.py`: 1 manifest, 1 always-core gap, missing elapsed_seconds). Recording-debt, not measurement-debt: fix it in the successor via `stamp_recording_core`, never by re-running. That it recurred across two consecutive drivers in the same lineage suggests the gap is in the shared emit path, not in either author.",
+        "PROVENANCE NOTE for governance, not for repair here: `substrate_commit.dirty` is true with one dirty path, `experiments/_lib/baselines/arc019_curriculum_gating.py`. That file is on the `_lib/**` glob bound into substrate_hash but is not on this driver's code path (this driver imports no baselines module), so the run's identity is recorded honestly and the dirtiness does not affect its validity. Recorded so a later reader does not have to re-derive it.",
+        "A POSITIVE CONTROL CAN FAIL IN EITHER DIRECTION, AND THE SECOND DIRECTION IS THE EASIER MISTAKE. R3 as built could never pass (its target is not in the feature space it certifies -- item 1). The FIRST DRAFT of this autopsy's own repair recommendation would have installed the mirror-image defect: replace R3's target with a P0a scene-structure label but keep an ABSOLUTE floor. The manifest's own `p0a_grounding_label_balance` shows why that is unfailable -- hazard_distance [0.0, 0.078, 0.197, 0.725] and resource_distance [0.0, 0.115, 0.241, 0.645], bucket 0 carrying exactly zero mass, so a constant-majority predictor scores 0.725 / 0.645 and clears any 0.55-style floor in every cell without decoding anything. Caught by the Step 7c red-team, not by the 7b mechanical checks, which have no view of label balance. The generalisable rule: a readiness threshold on an imbalanced label must be stated relative to that cell's own realised majority-class rate, never as an absolute accuracy. This is a candidate for a standing lint (see recommended_substrate_queue_entry.governance_also_to_decide).",
+        "CORRECTION TO THIS AUTOPSY'S OWN FIRST-DRAFT MECHANISM STORY, recorded rather than silently fixed (Step 7c red-team, hygiene). The draft said absolute position could leak into world_state near walls via 'out-of-bounds ZERO-PADDING'. The local view does not zero-pad out-of-bounds cells: it marks them with a one-hot `wall` entity channel. The conclusion is unchanged and is if anything cleaner -- a wall channel still reports only WHICH EDGE the agent is near, not which quadrant it occupies, and the interior 8x8 of a 12x12 grid (about 44% of cells) sees no wall at all -- but the stated mechanism was wrong and the corrected one is what a reader should rely on."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "work_graph_debt_class": "complicated (buildable)",
+        "work_graph_note": "The repair is a NAMED BUILD with no open question -- swap R3's target for one actually present in world_state, give it a majority-relative threshold, scale-match the probe fitting, re-run the identical leg. No fact is missing and no frame is wrong, so this is not a probe-gated spike: it is a driver fix. ROUTING OVERRIDE, STATED EXPLICITLY (Step 7c red-team F4): the skill's work-graph list maps `complicated (buildable)` to the Missing/immature-substrate row (/implement-substrate). That mapping is NOT followed for the PRIMARY routing here, and deliberately so -- the skill's own Step 7 routing TABLE sends a 'measurement / environment / test-design gap, or genuine redesign' to /queue-experiment, and the buildable work on the critical path is a DRIVER instrument, not substrate. The substrate half of this autopsy IS routed to /implement-substrate, via the `create` entry above; the two routes are complementary, not in conflict. The debt class is what makes an alphabetic re-queue (V3-EXQ-1030a) the right instrument rather than a new EXQ number: the scientific question -- does the waypoint gradient survive observation -> z_world compression -- is unchanged; only the implementation of its readiness apparatus was wrong.",
+        "recommended_requeue": "V3-EXQ-1030a",
+        "required_changes": [
+          "REPLACE R3's target AND ITS THRESHOLD FORM -- both halves are required (Step 7c red-team F2 on the first draft, which specified only the target). (a) TARGET: the positive control must read a label genuinely present in world_state and generalising ACROSS episodes. The natural family is the SD-018/SD-070 P0a scene-structure targets (`scene_structure_targets`: hazard_present / resource_present / hazard_distance / resource_distance), carried by the hazard_field_view / resource_field_view windows in world_state by construction and the very content P0a optimises. (b) THRESHOLD: it must be MAJORITY-RELATIVE, never an absolute floor. Those labels are severely imbalanced and this run's own manifest proves it -- `p0a_grounding_label_balance` reads hazard_distance [0.0, 0.078, 0.197, 0.725] and resource_distance [0.0, 0.115, 0.241, 0.645] (bucket 0 carries EXACTLY ZERO mass in both). A constant-majority predictor therefore scores 0.725 / 0.645 on those labels and would clear a 0.55-style absolute floor in every cell without decoding anything -- an unfailable positive control by construction, which is the same defect class as the R3 being replaced, merely inverted (R3 could never pass; this would never fail). Require a declared margin OVER the cell's own realised majority-class rate, exactly as change [4] already requires for the DV. Keep the quadrant probe as a NON-load-bearing diagnostic if desired; it must not gate anything.",
+          "MEASURE R3 THROUGH THE SAME PIPELINE AS THE DV -- same sense()-path z_world features, same episode-level split, same fitting budget, same seeds. Otherwise the control certifies a different procedure from the one under test. This is exactly why the existing p0a_holdout block cannot stand in for it (it splits flat, not by episode, and reads the direct path through the trainer's own heads).",
+          "SCALE-MATCH THE FITTING. Standardise features per probe (or fit to a convergence criterion with per-space early stopping) and report each probe's TRAIN accuracy as a first-class readiness number alongside its held-out accuracy, so 'the positive control was fit to 0.83 while the DV was fit to 0.52' can never again pass unremarked.",
+          "ADD A DV-FLOOR READINESS CHECK. Require the z_world probe to clear ITS OWN test majority-class rate by a declared margin in a declared fraction of cells BEFORE the ON-OFF null is read at all. This is the check that would have caught the realised F1 hazard directly rather than by proxy, and its absence is why the run had to lean on the mis-specified R3.",
+          "DECIDE AND DECLARE THE STATUS OF THE DIRECT PATH (Step 7c red-team F3). The sense()-path DV is the right primary readout -- it is the pathway production consumers read. But on the DIRECT path, seeds 42, 43 and 46 clear their own majority-class rate in BOTH arms with ON-OFF lifts of -0.003, +0.044 and +0.012, i.e. a DV-floor check like [4] would be SATISFIED on the direct path at 3 of 5 seeds and C1's null would then be met at 3/3 of the qualifying seeds. That is not a verdict on this run (the direct path has no known-signal anchor here either, and the pre-registered DV is the sense() path), but 1030a must say up front whether the direct path is CO-PRIMARY with its own criterion or stays a diagnostic -- deciding it after seeing the numbers is the thing to avoid.",
+          "EMIT SUPPRESSION EXPLICITLY. When a precondition suppresses a criterion, stamp `suppressed_by: <precondition name>` on the criterion block rather than only flipping `met`, so the manifest's own cells cannot read the opposite of its flag.",
+          "STAMP `elapsed_seconds` via `stamp_recording_core` (Experimental Recording Standard 2026-07-12 section 3b)."
+        ],
+        "explicitly_not_recommended": [
+          "Do NOT re-queue this as a MECH-428 or INV-086 test. The run is claim-free in substance; the tags are read-across.",
+          "Do NOT open a new EXQ number. The scientific question is unchanged -- this is an instrument repair, so the alphabetic-suffix rule applies.",
+          "Do NOT propose V3-EXQ-1039 (the H1 sibling leg) or V3-EXQ-884b (MECH-428's C1 redesign): both are IN FLIGHT with live owners as of 2026-09-14. See in_flight_work_not_to_re_propose.",
+          "Do NOT read this run as evidence for or against H2. The leg stays alive."
+        ]
+      },
+      "red_team": {
+        "model": "fable-5.1",
+        "cross_model": true,
+        "session_model": "opus (claude-opus-5[1m])",
+        "cross_model_note": "The pass ran on Fable while this drafting session runs on Opus, so it IS a cross-model pass. The agent's own summary line self-described it as 'same-model'; that self-description is wrong and is corrected here so a CONFIRMED-adjacent verdict is not later discounted as same-model.",
+        "verdict": "CONTESTED",
+        "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/b081618a-d13b-48ac-a091-db90dcf1eb5c/scratchpad/redteam_1030.md",
+        "verdict_moving_findings_applied": [
+          "F1 -- the `action: none` disposition rested on two false facts (that the 1004 autopsy had recorded the world_obs_encoder gap, and that 'nothing in the corpus ever trains' it). Confirmer run and both confirmed: `grep -c world_obs_encoder` returns 0 on both 1004 artifacts and 0 on substrate_queue.json; 85 drivers optimise over agent.parameters(). APPLIED: action FLIPPED from `none` to `create` (SD-ZWORLD-SENSE-PATH-PARITY, severity degrading with an explicit blast-radius rationale for not stamping corrupting), the claim re-scoped to the 34-driver run_zworld_p0 lineage, and the whole correction recorded in `provenance_correction` rather than swapped in silently.",
+          "F2 -- the drafted R3 replacement (P0a scene-structure labels) kept an ABSOLUTE floor, which those labels' own balance makes unfailable. Confirmer run and confirmed from this run's own manifest: p0a_grounding_label_balance hazard_distance [0.0, 0.078, 0.197, 0.725], resource_distance [0.0, 0.115, 0.241, 0.645]. APPLIED: required_changes[0] now demands a MAJORITY-RELATIVE threshold as an explicit second half of the requirement, and the failure mode is recorded as learning_extracted item 11."
+        ],
+        "non_moving_findings_applied": [
+          "F3 -- on the direct path, seeds 42/43/46 clear majority in both arms with lifts -0.003/+0.044/+0.012, so a DV-floor check would be satisfied there. APPLIED as a new required_changes item: 1030a must declare UP FRONT whether the direct path is co-primary or stays diagnostic, rather than deciding after seeing numbers.",
+          "F4 -- `complicated (buildable)` maps to /implement-substrate in the skill's work-graph list while this autopsy routes to /queue-experiment. APPLIED: the override is now stated explicitly in routing_detail.work_graph_note, with the reason (the Step 7 routing TABLE sends a test-design gap to queue-experiment; the substrate half IS routed to implement-substrate via the create entry).",
+          "F5 hygiene -- p0a_holdout range corrected 0.994-0.999 -> 0.9869-1.0000 (all 40 readings); out-of-bounds cells corrected from 'zero padding' to a one-hot wall channel (conclusion unchanged, mechanism corrected, recorded as learning_extracted item 12); the 0.487-0.576 train-accuracy band re-scoped from 'every z_world-path probe' to the sense()-path DV specifically, with the other probes' bands quoted separately; the garbled per-seed raw-lift list corrected to its true range 0.2139-0.4239; V3-EXQ-1039 corrected from 'being queued' to already queued."
+        ],
+        "findings_verified_sound": [
+          "R3 mis-specification confirmed independently: agent position is in body_state[0:2], world_state is agent-centred windows only, and the red-team found no missed route (it additionally checked that `_zone_map` is None and that layouts are re-randomised per reset).",
+          "6 of 10 cells at or below test majority-class rate.",
+          "8 of 10 direct-path wins, means +0.1006 / +0.1063.",
+          "quadrant readiness hits 4 of 10.",
+          "C1 suppression mechanism at driver line 719 (`c1 = measurable and ...`).",
+          "re-derive brake MECH-428 = 1, INV-086 = 0, does not fire (independently reproduced via the validate_queue predicate).",
+          "granularity-debt trigger does not fire.",
+          "the `-> stamp this artifact` change tails are parser-recognised and are NOT already-true.",
+          "the alphabetic V3-EXQ-1030a re-queue is the right instrument.",
+          "the Step 9b ledger block matches the skill's state-mapping table (leg stays alive)."
+        ],
+        "note": "The contest was entirely on RECOMMENDATIONS -- the substrate disposition and the repair spec -- and not on the science, which is the measured pattern for this pass. A CONFIRMED verdict would not have proved the artifact clean, and this CONTESTED one does not impugn the diagnosis; both verdict-moving findings have been applied above."
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "note": "STAGING MODE -- NOT applied. hypothesis_space_registry.v1.json was NOT written by this session. The confirming interactive session or the next /governance walk should apply the block below, then run build_hypothesis_space.py + check_hypothesis_space_integrity.py and clear any flag before committing.",
+    "growth_restriction_check": "Target question `waypoint_field_consumer_reach` carries `growth_restriction: \"\"` (present but EMPTY) as of 2026-09-14. Empty -> no STOP condition, nothing to carry to the Step 8 gate. Recorded explicitly because an absent check is indistinguishable from a passed one.",
+    "mode": "B (resolve) -- and the resolution is DELIBERATELY A NON-RESOLUTION",
+    "qid": "waypoint_field_consumer_reach",
+    "hid": "H-wpfield-zworld-interface",
+    "intended_edit": {
+      "resolution.state": "alive -- UNCHANGED",
+      "resolution.resolving_runs": [
+        "V3-EXQ-1030"
+      ],
+      "resolution.evidence_direction": "pending -- UNCHANGED",
+      "resolution.control_passed": false,
+      "resolution.non_degenerate": true,
+      "resolution.met_elimination_bar": false,
+      "resolution.resolved_utc": null,
+      "resolution.basis": "V3-EXQ-1030 ran to completion and did NOT discriminate this leg. Its load-bearing null criterion was suppressed by readiness R3, and this autopsy finds R3 mis-specified (its positive-control target, absolute grid quadrant, is in body_state, not in the world_state that z_world is computed from), so R3 could not certify probe competence in either direction; independently the z_world probe sits at or below its own test majority-class rate in 6 of 10 cells, so the near-zero ON-OFF lift is a difference between two floor-pinned numbers rather than a measured null. Per the Step 9b state-mapping table -- a non_contributory / inconclusive run that does not discriminate leaves the leg alive -- the state is unchanged and the elimination bar is not met. The repaired re-run V3-EXQ-1030a is the adjudicating run to await.",
+      "adjudicating_runs": [
+        "V3-EXQ-1030",
+        "V3-EXQ-1030a"
+      ]
+    },
+    "intended_decision_block_edit": {
+      "live_gate": "H2's first adjudicating run (V3-EXQ-1030) completed but did not discriminate -- instrument defect, repair queued as V3-EXQ-1030a; H1 (V3-EXQ-1039) being queued 2026-09-14.",
+      "distance_phrase": "2 of 2 legs now queued (H2 V3-EXQ-1030 -> repair 1030a; H1 V3-EXQ-1039), 0 of 2 resolved",
+      "observation_bottleneck": "The H2 leg is gated on an OBSERVATION bottleneck of its own: there is no validated readout that can certify, through the same pipeline and split as the DV, that a linear probe can extract ANY cross-episode-generalising signal from the sense()-path z_world at this scale. Until that exists, a z_world null on any label is uninterpretable. This is Dimension-4 content, not a leg.",
+      "decidable": "false -- UNCHANGED"
+    },
+    "invariants_note": "No denominator move. initial_frozen_count stays 2, initial_frozen_count_at_registration stays 2, no hypothesis is added or removed, no fanout_growth_events or discovery_growth_events entry is owed. Invariant 1 holds trivially; invariant 2 is not engaged (nothing is resolved); invariant 3 is not engaged (no growth); invariants 4 and 5 are satisfied by leaving the leg alive with met_elimination_bar false."
+  },
+  "red_team": {
+    "model": "PENDING -- Step 7c not yet run at the time this draft object was first written; the landed artifact carries the completed verdict.",
+    "cross_model": null,
+    "verdict": "PENDING"
+  }
+}
