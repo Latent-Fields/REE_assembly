@@ -1,0 +1,103 @@
+{
+  "schema_version": "inert_slices/v1",
+  "generated_at": "2026-09-15T06:38:14Z",
+  "generated_by": "bundleH-pausegate-instruments-20260915 (chip-20260915-inert-slices-registry-file)",
+  "source_docs": [
+    "REE_assembly/evidence/planning/curated_pause_window_agenda_20260911.md (R11, R12, D5)",
+    "REE_assembly/evidence/planning/fleet_commit_sequencing_redesign_20260829.md (sections 9, 10.1, 10.2, 11)",
+    "WORKSPACE_STATE.md (2026-09-10T17:49:38Z, 18:54:55Z, 2026-09-12T02:37:37Z IGW soak entries)",
+    "ree-v3/coordinator/app.py, ree-v3/coordinator/git_intent.py, scripts/ree_commit.py, scripts/governance_flag.py (read-only checks by this session; ree-v3 was NOT edited, no service touched)"
+  ],
+  "_notes": [
+    "This registry names the SIX phase-4 slices the 2026-09-11 pause-window agenda (R11) counted as deliberately inert pending one batched coordinator restart (decision D5). Building it was decision-scoped to the registry FILE ONLY (chip-20260915-inert-slices-registry-file, user-approved 2026-09-15); the batched restart itself stays HELD, a separate, not-yet-executed decision -- no service was started, stopped, or reloaded on any box to produce this file.",
+    "`build_verification` on each entry is this session's own read-only check of ree-v3/coordinator at generation time. In three of the six it DISAGREES with R11's blanket framing ('shipped code that does nothing' for all six) -- see the igw-tick-intake-client, chip-archive-db-strip-verb, and review-tracker-intent-routing entries below. Treat R11 as the source of the LIST; treat build_verification as an independent check of each item's actual state, not yet reconciled back into the agenda (that reconciliation is out of scope for a registry-only chip).",
+    "`activation.status` is HELD on every entry regardless of build_verification, because the user's D5 decision is about the batched restart as a single unit, not about re-triaging which slices belong in it. A future session should read build_verification before treating 'the restart' as the fix for every row -- for three of the six, a restart alone would not activate anything (see each entry's `caveat`)."
+  ],
+  "slices": [
+    {
+      "slice_id": "intent-replace-cas-ree-commit-transport",
+      "name": "/intent/replace CAS + ree_commit transport branch",
+      "what_it_does": "Coordinator compare-and-swap endpoint for whole-file intent replacement, plus the (not yet wired) ree_commit.py client branch that would route commits through it instead of local git+push.",
+      "source": "curated_pause_window_agenda_20260911.md R11/D5; fleet_commit_sequencing_redesign_20260829.md section 11 'Deferred to post-restart phase-4 slices'",
+      "build_commit": "ree-v3 ef58b4f (coordinator: PHASE-4 /intent/replace CAS verb + igw_log append intake, server half)",
+      "build_verification": "CONFIRMED server-side: POST /intent/replace is registered in ree-v3/coordinator/app.py's _TASK_CLAIM_CHIP_POST table. CONFIRMED client-side gap: scripts/ree_commit.py has no reference to /intent/replace or intent_replace anywhere -- the 'transport branch' half of this slice's name has not been wired into the client at all. Consistent with R11's framing for this item specifically.",
+      "soak_eval": {
+        "verdict": null,
+        "date": null,
+        "note": "no soak evaluation exists for the CAS verb itself; a DIFFERENT slice below (igw-tick-intake-client) reuses the same verb and has its own soak record."
+      },
+      "activation": {"requires": "batched hub coordinator restart", "status": "HELD",
+                     "decision_ref": "curated_pause_window_agenda_20260911 D5",
+                     "held_by": "user decision 2026-09-15"}
+    },
+    {
+      "slice_id": "igw-tick-intake-client",
+      "name": "igw tick intake client",
+      "what_it_does": "coordinator/git_intent.py ROUTING table + client dispatch letting the hourly IGW tick write igw_routine_ledger.json / igw_assignments.json / inter_governance_workset.v1.json / (intended) igw_routine_log.md through /intent/replace instead of git.",
+      "source": "curated_pause_window_agenda_20260911.md R11; ree-v3/coordinator/phase4_commit_intake_design.md section 5 (ROUTING table)",
+      "build_commit": "ree-v3 ef58b4f (server /igw_log/append) + the pre-existing ROUTING table in coordinator/git_intent.py, extended for igw_log",
+      "build_verification": "PARTIALLY LIVE, not fully inert -- the one slice where independent verification DISAGREES with R11 counting it as one atomic inert unit. WORKSPACE_STATE.md 2026-09-10T17:49:38Z + 18:54:55Z: igw_ledger, igw_assignments, igw_workset and igw_proposals suppress_git_write flags were ALL flipped true (soak evaluated green: 151/151 intent rows applied since 2026-09-07, zero failures) and remain true as of 2026-09-12T02:37:37Z. Only igw_log_suppress_git_write is genuinely inert -- reverted back to false 2026-09-11 because no hub-side materializer for igw_routine_log.md was ever deployed. So 4 of the slice's 5 files are already live; this registry counts the whole slice per R11's naming, but the real activation gap is narrower than R11 states (one file, and a materializer build, not just a restart).",
+      "soak_eval": {
+        "verdict": "green (4 of 5 files)",
+        "date": "2026-09-10",
+        "note": "igw_log is the sole unsoaked/reverted file, pending a hub-side materializer -- not merely a restart"
+      },
+      "activation": {"requires": "batched hub coordinator restart", "status": "HELD",
+                     "decision_ref": "curated_pause_window_agenda_20260911 D5",
+                     "held_by": "user decision 2026-09-15",
+                     "caveat": "a restart alone would not finish activating this slice -- igw_log also needs a materializer that does not exist yet"}
+    },
+    {
+      "slice_id": "governance-flag-verbs",
+      "name": "governance-flag verbs",
+      "what_it_does": "Typed raise/resolve coordinator endpoints for evidence/planning/governance_flags.v1.json (fleet_commit_sequencing_redesign_20260829.md section 10.1 C1: 'busiest uncovered writer, 88 commits/14d, confirmed stranding history').",
+      "source": "curated_pause_window_agenda_20260911.md R11; fleet_commit_sequencing_redesign_20260829.md section 10.1 C1 + section 11",
+      "build_commit": null,
+      "build_verification": "NOT FOUND in ree-v3/coordinator (grepped app.py and db.py for governance_flag / governance-flag: no match), and scripts/governance_flag.py has no coordinator or suppress_git_write integration at all -- it is still purely git-direct. This DISAGREES with R11's 'shipped code that does nothing' framing for this item: the evidence found says NOT YET BUILT, not built-and-inert. Recorded here as the agenda states it; a future session should either find the commit this session missed or correct R11.",
+      "soak_eval": {"verdict": null, "date": null, "note": "no build found to soak"},
+      "activation": {"requires": "batched hub coordinator restart", "status": "HELD",
+                     "decision_ref": "curated_pause_window_agenda_20260911 D5",
+                     "held_by": "user decision 2026-09-15",
+                     "caveat": "a restart would not activate anything for this item -- see build_verification"}
+    },
+    {
+      "slice_id": "chip-archive-db-strip-verb",
+      "name": "chip-archive DB-strip verb",
+      "what_it_does": "A coordinator-side verb that would strip the three fat chip fields (prompt/prompt_history/claim_note) from the DB directly, mirroring chip_ledger.py's git-side archive (fleet_commit_sequencing_redesign_20260829.md section 10.2 C7).",
+      "source": "curated_pause_window_agenda_20260911.md R11; fleet_commit_sequencing_redesign_20260829.md section 10.2 C7 + section 11",
+      "build_commit": null,
+      "build_verification": "CONTRADICTS R11: ree-v3/coordinator/app.py carries an explicit comment (near the _TASK_CLAIM_CHIP_POST table) stating '/chip/archive is DELIBERATELY ABSENT and must stay that way in Phase 2 -- plan doc D7. Its correctness gate is that the archive file has actually reached ORIGIN... That is inherently a git fact with no DB equivalent, so archiving stays a git-side operation... Revisit only in Phase 3.' This is a deliberate design decision NOT to build this verb yet, not a built-but-inert endpoint. The existing git-side chip_ledger.py archive command (origin-verified strip, daily launchd job) remains the only archiver either way.",
+      "soak_eval": {"verdict": null, "date": null, "note": "not applicable -- the verb does not exist"},
+      "activation": {"requires": "batched hub coordinator restart", "status": "HELD",
+                     "decision_ref": "curated_pause_window_agenda_20260911 D5",
+                     "held_by": "user decision 2026-09-15",
+                     "caveat": "a restart would not activate anything for this item -- see build_verification"}
+    },
+    {
+      "slice_id": "review-tracker-intent-routing",
+      "name": "review_tracker",
+      "what_it_does": "Routing evidence/experiments/review_tracker.json (the sole source of truth for experiment-reviewed status, per REE_assembly/CLAUDE.md) through /intent/replace instead of git.",
+      "source": "curated_pause_window_agenda_20260911.md R11; fleet_commit_sequencing_redesign_20260829.md section 9 ('Remaining phase-4 slices (claims.yaml CAS, review_tracker, typed queue verbs) run AFTER restart') + section 11",
+      "build_commit": null,
+      "build_verification": "NOT ADDED: ree-v3/coordinator/git_intent.py's own ROUTING table comment names review_tracker.json explicitly -- 'listed in the design doc's full table but are NOT added -- each needs its own soak plan and go-live decision.' Same as-yet-unbuilt status as claims.yaml, hypothesis_space_registry.v1.json and substrate_queue.json (co-listed in that same comment; not among these six, noted only for context).",
+      "soak_eval": {"verdict": null, "date": null, "note": "no soak plan exists yet, per the code comment above"},
+      "activation": {"requires": "batched hub coordinator restart", "status": "HELD",
+                     "decision_ref": "curated_pause_window_agenda_20260911 D5",
+                     "held_by": "user decision 2026-09-15",
+                     "caveat": "a restart would not activate anything for this item -- routing was never added, see build_verification"}
+    },
+    {
+      "slice_id": "typed-queue-verbs",
+      "name": "typed queue verbs",
+      "what_it_does": "Typed coordinator verbs for experiment_queue.json mutations, as R11 names them alongside the other five deferred slices.",
+      "source": "curated_pause_window_agenda_20260911.md R11; fleet_commit_sequencing_redesign_20260829.md section 9 + section 11",
+      "build_commit": null,
+      "build_verification": "AMBIGUOUS, not independently resolved this session (out of the narrow scope of a registry-only chip): ree-v3/coordinator/app.py DOES have live /queue/add and /queue/remove routes (DB-authoritative ingress, shadow-mode aware, already reads as part of the earlier Phase-3 queue cutover). Nothing in that code marks them PHASE-4 or INERT. Whether R11's 'typed queue verbs' names a DIFFERENT, genuinely not-yet-built set, or is loosely describing this already-live pair, was not resolved. Recorded as HELD per the agenda; NOT independently confirmed inert.",
+      "soak_eval": {"verdict": null, "date": null, "note": "unresolved -- see build_verification"},
+      "activation": {"requires": "batched hub coordinator restart", "status": "HELD",
+                     "decision_ref": "curated_pause_window_agenda_20260911 D5",
+                     "held_by": "user decision 2026-09-15",
+                     "caveat": "may already be superseded by the live /queue/add + /queue/remove pair -- needs a follow-up read of ree-v3 to disambiguate, not resolved this session"}
+    }
+  ]
+}
