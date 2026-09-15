@@ -1,10 +1,10 @@
 ---
-title: "The Cognitive Contract (ARC-142, GOV-CONTRACT-1, MECH-545, MECH-546, Q-104)"
+title: "The Cognitive Contract (ARC-142, GOV-CONTRACT-1, MECH-545, MECH-546, Q-104; ARC-144, GOV-CONTRACT-2, GOV-CONTRACT-3, MECH-557)"
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
 nav_order: 17
 status: candidate
-status_asof: 2026-09-08
+status_asof: 2026-09-15
 status_claim: ARC-142
 ---
 
@@ -109,7 +109,7 @@ inadmissible. Developmental precedence is the strongest single-domain signal. Ne
 preserved as first-class results. The contract is derived independently of the claims-registry
 invariant machinery; convergence between the two is logged as a clue under GOV-ANALOGY-1.
 
-**Ledger record shape (one per candidate; ledger at `evidence/planning/cognitive_contract_invariant_ledger.v1.json`, seeded 2026-09-08 with five records):**
+**Ledger record shape (one per candidate; ledger at `evidence/planning/cognitive_contract_invariant_ledger.v1.json`, seeded 2026-09-08 with five records; 14 records as of 2026-09-15, every one carrying a `lesion_prediction`):**
 
 | Field | Question |
 |---|---|
@@ -193,14 +193,65 @@ assay) is open. The term "braidling" is first introduced to the registry here.
 
 ---
 
+## Registered 2026-09-15 from the red-team thought (candidate cognitive invariants)
+
+Source: `docs/thoughts/2026-09-08_candidate_cognitive_invariants.md` (intake
+`evidence/planning/thought_intake_2026-09-08_candidate_cognitive_invariants.md`). The intake's first
+finding is that the fourteen ledger candidates are LEDGER-ONLY (four `admitted`, ten `candidate`, none
+registered here); the four entries below are what the thought adds at the level of the programme, not
+candidate invariants. Its second finding is that the tranche-3 ledger amendment (section 13) has never
+been applied and names this ingestion as its trigger -- a `/governance` action, not done here.
+
+### ARC-144 -- boundary-indexed contract obligations {#arc-144}
+
+The contract is a family of typed obligations `C = { A -> B : I_AB, tolerated distortion, receiver
+capability, fallback }`, one per directed interface: `I_AB` is what B requires and cannot cheaply and
+reliably reconstruct locally. A deep shared core, if one exists, is an EMPIRICAL OVERLAP measured across
+heterogeneous interfaces, never a premise. Refines ARC-142's "small set of relations at every boundary"
+wording and is registered narrowly rather than as an amendment; `/governance` may fold it in. Distinct
+from MECH-547 (receiver-conditioned within one boundary) and MECH-540 (interfaces differ in plasticity,
+not obligation). Falsifier for the programme: useful per-boundary obligations with negligible overlap.
+
+### GOV-CONTRACT-2 -- promotion ladder {#gov-contract-2}
+
+GOV-CONTRACT-1's 2-of-6 quorum is Stage 1 of six and confers a ledger status only. Stage 0 named
+candidate; 1 cross-domain recurrence; 2 transferable receiver-accessible recoverability (INV-105
+grading); 3 causal handoff dependence (MECH-545); 4 irreducibility under constrained reconstruction
+(adjudicated by GOV-CONTRACT-3); 5 adaptation-aware characterisation (ARC-140); 6 boundary scope
+(ARC-144). Claim-shaped at Stage 4; architectural treatment only after Stage 5. Negative results stay
+in the ledger.
+
+### GOV-CONTRACT-3 -- reduction admissibility {#gov-contract-3}
+
+Counting primitives is not minimality. A merge, demotion or derivation of one candidate from another
+counts only if it lowers TOTAL transferable complexity (rate + encoder/decoder complexity + context
+side-channels + distortion + latency + robustness) under fixed precision and decoder power, preserves
+discriminating failure signatures, and improves transfer against an unconstrained equivalent-capacity
+code. Reducibility is operational, not logical. Rewriting several candidates as one typed graph or one
+latent is a renaming, not a reduction. Reciprocal with GOV-CONTRACT-2 (`coupled_with`).
+
+### MECH-557 -- the 3 + 2 reduction hypothesis {#mech-557}
+
+The fourteen candidates may generate from three STRUCTURAL families -- (A) correspondence/binding,
+(B) directed event/trajectory structure, (C) generative context/anchoring/lineage -- plus two ATTACHED
+weighting fields -- (D) epistemic weight, (E) regulatory/viability weight. Crossed prediction: structure
+survives object/world remapping at unchanged world relation; fields vary with uncertainty, need, goal and
+regime at fixed structure. If the crossed design cannot dissociate them, the model is wrong or too
+simple. Must itself pass GOV-CONTRACT-3 before any merge is accepted; it moves no candidate off its
+ladder stage.
+
+---
+
 ## What is deliberately NOT registered
 
 - **The Cognitive Contract Specification** (section 20 of the thought: declared encodings,
   translator training, tolerated reconstruction error, drift monitoring, low-confidence behaviour,
   add/retire rules). An engineering output of the programme, conditional on the ledger having
   entries. Registering it now would convert a discovery programme into standing architecture.
-- **The candidate inventory as individual claims.** Each becomes claim-shaped only when it has a
-  ledger record and at least one lesion prediction.
+- **The candidate inventory as individual claims.** A candidate becomes claim-shaped only at
+  Stage 4 of the GOV-CONTRACT-2 promotion ladder (irreducibility under constrained reconstruction),
+  never merely by holding a ledger record with a lesion prediction -- all 14 records now satisfy
+  that weaker condition and remain ledger-only (`admitted` is a ledger status, not a claim).
 - **Thoughts 2-4 of the programme** (candidate invariants synthesis; compression / decompression
   and the cognifold; mathematics of invariant-preserving translation). These are the user's
   authoring programme, tracked in the intake's next steps.

@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-08_candidate_cognitive_invariants.md
+Claims registered: ARC-144, GOV-CONTRACT-2, GOV-CONTRACT-3, MECH-557
+
 # Thought: Candidate Cognitive Invariants
 
 **Date:** 2026-09-08  
-**Status:** active evidence synthesis / red-team draft — **not digested**  
+**Status:** active evidence synthesis / red-team draft (ingested 2026-09-15 -- see Intake above; the 14 ledger candidates remain ledger-only per GOV-CONTRACT-2)  
 **Parent thought:** `docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md`  
 **Related architecture:** `docs/architecture/cognitive_contract.md`  
 **Canonical candidate ledger:** `evidence/planning/cognitive_contract_invariant_ledger.v1.json`  

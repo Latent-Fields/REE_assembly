@@ -101868,3 +101868,384 @@
     DO NOT build in V3 -- no new gate, window or phase mechanism; the existing substrate named above
     is the manipulation surface and the source thought's own architectural caution says so. DO NOT
     queue an experiment from this entry.
+
+- id: ARC-144
+  title: >-
+    The cognitive contract is BOUNDARY-INDEXED, not one flat universal header: for a handoff from subsystem
+    A to subsystem B the obligation is I_AB = the relations B requires that B cannot cheaply and reliably
+    reconstruct locally, so the contract is properly written as a family of TYPED OBLIGATIONS,
+    C = { A -> B : I_AB, tolerated distortion, receiver capability, fallback behaviour }, one entry per
+    directed interface. A sensory-to-world-model handoff, a hippocampal replay handoff, an E1-to-E2
+    predictive handoff and a control-plane handoff need not carry the same relational payload, and a
+    relation may be obligatory at one boundary while being locally reconstructable -- and therefore
+    omissible -- at another. The consequence that makes this more than bookkeeping: a DEEP SHARED CORE, if
+    one exists, is an EMPIRICAL OVERLAP to be measured across many heterogeneous interfaces, never a
+    premise; candidates such as value, salience, confidence, commitment and priority may be crucial at
+    particular boundaries without being universal invariants of every internal representation, and a
+    universal reading of the contract systematically over-states their status. Falsifier for the contract
+    programme itself: if useful obligations exist at each boundary but their OVERLAP across the cognitive
+    graph is negligible, boundary-specificity defeats a shared core and the contract is a set of interface
+    specifications rather than an architecture of cognition.
+  claim_type: architectural_commitment
+  subject: architecture.cognitive_contract_boundary_indexed_obligations
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_candidate_cognitive_invariants.md
+  depends_on:
+    - ARC-142      # the contract this refines -- ARC-142 states a single "small set of relations I"; this indexes it by boundary
+    - GOV-CONTRACT-1  # admissibility rule; boundary scope is what its quorum is silent about
+    - INV-104      # the one-path instance: five classes on observation -> z_world -> E1/E2 is an I_AB, read this way
+    - ARC-139      # legibility-not-sameness -- says integration needs legibility, not which legibility at which boundary
+    - MECH-547     # receiver-CONDITIONED translation: distinguished-from, see notes (dynamic within a boundary vs static across boundaries)
+    - MECH-537     # communication subspace: the per-boundary read surface an I_AB would be carried in
+    - MECH-538     # bridge complexity L(A->B) is already boundary-indexed; this is the content-side counterpart
+    - MECH-540     # interfaces already differ in PLASTICITY; this says they differ in OBLIGATION -- distinguished-from
+    - MECH-545     # lesion assays are already applied at ONE boundary; this says the candidate set itself is boundary-relative
+    - INV-091      # integration/non-equivalence viable band -- the measurable form of the collapse-vs-fragmentation poles
+    - Q-104        # cognifold vs braidling: if unity is a property of the transformation network, the network is this family C
+  location: docs/architecture/cognitive_contract.md#arc-144
+  notes: >-
+    Registered 2026-09-15 from section 2 and falsifier 10 of
+    docs/thoughts/2026-09-08_candidate_cognitive_invariants.md (intake
+    evidence/planning/thought_intake_2026-09-08_candidate_cognitive_invariants.md). REFINES ARC-142 AND IS
+    IN MILD TENSION WITH ITS WORDING: ARC-142 says the contract is "a small set of relations I" preserved
+    at "EVERY inter-engine boundary", which reads as one flat set. The source thought's first red-team
+    correction is that this "risks suggesting a universal packet header that every subsystem must transmit
+    at every handoff" and is "probably too strong". This entry is registered narrowly and does NOT amend
+    ARC-142 -- no ARC-142 field is touched; /governance may prefer to fold this into ARC-142's wording
+    instead of carrying two entries, and that decision is deliberately left open. DISTINCT FROM MECH-547,
+    which is the closest existing claim and a different axis: MECH-547 says the sender's exposed read
+    surface is conditioned on the RECEIVER'S CURRENT STATE -- dynamic, within one boundary, one sender's
+    several read surfaces. This entry says the OBLIGATION SET itself is indexed by the directed PAIR
+    (A, B) -- static, across boundaries, different payloads at different interfaces. The two compose: an
+    I_AB may itself be expressed receiver-conditionally. DISTINCT FROM MECH-540, which gives different
+    interfaces different PLASTICITY under offline maintenance; that is about how an interface is
+    maintained, not about what it must carry. DISTINCT FROM MECH-538, which is already boundary-indexed
+    but measures the MINIMUM BRIDGE COMPLEXITY of a boundary rather than the content obligation at it --
+    the two are the effort side and the content side of the same edge. GENERALISES INV-104 in a second
+    direction: ARC-142 generalised INV-104's five classes from one path to all boundaries; this entry says
+    the generalisation must keep the per-path indexing INV-104 had, rather than dissolving it into one
+    universal set. WHY IT MATTERS RATHER THAN BEING A HEDGE: it changes what evidence counts. Under the
+    flat reading, a relation shown load-bearing at one boundary is evidence for the contract; under this
+    reading it is evidence only about that boundary, and the shared core is whatever survives an explicit
+    overlap measurement across several. It also changes the ledger's shape -- the canonical ledger
+    (evidence/planning/cognitive_contract_invariant_ledger.v1.json) has one record per CANDIDATE with a
+    single classification, which cannot express "obligatory at E2 -> hippocampus, locally reconstructable
+    at E1 -> E2"; a boundary-scope field is the natural consequence and is flagged for /governance rather
+    than proposed here. LITERATURE NOT VERIFIED in this pass; no external source is cited and none should
+    be attached until a /lit-pull runs. DO NOT build in V3. DO NOT implement a per-boundary obligation
+    table as a data structure. DO NOT queue an experiment from this entry.
+
+
+- id: GOV-CONTRACT-2
+  title: >-
+    Contract-invariant promotion ladder: GOV-CONTRACT-1's >= 2-of-6-domain consilience quorum is STAGE 1 of
+    six, not the whole standard, and clearing it confers a LEDGER STATUS ("admitted") and nothing else -- in
+    particular no claims.yaml entry, no architectural commitment, and no licence to implement. The ladder:
+    Stage 0 named canonical candidate (the relation has a governed ledger record); Stage 1 cross-domain
+    recurrence (the GOV-CONTRACT-1 quorum); Stage 2 transferable RECEIVER-ACCESSIBLE recoverability (the
+    relation is recoverable by a plausible receiver, not merely by a researcher's probe, across held-out
+    content, tasks or remappings -- graded on INV-105's ladder, never on external decodability alone);
+    Stage 3 causal handoff dependence (selective, nuisance-controlled corruption at a relevant interface
+    produces the predicted deficit, MECH-545); Stage 4 irreducibility under constrained reconstruction (a
+    smaller already-supported basis cannot reproduce the function within the receiver's rate, decoder,
+    context, latency and robustness budget -- adjudicated under the reduction-admissibility rule); Stage 5
+    adaptation-aware characterisation (compensation, alternative-pathway recruitment and rescue understood
+    well enough to separate functional necessity from mechanism uniqueness, ARC-140); Stage 6 boundary scope
+    established (which handoffs require the relation and which can reconstruct or omit it, ARC-144). A
+    candidate becomes CLAIM-SHAPED at Stage 4 and eligible for architectural treatment only after Stage 5;
+    before that its canonical home is its ledger record id. Composite candidates remain candidates however
+    strong their recurrence, and a negative result at any stage is recorded in the ledger, never deleted.
+  claim_type: governance_rule
+  subject: governance.epistemics.cognitive_contract_promotion_ladder
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_candidate_cognitive_invariants.md
+  depends_on:
+    - GOV-CONTRACT-1  # the rule this extends: its quorum becomes Stage 1 of this ladder
+    - ARC-142         # the contract whose candidates are promoted
+    - INV-105         # Stage 2's grading instrument: encoded != decodable != natively accessible != causally used
+    - MECH-545        # Stage 3 IS the contract-lesion assay
+    - GOV-CONTRACT-3       # Stage 4's adjudication test (reduction admissibility)
+    - ARC-140         # Stage 5: compensatory realizability -- acute vs adapted, altered causal-importance distribution
+    - ARC-144       # Stage 6: boundary scope
+    - GOV-INTERVENE-1 # Stage 3's intervention-construction discipline (on-/near-/off-manifold, intervention-attribution)
+    - GOV-HELDOUT-1   # rule-change validation family
+    - GOV-ANALOGY-1   # label discipline inherited from GOV-CONTRACT-1
+  location: docs/architecture/cognitive_contract.md#gov-contract-2
+  functional_restatement: >-
+    Epistemic-hygiene governance rule in the routing-standard family (GOV-INTRO-1, GOV-ANALOGY-1,
+    GOV-CONTRACT-1, GOV-HELDOUT-1, GOV-INTERVENE-1). TRIGGER = any proposal to (a) register a cognitive
+    contract candidate as a claims.yaml entry, (b) cite a ledger record's "admitted" status as
+    architectural support for any other claim, (c) implement a candidate relation in a translator,
+    interface or bridge, or (d) declare a candidate promoted, primitive or settled. REQUIRED = name the
+    stage the candidate has actually reached and the artefact that evidences it; a proposal at (a) is
+    REFUSED below Stage 4 and at (c) below Stage 5. NON-FALSIFYING-SAFE: changes no claim's status or
+    confidence; it gates promotion of ledger candidates, not any verdict about them. Composes with
+    GOV-CONTRACT-1 rather than replacing it -- that rule still governs what enters the ledger and how
+    evidence is classified; this one governs what leaving the ledger requires.
+  notes: >-
+    Registered 2026-09-15 from section 19 (and sections 20.1, 21) of
+    docs/thoughts/2026-09-08_candidate_cognitive_invariants.md. WHY THIS EXISTS: the programme had a bar
+    (GOV-CONTRACT-1's quorum) and no ladder, so "admitted" was doing two jobs at once -- recording an
+    evidence quorum and implying architectural standing. The canonical ledger's own notes already try to
+    separate them ("'Admitted' means the candidate currently clears the GOV-CONTRACT-1 multi-domain
+    admissibility bar, not that its encoding or primitive status is fixed"), but that sentence lives in a
+    JSON notes field, not in the registry. THE CONCRETE HAZARD IT CLOSES:
+    docs/architecture/cognitive_contract.md currently says the candidate inventory "becomes claim-shaped
+    only when it has a ledger record and at least one lesion prediction" -- a condition satisfied by ALL
+    FOURTEEN records as of 2026-09-14, since every record carries a lesion_prediction string. Read
+    literally today that sentence licenses fourteen INV- registrations, which the source thought forbids
+    twice ("No candidate should be promoted from this red-team pass"; "No candidate is promoted by this
+    revision"). This entry replaces that condition with Stage 4. DISTINCT FROM INV-105: that is an
+    evidence ladder about ONE VARIABLE'S STATUS IN A LATENT SPACE (seven rungs, encoded to behaviourally
+    beneficial) and is the instrument Stage 2 and Stage 3 are graded on; this is a PROMOTION ladder about a
+    candidate's standing in a governance programme. The two are orthogonal and must not be collapsed: a
+    candidate can sit at INV-105 rung 6 on one boundary and still be at Stage 1 here because no second
+    boundary has been tested. DISTINCT FROM GOV-CEIL-1/GOV-CEIL-2 and GOV-PATHVALID-1, which govern
+    demotion and production-path evidence for ordinary REE claims; this governs a research programme with
+    its own external ledger. GOV-HELDOUT-1 RECORD for this registration: three prior cases were checked
+    against the wording and all three give a DIFFERENT answer under it, so the check is non-degenerate.
+    (i) CCI-007 relational topology -- ledger status "admitted", classification "architectural",
+    confidence "high", five supporting domains, and the tranche-3 amendment says "SHARPEN AND PROMOTE as
+    first primary assay". Under the old wording (ledger record + lesion prediction) it is claim-shaped
+    today; under this ladder it is at Stage 1, because no receiver-accessible recoverability measurement
+    and no boundary lesion has been run, so registration is refused and the amendment's "promote" is read
+    as "promote to first assay", not to the registry. (ii) CCI-004 agency -- Session B reads the same
+    evidence as "the strongest architectural case of the five" with a full 5-of-5 quorum, while the
+    record's own classification stays "uncertain" and its alternative_explanation says the evidence
+    "increasingly favors a composite". The old wording gives no way to hold both; this ladder does --
+    Stage 1 cleared, Stage 4 explicitly not, so "strongest quorum" and "still a composite" are
+    consistent statements about different stages, and the record's flagged Session-A/Session-B
+    classification disagreement stops being a contradiction that needs resolving before either can be
+    used. (iii) INV-104 class 5 (independently evolving trajectories) -- GOV-CONTRACT-1's own held-out
+    record says it has only one domain and would be held "uncertain" pending a second. Under this ladder
+    it is at Stage 0/1 on the ledger axis but is ALREADY a registered v3 claim by a different route
+    (INV-104 came from REE-internal design, not from the contract programme), which the ladder has to
+    permit and does: the ladder gates promotion OF LEDGER CANDIDATES, and says nothing about claims that
+    arrived independently and are later recognised as instances. That third case is what stops the rule
+    being over-broad. THE COST COUNTERWEIGHT (GOV-HELDOUT-1 discipline): this rule makes the programme
+    slower on purpose and its failure mode is a ledger that accumulates admitted candidates none of which
+    ever reaches the registry. That is an acceptable failure for a programme whose stated objective is
+    "the smallest defensible set, never the longest list", and the source thought's section 16 lists "the
+    basis continually expands" as falsifier 8 -- a stuck ladder IS the signal that falsifier is firing,
+    and should be read as a result rather than papered over by lowering the bar. DO NOT BUILD TOOLING,
+    A HOOK OR A GATE FOR THIS LADDER -- same counterweight as GOV-CONTRACT-1 and GOV-HELDOUT-1: it is a
+    manual admission discipline, the cheap manual version is the point, and a gate would inherit the cost
+    without the judgement.
+
+
+- id: GOV-CONTRACT-3
+  title: >-
+    Reduction admissibility for the cognitive contract (the anti-cheating rule the pruning clause lacks):
+    counting primitives is not minimality, and a proposed MERGE, demotion or derivation of one candidate
+    from another counts only if it lowers TOTAL TRANSFERABLE COMPLEXITY rather than relocating it. The
+    quantity to be reduced is minimal sufficient transferable information under CONSTRAINED encoders and
+    receivers -- informally contract cost ~= information rate + encoder/decoder complexity + context or
+    side-channel complexity + reconstruction distortion + computational and latency cost + robustness cost
+    -- not the number of English nouns in the basis. A reduction is therefore INADMISSIBLE when the lost
+    distinctions reappear inside the definition of the surviving relation, a more powerful decoder, hidden
+    context tags, unconstrained numerical precision, recurrent hidden state, task-specific side channels,
+    or expensive reconstruction machinery. Three requirements for any proposed collapse: (1) lower total
+    description or rate cost under fixed assumptions about precision and decoder power; (2) preserve
+    DISCRIMINATING predictions -- the reduced model must still predict distinct failure signatures when
+    different information is corrupted; (3) improve transfer or efficiency relative to an unconstrained
+    equivalent-capacity code. The standard of reducibility is OPERATIONAL, not logical: logical
+    reducibility (a mathematician can derive it) and information-theoretic reducibility (the information
+    exists somewhere) are both inadmissible, and only computational reducibility (the receiver can derive
+    it with plausible resources) and operational reducibility (reliably and quickly enough for the
+    behaviour in question) decide. Corollary that makes the rule bite: rewriting several candidates as one
+    typed relational graph, one latent, or one universal relation is a RENAMING, not a reduction, and is
+    refused unless all three requirements are demonstrated.
+  claim_type: governance_rule
+  subject: governance.epistemics.cognitive_contract_reduction_admissibility
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_candidate_cognitive_invariants.md
+  depends_on:
+    - GOV-CONTRACT-1  # trigger (d) prunes candidates but supplies no test for when a merge is valid; this is that test
+    - ARC-142         # the contract whose basis is being reduced
+    - MECH-538        # minimum bridge complexity: the closest existing cost measure -- distinguished-from, see notes
+    - INV-105         # the access ladder; this rule's operational standard is the reduction-side counterpart
+    - GOV-MATCHAUX-1  # matched-capacity control discipline: requirement (3)'s equivalent-capacity comparator
+    - GOV-ANALOGY-1   # label discipline: a renaming logged as a clue is not a reduction
+  coupled_with:
+    - GOV-CONTRACT-2  # reciprocal: the ladder's Stage 4 is adjudicated by this rule (edge kept G2 -> G3; a reverse depends_on would close a cycle under GOV-EDGE-1)
+    - MECH-557        # reciprocal: the first reduction proposal this rule is applied to (MECH-557 depends_on this rule; the reverse edge would close a cycle)
+  location: docs/architecture/cognitive_contract.md#gov-contract-3
+  functional_restatement: >-
+    Epistemic-hygiene governance rule. TRIGGER = any proposal to (a) merge two or more contract candidates
+    into one, (b) derive one candidate from a smaller basis, (c) demote a candidate as composite, or (d)
+    declare the basis reduced, minimal or compressed. REQUIRED = an explicit statement of where the lost
+    distinctions went (the seven relocation routes are the checklist), a demonstration of all three
+    collapse requirements, and an explicit declaration that the reducibility being claimed is
+    computational or operational rather than logical or information-theoretic. A reduction that satisfies
+    (2) but not (1) is a re-description; one that satisfies (1) by inflating the decoder is disallowed by
+    the relocation checklist. NON-FALSIFYING-SAFE: gates the acceptance of reduction ARGUMENTS, changes no
+    claim's status. Applies symmetrically -- a refusal to reduce must also be argued, so that a candidate
+    cannot be kept merely because no one attacked it.
+  notes: >-
+    Registered 2026-09-15 from sections 3, 5.4, 5.8 and 11 of
+    docs/thoughts/2026-09-08_candidate_cognitive_invariants.md, which calls the cost criterion "an
+    anti-cheating rule for the entire programme". WHY IT IS SEPARATE FROM GOV-CONTRACT-1: that rule's
+    trigger (d) covers PRUNING and requires only that "the negative result is recorded in the same ledger
+    rather than deleted" -- it says nothing about what makes a pruning or a merge CORRECT. The programme's
+    entire second phase is merge proposals (the tranche-3 amendment's tier list; the source thought's
+    3 + 2), so the missing half is load-bearing now rather than hypothetically. DISTINCT FROM MECH-538,
+    the closest existing quantity: MECH-538 measures the minimum complexity of a BRIDGE between two frozen
+    endpoints and is evidence about how legible one system already is to another; this rule scores a
+    PROPOSED CHANGE TO THE CANDIDATE BASIS and its cost terms include things MECH-538 has no place for
+    (context/side-channel complexity, robustness cost, latency). They do compose: a merge that lowers this
+    rule's cost should, if real, also lower L(A -> B) at the affected boundaries, and that is a prediction
+    worth recording. DISTINCT FROM INV-105: that ladder asks whether a variable is present, reachable and
+    used; this rule asks whether a variable is REDUNDANT given a smaller basis. A relation can sit at
+    INV-105 rung 6 (causally used) and still be reducible, and a relation can be irreducible while sitting
+    at rung 1. The one piece this rule takes from INV-105's territory is the resource-bound reading of
+    rung 3 ("natively accessible"): INV-105 asks whether the existing consumer CAN use it, this rule adds
+    that the consumer must be able to DERIVE it within compute, latency, sample and robustness budget --
+    stated here rather than as an eighth rung, to avoid a second ladder that would invite collapse with
+    the first. WHY THE OPERATIONAL STANDARD IS THE LOAD-BEARING CLAUSE: information-theoretic reducibility
+    is nearly always available -- for almost any candidate, the information exists somewhere in the sender
+    -- so a programme that accepts it as grounds for demotion will reduce its basis to nothing and learn
+    nothing. THE SYMMETRY CLAUSE IS DELIBERATE and is the clause most likely to be dropped in practice: a
+    rule that only polices reductions produces a basis that grows monotonically, which is the source
+    thought's own falsifier 8. LITERATURE NOT VERIFIED: the thought asserts that a rate/description-length
+    or rate-distortion objective is the right formalism for contract cost and cites no source. The
+    information-bottleneck, rate-distortion and minimum-description-length literatures are the obvious
+    anchors and a /lit-pull is owed BEFORE any of them is cited as support; the rule is usable as a
+    checklist without it. DO NOT BUILD TOOLING FOR THIS RULE -- same counterweight as GOV-CONTRACT-2. DO NOT
+    build in V3. DO NOT queue an experiment from this entry.
+
+
+- id: MECH-557
+  title: >-
+    The 3 + 2 reduction hypothesis: the fourteen canonical cognitive-contract candidates
+    (evidence/planning/cognitive_contract_invariant_ledger.v1.json) may not be fourteen independent
+    primitives but may largely generate from THREE STRUCTURAL FAMILIES plus TWO ATTACHED WEIGHTING FIELDS.
+    Structural: (A) CORRESPONDENCE / BINDING -- which token, event, state or relation in one representation
+    corresponds to which in another or across time, with identity as correspondence plus continuity and
+    persistence constraints, and equivalence as correspondence under a specified transformation (absorbing
+    CCI-001, CCI-006); (B) DIRECTED EVENT / TRAJECTORY STRUCTURE -- event or token instances, ordered or
+    partially ordered succession, reachable transition relations, persistence across transitions, and
+    optional typed intervention edges, rather than a scalar clock plus a separate graph (absorbing CCI-002,
+    CCI-007 and, if action-labelled edges suffice to reconstruct controllability, much of CCI-004); (C)
+    GENERATIVE CONTEXT / ANCHORING / LINEAGE -- which process produced a representation, which branch it
+    belongs to, whether that branch is anchored to the current sensory worldline, and how it relates to
+    other generated alternatives, so that "actual" is a relation to the currently anchored worldline rather
+    than a primitive category (absorbing CCI-003, CCI-012 and the unnumbered provenance/ownership
+    hypotheses). Attached fields: (D) EPISTEMIC WEIGHT over states, edges or translations, obligatory only
+    where the producer holds reliability information the receiver cannot cheaply reconstruct (reclassifying
+    CCI-005 from content primitive to boundary-specific field); (E) REGULATORY / VIABILITY WEIGHT --
+    predicted relation to viable or preferred states plus direction of change plus horizon, from which
+    signed value, goal relation and priority may derive (reclassifying CCI-009 and bearing on CCI-010,
+    CCI-014). CROSSED PREDICTION, which is what makes this falsifiable rather than a re-labelling:
+    structural families should survive object or world remapping when the world relation is unchanged
+    despite altered surface features, whereas attached fields should vary strongly with current
+    uncertainty, needs, goals, physiology and task regime AT FIXED STRUCTURE -- so holding structure fixed
+    while changing confidence, holding structure fixed while changing viability, holding confidence fixed
+    while changing branch lineage, holding value fixed while changing controllability, and holding sensory
+    content fixed while changing generative path should dissociate along the structure/field boundary. If
+    structural and weighting variables cannot be dissociated by that crossed design, the 3 + 2 model is
+    wrong or too simple.
+  claim_type: mechanism_hypothesis
+  subject: architecture.cognitive_contract_structural_families_and_attached_fields
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-08_candidate_cognitive_invariants.md
+  depends_on:
+    - ARC-142      # the contract whose candidate basis this proposes to compress
+    - GOV-CONTRACT-1  # the admissibility rule; this entry does NOT add relations, so trigger (a) does not fire
+    - GOV-CONTRACT-3    # the reduction-admissibility test this hypothesis must itself pass before any merge is accepted
+    - GOV-CONTRACT-2    # the promotion ladder: this hypothesis does not move any candidate off its Stage
+    - ARC-144    # boundary-indexing: a field may be obligatory at one boundary and reconstructable at another
+    - MECH-545     # the lesion assay whose five signatures this regroups into structure-failure vs field-failure
+    - ARC-080      # object identity as token-bound persistence -- family A's content-level owner
+    - INV-035      # temporal position as a state-defining distinction -- family B's content-level owner
+    - MECH-539     # transition geometry across the map -- family B's dynamic form and strongest evidence
+    - MECH-365     # provenance-bearing event token with a one-way gate -- family C's content-level owner
+    - MECH-094     # simulation/real distinction -- family C's binary form, which this hypothesis says is the wrong shape
+    - ARC-092      # imagination-learning constraint -- what a family C failure breaks
+    - MECH-256     # forward-model comparator -- the agency route family B claims to absorb via action-labelled edges
+    - MECH-123     # precision lineage -- field D's content-level owner
+    - INV-030      # viability defined relative to continuity in a shared world, not scalar reward -- field E's anchor
+    - ARC-024      # harm gradient -- field E's REE instance
+    - INV-104      # five preservation classes on one path: the closest existing grouping of the same material
+  location: docs/architecture/cognitive_contract.md#mech-557
+  notes: >-
+    Registered 2026-09-15 from sections 7, 9, 10, 14, 15 and 21 of
+    docs/thoughts/2026-09-08_candidate_cognitive_invariants.md. WHAT IS AND IS NOT BEING REGISTERED: this
+    entry registers a REDUCTION HYPOTHESIS ABOUT the candidate set. It does NOT register correspondence,
+    event structure, lineage, epistemic weight or regulatory weight as contract relations -- doing so
+    would fire GOV-CONTRACT-1 trigger (a) and would require five new ledger records with their own quora
+    first. The source thought is explicit: "This is not a replacement ledger. It is a destructive model to
+    test against the ledger", "New decomposition terms remain unnumbered hypotheses unless and until
+    governance explicitly adds them to the ledger", and "Even 3 + 2 is not a target answer. It is simply
+    the smallest hypothesis currently worth attacking". The canonical fourteen-record ledger remains the
+    baseline and is NOT rewritten by this entry. PARTLY ANTICIPATED BY, AND CONVERGENT WITH, THE TRANCHE-3
+    AMENDMENT: evidence/planning/cognitive_contract_invariant_ledger_tranche3_amendment_2026-09-08.md
+    (committed 2026-09-08 21:26, 58 minutes before the red-team revision) independently reached four of
+    the same conclusions from three literature tranches -- splitting CCI-003 into a provenance record
+    (proposed CCI-015) and a branch/status record (proposed CCI-016), opening a viability/preference rival
+    to scalar value (proposed CCI-017), demoting agency to a composite target, and demoting the four
+    coarse modes to composites over a factorial basis. Those proposed records were NEVER APPLIED to the
+    canonical ledger, which is why the source thought correctly reports provenance as "not currently
+    represented as a canonical CCI record". The convergence of a destructive first-principles pass and an
+    independent literature pass on the same decomposition is admissible consilience evidence about the
+    DECOMPOSITION under GOV-CONTRACT-1's own standard, and is recorded here because it is currently
+    recorded nowhere. WHAT THIS ADDS BEYOND THE AMENDMENT: the amendment produces a TIER ORDERING of
+    candidates; this entry produces a TYPED distinction between structural relations and attached
+    weighting fields, and the crossed transfer prediction that makes the type distinction testable rather
+    than taxonomic. The amendment has no transfer prediction. FOLDS IN section 9's mode-composite
+    reduction (perception / memory / imagination / prediction / counterfactual as composites over lineage
+    + trajectory position + branch + epistemic weight + local control state) rather than registering it
+    separately, because it is family C plus field D applied to one set of labels, and because the
+    tranche-3 amendment section 5 already adjudicated it with a pre-registered cross-context test.
+    DISTINCT FROM INV-104, the closest existing grouping: INV-104 names five PRESERVATION REQUIREMENTS on
+    one path, all of which are content classes; this entry proposes a TYPE distinction (structure vs
+    field) that cuts across such classes, and predicts they behave differently under transfer. FAILURE
+    SIGNATURES, carried from section 15 as hypotheses not definitions, and regrouping MECH-545's five:
+    correspondence/binding failure = tracker fragmentation, unstable cross-representation reference,
+    repeated relearning, credit-assignment and episodic-binding errors; directed-event failure = sequence
+    inversion, reachability errors, rollout confusion, causal-order mistakes, failure to distinguish
+    recurrent instances of the same state; lineage/anchoring failure = observed/generated confusion,
+    memory/prediction contamination, counterfactual branches treated as experienced, confabulation-like
+    drift; epistemic-weight failure = preserved content with pathological over- or under-weighting and
+    calibration failure; regulatory-weight failure = preserved world structure with disorganised
+    preserve/avoid trade-offs. Two residues are explicitly held out of the reduction and must be forced to
+    prove themselves: intervention/control residue (passive prediction preserved with selective loss of
+    action-effect learning) and expected-absence residue (inability to represent omitted expected events
+    despite intact raw surprise). THE VACUITY GUARD: families A, B and C can themselves be written as one
+    typed relational graph, which would be formally compact and scientifically empty; the three collapse
+    requirements of GOV-CONTRACT-3 apply to this entry's own families as much as to the candidates it absorbs,
+    and this entry is inadmissible as a reduction until they are demonstrated. CLAIM-TYPE NOTE for
+    /governance: open_question (Q-) is a defensible alternative shape, since the thought frames 3 + 2 as a
+    model to attack; mechanism_hypothesis was chosen because section 14 makes a directional, crossed
+    prediction that a Q- framing would lose, and because `status: candidate` already carries "to be
+    attacked". SUBSTRATE NOTE: family C's shape is the one V3 most clearly contradicts -- ree-v3 carries a
+    BINARY Trajectory.hypothesis_tag plus an injector-only metadata["source"], i.e. exactly the binary
+    reality bit section 7.3 attacks, with no branch relation or sensory-worldline anchoring; and field D's
+    translation-confidence subcase has no substrate representation at all. Recorded as context, not as a
+    build instruction. LITERATURE NOT VERIFIED in this pass. DO NOT build in V3. DO NOT implement the
+    three families or two fields as latent dimensions, a typed graph or a message schema. DO NOT queue an
+    experiment from this entry -- the relevant assay is the pre-registered narrowing-stack design
+    (evidence/planning/cognitive_contract_narrowing_stack_preregistration_2026-09-08.md), which needs the
+    rate-vs-width amendment described in the intake before it is run.
