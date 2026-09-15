@@ -493,18 +493,58 @@ def as_json(text):
         return None
 
 
+# Fields governance review rewrites IN PLACE on an already-landed manifest,
+# confirmed by mining 347 governance/autopsy commits that modified (not just
+# added) evidence/experiments/ files (chip-20260903-prepull-grader-changed-field,
+# 2026-09-15): evidence_direction changes value 235x (flat)/174x (pack) --
+# e.g. worker-written "diagnostic" -> reviewed "non_contributory" -- and its
+# siblings below change alongside it. This is the same overlay set as
+# evidence/experiments/scripts/build_experiment_indexes.py's
+# _FLAT_AUTHORITATIVE_FIELDS (direction-relevant subset; the provenance-only
+# entries there -- substrate_hash, label_balance, substrate_commit* -- are
+# deliberately NOT included here, since this predicate has no evidence they
+# ever change value on a manifest). A stash whose value for one of these keys
+# differs from origin's is still safely contained -- origin is the
+# governance-annotated DESCENDANT of the stash's content, not a divergence.
+# Every other key keeps strict equality: this must not become a blanket
+# tolerance for changed values.
+GOVERNANCE_OWNED_FIELDS = frozenset((
+    "evidence_direction",
+    "evidence_direction_per_claim",
+    "evidence_direction_note",
+    "epistemic_category",
+    "non_degenerate",
+    "non_degenerate_per_claim",
+    "degeneracy_reason",
+    "superseded_by",
+    "superseded_by_substrate",
+    "superseded_by_substrate_per_claim",
+    "pending_retest_after_substrate",
+    "pending_retest_after_substrate_per_claim",
+))
+
+
 def is_superset(origin, local):
-    """True if every key/value of `local` is present and equal in `origin`.
+    """True if every key/value of `local` is present and equal in `origin`,
+    EXCEPT for GOVERNANCE_OWNED_FIELDS, where a changed value is tolerated.
 
     The phase3 git writer stores compact JSON and INJECTS queue_id / machine /
     epistemic_category / evidence_direction_note, so origin is routinely a
     strict superset of a semantically identical local file. A byte compare
     would call every one of those stranded.
+
+    CONTAINMENT, not equality: a governance-reviewed landed copy also
+    CHANGES certain fields' values in place on top of what the worker wrote
+    (see GOVERNANCE_OWNED_FIELDS) -- an equality test on those specific keys
+    would leave every reviewed run's entry graded at_risk forever, which is
+    the false-positive this predicate exists to end.
     """
     if not isinstance(origin, dict) or not isinstance(local, dict):
         return origin == local
     for k, v in local.items():
-        if k not in origin or origin[k] != v:
+        if k not in origin:
+            return False
+        if origin[k] != v and k not in GOVERNANCE_OWNED_FIELDS:
             return False
     return True
 
@@ -2375,6 +2415,7 @@ def selftest():
     failed += _selftest_grader()
     failed += _selftest_literature_grader()
     failed += _selftest_prepull_grading()
+    failed += _selftest_governance_field_containment()
     failed += _selftest_local_target()
     failed += _selftest_claims()
     failed += _selftest_adjudicated_divergence()
@@ -3019,6 +3060,138 @@ def _selftest_prepull_grading():
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
         print(f"  [FAIL] prepull grading selftest errored: {exc}")
+        return 1
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _selftest_governance_field_containment():
+    """chip-20260903-prepull-grader-changed-field: the confirmed false
+    positive. Runs the REAL grader source (UNTRACKED_PY) against a throwaway
+    repo, same technique as `_selftest_prepull_grading`, but pins the case
+    that one did NOT cover: `_selftest_prepull_grading`'s "redundant" entry
+    only gains SIBLING keys on top of the worker's content (queue_id,
+    machine, evidence_direction_note) -- every SHARED key stays byte-equal.
+    It never exercises a governance-owned key CHANGING value on the shared
+    key itself, which is the actual V3-EXQ-571c defect: worker-written
+    `evidence_direction: "diagnostic"`, governance-reviewed origin
+    `evidence_direction: "non_contributory"`. Two entries, two outcomes:
+
+      redundant   evidence_direction CHANGED value between stash and landed
+                  copy (a GOVERNANCE_OWNED_FIELDS key) -- every other key
+                  unchanged. Must grade "redundant": this is the exact
+                  regression this chip fixed, and without the fix
+                  is_superset's plain equality graded it at_risk forever.
+      at_risk     an ORDINARY (non-governance) key changed value between
+                  stash and landed copy. Must stay "at_risk" -- the negative
+                  control that keeps this from becoming a blanket tolerance
+                  for any changed value.
+    """
+    import shutil
+    import tempfile
+
+    tmp = tempfile.mkdtemp(prefix="rgh-govfield-selftest-")
+    try:
+        root = os.path.join(tmp, "REE_assembly")
+        os.makedirs(os.path.join(root, "evidence", "experiments"))
+
+        def run(*args):
+            subprocess.run(("git",) + args, cwd=root, check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        def write(rel, text):
+            p = os.path.join(root, rel)
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w") as fh:
+                fh.write(text)
+
+        run("init", "-q")
+        run("config", "user.email", "selftest@local")
+        run("config", "user.name", "selftest")
+        write("README.md", "base\n")
+        run("add", "-A")
+        run("commit", "-q", "-m", "base")
+
+        changed_gov_rel = "evidence/experiments/changed_gov_field_v3.json"
+        changed_ordinary_rel = "evidence/experiments/changed_ordinary_field_v3.json"
+
+        # Entry 1: evidence_direction CHANGES value (governance-owned) --
+        # the V3-EXQ-571c shape. Must grade "redundant".
+        write(changed_gov_rel, json.dumps(
+            {"run_id": "changed_gov_field_v3", "outcome": "FAIL",
+             "evidence_direction": "diagnostic"}))
+        run("stash", "push", "--include-untracked", "-m",
+            "runner-prepull-untracked")
+        write(changed_gov_rel, json.dumps(
+            {"run_id": "changed_gov_field_v3", "outcome": "FAIL",
+             "evidence_direction": "non_contributory",
+             "queue_id": "V3-EXQ-571c",
+             "evidence_direction_note": "reviewed"}))
+        run("add", "-A")
+        run("commit", "-q", "-m", "landed (governance-reviewed)")
+
+        # Entry 2: negative control -- an ORDINARY key changes value. Must
+        # NOT be tolerated, or the fix has become a blanket bypass.
+        write(changed_ordinary_rel, json.dumps(
+            {"run_id": "changed_ordinary_field_v3", "outcome": "FAIL"}))
+        run("stash", "push", "--include-untracked", "-m",
+            "runner-prepull-untracked")
+        write(changed_ordinary_rel, json.dumps(
+            {"run_id": "changed_ordinary_field_v3", "outcome": "PASS"}))
+        run("add", "-A")
+        run("commit", "-q", "-m", "landed (outcome corrected, not a review)")
+
+        r = subprocess.run(
+            [sys.executable, "-", tmp, "REE_assembly:HEAD"],
+            input=UNTRACKED_PY, capture_output=True, text=True, timeout=120)
+        line = [x for x in r.stdout.splitlines()
+                if x.startswith(UNTRACKED_MARKER)]
+        if not line:
+            print("  [FAIL] governance-field-containment grader emitted no "
+                  "result (%s)" % (r.stderr or "").strip()[-300:])
+            return 1
+        got = json.loads(line[0][len(UNTRACKED_MARKER):]).get("REE_assembly", {})
+        entries = (got.get("prepull") or {}).get("entries", [])
+        by_count = {"redundant": 0, "at_risk": 0}
+        at_risk_paths = set()
+        for e in entries:
+            v = e.get("verdict")
+            if v in by_count:
+                by_count[v] += 1
+            if v == "at_risk":
+                at_risk_paths.update(e.get("unproven_paths") or [])
+
+        bad = 0
+        if by_count.get("redundant") != 1 or by_count.get("at_risk") != 1:
+            print(f"  [FAIL] governance-field-containment: expected exactly "
+                  f"1 redundant + 1 at_risk, got {by_count} "
+                  f"(entries={entries})")
+            bad += 1
+        else:
+            print("  [PASS] governance-field-containment: exactly one "
+                  "redundant and one at_risk entry")
+
+        if changed_ordinary_rel not in at_risk_paths:
+            print(f"  [FAIL] governance-field-containment: the ORDINARY "
+                  f"changed-value entry was not kept at_risk -- the fix has "
+                  f"become a blanket tolerance (at_risk_paths={at_risk_paths})")
+            bad += 1
+        else:
+            print("  [PASS] governance-field-containment: a changed "
+                  "ORDINARY field still grades at_risk (negative control)")
+
+        if changed_gov_rel in at_risk_paths:
+            print(f"  [FAIL] governance-field-containment: the CHANGED "
+                  f"governance-owned field (evidence_direction) still "
+                  f"grades at_risk -- V3-EXQ-571c regression is back")
+            bad += 1
+        else:
+            print("  [PASS] governance-field-containment: a changed "
+                  "GOVERNANCE-OWNED field (evidence_direction) grades "
+                  "redundant, not at_risk")
+        return bad
+    except Exception as exc:                      # pragma: no cover - defensive
+        print(f"  [FAIL] governance-field-containment selftest errored: {exc}")
         return 1
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
