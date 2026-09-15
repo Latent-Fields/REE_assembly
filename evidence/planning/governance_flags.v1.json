@@ -3983,6 +3983,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0284",
+      "claim_ids": [
+        "MECH-275",
+        "MECH-554"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MECH-275's title says sleep phases aggregate across many EPISODES and its functional_restatement warns against noise-fit; the implementation (ree-v3 ree_core/sleep/bayesian_aggregator.py, tau_post = tau + tau_lik and posterior.n += 1 per routed replay event, keyed (domain, region), no dependency term) aggregates across replay DRAWS sampled with replacement (replay_sampler.py draw()). Cross-episode independence is the claim's premise; per-draw accumulation is the behaviour. Bears directly on the newly registered MECH-554 (replay amplification of false independence).",
+      "raised_by_session": "thought-pipeline-20260915",
+      "raised_at": "2026-09-15T07:00:47Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
