@@ -101330,3 +101330,310 @@
     comparison run before a WAKING retention metric has demonstrated range and stability measures the
     instrument. substrate_conditional on a capacity-reduction substrate that does not exist.
     DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+
+- id: INV-107
+  title: >-
+    Dependency structure among evidence must be REPRESENTED and conditioned on, and independence must never
+    be INFERRED from the absence of a recorded dependency. Any representation that can later influence belief,
+    confidence, closure or action must carry enough (uncertain, compressed) causal genealogy that the
+    descendants of a hypothesis cannot be counted as witnesses independent of it. The rule is binding in its
+    NEGATIVE form only -- a hypothesis must not cite its own descendants as independent witnesses -- and is
+    explicitly NOT the positive rule "descendants should be collapsed to one vote": where a structural
+    dependency exists but the observations across it are partial or contradicting, dependent reports can
+    support a hypothesis MORE than independent ones would, so maximal discounting is the larger error. The
+    invariant therefore constrains the REPRESENTATION (dependency must be expressible and readable), not the
+    arithmetic (no fixed discount is mandated). Unknown provenance is not independent provenance; uncertain
+    source is not confidently external source.
+  claim_type: invariant
+  invariant_type: universal
+  subject: provenance.dependency_representation_no_inferred_independence
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md
+  depends_on:
+    - MECH-094   # the committed-vs-imagined write gate this invariant sits above: MECH-094 stops simulated content WRITING, this stops descendants VOTING
+    - INV-011    # imagination without belief update -- the one-step protection whose multi-step, multi-descendant form this is
+    - INV-019    # rehearsal / durable-write separation -- same family, write-side
+    - MECH-430   # multi-dimensional provenance source vector -- the per-token half; this invariant additionally requires the RELATION between tokens
+    - ARC-115    # confidence readouts non-collapsible: the EXTERNAL-assertion channel version of the same non-collapse discipline; distinguished-from
+    - INV-077    # evaluation-channel integrity: the GOVERNANCE-layer circularity ban; distinguished-from (Assembly instrument, not agent mechanism)
+  location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#inv-107
+  notes: >-
+    GENERALIZES ARC-115 from one channel to all of them. ARC-115 forbids socially-supplied agreement entering
+    the same accumulator as internally-derived confidence -- "else being told something becomes
+    indistinguishable from having found it". This invariant states the same non-collapse for content the
+    agent generated ITSELF: else having predicted something becomes indistinguishable from having observed it
+    four times. The two are separate because the external channel has an obvious type marker (it arrived from
+    outside) while the self-descendant channel has none once the tag is stripped.
+    DISTINCT FROM INV-077, which is the Assembly's governance-layer rule about who may write confidence into
+    claims.yaml; this is an AGENT-layer constraint on the architecture's own belief formation and is not
+    discharged by any governance mechanism.
+    DISTINCT FROM SD-088, which asks the claims REGISTRY to represent source-dependence between supporting
+    judgements. Same structure, different subject: SD-088 is an instrument Assembly builds for itself, this
+    is a property REE must have.
+    THE NEGATIVE-ONLY FORM IS LOAD-BEARING AND WAS ARRIVED AT BY CORRECTION, not by caution. The raw thought
+    states the rule as "a hypothesis must not be allowed to cite its own descendants as independent
+    witnesses", which reads naturally as a discounting instruction. Pilditch, Hahn, Fenton & Lagnado 2020,
+    "Dependencies in evidential reports: The case for informational advantages", Cognition 204:104343,
+    DOI 10.1016/j.cognition.2020.104343, PMID 32599310 (literature anchor, NOT INDEPENDENTLY VERIFIED by this
+    pass -- taken from evidence/planning/provenance_judgment_class_literature_tranche.md section 3.3) proves by
+    construction that treating dependence as redundancy conflates the STRUCTURE of a dependency network with
+    the OBSERVATIONS across it. Any successor experiment must therefore score over-discounting as a failure,
+    not only under-discounting; a scoring set built only from redundant-dependence cases makes "discount
+    everything dependent" the winning strategy and reports a false winner.
+    EMPIRICAL CONTEXT that narrows the clinical reading: treating one lineage as several independent witnesses
+    is a documented healthy-human default under ancestry ambiguity (Yousif, Aboody & Keil 2019 PMID 31291546;
+    Connor Desai, Xie & Hayes 2022 PMID 35149359; Weaver et al. 2007 PMID 17484607 -- all three taken from
+    evidence/planning/provenance_false_evidence_multiplication_campaign_supplement_20260910.md section 5, NOT
+    INDEPENDENTLY VERIFIED here). The invariant is an engineering requirement for REE, not a claim that
+    violating it is pathological in humans.
+    SUBSTRATE STATUS (verified 2026-09-15 against the live tree): ree_core has NO ancestry representation of
+    any kind -- grep for ancestry/lineage/ancestor/genealog returns 18 hits, all the word "lineage" in comments
+    about EXPERIMENT lineages. DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+- id: MECH-552
+  title: >-
+    False evidence multiplication: a provenance error can change the apparent CARDINALITY of evidence and not
+    only its source label. One internally generated hypothesis H produces descendants through prediction,
+    hippocampal replay, counterfactual simulation, retrieved memory and ambiguous perceptual interpretation;
+    if shared ancestry is lost, those descendants are counted as several mutually corroborating observations
+    and confidence in H rises with no corresponding increase in world evidence. Two consequences are asserted
+    to be separable and must not be collapsed: a phenomenological branch (self-generated content losing
+    evidence of self-generation acquires external/perceptual status) and an epistemic branch (descendants
+    losing shared ancestry inflate posterior confidence and shorten information-seeking). LOCUS CORRECTION,
+    carried in the claim rather than deferred: the operative variable is the READOUT'S DEFAULT FOR UNKNOWN
+    ANCESTRY, not the corruption event itself -- an architecture that treats unrecorded dependency as
+    independence will inflate whether or not any genealogy was ever corrupted.
+  claim_type: mechanism_hypothesis
+  subject: provenance.false_evidence_multiplication_cardinality
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md
+  depends_on:
+    - INV-107  # the invariant this is the violation of
+    - MECH-094   # the simulation/real distinction whose failure mode this extends from write-gating to evidence-weighting
+    - MECH-544   # source-tag decay (source degrades, narrative retained) is the degradation PROCESS this mechanism's corruption arm instantiates
+    - MECH-430   # per-token provenance vector -- the representation whose per-dimension confidence this mechanism's ABSENT/SOFT conditions degrade
+    - MECH-548   # semantic double-counting (mechanism b) -- the same failure family at ONE translation interface rather than across an evidence graph
+    - ARC-115    # distinguished-from: externally-supplied agreement, not self-descendant agreement
+    - SD-076     # distinguished-from: the existing waking confidence-inflation mechanism (asymmetric precision EMA on self-accuracy), a different route to the same symptom
+    - MECH-244   # distinguished-from: psychosis as precision-weighting failure -- an upstream, non-source-monitoring route
+  location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#mech-552
+  notes: >-
+    DISTINCT FROM MECH-094, and the distinction is the whole point. MECH-094 asks whether simulated content
+    WRITES to the viability map as committed experience, and REE enforces that with a boolean hypothesis_tag
+    (verified live: ree_core/predictors/e2_fast.py:63 plus 24 consumer files). This claim asks a question the
+    boolean cannot express: given that a piece of content is correctly barred from writing, how many
+    INDEPENDENT REASONS does the architecture think it has? A system can pass MECH-094 completely and still
+    count one lineage four times.
+    DISTINCT FROM SD-076 / MECH-173 / MECH-204. Those are REE's existing confidence-inflation family and their
+    mechanism is an asymmetric precision EMA over the agent's own prediction error plus absent REM
+    recalibration. Neither involves an evidence count, and neither predicts the signature this claim predicts
+    (effective source count rising while accuracy stays flat).
+    DISTINCT FROM MECH-244/245/246/247, the three registered psychosis pathways plus hallucination. This entry
+    makes NO clinical assertion and is deliberately not registered as a fourth pathway -- see the intake's
+    section 6 for why, and note that the branch's own audit argues the psychosis framing has the wrong shape
+    because the cardinality error is a healthy-human default under ambiguity.
+    THE LOCUS CORRECTION IS MEASURED, NOT SPECULATIVE, and is the reason this claim is worth registering in
+    the form given rather than in the raw thought's form. evidence/planning/provenance_p1_result.md (run
+    2026-09-10, synthetic, three seed-pairs, all preregistered criteria pass) reports N_eff moving 1.117 ->
+    4.869 under absent_policy=independent (signed calibration error -0.108 -> +0.099), 1.117 -> 5.000 under
+    absent_policy=soft, and 1.117 -> 1.000 under absent_policy=dependent. Swapping the DEFAULT eliminated the
+    inflation; the corruption did not have to change. The follow-on arm
+    evidence/planning/provenance_p1r5_retrieval_attribution_result.md then found the dependent fix ALSO fails
+    its absent-policy crossing criterion (A6) on BOTH the stored-tag and the read-time-attribution route, so
+    neither obvious default is a repair. Those are SYNTHETIC results in a purpose-built harness, not REE runs,
+    and must not be entered as claim evidence.
+    THE RAW THOUGHT'S "soft provenance is safer" RECOMMENDATION IS NOT CARRIED HERE and should not be
+    reinstated: the same P1 run found soft degenerates to independent exactly in the regime where it was meant
+    to help, because once every binding falls below the usable threshold there is nothing left to interpolate
+    a prior from. Structural, not a tuning failure.
+    SUBSTRATE STATUS (verified 2026-09-15): no genealogy exists in ree_core, so the VERIDICAL comparator arm
+    cannot be built; the architecture currently sits permanently in the ABSENT condition, with the ancestry
+    reference on a committed trajectory explicitly deleted at commit
+    (ree_core/hippocampal/module.py:3450-3453, metadata=None). DO NOT build in V3. DO NOT queue an experiment
+    from this entry.
+
+- id: MECH-553
+  title: >-
+    Compressed causal genealogy as the representation that discharges the dependency-representation invariant:
+    provenance is a GRAPH over representations, not a vector of attributes on each one. The proposed structure
+    is bounded rather than a full history -- shared-ancestor probability between any two evidence-bearing
+    items, an externally-anchored-observation flag with its own confidence, a hypothetical / replay lineage
+    marker, an already-counted-evidence-family marker recording whether an item has already contributed to the
+    current belief update, and a context-conditioned dependency estimate -- and each genealogy edge carries its
+    own confidence so that ancestry can be uncertain without being absent. This extends the per-token
+    provenance source vector from attributes of one token to relations between tokens, which is the level at
+    which evidence cardinality is defined.
+  claim_type: mechanism_hypothesis
+  subject: provenance.compressed_causal_genealogy_graph
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md
+  depends_on:
+    - INV-107  # the requirement this structure is proposed to satisfy
+    - MECH-552 # the failure this structure is proposed to prevent
+    - MECH-430   # generalized-from: the multi-dimensional per-token source vector, extended from attributes to relations
+    - MECH-365   # the provenance-bearing event token these edges would attach to
+    - ARC-085    # the unified event store MECH-365/430 are conditional on; the same precondition applies here
+    - MECH-431   # tag-and-capture two-factor write eligibility -- the nearest existing "held intermediate state with its own lifecycle" shape
+  location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#mech-553
+  notes: >-
+    WHY THIS IS NOT ALREADY MECH-430. MECH-430 lists perceived-vs-imagined, self-generated-vs-other-generated,
+    source identity, temporal source and modality. Every one of those is a property of a SINGLE token and can
+    be evaluated without reference to any other token. Evidence cardinality cannot: it is a question about
+    whether TWO items share an origin, which no per-token attribute can answer. MECH-430's falsifier ("if a
+    single committed_vs_imagined bit is sufficient to prevent all safety-relevant confabulation, MECH-430
+    earns no keep over MECH-365") would pass unchanged in an architecture that counted one lineage four times,
+    which is exactly why this needs its own entry rather than an amendment to MECH-430's dimension list.
+    THE BOUNDEDNESS IS PART OF THE CLAIM, not a caveat. The raw thought (section 15): "This does not imply
+    storing an unbounded full history." An unbounded-history version is a different and much weaker claim,
+    and should not be substituted for this one on the grounds that it is easier to specify.
+    COMPETITOR NAMED, and it is a real one. Rule & O'Leary 2022, PNAS, DOI 10.1073/pnas.2106692119, PMID
+    35145024 (anchor taken from
+    evidence/planning/provenance_false_evidence_multiplication_campaign_supplement_20260910.md section 6, NOT
+    INDEPENDENTLY VERIFIED here): a stable readout can track a drifting code with NO explicit lineage
+    representation. If lineage-free dependency estimation -- from residual covariance, shared latent
+    provenance, temporal co-reactivation, ablation response -- matches explicit genealogy on calibration and
+    duplicate-evidence resistance at matched information, this claim earns no keep and INV-107 is satisfied
+    some other way. That comparison is the ladder's P6 rung.
+    ONE LOCAL PRECEDENT EXISTS IN THE SUBSTRATE and is worth reading before designing this: ree_core/policy/
+    policy_chunking.py:91-104 documents a once-per-outcome dedup, with the measured consequence of omitting it
+    ("crediting the raw executed-action stream at every position without dedup mints 52-86 chunks ... one held
+    action re-counted at five lengths. A readiness criterion would PASS on those for an entirely spurious
+    reason"). That is this claim's failure shape, caught once, by hand, at one call site. It is evidence that
+    the hazard is live in REE rather than imported, and it is NOT an implementation of this claim.
+    SUBSTRATE STATUS (verified 2026-09-15): absent from ree_core entirely; no substrate_queue.json entry
+    exists for it (all 182 entries searched). DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+- id: MECH-554
+  title: >-
+    Recursive replay amplification of false independence: when genealogy is corrupted or absent, repeated
+    replay / reinstatement of internally stored content converts remembered or simulated material into
+    apparent new evidence, so confidence in a hypothesis rises monotonically with replay count while external
+    evidence is held fixed, and the belief becomes self-maintaining. The dangerous signature is specifically an
+    ancestry-by-replay-count INTERACTION, not a replay-count main effect: healthy replay must be able to
+    improve retrieval fidelity and representation quality with the effective independent-source count staying
+    flat. Admissible only under two controls -- replay stratified by kind (single-episode content rehearsal,
+    cross-episode relational linking, prediction-generated descendants), and retrieval quality matched across
+    ancestry conditions, since a corrupted-ancestry arm that also retrieves better yields a retrieval effect
+    wearing a provenance label.
+  claim_type: mechanism_hypothesis
+  subject: provenance.replay_amplification_of_false_independence
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md
+  depends_on:
+    - MECH-552 # the single-shot mechanism this compounds
+    - INV-107  # the invariant the compounding violates repeatedly
+    - MECH-092   # quiescent-cycle SWR-equivalent replay -- the generator of the descendants, and the claim whose consumer is currently missing
+    - MECH-275   # sleep-phase Bayesian aggregation -- the live accumulation path in which count-weighted evidence is actually stored
+    - MECH-285   # offline replay-priority sampling -- the scheduler whose draw counts would drive the interaction
+    - MECH-322   # the one sanctioned sleep-only replay write path, and therefore the one place a replay descendant can legitimately reach durable state
+    - MECH-363   # distinguished-from: runaway resonance under all-cooperative coupling -- the same self-amplification shape at the field-coupling level, with a different fix
+    - MECH-204   # distinguished-from: REM precision recalibration; absence of recalibration is a different route to overconfidence than evidence recounting
+  location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#mech-554
+  notes: >-
+    THE UNTESTED HALF. The branch's own audit records this as the hypothesis with no evidence in any direction:
+    no REE assay contains a replay loop, and neither the clinical nor the rodent literature measures cardinality
+    across replay cycles (evidence/planning/provenance_false_evidence_multiplication_campaign_supplement_20260910.md
+    section 4, "Break B"). It is unaddressed rather than weakly addressed, which is why it is registered
+    separately from MECH-552 rather than folded into it: the two have different falsifiers and different
+    evidential states.
+    DISTINCT FROM MECH-363. Both describe self-amplification, and conflating them is easy. MECH-363's object is
+    all-positive coupling between FIELDS in the cognifold, its fix is a signed competitive edge, and it names
+    "shared delusional coupling" as a REE analogue. This claim's object is the COUNT of evidence items entering
+    one belief update, and its fix is a genealogy representation. A signed-coupling layer would not repair a
+    system that correctly damps its fields while still counting one lineage four times.
+    THE SUBSTRATE ALREADY CONTAINS THE ARITHMETIC, and this is the strongest substrate finding in the intake.
+    ree_core/sleep/bayesian_aggregator.py (MECH-275 Phase D) performs a conjugate update per routed replay
+    event -- tau_post = tau + tau_lik; posterior.n += 1 -- keyed on (domain, region), with no dependency term
+    and no ancestry check, and with per-cycle decay_factor defaulting to 1.0. ree_core/sleep/replay_sampler.py
+    draw() samples WITH REPLACEMENT from a frozen snapshot and already tracks draw_region_counts, so repeated
+    draws of one anchor each add precision to the same posterior. The MECH-273 Phase E writeback
+    (ree_core/sleep/self_model_aggregator.py) consumes the posterior MEAN as an offline E2_harm_s training
+    target, so the effect reaches a write path, though the understated VARIANCE is stored and not read. Both
+    phases are reachable together via REEConfig.enable_sleep_aggregation_cluster()
+    (ree_core/utils/config.py:7050) and both default False.
+    A CLAIM-VERSUS-CODE MISMATCH IS RECORDED HERE RATHER THAN FIXED: MECH-275's title says sleep phases
+    "aggregate across many episodes" and its functional_restatement warns that aggregating arbitrary
+    correlations "would produce noise-fit". The implementation aggregates across replay DRAWS, with
+    replacement. Cross-episode independence is the claim's premise; per-draw accumulation is the behaviour.
+    Flagged for a later governance pass; nothing is changed by this registration.
+    WHY THIS IS STILL substrate_conditional DESPITE THAT. A regression of posterior precision on per-region
+    draw count under fixed waking evidence is instrumentable today with no code change, and measures nothing
+    on its own -- a positive relation is the code's own arithmetic. It becomes a result only against a
+    veridical-genealogy comparator arm that the substrate cannot supply. Separately, the WAKING replay path
+    has no consumer at all: ree_core/agent.py:10594 _do_replay computes replay_trajs and discards them
+    (substrate_queue.json entry mech092-replay-consumer-missing, status
+    proposed_REGISTRATION_ONLY_not_a_build_authorisation, "cited by four claims with no queue entry").
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+- id: Q-105
+  title: >-
+    Are source attribution and evidence cardinality DISSOCIABLE readouts of one provenance manipulation, or
+    does a change in either always drag the other? Specifically: can P(external | representation) move without
+    the effective independent-source count moving (a hallucination-like outcome with no confidence inflation),
+    can the effective source count and calibration move without any change in external-source attribution (a
+    delusion-like outcome with no altered phenomenology), and does a broader self-monitoring failure move both?
+    A null on the dissociation is itself informative, because it would mean provenance errors alter source
+    labels only and evidence cardinality is protected some other way -- which would retire the
+    false-evidence-multiplication branch while leaving the source-monitoring account intact.
+  claim_type: open_question
+  subject: provenance.source_attribution_vs_cardinality_dissociation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md
+  depends_on:
+    - MECH-552 # the mechanism whose two branches this asks to separate
+    - MECH-094   # the confabulation / source-monitoring pole
+    - MECH-245   # hallucination as generative-model dominance -- the phenomenological pole in REE's existing vocabulary
+    - MECH-244   # the epistemic / self-sealing-belief pole
+    - MECH-248   # source monitoring as the candidate biological implementation being manipulated
+  location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#q-105
+  notes: >-
+    DISTINCT FROM THE DISSOCIATION MECH-094 ALREADY CARRIES. MECH-094's evidence_quality_note records the
+    Lavalle et al. 2020 clinical dissociation between tag-LOSS (Korsakoff / confabulation) and
+    tag-MISASSIGNMENT (schizophrenia / hallucination). That is a dissociation between two kinds of PROVENANCE
+    FAILURE. This question asks about two READOUTS taken on the SAME manipulation, which is a different cut and
+    can be run inside either failure kind.
+    WHY IT IS AN OPEN QUESTION AND NOT A MECHANISM. REE already commits to MECH-094, MECH-244, MECH-245,
+    MECH-246 and MECH-247 being mechanistically distinct; it does not commit to the readouts being separable
+    under one manipulation, and there is no evidence either way. The branch's ladder holds this as its
+    unrun P5 rung, and its supplement requires four readouts (association strength, source attribution,
+    effective independent-source count, calibration against world truth) to be reported separately and never
+    derived from one another -- because the effective-source-count instrument is itself miscalibrated away
+    from its endpoints and a count-derived confidence would bake that error in.
+    PARTIAL SYNTHETIC EVIDENCE EXISTS AND IS NOT CLAIM EVIDENCE. evidence/planning/
+    provenance_p1r5_retrieval_attribution_result.md reports criterion A9a (fluency reaches cardinality) FAIL
+    on the attribution route at -0.025 while A9b (fluency reaches source attribution) PASSES at -33.5%
+    relative -- i.e. one manipulation moved readout 2 and not readout 3. That is a synthetic harness, not REE,
+    and must not enter any claim's evidence record; it is recorded here so a later session does not treat the
+    question as untouched.
+    DO NOT build in V3. DO NOT queue an experiment from this entry.

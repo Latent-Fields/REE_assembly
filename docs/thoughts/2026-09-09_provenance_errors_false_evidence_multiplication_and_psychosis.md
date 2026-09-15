@@ -1,11 +1,15 @@
 ---
 nav_exclude: true
 ---
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_provenance_errors_false_evidence_multiplication_and_psychosis.md
+Claims registered: INV-107, MECH-552, MECH-553, MECH-554, Q-105
+
 
 # Provenance Errors, False Evidence Multiplication, and Psychosis
 
 **Date:** 2026-09-09  
-**Status:** unprocessed computational-psychiatry thought; not a scientific claim registration, not a diagnostic model of psychosis, not an experiment-queue mutation  
+**Status:** computational-psychiatry thought (ingested 2026-09-15 -- see Intake above); not a scientific claim registration, not a diagnostic model of psychosis, not an experiment-queue mutation  
 **Origin:** convergence/divergence programme, especially Assays 001–006 and the finding that corrupted provenance should remain uncertainty-bearing rather than be hardened into categorical ancestry claims  
 **Related REE work:** convergence/divergence relation graph; hypothesis-tag / precommit-versus-commit distinctions; hippocampal replay; predictive processing; TCRT; sleep/replay; information hunger and closure.
 

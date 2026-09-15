@@ -3654,6 +3654,16 @@
     "type": "derived_prediction",
     "what_would_answer": "RESOLVES BY LITERATURE ONLY, on the environmental-psychiatry / epidemiological lane. A result on INV-063's REE falsifier (its F1/F2/F3 self-route labels on the validated world_rule_shift intake ladder) neither confirms nor falsifies this claim, and a finding on this claim neither confirms nor falsifies INV-063. That non-transfer is the entire reason for the 2026-09-10 split: one confidence number cannot span both legs.\nCONFIRMING: human prospective or quasi-experimental evidence that (a) exposure to low-environmental-entropy settings predicts the named psychiatric outcomes with a dose response, (b) the association survives adjustment for the standard urbanicity confounders (income, air pollution, noise, social fragmentation, and selection into cities), and (c) the mediating path is sleep-dependent offline processing rather than daytime stress -- i.e. the effect attenuates when offline function is measured and controlled for.\nFALSIFYING: the gradient is absent or reverses; or it is fully accounted for by the standard confounders; or it survives but is demonstrably NOT sleep-mediated, in which case the entropy-intake mechanism is not its explanation even where the epidemiology holds.\nEVIDENCE LANE (the half of the 2026-09-10 split that is still open): LIT-0688 is the pull designated for this leg and should be RE-SCOPED to this claim in evidence/planning/experiment_proposals.v1.json -- EXP-1398's design text already states that \"LIT-0688 should be RETAINED and re-scoped to the out_of_domain epidemiological leg only\". Not yet done as of 2026-09-10, and it matters: the five literature entries that landed 2026-09-08 under that lane (REE_assembly 09c24b7127) are hippocampal electrophysiology and behavioural-animal papers. They bear on INV-063's REE leg, are correctly tagged claim_id INV-063 in claim_evidence.v1.json, and must NOT be re-tagged here. This claim therefore starts with ZERO entries and no confidence of its own, which is the correct state: unmeasured, not weakly supported.\n"
   },
+  "INV-107": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "provenance.dependency_representation_no_inferred_independence",
+    "title": "Dependency structure among evidence must be REPRESENTED and conditioned on, and independence must never be INFERRED from the absence of a recorded dependency. Any representation that can later influence belief, confidence, closure or action must carry enough (uncertain, compressed) causal genealogy that the descendants of a hypothesis cannot be counted as witnesses independent of it. The rule is binding in its NEGATIVE form only -- a hypothesis must not cite its own descendants as independent witnesses -- and is explicitly NOT the positive rule \"descendants should be collapsed to one vote\": where a structural dependency exists but the observations across it are partial or contradicting, dependent reports can support a hypothesis MORE than independent ones would, so maximal discounting is the larger error. The invariant therefore constrains the REPRESENTATION (dependency must be expressible and readable), not the arithmetic (no fixed discount is mandated). Unknown provenance is not independent provenance; uncertain source is not confidently external source.",
+    "type": "invariant"
+  },
   "MECH-001": {
     "assembly_state": "awaiting_substrate",
     "coupled_with": [],
@@ -9377,6 +9387,33 @@
     "title": "Capacity reduction concurrent with representational change is a COORDINATION problem, and offline replay is the proposed coordination site: while a representation is still being revised, a route can appear unnecessary only because its consumer has not yet adapted to the new representation, and an apparently useful route can be preserving an obsolete coding convention -- so the retention decision read online during representational change is systematically unreliable in both directions. The proposal is that offline/replay periods provide the safer setting for it, because they permit testing which old episodes remain reconstructable, comparing alternative candidate mappings without immediate behavioural cost, re-indexing memories after representational change, stabilising newly useful communication subspaces, weakening redundant routes, and checking that a reduction has not destroyed counterfactual or regulatory distinctions. Falsifiable prediction with its matched control stated: at equal aggressiveness of reduction AND matched update count, replay-coupled reduction should preserve more transfer and causal structure than online-only reduction; the strong form is that replay permits GREATER compression at equal or better transfer.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-552": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "provenance.false_evidence_multiplication_cardinality",
+    "title": "False evidence multiplication: a provenance error can change the apparent CARDINALITY of evidence and not only its source label. One internally generated hypothesis H produces descendants through prediction, hippocampal replay, counterfactual simulation, retrieved memory and ambiguous perceptual interpretation; if shared ancestry is lost, those descendants are counted as several mutually corroborating observations and confidence in H rises with no corresponding increase in world evidence. Two consequences are asserted to be separable and must not be collapsed: a phenomenological branch (self-generated content losing evidence of self-generation acquires external/perceptual status) and an epistemic branch (descendants losing shared ancestry inflate posterior confidence and shorten information-seeking). LOCUS CORRECTION, carried in the claim rather than deferred: the operative variable is the READOUT'S DEFAULT FOR UNKNOWN ANCESTRY, not the corruption event itself -- an architecture that treats unrecorded dependency as independence will inflate whether or not any genealogy was ever corrupted.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-553": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "provenance.compressed_causal_genealogy_graph",
+    "title": "Compressed causal genealogy as the representation that discharges the dependency-representation invariant: provenance is a GRAPH over representations, not a vector of attributes on each one. The proposed structure is bounded rather than a full history -- shared-ancestor probability between any two evidence-bearing items, an externally-anchored-observation flag with its own confidence, a hypothetical / replay lineage marker, an already-counted-evidence-family marker recording whether an item has already contributed to the current belief update, and a context-conditioned dependency estimate -- and each genealogy edge carries its own confidence so that ancestry can be uncertain without being absent. This extends the per-token provenance source vector from attributes of one token to relations between tokens, which is the level at which evidence cardinality is defined.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-554": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "provenance.replay_amplification_of_false_independence",
+    "title": "Recursive replay amplification of false independence: when genealogy is corrupted or absent, repeated replay / reinstatement of internally stored content converts remembered or simulated material into apparent new evidence, so confidence in a hypothesis rises monotonically with replay count while external evidence is held fixed, and the belief becomes self-maintaining. The dangerous signature is specifically an ancestry-by-replay-count INTERACTION, not a replay-count main effect: healthy replay must be able to improve retrieval fidelity and representation quality with the effective independent-source count staying flat. Admissible only under two controls -- replay stratified by kind (single-episode content rehearsal, cross-episode relational linking, prediction-generated descendants), and retrieval quality matched across ancestry conditions, since a corrupted-ancestry arm that also retrieves better yields a retrieval effect wearing a provenance label.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "coupled_with": [],
@@ -10416,6 +10453,15 @@
     "status": "open",
     "subject": "architecture.cognifold_vs_braidling_criterion",
     "title": "Cognifold versus braidling: at what point does invariant-preserving translation between cognitive systems constitute INTERNAL cognition (one cognifold) rather than communication between agents (a braidling)? Proposed discriminator, conceptual not yet formal: two systems form a BRAIDLING if each remains an independently coherent cognitive entity when communication is severed, however effective their coordination while joined; they are parts of ONE COGNIFOLD if their normal cognition depends on invariant-preserving transformations across the boundary and they jointly maintain one persistent self / world structure, so that severance degrades coherence on both sides rather than merely coordination. Does the cognitive contract (ARC-142) operationalise this -- through contract-dimension dependency, MECH-538 bridge complexity, or a severance assay -- and does the resulting criterion place REE's E1 / E2 / E3 / hippocampus on the cognifold side while placing two communicating REE agents on the braidling side?",
+    "type": "open_question"
+  },
+  "Q-105": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "provenance.source_attribution_vs_cardinality_dissociation",
+    "title": "Are source attribution and evidence cardinality DISSOCIABLE readouts of one provenance manipulation, or does a change in either always drag the other? Specifically: can P(external | representation) move without the effective independent-source count moving (a hallucination-like outcome with no confidence inflation), can the effective source count and calibration move without any change in external-source attribution (a delusion-like outcome with no altered phenomenology), and does a broader self-monitoring failure move both? A null on the dissociation is itself informative, because it would mean provenance errors alter source labels only and evidence cardinality is protected some other way -- which would retire the false-evidence-multiplication branch while leaving the source-monitoring account intact.",
     "type": "open_question"
   },
   "RA-001": {
