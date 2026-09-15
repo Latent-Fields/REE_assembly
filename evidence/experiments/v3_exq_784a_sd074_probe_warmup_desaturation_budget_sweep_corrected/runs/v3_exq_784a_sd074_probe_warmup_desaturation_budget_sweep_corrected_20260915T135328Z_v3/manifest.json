@@ -1,0 +1,167 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_784a_sd074_probe_warmup_desaturation_budget_sweep_corrected",
+  "run_id": "v3_exq_784a_sd074_probe_warmup_desaturation_budget_sweep_corrected_20260915T135328Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-15T13:53:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-074"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-074": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "warmup_desaturates_landscape",
+    "preconditions": [
+      {
+        "name": "desaturation_read_cells_readable_frac",
+        "description": "fraction of (seed x budget) cells whose de-saturation read collected at least MIN_SELECTS_FOR_READ fresh E3 selections -- the same fraction-over-cells statistic the load-bearing yield criterion routes on",
+        "control": "all cells, including the untrained budget-0 control",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "every_read_nondestructive",
+        "description": "WORST CELL's n_nondestructive_violations -- one integer summing, for that cell's read, the attributes capture_agent_surface could not protect (restore_report.n_by_reference), the before/after CONTENT digest paths that actually differed (n_drifted_paths, over state_dict + named_buffers + the experience buffers by length and tail + e3._running_variance), and the buffer-length witness. This is the GFLAG-0036 premise V3-EXQ-784 asserted and did not measure; any non-zero value means a read may have fed eval-rollout data into the E1 training pool for the next checkpoint, invalidating the ladder. It is deliberately ONE composite count rather than three separate quantities so that this `measured` is exactly the statistic `met` tests -- the indexer recomputes met from (measured, threshold), and a composite met over a narrower measured would let a component failure recompute as MET.",
+        "control": "every cell of the run, including the untrained budget-0 control; the content digest is computed independently of probe_warmup's own restore_report, so a regression in capture_agent_surface itself cannot read as clean",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "budget0_control_reproduces_777a_saturation",
+        "description": "the untrained (budget 0) checkpoint must show a MAJORITY of seeds saturated, reproducing V3-EXQ-777a's 9/14 = 0.643 saturated fraction on the same env and the same 14 seeds; if the untrained agent were already unsaturated, the instrument or env would differ from 777a and the whole comparison would be void. Proven reachable at setup by scoring 777a's own recorded per-seed D values with the shipped predicate (see readiness_anchor below).",
+        "control": "budget-0 checkpoint = untrained agent, same env and seeds as 777a",
+        "measured": 0.6429,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "null_meaning": "A FAIL at label warmup_insufficient_at_swept_budgets means the swept budgets (max 25 episodes) did not de-saturate a majority of seeds, on a correctly non-destructive instrument. That WEAKENS SD-074 as stated: the claim asserts the warmup reaches a majority. It does NOT mean warmup cannot work at all -- the honest next question is whether a larger budget, or a different training signal, moves the yield. A FAIL at substrate_not_ready_requeue means something about the instrument was wrong and is non_contributory: it weakens nothing. Either way this run says NOTHING about MECH-063 -- no control-axis quantity is measured."
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "58b28c8ec991f018db3321daf710ee74d0d49bb995ffa5c3820e76f5359b0172",
+  "substrate_commit": {
+    "commit": "b5287442a814c747fcecd3ad397977a408d89ec9",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_action_class_scaffold_candidates": true,
+    "heartbeat.breath_period": 50,
+    "use_control_vector_logging": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 22263.672026040993,
+  "config": {
+    "env": {
+      "size": 8,
+      "num_hazards": 2,
+      "num_resources": 3
+    },
+    "budget_checkpoints": [
+      0,
+      4,
+      10,
+      25
+    ],
+    "train_steps_per_episode": 100,
+    "read_steps_per_episode": 300,
+    "probe_selects": 150,
+    "probe_max_env_steps": 4000,
+    "probe_max_episodes": 4000,
+    "read_rng_pin_base": 900000,
+    "thresholds": {
+      "D_SAT_LOW": 0.05,
+      "D_SAT_HIGH": 0.95,
+      "YIELD_MAJORITY": 0.5,
+      "BASELINE_HEADROOM_777A": 0.35714285714285715,
+      "BASELINE_INFORMATIVE_777A": 0.2857142857142857,
+      "YIELD_MARGIN": 0.1,
+      "CONTROL_MIN_SATURATED_FRAC": 0.5,
+      "MIN_SELECTS_FOR_READ": 50,
+      "MIN_CELLS_READABLE_FRAC": 0.8,
+      "MAX_NONDESTRUCTIVE_VIOLATIONS_PER_CELL": 0
+    },
+    "warmup_recipe_reference": {
+      "num_episodes": 25,
+      "steps_per_episode": 100,
+      "regime": "target_env",
+      "probe_selections": 150,
+      "probe_max_env_steps": 4000,
+      "probe_max_episodes": 4000,
+      "probe_max_episodes_derived": true,
+      "probe_episode_cap_can_bind": false,
+      "probe_allow_tight_episode_cap": false
+    }
+  },
+  "seeds": [
+    11,
+    17,
+    23,
+    29,
+    37,
+    3,
+    5,
+    13,
+    19,
+    41,
+    53,
+    61,
+    71,
+    83
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 15595,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 14,
+    "goal_state_present": false
+  }
+}
