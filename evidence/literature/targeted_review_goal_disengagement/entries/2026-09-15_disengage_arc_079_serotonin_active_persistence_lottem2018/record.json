@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-09-15_disengage_arc_079_serotonin_active_persistence_lottem2018",
+  "timestamp_utc": "2026-09-15T06:08:14Z",
+  "claim_ids_tested": [
+    "ARC-079"
+  ],
+  "source": {
+    "title": "Activation of serotonin neurons promotes active persistence in a probabilistic foraging task",
+    "authors": [
+      "Lottem E",
+      "Banerjee D",
+      "Vertechi P",
+      "Sarra D",
+      "Lohuis MO",
+      "Mainen ZF"
+    ],
+    "year": 2018,
+    "venue": "Nature Communications",
+    "volume": "9",
+    "issue": "1",
+    "pages": "1000",
+    "doi": "10.1038/s41467-018-03438-y",
+    "pmid": "29520000",
+    "pmc": "PMC5843608"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.48,
+  "confidence_rationale": "Functionally supportive, circuit-level awkward. Persistence at a depleting site (continuing to actively try before leaving) is increased by optogenetic DRN serotonin activation, so persisting is a modulated operation layered on a leave tendency -- consistent with ARC-079's gated persistence. But ARC-079's biological anchor (Maier & Seligman 2016; Amat 2005) casts DRN activation as the driver of the passive default, and here DRN activation promotes active persistence. The two neurochemical stories do not compose cleanly, hence mixed at 0.48.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DRN 5-HT activation INCREASES active persistence before giving up, whereas the stressor-controllability literature ARC-079 rests on treats DRN activation as the driver of passivity. If REE maps its persistence gate onto a single serotonergic axis it will inherit this contradiction.",
+    "Persistence here is bounded by learned environmental statistics (inferring when a site is depleted), so the relevant gate input includes an attainability inference, not just control detection -- consistent with ARC-079's unattainability-appraisal framing but broader than MECH-340's control-only reading."
+  ],
+  "tags": [
+    "arc-079",
+    "goal_disengagement",
+    "serotonin",
+    "dorsal_raphe",
+    "foraging",
+    "patch_leaving",
+    "persistence",
+    "optogenetics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mice in a probabilistic foraging task had to actively nose-poke to exploit a site and infer when to leave a depleted site. Optogenetic activation of dorsal raphe serotonin neurons increased their willingness to keep actively attempting to exploit a site before giving up. The authors argue behavioural inhibition is not an adequate description of 5-HT function.",
+    "ree_translation": "At the functional level this supports ARC-079: persistence with an uncertain, possibly depleted source is an operation that a neuromodulatory signal can switch up, rather than an automatic continuation that has to be actively stopped. The leave decision is the baseline that persistence overrides. The attainability inference (has this site run dry?) maps onto the unattainability appraisal (Klinger 1975, Wrosch 2003) that ARC-079 places at the gate transition.",
+    "mapping_caveat": "Foraging patch-leaving in mice with appetitive reward, seconds-to-minutes timescale; not goal-trace persistence across episodes. Gain-of-function stimulation shows 5-HT is sufficient to extend persistence, not that it is the natural gate. The direction of the DRN effect conflicts with the aversive controllability literature underpinning ARC-079, so the circuit-level mapping should not be taken as settled.",
+    "source_context": "Mouse; probabilistic foraging task with active nose-poke exploitation and inferred site depletion; optogenetic activation of DRN serotonergic neurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Solid causal behavioural study. Functional mapping to 'persistence is the modulated operation' is reasonable; the neurochemical direction conflicts with the stress-controllability anchors, which is why the direction is mixed rather than supports."
+  }
+}

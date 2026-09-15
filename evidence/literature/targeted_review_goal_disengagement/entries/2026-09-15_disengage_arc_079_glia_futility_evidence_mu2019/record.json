@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-09-15_disengage_arc_079_glia_futility_evidence_mu2019",
+  "timestamp_utc": "2026-09-15T06:08:14Z",
+  "claim_ids_tested": [
+    "ARC-079"
+  ],
+  "source": {
+    "title": "Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior",
+    "authors": [
+      "Mu Y",
+      "Bennett DV",
+      "Rubinov M",
+      "Narayan S",
+      "Yang CT",
+      "Tanimoto M",
+      "Mensh BD",
+      "Looger LL",
+      "Ahrens MB"
+    ],
+    "year": 2019,
+    "venue": "Cell",
+    "volume": "178",
+    "issue": "1",
+    "pages": "27-43.e19",
+    "doi": "10.1016/j.cell.2019.05.050",
+    "pmid": "31230713"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.5,
+  "confidence_rationale": "The clearest counter-case in the literature to two parts of ARC-079. Giving up in larval zebrafish is not the absence of a persistence gate: noradrenergic neurons signal each failed attempt, brainstem radial astrocytes integrate that failure evidence, and the astrocytes actively suppress swimming. So disengagement is an actively computed, failure-keyed state, and it is transient and adaptive rather than helplessness. Weighted at 0.5 because the timescale (tens of seconds, motor bouts) is far from goal-level persistence, which leaves room for the two to be different operations.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Disengagement is ACTIVELY DRIVEN by an evidence accumulator over failed actions (NE -> radial astrocyte calcium -> motor suppression), not the default state that occurs when a persistence gate fails to fire. This contradicts ARC-079's 'abandonment is the persistence gate failing to fire' at least at the motor-bout level.",
+    "The trigger is keyed on ACCUMULATED FAILURE, which ARC-079 predicts should reproduce learned helplessness; instead passivity lasts about as long as the futile period and swimming resumes. That undercuts the claim's differential falsifier (failure-keyed abandon trigger => helplessness) unless the claim is explicitly scoped to goal-level, cross-episode persistence."
+  ],
+  "tags": [
+    "arc-079",
+    "goal_disengagement",
+    "futility",
+    "evidence_accumulation",
+    "noradrenaline",
+    "astrocytes",
+    "zebrafish",
+    "counterevidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "In larval zebrafish in closed-loop virtual reality, withholding visual feedback makes swim attempts futile; after tens of seconds of futility the fish become passive for similar durations. Whole-brain imaging with ablation and opto/chemogenetic manipulation shows noradrenergic neurons responding to failed swims progressively activate brainstem radial astrocytes, whose accumulating calcium suppresses swimming. Radial astrocytes thus accumulate evidence that current actions are ineffective and drive a behavioural-state change.",
+    "ree_translation": "Challenges ARC-079's mechanism of disengagement. ARC-079 places all active computation on persistence (a control-detection gate) and makes disengagement the ungated default. Mu 2019 shows an organism where disengagement has its own dedicated accumulator keyed on failure, and where that failure-keyed trigger yields adaptive, reversible passivity. For REE, one reading is that ARC-079 should be scoped to goal-entry persistence across episodes (MECH-292/293 bank dynamics), with within-episode motor futility handled by a separate, failure-keyed pause mechanism. The other reading is that a failure-keyed disengagement trigger is not intrinsically pathogenic, which weakens the claim's learned-helplessness contrast.",
+    "mapping_caveat": "Larval zebrafish, seconds-scale motor futility in virtual reality, glial integrator: a very different timescale, species and substrate from goal persistence in an episodic goal-trace bank. The passive state is short and self-terminating, closer to a pause than an abandonment. It weakens the unscoped form of ARC-079; a version scoped to cross-episode goal persistence survives it.",
+    "source_context": "Larval zebrafish; fictive swimming in closed-loop VR with feedback withheld; light-sheet whole-brain calcium imaging; NE-neuron and radial-astrocyte ablation, optogenetic and chemogenetic activation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.65,
+    "notes": "Very strong causal circuit work. Mapping fidelity low-moderate because of the timescale and level mismatch; transfer risk high (larval fish motor bouts to agent goal bank). Recorded as weakens because it is the most direct biological counterexample to the claim's stated falsifier contrast, not because it refutes the goal-level inversion."
+  }
+}

@@ -1,0 +1,11 @@
+# Frings et al. 2020 -- BRAC: binding and retrieval as separable processes in action control (ARC-082)
+
+**What it is.** BRAC is a consensus framework from the groups behind the event-file literature (Hommel's Theory of Event Coding lineage, distractor-response binding, sequential task-switching work). It proposes that a wide range of action-control effects comes from two processes: *binding* features of a stimulus and of the response made to it into a shared episodic representation, and later *retrieving* that representation when some of those features recur. The novel commitment is that binding and retrieval are separable, each with its own top-down and bottom-up modulators.
+
+**Relevance to ARC-082.** ARC-082 is a thin coherence child of ARC-080. Its only real content is that afforded actions should ultimately be bound to the object's own representation, an object->action axis on the object-file slot, rather than handled by a standalone cue projection. Event files are the best-established cognitive construct in which perceptual object features and action features live in one retrievable token. That is the shape ARC-082 wants.
+
+**The useful diagnostic.** The binding/retrieval separation reads almost as a description of REE's V3 situation. SD-016's cue_action_proj is present in the substrate, so something binding-like exists. But V3-EXQ-449 found zero gradient reaching E3.select, so nothing is *retrieved into control*. BRAC predicts that a binding which is never retrieved has no behavioural consequence, and that the fix is on the retrieval side, not the binding side. On that reading the SD-055 differentiable-CEM dependency is the retrieval route. I find that clarifying, but it is REE's mapping, not BRAC's claim.
+
+**Limits.** Event files are fleeting. They are arbitrary stimulus-response pairings from reaction-time tasks, decaying over seconds. ARC-082 is about durable, token-keyed affordances: this particular cup, this particular handle. BRAC does not speak to how an episodic binding becomes a stable object property, nor to tools specifically.
+
+**Confidence.** 0.6: solid theoretical grounding for the binding framing and a helpful dissociation, with a clear gap between episodic event files and persistent object-file affordances.

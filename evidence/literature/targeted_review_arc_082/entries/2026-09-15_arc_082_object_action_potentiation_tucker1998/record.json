@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_082",
+  "entry_id": "2026-09-15_arc_082_object_action_potentiation_tucker1998",
+  "timestamp_utc": "2026-09-15T06:08:14Z",
+  "claim_ids_tested": [
+    "ARC-082"
+  ],
+  "source": {
+    "title": "On the relations between seen objects and components of potential actions",
+    "authors": [
+      "Tucker M",
+      "Ellis R"
+    ],
+    "year": 1998,
+    "venue": "Journal of Experimental Psychology: Human Perception and Performance",
+    "volume": "24",
+    "issue": "3",
+    "pages": "830-846",
+    "doi": "10.1037/0096-1523.24.3.830",
+    "pmid": "9627419"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "The canonical demonstration that seen graspable objects automatically potentiate components of the actions they afford, even when action is task-irrelevant (upright/inverted judgement): handle orientation speeds the compatible hand, and grasp-rotation direction speeds compatible wrist rotations. The potentiated action depends on properties of the particular object instance in view (its orientation), which fits token-keyed object->action binding. Held at 0.55 because a later literature argues many handle-compatibility effects reduce to spatial (Simon-like) location coding rather than affordance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Action components are potentiated by the object's instance-specific properties (its current left/right orientation) without any intention to act -- so an object->action binding must be keyed to the token as currently perceived, not only to the object type.",
+    "If the compatibility effect is explained by abstract left/right location coding of the object's protruding part (the spatial-coding account), the evidence is for spatial stimulus-response compatibility, not object-bound affordance, and ARC-082's reading does not follow."
+  ],
+  "tags": [
+    "arc-082",
+    "affordance",
+    "object_action_binding",
+    "stimulus_response_compatibility",
+    "grasp",
+    "micro_affordance"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across three experiments participants judged whether photographed graspable objects were upright or inverted. The irrelevant left-right orientation of the object influenced bimanual and unimanual keypress speed, and objects requiring clockwise vs anticlockwise wrist rotation when grasped influenced wrist-rotation responses. The authors conclude seen objects automatically potentiate components of the actions they afford and that intentions operate on already-existing motor representations of possible actions in a scene.",
+    "ree_translation": "Supports ARC-082's claim that afforded actions attach to the object representation itself: action components are made available by perceiving the object, before and independent of intention, and they track the specific instance's configuration. In REE terms an object-file slot should carry candidate action components that E3 selection can bias among, rather than actions being generated only after an intention exists. This matches the 'intentions operate on existing action representations' ordering that the SD-016 cue->action pathway is meant to implement.",
+    "mapping_caveat": "Reaction-time compatibility effects in humans viewing photographs; small effect sizes; the affordance interpretation is contested by spatial-coding accounts. It shows automatic potentiation, not a learned or persistent object->action binding, and says nothing about tools as a distinct category or about token identity across time. Transfer to a gridworld agent's cue_action_proj is structural only.",
+    "source_context": "Human; stimulus-response compatibility with photographs of common graspable objects; upright/inverted judgement; bimanual, unimanual keypress and wrist-rotation responses."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Classic, widely replicated paradigm in a strong journal; source quality docked for small effects and the unresolved spatial-coding alternative. Mapping moderate: instance-specific automatic potentiation fits the object->action binding framing but not its persistence."
+  }
+}

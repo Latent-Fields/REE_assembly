@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_082",
+  "entry_id": "2026-09-15_arc_082_binding_retrieval_action_control_frings2020",
+  "timestamp_utc": "2026-09-15T06:08:14Z",
+  "claim_ids_tested": [
+    "ARC-082"
+  ],
+  "source": {
+    "title": "Binding and Retrieval in Action Control (BRAC)",
+    "authors": [
+      "Frings C",
+      "Hommel B",
+      "Koch I",
+      "Rothermund K",
+      "Dignath D",
+      "Giesen C",
+      "Kiesel A",
+      "Kunde W",
+      "Mayr S",
+      "Moeller B",
+      "Moller M",
+      "Pfister R",
+      "Philipp A"
+    ],
+    "year": 2020,
+    "venue": "Trends in Cognitive Sciences",
+    "volume": "24",
+    "issue": "5",
+    "pages": "375-387",
+    "doi": "10.1016/j.tics.2020.02.004",
+    "pmid": "32298623"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "An integrative consensus framework from the main event-file groups: stimulus features and response features are bound into a common episodic representation (event file) and later retrieved when features repeat, with binding and retrieval as separable, independently modulated processes. That is object->action binding in a token-like episodic structure, and the binding/retrieval separation gives a principled vocabulary for ARC-082's V3 finding (a bound pathway that never reaches selection). Held at 0.6: a theoretical synthesis over short-lived episodic bindings, not durable affordance knowledge on an object-file slot.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Binding and retrieval are separable: a stimulus-action binding can exist without being retrieved into control. A substrate that binds object features to actions but never routes the binding into selection will show no behavioural effect -- the same shape as SD-016 cue_action_proj having 0.0 gradient at E3.select.",
+    "Event files are episodic and short-lived (the binding decays over seconds unless reinforced), so the literature does not directly license the persistent, token-keyed object->action axis ARC-082 places at V4 -- that persistence is REE's extension."
+  ],
+  "tags": [
+    "arc-082",
+    "arc-080",
+    "object_action_binding",
+    "event_file",
+    "action_control",
+    "binding_retrieval",
+    "affordance"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human action control relies on representations that integrate perception and action. BRAC proposes two core processes, feature binding and retrieval, defined as functionally different and separable processes that independently contribute to observed effects, each independently modulated by top-down and bottom-up factors. The framework unifies findings across many previously paradigm-specific action-control literatures.",
+    "ree_translation": "Supports ARC-082's framing that afforded actions should be bound to the object representation rather than computed as a free-floating cue projection: event files bind stimulus (object) features and response features into one retrievable structure, which is the episodic analogue of an object-file slot carrying action features. The binding/retrieval dissociation also gives a clean diagnosis of the V3 state ARC-082 records -- SD-016 cue_action_proj exists (binding-like) but carries no gradient into E3.select (retrieval into control never happens because the non-differentiable CEM severs it). SD-055's differentiable path is, in BRAC terms, the retrieval route.",
+    "mapping_caveat": "BRAC is a theoretical synthesis of human reaction-time paradigms (partial-repetition costs, distractor-response binding, negative priming), mostly over seconds-scale episodic bindings of arbitrary stimulus-response pairings. It is not about learned tool affordances, object permanence, or token-instance object files held across time. The mapping of 'retrieval' onto a differentiable gradient path is REE's interpretation, not something BRAC addresses.",
+    "source_context": "Human cognitive psychology; theoretical integration across sequential-trial binding paradigms (stimulus-response binding, distractor-response binding, task switching, sequential conflict)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Consensus review by the field's principal groups, grounded in a large replicated empirical base, but theoretical rather than new data. Mapping fidelity moderate: object->action binding into a common episodic representation is directly on point; persistence and token-keying are not."
+  }
+}

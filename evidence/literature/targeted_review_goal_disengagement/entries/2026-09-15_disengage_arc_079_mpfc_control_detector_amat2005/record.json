@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-09-15_disengage_arc_079_mpfc_control_detector_amat2005",
+  "timestamp_utc": "2026-09-15T06:08:14Z",
+  "claim_ids_tested": [
+    "ARC-079"
+  ],
+  "source": {
+    "title": "Medial prefrontal cortex determines how stressor controllability affects behavior and dorsal raphe nucleus",
+    "authors": [
+      "Amat J",
+      "Baratta MV",
+      "Paul E",
+      "Bland ST",
+      "Watkins LR",
+      "Maier SF"
+    ],
+    "year": 2005,
+    "venue": "Nature Neuroscience",
+    "volume": "8",
+    "issue": "3",
+    "pages": "365-371",
+    "doi": "10.1038/nn1399",
+    "pmid": "15696163"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The primary circuit paper behind Maier & Seligman 2016's inversion, which ARC-079 cites only via the review. Pharmacological inactivation of ventral mPFC makes a controllable stressor behave like an uncontrollable one (DRN activation and behavioural sequelae return), and the authors explicitly reframe control as an inhibitor of a default rather than lack-of-control as an inducer. That is the load-bearing structural move ARC-079 makes. Held at 0.62 because the 'default' here is a stress sequela in an aversive paradigm, not the rank decay of an unresolved goal trace.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The stress-induced DRN activation and its behavioural sequelae are the DEFAULT outcome of an aversive episode; they are blocked only when ventral mPFC detects control -- so persistence-like protection is the gated operation and its absence is the ungated state, exactly the direction ARC-079 asserts.",
+    "The default in this paradigm is maladaptive (exaggerated fear, poor later escape), not a benign disengagement, so the source does not establish that the ungated state is adaptive -- ARC-079's claim that disengagement is a SAFE default is REE's extrapolation."
+  ],
+  "tags": [
+    "arc-079",
+    "goal_disengagement",
+    "controllability",
+    "medial_prefrontal_cortex",
+    "dorsal_raphe",
+    "gated_persistence",
+    "inversion"
+  ],
+  "mapping": {
+    "source_claim_statement": "In rats, infralimbic/prelimbic ventral mPFC detects whether a stressor is under behavioural control. When it is, mPFCv inhibits stress-induced activation of the dorsal raphe nucleus and blocks the behavioural consequences of uncontrollable stress. The authors conclude that the presence of control inhibits brainstem stress activity, contrary to the view that such activity is induced by a lack of control.",
+    "ree_translation": "Primary-source support for ARC-079's inversion of ARC-078 C3. ARC-079 says persistence (keeping an unresolved goal as an active re-probe target) is a gated, control/efficacy-detection operation over an ungated disengagement default, with the gate as a separable detector (MECH-340) rather than a tuned recoverability weight. Amat 2005 gives the circuit form of that architecture: a separable prefrontal detector whose output inhibits a default brainstem state, with the default being what happens whenever the detector does not fire -- whether because control is absent or because the detector is silenced.",
+    "mapping_caveat": "Aversive tailshock paradigm with DRN serotonin and later escape/fear readouts; not appetitive goal pursuit and not an episodic goal-trace bank. The 'default' is a stress-sequela state, so the mapping to 'un-gated trace decays in rank and stops being re-probed' is structural (gate-over-default topology), not behavioural. Rodent to agent transfer; the detector's input variables are not resolved here (left to Q-053).",
+    "source_context": "Rat; escapable vs yoked inescapable tailshock; muscimol inactivation of ventral mPFC during the stressor; DRN serotonergic activation and shuttle-box escape / fear readouts 24h later."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.5,
+    "notes": "Causal (inactivation) design in a top venue with a well-replicated paradigm. Mapping fidelity moderate: the gate-over-default topology is exactly ARC-079's, but the behavioural content (stress sequelae) is not goal persistence. Transfer risk shared with every rodent-controllability entry in this folder."
+  }
+}

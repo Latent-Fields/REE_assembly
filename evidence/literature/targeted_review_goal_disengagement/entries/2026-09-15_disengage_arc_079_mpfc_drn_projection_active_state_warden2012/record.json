@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-09-15_disengage_arc_079_mpfc_drn_projection_active_state_warden2012",
+  "timestamp_utc": "2026-09-15T06:08:14Z",
+  "claim_ids_tested": [
+    "ARC-079"
+  ],
+  "source": {
+    "title": "A prefrontal cortex-brainstem neuronal projection that controls response to behavioural challenge",
+    "authors": [
+      "Warden MR",
+      "Selimbeyoglu A",
+      "Mirzabekov JJ",
+      "Lo M",
+      "Thompson KR",
+      "Kim SY",
+      "Adhikari A",
+      "Tye KM",
+      "Frank LM",
+      "Deisseroth K"
+    ],
+    "year": 2012,
+    "venue": "Nature",
+    "volume": "492",
+    "issue": "7429",
+    "pages": "428-432",
+    "doi": "10.1038/nature11617",
+    "pmid": "23160494",
+    "pmc": "PMC5929119"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Projection-specific optogenetics show that effortful engagement with a challenge is SELECTED by a wiring-defined prefrontal subpopulation: mPFC->DRN activation rapidly and reversibly increases active behaviour in the forced swim test without changing open-field locomotion, mPFC->LHb activation does the opposite, and bulk mPFC activation does nothing. That supports the claim that engagement is a separable, gated operation rather than a global tuned weight. Held at 0.55 because FST mobility is a contested proxy and is far from goal-trace re-probing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Non-specific activation of mPFC principal neurons had no detectable effect on active responding; only the DRN-projecting subclass did. A persistence signal implemented as a global, undifferentiated weight would therefore not reproduce the effect -- consistent with ARC-079/MECH-340 requiring an explicit separable gate.",
+    "An opposing mPFC->lateral habenula projection suppressed active responding, so disengagement in this circuit is not purely the absence of the engagement signal -- there is also an actively driven passive pathway, which qualifies ARC-079's 'disengagement is simply the gate not firing'."
+  ],
+  "tags": [
+    "arc-079",
+    "goal_disengagement",
+    "optogenetics",
+    "medial_prefrontal_cortex",
+    "dorsal_raphe",
+    "lateral_habenula",
+    "forced_swim",
+    "separable_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "mPFC neurons in freely moving rats were modulated moment to moment by the decision to act in a challenging situation (forced swim). Activating mPFC principal neurons non-selectively had no causal effect, but selectively activating mPFC cells projecting to the dorsal raphe produced a rapid, reversible increase in the active behavioural state, without affecting open-field locomotion. Activating mPFC cells projecting to the lateral habenula had the opposite effect.",
+    "ree_translation": "Supports the separability requirement in ARC-079 (via MECH-340): engagement with a hard or unresolved situation is selected by a specific, wiring-defined control channel, not by turning up global prefrontal drive. In REE terms the persistence gate should be an explicit pathway that can be selectively on or off, distinct from general arousal or MECH-292 rank weighting. The LHb result adds an actively driven passive pathway alongside the gate.",
+    "mapping_caveat": "Forced-swim kicking and immobility are behavioural-state readouts whose interpretation as despair or coping is contested. Seconds-scale motor engagement is not the persistence of a goal entry across episodes. The existence of an active LHb-driven passive channel means biology may implement disengagement as BOTH gate-absence and active suppression, which ARC-079 does not currently model. Rodent optogenetic gain-of-function is not a natural-signal test.",
+    "source_context": "Rat; forced swim test with magnetic-coil kick detection; mPFC single-unit recording; ChR2 activation of mPFC somata vs projection-targeted terminals in DRN and LHb; open-field locomotor control."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "High-quality projection-specific causal design with a specificity control. Mapping fidelity is limited: FST behavioural state is a distant proxy for goal-trace persistence, and the opposing LHb channel complicates the 'default = absence' reading."
+  }
+}

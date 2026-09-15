@@ -1,0 +1,11 @@
+# Mu et al. 2019 -- giving up as an actively computed, failure-keyed state (ARC-079, counter-evidence)
+
+**What they did.** Larval zebrafish swam in closed-loop virtual reality. The experimenters withheld the visual flow a swim should produce, so every attempt failed. Whole-brain light-sheet imaging, cell ablation and opto/chemogenetic activation were used to trace what happens next.
+
+**What they found.** After tens of seconds of futility, the fish went passive for a comparable period and then resumed. Noradrenergic neurons fired specifically to failed swims. Brainstem radial astrocytes integrated those signals, with calcium climbing with the number of failures, and the astrocytes in turn suppressed swimming. Ablate or stimulate the pieces and giving up is abolished or induced.
+
+**Why this is filed as weakening ARC-079.** ARC-079 puts the active computation on *persistence*. Abandonment is what happens when the persistence gate does not fire. It also predicts that a design which bolts an abandon trigger keyed on accumulated failure onto an action-default system will reproduce learned helplessness. Mu 2019 describes almost exactly that design in a real nervous system: a failure-keyed evidence accumulator that actively drives disengagement. The result is not helplessness but a proportionate, reversible pause. Taken at face value, this is a counter-example to the claim's own falsifying contrast.
+
+**Does it refute the inversion?** Not straightforwardly. The timescale is seconds, the unit is a motor bout, and the passive state self-terminates. ARC-079 concerns whether an unresolved *goal* stays a re-probe target across episodes. Perhaps biology runs both: a fast failure-keyed pause for futile actions and a slower control-gated persistence for goals. If so, ARC-079 should be explicitly scoped to the second, and the helplessness prediction should be stated as applying to failure-keyed *goal abandonment that generalises across goals*, not to failure-keyed pausing per se. That scoping question is worth putting to governance rather than resolving here.
+
+**Confidence.** 0.5. Top-tier causal evidence, but a large level-of-analysis gap. It is included precisely because a literature record that only supports is not an honest one.
