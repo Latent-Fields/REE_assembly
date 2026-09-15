@@ -5207,7 +5207,11 @@
       "task_claim_session_id": "igw-auto-igw-243-proposal-for-mech-016-20260915T024232Z",
       "task_claim_claimed_at": "2026-09-15T02:42:32Z",
       "assigned_at": "2026-09-15T02:41:17Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-15T03:06:26Z",
+      "completion_summary": "marked EVB-1389 (MECH-016) blocked_substrate: F1 zero-point seeded from precision_init de-calibrates rv, commit readout pinned; gov flag + /implement-substrate chip raised",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1389 (MECH-016) blocked_substrate: F1 zero-point seeded from precision_init de-calibrates rv, commit readout pinned; gov flag + /implement-substrate chip raised"
     }
   ],
   "dispositions": [
@@ -7463,6 +7467,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-15T01:59:08Z",
       "re_eligible_after": "2026-09-17T01:59:08Z"
+    },
+    {
+      "stable_hash": "2b7aecc3e046",
+      "igw_id_at_disposition": "IGW-20260915-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-016"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-016",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-15T03:06:28Z",
+      "re_eligible_after": "2026-09-17T03:06:28Z"
     }
   ]
 }
