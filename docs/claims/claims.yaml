@@ -38573,6 +38573,7 @@
   subject: psychiatric.psychosis_precision_weighting_failure
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -38584,6 +38585,11 @@
   location: docs/architecture/default_mode.md
   source:
     - docs/architecture/default_mode.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the two readiness gates the V3-EXQ-826a evidence_quality_note names must both clear before any arm is interpretable -- phase-A convergence ratio at or above its 0.25 floor (measured 0.152) and regime-change disconfirmation at or above 1.15 (measured 0.966); pe_precision_manipulation_took passed (2.06 vs 1.5 floor), so E1 trains and the outstanding gates are convergence and disconfirmation, not gradient flow.
+    CONFIRMING: down-weighting sensory prediction-error precision relative to prior precision produces beliefs that persist against incoming percepts, with a dose-response on the precision ratio, and the persistence is NOT reproduced by the two registered alternative pathways at matched input (MECH-246 signal degradation, MECH-247 pathological priors).
+    FALSIFYING: belief persistence tracks input noise or prior structure rather than the precision ratio; OR the self-sealing signature appears at every precision setting including the intact one (the precision ratio is not load-bearing).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional on its own readiness gates (two non_contributory runs, 826/826a), and separately (c2) out-of-domain for its clinical content, which resolves by literature. The 2026-09-15 provenance ingestion deliberately did NOT register a fourth (provenance-error) pathway beside this claim.
   notes: >
     Distinct from confabulation (MECH-094 simulation/real distinction failure). In
     confabulation, simulated content is written to the residue field as real because
@@ -38759,6 +38765,7 @@
   subject: default_mode.source_monitoring_frontoparietal_implementation
   polarity: asserts
   status: candidate
+  epistemic_category: substrate_conditional
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -38772,6 +38779,11 @@
   location: docs/architecture/default_mode.md
   source:
     - docs/architecture/default_mode.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a source-monitoring readout DISTINCT from the write gate must exist -- the architecture must be able to report P(external | representation) separately from whether the item was allowed to write. In the current tree it cannot: hypothesis_tag (ree_core/predictors/e2_fast.py) is the same bit for both.
+    CONFIRMING: a distinct attribution stage, operating at RETRIEVAL rather than at encoding, reproduces the functional separation MECH-094 asserts, and its ablation degrades attribution while leaving the encoding-side neuromodulatory mode-setting (MECH-249) intact.
+    FALSIFYING: encoding-side mode-setting alone (MECH-249) reproduces the whole of MECH-094's functional separation with no retrieval-side attribution stage needed -- MECH-248 then earns no keep over MECH-249.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional. Bears directly on Q-105: the source readout Q-105 needs is this claim's readout, and neither exists.
   notes: >
     Johnson and Raye's source monitoring framework identifies a frontoparietal network
     responsible for distinguishing the origin of mental content: internally generated
@@ -79151,6 +79163,13 @@
     - MECH-094
     - MECH-037
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#mech-430
+  what_would_answer: |
+    Promoted 2026-09-15 from the prose falsifier in notes, verbatim: "if a single committed_vs_imagined bit is sufficient to prevent all safety-relevant confabulation in the substrate (per-dimension provenance adds no protective discrimination), MECH-430 earns no keep over MECH-365."
+    SCOPE (added 2026-09-15): this claim covers PER-TOKEN source attributes only -- perceived-vs-imagined, self- vs other-generated, source identity, temporal source, modality -- each evaluable on a single token. Relational ancestry between tokens (shared-ancestor probability, already-counted evidence family) is NOT in scope and is routed to MECH-553; an architecture can pass this claim's falsifier and still count one lineage four times, which is MECH-552's failure, not this claim's.
+    NON-DEGENERACY PRECONDITION: more than one source dimension must actually be populated and read by a consumer; a run in which only the committed_vs_imagined bit is ever set tests MECH-365, not this claim.
+    CONFIRMING: at least one safety-relevant confabulation class is prevented by a non-binary source dimension (e.g. temporal source or self/other) that the single bit cannot express, at matched capacity.
+    FALSIFYING: the single committed_vs_imagined bit prevents every safety-relevant confabulation class tested -- no keep over MECH-365.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (unchanged); documentation-currency item recorded.
   notes: "Reaped from the autobiographical_memory_v4:ABM-9 /lit-pull (2026-06-13). Refines MECH-365: the committed_vs_imagined field is ONE dimension of a richer source vector. Anchor (verified, in the ABM-9 pull): Johnson, Hashtroudi & Lindsay 1993 Psychological Bulletin 114(1):3-28 (source-monitoring framework -- 'source' is EXPLICITLY multidimensional with indefinitely many values, contra the binary reality-monitoring dichotomy; source-misattribution -- cryptomnesia, misinformation, who-said-it errors -- occurs per-dimension). Under-specifying provenance as a single bit risks missing per-dimension misattribution that a global real-vs-imagined gate would pass. FALSIFIER: if a single committed_vs_imagined bit is sufficient to prevent all safety-relevant confabulation in the substrate (per-dimension provenance adds no protective discrimination), MECH-430 earns no keep over MECH-365. V4/V5; off the V3 critical path; substrate_conditional on the MECH-365 token. DO NOT build in V3 until routed by experiment."
 - id: MECH-431
   title: "Two-factor (tag-and-capture) write-eligibility: MECH-368's plasticity_eligibility is not a single instantaneous test but a TWO-STAGE process -- a local event sets a transient, input-specific eligibility TAG, and a durable model/policy write is consummated only if that tag CAPTURES a separately-gated plasticity/consolidation-resource signal within a time window. A tagged-eligible event can still fail to write if no capture signal arrives, and an arriving capture signal can rescue a recently-tagged weak event."
@@ -101409,6 +101428,11 @@
     - ARC-115    # confidence readouts non-collapsible: the EXTERNAL-assertion channel version of the same non-collapse discipline; distinguished-from
     - INV-077    # evaluation-channel integrity: the GOVERNANCE-layer circularity ban; distinguished-from (Assembly instrument, not agent mechanism)
   location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#inv-107
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: (1) the architecture must actually generate MORE THAN ONE evidence-bearing descendant of a single item within the run -- a descendant count of one is a vacuity signal, not a pass; (2) the confidence / commit-readiness readout being audited must have non-zero cross-arm variance.
+    CONFIRMING (audit-shaped, ARC-115 / INV-077 style, not performance-shaped): every path by which an item can enter a belief, confidence, closure or action computation either carries a readable dependency record for that item or explicitly refuses to treat it as independent; nowhere does a branch behave identically on 'no dependency recorded' and 'dependency recorded as absent'.
+    FALSIFYING, either direction, both scored: (i) a live path weights an item with no recorded dependency as independent, with no refusal and no uncertainty carried (under-representation); (ii) the architecture applies a FIXED discount to any item merely because a dependency is recorded, without conditioning on the observations across it (the Pilditch 2020 over-discounting failure the raw thought's wording would have licensed). Also falsifying the representational requirement (not the invariant): ordinary covariance / dependency estimation over content with no genealogy satisfies (i) and (ii) equally well (ladder P6 stop condition).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- no dependency representation exists in ree_core to audit; an audit would report definition_not_ready.
   notes: >-
     GENERALIZES ARC-115 from one channel to all of them. ARC-115 forbids socially-supplied agreement entering
     the same accumulator as internally-derived confidence -- "else being told something becomes
@@ -101475,6 +101499,12 @@
     - SD-076     # distinguished-from: the existing waking confidence-inflation mechanism (asymmetric precision EMA on self-accuracy), a different route to the same symptom
     - MECH-244   # distinguished-from: psychosis as precision-weighting failure -- an upstream, non-source-monitoring route
   location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#mech-552
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (all four, from ladder P1 and supplement P1-R1/R4): (1) informational content and the external evidence set are IDENTICAL across provenance conditions, asserted not intended; (2) descendants are GENERATED by the architecture's own processes and the ancestry record is corrupted INSIDE it, not handed to a reader as a fixed evidence graph; (3) a genuinely-independent-new-observation arm raises both count and confidence with calibration preserved (the count readout has range in the right direction); (4) the effective-source-count instrument reports its own calibration and confidence is measured separately, never derived from the count.
+    CONFIRMING: with content and world evidence fixed, the corrupted / absent-ancestry condition raises the effective independent-source count AND degrades calibration against world truth AND reduces further information-seeking, while a matched legitimate-computation arm (further computation on a fixed observation set that demonstrably improves the estimate) shows calibration IMPROVING at UNCHANGED effective source count. The separation of the two signatures is the confirmation; either alone is not.
+    FALSIFYING: content-matched provenance corruption changes source attribution and association strength but leaves effective source count and calibration intact (H0 source-label-only, still the most likely single result); OR inflation appears only when ancestry is PRESENTED as split and never when corrupted internally; OR contradictory external evidence is handled normally despite corruption; OR the effect requires an explicit provenance-error-to-confidence bonus; OR the legitimate-computation control cannot be distinguished from the false-independence signature under the chosen instruments (untestable as posed; rebuild instruments before reporting).
+    CURRENCY carried in the claim: provenance_p1_result.md (2026-09-10, synthetic) located the effect in the READOUT DEFAULT for unknown ancestry (absent_policy independent 1.117 -> 4.869; soft -> 5.000; dependent -> 1.000 at identical corruption) and provenance_p1r5 found the dependent fix also fails its crossing criterion; synthetic-harness results, NOT claim evidence.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- the veridical comparator arm cannot be built (no genealogy in ree_core; ancestry reference deleted at commit, hippocampal/module.py:3450-3453).
   notes: >-
     DISTINCT FROM MECH-094, and the distinction is the whole point. MECH-094 asks whether simulated content
     WRITES to the viability map as committed experience, and REE enforces that with a boolean hypothesis_tag
@@ -101539,6 +101569,11 @@
     - ARC-085    # the unified event store MECH-365/430 are conditional on; the same precondition applies here
     - MECH-431   # tag-and-capture two-factor write eligibility -- the nearest existing "held intermediate state with its own lifecycle" shape
   location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#mech-553
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: comparison at MATCHED INFORMATION with the genealogy actually exercised -- at least one pair of items in the run genuinely shares an ancestor and at least one pair genuinely does not, both reaching a belief update; the structure must be genuinely BOUNDED (a full-history implementation is a different, weaker claim and must be reported as such).
+    CONFIRMING: explicit compressed genealogy beats both lineage-free inference and no genealogy on calibration and duplicate-evidence resistance at matched information, AND the already-counted-family marker demonstrably prevents a re-presented item contributing twice to one belief update, AND edge confidence is load-bearing (an uncertain edge yields an intermediate weighting, not present-or-absent collapse).
+    FALSIFYING: lineage-free dependency estimation -- residual/error covariance, shared latent provenance, temporal co-reactivation, common prediction ancestry, ablation/dropout response, or a context-conditioned dependency estimate (Rule and O'Leary 2022, PMID 35145024, the named competitor) -- matches explicit genealogy on calibration and duplicate resistance at matched information; OR MECH-430's per-token source vector alone, with no relational edges, suffices (this claim then earns no keep over MECH-430).
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional; merge into MECH-552 as its substrate half remains a live governance option -- it stands separately only because MECH-430's own falsifier passes unchanged in an architecture that counts one lineage four times.
   notes: >-
     WHY THIS IS NOT ALREADY MECH-430. MECH-430 lists perceived-vs-imagined, self-generated-vs-other-generated,
     source identity, temporal source and modality. Every one of those is a property of a SINGLE token and can
@@ -101599,6 +101634,12 @@
     - MECH-363   # distinguished-from: runaway resonance under all-cooperative coupling -- the same self-amplification shape at the field-coupling level, with a different fix
     - MECH-204   # distinguished-from: REM precision recalibration; absence of recalibration is a different route to overconfidence than evidence recounting
   location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#mech-554
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (supplement P3-R1/R2/R3): (1) external evidence genuinely FIXED after the replay phase begins, asserted not assumed; (2) replay STRATIFIED by kind -- single-episode content rehearsal, cross-episode relational linking, prediction-generated descendants -- a pooled replay-count main effect is not a result; (3) retrieval quality MATCHED across ancestry conditions, or the interaction is a retrieval effect wearing a provenance label; (4) the healthy-replay arm must be REACHABLE (replay improving retrieval fidelity at flat effective source count) -- if every replay arm inflates the count the instrument measures replay exposure and the run reports instrument failure.
+    CONFIRMING: a significant ancestry-by-replay-count INTERACTION at fixed external evidence and matched retrieval quality -- confidence rising monotonically with replay count under corrupted / absent ancestry and not under veridical ancestry, with the healthy-replay arm simultaneously showing fidelity improvement at flat source count.
+    FALSIFYING: no ancestry-by-replay-count interaction survives matched retrieval quality; OR replay improves representation without any change in the independence estimate under every ancestry condition; OR the interaction appears only under an explicitly programmed confidence bonus.
+    CURRENCY: provenance_p3_r2_spike_result.md (2026-09-10) found the healthy-replay arm UNREACHABLE as first built (fidelity rise exactly 0) until a harness capability was added; routes complex (probe-gated) -> puzzle (known rules) -> complicated (buildable); confirmatory grid not run.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional in REE. Named, deliberately UNQUEUED V3 observation point: ree_core/sleep/bayesian_aggregator.py adds likelihood precision per routed replay event with no dependency term and replay_sampler.py draws with replacement while tracking draw_region_counts, so precision-vs-draw-count at fixed waking evidence is instrumentable with no code change -- but a positive relation is the code's own arithmetic and the veridical comparator does not exist, so it is not a test.
   notes: >-
     THE UNTESTED HALF. The branch's own audit records this as the hypothesis with no evidence in any direction:
     no REE assay contains a replay loop, and neither the clinical nor the rodent literature measures cardinality
@@ -101662,6 +101703,12 @@
     - MECH-244   # the epistemic / self-sealing-belief pole
     - MECH-248   # source monitoring as the candidate biological implementation being manipulated
   location: docs/architecture/provenance_genealogy_and_evidence_cardinality.md#q-105
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: both readouts independently instrumented and both moving somewhere in the design -- a source readout pinned at chance or a cardinality readout with no dynamic range makes a null uninterpretable; the four readouts (association strength, source attribution, effective independent-source count, calibration against world truth) reported separately, none derived from another, because the count instrument is miscalibrated away from its endpoints.
+    ANSWERED AFFIRMATIVE (dissociable): a 2x2 manipulating provenance and self-generation prediction separately in which at least one cell moves source attribution without moving the count, and at least one cell moves the count and calibration without moving source attribution.
+    ANSWERED NEGATIVE (one variable, two faces): the two readouts covary across every cell at matched instrument sensitivity -- which collapses MECH-552's epistemic branch back into the source-monitoring account and retires the multiplication branch while leaving MECH-094/MECH-248 intact.
+    Partial synthetic evidence (provenance_p1r5: criterion A9a FAIL, A9b PASS -- one manipulation moved attribution and not cardinality) is recorded so the question is not treated as untouched; it is NOT claim evidence.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- the epistemic readout P(H | evidence graph) has no referent in ree_core.
   notes: >-
     DISTINCT FROM THE DISSOCIATION MECH-094 ALREADY CARRIES. MECH-094's evidence_quality_note records the
     Lavalle et al. 2020 clinical dissociation between tag-LOSS (Korsakoff / confabulation) and
