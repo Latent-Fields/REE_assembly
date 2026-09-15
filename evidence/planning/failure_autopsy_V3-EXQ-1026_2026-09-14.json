@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-09-14T17:47:24Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
   "red_team": {
@@ -15,7 +15,9 @@
     {
       "run_id": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation_20260914T111100Z_v3",
       "queue_id": "V3-EXQ-1026",
-      "claim_ids": ["MECH-423"],
+      "claim_ids": [
+        "MECH-423"
+      ],
       "bears_on": [
         "INV-063 (Leg B remains structurally blocked -- this run trains E2's self-forward head only, NOT the world_forward head Leg B's frozen-probe DV reads; see red_team.summary F1)"
       ],
@@ -32,7 +34,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "Sleep-dependent offline consolidation of a forward/predictive model via local, module-scoped replay-style optimization during a designated offline phase -- the REE analogue of systems consolidation / cross-region synaptic reweighting during sleep (SD-017 sleep substrate; MECH-121 sleep replay).",
-        "dependencies": ["SD-017 (sleep phase manager)", "real waking experience buffer (record_transition)", "MECH-121 sleep replay"],
+        "dependencies": [
+          "SD-017 (sleep phase manager)",
+          "real waking experience buffer (record_transition)",
+          "MECH-121 sleep replay"
+        ],
         "is_formal_import": false,
         "divergence": "None identified for the narrow wiring question this run actually tests -- CrossModuleConsolidator.consolidate() builds local per-module Adam optimizers scoped to agent.e1/e2.parameters() only, a direct mechanistic analogue rather than a formal-definition import.",
         "lit_status": "present (MECH-423/SD-017 already carry literature grounding elsewhere; no fresh lit-pull needed for this narrow validation)"
@@ -62,11 +68,16 @@
           "sd_id_suggested": "mech423-e2-world-forward-sleep-training-gap",
           "title": "E2.world_forward has no waking- or sleep-time trainer -- INV-063 leg B's frozen-probe DV is structurally pinned at 0 across sleep",
           "implementation_hint": "e2_fast.py's world_forward head (world_action_encoder + world_transition) is disjoint from predict_next_self (self_action_encoder + self_transition, trained by agent.compute_e2_loss) and its own docstring states it is 'NOT trained as E2's primary objective'. grep over ree_core confirms zero callers of any world_forward-training loss. Add a world_forward loss closure (analogous in shape to compute_e2_loss's predict_next_self MSE) over the EXISTING _world_experience_buffer + _action_experience_buffer (already populated waking-side, ree_core/agent.py ~3129/3154/5865-5871), and wire it into CrossModuleConsolidator.module_losses (or a parallel local-optimizer pass scoped to world_action_encoder/world_transition only, mirroring the existing e1/e2 optimizer-scoping pattern) so it fires during a real sleep cycle. Without this, INV-063 leg B (the V3-EXQ-701b/701c frozen-probe DV over agent.e2.world_forward) cannot register any across-sleep change under any experimental design, no matter how the waking ladder is graded.",
-          "unblocks_claims": ["INV-063"],
+          "unblocks_claims": [
+            "INV-063"
+          ],
           "depends_on_unresolved": [],
           "priority_suggested": 2,
           "severity": null,
-          "substrate_paths": ["ree_core/predictors/e2_fast.py::world_forward", "ree_core/sleep/cross_module_consolidation.py"],
+          "substrate_paths": [
+            "ree_core/predictors/e2_fast.py::world_forward",
+            "ree_core/sleep/cross_module_consolidation.py"
+          ],
           "failure_record_entry": {
             "run_id": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation_20260914T111100Z_v3",
             "experiment_type": "v3_exq_1026_mech423_sleep_integrated_e2_consolidation",
@@ -97,5 +108,7 @@
       ],
       "routing": "governance-apply (substrate_queue amend on the existing hook entry: MECH-423/hook-fires ready-flip, WITH the F1 wording correction) + implement-substrate (new: E2.world_forward has no trainer anywhere in ree_core; INV-063 leg B remains blocked pending that build)"
     }
-  ]
+  ],
+  "confirmed_utc": "2026-09-15T01:14:02Z",
+  "confirmed_by": "governance-20260915 (user gate, /governance Step 2b walk; all four staged artifacts confirmed with recommended dispositions)"
 }

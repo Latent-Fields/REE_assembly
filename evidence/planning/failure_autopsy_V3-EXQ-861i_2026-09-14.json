@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-09-14T22:03:20Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "session_id": "metaworker-chip-autopsy-v3-exq-861i",
   "companion_md": "failure_autopsy_V3-EXQ-861i_2026-09-14.md",
   "dry_run_checked": true,
@@ -11,10 +11,15 @@
     {
       "run_id": "v3_exq_861i_inv050_mech091_commit_attribution_pinned_confirmation_20260914T121029Z_v3",
       "queue_id": "V3-EXQ-861i",
-      "claim_ids": ["INV-050", "MECH-180"],
+      "claim_ids": [
+        "INV-050",
+        "MECH-180"
+      ],
       "experiment_purpose": "diagnostic",
       "outcome": "PASS",
-      "bears_on": ["inv050_reecore_bisect_20260911:commit_attribution"],
+      "bears_on": [
+        "inv050_reecore_bisect_20260911:commit_attribution"
+      ],
       "failed_criterion": "n/a -- PASS. Both load-bearing criteria (C1: pin A == in-run ANCHOR_PRE; C2: pin B == in-run ANCHOR_POST) passed bitwise, and readiness precondition P1 (D(ANCHOR_PRE, ANCHOR_POST)=0.11153316700714966, ~11.15x the 0.01 floor) was met. Qualifier C4 (anchors reproduce the RECORDED 861g/861e cells, both D=0.0) also passed, placing the run in the stronger PASS tier (label suffix _reproduces_recorded). Independently recomputed from the manifest's own attribution.cells during the Step 7c red-team pass -- every D value matches the manifest's readout block exactly.",
       "four_layer_diagnosis": {
         "claim_alignment": "n/a -- pure code-provenance/commit-attribution diagnostic. Does not test INV-050 or MECH-180's mechanism hypotheses at all; claim_ids are carried for lineage tracking only (this run closes the residual 'which commit' question left open by the 861e/861f/861g/861h portfolio on qid inv050_mech180_861e_producer_vs_intervention_isolation). evidence_direction is pinned non_contributory by construction, per the driver's own docstring ('Neither claim's status, confidence or v3_pending may move on this run'), regardless of outcome -- same convention as 861f/861g/861h.",
@@ -122,7 +127,7 @@
     "The seed-dependent-sign and n5-vs-n10-RNG-consumption facts noted in learning_extracted are read-across from EXISTING lineage manifests (861g/861h), not new measurements by this run; they temper 861e's own 'collapse' framing but do not change this artifact's direction/category recommendations, and the standing pending_retest on both claims remains the correct owner of resolving them.",
     "The mid-run live-checkout-advance disclosure gap (learning_extracted, final item) is a driver/manifest documentation item for the experiment's next revision, not a finding against this run's result."
   ],
-  "confirmed_utc": null,
+  "confirmed_utc": "2026-09-15T01:14:02Z",
   "step7b": {
     "fire_count": 1,
     "fires": [
@@ -148,5 +153,6 @@
       "O3: the hypothesis-registry qid's decision.distance_phrase will read stale once the 861f entry is marked superseded; added as a registry-hygiene item in read_across_not_adjudicated."
     ],
     "self_administered_note": "Red-team pass run as a separate agent on model fable (this session runs on Sonnet 5, satisfying the different-model requirement). Ordering respected: structured target fields read first, then raw evidence (manifest, driver docstring, git at all four pinned refs) with independent recomputation of every P1/C1/C2/C3/C4 D-value and an independent three-way cross-check of the marker chain (docstring vs manifest vs git show), then the prose fields (recommended_evidence_quality_note, learning_extracted) read last specifically to stress-test their absolutes. All recomputed numbers matched the manifest's own readout block exactly. The agent's underlying process hit a platform rate limit partway through writing its findings file but had already completed and written its full verdict (CONFIRMED, 0 contests, 7 hygiene items H1-H4/O1-O3) before being cut off; this session verified the findings file was complete and incorporated every hygiene item into this artifact rather than re-running the pass. Full findings: session scratchpad redteam_861i_findings.md (not committed; a scratch working file, not a durable artifact -- its content is fully folded into this JSON's step7c/learning_extracted/read_across_not_adjudicated fields)."
-  }
+  },
+  "confirmed_by": "governance-20260915 (user gate, /governance Step 2b walk; all four staged artifacts confirmed with recommended dispositions)"
 }

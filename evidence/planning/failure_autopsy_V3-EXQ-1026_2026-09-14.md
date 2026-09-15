@@ -273,3 +273,7 @@ No `fanout_recommendation` emitted (this target does not discriminate among live
 discrimination among named alternatives). Staging-mode: Step 9b is drafted-only and nothing is
 written to the live registry. No ledger action is deferred -- there is nothing to pre-register or
 resolve for this target.
+
+---
+
+**Human confirmation:** confirmed 2026-09-15T01:14:02Z at the /governance Step 2b walk (cycle governance-20260915) with the recommended dispositions; the staged status line above was `awaiting_human_confirmation`.

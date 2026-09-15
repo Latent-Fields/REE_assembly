@@ -23,7 +23,7 @@
     "SD-106"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "mixed",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -351,5 +351,7 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "epistemic_category": "standard",
+  "evidence_direction_note": "governance-20260915 (2026-09-15): evidence_direction set mixed (was unset/unknown) on flat AND pack from failure_autopsy_V3-EXQ-1023_2026-09-14 (fable cross-model red-team CONTESTED D1-D4, folded in; CONFIRMED at the governance-20260915 user gate). 0/3 seeds clear the 0.85 oracle-action parity bar vs PCA-32 anchor 3/3; SD-106 ON beats OFF on every seed (+0.037..+0.072); P0a under-budgeted vs the design reference. Open: budget shortfall vs objective ceiling -- routed to a two-metric step-budget diagnostic before any weight change."
 }

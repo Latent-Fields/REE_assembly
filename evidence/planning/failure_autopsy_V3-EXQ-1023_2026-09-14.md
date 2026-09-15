@@ -274,3 +274,7 @@ attributable outcomes:
 ## 11. Step 8 gate -- STAGING MODE, NOT YET RUN
 
 This is a headless staging draft. The interactive gate (verdict, routing, SD-shape, ledger writes) is owed to the next `/governance` walk or an interactive confirming session, per `/failure-autopsy` SKILL.md "Staging mode". The gate should in particular resolve the Sec. 5 tension (narrowly-scoped "REE FAILED" vs "MIXED, grounded on Scale/capacity") and confirm or amend the Sec. 8 probe spec before it is queued.
+
+---
+
+**Human confirmation:** confirmed 2026-09-15T01:14:02Z at the /governance Step 2b walk (cycle governance-20260915) with the recommended dispositions; the staged status line above was `awaiting_human_confirmation`.

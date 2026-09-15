@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-964a (MECH-482 / SD-102 epistemic-deficit accumulator: multi-target readiness validation)
 
-- **Status:** `awaiting_human_confirmation` (staging mode -- headless session; routing NOT finalised)
+- **Status:** `confirmed` (staging mode -- headless session; routing NOT finalised)
 - **Generated:** 2026-09-14T16:46:10Z
 - **Run:** `v3_exq_964a_mech482_epistemic_deficit_multitarget_readiness_20260911T174949Z_v3`
 - **Supersedes:** `V3-EXQ-964` (failure_autopsy_V3-EXQ-964_2026-08-30, confirmed)
@@ -100,3 +100,7 @@ An independent verifier (model: opus, different from this drafting session, whic
 ## Step 7b -- mechanical pre-routing checks
 
 `autopsy_pre_routing_checks.py --json`: **`fire_count: 0`** (re-run after both `.json` and `.md` existed). No existing driver, substrate entry, or literature-absence claim conflicts with this artifact's recommendations.
+
+---
+
+**Human confirmation:** confirmed 2026-09-15T01:14:02Z at the /governance Step 2b walk (cycle governance-20260915) with the recommended dispositions; the staged status line above was `awaiting_human_confirmation`.

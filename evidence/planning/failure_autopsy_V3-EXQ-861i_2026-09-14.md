@@ -117,3 +117,7 @@ This run does not adjudicate a leg of `qid inv050_mech180_861e_producer_vs_inter
 - **Granularity-debt trigger**: does not fire for either claim.
 
 **Next step**: the Step 8 interactive gate is owed before any of the above is applied -- present this draft to the user (or the next `/governance` walk) for confirmation, per staging-mode rules.
+
+---
+
+**Human confirmation:** confirmed 2026-09-15T01:14:02Z at the /governance Step 2b walk (cycle governance-20260915) with the recommended dispositions; the staged status line above was `awaiting_human_confirmation`.
