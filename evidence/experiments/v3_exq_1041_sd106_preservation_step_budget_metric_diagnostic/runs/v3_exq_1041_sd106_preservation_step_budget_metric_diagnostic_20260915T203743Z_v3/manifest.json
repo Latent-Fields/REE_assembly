@@ -1,0 +1,366 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic",
+  "run_id": "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-15T20:37:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "metrics_never_comparable",
+    "preconditions": [
+      {
+        "name": "capture_buffer_length_exact",
+        "kind": "readiness",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "`run_zworld_p0` calls the target fn exactly once per buffered step, so a tap on it has length delta exactly 0 by construction",
+        "offending_cell": "sd106__b_steps600|seed44",
+        "description": "The post-hoc probe's captured world_obs buffer must be the same length the substrate reported buffering. A non-zero delta means the capture seam moved and the probe is reading a different dataset than the one that trained.",
+        "met": true
+      },
+      {
+        "name": "split_replay_mean_predictor_mse_exact",
+        "kind": "readiness",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "control": "`mean_predictor_mse` reported by the substrate's own preservation_holdout block on the SD-106 cells -- it is a function of the whole buffer, the permutation and n_train, so an exact match proves the reproduced split is the substrate's",
+        "offending_cell": "sd106__b_steps600|seed44",
+        "description": "The reproduced train/holdout split must equal the trainer's. Scoped to SD-106 cells: the OFF track builds no preservation head and therefore reports no reference base to compare against; capture_buffer_length_exact is the check that covers every cell.",
+        "met": true
+      },
+      {
+        "name": "probe_system_overdetermined",
+        "kind": "readiness",
+        "measured": 1640.0,
+        "threshold": 250.0,
+        "direction": "lower",
+        "control": "n_train minus the OLS design-matrix width (world_obs_dim + 1) on the identity control; positive means least-squares rather than minimum-norm",
+        "offending_cell": "off__b_shipped|seed44",
+        "description": "REACHABILITY of the identity gate below, measured rather than assumed. Under-determined, the identity control cannot return unity on ANY correct implementation, so gating on it would be unmeetable by construction.",
+        "met": true
+      },
+      {
+        "name": "identity_probe_recovers_unity",
+        "kind": "readiness",
+        "measured": 1.0,
+        "threshold": 0.999,
+        "direction": "lower",
+        "control": "world_obs -> world_obs: the identity map is inside the OLS family, so this returns ~1.0 on ANY data, on any machine, at any budget",
+        "offending_cell": "off__b_designref|seed42",
+        "description": "INSTRUMENT GATE 1, data-independent. If the probe cannot recover unity from the identity control, a low posthoc_ols_r2 on the trained code is the probe's arithmetic failing, not the encoder's, and no outcome is attributable. Deliberately NOT an absolute PCA-32 floor: the PCA-32 level is a property of the DATA (0.893 on the P0a buffer vs the design doc's 0.9984 on some other distribution), so a floor on it would gate the science on the dataset rather than the probe.",
+        "met": true
+      },
+      {
+        "name": "pca32_is_the_optimal_32dim_linear_code",
+        "kind": "readiness",
+        "measured": -0.013372923758005695,
+        "threshold": 0.01,
+        "direction": "upper",
+        "control": "PCA-32 minimises reconstruction MSE over all rank-32 linear codes of its own input (Eckart-Young), so no trained 32-dim code can exceed it beyond held-out estimation noise",
+        "offending_cell": "sd106__b_steps1200|seed42",
+        "description": "INSTRUMENT GATE 2, mathematically grounded. A trained code beating the PCA-32 anchor by more than the tolerance means the split or the projection is wrong, not that the encoder beat PCA.",
+        "met": true
+      },
+      {
+        "name": "sd106_bypass_trained_off_zero",
+        "kind": "readiness",
+        "measured": 4.13263463973999,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "the bypass is zero-initialised, so a norm above zero is proof P0a actually stepped it; V3-EXQ-1023 measured 4.13-4.37",
+        "offending_cell": "sd106__b_shipped|seed44",
+        "description": "The SD-106 manipulation must have happened. A zero norm means the flag read as enabled while the mechanism stayed inert.",
+        "met": true
+      },
+      {
+        "name": "shipped_cell_reproduces_1023_sgd_r2",
+        "kind": "readiness",
+        "measured": 0.0,
+        "threshold": 0.05,
+        "direction": "upper",
+        "control": "v3_exq_1023_sd106_bottleneck_preservation_validation_20260912T045319Z_v3 arm_results[zworld_sd106__*].sd106_preservation_holdout_r2",
+        "offending_cell": "sd106__b_shipped|seed44",
+        "description": "REPRODUCTION GATE. The b_shipped SD-106 cells re-run V3-EXQ-1023's exact P0a config, so their sgd_head_r2 must land on 1023's recorded 0.6999-0.7490. Tolerance 0.05 absolute, not machine-epsilon: 1023 ran on linux-x86_64/torch2.12 and ~400 Adam steps do not reproduce bit-identically across machine classes. A config error reads ~0.94, 0.19 away, which this bar still catches.",
+        "met": true
+      },
+      {
+        "control": "analytic: the three shares sum to 1 and are bounded, so the leading share's margin over the runner-up spans [-1, 1]; a 0.15 lead sits at 0.15 of the achievable 1.0, i.e. well inside it, on ANY dataset",
+        "description": "DV headroom for the load-bearing criteria. The margin's reachable range is a property of the decomposition, not of this run's data, which is exactly why the routing was moved off a transferred bar. The EMPIRICAL half of feasibility -- that the gap the shares divide is itself non-degenerate -- is carried by shortfall_gap_positive below, measured rather than assumed.",
+        "name": "share_margin_headroom",
+        "kind": "dv_headroom",
+        "measured": 1.0,
+        "threshold": 0.3,
+        "direction": "lower",
+        "dv_name": "share_margin (leading share minus runner-up)",
+        "achievable_statistic": "explicit",
+        "criterion_threshold": 0.15,
+        "headroom_margin": 2.0,
+        "n_control_values": 0,
+        "headroom_ratio": 3.3333333333333335,
+        "headroom_reason": "DV headroom met: share_margin (leading share minus runner-up) can reach 1 (analytic ceiling supplied by the caller, not measured from a sample), against a required 0.3 (criterion threshold 0.15 x margin 2).",
+        "met": true
+      },
+      {
+        "name": "shortfall_gap_positive",
+        "kind": "readiness",
+        "measured": 0.13895121047220982,
+        "threshold": 0.02,
+        "direction": "lower",
+        "control": "pca32_ols_r2 minus sgd_head_r2 at b_shipped -- the shortfall V3-EXQ-1023 reported, measured against the in-run achievable ceiling; 0.1390 on the authoring seed",
+        "description": "The three explanatory shares are fractions of this gap. With a gap at or below zero they are undefined or unstable, and no route is attributable.",
+        "met": true
+      },
+      {
+        "name": "ceiling_stable_across_budgets",
+        "kind": "readiness",
+        "measured": 0.004282010886780707,
+        "threshold": 0.02,
+        "direction": "upper",
+        "control": "pca32_ols_r2 per budget against the b_shipped value on the same seed; 0.004 on the authoring seed (0.8880 at 60 episodes, 0.8840 at 100)",
+        "offending_cell": "sd106__b_designref|seed43",
+        "description": "RED-TEAM F5. Every share uses the b_shipped ceiling as its single denominator, so a budget that moved the ceiling itself could present a denominator effect as a budget effect.",
+        "met": true
+      },
+      {
+        "name": "budget_manipulation_reached_substrate",
+        "kind": "readiness",
+        "measured": 812.0,
+        "threshold": 500.0,
+        "direction": "lower",
+        "control": "n_steps is computed by the substrate as (n_train // batch_size) * epochs, so the delta is read off the trainer, not asserted",
+        "description": "Non-degeneracy for the budget factor: b_steps1200 must actually have run many more optimiser steps than b_shipped at the same data.",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_metric_share_dominant",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.5240090329915323,
+        "threshold": 0.15,
+        "comparator": ">=",
+        "metric_share_median": 0.7047410536419498,
+        "detail": "median over seeds of (posthoc_ols_r2 - sgd_head_r2) / gap at b_shipped, minus the larger of the other two shares. Routes outcome (1) metrics_never_comparable: the reported metric under-read the code"
+      },
+      {
+        "name": "C2_budget_share_dominant",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.5240090329915323,
+        "threshold": 0.15,
+        "comparator": ">=",
+        "budget_share_median": 0.1807320206504175,
+        "detail": "median over seeds of (best-budget posthoc_ols_r2 - b_shipped posthoc_ols_r2) / gap, minus the larger of the other two shares. Routes outcome (2) under_budgeted_p0a"
+      },
+      {
+        "name": "C3_residual_share_dominant",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.6002635053136254,
+        "threshold": 0.15,
+        "comparator": ">=",
+        "residual_share_median": 0.10447754832832445,
+        "detail": "median over seeds of 1 - metric_share - budget_share, minus the larger of the other two shares: what neither the metric nor the budget explains. Routes outcome (3), split by the paired OFF comparison into mechanism_defect_inert_at_dv (sd106 <= off) and mechanism_defect_below_ceiling (sd106 > off)"
+      }
+    ],
+    "combination_rule": "SHORTFALL DECOMPOSITION, not an AND/OR of PASSes. Per seed at b_shipped: gap = pca32_ols_r2 - sgd_head_r2; metric_share = (posthoc_ols_r2 - sgd_head_r2)/gap; budget_share = (best-budget posthoc_ols_r2 - posthoc_ols_r2)/gap; residual_share = 1 - metric_share - budget_share. The three sum to 1 by construction, so AT MOST ONE can lead the runner-up by any positive margin and the criteria are a partition. The route is the leader when its margin reaches DOMINANCE_MARGIN (0.15), else `no_dominant_explanation` -- which is a RESULT, not an instrument failure: it says the shortfall has no single dominant cause, and the recorded shares say how it splits. A failed precondition overrides everything and self-routes substrate_not_ready_requeue. `outcome` is PASS when the diagnostic DISCRIMINATED (gate green and a share dominant), FAIL when it did not -- never a verdict on SD-106, which this run does not score.",
+    "criteria_non_degenerate": {
+      "C1_metric_share_dominant": true,
+      "C2_budget_share_dominant": true,
+      "C3_residual_share_dominant": true
+    },
+    "gate_reason": null,
+    "shares": {
+      "metric": 0.7047410536419498,
+      "budget": 0.1807320206504175,
+      "residual": 0.10447754832832445,
+      "margins": {
+        "metric": 0.5240090329915323,
+        "budget": -0.5240090329915323,
+        "residual": -0.6002635053136254
+      },
+      "sd106_minus_off_posthoc_shipped": 0.016931058012995992
+    },
+    "routes": {
+      "metrics_never_comparable": "The code is already at PCA-32 parity under a post-hoc probe, so the in-training SGD head metric and the design-time post-hoc probe were never the same statistic. Mechanism and budget are both fine. Promote the generic-vs-task-relevant compression /lit-pull to primary; the consumer-rung shortfall V3-EXQ-1023 measured is an OBJECTIVE-CHOICE question.",
+      "under_budgeted_p0a": "P0a is under-budgeted. Raise the budget and re-run the acceptance measurement. Read the steps-vs-data contrast (b_steps600 vs b_designref at ~equal steps, b_shipped/600/1200 at equal data) to say WHICH.",
+      "mechanism_defect_below_ceiling": "Neither the metric nor the budget explains the shortfall, and the preservation term DOES beat the paired OFF arm at b_shipped -- so the mechanism works but undershoots the achievable ceiling across a 3.3x step range at fixed data AND a 1.7x data range at fixed steps. Route to /implement-substrate on the preservation leg's own code. Does NOT license a re-queue at another preservation_weight.",
+      "mechanism_defect_inert_at_dv": "As above, but the SD-106 arm does NOT beat the paired OFF arm at b_shipped: the preservation term is INERT at the DV despite a non-zero bypass norm. A different build from the one above -- the term is not reaching the code, rather than reaching it and undershooting.",
+      "no_dominant_explanation": "No share leads the runner-up by DOMINANCE_MARGIN. This is a RESULT, not an instrument failure: the shortfall has no single dominant cause and the recorded per-seed shares say how it splits. Governance should read the shares rather than treat the run as unrun.",
+      "substrate_not_ready_requeue": "A precondition failed. No outcome is attributable; this is an instrument result, not a verdict on SD-106."
+    },
+    "residual_ambiguity": "The swept budget range is 3.3x in optimiser steps and 1.7x in observations. A flat reading is evidence against a budget explanation WITHIN that range and is not a proof about arbitrarily larger budgets; the design doc's own named reference point (600 steps, 4000 observations) IS inside the range, which is what makes outcome (3) actionable rather than merely unresolved."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c991c69cdcdf0712d08bea90403a6b9bc2858564ba643170897a9d12868213c0",
+  "substrate_commit": {
+    "commit": "311789f5580f07087981a52d7c73db0a07fd14da",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "latent.use_resource_field_head": true,
+    "latent.use_world_encoder_skip": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 97.314573271,
+  "config": {
+    "rung_id": "D3_hazard_free",
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": false,
+      "n_reef_patches": 0,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.0,
+      "reef_bipartite_layout": false,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "tracks": [
+      "sd106",
+      "off"
+    ],
+    "budgets": {
+      "b_shipped": {
+        "episodes": 60,
+        "epochs": 12
+      },
+      "b_steps600": {
+        "episodes": 60,
+        "epochs": 20
+      },
+      "b_steps1200": {
+        "episodes": 60,
+        "epochs": 40
+      },
+      "b_designref": {
+        "episodes": 100,
+        "epochs": 12
+      }
+    },
+    "steps_per_episode": 200,
+    "batch_size_override": null,
+    "preservation_weight": 200.0,
+    "use_world_encoder_skip": true,
+    "projection_dim": 32,
+    "dominance_margin": 0.15,
+    "shortfall_gap_floor": 0.02,
+    "ceiling_stability_tol": 0.02,
+    "identity_probe_floor": 0.999,
+    "pca_optimality_tol": 0.01,
+    "probe_overdetermination_floor": 250,
+    "repro_tol": 0.05,
+    "budget_step_spread_floor": 500,
+    "split_replay_rel_tol": 1e-09,
+    "seed_majority": 2
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": true
+  }
+}
