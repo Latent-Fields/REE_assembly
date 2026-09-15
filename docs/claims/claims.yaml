@@ -99934,7 +99934,7 @@
   subject: methodology.latent_access_evidence_ladder
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_conditional
+  epistemic_category: derivational
   implementation_phase: v3
   version_relevance: v3_v4_v5
   registered_utc: '2026-09-08'
@@ -99943,6 +99943,11 @@
     - MECH-517  # interface collapse -- another rung-3 failure a rung-2 probe cannot see
     - MECH-532  # ceiling nulls measured through an untrained readout are interface ceilings
   location: docs/architecture/mutual_legibility_communication_subspaces.md#inv-105
+  what_would_answer: |
+    This is a definitional universal invariant; its own notes say it should not be given a falsification experiment. The admissible evidence for a standard is that it DOES WORK.
+    CONFIRMING (instance recorded 2026-09-15): the 2026-09-10 EXQ-1010 substrate-readiness audit applied rungs 1-2 to REFUSE the manifest's 'DESTROYED AT ENCODE TIME' paraphrase as established science, substituting 'finite-ladder non-recovery on a reproduced OFF regime' -- the ladder changing a reading that would otherwise have been made on a live run. Further instances of the same kind are the evidence to accumulate.
+    FALSIFYING (as a standard, not as a fact): its two binding consequences prove unnecessary in practice -- e.g. the zero floor and the dimensionality-matched random-projection floor never differ materially on real REE nulls, making consequence (2) ceremonial. Cheap to check retrospectively across banked manifests.
+    Disposition 2026-09-15: (b) derivational -- convert to a pre-registration gate or leave as an interpretive standard; /governance owns that decision, as the claim itself says. The eighth rung proposed by MECH-548 stays on MECH-548 per GFLAG-0235 (revisit when MECH-548 acquires evidence). INV-110 is the repair-side counterpart standard, standalone.
   notes: >
     Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. This is a UNIVERSAL
     invariant in the definitional/evidential sense -- it constrains what a measurement
@@ -101109,6 +101114,11 @@
     - ARC-084    # typed signed coupling with gain/gate fields -- the overlay is a gated coupling, not a rewrite
     - MECH-363   # runaway resonance under all-cooperative coupling -- the double-counting mechanism's cognifold-level cousin
   location: docs/architecture/receiver_conditioned_translation.md#mech-548
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the interface must be traversed REPEATEDLY over a horizon the system actually uses, and the one-step result must be positive -- there is nothing to destabilise otherwise (degenerate if one-step utility is at or below floor). Frozen endpoints per INV-109; adequate source per V3-EXQ-1010 (trained z_world inadmissible).
+    CONFIRMING (registered signature): ONE-STEP RESCUE + CUMULATIVE COLLAPSE + CLEAN-BASE STABILITY -- recomputing each step against the unmodified native receiver state restores stability while cumulative application degrades. This is simultaneously the separating arm against MECH-539: MECH-539's failure persists under clean-base and MECH-548's does not. Assay spec section 1.8 fixes the readout: N=20 consecutive closed-loop consumer steps, agreement at step 1 and step N, fitted decay slope, first-crossing index, with 'one-step-only, never a rescue' as a named reporting category.
+    FALSIFYING: cumulative and clean-base application are indistinguishable over the horizons the system uses (the bridge's own output re-entering as input costs nothing); OR the degradation is fully explained by native-dynamics incompatibility (MECH-539) and clean-base does not rescue it.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional -- PARTIAL instrument: manifold_guard covers the off-manifold half (mechanism a); the cumulative re-application half is NOT built (dynamic_compatibility measures compounding across ONE rollout, not N re-applications of T; no cumulative_drift / repeated_use / recurrent_interface symbol exists in ree-v3) -- complicated (buildable). The eighth-rung proposal stays here rather than amending INV-105 (GFLAG-0235); live trigger: revisit when this claim acquires evidence.
   notes: >-
     Registered 2026-09-08 from the same child thought as MECH-547. DISTINCT FROM MECH-539, and the
     distinction is easy to lose because both produce "good one-step + degrading long-horizon": MECH-539 is
@@ -103142,7 +103152,7 @@
   subject: methodology.endpoint_identity_versus_recipe_reproduction
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_conditional
+  epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3_v4_v5
   registered_utc: '2026-09-15'
@@ -103155,6 +103165,11 @@
     - MECH-540  # assay B's "snapshot endpoints before each evaluation" requirement is this invariant applied to a maintenance experiment
     - GOV-EQUIV-1  # DISTINGUISHED FROM: GOV-EQUIV-1 governs when two REPRESENTATIONS of one claim may share a truth state; this governs when two REALISATIONS of one artifact may share an identity. Same suspicion, different object
   location: docs/architecture/mutual_legibility_communication_subspaces.md#inv-109
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: at least two runs in one lineage must claim to measure 'the same' endpoint, and at least one must have RE-DERIVED it rather than loaded it. Degenerate if every run persists and loads its endpoints (the invariant is vacuously satisfied) or if no two runs reference a shared endpoint at all.
+    CONFIRMING: two runs reproducing one documented recipe under matched seeds, on different machine classes or at different times, produce endpoints whose hash_tensor_state (ree-v3 experiments/_lib/interface_probe.py) DIFFERS while their regime-level readouts agree within the declared band. Half-witnessed already: V3-EXQ-1010 reproduced 1008's recipe and reports matching participation ratios and in-band consumer-width values alongside differing weight deltas (seed 42: 0.2929618 vs 0.2930078) and substrate_stable_across_run: false; the missing piece is a direct hash comparison, which nothing in that lineage recorded.
+    FALSIFYING: recipe reproduction under a pinned substrate commit yields BIT-IDENTICAL endpoint weights across machine classes and repeated runs -- the commit pin already delivers endpoint identity and the distinction has no operational content. This is a live possibility: rand / randint / randperm / bernoulli are bit-identical across darwin-arm64 and linux-x86_64 and only torch.multinomial diverges, so if the encoder path touches no multinomial the endpoints may be closer than the invariant assumes.
+    Disposition 2026-09-15: (a) testable now -- the test is hash_tensor_state on two reproductions of one recipe, minutes of work with an existing instrument; recorded as a SPIKE (complicated, buildable), not minted as an EXP proposal. A universal evidential invariant does not normally get a falsification experiment, but this one makes a cheap empirical prediction about the substrate that would materially narrow it either way.
   notes: >-
     From the 2026-09-10 EXQ-1010/hippocampal-A-B substrate-readiness audit (intake
     evidence/planning/thought_intake_2026-09-09_exq1010_substrate_readiness_audit.md section 5).
@@ -103237,7 +103252,7 @@
   subject: methodology.interface_repair_adjudication_standard
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_conditional
+  epistemic_category: derivational
   implementation_phase: v3
   version_relevance: v3_v4_v5
   registered_utc: '2026-09-15'
@@ -103252,6 +103267,11 @@
     - MECH-548  # recurrent stability -- same, for repeated closed-loop use
     - GOV-MATCHAUX-1  # matched-auxiliary discipline; "at matched budgets" in link 6 is that rule applied to maintenance arms
   location: docs/architecture/mutual_legibility_communication_subspaces.md#inv-110
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a maintenance/repair claim must exist that the standard could REFUSE. Degenerate today: no REE experiment has yet attempted a repair claim, so the standard is prospective and cannot be exercised.
+    CONFIRMING (that the standard does work -- the only admissible evidence for a standard, as for INV-105): a REE result is produced that would have been read as interface repair, and applying the six links plus the estimand D > max(E, F, G) changes the reading -- concretely an assay B run in which D > B (correct pairing beats no maintenance) but D does not exceed arm F (receiver-local self-healing, MECH-562) or arm G (local rehearsal), converting 'repair' into 'access maintained by local adaptation; pair-specific replay not necessary'.
+    FALSIFYING: the central premise -- that the four outcomes are genuinely confounded in practice -- fails if arms E, F and G prove reliably separable by a cheaper signature than the full six-link design (e.g. local-memory equivalence holds automatically whenever drift is confined to the receiver-potent subspace, making prospective titration unnecessary). Falsified as OVER-BROAD if Gate 0 proves unreachable: if no drift model can degrade receiver use while leaving both endpoints locally intact AND be restored by a known oracle inverse, the standard forbids every possible experiment -- a defect in the standard, not a finding about the world.
+    Disposition 2026-09-15: (b) derivational (interpretive standard; no falsification experiment), shading to defer: decide whether to make it a pre-registration gate only once one assay B design is actually staged, so the over-broad risk is judged against a real design. Standalone rather than an INV-105 amendment, by the GFLAG-0235 precedent read in reverse (this IS definitional).
   notes: >-
     From the 2026-09-09 replay-interface-maintenance supplement, sections 2, 5, 6.2, 6.3 and 6.6
     (intake evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md).
@@ -103354,6 +103374,11 @@
     - INV-110  # reciprocal: the adjudication standard names this mechanism as its arm F (INV-110 depends_on this; the reverse edge would close a cycle under GOV-EDGE-1)
     - Q-107    # reciprocal: the epistemic limit this mechanism creates (Q-107 depends_on this; reverse edge would close a cycle)
   location: docs/architecture/mutual_legibility_communication_subspaces.md#mech-562
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the sender representation must actually DRIFT in directions the receiver reads, and the receiver must have plasticity ENABLED at its afferents. Degenerate under either of two conditions, both live in REE 2026-09-15: (i) drift confined to the receiver-null subspace, where a fixed readout works and no adaptation is exercised; (ii) a frozen consumer -- every adapter in the V3-EXQ-978 -> 1023 lineage is fitted-then-frozen, so on that lineage this mechanism has never been exercised once.
+    CONFIRMING: a receiver running ONLY the label-free local rule -- presynaptic sender activity, its own postsynaptic output, homeostatic error against fixed pre-drift output mean and variance, error-gated decay -- recovers held-out receiver-dependent use after a VERIFIED interface lesion (INV-110 Gate 0), at a matched update budget, with no episodic pair identity available to it. Stronger: recovery tracks the drift-rate-to-maintenance-interval ratio as predicted, degrading when maintenance is infrequent relative to drift.
+    FALSIFYING: the local rule fails to recover use under conditions its own preconditions declare favourable -- smooth redundant tuning, incremental drift, plasticity faster than drift, ample sampling -- while a correctly-paired arm at the same update budget recovers. That is simultaneously the CONFIRMING result for MECH-540's interface-repair reading, which is why the two claims must be run as arms of ONE design (INV-110's estimand), never separately.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional (NOT ceiling: no readout-adaptation rule of this shape exists in ree_core, interface_probe is pure and stateless by design, zero non-degenerate attempts are possible today). Build note: arm F is specified to implementation level (supplement section 6.4; assay spec section 3.3) and is complicated (buildable) at the EXPERIMENT layer -- the assay spec's section 4.4 forbids putting it in ree_core.
   notes: >-
     From the 2026-09-09 replay-interface-maintenance supplement, sections 3.2, 5.2 and 6.4 (intake
     evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md).
@@ -103438,6 +103463,11 @@
     - GOV-EQUIV-1 # the governance analogue, at the claim layer rather than the representation layer: two views are equivalent only over a DECLARED domain, and divergence must be CLASSIFIED (scope condition / hidden assumption / genuinely new proposition) before evidence transfers. That classification step is exactly what this question asks whether an embedded system can perform on itself
     - ARC-092     # the clean-base principle at the imagination boundary: no schema update from a consolidation cycle becomes input to the next without a waking checkpoint. A waking checkpoint IS an external anchor, so ARC-092 is REE's one existing partial answer
   location: docs/architecture/mutual_legibility_communication_subspaces.md#q-107
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a maintenance mechanism must exist whose behaviour COULD differ between the two cases. Degenerate today: no REE component adapts to upstream change at all, which is why this is deferred rather than testable.
+    ANSWERED (the ambiguity is real and consequential in REE): identical maintenance arms run under two conditions constructed to be indistinguishable from the receiver's vantage -- a pure code rotation with the task unchanged, and a genuine task change of matched magnitude at the sender -- and NO REE mechanism behaves differently; consequence: every REE maintenance claim must state an EXTERNAL ANCHOR (ground-truth task target, preserved external referent, or explicit provenance marker on the change) in its design.
+    ANSWERED NEGATIVE (a substantive positive finding, not a null): some REE mechanism DOES distinguish them without an externally supplied label -- a residual prediction error, a provenance tag (MECH-430 / MECH-553), or a z_goal-side signal carries the information implicitly.
+    Disposition 2026-09-15: (c) substrate-blocked, substrate_conditional, deferred with a named TRIGGER: the discriminating manipulation needs the controlled-drift INTERVENTION that does not exist (per_code_drift in interface_probe.py measures; nothing imposes) -- revisit when either MECH-562's arm F or assay B's Gate 0 drift instrument is built, at which point the test is nearly free (both construct a known code rotation; the only addition is a matched-magnitude genuine task change).
   notes: >-
     From the 2026-09-09 replay-interface-maintenance supplement, sections 5.6 and 8 debt 10 (intake
     evidence/planning/thought_intake_2026-09-09_hippocampal_replay_interface_maintenance_supplement.md).
