@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-09_shared_reference_frames_and_temporal_gates.md
+Claims registered: MECH-555, MECH-556
+
 # Shared reference frames and temporal gates in cross-system mutual legibility
 
 **Date:** 2026-09-09  
-**Status:** child thought / falsifiable interface hypothesis; not a claim registration and not an experiment-queue mutation  
+**Status:** child thought / falsifiable interface hypothesis (ingested 2026-09-15 -- see Intake above); not an experiment-queue mutation
 **Parent:** `2026-09-07_mutual_legibility_communication_subspaces.md`  
 **Sibling:** `2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md`  
 **Implementation companion:** `2026-09-07_mutual_legibility_implementation_assays.md`

@@ -101637,3 +101637,234 @@
     and must not enter any claim's evidence record; it is recorded here so a later session does not treat the
     question as untouched.
     DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+
+- id: MECH-555
+  title: >-
+    Reference-frame mediation as a separable interface factor: two systems can each contain a task
+    distinction, expose it through a healthy communication subspace (MECH-537), and still fail to
+    communicate because they index that distinction against INCOMPATIBLE RELATIONAL COORDINATES --
+    egocentric versus allocentric, current-position-relative versus trajectory-origin-relative,
+    observation-time versus predicted-action-time, absolute location versus action-conditioned
+    displacement, episode-identity versus elapsed-tick. The interface decomposition is therefore
+    content x communication subspace x REFERENCE FRAME x receiver context x temporal gate, and the
+    frame is a THIRD selection variable alongside which directions are exposed (MECH-537) and which
+    read surface the receiver's state selects (MECH-547). Registered failure class RF-F (an eighth
+    entry in the location doc's F1-F7 routing table): an external probe succeeds on sender AND
+    receiver, the information is not missing and the subspace is not collapsed, yet native
+    cross-system use fails -- routing to a relational re-indexing rather than to more sender
+    capacity or a higher bridge rung. The DISCRIMINATOR that makes this more than a redescription is
+    a frame permutation that preserves content: permute the frame labels or anchors between episodes
+    or positions while holding sender-state distribution, marginal difficulty and content statistics
+    fixed (intact >> frame-permuted, while the target stays decodable in both, is the confirming
+    signature; intact ~= frame-permuted says the frame is incidental at that interface). Two
+    non-redundant predictions: frame alignment should LOWER the minimum bridge rung L(A -> B)
+    (MECH-538) without requiring a higher-capacity bridge, and a frame permutation may disrupt only
+    ONE downstream consumer, in which case reference frames are consumer-specific rather than
+    globally shared -- which forbids inferring one global workspace or one canonical coordinate
+    system from several consumers sharing an indexing relation.
+  claim_type: mechanism_hypothesis
+  subject: representation.reference_frame_mediated_interface_legibility
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_shared_reference_frames_and_temporal_gates.md
+  depends_on:
+    - ARC-139    # federation principle: legibility is selective -- this adds WHAT the selected directions are indexed against
+    - MECH-537   # communication subspace says WHICH directions cross; this says relative to what relation
+    - MECH-547   # receiver-conditioned selection -- a frame is NOT a receiver-state variable; distinguished in notes
+    - MECH-538   # minimum bridge complexity: frame alignment is predicted to lower the rung that works
+    - MECH-539   # dynamic compatibility: action/horizon frame is one candidate reference frame
+    - ARC-142    # cognitive contract: nearest rival reading, relations recoverable at a boundary; distinguished in notes
+    - INV-105    # evidence ladder: the frame-permutation control is an ADDITION to its control set, not an amendment
+    - ARC-087    # within-family shared-reference-frame sensory co-registration -- different object; distinguished in notes
+    - MECH-096   # REE's only existing frame vocabulary: z_self egocentric / z_world allocentric, specified and unimplemented
+    - MECH-294   # phase-aligned joint binding with a content-preserving SHUFFLED control -- the nearest built permutation precedent
+  location: docs/architecture/interface_reference_frames_and_temporal_gates.md#mech-555
+  notes: >-
+    Registered 2026-09-15 from docs/thoughts/2026-09-09_shared_reference_frames_and_temporal_gates.md
+    (intake evidence/planning/thought_intake_2026-09-09_shared_reference_frames_and_temporal_gates.md),
+    a child of the 2026-09-07 mutual-legibility package and a sibling of the 2026-09-08
+    receiver-conditioned-translation thought.
+
+    DISTINCT FROM ARC-142, and this is the distinction most likely to be lost by a later session.
+    ARC-142 says WHICH RELATIONS must remain recoverable across a lossy boundary (identity,
+    persistence, causality, temporal relation, spatial relation, ...). This claim is about the
+    COORDINATE THOSE RELATIONS ARE EXPRESSED AGAINST, and about a failure that occurs when both
+    endpoints preserve the relation locally and still cannot use each other's version of it. The
+    difference is operational, not verbal: ARC-142's test is recoverability at the boundary;
+    RF-F's test is a frame permutation that leaves recoverability at BOTH endpoints untouched and
+    destroys cross-system use anyway. If a future governance pass judges that the frame simply IS
+    one of ARC-142's contract relations, the right disposition is MERGE INTO ARC-142 naming this
+    entry as absorbed -- not silent duplication. That merge option is recorded here deliberately.
+
+    DISTINCT FROM MECH-547: receiver-conditioning makes the exposed read surface a function of the
+    RECEIVER'S CURRENT STATE, and its discriminator is a receiver-state permutation. A reference
+    frame is a property of how content is INDEXED and can be mismatched with the receiver held in a
+    single fixed state; its discriminator is a frame permutation at fixed receiver state. The two
+    controls are independent and the 2026-09-10 assay specification already crosses them (frame
+    level x query level, Gate A3).
+
+    DISTINCT FROM ARC-087: that claim's "shared-reference-frame precision-weighted co-registration"
+    is Ernst-and-Banks multisensory fusion WITHIN the thalamocortical family, i.e. perception-side
+    cue combination before world-model entry. This claim is about inter-ENGINE interfaces after
+    that entry. No ARC-087 field is touched.
+
+    RELATION TO MECH-096, which is the sharpest REE-internal instance found in this pass: MECH-096's
+    notes already SPECIFY that the two core latents sit in different frames -- "Dorsal-equivalent
+    head: egocentric, action-relevant, high temporal resolution -> z_self. Ventral-equivalent head:
+    allocentric, object-identity, sustained representation -> z_world". A direct grep of
+    ree-v3/ree_core for egocentric / allocentric / reference_frame / ref_frame / frame_id returns
+    ZERO matches (2026-09-15), so that frame specification is asserted and unimplemented, and
+    nothing in V3 labels, enforces or records the frame of any latent. That is the concrete shape of
+    the gap this claim names, and it is why the claim is registered at v4 rather than v3.
+
+    NOT A NEW ASSAY, AND THIS IS LOAD-BEARING. The frame assay this thought proposes (RF-1 intact /
+    RF-2 frame-permuted / RF-3 content-permuted / RF-4 both destroyed) was independently and more
+    completely specified one day later in
+    evidence/planning/hippocampal_campaign_assay_specifications_20260910.md section 2: assay A
+    carries an A3_frame_cond arm, five frame levels (egocentric native; known invertible 90/180/270
+    rotation with the action-label set rotated correspondingly, which is its G4 positive control;
+    allocentric region index; event/segment index; elapsed-tick coordinate), a "shuffled frame label"
+    negative control, and a Gate A3 frame x receiver factorial with compositional holdout cells.
+    This claim exists to be the thing that arm's result ATTACHES TO -- at present A3_frame_cond is
+    the only arm of assay A with no registered claim behind it, while A4 has MECH-547 -- and NOT to
+    authorise any further instrument work. The instrument itself
+    (ree-v3/experiments/_lib/interface_probe.py, with tests/contracts/test_interface_probe.py) is
+    already built.
+
+    EXTERNAL MOTIVATION, NOT INDEPENDENTLY VERIFIED IN THIS PASS: Steel, Angeli and Robertson,
+    "Retinotopic coding organizes the interaction between internally and externally oriented brain
+    networks", eLife reviewed preprint v2, revised 2026-09-08, DOI 10.7554/eLife.110234 -- 7T fMRI
+    with individualised network definitions reporting that Default Network / dorsal-attention
+    coupling is organised by shared visual-field preference at voxel level while the networks remain
+    globally distinct. Taken from the source thought's reference list; a lit-pull is owed before it
+    is cited as support rather than motivation, and per feedback_lit_exp_decoupled it raises no
+    claim's confidence either way. The source thought's own caution is adopted verbatim as part of
+    the claim: retinotopy is NOT to be copied, no universal coordinate vocabulary is to be
+    prescribed, and a shared indexing relation across several consumers must not be read as evidence
+    for one global workspace or one shared object.
+
+    DO NOT build in V3 -- no frame-labelling API, no canonical-coordinate module, no alignment or
+    Procrustes objective in ree_core. DO NOT queue an experiment from this entry.
+
+- id: MECH-556
+  title: >-
+    Temporal-gate adequacy as a separable interface factor, and the mistimed-interface false
+    negative: an inter-system mapping can be representationally adequate -- source content present,
+    receiver-facing geometry adequate, bridge low-complexity, correct-pair specificity satisfied,
+    receiver on-manifold -- and still produce NO downstream effect because it is engaged outside the
+    phase in which the receiver is receptive, plastic, replaying the relevant episode, or evaluating
+    the relevant candidate. This separates HAVING a compatible interface from ENGAGING it at the
+    phase in which its content can alter another system. Registered failure class TG-F (a ninth
+    entry in the location doc's F1-F7 routing table) and the binding evidential consequence that is
+    this claim's real content, deliberately of the same shape as INV-105's two: a null measured at
+    an interface whose engagement phase was NOT a controlled variable does not license the reading
+    "the interface is semantically useless" or "the information was lost", until the same correctly
+    paired content has been delivered at a target phase versus early-shifted, late-shifted and
+    phase-shuffled conditions AT MATCHED communication energy, event count and update magnitude --
+    so that timing, not quantity, is what varied. Corollary that keeps this from licensing new
+    machinery: the manipulation is expected to be expressible by REE's EXISTING wake / sleep /
+    control-plane substrate, and a finding that it is not is itself the result -- do not add a gate
+    mechanism to make the test runnable.
+  claim_type: mechanism_hypothesis
+  subject: representation.temporal_gate_interface_engagement_phase
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-15'
+  source_thought: docs/thoughts/2026-09-09_shared_reference_frames_and_temporal_gates.md
+  depends_on:
+    - ARC-139    # federation principle; a temporal gate is a condition on any interface it licenses
+    - MECH-537   # communication subspace: the static half of the same interface question
+    - MECH-547   # lists temporal phase among receiver-state conditioners -- distinguished in notes
+    - MECH-540   # sleep as interface maintenance: says WHAT changes offline, not WHEN engagement must occur
+    - MECH-548   # recurrent stability: repeated traversal over time; this is single-traversal timing
+    - INV-105    # the null-reading consequence is the same shape as its random-projection floor; NOT an amendment
+    - ARC-053    # Temporal Coherence Loop -- the control-loop mechanism claim this is deliberately NOT; distinguished
+    - MECH-089   # theta-cycle packaging of E1 -> E3: a BUILT temporal gate at the fastest grain
+    - MECH-122   # spindle transmission window for replay -> cortex: a BUILT (content half) gate at the sleep grain
+    - MECH-272   # state-gated hippocampal fan-out across WAKING / SWS / REM: BUILT phase-conditioned routing
+    - MECH-294   # phase-aligned joint binding with a content-matched shuffled control
+    - MECH-091   # salient-event phase reset -- the built lever by which an engagement phase can be shifted
+  location: docs/architecture/interface_reference_frames_and_temporal_gates.md#mech-556
+  notes: >-
+    Registered 2026-09-15 from the same child thought as MECH-555.
+
+    WHAT IS NEW HERE IS THE EVIDENTIAL RULE, NOT THE MECHANISM, and a session that reads this as a
+    proposal to build phase gating has misread it. REE already owns and has BUILT temporal gating of
+    inter-engine reads at three grains, verified against ree-v3 in this pass: MECH-089's ThetaBuffer
+    (ree_core/latent/theta_buffer.py; E3 never sees raw E1 output, only a theta-cycle summary;
+    status active, plus the SD-100 phase-weighted summary), MECH-272's sleep routing gate
+    (ree_core/sleep/routing_gate.py; which consumer replay preferentially reaches is conditioned on
+    WAKING versus SWS versus REM), and MECH-122's spindle content-packaging window
+    (ThetaBuffer.set_consolidation_mode / consolidation_summary, wired into run_sws_schema_pass
+    behind use_mech122_spindle_content_selection). MECH-091's phase_reset and the MultiRateClock
+    (ree_core/heartbeat/clock.py, ARC-023 / MECH-093 / MECH-108) supply the levers by which an
+    engagement phase can be shifted at all. The claim is that NONE of this has ever been varied as an
+    independent variable in an interface adequacy measurement, so every interface null REE has
+    recorded was measured at one uncontrolled phase.
+
+    DISTINCT FROM ARC-053, the Temporal Coherence Loop. ARC-053 asserts that the architecture MUST
+    CONTAIN a distributed loop maintaining phase alignment so that V(t) is computable, and its own
+    what_would_answer records that its three dependencies are unbuilt and that MECH-089 carries a
+    deliberate architectural disclaimer against oscillatory coupling in the ANN substrate. This claim
+    asserts nothing about whether such a loop is necessary and requires no new mechanism; it is a
+    constraint on what an interface MEASUREMENT licenses. If ARC-053 is later retired or re-scoped to
+    a functional requirement, this claim is unaffected -- that independence is the test of the
+    distinction.
+
+    DISTINCT FROM MECH-547, which names "temporal phase" in its list of candidate receiver-state
+    conditioners. There the phase selects WHICH READ SURFACE the sender exposes -- a sender-side
+    selection question whose discriminator is receiver-state permutation. Here the phase determines
+    whether the receiver can USE OR LEARN FROM what arrives, with the exposed surface held correct;
+    the failure occurs with the right content on the right surface. MECH-547's mention is a
+    one-item enumeration, not a stated mechanism, and this entry should be read as making that item
+    explicit rather than as competing with it.
+
+    DISTINCT FROM MECH-548: that claim is about REPEATED traversal of an interface (off-manifold
+    compounding, semantic double-counting, cumulative versus clean-base). This is about a SINGLE
+    traversal arriving at the wrong moment. They can be separated experimentally: MECH-548's failure
+    needs more than one application, TG-F's shows on the first.
+
+    NOT A NEW ASSAY. The temporal-gating assay this thought proposes (target / early-shifted /
+    late-shifted / phase-shuffled / no-interface, at preserved communication energy) was
+    independently specified one day later as Gate B2 in
+    evidence/planning/hippocampal_campaign_assay_specifications_20260910.md section 3 -- "consumer
+    plasticity enabled in the empirically effective window versus the same window shifted versus
+    independently shuffled. Match event count, phase occupancy, activity magnitude and total
+    absolute weight change" -- with "matched event count at the wrong update phase" already listed
+    among its negative controls, and with the campaign scaffold's assay table
+    (hippocampal_translation_maps_biology_campaign_20260909.md section 5) already carrying the row
+    "Does phase matter? | target/early/late/shuffled temporal gate". This entry exists so that a
+    Gate B2 result has a claim to attach to, and NOT to authorise instrument work. The recording
+    side is also already partly built: interface_probe.CaptureRecord carries a `phase` field and an
+    `active_gates` map (ree-v3/experiments/_lib/interface_probe.py), though nothing in that module
+    yet treats phase as a factor.
+
+    EXTERNAL MOTIVATION, NOT INDEPENDENTLY VERIFIED IN THIS PASS: Okyere et al., "Hippocampal
+    stimulation timed to memory reactivation shapes human sleep oscillatory dynamics and
+    consolidation", bioRxiv, posted 2026-09-07, DOI 10.64898/2026.09.02.748628 -- non-invasive
+    temporal-interference stimulation of the left hippocampal head during sleep, delivered
+    concurrently with induced reactivation versus mistimed before it, reducing associative
+    forgetting and raising fast-spindle amplitude. Single preprint, not replicated; taken from the
+    source thought's reference list. It is causal evidence that ENGAGEMENT TIMING changes the
+    functional consequence of engagement; it is NOT evidence that sleep performs latent translation
+    or that any hippocampo-cortical bridge exists, and the source thought says so explicitly. A
+    lit-pull is owed; per feedback_lit_exp_decoupled it raises no claim's confidence.
+
+    DELIBERATELY NOT REGISTERED alongside this, and a later session should not add it without new
+    evidence: the source thought's section 9 conjunction -- that offline consolidation opens
+    short-lived, REFERENCE-FRAME-ALIGNED communication windows in which specialised systems update
+    one another. The thought itself states that the biological evidence supports shared reference
+    scaffolds and timing-sensitive consolidation SEPARATELY and does not demonstrate their
+    conjunction, and registering the conjunction would also overlap MECH-540.
+
+    DO NOT build in V3 -- no new gate, window or phase mechanism; the existing substrate named above
+    is the manipulation surface and the source thought's own architectural caution says so. DO NOT
+    queue an experiment from this entry.
