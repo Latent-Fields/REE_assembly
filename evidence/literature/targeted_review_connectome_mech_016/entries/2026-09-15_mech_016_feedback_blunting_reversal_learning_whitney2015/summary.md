@@ -1,0 +1,11 @@
+# Whitney et al. (2015) -- sleep deprivation blunts updating on feedback
+
+**What they did.** Whitney, Hinson, Jackson and Van Dongen randomised 26 healthy adults to 62 hours of total sleep deprivation or rested control, inside a six-day laboratory protocol with continuous monitoring. Participants learned go and no-go stimulus sets, and then the contingencies reversed without warning, so success depended on noticing and acting on outcome feedback. They also recorded skin conductance to feedback and ran a psychomotor vigilance test and a working-memory scanning task.
+
+**What they found.** Deprived participants struggled to learn at all and were profoundly impaired at adapting to reversal. Their skin conductance responses to feedback were diminished. Working-memory scanning was not significantly affected, and although attentional lapses appeared as expected, they did not account for the reversal deficit. The authors' own summary is that the error may register but with diminished effect.
+
+**How it maps to MECH-016.** This is the behavioural face of the claim. MECH-016 says precision drifts during waking and that sleep reduces excessive rigidity and rebalances commitment against exploration. 'The error registers, but not strongly enough to change the policy' is close to a textbook description of too little precision on outcome prediction errors relative to the prior policy. Clinically it is familiar from post-call decision making. For REE it provides a concrete failure signature: an agent with offline recalibration disabled should reverse slowly and switch policy less on prediction error, while its simpler capacities stay intact.
+
+**Where it does not reach.** Deprivation shows the cost of losing sleep. It does not show what sleep does. Sixty-two hours is also far from the within-day drift the claim is about. The blunted skin conductance may reflect a flattening of feedback valence (an affective channel) rather than of precision, and this design cannot tell those apart. Whether two recovery nights restored reversal performance, and so whether the effect is truly recalibrated rather than just not worsened, is the question I would most want answered.
+
+**Confidence 0.52.** A good controlled design with the right behavioural shape, discounted for the size of the manipulation and the valence/precision ambiguity.

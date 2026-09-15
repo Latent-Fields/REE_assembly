@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-14T11:05:08.878593Z`
+Generated: `2026-09-15T03:54:14.150236Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -99,6 +99,7 @@ Generated: `2026-09-14T11:05:08.878593Z`
 | `targeted_review_connectome_mech_002` | [`2026-09-08_mech_002_serotonin_patience_miyazaki2014`](targeted_review_connectome_mech_002/entries/2026-09-08_mech_002_serotonin_patience_miyazaki2014/record.json) | 5 | [`summary`](targeted_review_connectome_mech_002/entries/2026-09-08_mech_002_serotonin_patience_miyazaki2014/summary.md) |
 | `targeted_review_connectome_mech_004` | [`2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000`](targeted_review_connectome_mech_004/entries/2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000/record.json) | 5 | [`summary`](targeted_review_connectome_mech_004/entries/2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000/summary.md) |
 | `targeted_review_connectome_mech_005` | [`2026-09-09_mech_005_reboxetine_explore_exploit_null_jepma2010`](targeted_review_connectome_mech_005/entries/2026-09-09_mech_005_reboxetine_explore_exploit_null_jepma2010/record.json) | 5 | [`summary`](targeted_review_connectome_mech_005/entries/2026-09-09_mech_005_reboxetine_explore_exploit_null_jepma2010/summary.md) |
+| `targeted_review_connectome_mech_016` | [`2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012`](targeted_review_connectome_mech_016/entries/2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012/record.json) | 5 | [`summary`](targeted_review_connectome_mech_016/entries/2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012/summary.md) |
 | `targeted_review_connectome_mech_022` | [`2026-04-02_mech_092_awake_remote_replay_karlsson2009`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/record.json) | 4 | [`summary`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/summary.md) |
 | `targeted_review_connectome_mech_025` | [`2026-04-28_mech_025b_soa_brain_disorders_malik2022`](targeted_review_connectome_mech_025/entries/2026-04-28_mech_025b_soa_brain_disorders_malik2022/record.json) | 9 | [`summary`](targeted_review_connectome_mech_025/entries/2026-04-28_mech_025b_soa_brain_disorders_malik2022/summary.md) |
 | `targeted_review_connectome_mech_026` | [`2026-04-02_mech_026_vigilance_arousal_physiology_2006`](targeted_review_connectome_mech_026/entries/2026-04-02_mech_026_vigilance_arousal_physiology_2006/record.json) | 6 | [`summary`](targeted_review_connectome_mech_026/entries/2026-04-02_mech_026_vigilance_arousal_physiology_2006/summary.md) |

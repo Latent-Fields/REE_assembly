@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_016",
+  "entry_id": "2026-09-15_mech_016_ne_infraslow_oscillation_sleep_microarchitecture_kjaerby2022",
+  "timestamp_utc": "2026-09-15T03:49:53Z",
+  "claim_ids_tested": [
+    "MECH-016"
+  ],
+  "source": {
+    "title": "Memory-enhancing properties of sleep depend on the oscillatory amplitude of norepinephrine.",
+    "authors": [
+      "Celia Kjaerby",
+      "Mie Andersen",
+      "Natalie Hauglund",
+      "Verena Untiet",
+      "Camilla Dall",
+      "Bjorn Sigurdsson",
+      "Fengfei Ding",
+      "Jiesi Feng",
+      "Yulong Li",
+      "Pia Weikop",
+      "Hajime Hirase",
+      "Maiken Nedergaard"
+    ],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "volume": "25",
+    "issue": "8",
+    "pages": "1059-1070",
+    "doi": "10.1038/s41593-022-01102-9",
+    "pmid": "35798980",
+    "pmc": "PMC9817483"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Fibre photometry with a genetically encoded NE sensor shows that NREM sleep is not a flat low-NE state but carries LC-generated infraslow NE oscillations whose descending phases drive spindles and whose amplitude shapes memory-relevant micro-architecture. This supports MECH-016's premise that monoaminergic tone is actively structured during sleep, but it complicates the simple 'reset' reading: NE is being modulated rhythmically (and micro-arousals ride its peaks), so the offline regime is a patterned gain schedule rather than a single recalibration event. Mixed direction; moderate-low confidence given the mapping distance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "NREM NE levels oscillate on a ~50 s infraslow cycle with micro-arousals on the peaks; a MECH-016 implementation that models sleep as a monotone reset of gain would be inconsistent with this patterned schedule.",
+    "Memory benefit depended on NE oscillation amplitude, not on mean NE level -- the relevant variable may be the dynamics of gain during sleep, which MECH-016 does not specify.",
+    "No measurement of post-sleep precision, uncertainty weighting, or decision behaviour; the link to recalibration of online gains is inferential."
+  ],
+  "tags": [
+    "mech_016",
+    "sleep",
+    "norepinephrine",
+    "infraslow_oscillation",
+    "spindles",
+    "micro_arousal",
+    "precision_recalibration",
+    "fiber_photometry"
+  ],
+  "mapping": {
+    "source_claim_statement": "During NREM sleep, LC-generated infraslow oscillations of extracellular NE organise sleep micro-architecture: micro-arousals occur on NE peaks, descending NE phases drive spindles, and the amplitude of the NE oscillation determines the balance of spindle-rich/REM states versus micro-arousals and relates to memory performance.",
+    "ree_translation": "MECH-016 assigns sleep the job of rebalancing online precision gains, with noradrenaline as a reset channel. Kjaerby et al. show that the noradrenergic channel during sleep is under structured, oscillatory control whose amplitude matters for offline memory processing. For REE this suggests the offline recalibration phase should be modelled as a scheduled modulation of the gain signal (alternating low-gain plasticity windows with brief high-gain 'check' windows) rather than a single clamp-to-baseline step.",
+    "mapping_caveat": "The paper concerns sleep micro-architecture and consolidation, not calibration of precision. It supports 'NE is actively regulated during sleep and that regulation matters' but is silent on whether any waking gain parameter is restored. Micro-arousals could serve vigilance (sentinel function) rather than recalibration.",
+    "source_context": "Mice; fibre photometry with GRAB-NE sensor in cortex/thalamus, EEG/EMG sleep staging, optogenetic/chemogenetic LC manipulation, novel object recognition memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Nature Neuroscience, modern sensor methodology, causal manipulations. Mapping fidelity low-moderate: directly about NE regulation in sleep but not about gain recalibration. Mixed because it refines (and partly contradicts) a monotone-reset reading."
+  }
+}

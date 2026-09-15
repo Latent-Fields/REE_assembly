@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_016",
+  "entry_id": "2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012",
+  "timestamp_utc": "2026-09-15T03:49:53Z",
+  "claim_ids_tested": [
+    "MECH-016"
+  ],
+  "source": {
+    "title": "Evidence that sleep deprivation downregulates dopamine D2R in ventral striatum in the human brain.",
+    "authors": [
+      "Nora D Volkow",
+      "Dardo Tomasi",
+      "Gene-Jack Wang",
+      "Frank Telang",
+      "Joan E Fowler",
+      "Jean Logan",
+      "Helene Benveniste",
+      "Ron Kim",
+      "Peter K Thanos",
+      "Sergi Ferre"
+    ],
+    "year": 2012,
+    "venue": "Journal of Neuroscience",
+    "volume": "32",
+    "issue": "19",
+    "pages": "6711-6717",
+    "doi": "10.1523/JNEUROSCI.0045-12.2012",
+    "pmid": "22573693",
+    "pmc": "PMC3433285"
+  },
+  "evidence_class": "empirical_human_neuroimaging",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Human PET ([11C]raclopride, n=20, within-subject rested vs one night of sleep deprivation, placebo and methylphenidate) indicates that sleep loss downregulates ventral striatal D2/D3 receptor availability rather than raising dopamine release. This is the inverse direction of MECH-016's claim: if the dopaminergic commitment channel drifts measurably without sleep, sleep is plausibly what holds it calibrated. It supports the 'dopamine-like commitment' leg, but by deprivation logic (loss-of-function), with PET receptor-availability inference and a single night, so confidence is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Deprivation evidence shows that the dopaminergic channel drifts without sleep; it does not show that sleep actively recalibrates it rather than simply preventing wake-dependent drift.",
+    "The D2/D3 change associated with sleepiness and reduced alertness, not with measured changes in commitment, exploration or value-based choice, so the link to precision over commitment is inferred.",
+    "Raclopride binding cannot fully separate receptor downregulation from altered endogenous dopamine; the methylphenidate comparison argues for downregulation but does not prove it."
+  ],
+  "tags": [
+    "mech_016",
+    "sleep_deprivation",
+    "dopamine",
+    "d2_receptor",
+    "ventral_striatum",
+    "pet",
+    "precision_recalibration",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "One night of sleep deprivation reduces D2/D3 receptor availability in human ventral striatum; because methylphenidate-induced dopamine increases did not differ between rested and deprived states, the reduction is best explained by receptor downregulation rather than increased dopamine release, and it is associated with reduced alertness and increased sleepiness.",
+    "ree_translation": "MECH-016 pairs dopamine with 'commitment' precision and holds that sleep rebalances commitment against exploration. Volkow et al. give human evidence that a core component of the dopaminergic gain apparatus (postsynaptic D2/D3 availability in ventral striatum) shifts within a single night when sleep is withheld. In REE terms, the offline phase is what keeps the commitment-gain channel's effective sensitivity within range; an agent denied its offline phase should show drifting commitment gain.",
+    "mapping_caveat": "This is a loss-of-function inference: showing drift without sleep does not establish that sleep performs recalibration (it could simply end the waking process that causes drift). Receptor availability is a proxy for gain sensitivity, not a direct precision measurement, and the behavioural correlate was sleepiness, not commitment or exploration behaviour.",
+    "source_context": "Healthy human adults (n=20); [11C]raclopride PET after rested sleep and after one night of sleep deprivation, each with placebo and methylphenidate; corroborating rodent microdialysis after paradoxical sleep deprivation."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.3,
+    "notes": "J Neurosci, human within-subject PET with pharmacological control; modest n. Mapping penalised for deprivation logic and for the proxy nature of receptor availability. Transfer risk relatively low (human, directly neuromodulatory)."
+  }
+}

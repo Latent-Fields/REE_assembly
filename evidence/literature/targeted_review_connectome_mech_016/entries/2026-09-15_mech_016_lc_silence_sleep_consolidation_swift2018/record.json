@@ -1,0 +1,65 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_016",
+  "entry_id": "2026-09-15_mech_016_lc_silence_sleep_consolidation_swift2018",
+  "timestamp_utc": "2026-09-15T03:49:53Z",
+  "claim_ids_tested": [
+    "MECH-016"
+  ],
+  "source": {
+    "title": "Abnormal Locus Coeruleus Sleep Activity Alters Sleep Signatures of Memory Consolidation and Impairs Place Cell Stability and Spatial Memory.",
+    "authors": [
+      "Kevin M Swift",
+      "Brooks A Gross",
+      "Michelle A Frazer",
+      "David S Bauer",
+      "Kyle J D Clark",
+      "Elena M Vazey",
+      "Gary Aston-Jones",
+      "Yong Li",
+      "Anthony E Pickering",
+      "Susan J Sara",
+      "Gina R Poe"
+    ],
+    "year": 2018,
+    "venue": "Current Biology",
+    "volume": "28",
+    "issue": "22",
+    "pages": "3599-3609.e4",
+    "doi": "10.1016/j.cub.2018.09.054",
+    "pmid": "30393040",
+    "pmc": "PMC7556718"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Causal optogenetic manipulation (2 Hz LC stimulation during sleep, no arousal, no change in sleep amount) shows that the normal sleep-time withdrawal of noradrenergic tone is necessary for spindles, delta/theta power, ripple-spindle coupling, consolidation and next-day place-cell stability. That is direct evidence for the 'noradrenaline-like reset' leg of MECH-016: sleep is a regime in which the arousal/gain signal is actively switched off, and holding it on degrades offline reorganisation. Confidence is moderate rather than high because the paper measures consolidation and representational stability, not the recalibration of a precision gain per se; the REE reading (LC silence = precision reset window) is an interpretation layered on the data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If sleep-time LC silence served precision recalibration, one would expect post-sleep changes in gain-dependent behaviour (e.g. exploration/commitment balance); the paper measures only spatial memory and place-cell stability, so recalibration of alpha_k is not directly observed.",
+    "Stimulation disrupted both new consolidation and reconsolidation of old locations -- LC silence may be a generic plasticity permission signal rather than a precision-specific reset, which would fit MECH-016 only loosely.",
+    "Rodent optogenetic manipulation at a fixed 2 Hz; physiological LC firing in sleep is phasic and infraslow-structured, so the manipulation may not isolate the reset function from general network disruption."
+  ],
+  "tags": [
+    "mech_016",
+    "sleep",
+    "locus_coeruleus",
+    "norepinephrine",
+    "precision_recalibration",
+    "spindles",
+    "place_cells",
+    "optogenetics"
+  ],
+  "mapping": {
+    "source_claim_statement": "The LC falls silent throughout REM sleep and prior to each NREM spindle; optogenetically preventing these silences reduces spindles, NREM delta and REM theta power, and ripple-spindle coupling, and impairs consolidation of newly learned locations, reconsolidation of prior locations, and next-day place-cell stability.",
+    "ree_translation": "MECH-016 holds that precision gains become miscalibrated during online action and that sleep provides a regime in which they are reset, with a 'noradrenaline-like reset' as one component. Swift et al. show that the offline regime requires withdrawal of the brain's main arousal/gain neuromodulator; keeping NE tone on blocks the reorganisation that follows learning. In REE terms this supports a design in which the offline phase must explicitly clamp or zero the online gain signal (the alpha_k-driving arousal channel) rather than merely reducing input -- the reset is an active state, not the absence of waking.",
+    "mapping_caveat": "The paper evidences a necessity of LC silence for memory consolidation and representational stability; it does not measure precision, uncertainty weighting, or commitment/exploration balance. Treating 'LC silence permits plasticity' as 'sleep recalibrates precision' is an REE translation, and the same data are equally consistent with LC silence acting as a plasticity gate for consolidation (MECH-120/121 territory) with no calibration content.",
+    "source_context": "Rats; optogenetic 2 Hz stimulation of noradrenergic LC neurons during post-learning sleep; hippocampal LFP and single-unit place-cell recording; food-location spatial learning task."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Current Biology, causal manipulation with appropriate controls (no arousal, sleep amount unchanged), converging electrophysiology and behaviour. Mapping fidelity is the limiting factor: supports the noradrenergic-reset component of MECH-016 but not the calibration content. Rodent-to-REE transfer moderate."
+  }
+}

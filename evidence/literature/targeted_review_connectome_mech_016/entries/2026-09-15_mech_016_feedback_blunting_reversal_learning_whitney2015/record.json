@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_016",
+  "entry_id": "2026-09-15_mech_016_feedback_blunting_reversal_learning_whitney2015",
+  "timestamp_utc": "2026-09-15T03:49:53Z",
+  "claim_ids_tested": [
+    "MECH-016"
+  ],
+  "source": {
+    "title": "Feedback Blunting: Total Sleep Deprivation Impairs Decision Making that Requires Updating Based on Feedback.",
+    "authors": [
+      "Paul Whitney",
+      "John M Hinson",
+      "Melinda L Jackson",
+      "Hans P A Van Dongen"
+    ],
+    "year": 2015,
+    "venue": "Sleep",
+    "volume": "38",
+    "issue": "5",
+    "pages": "745-754",
+    "doi": "10.5665/sleep.4668",
+    "pmid": "25515105",
+    "pmc": "PMC4402662"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Randomised, laboratory-controlled human study (62 h total sleep deprivation vs rested control, n=26) shows a selective failure to update on outcome feedback in reversal learning, with blunted skin conductance to feedback, not explained by attentional lapses or working-memory scanning. That is a behavioural signature of miscalibrated precision on prediction errors (errors register with too little weight) and of excess rigidity, the states MECH-016 says sleep corrects. Confidence moderate: extreme deprivation, small n, and the precision interpretation is REE's.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Deprivation was 62 h, far beyond one waking day; the rigidity observed may reflect pathological sleep loss rather than the ordinary within-day gain drift MECH-016 posits.",
+    "Recovery sleep was tested, but the abstract does not establish that two recovery nights fully restored reversal performance, so 'sleep recalibrates' is not demonstrated as a restoration effect.",
+    "Blunted feedback reactivity could reflect reduced affective valence (a value channel) rather than reduced precision on prediction error; the two are not dissociated."
+  ],
+  "tags": [
+    "mech_016",
+    "sleep_deprivation",
+    "reversal_learning",
+    "feedback",
+    "prediction_error",
+    "rigidity",
+    "precision_recalibration",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Total sleep deprivation profoundly impairs decision making that requires updating on outcome feedback under changing contingencies (reversal learning), accompanied by blunted skin conductance responses to feedback; the impairment is not accounted for by attentional lapses and working memory scanning is spared.",
+    "ree_translation": "MECH-016 claims online precision gains drift and that sleep reduces excessive rigidity and rebalances commitment vs exploration. Feedback blunting is what a mis-set precision on outcome prediction errors looks like behaviourally: the error registers, but with too little weight to overturn the current policy. For REE, this is a behavioural failure signature to reproduce: an agent whose offline recalibration is disabled should show slower reversal and reduced PE-driven policy switching while basic working-memory-like capacity is intact.",
+    "mapping_caveat": "The study is about sleep deprivation, not about the content of sleep; it evidences the cost of missing offline recalibration, not the mechanism. The reduced feedback reactivity is compatible with a valence/affect deficit rather than a precision deficit, and 62 h deprivation is an extreme manipulation relative to REE's routine offline cycle.",
+    "source_context": "Healthy adults (22-40 y, n=26, 13 per arm); six-day laboratory protocol; 62 h total sleep deprivation vs rested control; go/no-go learning with unannounced reversal; skin conductance, PVT, working memory scanning; testing at baseline, after deprivation and after two recovery nights."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Sleep (journal), randomised and tightly controlled but small n. Mapping moderate: behavioural signature fits precision-on-feedback miscalibration but does not dissociate precision from valence. Transfer risk from extreme deprivation to routine offline cycles."
+  }
+}

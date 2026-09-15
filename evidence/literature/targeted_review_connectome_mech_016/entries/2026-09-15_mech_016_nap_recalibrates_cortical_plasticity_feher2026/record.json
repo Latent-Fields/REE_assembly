@@ -1,0 +1,65 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_016",
+  "entry_id": "2026-09-15_mech_016_nap_recalibrates_cortical_plasticity_feher2026",
+  "timestamp_utc": "2026-09-15T03:49:53Z",
+  "claim_ids_tested": [
+    "MECH-016"
+  ],
+  "source": {
+    "title": "A nap can recalibrate homeostatic and associative synaptic plasticity in the human cortex.",
+    "authors": [
+      "Kristoffer D Feher",
+      "Pauline Henckaerts",
+      "Vivien Hirsch",
+      "Ursula Bucsenez",
+      "Marion Kuhn",
+      "Jonathan G Maier",
+      "Carlotta L Schneider",
+      "Elisabeth Hertenstein",
+      "Christian Mikutta",
+      "Dieter Riemann",
+      "Bernd Feige",
+      "Christoph Nissen"
+    ],
+    "year": 2026,
+    "venue": "NeuroImage",
+    "volume": "327",
+    "pages": "121723",
+    "doi": "10.1016/j.neuroimage.2026.121723",
+    "pmid": "41544905"
+  },
+  "evidence_class": "empirical_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Within-subject human study (n=20, nap vs wake) with TMS/EEG indices: after a nap, higher TMS intensity is needed to evoke MEPs and wake theta is lower (reduced net synaptic strength), and PAS-induced LTP-like plasticity is more inducible. This is direct human evidence that even short sleep resets a cortical gain-like quantity (excitability) and restores the headroom for new plasticity, matching MECH-016's 'restoration of entropy where collapse occurred too early' at the synaptic-gain level. Confidence limited: net synaptic strength is not precision weighting in the predictive-coding sense, n is small, and this is a single-afternoon nap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The measured quantities are corticospinal excitability and LTP-like plasticity inducibility in motor cortex; neither is a precision weight on prediction error, so the mapping to alpha_k rests on treating synaptic gain as a precision proxy.",
+    "The effect is a synaptic-homeostasis renormalisation (SHY-type), which is already evidenced under MECH-120; it may not add anything specific to MECH-016's neuromodulatory recalibration.",
+    "No behavioural readout of commitment, exploration or rigidity accompanied the neurophysiological change."
+  ],
+  "tags": [
+    "mech_016",
+    "sleep",
+    "nap",
+    "synaptic_homeostasis",
+    "cortical_excitability",
+    "tms",
+    "paired_associative_stimulation",
+    "precision_recalibration",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Compared with an equivalent period of wakefulness, a one-hour afternoon nap reduces indices of net cortical synaptic strength (higher TMS motor threshold for MEPs, lower wake EEG theta) and increases the inducibility of LTP-like associative plasticity (greater MEP increase after paired associative stimulation).",
+    "ree_translation": "MECH-016 describes sleep as restoring entropy where collapse occurred too early and reducing excessive rigidity. Feher et al. show in humans that sleep, even a short nap, turns down accumulated cortical gain and reopens capacity for new associative plasticity. In REE terms, the offline phase lowers gains that ratcheted up during waking and restores the headroom for subsequent updating; an agent without that reset should show saturating gain and reduced learnability.",
+    "mapping_caveat": "Cortical excitability and LTP-like inducibility are synaptic-level quantities, not precision weights on prediction error; reading them as alpha_k recalibration is an REE translation. The finding is closest to the synaptic homeostasis hypothesis (MECH-120) and does not engage the monoaminergic channels MECH-016 names.",
+    "source_context": "Healthy human adults (n=20); repeated-measures sleep-lab design with adaptation, nap and wake sessions (13:15-14:15); TMS motor evoked potentials, paired associative stimulation, wake EEG theta."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.3,
+    "notes": "NeuroImage, human within-subject with non-invasive physiological indices; small n and recent (not yet replicated). Mapping fidelity low-moderate: 'recalibrate' is the authors' word, but the calibrated quantity is synaptic gain/plasticity, not precision. Human data keeps transfer risk modest."
+  }
+}
