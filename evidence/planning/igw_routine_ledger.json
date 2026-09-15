@@ -5257,7 +5257,11 @@
       "task_claim_session_id": "igw-auto-igw-250-confirm-evidence-arc-131-lit-0-8-20260915T045200Z",
       "task_claim_claimed_at": "2026-09-15T04:52:00Z",
       "assigned_at": "2026-09-15T04:50:29Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-15T04:54:45Z",
+      "completion_summary": "no action: ARC-131 confirming probe V3-EXQ-1038 already queued (ree-v3 95961aa) and RAN 2026-09-14T20:11Z (PASS, endogenous_recruitment_engaged_at_default_threshold, non_contributory diagnostic); unreviewed in pending_review.md -- owed step is /governance review of 1038, not a new run. Detector note: GOV-CONFIRM-1 fired on exp~0 because the run is unreviewed/non_contributory, so it may re-spawn until governance adjudicates 1038.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "no action: ARC-131 confirming probe V3-EXQ-1038 already queued (ree-v3 95961aa) and RAN 2026-09-14T20:11Z (PASS, endogenous_recruitment_engaged_at_default_threshold, non_contributory diagnostic); unreviewed in pending_review.md -- owed step is /governance review of 1038, not a new run. Detector note: GOV-CONFIRM-1 fired on exp~0 because the run is unreviewed/non_contributory, so it may re-spawn until governance adjudicates 1038."
     }
   ],
   "dispositions": [
@@ -7541,6 +7545,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-15T03:57:23Z",
       "re_eligible_after": "2026-09-17T03:57:23Z"
+    },
+    {
+      "stable_hash": "514c70b6d143",
+      "igw_id_at_disposition": "IGW-20260915-250",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-131"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Confirm evidence: ARC-131 (lit 0.80, exp ~0)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-15T04:54:48Z",
+      "re_eligible_after": "2026-09-17T04:54:48Z"
     }
   ]
 }
