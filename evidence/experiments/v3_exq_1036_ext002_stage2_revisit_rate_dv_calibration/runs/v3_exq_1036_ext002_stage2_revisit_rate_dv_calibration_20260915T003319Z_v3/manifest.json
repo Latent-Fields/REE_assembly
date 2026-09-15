@@ -1,0 +1,129 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1036_ext002_stage2_revisit_rate_dv_calibration",
+  "run_id": "v3_exq_1036_ext002_stage2_revisit_rate_dv_calibration_20260915T003319Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-15T00:33:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic_no_direction",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "baseline",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "stage2_dv_calibration_banked",
+    "text": "CALIBRATION BANKED: 3 freshly-drawn seeds (5 draws) cleared the inherited training-completion gate, of which 3 were revisit-non-degenerate (both arms >0 total revisits) and used for the range below; 0 were revisit-degenerate and are recorded in per_seed_dv but excluded from the aggregate. decline_rate_gap (A0 minus A1) over non-degenerate pooled seeds: mean=-0.000431244, range=0.00129373. A1 control-arm decline_rate range=0.00127669 -- the statistic ext002_stage2_dv_threshold_feasibility_20260911.md Section 2 recommends deriving a future C1-equivalent bar from. NOT a verdict on EXT-002/ARC-013 -- claim-free, no pre-registered threshold. This pool was NOT gated on 983a's own evidence-run P4 revisit-denominator floor (see per_seed_dv[].clears_legacy_p4_floor), so it may include lower-revisit-volume seeds than a P4-gated evidence run would admit -- read the banked range with that in mind. Governance/queue-experiment should set stage 2's evidence-run threshold from this range, and resolve the feasibility doc's point (b) -- revisit-volume aggregation: min-across-pooled-cells=18 vs median-across-pooled-cells=23.0 over the early-half counts recorded here -- before queuing the full evidence run.",
+    "preconditions": [
+      {
+        "name": "pooled_seed_count",
+        "description": "number of freshly-drawn seeds clearing the inherited training-completion gate (steps_realized_frac>=0.60, harm_rate_train<=0.35, both arms)",
+        "control": "same completion-gate bands 983a/1014 inherited",
+        "measured": 3.0,
+        "threshold": 1.5,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "revisit_population_non_degenerate",
+        "description": "at least one pooled seed has a NON-ZERO TOTAL REVISIT COUNT (n_revisits_early + n_revisits_late) in BOTH arms -- not just a non-zero distinct-erred-key count, which a seed can carry while still generating zero revisits (red-team F2: erred keys and revisits are different quantities; a keys-based test would pass a seed whose DV is nonetheless a structural 0/0)",
+        "control": "pooled seeds surviving the completion gate",
+        "measured": 3.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "calibration_population_adequate": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "06a03d0caccf1fe9049e9b1fcf5742575082a67be732ca43d15df5ce6a33e9df",
+  "substrate_commit": {
+    "commit": "187a63b80c09f467b16243fe2300f5cd7d80ca96",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 40053.89334074396,
+  "config": {
+    "env": "CausalGridWorldV2",
+    "size": 6,
+    "num_hazards": 4,
+    "num_resources": 3,
+    "hazard_harm": 0.02,
+    "proximity_harm_scale": 0.05,
+    "use_proxy_fields": true,
+    "self_dim": 32,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "lr": 0.001,
+    "num_candidates": 32,
+    "warmup_episodes": 110,
+    "steps_per_episode": 200,
+    "unified_latent_mode": false,
+    "reafference_action_dim": 0,
+    "arms": [
+      "A0_INTACT",
+      "A1_RESIDUE_FROZEN"
+    ],
+    "selection_rule": "argmin_over_candidate_residue_scores",
+    "repeat_error_key": "(pre_action_grid_x, pre_action_grid_y, executed_action_class)",
+    "control_probe_steps": 25
+  },
+  "seeds": [
+    95973,
+    70497,
+    169236,
+    811747,
+    570199
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
