@@ -28,8 +28,7 @@ checkpoints and recorded trajectories.
 
 ---
 
-## ARC-139 -- Integration does not require representational sameness
-
+## ARC-139 -- Integration does not require representational sameness {#arc-139}
 The organising proposition. Specialised subsystems may preserve distinct, high-dimensional,
 private internal representations while coordinating through low-dimensional, context-sensitive
 communication subspaces and low-complexity transformations. Development can raise local
@@ -58,8 +57,7 @@ specialised objects joined by context-specific translations; (4) a hybrid invari
 private dimensions. The communication-subspace evidence makes 2-4 credible enough that ARC-121
 must not be used to prejudge the question. No change is made to ARC-121 here.
 
-## MECH-537 -- Communication-subspace routing: encoded but not exposed
-
+## MECH-537 -- Communication-subspace routing: encoded but not exposed {#mech-537}
 A task variable can be strongly encoded in the full sender latent while being weakly represented
 in the *consumer-facing* subspace, producing the phenotype
 
@@ -77,8 +75,7 @@ Estimated by cross-validated Reduced Rank Regression from sender activity to the
 consumer input, then comparing task decodability in the full sender, in the communication
 subspace, and in its orthogonal complement.
 
-## INV-105 -- The latent-access evidence ladder
-
+## INV-105 -- The latent-access evidence ladder {#inv-105}
 A variable's status in a latent space is not one property but seven, which must never be
 collapsed:
 
@@ -111,8 +108,7 @@ INV-104 is the sender-side half (preserve organism-relevant distinctions). This 
 consumer/evidence-side half: preservation is necessary and not sufficient, and probe success
 licenses only rung 2.
 
-## MECH-538 -- Minimum bridge complexity as the measure of mutual legibility
-
+## MECH-538 -- Minimum bridge complexity as the measure of mutual legibility {#mech-538}
 For systems A and B and a family of constrained mappings `T_k` of increasing complexity,
 
 `L(A -> B) = minimum bridge complexity achieving a predeclared held-out functional criterion`
@@ -132,8 +128,7 @@ global representational similarity stays flat or falls, task information concent
 consumer-facing subspace, and minimum bridge rank falls. That signature -- *coordination without
 homogenisation* -- is what would distinguish this claim from ordinary co-training.
 
-## MECH-539 -- Dynamic interface compatibility
-
+## MECH-539 -- Dynamic interface compatibility {#mech-539}
 Between predictive systems (E1, E2), pointwise state correspondence is insufficient. A bridge
 must also satisfy: `receiver_transition(T(x_t), a_t)` is compatible with `T(x_(t+1))` under the
 relevant action/context. A map can succeed pointwise while destroying transition geometry.
@@ -147,8 +142,7 @@ work.
 Related to but distinct from INV-088's rollout-consistency lineage, which concerns E1's own
 multi-step transition fidelity rather than the geometry of an interface between two systems.
 
-## MECH-540 -- Sleep as selective interface maintenance
-
+## MECH-540 -- Sleep as selective interface maintenance {#mech-540}
 MECH-529 gives offline consolidation two jobs: revise the representation (split/merge/reweight)
 and re-index episodic traces so autobiographical addressability survives. This claim adds a
 **third**: adjust or stabilise the *interface* -- the subspace through which another subsystem
