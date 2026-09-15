@@ -3018,3 +3018,5 @@ One line per hourly tick. ASCII only.
 2026-09-15T03:58:49Z complete igw-243-literature-proposal-for-mech-016 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-016: 5 entries (Swift2018, Kjaerby2022, Volkow2012, Whitney2015, F
 2026-09-15T04:51:22Z GC removed worktree igw-243-literature-proposal-for-mech-016 (removed; branch deleted)
 2026-09-15T04:50:29Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-15T04:50:29Z SPAWN IGW-20260915-250 skill=/queue-experiment prio=55 uuid=4ea7ca4c-f0ed-416f-82c5-8b0e6f6352e4 pid=91241 worktree=igw-250-confirm-evidence-arc-131-lit-0-8
+2026-09-15T04:54:48Z auto-defer igw-250-confirm-evidence-arc-131-lit-0-8 hash=514c70b6d143 for 48h (complete)
