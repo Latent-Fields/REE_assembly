@@ -1,0 +1,197 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1039_mech428_inv086_waypoint_field_consumer_drive_signal",
+  "run_id": "v3_exq_1039_mech428_inv086_waypoint_field_consumer_drive_signal_20260915T025330Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-15T02:53:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-086",
+    "MECH-428"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "INV-086": "non_contributory",
+    "MECH-428": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "training_signal_does_not_convert_h1_not_supported",
+    "preconditions": [
+      {
+        "name": "greedy_oracle_clears_floor",
+        "kind": "readiness",
+        "description": "greedy_oracle (env ground truth, never reads the field) visits/ep clears ORACLE_FLOOR on every seed at this budget/geometry -- the positive control that the env/geometry is navigable, same statistic C1 routes on.",
+        "control": "greedy_oracle waypoints_visited_per_ep, worst seed",
+        "measured": 10.8,
+        "threshold": 4.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "zworld_encoder_trained_majority_cells",
+        "kind": "readiness",
+        "description": "Fraction of (seed, treatment-arm) cells whose SD-070 P0a warmup measurably moved the world encoder (assert_world_encoder_trained, strict=False).",
+        "control": "latent_stack pre/post-warmup weight-delta audit",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "achievable_span_clears_floor",
+        "kind": "readiness",
+        "description": "(oracle - random) visits/ep span clears MIN_ACHIEVABLE_SPAN -- below this, LIFT_MARGIN_FRAC (a fraction OF the span) would be a near-zero, trivially-cleared bar rather than a meaningful one.",
+        "control": "greedy_oracle_mean - random_walk_mean, this run's own anchors",
+        "measured": 11.1,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "lpfc_bias_head_trainable_majority_cells",
+        "kind": "readiness",
+        "description": "Fraction of (seed, treatment-arm) cells whose lateral-PFC bias-head last linear layer measurably moved from its zero-init AND whose final candidate-summary input was non-degenerate (LateralPFCAnalog.get_state()) -- the component every arm's training signal is confirmed (module docstring) to actually train.",
+        "control": "rule_bias_head last-linear weight-norm delta + candidate_summary_degenerate flag",
+        "measured": 0.666667,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "sparse_rl_stays_blocked",
+        "kind": "premise",
+        "description": "sparse_rl (stock waypoint reward only) stays within BASELINE_BLOCKED_FRAC of the (oracle - random) span -- the premise this run's null/lift verdict depends on. Self-calibrated to THIS run's own achievable span.",
+        "measured": 0.2,
+        "threshold": 4.385,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "treatment_arms_move",
+        "kind": "eval_protocol",
+        "description": "Every treatment-arm cell visits >= MIN_DISTINCT_CELLS (not a stationary argmax-into-wall eval policy).",
+        "measured": 8.3,
+        "threshold": 8.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5a74d5279d7c7753d4ccd34d281bc89d798c04162899d40db7f97ecdc1ea0884",
+  "substrate_commit": {
+    "commit": "45237ec354f754e6084cdd6a676ed340d97e8bf7",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 11272.622261854998,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "budget": {
+      "zworld_p0_episodes": 20,
+      "p0_warmup_episodes": 25,
+      "rl_episodes": 90,
+      "n_demo_episodes": 25,
+      "eval_episodes": 10,
+      "steps_per_episode": 80
+    },
+    "shaping_coef": 1.0,
+    "lift_margin_frac": 0.2,
+    "min_achievable_span": 2.0,
+    "oracle_floor": 4.0,
+    "baseline_blocked_frac": 0.35
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "z_goal_stream": {
+    "ticks_total": 94434,
+    "ticks_active": 0,
+    "writer_calls": 81234,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 9,
+    "goal_state_present": true
+  }
+}
