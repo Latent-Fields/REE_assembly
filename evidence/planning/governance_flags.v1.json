@@ -3956,6 +3956,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0282",
+      "claim_ids": [
+        "MECH-537",
+        "MECH-538"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Both notes are overtaken by V3-EXQ-1010 (H-F confirmed at the 2026-09-11 gate): MECH-537 says it explains the 1002 result 'without requiring information loss' while the trained latent scored at or below its random-init control on 3/3 seeds (re-word, do not demote; SD-080 is the candidate new locus); MECH-538 calls the 1002 information-preserving rotation corroborator an OPEN obligation while the 2026-09-11 governance note records three information-preserving re-bases flat plus the 32-dim reference at 0.868, which by the 1002 autopsy's own pre-registration WEAKENS the H-C leg. Also SD-080's unblocks_claims omits MECH-537, which depends_on it.",
+      "raised_by_session": "thought-pipeline-20260915",
+      "raised_at": "2026-09-15T07:00:39Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
