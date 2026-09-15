@@ -780,7 +780,7 @@
         "ARC-062"
       ],
       "flag_type": "stale_note",
-      "summary": "closure_plan node arc_062_rule_apprehension:GAP-B carries a blocker note stale by two runs: it reads 'V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3)', but 654h ran on 2026-06-21 (manifest v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3) and a further 654i ran on 2026-06-22 (…_20260622T014706Z_v3). GAP-B remains genuinely blocked -- it closes only on a PASS C2 entropy lift, which needs the MECH-439 F-dominance rebalance -- so this is a note-accuracy correction, NOT a signal that GAP-B is now actionable. Worth fixing because GAP-B is the load-bearing keystone that GAP-I, GAP-J and behavioral_diversity_isolation:GAP-G all block on, so a reader triaging the closure map is currently told the keystone is waiting on a run that finished two months ago.",
+      "summary": "closure_plan node arc_062_rule_apprehension:GAP-B carries a blocker note stale by two runs: it reads 'V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3)', but 654h ran on 2026-06-21 (manifest v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3) and a further 654i ran on 2026-06-22 (\u2026_20260622T014706Z_v3). GAP-B remains genuinely blocked -- it closes only on a PASS C2 entropy lift, which needs the MECH-439 F-dominance rebalance -- so this is a note-accuracy correction, NOT a signal that GAP-B is now actionable. Worth fixing because GAP-B is the load-bearing keystone that GAP-I, GAP-J and behavioral_diversity_isolation:GAP-G all block on, so a reader triaging the closure map is currently told the keystone is waiting on a run that finished two months ago.",
       "raised_by_session": "metaworker-chip-20260823-queue-refill-fresh-design",
       "raised_at": "2026-08-26T12:15:29Z",
       "status": "resolved",
@@ -3912,6 +3912,20 @@
       "summary": "ARC-054's evidence base is incomplete without the four selection-leg entries in REE_assembly/evidence/literature/targeted_review_arc_055/: Zajkowski et al. 2017 (frontopolar cTBS, Horizon Task -- causal support, only real horizon-depth datum), Tervo et al. 2014 (LC->ACC circuit -- causal, closest construct match to V(t)-as-world-model-fit, but binary mode switch not graded re-ranking), Lak et al. 2014 (OFC inactivation, wagering -- weakens E3-selection leg), Fleming et al. 2014 (anterior PFC lesion, domain-specific -- weakens via a second dissociation). These were pulled while decomposing ARC-055's conjuncts and bear substantively on ARC-054's D_V-drives-E3-selection claim, not on ARC-055 (which has been narrowed to conjuncts (a)+(d) to remove the duplication -- see evidence/planning/claim_synthesis_ARC-055_2026-09-14_staged.md).",
       "raised_by_session": "metaworker-chip-20260914-arc055-narrow-apply",
       "raised_at": "2026-09-14T22:49:44Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0279",
+      "claim_ids": [
+        "MECH-204",
+        "MECH-016"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "IGW-20260915-243 readiness probe (real StepHarness loop, K=1 sleep, F1 step 0.25): the canonical pre-waking agent.reset() fires a sleep cycle that seeds SerotoninModule._persistent_zero_point from precision_init (target precision 2.0 vs realized ~255), so F1 WRITEBACK recalibration pushes an already-calibrated rv AWAY from realized PE variance (0.0039 -> 0.0121, decaying over ~30+ cycles); V3-EXQ-541c shows the same seed (cycle-1 target 2.148) and its tracking_quality measured tracking toward that contaminated target, not calibration -- review whether 541c 'supports' should be re-read, and route the cold-start seeding fix to /implement-substrate (no substrate_queue entry exists). Also commit_threshold=0.4 vs rv~0.004 pins committed_frac at ~1.0.",
+      "raised_by_session": "igw-243-proposal-for-mech-016",
+      "raised_at": "2026-09-15T03:04:16Z",
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
