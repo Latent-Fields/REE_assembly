@@ -37,7 +37,7 @@ pollute the score surface rather than repair it:
 | Bucket | N | Meaning |
 |---|---|---|
 | `NESTED_ONLY` | **527** | Rich blocks exist, but every one is keyed by arm/seed. **The V3-EXQ-1015 shape.** Needs a driver-side flat block. |
-| `NO_FLAT_SIBLING` | 305 | Flat manifest no longer on disk. Almost entirely 2026-03/04 (138+20 of them); not a live defect. |
+| `NO_FLAT_SIBLING` | ~~305~~ **123** [^depth-amend] | Flat manifest no longer on disk. |
 | `READOUT_UNDER_NEW_NAME` | 219 | A genuine flat scalar readout exists under an unrecognised key. Harvestable by widening the converter -- but see the caution below. |
 | `STALE_HARVESTABLE` | 26 | Already harvestable under a recognised spelling; the pack simply predates the converter fix. Fixed by a re-convert, no code change. |
 | `NO_READOUT_AT_ALL` | 24 | Nothing quantitative recorded anywhere. |
@@ -101,3 +101,70 @@ the standard is the general fix.
   or a WARM1600 rung ... not a re-run of this design", so re-running it purely to improve
   recording is not warranted; a future lettered successor will record correctly.
 - The other ~526 nested-only drivers were not rewritten. Chipped instead.
+
+## Amendment (2026-09-16) -- `NO_FLAT_SIBLING` was a lookup-depth artifact [^depth-amend]
+
+**Origin:** chip `chip-20260910-merge-runpack-provenance` (merged 2026-09-10 from
+`chip-20260909-survey-no-flat-sibling-bucket-artifact`), triggered by the same
+three-depth lookup issue `readout_name_adjudication_20260909.md`'s own "Method
+note" flagged for the `READOUT_UNDER_NEW_NAME` bucket -- applied here, to
+`NO_FLAT_SIBLING`, for the first time.
+
+**Method.** The original 305 was measured against a **top-level-only** flat lookup
+(`evidence/experiments/<run_id>.json`). Re-measured against the same corpus using
+`build_experiment_indexes._resolve_flat_sibling` -- the PRODUCTION resolver
+actually used by the indexer and by `sync_v3_results.py`'s own `_flat_candidates()`,
+which checks the top level FIRST and `evidence/experiments/<experiment_type>/<run_id>.json`
+as a fallback (see that function's docstring). This is deliberately narrower than a
+full `rglob`: a flat living only at a third depth (`<type>/<sub>/`) is invisible to
+the real pipeline either way, so it would not change what is actually recoverable.
+
+**Corpus at re-measurement:** 2964 packs (was 2917 on 2026-09-09; +47, ordinary
+corpus growth -- the RE-SCOPE note in the triggering chip covers this). Unscored
+count is **unchanged at 1101**, which is itself a useful check that "unscored"
+and "flat-sibling-present" are being measured consistently across the two
+sessions.
+
+| | top-level-only (the survey's original method) | all-depth (`_resolve_flat_sibling`, production-authoritative) |
+|---|---|---|
+| `NO_FLAT_SIBLING` | 317 (was 305 on 2026-09-09; +12 corpus growth) | **123** |
+
+**194 of the 317 (61%) are a lookup-depth artifact**, not missing flats -- confirming
+the chip's hypothesis. The corrected, genuine `NO_FLAT_SIBLING` count is **123**.
+
+**The recovered 194 reclassify into the survey's other buckets.** Best-effort only
+-- this session did not recover the survey's original exclusion/nested-block
+detection logic byte-for-byte (same caveat `readout_name_adjudication_20260909.md`
+made for its own re-measurement: "I did not reconstruct their exclusion set
+exactly, and deliberately did not try"), so these are directionally reliable, not
+a replacement for a full re-run of the original classifier:
+
+| bucket | recovered count | revised bucket total (old + recovered) |
+|---|---|---|
+| `NO_READOUT_AT_ALL` | 107 | ~131 (was 24) |
+| `NESTED_ONLY` | 85 | ~612 (was 527) |
+| `READOUT_UNDER_NEW_NAME` | 2 | ~221 (was 219) |
+| `STALE_HARVESTABLE` | 0 | 26 (unchanged) |
+
+The largest shift is into `NO_READOUT_AT_ALL` (107) and `NESTED_ONLY` (85) -- i.e.
+most of the previously "no longer on disk" packs actually have a flat sibling that
+simply carries nothing quantitative, or carries it nested-only. Neither changes the
+recommendation: both buckets already route to "needs a driver-side flat block" /
+"nothing to harvest", the same disposition `NO_FLAT_SIBLING` implicitly carried.
+
+**What this does NOT establish.** The corrected 123 is still measured the same way
+the original 305 was (unscored packs lacking a flat sibling under the production
+resolver) -- it says nothing about WHY those 123 lack one (never written vs.
+deleted), which is a distinct question with its own split, now available in
+`runpack_always_core_heal_20260909.md` section 8 (chip-20260910-merge-runpack-
+provenance item 2, same session). The month histogram for the genuine 123 (64
+undated by run_id, 20 in 2026-03, 32 in 2026-04, 7 in 2026-05) is consistent with
+the original "almost entirely 2026-03/04" read, now on the corrected population --
+the ORIGINAL claim's DIRECTION held, only its MAGNITUDE was wrong.
+
+**Section 3b recommendation is unchanged** by this amendment -- it was never about
+`NO_FLAT_SIBLING` in the first place.
+
+[^depth-amend]: See the Amendment section above. `NO_FLAT_SIBLING`'s "not a live
+    defect" framing survives (these are still genuinely absent flats, now correctly
+    counted), but the count itself was wrong by lookup depth, not by drift.

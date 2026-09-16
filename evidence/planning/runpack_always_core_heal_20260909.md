@@ -292,3 +292,81 @@ candidate routes, none costed here:
    itself the first task.
 
 Route 1 needs a decision, not a build; routes 2 and 3 need the count split first.
+**Count split done in section 8 -- route 1 is the answer for essentially the
+whole population.**
+
+## 8. Sec 7 recoverability split (2026-09-16, chip-20260910-merge-runpack-provenance item 2)
+
+**Origin:** chip `chip-20260910-merge-runpack-provenance`, merged 2026-09-10 from
+`chip-20260909-split-flatless-runpacks-recoverability`. Sequenced after item 1 of
+the same chip (the `NO_FLAT_SIBLING` lookup-depth correction in
+`flat_scalar_readout_recording_gap_20260909.md`), per the chip's own instruction
+to recompute the 1293 AFTER that fix in case the same depth bug applied here too.
+
+### 8.0 Depth check first (the chip's explicit precondition)
+
+**It does not.** `heal_pack`'s own reachability -- driven by `_flat_candidates()`
+(`EVIDENCE_DIR.glob("*.json") | EVIDENCE_DIR.glob("*/*.json")`, i.e. top level +
+one subdirectory level) combined with `_derive_experiment_type_and_dir` -- is
+ALREADY the 2-depth methodology `build_experiment_indexes._resolve_flat_sibling`
+uses (the same production resolver item 1 used to correct the OTHER survey).
+Re-running the reachability walk exactly as `run_heal()` does it, then
+cross-checking every unreached run_id against a full `rglob` of
+`evidence/experiments/` (catching the third on-disk depth
+`readout_name_adjudication_20260909.md` found live), recovers **zero**
+additional packs. The 1293-shaped figure was never depth-limited -- it differs
+from the `flat_scalar_readout_recording_gap_20260909.md` survey in exactly the
+respect that mattered: that survey's original measurement checked the top level
+ONLY, this heal's reachability walk already checked both levels from the start.
+
+### 8.1 Current count
+
+Corpus grew 2931 -> **2964** packs since 2026-09-09 (+33, ordinary growth --
+the RE-SCOPE note in the triggering chip covers this). Re-measured with the same
+reachability walk: **1689** packs reached by a flat (was 1638), **1275** with none
+(was 1293, -18 -- net of new packs arriving already flat-reachable and a small
+amount of ordinary movement, not a methodology change).
+
+### 8.2 The split
+
+**Never recorded: ~1275 (essentially the entire population).** Dated by `run_id`
+timestamp: 1019 in 2026-02, 70 in 2026-03, 2 in 2026-04, 3 in 2026-05, and 181
+undated by a `YYYYMMDDTHHMMSSZ`/ISO-dash timestamp regex but visibly from the
+same pre-`_v2`/`_v3` naming era (`20260226T153506_claim_probe_mech_059_ree_v1_minimal`-
+shaped ids, no architecture-epoch suffix at all). **All of them predate the
+Experimental Recording Standard by a wide margin** -- that standard's own doc is
+dated 2026-07-12, and 1094/1275 (86%) are independently dated 2026-02/03, four to
+five months earlier; the remaining 181 undated ones carry the SAME pre-epoch
+naming shape (no `_v2`/`_v3` suffix at all -- 12 are explicitly tagged
+`ree_v1_minimal`, 19 end `_v2`, and the rest are un-suffixed dash-ISO ids from the
+same window), consistent with being from the same early period, not distinguishable
+by date but consistent by shape. Cross-checked per the chip's instruction:
+sampled 8 on-disk packs directly (not the index) and confirmed `machine`,
+`machine_class`, `substrate_hash`, `recording_schema`, `elapsed_seconds`,
+`config`, `seeds` are ALL genuinely absent on the pack itself -- not masked by
+`build_experiment_indexes.py`'s `_FLAT_PROVENANCE_BACKFILL_FIELDS` backfill
+(which needs a flat to backfill FROM, and these have none).
+
+**Flat deleted: 0 confirmed.** Cross-referenced all 1275 run_ids by exact
+filename stem against every `.json` path git has ever recorded a DELETION of
+under `evidence/experiments/*.json` and `evidence/experiments/*/*.json`
+(`git log --diff-filter=D --name-only`, 243 distinct deleted paths across the
+repo's history, most of which are unrelated noise -- `_dry_` smoke-test flats,
+`_runner_signals/*.json` command files, not manifest siblings at all). **Zero
+exact-stem matches.** No evidence any of the 1275 ever had a flat that was
+subsequently deleted.
+
+**Other: none identified beyond the pre-epoch naming shapes already folded into
+"never recorded" above** (the `ree_v1_minimal` / `_v2` / undated-dash-ISO ids)
+-- none of them fit a third shape distinct from "predates the standard".
+
+### 8.3 Recommendation
+
+**Route 1 (accept the gap) is the answer for the whole 1275, not just "most of
+them".** Route 2 (infer from a sibling run) and route 3 (recover from git
+history) both need a genuine deleted-or-inferable-from-elsewhere case to apply
+to, and 8.2 found none. This closes section 7's open question -- no further
+build is owed here. If a future session finds this population growing (a NEWLY
+unreachable pack, post-2026-07-12), that would be a live regression worth its
+own investigation; this split does not cover packs created after this
+measurement.
