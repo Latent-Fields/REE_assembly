@@ -1,5 +1,9 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to
-`scripts/ree_commit.py`, `scripts/safe_adopt_ref.py`, or any registry.**
+**Status: APPROVED 2026-09-16 (user); landed REE_Working cc6f38bcdd** --
+sections 4-6 implemented as designed (advisory-only, one-entry allow-list
+`steward_ledger.jsonl`, zero change to what is auto-repaired), with tests in
+`scripts/test_ree_commit_append_only_jsonl.py`. `safe_adopt_ref.py` and every
+registry remain untouched. The held-out shortfall in section 6 (2 of 3 cases)
+stands as recorded; it is why the allow-list is one entry.
 
 # MM-skew repair: a per-record content probe for append-only JSONL registries
 
