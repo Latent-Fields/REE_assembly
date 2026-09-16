@@ -4,7 +4,7 @@
 **Status:** synthetic measurement result; no claim promotion, no creature code change, no queue mutation  
 **Preregistration:** `evidence/planning/convergence_signal_synthetic_assay_006_state_dependent_overlapping_graphs.md`  
 **Driver:** `scripts/convergence_signal_synthetic_assay_006.py`  
-**Banked run:** `evidence/experiments/convergence_signal_synthetic_assay_006/runs/20260909_seed37/manifest.json`
+**Banked run:** `evidence/planning/convergence_signal_synthetic_assay_runs/assay_006/20260909_seed37/manifest.json` (moved out of `evidence/experiments/` 2026-09-16; not a claim-scored run)
 
 ## Executive result
 

@@ -5,8 +5,8 @@ Two jobs:
 
 1. DETECTOR on the LIVE corpus: every evidence/experiments/*/runs/*/manifest.json
    is experiment_pack/v1 OR is on the explicit allow-list in
-   recover_stranded_run.py (path-3 verbatim copies, pre-schema legacy packs,
-   synthetic-assay packs). A new pack outside the schema fails
+   recover_stranded_run.py (path-3 verbatim copies, pre-schema legacy packs).
+   A new pack outside the schema fails
    test_live_corpus_has_no_unallowlisted_pack -- that is the point: the count
    cannot grow silently. The fix is to recover through the tool, not to extend
    the list; extending the list is a reviewed decision recorded in
@@ -71,12 +71,13 @@ def test_live_corpus_allowlist_entries_exist_and_are_still_non_v1():
 
 
 def test_allowlist_size_matches_documented_counts():
-    """7 path-3 verbatim copies + 5 pre-schema legacy + 6 synthetic-assay packs as
-    of 2026-09-16. If this changes, the change must be deliberate and documented."""
+    """7 path-3 verbatim copies + 5 pre-schema legacy packs as of 2026-09-16 (the 6
+    synthetic-assay manifests were moved out of runs/ the same day and are no longer
+    packs). If this changes, the change must be deliberate and documented."""
     assert len(r.PATH3_VERBATIM_COPY_PACKS) == 7
     assert len(r.PRE_SCHEMA_LEGACY_PACKS) == 5
-    assert len(r.SYNTHETIC_ASSAY_PACKS) == 6
-    assert len(r.ALLOWLIST) == 18
+    assert not hasattr(r, "SYNTHETIC_ASSAY_PACKS")
+    assert len(r.ALLOWLIST) == 12
 
 
 def test_live_scan_cli_exits_zero():

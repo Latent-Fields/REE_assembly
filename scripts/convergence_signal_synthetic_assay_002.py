@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
 
@@ -315,13 +316,45 @@ def run(seed=11, calibration_trials=200_000, test_trials=200_000):
     }
 
 
+# Where a banked run of this assay lives (decided 2026-09-16,
+# chip-20260916-synthetic-assay-pack-writer). Synthetic assays are NOT V3
+# substrate runs and carry no claim ids, so they must never be written under
+# evidence/experiments/<x>/runs/: that tree is what claim scoring reads and the
+# experiment_pack/v1 detector (evidence/experiments/scripts/recover_stranded_run.py
+# --scan) fails on any pack outside the schema.
+ASSAY_ID = "convergence_signal_synthetic_assay_002"
+BANK_ROOT = (Path(__file__).resolve().parents[1]
+             / "evidence" / "planning" / "convergence_signal_synthetic_assay_runs" / "assay_002")
+
+
+def resolve_out_json(out_json, bank, seed):
+    """--bank picks the sanctioned planning path; an explicit --out-json that
+    points into an evidence/experiments/**/runs/ tree is refused."""
+    if bank:
+        if out_json is not None:
+            raise SystemExit("pass either --bank or --out-json, not both")
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%d")
+        out_json = BANK_ROOT / ("%s_seed%d" % (stamp, seed)) / "manifest.json"
+    if out_json is not None:
+        parts = Path(out_json).resolve().parts
+        if "runs" in parts and "experiments" in parts:
+            raise SystemExit(
+                "refusing to write a synthetic assay under an evidence/experiments/**/runs/ "
+                "tree (claim-scored, experiment_pack/v1 only); use --bank or a path under "
+                + str(BANK_ROOT))
+    return out_json
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--calibration-trials", type=int, default=200_000)
     parser.add_argument("--test-trials", type=int, default=200_000)
     parser.add_argument("--out-json", type=Path, default=None)
+    parser.add_argument("--bank", action="store_true",
+                        help="write manifest.json to the sanctioned evidence/planning path")
     args = parser.parse_args()
+    args.out_json = resolve_out_json(args.out_json, args.bank, args.seed)
     payload = run(args.seed, args.calibration_trials, args.test_trials)
     text = json.dumps(payload, indent=2, sort_keys=True)
     print(text)

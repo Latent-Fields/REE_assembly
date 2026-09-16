@@ -219,4 +219,8 @@ predates: 6 `convergence_signal_synthetic_assay_00N/runs/20260909_seed*` packs b
 category so the detector passes on today's corpus (2964 packs: 2946 v1 + 18 allow-listed),
 and whether that writer should project through `build_runpack_docs` is left as an open
 decision, not silently absorbed. No existing pack was touched and no index regen was run
-(CLAUDE.md Narrow Edits Only). Landed in REE_assembly `e7837204045`.
+(CLAUDE.md Narrow Edits Only). Landed in REE_assembly `e7837204045`. **Resolved 2026-09-16**
+(user decision, `chip-20260916-synthetic-assay-pack-writer`): the synthetic assays stay out of
+`runs/` -- the six manifests moved to `evidence/planning/convergence_signal_synthetic_assay_runs/`,
+each writer gained `--bank` and a refusal for any `--out-json` under `evidence/experiments/**/runs/`,
+and the allow-list dropped back to 12 (7 path-3 + 5 legacy).

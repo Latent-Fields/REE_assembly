@@ -5,7 +5,7 @@
 **Preregistration:** `evidence/planning/convergence_signal_synthetic_assay_004_evidence_vs_downstream_leverage.md`  
 **Pre-run amendment:** `evidence/planning/convergence_signal_synthetic_assay_004_prerun_amendment.md`  
 **Reference driver:** `scripts/convergence_signal_synthetic_assay_004.py`  
-**Banked run:** `evidence/experiments/convergence_signal_synthetic_assay_004/runs/20260909_seed23/manifest.json`
+**Banked run:** `evidence/planning/convergence_signal_synthetic_assay_runs/assay_004/20260909_seed23/manifest.json` (moved out of `evidence/experiments/` 2026-09-16; not a claim-scored run)
 
 ## Executive result
 

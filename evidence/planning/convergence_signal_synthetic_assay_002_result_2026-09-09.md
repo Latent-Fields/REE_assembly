@@ -4,7 +4,7 @@
 **Status:** synthetic measurement result; no claim promotion, no creature code change, no queue mutation  
 **Preregistration:** `evidence/planning/convergence_signal_synthetic_assay_002_bayes_ceiling.md`  
 **Driver:** `scripts/convergence_signal_synthetic_assay_002.py`  
-**Banked run:** `evidence/experiments/convergence_signal_synthetic_assay_002/runs/20260909_seed11/manifest.json`
+**Banked run:** `evidence/planning/convergence_signal_synthetic_assay_runs/assay_002/20260909_seed11/manifest.json` (moved out of `evidence/experiments/` 2026-09-16; not a claim-scored run)
 
 ## Executive result
 

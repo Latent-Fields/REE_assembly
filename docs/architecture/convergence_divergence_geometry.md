@@ -72,7 +72,8 @@ MECH-558's notes. See the aha intake section 5 for the re-open conditions.
 
 The synthetic ladder is in `evidence/planning/convergence_signal_experiment_ladder.md` (Stages
 0-10). Stages 0-5 were exercised by six preregistered assays on 2026-09-09, all criteria PASS,
-banked under `evidence/experiments/convergence_signal_synthetic_assay_001..006/` with empty
-`claim_ids`. Stage 6 (synthetic aha), Stage 7 (diversity pressure) and Stage 8 (REE shadow
+banked under `evidence/planning/convergence_signal_synthetic_assay_runs/assay_001..006/` with empty
+`claim_ids` (moved out of `evidence/experiments/` on 2026-09-16: they are synthetic measurement
+manifests, not claim-scored runs). Stage 6 (synthetic aha), Stage 7 (diversity pressure) and Stage 8 (REE shadow
 diagnostic) have not been run. Nothing in `ree_core/` computes an independence-corrected
 convergence quantity today.

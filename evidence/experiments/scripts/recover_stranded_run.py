@@ -131,32 +131,16 @@ PRE_SCHEMA_LEGACY_PACKS = {
         "legacy schema_version 'v1' (2026-06-02, mis-ordered run_id)",
 }
 
-# Synthetic-assay packs (found 2026-09-16 while building this detector; NOT in
-# the 2026-08-08 investigation, which predates them). Written directly by
-# REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py -- a FOURTH
-# writer, separate from path 3: not stranded-run recoveries, not V3 substrate
-# runs (claim_ids: [], status: synthetic_measurement_run_only, no
-# architecture_epoch), and no flat sibling. Tolerated as-is pending a decision
-# on whether that writer should project through build_runpack_docs.
-SYNTHETIC_ASSAY_PACKS = {
-    "convergence_signal_synthetic_assay_001/runs/20260909_seed7":
-        "52e568f1e16 2026-09-09 Bank synthetic convergence assay 001 seed-7 run",
-    "convergence_signal_synthetic_assay_002/runs/20260909_seed11":
-        "1d36d59a941 2026-09-09 Bank synthetic convergence assay 002 seed-11 run",
-    "convergence_signal_synthetic_assay_003/runs/20260909_seed17":
-        "44bf10efba6 2026-09-09 Bank synthetic divergence assay 003 seed-17 run",
-    "convergence_signal_synthetic_assay_004/runs/20260909_seed23":
-        "42eb7578736 2026-09-09 Bank convergence assay 004 seed-23 manifest",
-    "convergence_signal_synthetic_assay_005/runs/20260909_seed29":
-        "366ce5a0e17 2026-09-09 Bank convergence assay 005 seed-29 manifest",
-    "convergence_signal_synthetic_assay_006/runs/20260909_seed37":
-        "6f5b258c4a9 2026-09-09 Bank convergence assay 006 seed-37 manifest",
-}
+# Synthetic-assay manifests (REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py)
+# are NOT packs and do not live under evidence/experiments/*/runs/: decided 2026-09-16
+# (chip-20260916-synthetic-assay-pack-writer) they bank under
+# evidence/planning/convergence_signal_synthetic_assay_runs/assay_00N/<run>/manifest.json,
+# and each writer refuses an --out-json inside an evidence/experiments/**/runs/ tree.
+# Six that had been banked in runs/ on 2026-09-09 were moved there the same day.
 
 ALLOWLIST = {}
 ALLOWLIST.update(PATH3_VERBATIM_COPY_PACKS)
 ALLOWLIST.update(PRE_SCHEMA_LEGACY_PACKS)
-ALLOWLIST.update(SYNTHETIC_ASSAY_PACKS)
 
 
 def _say(msg: str, file=None) -> None:

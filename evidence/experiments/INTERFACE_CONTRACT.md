@@ -162,7 +162,7 @@ Epoch note:
 ## Tolerated non-`experiment_pack/v1` packs (allow-list) and stranded-run recovery
 
 **Every `<experiment_type>/runs/<run_id>/manifest.json` MUST carry
-`schema_version: "experiment_pack/v1"`, except the 18 packs listed here.** The list is
+`schema_version: "experiment_pack/v1"`, except the 12 packs listed here.** The list is
 mirrored verbatim in `evidence/experiments/scripts/recover_stranded_run.py` (`ALLOWLIST`),
 and `evidence/experiments/scripts/test_recover_stranded_run.py` asserts the live corpus
 against it, so the set cannot grow silently. `recover_stranded_run.py --scan` runs the same
@@ -187,7 +187,7 @@ never a way to make the test pass.
 
 Approved by the user 2026-09-16 (options A + C of the planning doc above; option B,
 regenerating the path-3 packs, was explicitly NOT chosen because two of them carry hand-curated
-corrections). The indexer already tolerates all three categories: it reads `status`/`outcome`
+corrections). The indexer already tolerates both categories: it reads `status`/`outcome`
 and `claim_ids_tested`/`claim_ids`, and every listed run is present in `claim_evidence.v1.json`.
 The path-3 packs lack a `metrics.json` sibling, so they get no metric display, stop-criteria
 evaluation or duplicate fingerprinting -- a completeness gap, not an evidence loss.
@@ -214,19 +214,18 @@ evaluation or duplicate fingerprinting -- a completeness gap, not an evidence lo
 | `v3_exq_247_sd011_sd012_integration/runs/v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3` | 2026-04-07, no `schema_version` |
 | `v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence/runs/v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z` | 2026-06-02, `schema_version: "v1"`, mis-ordered run_id |
 
-### Synthetic-assay packs (6; a separate writer, found 2026-09-16)
+### Synthetic-assay manifests are NOT packs (decided 2026-09-16)
 
-Written directly by `REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py` on
-2026-09-09 -- not stranded-run recoveries and not V3 substrate runs (`claim_ids: []`,
-`status: synthetic_measurement_run_only`, no `architecture_epoch`, no flat sibling). They
-post-date the 2026-08-08 investigation and are tolerated as-is pending a decision on whether
-that writer should project through `build_runpack_docs`.
-
-| `<experiment_type>/runs/<run_id>` | Added by |
-|---|---|
-| `convergence_signal_synthetic_assay_001/runs/20260909_seed7` | `52e568f1e16` 2026-09-09 |
-| `convergence_signal_synthetic_assay_002/runs/20260909_seed11` | `1d36d59a941` 2026-09-09 |
-| `convergence_signal_synthetic_assay_003/runs/20260909_seed17` | `44bf10efba6` 2026-09-09 |
-| `convergence_signal_synthetic_assay_004/runs/20260909_seed23` | `42eb7578736` 2026-09-09 |
-| `convergence_signal_synthetic_assay_005/runs/20260909_seed29` | `366ce5a0e17` 2026-09-09 |
-| `convergence_signal_synthetic_assay_006/runs/20260909_seed37` | `6f5b258c4a9` 2026-09-09 |
+`REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py` (a separate writer found
+2026-09-16, post-dating the 2026-08-08 investigation) emits synthetic measurement manifests --
+not V3 substrate runs: `claim_ids: []`, `status: synthetic_*_run_only`, no `architecture_epoch`,
+no flat sibling. Six of them had been banked on 2026-09-09 under
+`evidence/experiments/convergence_signal_synthetic_assay_00N/runs/20260909_seed*/` and were
+allow-listed here on 2026-09-16 pending a decision. **Decision (user, 2026-09-16,
+`chip-20260916-synthetic-assay-pack-writer`): keep them out of `runs/` entirely.** They now bank
+under `evidence/planning/convergence_signal_synthetic_assay_runs/assay_00N/<run>/manifest.json`
+(the six existing files moved there, the six stub `INDEX.md`/`experiment.md` dirs removed), each
+writer takes `--bank` for that path and refuses an `--out-json` inside an
+`evidence/experiments/**/runs/` tree, and the allow-list category is gone. Any evidence attachment
+to MECH-558/MECH-559 (open `GFLAG-0287`) is a `/governance` decision that must not route through
+`runs/`, which claim scoring reads.
