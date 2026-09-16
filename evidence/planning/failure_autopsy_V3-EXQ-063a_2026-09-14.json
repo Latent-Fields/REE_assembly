@@ -1,149 +1,165 @@
 {
-  "schema_version": "failure_autopsy/v1",
-  "generated_utc": "2026-09-14T11:19:36Z",
-  "scope": "single",
-  "status": "awaiting_human_confirmation",
-  "staging_mode_reason": "headless metaworker-dispatch session (chip-20260910-gflag0148-arc029-commitment-confound-autopsy); no live harness/user to run the Step 8 interactive gate. Draft only -- routing not finalised. Confirm in an interactive session or at the next /governance walk per SKILL.md Staging mode.",
-  "dry_run_checked": true,
-  "excluded_dry_run_ids": [],
-  "targets": [
-    {
-      "run_id": "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3",
-      "queue_id": "V3-EXQ-063a",
-      "claim_ids": ["ARC-029"],
-      "self_route_label": "commitment_precision_confound_occupancy_vacuous",
-      "failed_criterion": "negative_control",
-      "four_layer_diagnosis": {
-        "claim_alignment": "unclear (protected) -- the design never let ARC-029's own within-agent two-mode contrast express itself; the measured PASS reflects a between-arm architectural manipulation, not evidence that committed and uncommitted operating MODES differ within one agent",
-        "biological_reference": "partial -- BG-like commitment/action-selection lock-in (Cisek-Kalaska affordance competition collapsing to one selected plan) has a solid mechanism-class existence proof; the DEFECT here is not translation fidelity of the gate itself but the choice of ablation VEHICLE (forcing the confidence/precision scalar to a fixed value rather than manipulating the commit threshold), which the biology gives no reason to prefer",
-        "prerequisites": "present -- both depends_on claims are healthy and unaffected: MECH-090 (R-c commit-entry predicate) status=active, ARC-016 (dynamic precision) status=stable",
-        "implementation": "complete -- the commitment gate, the R-c readiness predicate, and the threshold-side manipulation levers (MECH-108 BreathOscillator effective_threshold sweep, use_natural_commit_latch_hold, use_persistent_committed_program_handle, use_e3_reselection_shortcircuit) all already exist in REEConfig.from_dims; none was armed by this driver",
-        "environment": "adequate -- CausalGridWorldV2 stable/volatile split is a reasonable operationalisation of ARC-029's context-dependence prediction; not the locus of the defect",
-        "measurement": "misleading -- C3/C4 are advertised as non-degeneracy sanity checks but are structurally unfalsifiable by this driver's own construction (see facts below); they cannot fail regardless of whether the gate does anything, so their PASS carries zero information",
-        "integration": "isolated -- cannot assess within-agent committed/uncommitted interaction with environment volatility, because both states are pinned constant for an entire episode rather than arising from ongoing agent-environment coupling",
-        "scale": "adequate -- warmup/eval budgets are not implicated; this is a design defect, not a capacity limit"
-      },
-      "failure_location": {
-        "mechanism": "not_established",
-        "measures": "established",
-        "environment": "not_established",
-        "ree": false,
-        "net_classification": "MEASURES -- the ablation instrument and its own non-degeneracy check are the defect; not chargeable to the commitment mechanism (MECH-090/ARC-016 implementation is complete and unaffected) or to the environment design."
-      },
-      "biological_reference": {
-        "closest_mechanism": "Cisek-Kalaska affordance-competition collapse to a single selected plan (BG-like commitment gate); the closest published REE-internal grounding is the Humphries (2012) dopamine exploitation/exploration lit-pull already cited in ARC-029's own notes",
-        "dependencies": [
-          "a mode-driver that toggles commitment WITHOUT moving the same scalar other systems read as precision/confidence"
-        ],
-        "is_formal_import": false,
-        "divergence": "n/a -- this is a test-design defect in the ablation VEHICLE, not a biological-translation divergence in the gate mechanism itself",
-        "lit_status": "present"
-      },
-      "facts": {
-        "manifest_metrics": {
-          "harm_gap_stable": 0.020514875316566983,
-          "harm_gap_volatile": 0.010570583890639182,
-          "gap_reduction_ratio": 0.5152643497717388,
-          "n_committed_active_stable": 1155.5,
-          "n_uncommitted_active_stable": 0.0,
-          "n_committed_ablated_stable": 0.0,
-          "criteria_met": 5.0
-        },
-        "recording_gaps": ["recording_schema", "substrate_hash", "substrate_commit", "machine_class", "elapsed_seconds", "config", "seeds"],
-        "recording_gap_note": "pre-dates the Experimental Recording Standard (2026-07-12); run is from 2026-06-02. No per-seed metric breakdown survives in the flat manifest or the run pack -- only the 2-seed average. Not independently fixable by re-analysis of this run; only by a fresh recorded re-run.",
-        "code_confirmed_mechanism": [
-          "In the gate_active arm, agent.e3._running_variance is set once (script line 333, to train_variance) and NEVER updated again for the rest of the eval episode. The only setter, update_running_variance(), is reached solely via E3Selector.post_action_update() <- REEAgent.update_residue() (ree-v3/ree_core/agent.py:10686); _eval_condition() (experiments/v3_exq_063a_..._rc_gate.py:305-395) never calls agent.update_residue(). So the gate_active arm is NOT dynamically re-evaluated and 'happening to stay low' -- it is frozen low by script construction.",
-          "In the gate_ablated arm, the script forces agent.e3._running_variance = commit_threshold + 0.1 = 0.50 (commit_threshold=REEConfig.commitment_threshold=0.40, ree-v3/ree_core/utils/config.py:1107) and agent.e3._committed_trajectory = None immediately before EVERY select_action() call (script lines 342-344), before result.committed is computed for that tick.",
-          "Because of this, n_committed_active_stable=1155.5 / n_uncommitted_active_stable=0.0 / n_committed_ablated_stable=0.0 are a tautological readout of the two forced-constant _running_variance regimes the script installs, not an emergent measurement of gate dynamics. C3 ('committed cond has more committed than uncommitted steps') and C4 ('ablated cond has zero committed steps') cannot fail under this construction regardless of whether the R-c gate does anything at all -- both are vacuous non-degeneracy checks.",
-          "The R-c readiness gate itself (should_admit_elevation(), the specific mechanism this re-run's title and rationale name as the thing being re-validated) is exercised on EVERY E3 tick in the gate_active arm and on ZERO ticks in the gate_ablated arm -- not 'at most once' vs 'never', a starker asymmetry, because config.heartbeat.beta_gate_bistable is never set by this driver and defaults False (config.py:3296), so select_action() runs the non-bistable LEGACY branch (ree_core/agent.py:9866 'else:'), which re-evaluates _legacy_admit = (should_admit_elevation(...) and _readiness_admits) if result.committed else True on every tick (agent.py:9866-9882), not only on a commit-entry transition. result.committed is computed live from commit_variance = self._running_variance (e3_selector.py:3843); committed = commit_variance < effective_threshold (e3_selector.py:3847), with effective_threshold constant at commitment_threshold=0.40 for this run (BreathOscillator sweep disabled by default, urgency_weight=0.0, goal_state=None -- none of the effective_threshold modulators are armed by this driver, verified). Gate-active: frozen below threshold every tick -> should_admit_elevation fires every tick. Gate-ablated: forced above threshold every tick before select_action runs -> result.committed=False every tick -> the ternary short-circuits to True WITHOUT ever calling should_admit_elevation. Independently red-teamed and CONFIRMED (see red_team block).",
-          "current_precision = 1.0 / (self._running_variance + 1e-6) (e3_selector.py:815-817) is the SAME scalar as _running_variance. Forcing _running_variance to a fixed 0.50 in the ablated arm therefore also fixes current_precision at a fixed ~2.0 for the whole episode, an arbitrary operating point unrelated to what the agent's organically-uncommitted precision would be (ARC-029's own what_would_answer cites operating points as low as rv~0.0054 elsewhere in the corpus). The precision-consuming dual-system arbitration path (_arbitrate_dual_system, e3_selector.py:1623) is gated on use_dualsystem_arbitration (default False, not set by this driver) so is NOT exercised here -- the precision confound in THIS run is carried structurally (same scalar, same gate check) rather than through that specific downstream consumer.",
-          "The action-generation mechanism itself differs structurally between committed and uncommitted steps (select_action early-return, agent.py:7237-7253): committed steps replay a stored multi-step plan (traj.actions[:, step_idx, :]); uncommitted/ablated steps repeat the single last-chosen action (self._last_action). This IS the intended, in-architecture content of 'commitment' per the claim's own definition, not an incidental confound -- candidate scoring itself (e3.select()) is unconditional on commit state on E3-tick steps."
-        ]
-      },
-      "recommended_epistemic_category": "standard",
-      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect (occupancy-vacuous ablation instrument + precision-confounded mode driver). Per SKILL.md's enum-mapping rule, a measurement/test-design gap that owes no substrate build maps to 'standard', not to substrate_ceiling/substrate_conditional -- the diagnosis lives in this note and in four_layer_diagnosis, not in the category field. NOTE for the reader of RE_DERIVE_BRAKE counts: because this category string is the enum-compliant 'standard' rather than a free-text 'measurement_test_design_defect', the corpus INSTRUMENT-substring exclusion in the counting recipe (SKILL.md Step 6, R3(2)) will NOT match it, so this target counts as 1 toward ARC-029's re-derive-brake tally under the recipe's literal fallback rule (R3(4), direction=non_contributory). This is below RE_DERIVE_BRAKE_THRESHOLD=2 for ARC-029 (prior V3-EXQ-630 and EXQ-125 targets are excluded by the recipe's instrument-match / direction-mismatch branches respectively -- verified against the live corpus via granularity_debt_cluster.py ARC-029, 2026-09-14), so the brake does not fire and a queue-experiment redesign is not refused.",
-      "recommended_evidence_direction": "non_contributory",
-      "recommended_evidence_quality_note": "[2026-09-14, failure_autopsy_V3-EXQ-063a_2026-09-14, GFLAG-0148 adjudication] V3-EXQ-063a PASS (2026-06-02) is CONFOUNDED and its C3/C4 non-degeneracy checks are VACUOUS BY CONSTRUCTION -- re-tag non_contributory (from supports). Two independently sufficient defects, both code-verified and red-team CONFIRMED: (1) OCCUPANCY: the driver never updates agent.e3._running_variance during eval (no update_residue()/post_action_update() call in _eval_condition), so the gate_active arm is frozen committed 100% of eval steps and the gate_ablated arm is forced uncommitted 100% of eval steps by explicit per-tick override BEFORE select_action -- n_committed_active_stable=1155.5 vs n_uncommitted_active_stable=0.0, n_committed_ablated_stable=0.0 are read off the two forced-constant regimes the script installs, not emergent gate behaviour, and the claim's own within-agent two-mode contrast is never reached. (2) PRECISION: current_precision = 1/(running_variance+1e-6) is the same scalar as the ablation target, so forcing running_variance to commit_threshold+0.1=0.50 also pins precision at a fixed ~2.0 in the ablated arm -- structurally the same confound class the 2026-06-03 autopsy used to retag V3-EXQ-630 non_contributory (failure_autopsy_604a-624a-630_2026-06-03). ADDITIONALLY (new to this autopsy): the R-c commit-readiness gate this re-run's own title names as its subject (should_admit_elevation) is exercised on every E3 tick in the gate_active arm and on ZERO ticks in the gate_ablated arm, because beta_gate_bistable defaults False so the legacy re-evaluate-every-tick branch runs (agent.py:9866) and result.committed -- the precondition for calling should_admit_elevation at all -- is forced False every tick in the ablated arm before select_action runs. So the specific R-c mechanism was, in a real sense, never comparably tested across arms either. Do NOT count this PASS as support for ARC-029. ARC-029's other experimental record: EXQ-125 (2 non-superseded runs, weakens/mixed; a 3rd run's own flat manifest reads evidence_direction=superseded and is inactive) and V3-EXQ-227/V3-EXQ-630 (both non_contributory) -- with 063a re-tagged, ARC-029's genuine experimental record has zero surviving supports (claim_evidence.v1.json's current genuine_exp_direction_counts={supports:1(063a),weakens:1} becomes {supports:0,weakens:1} once re-tagged). NOTE (red-team H1): 6 literature entries remain (literature_confidence=0.785) and are untouched by this autopsy -- overall_confidence will not collapse to zero, and the indexer's mechanical conflict_ratio-based demote_to_candidate threshold (build_experiment_indexes.py, needs conflict_ratio>=0.55) will likely NOT fire automatically post-retag (estimated ratio ~0.14). The recommended demotion below is a GOVERNANCE JUDGMENT CALL on the EXPERIMENTAL record specifically (mirroring how this claim was originally promoted candidate->provisional on experimental grounds, per its own status_note), not an automatic index-triggered consequence -- say so explicitly when applying it. Redesign is NOT blocked on new substrate: claims.yaml's own what_would_answer (P1-P3) already specifies the fix using EXISTING levers (MECH-108 BreathOscillator effective_threshold sweep for a threshold-side, precision-invariant mode driver; use_natural_commit_latch_hold for sustained within-run occupancy) -- route to /queue-experiment.",
-      "per_claim_recommendation": {
-        "ARC-029": {
-          "recommended_evidence_direction": "non_contributory",
-          "recommended_epistemic_category": "standard",
-          "change": "V3-EXQ-063a was the sole surviving positive EXPERIMENTAL support keeping ARC-029 at provisional (EXQ-125's 2 non-superseded runs read weakens/mixed; V3-EXQ-227 and V3-EXQ-630 both already non_contributory); this autopsy re-tags 063a's PASS as confounded and uninformative, so no positive experimental evidence remains for the claim. This is a governance judgment call on the experimental record (6 literature entries are unaffected and remain supportive) -> status: candidate",
-          "status_change": "provisional -> candidate"
-        }
-      },
-      "recommended_substrate_queue_entry": {
-        "action": "none",
-        "target_sd_id": null,
-        "sd_id_suggested": null,
-        "title": null,
-        "implementation_hint": null,
-        "unblocks_claims": [],
-        "depends_on_unresolved": [],
-        "priority_suggested": null,
-        "severity": null,
-        "substrate_paths": [],
-        "failure_record_entry": null
-      },
-      "pending_retest_after_substrate": false,
-      "narrow_supports_flag": false,
-      "learning_extracted": [
-        "A same-scalar ablation (forcing a shared commitment/precision variable to a fixed value) cannot isolate 'commitment mode' as a single variable -- it necessarily also pins precision, which is the same second confound class the 2026-06-03 V3-EXQ-630 autopsy found in the across-tick nav_competence axis. This is now confirmed on the within-tick decisiveness axis (R-c gate) too, i.e. the confound is a property of ARC-029's whole ablation-VEHICLE choice (forcing running_variance directly), not of one particular substrate axis.",
-        "A per-episode-constant ablation override (applied before every SELECT step, never allowed to vary) makes a C3/C4-style occupancy 'non-degeneracy' check structurally unfalsifiable -- it verifies the override was applied, not that the gate does anything. Future ablation designs for gated/latching mechanisms should manipulate a driver upstream of the gate (here: effective_threshold via MECH-108's BreathOscillator, already implemented) so the gate's own decision logic is genuinely exercised and can genuinely fail the sanity check if the manipulation is not working.",
-        "claims.yaml's own what_would_answer field for ARC-029 (added prior to this autopsy, 2026-09-09 governance cycle) already specifies a complete, ready-to-queue redesign spec (P1-P3 non-degeneracy preconditions + confirming/falsifying criteria) using existing REEConfig levers -- this autopsy's routing recommendation is to use that spec directly rather than re-deriving one.",
-        "The never-queued v3_exq_125a_arc029_committed_mode_redesign.py driver (found by the Step 7b C1 pre-routing check; see pre_routing_checks_7b) is NOT a usable redesign for this confound -- it fixes EXQ-125's statistical-power defect but reuses the identical running_variance-forcing ablation vehicle this autopsy found confounded. A future /queue-experiment session must not queue it unmodified; it needs the P1/P2 ablation-vehicle fix from claims.yaml's what_would_answer applied first (or folded into a fresh driver)."
-      ],
-      "routing": "queue-experiment",
-      "routing_detail": "NOT 'queue the existing v3_exq_125a driver as-is' -- see pre_routing_checks_7b and learning_extracted. Route to /queue-experiment for a NEW redesign (or a substantial amend of 125a) satisfying claims.yaml's ARC-029 what_would_answer P1 (occupancy: use_natural_commit_latch_hold + sustained committed_step_fraction in [0.15,0.85] within a single alternating run) and P2 (precision-invariance: drive commitment via MECH-108 BreathOscillator effective_threshold sweep, not by forcing running_variance directly) and P3 (harm DV off the measurement floor -- 063a's ~-0.055 harm/step operating point is already workable)."
-    }
-  ],
-  "granularity_debt_trigger": {
-    "fires": false,
-    "note": "granularity_debt_cluster.py ARC-029 (run 2026-09-14): 3 prior targets, alignment distribution unclear=3 (no target reads 'weakened'). This target also reads 'unclear (protected)'. Per SKILL.md Step 7 ('only fire when at least one target reads weakened'), the trigger does not fire -- this is measurement/test-design debt, not granularity debt."
-  },
-  "re_derive_brake": {
-    "fired": false,
-    "threshold": 2,
-    "claim": "ARC-029",
-    "count_after_this_target": 1,
-    "note": "Prior ARC-029 targets excluded from the R1-R3 count: V3-EXQ-630 (category string literally 'measurement_test_design_defect', INSTRUMENT-substring match, owes no build -> excluded by R3(2)); EXQ-125 x2 (direction weakens/mixed, not non_contributory, and category also instrument-marked -> excluded by R3 initial gate). This target's enum-compliant 'standard' category does not literal-match the INSTRUMENT substring list, so it counts under R3(4) fallback -- 1 of 2 needed to fire the brake. See recommended_epistemic_category_note for the corpus-consistency caveat this raises."
-  },
-  "pre_routing_checks_7b": {
-    "fire_count": 1,
-    "dispositions": [
-      {
-        "check": "C1",
-        "name": "v3_exq_227_arc029_discrepancy_diagnostic",
-        "disposition": "dismissed -- false positive against the check's PASS/FAIL-shaped-manifest assumption. This driver DID score a run: REE_assembly/evidence/experiments/v3_exq_227_arc029_discrepancy_diagnostic/v3_exq_227_arc029_discrepancy_diagnostic_1775296904.json (run_id v3_exq_227_arc029_discrepancy_diagnostic_1775296904_v3, claim_ids=[ARC-029], evidence_direction=non_contributory). It is a grandfathered/legacy manifest with status=null and dry_run=null (predates the current schema), which is almost certainly why the check's population scan missed it. Already fully accounted for in claims.yaml's ARC-029 evidence_quality_note ('EXQ-227 DIAGNOSTIC non_contributory (2026-04-05, cowork-2026-04-05-a)') and in this autopsy's own routing history."
-      },
-      {
-        "check": "C1",
-        "name": "v3_exq_125a_arc029_committed_mode_redesign",
-        "disposition": "ACTED ON, not dismissed. This driver genuinely exists on disk and was genuinely never queued (confirmed independently: zero '125a' occurrences in ree-v3/experiment_queue.json; matches claims.yaml's own GFLAG-0149 finding). Read in full (ree-v3/experiments/v3_exq_125a_arc029_committed_mode_redesign.py) before finalising routing, per this skill's re-adjudication read rule. VERDICT: this driver does NOT resolve the confound this autopsy identifies and must not be queued as-is. Its redesign only targets EXQ-125's STATISTICAL-POWER defect (2->5 seeds, num_hazards 4->8, hazard_harm 0.02->0.05, majority-rule criteria) -- it uses the IDENTICAL confounded ablation vehicle as 063a ('force agent.e3._running_variance = commit_threshold + 0.1 ... before each SELECT step', same docstring language verbatim), so it inherits BOTH the occupancy-vacuity (P1) and precision (P2) defects this autopsy found. Queueing 125a unmodified would reproduce the same non-degenerate-by-construction non-contributory result, not resolve it. The routing recommendation below is therefore explicitly NOT 'queue 125a' -- it is a fresh redesign (or a substantial amend of 125a) that replaces the running_variance-forcing ablation vehicle with the threshold-side MECH-108 BreathOscillator driver per claims.yaml's own P1-P3 spec, optionally folding in 125a's orthogonal statistical-power fixes (more seeds, higher hazard density) since those remain valid improvements independent of the ablation-vehicle fix."
-      }
-    ]
-  },
-  "red_team": {
-    "verdict": "CONFIRMED",
-    "model": "claude-fable-5-1 (cross-model from the drafting session, claude-sonnet-5, per Step 7c)",
-    "findings_file": "scratchpad only (session-local, not committed; deleted after incorporation)",
-    "recomputed_numbers": [
-      "harm_gap_stable = -0.055211 - (-0.075726) = 0.020515 -- matches manifest",
-      "gap_reduction_ratio = 0.010571 / 0.020515 = 0.5153 -- matches manifest",
-      "variance_commit_threshold() is the identity function (e3_selector.py:285-294) -> commit_threshold=0.40 -> ablation target 0.40+0.1=0.50, precision~=2.0 -- matches draft"
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-14T11:19:36Z",
+ "scope": "single",
+ "status": "confirmed",
+ "staging_mode_reason": "headless metaworker-dispatch session (chip-20260910-gflag0148-arc029-commitment-confound-autopsy); no live harness/user to run the Step 8 interactive gate. Draft only -- routing not finalised. Confirm in an interactive session or at the next /governance walk per SKILL.md Staging mode.",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate_20260602T172531Z_v3",
+   "queue_id": "V3-EXQ-063a",
+   "claim_ids": [
+    "ARC-029"
+   ],
+   "self_route_label": "commitment_precision_confound_occupancy_vacuous",
+   "failed_criterion": "negative_control",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear (protected) -- the design never let ARC-029's own within-agent two-mode contrast express itself; the measured PASS reflects a between-arm architectural manipulation, not evidence that committed and uncommitted operating MODES differ within one agent",
+    "biological_reference": "partial -- BG-like commitment/action-selection lock-in (Cisek-Kalaska affordance competition collapsing to one selected plan) has a solid mechanism-class existence proof; the DEFECT here is not translation fidelity of the gate itself but the choice of ablation VEHICLE (forcing the confidence/precision scalar to a fixed value rather than manipulating the commit threshold), which the biology gives no reason to prefer",
+    "prerequisites": "present -- both depends_on claims are healthy and unaffected: MECH-090 (R-c commit-entry predicate) status=active, ARC-016 (dynamic precision) status=stable",
+    "implementation": "complete -- the commitment gate, the R-c readiness predicate, and the threshold-side manipulation levers (MECH-108 BreathOscillator effective_threshold sweep, use_natural_commit_latch_hold, use_persistent_committed_program_handle, use_e3_reselection_shortcircuit) all already exist in REEConfig.from_dims; none was armed by this driver",
+    "environment": "adequate -- CausalGridWorldV2 stable/volatile split is a reasonable operationalisation of ARC-029's context-dependence prediction; not the locus of the defect",
+    "measurement": "misleading -- C3/C4 are advertised as non-degeneracy sanity checks but are structurally unfalsifiable by this driver's own construction (see facts below); they cannot fail regardless of whether the gate does anything, so their PASS carries zero information",
+    "integration": "isolated -- cannot assess within-agent committed/uncommitted interaction with environment volatility, because both states are pinned constant for an entire episode rather than arising from ongoing agent-environment coupling",
+    "scale": "adequate -- warmup/eval budgets are not implicated; this is a design defect, not a capacity limit"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "established",
+    "environment": "not_established",
+    "ree": false,
+    "net_classification": "MEASURES -- the ablation instrument and its own non-degeneracy check are the defect; not chargeable to the commitment mechanism (MECH-090/ARC-016 implementation is complete and unaffected) or to the environment design."
+   },
+   "biological_reference": {
+    "closest_mechanism": "Cisek-Kalaska affordance-competition collapse to a single selected plan (BG-like commitment gate); the closest published REE-internal grounding is the Humphries (2012) dopamine exploitation/exploration lit-pull already cited in ARC-029's own notes",
+    "dependencies": [
+     "a mode-driver that toggles commitment WITHOUT moving the same scalar other systems read as precision/confidence"
     ],
-    "claims_tested": {
-      "A_occupancy_frozen": "ACCEPTED -- all _running_variance setters (update_running_variance, recalibrate_precision_to (sleep-only), broadcast_precision_pull (flag-gated, unset)) traced; none reachable from the eval loop's call set.",
-      "B_rc_gate_every_tick_vs_never": "ACCEPTED -- verified beta_gate_bistable=False default, legacy else: branch at agent.py:9866, AND independently verified effective_threshold is constant at 0.40 for this run (BreathOscillator sweep disabled by default, urgency_weight=0.0, goal_state=None -- none of the effective_threshold modulators armed).",
-      "C_precision_confound": "ACCEPTED -- confirmed current_precision (e3_selector.py:815-817) is unread by select_action's own decision logic in this config (dacc/dualsystem consumers both off), so the confound is carried structurally via the shared scalar and gate check, exactly as drafted.",
-      "D_125a_does_not_fix_confound": "ACCEPTED -- confirmed line-level: 125a uses the identical running_variance-forcing ablation, no BreathOscillator/latch-hold/update_residue call, 0 queue occurrences.",
-      "E_routing_and_demotion": "ACCEPTED WITH ONE BASIS CORRECTION (incorporated above as H1): 'ZERO surviving positive support' was over-broad -- 6 literature entries (literature_confidence=0.785) remain and the indexer's mechanical conflict_ratio demotion threshold will likely not fire automatically; the demotion is correctly framed as a governance judgment call on the experimental record, not a mechanical trigger. Does not reverse the recommendation."
+    "is_formal_import": false,
+    "divergence": "n/a -- this is a test-design defect in the ablation VEHICLE, not a biological-translation divergence in the gate mechanism itself",
+    "lit_status": "present"
+   },
+   "facts": {
+    "manifest_metrics": {
+     "harm_gap_stable": 0.020514875316566983,
+     "harm_gap_volatile": 0.010570583890639182,
+     "gap_reduction_ratio": 0.5152643497717388,
+     "n_committed_active_stable": 1155.5,
+     "n_uncommitted_active_stable": 0.0,
+     "n_committed_ablated_stable": 0.0,
+     "criteria_met": 5.0
     },
-    "hygiene_accepted": [
-      "H2: line citations drifted (e3_selector.py 3838-3841 -> corrected to 3843/3847; agent.py 9865 -> corrected to 9866) -- fixed in this artifact.",
-      "H4: EXQ-125 has only 2 non-superseded runs (weakens, mixed); the 3rd run's flat manifest reads evidence_direction=superseded and is excluded from the count -- corrected from 'EXQ-125 x3' in this artifact.",
-      "H3: the 'separately supported by V3-EXQ-063a PASS' quote is from claims.yaml's evidence_quality_note, not status_note -- corrected in the .md.",
-      "H5/H6/H7 (minor): the four effective_threshold-modulator defaults now stated explicitly (B above); the active arm's _committed_trajectory is also never torn down mid-episode (a third construction artefact, consistent with occupancy being frozen, not an additional independent confound); claims.yaml's own P2 line-cites (3674/771) are stale against current e3_selector.py line numbers -- noted for a future claims.yaml hygiene pass, out of this autopsy's scope."
+    "recording_gaps": [
+     "recording_schema",
+     "substrate_hash",
+     "substrate_commit",
+     "machine_class",
+     "elapsed_seconds",
+     "config",
+     "seeds"
+    ],
+    "recording_gap_note": "pre-dates the Experimental Recording Standard (2026-07-12); run is from 2026-06-02. No per-seed metric breakdown survives in the flat manifest or the run pack -- only the 2-seed average. Not independently fixable by re-analysis of this run; only by a fresh recorded re-run.",
+    "code_confirmed_mechanism": [
+     "In the gate_active arm, agent.e3._running_variance is set once (script line 333, to train_variance) and NEVER updated again for the rest of the eval episode. The only setter, update_running_variance(), is reached solely via E3Selector.post_action_update() <- REEAgent.update_residue() (ree-v3/ree_core/agent.py:10686); _eval_condition() (experiments/v3_exq_063a_..._rc_gate.py:305-395) never calls agent.update_residue(). So the gate_active arm is NOT dynamically re-evaluated and 'happening to stay low' -- it is frozen low by script construction.",
+     "In the gate_ablated arm, the script forces agent.e3._running_variance = commit_threshold + 0.1 = 0.50 (commit_threshold=REEConfig.commitment_threshold=0.40, ree-v3/ree_core/utils/config.py:1107) and agent.e3._committed_trajectory = None immediately before EVERY select_action() call (script lines 342-344), before result.committed is computed for that tick.",
+     "Because of this, n_committed_active_stable=1155.5 / n_uncommitted_active_stable=0.0 / n_committed_ablated_stable=0.0 are a tautological readout of the two forced-constant _running_variance regimes the script installs, not an emergent measurement of gate dynamics. C3 ('committed cond has more committed than uncommitted steps') and C4 ('ablated cond has zero committed steps') cannot fail under this construction regardless of whether the R-c gate does anything at all -- both are vacuous non-degeneracy checks.",
+     "The R-c readiness gate itself (should_admit_elevation(), the specific mechanism this re-run's title and rationale name as the thing being re-validated) is exercised on EVERY E3 tick in the gate_active arm and on ZERO ticks in the gate_ablated arm -- not 'at most once' vs 'never', a starker asymmetry, because config.heartbeat.beta_gate_bistable is never set by this driver and defaults False (config.py:3296), so select_action() runs the non-bistable LEGACY branch (ree_core/agent.py:9866 'else:'), which re-evaluates _legacy_admit = (should_admit_elevation(...) and _readiness_admits) if result.committed else True on every tick (agent.py:9866-9882), not only on a commit-entry transition. result.committed is computed live from commit_variance = self._running_variance (e3_selector.py:3843); committed = commit_variance < effective_threshold (e3_selector.py:3847), with effective_threshold constant at commitment_threshold=0.40 for this run (BreathOscillator sweep disabled by default, urgency_weight=0.0, goal_state=None -- none of the effective_threshold modulators are armed by this driver, verified). Gate-active: frozen below threshold every tick -> should_admit_elevation fires every tick. Gate-ablated: forced above threshold every tick before select_action runs -> result.committed=False every tick -> the ternary short-circuits to True WITHOUT ever calling should_admit_elevation. Independently red-teamed and CONFIRMED (see red_team block).",
+     "current_precision = 1.0 / (self._running_variance + 1e-6) (e3_selector.py:815-817) is the SAME scalar as _running_variance. Forcing _running_variance to a fixed 0.50 in the ablated arm therefore also fixes current_precision at a fixed ~2.0 for the whole episode, an arbitrary operating point unrelated to what the agent's organically-uncommitted precision would be (ARC-029's own what_would_answer cites operating points as low as rv~0.0054 elsewhere in the corpus). The precision-consuming dual-system arbitration path (_arbitrate_dual_system, e3_selector.py:1623) is gated on use_dualsystem_arbitration (default False, not set by this driver) so is NOT exercised here -- the precision confound in THIS run is carried structurally (same scalar, same gate check) rather than through that specific downstream consumer.",
+     "The action-generation mechanism itself differs structurally between committed and uncommitted steps (select_action early-return, agent.py:7237-7253): committed steps replay a stored multi-step plan (traj.actions[:, step_idx, :]); uncommitted/ablated steps repeat the single last-chosen action (self._last_action). This IS the intended, in-architecture content of 'commitment' per the claim's own definition, not an incidental confound -- candidate scoring itself (e3.select()) is unconditional on commit state on E3-tick steps."
     ]
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect (occupancy-vacuous ablation instrument + precision-confounded mode driver). Per SKILL.md's enum-mapping rule, a measurement/test-design gap that owes no substrate build maps to 'standard', not to substrate_ceiling/substrate_conditional -- the diagnosis lives in this note and in four_layer_diagnosis, not in the category field. NOTE for the reader of RE_DERIVE_BRAKE counts: because this category string is the enum-compliant 'standard' rather than a free-text 'measurement_test_design_defect', the corpus INSTRUMENT-substring exclusion in the counting recipe (SKILL.md Step 6, R3(2)) will NOT match it, so this target counts as 1 toward ARC-029's re-derive-brake tally under the recipe's literal fallback rule (R3(4), direction=non_contributory). This is below RE_DERIVE_BRAKE_THRESHOLD=2 for ARC-029 (prior V3-EXQ-630 and EXQ-125 targets are excluded by the recipe's instrument-match / direction-mismatch branches respectively -- verified against the live corpus via granularity_debt_cluster.py ARC-029, 2026-09-14), so the brake does not fire and a queue-experiment redesign is not refused.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "[2026-09-14, failure_autopsy_V3-EXQ-063a_2026-09-14, GFLAG-0148 adjudication] V3-EXQ-063a PASS (2026-06-02) is CONFOUNDED and its C3/C4 non-degeneracy checks are VACUOUS BY CONSTRUCTION -- re-tag non_contributory (from supports). Two independently sufficient defects, both code-verified and red-team CONFIRMED: (1) OCCUPANCY: the driver never updates agent.e3._running_variance during eval (no update_residue()/post_action_update() call in _eval_condition), so the gate_active arm is frozen committed 100% of eval steps and the gate_ablated arm is forced uncommitted 100% of eval steps by explicit per-tick override BEFORE select_action -- n_committed_active_stable=1155.5 vs n_uncommitted_active_stable=0.0, n_committed_ablated_stable=0.0 are read off the two forced-constant regimes the script installs, not emergent gate behaviour, and the claim's own within-agent two-mode contrast is never reached. (2) PRECISION: current_precision = 1/(running_variance+1e-6) is the same scalar as the ablation target, so forcing running_variance to commit_threshold+0.1=0.50 also pins precision at a fixed ~2.0 in the ablated arm -- structurally the same confound class the 2026-06-03 autopsy used to retag V3-EXQ-630 non_contributory (failure_autopsy_604a-624a-630_2026-06-03). ADDITIONALLY (new to this autopsy): the R-c commit-readiness gate this re-run's own title names as its subject (should_admit_elevation) is exercised on every E3 tick in the gate_active arm and on ZERO ticks in the gate_ablated arm, because beta_gate_bistable defaults False so the legacy re-evaluate-every-tick branch runs (agent.py:9866) and result.committed -- the precondition for calling should_admit_elevation at all -- is forced False every tick in the ablated arm before select_action runs. So the specific R-c mechanism was, in a real sense, never comparably tested across arms either. Do NOT count this PASS as support for ARC-029. ARC-029's other experimental record: EXQ-125 (2 non-superseded runs, weakens/mixed; a 3rd run's own flat manifest reads evidence_direction=superseded and is inactive) and V3-EXQ-227/V3-EXQ-630 (both non_contributory) -- with 063a re-tagged, ARC-029's genuine experimental record has zero surviving supports (claim_evidence.v1.json's current genuine_exp_direction_counts={supports:1(063a),weakens:1} becomes {supports:0,weakens:1} once re-tagged). NOTE (red-team H1): 6 literature entries remain (literature_confidence=0.785) and are untouched by this autopsy -- overall_confidence will not collapse to zero, and the indexer's mechanical conflict_ratio-based demote_to_candidate threshold (build_experiment_indexes.py, needs conflict_ratio>=0.55) will likely NOT fire automatically post-retag (estimated ratio ~0.14). The recommended demotion below is a GOVERNANCE JUDGMENT CALL on the EXPERIMENTAL record specifically (mirroring how this claim was originally promoted candidate->provisional on experimental grounds, per its own status_note), not an automatic index-triggered consequence -- say so explicitly when applying it. Redesign is NOT blocked on new substrate: claims.yaml's own what_would_answer (P1-P3) already specifies the fix using EXISTING levers (MECH-108 BreathOscillator effective_threshold sweep for a threshold-side, precision-invariant mode driver; use_natural_commit_latch_hold for sustained within-run occupancy) -- route to /queue-experiment.",
+   "per_claim_recommendation": {
+    "ARC-029": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "V3-EXQ-063a was the sole surviving positive EXPERIMENTAL support keeping ARC-029 at provisional (EXQ-125's 2 non-superseded runs read weakens/mixed; V3-EXQ-227 and V3-EXQ-630 both already non_contributory); this autopsy re-tags 063a's PASS as confounded and uninformative, so no positive experimental evidence remains for the claim. This is a governance judgment call on the experimental record (6 literature entries are unaffected and remain supportive) -> status: candidate",
+     "status_change": "provisional -> candidate"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "target_sd_id": null,
+    "sd_id_suggested": null,
+    "title": null,
+    "implementation_hint": null,
+    "unblocks_claims": [],
+    "depends_on_unresolved": [],
+    "priority_suggested": null,
+    "severity": null,
+    "substrate_paths": [],
+    "failure_record_entry": null
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "learning_extracted": [
+    "A same-scalar ablation (forcing a shared commitment/precision variable to a fixed value) cannot isolate 'commitment mode' as a single variable -- it necessarily also pins precision, which is the same second confound class the 2026-06-03 V3-EXQ-630 autopsy found in the across-tick nav_competence axis. This is now confirmed on the within-tick decisiveness axis (R-c gate) too, i.e. the confound is a property of ARC-029's whole ablation-VEHICLE choice (forcing running_variance directly), not of one particular substrate axis.",
+    "A per-episode-constant ablation override (applied before every SELECT step, never allowed to vary) makes a C3/C4-style occupancy 'non-degeneracy' check structurally unfalsifiable -- it verifies the override was applied, not that the gate does anything. Future ablation designs for gated/latching mechanisms should manipulate a driver upstream of the gate (here: effective_threshold via MECH-108's BreathOscillator, already implemented) so the gate's own decision logic is genuinely exercised and can genuinely fail the sanity check if the manipulation is not working.",
+    "claims.yaml's own what_would_answer field for ARC-029 (added prior to this autopsy, 2026-09-09 governance cycle) already specifies a complete, ready-to-queue redesign spec (P1-P3 non-degeneracy preconditions + confirming/falsifying criteria) using existing REEConfig levers -- this autopsy's routing recommendation is to use that spec directly rather than re-deriving one.",
+    "The never-queued v3_exq_125a_arc029_committed_mode_redesign.py driver (found by the Step 7b C1 pre-routing check; see pre_routing_checks_7b) is NOT a usable redesign for this confound -- it fixes EXQ-125's statistical-power defect but reuses the identical running_variance-forcing ablation vehicle this autopsy found confounded. A future /queue-experiment session must not queue it unmodified; it needs the P1/P2 ablation-vehicle fix from claims.yaml's what_would_answer applied first (or folded into a fresh driver)."
+   ],
+   "routing": "queue-experiment",
+   "routing_detail": "NOT 'queue the existing v3_exq_125a driver as-is' -- see pre_routing_checks_7b and learning_extracted. Route to /queue-experiment for a NEW redesign (or a substantial amend of 125a) satisfying claims.yaml's ARC-029 what_would_answer P1 (occupancy: use_natural_commit_latch_hold + sustained committed_step_fraction in [0.15,0.85] within a single alternating run) and P2 (precision-invariance: drive commitment via MECH-108 BreathOscillator effective_threshold sweep, not by forcing running_variance directly) and P3 (harm DV off the measurement floor -- 063a's ~-0.055 harm/step operating point is already workable)."
   }
+ ],
+ "granularity_debt_trigger": {
+  "fires": false,
+  "note": "granularity_debt_cluster.py ARC-029 (run 2026-09-14): 3 prior targets, alignment distribution unclear=3 (no target reads 'weakened'). This target also reads 'unclear (protected)'. Per SKILL.md Step 7 ('only fire when at least one target reads weakened'), the trigger does not fire -- this is measurement/test-design debt, not granularity debt."
+ },
+ "re_derive_brake": {
+  "fired": false,
+  "threshold": 2,
+  "claim": "ARC-029",
+  "count_after_this_target": 1,
+  "note": "Prior ARC-029 targets excluded from the R1-R3 count: V3-EXQ-630 (category string literally 'measurement_test_design_defect', INSTRUMENT-substring match, owes no build -> excluded by R3(2)); EXQ-125 x2 (direction weakens/mixed, not non_contributory, and category also instrument-marked -> excluded by R3 initial gate). This target's enum-compliant 'standard' category does not literal-match the INSTRUMENT substring list, so it counts under R3(4) fallback -- 1 of 2 needed to fire the brake. See recommended_epistemic_category_note for the corpus-consistency caveat this raises."
+ },
+ "pre_routing_checks_7b": {
+  "fire_count": 1,
+  "dispositions": [
+   {
+    "check": "C1",
+    "name": "v3_exq_227_arc029_discrepancy_diagnostic",
+    "disposition": "dismissed -- false positive against the check's PASS/FAIL-shaped-manifest assumption. This driver DID score a run: REE_assembly/evidence/experiments/v3_exq_227_arc029_discrepancy_diagnostic/v3_exq_227_arc029_discrepancy_diagnostic_1775296904.json (run_id v3_exq_227_arc029_discrepancy_diagnostic_1775296904_v3, claim_ids=[ARC-029], evidence_direction=non_contributory). It is a grandfathered/legacy manifest with status=null and dry_run=null (predates the current schema), which is almost certainly why the check's population scan missed it. Already fully accounted for in claims.yaml's ARC-029 evidence_quality_note ('EXQ-227 DIAGNOSTIC non_contributory (2026-04-05, cowork-2026-04-05-a)') and in this autopsy's own routing history."
+   },
+   {
+    "check": "C1",
+    "name": "v3_exq_125a_arc029_committed_mode_redesign",
+    "disposition": "ACTED ON, not dismissed. This driver genuinely exists on disk and was genuinely never queued (confirmed independently: zero '125a' occurrences in ree-v3/experiment_queue.json; matches claims.yaml's own GFLAG-0149 finding). Read in full (ree-v3/experiments/v3_exq_125a_arc029_committed_mode_redesign.py) before finalising routing, per this skill's re-adjudication read rule. VERDICT: this driver does NOT resolve the confound this autopsy identifies and must not be queued as-is. Its redesign only targets EXQ-125's STATISTICAL-POWER defect (2->5 seeds, num_hazards 4->8, hazard_harm 0.02->0.05, majority-rule criteria) -- it uses the IDENTICAL confounded ablation vehicle as 063a ('force agent.e3._running_variance = commit_threshold + 0.1 ... before each SELECT step', same docstring language verbatim), so it inherits BOTH the occupancy-vacuity (P1) and precision (P2) defects this autopsy found. Queueing 125a unmodified would reproduce the same non-degenerate-by-construction non-contributory result, not resolve it. The routing recommendation below is therefore explicitly NOT 'queue 125a' -- it is a fresh redesign (or a substantial amend of 125a) that replaces the running_variance-forcing ablation vehicle with the threshold-side MECH-108 BreathOscillator driver per claims.yaml's own P1-P3 spec, optionally folding in 125a's orthogonal statistical-power fixes (more seeds, higher hazard density) since those remain valid improvements independent of the ablation-vehicle fix."
+   }
+  ]
+ },
+ "red_team": {
+  "verdict": "CONFIRMED",
+  "model": "claude-fable-5-1 (cross-model from the drafting session, claude-sonnet-5, per Step 7c)",
+  "findings_file": "scratchpad only (session-local, not committed; deleted after incorporation)",
+  "recomputed_numbers": [
+   "harm_gap_stable = -0.055211 - (-0.075726) = 0.020515 -- matches manifest",
+   "gap_reduction_ratio = 0.010571 / 0.020515 = 0.5153 -- matches manifest",
+   "variance_commit_threshold() is the identity function (e3_selector.py:285-294) -> commit_threshold=0.40 -> ablation target 0.40+0.1=0.50, precision~=2.0 -- matches draft"
+  ],
+  "claims_tested": {
+   "A_occupancy_frozen": "ACCEPTED -- all _running_variance setters (update_running_variance, recalibrate_precision_to (sleep-only), broadcast_precision_pull (flag-gated, unset)) traced; none reachable from the eval loop's call set.",
+   "B_rc_gate_every_tick_vs_never": "ACCEPTED -- verified beta_gate_bistable=False default, legacy else: branch at agent.py:9866, AND independently verified effective_threshold is constant at 0.40 for this run (BreathOscillator sweep disabled by default, urgency_weight=0.0, goal_state=None -- none of the effective_threshold modulators armed).",
+   "C_precision_confound": "ACCEPTED -- confirmed current_precision (e3_selector.py:815-817) is unread by select_action's own decision logic in this config (dacc/dualsystem consumers both off), so the confound is carried structurally via the shared scalar and gate check, exactly as drafted.",
+   "D_125a_does_not_fix_confound": "ACCEPTED -- confirmed line-level: 125a uses the identical running_variance-forcing ablation, no BreathOscillator/latch-hold/update_residue call, 0 queue occurrences.",
+   "E_routing_and_demotion": "ACCEPTED WITH ONE BASIS CORRECTION (incorporated above as H1): 'ZERO surviving positive support' was over-broad -- 6 literature entries (literature_confidence=0.785) remain and the indexer's mechanical conflict_ratio demotion threshold will likely not fire automatically; the demotion is correctly framed as a governance judgment call on the experimental record, not a mechanical trigger. Does not reverse the recommendation."
+  },
+  "hygiene_accepted": [
+   "H2: line citations drifted (e3_selector.py 3838-3841 -> corrected to 3843/3847; agent.py 9865 -> corrected to 9866) -- fixed in this artifact.",
+   "H4: EXQ-125 has only 2 non-superseded runs (weakens, mixed); the 3rd run's flat manifest reads evidence_direction=superseded and is excluded from the count -- corrected from 'EXQ-125 x3' in this artifact.",
+   "H3: the 'separately supported by V3-EXQ-063a PASS' quote is from claims.yaml's evidence_quality_note, not status_note -- corrected in the .md.",
+   "H5/H6/H7 (minor): the four effective_threshold-modulator defaults now stated explicitly (B above); the active arm's _committed_trajectory is also never torn down mid-episode (a third construction artefact, consistent with occupancy being frozen, not an additional independent confound); claims.yaml's own P2 line-cites (3674/771) are stale against current e3_selector.py line numbers -- noted for a future claims.yaml hygiene pass, out of this autopsy's scope."
+  ]
+ },
+ "confirmed_utc": "2026-09-16T12:08:10Z",
+ "confirmed_by": "user, Step 8 gate held interactively in the account-handover-20260916 walkthrough session on 2026-09-16 (AskUserQuestion, recommended disposition selected; recommendation ledger entries recorded)",
+ "step8_gate_decisions": {
+  "recorded_utc": "2026-09-16T12:08:10Z",
+  "decision": "CONFIRMED INCLUDING THE DEMOTION: 063a's PASS re-tagged non_contributory (negative control failed: same-scalar ablation cannot isolate commitment mode; per-episode-constant override makes the occupancy non-degeneracy check vacuous), category standard, ARC-029 provisional -> candidate (063a was the sole surviving positive experimental support); routing queue-experiment (a design varying commitment mode within episode; governance chips it)."
+ }
 }

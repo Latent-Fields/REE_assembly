@@ -1,373 +1,465 @@
 {
-  "schema_version": "failure_autopsy/v1",
-  "generated_utc": "2026-09-15T20:19:10Z",
-  "scope": "single",
-  "status": "awaiting_human_confirmation",
-  "session": "autopsy-staging-1028-20260915 (Opus subagent of metaworker orchestrate-20260915-1743; STAGING MODE, Mac DLAPTOP, MAIN checkout)",
-  "staging_note": "STAGING MODE per CLAUDE.md / SKILL.md 'Staging mode': Steps 1-7 and 9 ran normally; the Step 8 interactive gate was NOT held and routing is NOT finalised. Step 9b was NOT applied -- hypothesis_space_registry.v1.json is untouched and the intended Mode B resolutions are recorded under hypothesis_space_ledger_pending for the confirming session or the next /governance walk. Nothing was marked reviewed; claims.yaml, substrate_queue.json, experiment_queue.json, the manual proposals and experiment_proposals.v1.json were not edited; no governance or index regeneration was run; no follow-on chips were spawned (owed follow-on is in follow_on_owed_to_governance).",
-  "adjudicated_revision": {
-    "manifest_path": "REE_assembly/evidence/experiments/v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3.json",
-    "read_from": "git show origin/master:<path> at REE_assembly 141dc756ee70f6145548cb7c23746971b3e4d491 (HEAD == origin/master at read time)",
-    "worktree_check": "The shared working-tree copy was byte-identical (171300 bytes, diff clean) to the origin/master blob at read time; an earlier ' M' on this path had cleared. The manifest was READ ONLY and never modified by this session.",
-    "run_pack_note": "The flat manifest was adjudicated. The canonical runs/<run_id>/manifest.json pack is what the indexer scores; no discrepancy is asserted here and none was checked -- every number in this artifact is from the flat manifest at the revision named above."
-  },
-  "dry_run_checked": true,
-  "excluded_dry_run_ids": [],
-  "dry_run_check_note": "check_dry_run_citations.py over all four cited run_ids (1028, 1020, 1027, 1029) -> 0 dry cited, 0 ambiguous, 4 clean, exit 0; --family v3_exq_1028 -> 0 dry / 1 real. The 1028 manifest carries dry_run: false AND a non-dry run_id shape, so _is_dry_run() is negative on both disjuncts (not a raw-field read). validate_experiments.py --checks dry_run_unreachable_criterion: 11 warnings fleet-wide, ALL in the v3_exq_543* family, SILENT on this driver. Additionally moot here: the target is a full-budget run (update_realisation 0.998-1.000), not a smoke.",
-  "recording_provenance": "validate_recording.py --paths <manifest> -> 1 complete, 0 always-core gaps, 0 thin-pack provenance drops, 0 flat-scalar-readout findings, 0 criteria-re-derivability findings, 0 schema warnings. recording_schema rec/v1; substrate_hash 30631916f9bdeb80...; substrate_commit ree-v3 6e5c34f15480545fa7901531c92fd7ae17960388 (clean, main); machine DLAPTOP-4.local / machine_class darwin-arm64-py3.13-torch2.12.0; elapsed_seconds 27952.68; full config; explicit seeds [611,622,633,644,655]; substrate_stable_across_run true, drifted_since_resolved false. NO recording gap blocks this adjudication. Two recording NOTES, neither a gap: (a) the flat readout surfaces only W1/W4 scalars, but arm_results[].windows carries all four windows with their per-window controls, so the full profile IS recoverable -- which is what makes the budget reading possible; (b) the window controls are SINGLE REALISATIONS with no standard error reported, which is load-bearing for the marginal seeds (see p1_budget_reading.persistence_route.control_approximation).",
-  "targets": [
-    {
-      "run_id": "v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3",
-      "queue_id": "V3-EXQ-1028",
-      "claim_ids": ["SD-082"],
-      "bears_on": [
-        "sd082_candidate_discriminating_readout_locus:H-learning-signal-noisy",
-        "sd082_candidate_discriminating_readout_locus:H-learning-signal-sign"
-      ],
-      "experiment_purpose": "diagnostic",
-      "outcome": "PASS",
-      "self_route_label": "c2_noisy__c3_sign_null",
-      "failed_criterion": "discrimination",
-      "failed_criterion_note": "The run is a diagnostic PASS (outcome PASS iff readiness AND C1, both met), so 'failed criterion' names the LOAD-BEARING LEG that returned no signed reading, not a run failure. C3_episode_advantage_on_init_flips_negative scored 0/5 negative and 0/5 positive against a threshold of 3. EXPLICIT NOTE (red-team F6): 'negative control / absolute passes, discrimination fails' is the substrate-ceiling FINGERPRINT named in SKILL.md, and this stamp is what check_granularity_debt_recurrence keys its signature on -- so state plainly that the fingerprint is NOT read as a ceiling here. Reason: a ceiling reading asserts the claim's answer is gated on substrate work, and nothing here is. SD-082's mechanism was never in this run's causal path (authority OFF), so the discrimination criterion was not measuring the claim's substrate at all; and the discrimination that failed belongs to a fan-out LEG, not to SD-082. See recommended_epistemic_category_note.",
-      "four_layer_diagnosis": {
-        "claim_alignment": "unclear -- the run does not test SD-082's asserted content (a common-mode-invariant, gradient-trainable, candidate-DISCRIMINATING rule_state -> per-candidate action-bias readout). It characterises the LEARNING SIGNAL delivered to that head at an extended budget. Per the confirmed cluster autopsy failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, with use_modulatory_selection_authority OFF that surrogate is to measurement precision advantage-weighted imitation of E3, so 1028 measures the imitation gradient, not the consequence-trained readout the claim asserts. SD-082 could not express itself here and is neither supported nor weakened.",
-        "biological_reference": "partial -- three-factor corticostriatal plasticity, in which outcome credit binds to synapses that PARTICIPATED in the selected action. 1029 measured that participation at 0 of 1694 raw-identical co-fresh ticks with authority OFF, so the dependency the biology names is absent in this configuration.",
-        "prerequisites": "missing -- the readout's participation in selection (authority OFF). The SAME prerequisite the cluster autopsy located, not a new one; 1028 was queued before that finding landed and inherits the configuration.",
-        "implementation": "complete -- 4/4 readiness gates met: bracket separation 1.00 of cells (threshold 0.8); worst-cell realised updates 0.998 (threshold 0.95); 0 candidate-summary fallbacks on 22188 dispatch calls; worst-cell P1 ticks 11830 (floor 200). C1 gradient present 5/5 (worst median grad norm 0.0106 against a 1e-6 floor), 0 non-finite gradients.",
-        "environment": "adequate -- CausalGridWorldV2 8x8, 2 hazards, 6 resources, proxy fields; C4 return variance present 5/5 (0.16-0.34) against a 1e-4 floor.",
-        "measurement": "adequate for what it measured, with TWO construct-validity limits that the Step 7c red team sharpened and that are recorded rather than papered over. Adequate: the queue-time red team's four fixes all held -- windowed persistence against per-window-length controls (F1), an episode-level Pearson r labelled by the FROZEN INIT head (F2), a c3_degenerate branch (F3), realised-length controls plus a 95% realisation gate (F4); C3 scoreable on 5/5. LIMIT 1: C2's decision rule is a MAJORITY over 5 seeds whose class assignment is a deterministic function of seed identity across three runs and two machine classes -- the seeds are not exchangeable, so '3 of 5' is a property of the seed SET. LIMIT 2: the window controls are SINGLE realisations with no reported SE, and the W4 bracket is measured on FRESH-INIT heads while the real run's W4 steps a mid-training Adam -- an approximation the driver flags and whose DIRECTION is not measured, which matters on the two seeds nearest the W4 midpoint.",
-        "integration": "isolated -- the head trains but is decoupled from selection (authority OFF). Established by 1029, not by this run.",
-        "scale": "adequate, and this is the run's positive contribution: T = 500 is 7.1x V3-EXQ-1020's T = 70, which is what makes both the exhaustion question and the criterion-power question answerable. See p1_budget_reading."
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-15T20:19:10Z",
+ "scope": "single",
+ "status": "confirmed",
+ "session": "autopsy-staging-1028-20260915 (Opus subagent of metaworker orchestrate-20260915-1743; STAGING MODE, Mac DLAPTOP, MAIN checkout)",
+ "staging_note": "STAGING MODE per CLAUDE.md / SKILL.md 'Staging mode': Steps 1-7 and 9 ran normally; the Step 8 interactive gate was NOT held and routing is NOT finalised. Step 9b was NOT applied -- hypothesis_space_registry.v1.json is untouched and the intended Mode B resolutions are recorded under hypothesis_space_ledger_pending for the confirming session or the next /governance walk. Nothing was marked reviewed; claims.yaml, substrate_queue.json, experiment_queue.json, the manual proposals and experiment_proposals.v1.json were not edited; no governance or index regeneration was run; no follow-on chips were spawned (owed follow-on is in follow_on_owed_to_governance).",
+ "adjudicated_revision": {
+  "manifest_path": "REE_assembly/evidence/experiments/v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3.json",
+  "read_from": "git show origin/master:<path> at REE_assembly 141dc756ee70f6145548cb7c23746971b3e4d491 (HEAD == origin/master at read time)",
+  "worktree_check": "The shared working-tree copy was byte-identical (171300 bytes, diff clean) to the origin/master blob at read time; an earlier ' M' on this path had cleared. The manifest was READ ONLY and never modified by this session.",
+  "run_pack_note": "The flat manifest was adjudicated. The canonical runs/<run_id>/manifest.json pack is what the indexer scores; no discrepancy is asserted here and none was checked -- every number in this artifact is from the flat manifest at the revision named above."
+ },
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "dry_run_check_note": "check_dry_run_citations.py over all four cited run_ids (1028, 1020, 1027, 1029) -> 0 dry cited, 0 ambiguous, 4 clean, exit 0; --family v3_exq_1028 -> 0 dry / 1 real. The 1028 manifest carries dry_run: false AND a non-dry run_id shape, so _is_dry_run() is negative on both disjuncts (not a raw-field read). validate_experiments.py --checks dry_run_unreachable_criterion: 11 warnings fleet-wide, ALL in the v3_exq_543* family, SILENT on this driver. Additionally moot here: the target is a full-budget run (update_realisation 0.998-1.000), not a smoke.",
+ "recording_provenance": "validate_recording.py --paths <manifest> -> 1 complete, 0 always-core gaps, 0 thin-pack provenance drops, 0 flat-scalar-readout findings, 0 criteria-re-derivability findings, 0 schema warnings. recording_schema rec/v1; substrate_hash 30631916f9bdeb80...; substrate_commit ree-v3 6e5c34f15480545fa7901531c92fd7ae17960388 (clean, main); machine DLAPTOP-4.local / machine_class darwin-arm64-py3.13-torch2.12.0; elapsed_seconds 27952.68; full config; explicit seeds [611,622,633,644,655]; substrate_stable_across_run true, drifted_since_resolved false. NO recording gap blocks this adjudication. Two recording NOTES, neither a gap: (a) the flat readout surfaces only W1/W4 scalars, but arm_results[].windows carries all four windows with their per-window controls, so the full profile IS recoverable -- which is what makes the budget reading possible; (b) the window controls are SINGLE REALISATIONS with no standard error reported, which is load-bearing for the marginal seeds (see p1_budget_reading.persistence_route.control_approximation).",
+ "targets": [
+  {
+   "run_id": "v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3",
+   "queue_id": "V3-EXQ-1028",
+   "claim_ids": [
+    "SD-082"
+   ],
+   "bears_on": [
+    "sd082_candidate_discriminating_readout_locus:H-learning-signal-noisy",
+    "sd082_candidate_discriminating_readout_locus:H-learning-signal-sign"
+   ],
+   "experiment_purpose": "diagnostic",
+   "outcome": "PASS",
+   "self_route_label": "c2_noisy__c3_sign_null",
+   "failed_criterion": "discrimination",
+   "failed_criterion_note": "The run is a diagnostic PASS (outcome PASS iff readiness AND C1, both met), so 'failed criterion' names the LOAD-BEARING LEG that returned no signed reading, not a run failure. C3_episode_advantage_on_init_flips_negative scored 0/5 negative and 0/5 positive against a threshold of 3. EXPLICIT NOTE (red-team F6): 'negative control / absolute passes, discrimination fails' is the substrate-ceiling FINGERPRINT named in SKILL.md, and this stamp is what check_granularity_debt_recurrence keys its signature on -- so state plainly that the fingerprint is NOT read as a ceiling here. Reason: a ceiling reading asserts the claim's answer is gated on substrate work, and nothing here is. SD-082's mechanism was never in this run's causal path (authority OFF), so the discrimination criterion was not measuring the claim's substrate at all; and the discrimination that failed belongs to a fan-out LEG, not to SD-082. See recommended_epistemic_category_note.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the run does not test SD-082's asserted content (a common-mode-invariant, gradient-trainable, candidate-DISCRIMINATING rule_state -> per-candidate action-bias readout). It characterises the LEARNING SIGNAL delivered to that head at an extended budget. Per the confirmed cluster autopsy failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14, with use_modulatory_selection_authority OFF that surrogate is to measurement precision advantage-weighted imitation of E3, so 1028 measures the imitation gradient, not the consequence-trained readout the claim asserts. SD-082 could not express itself here and is neither supported nor weakened.",
+    "biological_reference": "partial -- three-factor corticostriatal plasticity, in which outcome credit binds to synapses that PARTICIPATED in the selected action. 1029 measured that participation at 0 of 1694 raw-identical co-fresh ticks with authority OFF, so the dependency the biology names is absent in this configuration.",
+    "prerequisites": "missing -- the readout's participation in selection (authority OFF). The SAME prerequisite the cluster autopsy located, not a new one; 1028 was queued before that finding landed and inherits the configuration.",
+    "implementation": "complete -- 4/4 readiness gates met: bracket separation 1.00 of cells (threshold 0.8); worst-cell realised updates 0.998 (threshold 0.95); 0 candidate-summary fallbacks on 22188 dispatch calls; worst-cell P1 ticks 11830 (floor 200). C1 gradient present 5/5 (worst median grad norm 0.0106 against a 1e-6 floor), 0 non-finite gradients.",
+    "environment": "adequate -- CausalGridWorldV2 8x8, 2 hazards, 6 resources, proxy fields; C4 return variance present 5/5 (0.16-0.34) against a 1e-4 floor.",
+    "measurement": "adequate for what it measured, with TWO construct-validity limits that the Step 7c red team sharpened and that are recorded rather than papered over. Adequate: the queue-time red team's four fixes all held -- windowed persistence against per-window-length controls (F1), an episode-level Pearson r labelled by the FROZEN INIT head (F2), a c3_degenerate branch (F3), realised-length controls plus a 95% realisation gate (F4); C3 scoreable on 5/5. LIMIT 1: C2's decision rule is a MAJORITY over 5 seeds whose class assignment is a deterministic function of seed identity across three runs and two machine classes -- the seeds are not exchangeable, so '3 of 5' is a property of the seed SET. LIMIT 2: the window controls are SINGLE realisations with no reported SE, and the W4 bracket is measured on FRESH-INIT heads while the real run's W4 steps a mid-training Adam -- an approximation the driver flags and whose DIRECTION is not measured, which matters on the two seeds nearest the W4 midpoint.",
+    "integration": "isolated -- the head trains but is decoupled from selection (authority OFF). Established by 1029, not by this run.",
+    "scale": "adequate, and this is the run's positive contribution: T = 500 is 7.1x V3-EXQ-1020's T = 70, which is what makes both the exhaustion question and the criterion-power question answerable. See p1_budget_reading."
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "partial",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MIXED -- not chargeable to REE, and not a mechanism failure. MECHANISM is not_established because the mechanism SD-082 asserts was never in this run's causal path (authority OFF; readout inert at selection per 1029), so no verdict on it is available. MEASURES is partial: every readiness and non-degeneracy gate passed, but C2's majority-over-seeds rule cannot deliver a population verdict on non-exchangeable units, and the W4 bracket rests on an unmeasured control approximation. ENVIRONMENT is established. REE FAILED is NOT reachable and is not asserted anywhere in this artifact."
+   },
+   "biological_reference": {
+    "closest_mechanism": "Three-factor (dopamine-gated) corticostriatal plasticity: credit binds to synapses whose activity PARTICIPATED in the selected action, with an eligibility trace holding that participation until the outcome signal arrives.",
+    "dependencies": [
+     "participation of the modulatory signal in the selected action (absent: authority OFF, 0/1694 argmin changes per V3-EXQ-1029)",
+     "an eligibility trace binding credit to the state active at action time (tested and eliminated as the binding constraint by V3-EXQ-1027)",
+     "an outcome signal whose variance is attributable to the modulated pathway (absent: per-episode returns bit-identical across arms differing only in the head, per V3-EXQ-1027)"
+    ],
+    "is_formal_import": true,
+    "divergence": "The P1 optimiser is a REINFORCE surrogate log_softmax(-bias/T) over the head's OWN output with the action chosen by E3 and one per-episode scalar advantage broadcast to every sample (x1020._reinforce_step). Biology's credit assignment REQUIRES participation and therefore cannot be satisfied by a pathway that does not reach the action; the formal import does not require participation and so CANNOT DETECT ITS OWN ABSENCE -- it returns a well-formed gradient regardless. 1028 measures what that gradient looks like over a long budget. Load-bearing for the successor's DESIGN, not for SD-082's truth.",
+    "lit_status": "present -- targeted_review_sd_082 exists (8 entries). NO /lit-pull is owed by this autopsy."
+   },
+   "p1_budget_reading": {
+    "headline": "P1 = 300 updates. TWO INDEPENDENT ROUTES CONVERGE ON IT. The primary route is CRITERION POWER (route A), newly computed from this run's own per-episode cells; the persistence reading the cluster asked for (route B) agrees and is reported with its limits. This is a RECOMMENDED BUDGET, not a refusal of anything larger -- see do_not_over_read.",
+    "primary_number": 0,
+    "primary_number_meaning": "n_persistent = 0 of 5 seeds -- the count of seeds whose LATE window W4 = [300, realised end] carries step-direction persistence at or above that window's own noise-floor/synthetic-ceiling midpoint. This is the literal 'persistence reading' the cluster autopsy asked 1028 to supply.",
+    "manifest_field": "criteria[1].n_persistent  (criteria[].name == 'C2_windowed_persistence_noisy'), mirrored as readout.n_c2_persistent. Per-seed inputs: criteria[1].per_seed.<seed>.w4 vs .w4_mid; full four-window profile: arm_results[].windows[].persistence vs [].control.midpoint.",
+    "route_A_criterion_power": {
+     "why_this_is_primary": "It is the BINDING constraint and it does not depend on any contested ceiling claim. The load-bearing C3 leg only scores when a cell has >= 50 init-head flip ticks in EACH half of P1 and n_eps >= 100; a budget below that floor returns c3_starved, which is exactly the failure V3-EXQ-1020 hit. So the question 'what budget does the successor need' has a direct, measurable answer.",
+     "method": "Recomputed from arm_results[].per_episode_init_flip_ticks and [].per_episode_init_live_fresh_ticks by truncating P1 at T and re-applying the driver's own scoreability rule (n_eps counts episodes with >= 1 fresh rule-live tick; halves split at T/2).",
+     "result": {
+      "T=150": "FAILS -- 2 of 5 seeds below the floor (611 second half 45, 655 first half 48, against 50).",
+      "T=200": "all 5 scoreable, but worst half-count 54 against a floor of 50 -- a 1.08x margin, i.e. no margin.",
+      "T=300": "all 5 scoreable, worst half-count 70 -- a 1.40x margin. RECOMMENDED.",
+      "T=400": "all 5 scoreable, worst half-count 99 (1.98x).",
+      "T=500": "all 5 scoreable, worst half-count 132 (2.64x) -- the realised run."
+     },
+     "reading": "300 is the smallest budget at which the run's own load-bearing criterion scores on 5/5 seeds with real margin. 200 scores but with none. Below 200 it starves."
+    },
+    "route_B_persistence": {
+     "reading": "The pre-registered windowed classifier finds NO persistently-directed gradient anywhere in the 500-update budget: n_persistent = 0 of 5 in W4, and the seed-mean fractional bracket position never reaches the midpoint in ANY of the four windows (W1 0.320, W2 0.107, W3 0.366, W4 0.180). Only 4 of 20 seed-windows sit at or above midpoint, none in W2 or W4. So a LONGER budget is not the lever that resolves this lineage's question -- which is the useful negative the cluster wanted.",
+     "per_seed_w4_vs_midpoint": {
+      "611": {
+       "w4_persistence": 0.23781174848504635,
+       "w4_midpoint": 0.49496092861781515,
+       "noise_floor": 0.2889,
+       "above_noise_by": -0.0511,
+       "below_midpoint_by": 0.2571,
+       "above": false,
+       "w4_length": 200
       },
-      "failure_location": {
-        "mechanism": "not_established",
-        "measures": "partial",
-        "environment": "established",
-        "ree": false,
-        "net_classification": "MIXED -- not chargeable to REE, and not a mechanism failure. MECHANISM is not_established because the mechanism SD-082 asserts was never in this run's causal path (authority OFF; readout inert at selection per 1029), so no verdict on it is available. MEASURES is partial: every readiness and non-degeneracy gate passed, but C2's majority-over-seeds rule cannot deliver a population verdict on non-exchangeable units, and the W4 bracket rests on an unmeasured control approximation. ENVIRONMENT is established. REE FAILED is NOT reachable and is not asserted anywhere in this artifact."
+      "622": {
+       "w4_persistence": 0.4550091857865015,
+       "w4_midpoint": 0.5014311728807215,
+       "noise_floor": 0.2896,
+       "above_noise_by": 0.1654,
+       "below_midpoint_by": 0.0464,
+       "above": false,
+       "w4_length": 199
       },
-      "biological_reference": {
-        "closest_mechanism": "Three-factor (dopamine-gated) corticostriatal plasticity: credit binds to synapses whose activity PARTICIPATED in the selected action, with an eligibility trace holding that participation until the outcome signal arrives.",
-        "dependencies": [
-          "participation of the modulatory signal in the selected action (absent: authority OFF, 0/1694 argmin changes per V3-EXQ-1029)",
-          "an eligibility trace binding credit to the state active at action time (tested and eliminated as the binding constraint by V3-EXQ-1027)",
-          "an outcome signal whose variance is attributable to the modulated pathway (absent: per-episode returns bit-identical across arms differing only in the head, per V3-EXQ-1027)"
-        ],
-        "is_formal_import": true,
-        "divergence": "The P1 optimiser is a REINFORCE surrogate log_softmax(-bias/T) over the head's OWN output with the action chosen by E3 and one per-episode scalar advantage broadcast to every sample (x1020._reinforce_step). Biology's credit assignment REQUIRES participation and therefore cannot be satisfied by a pathway that does not reach the action; the formal import does not require participation and so CANNOT DETECT ITS OWN ABSENCE -- it returns a well-formed gradient regardless. 1028 measures what that gradient looks like over a long budget. Load-bearing for the successor's DESIGN, not for SD-082's truth.",
-        "lit_status": "present -- targeted_review_sd_082 exists (8 entries). NO /lit-pull is owed by this autopsy."
+      "633": {
+       "w4_persistence": 0.49453222756103143,
+       "w4_midpoint": 0.505306037858444,
+       "noise_floor": 0.2889,
+       "above_noise_by": 0.2056,
+       "below_midpoint_by": 0.0108,
+       "above": false,
+       "w4_length": 200
       },
-      "p1_budget_reading": {
-        "headline": "P1 = 300 updates. TWO INDEPENDENT ROUTES CONVERGE ON IT. The primary route is CRITERION POWER (route A), newly computed from this run's own per-episode cells; the persistence reading the cluster asked for (route B) agrees and is reported with its limits. This is a RECOMMENDED BUDGET, not a refusal of anything larger -- see do_not_over_read.",
-        "primary_number": 0,
-        "primary_number_meaning": "n_persistent = 0 of 5 seeds -- the count of seeds whose LATE window W4 = [300, realised end] carries step-direction persistence at or above that window's own noise-floor/synthetic-ceiling midpoint. This is the literal 'persistence reading' the cluster autopsy asked 1028 to supply.",
-        "manifest_field": "criteria[1].n_persistent  (criteria[].name == 'C2_windowed_persistence_noisy'), mirrored as readout.n_c2_persistent. Per-seed inputs: criteria[1].per_seed.<seed>.w4 vs .w4_mid; full four-window profile: arm_results[].windows[].persistence vs [].control.midpoint.",
-        "route_A_criterion_power": {
-          "why_this_is_primary": "It is the BINDING constraint and it does not depend on any contested ceiling claim. The load-bearing C3 leg only scores when a cell has >= 50 init-head flip ticks in EACH half of P1 and n_eps >= 100; a budget below that floor returns c3_starved, which is exactly the failure V3-EXQ-1020 hit. So the question 'what budget does the successor need' has a direct, measurable answer.",
-          "method": "Recomputed from arm_results[].per_episode_init_flip_ticks and [].per_episode_init_live_fresh_ticks by truncating P1 at T and re-applying the driver's own scoreability rule (n_eps counts episodes with >= 1 fresh rule-live tick; halves split at T/2).",
-          "result": {
-            "T=150": "FAILS -- 2 of 5 seeds below the floor (611 second half 45, 655 first half 48, against 50).",
-            "T=200": "all 5 scoreable, but worst half-count 54 against a floor of 50 -- a 1.08x margin, i.e. no margin.",
-            "T=300": "all 5 scoreable, worst half-count 70 -- a 1.40x margin. RECOMMENDED.",
-            "T=400": "all 5 scoreable, worst half-count 99 (1.98x).",
-            "T=500": "all 5 scoreable, worst half-count 132 (2.64x) -- the realised run."
-          },
-          "reading": "300 is the smallest budget at which the run's own load-bearing criterion scores on 5/5 seeds with real margin. 200 scores but with none. Below 200 it starves."
-        },
-        "route_B_persistence": {
-          "reading": "The pre-registered windowed classifier finds NO persistently-directed gradient anywhere in the 500-update budget: n_persistent = 0 of 5 in W4, and the seed-mean fractional bracket position never reaches the midpoint in ANY of the four windows (W1 0.320, W2 0.107, W3 0.366, W4 0.180). Only 4 of 20 seed-windows sit at or above midpoint, none in W2 or W4. So a LONGER budget is not the lever that resolves this lineage's question -- which is the useful negative the cluster wanted.",
-          "per_seed_w4_vs_midpoint": {
-            "611": {"w4_persistence": 0.23781174848504635, "w4_midpoint": 0.49496092861781515, "noise_floor": 0.2889, "above_noise_by": -0.0511, "below_midpoint_by": 0.2571, "above": false, "w4_length": 200},
-            "622": {"w4_persistence": 0.4550091857865015, "w4_midpoint": 0.5014311728807215, "noise_floor": 0.2896, "above_noise_by": 0.1654, "below_midpoint_by": 0.0464, "above": false, "w4_length": 199},
-            "633": {"w4_persistence": 0.49453222756103143, "w4_midpoint": 0.505306037858444, "noise_floor": 0.2889, "above_noise_by": 0.2056, "below_midpoint_by": 0.0108, "above": false, "w4_length": 200},
-            "644": {"w4_persistence": 0.2909254347934318, "w4_midpoint": 0.4878691627858931, "noise_floor": 0.2889, "above_noise_by": 0.0020, "below_midpoint_by": 0.1969, "above": false, "w4_length": 200},
-            "655": {"w4_persistence": 0.34973134709633963, "w4_midpoint": 0.48872153441349553, "noise_floor": 0.2889, "above_noise_by": 0.0608, "below_midpoint_by": 0.1390, "above": false, "w4_length": 200}
-          },
-          "full_window_profile_fractional_bracket_position": {
-            "definition": "(persistence - noise_floor) / (synth_ceiling - noise_floor), per seed per window from arm_results[].windows[].control. 0.5 is the midpoint C2 tests against; 1.0 is the dense-synthetic-credit ceiling.",
-            "per_seed": {
-              "611": {"W1_0_70": 0.717, "W2_70_150": 0.067, "W3_150_300": 0.334, "W4_300_end": -0.124},
-              "622": {"W1_0_70": -0.186, "W2_70_150": -0.046, "W3_150_300": 0.012, "W4_300_end": 0.390},
-              "633": {"W1_0_70": 0.355, "W2_70_150": 0.139, "W3_150_300": 0.517, "W4_300_end": 0.475},
-              "644": {"W1_0_70": 0.119, "W2_70_150": -0.014, "W3_150_300": 0.383, "W4_300_end": 0.005},
-              "655": {"W1_0_70": 0.594, "W2_70_150": 0.388, "W3_150_300": 0.584, "W4_300_end": 0.152}
-            },
-            "seed_mean": {"W1_0_70": 0.320, "W2_70_150": 0.107, "W3_150_300": 0.366, "W4_300_end": 0.180},
-            "n_seed_windows_at_or_above_midpoint": "4 of 20 (W1 2/5, W2 0/5, W3 2/5, W4 0/5)."
-          },
-          "marginal_seeds_stated_explicitly": "Red-team F2, verified and accepted. 'n_persistent = 0' is a true CLASSIFIER COUNT but must not be read as 'nothing is happening after update 300'. Seed 633's W4 is 0.0108 BELOW its midpoint while the W4 midpoint's own across-seed realisation spread is 0.0174 -- i.e. inside control-realisation noise of crossing. Seed 622's W4 sits 0.1654 ABOVE the pure-noise floor (39 percent of bracket) and is that seed's MOST directed window, on a profile that rises monotonically (-0.186 -> -0.046 -> +0.012 -> +0.390). The classifier has no label for 'late-rising', so that shape is invisible to C2's three-way scheme.",
-          "control_approximation": "Red-team F2, second half. The window brackets are measured on FRESH-INIT heads over length L, while the real run's late windows step a mid-training Adam whose bias-corrected moments have settled. The driver records this as a known approximation (its defence: the pure-noise floor is invariant over gradient scale and moves with L, which the window matches). The DIRECTION of any residual bias is NOT MEASURED, and the controls are single realisations with no SE. So a genuine late persistent signal on the two marginal seeds could be masked by a mis-set W4 bracket. This is stated rather than assumed away, and it is why route A rather than route B is the primary basis for the recommendation."
-        },
-        "corroborating_behavioural_readout": {
-          "statistic": "TRAINED-head per-episode flip rate, block means per 100 P1 episodes (arm_results[].trained_flip_rate_block_means_100); Spearman against episode index (arm_results[].spearman_episode_vs_flip_rate).",
-          "robust_finding": "Flip suppression is real and monotone on 5/5 seeds (Spearman -0.549 to -0.661). This part is not contested.",
-          "corrected_reading": "Red-team F3, verified and accepted. The draft of this artifact reported '76-96 percent (median 86) of the decay is complete by episode 300' as corroboration of a ceiling. That statistic is an ADDITIVE share denominated on the run's own endpoint, and it front-loads BY CONSTRUCTION for any monotone decay toward an asymptote -- so it cannot evidence a ceiling. In RATIO terms the 300-500 stretch is still doing substantial work on some seeds: flip rate falls a further 1.30x (611), 5.02x (622), 2.06x (633), 13.22x (644) and 1.44x (655) between block 3 and block 5. The additive figures are retained for the record but carry NO weight in the recommendation.",
-          "net": "This readout corroborates that the head is learning throughout the budget. It does NOT corroborate a ceiling, and is no longer cited as doing so."
-        },
-        "recommendation_for_the_sd082_successor": "Set P1 = 300 updates (= 300 P1 episodes, one update per episode). Basis: route A -- it is the smallest budget at which the load-bearing C3 criterion scores on 5/5 seeds with a real margin (worst half-count 70 against a floor of 50; at T=200 the margin is 1.08x and at T=150 two seeds starve). Route B agrees that a longer budget is not the lever: the pre-registered classifier finds no persistently-directed gradient anywhere in 500 updates.",
-        "do_not_over_read": "This artifact does NOT refuse a budget above 300 and no such refusal should be derived from it. Three reasons: (1) the ceiling reading rests on a bracket whose control approximation is unmeasured in direction, with two seeds at or near the boundary; (2) in ratio terms the flip rate is still falling materially after episode 300 on 2 of 5 seeds; (3) most importantly, the successor runs a DIFFERENT gradient -- P1 under authority ON with the gated_policy channel controlled -- and nothing measured under the authority-OFF imitation regime bounds what that regime needs. 300 is a well-founded STARTING budget with the criterion-power margin computed. The successor MUST record the same windowed-persistence profile and the same per-half init-flip-tick counts so its own budget can be re-read in its own regime rather than inherited.",
-        "answers_which_cluster_disposition": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14: the pre_routing_checks C1 fire's disposition ('the successor's P1 budget is to be set from 1028's persistence reading, and /queue-experiment must read 1028's confirmed autopsy before queuing it') and section 9's successor paragraph ('queue only after 1028's confirmed autopsy sets the P1 budget'). NOTE for the record: that disposition is carried by the C1 pre-routing fire, NOT by C7 -- C7 in that artifact is the DISMISSED live_rule_state_zero_frac item. The chip brief for this autopsy cited it as C7; the substance is unaffected."
+      "644": {
+       "w4_persistence": 0.2909254347934318,
+       "w4_midpoint": 0.4878691627858931,
+       "noise_floor": 0.2889,
+       "above_noise_by": 0.002,
+       "below_midpoint_by": 0.1969,
+       "above": false,
+       "w4_length": 200
       },
-      "leg_readings": {
-        "H-learning-signal-noisy": {
-          "driver_rule": ">= 3 of 5 seeds classified 'noisy' (W1 < midpoint(70) AND W4 < midpoint(L4)) -> supported.",
-          "measured": "3 noisy (622, 633, 644), 2 exhausted (611, 655), 0 persistent. C2 passed at EXACTLY its threshold.",
-          "literal_verdict": "SUPPORTED on the pre-registered bar.",
-          "autopsy_reading": "SUPPORTED-BUT-NOT-GENERALISABLE. The rule aggregates over seeds as exchangeable sampling units; three runs now show the class is a deterministic function of seed identity (learning_extracted 1). A bare 3-of-5 on non-exchangeable units is a statement about the seed set -- the SAME criticism 1028's own driver levelled at 1020 ('C2 (persistence low) passed on a bare 3-of-5 majority'). The extended budget reproduced that weakness rather than resolving it. Seed 622 additionally carries a late-RISING profile the three-way classifier has no label for.",
-          "what_the_budget_extension_DID_settle": "The 'directed then exhausted' alternative the queue-time red team's F1 raised is measured rather than aliased: 2 of 5 seeds are genuinely directed early and exhausted late, 0 of 5 persistently directed by the classifier's bar. On the cumulative T=500 endpoint read that the windowing replaced, all 5 seeds would have read below midpoint -- a 5/5 'noisy' over-call. The windowing fix prevented a false unanimity."
-        },
-        "H-learning-signal-sign": {
-          "driver_rule": ">= 3 of 5 scoreable seeds NEGATIVE (r_local <= -2/sqrt(n_eps) AND r_grand < 0) -> supported; >= 3 POSITIVE -> refuted; >= 3 scoreable and neither -> sign_null; < 3 scoreable -> c3_starved.",
-          "measured_load_bearing": "5/5 seeds SCOREABLE (n_eps 468-487; init-head flip ticks 132-345 in each half against a floor of 50). r_local = +0.0454, +0.0202, +0.0175, +0.0053, -0.0024 against +/-2 SE bands of +/-0.0906 to +/-0.0925. 0 negative, 0 positive.",
-          "literal_verdict": "sign_null -- neither supported nor refuted by the driver's own three-valued rule.",
-          "measured_recorded_statistic": "RED-TEAM F1, VERIFIED AND DECISIVE. The run ALSO records 1020's own C3 statistic (criteria[4] 'R1020_C3_trained_head_drawn_samples_recorded', load_bearing false), and it points the OTHER WAY. per_seed_adv_flip_minus_nonflip = -0.0326 (611), +0.0369 (622), -0.0472 (633), -0.0227 (644), -0.0605 (655): NEGATIVE on 4 of 5 seeds, which is the direction H-learning-signal-sign asserts. The detrended variant (arm_results[].adv_flip_minus_nonflip_detrended) is also negative on 4 of 5 with adv_sign_agrees_detrended true on 5/5; the hold-weighted variant is negative on 4 of 5 as well -- but NOT THE SAME 4 (622 flips negative under hold-weighting, 655 flips positive). Under 1020's own pre-registered rule, restricted to the 4 seeds clearing MIN_FLIP_SAMPLES=20 (622:59, 633:56, 644:88, 655:37; 611 has 18), 3 of 4 eligible read negative -- which on that rule is SUPPORTED.",
-          "autopsy_reading": "The run carries TWO readings of this leg that disagree, and the honest verdict is therefore NOT elimination. The LOAD-BEARING statistic (episode-level Pearson r on frozen-init-head labels, the redesign that fixed 1020's starvation) is a well-powered null excluding |r| > ~0.09 on 5/5 seeds. The RECORDED statistic (1020's trained-head drawn-sample difference of means) is negative on 4/5 in three variants, though with unstable per-seed membership and magnitudes within roughly 1 SE. A defensible case exists that the load-bearing statistic should win -- it was redesigned precisely because the recorded one starves and is confounded by early-P1 return trend -- but that case was NOT pre-registered as a tie-break, and eliminating a registered leg on it would be exactly the post-hoc move the frozen ledger exists to prevent. Recommended ledger state: ALIVE, with both readings recorded. See hypothesis_space_ledger_pending.",
-          "what_is_nonetheless_established": "Independently of the leg's state: the EXPLANANDUM is present (trained-head flips fall monotonically on 5/5, Spearman -0.549..-0.661) and the leg is no longer STARVED -- 1020's unscoreability is discharged. Whatever the sign question's final disposition, it is now a measurement question rather than an instrument question.",
-          "scope_caveat_recorded": "Red-team F1 clause (ii), recorded not adjudicated: the registry leg's label is a CONSEQUENCE claim ('a rule-driven argmax change is on average penalised'). With authority OFF no argmax change reaches the action at all (1029: 0/1694), and the driver itself calls its C3 'correlational by construction'. By the same reasoning this artifact uses to say SD-082 could not express itself here, the leg's consequence form may not be testable in this configuration either. That strengthens ALIVE and is a design constraint for whichever run next adjudicates it."
-        }
+      "655": {
+       "w4_persistence": 0.34973134709633963,
+       "w4_midpoint": 0.48872153441349553,
+       "noise_floor": 0.2889,
+       "above_noise_by": 0.0608,
+       "below_midpoint_by": 0.139,
+       "above": false,
+       "w4_length": 200
+      }
+     },
+     "full_window_profile_fractional_bracket_position": {
+      "definition": "(persistence - noise_floor) / (synth_ceiling - noise_floor), per seed per window from arm_results[].windows[].control. 0.5 is the midpoint C2 tests against; 1.0 is the dense-synthetic-credit ceiling.",
+      "per_seed": {
+       "611": {
+        "W1_0_70": 0.717,
+        "W2_70_150": 0.067,
+        "W3_150_300": 0.334,
+        "W4_300_end": -0.124
+       },
+       "622": {
+        "W1_0_70": -0.186,
+        "W2_70_150": -0.046,
+        "W3_150_300": 0.012,
+        "W4_300_end": 0.39
+       },
+       "633": {
+        "W1_0_70": 0.355,
+        "W2_70_150": 0.139,
+        "W3_150_300": 0.517,
+        "W4_300_end": 0.475
+       },
+       "644": {
+        "W1_0_70": 0.119,
+        "W2_70_150": -0.014,
+        "W3_150_300": 0.383,
+        "W4_300_end": 0.005
+       },
+       "655": {
+        "W1_0_70": 0.594,
+        "W2_70_150": 0.388,
+        "W3_150_300": 0.584,
+        "W4_300_end": 0.152
+       }
       },
-      "recommended_epistemic_category": "standard",
-      "recommended_epistemic_category_note": "Failure mode: a measurement-construct question on both legs -- one leg's load-bearing and recorded statistics disagree in direction (H-learning-signal-sign), the other leg's decision rule aggregates over non-exchangeable units (H-learning-signal-noisy) -- on a run whose instrument passed every readiness and non-degeneracy gate. NOT a substrate ceiling: no build is owed and nothing here asserts SD-082's answer is gated on substrate work; the 'absolute passes / discrimination fails' fingerprint is present but is NOT a ceiling here because the claim's mechanism was never in the run's causal path (see failed_criterion_note). NOT an instrument defect either: the queue-time red team's four fixes all held and the criterion that 1020 starved now scores on 5/5. 'standard' asserts no epistemic suppression, which is the correct verdict -- this run narrows HOW the claim must be tested without suppressing its testability.",
-      "recommended_evidence_direction": "non_contributory",
-      "recommended_evidence_direction_note": "The manifest pins directions 'unknown' with evidence_direction_note 'diagnostic fan-out legs; directions pinned unknown'. non_contributory is the adjudicated value for SD-082 specifically: the run measures the learning signal delivered to the head, not the claim's asserted candidate-discriminating readout property, and under authority OFF that signal is not the one the claim's mechanism describes.",
-      "recommended_evidence_quality_note": "[2026-09-15 governance, confirmed failure_autopsy_V3-EXQ-1028_2026-09-15 (SD-082 GOV-FANOUT-1 portfolio legs 2 and 4, the extended-budget learning-signal run; staged headless, cross-model Fable red-team CONTESTED with all findings verified and folded in, user gate)]: NOTE-ONLY, direction non_contributory. V3-EXQ-1028 ran V3-EXQ-1020's ARM_ON cell at T = 500 REINFORCE updates (7.1x 1020's T = 70) with windowed persistence and a frozen-init-head episode-level advantage statistic. Outcome PASS on readiness AND C1 (bracket separation 1.00, worst-cell update realisation 0.998, 0 candidate-summary fallbacks in 22188 calls, 11830 worst-cell P1 ticks; C1 gradient present 5/5) -- an instrument-liveness PASS whose content is its label, c2_noisy__c3_sign_null. THE BUDGET QUESTION IS ANSWERED: P1 = 300 updates, on two independent routes. Route A (primary, criterion power, recomputed from the run's per-episode cells): 300 is the smallest budget at which the load-bearing C3 leg scores on 5/5 seeds with real margin (worst half-count 70 against a floor of 50 init-head flip ticks per half; at T=200 the margin is 1.08x, and at T=150 two seeds starve at 45 and 48). Route B (the persistence reading the cluster asked for): the pre-registered windowed classifier finds NO persistently-directed gradient anywhere in the budget -- n_persistent = 0 of 5 in W4 = [300, end], and the seed-mean fractional bracket position never reaches the midpoint in any of the four windows (W1 0.320, W2 0.107, W3 0.366, W4 0.180) -- so a longer budget is not the lever. Route B is reported WITH its limits and no refusal above 300 is derived from it: seed 633's W4 is 0.011 below a midpoint whose own across-seed realisation spread is 0.017, seed 622's W4 is its MOST directed window on a monotonically rising profile, the window controls are single realisations measured on fresh-init heads against a mid-training Adam, and in ratio terms flip rate still falls a further 1.3x-13.2x after episode 300. H-learning-signal-sign is NOT eliminated: the load-bearing episode-level statistic is a well-powered null (5/5 scoreable, the starvation that made this leg unscoreable in 1020 is discharged; r_local +0.045..-0.002 inside +/-2 SE bands of ~0.091), but the run ALSO records 1020's own statistic pointing the other way -- adv_flip_minus_nonflip negative on 4 of 5 seeds, and 3 of 4 seeds eligible under 1020's own sample floor, which on that rule reads SUPPORTED -- so the leg stays ALIVE with both readings recorded rather than being resolved on a tie-break nobody pre-registered. H-learning-signal-noisy passes at EXACTLY its 3-of-5 threshold (3 noisy, 2 directed-then-exhausted, 0 persistent), but the seed-to-class partition is now reproduced THREE times -- 1020 ARM_ON, both V3-EXQ-1027 replay arms, and 1028's W1 window -- on the identical split {622,633,644} low / {611,655} high, with 1028's W1 matching 1020's ARM_ON to within 2.5e-5 on the four seeds that realised all 70 updates and per-episode returns BIT-IDENTICAL across machine classes (linux-x86_64/py3.10 vs darwin-arm64/py3.13) over those 70 episodes; so seed identity is a deterministic explanatory variable and a majority over 5 seeds is not a population estimate. Nothing stored moves: status stays candidate_substrate_landed, epistemic_category standard, pending_retest_after_substrate false, diagnostic_evidence_adjudicated true. live_status.evidence.from re-pointed at this artifact. PROMOTES/DEMOTES NOTHING.",
-      "per_claim_recommendation": {
-        "SD-082": {
-          "recommended_evidence_direction": "non_contributory",
-          "recommended_epistemic_category": "standard",
-          "change": "SD-082 already stores epistemic_category standard, pending_retest_after_substrate false, diagnostic_evidence_adjudicated true and status candidate_substrate_landed, and none of them moves on a diagnostic that does not test the claim's asserted content. What governance writes is the evidence_quality_note plus the citation, so the claim's live_status.evidence.from should now point at this diagnosis -> stamp this artifact",
-          "pending_retest_after_substrate": false,
-          "recommended_diagnostic_evidence_adjudicated": true,
-          "status_change": "none -- stays candidate_substrate_landed"
-        }
+      "seed_mean": {
+       "W1_0_70": 0.32,
+       "W2_70_150": 0.107,
+       "W3_150_300": 0.366,
+       "W4_300_end": 0.18
       },
-      "recommended_substrate_queue_entry": {
-        "action": "amend",
-        "target_sd_id": "SD-082",
-        "title": "Trained bias-head consumer coupling differentiated rule_state to an action bias (SD-078 propagation consumer)",
-        "implementation_hint": "NO BUILD IS OWED BY THIS AUTOPSY. The amend is bookkeeping on an existing entry: append the V3-EXQ-1028 failure record, extend validation_experiment to name 1028 and its budget finding, and disposition the REMAINING open clause of the V3-EXQ-1020 failure record. severity ('corrupting') and substrate_paths ([] -- governance emptied it deliberately on 2026-09-09) are UNCHANGED; this occurrence changes neither.",
-        "unblocks_claims": ["SD-082", "SD-078"],
-        "depends_on_unresolved": [],
-        "priority_suggested": 1,
-        "severity_note": "UNCHANGED at 'corrupting'. This run surfaced no new corrupting defect: every readiness and non-degeneracy gate passed and the instrument behaved as specified.",
-        "substrate_paths_note": "UNCHANGED at []. Do not repopulate -- governance emptied this field on purpose on 2026-09-09.",
-        "failure_record_entry": {
-          "run_id": "v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3",
-          "experiment_type": "v3_exq_1028_sd082_learning_signal_extended_budget",
-          "metric": "Extended-budget learning-signal profile at T = 500 REINFORCE updates. BUDGET: the load-bearing C3 criterion scores on 5/5 seeds at T >= 200 (worst half-count 54 vs a floor of 50) and with real margin at T = 300 (worst 70); at T = 150 two seeds starve (45, 48). PERSISTENCE: n_persistent = 0 of 5 in W4 = [300, end] (W4 persistence 0.238/0.455/0.495/0.291/0.350 vs per-window midpoints 0.495/0.501/0.505/0.488/0.489, noise floors ~0.289); seed-mean fractional bracket position W1 0.320 / W2 0.107 / W3 0.366 / W4 0.180, never reaching midpoint in any window; 4 of 20 seed-windows at or above midpoint, none in W2 or W4. Two seeds are marginal (633 is 0.011 below a midpoint whose across-seed spread is 0.017; 622's W4 is its most directed window on a rising profile) and the window controls are single realisations on fresh-init heads. C2 'noisy' passes at exactly 3 of 5 (2 exhausted, 0 persistent). C3 SCOREABLE on 5/5 -- r_local +0.045/+0.020/+0.017/+0.005/-0.002 inside +/-2 SE bands of ~0.091, 0 negative and 0 positive -- while the RECORDED 1020 statistic points the other way (adv_flip_minus_nonflip negative on 4/5 seeds), so the sign leg stays alive. Trained-head flip rate falls monotonically on 5/5 (Spearman -0.549..-0.661).",
-          "target": "A working consequence-trained readout must show persistently directed gradient (W4 persistence at or above the window midpoint) on a majority of seeds, together with a negative advantage-on-flip correlation clearing the -2/sqrt(n_eps) band on the load-bearing statistic. Neither holds under the current authority-OFF regime.",
-          "resolved": "open"
-        },
-        "resolves_prior_failure_record": [
-          {
-            "run_id": "v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3",
-            "resolved": "resolved",
-            "resolved_note": "Both clauses of the 1020 record are now dispositioned. The C2 clause ('persistence-low passes on a bare 3-of-5 majority, same seeds (622/633/644) in both arms') was discharged by V3-EXQ-1027 per the confirmed cluster autopsy, and 1028's W1 = [0,70] window reproduces the identical partition a THIRD time, on a different machine class. The C3 clause ('advantage-sign leg UNSCOREABLE: 4 fresh-select flip samples in the worst cell against MIN_FLIP_SAMPLES=20, only 4 of 10 cells eligible') is discharged HERE: 1028's redesigned episode-level C3, labelled by a frozen init head so flips cannot extinguish out of the sample, scored on 5 of 5 cells with 132-345 init-head flip ticks in each half against a floor of 50. The STARVATION is fixed and measured; the record can close. Note that closing it does NOT settle the sign question itself -- that leg stays alive in the frozen ledger for the reason given in leg_readings."
-          }
-        ]
-      },
-      "pending_retest_after_substrate": false,
-      "narrow_supports_flag": false,
-      "re_derive_brake": {
-        "fired": false,
-        "threshold": 2,
-        "literal_count_meets_threshold": true,
-        "literal_count": 5,
-        "prior_substrate_ceiling_autopsies": [
-          "failure_autopsy_2026-07-28-sweep | v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
-          "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
-          "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
-          "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 | v3_exq_1027_sd082_replay_own_rule_state_credit_assignment_20260914T135320Z_v3",
-          "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 | v3_exq_1029_sd082_selection_authority_readout_consequence_20260914T191118Z_v3"
-        ],
-        "refused_requeue": true,
-        "route_to": "governance-note-only",
-        "upstream_substrate": null,
-        "release_basis": "The R1-R3 recipe run over the committed corpus returns a literal count of 5 for SD-082 against a threshold of 2. NOT ONE of the 5 is a substrate_ceiling reading: four are stamped epistemic_category 'standard' and the fifth (822b) carries the pre-2026-08-09 grandfathered free-text label 'competence_implementation_gap' (red-team F4 -- the draft of this artifact wrongly said all five read 'standard'; corrected, and the substantive point is unaffected since that label is not a ceiling either). All five reach the count only through R3 step (4)'s direction fallback on 'non_contributory', and granularity_debt_cluster.py SD-082 reports alignment distribution unclear=8 with ZERO targets reading 'weakened'. SD-082 has never had a ceiling reading in its history. This target likewise reads non_contributory / standard with NO substrate build owed (the amend above is bookkeeping: a failure record, a validation_experiment extension, and the disposition of the 1020 record), so the brake does not fire on it and the routing is not implement-substrate -- there is no substrate to build and none is named. REFUSED regardless: V3-EXQ-1028a or any same-design letter of this run under authority OFF (a byte-identical replay adjudicates nothing, and the budget question is now answered); any further lettered iteration of the 822 / 1020 / 1028 design under authority OFF. LICENSED: the successor already confirmed by failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 section 9 -- a NEW EXQ number, a new adjudicating run for the alive registry leg H1, under authority ON with the gated_policy channel controlled, whose P1 budget this artifact sets.",
-        "predicate_interaction_flagged_for_governance": "HONEST STAMP, READ THIS: the step (3) 'explicit producer release' will NOT take effect on this target, because _autopsy_owes_substrate_build() returns True for recommended_substrate_queue_entry.action == 'amend', and step (3) is guarded by `if not owes_build`. So validate_queue.py::_autopsy_counts_toward_brake and the mirrored skill recipes WILL count this target, taking SD-082's literal count to 6. That is stated here rather than concealed, and was independently re-verified by the Step 7c red team. The same interaction already applies to the two V3-EXQ-1027-1029-cluster targets: that artifact's release_basis asserts 'no build owed ... step (3) explicit producer release ... so neither adds a hit' while setting action 'amend', and the predicate counts them anyway -- which is why the count reads 5 here and not the 3 that artifact recorded. The underlying issue is that 'amend' is overloaded: it covers both 'amend the entry because a build is owed' and 'append a failure record / disposition a prior one, no build owed'. This does NOT change any disposition in this artifact (SD-082 is above threshold either way and no ceiling reading exists), and this autopsy proposes no fix -- it is flagged to /governance in follow_on_owed_to_governance."
-      },
-      "learning_extracted": [
-        "1. SEED IDENTITY IS DETERMINISTIC FOR THE PERSISTENCE CLASS, REPRODUCED THREE TIMES ACROSS TWO MACHINE CLASSES. 1028's W1 = [0,70] window reproduces V3-EXQ-1020's ARM_ON pooled persistence to within 2.5e-5 on the four seeds that realised all 70 updates (611 +5.1e-06, 633 +2.5e-05, 644 -3.2e-06, 655 -4.9e-06), and 1027's REPLAY_FAITHFUL arm is BIT-IDENTICAL to 1020's ARM_ON on all five. Stronger still, and under-claimed in this artifact's own draft: per-episode RETURNS are BIT-IDENTICAL between 1020 ARM_ON and 1028 for all 5 seeds over the first 70 P1 episodes, across linux-x86_64/py3.10-torch2.12.0+cpu and darwin-arm64/py3.13-torch2.12.0. Seed 622's persistence differs by -9.3e-03 and is the single seed that realised 69 of 70 updates in 1020/1027 (and 499 of 500 here), so its window covers a different update SET by one -- a mechanically explained exception on identical trajectories, not a divergence. The partition {622,633,644} below midpoint / {611,655} above is a fixed function of the seed.",
-        "2. THAT MAKES C2's MAJORITY RULE A STATEMENT ABOUT THE SEED SET, NOT THE POPULATION -- the flaw 1028's own driver diagnosed in 1020 and then inherited. Any successor reading persistence must pre-register SEED IDENTITY AS A FACTOR, report per-seed rather than a majority count, and either use enough seeds for a majority to mean something or drop the majority framing for a per-seed effect size.",
-        "3. THE BUDGET QUESTION IS ANSWERED BY CRITERION POWER, NOT BY A CEILING ARGUMENT -- and the two routes agree on 300. The durable, uncontested route is that the load-bearing C3 criterion needs >= 50 init-head flip ticks in each half of P1: at T=150 two seeds starve (45, 48), at T=200 all five score with a 1.08x margin, and at T=300 all five score with 1.40x. The persistence route agrees that a longer budget is not the lever (0 of 5 persistent in W4) but is reported with its limits and licenses NO refusal above 300. A budget recommendation grounded in what the criterion needs is more robust than one grounded in what the gradient stopped doing.",
-        "4. A 'FRACTION OF TOTAL DECAY COMPLETE BY T' STATISTIC CANNOT EVIDENCE A CEILING, BECAUSE IT FRONT-LOADS BY CONSTRUCTION. This artifact's own draft cited '86 percent of the flip-rate decay complete by episode 300' as corroboration; the Step 7c red team showed the statistic is an additive share denominated on the run's own endpoint and is front-loaded for ANY monotone decay toward an asymptote. In ratio terms the same data show a further 1.3x-13.2x reduction after episode 300. The claim was withdrawn. Generalisable: an additive share of a decay is not evidence about where the decay stops.",
-        "5. THE WINDOWING FIX MATTERED AND PREVENTED A FALSE UNANIMITY. Every seed's CUMULATIVE persistence at T = 500 sits below the cumulative midpoint (cumulative_below_midpoint_T true 5/5), so the endpoint read the queue-time red team's F1 replaced would have returned 5 of 5 'noisy'. The windowed read returns 3 noisy / 2 directed-then-exhausted. The controls confirm the drift the fix was built for: the synthetic ceiling falls from ~0.73 at L=70 to ~0.69-0.72 at L=500 while the noise floor falls from 0.449 to ~0.289.",
-        "6. C3's REDESIGN WORKED AS AN INSTRUMENT FIX, AND THE GENERALISABLE LESSON IS SHARP: A CRITERION WHOSE SAMPLE COUNT IS PRODUCED BY THE EFFECT UNDER TEST MUST BE LABELLED BY A FROZEN REFERENCE, NOT BY THE TRAINED OBJECT. 1020's C3 starved at 4 samples in the worst cell because trained flips extinguish; labelling every P1 episode's flips through a frozen copy of the cell's own init head removed that feedback loop and delivered 5/5 scoreable with 2.6x-6.9x headroom.",
-        "7. A RUN CAN CARRY TWO STATISTICS FOR ONE HYPOTHESIS THAT DISAGREE IN DIRECTION, AND WHICH ONE WINS MUST BE PRE-REGISTERED. 1028's load-bearing episode-level Pearson r reads null while the recorded 1020-style difference-of-means reads negative on 4 of 5 seeds (in three variants, though not the same 4). There are good design reasons to prefer the load-bearing one -- it was built to fix the other's starvation -- but no pre-registered tie-break exists, so the leg cannot be resolved on this run. Future fan-out drivers that retain a superseded statistic 'for comparability' should state in advance what happens when the two disagree.",
-        "8. THE LINEAGE'S BRAKE COUNT IS AN ARTEFACT OF THE 'amend' OVERLOAD, NOT OF A CEILING. SD-082's literal R1-R3 count is 5 with ZERO substrate_ceiling readings among them; every hit arrives through the direction fallback after action 'amend' disables the instrument-repair and producer-release escapes. A bookkeeping amend is indistinguishable to the predicate from an amend that owes a build. Flagged to /governance; no fix proposed here."
-      ],
-      "routing": "governance-note-only",
-      "routing_note": "This autopsy owes NO new experiment of its own and NO build. It owes (a) the evidence_quality_note and citation re-point, (b) the substrate_queue amend (bookkeeping, including closing the V3-EXQ-1020 failure record), and (c) the P1 budget input to the successor that failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 section 9 already confirmed and licensed. That successor is owned by the cluster artifact's routing, not by this one; /queue-experiment must read p1_budget_reading (BOTH routes, and do_not_over_read) before queuing it. Work-graph token for the remaining node: complex (probe-gated) / puzzle (known rules) -- the frame is well-posed (registry leg H1's decision_question) and the missing fact is a single manipulation away, now with its budget parameter supplied and its criterion-power margin computed."
+      "n_seed_windows_at_or_above_midpoint": "4 of 20 (W1 2/5, W2 0/5, W3 2/5, W4 0/5)."
+     },
+     "marginal_seeds_stated_explicitly": "Red-team F2, verified and accepted. 'n_persistent = 0' is a true CLASSIFIER COUNT but must not be read as 'nothing is happening after update 300'. Seed 633's W4 is 0.0108 BELOW its midpoint while the W4 midpoint's own across-seed realisation spread is 0.0174 -- i.e. inside control-realisation noise of crossing. Seed 622's W4 sits 0.1654 ABOVE the pure-noise floor (39 percent of bracket) and is that seed's MOST directed window, on a profile that rises monotonically (-0.186 -> -0.046 -> +0.012 -> +0.390). The classifier has no label for 'late-rising', so that shape is invisible to C2's three-way scheme.",
+     "control_approximation": "Red-team F2, second half. The window brackets are measured on FRESH-INIT heads over length L, while the real run's late windows step a mid-training Adam whose bias-corrected moments have settled. The driver records this as a known approximation (its defence: the pure-noise floor is invariant over gradient scale and moves with L, which the window matches). The DIRECTION of any residual bias is NOT MEASURED, and the controls are single realisations with no SE. So a genuine late persistent signal on the two marginal seeds could be masked by a mis-set W4 bracket. This is stated rather than assumed away, and it is why route A rather than route B is the primary basis for the recommendation."
+    },
+    "corroborating_behavioural_readout": {
+     "statistic": "TRAINED-head per-episode flip rate, block means per 100 P1 episodes (arm_results[].trained_flip_rate_block_means_100); Spearman against episode index (arm_results[].spearman_episode_vs_flip_rate).",
+     "robust_finding": "Flip suppression is real and monotone on 5/5 seeds (Spearman -0.549 to -0.661). This part is not contested.",
+     "corrected_reading": "Red-team F3, verified and accepted. The draft of this artifact reported '76-96 percent (median 86) of the decay is complete by episode 300' as corroboration of a ceiling. That statistic is an ADDITIVE share denominated on the run's own endpoint, and it front-loads BY CONSTRUCTION for any monotone decay toward an asymptote -- so it cannot evidence a ceiling. In RATIO terms the 300-500 stretch is still doing substantial work on some seeds: flip rate falls a further 1.30x (611), 5.02x (622), 2.06x (633), 13.22x (644) and 1.44x (655) between block 3 and block 5. The additive figures are retained for the record but carry NO weight in the recommendation.",
+     "net": "This readout corroborates that the head is learning throughout the budget. It does NOT corroborate a ceiling, and is no longer cited as doing so."
+    },
+    "recommendation_for_the_sd082_successor": "Set P1 = 300 updates (= 300 P1 episodes, one update per episode). Basis: route A -- it is the smallest budget at which the load-bearing C3 criterion scores on 5/5 seeds with a real margin (worst half-count 70 against a floor of 50; at T=200 the margin is 1.08x and at T=150 two seeds starve). Route B agrees that a longer budget is not the lever: the pre-registered classifier finds no persistently-directed gradient anywhere in 500 updates.",
+    "do_not_over_read": "This artifact does NOT refuse a budget above 300 and no such refusal should be derived from it. Three reasons: (1) the ceiling reading rests on a bracket whose control approximation is unmeasured in direction, with two seeds at or near the boundary; (2) in ratio terms the flip rate is still falling materially after episode 300 on 2 of 5 seeds; (3) most importantly, the successor runs a DIFFERENT gradient -- P1 under authority ON with the gated_policy channel controlled -- and nothing measured under the authority-OFF imitation regime bounds what that regime needs. 300 is a well-founded STARTING budget with the criterion-power margin computed. The successor MUST record the same windowed-persistence profile and the same per-half init-flip-tick counts so its own budget can be re-read in its own regime rather than inherited.",
+    "answers_which_cluster_disposition": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14: the pre_routing_checks C1 fire's disposition ('the successor's P1 budget is to be set from 1028's persistence reading, and /queue-experiment must read 1028's confirmed autopsy before queuing it') and section 9's successor paragraph ('queue only after 1028's confirmed autopsy sets the P1 budget'). NOTE for the record: that disposition is carried by the C1 pre-routing fire, NOT by C7 -- C7 in that artifact is the DISMISSED live_rule_state_zero_frac item. The chip brief for this autopsy cited it as C7; the substance is unaffected."
+   },
+   "leg_readings": {
+    "H-learning-signal-noisy": {
+     "driver_rule": ">= 3 of 5 seeds classified 'noisy' (W1 < midpoint(70) AND W4 < midpoint(L4)) -> supported.",
+     "measured": "3 noisy (622, 633, 644), 2 exhausted (611, 655), 0 persistent. C2 passed at EXACTLY its threshold.",
+     "literal_verdict": "SUPPORTED on the pre-registered bar.",
+     "autopsy_reading": "SUPPORTED-BUT-NOT-GENERALISABLE. The rule aggregates over seeds as exchangeable sampling units; three runs now show the class is a deterministic function of seed identity (learning_extracted 1). A bare 3-of-5 on non-exchangeable units is a statement about the seed set -- the SAME criticism 1028's own driver levelled at 1020 ('C2 (persistence low) passed on a bare 3-of-5 majority'). The extended budget reproduced that weakness rather than resolving it. Seed 622 additionally carries a late-RISING profile the three-way classifier has no label for.",
+     "what_the_budget_extension_DID_settle": "The 'directed then exhausted' alternative the queue-time red team's F1 raised is measured rather than aliased: 2 of 5 seeds are genuinely directed early and exhausted late, 0 of 5 persistently directed by the classifier's bar. On the cumulative T=500 endpoint read that the windowing replaced, all 5 seeds would have read below midpoint -- a 5/5 'noisy' over-call. The windowing fix prevented a false unanimity."
+    },
+    "H-learning-signal-sign": {
+     "driver_rule": ">= 3 of 5 scoreable seeds NEGATIVE (r_local <= -2/sqrt(n_eps) AND r_grand < 0) -> supported; >= 3 POSITIVE -> refuted; >= 3 scoreable and neither -> sign_null; < 3 scoreable -> c3_starved.",
+     "measured_load_bearing": "5/5 seeds SCOREABLE (n_eps 468-487; init-head flip ticks 132-345 in each half against a floor of 50). r_local = +0.0454, +0.0202, +0.0175, +0.0053, -0.0024 against +/-2 SE bands of +/-0.0906 to +/-0.0925. 0 negative, 0 positive.",
+     "literal_verdict": "sign_null -- neither supported nor refuted by the driver's own three-valued rule.",
+     "measured_recorded_statistic": "RED-TEAM F1, VERIFIED AND DECISIVE. The run ALSO records 1020's own C3 statistic (criteria[4] 'R1020_C3_trained_head_drawn_samples_recorded', load_bearing false), and it points the OTHER WAY. per_seed_adv_flip_minus_nonflip = -0.0326 (611), +0.0369 (622), -0.0472 (633), -0.0227 (644), -0.0605 (655): NEGATIVE on 4 of 5 seeds, which is the direction H-learning-signal-sign asserts. The detrended variant (arm_results[].adv_flip_minus_nonflip_detrended) is also negative on 4 of 5 with adv_sign_agrees_detrended true on 5/5; the hold-weighted variant is negative on 4 of 5 as well -- but NOT THE SAME 4 (622 flips negative under hold-weighting, 655 flips positive). Under 1020's own pre-registered rule, restricted to the 4 seeds clearing MIN_FLIP_SAMPLES=20 (622:59, 633:56, 644:88, 655:37; 611 has 18), 3 of 4 eligible read negative -- which on that rule is SUPPORTED.",
+     "autopsy_reading": "The run carries TWO readings of this leg that disagree, and the honest verdict is therefore NOT elimination. The LOAD-BEARING statistic (episode-level Pearson r on frozen-init-head labels, the redesign that fixed 1020's starvation) is a well-powered null excluding |r| > ~0.09 on 5/5 seeds. The RECORDED statistic (1020's trained-head drawn-sample difference of means) is negative on 4/5 in three variants, though with unstable per-seed membership and magnitudes within roughly 1 SE. A defensible case exists that the load-bearing statistic should win -- it was redesigned precisely because the recorded one starves and is confounded by early-P1 return trend -- but that case was NOT pre-registered as a tie-break, and eliminating a registered leg on it would be exactly the post-hoc move the frozen ledger exists to prevent. Recommended ledger state: ALIVE, with both readings recorded. See hypothesis_space_ledger_pending.",
+     "what_is_nonetheless_established": "Independently of the leg's state: the EXPLANANDUM is present (trained-head flips fall monotonically on 5/5, Spearman -0.549..-0.661) and the leg is no longer STARVED -- 1020's unscoreability is discharged. Whatever the sign question's final disposition, it is now a measurement question rather than an instrument question.",
+     "scope_caveat_recorded": "Red-team F1 clause (ii), recorded not adjudicated: the registry leg's label is a CONSEQUENCE claim ('a rule-driven argmax change is on average penalised'). With authority OFF no argmax change reaches the action at all (1029: 0/1694), and the driver itself calls its C3 'correlational by construction'. By the same reasoning this artifact uses to say SD-082 could not express itself here, the leg's consequence form may not be testable in this configuration either. That strengthens ALIVE and is a design constraint for whichever run next adjudicates it."
     }
-  ],
-  "read_across_not_adjudicated": [
-    {
-      "bears_on": "sd082_candidate_discriminating_readout_locus:H1-trained-discriminating-readout (alive)",
-      "note": "NOT adjudicated here. 1028 supplies H1's successor run its P1 budget (300 updates, with the criterion-power margin computed at 1.40x) and two design constraints: seed identity must be pre-registered as a FACTOR (the persistence class is a deterministic function of the seed across three runs and two machine classes), and the successor must record its own windowed-persistence profile and per-half init-flip-tick counts rather than inheriting this run's budget conclusion, since it runs a different gradient. The successor remains the cluster artifact's confirmed routing -- a new adjudicating run for H1, no ledger growth."
-    },
-    {
-      "bears_on": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 learning 8 (training-regime finding)",
-      "note": "PARTIALLY corroborated, and the qualification matters. The cluster inferred that the lineage's P1 surrogate is advantage-weighted imitation of E3 from the selection-side measurement (0/1694 argmin at native magnitude). 1028's LOAD-BEARING C3 is consistent with that: flips are suppressed monotonically while the advantage-on-flip correlation is null at adequate power, which is what imitation predicts and consequence-training does not. But 1028's RECORDED 1020-style statistic is negative on 4/5 seeds, which is the consequence-training signature, so this artifact does NOT claim clean independent corroboration -- it records that the two statistics disagree and leaves the leg alive. Nothing here adjudicates the cluster's targets."
-    },
-    {
-      "bears_on": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 learning 3 (seed identity as candidate explanatory variable)",
-      "note": "PROMOTED from candidate to established, and extended. The cluster observed the partition reproduce twice (1020, 1027) on one machine class. 1028 reproduces it a third time on a DIFFERENT machine class and python version, with per-episode returns bit-identical over the shared 70 episodes. Seed identity is no longer a 'candidate' explanatory variable for the persistence class -- it is the explanatory variable, and the exchangeability assumption behind C2's majority rule is falsified."
-    },
-    {
-      "bears_on": "reference-cross-machine-class-contract-divergence (standing operator note)",
-      "note": "NOT a contradiction, and recorded so it is not read as one. The standing note is that torch.multinomial returns a different category on linux-x86_64 than on darwin-arm64 from a bit-identical probability tensor, so a test must not assert on the sampled action. Here per-episode returns and trajectories are bit-identical cross-class over the shared 70 episodes and the gradient-path persistence agrees to ~1e-5. The two observations are consistent -- this run's P1 selection is E3's argmin/multinomial on identical trajectories, and what agrees is the continuous optimisation path -- but NO contract or assertion is proposed here, and this artifact does not claim the divergence note is wrong or narrower than stated. It is a single lineage on one code path.",
-      "caution": "Do NOT generalise this into 'cross-class runs are reproducible'. It is one driver, one substrate path, 70 episodes."
-    },
-    {
-      "bears_on": "SD-078 (co-registered on the question, not tagged on this run)",
-      "note": "Nothing moves. The SD-078 downstream-consumer test still waits on a consequence-trained SD-082 readout. 1028 narrows the budget that test needs but bears on nothing SD-078 asserts."
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Failure mode: a measurement-construct question on both legs -- one leg's load-bearing and recorded statistics disagree in direction (H-learning-signal-sign), the other leg's decision rule aggregates over non-exchangeable units (H-learning-signal-noisy) -- on a run whose instrument passed every readiness and non-degeneracy gate. NOT a substrate ceiling: no build is owed and nothing here asserts SD-082's answer is gated on substrate work; the 'absolute passes / discrimination fails' fingerprint is present but is NOT a ceiling here because the claim's mechanism was never in the run's causal path (see failed_criterion_note). NOT an instrument defect either: the queue-time red team's four fixes all held and the criterion that 1020 starved now scores on 5/5. 'standard' asserts no epistemic suppression, which is the correct verdict -- this run narrows HOW the claim must be tested without suppressing its testability.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_note": "The manifest pins directions 'unknown' with evidence_direction_note 'diagnostic fan-out legs; directions pinned unknown'. non_contributory is the adjudicated value for SD-082 specifically: the run measures the learning signal delivered to the head, not the claim's asserted candidate-discriminating readout property, and under authority OFF that signal is not the one the claim's mechanism describes.",
+   "recommended_evidence_quality_note": "[2026-09-15 governance, confirmed failure_autopsy_V3-EXQ-1028_2026-09-15 (SD-082 GOV-FANOUT-1 portfolio legs 2 and 4, the extended-budget learning-signal run; staged headless, cross-model Fable red-team CONTESTED with all findings verified and folded in, user gate)]: NOTE-ONLY, direction non_contributory. V3-EXQ-1028 ran V3-EXQ-1020's ARM_ON cell at T = 500 REINFORCE updates (7.1x 1020's T = 70) with windowed persistence and a frozen-init-head episode-level advantage statistic. Outcome PASS on readiness AND C1 (bracket separation 1.00, worst-cell update realisation 0.998, 0 candidate-summary fallbacks in 22188 calls, 11830 worst-cell P1 ticks; C1 gradient present 5/5) -- an instrument-liveness PASS whose content is its label, c2_noisy__c3_sign_null. THE BUDGET QUESTION IS ANSWERED: P1 = 300 updates, on two independent routes. Route A (primary, criterion power, recomputed from the run's per-episode cells): 300 is the smallest budget at which the load-bearing C3 leg scores on 5/5 seeds with real margin (worst half-count 70 against a floor of 50 init-head flip ticks per half; at T=200 the margin is 1.08x, and at T=150 two seeds starve at 45 and 48). Route B (the persistence reading the cluster asked for): the pre-registered windowed classifier finds NO persistently-directed gradient anywhere in the budget -- n_persistent = 0 of 5 in W4 = [300, end], and the seed-mean fractional bracket position never reaches the midpoint in any of the four windows (W1 0.320, W2 0.107, W3 0.366, W4 0.180) -- so a longer budget is not the lever. Route B is reported WITH its limits and no refusal above 300 is derived from it: seed 633's W4 is 0.011 below a midpoint whose own across-seed realisation spread is 0.017, seed 622's W4 is its MOST directed window on a monotonically rising profile, the window controls are single realisations measured on fresh-init heads against a mid-training Adam, and in ratio terms flip rate still falls a further 1.3x-13.2x after episode 300. H-learning-signal-sign is NOT eliminated: the load-bearing episode-level statistic is a well-powered null (5/5 scoreable, the starvation that made this leg unscoreable in 1020 is discharged; r_local +0.045..-0.002 inside +/-2 SE bands of ~0.091), but the run ALSO records 1020's own statistic pointing the other way -- adv_flip_minus_nonflip negative on 4 of 5 seeds, and 3 of 4 seeds eligible under 1020's own sample floor, which on that rule reads SUPPORTED -- so the leg stays ALIVE with both readings recorded rather than being resolved on a tie-break nobody pre-registered. H-learning-signal-noisy passes at EXACTLY its 3-of-5 threshold (3 noisy, 2 directed-then-exhausted, 0 persistent), but the seed-to-class partition is now reproduced THREE times -- 1020 ARM_ON, both V3-EXQ-1027 replay arms, and 1028's W1 window -- on the identical split {622,633,644} low / {611,655} high, with 1028's W1 matching 1020's ARM_ON to within 2.5e-5 on the four seeds that realised all 70 updates and per-episode returns BIT-IDENTICAL across machine classes (linux-x86_64/py3.10 vs darwin-arm64/py3.13) over those 70 episodes; so seed identity is a deterministic explanatory variable and a majority over 5 seeds is not a population estimate. Nothing stored moves: status stays candidate_substrate_landed, epistemic_category standard, pending_retest_after_substrate false, diagnostic_evidence_adjudicated true. live_status.evidence.from re-pointed at this artifact. PROMOTES/DEMOTES NOTHING.",
+   "per_claim_recommendation": {
+    "SD-082": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "SD-082 already stores epistemic_category standard, pending_retest_after_substrate false, diagnostic_evidence_adjudicated true and status candidate_substrate_landed, and none of them moves on a diagnostic that does not test the claim's asserted content. What governance writes is the evidence_quality_note plus the citation, so the claim's live_status.evidence.from should now point at this diagnosis -> stamp this artifact",
+     "pending_retest_after_substrate": false,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays candidate_substrate_landed"
     }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-082",
+    "title": "Trained bias-head consumer coupling differentiated rule_state to an action bias (SD-078 propagation consumer)",
+    "implementation_hint": "NO BUILD IS OWED BY THIS AUTOPSY. The amend is bookkeeping on an existing entry: append the V3-EXQ-1028 failure record, extend validation_experiment to name 1028 and its budget finding, and disposition the REMAINING open clause of the V3-EXQ-1020 failure record. severity ('corrupting') and substrate_paths ([] -- governance emptied it deliberately on 2026-09-09) are UNCHANGED; this occurrence changes neither.",
+    "unblocks_claims": [
+     "SD-082",
+     "SD-078"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 1,
+    "severity_note": "UNCHANGED at 'corrupting'. This run surfaced no new corrupting defect: every readiness and non-degeneracy gate passed and the instrument behaved as specified.",
+    "substrate_paths_note": "UNCHANGED at []. Do not repopulate -- governance emptied this field on purpose on 2026-09-09.",
+    "failure_record_entry": {
+     "run_id": "v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3",
+     "experiment_type": "v3_exq_1028_sd082_learning_signal_extended_budget",
+     "metric": "Extended-budget learning-signal profile at T = 500 REINFORCE updates. BUDGET: the load-bearing C3 criterion scores on 5/5 seeds at T >= 200 (worst half-count 54 vs a floor of 50) and with real margin at T = 300 (worst 70); at T = 150 two seeds starve (45, 48). PERSISTENCE: n_persistent = 0 of 5 in W4 = [300, end] (W4 persistence 0.238/0.455/0.495/0.291/0.350 vs per-window midpoints 0.495/0.501/0.505/0.488/0.489, noise floors ~0.289); seed-mean fractional bracket position W1 0.320 / W2 0.107 / W3 0.366 / W4 0.180, never reaching midpoint in any window; 4 of 20 seed-windows at or above midpoint, none in W2 or W4. Two seeds are marginal (633 is 0.011 below a midpoint whose across-seed spread is 0.017; 622's W4 is its most directed window on a rising profile) and the window controls are single realisations on fresh-init heads. C2 'noisy' passes at exactly 3 of 5 (2 exhausted, 0 persistent). C3 SCOREABLE on 5/5 -- r_local +0.045/+0.020/+0.017/+0.005/-0.002 inside +/-2 SE bands of ~0.091, 0 negative and 0 positive -- while the RECORDED 1020 statistic points the other way (adv_flip_minus_nonflip negative on 4/5 seeds), so the sign leg stays alive. Trained-head flip rate falls monotonically on 5/5 (Spearman -0.549..-0.661).",
+     "target": "A working consequence-trained readout must show persistently directed gradient (W4 persistence at or above the window midpoint) on a majority of seeds, together with a negative advantage-on-flip correlation clearing the -2/sqrt(n_eps) band on the load-bearing statistic. Neither holds under the current authority-OFF regime.",
+     "resolved": "open"
+    },
+    "resolves_prior_failure_record": [
+     {
+      "run_id": "v3_exq_1020_sd082_learning_signal_probe_20260911T003146Z_v3",
+      "resolved": "resolved",
+      "resolved_note": "Both clauses of the 1020 record are now dispositioned. The C2 clause ('persistence-low passes on a bare 3-of-5 majority, same seeds (622/633/644) in both arms') was discharged by V3-EXQ-1027 per the confirmed cluster autopsy, and 1028's W1 = [0,70] window reproduces the identical partition a THIRD time, on a different machine class. The C3 clause ('advantage-sign leg UNSCOREABLE: 4 fresh-select flip samples in the worst cell against MIN_FLIP_SAMPLES=20, only 4 of 10 cells eligible') is discharged HERE: 1028's redesigned episode-level C3, labelled by a frozen init head so flips cannot extinguish out of the sample, scored on 5 of 5 cells with 132-345 init-head flip ticks in each half against a floor of 50. The STARVATION is fixed and measured; the record can close. Note that closing it does NOT settle the sign question itself -- that leg stays alive in the frozen ledger for the reason given in leg_readings."
+     }
+    ]
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": true,
+    "literal_count": 5,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_2026-07-28-sweep | v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+     "failure_autopsy_V3-EXQ-822c_2026-08-29 | v3_exq_822c_sd082_candidate_summary_fallback_fix_20260829T065645Z_v3",
+     "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 | v3_exq_822d_sd082_post_action_summary_validation_20260830T144323Z_v3",
+     "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 | v3_exq_1027_sd082_replay_own_rule_state_credit_assignment_20260914T135320Z_v3",
+     "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 | v3_exq_1029_sd082_selection_authority_readout_consequence_20260914T191118Z_v3"
+    ],
+    "refused_requeue": true,
+    "route_to": "governance-note-only",
+    "upstream_substrate": null,
+    "release_basis": "The R1-R3 recipe run over the committed corpus returns a literal count of 5 for SD-082 against a threshold of 2. NOT ONE of the 5 is a substrate_ceiling reading: four are stamped epistemic_category 'standard' and the fifth (822b) carries the pre-2026-08-09 grandfathered free-text label 'competence_implementation_gap' (red-team F4 -- the draft of this artifact wrongly said all five read 'standard'; corrected, and the substantive point is unaffected since that label is not a ceiling either). All five reach the count only through R3 step (4)'s direction fallback on 'non_contributory', and granularity_debt_cluster.py SD-082 reports alignment distribution unclear=8 with ZERO targets reading 'weakened'. SD-082 has never had a ceiling reading in its history. This target likewise reads non_contributory / standard with NO substrate build owed (the amend above is bookkeeping: a failure record, a validation_experiment extension, and the disposition of the 1020 record), so the brake does not fire on it and the routing is not implement-substrate -- there is no substrate to build and none is named. REFUSED regardless: V3-EXQ-1028a or any same-design letter of this run under authority OFF (a byte-identical replay adjudicates nothing, and the budget question is now answered); any further lettered iteration of the 822 / 1020 / 1028 design under authority OFF. LICENSED: the successor already confirmed by failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 section 9 -- a NEW EXQ number, a new adjudicating run for the alive registry leg H1, under authority ON with the gated_policy channel controlled, whose P1 budget this artifact sets.",
+    "predicate_interaction_flagged_for_governance": "HONEST STAMP, READ THIS: the step (3) 'explicit producer release' will NOT take effect on this target, because _autopsy_owes_substrate_build() returns True for recommended_substrate_queue_entry.action == 'amend', and step (3) is guarded by `if not owes_build`. So validate_queue.py::_autopsy_counts_toward_brake and the mirrored skill recipes WILL count this target, taking SD-082's literal count to 6. That is stated here rather than concealed, and was independently re-verified by the Step 7c red team. The same interaction already applies to the two V3-EXQ-1027-1029-cluster targets: that artifact's release_basis asserts 'no build owed ... step (3) explicit producer release ... so neither adds a hit' while setting action 'amend', and the predicate counts them anyway -- which is why the count reads 5 here and not the 3 that artifact recorded. The underlying issue is that 'amend' is overloaded: it covers both 'amend the entry because a build is owed' and 'append a failure record / disposition a prior one, no build owed'. This does NOT change any disposition in this artifact (SD-082 is above threshold either way and no ceiling reading exists), and this autopsy proposes no fix -- it is flagged to /governance in follow_on_owed_to_governance."
+   },
+   "learning_extracted": [
+    "1. SEED IDENTITY IS DETERMINISTIC FOR THE PERSISTENCE CLASS, REPRODUCED THREE TIMES ACROSS TWO MACHINE CLASSES. 1028's W1 = [0,70] window reproduces V3-EXQ-1020's ARM_ON pooled persistence to within 2.5e-5 on the four seeds that realised all 70 updates (611 +5.1e-06, 633 +2.5e-05, 644 -3.2e-06, 655 -4.9e-06), and 1027's REPLAY_FAITHFUL arm is BIT-IDENTICAL to 1020's ARM_ON on all five. Stronger still, and under-claimed in this artifact's own draft: per-episode RETURNS are BIT-IDENTICAL between 1020 ARM_ON and 1028 for all 5 seeds over the first 70 P1 episodes, across linux-x86_64/py3.10-torch2.12.0+cpu and darwin-arm64/py3.13-torch2.12.0. Seed 622's persistence differs by -9.3e-03 and is the single seed that realised 69 of 70 updates in 1020/1027 (and 499 of 500 here), so its window covers a different update SET by one -- a mechanically explained exception on identical trajectories, not a divergence. The partition {622,633,644} below midpoint / {611,655} above is a fixed function of the seed.",
+    "2. THAT MAKES C2's MAJORITY RULE A STATEMENT ABOUT THE SEED SET, NOT THE POPULATION -- the flaw 1028's own driver diagnosed in 1020 and then inherited. Any successor reading persistence must pre-register SEED IDENTITY AS A FACTOR, report per-seed rather than a majority count, and either use enough seeds for a majority to mean something or drop the majority framing for a per-seed effect size.",
+    "3. THE BUDGET QUESTION IS ANSWERED BY CRITERION POWER, NOT BY A CEILING ARGUMENT -- and the two routes agree on 300. The durable, uncontested route is that the load-bearing C3 criterion needs >= 50 init-head flip ticks in each half of P1: at T=150 two seeds starve (45, 48), at T=200 all five score with a 1.08x margin, and at T=300 all five score with 1.40x. The persistence route agrees that a longer budget is not the lever (0 of 5 persistent in W4) but is reported with its limits and licenses NO refusal above 300. A budget recommendation grounded in what the criterion needs is more robust than one grounded in what the gradient stopped doing.",
+    "4. A 'FRACTION OF TOTAL DECAY COMPLETE BY T' STATISTIC CANNOT EVIDENCE A CEILING, BECAUSE IT FRONT-LOADS BY CONSTRUCTION. This artifact's own draft cited '86 percent of the flip-rate decay complete by episode 300' as corroboration; the Step 7c red team showed the statistic is an additive share denominated on the run's own endpoint and is front-loaded for ANY monotone decay toward an asymptote. In ratio terms the same data show a further 1.3x-13.2x reduction after episode 300. The claim was withdrawn. Generalisable: an additive share of a decay is not evidence about where the decay stops.",
+    "5. THE WINDOWING FIX MATTERED AND PREVENTED A FALSE UNANIMITY. Every seed's CUMULATIVE persistence at T = 500 sits below the cumulative midpoint (cumulative_below_midpoint_T true 5/5), so the endpoint read the queue-time red team's F1 replaced would have returned 5 of 5 'noisy'. The windowed read returns 3 noisy / 2 directed-then-exhausted. The controls confirm the drift the fix was built for: the synthetic ceiling falls from ~0.73 at L=70 to ~0.69-0.72 at L=500 while the noise floor falls from 0.449 to ~0.289.",
+    "6. C3's REDESIGN WORKED AS AN INSTRUMENT FIX, AND THE GENERALISABLE LESSON IS SHARP: A CRITERION WHOSE SAMPLE COUNT IS PRODUCED BY THE EFFECT UNDER TEST MUST BE LABELLED BY A FROZEN REFERENCE, NOT BY THE TRAINED OBJECT. 1020's C3 starved at 4 samples in the worst cell because trained flips extinguish; labelling every P1 episode's flips through a frozen copy of the cell's own init head removed that feedback loop and delivered 5/5 scoreable with 2.6x-6.9x headroom.",
+    "7. A RUN CAN CARRY TWO STATISTICS FOR ONE HYPOTHESIS THAT DISAGREE IN DIRECTION, AND WHICH ONE WINS MUST BE PRE-REGISTERED. 1028's load-bearing episode-level Pearson r reads null while the recorded 1020-style difference-of-means reads negative on 4 of 5 seeds (in three variants, though not the same 4). There are good design reasons to prefer the load-bearing one -- it was built to fix the other's starvation -- but no pre-registered tie-break exists, so the leg cannot be resolved on this run. Future fan-out drivers that retain a superseded statistic 'for comparability' should state in advance what happens when the two disagree.",
+    "8. THE LINEAGE'S BRAKE COUNT IS AN ARTEFACT OF THE 'amend' OVERLOAD, NOT OF A CEILING. SD-082's literal R1-R3 count is 5 with ZERO substrate_ceiling readings among them; every hit arrives through the direction fallback after action 'amend' disables the instrument-repair and producer-release escapes. A bookkeeping amend is indistinguishable to the predicate from an amend that owes a build. Flagged to /governance; no fix proposed here."
+   ],
+   "routing": "governance-note-only",
+   "routing_note": "This autopsy owes NO new experiment of its own and NO build. It owes (a) the evidence_quality_note and citation re-point, (b) the substrate_queue amend (bookkeeping, including closing the V3-EXQ-1020 failure record), and (c) the P1 budget input to the successor that failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 section 9 already confirmed and licensed. That successor is owned by the cluster artifact's routing, not by this one; /queue-experiment must read p1_budget_reading (BOTH routes, and do_not_over_read) before queuing it. Work-graph token for the remaining node: complex (probe-gated) / puzzle (known rules) -- the frame is well-posed (registry leg H1's decision_question) and the missing fact is a single manipulation away, now with its budget parameter supplied and its criterion-power margin computed."
+  }
+ ],
+ "read_across_not_adjudicated": [
+  {
+   "bears_on": "sd082_candidate_discriminating_readout_locus:H1-trained-discriminating-readout (alive)",
+   "note": "NOT adjudicated here. 1028 supplies H1's successor run its P1 budget (300 updates, with the criterion-power margin computed at 1.40x) and two design constraints: seed identity must be pre-registered as a FACTOR (the persistence class is a deterministic function of the seed across three runs and two machine classes), and the successor must record its own windowed-persistence profile and per-half init-flip-tick counts rather than inheriting this run's budget conclusion, since it runs a different gradient. The successor remains the cluster artifact's confirmed routing -- a new adjudicating run for H1, no ledger growth."
+  },
+  {
+   "bears_on": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 learning 8 (training-regime finding)",
+   "note": "PARTIALLY corroborated, and the qualification matters. The cluster inferred that the lineage's P1 surrogate is advantage-weighted imitation of E3 from the selection-side measurement (0/1694 argmin at native magnitude). 1028's LOAD-BEARING C3 is consistent with that: flips are suppressed monotonically while the advantage-on-flip correlation is null at adequate power, which is what imitation predicts and consequence-training does not. But 1028's RECORDED 1020-style statistic is negative on 4/5 seeds, which is the consequence-training signature, so this artifact does NOT claim clean independent corroboration -- it records that the two statistics disagree and leaves the leg alive. Nothing here adjudicates the cluster's targets."
+  },
+  {
+   "bears_on": "failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14 learning 3 (seed identity as candidate explanatory variable)",
+   "note": "PROMOTED from candidate to established, and extended. The cluster observed the partition reproduce twice (1020, 1027) on one machine class. 1028 reproduces it a third time on a DIFFERENT machine class and python version, with per-episode returns bit-identical over the shared 70 episodes. Seed identity is no longer a 'candidate' explanatory variable for the persistence class -- it is the explanatory variable, and the exchangeability assumption behind C2's majority rule is falsified."
+  },
+  {
+   "bears_on": "reference-cross-machine-class-contract-divergence (standing operator note)",
+   "note": "NOT a contradiction, and recorded so it is not read as one. The standing note is that torch.multinomial returns a different category on linux-x86_64 than on darwin-arm64 from a bit-identical probability tensor, so a test must not assert on the sampled action. Here per-episode returns and trajectories are bit-identical cross-class over the shared 70 episodes and the gradient-path persistence agrees to ~1e-5. The two observations are consistent -- this run's P1 selection is E3's argmin/multinomial on identical trajectories, and what agrees is the continuous optimisation path -- but NO contract or assertion is proposed here, and this artifact does not claim the divergence note is wrong or narrower than stated. It is a single lineage on one code path.",
+   "caution": "Do NOT generalise this into 'cross-class runs are reproducible'. It is one driver, one substrate path, 70 episodes."
+  },
+  {
+   "bears_on": "SD-078 (co-registered on the question, not tagged on this run)",
+   "note": "Nothing moves. The SD-078 downstream-consumer test still waits on a consequence-trained SD-082 readout. 1028 narrows the budget that test needs but bears on nothing SD-078 asserts."
+  }
+ ],
+ "granularity_debt_trigger": {
+  "fires": false,
+  "tool": "granularity_debt_cluster.py SD-082",
+  "tagging_targets": 8,
+  "alignment_distribution": {
+   "unclear": 8,
+   "weakened": 0
+  },
+  "routing": "NOT granularity debt. The reader's own standing rule applies verbatim: a cluster in which NO target reads 'weakened' is measurement or implementation debt however many autopsies exist, and SD-082 has 8 tagging targets all reading 'unclear' and zero 'weakened'. The recurrence is configuration and measurement debt -- the claim has never been tested under a regime where its mechanism was in the causal path -- not a coarse claim needing decomposition. No /claim-synthesis handoff is owed."
+ },
+ "hypothesis_space_ledger_pending": {
+  "applied": true,
+  "why_not": "STAGING MODE -- SKILL.md Step 9b is drafted-only. hypothesis_space_registry.v1.json was READ (to locate the legs and check growth_restriction) and NOT written. The confirming interactive session or the next /governance walk applies the block below, then runs build_hypothesis_space.py + check_hypothesis_space_integrity.py and commits the registry with its three derive-only siblings.",
+  "qid": "sd082_candidate_discriminating_readout_locus",
+  "growth_restriction_check": "Read before drafting, per Step 9b. question.growth_restriction is '' (empty) -> no STOP condition, nothing to carry to the gate. Moot in any case: NO growth is proposed -- both legs below are already-registered hypotheses, so initial_frozen_count stays 9 and initial_frozen_count_at_registration stays 5.",
+  "mode_a_growth_proposed": "NONE. No fanout_recommendation is emitted: the bottleneck routes to a single already-licensed successor run (the cluster artifact's confirmed H1 adjudicating run), which is the skill's stated exemption from GOV-FANOUT-1.",
+  "net_ledger_delta_if_applied": "0 questions added, 0 hypotheses added, 0 hypotheses resolved. Both legs record a new resolving_run and basis while STAYING ALIVE. initial_frozen_count unchanged at 9.",
+  "mode_b_resolutions_recommended": [
+   {
+    "hid": "H-learning-signal-sign",
+    "current_state": "alive (adjudicating_runs ['V3-EXQ-1020'], resolving_runs ['V3-EXQ-1020'] -- 1020 ran but could not score it)",
+    "recommended_state": "alive -- UNCHANGED; add resolving_runs and basis only",
+    "resolving_runs": [
+     "V3-EXQ-1020",
+     "V3-EXQ-1028"
+    ],
+    "evidence_direction": "non_contributory",
+    "epistemic_category": "standard",
+    "self_route_label": "c2_noisy__c3_sign_null",
+    "control_passed": true,
+    "non_degenerate": true,
+    "met_elimination_bar": false,
+    "resolved_utc": null,
+    "basis": "The run carries TWO readings of this leg that disagree in direction, and no pre-registered tie-break exists between them. The LOAD-BEARING episode-level Pearson r (frozen-init-head labels, the redesign that fixed 1020's starvation) is a well-powered null: 5/5 scoreable (n_eps 468-487; 132-345 init-head flip ticks per half against a floor of 50), r_local +0.045/+0.020/+0.017/+0.005/-0.002 inside +/-2 SE bands of ~0.091, 0 negative and 0 positive -- excluding |r| > ~0.09. The RECORDED 1020 statistic (criteria[4], load_bearing false) is NEGATIVE on 4 of 5 seeds (-0.033/+0.037/-0.047/-0.023/-0.061), and restricted to the 4 seeds clearing 1020's own MIN_FLIP_SAMPLES=20 floor, 3 of 4 read negative -- which on 1020's pre-registered rule is SUPPORTED. The detrended and hold-weighted variants are each negative on 4 of 5 but not the same 4, and per-seed magnitudes are within roughly 1 SE, so the recorded statistic does not make the leg supported either. WHAT IS SETTLED: the leg is no longer STARVED (1020's unscoreability is discharged), so it is now a measurement question rather than an instrument question. A further scope caveat, recorded not adjudicated: the leg's registry label is a CONSEQUENCE claim ('a rule-driven argmax change is on average penalised'), and with authority OFF no argmax change reaches the action (1029: 0/1694), so the consequence form may not be testable in this configuration at all.",
+    "gate_alternative": "Mark ELIMINATED on the load-bearing statistic alone, arguing that the episode-level r supersedes the recorded 1020 statistic by design (it exists precisely because the latter starves and is confounded by early-P1 return trend), that controls passed and non_degenerate is true, and that the explanandum survives while the mechanism is absent. This was the drafter's initial recommendation and was WITHDRAWN at the Step 7c red team (F1): the supersession is real but was never pre-registered as a tie-break, and eliminating a registered leg on a post-hoc preference between two recorded statistics is the Goodhart move the frozen ledger exists to prevent. Recorded rather than deleted so the reading is known to have been tested."
+   },
+   {
+    "hid": "H-learning-signal-noisy",
+    "current_state": "alive (adjudicating_runs ['V3-EXQ-1020'], resolving_runs ['V3-EXQ-1020'])",
+    "recommended_state": "alive -- UNCHANGED; add resolving_runs and basis only",
+    "resolving_runs": [
+     "V3-EXQ-1020",
+     "V3-EXQ-1028"
+    ],
+    "evidence_direction": "non_contributory",
+    "epistemic_category": "standard",
+    "self_route_label": "c2_noisy__c3_sign_null",
+    "control_passed": true,
+    "non_degenerate": true,
+    "met_elimination_bar": false,
+    "resolved_utc": null,
+    "basis": "The driver's pre-registered bar returns SUPPORTED (3 of 5 seeds 'noisy' against a threshold of 3), but the reading does not DISCRIMINATE and so leaves the leg alive under the mapping table's last row. The bar aggregates over 5 seeds as exchangeable units, and this run establishes that the seed-to-class partition is a deterministic function of seed identity -- reproduced three times ({622,633,644} noisy/low, {611,655} exhausted/high) across V3-EXQ-1020 ARM_ON, both V3-EXQ-1027 replay arms and this run's W1 window, to within 2.5e-5 across two machine classes on the four seeds with full update realisation, with per-episode returns bit-identical over the shared 70 episodes. A bare majority over non-exchangeable units is a property of the seed set. Two further limits on the reading: seed 622 carries a late-RISING profile (fractional bracket position -0.186 -> -0.046 -> +0.012 -> +0.390) for which the three-way classifier has no label, and seed 633's W4 sits 0.011 below a midpoint whose across-seed realisation spread is 0.017. WHAT IS SETTLED and should be recorded: 0 of 5 seeds reach the classifier's persistence bar in W4, and the directed-then-exhausted alternative that a T=500 endpoint read would have aliased is now separated (2 of 5 seeds).",
+    "gate_alternative": "Mark CONFIRMED on the driver's literal pre-registered rule (3 of 5 noisy; control_passed true, non_degenerate true, met_elimination_bar false as it is not an elimination). This is the strict-pre-registration reading and is defensible. It was not recommended because this autopsy's own finding is that the rule's unit of aggregation is falsified, and confirming a leg on a bar the same artifact shows to be invalid would put a state in the ledger the evidence does not carry. Note the asymmetry with the H-sign recommendation above and judge them together: there, a pre-registration is being HONOURED against the drafter's preference; here, a pre-registration is being declined. The common principle is that neither leg's evidence discriminates, so neither resolves."
+   }
   ],
-  "granularity_debt_trigger": {
-    "fires": false,
-    "tool": "granularity_debt_cluster.py SD-082",
-    "tagging_targets": 8,
-    "alignment_distribution": {"unclear": 8, "weakened": 0},
-    "routing": "NOT granularity debt. The reader's own standing rule applies verbatim: a cluster in which NO target reads 'weakened' is measurement or implementation debt however many autopsies exist, and SD-082 has 8 tagging targets all reading 'unclear' and zero 'weakened'. The recurrence is configuration and measurement debt -- the claim has never been tested under a regime where its mechanism was in the causal path -- not a coarse claim needing decomposition. No /claim-synthesis handoff is owed."
-  },
-  "hypothesis_space_ledger_pending": {
-    "applied": false,
-    "why_not": "STAGING MODE -- SKILL.md Step 9b is drafted-only. hypothesis_space_registry.v1.json was READ (to locate the legs and check growth_restriction) and NOT written. The confirming interactive session or the next /governance walk applies the block below, then runs build_hypothesis_space.py + check_hypothesis_space_integrity.py and commits the registry with its three derive-only siblings.",
-    "qid": "sd082_candidate_discriminating_readout_locus",
-    "growth_restriction_check": "Read before drafting, per Step 9b. question.growth_restriction is '' (empty) -> no STOP condition, nothing to carry to the gate. Moot in any case: NO growth is proposed -- both legs below are already-registered hypotheses, so initial_frozen_count stays 9 and initial_frozen_count_at_registration stays 5.",
-    "mode_a_growth_proposed": "NONE. No fanout_recommendation is emitted: the bottleneck routes to a single already-licensed successor run (the cluster artifact's confirmed H1 adjudicating run), which is the skill's stated exemption from GOV-FANOUT-1.",
-    "net_ledger_delta_if_applied": "0 questions added, 0 hypotheses added, 0 hypotheses resolved. Both legs record a new resolving_run and basis while STAYING ALIVE. initial_frozen_count unchanged at 9.",
-    "mode_b_resolutions_recommended": [
-      {
-        "hid": "H-learning-signal-sign",
-        "current_state": "alive (adjudicating_runs ['V3-EXQ-1020'], resolving_runs ['V3-EXQ-1020'] -- 1020 ran but could not score it)",
-        "recommended_state": "alive -- UNCHANGED; add resolving_runs and basis only",
-        "resolving_runs": ["V3-EXQ-1020", "V3-EXQ-1028"],
-        "evidence_direction": "non_contributory",
-        "epistemic_category": "standard",
-        "self_route_label": "c2_noisy__c3_sign_null",
-        "control_passed": true,
-        "non_degenerate": true,
-        "met_elimination_bar": false,
-        "resolved_utc": null,
-        "basis": "The run carries TWO readings of this leg that disagree in direction, and no pre-registered tie-break exists between them. The LOAD-BEARING episode-level Pearson r (frozen-init-head labels, the redesign that fixed 1020's starvation) is a well-powered null: 5/5 scoreable (n_eps 468-487; 132-345 init-head flip ticks per half against a floor of 50), r_local +0.045/+0.020/+0.017/+0.005/-0.002 inside +/-2 SE bands of ~0.091, 0 negative and 0 positive -- excluding |r| > ~0.09. The RECORDED 1020 statistic (criteria[4], load_bearing false) is NEGATIVE on 4 of 5 seeds (-0.033/+0.037/-0.047/-0.023/-0.061), and restricted to the 4 seeds clearing 1020's own MIN_FLIP_SAMPLES=20 floor, 3 of 4 read negative -- which on 1020's pre-registered rule is SUPPORTED. The detrended and hold-weighted variants are each negative on 4 of 5 but not the same 4, and per-seed magnitudes are within roughly 1 SE, so the recorded statistic does not make the leg supported either. WHAT IS SETTLED: the leg is no longer STARVED (1020's unscoreability is discharged), so it is now a measurement question rather than an instrument question. A further scope caveat, recorded not adjudicated: the leg's registry label is a CONSEQUENCE claim ('a rule-driven argmax change is on average penalised'), and with authority OFF no argmax change reaches the action (1029: 0/1694), so the consequence form may not be testable in this configuration at all.",
-        "gate_alternative": "Mark ELIMINATED on the load-bearing statistic alone, arguing that the episode-level r supersedes the recorded 1020 statistic by design (it exists precisely because the latter starves and is confounded by early-P1 return trend), that controls passed and non_degenerate is true, and that the explanandum survives while the mechanism is absent. This was the drafter's initial recommendation and was WITHDRAWN at the Step 7c red team (F1): the supersession is real but was never pre-registered as a tie-break, and eliminating a registered leg on a post-hoc preference between two recorded statistics is the Goodhart move the frozen ledger exists to prevent. Recorded rather than deleted so the reading is known to have been tested."
-      },
-      {
-        "hid": "H-learning-signal-noisy",
-        "current_state": "alive (adjudicating_runs ['V3-EXQ-1020'], resolving_runs ['V3-EXQ-1020'])",
-        "recommended_state": "alive -- UNCHANGED; add resolving_runs and basis only",
-        "resolving_runs": ["V3-EXQ-1020", "V3-EXQ-1028"],
-        "evidence_direction": "non_contributory",
-        "epistemic_category": "standard",
-        "self_route_label": "c2_noisy__c3_sign_null",
-        "control_passed": true,
-        "non_degenerate": true,
-        "met_elimination_bar": false,
-        "resolved_utc": null,
-        "basis": "The driver's pre-registered bar returns SUPPORTED (3 of 5 seeds 'noisy' against a threshold of 3), but the reading does not DISCRIMINATE and so leaves the leg alive under the mapping table's last row. The bar aggregates over 5 seeds as exchangeable units, and this run establishes that the seed-to-class partition is a deterministic function of seed identity -- reproduced three times ({622,633,644} noisy/low, {611,655} exhausted/high) across V3-EXQ-1020 ARM_ON, both V3-EXQ-1027 replay arms and this run's W1 window, to within 2.5e-5 across two machine classes on the four seeds with full update realisation, with per-episode returns bit-identical over the shared 70 episodes. A bare majority over non-exchangeable units is a property of the seed set. Two further limits on the reading: seed 622 carries a late-RISING profile (fractional bracket position -0.186 -> -0.046 -> +0.012 -> +0.390) for which the three-way classifier has no label, and seed 633's W4 sits 0.011 below a midpoint whose across-seed realisation spread is 0.017. WHAT IS SETTLED and should be recorded: 0 of 5 seeds reach the classifier's persistence bar in W4, and the directed-then-exhausted alternative that a T=500 endpoint read would have aliased is now separated (2 of 5 seeds).",
-        "gate_alternative": "Mark CONFIRMED on the driver's literal pre-registered rule (3 of 5 noisy; control_passed true, non_degenerate true, met_elimination_bar false as it is not an elimination). This is the strict-pre-registration reading and is defensible. It was not recommended because this autopsy's own finding is that the rule's unit of aggregation is falsified, and confirming a leg on a bar the same artifact shows to be invalid would put a state in the ledger the evidence does not carry. Note the asymmetry with the H-sign recommendation above and judge them together: there, a pre-registration is being HONOURED against the drafter's preference; here, a pre-registration is being declined. The common principle is that neither leg's evidence discriminates, so neither resolves."
-      }
-    ],
-    "invariants_check_when_applied": "No hypothesis is added and none is resolved, so invariant 1 (initial_frozen_count == len(hypotheses)) holds unchanged at 9; invariant 2 (pre_registered_utc <= resolved_utc) is not engaged since no resolved_utc is set; invariant 3 (no unlabelled growth) is not engaged -- no fanout_growth_events or discovery_growth_events entry is owed; invariants 4 and 5 are not engaged since no leg moves to eliminated / split / confirmed. If the gate takes either stated alternative, the corresponding invariant must be re-checked at that point: ELIMINATED for H-sign would engage invariant 4's full bar (met_elimination_bar + control_passed + non_degenerate all true) and invariant 2 (that leg's pre_registered_utc predates 2026-09-14T22:31:57Z, so it would hold); CONFIRMED for H-noisy would engage invariant 5 (control_passed true, satisfied)."
-  },
-  "pre_routing_checks": {
-    "ran": true,
-    "tool": "scripts/autopsy_pre_routing_checks.py --artifact <artifact>.json --json",
-    "fire_count": 0,
-    "fires": [],
-    "inapplicable": [
-      {
-        "check": "C7",
-        "reason": "no target manifest carries an arm/condition-structured result array with >= 2 arms and >= 2 seeds -- this run has a SINGLE ARM_ON arm across 5 seeds, so C7 is structurally blind by construction, not merely quiet."
-      }
-    ],
-    "inapplicable_disposition": "Per SKILL.md, 'inapplicable is NOT no fire'. C7's blindness is handled by hand: its mirror image -- a metric CONSTANT where the design requires it to VARY -- was tested manually and is clean (persistence varies across seeds and windows, flip rates vary across blocks, returns vary within and across seeds, r_local varies in sign). The claim-keyed checks C1/C2/C3 were NOT reported inapplicable, so they did look and found nothing: no existing driver for a recommended experiment (none is recommended), no duplicate substrate entry (the amend targets the existing SD-082 entry by target_sd_id), no literature declared absent (lit_status 'present'). C5 ran against the sibling .md and did not fire. Run TWICE -- once before the .md existed (C5 then reported inapplicable for want of a narrative) and again after, so C5 was actually exercised."
-  },
-  "red_team": {
-    "ran": true,
-    "verdict": "CONTESTED",
-    "model": "claude-fable-5-1 (CROSS-MODEL: this session drafted on claude-opus-5)",
-    "reading_order_enforced": "draft JSON first, then raw evidence with at least one load-bearing number recomputed from the manifest's own cells, then the .md specifically to test its absolutes",
-    "findings_file": "red-team findings written to this session's scratchpad and folded in here; the substantive content of every finding is reproduced below and in the .md section 10a",
-    "drafter_verification": "EVERY finding below was independently re-verified by the drafter against the manifest cells before being accepted. None was accepted on the red team's assertion alone.",
-    "findings": [
-      {
-        "id": "F1",
-        "severity": "severe / routing",
-        "finding": "The recommendation to mark H-learning-signal-sign 'eliminated' is not earned. The run records 1020's own C3 statistic (criteria[4] 'R1020_C3_trained_head_drawn_samples_recorded'), and per_seed_adv_flip_minus_nonflip is NEGATIVE on 4 of 5 seeds -- the direction the hypothesis asserts -- which the draft never mentioned. Restricted to seeds clearing 1020's MIN_FLIP_SAMPLES=20 floor, 3 of 4 eligible read negative, which on 1020's own pre-registered rule is SUPPORTED. Additionally the registry leg's label is a consequence claim that may not be testable with authority OFF, and elimination was beyond the pre-registration by the draft's own admission.",
-        "citation": "manifest criteria[4].per_seed_adv_flip_minus_nonflip = {611: -0.0326, 622: +0.0369, 633: -0.0472, 644: -0.0227, 655: -0.0605}; per_seed_n_flip_samples = {611: 18, 622: 59, 633: 56, 644: 88, 655: 37}; arm_results[].adv_flip_minus_nonflip_detrended negative on 4/5 with adv_sign_agrees_detrended true 5/5.",
-        "verified_by_drafter": "YES -- recomputed directly from the manifest. 4 of 5 negative raw; 4 of 5 negative detrended; 4 of 5 negative hold-weighted but NOT the same 4 (622 flips negative under hold-weighting, 655 flips positive). Confirmed.",
-        "disposition": "ACCEPTED AND FOLDED IN. The ledger recommendation changed from 'eliminated' to 'alive', the withdrawn reading is recorded as the gate_alternative rather than deleted, and leg_readings now reports both statistics. This is the single largest change between the draft and this artifact."
-      },
-      {
-        "id": "F2",
-        "severity": "assertion, touching a standing refusal",
-        "finding": "The absolute 'updates 300-500 contributed NO direction-consistent gradient on ANY seed' is contradicted by the artifact's own cells. Seed 622's W4 persistence sits 0.165 above the pure-noise floor (39 percent of bracket) and is that seed's MOST directed window on a monotonically rising profile; seed 633's W4 is 0.011 below a midpoint whose across-seed realisation spread is 0.017. The W4 controls are single realisations measured on fresh-init heads against a mid-training Adam, and the draft never stated the direction of that approximation's bias.",
-        "citation": "arm_results[].windows[3] per seed: 622 persistence 0.4550 vs noise 0.2896 and midpoint 0.5014; 633 persistence 0.4945 vs noise 0.2889 and midpoint 0.5053; W4 midpoints across seeds 0.4879-0.5053, spread 0.0174.",
-        "verified_by_drafter": "YES -- recomputed. Confirmed exactly, including the midpoint spread of 0.0174 exceeding 633's 0.0108 shortfall.",
-        "disposition": "ACCEPTED AND FOLDED IN. 'n_persistent = 0 of 5' is retained as a CLASSIFIER COUNT (it is factually what the criterion returned) but the ceiling language is withdrawn: the recommendation is now grounded primarily on criterion power (route A), the marginal seeds and the control approximation are stated explicitly, and an explicit do_not_over_read block refuses any reading of this artifact as forbidding a budget above 300. The earlier draft's refusal of >300 in learning_extracted and release_basis is removed."
-      },
-      {
-        "id": "F3",
-        "severity": "assertion",
-        "finding": "'76-96 percent (median 86) of the flip-rate decay complete by episode 300' cannot corroborate a ceiling: it is an additive share denominated on the run's own endpoint and front-loads by construction for any monotone decay toward an asymptote. In ratio terms the 300-500 stretch still reduces flip rate materially.",
-        "citation": "arm_results[].trained_flip_rate_block_means_100; block3 -> block5 ratios 1.30x (611), 5.02x (622), 2.06x (633), 13.22x (644), 1.44x (655).",
-        "verified_by_drafter": "YES -- recomputed, and the effect is LARGER than the red team stated for two seeds (644 falls a further 13.22x, 622 a further 5.02x).",
-        "disposition": "ACCEPTED AND FOLDED IN. The statistic is retained for the record but explicitly carries NO weight in the recommendation, and the ratio figures are reported alongside it. Recorded as learning_extracted 4 so the construction error is not repeated."
-      },
-      {
-        "id": "F4",
-        "severity": "hygiene",
-        "finding": "'all five stamped standard' is false: 822b carries the pre-2026-08-09 grandfathered free-text category 'competence_implementation_gap'.",
-        "citation": "failure_autopsy_2026-07-28-sweep.json, target v3_exq_822b_...: recommended_epistemic_category = 'competence_implementation_gap'.",
-        "verified_by_drafter": "YES -- read directly from the artifact. Confirmed.",
-        "disposition": "ACCEPTED AND CORRECTED in re_derive_brake.release_basis. The substantive claim -- that none of the five is a substrate_ceiling reading -- is unaffected, since that label is not a ceiling either."
-      },
-      {
-        "id": "F5",
-        "severity": "hygiene",
-        "finding": "The draft JSON's pre_routing_checks and red_team fields were PLACEHOLDER while the sibling .md already asserted concrete results.",
-        "citation": "draft JSON pre_routing_checks.note = 'PLACEHOLDER ...'.",
-        "verified_by_drafter": "YES -- correct, and by construction: 7b and 7c run against the draft.",
-        "disposition": "ACCEPTED. Both fields are now filled with the real results in this final artifact."
-      },
-      {
-        "id": "F6",
-        "severity": "hygiene / routing-adjacent",
-        "finding": "failed_criterion 'discrimination' on a run whose outcome was PASS is schema-valid but is the substrate-ceiling FINGERPRINT named in SKILL.md, and it is the key check_granularity_debt_recurrence reads.",
-        "citation": "SKILL.md Step 2b ('Negative control passes, discrimination fails' is the substrate-ceiling fingerprint).",
-        "verified_by_drafter": "YES -- the tension is real.",
-        "disposition": "ACCEPTED. The stamp is retained because it factually names which criterion failed, and an explicit failed_criterion_note now states that the fingerprint is present and why it is NOT read as a ceiling here."
-      },
-      {
-        "id": "F7",
-        "severity": "hygiene",
-        "finding": "'well-powered' was applied loosely; it belongs to C3, whose SE band is stated, and not to C2, whose bracket carries no power statement.",
-        "verified_by_drafter": "YES.",
-        "disposition": "ACCEPTED. 'Well-powered' is now scoped to C3 throughout, and C2's reading is described in terms of its classifier bar and control realisations instead."
-      }
-    ],
-    "attacks_that_failed": [
-      "D -- the cross-machine-class reproduction and the seed-622 one-update explanation: both VERIFIED by the red team and re-verified by the drafter. Windows are realised-update-indexed; per-episode returns are bit-identical cross-class over the shared 70 episodes on 5/5 seeds. The attack strengthened the finding rather than defeating it.",
-      "F -- the brake-predicate claim: the red team ran the predicate itself and confirmed the draft's honest stamp is exactly right (this target counts, the count would become 6, and the cluster artifact's stated 3 was voided the same way).",
-      "G -- the change-tail check: every field the artifact says 'does not move' was verified unchanged in claims.yaml, and the 'stamp this artifact' tail is both storable (live_status.evidence.from) and not-yet-true (it currently cites the 1027-1029 cluster artifact), so GOV-APPLY-1 will not clear the row prematurely.",
-      "E as applied to H-learning-signal-noisy -- declining the pre-registered CONFIRMED was judged a disclosed departure in the conservative direction, with the alternative recorded; the attack did not land against it (it landed against the H-sign recommendation instead, as F1).",
-      "H -- epistemic_category 'standard' survived; only the failed_criterion stamp drew a hygiene note (F6)."
-    ],
-    "under_claims_adopted_from_the_red_team": [
-      "Per-episode RETURNS are bit-identical cross-class between 1020 ARM_ON and 1028 over the shared 70 episodes on 5/5 seeds -- a stronger determinism statement than the 2.5e-5 persistence agreement the draft cited. Verified and folded into learning_extracted 1.",
-      "Seed 622's monotonically rising window profile is effectively a FOURTH class the three-way classifier cannot express. Folded into leg_readings and the H-noisy ledger basis."
-    ],
-    "caveat": "A CONFIRMED verdict would not have been proof the artifact was clean, and a CONTESTED one is not proof it is now. The 7b layer (0 fires) and this 7c layer are not nested in either direction and neither suppresses the other."
-  },
-  "follow_on_owed_to_governance": [
-    "Apply the per_claim_recommendation to SD-082: append recommended_evidence_quality_note and re-point live_status.evidence.from at this artifact. No status, epistemic_category, pending_retest_after_substrate or diagnostic_evidence_adjudicated change.",
-    "Apply the substrate_queue amend on SD-082: append the V3-EXQ-1028 failure_record_entry, extend validation_experiment to name 1028 and its budget finding, and close the V3-EXQ-1020 failure record (resolved: resolved) per resolves_prior_failure_record. severity and substrate_paths UNCHANGED.",
-    "Gate the two hypothesis_space_ledger_pending Mode B recommendations against their stated alternatives (both are 'stay alive, record basis'; both alternatives are recorded), then apply, then run build_hypothesis_space.py + check_hypothesis_space_integrity.py and commit the registry with its three derive-only siblings. Net ledger delta if applied as recommended: 0 added, 0 resolved, initial_frozen_count unchanged at 9.",
-    "Chip the SD-082 successor to /queue-experiment -- the cluster artifact's already-confirmed routing (a new EXQ number, a new adjudicating run for the alive registry leg H1, authority ON with the gated_policy channel controlled), now unblocked because this artifact supplies P1 = 300 with its criterion-power margin, the seed-as-factor constraint, and the requirement that the successor record its own windowed profile rather than inherit this budget. Governance is the chipper, not this autopsy (CLAUDE.md Session Land Protocol step 6).",
-    "Resolve chip-20260915-sd082-readout-consequence-successor, which was waiting on exactly the p1_budget_reading in this artifact.",
-    "INFRASTRUCTURE FINDING, not owed by this diagnosis: the re-derive brake's step (3) producer release is unreachable whenever recommended_substrate_queue_entry.action is 'amend', because _autopsy_owes_substrate_build() treats a bookkeeping amend identically to a build-owing one. This already silently voided the release the V3-EXQ-1027-1029 cluster artifact recorded (its stated count 3 vs the predicate's 5) and will void this one. Governance should decide whether to route it; any fix touches ree-v3/validate_queue.py and BOTH skill copies of the recipe in lockstep, with a corpus scan, per the lockstep rule in failure-autopsy SKILL.md Step 7.",
-    "CONSIDER, not owed: future fan-out drivers that retain a superseded statistic 'for comparability' should pre-register what happens when it disagrees with the load-bearing one. 1028 is the case that shows the gap (learning_extracted 7)."
-  ]
+  "invariants_check_when_applied": "No hypothesis is added and none is resolved, so invariant 1 (initial_frozen_count == len(hypotheses)) holds unchanged at 9; invariant 2 (pre_registered_utc <= resolved_utc) is not engaged since no resolved_utc is set; invariant 3 (no unlabelled growth) is not engaged -- no fanout_growth_events or discovery_growth_events entry is owed; invariants 4 and 5 are not engaged since no leg moves to eliminated / split / confirmed. If the gate takes either stated alternative, the corresponding invariant must be re-checked at that point: ELIMINATED for H-sign would engage invariant 4's full bar (met_elimination_bar + control_passed + non_degenerate all true) and invariant 2 (that leg's pre_registered_utc predates 2026-09-14T22:31:57Z, so it would hold); CONFIRMED for H-noisy would engage invariant 5 (control_passed true, satisfied).",
+  "applied_utc": "2026-09-16T12:08:10Z",
+  "applied_by": "account-handover-20260916 walkthrough (user confirmed the recommended non-resolution; legs H-learning-signal-sign, H-learning-signal-noisy stay alive with resolving_runs + basis added; no growth)"
+ },
+ "pre_routing_checks": {
+  "ran": true,
+  "tool": "scripts/autopsy_pre_routing_checks.py --artifact <artifact>.json --json",
+  "fire_count": 0,
+  "fires": [],
+  "inapplicable": [
+   {
+    "check": "C7",
+    "reason": "no target manifest carries an arm/condition-structured result array with >= 2 arms and >= 2 seeds -- this run has a SINGLE ARM_ON arm across 5 seeds, so C7 is structurally blind by construction, not merely quiet."
+   }
+  ],
+  "inapplicable_disposition": "Per SKILL.md, 'inapplicable is NOT no fire'. C7's blindness is handled by hand: its mirror image -- a metric CONSTANT where the design requires it to VARY -- was tested manually and is clean (persistence varies across seeds and windows, flip rates vary across blocks, returns vary within and across seeds, r_local varies in sign). The claim-keyed checks C1/C2/C3 were NOT reported inapplicable, so they did look and found nothing: no existing driver for a recommended experiment (none is recommended), no duplicate substrate entry (the amend targets the existing SD-082 entry by target_sd_id), no literature declared absent (lit_status 'present'). C5 ran against the sibling .md and did not fire. Run TWICE -- once before the .md existed (C5 then reported inapplicable for want of a narrative) and again after, so C5 was actually exercised."
+ },
+ "red_team": {
+  "ran": true,
+  "verdict": "CONTESTED",
+  "model": "claude-fable-5-1 (CROSS-MODEL: this session drafted on claude-opus-5)",
+  "reading_order_enforced": "draft JSON first, then raw evidence with at least one load-bearing number recomputed from the manifest's own cells, then the .md specifically to test its absolutes",
+  "findings_file": "red-team findings written to this session's scratchpad and folded in here; the substantive content of every finding is reproduced below and in the .md section 10a",
+  "drafter_verification": "EVERY finding below was independently re-verified by the drafter against the manifest cells before being accepted. None was accepted on the red team's assertion alone.",
+  "findings": [
+   {
+    "id": "F1",
+    "severity": "severe / routing",
+    "finding": "The recommendation to mark H-learning-signal-sign 'eliminated' is not earned. The run records 1020's own C3 statistic (criteria[4] 'R1020_C3_trained_head_drawn_samples_recorded'), and per_seed_adv_flip_minus_nonflip is NEGATIVE on 4 of 5 seeds -- the direction the hypothesis asserts -- which the draft never mentioned. Restricted to seeds clearing 1020's MIN_FLIP_SAMPLES=20 floor, 3 of 4 eligible read negative, which on 1020's own pre-registered rule is SUPPORTED. Additionally the registry leg's label is a consequence claim that may not be testable with authority OFF, and elimination was beyond the pre-registration by the draft's own admission.",
+    "citation": "manifest criteria[4].per_seed_adv_flip_minus_nonflip = {611: -0.0326, 622: +0.0369, 633: -0.0472, 644: -0.0227, 655: -0.0605}; per_seed_n_flip_samples = {611: 18, 622: 59, 633: 56, 644: 88, 655: 37}; arm_results[].adv_flip_minus_nonflip_detrended negative on 4/5 with adv_sign_agrees_detrended true 5/5.",
+    "verified_by_drafter": "YES -- recomputed directly from the manifest. 4 of 5 negative raw; 4 of 5 negative detrended; 4 of 5 negative hold-weighted but NOT the same 4 (622 flips negative under hold-weighting, 655 flips positive). Confirmed.",
+    "disposition": "ACCEPTED AND FOLDED IN. The ledger recommendation changed from 'eliminated' to 'alive', the withdrawn reading is recorded as the gate_alternative rather than deleted, and leg_readings now reports both statistics. This is the single largest change between the draft and this artifact."
+   },
+   {
+    "id": "F2",
+    "severity": "assertion, touching a standing refusal",
+    "finding": "The absolute 'updates 300-500 contributed NO direction-consistent gradient on ANY seed' is contradicted by the artifact's own cells. Seed 622's W4 persistence sits 0.165 above the pure-noise floor (39 percent of bracket) and is that seed's MOST directed window on a monotonically rising profile; seed 633's W4 is 0.011 below a midpoint whose across-seed realisation spread is 0.017. The W4 controls are single realisations measured on fresh-init heads against a mid-training Adam, and the draft never stated the direction of that approximation's bias.",
+    "citation": "arm_results[].windows[3] per seed: 622 persistence 0.4550 vs noise 0.2896 and midpoint 0.5014; 633 persistence 0.4945 vs noise 0.2889 and midpoint 0.5053; W4 midpoints across seeds 0.4879-0.5053, spread 0.0174.",
+    "verified_by_drafter": "YES -- recomputed. Confirmed exactly, including the midpoint spread of 0.0174 exceeding 633's 0.0108 shortfall.",
+    "disposition": "ACCEPTED AND FOLDED IN. 'n_persistent = 0 of 5' is retained as a CLASSIFIER COUNT (it is factually what the criterion returned) but the ceiling language is withdrawn: the recommendation is now grounded primarily on criterion power (route A), the marginal seeds and the control approximation are stated explicitly, and an explicit do_not_over_read block refuses any reading of this artifact as forbidding a budget above 300. The earlier draft's refusal of >300 in learning_extracted and release_basis is removed."
+   },
+   {
+    "id": "F3",
+    "severity": "assertion",
+    "finding": "'76-96 percent (median 86) of the flip-rate decay complete by episode 300' cannot corroborate a ceiling: it is an additive share denominated on the run's own endpoint and front-loads by construction for any monotone decay toward an asymptote. In ratio terms the 300-500 stretch still reduces flip rate materially.",
+    "citation": "arm_results[].trained_flip_rate_block_means_100; block3 -> block5 ratios 1.30x (611), 5.02x (622), 2.06x (633), 13.22x (644), 1.44x (655).",
+    "verified_by_drafter": "YES -- recomputed, and the effect is LARGER than the red team stated for two seeds (644 falls a further 13.22x, 622 a further 5.02x).",
+    "disposition": "ACCEPTED AND FOLDED IN. The statistic is retained for the record but explicitly carries NO weight in the recommendation, and the ratio figures are reported alongside it. Recorded as learning_extracted 4 so the construction error is not repeated."
+   },
+   {
+    "id": "F4",
+    "severity": "hygiene",
+    "finding": "'all five stamped standard' is false: 822b carries the pre-2026-08-09 grandfathered free-text category 'competence_implementation_gap'.",
+    "citation": "failure_autopsy_2026-07-28-sweep.json, target v3_exq_822b_...: recommended_epistemic_category = 'competence_implementation_gap'.",
+    "verified_by_drafter": "YES -- read directly from the artifact. Confirmed.",
+    "disposition": "ACCEPTED AND CORRECTED in re_derive_brake.release_basis. The substantive claim -- that none of the five is a substrate_ceiling reading -- is unaffected, since that label is not a ceiling either."
+   },
+   {
+    "id": "F5",
+    "severity": "hygiene",
+    "finding": "The draft JSON's pre_routing_checks and red_team fields were PLACEHOLDER while the sibling .md already asserted concrete results.",
+    "citation": "draft JSON pre_routing_checks.note = 'PLACEHOLDER ...'.",
+    "verified_by_drafter": "YES -- correct, and by construction: 7b and 7c run against the draft.",
+    "disposition": "ACCEPTED. Both fields are now filled with the real results in this final artifact."
+   },
+   {
+    "id": "F6",
+    "severity": "hygiene / routing-adjacent",
+    "finding": "failed_criterion 'discrimination' on a run whose outcome was PASS is schema-valid but is the substrate-ceiling FINGERPRINT named in SKILL.md, and it is the key check_granularity_debt_recurrence reads.",
+    "citation": "SKILL.md Step 2b ('Negative control passes, discrimination fails' is the substrate-ceiling fingerprint).",
+    "verified_by_drafter": "YES -- the tension is real.",
+    "disposition": "ACCEPTED. The stamp is retained because it factually names which criterion failed, and an explicit failed_criterion_note now states that the fingerprint is present and why it is NOT read as a ceiling here."
+   },
+   {
+    "id": "F7",
+    "severity": "hygiene",
+    "finding": "'well-powered' was applied loosely; it belongs to C3, whose SE band is stated, and not to C2, whose bracket carries no power statement.",
+    "verified_by_drafter": "YES.",
+    "disposition": "ACCEPTED. 'Well-powered' is now scoped to C3 throughout, and C2's reading is described in terms of its classifier bar and control realisations instead."
+   }
+  ],
+  "attacks_that_failed": [
+   "D -- the cross-machine-class reproduction and the seed-622 one-update explanation: both VERIFIED by the red team and re-verified by the drafter. Windows are realised-update-indexed; per-episode returns are bit-identical cross-class over the shared 70 episodes on 5/5 seeds. The attack strengthened the finding rather than defeating it.",
+   "F -- the brake-predicate claim: the red team ran the predicate itself and confirmed the draft's honest stamp is exactly right (this target counts, the count would become 6, and the cluster artifact's stated 3 was voided the same way).",
+   "G -- the change-tail check: every field the artifact says 'does not move' was verified unchanged in claims.yaml, and the 'stamp this artifact' tail is both storable (live_status.evidence.from) and not-yet-true (it currently cites the 1027-1029 cluster artifact), so GOV-APPLY-1 will not clear the row prematurely.",
+   "E as applied to H-learning-signal-noisy -- declining the pre-registered CONFIRMED was judged a disclosed departure in the conservative direction, with the alternative recorded; the attack did not land against it (it landed against the H-sign recommendation instead, as F1).",
+   "H -- epistemic_category 'standard' survived; only the failed_criterion stamp drew a hygiene note (F6)."
+  ],
+  "under_claims_adopted_from_the_red_team": [
+   "Per-episode RETURNS are bit-identical cross-class between 1020 ARM_ON and 1028 over the shared 70 episodes on 5/5 seeds -- a stronger determinism statement than the 2.5e-5 persistence agreement the draft cited. Verified and folded into learning_extracted 1.",
+   "Seed 622's monotonically rising window profile is effectively a FOURTH class the three-way classifier cannot express. Folded into leg_readings and the H-noisy ledger basis."
+  ],
+  "caveat": "A CONFIRMED verdict would not have been proof the artifact was clean, and a CONTESTED one is not proof it is now. The 7b layer (0 fires) and this 7c layer are not nested in either direction and neither suppresses the other."
+ },
+ "follow_on_owed_to_governance": [
+  "Apply the per_claim_recommendation to SD-082: append recommended_evidence_quality_note and re-point live_status.evidence.from at this artifact. No status, epistemic_category, pending_retest_after_substrate or diagnostic_evidence_adjudicated change.",
+  "Apply the substrate_queue amend on SD-082: append the V3-EXQ-1028 failure_record_entry, extend validation_experiment to name 1028 and its budget finding, and close the V3-EXQ-1020 failure record (resolved: resolved) per resolves_prior_failure_record. severity and substrate_paths UNCHANGED.",
+  "Gate the two hypothesis_space_ledger_pending Mode B recommendations against their stated alternatives (both are 'stay alive, record basis'; both alternatives are recorded), then apply, then run build_hypothesis_space.py + check_hypothesis_space_integrity.py and commit the registry with its three derive-only siblings. Net ledger delta if applied as recommended: 0 added, 0 resolved, initial_frozen_count unchanged at 9.",
+  "Chip the SD-082 successor to /queue-experiment -- the cluster artifact's already-confirmed routing (a new EXQ number, a new adjudicating run for the alive registry leg H1, authority ON with the gated_policy channel controlled), now unblocked because this artifact supplies P1 = 300 with its criterion-power margin, the seed-as-factor constraint, and the requirement that the successor record its own windowed profile rather than inherit this budget. Governance is the chipper, not this autopsy (CLAUDE.md Session Land Protocol step 6).",
+  "Resolve chip-20260915-sd082-readout-consequence-successor, which was waiting on exactly the p1_budget_reading in this artifact.",
+  "INFRASTRUCTURE FINDING, not owed by this diagnosis: the re-derive brake's step (3) producer release is unreachable whenever recommended_substrate_queue_entry.action is 'amend', because _autopsy_owes_substrate_build() treats a bookkeeping amend identically to a build-owing one. This already silently voided the release the V3-EXQ-1027-1029 cluster artifact recorded (its stated count 3 vs the predicate's 5) and will void this one. Governance should decide whether to route it; any fix touches ree-v3/validate_queue.py and BOTH skill copies of the recipe in lockstep, with a corpus scan, per the lockstep rule in failure-autopsy SKILL.md Step 7.",
+  "CONSIDER, not owed: future fan-out drivers that retain a superseded statistic 'for comparability' should pre-register what happens when it disagrees with the load-bearing one. 1028 is the case that shows the gap (learning_extracted 7)."
+ ],
+ "confirmed_utc": "2026-09-16T12:08:10Z",
+ "confirmed_by": "user, Step 8 gate held interactively in the account-handover-20260916 walkthrough session on 2026-09-16 (AskUserQuestion, recommended disposition selected; recommendation ledger entries recorded)",
+ "step8_gate_decisions": {
+  "recorded_utc": "2026-09-16T12:08:10Z",
+  "decision": "CONFIRMED as recommended: direction non_contributory, category standard (unchanged), SD-082 stays candidate_substrate_landed; governance writes the evidence_quality_note and stamps live_status to this artifact; substrate_queue SD-082 amend is bookkeeping only (append the 1028 failure record, no build owed); ledger Mode B applied at confirmation as the recommended NON-resolution (both legs stay alive, resolving_runs + basis added; the gate_alternative 'eliminate on the load-bearing statistic alone' was NOT taken); routing governance-note-only."
+ }
 }

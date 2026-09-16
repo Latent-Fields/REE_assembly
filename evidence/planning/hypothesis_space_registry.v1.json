@@ -6584,14 +6584,17 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "V3-EXQ-1020"
+              "V3-EXQ-1020",
+              "V3-EXQ-1028"
             ],
-            "evidence_direction": "pending",
+            "evidence_direction": "non_contributory",
             "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "basis": "V3-EXQ-1020 measured it directly with a working instrument (in-run positive control learned its own task, +0.00223..+0.00327 held-out gain, 10/10 cells, persistence 0.719-0.770). C2 (persistence below the in-run noise/control midpoint) PASSED, but on a bare 3-of-5 majority and on the SAME seeds (622/633/644) in both arms, and the driver's own F2 disposition records an unexcluded rival -- replay scoring every sample at one shared end-of-episode rule_state -- stating verbatim 'Do NOT read a C2 PASS as establishing H-learning-signal-noisy over this rival'. Does not discriminate; stays alive."
+            "basis": "The driver's pre-registered bar returns SUPPORTED (3 of 5 seeds 'noisy' against a threshold of 3), but the reading does not DISCRIMINATE and so leaves the leg alive under the mapping table's last row. The bar aggregates over 5 seeds as exchangeable units, and this run establishes that the seed-to-class partition is a deterministic function of seed identity -- reproduced three times ({622,633,644} noisy/low, {611,655} exhausted/high) across V3-EXQ-1020 ARM_ON, both V3-EXQ-1027 replay arms and this run's W1 window, to within 2.5e-5 across two machine classes on the four seeds with full update realisation, with per-episode returns bit-identical over the shared 70 episodes. A bare majority over non-exchangeable units is a property of the seed set. Two further limits on the reading: seed 622 carries a late-RISING profile (fractional bracket position -0.186 -> -0.046 -> +0.012 -> +0.390) for which the three-way classifier has no label, and seed 633's W4 sits 0.011 below a midpoint whose across-seed realisation spread is 0.017. WHAT IS SETTLED and should be recorded: 0 of 5 seeds reach the classifier's persistence bar in W4, and the directed-then-exhausted alternative that a T=500 endpoint read would have aliased is now separated (2 of 5 seeds).",
+            "epistemic_category": "standard",
+            "self_route_label": "c2_noisy__c3_sign_null"
           }
         },
         {
@@ -6608,14 +6611,17 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "V3-EXQ-1020"
+              "V3-EXQ-1020",
+              "V3-EXQ-1028"
             ],
-            "evidence_direction": "pending",
+            "evidence_direction": "non_contributory",
             "resolved_utc": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "basis": "V3-EXQ-1020's C3 (advantage negative on rule-driven flips) is DEGENERATE, not null: MIN_FLIP_SAMPLES=20 against a worst cell of 4 fresh-select flip samples, with only 4 of 10 cells eligible. An unscoreable criterion narrows nothing; stays alive."
+            "basis": "The run carries TWO readings of this leg that disagree in direction, and no pre-registered tie-break exists between them. The LOAD-BEARING episode-level Pearson r (frozen-init-head labels, the redesign that fixed 1020's starvation) is a well-powered null: 5/5 scoreable (n_eps 468-487; 132-345 init-head flip ticks per half against a floor of 50), r_local +0.045/+0.020/+0.017/+0.005/-0.002 inside +/-2 SE bands of ~0.091, 0 negative and 0 positive -- excluding |r| > ~0.09. The RECORDED 1020 statistic (criteria[4], load_bearing false) is NEGATIVE on 4 of 5 seeds (-0.033/+0.037/-0.047/-0.023/-0.061), and restricted to the 4 seeds clearing 1020's own MIN_FLIP_SAMPLES=20 floor, 3 of 4 read negative -- which on 1020's pre-registered rule is SUPPORTED. The detrended and hold-weighted variants are each negative on 4 of 5 but not the same 4, and per-seed magnitudes are within roughly 1 SE, so the recorded statistic does not make the leg supported either. WHAT IS SETTLED: the leg is no longer STARVED (1020's unscoreability is discharged), so it is now a measurement question rather than an instrument question. A further scope caveat, recorded not adjudicated: the leg's registry label is a CONSEQUENCE claim ('a rule-driven argmax change is on average penalised'), and with authority OFF no argmax change reaches the action (1029: 0/1694), so the consequence form may not be testable in this configuration at all.",
+            "epistemic_category": "standard",
+            "self_route_label": "c2_noisy__c3_sign_null"
           }
         },
         {

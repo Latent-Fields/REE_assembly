@@ -1,7 +1,7 @@
 # Failure autopsy -- V3-EXQ-1028 (SD-082 fan-out portfolio, legs 2 + 4: the extended-budget learning-signal run)
 
 - **Generated:** 2026-09-15T20:19:10Z
-- **Status:** `awaiting_human_confirmation` -- **STAGING MODE draft.** The Step 8 interactive gate was NOT held and routing is NOT final. The next `/governance` walk (Step 1.5) gates this draft; that is where `evidence_direction` is applied.
+- **Status:** `confirmed` -- Step 8 gate held with the user 2026-09-16 (account-handover walkthrough session; recorded 2026-09-16T12:08:10Z). See "Step 8 gate outcome" at the end. Originally staged headless: Status: `awaiting_human_confirmation` -- STAGING MODE draft. The Step 8 interactive gate was NOT held and routing is NOT final. The next `/governance` walk (Step 1.5) gates this draft; that is where `evidence_direction`  ...
 - **Scope:** single (one run, two independently-scored legs of one GOV-FANOUT-1 portfolio)
 - **Run:** `v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3` -- **PASS**, `experiment_purpose: diagnostic`, self-route label `c2_noisy__c3_sign_null`. Autopsy required by trigger 2 (every diagnostic, PASS or FAIL, flagged or not).
 - **Claim:** SD-082. Registry question `sd082_candidate_discriminating_readout_locus` (co-registered SD-078, not tagged).
@@ -353,3 +353,7 @@ This is where the red team changed the artifact's conclusion.
 ## 12. Concurrency note
 
 Written from the **main checkout** `/Users/dgolden/REE_Working` (not a worktree), under two claims: `autopsy-staging-1028-20260915` (directory scope `REE_assembly/evidence/experiments/`; overlap NOTES expected and seen) and `autopsy-staging-1028-20260915-artifact` (the two artifact paths, uncontended). The 1028 manifest was read from `origin/master` rather than the working tree because a concurrent writer had shown a ` M` on it at task-assignment time; by read time the two were byte-identical, and the manifest was never modified. `hypothesis_space_registry.v1.json` was **read only** -- staging mode does not write it -- so no registry claim was required and none was opened. No coordination-plane pause claim was opened: this session runs as a supervised subagent of the metaworker orchestrator, which owns that plane, and staging mode writes none of the resources the pause protects. No other dirty file in the shared checkout was touched.
+
+## Step 8 gate outcome -- CONFIRMED 2026-09-16T12:08:10Z
+
+CONFIRMED as recommended: direction non_contributory, category standard (unchanged), SD-082 stays candidate_substrate_landed; governance writes the evidence_quality_note and stamps live_status to this artifact; substrate_queue SD-082 amend is bookkeeping only (append the 1028 failure record, no build owed); ledger Mode B applied at confirmation as the recommended NON-resolution (both legs stay alive, resolving_runs + basis added; the gate_alternative 'eliminate on the load-bearing statistic alone' was NOT taken); routing governance-note-only.

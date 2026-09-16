@@ -1,6 +1,6 @@
 # Failure autopsy: V3-EXQ-729 (MECH-268), 2026-09-14
 
-**Status: AWAITING HUMAN CONFIRMATION.** Written headlessly (chip `chip-20260910-gflag0070-mech268-degenerate-pass-autopsy`, dispatched session, no live interactive user for the Step 8 gate) in staging mode per `/failure-autopsy` SKILL.md Step 2's "delegating a whole autopsy... run in staging mode" pattern. Nothing here has been applied to `claims.yaml`. The machine-readable companion is `failure_autopsy_V3-EXQ-729_2026-09-14.json`.
+- **Status:** `confirmed` -- Step 8 gate held with the user 2026-09-16 (account-handover walkthrough session; recorded 2026-09-16T12:08:10Z). See "Step 8 gate outcome" at the end. Originally staged headless: Status: AWAITING HUMAN CONFIRMATION. Written headlessly (chip `chip-20260910-gflag0070-mech268-degenerate-pass-autopsy`, dispatched session, no live interactive user for the Step 8 gate) in staging mode per `/failure-aut ...
 
 **Trigger.** GFLAG-0070 (`governance_flags.v1.json`), raised 2026-08-27, originally misdiagnosed a "same-day-requeue indexer bug." That diagnosis was independently found false twice (governance triage 2026-09-01, and the 2026-09-09/10 flag-backlog adjudication) and corrected in `claims.yaml` (2026-09-01, commit `3e032f4c78`). The real, still-open residual GFLAG-0070 names: **can a PASS carrying `non_degenerate: false` discharge MECH-268's ecological demonstration bar at all?** Neither V3-EXQ-729 run had ever had a `failure_autopsy`. This artifact is that autopsy.
 
@@ -174,3 +174,7 @@ Step 1 of `/failure-autopsy` instructs opening a second claim pausing the coordi
 ## 14. GFLAG-0070 disposition
 
 Recommend: resolve GFLAG-0070 (`governance_flag.py resolve`, never a hand-edit) citing this artifact. The flag's own "correct edit" text (`governance_flag_adjudication_20260909.md`) asked for exactly this autopsy to be run; it now exists, with a narrowed-but-affirmative answer to the flag's residual question plus a recommended follow-up. Final application of the registry edits above is `/governance`'s job (Step 4/6a), gated on this artifact's own `status: awaiting_human_confirmation` being confirmed first.
+
+## Step 8 gate outcome -- CONFIRMED 2026-09-16T12:08:10Z
+
+CONFIRMED as recommended (both replicate runs): GFLAG-0070 adjudicated NARROWLY -- the PASS with non_degenerate:false counts as genuine support for MECH-268's live-wiring bar only (C4); C2/C3/C5 are implementation tautologies and C1 arithmetic. Direction supports; set epistemic_category standard (absent today); governance amends what_would_answer and implementation_note to the narrower reading; status stays provisional; no substrate gap; routing governance note + the measurement follow-up via /queue-experiment (governance chips it).

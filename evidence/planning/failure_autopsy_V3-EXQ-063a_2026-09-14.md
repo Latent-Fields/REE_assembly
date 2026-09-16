@@ -1,6 +1,6 @@
 # Failure Autopsy: V3-EXQ-063a (ARC-029 commitment-mode confound)
 
-**Status: AWAITING HUMAN CONFIRMATION.** Written by a headless metaworker-dispatch session
+- **Status:** `confirmed` -- Step 8 gate held with the user 2026-09-16 (account-handover walkthrough session; recorded 2026-09-16T12:08:10Z). See "Step 8 gate outcome" at the end. Originally staged headless: Status: AWAITING HUMAN CONFIRMATION. Written by a headless metaworker-dispatch session ...
 (chip-20260910-gflag0148-arc029-commitment-confound-autopsy) with no live user to run the
 Step 8 interactive gate. This is a draft — routing is not finalised. Confirm in an interactive
 session or at the next `/governance` walk.
@@ -282,3 +282,7 @@ This autopsy is the discharge condition GFLAG-0148 names ("No governance edit di
 `/failure-autopsy`..."). Once this artifact lands, GFLAG-0148 resolves via
 `scripts/governance_flag.py resolve` citing this file — the claims.yaml status change itself is a
 separate, follow-on governance action (subject to GOV-APPLY-1 tracking via `per_claim_recommendation`).
+
+## Step 8 gate outcome -- CONFIRMED 2026-09-16T12:08:10Z
+
+CONFIRMED INCLUDING THE DEMOTION: 063a's PASS re-tagged non_contributory (negative control failed: same-scalar ablation cannot isolate commitment mode; per-episode-constant override makes the occupancy non-degeneracy check vacuous), category standard, ARC-029 provisional -> candidate (063a was the sole surviving positive experimental support); routing queue-experiment (a design varying commitment mode within episode; governance chips it).

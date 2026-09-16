@@ -1,7 +1,7 @@
 # Failure Autopsy: V3-EXQ-829a (retargeted from a mis-scoped V3-EXQ-829 chip)
 
 **Generated:** 2026-09-01T19:10:15Z
-**Status:** awaiting_human_confirmation (staging mode -- headless dispatcher session, no interactive user present at the Step 8 gate)
+- **Status:** `confirmed` -- Step 8 gate held with the user 2026-09-16 (account-handover walkthrough session; recorded 2026-09-16T12:08:10Z). See "Step 8 gate outcome" at the end. Originally staged headless: Status: awaiting_human_confirmation (staging mode -- headless dispatcher session, no interactive user present at the Step 8 gate) ...
 **Scope:** single target, V3-EXQ-829a
 **Chip:** chip-20260901-v3exq829-failure-autopsy
 
@@ -354,3 +354,7 @@ Staging mode -- this artifact is a draft. Per the skill, the Step 8 interactive 
 re-adjudication clarifying existing findings, not opening new live hypotheses to pre-register).
 An interactive session or the next `/governance` walk should confirm the routing and the
 GFLAG-0084 resolution above before either is applied.
+
+## Step 8 gate outcome -- CONFIRMED 2026-09-16T12:08:10Z
+
+CONFIRMED as recommended: direction supports (instrument-level: the use_reacquisition_window_isolation fix, ree-v3 7747a01, is confirmed correct via C1/C3/C5/C6), category standard; C2 is degenerate by construction so MECH-324's quantitative rate-scaling validation is STILL owed; governance amends the mech324-reacquisition-window-isolation substrate entry's status text to record this adjudication and the owed validation; routing queue-experiment (a non-degenerate C2 successor; governance chips it).
