@@ -429,7 +429,7 @@ Times are local (Europe/Dublin, UTC+1), matching the app log and sections 4-10.
   which account to type in.
 * **App restart, auto-update, reboot, sleep/wake: 0 of more than 200.** 27 app starts (16
   of them update-restarts, `Previous update install succeeded`), every macOS reboot in the
-  window (09-12, 09-13, 09-14 are the ones `last` still lists) and 183 late-timer wakes
+  window (8 since 08-09 by `last`; 09-12, 09-13, 09-14 the most recent) and 183 late-timer wakes
   (`Timer fired Ns late ... treating as system wake`) all re-initialised the scheduler under
   the **same** profile as before. The app restores `lastKnownAccountUuid` from `config.json` on every start and
   never chose a different one. **"The app re-selecting a profile on its own" is refuted.**
