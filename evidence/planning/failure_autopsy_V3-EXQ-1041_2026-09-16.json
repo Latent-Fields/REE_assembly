@@ -1,0 +1,513 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-16T12:18:33Z",
+ "revised_utc": "2026-09-16T12:18:33Z",
+ "scope": "single",
+ "status": "confirmed",
+ "staging_reason": "Headless STAGING-MODE draft produced by a delegated /failure-autopsy session under a coordinating session's TASK_CLAIMS claim, then REVISED IN PLACE after a Step 7c adversarial red-team pass returned CONTESTED with 10 findings (see red_team). Step 8 (the interactive user gate) is HELD by the coordinating session. Routing below is a PROPOSAL and has been applied to nothing: no claims.yaml, substrate_queue.json, review_tracker.json, manifest or hypothesis_space_registry.v1.json write was made. Step 9b is drafted-only and recorded under hypothesis_space_ledger_pending. The REE_assembly main checkout was ref-wedged (behind origin) for the duration, so claims.yaml, substrate_queue.json, hypothesis_space_registry.v1.json, experiment_proposals.v1.json, the literature corpus and the prior autopsy corpus were read from origin/master via git show, not from the working tree.",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3",
+   "queue_id": "V3-EXQ-1041",
+   "claim_ids": [
+    "SD-106"
+   ],
+   "bears_on": [
+    "zworld_actor_adequacy_locus"
+   ],
+   "self_route_label": "metrics_never_comparable",
+   "experiment_purpose": "diagnostic",
+   "outcome": "PASS",
+   "failed_criterion": "none as scored -- diagnostic PASS: the driver's C1_metric_share_dominant passed at margin 0.5240 vs a pre-registered 0.15. BUT the adjudicated reading is NOT the scored one. The shipped decomposition is ORDER-DEPENDENT (red-team F1, confirmed): it measures the budget factor on `posthoc_ols_r2` while anchoring `gap` at `sgd_head_r2`, so head under-training -- which IS budget -- is partitioned into the `metric` share by construction. Repartitioning the SAME cells budget-first gives budget 0.769 median and routes `under_budgeted_p0a`; the order-symmetric partition gives leader margins 0.095/0.078/0.042, BELOW the pre-registered 0.15 on 3/3 seeds, which is the driver's own pre-registered tie branch `no_dominant_explanation`. This autopsy routes on the order-symmetric partition.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear (net), and after the red-team pass MORE unclear than the first draft recorded, not less. STRENGTHENED, order-free, on implementation fidelity: the SD-106 code recovers 0.951 (b_shipped) to 0.980 (b_steps1200) of the PCA-32 achievable ceiling under a post-hoc probe, and beats the paired OFF arm on 3/3 seeds at EVERY budget -- and that margin TRIPLES with budget (+0.0169 / +0.0315 / +0.0509 / +0.0277 medians at b_shipped / b_steps600 / b_steps1200 / b_designref) while the OFF arm's parity stays flat (0.9245 / 0.9260 / 0.9208 / 0.9303). NOT ADJUDICATED: which of metric-mismatch or training-budget dominates the V3-EXQ-1023 shortfall -- the two partitions of the identical gap give opposite routes and the order-symmetric one gives none. NOT ADJUDICATED EITHER: whether the residual consumer-rung shortfall is a steep-transfer artefact or a which-directions deficit. The claim is not adjudicated at all here -- experiment_purpose is diagnostic, excluded from confidence and conflict scoring.",
+    "biological_reference": "partial -- unchanged from V3-EXQ-1023. The DiCarlo-style ventral-stream untangling reference is present and lit-grounded (targeted_review_sd_015/2026-04-02, targeted_review_perceptual_manifold_adaptors/2026-06-12); the specific generic-vs-task-relevant/selective compression question (efficient coding, information bottleneck) has no targeted review in the corpus. V3-EXQ-1023 deferred that question while a training-budget explanation was live. REVISED after red-team F1: that deferral condition is NOT discharged by this run -- the budget explanation survives the order-symmetric partition alive, so the biology question is co-primary, not promoted over it.",
+    "prerequisites": "present -- 11/11 preconditions met, including two data-independent instrument gates (identity_probe_recovers_unity 1.0 vs 0.999, with its own measured reachability floor probe_system_overdetermined 1640 vs 250), one Eckart-Young gate (worst code-minus-PCA32 -0.0134 vs a +0.01 tolerance), a REPRODUCTION gate against V3-EXQ-1023's own recorded values (delta 0.0000 on 3/3 seeds vs a 0.05 tolerance), a mechanism-engagement gate (bypass norm 4.133 > 0), a denominator-stability gate (ceiling drift 0.0043 vs 0.02) and a manipulation-reached-substrate gate (812 steps vs 500). The instrument is sound and every printed number recomputes exactly; the red-team pass confirmed this independently and could not break it.",
+    "implementation": "complete -- the SD-106 manipulation reached the substrate and trained (bypass norm 4.133, matching V3-EXQ-1023's recorded 4.13-4.37), and its effect at the encoder DV is positive on every seed at every budget against the paired OFF arm. This run adds the fact V3-EXQ-1023 could not obtain: the built term is within 0.043 (as-shipped) / 0.018 (best budget) absolute R^2 of the best any 32-dim linear code can do on the same buffer.",
+    "environment": "adequate -- same CausalGridWorld rung/recipe as V3-EXQ-1002/1010/1023 (RUNG imported from x1002, not re-derived); the driver constructs a REEAgent but never calls sense()/select_action()/step(), so the only exercised path is ZWorldP0Trainer over latent_stack.split_encoder driven by a RandomPolicy.",
+    "measurement": "adequate for THIS run's own probe, and the run establishes -- order-free -- that the PRIOR reported statistic under-reads the same code. The probe is gated data-independently (identity map returns unity; PCA-32 optimality holds by Eckart-Young) and its R^2 definition is byte-for-byte the substrate's own, differing only in the fit. `posthoc_ols_r2 - sgd_head_r2` at b_shipped is 0.0979 / 0.0967 / 0.1289 absolute R^2, a straight paired difference with no decomposition choice in it. What is NOT established is that this mismatch is the DOMINANT cause of the shortfall -- that is the order-dependent claim F1 vacates, and the same 0.098 is also the signature of an untrained head.",
+    "integration": "isolated -- P0-warmup-only, frozen-representation read; no cross-module interaction under test and no decoder ladder, oracle-adapter dataset, P0b or P1 phase.",
+    "scale": "REVISED after red-team F1: partial / likely insufficient WITHIN the swept range -- NOT 'adequate'. The primary reported readout `sgd_head_r2` moves 0.746 -> 0.806 -> 0.854 (medians) across the 3.3x step sweep at fixed data, i.e. 0.76-0.80 of the whole gap, and it has NOT SATURATED: at the top of the sweep (~1160-1320 steps) it is still rising and still 0.014 below the post-hoc probe on the same cells. At the design doc's own named reference point (b_designref, ~600 steps / ~4000 obs) budget alone closes 0.362-0.444 of the gap on the reported statistic. Grading this row `adequate` -- as the first draft did -- was reading the sweep through the order-dependent share rather than through the readout's own trajectory. V3-EXQ-1023's 'likely insufficient, or unknown' therefore STANDS, now quantified rather than narrowed. Secondary and unaffected: within this range the effective coordinate is STEPS, not observations (b_steps1200 best on 3/3 seeds on BOTH statistics; b_designref, more data at ~equal steps, scores below it)."
+   },
+   "failure_location": {
+    "mechanism": "established",
+    "measures": "established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "NOT APPLICABLE as an organism-level failure read -- this target is a diagnostic PASS and nothing here is chargeable to REE. All three GOV-FAILLOC-1 buckets read established for THIS run's own build, instrument and environment, but `ree` is false because the fourth conjunct of the REE FAILED definition is not met: REE DID demonstrate the predicted proximal competence (0.951-0.980 of the PCA-32 achievable ceiling; above the paired OFF arm on 3/3 seeds at every budget). REVISED after red-team F1: the first draft went further and located V3-EXQ-1023's shortfall dominantly in MEASURES. That attribution is WITHDRAWN -- it rested on the order-dependent metric share. On the order-symmetric partition the shortfall has no dominant location, which is a RESULT (the driver's own combination_rule says so explicitly) and not an instrument failure. This also means the first draft's claim to have settled V3-EXQ-1023's own open Step 8 tension ('REE FAILED' vs 'MIXED, grounded on Scale/capacity') is WITHDRAWN: on this evidence that tension is NOT settled, and if anything the Scale/capacity leg of it is strengthened (see four_layer_diagnosis.scale). Recorded as a withdrawal rather than deleted, per the skill."
+   },
+   "biological_reference": {
+    "closest_mechanism": "DiCarlo-style ventral-stream manifold untangling -- a sensory hierarchy trained under task/behavioural pressure that progressively makes decision-relevant structure more linearly accessible than the raw input's own statistics.",
+    "dependencies": [
+     "a training pressure that preserves and reformats input structure toward task-relevant variables",
+     "a downstream consumer whose read-out defines which directions count as decision-relevant"
+    ],
+    "is_formal_import": true,
+    "divergence": "SD-106 implements a FORMAL, task-agnostic objective -- scale-normalised (1 - R^2) generic variance/reconstruction preservation via a separate linear decoder, plus a zero-init linear bypass -- as a proxy for 'the encoder should not discard decision-relevant content'. The biological reference's untangling is driven by task/behavioural relevance, not by generic variance. The divergence is registered as LOAD-BEARING (the skill's default for a formal import) and is unchanged by this run. REVISED after red-team F1/F6: the first draft argued this run makes the divergence 'the economical reading'. That ranking is WITHDRAWN. It rested on (i) the order-dependent budget share and (ii) a quotient of two incommensurable deficits. What survives is weaker and still useful: the SD-106 code sits within 0.043 (as-shipped) / 0.018 (best budget) absolute R^2 of PCA-32 in GENERIC linear-decodable world_obs content while V3-EXQ-1023 measured it 0.150 below the SAME anchor in consumer-rung agreement. That coexistence makes a which-directions deficit a LIVE reading worth grounding -- it does not rank it above a steep-transfer reading, and the discriminator named in fanout_recommendation is what would.",
+    "lit_status": "partial -- PRESENT for the untangling reference itself (2 targeted reviews: targeted_review_sd_015/2026-04-02_sd_015_object_untangling_dicarlo2007, targeted_review_perceptual_manifold_adaptors/2026-06-12_arc_087_ventral_stream_manifold_untangling_dicarlo2012); ABSENT for generic-vs-task-relevant/selective compression in sensory encoding bottlenecks (efficient coding, information bottleneck, behaviourally-conditioned compression). Checked on origin/master across all 540 targeted_review_* directories: `git grep -l SD-106 -- evidence/literature/` returns ZERO files, and the only corpus hit for 'information bottleneck' or 'efficient coding' is a single comparison-table row in targeted_review_q_079/SYNTHESIS.md (a DLIF formalism-novelty drill), which is not a review of this question. Independently reproduced by the red-team pass. Scoped deliberately, because Step 7b's C3 cannot read scope."
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_per_claim": {
+    "SD-106": "standard"
+   },
+   "recommended_epistemic_category_note": "standard, deliberately -- and NOT substrate_ceiling or substrate_conditional. Nothing here asserts that SD-106's answer is gated on substrate work: the mechanism is built, engaged, and performing near its own achievable ceiling, and the owed work is a consumer-rung discriminator re-run on an EXISTING harness plus a literature-grounded objective decision -- neither of them a build. Either substrate_* value would put SD-106 into _EPI_SUPPRESS_PROPOSAL and make it not-v3-testable, starving exactly the lane this routing feeds. The failure-mode label for the shortfall this run PARTIALLY attributes -- an order-dependent split between a metric mismatch in the prior statistic and an untrained preservation head -- lives in this note and in four_layer_diagnosis, never in the category field. SD-106's CURRENT stored epistemic_category is already `standard` and carries no stated re-check condition, so there is no stale conditional stamp to re-evaluate.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_note": "REVISED from `mixed` after red-team F10. The manifest's own evidence_direction is `unknown` and this artifact's own claim-layer section states the run 'did not test the claim at all, it tested the attribution of a prior measurement'. A `mixed` direction asserts the evidence bears on the claim in both senses; this artifact's position is that it bears on the claim in neither -- the predecessor's `mixed` was earned on an acceptance DV, and this run has none. `non_contributory` is therefore the honest direction FOR THE CLAIM. It is NOT a statement that the run yielded no interpretable information: it yielded a great deal (see learning_extracted), which is why the skill's 'non-contributory only if no interpretable signal at any layer' test is discharged in the prose rather than by the direction field. Practical impact is small (diagnostic, unscored), but it is a recommended write and it is an input to claim_alignment. Per the skill's standing pairing rule, this non_contributory reading is paired with pending_retest_after_substrate: true and with an explicit narrow-supports check (narrow_supports_flag, below).",
+   "recommended_evidence_quality_note": "V3-EXQ-1041 (diagnostic PASS, confirmed failure_autopsy_V3-EXQ-1041_2026-09-16) ran the cheap P0-warmup-only two-metric step-budget probe that confirmed failure_autopsy_V3-EXQ-1023_2026-09-14 routed. It PARTIALLY attributes V3-EXQ-1023's shortfall and leaves the metric-vs-budget split OPEN. WHAT IS ESTABLISHED, order-free: (1) the in-training `preservation_holdout.r2` (0.7490/0.7464/0.6999) is a jointly-SGD-trained head's own holdout metric, not the post-hoc linear-decodability probe the design-time figures were, and it under-reads the same code on the same buffer and same held-out split by 0.0979/0.0967/0.1289 absolute R^2; (2) under a post-hoc OLS probe the SD-106 code reaches 0.951 (as-shipped) to 0.980 (at ~3.3x the optimiser steps) of the in-run PCA-32 achievable ceiling; (3) the mechanism is NOT inert and its measured effect over its own paired OFF control TRIPLES across the swept budget -- SD-106 minus OFF post-hoc medians +0.0169 (b_shipped) / +0.0315 (b_steps600) / +0.0509 (b_steps1200) / +0.0277 (b_designref), positive on 3/3 seeds at every budget, while OFF parity stays flat (0.9245/0.9260/0.9208/0.9303) -- so V3-EXQ-1023's acceptance measurement measured this mechanism at roughly one third of its within-range effect size; (4) the preservation head has NOT saturated at the top of the sweep (sgd_head_r2 medians 0.746 -> 0.806 -> 0.854, still rising at ~1160-1320 steps and still 0.014 below the post-hoc probe there). WHAT IS NOT ESTABLISHED: which of the metric mismatch or the training budget dominates. The driver's shipped decomposition measures the budget factor on `posthoc_ols_r2` while anchoring the gap at `sgd_head_r2`, so head under-training is partitioned into the `metric` share by construction; repartitioning the identical cells budget-first gives budget 0.769 median (0.800/0.769/0.762) and routes `under_budgeted_p0a`, and the order-symmetric partition gives leader margins 0.095/0.078/0.042 -- below the pre-registered 0.15 on 3/3 seeds, i.e. the driver's own pre-registered `no_dominant_explanation` branch, which its combination_rule defines as 'a RESULT, not an instrument failure ... the shortfall has no single dominant cause'. The three shares on that partition are metric 0.404 / budget 0.475 / residual 0.104. ALSO RECORDED: PCA-32 of the P0a rollout buffer explains only 0.888 of world_obs held-out and 0.893 in-sample on seed 42 (cross-seed held-out median 0.886), against the SD-106 design doc's 0.9983/0.9984 -- so the design-time anchor was measured on a DIFFERENT observation distribution and the doc's 0.9974/0.9978 table is not comparable to any P0a acceptance number; every criterion in this run is ceiling-relative, so the routing does not depend on it. ROUTING: a consumer-rung discriminator re-run (v3_exq_1010_zworld_overcapacity_decoder_sweep.py UNCHANGED against an SD-106-ON warmup at P0a epochs=40 -- the b_steps1200 cell this run already executed 6 times, one config knob, existing harness), which simultaneously tests the budget question and discriminates the two surviving readings of the consumer-rung shortfall with a ~0.09 predicted separation; CO-PRIMARY and already chipped, the /lit-pull on generic-vs-task-relevant compression. Status stays implemented; not promoted, not demoted; diagnostic, excluded from confidence and conflict scoring.",
+   "per_claim_recommendation": {
+    "SD-106": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "change": "SD-106 currently carries epistemic_category `standard`, diagnostic_evidence_adjudicated `true` and pending_retest_after_substrate `true` -- all three are already correct and all three STAY (pending_retest_after_substrate stays true because the acceptance measurement is still owed, and the direction recommended here is non_contributory, which the skill requires to be paired with exactly that flag). What actually moves is the evidence record: evidence_quality_note gains the partial-attribution result above, and live_status must move off its V3-EXQ-1023-only reading, whose verdict prose says the budget-shortfall-vs-objective-ceiling question is open -- which after this run is still true but for a NEW reason that must be recorded, since the run that was commissioned to close it did not -> stamp failure_autopsy_V3-EXQ-1041_2026-09-16",
+     "pending_retest_after_substrate": true,
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "status_change": "none -- stays implemented"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-106",
+    "implementation_hint": "SUPERSEDES the answered `implementation_hint_2026_09_15` on this entry: the two-metric step-budget diagnostic it specified RAN as V3-EXQ-1041. It did NOT cleanly return one of that hint's three outcomes. Its scored route was (1) `metrics_never_comparable`, but that route is an artefact of the decomposition's ORDER -- the budget factor is measured on `posthoc_ols_r2` while the gap is anchored at `sgd_head_r2`, so head under-training is booked to the metric share by construction. Repartitioned budget-first the identical cells route (2) `under_budgeted_p0a` (budget 0.769 median); order-symmetric they route the driver's own tie branch `no_dominant_explanation` (metric 0.404 / budget 0.475 / residual 0.104, leader margin below the pre-registered 0.15 on 3/3 seeds). WHAT IS SETTLED, order-free, and what this entry should carry forward: outcome (3), a mechanism defect, is EXCLUDED as the dominant account -- the preservation term is not inert (SD-106 beats the paired OFF arm on 3/3 seeds at EVERY budget) and it reaches 0.951-0.980 of the in-run PCA-32 achievable ceiling. Its measured effect over OFF TRIPLES across the sweep (+0.0169 -> +0.0509 median), so the acceptance measurement was taken at ~1/3 of the mechanism's within-range effect size, and the head has NOT saturated at the top of the sweep. Do NOT bump preservation_weight -- that refusal from V3-EXQ-1023 stands untouched. The NEXT STEP is not a build: re-run `experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` UNCHANGED (the harness claims.yaml's own validation_experiment already names) against an SD-106-ON warmup with P0a `epochs=40` -- one config knob, no new driver, the same 3 seeds, the exact b_steps1200 cell this run executed 6 times. It tests the budget question and discriminates the two surviving readings of the consumer-rung shortfall at once, with quantified predictions (~0.806 under a monotone transfer, ~0.719 under a which-directions deficit; ~0.09 separation on the shipped DV). Co-primary and ALREADY CHIPPED: the /lit-pull on generic vs task-relevant/selective compression -- see the governance note about chip-20260916-sd106-compression-litpull before chipping anything. Two recording fixes belong on the same pass: (i) the design doc's headline 0.9974/0.9978 'obs R^2' table is NOT on the P0a observation distribution -- PCA-32 of the P0a rollout buffer reaches only 0.888 held-out / 0.893 in-sample on seed 42 (cross-seed held-out median 0.886) against the doc's 0.9983/0.9984 anchor -- so the doc must say which distribution it measured; (ii) the stale `V3-EXQ-1015` validation reference is STILL unapplied from the confirmed V3-EXQ-1023 autopsy at THREE sites (see recommended_writes_for_governance), and must be corrected as a leading-token STRING edit that preserves the pre-set ACCEPTANCE TARGET prose. Also raise the in-training `preservation_holdout.r2` readout's own legibility: it is a jointly-SGD-trained head metric that under-reads the code by ~0.098 R^2 at the shipped budget and is a LOWER BOUND on linear-decodable content, and nothing at its emission site says so.",
+    "unblocks_claims": [
+     "SD-015",
+     "ARC-030",
+     "MECH-117",
+     "goal-directed behaviour pathway (entire EXQ-085h..o cluster)",
+     "MECH-457",
+     "ARC-065"
+    ],
+    "unblocks_claims_note": "RESTORED to the full SIX entries the live origin/master entry carries, after red-team F8. The first draft re-enumerated five and silently dropped 'goal-directed behaviour pathway (entire EXQ-085h..o cluster)' -- inherited from the V3-EXQ-1023 autopsy's entry, which drops the same string, so this would have been the SECOND pass at which it was lost. Governance should treat this list as UNCHANGED from what it already holds, exactly like severity and substrate_paths; it is re-enumerated here only so the amend cannot be applied as a replacement that narrows it.",
+    "depends_on_unresolved": [],
+    "priority_suggested": 1,
+    "severity": "degrading",
+    "substrate_paths": [
+     "ree_core/agent.py::compute_resource_proximity_loss",
+     "ree_core/latent/stack.py",
+     "ree_core/latent/zworld_p0.py"
+    ],
+    "severity_and_paths_note": "UNCHANGED from what governance already holds on this entry (severity `degrading`; the same three substrate_paths, verified byte-identical against origin/master). This occurrence does not reclassify the defect: it does not corrupt evidence (every instrument gate passed and every number recomputes) and it surfaces no additional corrupted file. Per the skill's amend rule, governance should leave both fields as they stand.",
+    "failure_record_entry": {
+     "run_id": "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3",
+     "experiment_type": "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic",
+     "metric": "ATTRIBUTION NOTE on the open V3-EXQ-1023 record above -- NOT a second failure against that record's DV, which this run did not measure. P0-warmup-only diagnostic, 2 tracks x 4 budgets x 3 seeds = 24 cells, all 11 preconditions met, V3-EXQ-1023's own sgd_head_r2 reproduced exactly (delta 0.0000, 3/3 seeds). ORDER-FREE RESULTS: post-hoc OLS probe on the same frozen latent, buffer and held-out split reads SD-106 at 0.8469/0.8431/0.8288 against the in-run PCA-32 achievable ceiling 0.8880/0.8863/0.8789 (parity 0.951 median as-shipped, 0.980 at ~1200 optimiser steps) and against the paired OFF arm at 0.8209/0.8269/0.8119; SD-106 beats OFF on 3/3 seeds at EVERY budget, with the margin TRIPLING across the sweep (+0.0169/+0.0315/+0.0509/+0.0277 medians) while OFF parity stays flat -- so the record above was measured at ~1/3 of the mechanism's within-range effect size. The reported `preservation_holdout.r2` under-reads the same code by 0.0979/0.0967/0.1289 and has NOT saturated at the top of the sweep (0.746 -> 0.806 -> 0.854 medians). NOT SETTLED: the metric-vs-budget split. The shipped decomposition routes `metrics_never_comparable` but is order-dependent; budget-first routes `under_budgeted_p0a` (budget 0.769); order-symmetric routes `no_dominant_explanation` (metric 0.404 / budget 0.475 / residual 0.104). Outcome (3) mechanism-defect IS excluded as the dominant account. NEXT STEP recorded on the record above, not here: the v3_exq_1010 sweep unchanged at P0a epochs=40.",
+     "target": "ATTRIBUTION NOTE -- this item asserts no acceptance target of its own. The acceptance target for SD-106 remains the one on the V3-EXQ-1023 record above (PCA-32 parity, >= 0.85 held-out oracle-action agreement at the consumer rung on a seed majority), which this run did not measure and does not re-open.",
+     "resolved": "attribution_note"
+    },
+    "failure_record_entry_note": "REVISED after red-team F8. The first draft copied the prior item's acceptance-target string verbatim and stamped `resolved: \"open\"`, which would have left the entry carrying TWO open records with byte-identical `target` strings, one of which never measured that DV -- indistinguishable to the next reader. This entry is now explicitly an ATTRIBUTION NOTE: its `target` disclaims an acceptance target of its own and its `resolved` value is `attribution_note` rather than `open`. IF governance prefers to keep `resolved` inside the schema's existing vocabulary, the equivalent and equally acceptable application is to FOLD this text into the existing V3-EXQ-1023 item's own note and append no new record at all -- what must not happen is a second `open` item against a DV this run did not measure.",
+    "resolves_prior_failure_record": [],
+    "resolves_prior_failure_record_note": "DELIBERATELY EMPTY, and this is a judgement recorded rather than an omission. The prior V3-EXQ-1023 item stays at its default `open`. It is not `resolved`: no build closed the failure mode it names (0/3 seeds at the 0.85 consumer-rung parity bar stands, and this run did not re-measure that DV). It is not `superseded` either: this run does not overturn or replace 1023's read -- every number in that record stands untouched -- it partially answers the attribution sub-question 1023's own hint appended to it, and leaves the rest open. Filling either verb would repeat exactly the D4 defect V3-EXQ-1023's own red-team pass caught.",
+    "action_note": "The routing for this target is `queue-experiment`, not `implement-substrate` -- this `amend` is a BOOKKEEPING amend, not a build order. It exists because the entry's `implementation_hint_2026_09_15` poses a question the run did not cleanly answer, and a reader picking the entry up without this amend will either re-queue a diagnostic that has already run or act on the run's scored route without knowing it is order-dependent. No substrate build is named or owed by this evidence."
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": true,
+   "narrow_supports_note": "SET TRUE after red-team H4 and the F10 direction change, reversing the first draft's `false`. The skill's standing rule is that any non_contributory / substrate-limitation recommendation MUST be paired with an explicit check of whether the remaining supports are narrow or single-pathway, and with the direction now `non_contributory` that pairing is live. The check: SD-106's only scoring experimental evidence remains V3-EXQ-1023 (mixed); this diagnostic adds none (diagnostic purpose, unscored). The positive leg this run DOES establish -- the term works at its own objective and beats its paired control at every budget -- is genuinely single-pathway: one encoder-level DV (post-hoc linear decodability of world_obs), one rung, one preservation weight, 3 seeds, one machine class, and no consumer-rung measurement at all. Flagging it is what stops that leg reading as broad corroboration, which is precisely the illusory-conflict-resolution hazard the rule guards. The first draft's reasoning for `false` (that the flag is scoped to non_contributory readings) was self-defeating once the direction moved, and is recorded here as withdrawn rather than deleted.",
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "supersedes_autopsy": null,
+    "refused_requeue": true,
+    "route_to": "queue-experiment",
+    "upstream_substrate": null,
+    "count_note": "R1-R3 count for SD-106 = 0 prior ceiling hits, run over the committed corpus as it stands on origin/master (510 failure_autopsy_*.json, materialised from origin because the main checkout is ref-wedged). Exactly ONE prior target names SD-106 in its own claim_ids -- failure_autopsy_V3-EXQ-1023_2026-09-14 -- and it does not count (category `standard`, direction `mixed`). THIS target does not count either, and the direction change to `non_contributory` does not alter that: `recommended_epistemic_category_per_claim` declares `standard` for SD-106, which short-circuits counts() at the per-claim branch BEFORE the direction disjunct is reached. (It is also skipped outright while status is `awaiting_human_confirmation`, which is in the UNSETTLED list.) Count stays 0 of a threshold of 2; the brake does not fire.",
+    "refusal_note": "REVISED after red-team F1. `refused_requeue` stays TRUE but now carries TWO clauses, not three, and neither rests on the brake. REFUSED: (1) a re-queue of THIS diagnostic -- it has run, and re-running the same decomposition would reproduce the same order-dependence; (2) a `preservation_weight` sweep -- V3-EXQ-1023's refusal of that stands untouched and this run gives no ground to revisit it. WITHDRAWN: the first draft's third clause, 'an acceptance-measurement re-run justified as a budget fix (budget is measured at 0.181 across a range containing the design doc's own reference point)'. That clause's stated numerical ground was the order-dependent 0.181; budget-first the same cells give 0.769, and at the design doc's own named reference point budget alone closes 0.362-0.444 of the gap on the reported statistic. An acceptance-measurement re-run at a raised P0a budget is therefore NOT refused -- it is the ROUTED next step (see fanout_recommendation). NOT REFUSED either: a different-mechanism redesign under a new sd_id and a new EXQ number, once the lit-pull has grounded it."
+   },
+   "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+     "H-transfer-amplification: the consumer rung converts a small generic-decodability deficit into a large oracle-action-agreement deficit through decision-boundary geometry alone -- a steep but monotone transfer, with no which-directions story. (Distinct from the already-ELIMINATED H-B-consumer-learning on the parent question: that leg asserted the consumer cannot LEARN the mapping; this one asserts it can, and the mapping is simply steep.)",
+     "H-which-directions: the SD-106 code retains nearly as much GENERIC variance as PCA-32 but not the same DIRECTIONS, so downstream agreement does not follow decodability. (The registry analogue H-F-content-discarded-at-encode is CONFIRMED on the parent question -- but for the SHIPPED, pre-SD-106 encoder; it is not by itself a confirmation of this leg for the SD-106 encoder, which is the build H-F's diagnosis motivated.)",
+     "H-under-budgeted-p0a (carried forward, still ALIVE): the preservation head has simply not converged. Budget-first partition gives it 0.769 of the gap, and the head has not saturated at the top of the swept range."
+    ],
+    "suggested_probes": [
+     {
+      "hypothesis": "H-transfer-amplification / H-which-directions / H-under-budgeted-p0a -- ONE probe discriminates all three",
+      "axis": "readout",
+      "sketch": "Re-run `ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` UNCHANGED -- the harness claims.yaml's own validation_experiment already names -- against an SD-106-ON warmup with P0a `epochs=40` (the b_steps1200 cell V3-EXQ-1041 already executed 6 times). One config knob, no new driver, same 3 seeds, existing dataset recipe, calibration anchor and negative control. DECLARED NULLS, from the two known points on the transfer curve (PCA-32: post-hoc R^2 0.886323 -> consumer agreement 0.868896; SD-106 as-shipped: 0.843123 -> 0.719185, interpolated slope 3.4655 agreement per unit R^2): at the b_steps1200 post-hoc R^2 of 0.868412, H-transfer-amplification predicts consumer agreement ~0.8068 (and would clear V3-EXQ-1023's 0.85 bar on no seed but come within ~0.04 of it); H-which-directions predicts ~0.7192, i.e. NO MOVE from the shipped measurement; H-under-budgeted-p0a predicts a move toward or past 0.85. Separation between the two nulls ~0.088 on the shipped DV at 3 seeds. NOTE on the interpolation slope: it is the same 3.4655 the red-team's F6 correctly objects to as an ECONOMY RANKING between readings -- used here for the opposite purpose, to give H-transfer-amplification a falsifiable quantitative null, which is what makes the probe a discriminator rather than another ranking."
+     },
+     {
+      "hypothesis": "H-which-directions (independent, cheaper corroborator if the re-run is deferred)",
+      "axis": "representation",
+      "sketch": "Subspace-overlap readout between the SD-106 code and PCA-32 on the SAME P0a buffer (principal angles / projection-overlap of the two rank-32 subspaces), reported alongside the existing post-hoc R^2. A high decodability parity with a LOW subspace overlap is the direct signature of a which-directions deficit and needs no consumer-rung run; a high overlap on both would leave only the transfer-steepness reading. Encoder-plane only, no decoder ladder. Offered because it attacks the same question on a DIFFERENT design axis rather than being a power-bump of the first probe."
+     }
+    ],
+    "note": "GOV-FANOUT-1. EMITTED after red-team F5, reversing the first draft's `fanout_recommendation: null` and its `mystery (known data)` node classification. The first draft was internally inconsistent: its own Section 2 said 'this run does not exclude (a)', while its fanout_note said the bottleneck was 'not a live >=2-hypothesis discrimination' and its routing_note said the missing thing was 'not a fact one more probe would fetch'. It is exactly a fact one probe fetches. Under the CLAUDE.md razor the (a)/(b) leg is `complex (probe-gated) / puzzle (known rules)`, not `mystery (known data)`. The two probes sit on different design axes (readout / representation) and each declares its null. Per Step 9b these live hypotheses are pre-registered into the frozen ledger BEFORE the discriminating experiment runs -- see hypothesis_space_ledger_pending."
+   },
+   "learning_extracted": [
+    "A DECOMPOSITION can smuggle in the same non-uniqueness as a transferred BAR, and this run did. The driver's own red-team record kills a transferred bar because 'the equally defensible RESIDUAL transfer implies 0.933 ... and the two give OPPOSITE routes on the authoring seed' -- and then replaces it with a shortfall decomposition that measures the budget factor on `posthoc_ols_r2` while anchoring the gap at `sgd_head_r2`. Substituting the identities, metric_share = 1 - (1 - parity)*pca32/gap, so the criterion fires precisely when the code is near the ceiling AND the SGD head is far below the code -- and the second condition IS head under-training, which is what the budget hypothesis asserts. Both branches are budget; one of them is labelled metric. The general lesson: when a routing rests on shares of a gap, the ORDER in which the factors are removed is a free parameter, and an attribution is only reportable if it is either order-invariant or reported under every ordering. The order-symmetric partition (the standard remedy) is what this autopsy routes on.",
+    "The SD-106 preservation term works at its own objective, and this is the part that is ORDER-FREE. Under a post-hoc OLS probe on the same frozen latent, buffer and held-out split the code reaches 0.951 (as-shipped) to 0.980 (at ~3.3x the optimiser steps) of the achievable 32-dim linear ceiling, and beats the paired OFF arm on 3/3 seeds at EVERY budget. `preservation_holdout.r2` is bounded by the head's convergence as well as by the code, so it is a LOWER BOUND on linear-decodable content, never an estimate of it -- and nothing at its emission site says so.",
+    "AN EFFECT SIZE MEASURED AT ONE BUDGET IS NOT THE EFFECT SIZE. The mechanism's measured advantage over its own paired control TRIPLES across the swept budget (+0.0169 -> +0.0315 -> +0.0509 median) while the control's own parity stays flat -- so the acceptance measurement that produced the FAIL was taken at roughly one third of the mechanism's within-range effect. The contrast is order-free (a straight paired difference at each budget), which is exactly why it survives the decomposition problem above. Any acceptance measurement of a trained mechanism should report its contrast at more than one training budget, or state that it is reporting a lower bound.",
+    "Split 'the budget was too small' into its two coordinates before testing it. Within a 3.3x step range at fixed data and a ~1.7x data range at ~equal steps, the effective coordinate is STEPS: b_steps1200 is best on 3/3 seeds on BOTH statistics, and b_designref -- more data at ~equal steps, the design doc's own reference -- scores below it. The 2x2 is what made this answerable at all.",
+    "Reading an encoder-level result onto a consumer-rung shortfall crosses a measurement plane, and the quotient of the two deficits is NOT a ranking of the explanations. A 0.043 held-out world_obs reconstruction-R^2 deficit and a 0.150 oracle-action-agreement deficit are different DVs in different units with no established transfer function; their ratio (~3.5) is a slope estimated from ONE point pair, and a discrete-action decoder can convert a small reconstruction deficit into a large agreement deficit through decision-boundary geometry alone. The first draft of this artifact used that ratio to call a which-directions deficit 'the more economical account' and escalated it in a learning item to 'strong evidence'; BOTH are withdrawn. The legitimate use of the same slope is the opposite one: as the quantified NULL that makes the steep-transfer reading falsifiable by the probe in fanout_recommendation.",
+    "The SD-106 design doc's headline figures are not on the P0a observation distribution. PCA-32 of the P0a buffer explains 0.888 of world_obs held-out and 0.893 in-sample on seed 42 (cross-seed held-out median 0.886), against the doc's 0.9983/0.9984 -- a third explanation of the original discrepancy that neither V3-EXQ-1023's autopsy nor its routing named, compounding that autopsy's already-recorded recording gap (no committed producer, so the distribution cannot be recovered from the repo at all). Per the Experimental Recording Standard, a design decision resting on a proxy number should mint a minimal committed script for it; failing that, the doc must at least state the distribution.",
+    "A deferral condition must be re-checked against the run commissioned to discharge it, not assumed discharged by that run's PASS. V3-EXQ-1023 deferred the generic-vs-task-relevant biology question on the explicit ground that a training-budget explanation was live and cheaply testable first. The first draft of this artifact read V3-EXQ-1041's PASS as discharging that condition and promoted the lit-pull to primary. It does not: the budget explanation survives the order-symmetric partition alive, so the deferral condition is still unmet and the lit-pull is CO-primary with the probe that would discharge it. A diagnostic returning a clean, well-instrumented PASS is not the same thing as a diagnostic returning the answer its commissioner needed."
+   ],
+   "routing": "queue-experiment",
+   "routing_co_primary": "lit-pull",
+   "routing_note": "REVISED after red-team F1/F2/F4/F5. Node classification: `complex (probe-gated) / puzzle (known rules)` -- NOT the first draft's `mystery (known data)`. The frame is well-posed and a FACT is missing, and one probe on an existing harness fetches it. PRIMARY: `/queue-experiment` -- re-run `experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` UNCHANGED against an SD-106-ON warmup at P0a `epochs=40` (the b_steps1200 cell this run already executed 6 times; one config knob, no new driver, same 3 seeds). It is a SAME-QUESTION re-measurement on a raised training budget, so it takes an alphabetic-suffix iteration of the acceptance measurement rather than a new EXQ number, and it discharges three things at once: the budget question F1 re-opened, the (a)-vs-(b) discrimination with a ~0.09 predicted separation, and the acceptance DV itself, which has only ever been measured at ~1/3 of the mechanism's within-range effect size. CO-PRIMARY, and NOT promoted above it: `/lit-pull` on generic vs task-relevant/behaviourally-conditioned selective compression at sensory encoding bottlenecks. It is a real and confirmed corpus gap, but its promotion to sole primary in the first draft rested on the order-dependent budget share and on the cross-plane ratio, both withdrawn. GOVERNANCE MUST RECONCILE IT AGAINST THE EXISTING OPEN CHIP rather than spawning a second -- see recommended_writes_for_governance. SECONDARY, bookkeeping only, no build: the substrate_queue `amend` above. REFUSED: a re-queue of this diagnostic; a `preservation_weight` sweep (V3-EXQ-1023's refusal stands). NOT REFUSED: the acceptance re-run at a raised P0a budget (the first draft refused this; withdrawn with F1), and a different-mechanism redesign under a new sd_id once the lit-pull has grounded it."
+  }
+ ],
+ "cluster_pattern": null,
+ "granularity_debt_trigger": {
+  "fires": false,
+  "tagging_targets": 1,
+  "tagging_files": 1,
+  "alignment_distribution": {
+   "weakened": 1
+  },
+  "note": "granularity_debt_cluster.py SD-106 reports 1 target across 1 file -- failure_autopsy_V3-EXQ-1023_2026-09-14 (claim_alignment bucket `weakened`). With this target SD-106 would carry 2, meeting the bare second-or-later count, but the reader's two-part test is not satisfied. (a) The signatures do not differ STRUCTURALLY: this is a lineage, not a recurrence -- V3-EXQ-1041 is the probe V3-EXQ-1023's own confirmed routing commissioned, and it partially explains 1023's result rather than circling SD-106 from a second independent angle. (b) This target's claim_alignment buckets as `unclear`, so the distribution stays weakened=1. RE-CHECKED after red-team F10 flagged that leg (b) depended on the direction field: leg (a) holds INDEPENDENTLY of the direction, and the direction change from `mixed` to `non_contributory` does not move the bucket (claim_alignment still leads with `unclear`), so the trigger does not fire either way. Firing here would be the documented over-fire: measurement/attribution debt read as granularity debt. Stamped honestly for GOV-GRAN-1's corpus sweep."
+ },
+ "pre_routing_checks_7b": {
+  "run": true,
+  "fires": [],
+  "inapplicable": [],
+  "fire_count": 0,
+  "note": "autopsy_pre_routing_checks.py --json, as_of 2026-09-16T12:18:33Z (generated_utc). fire_count 0, fires [], inapplicable [] -- on the FIRST draft (run twice there, the first pass returning C5 `inapplicable -- no sibling .md narrative`) AND re-run on THIS revision after the routing changed. C1-strict is now live where it was vacuous before (the routing recommends an experiment), and it correctly does not fire: the recommended probe is a re-run of the EXISTING v3_exq_1010_zworld_overcapacity_decoder_sweep.py driver at a different P0a config, which is the intended shape -- no new driver is being asked for, so 'a driver already exists' is the point rather than a duplicate. THE LIMIT OF THIS CLEAN REPORT, stated because the red-team pass demonstrated it: 7b found nothing on the first draft, and the Step 7c pass then returned CONTESTED with 10 findings, 5 of which changed routing or writes. In particular C1-strict was recorded in the first draft as 'no fire -- the routing recommends no experiment, it recommends a /lit-pull', i.e. the draft NOTICED that 7b was structurally blind to a duplicate lit-pull and did not compensate -- and an open duplicate chip did in fact exist (F4). A clean 7b is not evidence of a clean artifact."
+ },
+ "red_team": {
+  "run": true,
+  "model": "claude-opus (Opus). SAME-MODEL PASS, recorded as such: this draft was itself written on Opus 5, so the cross-model independence the skill prefers was NOT obtained. Per the skill, a same-model pass is still a valid pass and must be named as one at the gate so a CONTESTED/CONFIRMED verdict is not later read as cross-model. Independence was preserved on the other axis the skill names -- the reviewer was given the raw evidence and the stated conclusion with the drafting session's reasoning withheld, read the JSON before the .md, and recomputed load-bearing numbers from the manifest's own cells.",
+  "verdict": "CONTESTED",
+  "report": "scratchpad/redteam_1041.md (session-local; not a repo path)",
+  "confirmers_rerun_by_author": "ALL TEN, independently, before any revision. Every one held. The reviewer also verified in the draft's favour that sgd_head_r2 and posthoc_ols_r2 are on the same data and the same split (exact mean_predictor_mse identity, 0.0 on 3/3 SD-106 b_shipped cells) and that the PCA-32 ceiling is on the same data (byte-identical across tracks at the same seed/budget), which were the two ways the central measurement could have been wrong.",
+  "findings": [
+   {
+    "id": "F1",
+    "summary": "The metric-vs-budget verdict is set by the decomposition's ORDER, not by the data. budget_share is measured on `posthoc_ols_r2` while `gap` is anchored at `sgd_head_r2`, so head under-training -- which IS budget -- is booked to the metric share by construction.",
+    "changes": "routing",
+    "confirmer_result": "HOLDS. Recomputed from the shipped manifest: budget-first shares 0.799640/0.768843/0.762308 (median 0.7688), routing `under_budgeted_p0a`; order-symmetric metric 0.4044 / budget 0.4748 / residual 0.1045, leader margins 0.094899/0.077580/0.042204, all BELOW the pre-registered 0.15 on 3/3 seeds. Corroborated: sgd_head_r2 medians 0.746398 -> 0.806392 -> 0.853978 across the step sweep, still rising and still 0.014 below the post-hoc probe at the top, so the head has NOT saturated; and at b_designref budget alone closes 0.396477/0.361945/0.444262 of the gap.",
+    "disposition": "APPLIED IN FULL. The artifact now reports all three partitions and routes on the order-symmetric one (`no_dominant_explanation`, the driver's own pre-registered tie branch). H-under-budgeted-p0a is NOT eliminated -- it stays `alive` in the ledger block. The third refused_requeue clause is WITHDRAWN (recorded, not deleted, in re_derive_brake.refusal_note). The lit-pull is CO-primary, not promoted. four_layer_diagnosis.scale regraded from `adequate WITHIN the swept range` to `partial / likely insufficient`. failure_location's MEASURES attribution and its claim to settle V3-EXQ-1023's open Step 8 tension are both WITHDRAWN."
+   },
+   {
+    "id": "F2",
+    "summary": "The mechanism's measured effect over its own paired control triples across the swept budget and only the smallest value was reported -- the one the withdrawn refusal was built on.",
+    "changes": "routing",
+    "confirmer_result": "HOLDS. SD-106 minus OFF post-hoc medians: +0.016931 (b_shipped) / +0.031490 (b_steps600) / +0.050941 (b_steps1200) / +0.027747 (b_designref), positive 3/3 seeds at every budget. OFF parity flat at 0.924470/0.925960/0.920761/0.930338 while SD-106 parity rises 0.951259 -> 0.964158 -> 0.979792. The contrast is order-free.",
+    "disposition": "APPLIED IN FULL. All four budgets are now reported in the evidence-quality note, the failure_record_entry, the four-layer table and the .md. The named discriminator re-run (v3_exq_1010 sweep unchanged, SD-106-ON warmup, P0a epochs=40) is now the PRIMARY routing with its two quantified predictions (~0.8068 vs ~0.7192, separation ~0.0876), recomputed independently here from the two known transfer points."
+   },
+   {
+    "id": "F3",
+    "summary": "bears_on names an already-registered ledger question (`zworld_actor_adequacy_locus`) whose H-B/H-F legs are this run's readings (a) and (b); the growth_restriction check missed it because it was a string test over qid/claims fields.",
+    "changes": "writes",
+    "confirmer_result": "HOLDS on the attachment. The question exists with 5 hypotheses, `growth_restriction` absent (so nothing gates), 2 prior labelled fanout_growth_events, initial_frozen_count 5 / initial_frozen_count_at_registration 2; H-B-consumer-learning `eliminated` 2026-09-05 and H-F-content-discarded-at-encode `confirmed` 2026-09-09. The V3-EXQ-1023 .md does state the linkage explicitly.",
+    "disposition": "APPLIED, with ONE RECORDED PARTIAL DISAGREEMENT. The standalone new question is withdrawn; the legs now attach to `zworld_actor_adequacy_locus` via TWO labelled fanout_growth_events, and the growth_restriction check was re-run on THAT question (absent -> proceed). DISAGREEMENT, stated with the specific reason rather than dropped: the reviewer's mapping of reading (a) onto H-B-consumer-learning is approximate, not exact. H-B asserts the consumer cannot LEARN the mapping and is eliminated; reading (a) asserts the consumer CAN learn it and the transfer is simply steep. These are different propositions on the same locus, so H-B's elimination does NOT dispose of (a), and the new leg is registered separately with that distinction stated in its own desc. Likewise H-F is `confirmed` for the SHIPPED, pre-SD-106 encoder -- SD-106 is the build H-F's diagnosis motivated -- so it is not by itself a confirmation of the which-directions reading for the SD-106 encoder. The reviewer offered both points as support 'cutting in the draft's favour'; taking them at full strength would have been the easier move and would have overclaimed."
+   },
+   {
+    "id": "F4",
+    "summary": "The /lit-pull routed as PRIMARY is already spawned and OPEN, and the duplicate check handed to governance points at two registries that cannot see it. LIT-0132 (SD-106 literature_review, proposed) also exists.",
+    "changes": "writes",
+    "confirmer_result": "HOLDS. `chip_ledger.py list --status open` returns `task_861ccb12 [open] chip_ref=chip-20260916-sd106-compression-litpull`, unclaimed, spawned 2026-09-16T04:37:08Z -- 7h41m before this artifact's generated_utc -- with a prompt citing this very run. `experiment_proposals.v1.json` on origin/master carries LIT-0132 (claim_id SD-106, proposal_type literature_review, status proposed, objective 'Improve literature grounding and confidence for SD-106', executed_queue_id null) -- a generic auto-stub that does not name the compression question.",
+    "disposition": "APPLIED IN FULL. The governance instruction now says RECONCILE against chip-20260916-sd106-compression-litpull and LIT-0132 and DO NOT SPAWN A SECOND, and the igw-ledger check is retained only as an additional (insufficient) check with its blindness stated. Surfaced for the user rather than adjudicated here: an open chip spawned off this run's not-yet-ratified routing already exists. This session did not spawn it and does not spawn anything."
+   },
+   {
+    "id": "F5",
+    "summary": "`fanout_recommendation: null` and the `mystery (known data)` node classification contradict the artifact's own Section 2, which says the run does not exclude reading (a). Learning item 5 escalated the same arithmetic to 'strong evidence'.",
+    "changes": "routing",
+    "confirmer_result": "HOLDS -- internal, no external state needed. The first draft's Section 2 ('this run does not exclude (a)') against its own fanout_note ('not a live >=2-hypothesis discrimination') and routing_note ('not a fact one more probe would fetch').",
+    "disposition": "APPLIED IN FULL. Node reclassified to `complex (probe-gated) / puzzle (known rules)`; a populated `fanout_recommendation` now names three live hypotheses and two probes on different design axes (readout / representation), each with a declared null. The 'strong evidence' escalation in the learning item is rewritten as an explicit withdrawal."
+   },
+   {
+    "id": "F6",
+    "summary": "The ~3.5x ratio of two incommensurable deficits (a held-out reconstruction-R^2 gap and an oracle-action-agreement gap) was given causal magnitude and used to rank the two readings.",
+    "changes": "partially routing",
+    "confirmer_result": "HOLDS. The two quantities are different DVs in different units with no established transfer function, and the slope is estimated from one point pair. The reviewer graded honestly in the draft's favour that V3-EXQ-1023's own capacity ladder partly defends it (mlp2048 buys only ~0.005-0.026 over mlp128 and does not close 0.150) and that H-B is eliminated -- so 'the consumer cannot learn it' is excluded; what is not excluded is a steep monotone transfer.",
+    "disposition": "APPLIED. The economy ranking is WITHDRAWN wherever it appeared (biological_reference.divergence, the learning item, the .md). The which-directions reading is now stated as LIVE and worth grounding, explicitly NOT ranked above the transfer reading. The same slope is retained for the one use that does not rank anything: generating H-transfer-amplification's falsifiable null (~0.8068) in fanout_recommendation, with that distinction stated at the point of use."
+   },
+   {
+    "id": "F7",
+    "summary": "Recommended write #2, specified as a field replacement of `validation_experiment`, would destroy the governance-pre-set acceptance target, which is prose inside that same field. A third stale site was also unnamed.",
+    "changes": "writes",
+    "confirmer_result": "HOLDS. On origin/master SD-106's validation_experiment is a prose block beginning 'V3-EXQ-1015 -- re-runs ... ACCEPTANCE TARGET (pre-set by governance gov-20260911, not invented at build time): ... >= 0.85 held-out oracle-action agreement at the consumer rung (x734.PPOPolicyNet at PPO_TRUNK_HIDDEN) on a seed majority ...'. Third stale site confirmed: REE_assembly/docs/architecture/sd_106_generic_bottleneck_variance_preservation.md line 15 ('validation owed -- V3-EXQ-1015') and line 151 ('Queued as V3-EXQ-1015'), while line 104 of the same file already says V3-EXQ-1023.",
+    "disposition": "APPLIED IN FULL. The write is now specified as a LEADING-TOKEN STRING EDIT that preserves every character of the acceptance-target prose, with the exact before/after leading token given, and all THREE stale sites are enumerated."
+   },
+   {
+    "id": "F8",
+    "summary": "The amend silently narrowed unblocks_claims from six entries to five, and its new failure_record_entry would have opened a second `open` item with a target string byte-identical to the 1023 item's, against a DV this run never measured.",
+    "changes": "writes",
+    "confirmer_result": "HOLDS on both. origin/master carries SIX unblocks_claims including 'goal-directed behaviour pathway (entire EXQ-085h..o cluster)'; the failure_record holds the 1010 item (`superseded`) and the 1023 item (`open`), and the first draft's new entry copied the latter's target verbatim at `resolved: open`.",
+    "disposition": "APPLIED IN FULL. All six unblocks_claims restored with a note telling governance to treat the list as unchanged rather than replaced. The new record is re-specified as an ATTRIBUTION NOTE: its `target` disclaims any acceptance target of its own and `resolved` reads `attribution_note`, with an explicit alternative offered (fold the text into the existing 1023 item and append no new record) in case governance prefers to stay inside the existing vocabulary."
+   },
+   {
+    "id": "F9",
+    "summary": "H-anchor-off-distribution was stamped pre-registered at its own resolution instant and sourced to this artifact, which did not yet exist -- admitted only because invariant 2 tests `<=`.",
+    "changes": "writes",
+    "confirmer_result": "HOLDS, and the remedy is cleanly available. `git -C ree-v3 log --diff-filter=A` on the driver gives 2026-09-15T21:33:32+01:00 = 2026-09-15T20:33:32Z (commit febce39), which PRECEDES the run's timestamp_utc 2026-09-15T20:37:43Z by 4m11s. The leg genuinely was pre-registered, by the driver docstring's '=== THE ANCHOR IS NOT REPRODUCIBLE ON THIS DISTRIBUTION -- measured while authoring ===' block.",
+    "disposition": "APPLIED IN FULL, and it simplified the ledger block. pre_registration_source is now the driver path and pre_registered_utc is its git-witnessed first-commit time for all four retrospective legs, which additionally means this leg is ordinary labelled FAN-OUT growth (invariant 3a, git-witnessed) rather than a Mode C discovery -- the first draft's framing of it as a same-edit discovery was wrong for the same reason F9 identifies: it WAS anticipated, before the run, in a committed document."
+   },
+   {
+    "id": "F10",
+    "summary": "`recommended_evidence_direction: mixed` sits against the manifest's own `unknown` and against the artifact's own claim-layer section, which says the run did not test the claim at all.",
+    "changes": "a recommended field",
+    "confirmer_result": "HOLDS. Manifest evidence_direction is `unknown`.",
+    "disposition": "APPLIED. Direction changed to `non_contributory` at both the target level and in per_claim_recommendation, with the reasoning recorded in recommended_evidence_direction_note and the skill's non_contributory pairing rule discharged (pending_retest_after_substrate stays true; narrow_supports_flag set true; the interpretable signal is stated explicitly in learning_extracted). The granularity trigger leg that depended on the direction was re-checked and the trigger still does not fire, on the independent lineage leg."
+   }
+  ],
+  "hygiene_findings": [
+   {
+    "id": "H1",
+    "summary": "JSON stated the under-read as 0.0977; the manifest's own posthoc_minus_sgd is 0.0979246225. The .md was already correct.",
+    "disposition": "FIXED at both JSON sites -- now 0.0979/0.0967/0.1289."
+   },
+   {
+    "id": "H2",
+    "summary": "'~0.886 held-out / ~0.893 in-sample' mixed bases -- 0.886323 is the cross-seed held-out MEDIAN, 0.892805 is SEED 42's in-sample.",
+    "disposition": "FIXED on a single consistent basis everywhere, including the permanent-substrate-doc write: seed 42's pair 0.888 held-out / 0.893 in-sample, labelled as seed 42, with the cross-seed held-out median 0.886 given alongside."
+   },
+   {
+    "id": "H3",
+    "summary": "The medians-sum-to-0.9899 note is correct and self-flagged.",
+    "disposition": "No action; retained."
+   },
+   {
+    "id": "H4",
+    "summary": "narrow_supports_flag false while its own note described the positive leg as single-pathway.",
+    "disposition": "FIXED -- flag set true, consistent with the note and with the F10 direction change."
+   },
+   {
+    "id": "H5",
+    "summary": "The live substrate_queue implementation_hint says 'the fourth on this entry' while failure_record holds 2 -- pre-existing, inherited from the SD-018 lineage, and survives this amend because the amend supersedes implementation_hint_2026_09_15, not the older hint.",
+    "disposition": "Recorded for governance in recommended_writes_for_governance; NOT silently fixed by this autopsy, which writes nothing."
+   },
+   {
+    "id": "H6",
+    "summary": "Outcome/failed_criterion prose accurate.",
+    "disposition": "No action."
+   },
+   {
+    "id": "H7",
+    "summary": "Provenance/instrument reporting exemplary and unbroken.",
+    "disposition": "No action; the instrument's soundness is what makes the F1 re-partition possible at all."
+   }
+  ],
+  "findings_rejected": [],
+  "findings_partially_disputed": [
+   "F3 -- see its disposition: the attachment is applied, the reviewer's (a)=H-B and (b)=H-F equivalences are recorded as approximate and are NOT relied on."
+  ]
+ },
+ "hypothesis_space_ledger_pending": {
+  "mode": "Mode A + Mode B against an EXISTING question -- labelled FAN-OUT GROWTH (invariant 3a) on `zworld_actor_adequacy_locus`. REVISED after red-team F3 and F9: the first draft opened a STANDALONE NEW QUESTION and booked zero growth against the question its own bears_on names. That is withdrawn. Staging mode: DRAFTED ONLY, nothing was written to hypothesis_space_registry.v1.json or its three derive-only siblings.",
+  "target_qid": "zworld_actor_adequacy_locus",
+  "why_not_a_new_question": "The first draft's justification was a STRING test -- no registered question mentions SD-106 / V3-EXQ-1023 / V3-EXQ-1041 / sd106 in any field. The string test is accurate (independently reproduced: 0 hits across all 60 questions) and the conclusion drawn from it was false: attachment is by SUBJECT, and this target's own `bears_on` names `zworld_actor_adequacy_locus`, which the registry keys to MECH-457/INV-088 rather than to SD-106. SD-106 is the build that question's confirmed H-F diagnosis named, and V3-EXQ-1023's .md states the linkage explicitly. Opening a parallel question would have split one lineage across two denominators and let this run's legs escape growth accounting entirely.",
+  "growth_restriction_check": "RE-RUN ON THE CORRECT QUESTION after F3. `zworld_actor_adequacy_locus` carries NO top-level `growth_restriction` (absent/None) -> proceed normally with the ordinary Mode A/3a mechanics, nothing to carry to the Step 8 gate on this axis. (The registry's only non-empty growth_restriction is on `competence_floor`, which this work does not touch.) Recorded because the first draft's clean restriction verdict was reached for the wrong reason -- it concluded 'no leg attaches to an existing question', which was false; the correct finding is 'a leg does attach, and that question has no restriction'.",
+  "denominator_move": "initial_frozen_count 5 -> 11 (delta 6, in two labelled events of 4 and 2, which sum to the move). `initial_frozen_count_at_registration` stays 2 and is NOT touched, per invariant 3a(c).",
+  "axis_map_check": "All axis labels used are already rows in the registry's human-owned axis_families.map: `measurement` -> instrumentation, `curriculum` -> process, `learning-signal` -> constitution, `instrumentation` -> instrumentation, `readout` -> representation, `representation` -> representation. No new family row is owed, so convergence_class is not forced to `indeterminate`.",
+  "circling_check": "REQUIRED by invariant 3a and stated rather than skipped. TWO of the new legs re-enter families that already hold ELIMINATED legs on this question, which is the `circling` signature -- the leg-level analogue of the re-derive brake -- so each is justified explicitly. (1) `H-anchor-off-distribution` (axis instrumentation) re-enters the family of `H-E-channel-input-capacity` (eliminated 2026-09-07). It is not that leg under a new name: H-E asserted a 250->32 channel-INPUT capacity bound and was eliminated by a PCA-32 at the encoder's own width clearing the bar; H-anchor-off-distribution asserts nothing about capacity, only that the design-time anchor was measured on a different observation DISTRIBUTION from the P0a buffer. (2) `H-transfer-amplification` (axis readout) re-enters the family of `H-B-consumer-learning` (eliminated 2026-09-05). It is not that leg under a new name either: H-B asserted the consumer cannot LEARN the representation-to-action mapping; this leg asserts the consumer CAN learn it -- H-B's elimination is a PREMISE of it -- and that the mapping from decodability to agreement is simply steep. The remaining four legs sit in instrumentation / process / constitution / representation without re-entering an eliminated family. Governance should read the resulting `convergence_class` alongside `h_fanout_recurrence`: this is the question's THIRD fan-out growth event, so it has not converged, and the growing denominator deflates its headline narrowing ratio precisely now.",
+  "invariant_check": "(1) initial_frozen_count is bumped to 11 in the same edit that adds the 6 legs, matching len(hypotheses). (2) pre_registered_utc <= resolved_utc on every resolved leg: the four retrospective legs carry 2026-09-15T20:33:32Z (the driver's git-witnessed first-commit time, ree-v3 febce39) against resolved_utc 2026-09-15T20:37:43Z (the run's manifest timestamp_utc) -- a real 4m11s lead, not a zero-lead stamp, and witnessed by git rather than asserted. The two prospective legs are unresolved. (3) satisfied via the labelled 3a path: both events appear in fanout_growth_events[], every added leg carries pre_registration_source, and initial_frozen_count_at_registration is preserved at 2. (3a)(a) is met for the retrospective event because its source is a document committed BEFORE the run resolved, and for the prospective event because those legs' adjudicating run has not run at all. (4)/(5) no leg is stamped `eliminated` or `split` in this edit; the two `confirmed` legs both carry control_passed true. (7) decision.decidable is left at the question's existing value and decision_log_ref is untouched -- human-owned.",
+  "fanout_growth_events_to_append": [
+   {
+    "recorded_utc": "2026-09-16T12:18:33Z",
+    "pre_registered_utc": "2026-09-15T20:33:32Z",
+    "fanout_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+    "fanout_source_note": "Git witness: ree-v3 febce39, first commit of this path at 2026-09-15T21:33:32+01:00 = 2026-09-15T20:33:32Z, which precedes the adjudicating run's timestamp_utc 2026-09-15T20:37:43Z. The driver's docstring pre-registers all four legs -- the three attributable outcomes as its own INTERPRETATION GRID, and the anchor-distribution finding under '=== THE ANCHOR IS NOT REPRODUCIBLE ON THIS DISTRIBUTION -- measured while authoring ==='. Three of the four (metric / budget / mechanism-defect) additionally carry an EARLIER witness: the CONFIRMED failure_autopsy_V3-EXQ-1023_2026-09-14.json, committed REE_assembly 8418b0ed762 at 2026-09-14T17:13:28Z, whose routing enumerated them. The driver is cited as the single source because it is the one document that witnesses all four.",
+    "added_hids": [
+     "H-metric-mismatch",
+     "H-under-budgeted-p0a",
+     "H-mechanism-defect",
+     "H-anchor-off-distribution"
+    ],
+    "delta": 4,
+    "note": "Third fan-out growth event on this question. V3-EXQ-1010's H-F leg (content discarded at encode) is CONFIRMED and SD-106 is the build that diagnosis named; this portfolio opens the next layer -- why SD-106's own preservation readout falls short of the achievable ceiling. Registered retrospectively-but-witnessed: all four legs were pre-registered in a committed driver before the adjudicating run, and the run adjudicated them in the same cycle."
+   },
+   {
+    "recorded_utc": "2026-09-16T12:18:33Z",
+    "pre_registered_utc": "2026-09-16T12:18:33Z",
+    "fanout_source": "failure_autopsy_V3-EXQ-1041_2026-09-16.json",
+    "added_hids": [
+     "H-transfer-amplification",
+     "H-which-directions"
+    ],
+    "delta": 2,
+    "note": "Fourth fan-out growth event on this question, and a GOV-FANOUT-1 portfolio in the strict sense: these two legs are the live discrimination V3-EXQ-1041 leaves behind, pre-registered BEFORE their adjudicating run exists (Mode A). Their discriminator is the v3_exq_1010 sweep unchanged against an SD-106-ON warmup at P0a epochs=40, with declared nulls ~0.8068 and ~0.7192. See circling_check for why H-transfer-amplification is not the eliminated H-B-consumer-learning under a new name."
+   }
+  ],
+  "fanout_growth_note_to_set_on_question": "Third and fourth fan-out growth events (2026-09-16, V3-EXQ-1041). This question has not converged: its denominator has now moved 2 -> 5 -> 11 across four events, so its headline narrowing ratio is deflated precisely now, and one leg in each of two families re-enters territory that already holds an eliminated leg (justified per the autopsy's circling_check, not silently). Read convergence_class alongside h_fanout_recurrence.",
+  "hypotheses_to_append": [
+   {
+    "hid": "H-metric-mismatch",
+    "label": "The reported metric under-reads the code",
+    "desc": "`preservation_holdout.r2` is a jointly-SGD-trained head's own holdout R^2, bounded by that head's convergence as well as by the code's content, so it is not the same statistic as the post-hoc linear-decodability probe the design-time figures used. Part of the apparent shortfall is the head-convergence deficit.",
+    "axis": "measurement",
+    "basis": "Pre-registered as outcome (1) `metrics_never_comparable` by the CONFIRMED failure_autopsy_V3-EXQ-1023_2026-09-14 routing and implemented as criterion C1 in the driver's INTERPRETATION GRID.",
+    "pre_registered_utc": "2026-09-15T20:33:32Z",
+    "pre_registration_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+    "adjudicating_runs": [
+     "V3-EXQ-1041"
+    ],
+    "resolution": {
+     "state": "confirmed",
+     "resolving_runs": [
+      "V3-EXQ-1041"
+     ],
+     "evidence_direction": "non_contributory",
+     "epistemic_category": "standard",
+     "self_route_label": "metrics_never_comparable",
+     "control_passed": true,
+     "non_degenerate": true,
+     "met_elimination_bar": false,
+     "resolved_utc": "2026-09-15T20:37:43Z",
+     "basis": "CONFIRMED IN ITS NARROW FORM ONLY, and the scope limit is the point. Order-free and measured: the post-hoc OLS probe reads the same code 0.0979/0.0967/0.1289 absolute R^2 above the SGD head on the same buffer and the same held-out split, so the two statistics are demonstrably not the same and the reported one under-reads. NOT confirmed: that this mismatch DOMINATES the shortfall. The shipped decomposition's 0.705 metric share is order-dependent (it measures budget on posthoc_ols_r2 while anchoring the gap at sgd_head_r2, so head under-training is booked here by construction); budget-first the same cells give this leg 0.104 and order-symmetric 0.404, with no leader clearing the pre-registered 0.15 margin. `met_elimination_bar` is false: confirming this leg does not eliminate its rivals."
+    }
+   },
+   {
+    "hid": "H-under-budgeted-p0a",
+    "label": "P0a is under-budgeted and the preservation head has not converged",
+    "desc": "The preservation head trained for 348-396 optimiser steps on 2364-2716 buffered observations, ~60% of the design doc's own named 600-step/4000-observation reference on both coordinates; more budget would close the gap.",
+    "axis": "curriculum",
+    "basis": "Pre-registered as outcome (2) `under_budgeted_p0a`; grounded in V3-EXQ-1023's manifest cells (p0a_n_steps / p0a_n_buffered / p0a_final_loss 74-78 vs the OFF arm's 19).",
+    "pre_registered_utc": "2026-09-15T20:33:32Z",
+    "pre_registration_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+    "adjudicating_runs": [
+     "V3-EXQ-1041",
+     "the owed v3_exq_1010 re-run at P0a epochs=40"
+    ],
+    "resolution": {
+     "state": "alive",
+     "resolving_runs": [
+      "V3-EXQ-1041"
+     ],
+     "evidence_direction": "non_contributory",
+     "epistemic_category": "standard",
+     "self_route_label": "metrics_never_comparable",
+     "control_passed": true,
+     "non_degenerate": true,
+     "met_elimination_bar": false,
+     "resolved_utc": null,
+     "basis": "EXPLICITLY NOT ELIMINATED, reversing this autopsy's own first draft (which stamped it `eliminated` with the full bar on the strength of the order-dependent 0.181 budget share -- withdrawn under red-team F1, recorded rather than deleted). Repartitioned budget-first the identical cells give this leg 0.799640/0.768843/0.762308 (median 0.769), leading the runner-up on 3/3 seeds and routing `under_budgeted_p0a` at the same pre-registered 0.15; order-symmetric it holds 0.475, the largest of the three, with no leader clearing the margin. Two corroborating order-free facts: the head has NOT saturated at the top of the sweep (sgd_head_r2 medians 0.746 -> 0.806 -> 0.854, still rising at ~1160-1320 steps and still 0.014 below the post-hoc probe there), and at the design doc's own named reference budget it alone closes 0.362-0.444 of the gap on the reported statistic. Per the state-mapping table an uninformative-on-this-leg run narrows nothing: state stays `alive`, with resolving_runs and basis recorded. Its discriminator is the owed v3_exq_1010 re-run at P0a epochs=40."
+    }
+   },
+   {
+    "hid": "H-mechanism-defect",
+    "label": "A genuine mechanism or implementation defect below the achievable ceiling",
+    "desc": "Neither the metric nor the budget explains the shortfall: the preservation term either does not reach the code at all (inert at the DV, despite a non-zero bypass norm) or reaches it and undershoots the achievable ceiling. Two different builds, split by the paired OFF comparison.",
+    "axis": "learning-signal",
+    "basis": "Pre-registered as outcome (3) and split in two by the driver's own red-team finding F2, so that one 'build fix' label could not cover two different builds.",
+    "pre_registered_utc": "2026-09-15T20:33:32Z",
+    "pre_registration_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+    "adjudicating_runs": [
+     "V3-EXQ-1041"
+    ],
+    "resolution": {
+     "state": "split",
+     "resolving_runs": [
+      "V3-EXQ-1041"
+     ],
+     "evidence_direction": "non_contributory",
+     "epistemic_category": "standard",
+     "self_route_label": "metrics_never_comparable",
+     "control_passed": true,
+     "non_degenerate": true,
+     "met_elimination_bar": true,
+     "resolved_utc": "2026-09-15T20:37:43Z",
+     "children": [
+      {
+       "label": "mechanism_defect_inert_at_dv",
+       "state": "eliminated"
+      },
+      {
+       "label": "mechanism_defect_below_ceiling",
+       "state": "alive"
+      }
+     ],
+     "basis": "SPLIT, not wholly eliminated -- revised from the first draft's blanket `eliminated` after red-team F1. The INERT sub-shape is positively and ORDER-FREELY eliminated: SD-106 beats the paired OFF arm's post-hoc R^2 on 3/3 seeds at EVERY budget (+0.016931/+0.031490/+0.050941/+0.027747 medians), with the margin tripling across the sweep while OFF parity stays flat, and the bypass norm is 4.133, matching V3-EXQ-1023's recorded 4.13-4.37. The BELOW-CEILING sub-shape stays ALIVE: residual_share is 0.104 under every ordering (it is the order-invariant term) and so is never dominant, but the code still sits 0.043 (as-shipped) / 0.018 (best budget) absolute below PCA-32 -- parity 0.951 / 0.980, not 1.0 -- and a small non-dominant shortfall is not an absent one. The elimination bar is met for the eliminated child on order-free evidence."
+    }
+   },
+   {
+    "hid": "H-anchor-off-distribution",
+    "label": "The design-time anchor was never on this observation distribution",
+    "desc": "The SD-106 design doc's 0.9983/0.9984 PCA-32 anchor and its 0.9974/0.9978 preservation figures were measured on a different observation distribution from the P0a rollout buffer, so the original discrepancy is partly an artefact of comparing across distributions. A fourth explanation the predecessor's three outcomes did not name.",
+    "axis": "instrumentation",
+    "basis": "Pre-registered in the driver docstring's '=== THE ANCHOR IS NOT REPRODUCIBLE ON THIS DISTRIBUTION -- measured while authoring ===' block, from a real-config seed-42 cell run before queueing, and re-measured across all three seeds in the run. See circling_check for why this is not the eliminated H-E-channel-input-capacity under a new name.",
+    "pre_registered_utc": "2026-09-15T20:33:32Z",
+    "pre_registration_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+    "adjudicating_runs": [
+     "V3-EXQ-1041"
+    ],
+    "resolution": {
+     "state": "confirmed",
+     "resolving_runs": [
+      "V3-EXQ-1041"
+     ],
+     "evidence_direction": "non_contributory",
+     "epistemic_category": "standard",
+     "self_route_label": "metrics_never_comparable",
+     "control_passed": true,
+     "non_degenerate": true,
+     "met_elimination_bar": false,
+     "resolved_utc": "2026-09-15T20:37:43Z",
+     "basis": "PCA-32 of the P0a rollout buffer reaches 0.888 held-out and 0.893 in-sample on seed 42 -- agreeing to within 0.005, so not a split artefact -- against the design doc's 0.9983/0.9984; cross-seed held-out median 0.886. Confirmed as a fact about the design-time figures' comparability, not as an explanation of the consumer-rung shortfall. The run's own criteria are all ceiling-relative, so this does not move the routing."
+    }
+   },
+   {
+    "hid": "H-transfer-amplification",
+    "label": "The decodability-to-agreement transfer is steep, with no which-directions story",
+    "desc": "The consumer rung converts a small generic-decodability deficit into a large oracle-action-agreement deficit through decision-boundary geometry alone. PREMISED on H-B-consumer-learning's elimination -- this leg asserts the consumer CAN learn the mapping and that the mapping is simply steep, which is a different proposition from H-B's 'the consumer cannot learn it'.",
+    "axis": "readout",
+    "basis": "Live because V3-EXQ-1041 measures only the encoder plane: a 0.043 held-out world_obs reconstruction-R^2 deficit coexists with V3-EXQ-1023's 0.150 oracle-action-agreement deficit to the same PCA-32 anchor, and the two are different DVs in different units with an unmeasured transfer function estimated from ONE point pair.",
+    "pre_registered_utc": "2026-09-16T12:18:33Z",
+    "pre_registration_source": "failure_autopsy_V3-EXQ-1041_2026-09-16.json",
+    "adjudicating_runs": [
+     "the owed v3_exq_1010 re-run at P0a epochs=40"
+    ],
+    "resolution": {
+     "state": "alive",
+     "resolving_runs": [],
+     "evidence_direction": "pending",
+     "resolved_utc": null,
+     "control_passed": false,
+     "non_degenerate": null,
+     "met_elimination_bar": false,
+     "basis": "DECLARED NULL: at the b_steps1200 post-hoc R^2 of 0.868412, an interpolated monotone transfer (slope 3.4655 agreement per unit R^2, from the two known points) predicts consumer agreement ~0.8068."
+    }
+   },
+   {
+    "hid": "H-which-directions",
+    "label": "The code retains as much generic variance as PCA-32 but not the same directions",
+    "desc": "SD-106's generic variance preservation nearly matches a variance-optimal code on generic variance while falling far short of it downstream, because the retained subspace is not the decision-relevant one. The registry analogue H-F-content-discarded-at-encode is CONFIRMED on this question, but for the SHIPPED pre-SD-106 encoder -- SD-106 is the build H-F's diagnosis motivated -- so H-F does not by itself confirm this leg for the SD-106 encoder.",
+    "axis": "representation",
+    "basis": "Live for the same reason as its rival: the encoder-plane and consumer-plane deficits coexist and no run has yet measured the SD-106 encoder at the consumer rung at a raised budget. This is the leg the /lit-pull on generic-vs-task-relevant compression would ground theoretically.",
+    "pre_registered_utc": "2026-09-16T12:18:33Z",
+    "pre_registration_source": "failure_autopsy_V3-EXQ-1041_2026-09-16.json",
+    "adjudicating_runs": [
+     "the owed v3_exq_1010 re-run at P0a epochs=40"
+    ],
+    "resolution": {
+     "state": "alive",
+     "resolving_runs": [],
+     "evidence_direction": "pending",
+     "resolved_utc": null,
+     "control_passed": false,
+     "non_degenerate": null,
+     "met_elimination_bar": false,
+     "basis": "DECLARED NULL: consumer agreement stays at ~0.7192, i.e. NO MOVE from V3-EXQ-1023's shipped measurement, despite the post-hoc R^2 having risen from 0.843123 to 0.868412. Separation from its rival's null ~0.0876 on the shipped DV at 3 seeds."
+    }
+   }
+  ],
+  "apply_instructions": "The confirming interactive session (or the next /governance walk) should: re-read hypothesis_space_registry.v1.json fresh; append the six hypotheses to `zworld_actor_adequacy_locus`.hypotheses[]; append both entries to its fanout_growth_events[]; bump its initial_frozen_count 5 -> 11 in the SAME edit; leave initial_frozen_count_at_registration at 2; add this artifact to its fanout_sources[]; set fanout_growth_note as given; validate the JSON; then run scripts/build_hypothesis_space.py and scripts/check_hypothesis_space_integrity.py from REE_assembly/ and confirm the appends land in the 'Advisory -- labelled fan-out growth' section rather than as a bucket-(b) flag, clearing any (a)/(b)/(c)/(d) flag before committing the registry with its three derive-only siblings.",
+  "applied": true,
+  "applied_utc": "2026-09-16T13:06:22Z",
+  "applied_by": "account-handover-20260916 walkthrough (user confirmed)"
+ },
+ "recommended_writes_for_governance": [
+  "claims.yaml SD-106: append the recommended_evidence_quality_note above; move live_status.evidence.from / .verdict / .as_of onto this artifact. Leave epistemic_category `standard`, diagnostic_evidence_adjudicated `true`, pending_retest_after_substrate `true` and status `implemented` untouched -- all four are already correct.",
+  "claims.yaml SD-106 -- validation_experiment: THIS IS A STRING EDIT OF THE LEADING TOKEN ONLY, NOT A FIELD REPLACEMENT (red-team F7). The field is a prose block whose tail carries the governance-pre-set ACCEPTANCE TARGET and is the only place that target is recorded in claims.yaml. Replace ONLY the leading `V3-EXQ-1015` with `V3-EXQ-1023`, preserving every character from ` -- re-runs ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py UNCHANGED ...` through `... all already exist.` verbatim. Still unapplied from the CONFIRMED failure_autopsy_V3-EXQ-1023_2026-09-14; data hygiene, not evidentiary.",
+  "ree-v3/docs/substrate/SD-106-generic-bottleneck-variance-preservation.md line ~19: `Validation experiment: V3-EXQ-1015 queued` -> V3-EXQ-1023. Same unapplied 1023 recommendation.",
+  "REE_assembly/docs/architecture/sd_106_generic_bottleneck_variance_preservation.md lines 15 and 151: THIRD stale site, named by red-team F7 and not by the first draft. Line 15 reads `**Status:** IMPLEMENTED (2026-09-11; validation owed -- V3-EXQ-1015)` and line 151 `Queued as **V3-EXQ-1015**`; line 104 of the same file already says V3-EXQ-1023, so the file is internally inconsistent.",
+  "REE_assembly/docs/architecture/sd_106_generic_bottleneck_variance_preservation.md, 'Measured effect': state the observation distribution the 0.9974/0.9978/0.9983/0.9984 table was measured on, and note that PCA-32 of the P0a rollout buffer reaches only 0.888 held-out / 0.893 in-sample on seed 42 (cross-seed held-out median 0.886), so those figures are NOT comparable to a P0a acceptance number.",
+  "substrate_queue.json SD-106: amend per recommended_substrate_queue_entry. Treat unblocks_claims, severity and substrate_paths as UNCHANGED (all three are re-enumerated in the entry only so the amend cannot narrow them -- red-team F8). Supersede implementation_hint_2026_09_15. Append the new record as an ATTRIBUTION NOTE, or fold its text into the existing V3-EXQ-1023 item -- do NOT create a second `open` item against a DV this run did not measure. Leave the prior V3-EXQ-1023 item at `open`.",
+  "substrate_queue.json SD-106, separately and pre-existing (red-team H5): the older `implementation_hint` opens 'The failure record below is the fourth on this entry' while failure_record holds two. Inherited from the SD-018 lineage and NOT touched by this amend, which supersedes implementation_hint_2026_09_15 only. Flagged, not fixed -- this skill writes nothing.",
+  "review_tracker.json: mark v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3 reviewed once this artifact is confirmed.",
+  "hypothesis_space_registry.v1.json: apply hypothesis_space_ledger_pending per its apply_instructions -- SIX legs and TWO labelled fanout_growth_events onto the EXISTING question `zworld_actor_adequacy_locus`, NOT a new standalone question (red-team F3).",
+  "FOLLOW-ON, for governance to ratify and chip -- and the duplicate check has CHANGED (red-team F4). The /lit-pull on generic-vs-task-relevant compression IS ALREADY CHIPPED AND OPEN: `chip-20260916-sd106-compression-litpull` (task_861ccb12, status open, claimed_by null, spawned 2026-09-16T04:37:08Z, with a prompt citing this very run). RECONCILE AGAINST THAT CHIP -- do NOT spawn a second. Also reconcile against `LIT-0132` in evidence/planning/experiment_proposals.v1.json (claim_id SD-106, proposal_type literature_review, status proposed, executed_queue_id null), a generic auto-stub that does not name the compression question. The igw_routine_ledger.json / igw_assignments.json check the first draft specified is retained as an ADDITIONAL check but is INSUFFICIENT on its own: both files are clean for this item (assignments 0 hits; ledger one unrelated completed 'Substrate ready: SD-106'), so governance following that instruction alone would check two clean files and create a duplicate.",
+  "FOLLOW-ON, for governance to ratify and chip: the PRIMARY /queue-experiment -- v3_exq_1010_zworld_overcapacity_decoder_sweep.py UNCHANGED against an SD-106-ON warmup at P0a epochs=40, 3 seeds, as an alphabetic-suffix iteration of the acceptance measurement (same question, raised budget). Check the chip ledger for a duplicate before spawning, the same way.",
+  "FOR THE USER, surfaced rather than adjudicated (red-team F4): an open chip spawned off this run's not-yet-ratified routing already existed 7h41m before this artifact was generated. This session did not spawn it and spawns nothing; the 2026-07-30 rule says an autopsy does not chip its own unratified routing, and something did."
+ ],
+ "confirmed_utc": "2026-09-16T13:06:22Z",
+ "confirmed_by": "user, Step 8 gate held interactively in the account-handover-20260916 walkthrough session on 2026-09-16 (AskUserQuestion, recommended disposition selected after the Step 7c red-team findings were confirmed by cheap confirmer and folded in by the drafting agent)",
+ "step8_gate_decisions": {
+  "recorded_utc": "2026-09-16T13:06:22Z",
+  "decision": "CONFIRMED as recommended (Opus SAME-MODEL red-team, 10 findings applied, one partial disagreement recorded): the metric-vs-budget attribution was an artefact of decomposition ORDER; all three partitions reported and the run routed on the order-symmetric one -- the driver's own pre-registered no_dominant_explanation branch. Direction non_contributory (not mixed), category standard, SD-106 fields unchanged, change tail 'stamp this artifact', narrow_supports_flag true; routing queue-experiment PRIMARY (v3_exq_1010 decoder sweep unchanged against an SD-106-ON warmup at P0a epochs=40; declared nulls ~0.8068 vs ~0.7192) with /lit-pull CO-primary reconciled against the already-open chip-20260916-sd106-compression-litpull and LIT-0132 (governance chips the re-run, spawns no second lit-pull); substrate AMEND SD-106 as bookkeeping with the full six-item unblocks_claims and an attribution note rather than a duplicate open record; validation_experiment write specified as a leading-token STRING edit preserving the pre-set acceptance target, third stale site named. Ledger: six legs attached to the EXISTING question zworld_actor_adequacy_locus via two labelled fan-out growth events (5 -> 11), H-under-budgeted-p0a alive, H-mechanism-defect split -- applied at confirmation."
+ }
+}
