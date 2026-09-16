@@ -4049,9 +4049,9 @@
       "summary": "V3-EXQ-1041 (PASS, ree-cloud-2, manifest v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3) measured PCA-32 of the P0a rollout buffer explaining only 0.876-0.886 of world_obs, held-out AND in-sample, against the 0.9983 the SD-106 design doc records for that same object ('PCA-32 of the encoder's own 250-dim input') -- so the design-time anchor was measured on a DIFFERENT observation distribution and the doc's headline 0.9974/0.9978 preservation figures cannot be compared with any number measured on a P0a buffer. The run's own routing is unaffected (every criterion is ceiling-relative and it routed metrics_never_comparable at a 0.524 dominance margin), but the SD-106 design doc's 'Measured effect' table should be annotated with the distribution it was measured on, or re-derived, before any future claim leans on its absolute values.",
       "raised_by_session": "science-batch3-20260915",
       "raised_at": "2026-09-15T21:28:47Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-16T13:47:55Z",
+      "resolution_note": "governance-20260916: RESOLVED by annotation. docs/architecture/sd_106_generic_bottleneck_variance_preservation.md 'Measured effect' table now carries a distribution caveat (design-time obs R^2 0.9974-0.9984 vs PCA-32 of the P0a rollout buffer 0.888/0.893 on seed 42, cross-seed held-out median 0.886 -- not comparable to any P0a acceptance number); stale V3-EXQ-1015 references corrected to V3-EXQ-1023 at 3 sites (doc lines 15/151, claims.yaml validation_experiment, ree-v3 substrate doc). Re-derivation on the P0a distribution is NOT done -- deferred until a future claim needs the absolute values. Applied with confirmed failure_autopsy_V3-EXQ-1041_2026-09-16."
     },
     {
       "flag_id": "GFLAG-0289",
