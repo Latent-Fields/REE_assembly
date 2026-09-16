@@ -4108,6 +4108,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0293",
+      "claim_ids": [
+        "MECH-428",
+        "MECH-439"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "QUEUE-FLOOR BLOCKER, found 2026-09-16 by science-batch5b-20260916 while queueing V3-EXQ-884c: /queue-experiment Step 2.5c's substrate-path overlap gate now REFUSES every agent-stepping experiment. The gate's CLOSED test was changed today to an EXACT enum match, which reclassifies substrate_queue entry 'f_dominance_conversion_ceiling' (severity=corrupting) from CLOSED to OPEN because its status is free-text prose, not an enum token. That entry's own status and ready_blocked_by both state the opposite of open -- 'mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional', 'CONVERSION_ROUTE_OF_RECORD', 'EXHAUSTED_709_711_713_autopsy_2026_07_05', 'no_new_build_owed', 'NO NEW BUILD is [owed]'. Its substrate_paths are ree_core/predictors/e3_selector.py::score_trajectory and ree_core/residue/field.py::RBFLayer.forward, which sit on the core agent path: measured empirically today over an 80-step scripted-action driver that never calls agent.select_action, agent.act() still reached e3.select 11x, e3.score_trajectory 352x and residue.RBFLayer.forward 1419x. So the gate fires for ANY driver that steps an agent, on an entry that owes no build. DECISION OWED: either give that entry an enum status (implemented_validated / wontfix) so the exact-match test closes it, or narrow Step 2.5c's overlap test from file-level to the named ::function. Until then the experiment queue cannot be fed through the skill -- queue depth was 1 item when this was found.",
+      "raised_by_session": "science-batch5b-20260916",
+      "raised_at": "2026-09-16T15:56:24Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
