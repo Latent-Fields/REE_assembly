@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+Claims registered: GOV-JURIS-1, GOV-ECOL-1, GOV-HOTHER-1, GOV-DELETE-1, Q-108
+
 # From Local Mechanism Success to Organism-Level Intelligence
 
 **Date:** 2026-09-16  
-**Status:** thought / methodological guardrail; not a claim registration, architecture commitment, or experiment request  
+**Status:** processed 2026-09-16 (intake: `evidence/planning/thought_intake_2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md`). Methodological guardrail: registered as four governance rules and one open question (GOV-JURIS-1, GOV-ECOL-1, GOV-HOTHER-1, GOV-DELETE-1, Q-108) -- no mechanism claim, no architecture commitment, no experiment request  
 **Scope:** interpretation of REE progress; organism-level validation; development; generalisation; integration  
 
 **Related work:**

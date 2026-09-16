@@ -103925,3 +103925,364 @@
     to narrow by experiment -- it awaits the controlled-drift intervention that does not yet exist in
     ree-v3 (measurement exists at experiments/_lib/interface_probe.py:1012 per_code_drift; imposition
     does not). DO NOT build in V3. DO NOT queue an experiment from this entry.
+- id: GOV-JURIS-1
+  title: >-
+    Evidence-domain jurisdiction rule: evidence receives no broader jurisdiction than the experiment
+    earned. Organism-level validation is a PROFILE over eight orthogonal evidence domains -- D0 instrument
+    validity, D1 local mechanism validity, D2 local causal consequence, D3 closed-loop behavioural
+    consequence, D4 ecological (world-family, not seed) generalisation, D5 developmental validity, D6
+    integrated compatibility and simplification, D7 adaptive recovery from a materially wrong internal
+    model -- never a scalar ladder and never one "intelligence score". Whenever a result is promoted
+    UPWARD -- into a roadmap or closure-plan node, an architectural recommendation, a milestone or progress
+    summary (CURRENT_FRONT, insights_report, morning digest, a governance cycle's headline), a default-on
+    decision, or any statement that REE itself has become more competent -- the promoting text MUST carry
+    an explicit line of the form "Evidence domain reached: D? / Domains not tested: ..." naming the SPECIFIC
+    untested domains that matter for that claim. A frozen-latent decoder result establishes at most D1; a
+    live selection perturbation at most D2; seven seeds in one world family do not reach D4. Raw manifests
+    and per-run autopsies are exempt; the rule binds the SUMMARY layer, where mechanism validity is most
+    easily narrated as organismal progress.
+  claim_type: governance_rule
+  subject: governance.epistemics.evidence_domain_jurisdiction
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+  depends_on:
+    - ARC-130          # the per-MECHANISM causal-reach ladder (existence -> ... -> ecological consequence -> retention); D1-D4 map onto its stages, but ARC-130 audits a mechanism, this rule binds the summary layer
+    - INV-105          # the per-VARIABLE latent-access ladder (encoded != decodable != natively accessible != causally used != behaviourally beneficial) -- the instrument D1/D2 are graded on
+    - GOV-CAPCONTRACT-1 # the NEGATIVE-evidence mirror: a FAIL is admissible only if the organism could express the faculty; this rule is the POSITIVE-evidence bound
+    - GOV-UMPIRE-1     # the readiness front door; its detector, once built, consumes this profile rather than a progress percentage
+    - GOV-FAILLOC-1    # failure-location triage (REE / mechanism / measures / environment failed) -- the failure-side analogue of D0-vs-D1 separation
+    - GOV-BEHADJ-1     # D3's methodology: behavioural adjudication, umpire not ruler
+    - GOV-ANALOGY-1    # this is Assembly machinery about REE evidence, not a claim about the creature
+    - GOV-HELDOUT-1    # rule-change validation family
+  related_claims:
+    - GOV-ECOL-1
+    - GOV-DELETE-1
+    - Q-108
+    - GOV-FROZEN-1
+  location: docs/architecture/organism_level_validation_doctrine.md#gov-juris-1
+  functional_restatement: >-
+    Epistemic-hygiene governance rule in the routing-standard family (GOV-CAPCONTRACT-1, GOV-PATHVALID-1,
+    GOV-FAILLOC-1, GOV-MATCHAUX-1, GOV-HELDOUT-1). TRIGGER = any text that carries an experimental result
+    UPWARD out of its run: a closure-plan or roadmap node status change, an architectural recommendation, a
+    default-on flag decision, a progress/front/milestone summary, or a claim about REE's competence.
+    REQUIRED = the "Evidence domain reached / Domains not tested" line, with the untested domains named
+    specifically (not a boilerplate "D2-D7"), plus separate stochastic and world-family replication counts
+    per GOV-ECOL-1. NON-FALSIFYING-SAFE: changes no claim's status, confidence or evidence record; it
+    constrains how a result is DESCRIBED when promoted, not whether it counts. The profile is
+    deliberately multidimensional -- collapsing it to one scalar is the anti-Goodhart stop condition in
+    the doctrine's section 14.
+  notes: >-
+    Registered 2026-09-16 from sections 1, 10, 11 and 12 of
+    docs/thoughts/2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md and sections 1-3
+    and 12 of its companion evidence/planning/organism_level_validation_doctrine_20260916.md, which holds
+    the full D0-D7 definitions and the progress-report template. WHY THIS EXISTS: REE has become good at
+    localising why mechanisms fail (information preservation, decodability, native access, routing,
+    magnitude, authority, training regime, provenance, development, temporal compatibility), and the risk
+    that follows is mechanistic progress standing in for organismal progress. The thought's chain --
+    mechanism validity != local causal consequence != closed-loop benefit != ecological generalisation !=
+    adaptive competence -- already exists in REE in two PER-OBJECT forms (ARC-130 for a mechanism, INV-105
+    for a variable); what did not exist is a rule binding the SUMMARY layer, which is where the
+    over-reach actually happens. DISTINCT FROM ARC-130: that is an architectural commitment about when a
+    mechanism is causally reachable, audited per mechanism; this is a reporting rule about what a promoted
+    result may claim. DISTINCT FROM INV-105: same relation, one variable in one latent. DISTINCT FROM
+    GOV-CAPCONTRACT-1: that bounds negative evidence (a FAIL from an organism that could not express the
+    faculty is inadmissible); this bounds positive evidence (a PASS at D1 is not a PASS at D3). DISTINCT
+    FROM GOV-UMPIRE-1: that owns the front door for canonical-readiness review and expects NO_WARRANT
+    today; this supplies the profile its (unbuilt) detector should read. GOV-HELDOUT-1 RECORD, three
+    prior cases, all giving a DIFFERENT answer under this wording: (i) zworld_actor_adequacy_locus --
+    H-F "content discarded at encode" was CONFIRMED by V3-EXQ-1010 (2026-09-09, an over-capacity decoder
+    sweep on banked frozen latents: D1) and docs/CURRENT_FRONT.md narrates it as "the one live front";
+    six days later V3-EXQ-1041 confirmed H-metric-mismatch ("the reported metric under-reads the code")
+    and H-anchor-off-distribution -- D0 findings arriving after the D1 narration, and exactly the
+    objection the exq1010 readiness audit had raised as finding C3. Under this rule the front doc would
+    have carried "reached: D1; untested: D0 sample-saturation, D2-D7", and C3 would have been a named
+    debt rather than a contested afterthought. (ii) SD-074 / V3-EXQ-784 -- a PASS (2026-07-18) downgraded
+    to PROVISIONAL on 2026-08-16 (GFLAG-0036) because its headline rested on the manifest's own claim that
+    the probe read is non-destructive, which was measured false: a D0 failure discovered four weeks after
+    promotion. Under this rule the promotion would have had to state D0 status explicitly, and "instrument
+    non-destructiveness asserted, not measured" is the kind of line that gets checked. (iii) MECH-537 /
+    MECH-538 -- claim notes rewritten as "overtaken by the H-F confirmation" (GFLAG-0282, 2026-09-15): a D1
+    result driving a change to claim text about native consumer access (INV-105 rung 3+), which the D1
+    result does not reach. Under this rule the re-wording names the gap instead of closing it. THE COST
+    COUNTERWEIGHT: one line per upward promotion; its failure mode is a boilerplate stamp, mitigated by
+    requiring the SPECIFIC untested domains. DO NOT BUILD A HOOK, GATE OR SCORE FOR THIS -- manual
+    interpretive discipline, same counterweight as GOV-HELDOUT-1; a scalar "organism-level score" is the
+    doctrine's own stop condition. Implementation surface when governance ratifies: the progress-report
+    template (doctrine section 12) into /governance's headline step and generate_current_front.py's
+    front block; proposed, NOT applied here. DO NOT queue an experiment from this entry.
+- id: GOV-ECOL-1
+  title: >-
+    Seeds-versus-worlds reporting rule: random-seed replication and ecological (world-family) replication
+    are different evidence and MUST be reported separately -- "stochastic replication: N seeds" and
+    "world-family replication: N environment families / N orthogonal perturbation classes" -- and a result
+    may not be described as general, robust or transferable solely because it survived more seeds. Seeds
+    test robustness within ONE world family; ecological replication tests whether the mechanism survives
+    when the world itself changes along a PREDECLARED axis (map geometry, hazard or resource prevalence and
+    topology, cue-to-consequence mapping, transition dynamics, temporal delays, observation or sensor layout,
+    action costs, affordance structure, partial observability, actor structure). Where such a suite is used
+    as a promotion target it must be FROZEN before use, or it becomes another training distribution. Until
+    a frozen ecological suite exists, world-family replication is a NAMED DEBT on every claim promoted on
+    seeds alone, never an implied property.
+  claim_type: governance_rule
+  subject: governance.epistemics.stochastic_versus_ecological_replication
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+  depends_on:
+    - GOV-JURIS-1      # this is the D4 specialisation of the jurisdiction rule
+    - ARC-130          # its final stage, retention/generalisation, is what seed counts are mistaken for
+    - GOV-FROZEN-1     # the freeze discipline this borrows: a suite used as a target is frozen before use
+    - MECH-456         # the one existing precedent: V3-EXQ-733b/733c PASSes on ONE teleport harness were held at provisional pending a world-driven ecological design (V3-EXQ-745, rebinding_ecological_harness.py)
+    - GOV-HELDOUT-1    # rule-change validation family
+  related_claims:
+    - GOV-MATCHAUX-1
+    - GOV-CAPCONTRACT-1
+  location: docs/architecture/organism_level_validation_doctrine.md#gov-ecol-1
+  functional_restatement: >-
+    Epistemic-hygiene governance rule; the D4 member of the GOV-JURIS-1 profile. TRIGGER = any manifest
+    summary, autopsy, governance disposition or claim note that cites a replication count as grounds for
+    "robust", "general", "stable", "transfers" or a status promotion. REQUIRED = the two counts reported
+    separately, and where the world-family count is 1 the words "ecological transfer untested" (or the
+    named debt) alongside the status. NON-FALSIFYING-SAFE: changes no status or confidence; MECH-117,
+    INV-053 and MECH-095 keep their standing -- they acquire an honest qualifier, not a demotion.
+  notes: >-
+    Registered 2026-09-16 from section 2 of the source thought and section 4 of
+    evidence/planning/organism_level_validation_doctrine_20260916.md. WHY THIS EXISTS: the Experimental
+    Recording Standard (evidence/planning/experimental_recording_standard_2026-07-12.md) requires an
+    explicit seed list and per-seed distributions and has NO environment-family field at all, so the
+    only replication axis the record can express is the stochastic one, and multi-seed PASSes read as
+    generality by default. No claim in the registry names the seed/world distinction (0 hits for
+    "world family", "ecological generalisation" across 1152 entries as of 2026-09-16). GOV-HELDOUT-1
+    RECORD, three prior cases giving a DIFFERENT answer under this wording: (i) MECH-117 -- notes read
+    "EXQ-234 is an independent 3-seed replication of EXQ-074f (3-seed). Combined: 6" and the claim is
+    status: stable; under this rule the same evidence is "stochastic replication: 6 seeds;
+    world-family replication: 1; ecological transfer untested" and the status stands with that
+    qualifier. (ii) INV-053 -- "two 5-seed replications, both fully PASS ... Three 5-seed replications
+    with 0 opposing", status stable; same re-description. (iii) MECH-095 -- "4-seed replication with
+    clean discriminative test. Promoted from provisional to active"; the promotion note would have to
+    carry the world-family count. The positive precedent that shows the rule is not academic: MECH-456,
+    where the 2026-07 session declined to promote on V3-EXQ-733b/733c because both rested on "ONE
+    teleport-based directed-traversal harness ... a single test-bed monoculture" and built a world-driven
+    ecological leg (V3-EXQ-745, ree-v3 experiments/_lib/rebinding_ecological_harness.py) -- this rule
+    makes that ad-hoc judgement the standing default. COST COUNTERWEIGHT: two numbers instead of one on
+    every replication statement; the risk is a "world-family: 1" stamp that nobody acts on -- which is
+    why the doctrine names the frozen ecological suite as a FUTURE requirement rather than pretending
+    it exists. MECHANICAL HOOK, proposed to /governance and NOT applied: a `world_family` /
+    `perturbation_class` field in the recording standard's core block, so the indexer can count it. DO
+    NOT build the frozen suite from this entry and DO NOT queue an experiment from it; the suite is
+    designed under /queue-experiment once the interface campaign yields something worth transferring.
+- id: GOV-HOTHER-1
+  title: >-
+    H-other / model-misspecification route: every important hypothesis-space discrimination programme
+    (a question in hypothesis_space_registry.v1.json) must preserve an explicit route OUTSIDE its
+    registered partition -- "H-other: the pattern is not explained by any registered hypothesis and the
+    partition itself may be wrong" -- so that a well-designed frozen hypothesis ledger does not become a
+    closed ontology in which reality is assumed to choose among the enumerated legs. The route is NOT a
+    catch-all after an ordinary null; it becomes salient on PATTERN-level signals: no registered leg
+    explains the full outcome; different seeds or environments select incompatible explanations; the
+    effect appears only in interaction with another subsystem; timing or developmental history omitted
+    from the partition explains the variance; several registered legs are simultaneously required; or
+    every surviving leg needs a rescue clause. When it fires, the required next action is to rotate the
+    claim (GOV-ROTATE-1) or expand the partition as a LABELLED growth event (GOV-FROZEN-1 invariant 3a /
+    failure-autopsy Mode C) BEFORE another rescue run is queued -- never "the same hypothesis with more
+    compute".
+  claim_type: governance_rule
+  subject: governance.epistemics.model_misspecification_route
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+  depends_on:
+    - GOV-FROZEN-1     # the frozen ledger this route lives inside; H-other is the escape hatch its invariants must not close
+    - GOV-FANOUT-1     # labelled fan-out is the sanctioned partition-expansion path once H-other fires
+    - GOV-GRAN-1       # the CLAIM-side sibling: N structurally different failures mean the claim is mis-grained; this is the QUESTION-side symptom of the same disease
+    - GOV-ROTATE-1     # rotation is one of the two required responses
+    - GOV-CEIL-1       # the re-derive family whose "substrate ceiling" verdict is the most common rescue clause (74% of autopsies as of 2026-06-21)
+    - GOV-HELDOUT-1    # rule-change validation family
+  related_claims:
+    - GOV-JURIS-1
+    - GOV-CEIL-2
+    - GOV-DIAG-1
+  location: docs/architecture/organism_level_validation_doctrine.md#gov-hother-1
+  functional_restatement: >-
+    Epistemic-hygiene governance rule over the hypothesis-space ledger; the model-escape complement to
+    GOV-FROZEN-1 (denominator integrity), GOV-FANOUT-1 (constructive expansion) and GOV-GRAN-1 (claim
+    re-graining). TRIGGER = a failure autopsy or governance cycle adjudicating a question whose outcome
+    shows one of the six pattern-level signals in the title. REQUIRED = record an H-other event on the
+    question (which signal, which legs, why no registered leg carries the pattern) and route to rotation
+    or labelled partition expansion BEFORE queueing a further run on any surviving leg.
+    NON-FALSIFYING-SAFE: eliminates or confirms no leg and changes no claim status; it adds a recorded
+    escape route and orders the next action. H-other is never "confirmed" -- it fires, and the response is
+    a new partition, not a new mechanism claim.
+  notes: >-
+    Registered 2026-09-16 from section 6 of the source thought and section 8 of
+    evidence/planning/organism_level_validation_doctrine_20260916.md. WHY THIS EXISTS: the frozen ledger
+    holds 60 questions and ZERO H-other-shaped legs (measured 2026-09-16; the nearest,
+    conversion_ceiling_root's H-objective-misspecification, is a SPECIFIC mechanism hypothesis -- training
+    objective is not the scored objective -- not a partition-escape route). Failure-autopsy Step 9b Mode C
+    covers a NAMED newly discovered mechanism that is resolved in the same edit; nothing covers "the
+    pattern is outside the family", and GOV-FROZEN-1's growth restriction, correctly, makes adding legs
+    expensive -- so the cheapest move under the current rules is another run on a surviving leg, which is
+    the rescue-clause dynamic the thought names. GOV-HELDOUT-1 RECORD, three prior cases giving a
+    DIFFERENT answer under this wording: (i) competence_floor -- 20 legs, 14 eliminated, 4 confirmed, 2
+    split, 0 alive, and the synthesis text records "THE QUESTION SHAPE CHANGED on 2026-07-18" when
+    V3-EXQ-780's BC-prior arm installed a competent policy that RL refinement then eroded -- a pattern
+    (install, then decay) outside the original floor partition. It was handled by rewriting
+    surviving_label in place; under this rule it is a recorded H-other event (signal: no registered leg
+    explains the full pattern) with a labelled partition expansion, leaving an auditable seam where the
+    question changed. (ii) zworld_actor_adequacy_locus -- after H-F was confirmed by V3-EXQ-1010
+    (2026-09-09), V3-EXQ-1041 (2026-09-15) confirmed H-metric-mismatch AND H-anchor-off-distribution while
+    three legs remain alive: three confirmed legs simultaneously required (signal 5). Current practice
+    queued the owed 1010 re-run at P0a epochs=40 on a surviving leg; under this rule the partition
+    question is asked first, and the re-run is queued only if H-other does not fire. (iii) the V3-EXQ-603
+    lineage (12 re-derivations; 74% of all autopsies concluding substrate_ceiling as of 2026-06-21, none
+    falsifying): the re-derive brake pauses the queue after the second substrate_ceiling on one claim;
+    this rule adds the different action of asking whether "substrate ceiling" is functioning as a rescue
+    clause for a misspecified partition, i.e. rotation rather than pause. DISTINCT FROM Mode C: that adds
+    and resolves a named leg; H-other names no mechanism. DISTINCT FROM GOV-GRAN-1: same disease, claim
+    side versus question side; a question may need H-other while each of its claims is correctly grained.
+    DISTINCT FROM GOV-CEIL-2: that protects a claim from demotion when no test instantiated the mechanism;
+    this protects a QUESTION from being closed by exhaustion of a wrong partition. COST COUNTERWEIGHT:
+    the failure mode is H-other used lazily after every null, which the title forbids by requiring a
+    pattern-level signal; the doctrine's section 14 lists "H-other routinely converted into try the same
+    hypothesis with more compute" as a stop condition in the other direction. IMPLEMENTATION SURFACE,
+    proposed and NOT applied: (a) failure-autopsy SKILL.md Step 9b gains a Mode D / H-other check run
+    BEFORE the state mapping; (b) hypothesis_space_registry.v1.json questions gain an `h_other_events[]`
+    list parallel to fanout_growth_events[]; (c) check_hypothesis_space_integrity.py counts them. Each is
+    a standing-rule change and carries its own GOV-HELDOUT-1 check when applied. DO NOT queue an
+    experiment from this entry.
+- id: GOV-DELETE-1
+  title: >-
+    Deletion-pressure rule: construction earns a later obligation to attempt simplification. Once several
+    individually validated local repairs coexist in one organism (representation-preservation objectives,
+    routing bridges, selection-authority boosts, replay repair, provenance tracking, goal-anchor
+    normalisation, compensatory control loops), the mature bundle must periodically be challenged by
+    mechanism removal, low-complexity replacement, consolidation of redundant routes, reduction of bridge
+    capacity, and removal of downstream compensation after an upstream repair -- and competence retained
+    after removal is recorded as a POSITIVE architectural result, not as lost work. Two mechanisms do not
+    both keep conceptual credit when one has become unnecessary; this is the architectural counterpart of
+    not double-counting evidence. A mechanism is not protected from deletion by having once passed its own
+    isolated assay.
+  claim_type: governance_rule
+  subject: governance.epistemics.deletion_pressure
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3_v4_v5
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+  depends_on:
+    - GOV-MATCHAUX-1   # admission-time scaffold removal for ONE objective; this is the later, bundle-level obligation
+    - GOV-CONTRACT-3   # reduction admissibility: the anti-cheating test any deletion challenge must satisfy (rate, decoder, context, latency, robustness budget matched)
+    - GOV-JURIS-1      # this is the D6 member of the profile
+    - ARC-140          # compensatory realizability: removal is what exposes compensation and alternative-pathway recruitment
+    - MECH-557         # the 3 + 2 reduction hypothesis is a candidate deletion challenge on the cognitive-contract ledger
+    - GOV-HELDOUT-1    # rule-change validation family
+  related_claims:
+    - GOV-SUBTRACT-1
+    - INV-107
+  location: docs/architecture/organism_level_validation_doctrine.md#gov-delete-1
+  functional_restatement: >-
+    Epistemic-hygiene governance rule; the D6 member of the GOV-JURIS-1 profile. TRIGGER = a governance
+    cycle finds N or more default-ON mechanisms landed since the last deletion challenge on the same
+    organism preparation, or an upstream repair lands on a path that carries a downstream compensation.
+    REQUIRED = a scheduled deletion / simplification arm set (doctrine section 7) whose PASS condition is
+    competence retained, judged under GOV-CONTRACT-3's matched-budget test; the result is filed as D6
+    evidence either way. NON-FALSIFYING-SAFE: changes no claim's status; a successful deletion retires or
+    merges a mechanism through the ordinary /claim-synthesis route, it does not demote it.
+  notes: >-
+    Registered 2026-09-16 from section 5 of the source thought and section 7 of
+    evidence/planning/organism_level_validation_doctrine_20260916.md. WHY THIS EXISTS: REE's admission
+    rules (GOV-MATCHAUX-1, GOV-PATHVALID-1, GOV-CAPCONTRACT-1) all fire at the moment a single mechanism
+    is admitted; nothing fires LATER, when several admitted mechanisms coexist and may have made each
+    other redundant, over-constrained the organism, or be compensating for an upstream defect that has
+    since been fixed. DISTINCT FROM GOV-MATCHAUX-1: that removes an auxiliary head at evaluation to show
+    the objective organised the latent; this removes MECHANISMS from a mature bundle to show which are
+    still necessary. DISTINCT FROM GOV-CONTRACT-3: that governs whether a REDUCTION of the contract
+    candidate set is admissible; this schedules the reduction attempt and applies to any bundle, not the
+    contract ledger. DISTINCT FROM GOV-SUBTRACT-1: subtraction of DOCUMENTS in the closure package, not
+    mechanisms. GOV-HELDOUT-1 RECORD -- and the honest finding is that the check is only PARTLY
+    non-degenerate: (i) V3-EXQ-223 minimal vertebrate ablation (2026-04-03, PASS): commitment architecture
+    removed (commitment_threshold=-1.0, z_goal=False, benefit_eval=False) and the E1+E2+hippocampus loop
+    retained competence -- a deletion result which the record frames as a minimal-mind design question and
+    which a later session mis-described as a workaround (memory project_exq223_minimal_mind); under this
+    rule it is filed as D6 deletion evidence and the follow-up "which of the removed mechanisms had become
+    unnecessary for THIS competence" is owed. That case gives a different answer. (ii) MECH-557's 3 + 2
+    reduction -- GOV-CONTRACT-3 already licenses it; DEGENERATE, both wordings agree. (iii) the default-off
+    flag drift audit (memory reference_default_off_drift_audit_method: count enablement, not status) --
+    a standing state rather than an adjudicated case; under this rule a rising enablement count is a
+    trigger, under the old rules it is information. Weakly non-degenerate. So this rule is scoped close
+    to its motivating thought and is registered as candidate WITH THAT STATED: it earns its keep the
+    first time a bundle exists to challenge, which the current interface campaign is about to produce
+    (preservation objective + routing bridge + receiver-conditioned readout + replay maintenance). COST
+    COUNTERWEIGHT: deletion arms cost runs and the failure mode is institutional protection -- "a deletion
+    challenge is never attempted because every mechanism has become protected" is doctrine stop condition
+    7. DO NOT queue a deletion arm from this entry; the first challenge is designed under
+    /queue-experiment once at least three of the interface-campaign mechanisms are default-ON together.
+- id: Q-108
+  title: >-
+    What would constitute a minimal-working-intelligence EVENT for REE -- a single non-oracular
+    adaptive-recovery episode in which a previously useful internal model becomes materially wrong, the
+    organism detects the mismatch, allocates information-seeking or computation toward it, updates the
+    relevant representation or interface without being told which subsystem failed, recovers closed-loop
+    competence above a preregistered threshold, retains still-valid knowledge, transfers some advantage to
+    a second related perturbation, and loses the advantage when the proposed adaptive machinery is ablated
+    -- and which perturbation class (cue remapping, resource-contingency reversal, hidden transition change,
+    memory or provenance corruption, interface drift, sensor or affordance change) is first NON-VACUOUS on
+    the substrate REE actually has? Such an event is qualitatively different from an accumulation of local
+    PASSes; passing one tiny-world challenge would establish an integrated adaptive episode, not general
+    intelligence.
+  claim_type: open_question
+  subject: methodology.minimal_working_intelligence_event
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+  depends_on:
+    - GOV-JURIS-1      # D7 of the profile; this question is what D7 would be scored on
+    - GOV-UMPIRE-1     # the readiness front door such an event would feed; its detector expects NO_WARRANT today
+    - ARC-140          # recovery without restoration: the event must NOT require reconstructing the former internal state
+    - MECH-527         # stuckness-triggered attractor-escape exploration: the only V3 mismatch -> exploration trigger registered
+    - Q-107            # code-change versus world-change indistinguishability: perturbation class AR-5 (interface drift) is exactly its manipulation, and its disposition says the controlled-drift intervention does not exist
+    - GOV-CAPCONTRACT-1 # preconditions 1 and 3 (baseline competence; plasticity live) are this rule's declared-capability contract
+    - GOV-BEHADJ-1     # the adjudication methodology for the behavioural readouts
+    - INV-107          # perturbation class AR-4 (memory / provenance corruption) tests whether internal evidence is revisable rather than self-confirming
+  location: docs/architecture/organism_level_validation_doctrine.md#q-108
+  notes: >-
+    Registered 2026-09-16 from sections 8 and 9 of the source thought and sections 10 and 11 of
+    evidence/planning/organism_level_validation_doctrine_20260916.md, which hold the six perturbation
+    classes AR-1..AR-6, the required constraints (no failed-module identity, no one-hot world-changed flag,
+    no correct new policy, no privileged oracle target, no unlimited brute-force retraining), the eleven
+    separately-measured readouts, the six minimum controls, the seven strong falsifiers and the ten-part
+    gate. The thought is explicit that this is "design seed only; do not queue from this document" and
+    that the gate must not become a claim or milestone automatically -- an open_question is the registry
+    form that keeps it discoverable without either. DISTINCT FROM GOV-UMPIRE-1: that asks when
+    canonical-readiness review is WARRANTED and is structurally unable to answer it; this asks what one
+    positive adaptive episode would have to contain. DISTINCT FROM MECH-120's "minimal mind" (a sleep
+    prediction) and V3-EXQ-223 (whether the core loop is a complete minimal mind on a FAMILIAR world): this
+    is about recovery from being WRONG, not competence on a known world. Substrate reality as of
+    2026-09-16: AR-5 is blocked by Q-107's missing controlled-drift intervention; AR-4 needs the
+    provenance-genealogy substrate MECH-552..554 say is absent; AR-1 (cue remapping) is the nearest
+    V3-expressible class if CausalGridWorldV2's cue semantics can be remapped mid-life without a mode
+    flag -- flagged for /governance routing, NOT decided here. DO NOT build in V3 and DO NOT queue an
+    experiment from this entry.

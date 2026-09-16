@@ -682,7 +682,7 @@
   "ARC-063": {
     "assembly_state": "awaiting_substrate",
     "assembly_status": "built",
-    "awaiting": "f_dominance_conversion_ceiling",
+    "awaiting": "sd_actor_critic_action_learning",
     "coupled_with": [
       "ARC-077",
       "MECH-309",
@@ -1128,7 +1128,7 @@
   },
   "ARC-107": {
     "assembly_state": "gated_v3",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [
       "ARC-108",
@@ -1730,6 +1730,15 @@
     "type": "governance_rule",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: a concrete merge proposal exists with an explicit before/after basis and cost terms at least coarsely estimable for both; MECH-557 is that proposal -- without one the rule has nothing to score.\nCONFIRMING (evidence of use): a merge that looks compelling on relabelling grounds is REFUSED by the relocation checklist -- the lost distinction is found in the decoder, a context tag or a side channel -- and the refusal is later vindicated (the merged basis fails a discriminating-prediction test the unmerged basis passes). One such case establishes the rule catches something the naive noun-count criterion does not.\nFALSIFYING: every merge proposal fails the cost test for reasons that turn out to be measurement artefacts (cost terms not estimable at the available precision), so the rule blocks all reduction and the basis grows monotonically (the thought's falsifier 8: total description cost fails to fall); OR the symmetry clause is never exercised -- reductions are policed but no retention is ever argued for -- so the rule is one-sided in practice whatever its text says.\nDisposition 2026-09-15: (b) derivational, use-gated promotion (as GOV-CONTRACT-2); category stays governance_rule.\n"
   },
+  "GOV-DELETE-1": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.deletion_pressure",
+    "title": "Deletion-pressure rule: construction earns a later obligation to attempt simplification. Once several individually validated local repairs coexist in one organism (representation-preservation objectives, routing bridges, selection-authority boosts, replay repair, provenance tracking, goal-anchor normalisation, compensatory control loops), the mature bundle must periodically be challenged by mechanism removal, low-complexity replacement, consolidation of redundant routes, reduction of bridge capacity, and removal of downstream compensation after an upstream repair -- and competence retained after removal is recorded as a POSITIVE architectural result, not as lost work. Two mechanisms do not both keep conceptual credit when one has become unnecessary; this is the architectural counterpart of not double-counting evidence. A mechanism is not protected from deletion by having once passed its own isolated assay.",
+    "type": "governance_rule"
+  },
   "GOV-DIAG-1": {
     "assembly_state": "remaining",
     "coupled_with": [],
@@ -1746,6 +1755,15 @@
     "status": "candidate",
     "subject": "governance.epistemics.dry_run_adjudication_leak",
     "title": "Dry-run adjudication leak rule: a governance verdict must never rest on a --dry-run smoke, so confirmed autopsies and substrate_queue entries are scanned for citations of dry manifests carrying an ASSERTING evidence stamp.",
+    "type": "governance_rule"
+  },
+  "GOV-ECOL-1": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.stochastic_versus_ecological_replication",
+    "title": "Seeds-versus-worlds reporting rule: random-seed replication and ecological (world-family) replication are different evidence and MUST be reported separately -- \"stochastic replication: N seeds\" and \"world-family replication: N environment families / N orthogonal perturbation classes\" -- and a result may not be described as general, robust or transferable solely because it survived more seeds. Seeds test robustness within ONE world family; ecological replication tests whether the mechanism survives when the world itself changes along a PREDECLARED axis (map geometry, hazard or resource prevalence and topology, cue-to-consequence mapping, transition dynamics, temporal delays, observation or sensor layout, action costs, affordance structure, partial observability, actor structure). Where such a suite is used as a promotion target it must be FROZEN before use, or it becomes another training distribution. Until a frozen ecological suite exists, world-family replication is a NAMED DEBT on every claim promoted on seeds alone, never an implied property.",
     "type": "governance_rule"
   },
   "GOV-EDGE-1": {
@@ -1835,6 +1853,15 @@
     "type": "governance_rule",
     "what_would_answer": "TRIGGER: reassess the next time either (a) a standing rule/workflow/skill change is proposed following a single motivating incident (the pattern this claim already documents: the chip-scope rule's four-revision history), or (b) someone proposes building tooling/harness support for held-out rule validation rather than the manual-discipline version recommended here. Also reassess opportunistically at the next ~3-5 rule-editing incidents even absent a formal proposal, since the claim currently has zero pilot data.\nEVIDENCE RELEVANT AT THAT REASSESSMENT: (1) when a candidate rule change is checked by hand against >=3 HISTORICAL cases OUTSIDE the motivating incident -- per the claim's own non-degeneracy guard, only cases where old and new rule actually give DIFFERENT answers count -- does that check catch an over-broad rule before it ships, or pass cleanly every time (adding cost without information)? (2) does the \"manual discipline, not tooling\" framing survive contact with an actual editing session, or get skipped under time pressure? (3) is the SELF-REFERENCE HAZARD respected -- when piloted, is the thought-intake workflow (this claim's own source) correctly excluded from any held-out evidence set?\nWHAT WOULD ACTUALLY REVISE: the underlying observation (single-incident rules over-generalise, evidenced by the chip-scope rule's four revisions with a same-day user correction on the third) is independently documented and would stand regardless. What this claim adds -- that a >=3-case held-out check is a worthwhile PRACTICE -- is undercut if EITHER: (a) the discipline is tried and never once catches a rule that later needed correction (inert ceremony), or (b) it is never tried because per-edit cost is judged too high (the claim's own \"honest counterweight\" dominates in practice). Either argues for demoting the PRACTICE recommendation toward rejected/superseded, without touching the more basic over-generalisation observation.\nREADER NOTE: governance_rule / process claim about how the Assembly edits its OWN rules, not an empirical mechanism about REE cognition -- no EXP-#### should be minted against it. Do not conflate with MECH-472 (held-out context distinguishes skill acquisition from memorisation), which is REE-INTERNAL; per GOV-ANALOGY-1 the resemblance is an ANALOGY, never evidence. As of 2026-08-08, no pilot of the manual discipline has been run anywhere in the codebase (checked .claude/skills/, .agents/skills/, CLAUDE.md, WORKSPACE_STATE.md) -- the closest existing analog is the retrospective \"Scope history\" logging pattern (CLAUDE.md chip-scope section, mirrored in session-land/SKILL.md), which records a rule's revision history AFTER the fact rather than testing a proposed change against held-out cases BEFORE it ships.\n"
   },
+  "GOV-HOTHER-1": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.model_misspecification_route",
+    "title": "H-other / model-misspecification route: every important hypothesis-space discrimination programme (a question in hypothesis_space_registry.v1.json) must preserve an explicit route OUTSIDE its registered partition -- \"H-other: the pattern is not explained by any registered hypothesis and the partition itself may be wrong\" -- so that a well-designed frozen hypothesis ledger does not become a closed ontology in which reality is assumed to choose among the enumerated legs. The route is NOT a catch-all after an ordinary null; it becomes salient on PATTERN-level signals: no registered leg explains the full outcome; different seeds or environments select incompatible explanations; the effect appears only in interaction with another subsystem; timing or developmental history omitted from the partition explains the variance; several registered legs are simultaneously required; or every surviving leg needs a rescue clause. When it fires, the required next action is to rotate the claim (GOV-ROTATE-1) or expand the partition as a LABELLED growth event (GOV-FROZEN-1 invariant 3a / failure-autopsy Mode C) BEFORE another rescue run is queued -- never \"the same hypothesis with more compute\".",
+    "type": "governance_rule"
+  },
   "GOV-INTERVENE-1": {
     "assembly_state": "remaining",
     "coupled_with": [],
@@ -1852,6 +1879,15 @@
     "status": "candidate",
     "subject": "governance.introspection_generates_never_validates_alone",
     "title": "Triangulation rule: introspection generates architectural hypotheses; it never validates them alone. A mechanism first noticed introspectively acquires standing only when it also maps onto neuroscience or cognitive literature, is computationally coherent, produces measurable predictions, and survives experiment. The phenomenology-side counterpart to ARC-106.",
+    "type": "governance_rule"
+  },
+  "GOV-JURIS-1": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.evidence_domain_jurisdiction",
+    "title": "Evidence-domain jurisdiction rule: evidence receives no broader jurisdiction than the experiment earned. Organism-level validation is a PROFILE over eight orthogonal evidence domains -- D0 instrument validity, D1 local mechanism validity, D2 local causal consequence, D3 closed-loop behavioural consequence, D4 ecological (world-family, not seed) generalisation, D5 developmental validity, D6 integrated compatibility and simplification, D7 adaptive recovery from a materially wrong internal model -- never a scalar ladder and never one \"intelligence score\". Whenever a result is promoted UPWARD -- into a roadmap or closure-plan node, an architectural recommendation, a milestone or progress summary (CURRENT_FRONT, insights_report, morning digest, a governance cycle's headline), a default-on decision, or any statement that REE itself has become more competent -- the promoting text MUST carry an explicit line of the form \"Evidence domain reached: D? / Domains not tested: ...\" naming the SPECIFIC untested domains that matter for that claim. A frozen-latent decoder result establishes at most D1; a live selection perturbation at most D2; seven seeds in one world family do not reach D4. Raw manifests and per-run autopsies are exempt; the rule binds the SUMMARY layer, where mechanism validity is most easily narrated as organismal progress.",
     "type": "governance_rule"
   },
   "GOV-JUST-1": {
@@ -8407,7 +8443,7 @@
   },
   "MECH-445": {
     "assembly_state": "gated_v3",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [],
     "epistemic_stance": "believed",
@@ -8419,7 +8455,7 @@
   },
   "MECH-446": {
     "assembly_state": "gated_v3",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [],
     "epistemic_stance": "believed",
@@ -8431,7 +8467,7 @@
   },
   "MECH-447": {
     "assembly_state": "parked",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [],
     "epistemic_stance": "believed",
@@ -8443,7 +8479,7 @@
   },
   "MECH-448": {
     "assembly_state": "gated_v3",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [],
     "epistemic_stance": "believed",
@@ -10375,7 +10411,7 @@
   },
   "Q-078": {
     "assembly_state": "remaining",
-    "assembly_status": "built",
+    "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [
       "ARC-107"
@@ -10679,6 +10715,15 @@
     "title": "Can a system distinguish a change in its own code from a change in the world that code represents -- and if it cannot, what is a maintenance mechanism entitled to preserve? A label-free adaptive readout is blind to the difference between a drifting upstream encoding and a genuine change in the latent cause being encoded, so a self-repairing receiver can \"correct\" a TRUTHFUL update away, restoring an obsolete mapping and reporting it as stability; and an experimenter who scores only restored downstream performance cannot tell those apart either. The question has a sharp REE form: any claim that a maintenance process REPAIRED a mapping must show that the pre-drift mapping was still the CORRECT one, not merely that the receiver converged on something self-consistent -- which requires an anchor outside both endpoints (a ground-truth task target, a preserved external referent, or an explicit provenance marker on the change) that REE does not currently represent anywhere. Whether such an anchor is necessary, or whether self-consistency plus behavioural adequacy is the only coherent criterion available to an embedded system, is open.",
     "type": "open_question",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: a maintenance mechanism must exist whose behaviour COULD differ between the two cases. Degenerate today: no REE component adapts to upstream change at all, which is why this is deferred rather than testable.\nANSWERED (the ambiguity is real and consequential in REE): identical maintenance arms run under two conditions constructed to be indistinguishable from the receiver's vantage -- a pure code rotation with the task unchanged, and a genuine task change of matched magnitude at the sender -- and NO REE mechanism behaves differently; consequence: every REE maintenance claim must state an EXTERNAL ANCHOR (ground-truth task target, preserved external referent, or explicit provenance marker on the change) in its design.\nANSWERED NEGATIVE (a substantive positive finding, not a null): some REE mechanism DOES distinguish them without an externally supplied label -- a residual prediction error, a provenance tag (MECH-430 / MECH-553), or a z_goal-side signal carries the information implicitly.\nDisposition 2026-09-15: (c) substrate-blocked, substrate_conditional, deferred with a named TRIGGER: the discriminating manipulation needs the controlled-drift INTERVENTION that does not exist (per_code_drift in interface_probe.py measures; nothing imposes) -- revisit when either MECH-562's arm F or assay B's Gate 0 drift instrument is built, at which point the test is nearly free (both construct a known code rotation; the only addition is a matched-magnitude genuine task change).\n"
+  },
+  "Q-108": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "methodology.minimal_working_intelligence_event",
+    "title": "What would constitute a minimal-working-intelligence EVENT for REE -- a single non-oracular adaptive-recovery episode in which a previously useful internal model becomes materially wrong, the organism detects the mismatch, allocates information-seeking or computation toward it, updates the relevant representation or interface without being told which subsystem failed, recovers closed-loop competence above a preregistered threshold, retains still-valid knowledge, transfers some advantage to a second related perturbation, and loses the advantage when the proposed adaptive machinery is ablated -- and which perturbation class (cue remapping, resource-contingency reversal, hidden transition change, memory or provenance corruption, interface drift, sensor or affordance change) is first NON-VACUOUS on the substrate REE actually has? Such an event is qualitatively different from an accumulation of local PASSes; passing one tiny-world challenge would establish an integrated adaptive episode, not general intelligence.",
+    "type": "open_question"
   },
   "RA-001": {
     "assembly_state": "remaining",
