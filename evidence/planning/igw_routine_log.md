@@ -3047,3 +3047,7 @@ One line per hourly tick. ASCII only.
 2026-09-15T22:43:27Z no eligible item (skipped 255): IGW-20260915-001:skill /governance not allowed; IGW-20260915-005:skill /governance not allowed; IGW-20260915-006:skill /governance not allowed
 2026-09-15T23:45:50Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 32 ready, 0 in flight)
 2026-09-15T23:44:54Z SPAWN IGW-20260915-242 skill=/lit-pull prio=40 uuid=cb8546b2-8a30-4c76-837d-36594849cf5d pid=14479 worktree=igw-242-literature-proposal-for-mech-003
+2026-09-16T00:09:52Z complete igw-242-literature-proposal-for-mech-003 spawned->completed outcome=USEFUL_LANDED: MECH-003 lit-pull: 5 entries landed (REE_assembly c1160f28ff), literature_confid
+2026-09-16T00:51:46Z GC removed worktree igw-242-literature-proposal-for-mech-003 (removed; branch deleted)
+2026-09-16T00:50:53Z GC sweep removed 1 orphan worktree(s), kept 12
+2026-09-16T00:51:59Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 250 items, 30 ready, 0 in flight)
