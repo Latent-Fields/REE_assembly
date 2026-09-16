@@ -358,3 +358,108 @@ would incorrectly block the twin on a day the owning profile is signed out.
 The shared-lock and distinct-taskId reasoning from section 10 points 1-2 apply unchanged
 (reused as-is, not restated). `ree-lit-pull-pm` and `ree-weekend-lit` were left untouched —
 only the daily AM task was reported as affected, and neither of the other two was asked for.
+
+## 12. WHY the profile switches -- established on data (2026-09-16, chip-20260916-scheduler-profile-switch-rootcause)
+
+Section 9 left one question open: is the switch a deliberate user action or the app
+re-selecting a profile on its own? **It is the user, signing the desktop app out and back in
+as the other account, as one motion of the account handover.** Diagnostic only; nothing in
+this document, the twins, or any guard was changed. Measured 2026-09-16T22:47Z-23:30Z on
+DLAPTOP against the full retained `main*.log` window (2026-08-09 -> 2026-09-16).
+
+### The instrument sections 2-10 did not use: the `[account]` tag
+
+The same `main*.log` files carry an `[account]` tag (269 lines) that records the app's
+login state, and it brackets every `[CCDScheduledTasks] Initialized` transition:
+
+```
+2026-09-16 11:44:18 [account] Navigated to /logout, synthesizing logged-out
+2026-09-16 11:44:18 [account] Login-state transition (loggedOut: false -> true, uuid: e6c369d5... -> <none>)
+2026-09-16 11:46:08 [account] Login-state transition (loggedOut: true -> false, uuid: e6c369d5... -> 5879f72b...)
+2026-09-16 11:46:08 [CCDScheduledTasks] Initialized { accountId: '5879f72b...', orgId: 'eceb62e1...' }
+```
+
+`Navigated to /logout` is the app's own sign-out. The two-step `Initialized` pairs that
+sections 3-10 tabulate as separate profiles (`5879f72b / 327a6a20`, `e6c369d5 / eceb62e1`,
+`06c66487 / 327a6a20`) are not profiles anyone was signed in as: they are the scheduler
+re-initialising between the org change and the account change of one sign-in, 2-5 s apart.
+The real population is two accounts, plus a third seen once on 08-12/13.
+
+Who the two accounts are (from `~/.claude.json` `oauthAccount`, `claude_account.py list`,
+and the four recorded handover directions, which agree 4/4):
+
+| accountId / orgId | account | subscription | owns `ree-morning-digest`? |
+|---|---|---|---|
+| `e6c369d5 / 327a6a20` | daniel.delaharpe.golden@gmail.com | apple_subscription | **yes** (and `ree-lit-pull-am`) |
+| `5879f72b / eceb62e1` | nooarche@pm.me ("nooarche@pm.me's Organization") | stripe_subscription | no (the `-b` twins) |
+
+### Timeline: every profile transition in the window, and what sat beside it
+
+Times are local (Europe/Dublin, UTC+1), matching the app log and sections 4-10.
+`Code-tab prompts` are the user's own typed prompts from `~/.claude/history.jsonl`;
+`WORKSPACE_STATE` entries are converted from their UTC stamps.
+
+| # | when | transition | how the app log records it | handover evidence within +-2 h | digest consequence |
+|---|---|---|---|---|---|
+| 1 | 08-13 22:01 | third acct -> gmail | `/logout` 22:01:30, sign-in 22:01:59 (29 s) | none recorded (pre-dates the skill) | catch-up +1015 min -> `STALE_SKIP` (s5) |
+| 2 | 08-13 23:28 / 08-14 00:53 | gmail -> nooarche | `/logout` 23:28:32; app sat signed OUT 85 min; sign-in 00:53:23, update-restart 00:54 | none recorded | 08-14 slot lost (s5) |
+| 3 | 08-15 05:34 | nooarche -> gmail | `/logout` 05:34:37, sign-in 05:35:20 (43 s) | Code-tab prompts `logout`, `/rate-limit-options` 05:58; the skill's founding 2026-08-15 usage-limit incident | catch-up +28 min -> RAN (s5) |
+| 4 | 08-18 23:28 | gmail -> nooarche | `/logout` 23:28:14, sign-in 23:30:40 (2 m 26 s); update-restart 23:31 | Code-tab `logout`, `/logout`, `login` 00:19-00:21 (08-19); skill incident "2026-08-19" | 08-19..21 lost (s4) |
+| 5 | 08-21 18:53 | nooarche -> gmail | `/logout` 18:53:50, sign-in 18:58:01 (4 m 11 s) | Code-tab `logout`, `/rate-limit-options`, `/logout`, `login`, `/status` 19:35-19:38; skill incident "2026-08-21 ... un-paused a fleet" | catch-up +831 min -> `STALE_SKIP` (s4) |
+| 6 | 08-24 17:12 | gmail -> nooarche, **no logout** | server rejected the gmail org's token (`refresh rejected (auth_error)` 17:03; `session_stale_relogin`: "Session is not fresh enough to grant elevated access. Sign in again" 17:10-17:11); app showed the login page; identity changed in place 17:12:24 (`loggedOut: false -> false`) | none recorded | -- |
+| 7 | 08-24 17:47 | nooarche -> gmail | `/logout` 17:47:52, sign-in 17:48:20 (28 s) | none recorded | (reverses 6) |
+| 8 | 08-24 22:22 | gmail -> nooarche | `/logout` 22:22:58, sign-in 22:23:43 (45 s) | none recorded | 08-25..27 lost, the s6 live gap |
+| 9 | 08-28 20:21 | nooarche -> gmail | `/logout` 20:21:51, sign-in 20:22:17 (26 s) | none recorded | s8 action performed; 08-29 served |
+| 10 | 08-30 18:04 | gmail -> nooarche | `/logout` 18:04:45, sign-in 18:05:30 (45 s) | none recorded | 08-31, 09-01 lost (s10) |
+| 11 | 09-03 19:58 | nooarche -> gmail | `/logout` 19:58:25, sign-in 19:58:43 (18 s) | WORKSPACE_STATE 20:04 "account-handover: fleet switched to gmail", 20:16 "Mac ALSO switched to gmail"; Code-tab `logout`, `/logout` 20:13 | catch-up +891 min -> `STALE_SKIP`; `-b` had run at 06:00 |
+| 12 | 09-08 08:00 | gmail -> nooarche | `/logout` 08:00:57, sign-in 08:02:04 (67 s) | WORKSPACE_STATE 08:00 "account-handover Step 0 ... Mac moves to nooarche@pm.me", 08:10 "switch back to nooarche@pm.me COMPLETE"; Code-tab `logout`, `/logout` 07:39, `login` 08:10 | `-b` catch-up +122 min at 08:02:06 |
+| 13 | 09-11 21:04 | nooarche -> gmail | `/logout` 21:04:34, sign-in 21:13:24 (8 m 50 s) | WORKSPACE_STATE 17:58 "ACCOUNT HANDOVER (partial)", 20:58 "ACCOUNT HANDOVER COMPLETE -- whole estate on gmail"; Code-tab `logout`, `/logout` 20:44, `/status` 20:52 | catch-up +966 min -> `STALE_SKIP`; `-b` had run at 06:01 |
+| 14 | 09-16 11:44 | gmail -> nooarche | `/logout` 11:44:18, sign-in 11:46:08 (1 m 50 s); four Code-tab sessions ended 11:46:10 (session ledger) | WORKSPACE_STATE 12:15 "`/account-handover` ... fleet switched gmail -> nooarche@pm.me" (session `account-handover-20260916`, running across the switch); Code-tab `login`, `/rate-limit-options`, `logout`, `/logout` 12:47 | `-b` catch-up +346 min at 11:46:09; 05:17 primary had already run |
+
+### Testing the candidates against the timeline
+
+* **Sign-out + sign-in as the other account: 13 of 14.** Every `Navigated to /logout` in the
+  window (13) is followed by a sign-in as a *different* account, never the same one, so
+  logout implies switch; and 13 of the 14 switches have a logout 18 s to 9 min before (one
+  case, #2, 85 min with the app left signed out), a human-paced interval. The one exception is #6.
+* **Server-forced re-login: 1 of 14 (#6).** The only app-side trigger in the record. The
+  server refused the gmail org's session as too old for elevated access and put up the login
+  page; the user signed in on it as nooarche@pm.me, and reversed that by hand 35 min later
+  (#7). It is the sole switch not preceded by a logout, and it was still the user choosing
+  which account to type in.
+* **App restart, auto-update, reboot, sleep/wake: 0 of more than 200.** 27 app starts (16
+  of them update-restarts, `Previous update install succeeded`), every macOS reboot in the
+  window (09-12, 09-13, 09-14 are the ones `last` still lists) and 183 late-timer wakes
+  (`Timer fired Ns late ... treating as system wake`) all re-initialised the scheduler under
+  the **same** profile as before. The app restores `lastKnownAccountUuid` from `config.json` on every start and
+  never chose a different one. **"The app re-selecting a profile on its own" is refuted.**
+* **The Code-tab `/logout` slash command is NOT the trigger.** It is typed 15-60 min away
+  from the app's `Navigated to /logout` (#4, #5, #11, #12, #13, #14) and on 09-03 the
+  desktop switch came first. The CLI login (Keychain, `~/.claude.json`) and the desktop
+  app's sign-in are two independent surfaces; the handover moves both, by hand, in the same
+  hour.
+* **The account-handover is the occasion for it.** All four switches since the
+  WORKSPACE_STATE record begins carrying handover entries (#11-#14) fall inside a recorded
+  `/account-handover` session, and the skill's own incident record names #3, #4, #5. What
+  drives the handover is the weekly usage limit (`/rate-limit-options` sits beside #3, #5,
+  #14; the 2026-09-16 entry cites "the 05:23Z weekly-limit death"). #7-#10 have no written
+  record but the identical two-account signature.
+
+### Verdict
+
+**The profile switches because the user deliberately signs the Claude desktop app out of one
+subscription and into the other, and does so each time the account handover moves the Mac
+between nooarche@pm.me and the gmail account, which happens on usage-limit cadence -- 14
+transitions in five weeks.** The scheduled tasks were registered under the gmail org, so every
+handover to nooarche@pm.me silently turned them off until the 2026-09-02 twins. Not the app,
+not sleep, not an update, not an org invite, not Remote Control.
+
+Because the cause is something the user does on purpose, and the twins already cover both
+accounts, **no action is recommended beyond keeping the twins** (section 10, "Do not
+simplify this back to one task"). One fact worth knowing when the next handover is run:
+`account-handover` SKILL.md Step 1 covers only the CLI (`claude logout` / `claude login`);
+the desktop app's sign-in is the surface that carries the scheduler, and it is switched
+separately. Nothing here changes that skill.
+
+Reproduce: `grep -a "\[account\]" ~/Library/Logs/Claude/main*.log` beside the
+`--scheduler-log --profiles` output of `audit_scheduled_task_fires.py`.
