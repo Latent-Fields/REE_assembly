@@ -1,0 +1,585 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_935a_mech266_margin_normalised_cap_rule",
+  "run_id": "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-16T09:58:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "aliasing_control": "H-KNIFE (the rule is right, R_STAR itself was wrong) is now WIRED into the routing (fix (1) in the module docstring, the defect 935's own autopsy found): if C1 fails at R_STAR but some OTHER r in the extended sweep clears the seed-reproducibility bar on these fresh seeds, the run routes rule_right_r_wrong_requeue instead of falling through to H-IDIO.",
+    "combination_rule": "PASS iff C1_rule_grades_at_r_star AND C2_beats_best_absolute_cap. Plain AND -- recorded explicitly so the gate is never inferred from the per-criterion booleans alone. (935's separate C2 'out-of-sample' criterion is not carried forward -- see DESIGN SIMPLIFICATION in the module docstring: every seed in this run is equally out-of-sample, so a nested OOS subset would test nothing C1 does not already test on the full, fresh population.)",
+    "contact_guard": {
+      "contact_gate": 0.0,
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4
+    },
+    "criteria": [
+      {
+        "comparator": ">=",
+        "load_bearing": true,
+        "measured": 0.6,
+        "name": "C1_rule_grades_at_r_star",
+        "passed": false,
+        "threshold": 0.6666666666666666
+      },
+      {
+        "comparator": ">",
+        "load_bearing": true,
+        "measured": 3,
+        "name": "C2_beats_best_absolute_cap",
+        "passed": true,
+        "threshold": 1
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_rule_grades_at_r_star": true,
+      "C2_beats_best_absolute_cap": true
+    },
+    "dv_symmetry": {
+      "ARM_ABS": "NOT INVARIANT. Identical manipulation type at a fixed cap; same argument, and likewise empirically non-invariant (V3-EXQ-934 seed 43: 1.0 -> 0.4447).",
+      "ARM_NORM": "NOT INVARIANT. The manipulation is a symmetric clamp of each affinity input to [-cap, +cap] with cap = r * m_seed, applied BEFORE per-mode weighting, while external_task_bias is added afterwards and is never clamped -- so it changes logit DIFFERENCES, not a common offset, and a clamp is not a monotone transform of the logits. Empirically non-invariant on this exact DV in the identical mechanism (V3-EXQ-934 seed 42 moved 0.5606 -> 0.0317 -> 0.0 across caps).",
+      "dv": "fraction_in_external_task -- a function of argmax(operating_mode).",
+      "symmetry_group": "invariant under (i) a constant added to ALL mode logits and (ii) any strictly monotone transform applied identically to all mode logits."
+    },
+    "fresh_seeds": {
+      "prior_run_seeds": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "statement": "R_STAR=2.45 and the extended R_SWEEP were both derived entirely from V3-EXQ-935's seeds 42-46. This run's seeds (47-51) played no role in either derivation.",
+      "this_run_seeds": [
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "h_knife": {
+      "available": true,
+      "checked": true,
+      "note": "Computed from the SAME aggregate call as occupancy_gate (one call over all testable-seed ARM_NORM cells, never per-seed). A qualifying r other than R_STAR means the rule FORM is supported and only the pre-registered operating point needs correction -- a distinct finding from H-IDIO (no r anywhere reproduces).",
+      "qualifying_r_values": [
+        2.65
+      ]
+    },
+    "hypothesis": "H-RULE: a SINGLE pre-registered r, applied per-seed as cap = r * baseline_margin(seed), yields a graded external_task occupancy regime on >= 2/3 of ENTIRELY FRESH seeds simultaneously -- i.e. the recalibration is a shippable RULE that generalises out of sample.",
+    "label": "rule_right_r_wrong_requeue",
+    "not_better_than_absolute": "rule_grades_but_not_better_than_absolute_cap: C1 passes (the rule DOES grade on >= 2/3 of fresh seeds at R_STAR) but C2 fails -- the fixed absolute cap grades on as many or more of the same seeds. This is NOT seed-idiosyncrasy (R_STAR cleared the bar) and is NOT H-KNIFE (C1 already passed) -- a genuinely distinct, third outcome: the normalisation generalises but does not earn its keep over a simple fixed cap for this seed set.",
+    "null": "H-IDIO: no r anywhere in the extended sweep clears the seed-reproducibility bar on these fresh seeds. The required cap is seed-idiosyncratic; there is no rule to ship. Reached ONLY when C1 fails at R_STAR AND no other r qualifies -- a C1-passes-but-C2-fails state routes to the distinct rule_grades_but_not_better_than_absolute_cap label below, never here (red-team fable finding F1, 2026-09-14: the naive else-fallthrough this run's own predecessor 935 was autopsied for would otherwise reproduce inside this run too).",
+    "occupancy_gate": {
+      "adjacency_evaluated": true,
+      "ceiling": 0.9,
+      "cells": [
+        {
+          "fraction": 0.7098,
+          "label": "r=2.25",
+          "mixed": true,
+          "reachable": true,
+          "seed": 47,
+          "sweep_value": 2.25
+        },
+        {
+          "fraction": 0.7312,
+          "label": "r=2.45",
+          "mixed": true,
+          "reachable": true,
+          "seed": 47,
+          "sweep_value": 2.45
+        },
+        {
+          "fraction": 0.6899,
+          "label": "r=2.65",
+          "mixed": true,
+          "reachable": true,
+          "seed": 47,
+          "sweep_value": 2.65
+        },
+        {
+          "fraction": 0.6716,
+          "label": "r=2.85",
+          "mixed": true,
+          "reachable": true,
+          "seed": 47,
+          "sweep_value": 2.85
+        },
+        {
+          "fraction": 0.4243,
+          "label": "r=3.05",
+          "mixed": true,
+          "reachable": true,
+          "seed": 47,
+          "sweep_value": 3.05
+        },
+        {
+          "fraction": 1.0,
+          "label": "r=2.25",
+          "mixed": false,
+          "reachable": true,
+          "seed": 48,
+          "sweep_value": 2.25
+        },
+        {
+          "fraction": 0.9617,
+          "label": "r=2.45",
+          "mixed": false,
+          "reachable": true,
+          "seed": 48,
+          "sweep_value": 2.45
+        },
+        {
+          "fraction": 0.4086,
+          "label": "r=2.65",
+          "mixed": true,
+          "reachable": true,
+          "seed": 48,
+          "sweep_value": 2.65
+        },
+        {
+          "fraction": 0.0,
+          "label": "r=2.85",
+          "mixed": false,
+          "reachable": false,
+          "seed": 48,
+          "sweep_value": 2.85
+        },
+        {
+          "fraction": 0.0,
+          "label": "r=3.05",
+          "mixed": false,
+          "reachable": false,
+          "seed": 48,
+          "sweep_value": 3.05
+        },
+        {
+          "fraction": 0.9605,
+          "label": "r=2.25",
+          "mixed": false,
+          "reachable": true,
+          "seed": 49,
+          "sweep_value": 2.25
+        },
+        {
+          "fraction": 0.8656,
+          "label": "r=2.45",
+          "mixed": true,
+          "reachable": true,
+          "seed": 49,
+          "sweep_value": 2.45
+        },
+        {
+          "fraction": 0.8362,
+          "label": "r=2.65",
+          "mixed": true,
+          "reachable": true,
+          "seed": 49,
+          "sweep_value": 2.65
+        },
+        {
+          "fraction": 0.766,
+          "label": "r=2.85",
+          "mixed": true,
+          "reachable": true,
+          "seed": 49,
+          "sweep_value": 2.85
+        },
+        {
+          "fraction": 0.8177,
+          "label": "r=3.05",
+          "mixed": true,
+          "reachable": true,
+          "seed": 49,
+          "sweep_value": 3.05
+        },
+        {
+          "fraction": 1.0,
+          "label": "r=2.25",
+          "mixed": false,
+          "reachable": true,
+          "seed": 50,
+          "sweep_value": 2.25
+        },
+        {
+          "fraction": 1.0,
+          "label": "r=2.45",
+          "mixed": false,
+          "reachable": true,
+          "seed": 50,
+          "sweep_value": 2.45
+        },
+        {
+          "fraction": 1.0,
+          "label": "r=2.65",
+          "mixed": false,
+          "reachable": true,
+          "seed": 50,
+          "sweep_value": 2.65
+        },
+        {
+          "fraction": 0.0,
+          "label": "r=2.85",
+          "mixed": false,
+          "reachable": false,
+          "seed": 50,
+          "sweep_value": 2.85
+        },
+        {
+          "fraction": 0.0,
+          "label": "r=3.05",
+          "mixed": false,
+          "reachable": false,
+          "seed": 50,
+          "sweep_value": 3.05
+        },
+        {
+          "fraction": 0.8475,
+          "label": "r=2.25",
+          "mixed": true,
+          "reachable": true,
+          "seed": 51,
+          "sweep_value": 2.25
+        },
+        {
+          "fraction": 0.8093,
+          "label": "r=2.45",
+          "mixed": true,
+          "reachable": true,
+          "seed": 51,
+          "sweep_value": 2.45
+        },
+        {
+          "fraction": 0.7172,
+          "label": "r=2.65",
+          "mixed": true,
+          "reachable": true,
+          "seed": 51,
+          "sweep_value": 2.65
+        },
+        {
+          "fraction": 0.0,
+          "label": "r=2.85",
+          "mixed": false,
+          "reachable": false,
+          "seed": 51,
+          "sweep_value": 2.85
+        },
+        {
+          "fraction": 0.0,
+          "label": "r=3.05",
+          "mixed": false,
+          "reachable": false,
+          "seed": 51,
+          "sweep_value": 3.05
+        }
+      ],
+      "floor": 0.1,
+      "graded": false,
+      "longest_adjacent_run": 1,
+      "max_fraction": 1.0,
+      "min_adjacent": 2,
+      "min_fraction": 0.0,
+      "min_seed_fraction": 0.6666666666666666,
+      "min_seeds": 2,
+      "per_value": [
+        {
+          "condition": 2.25,
+          "label": "r=2.25",
+          "mixed_seeds": [
+            47,
+            51
+          ],
+          "n_mixed_seeds": 2,
+          "n_seeds": 5,
+          "qualifies": false,
+          "seed_fraction": 0.4
+        },
+        {
+          "condition": 2.45,
+          "label": "r=2.45",
+          "mixed_seeds": [
+            47,
+            49,
+            51
+          ],
+          "n_mixed_seeds": 3,
+          "n_seeds": 5,
+          "qualifies": false,
+          "seed_fraction": 0.6
+        },
+        {
+          "condition": 2.65,
+          "label": "r=2.65",
+          "mixed_seeds": [
+            47,
+            48,
+            49,
+            51
+          ],
+          "n_mixed_seeds": 4,
+          "n_seeds": 5,
+          "qualifies": true,
+          "seed_fraction": 0.8
+        },
+        {
+          "condition": 2.85,
+          "label": "r=2.85",
+          "mixed_seeds": [
+            47,
+            49
+          ],
+          "n_mixed_seeds": 2,
+          "n_seeds": 5,
+          "qualifies": false,
+          "seed_fraction": 0.4
+        },
+        {
+          "condition": 3.05,
+          "label": "r=3.05",
+          "mixed_seeds": [
+            47,
+            49
+          ],
+          "n_mixed_seeds": 2,
+          "n_seeds": 5,
+          "qualifies": false,
+          "seed_fraction": 0.4
+        }
+      ],
+      "reachable": true,
+      "regime_shape": "mixed_not_reproducible",
+      "reproducible_band": null,
+      "reproducible_conditions": [
+        2.65
+      ],
+      "route_reason": "external_task_mixed_regime_not_reproducible",
+      "seeds": [
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "preconditions": [
+      {
+        "control": "fraction of seeds with P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4. Cleared 5/5 by V3-EXQ-934+935 on this curriculum family (seeds 42-46); these are FRESH seeds (47-51) so this is a live check, not a banked assertion.",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds. A curriculum that never became foraging-competent makes every occupancy reading meaningless.",
+        "direction": "lower",
+        "kind": "readiness",
+        "measured": 1.0,
+        "met": true,
+        "name": "foraging_contact_guard",
+        "threshold": 0.6666666666666666
+      },
+      {
+        "control": "fraction of guard-passing seeds whose best cell's ext_margin_mean clears MARGIN_FLOOR. V3-EXQ-934/935 measured 0.3217-0.8139 on this curriculum family against a 0.05 floor (fresh seeds here, live check).",
+        "description": "the external_task drive must ENGAGE at SOME cell -- per-seed max-over-cells of the CONTINUOUS operating_mode['external_task'] margin > MARGIN_FLOOR -- on >= 2/3 guard-passing seeds. If the margin is ~0 everywhere the drive is not producing the signal at all (substrate/wiring), which must self-route to substrate_not_ready_requeue and NOT be read as a structural or idiosyncratic finding.",
+        "direction": "lower",
+        "kind": "readiness",
+        "measured": 1.0,
+        "met": true,
+        "name": "external_task_drive_engages",
+        "threshold": 0.6666666666666666
+      },
+      {
+        "control": "the calibration cell is a known-non-degenerate positive control at the SAME cap (0.75) and SAME symmetric rails at which V3-EXQ-934/935 measured m in [0.3217, 0.8139] across seeds 42-46, all ~6-16x the 0.05 floor.",
+        "description": "the calibration cell at CAP_REF must yield a live baseline margin (m_seed > MARGIN_FLOOR) on >= 2/3 guard-passing seeds. This is the readiness form of the SAME quantity the load-bearing C1 criterion routes on: C1 reads occupancy under cap = R_STAR * m_seed, so a dead m_seed makes the cap ~0 for every r and STARVES C1 rather than falsifying it. Below floor self-routes substrate_not_ready_requeue, never cap_recalibration_is_seed_idiosyncratic.",
+        "direction": "lower",
+        "kind": "readiness",
+        "measured": 1.0,
+        "met": true,
+        "name": "calibration_statistic_alive",
+        "threshold": 0.6666666666666666
+      },
+      {
+        "control": "R_STAR is a member of R_SWEEP by construction and the dry-run r subset is built by _r_values() to always contain it (kept in sync with R_STAR this run -- see the 2026-09-10 refusal-record note in that function's docstring).",
+        "description": "the R_STAR cell must EXIST on every guard-passing seed. C1 -- the load-bearing criterion -- is evaluated ONLY at R_STAR, so a missing cell means C1 was never measured at all. This is an INSTRUMENT invariant, not a statistical one, which is why the threshold is 1.0 rather than MIN_FRACTION.",
+        "direction": "lower",
+        "kind": "readiness",
+        "measured": 1.0,
+        "met": true,
+        "name": "r_star_cell_measured",
+        "threshold": 1.0
+      }
+    ],
+    "readiness_route": "rule_right_r_wrong_requeue",
+    "regime_gate": {
+      "cap_abs_control": 1.75,
+      "cap_ref": 0.75,
+      "definition": "occupancy is 'graded' iff strictly inside (OCCUPANCY_FLOOR, OCCUPANCY_CEILING). C1 evaluates this at the SINGLE pre-registered R_STAR -- a common-rule test on fresh seeds. The shared primitive experiments/_lib/regime_occupancy_gate.py (corrected, 2026-09-11) is applied over the full r axis for occupancy_gate / H-KNIFE, called ONCE over all testable-seed cells -- never per-seed.",
+      "margin_floor": 0.05,
+      "min_fraction": 0.6666666666666666,
+      "occupancy_ceiling": 0.9,
+      "occupancy_floor": 0.1,
+      "r_star": 2.45,
+      "r_sweep": [
+        2.25,
+        2.45,
+        2.65,
+        2.85,
+        3.05
+      ]
+    },
+    "route_reason": "criteria_failed:C1_rule_grades_at_r_star|other_r_clearing_min_fraction:[2.65]",
+    "structural_satisfiability": {
+      "C1": "satisfiable in principle -- 935's own sweep graded 4/5 at r=2.45 on seeds 42-46; NOT proven for 47-51 specifically, which is exactly what this run tests.",
+      "C2": "the control is not a straw man -- ARM_ABS at cap 1.75 graded on seeds in 934/935's banked data, so it CAN grade and C2 requires strictly beating it on fresh seeds too.",
+      "calibration_statistic_alive": "same statistic as above, same argument.",
+      "checked": "on paper before queuing, argued from the curriculum's track record on 5 DISTINCT prior seeds (42-46 across 934/935) since 47-51 have no banked data of their own -- see STRUCTURAL SATISFIABILITY in the module docstring for why this is a weaker evidentiary claim than 935's own (and deliberately stated as such).",
+      "external_task_drive_engages": "0.3217-0.8139 measured (934+935) vs a 0.05 floor -- no known seed-dependent failure mode.",
+      "foraging_contact_guard": "5/5 measured (934+935) vs a 2/3 floor -- no known seed-dependent failure mode.",
+      "no_arm_structurally_vacuous": true
+    },
+    "two_mode_scope": {
+      "modes_never_engaged_in_lineage": [
+        "internal_replay",
+        "offline_consolidation"
+      ],
+      "modes_observed_in_prior_run": [
+        "external_task",
+        "internal_planning"
+      ],
+      "statement": "V3-EXQ-935's manifest recorded internal_replay and offline_consolidation at EXACTLY 0.0 in all 35 cells. This run's mode-register wiring is identical, so the regime claim below is bounded to a two-mode split (external_task vs internal_planning); the other two SD-032a register modes have never been observed to engage in this lineage."
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3984b01ee87f1015516c61bfda0eaeb1ecaf726e924f82c2e2709a89050048c4",
+  "substrate_commit": {
+    "branch": "main",
+    "commit": "89e100ba1aff7e24f2622252d27bb3f3c67adda5",
+    "dirty": false
+  },
+  "enabled_default_off_flags": {
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.goal_weight": 1.0,
+    "goal.drive_floor": 0.9,
+    "goal.use_cue_recall": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.z_goal_enabled": true,
+    "heartbeat.beta_gate_bistable": true,
+    "heartbeat.breath_period": 50,
+    "latent.harm_history_len": 10,
+    "latent.use_affective_harm_stream": true,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_harm_stream": true,
+    "latent.use_resource_encoder": true,
+    "use_dacc": true,
+    "use_external_task_drive": true,
+    "use_instrumental_avoidance": true,
+    "use_lateral_pfc_analog": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_conjunction": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_split_surprise": true,
+    "use_pag_freeze_gate": true,
+    "use_salience_coordinator": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 165147.68349723,
+  "config": {
+    "affinity_input_cap_train": 2.0,
+    "arms": [
+      "ARM_CALIB",
+      "ARM_NORM",
+      "ARM_ABS"
+    ],
+    "cap_abs_control": 1.75,
+    "cap_ref": 0.75,
+    "contact_gate": 0.0,
+    "margin_floor": 0.05,
+    "min_fraction": 0.6666666666666666,
+    "mode_eval_episodes_per_cell": 15,
+    "occupancy_ceiling": 0.9,
+    "occupancy_floor": 0.1,
+    "p2_zgoal_gate": 0.4,
+    "r_star": 2.45,
+    "r_sweep": [
+      2.25,
+      2.45,
+      2.65,
+      2.85,
+      3.05
+    ],
+    "rails": "ARM_SYMMETRIC (legacy MECH-259, no per-mode rails) on EVERY cell",
+    "scaffold_curriculum": {
+      "config_basis": "V3-EXQ-603n",
+      "hazard_stage_budget": 40,
+      "n_resource_types": 3,
+      "p0_budget": 100,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "stage0_budget": 20,
+      "stage0b_budget": 10
+    },
+    "seeds": [
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "train_steps": 200
+  },
+  "seeds": [
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "z_goal_stream": {
+    "active_frac": 0.9999803058113612,
+    "goal_state_present": true,
+    "n_agents": 40,
+    "ticks_active": 253877,
+    "ticks_total": 253882,
+    "writer_calls": 60445,
+    "writer_defect": false
+  }
+}
