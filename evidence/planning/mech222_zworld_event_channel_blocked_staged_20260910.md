@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: DECIDED 2026-09-16 -- registry edits applied; see section 8.** (Was: AWAITING USER REVIEW, nothing written to claims.yaml beyond the proposal-status field.)
 
 # EXP-0893 / MECH-222 -- why no experiment was queued, and what is owed first
 
@@ -126,3 +126,33 @@ Not applied, for a human to decide:
   annotation in `claims.yaml`;
 - whether the sibling proposals EXP-0891 (MECH-221), LIT-0892, LIT-0894 are blocked by
   the same gate -- EXP-0891 very likely is, but it was not audited here.
+
+## 8. Registry disposition (2026-09-16 -- DECIDED)
+
+User decision 2026-09-16 (live chat, eloquent-jepsen-5f6242 doc-review walk): **"Annotate +
+audit siblings; keep build chip parked."** Applied by chip
+`chip-20260916-mech222-annotate-audit-siblings` (session bold-swanson-1789a0, 2026-09-16T22:53:01Z).
+Both questions left open in section 7 are answered YES.
+
+| id | what was set | verdict (one line) |
+|---|---|---|
+| MECH-221 | `claims.yaml`: `digestion_note` (no observable DV in V3 as of 2026-09-10, gate + parked route), `epistemic_category: substrate_conditional` (was unset), `awaiting:` -> parked chip. Status/confidence untouched. | Annotated. The "must" is a downstream-consumer requirement; its consequent needs an exogenous-event channel z_world does not expose. |
+| MECH-222 | `claims.yaml`: same three fields (note framed as the consequent). Status/confidence untouched. | Annotated. |
+| EXP-0891 (EVB-1461, MECH-221, experimental) | `experiment_proposals.v1.json`: `status: proposed -> blocked_substrate`, `blocked_by: [MECH-221, MECH-222, SD-070]`, `blocked_note` in the shape of EVB-1462's. | BLOCKED by the same gate: any DV for MECH-221 must read exogenous-event content out of z_world. The one measurable thing (SD-007 predictor removes self-motion content, R2 0.34-0.40) is a manipulation check, not the consequent. |
+| LIT-0892 (EVB-1461, MECH-221, literature) | nothing | LEFT `proposed`: a literature pull is not blocked by a missing V3 DV, and its text ("improve literature grounding and confidence for MECH-221") presupposes none. |
+| LIT-0894 (EVB-1462, MECH-222, literature) | nothing | LEFT `proposed`, same reasoning. |
+| EXP-0893 (EVB-1462) | nothing (already `blocked_substrate`, REE_assembly `217db9672e6`, 2026-09-10) | Unchanged. |
+| chip-20260910-zworld-exogenous-event-channel | nothing | PARKED, per the decision: not claimed, urgency not raised, no `substrate_queue.json` entry -- the zworld-adequacy programme (`zworld_adequacy_plan.md`, SD-106 / INV-086 / MECH-428) is redesigning z_world concurrently and the user chose not to run two redesigns at once. |
+
+Notes for the next reader:
+
+- `epistemic_category: substrate_conditional` also stops `build_experiment_indexes.py` minting
+  fresh auto-proposals for these two claims, which is what produced EXP-0891/EXP-0893 in the
+  first place.
+- The derived `experiment_proposals_index.v1.json` was NOT hand-patched (same as the 2026-09-10
+  landing); the next regen carries `blocked_substrate` forward from the generated proposals
+  file. EXP-0891 is not in `manual_proposals.v1.json`, so the carry-forward revert hazard
+  (memory `reference-manual-proposal-status-reverted-by-regen`) does not apply; EXP-0893's
+  block survived the 2026-09-16 regen the same way.
+- One `governance_flag.py raise --flag-type evidence_discrepancy` entry was raised so the next
+  `/governance` cycle sees the annotation; the pipeline was not run.

@@ -20251,6 +20251,12 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1461",
+      "blocked_by": [
+        "MECH-221",
+        "MECH-222",
+        "SD-070"
+      ],
+      "blocked_note": "No queue entry created; audited 2026-09-16 against the EXP-0893 (EVB-1462) gate per user decision 2026-09-16 (chip-20260916-mech222-annotate-audit-siblings). MECH-221 is a downstream-consumer requirement: its testable content is that a consumer of z_world (E3, hippocampus, residue field, coherency) can tell an EXOGENOUS world event from self-caused change only if self-predicted content is continuously subtracted -- so any DV for it must read exogenous-event content out of z_world, and z_world carries no such signal: ree_core/latent/zworld_p0.py records (2026-07-18, this substrate) that transition-type information is AT OR BELOW CHANCE in the world_obs channel z_world encodes (-0.014 3-class / -0.060 6-class held-out macro-recall minus chance), because z_world is a STATIC SINGLE-FRAME encoding and SD-005's split encoder routes the informative body delta to z_self. Reproduced independently 2026-09-10 across six measurements (frozen and trained encoder; binary and graded DV; clock-locked and clock-independent exogenous channel) -- all at chance (probe AUC 0.53-0.63, Spearman -0.03..0.20). The one thing that IS measurable -- the SD-007 ReafferencePredictor removes the self-motion content it was trained on (held-out R2 0.34-0.40, action-sensitive: cos 0.59 vs a mis-paired sham) -- is a manipulation check, not the claim's consequent, and would not move MECH-221. Same route as EXP-0893: /implement-substrate on the z_world exogenous-event channel (chip-20260910-zworld-exogenous-event-channel), PARKED behind evidence/planning/zworld_adequacy_plan.md (SD-106) by user decision 2026-09-16 -- NOT another /queue-experiment iteration. Full evidence + red-team dispositions + this audit: REE_assembly/evidence/planning/mech222_zworld_event_channel_blocked_staged_20260910.md (section 8). Reviewed driver on trunk, deliberately UNQUEUED, whose ARM_RESID_ON/OFF/SHAM contrast ablates exactly MECH-221's mechanism: ree-v3/experiments/v3_exq_1018_mech222_self_attribution_contamination.py",
       "claim_id": "MECH-221",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -20273,7 +20279,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_221",
       "target_repo": "ree-v3",
       "why_now": [

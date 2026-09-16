@@ -34862,6 +34862,8 @@
     as_of: 2026-07-11
     needs_review: false
   implementation_phase: v3
+  epistemic_category: substrate_conditional
+  awaiting: z_world exogenous-world-event channel (chip-20260910-zworld-exogenous-event-channel, /implement-substrate, PARKED behind evidence/planning/zworld_adequacy_plan.md SD-106 by user decision 2026-09-16, no substrate_queue entry)
   depends_on:
     - SD-005
     - SD-007
@@ -34887,6 +34889,40 @@
     depends_on: MECH-095 removed. This claim's own text already distinguishes itself from
     MECH-095 (continuous vs comparator-based detection) -- both consume the efference-copy
     signal as parallel siblings, not one depending on the other.
+  digestion_note: >
+    [2026-09-16 registry disposition, chip-20260916-mech222-annotate-audit-siblings; user
+    decision 2026-09-16 at the eloquent-jepsen-5f6242 doc-review walk, "annotate + audit
+    siblings; keep build chip parked"]:
+    No observable DV in V3 as of 2026-09-10: z_world carries exogenous-event information at
+    chance (probe AUC 0.53-0.63, held-out Spearman <= 0.20, six measurements spanning frozen and
+    trained encoders, binary and graded DVs, clock-locked and clock-independent exogenous
+    channels; evidence/planning/mech222_zworld_event_channel_blocked_staged_20260910.md sections
+    2-3, independently recorded in ree_core/latent/zworld_p0.py 2026-07-18) because z_world is a
+    static single-frame encoding and SD-005 routes the body delta, where transition information
+    lives, to z_self. Testable only after a decodable exogenous-event channel exists
+    (chip-20260910-zworld-exogenous-event-channel, /implement-substrate, parked behind
+    evidence/planning/zworld_adequacy_plan.md -- SD-106 / INV-086 / MECH-428, H-F confirmed
+    2026-09-11 -- because the user chose not to run two z_world redesigns at once; do not claim
+    that chip, raise its urgency, or add a substrate_queue entry for it). SD-070 (the zworld_p0
+    recipe) targets static single-frame properties by construction and is not expected to clear
+    this gate on its own; confirm rather than assume. The MANIPULATION is sound: the SD-007
+    ReafferencePredictor trains to held-out R2 0.34-0.40 on self-motion transitions and is
+    genuinely action-sensitive (cos 0.59 vs a mis-paired sham), so the reviewed driver
+    ree-v3/experiments/v3_exq_1018_mech222_self_attribution_contamination.py (ARM_RESID_ON /
+    ARM_RESID_OFF / ARM_SHAM_RESID, deliberately UNQUEUED) is reusable once the channel exists.
+    Why this gate binds MECH-221 and not only MECH-222: "z_world carries self-motion content
+    when residualization is off" IS measurable, but it is a manipulation check, not this
+    claim's consequent. The claim's "must" is a downstream-consumer requirement (E3,
+    hippocampus, residue field, coherency must be able to tell an exogenous event from the
+    agent's own doing), and that consequent has no observable until z_world exposes an
+    exogenous-event channel -- the doc's section 6 names the missing pathway as MECH-221's own
+    architectural question. Applied in the same pass: epistemic_category set to
+    substrate_conditional (was unset) with awaiting: pointing at the parked channel; proposal
+    EXP-0891 (EVB-1461, this claim's auto experimental proposal) set blocked_substrate on the
+    same gate, mirroring EXP-0893 (EVB-1462, MECH-222, blocked 2026-09-10); LIT-0892 left
+    proposed (a literature pull needs no V3 DV and its text presupposes none). Status and
+    confidence deliberately untouched (governance-only); a governance flag was raised for the
+    next /governance cycle.
   registered: "2026-04-11"
 
 - id: MECH-222
@@ -34900,6 +34936,8 @@
     as_of: 2026-07-11
     needs_review: false
   implementation_phase: v3
+  epistemic_category: substrate_conditional
+  awaiting: z_world exogenous-world-event channel (chip-20260910-zworld-exogenous-event-channel, /implement-substrate, PARKED behind evidence/planning/zworld_adequacy_plan.md SD-106 by user decision 2026-09-16, no substrate_queue entry)
   competing_claims:
     - id: MECH-094
       discrimination: >
@@ -34949,6 +34987,37 @@
     an inflated causal self-model. This is a structurally different failure from MECH-094
     (episodic tag-loss) and MECH-065 (external signal miscalibration). The three psychosis
     substrates are registered as distinct claims to enable experimental dissociation (Q-037).
+  digestion_note: >
+    [2026-09-16 registry disposition, chip-20260916-mech222-annotate-audit-siblings; user
+    decision 2026-09-16 at the eloquent-jepsen-5f6242 doc-review walk, "annotate + audit
+    siblings; keep build chip parked"]:
+    No observable DV in V3 as of 2026-09-10: z_world carries exogenous-event information at
+    chance (probe AUC 0.53-0.63, held-out Spearman <= 0.20, six measurements spanning frozen and
+    trained encoders, binary and graded DVs, clock-locked and clock-independent exogenous
+    channels; evidence/planning/mech222_zworld_event_channel_blocked_staged_20260910.md sections
+    2-3, independently recorded in ree_core/latent/zworld_p0.py 2026-07-18) because z_world is a
+    static single-frame encoding and SD-005 routes the body delta, where transition information
+    lives, to z_self. Testable only after a decodable exogenous-event channel exists
+    (chip-20260910-zworld-exogenous-event-channel, /implement-substrate, parked behind
+    evidence/planning/zworld_adequacy_plan.md -- SD-106 / INV-086 / MECH-428, H-F confirmed
+    2026-09-11 -- because the user chose not to run two z_world redesigns at once; do not claim
+    that chip, raise its urgency, or add a substrate_queue entry for it). SD-070 (the zworld_p0
+    recipe) targets static single-frame properties by construction and is not expected to clear
+    this gate on its own; confirm rather than assume. The MANIPULATION is sound: the SD-007
+    ReafferencePredictor trains to held-out R2 0.34-0.40 on self-motion transitions and is
+    genuinely action-sensitive (cos 0.59 vs a mis-paired sham), so the reviewed driver
+    ree-v3/experiments/v3_exq_1018_mech222_self_attribution_contamination.py (ARM_RESID_ON /
+    ARM_RESID_OFF / ARM_SHAM_RESID, deliberately UNQUEUED) is reusable once the channel exists.
+    This claim's testable content is the CONSEQUENT of MECH-221 failure -- a consumer reading
+    z_world can no longer tell an exogenous world event from the agent's own doing -- and every
+    DV for that consequent requires z_world to carry exogenous-event information at all, which
+    it does not. Applied in the same pass: epistemic_category set to substrate_conditional (was
+    unset) with awaiting: pointing at the parked channel; EXP-0893 (EVB-1462) was already
+    blocked_substrate since 2026-09-10 (REE_assembly 217db9672e6) and is unchanged; the sibling
+    EXP-0891 (EVB-1461, MECH-221) was audited and set blocked_substrate on the same gate;
+    LIT-0894 left proposed (a literature pull needs no V3 DV and its text presupposes none).
+    Status and confidence deliberately untouched (governance-only); a governance flag was raised
+    for the next /governance cycle.
   registered: "2026-04-11"
 
 - id: MECH-223
