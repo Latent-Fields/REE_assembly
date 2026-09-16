@@ -58,7 +58,47 @@ class ParseTsTest(unittest.TestCase):
 
 
 class ClassifyTest(unittest.TestCase):
-    """R1..R5, each in isolation."""
+    """R0..R5, each in isolation."""
+
+    def test_R0_explicit_label_is_kept_verbatim_not_rederived(self):
+        """The SD-018/v3_exq_1008 case (2026-09-16,
+        chip-20260915-run-role-cutoff-semantics-then-backfill): a governance-set
+        `run_role` whose `run_role_basis` is prose, not an "R<n> ..." derivation
+        tag, must survive re-classification even though R3 would otherwise
+        re-derive `post_build` here (the run postdates implemented_utc)."""
+        entry = {"implemented_utc": "2026-09-02T00:00:00Z"}
+        rec = _rec(
+            "20260907T233826Z",
+            run_role=B.RUN_ROLE_UNKNOWN,
+            run_role_basis="Deliberately `unknown`, not `post_build`. ...",
+        )
+        role, basis = B.classify(entry, rec)
+        self.assertEqual(B.RUN_ROLE_UNKNOWN, role)
+        self.assertEqual("Deliberately `unknown`, not `post_build`. ...", basis)
+
+    def test_R0_does_not_match_an_R_n_derivation_tag(self):
+        """NEGATIVE CONTROL: a basis this script itself wrote (starts "R<n> ")
+        must still be re-derived on every run -- R0 is for EXPLICIT labels only,
+        not a general "trust whatever is already there" bypass."""
+        entry = {"implemented_utc": "2026-04-21T00:00:00Z"}
+        rec = _rec(
+            "20260408T231126Z",
+            run_role=B.RUN_ROLE_POST,  # stale/wrong on purpose
+            run_role_basis="R3 run > entry.implemented_utc",
+        )
+        role, basis = B.classify(entry, rec)
+        self.assertEqual(B.RUN_ROLE_PRE, role, "must re-derive, not trust the stale R3 value")
+        self.assertIn("R3", basis)
+
+    def test_R0_is_skipped_when_run_role_basis_is_absent(self):
+        """A record with `run_role` set but no `run_role_basis` (or an empty one)
+        is NOT treated as an explicit label -- every explicit-label convention in
+        the schema note sets both fields together."""
+        entry = {"implemented_utc": "2026-04-21T00:00:00Z"}
+        rec = _rec("20260408T231126Z", run_role=B.RUN_ROLE_POST)
+        role, basis = B.classify(entry, rec)
+        self.assertEqual(B.RUN_ROLE_PRE, role)
+        self.assertIn("R3", basis)
 
     def test_R1_item_substrate_built_utc_overrides_the_entry(self):
         """The phased-build case, and the live worked example: SD-035's

@@ -107,9 +107,13 @@ SUB_ARC045 = {
     # The live row (2026-08-08), plus the `run_role` values the 2026-08-15 FM11d
     # backfill wrote onto it. The entry's own implementation_note opens
     # "IMPLEMENTED 2026-08-02", so 861 (2026-08-01T20:56) predates the build and
-    # the other two do not. The third entry is what makes the cutoff
-    # 2026-08-02T22:16:21Z, and it is also 436c itself -- so the boundary case
-    # below ("evidence exactly AT the cutoff") is a real one, not a contrived one.
+    # the other two do not. Since 2026-09-16 (cutoff-semantics fix,
+    # chip-20260915-run-role-cutoff-semantics-then-backfill) an entry's post_build
+    # candidates combine by MIN, not max, so the EARLIEST of the two post_build
+    # runs -- 861a, 2026-08-02T21:50:05Z -- is what sets the cutoff, and it is also
+    # 861a itself -- so the boundary case below ("evidence exactly AT the cutoff")
+    # is a real one, not a contrived one. 436c (22:16:21) is a later, non-cutoff
+    # post_build run on the same entry.
     "failure_record": [
         {"run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation"
                    "_decoupled_diversity_20260801T205600Z_v3",
@@ -167,12 +171,20 @@ E_436D_ARC045 = {
     "run_id": "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3",
     "timestamp_utc": "2026-08-04T07:15:41Z",
 }
-E_436C_ARC045 = {   # PRE-substrate: 2026-08-02T22:16 is the cutoff itself
+E_436C_ARC045 = {   # a later post_build run on the same entry as the cutoff
     "claim_id": "ARC-045",
     "source_type": "experimental",
     "status": "FAIL",
     "run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3",
     "timestamp_utc": "2026-08-02T22:16:21Z",
+}
+E_861A_ARC045 = {   # 2026-08-02T21:50:05 IS the cutoff itself (min-of-entry, 2026-09-16)
+    "claim_id": "ARC-045",
+    "source_type": "experimental",
+    "status": "PASS",
+    "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection"
+              "_validation_20260802T215005Z_v3",
+    "timestamp_utc": "2026-08-02T21:50:05Z",
 }
 E_436B_ARC045 = {   # clearly pre-substrate
     "claim_id": "ARC-045",
@@ -241,10 +253,18 @@ class ParseEvidenceTsTest(unittest.TestCase):
 
 
 class SubstrateLandingCutoffTest(unittest.TestCase):
-    def test_latest_post_build_failure_record_run_wins(self):
+    def test_earliest_post_build_failure_record_run_wins(self):
+        """RENAMED 2026-09-16 (was `..._latest_..._wins`, expected 436c/22:16:21).
+
+        A post_build stamp is only an UPPER bound on the landing instant, so of
+        several on one entry the EARLIEST is the tightest and correct one -- 861a
+        (21:50:05), not the later 436c (22:16:21). Taking the max here is exactly
+        what let every subsequent validation run recorded against an entry push
+        its cutoff contribution later without bound (chip-20260915-run-role-
+        cutoff-semantics-then-backfill)."""
         cutoff, source, is_run = G._substrate_landing_cutoff(
             "ARC-045", SUBSTRATE_BY_ID)
-        self.assertEqual(_utc("2026-08-02T22:16:21Z"), cutoff)
+        self.assertEqual(_utc("2026-08-02T21:50:05Z"), cutoff)
         self.assertIn("MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION", source)
         self.assertIn("failure_record", source)
         self.assertTrue(is_run, "a failure_record cutoff is a validation-run stamp")
@@ -256,10 +276,29 @@ class SubstrateLandingCutoffTest(unittest.TestCase):
         self.assertIn("implemented_utc", source)
         self.assertFalse(is_run, "a landing stamp is not a run, so it stays exclusive")
 
-    def test_latest_of_both_sources_wins(self):
+    def test_implemented_utc_wins_over_failure_record_when_both_are_present(self):
+        """RENAMED 2026-09-16 -- was `..._latest_of_both_sources_wins`, which
+        described the old max-over-everything reading. Since the cutoff-semantics
+        fix `implemented_utc`, when present, is used EXCLUSIVE of any run stamp on
+        the same entry (it is the authoritative bookkeeping value; see the 9
+        same-day audit-flagged post_build-predates-implemented_utc items in
+        `_substrate_landing_cutoff`'s docstring). This fixture's `implemented_utc`
+        (08-03) happens to be later than both of SUB_ARC045's post_build runs
+        (08-02), so this does not by itself distinguish the two readings -- it
+        pins that `implemented_utc` wins, not that it wins BECAUSE it is later."""
         entry = dict(SUB_ARC045, implemented_utc="2026-08-03T00:00:00Z")
         cutoff, source, is_run = G._substrate_landing_cutoff("ARC-045", {"x": entry})
         self.assertEqual(_utc("2026-08-03T00:00:00Z"), cutoff)
+        self.assertIn("implemented_utc", source)
+        self.assertFalse(is_run)
+
+    def test_implemented_utc_wins_even_when_a_post_build_run_is_later(self):
+        """The other half of the same rule, NOT covered by the fixture above:
+        `implemented_utc` wins even when it is the EARLIER of the two, because a
+        post_build run stamp never competes with it at all once it is present."""
+        entry = dict(SUB_ARC045, implemented_utc="2026-08-02T21:00:00Z")
+        cutoff, source, is_run = G._substrate_landing_cutoff("ARC-045", {"x": entry})
+        self.assertEqual(_utc("2026-08-02T21:00:00Z"), cutoff)
         self.assertIn("implemented_utc", source)
         self.assertFalse(is_run)
 
@@ -277,6 +316,92 @@ class SubstrateLandingCutoffTest(unittest.TestCase):
                 "c": {}}
         self.assertEqual((None, "", False),
                          G._substrate_landing_cutoff("ARC-045", junk))
+
+
+class AccumulatingPostBuildRunsCannotGrowTheCutoffTest(unittest.TestCase):
+    """Regression for the 2026-09-16 cutoff-semantics fix
+    (chip-20260915-run-role-cutoff-semantics-then-backfill), built from the
+    ARC-045 real-corpus shape: an entry with NO `implemented_utc` that
+    accumulates `run_role: post_build` failure_record runs over several WEEKS.
+
+    Under the old max-wins-within-an-entry reading, each new validation run
+    recorded against the entry pushed that entry's contribution to the cutoff
+    later -- so a claim's own genuinely post-landing evidence, timestamped between
+    the entry's earliest post_build run and its latest one, could fall "before"
+    the cutoff purely because still more retests had since been recorded. That
+    regressed `_completed_retest_coverage` for 20 claims when the run_role
+    backfill was (re-)applied on 2026-09-15 and was reverted for it (REE_assembly
+    69a8ada52c).
+    """
+
+    # One unblocking entry with no implemented_utc and post_build runs spanning
+    # three weeks -- the shape of contextmemory-write-path-addressing-degeneracy
+    # (2026-08-20 .. 2026-09-07) that regressed ARC-045.
+    SUB_ACCUMULATING = {
+        "sd_id": "accumulating-entry",
+        "status": "implemented",
+        "implemented_utc": None,
+        "unblocks_claims": ["CLAIM-X"],
+        "failure_record": [
+            {"run_id": "v3_exq_100_claimx_first_validation_20260820T090000Z_v3",
+             "run_role": "post_build"},
+            {"run_id": "v3_exq_150_claimx_second_validation_20260830T090000Z_v3",
+             "run_role": "post_build"},
+            {"run_id": "v3_exq_200_claimx_third_validation_20260907T160000Z_v3",
+             "run_role": "post_build"},
+        ],
+    }
+
+    def test_cutoff_is_the_earliest_post_build_run_not_the_latest(self):
+        cutoff, source, is_run = G._substrate_landing_cutoff(
+            "CLAIM-X", {"x": self.SUB_ACCUMULATING})
+        self.assertEqual(_utc("2026-08-20T09:00:00Z"), cutoff)
+        self.assertTrue(is_run)
+
+    def test_evidence_between_the_earliest_and_latest_post_build_runs_IS_covered(self):
+        """The exact ARC-045 shape: evidence dated 2026-08-25 postdates the
+        entry's EARLIEST post_build run (08-20) but predates its LATEST (09-07).
+        Old max-wins semantics set the cutoff to 09-07 and lost this coverage;
+        the fix restores it."""
+        orig = G._claim_evidence_entries
+        G._claim_evidence_entries = lambda: [{
+            "claim_id": "CLAIM-X",
+            "source_type": "experimental",
+            "status": "PASS",
+            "run_id": "v3_exq_125_claimx_retest_20260825T000000Z_v3",
+            "timestamp_utc": "2026-08-25T00:00:00Z",
+        }]
+        try:
+            cover = G._completed_retest_coverage(
+                "CLAIM-X", {"x": self.SUB_ACCUMULATING})
+        finally:
+            G._claim_evidence_entries = orig
+        self.assertIsNotNone(
+            cover,
+            "regression: a later validation run recorded against the SAME "
+            "entry must not retroactively un-cover evidence that already "
+            "postdated an earlier post_build run on that entry",
+        )
+        self.assertEqual("v3_exq_125_claimx_retest_20260825T000000Z_v3",
+                         cover["run_id"])
+
+    def test_a_later_entry_still_raises_the_cutoff_across_entries(self):
+        """NEGATIVE CONTROL: the fix is scoped to WITHIN one entry. Across
+        several unblocking entries the max is still correct and unchanged -- a
+        claim unblocked by two entries is not covered until the LATER of the two
+        has landed."""
+        later_entry = {
+            "sd_id": "later-entry",
+            "status": "implemented",
+            "implemented_utc": "2026-09-10T00:00:00Z",
+            "unblocks_claims": ["CLAIM-X"],
+            "failure_record": [],
+        }
+        cutoff, source, is_run = G._substrate_landing_cutoff(
+            "CLAIM-X", {"a": self.SUB_ACCUMULATING, "b": later_entry})
+        self.assertEqual(_utc("2026-09-10T00:00:00Z"), cutoff)
+        self.assertIn("later-entry", source)
+        self.assertFalse(is_run)
 
 
 class RunRoleGatesTheCutoffTest(unittest.TestCase):
@@ -337,18 +462,22 @@ class CompletedRetestCoverageTest(_WithEntries, unittest.TestCase):
     """FM11 proper: the incident replay."""
 
     def test_arc045_is_covered_by_the_run_that_already_happened(self):
+        """Cutoff value UPDATED 2026-09-16 (cutoff-semantics fix): the entry's
+        cutoff is now its earliest post_build run (861a, 21:50:05), not its
+        latest (436c, 22:16:21) -- see AccumulatingPostBuildRunsCannotGrowThe
+        CutoffTest. 436d (08-04) postdates both either way."""
         self._use(INCIDENT_ENTRIES)
         cover = G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID)
         self.assertIsNotNone(
             cover,
             "FM11 regression: v3_exq_436d ran 2026-08-04, after the substrate "
-            "landing bound 2026-08-02T22:16:21Z. Without this the item re-stages "
+            "landing bound 2026-08-02T21:50:05Z. Without this the item re-stages "
             "an IGW worktree every tick (3x confirmed, all GC-reaped unused).",
         )
         self.assertEqual(E_436D_ARC045["run_id"], cover["run_id"])
         self.assertEqual("FAIL", cover["status"])
         self.assertEqual("weakens", cover["evidence_direction"])
-        self.assertEqual("2026-08-02T22:16:21Z", cover["cutoff_utc"])
+        self.assertEqual("2026-08-02T21:50:05Z", cover["cutoff_utc"])
 
     def test_newest_qualifying_run_is_reported(self):
         extra = dict(E_436D_ARC045,
@@ -729,15 +858,19 @@ class SelfCancellingCutoffIsFixedTest(_WithEntries, unittest.TestCase):
     """
 
     def test_claim_whose_only_evidence_defined_the_cutoff_IS_covered(self):
-        self._use([E_436C_ARC045])
+        """Uses E_861A_ARC045, not 436c: since the 2026-09-16 cutoff-semantics fix
+        the entry's cutoff is its EARLIEST post_build run (861a, 21:50:05), so
+        861a is now the one literally AT the cutoff -- 436c (22:16:21) is a later,
+        already-strictly-after run and no longer exercises this boundary."""
+        self._use([E_861A_ARC045])
         cover = G._completed_retest_coverage("ARC-045", SUBSTRATE_BY_ID)
         self.assertIsNotNone(
             cover,
-            "FM11d regression: 436c is marked post_build on the substrate row, so "
+            "FM11d regression: 861a is marked post_build on the substrate row, so "
             "it ran against the landed substrate and IS the retest -- excluding it "
             "makes the cutoff self-cancelling and the item re-stages",
         )
-        self.assertEqual(E_436C_ARC045["run_id"], cover["run_id"])
+        self.assertEqual(E_861A_ARC045["run_id"], cover["run_id"])
         self.assertTrue(cover["cutoff_is_validation_run"])
 
     def test_a_strictly_later_run_still_wins(self):

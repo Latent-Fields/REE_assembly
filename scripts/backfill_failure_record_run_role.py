@@ -23,6 +23,12 @@ DERIVATION (deterministic, and recorded per item in `run_role_basis`)
 ---------------------------------------------------------------------
 For each failure_record item, in order -- the first rule that fires wins:
 
+  R0  the item ALREADY has a `run_role` whose `run_role_basis` is NOT one of
+      this script's own "R<n> ..." tags -> it was set EXPLICITLY by a human,
+      /governance Step 6a-iii, or /failure-autopsy Step 7 -- kept verbatim,
+      never re-derived. Added 2026-09-16
+      (chip-20260915-run-role-cutoff-semantics-then-backfill); see `classify`'s
+      own docstring for the SD-018/v3_exq_1008 case this exists for.
   R1  the ITEM carries its own `substrate_built_utc`   -> compare the run stamp to it.
   R2  the run_id carries no parseable timestamp        -> `unknown` (it can never be
       a landing bound anyway, since the generator cannot date it either).
@@ -99,6 +105,12 @@ RUN_ROLE_UNKNOWN = "unknown"
 
 _RUN_STAMP_RE = re.compile(r"(\d{8}T\d{6}Z)")
 _DATE_ONLY_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
+
+# Every rule this script derives itself tags its `run_role_basis` "R<n> ...".
+# A basis that does NOT match this is a GOVERNANCE-SET explicit label (see R0 in
+# `classify`'s docstring) rather than a derivation this script produced, and must
+# never be overwritten by re-deriving.
+_DERIVATION_BASIS_RE = re.compile(r"^R\d+\b")
 
 # Entry-level fields that hold a machine-readable landing instant.
 _LANDING_FIELDS = (
@@ -247,7 +259,34 @@ def entry_claims_a_build(entry: dict) -> bool:
 
 
 def classify(entry: dict, rec: dict) -> tuple[str, str]:
-    """(run_role, run_role_basis) for one failure_record item."""
+    """(run_role, run_role_basis) for one failure_record item.
+
+    R0  the item ALREADY carries a `run_role` whose `run_role_basis` is NOT one
+        of this script's own "R<n> ..." derivation tags -> the label was set
+        EXPLICITLY (by a human, /governance Step 6a-iii, or /failure-autopsy
+        Step 7 -- see the `populated_by` schema note) and is kept verbatim,
+        never re-derived. Added 2026-09-16
+        (chip-20260915-run-role-cutoff-semantics-then-backfill): SD-018's
+        v3_exq_1008 item carries a deliberate `unknown` (REE_assembly
+        441f3ec099d, 2026-09-08) that R3 would otherwise re-derive as
+        `post_build` -- the run executed after SD-018's field head landed, so R3
+        reads it as a validation run, but it actually characterises the 978
+        OFF-arm latent WITHOUT SD-018's supervision, and `post_build` would
+        wrongly raise `_substrate_landing_cutoff` on that non-validation. R0
+        must run BEFORE R1, since R1 would otherwise re-derive from
+        `substrate_built_utc` just the same as R3 does from the entry landing.
+    """
+    existing_role = rec.get("run_role")
+    existing_basis = rec.get("run_role_basis")
+    if (
+        isinstance(existing_role, str)
+        and existing_role in (RUN_ROLE_PRE, RUN_ROLE_POST, RUN_ROLE_UNKNOWN)
+        and isinstance(existing_basis, str)
+        and existing_basis
+        and not _DERIVATION_BASIS_RE.match(existing_basis)
+    ):
+        return existing_role, existing_basis
+
     run = parse_ts(rec.get("run_id"))
     own = parse_ts(rec.get("substrate_built_utc"))
     if own is not None and run is not None:

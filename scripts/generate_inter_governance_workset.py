@@ -1512,6 +1512,43 @@ def _substrate_landing_cutoff(
     Undatable -> (None, "", False) -> no coverage -> the item keeps its current
     status. A generator that muted an item because it could not read a date would be
     a worse failure than the re-staging it is fixing.
+
+    LANDING-CUTOFF-GROWS-WITH-EVERY-VALIDATION-RUN FIX (2026-09-16,
+    chip-20260915-run-role-cutoff-semantics-then-backfill). Everything above this
+    paragraph describes the ACROSS-ENTRIES combination (max) and the run_role gate;
+    this paragraph is about the WITHIN-ONE-ENTRY combination, which used to be a max
+    over every post_build run stamp on that entry too -- "latest wins", both levels.
+    Each post_build stamp is only an UPPER bound on the landing instant (the run
+    executed after the substrate existed; it says nothing about when), so the
+    tightest, truest estimate from a set of upper bounds is their MINIMUM, not their
+    maximum. Taking the max instead means every NEW validation run recorded against
+    an entry over the following weeks pushes that entry's contribution to the cutoff
+    later -- even though the entry landed once, on one date, and nothing about a
+    later retest changes that. Confirmed on the live corpus 2026-09-15: the
+    contextmemory-write-path-addressing-degeneracy entry (no `implemented_utc`)
+    accumulated failure_record runs from 2026-08-20 through 2026-09-07; the old
+    max-wins reading set its contribution to 2026-09-07T16:23Z, which is LATER than
+    ARC-045's own newest evidence (v3_exq_436g, 2026-08-30 -- itself one of the
+    entry's own post_build runs), so that legitimate post-landing evidence read as
+    PRE-cutoff and 20 claims lost `_completed_retest_coverage` (unblocks_claims:
+    ARC-021 ARC-045 ARC-062 ARC-065 ARC-107 EXT-002 MECH-069 MECH-161 MECH-166
+    MECH-260 MECH-294 MECH-309 MECH-313 MECH-448 MECH-449 Q-045 SD-015 SD-017
+    SD-033b SD-078) purely because more retests had since been recorded.
+
+    FIX: per unblocking entry, compute ONE candidate landing bound, not one per
+    failure_record row --
+      * `implemented_utc`, when parseable, is used ALONE (exclusive of any run
+        stamp on that entry). It is the authoritative bookkeeping stamp; letting a
+        post_build run additionally compete against it is what let 9 same-day
+        audit-flagged runs that predate their own entry's `implemented_utc` become
+        live under a naive candidate-pool change (they are correctly INERT today
+        specifically because `implemented_utc` is later and wins the old max; a
+        pool-wide min would have flipped them live on the wrong side).
+      * otherwise, the EARLIEST `run_role: post_build` run stamp on that entry (the
+        tightest available upper bound).
+    The across-entries step is UNCHANGED (still the max of each entry's one
+    candidate) -- a claim unblocked by several entries is not covered until the
+    LAST of them has landed, and that part of the aggregation was never the defect.
     """
     best: datetime | None = None
     label = ""
@@ -1520,20 +1557,25 @@ def _substrate_landing_cutoff(
         if claim_id not in (entry.get("unblocks_claims") or []):
             continue
         sid = str(entry.get("sd_id") or "?")
-        candidates = [
-            ("implemented_utc", _parse_evidence_ts(entry.get("implemented_utc")), False)
-        ]
-        for rec in entry.get("failure_record") or []:
-            if not isinstance(rec, dict):
-                continue
-            if _failure_record_run_role(rec) != _RUN_ROLE_POST_BUILD:
-                continue
-            candidates.append(
-                ("failure_record", _parse_evidence_ts(rec.get("run_id")), True)
-            )
-        for field, when, is_run in candidates:
-            if when is not None and (best is None or when > best):
-                best, label, from_validation_run = when, f"{sid}.{field}", is_run
+        implemented = _parse_evidence_ts(entry.get("implemented_utc"))
+        if implemented is not None:
+            entry_bound: datetime | None = implemented
+            entry_field = "implemented_utc"
+            entry_is_run = False
+        else:
+            entry_bound = None
+            entry_field = "failure_record"
+            entry_is_run = True
+            for rec in entry.get("failure_record") or []:
+                if not isinstance(rec, dict):
+                    continue
+                if _failure_record_run_role(rec) != _RUN_ROLE_POST_BUILD:
+                    continue
+                when = _parse_evidence_ts(rec.get("run_id"))
+                if when is not None and (entry_bound is None or when < entry_bound):
+                    entry_bound = when
+        if entry_bound is not None and (best is None or entry_bound > best):
+            best, label, from_validation_run = entry_bound, f"{sid}.{entry_field}", entry_is_run
     return best, label, from_validation_run
 
 
