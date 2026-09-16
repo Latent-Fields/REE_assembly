@@ -4063,9 +4063,9 @@
       "summary": "INSTRUMENT DEFECT, reproduced directly: four landed ree-v3 drivers construct CausalGridWorldV2() with NO seed argument, and the environment's own RNG is np.random.default_rng(seed) (causal_grid_world.py:1456), so default_rng(None) draws OS entropy and ignores everything reset_all_rng seeds. Three reset_all_rng(71) + CausalGridWorldV2() constructions produced agent starts (1,4)/(5,7)/(3,5) with three different resource layouts. The affected drivers are v3_exq_947_mech314b_percandidate_2x2_diversity_validation.py (5 sites), v3_exq_949_mech314b_authority_rescale_validation.py (4), v3_exq_964_mech482_epistemic_deficit_validation.py (3) and v3_exq_964a_mech482_epistemic_deficit_multitarget_readiness.py (3): their recorded per-seed numbers are not reproducible across invocations and their 'N seeds' seeded the AGENTS only, on unrecorded environments. An independent red-team pass on the successor measured E3-fresh tick counts of 17/21/21/24/27 across repeat invocations of one nominally-seeded configuration, with a pre-registered criterion flipping value between them. V3-EXQ-964b (queued, supersedes 964a) seeds the env and is bit-reproducible; the other three drivers are unfixed. 348 other call sites in experiments/ DO pass a seed, so this is a small enumerable set. experiments/_lib/baselines/sd084_midexec_reachability.py already documents the hazard in a comment, which makes it an arm-reuse correctness question too: a fingerprint-identical cell is not a bit-identical computation when the env is entropy-drawn.",
       "raised_by_session": "science-batch3-20260915",
       "raised_at": "2026-09-15T21:29:59Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-16T13:47:50Z",
+      "resolution_note": "governance-20260916: RESOLVED. The instrument defect is fixed at the rollout-relevant call sites -- ree-v3 bd83702 (2026-09-15, chip-20260915-unseeded-causalgridworld-drivers) seeds CausalGridWorldV2 in the V3-EXQ-947/949/964/964a drivers; V3-EXQ-964b (env seeded, bit-reproducible) is now CONFIRMED (failure_autopsy_V3-EXQ-964b_2026-09-16) and applied this cycle, superseding 964a. Residual: the recorded per-seed numbers of the four already-run drivers remain non-reproducible historically; their dispositions (964/964a resolved on the substrate entry; 947/949 per their own autopsies) stand as recorded, not re-derived."
     },
     {
       "flag_id": "GFLAG-0290",
