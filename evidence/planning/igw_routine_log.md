@@ -3091,3 +3091,8 @@ One line per hourly tick. ASCII only.
 2026-09-16T16:03:06Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 251 items, 30 ready, 0 in flight)
 2026-09-16T16:01:26Z SPAWN IGW-20260916-240 skill=/lit-pull prio=40 uuid=ef5f7a31-00d4-4747-8dad-cfb08f232538 pid=88775 worktree=igw-240-literature-proposal-for-mech-017
 2026-09-16T16:23:00Z auto-defer igw-240-literature-proposal-for-mech-017 hash=f5f874050f23 for 48h (complete)
+2026-09-16T16:24:06Z complete igw-240-literature-proposal-for-mech-017 spawned->completed outcome=USEFUL_LANDED: MECH-017 lit-pull landed: targeted_review_mech_017, 5 entries (4 supports/1 weak
+2026-09-16T17:07:21Z GC removed worktree igw-240-literature-proposal-for-mech-017 (removed; branch deleted)
+2026-09-16T17:06:10Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-16T17:07:35Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 250 items, 31 ready, 0 in flight)
+2026-09-16T17:06:10Z no eligible item (skipped 250): IGW-20260916-001:skill /governance not allowed; IGW-20260916-002:skill /governance not allowed; IGW-20260916-221:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
