@@ -1,6 +1,7 @@
 # Pre-registration: emergent cognitive contract under narrowing multi-consumer compression
 
 **Date frozen:** 2026-09-08  
+**Amended:** 2026-09-16T14:04:22Z -- Amendment 1 (s.24): capacity/rate added as a second independent factor, new capacity-matched nuisance arm F. Sections 4, 5, 8, 11, 18, 22 must be read subject to s.24; nothing above s.24 is rewritten.  
 **Status:** pre-registered experiment design / planning artefact; **not queued, not architecture, not a build instruction**  
 **Parent programme:** ARC-142 / GOV-CONTRACT-1 / MECH-545  
 **Evidence basis:** `cognitive_contract_literature_pull_2026-09-08.md`, tranche 2, tranche 3  
@@ -489,3 +490,129 @@ Those are outputs of evidence/governance, not assumptions of the assay.
 The hypotheses, held-out candidate families, A–E arm logic, primary comparisons and interpretation table above are frozen **before** a cognitive-contract-specific narrowing experiment is run. Amendments are allowed only if timestamped and justified before the affected result is inspected.
 
 The experiment is explicitly permitted to tell us that the attractive idea is wrong.
+
+---
+
+## 24. Amendment 1 — capacity is a second independent factor, and a capacity-matched nuisance arm
+
+**Amendment timestamp (UTC):** 2026-09-16T14:04:22Z
+**Amendment status:** made under the s.23 freeze clause, **before any arm has been run and before any result of this pre-registration has been inspected**. Verified at amendment time: `ree-v3/experiment_queue.json` contains no cognitive-contract / narrowing / `CCI-*` entry, and `REE_assembly/evidence/experiments/` contains no run against this pre-registration (the only `*narrow*` hit, `v3_exq_810b_arc071_mech323_seed202_narrow_repertoire_probe`, belongs to ARC-071 / MECH-323 and is unrelated).
+**Justification source:** `REE_assembly/evidence/planning/thought_intake_2026-09-08_candidate_cognitive_invariants.md` s.8 (implementation-gap audit, row 2) and s.9.1, ingesting `REE_assembly/docs/thoughts/2026-09-08_candidate_cognitive_invariants.md` s.13 and s.20.6.
+**Substrate SHAs:** gap audit verified against `ree-v3` `9d3a7a4` (2026-09-15); independently re-confirmed against `ree-v3` `c7ba953` (2026-09-16). Stage-0 audit pinned at `8e57e473` (2026-09-08).
+
+**Nothing above is rewritten.** Sections 4, 5, 8, 11, 18 and 22 remain as frozen on 2026-09-08 and are to be read **subject to** this section.
+
+### 24.1 The defect this amendment corrects
+
+The frozen design makes **width** the sole independent capacity variable (s.5; regime B is literally titled "width-only narrowing"). That is not an information bottleneck. As the source thought puts it at s.13:
+
+> fewer nodes is not by itself an information bottleneck
+
+A small number of *unconstrained continuous* variables can carry arbitrarily much information. A width-only narrowing stack therefore cannot, on its own, test the ARC-142 / MECH-545 hypothesis that *capacity pressure* preferentially retains cross-consumer-useful relations: a null result would be uninterpretable (no pressure was applied) and a positive result would not be attributable to compression.
+
+This is a defect in the **pre-registration**, not only in the substrate. It is corrected here rather than at analysis time precisely because the window is still open.
+
+### 24.2 Capacity (rate) is added as a SECOND independent factor, orthogonal to width
+
+Width is retained exactly as frozen in s.5 and is **not** replaced. A new factor is added:
+
+**R — achieved rate**, an explicit, measured, per-step information budget at the bottleneck, reported in **nats per step**.
+
+**Primary operationalisation (declared before any run):** a Gaussian channel at the bottleneck with a variational rate term; the achieved rate is the measured KL of the posterior to the prior, and the target rate is held at a declared budget by dual ascent on the rate constraint (a Lagrangian rate-targeting controller), not by a hand-tuned fixed beta.
+
+**Pre-declared fallbacks, in this order, to be used only if the primary is unstable and only with the substitution recorded before held-out probes are inspected:**
+
+1. uniform scalar quantisation of the bottleneck at declared bit depths (exact rate ceiling, no controller);
+2. additive Gaussian channel noise at declared SNR with the rate computed analytically per dimension.
+
+Entropy/sparsity/activity-budget penalties are **diagnostics only** under this amendment: they constrain rate only indirectly and their achieved rate is not directly measurable, so they may not serve as the matching variable in s.24.3.
+
+**Rate ladder**, expressed — as s.5 does for width — as fractions of an unconstrained source rate `R0`:
+
+`1.00, 0.50, 0.25, 0.125, 0.0625` x `R0`
+
+`R0` is the achieved rate of the unconstrained arm-A bottleneck at width fraction 1.00, measured during Stage 0 / Stage 2 **before any held-out invariant probe is inspected**. If the primary controller cannot hold a ladder rung within the tolerance of s.24.3, that rung is recorded as **not attained** and its comparisons are declared invalid rather than reported at the nominal budget.
+
+**Reporting rule:** every arm reports its **achieved** rate, never only its nominal budget. Arms are compared on achieved rate.
+
+### 24.3 Design: the (width x rate) grid is deliberately NOT run on the diagonal
+
+Sweeping width and rate together is the confound this amendment exists to remove. The pre-declared fractional design is:
+
+1. **Rate sweep at fixed width** (width fraction 1.00, the full rate ladder) — isolates rate.
+2. **Width sweep at fixed rate** (rate unconstrained, the full s.5 width ladder) — this is the existing frozen s.5 schedule, now explicitly re-read as the *width-only* factor rather than as "the capacity variable".
+3. **Interaction cells:** width fractions {1.00, 0.25} x rate fractions {1.00, 0.125}, four cells, for the width x rate interaction test.
+
+The full cross-product is **not** pre-registered; extending beyond these cells requires a further timestamped amendment before the affected result is inspected.
+
+**Capacity-matching tolerance:** two arms are "capacity-matched" only if their achieved rates agree within **+/-5% in nats** and their widths are identical. A comparison whose arms fall outside that tolerance is reported as **matching_failed** and does not contribute to any primary comparison.
+
+### 24.4 New arm F — capacity-matched nuisance / random-relation control
+
+The frozen design has nuisance *probes* (s.11) but no nuisance *arm*. Thought s.13 condition F is added here as a sixth arm. **Arm letters A-E are NOT re-lettered** (see s.24.5); F is a new letter in this pre-registration's own letter-space.
+
+**F — capacity-matched nuisance/random-relation control.** Identical to arm E in width, achieved rate (within the s.24.3 tolerance), data, seeds and optimiser budget, differing **only** in its downstream consumer targets, which are replaced by:
+
+- surface-specific nuisance features not required by any real downstream task (the same generator family as the s.11 nuisance probes), and
+- randomly generated but fixed-per-seed relational targets over the same pair/state index set used by the s.12 relational-topology assay.
+
+**Purpose:** F asks whether the *assay pipeline plus capacity pressure* manufactures a relational signature regardless of what the consumers actually need. It is a control on the measurement, in the same sense that D is a positive control on the measurement.
+
+**Falsifier this arm supplies:** if **F reproduces E's relation-retention signature at matched capacity and width**, then the E-vs-B and E-vs-C results do **not** support emergent multi-consumer contract formation — the signature is attributable to rate pressure plus probe pipeline, not to cross-consumer utility. This outcome **strikes** the primary interpretation of comparisons 1 and 2 in s.18, and no amount of E > B margin rescues it.
+
+### 24.5 Letter-collision warning (must be read before citing either document)
+
+The source thought's condition letters at s.13 do **not** match this pre-registration's arm letters, and two of them are transposed. This mapping is authoritative:
+
+| Thought s.13 condition | This pre-registration's arm | Note |
+|---|---|---|
+| A wide / weakly constrained control | **A** wide shared-capacity control | same |
+| B width-narrowed only | **B** width-only narrowing | same |
+| C true rate-constrained single-consumer bottleneck | **C** single-consumer narrowing control | this prereg's C becomes rate-constrained under s.24.2 |
+| D true rate-constrained multi-consumer, unlabeled | **E** unlabeled multi-consumer (the REE hypothesis arm) | **TRANSPOSED** |
+| E relation-supervised bottleneck, positive control | **D** imposed relational-bottleneck positive control | **TRANSPOSED** |
+| F capacity-matched nuisance/random-relation control | **F** (new, s.24.4) | same |
+
+The s.18 primary comparisons and the s.22 prediction table are written in **this pre-registration's** letters and are unchanged. A citation that reads "condition D is the important one" (thought s.13) refers to **arm E** here.
+
+### 24.6 Arms B and C are re-scoped by the new factor; A, D, E are not
+
+- **B (width-only)** keeps its frozen meaning and becomes the *rate-unconstrained* level of the new factor. Its purpose is unchanged: test whether narrowing alone suffices. Under this amendment, B is no longer a candidate bottleneck arm — it is the **negative control for rate**.
+- **C (single-consumer)** and **E (multi-consumer)** are run **rate-constrained** per s.24.2 in the rate sweep and interaction cells, and rate-unconstrained in the width sweep. The frozen E-vs-C comparison (s.18 item 2) is now evaluated at matched achieved rate as well as matched width.
+- **A, D** are unchanged; D's imposed relational bias is orthogonal to the rate factor and D is run at the same declared cells as E.
+
+### 24.7 The substrate supplies no rate machinery — an auxiliary-harness implementation is MANDATORY
+
+Recorded per intake s.8 row 2, verified by direct code read at `ree-v3` `9d3a7a4` and re-confirmed at `c7ba953`: searching `ree_core/` for `kl_div`, `KL(`, `variational`, `logvar`, `quantiz`/`quantis`, `vector_quant`, `sparsity`, `l1_penalty`, `activity_budget`, `rate_penalty`, `entropy_reg`, `add_noise`, `noise_std`, `gaussian_noise` yields **zero latent-capacity hits**. The two incidental hits are a fixed unlearned region-code discretisation of `z_world` for policy decomposition (`ree_core/policy/policy_decomposition.py`) and comments in the amygdala attribution head recording that a sparsity penalty was **removed** for outweighing its objective (`ree_core/amygdala/attribution_head.py`) — neither is a representational-capacity term.
+
+Consequences, binding on any session that executes this design:
+
+1. The rate machinery of s.24.2 **must** be built in the Stage-2 auxiliary harness (s.8), outside the live agent. This is not optional and not a deficiency to be worked around by reporting width as capacity.
+2. `ree_core/**` **must not** be modified to satisfy this pre-registration. s.9's rules (feature-flagged arm, bit-identical OFF path) continue to govern any eventual Stage-3 work, and Stage 3 remains gated on a non-degenerate Stage-2 signal.
+3. Because there is no existing rate term to reuse, the harness's rate measurement **must** be validated against a known-rate synthetic source before any arm is trained — a channel whose true rate is analytically known, recovered to within the s.24.3 tolerance. A harness that cannot recover a known rate cannot capacity-match, and therefore cannot run arm F.
+
+### 24.8 Amendment to s.18 — additional pre-registered primary comparisons
+
+Added, frozen as of this amendment's timestamp and before any result is inspected:
+
+8. **E vs F:** relation retention at matched width **and** matched achieved rate. This is the load-bearing control on comparisons 1 and 2 (s.24.4).
+9. **rate slope vs width slope:** change in normalised held-out relational decodability per nat of achieved rate removed, versus per unit of width removed, arms E and B. Tests whether the retention effect tracks *information* or merely *dimension*.
+10. **width x rate interaction** over the four s.24.3 interaction cells: whether width reduction adds retention pressure beyond the rate it removes.
+
+### 24.9 Amendment to s.22 — additional pre-results prediction rows
+
+| Observation | Interpretation |
+|---|---|
+| E > B and E > F at matched achieved rate and width | supports emergent multi-consumer contract; the signature is not a pipeline artefact |
+| **F ~= E at matched capacity** | **strikes the primary interpretation of s.18 comparisons 1 and 2**: signature attributable to rate pressure + probe pipeline, not cross-consumer utility |
+| retention tracks achieved rate but not width, at fixed rate | capacity pressure is the operative variable; the frozen width-only framing was the defect this amendment corrects |
+| retention tracks width but not achieved rate, at fixed width | unexpected; dimension per se matters and the information-bottleneck framing of ARC-142 / MECH-545 is wrong as stated |
+| no rung of the rate ladder attained within tolerance | **matching_failed**: no conclusion about capacity; report the controller failure, do not fall back to reporting width as capacity |
+| harness cannot recover a known synthetic rate (s.24.7 item 3) | assay invalid; arm F may not be run and no capacity claim may be made |
+
+### 24.10 What this amendment does NOT change
+
+- The contamination firewall (s.3) and the language seal are unchanged and apply to arm F exactly as to arm E. F's random relational targets are generated from environment/trace state or from a seeded RNG, never from the held-out candidate ledger.
+- The s.10 held-out probe families, the s.12 relational-topology primary assay, s.14-s.17, s.19 replication posture and s.20 stop/go gates are unchanged.
+- s.21 ("what is deliberately not decided here") is unchanged: this amendment does **not** decide that REE should acquire a rate term. It decides only that the *assay* must apply measurable capacity pressure in order to bear on the question at all.
+- No claim in `claims.yaml` is altered by this amendment; routing of ARC-142 / MECH-545 dispositions remains `/governance`'s.
