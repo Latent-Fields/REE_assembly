@@ -64,6 +64,16 @@ DEFAULT_BRAKE_THRESHOLD = 2  # count(substrate_ceiling) >= threshold => brake fi
 MEASUREMENT_CATEGORIES = {"test_design_ceiling", "observability"}
 FORWARD_ROUTINGS = {"queue-experiment", "implement-substrate"}
 
+# Mirrors check_closure_drift.py's CONFIRMED_AUTOPSY_STATUSES -- kept as a separate
+# constant (not imported) because check_closure_drift.py imports THIS module, so
+# importing back would be circular. A failure_autopsy_*.json whose top-level
+# `status` is not in this set is a staging draft (e.g. awaiting_human_confirmation,
+# written mid-cycle by the autopsy-staging tick) and must not become a projected
+# `live:` head -- see status_history_plane_separation_design.md and the 2026-09-15
+# incident where an unconfirmed draft was projected as the latest event for 69/99
+# collapsed nodes.
+CONFIRMED_AUTOPSY_STATUSES = {"confirmed", "complete", "completed"}
+
 # A claim id (MECH-/ARC-/SD-/Q-/INV-/GAP-...) lives in claim_ids, not the join-token
 # set: harvesting one as a substrate token would over-broaden the union join.
 CLAIM_ID_RE = re.compile(r"^(?:MECH|ARC|SD|Q|INV|GAP)-[0-9A-Za-z]+$")
@@ -246,6 +256,8 @@ def load_autopsies(repo_root):
             continue
         if not isinstance(d, dict):
             continue
+        if (d.get("status") or "").strip().lower() not in CONFIRMED_AUTOPSY_STATUSES:
+            continue  # staging draft (e.g. awaiting_human_confirmation) -- not ratified yet
         stem = os.path.basename(path)[:-5]  # strip .json
         gen = d.get("generated_utc")
         targets = d.get("targets") or []
