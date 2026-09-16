@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-964b (MECH-482 / SD-102 epistemic-deficit accumulator: corrected reachability instrument + verify-lift ladder)
 
-- **Status:** `awaiting_human_confirmation` (drafted in an autonomous session; the Step 8 interactive gate is OWED -- confirm at the next `/governance` Step 2b walk or an interactive session)
+- **Status:** `confirmed` -- Step 8 gate answered by the user 2026-09-16 (all three staged decisions approved; recorded 2026-09-16T11:10:54Z by the account-handover session, see "Step 8 gate outcome" below). Originally staged `awaiting_human_confirmation` by a non-interactive session.
 - **Generated:** 2026-09-16T04:42:21Z
 - **Run:** `v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3` (ree-cloud-2, 704 s, seeds 71/101/202, 3 ep x 60 steps, env SEEDED)
 - **Supersedes:** `V3-EXQ-964a` (`failure_autopsy_V3-EXQ-964a_20260914`, confirmed 2026-09-15T01:14:02Z), itself superseding `V3-EXQ-964` (`failure_autopsy_V3-EXQ-964_2026-08-30`, confirmed). Both prior artifacts were read end to end (Step 1 re-adjudication rule), as was the driver docstring including its red-team record.
@@ -124,3 +124,11 @@ Given the draft JSON, raw manifest, driver, substrate source, predecessor autops
 **Hygiene applied:** C2's vacuity acknowledged against the `adequate` grade (Sec. 5); the monotonicity premise dropped from the C1=>C2 argument; "full run's" -> "subject arm's" margins; 93.9/98.0/94.7% for the live-path fraction; raw readout range per seed (0.11/0.042/0.084); the clamp-saturation sentence in Sec. 1; cost estimate 22-28 min; `status_phase` marked as the entry's current value; consumer count 2 today / 3 on confirmation; the seed-202 reachable-tick datum weighed for H-pat; the ordered-gate producer fix (declare selector semantics so indexer rule (3b) stops false-flagging) is chipped at session close rather than left only in `learning_extracted`.
 
 **A CONFIRMED-after-corrections is not proof the artifact is clean; the 7b silence and the 7c verdict are independent layers, both recorded.**
+
+## 11. Step 8 gate outcome -- CONFIRMED 2026-09-16T11:10:54Z
+
+The `/failure-autopsy` session (844a9d73) that staged this draft presented the three gate decisions below and the user approved all three; the session then died on the weekly usage limit before recording them, so the answers were relayed through the account-handover session of 2026-09-16 and applied here.
+
+1. **Re-derive brake -- explicit producer release (approved).** Literal R1-R3 count for MECH-482 is 3 (threshold 2); the brake is NOT fired: no unambiguous build exists, each letter changed substrate or instrument, and the next experiment is a new question. The release is not open-ended (Sec. 7 / `re_derive_brake.note`).
+2. **Routing -- `queue-experiment`, new EXQ (approved).** Amplified-real-readout ladder k in {1, 10, 40, 100} with range-matched synthetic and permuted-real controls, discriminating H-mag (magnitude-limited) from H-pat (pattern-limited), GOV-FANOUT-1. If pattern-limited, the brake fires on that autopsy. Not chipped here (SKILL Step 8); `/governance` Step 2b chips it.
+3. **Dispositions for governance (approved).** MECH-482 stays `candidate` / `substrate_conditional` / `pending_retest_after_substrate`; manifest `evidence_direction` unknown -> `non_contributory` (flat + run pack); amend `sd_epistemic_deficit_multitarget_readiness` (resolve the 964a item, append the 964b item); the hypothesis-ledger question `mech482_deficit_selection_authority` (4 hypotheses, H-instr/H-auth eliminated, H-mag/H-pat alive) was REGISTERED in `hypothesis_space_registry.v1.json` in this same edit (Step 9b, Mode A+B on a new question).

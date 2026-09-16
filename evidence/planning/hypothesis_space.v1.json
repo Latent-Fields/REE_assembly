@@ -1,19 +1,19 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-14T23:46:22Z",
+  "generated_at": "2026-09-16T11:10:54Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 181,
+      "total_modules": 182,
       "built_modules": 145,
-      "fraction_built": 0.8011,
+      "fraction_built": 0.7967,
       "state_counts": {
-        "proposed": 36,
-        "implemented": 95,
-        "implemented_pending_validation": 25,
+        "proposed": 37,
+        "implemented": 96,
+        "implemented_pending_validation": 24,
         "validated": 25
       },
       "build_proof_gap": 120,
@@ -31,236 +31,248 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 121,
-      "total_initial": 204,
-      "total_initial_at_registration": 169,
+      "total_surviving": 123,
+      "total_initial": 208,
+      "total_initial_at_registration": 173,
       "total_fanout_added": 35,
-      "total_resolved_out": 64,
+      "total_resolved_out": 66,
       "total_confirmed": 46,
       "total_superseded": 1,
-      "reduction_pct_vs_current": 31.4,
-      "net_narrowing_pct": 28.4,
+      "reduction_pct_vs_current": 31.7,
+      "net_narrowing_pct": 28.9,
       "convergence_classes": {
         "static": 27,
-        "narrowing": 23,
+        "narrowing": 24,
         "circling": 5,
         "refining": 3,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "121 alive against 169 originally enumerated, and against 204 including 35 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 59
+      "honest_pair_note": "123 alive against 173 originally enumerated, and against 208 including 35 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 60
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 23,
-      "open_questions": 59
+      "open_questions": 60
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 203,
+      "surviving": 207,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-11",
-      "surviving": 202,
+      "surviving": 206,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-13",
-      "surviving": 200,
+      "surviving": 204,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-15",
-      "surviving": 196,
+      "surviving": 200,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-16",
-      "surviving": 195,
+      "surviving": 199,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-17",
-      "surviving": 192,
+      "surviving": 196,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-18",
-      "surviving": 186,
+      "surviving": 190,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-19",
-      "surviving": 182,
+      "surviving": 186,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-20",
-      "surviving": 181,
+      "surviving": 185,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-24",
-      "surviving": 180,
+      "surviving": 184,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-27",
-      "surviving": 178,
+      "surviving": 182,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-29",
-      "surviving": 177,
+      "surviving": 181,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-31",
-      "surviving": 176,
+      "surviving": 180,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-01",
-      "surviving": 174,
+      "surviving": 178,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-02",
-      "surviving": 168,
+      "surviving": 172,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-04",
-      "surviving": 167,
+      "surviving": 171,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-06",
-      "surviving": 166,
+      "surviving": 170,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-08",
-      "surviving": 164,
+      "surviving": 168,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-09",
-      "surviving": 162,
+      "surviving": 166,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-10",
-      "surviving": 161,
+      "surviving": 165,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-11",
-      "surviving": 160,
+      "surviving": 164,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-12",
-      "surviving": 159,
+      "surviving": 163,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-14",
-      "surviving": 157,
+      "surviving": 161,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-17",
-      "surviving": 156,
+      "surviving": 160,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-20",
-      "surviving": 155,
+      "surviving": 159,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-24",
-      "surviving": 154,
+      "surviving": 158,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-29",
-      "surviving": 151,
+      "surviving": 155,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-08-30",
-      "surviving": 149,
+      "surviving": 153,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-09-02",
-      "surviving": 148,
+      "surviving": 152,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-09-05",
-      "surviving": 147,
+      "surviving": 151,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-09-07",
-      "surviving": 143,
+      "surviving": 147,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-09-08",
-      "surviving": 142,
+      "surviving": 146,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-09-09",
-      "surviving": 141,
+      "surviving": 145,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
     },
     {
       "date": "2026-09-14",
-      "surviving": 121,
+      "surviving": 144,
       "closure_pct": 72.4,
-      "build_pct": 80.1
+      "build_pct": 79.7
+    },
+    {
+      "date": "2026-09-15",
+      "surviving": 142,
+      "closure_pct": 72.4,
+      "build_pct": 79.7
+    },
+    {
+      "date": "2026-09-16",
+      "surviving": 123,
+      "closure_pct": 72.4,
+      "build_pct": 79.7
     }
   ],
   "questions": [
@@ -6535,9 +6547,122 @@
         "live_gate": "A DV read off the ENCODER path (or a recorded bound on the fraction of sense-time z_world any P0a objective can reach), so the four substantive legs become testable.",
         "observation_bottleneck": "The DV reads sense-time z_world, in which the P0a supervision is absent (own_target_r2_sense_path < 0 on every trained arm and seed; ~80 per cent of the latent is non-encoder content the objective cannot touch)."
       }
+    },
+    {
+      "qid": "mech482_deficit_selection_authority",
+      "title": "Why does the SD-102 epistemic-deficit readout never move E3's committed selection at shipped parameters?",
+      "short_title": "MECH-482 deficit selection authority",
+      "claims": [
+        "MECH-482"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 2 families, 1 fully closed",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [
+          "instrumentation",
+          "process"
+        ],
+        "families_fresh": [
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 2,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-instr",
+          "label": "detector cannot fire under this harness",
+          "desc": null,
+          "axis": "instrumentation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-964b"
+          ],
+          "basis": "C1: top rung fires on 3/3 seeds (0.58/0.69/0.55); every rung fires 3/3; paired control 0.0 on both DVs.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-auth",
+          "label": "selection authority (curiosity_bias_scale clamp) is the bottleneck",
+          "desc": null,
+          "axis": "process",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-964b"
+          ],
+          "basis": "The SHIPPED-authority rung fires on 3/3 seeds (0.03/0.12/0.21 of E3-fresh ticks); the subject's clamp_saturated_frac is 0.0 on every seed and its post-clamp range is 1-3% of the rail. Authority is available and unused.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mag",
+          "label": "content contrast too small at shipped gain (magnitude-limited)",
+          "desc": null,
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-pat",
+          "label": "readout pattern orthogonal to E3's runner-up structure (pattern-limited)",
+          "desc": null,
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Is the SD-102 readout selection-relevant at any gain <= the curiosity_bias_scale rail (so a gain change suffices), or is its pattern selection-irrelevant (so a readout/target-frame build or authority segregation is required)?",
+        "distance_phrase": "one 15-minute yoked diagnostic away",
+        "live_gate": "H-mag vs H-pat spike (new EXQ) scores",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-964b",
+      "all_runs": [
+        "V3-EXQ-964b"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech482_deficit_selection_authority",
+      "claims": [
+        "MECH-482"
+      ],
+      "moved": "C1: top rung fires on 3/3 seeds (0.58/0.69/0.55); every rung fires 3/3; paired control 0.0 on both DVs.",
+      "resolved_utc": "2026-09-15T21:52:20Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-1029",
       "all_runs": [
