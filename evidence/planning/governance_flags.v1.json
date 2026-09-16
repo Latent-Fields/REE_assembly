@@ -4176,6 +4176,33 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0298",
+      "claim_ids": [
+        "MECH-005",
+        "MECH-021",
+        "MECH-023",
+        "MECH-024",
+        "MECH-028",
+        "MECH-034",
+        "MECH-067",
+        "INV-022",
+        "INV-023",
+        "INV-024",
+        "INV-069",
+        "MECH-017",
+        "MECH-018",
+        "MECH-038",
+        "MECH-042"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "P4 falsifier tranche 1 (queuefloor g10, user-approved paced item 2026-09-16): what_would_answer authored on these 15 previously falsifier-less experiment-eligible claims in REE_assembly 35ac348a3b, each naming substrate, both directions and a precondition-vs-criterion separation; please review the 15 fields and apply the dispositions they declare -- epistemic_category substrate_conditional on MECH-018 (ResidueField.integrate not wired into SleepLoopManager) and MECH-038 (no multi-agent env / signalling affordance / AF-analog routing), comparator-arm-only substrate_conditional on MECH-067 (permission matrix unbuilt; audit spike first), proxy-only caveat on INV-069 (ARC-053 unbuilt). Ranked remainder (44 claims) and the tranche-2 chip are in evidence/planning/p4_falsifier_backlog_20260916.md; claims.json was NOT regenerated.",
+      "raised_by_session": "bold-swanson-1789a0",
+      "raised_at": "2026-09-16T21:18:24Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
