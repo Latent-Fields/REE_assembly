@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-15T01:14:36Z
+Generated: 2026-09-16T01:14:52Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (143)
+## Unresolved with a hand status line -- INFO (144)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -85,6 +85,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `hippocampal_systems.md` -- "stable"
 - `hook_surface_contract.md` -- "candidate"
 - `infant_substrate_expansion.md` -- "SD-049 `multi_resource_heterogeneity_enabled` with `resource_introduction_schedule`"
+- `interface_reference_frames_and_temporal_gates.md` -- "candidate, registered 2026-09-15 from"
 - `invariant_types.md` -- "architecture doc, 2026-04-17"
 - `jepa_e1e2_integration_contract.md` -- "stable"
 - `jepa_ree_hybrid_diagram_spec.md` -- "stable"
