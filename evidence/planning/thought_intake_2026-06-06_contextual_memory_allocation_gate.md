@@ -78,6 +78,8 @@ risk** as first-class gating variables. The substrate to host it largely exists.
 
 ## 4. Candidate claims (NOT registered -- do not promote until they survive comparison above)
 
+> **Back-filled 2026-09-16** (intake-hygiene pass): this header is stale -- the candidates below landed 2026-06-10 in the `memory_lifecycle_v4` cluster: the gate-policy, PFC-control and context-similarity-x-temporal-distance candidates are **MECH-391** (`memory.allocation.gate_policy`); the reality-coherence / false-linking-cost candidate is **INV-079** (`memory.allocation.false_linking_cost`, `invariant_type: emergent`, emergent_from MECH-391).
+
 These are recorded as candidates only. Several would be *amendments to existing claims* rather than new
 IDs, given the VERY HIGH overlap on write-gating.
 

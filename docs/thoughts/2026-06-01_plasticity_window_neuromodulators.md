@@ -1,7 +1,7 @@
 Status: processed
 
 Processed in:
-- (processed directly into canonical form -- this file IS the canonical framing paragraph for the plasticity-window OPENING side; deliberately unregistered per its own Status header)
+- (processed directly into canonical form -- this file IS the canonical framing paragraph for the plasticity-window OPENING side; the sketch cluster below WAS registered 2026-06-10 as ARC-093 / MECH-398 / MECH-399 / MECH-400 / Q-072 -- placeholder ids back-filled 2026-09-16, intake-hygiene pass)
 - `evidence/planning/thought_intake_2026-05-21_gated_plasticity.md` + `evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md` (the plasticity-governance cluster that cites this as the ACh/PV/BDNF opening-side sibling)
 - `evidence/planning/goal_pipeline_developmental_window_diagnostic_memo_2026-06-01.md`; memory `project_plasticity_window_neuromodulators`
 
@@ -86,11 +86,11 @@ The biological observation that motivates the framing: ACh is essentially a **pe
 
 If this is ever commissioned, the natural shape is:
 
-- **ARC-XXX** *Plasticity-window neuromodulator gating.* Architectural commitment that cortical encoder learning rates and residue-field write rates are multiplicatively gated by a state-conditional plasticity scalar, distinct from the content signals carried by LC-NE / 5-HT / orexin. State variables that drive the scalar: attention focus, novelty / surprise, arousal, developmental phase, sleep state.
-- **MECH-XXX-Ach** *ACh-analog basal-forebrain plasticity gain.* Scalar in `[0, 1]` multiplying encoder learning rates and residue write magnitudes. Driven by: novelty (MECH-205 surprise EMA), attention focus (SD-032a salience coordinator current_mode), arousal (drive_level + sustained z_harm_a). Per Bear & Singer 1986 the natural pair is ACh + NE; the LC-NE pair lives at MECH-313 (tonic) + MECH-104 (phasic), so a Bear-pair instantiation might compose ACh-gate × LC-NE-gate multiplicatively.
-- **MECH-XXX-PV** *PV-interneuron inhibitory maturation as window-closure clock.* Time-since-cell-onset accumulator that monotonically lowers the ceiling on plasticity gain. Hensch 2005 anchor. The biological-faithful form of the existing MECH-333 / MECH-334 closure mechanism (currently a binary phase transition).
-- **MECH-XXX-BDNF** *Trophic-window-duration scalar.* Lower-priority; the duration knob on top of the gain knob.
-- **Q-XXX** *Does plasticity-gain modulate identically across encoder / residue / hippocampal / E2-forward layers?* Open question on layer-specific vs unified gating. Biology says layer-specific (visual vs auditory vs somatosensory critical periods have very different timings); REE would have to decide between one global ACh scalar vs per-substrate scalars.
+- **ARC-093** (registered 2026-06-10; was ARC-XXX) *Plasticity-window neuromodulator gating.* Architectural commitment that cortical encoder learning rates and residue-field write rates are multiplicatively gated by a state-conditional plasticity scalar, distinct from the content signals carried by LC-NE / 5-HT / orexin. State variables that drive the scalar: attention focus, novelty / surprise, arousal, developmental phase, sleep state.
+- **MECH-398** (registered; was MECH-XXX-Ach) *ACh-analog basal-forebrain plasticity gain.* Scalar in `[0, 1]` multiplying encoder learning rates and residue write magnitudes. Driven by: novelty (MECH-205 surprise EMA), attention focus (SD-032a salience coordinator current_mode), arousal (drive_level + sustained z_harm_a). Per Bear & Singer 1986 the natural pair is ACh + NE; the LC-NE pair lives at MECH-313 (tonic) + MECH-104 (phasic), so a Bear-pair instantiation might compose ACh-gate × LC-NE-gate multiplicatively.
+- **MECH-399** (registered; was MECH-XXX-PV) *PV-interneuron inhibitory maturation as window-closure clock.* Time-since-cell-onset accumulator that monotonically lowers the ceiling on plasticity gain. Hensch 2005 anchor. The biological-faithful form of the existing MECH-333 / MECH-334 closure mechanism (currently a binary phase transition).
+- **MECH-400** (registered; was MECH-XXX-BDNF) *Trophic-window-duration scalar.* Lower-priority; the duration knob on top of the gain knob.
+- **Q-072** (registered; was Q-XXX) *Does plasticity-gain modulate identically across encoder / residue / hippocampal / E2-forward layers?* Open question on layer-specific vs unified gating. Biology says layer-specific (visual vs auditory vs somatosensory critical periods have very different timings); REE would have to decide between one global ACh scalar vs per-substrate scalars.
 
 The V3 vs V4 boundary: a single ACh-scalar gate with a hand-tuned BDNF-duration knob is V3-tractable if scoped to ONE substrate (e.g. just the residue field, or just the LatentStack encoders). A full ACh × PV × BDNF cluster with layer-specific gain and developmental dynamics is V4 — that's where the social systems sit and where the substrate budget grows.
 

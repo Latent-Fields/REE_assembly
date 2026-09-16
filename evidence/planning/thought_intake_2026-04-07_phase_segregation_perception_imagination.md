@@ -91,6 +91,8 @@ This connects to:
 
 ## Candidate claim derivations
 
+> **Back-filled 2026-09-16** (intake-hygiene pass): three of the four candidates below were registered 2026-04-12 from the sibling `thought_intake_2026-04-09_verisimilitude_ethics.md` without a cross-link back here -- phase segregation as the perception/imagination boundary and hallucination as phase-channel invasion are both owned by **INV-067** (`perception.verisimilitude_definition`, whose notes carry the hallucination operational definition verbatim); ephaptic coupling as enforcement is **MECH-228** (`architecture.ephaptic_coupling_coherence`). The subjective-now convergence-point candidate is registered separately, see its heading.
+
 ### Candidate: Phase segregation as perception/imagination boundary
 
 The same E1/E2 substrate produces perception or imagination depending on precision-weighted routing and phase-of-firing segregation. Verisimilitude = phase-aligned coherence. This is a mechanistic refinement of MECH-094 (hypothesis tag as write gate) — the phase channel IS the tag at the biophysical level.

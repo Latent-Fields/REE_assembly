@@ -302,7 +302,9 @@ In a dangerous midline state, the intelligent action may be one that tests where
 
 ## 7. Proposed architecture slot
 
-### Proposed ARC-0xx: Inference / Belief-State Affordance Layer
+> **Back-filled 2026-09-16** (intake-hygiene pass): the architecture slot and candidate claims below were registered via `evidence/planning/inference_belief_state_v4_plan.md` (v4, substrate_conditional) -- ARC-091, MECH-385, MECH-386, MECH-387, MECH-388; the two INV candidates were merged into one id, INV-078; the rule-apprehension-priors candidate was folded into ARC-091's `depends_on` (ARC-062/ARC-063) and got no standalone id. Headings carry the real ids; candidate text unchanged.
+
+### Proposed ARC-091 (registered; was ARC-0xx): Inference / Belief-State Affordance Layer
 
 **Type:** architectural_commitment  
 **Status:** candidate / thought-intake proposed  
@@ -321,7 +323,7 @@ A state cannot be treated as the current observation. A valid REE state is a nav
 
 ## 8. Proposed candidate claims
 
-### Candidate INV-0xx: Inferred state must not collapse to perceived observation
+### Candidate INV-078 (registered, merged with the provenance-tag candidate below; was INV-0xx): Inferred state must not collapse to perceived observation
 
 **Type:** invariant  
 **Proposed text:**
@@ -336,7 +338,7 @@ The existing state invariants already say state is not raw perception. This cand
 
 ---
 
-### Candidate MECH-0xx: Belief-state hypothesis set
+### Candidate MECH-385 (registered; was MECH-0xx): Belief-state hypothesis set
 
 **Type:** mechanism_hypothesis  
 **Proposed text:**
@@ -363,7 +365,7 @@ epistemic action selection
 
 ---
 
-### Candidate MECH-0xx: Inferred affordance field
+### Candidate MECH-386 (registered; was MECH-0xx): Inferred affordance field
 
 **Type:** mechanism_hypothesis  
 **Proposed text:**
@@ -384,7 +386,7 @@ Inferred affordances are hypotheses, not facts. They must carry uncertainty and 
 
 ---
 
-### Candidate MECH-0xx: Safety-route inference
+### Candidate MECH-387 (registered; was MECH-0xx): Safety-route inference
 
 **Type:** mechanism_hypothesis / substrate-development target  
 **Proposed text:**
@@ -401,7 +403,7 @@ Failure from a harder midline start should not be treated as harm-pathway falsif
 
 ---
 
-### Candidate MECH-0xx: Epistemic action pressure
+### Candidate MECH-388 (registered; was MECH-0xx): Epistemic action pressure
 
 **Type:** mechanism_hypothesis  
 **Proposed text:**
@@ -423,7 +425,7 @@ This generalises novelty / uncertainty / learning-progress curiosity into surviv
 
 ---
 
-### Candidate MECH-0xx: Rule apprehension supplies priors for inference
+### Candidate (no standalone id -- folded into ARC-091 depends_on ARC-062/ARC-063; was MECH-0xx): Rule apprehension supplies priors for inference
 
 **Type:** mechanism_hypothesis / clarification  
 **Proposed text:**
@@ -441,7 +443,7 @@ inference: likely safety route is away from hazard band toward reef edge
 
 ---
 
-### Candidate INV-0xx: Inferred trajectories must remain provenance-tagged
+### Candidate INV-078 (registered, merged with the no-collapse candidate above; was INV-0xx): Inferred trajectories must remain provenance-tagged
 
 **Type:** invariant  
 **Proposed text:**

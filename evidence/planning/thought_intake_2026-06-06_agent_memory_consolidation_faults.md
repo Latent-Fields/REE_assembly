@@ -124,6 +124,8 @@ evidence base.
 
 ## 5. Candidate claims FOR FUTURE REGISTRATION (NOT registered here)
 
+> **Back-filled 2026-09-16** (intake-hygiene pass): this header is stale -- all four candidates were registered 2026-06-10 in the `memory_lifecycle_v4` cluster (candidate / substrate_conditional / v4): 1 -> **INV-080** (`memory.consolidation.raw_episode_preservation`), 2 -> **MECH-401** (`memory.consolidation.gated_write_authority`), 3 -> **MECH-392** (`memory.consolidation.provenance_required`), 4 -> **MECH-393** (retrieval-scope vs action-authority split, whose notes cite this intake's Section 2).
+
 Register only if a later session + the user judge them warranted. Likely amendments to
 existing claims rather than new INV/MECH:
 

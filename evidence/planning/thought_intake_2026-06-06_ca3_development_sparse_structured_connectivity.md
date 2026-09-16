@@ -2,7 +2,7 @@ Raw thought file: [docs/thoughts/2026-06-06_ca3_development_sparse_structured_co
 Intake date: 2026-06-09
 Status: structured intake (Stage 2)
 Classification: developmental architecture compass -- NOT a REE-v3 implementation target
-Registration: NONE (no claims.yaml entry; candidate claims below are FOR FUTURE REGISTRATION only)
+Registration: MECH-362 + Q-057 (registered 2026-06-09 -- see Section 5; header back-filled 2026-09-16, it previously still read "NONE")
 
 ---
 

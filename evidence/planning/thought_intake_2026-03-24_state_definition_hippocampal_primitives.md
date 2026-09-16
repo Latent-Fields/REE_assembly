@@ -135,7 +135,9 @@ The primitive inventory is largely consistent with existing REE architecture. Th
 
 These are flagged here for evaluation and formal registration in a future governance session. They are not yet in claims.yaml.
 
-### Candidate INV-0xx: State must not be defined purely by sensory appearance
+> **Back-filled 2026-09-16** (intake-hygiene pass, `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md`): all three candidates below were registered in `claims.yaml` with `source:` naming this intake -- **INV-035** (`state.not_raw_perception`), **INV-036** (`state.functional_requirements`), **MECH-126** (`state_abstraction.failure_modes_psychiatric_analogs`). The placeholder ids in the headings are replaced with the real ones; the candidate text is unchanged.
+
+### Candidate INV-035 (registered; was INV-0xx): State must not be defined purely by sensory appearance
 
 > A REE state is not a raw observation. Two situations that are perceptually identical can constitute distinct states when they differ in temporal position, commitment, goal/antigoal relation, social context, or active constraints.
 
@@ -146,7 +148,7 @@ These are flagged here for evaluation and formal registration in a future govern
 
 ---
 
-### Candidate INV-0xx: State must support transition prediction, valence/antigoal tagging, and uncertainty representation
+### Candidate INV-036 (registered; was INV-0xx): State must support transition prediction, valence/antigoal tagging, and uncertainty representation
 
 > A REE state is valid only if it is sufficient to estimate plausible next transitions, assign valence and antigoal loading, and represent uncertainty about those estimates.
 
@@ -157,7 +159,7 @@ These are flagged here for evaluation and formal registration in a future govern
 
 ---
 
-### Candidate ARC-0xx or MECH-0xx: State abstraction failure modes map systematically to cognitive/psychiatric conditions
+### Candidate MECH-126 (registered; was "ARC-0xx or MECH-0xx"): State abstraction failure modes map systematically to cognitive/psychiatric conditions
 
 > When state abstraction goes wrong in specific ways (overmerge, oversplit, valence mis-tagging, context loss, uncertainty collapse), the resulting behavioral patterns closely correspond to identifiable psychiatric conditions. This suggests the psychiatric taxonomy can serve as a diagnostic frame for state-level architectural failures.
 
@@ -165,7 +167,7 @@ These are flagged here for evaluation and formal registration in a future govern
 
 **Claim type:** mechanism_hypothesis
 **Status candidate:** speculative — needs literature grounding before promotion
-**Depends on:** INV-0xx (state definition), ARC-007, control_plane.md
+**Depends on:** INV-035 + INV-036 (state definition; was INV-0xx), ARC-007, control_plane.md
 
 ---
 

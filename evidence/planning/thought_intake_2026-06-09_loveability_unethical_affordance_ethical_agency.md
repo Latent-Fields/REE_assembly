@@ -242,7 +242,9 @@ This suggests DEV-NEED-017 and DEV-NEED-018 should be treated as a coupled futur
 
 ## 9. Proposed candidate claims
 
-### Candidate ARC-0xx: Loveability as safe-base substrate for ethical development
+> **Back-filled 2026-09-16** (intake-hygiene pass): all five candidates below were registered via `evidence/planning/loveability_ethical_agency_v5_plan.md`, all `implementation_phase: v5` (DO NOT build in V3) -- INV-082, INV-083, MECH-413, MECH-414, INV-084. The first candidate changed type from architectural_commitment to `invariant` (`invariant_type: emergent`) at registration. Headings carry the real ids; candidate text unchanged.
+
+### Candidate INV-082 (registered as an invariant; was ARC-0xx): Loveability as safe-base substrate for ethical development
 
 **Type:** architectural_commitment  
 **Status:** proposed / thought-intake only  
@@ -256,7 +258,7 @@ This suggests DEV-NEED-017 and DEV-NEED-018 should be treated as a coupled futur
 
 ---
 
-### Candidate INV-0xx: Ethical agency requires live unethical affordances
+### Candidate INV-083 (registered; was INV-0xx): Ethical agency requires live unethical affordances
 
 **Type:** invariant  
 **Status:** proposed / thought-intake only
@@ -271,7 +273,7 @@ No capacity to harm is incapacity, not ethics. Ethical action requires live alte
 
 ---
 
-### Candidate MECH-0xx: Correction without annihilation
+### Candidate MECH-413 (registered; was MECH-0xx): Correction without annihilation
 
 **Type:** mechanism_hypothesis  
 **Status:** proposed / thought-intake only
@@ -293,7 +295,7 @@ relationship_continuity_after_error
 
 ---
 
-### Candidate MECH-0xx: Love-mediated repair after harm
+### Candidate MECH-414 (registered; was MECH-0xx): Love-mediated repair after harm
 
 **Type:** mechanism_hypothesis  
 **Status:** proposed / thought-intake only
@@ -314,7 +316,7 @@ repair as optimisation: agent minimises visible harm metric without integrating 
 
 ---
 
-### Candidate INV-0xx: Kindness is not constraint compliance
+### Candidate INV-084 (registered; was INV-0xx): Kindness is not constraint compliance
 
 **Type:** invariant / governance warning  
 **Status:** proposed / thought-intake only
