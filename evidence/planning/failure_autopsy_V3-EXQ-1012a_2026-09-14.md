@@ -1,6 +1,6 @@
 # Failure autopsy (diagnostic adjudication) -- V3-EXQ-1012a, MECH-439 commensurability selection-level validation
 
-- **Status:** `awaiting_human_confirmation` -- **STAGING-MODE DRAFT**, headless. Routing is NOT finalised; the Step 8 interactive gate is OWED.
+- **Status:** `confirmed` -- Step 8 gate held with the user 2026-09-16 (account-handover walkthrough session; recorded 2026-09-16T12:16:45Z; Opus red-team CONTESTED, three findings applied first). See "Step 8 gate outcome" at the end. Originally staged headless: Status: `awaiting_human_confirmation` -- STAGING-MODE DRAFT, headless. Routing is NOT finalised; the Step 8 interactive gate is OWED. ...
 - **Generated (UTC):** 2026-09-15T00:35:57Z
 - **Session:** `autopsy-staging-trio-20260914` (dispatched by metaworker orchestrator `orchestrate-20260914-2323`)
 - **Scope:** single
@@ -136,7 +136,7 @@ The driver argues, correctly and at length, that this DV escapes the defect that
 
 **But escaping identity-hood is weaker than being interpretable.** There is no measured reference against which 0.82 can be graded. Nothing in the run says what an *uninformative* differential rescaling would produce on this substrate, so the number establishes that the operator moves the argmin and stops there.
 
-**The first draft of this autopsy argued that point badly, and the argument is withdrawn rather than quietly edited.** It reasoned that OFF and ON rankings are computed over "effectively disjoint information" -- OFF decided by residue alone, ON by an equalised three-way sum -- and therefore agree at roughly chance, `1/k`, making 0.82 unremarkable. **That premise is false:** the ON score *retains* residue, at roughly 1/3 weight rather than at monopoly weight, so the two rankings are correlated, not independent. Under genuine independence at `k=8` the flip rate would be about **0.63**, and the observed **0.82 exceeds it**. If anything that is mildly favourable to the operator.
+**The first draft of this autopsy argued that point badly, and the argument is withdrawn rather than quietly edited.** It reasoned that OFF and ON rankings are computed over "effectively disjoint information" -- OFF decided by residue alone, ON by an equalised three-way sum -- and therefore agree at roughly chance, `1/k`, making 0.82 unremarkable. **That premise is false:** the ON score *retains* residue, at roughly 1/3 weight rather than at monopoly weight, so the two rankings are correlated, not independent. [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), finding F1: the 0.63 figure was the CORRELATED-model baseline mislabelled as the independence baseline. Under genuine independence two argmins over k=8 candidates agree with probability 1/k, so the flip rate would be 1 - 1/8 = 0.875, and the observed 0.821 fed / 0.724 starved are BELOW it, not above. Against the correlated model the comparison is entirely k-driven (MC: 0.58 at k=6, 0.63 at k=8, 0.69 at k=12) and k is unmeasured. No directional gloss is offered; recording k is a PRECONDITION for any baseline claim, not a recording nicety.] There is no measured null, so the number cannot be graded.
 
 So the honest statement is the narrow one: **there is no measured null, so the number cannot be graded** -- not that the number is at chance. (The candidate count `k` is also not recorded in the manifest, which is a recording gap in its own right and the reason no analytic correction is available even in principle.)
 
@@ -241,9 +241,11 @@ A successor **measurement** (V3-EXQ-1012b) implementing the placebo arm is the n
 4. **Record the candidate count `k` per tick** (its distribution, not a nominal config value) -- the denominator of every chance-agreement baseline anyone will compute from this DV.
 5. **Emit `final_commit_by_primary_frac` per cell**, or state its absence in the manifest rather than only in the docstring. Whichever way it resolves, docstring and build must agree.
 6. **Rename the emitted `regimes_differ` field** to match the prose it implements.
-7. **Report which commensurability channels were live, and why a dead one is dead** -- two of five were dead here, and the cause was that their branches were never entered, which makes reviving them a harness change rather than a tuning one.
+7. **GATE on, not merely report, which commensurability channels were live** -- promoted from report to READINESS PRECONDITION at the 2026-09-16 red-team pass (F3): V3-EXQ-571c carried an `n_live_channels >= 2` precondition and was voided by it; this driver's five preconditions dropped it, which is how this artifact could grade prerequisites `present` while stating the channel-liveness dependency is empirically unmet. Restore `n_live_channels` with a definition appropriate to a flip-rate DV (channels whose scale estimate clears the commensurability floor, >= 2) so the successor cannot go green arbitrating among fewer live channels than the amended target presumes. Also report why a dead one is dead -- two of five were dead here, and the cause was that their branches were never entered, which makes reviving them a harness change rather than a tuning one.
 
 **Explicitly NOT recommended:**
+
+- **Releasing the 936-family / 654h-class conversion-falsifier refusal.** `f_dominance_conversion_ceiling.depends_on_unresolved[2]` says that refusal lifts 'once it validates'; this run does NOT validate the rung, and the entry text must be rewritten to say so (WHAT TO RECORD item 5, added at the 2026-09-16 red-team pass, F2) so the literal PASS outcome cannot be read as the release condition.
 
 - **REFUSED, and this is the brake's own refusal rather than a preference:** do **not** queue another lettered iteration testing MECH-439's hypothesis against the same substrate. A redesign testing a **different** mechanism under a new EXQ number with different `claim_ids` remains permitted, and so does substrate-validation work like the successor above; another letter circling the same ceiling does not.
 - Do **not** read the PASS as evidence that the commensurability operator *works*.
@@ -341,3 +343,11 @@ Recorded explicitly rather than left silent, because an absent check is indistin
 1. **The Step 8 interactive gate** -- this draft's routing is a proposal, not a decision.
 2. **Nothing was marked reviewed.** `review_tracker.json`, `claims.yaml`, `substrate_queue.json`, the queue and the registry are untouched by this session.
 3. Per CLAUDE.md, this autopsy **does not `spawn_task` its own follow-on**. `/governance` chips the substrate amend and the V3-EXQ-1012b successor once Step 2b ratifies the routing.
+
+## Step 7c -- adversarial red-team pass (run 2026-09-16T12:15:15Z, model Opus, cross-model): VERDICT **CONTESTED**, three findings applied
+
+F1 (assertion): the 0.63 'independence' baseline was the correlated-model figure; independence gives 0.875 at k=8, above both observed rates; clause corrected in Sec. 5c, gloss withdrawn. F2 (recommendation): the amend never rewrote `depends_on_unresolved[2]` on `f_dominance_conversion_ceiling`, whose live text lifts the 936-family / 654h-class refusal 'once it validates' -- item (5) added to WHAT TO RECORD and to Explicitly NOT recommended. F3 (recommendation, narrow): the `n_live_channels` readiness gate 571c carried is absent from this driver; required change 7 promoted from report to precondition. Attacks that failed (unfailable-criterion inconsistency, identity-DV, regimes_differ, amend-vs-create, duplication, the absent readout) are recorded in the red-team findings; the routing stands.
+
+## Step 8 gate outcome -- CONFIRMED 2026-09-16T12:16:45Z
+
+CONFIRMED as recommended, with red-team 2 corrections F1-F3 applied: direction non_contributory, category standard, MECH-439 stays candidate with pending_retest_after_substrate true; re-derive brake FIRES (15 hits vs 2); routing implement-substrate as an AMEND of f_dominance_conversion_ceiling (require a placebo-rescaling reference; record WHAT TO RECORD items 1-5 incl. the depends_on_unresolved[2] rewrite so the literal PASS cannot release the 936-family / 654h refusal; restore n_live_channels as a readiness precondition); the successor measurement is queued by /governance as substrate validation, NOT as a MECH-439 test.

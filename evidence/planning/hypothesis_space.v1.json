@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-16T12:08:10Z",
+  "generated_at": "2026-09-16T12:22:00Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -5774,7 +5774,7 @@
           "evidence_runs": [
             "V3-EXQ-1030"
           ],
-          "basis": null,
+          "basis": "V3-EXQ-1030 ran to completion and did NOT discriminate this leg. Its load-bearing null criterion was suppressed by readiness R3, and this autopsy finds R3 mis-specified (its positive-control target, absolute grid quadrant, is in body_state, not in the world_state that z_world is computed from), so R3 could not certify probe competence in either direction; independently the z_world probe sits at or below its own test majority-class rate in 6 of 10 cells, so the near-zero ON-OFF lift is a difference between two floor-pinned numbers rather than a measured null. Per the Step 9b state-mapping table -- a non_contributory / inconclusive run that does not discriminate leaves the leg alive -- the state is unchanged and the elimination bar is not met. The repaired re-run V3-EXQ-1030a is the adjudicating run to await. [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), F1/F7] The R3 instrument was NOT mis-specified in target (quadrant is decodable on z_world, 9/10 cells above majority); its absolute threshold form suppressed C1. On the pre-registered sense() DV only 2/5 seeds clear their own majority (both null), below MIN_SEEDS 3: UNDERPOWERED, not uninterpretable. Leg stays alive pending 1030a.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -8309,6 +8309,21 @@
       "moved": "777a narrowed nothing, but for a NEW reason. Sampling is genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved cells) and all six preconditions were MET, so control_passed and non_degenerate are true for the first time. C1 still failed -- NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds, required 3). The sole failing bar, c1_robust, is defined as mean minus POPULATION SD (statistics.pstdev, script line 541/697) and so cannot be met at any n; repaired to standard-error form it needs ~51 informative seeds against an observed 28.6% informative yield (~177 raw seeds, ~31 h). That yield is substrate-gated: corr(D-saturation-distance, norm_v_score) = 0.884 with 9 of 14 seeds saturated, a property of an untrained agent's degenerate action-value distribution that barely moved from 777's starved run. Hypothesis stays ALIVE -- a substrate-ceiling non_contributory discriminates nothing. Note the surviving evidence points TOWARD this leg, not away: within the informative pool the angle does not track score-axis magnitude (corr 0.028) and the best-conditioned seed 17 gives sin_angle 0.9883. Re-derive brake FIRED; pending SD-PROBE-WARMUP, not a further lettered iteration.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-1030",
+      "all_runs": [
+        "V3-EXQ-1030"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "waypoint_field_consumer_reach",
+      "claims": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "moved": "V3-EXQ-1030 ran to completion and did NOT discriminate this leg. Its load-bearing null criterion was suppressed by readiness R3, and this autopsy finds R3 mis-specified (its positive-control target, absolute grid quadrant, is in body_state, not in the world_state that z_world is computed from), so R3 could not certify probe competence in either direction; independently the z_world probe sits at or below its own test majority-class rate in 6 of 10 cells, so the near-zero ON-OFF lift is a difference between two floor-pinned numbers rather than a measured null. Per the Step 9b state-mapping table -- a non_contributory / inconclusive run that does not discriminate leaves the leg alive -- the state is unchanged and the elimination bar is not met. The repaired re-run V3-EXQ-1030a is the adjudicating run to await. [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), F1/F7] The R3 instrument was NOT mis-specified in target (quadrant is decodable on z_world, 9/10 cells above majority); its absolute threshold form suppressed C1. On the pre-registered sense() DV only 2/5 seeds clear their own majority (both null), below MIN_SEEDS 3: UNDERPOWERED, not uninterpretable. Leg stays alive pending 1030a.",
+      "resolved_utc": null,
+      "evidence_direction": "pending"
     },
     {
       "run": "V3-EXQ-1028",
