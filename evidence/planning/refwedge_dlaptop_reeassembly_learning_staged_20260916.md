@@ -323,3 +323,105 @@ F-A + F-C + rescue ref as in sections 3 and 6; (2) constrain to F-C only (stops 
 subprocess, does not stop the class -- a stale-base re-commit can still arise from a
 non-CAS path); (3) proceed with F-B at the `ree_commit.py` primitive instead; (4) hold.
 Recommendation: (1).
+
+## 9. Post-fix recurrence (g9): mechanism on data, strands landed, converge command
+
+Addendum 2026-09-16T21:12:44Z, chip-20260916-refwedge-g9-post-fix-strand (session cranky-mestorf-85a0e9).
+
+### 9.1 Which path the 20:15Z commit took, from the tick log
+
+`~/Library/Logs/ree_igw_routine.launchd.log` (launchd agent `com.ree.igwroutine`, hourly,
+via `~/.local/bin/ree_igw_routine.sh`), tick 20:14:12Z: `committed af9608e142 (1 file(s),
+verified) [to-remote-tip: not referenced by local HEAD]`, then `structural re-apply:
+evidence/planning/igw_routine_log.md cannot be merged per-entry (not parseable JSON ...)
+-- this is a GENUINE conflict, staying fatal`, then `push-retry 1/5: cherry-pick onto
+origin/master failed, giving up: error: could not apply af9608e1423`, then the
+`to-remote-tip: ... falling back to local landing` fallback. So F-A was live and did run;
+the fallback fired on a cherry-pick CONFLICT, not on a fetch/lock failure. Same shape for
+every tick from 16:01Z on (c84d5e92d4 17:06, d1f26af6a8 18:08, 82327b726a 19:11,
+7d175f6a01 20:14, af9608e142 21:16 local).
+
+### 9.2 The mechanism (reproduced, not inferred)
+
+The FIRST fallback, c84d5e92d4 in the 16:01Z tick, was built on base 6f0ca7a4b9, which IS
+on origin (the g8 converge had just cleared the checkout at 15:46Z). Within that one tick
+`commit_ledger_files()` ran twice on `igw_routine_log.md`:
+
+1. 16:03:31Z, reason "update": commit 819330d833 (+1 line, the 16:03:06Z workset line)
+   landed on origin cleanly as the -x twin 28d9b933610 at 16:04:13Z. Exit 0, so the tick
+   printed nothing (`_ree_commit` prints only on non-zero). Under `--to-remote-tip` the
+   local ref and working tree are UNTOUCHED (the "PERSISTENT-DIRTY TRADE" in
+   `land_at_remote_tip`'s docstring: "documented so a future caller-side integration can
+   weigh it explicitly rather than discover it").
+2. 16:05:03Z, reason "spawn IGW-20260916-240": the commit is built against the SAME local
+   HEAD, so its diff re-includes the already-landed workset line plus the new SPAWN line
+   (+2). Cherry-pick onto origin: base X, origin X+w, ours X+w+s -> an end-of-file append
+   conflict (git resolves only IDENTICAL hunks on both sides; a superset is a conflict).
+   Reproduced: the same cherry-pick onto 28d9b933610^ applies cleanly; onto 28d9b933610 or
+   later it conflicts. The structural re-apply is JSON-only, so the `.md` stays fatal and
+   the fallback lands the commit locally -> ahead 1, wedge born.
+3. Every later tick's log commit is then built on a local HEAD whose log tail carries the
+   SPAWN line origin never got, so every one conflicts the same way and falls back:
+   +1 local commit per tick, exactly the self-feeding latch of section 2.2, now on the
+   `.md` log instead of the CAS json.
+
+So: F-A holds for the CAS json files (no poison commits in this range -- every ledger/
+assignments change was coordinator-suppressed) and the two 2026-09-15 workset guards
+held (no workset commit in the range). The gap is the caller-side integration of
+`--to-remote-tip` with a file this tick commits MORE THAN ONCE per run, which the mode's
+own docstring flagged as the trade to weigh. Section 5's "P3-class ... log.md 'cannot be
+merged per-entry' refusals" was this class, and the chip it named as owner
+(chip-20260911-wsrotate-push-refusal-strands-ahead) is withdrawn -- nothing owned it.
+
+### 9.3 Per-commit CONTENT audit of the 20-commit ahead range (never shape)
+
+Method: for every commit and every path, `git show <sha>:<path>` vs
+`git show origin/master:<path>`; for append-only files, every ADDED line tested for
+presence in origin's copy; JSON compared structurally as well.
+
+- **Genuine strands (content absent from origin): 6**, all REE Automation (Mac) commits
+  to `igw_routine_log.md`, 13 Mac-only log lines in total: c84d5e92d4c (1 line),
+  844bd315633 (1), d1f26af6a83 (5), 82327b726a1 (2), 7d175f6a01e (2), af9608e1423 (2).
+- **Already on origin under another sha (route-A false negatives): 14** -- b3910ede492,
+  39289a29612, d07679355be, 42dc223552a, 4e85f5b3a16, 53b84db0f92, 239e272e94f,
+  1c698515677, d90b060fbef (every path blob-identical to origin); dcbc04904fd,
+  5abe7b48a34, 0e2a7ce2cfa (governance_flags: every added entry present on origin,
+  file superseded by 1c698515677 which is blob-identical); 1c52bee2e35
+  (substrate_queue: every added line on origin, superseded by 4e85f5b3a16,
+  blob-identical); 33096ed893a (its one "missing" added line is the AWAITING USER REVIEW
+  header that 53b84db0f92 / the doc-review walk replaced on origin -- supersession, not
+  a strand).
+
+### 9.4 Strands landed (2026-09-16T21:12:44Z)
+
+The 6 strands were cherry-picked `-x` onto origin/master oldest-first from a throwaway
+worktree with the bot committer identity and pushed: a464ad1b37b (from c84d5e92d4c;
+the one conflicting pick, resolved by taking the commit's own blob after proving
+origin's blob is its byte-prefix), 123e87aa89a, f7758b8fe2c, 0581feb2909, 94e57a801d3,
+981e4d09d18. Each twin's log blob is byte-identical to its source; origin's
+`igw_routine_log.md` blob now equals local master's, so the next tick's commit
+cherry-picks cleanly (base == origin) instead of falling back. All 6 backrefs verified
+on origin.
+
+### 9.5 Converge: the checkout cleared before this chip could hand over the command
+
+At 2026-09-16T21:14:15Z the shared checkout read `## master...origin/master` with no ahead/behind -- a
+ref move this chip did NOT perform (metaworker-repair Step 4 is human-run). Latest reflog
+entry: `311a822b35e master@{2026-09-16 22:12:34 +0100}: `. For the record, the 20 shas the 9.3 audit proved on origin, which would have
+been passed as `safe_adopt_ref.py --repo REE_assembly --branch master --allow-discard ...`,
+were: c84d5e92d4c b3910ede492 1c52bee2e35 39289a29612 844bd315633 d07679355be dcbc04904fd d1f26af6a83 5abe7b48a34 82327b726a1 7d175f6a01e 33096ed893a 42dc223552a 4e85f5b3a16 53b84db0f92 239e272e94f 0e2a7ce2cfa af9608e1423 1c698515677 d90b060fbef. If the checkout wedges again with any of these NOT on origin, that is a new
+finding, not this one.
+
+### 9.6 Fix for the mechanism (narrow, pre-authorised by the chip)
+
+`ree_commit.py` structural re-apply gains an APPEND-ONLY EXTENSION rule for a
+non-JSON path: when origin's copy is a byte-prefix-extension of the merge base (origin
+only appended) and the commit's copy is a byte-prefix-extension of origin's copy (the
+box's content already carries everything origin appended, plus more), the commit's
+content IS the merge -- nothing of origin's is lost (it is a verbatim prefix of the
+result) and nothing of the box's is lost (the result is the box's own blob).
+`verify_cherry_pick_faithful` re-derives the same three blobs from git and accepts the
+merge on the identical byte test, so the verifier gate is not bypassed. Disjoint appends
+by two writers, any non-append change by origin, and anything without a trailing
+newline stay fatal exactly as before. Landing commit: see the WORKSPACE_STATE.md line for
+this chip.
