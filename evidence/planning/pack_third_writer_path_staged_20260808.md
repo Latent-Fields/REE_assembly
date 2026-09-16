@@ -1,6 +1,6 @@
 # Third pack-writer path: traced (2026-08-08)
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml, to any evidence manifest, or to any run pack.** This is an investigation report. No pack was rewritten.
+**Status: APPROVED A+C 2026-09-16 (user); landed REE_assembly `LANDING_SHA_PENDING` (see the landing note at the end).** Option B (regenerate the path-3 packs) was explicitly NOT chosen. No pack was rewritten; nothing here touched claims.yaml or any evidence manifest.
 
 Chip: `chip-20260808-mech138-pack-third-writer-path`. Follow-on from
 `chip-20260808-mech138-orphaned-evidence-indexer-stub` (REE_assembly `b0bbc0d662`),
@@ -196,3 +196,27 @@ EOF
 
 Expected today: 6 `VERBATIM-COPY`, 5 `legacy/differs`. **A count above 6 means path 3 has
 been used again since 2026-08-08.**
+
+---
+
+## Landing note (2026-09-16)
+
+Re-running the Reproduction block above on 2026-09-16 found **7** `VERBATIM-COPY` packs, not
+6: `v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3` landed by hand on 2026-08-09
+(`7141d4c9190`, "recover stranded V3-EXQ-899 run from ree-cloud-2"), the day after this report,
+tripping its own trigger. The user approved **A + C** in live chat (session
+eloquent-jepsen-5f6242, 2026-09-16): A is the "Tolerated non-`experiment_pack/v1` packs"
+section of `evidence/experiments/INTERFACE_CONTRACT.md`, an explicit allow-list of the 7 path-3
+packs and the 5 pre-schema legacy packs by run id; C is
+`evidence/experiments/scripts/recover_stranded_run.py`, which wraps `runpack_for_flat` (ASCII
+output, `--dry-run`, refuses to overwrite an existing pack, refuses dry-run smokes and non-V3
+flats, writes a proper 3-file `experiment_pack/v1` pack) plus its `--scan` detector and
+`test_recover_stranded_run.py`, which pins the live corpus: every `runs/*/manifest.json` is
+`experiment_pack/v1` or allow-listed. The scan also surfaced a **fourth writer** this report
+predates: 6 `convergence_signal_synthetic_assay_00N/runs/20260909_seed*` packs banked
+2026-09-09 straight from `REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py`
+(no schema_version, `claim_ids: []`, no flat sibling); they are allow-listed as their own
+category so the detector passes on today's corpus (2964 packs: 2946 v1 + 18 allow-listed),
+and whether that writer should project through `build_runpack_docs` is left as an open
+decision, not silently absorbed. No existing pack was touched and no index regen was run
+(CLAUDE.md Narrow Edits Only). Landed in REE_assembly `LANDING_SHA_PENDING`.

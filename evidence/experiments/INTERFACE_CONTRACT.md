@@ -158,3 +158,75 @@ Epoch note:
 - `schema_version` values are versioned and immutable.
 - New major changes require new schema versions.
 - `v1` ingestion assumes JSON-compatible UTF-8 files.
+
+## Tolerated non-`experiment_pack/v1` packs (allow-list) and stranded-run recovery
+
+**Every `<experiment_type>/runs/<run_id>/manifest.json` MUST carry
+`schema_version: "experiment_pack/v1"`, except the 18 packs listed here.** The list is
+mirrored verbatim in `evidence/experiments/scripts/recover_stranded_run.py` (`ALLOWLIST`),
+and `evidence/experiments/scripts/test_recover_stranded_run.py` asserts the live corpus
+against it, so the set cannot grow silently. `recover_stranded_run.py --scan` runs the same
+check by hand (exit 3 on a finding).
+
+**Any new pack outside `experiment_pack/v1` is a defect.** In particular, do NOT recover a
+stranded run by copying its flat manifest into `runs/<run_id>/manifest.json` ("path 3" in
+`evidence/planning/pack_third_writer_path_staged_20260808.md`). Use the tool, which calls the
+same `runpack_for_flat` / `build_runpack_docs` the Phase-3 hub writer and `governance.sh` use,
+so the pack is byte-identical to a hub materialisation:
+
+```bash
+/opt/local/bin/python3 evidence/experiments/scripts/recover_stranded_run.py --dry-run evidence/experiments/<run_id>.json
+/opt/local/bin/python3 evidence/experiments/scripts/recover_stranded_run.py evidence/experiments/<run_id>.json
+```
+
+It refuses to overwrite an existing pack (a pack is not a pure function of its flat sibling
+once `/governance` or `/failure-autopsy` has written to it; use `sync_v3_results.py --heal`
+for that) and refuses dry-run smokes and non-V3 flats. Adding an entry to the allow-list is a
+reviewed decision recorded with its landing commit, in BOTH the script and this section --
+never a way to make the test pass.
+
+Approved by the user 2026-09-16 (options A + C of the planning doc above; option B,
+regenerating the path-3 packs, was explicitly NOT chosen because two of them carry hand-curated
+corrections). The indexer already tolerates all three categories: it reads `status`/`outcome`
+and `claim_ids_tested`/`claim_ids`, and every listed run is present in `claim_evidence.v1.json`.
+The path-3 packs lack a `metrics.json` sibling, so they get no metric display, stop-criteria
+evaluation or duplicate fingerprinting -- a completeness gap, not an evidence loss.
+
+### Path 3 -- verbatim copies of the flat manifest (7; `manifest.json` only)
+
+| `<experiment_type>/runs/<run_id>` | Added by |
+|---|---|
+| `v3_exq_614_mech341_p3_behavioural_falsifier_3arm/runs/v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3` | `39664fc7658` 2026-07-30 (admitted `superseded`; hand-curated) |
+| `v3_exq_673_mech171_vicious_cycle_sleep_disruption/runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T224744Z_v3` | `1a4ad27d9ee` 2026-07-20 |
+| `v3_exq_673_mech171_vicious_cycle_sleep_disruption/runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3` | `37f1af866f3` 2026-07-30 |
+| `v3_exq_673_mech171_vicious_cycle_sleep_disruption/runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T010234Z_v3` | `1a4ad27d9ee` 2026-07-20 |
+| `v3_exq_673_mech171_vicious_cycle_sleep_disruption/runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3` | `1a4ad27d9ee` 2026-07-20 (arm-degeneracy assertion later hand-corrected, `eabe9c453b`) |
+| `v3_exq_707c_arc110_loop_segregation_c2_release_repair/runs/v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260722T041239Z_v3` | `37f1af866f3` 2026-07-30 |
+| `v3_exq_899_arc030_mech307_g0_readiness/runs/v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3` | `7141d4c9190` 2026-08-09 (the 7th; landed after the 2026-08-08 count of 6) |
+
+### Pre-schema legacy packs (5; predate the `experiment_pack/v1` projection)
+
+| `<experiment_type>/runs/<run_id>` | Note |
+|---|---|
+| `v3_exq_241a_sd011_second_source_validation/runs/v3_exq_241a_sd011_second_source_validation_20260408T190019Z_v3` | 2026-04-08, no `schema_version` |
+| `v3_exq_241b_sd011_second_source_info_gain/runs/v3_exq_241b_sd011_second_source_info_gain_20260408T231939Z_v3` | 2026-04-08, no `schema_version` |
+| `v3_exq_247_sd011_sd012_integration/runs/v3_exq_247_sd011_sd012_integration_20260406T080943Z_v3` | 2026-04-06, no `schema_version` |
+| `v3_exq_247_sd011_sd012_integration/runs/v3_exq_247_sd011_sd012_integration_20260407T105051Z_v3` | 2026-04-07, no `schema_version` |
+| `v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence/runs/v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence_v3_20260602T191625Z` | 2026-06-02, `schema_version: "v1"`, mis-ordered run_id |
+
+### Synthetic-assay packs (6; a separate writer, found 2026-09-16)
+
+Written directly by `REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py` on
+2026-09-09 -- not stranded-run recoveries and not V3 substrate runs (`claim_ids: []`,
+`status: synthetic_measurement_run_only`, no `architecture_epoch`, no flat sibling). They
+post-date the 2026-08-08 investigation and are tolerated as-is pending a decision on whether
+that writer should project through `build_runpack_docs`.
+
+| `<experiment_type>/runs/<run_id>` | Added by |
+|---|---|
+| `convergence_signal_synthetic_assay_001/runs/20260909_seed7` | `52e568f1e16` 2026-09-09 |
+| `convergence_signal_synthetic_assay_002/runs/20260909_seed11` | `1d36d59a941` 2026-09-09 |
+| `convergence_signal_synthetic_assay_003/runs/20260909_seed17` | `44bf10efba6` 2026-09-09 |
+| `convergence_signal_synthetic_assay_004/runs/20260909_seed23` | `42eb7578736` 2026-09-09 |
+| `convergence_signal_synthetic_assay_005/runs/20260909_seed29` | `366ce5a0e17` 2026-09-09 |
+| `convergence_signal_synthetic_assay_006/runs/20260909_seed37` | `6f5b258c4a9` 2026-09-09 |
