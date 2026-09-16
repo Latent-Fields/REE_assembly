@@ -1,6 +1,6 @@
 # ARC-030 / SD-017 "ceiling-may-have-lifted" -- 2026-08-22 assessment
 
-**Status: REVIEWED 2026-09-16 (user) -- SD-017 half superseded (436g, 969-972, GFLAG-0139); ARC-030 ceiling_decision:deferred -> chip-20260916-claims-bookkeeping-six-edits.**
+**Status: APPLIED 2026-09-16 (user, bookkeeping chip); landed REE_assembly ecd247a2db -- SD-017 half superseded (436g, 969-972, GFLAG-0139); ARC-030 ceiling_decision:deferred -> chip-20260916-claims-bookkeeping-six-edits.**
 
 Session: `metaworker-chip-20260822-ceiling-lifted-retests-arc030-sd017` (headless, DLAPTOP)
 Chip: `chip-20260822-ceiling-lifted-retests-arc030-sd017`

@@ -1,4 +1,4 @@
-**Status: REVIEWED 2026-09-16 (user) -- 940/941 ran, autopsied 2026-08-20, applied gov-20260821; H-commitment/H-cadence disposal -> chip-20260916-claims-bookkeeping-six-edits; contamination audit -> chip-20260916-corpus-audits-contamination-immobility.**
+**Status: APPLIED 2026-09-16 (user, bookkeeping chip); landed REE_assembly ecd247a2db -- 940/941 ran, autopsied 2026-08-20, applied gov-20260821; H-commitment/H-cadence disposal -> chip-20260916-claims-bookkeeping-six-edits; contamination audit -> chip-20260916-corpus-audits-contamination-immobility.**
 described here ARE queued (see section 6); this document records the reasoning, and in
 particular a SCOPE SHRINK from the 4 legs the autopsy pre-registered to 2.
 

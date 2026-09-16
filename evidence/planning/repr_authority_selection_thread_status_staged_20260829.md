@@ -1,4 +1,4 @@
-**Status: REVIEWED 2026-09-16 (user) -- GFLAG-0099 resolved 2026-09-01 (MECH-531 split, 008d91c0ce); MECH-521 cross-ref -> chip-20260916-claims-bookkeeping-six-edits.**
+**Status: APPLIED 2026-09-16 (user, bookkeeping chip); landed REE_assembly ecd247a2db -- GFLAG-0099 resolved 2026-09-01 (MECH-531 split, 008d91c0ce); MECH-521 cross-ref -> chip-20260916-claims-bookkeeping-six-edits.**
 
 # repr->authority->selection research thread -- status note, 2026-08-29T02:09:38Z
 
