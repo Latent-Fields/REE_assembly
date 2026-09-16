@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_109",
+  "entry_id": "2026-09-16_inv_109_tooling_nondeterminism_cost_of_determinism_zhuang2022",
+  "timestamp_utc": "2026-09-16T02:04:32Z",
+  "claim_ids_tested": [
+    "INV-109"
+  ],
+  "source": {
+    "title": "Randomness in Neural Network Training: Characterizing the Impact of Tooling",
+    "authors": [
+      "Donglin Zhuang",
+      "Xingyao Zhang",
+      "Shuaiwen Leon Song",
+      "Sara Hooker"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of Machine Learning and Systems 4 (MLSys)",
+    "doi": null,
+    "arxiv_id": "2106.11872",
+    "pmid": null,
+    "pmc": null,
+    "volume": "4",
+    "url": "https://proceedings.mlsys.org/paper_files/paper/2022/hash/427e0e886ebf87538afdf0badb805b7f-Abstract.html"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "Large-scale systems study across several accelerator architectures, networks and open datasets; the only entry in this pull that measures the TOOLING layer INV-109 is implicitly about when it says a pinned substrate commit constrains the code and not the weights. It is filed MIXED because it cuts both ways, and honestly so. Supporting INV-109: nondeterminism originating below the model -- kernel selection, reduction order, accelerator architecture -- is real, is hardware-dependent, and is not addressed by pinning source; and the authors' sharpest finding is that top-line metrics such as top-1 accuracy are NOT noticeably impacted while performance on certain parts of the data distribution is far more sensitive, which is precisely INV-109's structure (regime-level readouts agree, the artifact is not the same). Against INV-109, or at least bounding it: bitwise determinism IS attainable within a fixed hardware and software stack via deterministic kernels, so endpoint reproduction is not impossible in principle -- it is merely expensive, with measured overhead up to 746 percent on widely used GPU accelerators, and the cost varies dramatically by architecture and hardware type. That is the live foothold for INV-109's own stated falsifier. Held at 0.78 rather than higher because the study is GPU-centric while the REE lineage in question spans darwin-arm64 CPU against linux-x86_64 CPU, a boundary this paper does not directly measure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This paper establishes that determinism is PURCHASABLE within one hardware and software stack. INV-109's falsifier is that recipe reproduction under a pinned commit yields bit-identical endpoints; on Zhuang et al.'s evidence that outcome is achievable by configuration, not excluded by nature. If a REE lineage were run twice on the same machine class with deterministic kernels enabled and produced identical hashes, INV-109 would be shown to be about CROSS-CLASS reproduction specifically, and its general wording would need narrowing.",
+    "The cost figures (up to 746 percent overhead) are GPU-accelerator figures. REE's 1008/1010 comparison is CPU-to-CPU across machine classes, where the dominant divergence source is different -- library reduction order and math-library version rather than nondeterministic GPU kernel selection. Quoting the 746 percent number as REE's cost of determinism would be a category error.",
+    "The finding that top-line metrics are stable while subgroup performance is not is an argument that regime-level agreement is WEAK evidence of artifact identity. It is not an argument that the two artifacts are meaningfully different for the purpose at hand. An INV-109 application that treats every hash mismatch as scientifically consequential would over-read this paper as much as one that ignores it under-reads it."
+  ],
+  "tags": [
+    "inv-109",
+    "nondeterminism",
+    "tooling",
+    "hardware_determinism",
+    "cross_machine_class",
+    "reproducibility",
+    "cost_of_determinism",
+    "mlsys",
+    "zhuang",
+    "hooker"
+  ],
+  "mapping": {
+    "source_claim_statement": "The authors run large-scale experiments across hardware types, accelerators, state-of-the-art networks and open-source datasets to characterize how tooling choices contribute to nondeterminism and the cost of eliminating each source of noise. They report overhead of up to 746 percent when enforcing deterministic implementations on widely used GPU accelerator architectures, with the cost varying dramatically between network architectures and hardware types; and they report that the impact of nondeterminism is nuanced -- top-line metrics such as top-1 accuracy are not noticeably impacted, while model performance on certain parts of the data distribution is far more sensitive to the introduction of randomness.",
+    "ree_translation": "INV-109 says a pinned substrate COMMIT constrains the code that produced an endpoint and never the endpoint's realised weights. Zhuang et al. name the layer where that gap lives: the tooling and accelerator stack sits below the pinned source and injects divergence the commit cannot see. Their subgroup finding maps onto INV-109's two-part structure almost exactly -- the aggregate readout agrees across runs while the finer-grained behaviour does not, which is the empirical shape of 'the consumer-width values fall in the declared band and the participation ratios match' co-existing with differing weight deltas. The countervailing half is equally relevant: they show determinism is a purchasable property of a fixed stack, which is the mechanism by which INV-109's falsifier could be realised.",
+    "mapping_caveat": "GPU-centric, on supervised vision and NLP workloads; REE's 1008-against-1010 divergence is CPU-to-CPU across darwin-arm64 and linux-x86_64, where the dominant sources differ (BLAS reduction order, math-library version, and -- per the project's own measurement -- torch.multinomial specifically). The qualitative conclusion transfers; the cost figures and the per-source attributions do not. Note also that this paper's notion of 'the same model' is behavioural, so it does not directly evidence weight-state non-identity, only its functional consequences.",
+    "source_context": "Systems study; multiple GPU accelerator architectures, standard vision/NLP networks, open datasets; deterministic-kernel configurations benchmarked for overhead."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Strong systems methodology at scale. Mapping fidelity discounted because the paper's unit of sameness is behavioural, not weight-state; transfer risk raised because GPU-accelerator conclusions are being read onto a CPU cross-class comparison."
+  }
+}

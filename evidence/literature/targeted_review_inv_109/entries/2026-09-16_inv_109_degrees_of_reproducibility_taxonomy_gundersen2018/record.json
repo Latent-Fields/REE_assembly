@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_109",
+  "entry_id": "2026-09-16_inv_109_degrees_of_reproducibility_taxonomy_gundersen2018",
+  "timestamp_utc": "2026-09-16T02:08:51Z",
+  "claim_ids_tested": [
+    "INV-109"
+  ],
+  "source": {
+    "title": "State of the Art: Reproducibility in Artificial Intelligence",
+    "authors": [
+      "Odd Erik Gundersen",
+      "Sigbjorn Kjensmo"
+    ],
+    "year": 2018,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "doi": "10.1609/aaai.v32i1.11503",
+    "pmid": null,
+    "pmc": null,
+    "volume": "32",
+    "issue": "1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "A documentation survey of 400 IJCAI/AAAI papers, and the canonical source for the field's degrees-of-reproducibility taxonomy (R1 Experiment Reproducible, R2 Data Reproducible, R3 Method Reproducible). Its value to INV-109 is TERMINOLOGICAL rather than empirical, and that is an unusual but legitimate kind of support for a methodological invariant: it establishes that the distinction INV-109 draws is a recognised one in the field, and -- more pointedly -- that even the field's STRONGEST rung does not reach what INV-109 asks for. R1, the most demanding level, executes the same implementation on the same data and expects the results to be the same 'except for minor differences due to hardware changes'. That caveat is the entire gap INV-109 is about: R1 tolerates precisely the hardware-induced divergence that makes a re-derived endpoint a different tensor. So the taxonomy's ceiling is recipe-level reproduction, and artifact identity sits outside it altogether -- which is why INV-109 has to be registered as a separate standard rather than discharged by appealing to reproducibility best practice. Confidence held at 0.58: the paper is a survey of documentation completeness, not a study of endpoint identity, and it supports INV-109 by what its taxonomy OMITS rather than by anything it measures.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a survey of documentation practice, not evidence about training dynamics or endpoint divergence. It cannot corroborate INV-109's factual assertion that re-derived endpoints differ; it can only show that the field's vocabulary has no rung for artifact identity. Citing it as empirical support for the claim would be a category error.",
+    "The argument that R1's 'except for minor differences due to hardware changes' clause is exactly INV-109's gap is an INTERPRETATION of the taxonomy, not something Gundersen and Kjensmo assert. They treat hardware-induced difference as a tolerable residual; INV-109 treats it as the thing that voids the identity claim. The reading is defensible but it is this pull's reading, and governance should treat it as argued rather than reported.",
+    "A field-wide taxonomy that stops at recipe-level reproduction could indicate that artifact identity is genuinely unnecessary for most scientific purposes rather than that the field has overlooked it. If so INV-109 is correct in the narrow case where a claim NAMES a specific prior endpoint, and over-broad if read as a general standard for reproduction. The claim's own wording is already narrow in this respect; the risk is in how it gets applied."
+  ],
+  "tags": [
+    "inv-109",
+    "reproducibility",
+    "taxonomy",
+    "documentation",
+    "r1_r2_r3",
+    "methodology",
+    "aaai",
+    "gundersen",
+    "kjensmo"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim from the abstract: 'Research results in artificial intelligence (AI) are criticized for not being reproducible. Objective: To quantify the state of reproducibility of empirical AI research using six reproducibility metrics measuring three different degrees of reproducibility ... The literature is reviewed and a set of variables that should be documented to enable reproducibility are grouped into three factors: Experiment, Data and Method ... A total of 400 research papers from the conference series IJCAI and AAAI have been surveyed using the metrics. Findings: None of the papers document all of the variables. The metrics show that between 20% and 30% of the variables for each factor are documented.' The three degrees are R1 Experiment Reproducible (the same implementation executed on the same data), R2 Data Reproducible (an alternative implementation on the same data), R3 Method Reproducible (an alternative implementation on different data).",
+    "ree_translation": "INV-109 distinguishes reconstituting an operating REGIME from possessing the ENDPOINT a prior run measured. Gundersen and Kjensmo's ladder shows that the field's established vocabulary is built entirely on the regime side of that line: all three rungs grade how much of the METHOD is reproducible from what is documented, and the topmost rung, R1, still expects results to agree only up to hardware-induced difference. There is no rung above R1 for 'the same realised artifact'. That is why INV-109 cannot be discharged by pointing at reproducibility best practice, and why a session can satisfy every documentation norm the field recognises while still asserting an unmeasured endpoint-identity sentence -- which is precisely the failure the 1010 lineage exhibits.",
+    "mapping_caveat": "Survey of documentation completeness across 400 AI papers; it measures what authors write down, not what training runs produce. Its support for INV-109 is by omission -- the absence of an artifact-identity rung -- which is an argument this pull constructs from the taxonomy rather than one the authors make. The R1/R2/R3 glosses above are the standard restatements current in the reproducibility-review literature; the primary paper's own abstract names three degrees without defining them in the material retrieved here.",
+    "source_context": "Meta-research: survey of 400 IJCAI and AAAI papers scored on six documentation metrics across Experiment, Data and Method factors."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Well-cited AAAI meta-research and the canonical taxonomy source. Mapping fidelity 0.5 because the support is terminological and by omission rather than empirical; the confidence aggregate is pulled below the component mean deliberately, since for a methodological invariant a taxonomy paper sets context rather than supplying evidence."
+  }
+}

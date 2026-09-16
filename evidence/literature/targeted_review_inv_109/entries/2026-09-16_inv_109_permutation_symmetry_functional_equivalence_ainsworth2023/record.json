@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_109",
+  "entry_id": "2026-09-16_inv_109_permutation_symmetry_functional_equivalence_ainsworth2023",
+  "timestamp_utc": "2026-09-16T02:07:42Z",
+  "claim_ids_tested": [
+    "INV-109"
+  ],
+  "source": {
+    "title": "Git Re-Basin: Merging Models modulo Permutation Symmetries",
+    "authors": [
+      "Samuel K. Ainsworth",
+      "Jonathan Hayase",
+      "Siddhartha Srinivasa"
+    ],
+    "year": 2023,
+    "venue": "International Conference on Learning Representations (ICLR), oral",
+    "doi": null,
+    "arxiv_id": "2209.04836",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Included as the strongest available CHECK on INV-109 rather than as support for it, which is why it earns a place in a five-entry pull. Ainsworth et al. show that independently trained networks -- different seeds, different data order, genuinely separate SGD runs -- can be permuted into alignment so that they occupy what is approximately a single loss basin, demonstrating zero-barrier linear mode connectivity between independently trained ResNets on CIFAR-10. The permutation produces 'a functionally equivalent set of weights'. The consequence for INV-109 is sharp and two-edged. It does NOT threaten the claim's core -- INV-109 says a re-derived endpoint is not the artifact a prior run measured, and permutation-equivalence is a statement about function, not about the stored tensor, so the endpoint-identity sentence stays withdrawn either way. What it DOES threaten is the interpretation of the discriminator: INV-109 proposes a state hash with 'a mismatch aborting rather than warning', and under permutation symmetry a hash mismatch is close to guaranteed even between models that are functionally the same object. The instrument is therefore sound as a detector of re-derivation and unsound as a detector of scientific consequence, and INV-109's wording does not currently distinguish those. Confidence 0.62 reflects a strong paper (ICLR oral, top 5 percent) with a genuinely partial mapping: wide vision classifiers, and the authors themselves supply a counterexample to the single-basin theory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Permutation symmetry means a weight-state hash mismatch is the DEFAULT between two independently trained networks, including ones that are functionally equivalent. INV-109's 'mismatch aborting rather than warning' therefore aborts on a condition that is near-certain and frequently uninformative. If the abort is to carry meaning, INV-109 must say that the hash detects RE-DERIVATION (which it does, reliably) and not that it detects a scientifically different model (which it does not).",
+    "The paper is a live constraint on the inference 'weights differ, therefore the measured latent differs'. If 1008's and 1010's encoders are permutation-alignable and functionally equivalent on the readouts of interest, then the audit's regime-level agreement (matching participation ratios, in-band consumer-width values) may indicate more sameness than INV-109's wording concedes. INV-109 would still be correct that the endpoint-identity sentence was unmeasured; it would be over-stated if read as implying the two objects are scientifically distinct.",
+    "The single-basin result is demonstrated on wide vision classifiers (ResNets on CIFAR-10) and the authors explicitly 'discuss shortcomings of the linear mode connectivity hypothesis, including a counterexample to the single basin theory'. It should not be assumed to hold for REE's narrower episodic encoders, and an appeal to permutation-equivalence as a reason to relax INV-109 would need to be demonstrated on the actual architecture, not assumed from this paper."
+  ],
+  "tags": [
+    "inv-109",
+    "permutation_symmetry",
+    "linear_mode_connectivity",
+    "functional_equivalence",
+    "weight_space",
+    "model_merging",
+    "counter_evidence",
+    "iclr",
+    "ainsworth"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim from the abstract: 'We argue that neural network loss landscapes often contain (nearly) a single basin after accounting for all possible permutation symmetries of hidden units a la Entezari et al. 2021. We introduce three algorithms to permute the units of one model to bring them into alignment with a reference model in order to merge the two models in weight space. This transformation produces a functionally equivalent set of weights that lie in an approximately convex basin near the reference model. Experimentally, we demonstrate the single basin phenomenon across a variety of model architectures and datasets, including the first (to our knowledge) demonstration of zero-barrier linear mode connectivity between independently trained ResNet models on CIFAR-10 ... Finally, we discuss shortcomings of the linear mode connectivity hypothesis, including a counterexample to the single basin theory.'",
+    "ree_translation": "INV-109 treats a differing weight state as the ground for withdrawing an endpoint-identity claim. Ainsworth et al. establish that weight-state difference between independently trained models is generic, expected, and compatible with functional equivalence up to a permutation of hidden units. Applied to REE this splits INV-109's discriminator in two. As a test of whether an endpoint was LOADED or RE-DERIVED, a state hash is exactly right and near-perfectly sensitive. As a test of whether the object under measurement is scientifically a different model, it is close to uninformative, because the permutation alone guarantees a mismatch. INV-109's prescription -- abort on mismatch -- is defensible under the first reading and over-strong under the second, and the claim as currently worded does not separate them.",
+    "mapping_caveat": "Wide supervised vision classifiers (ResNet/CIFAR-10 class), with the alignment computed by a dedicated matching algorithm rather than arising spontaneously; the authors themselves record a counterexample to the single-basin theory. Nothing here shows that REE's episodic encoders are permutation-alignable, and the transfer must not be assumed. The entry is filed as a check on INV-109's interpretation, not as evidence that its central assertion is wrong -- the paper does not speak to whether a re-derived endpoint IS the prior artifact, only to how much a weight difference licenses you to infer.",
+    "source_context": "Supervised image classification (CIFAR-10, ResNet-class and MLP architectures), weight-space model merging, linear mode connectivity analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "ICLR oral, top 5 percent; quality is not the issue. Mapping fidelity is halved because the paper addresses what a weight difference IMPLIES rather than INV-109's actual assertion about endpoint provenance, and transfer risk is high because permutation-alignability is demonstrated on wide vision classifiers and is not established for REE's encoders."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-16T00:02:03.484631Z`
+Generated: `2026-09-16T02:10:55.628380Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -288,6 +288,7 @@ Generated: `2026-09-16T00:02:03.484631Z`
 | `targeted_review_inv_093` | [`2026-09-08_inv_093_punishment_resistance_inflexible_habits_jones2024`](targeted_review_inv_093/entries/2026-09-08_inv_093_punishment_resistance_inflexible_habits_jones2024/record.json) | 5 | [`summary`](targeted_review_inv_093/entries/2026-09-08_inv_093_punishment_resistance_inflexible_habits_jones2024/summary.md) |
 | `targeted_review_inv_095` | [`2026-09-08_inv_095_pain_asymbolia_berthier1988`](targeted_review_inv_095/entries/2026-09-08_inv_095_pain_asymbolia_berthier1988/record.json) | 5 | [`summary`](targeted_review_inv_095/entries/2026-09-08_inv_095_pain_asymbolia_berthier1988/summary.md) |
 | `targeted_review_inv_104` | [`2026-09-08_arc_138_inv_104_grounded_world_models_regulation_before_language_pezzulo2026`](targeted_review_inv_104/entries/2026-09-08_arc_138_inv_104_grounded_world_models_regulation_before_language_pezzulo2026/record.json) | 6 | [`summary`](targeted_review_inv_104/entries/2026-09-08_arc_138_inv_104_grounded_world_models_regulation_before_language_pezzulo2026/summary.md) |
+| `targeted_review_inv_109` | [`2026-09-16_inv_109_degrees_of_reproducibility_taxonomy_gundersen2018`](targeted_review_inv_109/entries/2026-09-16_inv_109_degrees_of_reproducibility_taxonomy_gundersen2018/record.json) | 5 | [`summary`](targeted_review_inv_109/entries/2026-09-16_inv_109_degrees_of_reproducibility_taxonomy_gundersen2018/summary.md) |
 | `targeted_review_mcc_effort_value` | [`2026-04-19_mcc_serotonin_effort_learning_scholl2017`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/record.json) | 5 | [`summary`](targeted_review_mcc_effort_value/entries/2026-04-19_mcc_serotonin_effort_learning_scholl2017/summary.md) |
 | `targeted_review_mech261_mode_gating` | [`2026-04-20_mech_261_triple_coupling_gating_latchoumane2017`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/record.json) | 5 | [`summary`](targeted_review_mech261_mode_gating/entries/2026-04-20_mech_261_triple_coupling_gating_latchoumane2017/summary.md) |
 | `targeted_review_mech269b_vs_rollout_gating` | [`2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/record.json) | 7 | [`summary`](targeted_review_mech269b_vs_rollout_gating/entries/2026-04-26_mech_269b_visual_haptic_optimal_ernstbanks2002/summary.md) |

@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_109",
+  "entry_id": "2026-09-16_inv_109_training_instability_one_bit_divergence_summers2021",
+  "timestamp_utc": "2026-09-16T02:03:20Z",
+  "claim_ids_tested": [
+    "INV-109"
+  ],
+  "source": {
+    "title": "Nondeterminism and Instability in Neural Network Optimization",
+    "authors": [
+      "Cecilia Summers",
+      "Michael J. Dinneen"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML), PMLR",
+    "doi": null,
+    "arxiv_id": "2103.04514",
+    "pmid": null,
+    "pmc": null,
+    "volume": "139",
+    "pages": "9913-9922"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "ICML 2021 spotlight, and the single most direct external test of INV-109's core mechanism available. The authors isolate individual sources of optimisation nondeterminism (parameter initialisation, data order, data augmentation, cuDNN/GPU floating-point nondeterminism) and measure the resulting model diversity separately for each. Two findings carry the claim. First, ALL sources produce statistically indistinguishable diversity -- changing one random seed component moves the endpoint as far as changing every source at once, which means there is no 'small' source of nondeterminism you can leave unpinned and still expect endpoint proximity. Second, and decisively, a ONE-BIT change to a single initial parameter yields models 'converging to vastly different values'. That is instability of the end-to-end training procedure, not accumulation of noise, and it is exactly INV-109's assertion that a reproduced recipe reconstitutes a regime rather than an endpoint. Marked down from higher only because the work is on supervised image classification (CIFAR-10/ImageNet-class vision models), not on the episodic RL-style curricula REE reproduces, and because its dependent variable is functional diversity (disagreement between predictions, representational distance) rather than the weight-hash identity INV-109 actually prescribes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper measures FUNCTIONAL diversity (prediction disagreement, ensemble gain, representational similarity), not weight-space identity. INV-109 asserts that a re-derived endpoint is a different ARTIFACT; Summers and Dinneen establish the stronger and more useful fact that it is also a different FUNCTION on some inputs -- but an entry citing them as evidence that 'the weights differ' is citing a proxy, not the measurement.",
+    "All experiments are supervised vision classifiers trained to convergence. If REE's encoder endpoints are reached by a short, strongly-constrained curriculum that contracts toward a fixed point, the instability demonstrated here could be attenuated and the reproduction could land closer than this paper predicts. The instability result is a demonstration on a class of models, not a proof about all training procedures.",
+    "The paper's own remedy is to REDUCE the effect of instability on run-to-run variability (via accelerated ensembling and test-time augmentation), i.e. to make the regime-level readout more stable. Applied naively to REE that would make the regime agreement MORE convincing while leaving the endpoint-identity claim exactly as unsupported -- the failure mode INV-109 exists to catch."
+  ],
+  "tags": [
+    "inv-109",
+    "nondeterminism",
+    "training_instability",
+    "reproducibility",
+    "seed_sensitivity",
+    "endpoint_identity",
+    "icml",
+    "summers",
+    "dinneen"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim from the abstract: 'we establish an experimental protocol for understanding the effect of optimization nondeterminism on model diversity, allowing us to isolate the effects of a variety of sources of nondeterminism. Surprisingly, we find that all sources of nondeterminism have similar effects on measures of model diversity. To explain this intriguing fact, we identify the instability of model training, taken as an end-to-end procedure, as the key determinant. We show that even one-bit changes in initial parameters result in models converging to vastly different values.'",
+    "ree_translation": "INV-109 holds that re-running a documented training recipe reconstitutes an operating REGIME and licenses nothing about the identity of the artifact a prior run measured. Summers and Dinneen supply the mechanism that makes this true rather than merely cautious: training is END-TO-END UNSTABLE, so the map from recipe to endpoint is not approximately injective. The practical consequence for REE is that V3-EXQ-1010's differing weight deltas against 1008 (seed 42: 0.2930078 against 0.2929618) are the expected signature of re-derivation, not an anomaly to be explained away by machine class; and that pinning MORE of the recipe does not asymptotically recover the endpoint, because pinning all but one bit still does not.",
+    "mapping_caveat": "Transfer is from supervised vision classification to REE's episodic encoder curricula, and from functional-diversity metrics to weight-state identity. The direction of the inference is safe -- instability in a simpler, better-conditioned setting makes endpoint non-identity in REE's setting more likely, not less -- but the magnitude does not transfer, and this paper cannot tell you how far apart two REE reproductions will be. It also says nothing about whether the regime-level readouts (participation ratios, consumer-width bands) should agree; that half of INV-109 is untouched here.",
+    "source_context": "Supervised image classification (CIFAR-10, ImageNet-scale vision architectures), GPU training, controlled seed/tooling ablations."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "Venue and design both strong; the transfer discount is domain (vision classification -> episodic encoder curricula) plus dependent-variable substitution (functional diversity -> weight identity), not method quality."
+  }
+}

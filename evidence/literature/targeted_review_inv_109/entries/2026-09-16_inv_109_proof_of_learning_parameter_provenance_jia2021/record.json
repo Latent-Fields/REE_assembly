@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_109",
+  "entry_id": "2026-09-16_inv_109_proof_of_learning_parameter_provenance_jia2021",
+  "timestamp_utc": "2026-09-16T02:06:27Z",
+  "claim_ids_tested": [
+    "INV-109"
+  ],
+  "source": {
+    "title": "Proof-of-Learning: Definitions and Practice",
+    "authors": [
+      "Hengrui Jia",
+      "Mohammad Yaghini",
+      "Christopher A. Choquette-Choo",
+      "Natalie Dullerud",
+      "Anvith Thudi",
+      "Varun Chandrasekaran",
+      "Nicolas Papernot"
+    ],
+    "year": 2021,
+    "venue": "42nd IEEE Symposium on Security and Privacy (SP)",
+    "arxiv_id": "2103.05633",
+    "pmid": null,
+    "pmc": null,
+    "pages": "1039-1056"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "The highest-fidelity mapping in this pull, and the only entry whose ENGINEERING CONCLUSION is the same as INV-109's prescription rather than merely consistent with it. The paper opens from INV-109's premise stated as a gap: 'once the model's final parameters are released, there is currently no mechanism for the entity which trained the model to prove that these parameters were indeed the result of this optimization procedure.' Its solution is forced by exactly the fact INV-109 asserts -- the prover must RELEASE INTERMEDIATE WEIGHTS at periodic intervals, because verification by re-deriving the trajectory from the recipe does not work: 'reproducing weights trained step by step leads to a negligible reproduction error. However, attempting to reproduce an entire sequence leads to a large error due to the linear increase in entropy over the T steps', and this holds 'even when using the exact same batching strategy, architecture, initial parameters, and training setup, due to the irreproducible noise arising from the hardware and low-level libraries.' A security paper had to build persisted-state machinery for precisely the reason INV-109 gives; that is independent, adversarially-motivated corroboration. Discounted from 0.9 only because the setting is vision classification under an adversarial threat model rather than scientific measurement, and because the paper's verification TOLERATES a calibrated distance (a slack parameter) where INV-109 prescribes an exact hash with abort-on-mismatch.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PoL verifies with a SLACK PARAMETER -- 'We tolerate d2(W_t+k', W_t+k) <= delta' -- explicitly calibrated per hardware, architecture, dataset, checkpoint interval and hyperparameters. INV-109 prescribes an exact state hash with a mismatch ABORTING rather than warning. The paper therefore supports INV-109's diagnosis while adopting a strictly weaker remedy than INV-109's prescription, and its authors would say a bare equality test is unworkable in practice. Anyone citing this entry as ratifying the hash-and-abort mechanism specifically is over-reading it.",
+    "The paper's threat model is an adversary manufacturing a false provenance claim. INV-109's failure mode is an honest session inheriting an unmeasured sentence. The technical fact (endpoint not re-derivable) is the same; the tolerance appropriate to it may not be, because a scientific reader can accept a coarser check than a security verifier and still avoid the specific error INV-109 names.",
+    "PoL's checkpoint-and-verify design carries a real cost -- storage of the weight sequence, and verifier compute to re-execute segments. INV-109's pair-store proposal for REE inherits that cost. If it were judged too expensive, the fallback is NOT to re-derive and assert identity anyway; it is to withdraw the endpoint-identity sentence, which is what INV-109 actually asks for."
+  ],
+  "tags": [
+    "inv-109",
+    "proof_of_learning",
+    "parameter_provenance",
+    "checkpointing",
+    "weight_persistence",
+    "reproduction_error",
+    "nondeterminism",
+    "ieee_sp",
+    "jia",
+    "papernot"
+  ],
+  "mapping": {
+    "source_claim_statement": "Verbatim from the abstract: 'Training machine learning (ML) models typically involves expensive iterative optimization. Once the model's final parameters are released, there is currently no mechanism for the entity which trained the model to prove that these parameters were indeed the result of this optimization procedure.' From the method: the prover 'reveals to the verifier some of the intermediate weights achieved during training as its PoL' by releasing 'the values of the weights (or model updates) at periodic intervals during training'; the verifier 'loads up the index corresponding to the largest model update into its own model W_t'' and 'performs a series of k updates to arrive at W_t+k' which is compared to the purported W_t+k', tolerating 'd2(W_t+k', W_t+k) <= delta'. On why the whole trajectory cannot simply be re-run: 'reproducing weights trained step by step leads to a negligible reproduction error. However, attempting to reproduce an entire sequence leads to a large error due to the linear increase in entropy over the T steps ... even when using the exact same batching strategy, architecture, initial parameters, and training setup, due to the irreproducible noise arising from the hardware and low-level libraries.'",
+    "ree_translation": "INV-109 states that any claim naming a specific earlier endpoint requires that endpoint's weights and observations to have been PERSISTED AND LOADED, not re-derived. Jia et al. reached the same conclusion from the opposite direction: asked to certify that a given set of parameters came from a given training procedure, they found re-derivation from the recipe insufficient and were forced to persist intermediate state. Their reproduction-error result also supplies the missing quantitative shape for REE -- error is negligible over a step and large over a trajectory, growing with sequence length -- which explains why the 1010 lineage's 60 + 200 + 90 episode re-run cannot be expected to land on 1008's weights no matter how exactly the recipe is followed. Their slack parameter delta, calibrated per hardware, is the same machine-class dependence the 1008/1010 pair exhibits.",
+    "mapping_caveat": "Adversarial security setting, supervised vision benchmarks (CIFAR-10/100, ResNet), and a verification tolerance rather than an identity test. The transfer of the DIAGNOSIS is high-fidelity and close to literal. The transfer of the REMEDY is partial: PoL accepts a calibrated distance where INV-109 prescribes an exact hash and an abort, so this paper corroborates the need for persisted endpoints without endorsing the strictness of the discriminator INV-109 specifies. Note also that PoL persists a SEQUENCE of intermediate weights for trajectory verification, whereas INV-109's REE application needs only the two endpoints -- a weaker and cheaper requirement.",
+    "source_context": "Adversarial ML security; model-ownership and provenance verification; CIFAR-10/CIFAR-100 with ResNet-class architectures; prover/verifier protocol with calibrated distance threshold."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.9,
+    "transfer_risk": 0.25,
+    "notes": "Top-tier security venue; the mapping is unusually literal because the paper's design constraint IS the claim. Transfer risk is low for the diagnosis and moderate for the remedy -- the slack parameter is a genuine divergence from INV-109's hash-and-abort discriminator, recorded as a failure signature rather than absorbed into the confidence."
+  }
+}
