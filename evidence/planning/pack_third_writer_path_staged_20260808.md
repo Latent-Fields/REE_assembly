@@ -1,6 +1,6 @@
 # Third pack-writer path: traced (2026-08-08)
 
-**Status: APPROVED A+C 2026-09-16 (user); landed REE_assembly `LANDING_SHA_PENDING` (see the landing note at the end).** Option B (regenerate the path-3 packs) was explicitly NOT chosen. No pack was rewritten; nothing here touched claims.yaml or any evidence manifest.
+**Status: APPROVED A+C 2026-09-16 (user); landed REE_assembly `e7837204045` (see the landing note at the end).** Option B (regenerate the path-3 packs) was explicitly NOT chosen. No pack was rewritten; nothing here touched claims.yaml or any evidence manifest.
 
 Chip: `chip-20260808-mech138-pack-third-writer-path`. Follow-on from
 `chip-20260808-mech138-orphaned-evidence-indexer-stub` (REE_assembly `b0bbc0d662`),
@@ -219,4 +219,4 @@ predates: 6 `convergence_signal_synthetic_assay_00N/runs/20260909_seed*` packs b
 category so the detector passes on today's corpus (2964 packs: 2946 v1 + 18 allow-listed),
 and whether that writer should project through `build_runpack_docs` is left as an open
 decision, not silently absorbed. No existing pack was touched and no index regen was run
-(CLAUDE.md Narrow Edits Only). Landed in REE_assembly `LANDING_SHA_PENDING`.
+(CLAUDE.md Narrow Edits Only). Landed in REE_assembly `e7837204045`.
