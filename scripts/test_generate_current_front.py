@@ -145,5 +145,87 @@ class DeriveTests(unittest.TestCase):
         self.assertNotIn("no separate live-campaign section", text)
 
 
+class EvidenceDomainTests(unittest.TestCase):
+    """GOV-JURIS-1 stamp (added 2026-09-16): surfaced verbatim, never derived, never a gate."""
+
+    def setUp(self):
+        import tempfile, json as _json
+        self.mod = _load_module()
+        self.tmp = tempfile.TemporaryDirectory()
+        self.path = Path(self.tmp.name) / "current_front_evidence_domain.json"
+        self.orig = self.mod.EVIDENCE_DOMAIN
+        self.mod.EVIDENCE_DOMAIN = str(self.path)
+        self._json = _json
+
+    def tearDown(self):
+        self.mod.EVIDENCE_DOMAIN = self.orig
+        self.tmp.cleanup()
+
+    def _write(self, obj):
+        self.path.write_text(self._json.dumps(obj), encoding="utf-8")
+
+    def _stamp(self, anchor="V3-EXQ-500"):
+        return {"front_anchor": anchor, "domain_reached": "D1", "as_of_utc": "2026-09-16",
+                "domains_not_tested": ["D2 untested", "D4 one world family"],
+                "stochastic_replication": "3 seeds", "world_family_replication": "1 family"}
+
+    def _derive_with(self, insights_text, closure_text=CLOSURE_FIXTURE):
+        orig_read = self.mod._read
+        try:
+            self.mod._read = lambda path: (
+                insights_text if path == self.mod.INSIGHTS
+                else closure_text if path == self.mod.CLOSURE
+                else orig_read(path))
+            return self.mod.derive()
+        finally:
+            self.mod._read = orig_read
+
+    def test_missing_stamp_renders_not_stated_and_does_not_trip_needs_review(self):
+        f, needs_review = self._derive_with(OLD_FORMAT_INSIGHTS)
+        self.assertFalse(needs_review)
+        self.assertEqual(f["evidence_domain"]["status"], "missing")
+        text = self.mod.render(f, needs_review, "2026-09-16T00:00:00Z")
+        self.assertIn("Evidence domain reached:** NOT STATED", text)
+        self.assertIn("GOV-JURIS-1", text)
+
+    def test_stated_stamp_matching_lead_renders_verbatim(self):
+        self._write(self._stamp("V3-EXQ-500"))
+        f, _ = self._derive_with(OLD_FORMAT_INSIGHTS)
+        self.assertEqual(f["lead_exq"], "V3-EXQ-500")
+        self.assertEqual(f["evidence_domain"]["status"], "stated")
+        text = self.mod.render(f, False, "2026-09-16T00:00:00Z")
+        self.assertIn("Evidence domain reached:** D1", text)
+        self.assertIn("Domains not tested:** D2 untested; D4 one world family", text)
+        self.assertIn("stochastic 3 seeds / world-family 1 family", text)
+        self.assertNotIn("STALE", text)
+
+    def test_stamp_against_old_lead_is_marked_stale_not_dropped(self):
+        self._write(self._stamp("V3-EXQ-499"))
+        f, _ = self._derive_with(OLD_FORMAT_INSIGHTS)
+        self.assertEqual(f["evidence_domain"]["status"], "stale")
+        text = self.mod.render(f, False, "2026-09-16T00:00:00Z")
+        self.assertIn("Evidence domain reached:** D1", text)
+        self.assertIn("**STALE**", text)
+        self.assertIn("V3-EXQ-500", text)
+
+    def test_malformed_stamp_renders_not_stated_with_reason(self):
+        self.path.write_text("{not json", encoding="utf-8")
+        f, _ = self._derive_with(OLD_FORMAT_INSIGHTS)
+        self.assertEqual(f["evidence_domain"]["status"], "malformed")
+        text = self.mod.render(f, False, "2026-09-16T00:00:00Z")
+        self.assertIn("NOT STATED (malformed stamp", text)
+        self._write({"front_anchor": "V3-EXQ-500"})  # missing required keys
+        f, _ = self._derive_with(OLD_FORMAT_INSIGHTS)
+        self.assertEqual(f["evidence_domain"]["status"], "malformed")
+
+    def test_no_derivable_lead_shows_stamp_as_stated_not_stale(self):
+        """Staleness needs a lead to compare against; with none derivable the stamp
+        is shown as written rather than falsely flagged."""
+        self._write(self._stamp("V3-EXQ-500"))
+        f, needs_review = self._derive_with(NO_ANCHOR_INSIGHTS)
+        self.assertTrue(needs_review)
+        self.assertEqual(f["evidence_domain"]["status"], "stated")
+
+
 if __name__ == "__main__":
     unittest.main()

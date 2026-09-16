@@ -92724,7 +92724,7 @@
     commit law).
   evidence: []
 - id: GOV-FAILLOC-1
-  title: 'Failure-autopsy failure-location triage: before an experimental observation (a scored-criterion FAIL, or an unscored organism-level observation in a claim-free diagnostic) is described as evidence that REE itself failed, it must be explicitly classified against four non-exclusive failure-location buckets -- REE FAILED / THE MECHANISM FAILED / THE MEASURES FAILED / THE ENVIRONMENT FAILED -- and a REE-failed verdict may be reached only once mechanism instantiation, measurement adequacy, and environmental opportunity have each been separately established (or explicitly could not be, in which case the verdict is MIXED/uncertain, not REE-failed).'
+  title: 'Failure-autopsy failure-location triage: before an experimental observation (a scored-criterion FAIL, or an unscored organism-level observation in a claim-free diagnostic) is described as evidence that REE itself failed, it must be explicitly classified against four non-exclusive failure-location buckets -- REE FAILED / THE MECHANISM FAILED / THE MEASURES FAILED / THE ENVIRONMENT FAILED -- and a REE-failed verdict may be reached only once mechanism instantiation, measurement adequacy, and environmental opportunity have each been separately established (or explicitly could not be, in which case the verdict is MIXED/uncertain, not REE-failed). SCOPE AMENDED 2026-09-16 (user-ratified, from the organism-level validation doctrine): the same four-bucket triage applies symmetrically to an apparent IMPROVEMENT -- before a change in experimental throughput, verdict pattern, evidence weight or front position is narrated as creature progress, classify its source as change in the CREATURE / the EXPERIMENT driver / the INSTRUMENT or measure / the GOVERNANCE or index interpretation, and label the latter three ''science-enabling infrastructure change'', never ''creature improvement'', unless the creature itself changed and was validated.'
   claim_type: governance_rule
   subject: governance.epistemics.failure_location_triage
   polarity: asserts
@@ -92747,6 +92747,7 @@
   - GOV-DIAG-1
   - GOV-CEIL-1
   - GOV-HELDOUT-1
+  - GOV-JURIS-1
   source:
   - docs/thoughts/2026-08-09_failure_autopsy_failure_location_buckets.md
   - evidence/planning/thought_intake_2026-08-09_failure_autopsy_failure_location_buckets.md
@@ -92808,6 +92809,30 @@
     the rule works in live use -- promote only after the new failure_location
     summary / Step 7 extension has actually been exercised in >=1 real (not
     retrospectively-applied) autopsy, and record whether it changed anything.
+
+    SCOPE AMENDMENT 2026-09-16 (user-ratified 2026-09-16 from
+    evidence/planning/thought_intake_2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md
+    section 8 item 4; source thought section 7, doctrine section 9). The rule was
+    written for FAILURE reads; the doctrine's point is that Assembly's queue, brake,
+    index and governance predicates now determine what can run and what counts, so a
+    machinery change moves the apparent science without any creature change -- and
+    nothing asked the source question on the SUCCESS side. The amendment adds no
+    bucket and no gate: it extends the trigger from "described as evidence that REE
+    failed" to "described as creature progress", and names the required label
+    ("science-enabling infrastructure change"). GOV-HELDOUT-1 RECORD for the
+    amendment, three cases from the week before adoption where old and new wording
+    differ: (i) chip-20260916-ordered-gate-vacuous-pass-false-flag -- the indexer
+    stopped false-flagging vacuous_pass on ordered-gate diagnostics, so several
+    verdicts moved; under the old wording nothing labels that movement, under the
+    amendment it is an instrument/index change and not evidence about the organism.
+    (ii) chip-20260915-status-plane-projector-unconfirmed-autopsy -- the status plane
+    had been reading UNCONFIRMED autopsies; the fix changed the front's apparent
+    state; same classification. (iii) V3-EXQ-784 -> 784a (2026-09-16 governance):
+    the PASS moved from PROVISIONAL back to supporting because the MEASURE was fixed
+    (non-destructive probe), not because the creature changed -- the amendment
+    requires the claim note to say which. Cost counterweight: one classification
+    sentence per progress narration; failure mode is boilerplate, mitigated by
+    requiring the specific changed component to be named.
 
 - id: Q-093
   title: >

@@ -1,6 +1,6 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-16T13:14:53Z
+Generated: 2026-09-16T19:06:47Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
@@ -190,6 +190,21 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `zworld_actor_adequacy_locus`/`H-F-content-discarded-at-encode`: `failure_autopsy_V3-EXQ-1008_2026-09-08.json` committed 2026-09-08 <= resolution 2026-09-09
 - `sd082_candidate_discriminating_readout_locus`/`H-replay-rule-state-mismatch`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 - `sd082_candidate_discriminating_readout_locus`/`H-selection-authority-bounded`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
+
+## Advisory -- H-other / model-misspecification route (0 recorded event(s), 4 candidate(s); GOV-HOTHER-1, NOT violations)
+
+_Every important question must preserve a route OUTSIDE its registered partition: the pattern may be explained by none of the enumerated legs. A recorded `h_other_events[]` entry is a /failure-autopsy Step 9b Mode D judgement naming the pattern-level signal (no leg explains the full outcome; seeds or environments pick incompatible legs; interaction-only effects; omitted timing or development explains the variance; several legs simultaneously required; every survivor needs a rescue clause) and the routed `response` (rotation via GOV-ROTATE-1, labelled partition expansion, or deferred with a named trigger) -- to be acted on BEFORE another run is queued on a surviving leg. H-other is never a leg and never `confirmed`. A CANDIDATE below is the one machine-visible signal (>= 2 confirmed legs alongside an alive one, no event recorded): a prompt to ask the Mode D question, never a verdict._
+
+**Recorded events**
+
+_None._
+
+**Candidates (no event recorded)**
+
+- `e3_fdominance_causal_discrimination`: 2 confirmed leg(s) coexist with 4 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
+- `mech152_terrain_modulation_depth`: 2 confirmed leg(s) coexist with 2 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
+- `zworld_actor_adequacy_locus`: 4 confirmed leg(s) coexist with 3 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
+- `mech465_commit_gate_headroom_reachability`: 2 confirmed leg(s) coexist with 1 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
 
 ## Advisory -- drafted ledger edits not reflected in the registry (0, NOT violations)
 

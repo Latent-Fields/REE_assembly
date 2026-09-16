@@ -86,7 +86,22 @@ ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
                     "h_fanout_recurrence", "i_confirmed_backed",
                     "j_confirmed_unverifiable", "k_discovery_growth",
                     "l_discovery_recurrence", "m_recurrence_acknowledged",
-                    "n_ledger_pending", "o_stale_synthesis"}
+                    "n_ledger_pending", "o_stale_synthesis",
+                    "p_h_other_events", "q_h_other_candidate"}
+
+# GOV-HOTHER-1 (2026-09-16): the H-other / model-misspecification route. A question
+# may carry `h_other_events[]` -- a /failure-autopsy Step 9b Mode D judgement that the
+# question's PATTERN sits outside its registered partition, with the routed response.
+# Both buckets below are ADVISORY. `p_` lists recorded events (and flags a malformed
+# one as advisory text, never as a violation); `q_` surfaces the one machine-visible
+# signal -- "several registered legs simultaneously required" -- as a CANDIDATE when a
+# question holds >= H_OTHER_CANDIDATE_CONFIRMED_N confirmed legs alongside >= 1 alive
+# leg and no event has been recorded. A candidate is a prompt to run Mode D, never a
+# verdict: H-other is a human judgement about the partition, and this script has no
+# business making it. H-other is never a leg and never `confirmed`.
+H_OTHER_CANDIDATE_CONFIRMED_N = 2
+H_OTHER_RESPONSES = ("rotation", "partition_expansion", "deferred")
+H_OTHER_REQUIRED = ("recorded_utc", "source", "signal", "rationale", "response")
 
 # Distinct labelled fan-out portfolios on ONE question before the recurrence
 # overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
@@ -489,6 +504,39 @@ def _validate_discovery_events(qid: str, events: list, by_hid: dict, flags: dict
     return accounted, valid_sources
 
 
+def _h_other_scan(q: dict, flags: dict) -> None:
+    """ADVISORY (GOV-HOTHER-1). Lists `h_other_events[]` and surfaces the candidate
+    signal. Appends only to the two advisory buckets; never to (a)-(d)."""
+    qid = q.get("qid")
+    events = q.get("h_other_events") or []
+    for i, ev in enumerate(events):
+        label = f"`{qid}` h_other_events[{i}]"
+        if not isinstance(ev, dict):
+            flags["p_h_other_events"].append(f"{label}: MALFORMED -- not an object.")
+            continue
+        missing = [k for k in H_OTHER_REQUIRED if not ev.get(k)]
+        resp = ev.get("response")
+        if missing or resp not in H_OTHER_RESPONSES:
+            flags["p_h_other_events"].append(
+                f"{label}: MALFORMED -- missing {missing or 'nothing'}; response={resp!r} "
+                f"(expected one of {list(H_OTHER_RESPONSES)}). Advisory; fix the entry.")
+            continue
+        flags["p_h_other_events"].append(
+            f"{label}: signal='{ev['signal']}' response={resp} source={ev['source']} "
+            f"legs={ev.get('legs') or []} recorded={str(ev['recorded_utc'])[:10]} -- "
+            f"{ev['rationale']}")
+    states = [((h.get("resolution") or {}).get("state") or "alive")
+              for h in (q.get("hypotheses") or [])]
+    n_conf = states.count("confirmed")
+    n_alive = sum(1 for st in states if st in ("alive", "untested"))
+    if n_conf >= H_OTHER_CANDIDATE_CONFIRMED_N and n_alive >= 1 and not events:
+        flags["q_h_other_candidate"].append(
+            f"`{qid}`: {n_conf} confirmed leg(s) coexist with {n_alive} alive -- 'several "
+            f"registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no "
+            f"h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing "
+            f"another run on a surviving leg. Prompt only; never a verdict.")
+
+
 def _validate_question_growth(q: dict, flags: dict) -> int:
     """Validate a question's denominator growth against BOTH sanctioned paths --
     labelled fan-out (`labelled_fanout_growth` invariant) and labelled discovery
@@ -889,7 +937,8 @@ def audit(registry: dict, timeseries: list) -> dict:
              "h_fanout_recurrence": [], "i_confirmed_backed": [],
              "j_confirmed_unverifiable": [], "k_discovery_growth": [],
              "l_discovery_recurrence": [], "m_recurrence_acknowledged": [],
-             "o_stale_synthesis": []}
+             "o_stale_synthesis": [],
+             "p_h_other_events": [], "q_h_other_candidate": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the INSTANT the growth
     # was recorded -- lets the time-series check attribute a total_initial rise.
@@ -910,6 +959,8 @@ def audit(registry: dict, timeseries: list) -> dict:
             )
         # (b3) labelled fan-out / discovery growth of an EXISTING question.
         _validate_question_growth(q, flags)
+        # ADVISORY (GOV-HOTHER-1): recorded H-other events + the candidate signal.
+        _h_other_scan(q, flags)
         # ADVISORY: does the authored `synthesis` prose still match the legs?
         flags["o_stale_synthesis"].extend(_synthesis_staleness(q))
         for ev in (q.get("fanout_growth_events") or []) + (q.get("discovery_growth_events") or []):
@@ -1563,6 +1614,43 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     if not wit and not unv:
         L.append("_No fan-out leg required a provenance check this cycle._")
         L.append("")
+    ho = flags.get("p_h_other_events") or []
+    hoc = flags.get("q_h_other_candidate") or []
+    L.append(f"## Advisory -- H-other / model-misspecification route "
+             f"({len(ho)} recorded event(s), {len(hoc)} candidate(s); GOV-HOTHER-1, NOT violations)")
+    L.append("")
+    L.append(
+        "_Every important question must preserve a route OUTSIDE its registered partition: "
+        "the pattern may be explained by none of the enumerated legs. A recorded "
+        "`h_other_events[]` entry is a /failure-autopsy Step 9b Mode D judgement naming the "
+        "pattern-level signal (no leg explains the full outcome; seeds or environments pick "
+        "incompatible legs; interaction-only effects; omitted timing or development explains "
+        "the variance; several legs simultaneously required; every survivor needs a rescue "
+        "clause) and the routed `response` (rotation via GOV-ROTATE-1, labelled partition "
+        "expansion, or deferred with a named trigger) -- to be acted on BEFORE another run is "
+        "queued on a surviving leg. H-other is never a leg and never `confirmed`. A CANDIDATE "
+        "below is the one machine-visible signal (>= "
+        f"{H_OTHER_CANDIDATE_CONFIRMED_N} confirmed legs alongside an alive one, no event "
+        "recorded): a prompt to ask the Mode D question, never a verdict._"
+    )
+    L.append("")
+    L.append("**Recorded events**")
+    L.append("")
+    if not ho:
+        L.append("_None._")
+    else:
+        for msg in ho:
+            L.append(f"- {msg}")
+    L.append("")
+    L.append("**Candidates (no event recorded)**")
+    L.append("")
+    if not hoc:
+        L.append("_None._")
+    else:
+        for msg in hoc:
+            L.append(f"- {msg}")
+    L.append("")
+
     pend = flags.get("n_ledger_pending") or []
     L.append(f"## Advisory -- drafted ledger edits not reflected in the registry "
              f"({len(pend)}, NOT violations)")
@@ -1660,6 +1748,41 @@ def _self_test() -> int:
                             "evidence_direction": "supports", "control_passed": True,
                             "non_degenerate": True}},
         ]},
+        # GOV-HOTHER-1: a recorded H-other event -> advisory bucket p (never a flag).
+        {"qid": "h_other_recorded_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-06-01T00:00:00Z",
+         "h_other_events": [
+             {"recorded_utc": "2026-06-20T00:00:00Z",
+              "source": "failure_autopsy_synthetic_hother_2026-06-20.json",
+              "signal": "no registered leg explains the full outcome",
+              "legs": ["ho1", "ho2"], "rationale": "install-then-decay pattern outside the partition",
+              "response": "partition_expansion"},
+         ],
+         "hypotheses": [
+             {"hid": "ho1", "pre_registered_utc": "2026-06-01",
+              "resolution": {"state": "eliminated", "resolved_utc": "2026-06-10",
+                             "evidence_direction": "weakens", "met_elimination_bar": True,
+                             "control_passed": True, "non_degenerate": True}},
+             {"hid": "ho2", "pre_registered_utc": "2026-06-01",
+              "resolution": {"state": "alive"}},
+         ]},
+        # GOV-HOTHER-1: two confirmed + one alive, no event -> advisory CANDIDATE q.
+        {"qid": "h_other_candidate_q", "initial_frozen_count": 3,
+         "initial_frozen_count_at_registration": 3,
+         "registered_utc": "2026-06-01T00:00:00Z",
+         "hypotheses": [
+             {"hid": "hc1", "pre_registered_utc": "2026-06-01",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-06-10",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+             {"hid": "hc2", "pre_registered_utc": "2026-06-01",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-06-12",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+             {"hid": "hc3", "pre_registered_utc": "2026-06-01",
+              "resolution": {"state": "alive"}},
+         ]},
         # LABELLED fan-out growth: must land in the advisory bucket, NOT bucket (b).
         {"qid": "fanout_ok_q", "initial_frozen_count": 3,
          "initial_frozen_count_at_registration": 2,
@@ -2122,6 +2245,8 @@ def _self_test() -> int:
         "l_discovery_recurrence": flags["l_discovery_recurrence"],
         "m_recurrence_acknowledged": flags["m_recurrence_acknowledged"],
         "o_stale_synthesis": flags["o_stale_synthesis"],
+        "p_h_other_events": flags["p_h_other_events"],
+        "q_h_other_candidate": flags["q_h_other_candidate"],
     }
     failures = [k for k, v in checks.items() if not v]
     for k, v in checks.items():
@@ -2652,6 +2777,17 @@ def main() -> int:
             print(f"    [recurrence] {qid}")
     print(f"  labelled discovery growth (advisory, not a flag): "
           f"{len(flags['k_discovery_growth'])} note(s)")
+    n_ho = len(flags.get("p_h_other_events") or [])
+    n_hoc = len(flags.get("q_h_other_candidate") or [])
+    print(f"  H-other / model-misspecification route (GOV-HOTHER-1, advisory): "
+          f"{n_ho} recorded event(s), {n_hoc} candidate(s)")
+    if n_hoc:
+        print("  -- CANDIDATE: >=2 confirmed legs coexist with an alive one and no")
+        print("     h_other_events entry exists. Ask the Mode D question before")
+        print("     queueing another run on a surviving leg (prompt only; never a verdict):")
+        for msg in flags["q_h_other_candidate"]:
+            qid = msg.split("`")[1] if "`" in msg else msg[:40]
+            print(f"    [h-other-candidate] {qid}")
     n_pend = len(flags.get("n_ledger_pending") or [])
     print(f"  drafted ledger edits not reflected (advisory, not a flag): {n_pend}")
     if n_pend:

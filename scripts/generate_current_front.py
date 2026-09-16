@@ -39,6 +39,8 @@ INSIGHTS = os.path.join(ROOT, "insights_report.md")
 CLOSURE = os.path.join(ROOT, "evidence", "planning", "closure_status.md")
 HYPOTHESIS_SPACE = os.path.join(ROOT, "evidence", "planning", "hypothesis_space.v1.json")
 OUT = os.path.join(ROOT, "docs", "CURRENT_FRONT.md")
+# GOV-JURIS-1 evidence-domain stamp: HUMAN-maintained, surfaced verbatim, never derived.
+EVIDENCE_DOMAIN = os.path.join(ROOT, "evidence", "planning", "current_front_evidence_domain.json")
 
 # em/en dash class for tolerant matching of Claude-authored prose
 DASH = r"[-–—]"
@@ -70,6 +72,40 @@ def _search(pattern, text, group=1, default=None, flags=0):
         return m.group(group).strip()
     except IndexError:
         return default
+
+
+def _load_evidence_domain(lead_exq):
+    """Read the GOV-JURIS-1 stamp (evidence/planning/current_front_evidence_domain.json).
+
+    Returns a dict whose `status` is one of:
+      stated    -- file present, well-formed, front_anchor matches the derived lead
+                   (or no lead could be derived, in which case staleness is unknowable
+                   and the stamp is shown as written)
+      stale     -- well-formed but written against a different lead EXQ than the one
+                   the front now derives; the block is still rendered, marked STALE
+      missing   -- no file; rendered as NOT STATED (owed)
+      malformed -- unparseable or missing a required key; rendered as NOT STATED
+    Never raises. Never invents a domain: the generator has no source for one.
+    """
+    required = ("front_anchor", "domain_reached", "domains_not_tested")
+    try:
+        with open(EVIDENCE_DOMAIN, encoding="utf-8") as fh:
+            raw = json.load(fh)
+    except FileNotFoundError:
+        return {"status": "missing"}
+    except (OSError, ValueError):
+        return {"status": "malformed", "reason": "unparseable JSON"}
+    if not isinstance(raw, dict) or any(not raw.get(k) for k in required):
+        return {"status": "malformed",
+                "reason": "missing one of %s" % ", ".join(required)}
+    out = dict(raw)
+    anchor = str(raw.get("front_anchor"))
+    if lead_exq and anchor != lead_exq:
+        out["status"] = "stale"
+        out["lead_now"] = lead_exq
+    else:
+        out["status"] = "stated"
+    return out
 
 
 def derive():
@@ -216,7 +252,39 @@ def derive():
                 f["hero"] = {"derive_failed": True}
                 needs_review = True
 
+    # --- GOV-JURIS-1 evidence-domain stamp (human-maintained; surfaced, not derived) ---
+    f["evidence_domain"] = _load_evidence_domain(f.get("lead_exq"))
+
     return f, needs_review
+
+
+def _render_evidence_domain(ed):
+    st = ed.get("status")
+    out = []
+    if st in ("stated", "stale"):
+        head = "- **Evidence domain reached:** %s" % ed["domain_reached"]
+        note = ed.get("domain_reached_note")
+        if note:
+            head += " -- %s" % note
+        head += " (stated %s against %s)" % (ed.get("as_of_utc") or "?", ed["front_anchor"])
+        if st == "stale":
+            head += (" -- **STALE**: the derived front lead is now %s; re-state the stamp "
+                     "(governance Step 7a)" % ed.get("lead_now"))
+        out.append(head)
+        nt = ed.get("domains_not_tested") or []
+        if isinstance(nt, str):
+            nt = [nt]
+        out.append("- **Domains not tested:** " + ("; ".join(str(x) for x in nt) if nt else "(none listed)"))
+        rep_s = ed.get("stochastic_replication")
+        rep_w = ed.get("world_family_replication")
+        if rep_s or rep_w:
+            out.append("- **Replication (GOV-ECOL-1):** stochastic %s / world-family %s"
+                       % (rep_s or "not stated", rep_w or "not stated"))
+    else:
+        why = "no stamp file" if st == "missing" else ("malformed stamp: %s" % ed.get("reason", "?"))
+        out.append("- **Evidence domain reached:** NOT STATED (%s) -- owed under GOV-JURIS-1; write "
+                   "`evidence/planning/current_front_evidence_domain.json` (governance Step 7a)." % why)
+    return out
 
 
 def render(f, needs_review, now):
@@ -290,6 +358,13 @@ def render(f, needs_review, now):
         lines.append("- **Live question (hypothesis space):** %s -- %s (of %s total). "
                      "Full map: `/progress`." % (hero["short_title"], ", ".join(bits),
                                                   hero["initial"]))
+
+    # GOV-JURIS-1: evidence-domain jurisdiction. The stamp is human-maintained
+    # (evidence/planning/current_front_evidence_domain.json) because no manifest
+    # field carries the domain a result reached; this block only surfaces it,
+    # marks it STALE when the front lead has moved past it, and says NOT STATED
+    # when it is absent. It gates nothing.
+    lines.extend(_render_evidence_domain(f.get("evidence_domain") or {"status": "missing"}))
     lines.append("")
 
     # closure headline
