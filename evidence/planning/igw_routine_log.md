@@ -3055,3 +3055,4 @@ One line per hourly tick. ASCII only.
 2026-09-16T01:54:32Z complete igw-235-proposal-for-inv-095 spawned->completed outcome=USEFUL_LANDED: INV-095: REFUSED to queue on a red-team BLOCKING verdict (criterion cannot fail;
 2026-09-16T01:56:39Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 250 items, 30 ready, 0 in flight)
 2026-09-16T01:55:40Z SPAWN IGW-20260916-238 skill=/lit-pull prio=40 uuid=91469185-59d5-4ee5-9288-e4f99d5cbf08 pid=79002 worktree=igw-238-literature-proposal-for-inv-109
+2026-09-16T02:17:40Z auto-defer igw-238-literature-proposal-for-inv-109 hash=0b7b629f6186 for 48h (complete)
