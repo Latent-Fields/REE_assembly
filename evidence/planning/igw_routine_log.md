@@ -3051,3 +3051,4 @@ One line per hourly tick. ASCII only.
 2026-09-16T00:51:46Z GC removed worktree igw-242-literature-proposal-for-mech-003 (removed; branch deleted)
 2026-09-16T00:50:53Z GC sweep removed 1 orphan worktree(s), kept 12
 2026-09-16T00:51:59Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 250 items, 30 ready, 0 in flight)
+2026-09-16T00:50:53Z SPAWN IGW-20260916-235 skill=/queue-experiment prio=40 uuid=1e7000ea-6b5e-4ada-9d18-fc44a3b0f528 pid=45373 worktree=igw-235-proposal-for-inv-095
