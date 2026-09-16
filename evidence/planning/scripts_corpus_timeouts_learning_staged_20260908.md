@@ -1,6 +1,6 @@
 # Scripts-corpus daily-run timeouts: root cause and durable fix (staged design)
 
-**Status: AWAITING USER REVIEW**
+**Status: APPLIED (d) 2026-09-14 (REE_Working cfa7c8191, timer re-bootstrapped 23:20 local); (e) approved by user 2026-09-16 -- judgement DEFERRED: 0 of 2 post-fix daily runs clean as of 2026-09-16, re-check after the 2026-09-19 05:15 run (section 9)**
 
 Produced by a `/metaworker-learning` pass (session `wizardly-meninsky-e6c09c`, 2026-09-08,
 chip `chip-20260908-scripts-corpus-timeouts-learning`, user decision of 2026-09-08 in
@@ -254,3 +254,39 @@ See `chip-20260908-scriptscorpus-qos-decision`. Options: proceed with (d) as wri
 than Interactive (softer, but not the measured-green posture -- would need its own
 measurement first); hold and keep resolving the daily chip by hand. (c) alone is refuted by
 P5 and is not offered.
+
+## 9. Item (e) check, 2026-09-16 (chip `chip-20260916-scriptscorpus-item-e-residual-timeouts`, session `keen-pare-09e5ab`)
+
+**2026-09-16T22:49Z addendum: 0 of 2 post-fix daily runs clean; next expected run 2026-09-17 05:15
+local; earliest possible third consecutive clean run 2026-09-19; nothing chipped per file.**
+
+`launchctl print gui/501/com.ree.scriptscorpus` reports `runs = 2` since the 2026-09-14 23:20
+bootstrap, and the installed plist is byte-identical (normalised) to the repo copy
+(`ProcessType Interactive`, `Nice 10`, no `LowPriorityIO`), so both runs below ran at the
+measured-green posture. The results JSON is overwritten daily and the launchd log is empty, so
+the 09-15 run survives only as its hygiene-tick sweep chip (which names FAILs and, by the
+2026-08-28 decision, never timeouts).
+
+| run (05:15 local) | elapsed | FAIL | TIMEOUT | record |
+|---|---|---|---|---|
+| 2026-09-15 | unknown | 4: `test_dev_doctor_worktrees`, `test_dispatch_budget_gate`, `test_prune_task_claims_push_default`, `test_session_startup_checklist` | unrecorded | `chip-scriptscorpus-dlaptop-sweep-4-6bae84413e5c7ce4`, absence-resolved 09-16 unexamined |
+| 2026-09-16 | 2502 s (241 files, 232 pass, 2 script) | 5: the four above + `test_taskclaims_writer_lock` | 2: `test_hygiene_routine_tick`, `test_ref_convergence` | `logs/scripts_corpus_test_results.json`; `chip-scriptscorpus-dlaptop-sweep-5-2d5ce4f9d0da9775` OPEN |
+
+Read against section 6's acceptance (three consecutive runs under 900 s, every red reproducible
+by hand): both post-fix runs fail the elapsed bound and neither red set has been re-run by hand
+yet. Two of 09-16's FAILs (`test_dev_doctor_worktrees`, `test_taskclaims_writer_lock`) are in
+P4's five and `test_ref_convergence` is P5's timeout -- a partial P4 signature at the
+Interactive posture, which is exactly the condition section 6 says would falsify the
+`taskpolicy -b` / `ProcessType Background` equivalence assumption and make (b) (serial lane for
+the self-spawning and live-state files) the next step. Three files have now failed on every one
+of the last three daily runs (09-14 pre-fix, 09-15, 09-16): `test_dev_doctor_worktrees`,
+`test_dispatch_budget_gate`, `test_prune_task_claims_push_default`; the 09-14 metaworker-repair
+re-run found all five of that day's reds green by hand (40 s), so daily recurrence at the new
+posture with by-hand green is the shape to test for on the re-check, not a foregone artifact.
+
+Per the user's 2026-09-16 decision (judge (e) after three clean runs) nothing is chipped per
+file here. One headless re-check chip is recorded, dated after the 2026-09-19 run, with the
+instruction to (i) count clean runs from the hygiene sweep chips plus the current JSON, (ii) if
+three clean runs exist, run item (e)'s per-file pass as this chip's step 2 specified, and
+(iii) if the reds persist with the shape above, escalate to (b) per section 6 rather than
+waiting indefinitely. The open sweep-5 chip covers the by-hand re-run of 09-16's five FAILs.
