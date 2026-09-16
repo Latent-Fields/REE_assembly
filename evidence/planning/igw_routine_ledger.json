@@ -5482,7 +5482,10 @@
       "task_claim_session_id": "igw-auto-igw-231-proposal-for-mech-017-20260916T222438Z",
       "task_claim_claimed_at": "2026-09-16T22:24:38Z",
       "assigned_at": "2026-09-16T22:22:44Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-16T22:57:02Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -7836,6 +7839,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-16T16:23:00Z",
       "re_eligible_after": "2026-09-18T16:23:00Z"
+    },
+    {
+      "stable_hash": "740795d42d78",
+      "igw_id_at_disposition": "IGW-20260916-231",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-017"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-017",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-16T22:57:08Z",
+      "re_eligible_after": "2026-09-18T22:57:02Z"
     }
   ]
 }
