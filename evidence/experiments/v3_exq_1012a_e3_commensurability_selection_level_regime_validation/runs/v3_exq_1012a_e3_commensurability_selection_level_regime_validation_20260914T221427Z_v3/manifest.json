@@ -23,8 +23,10 @@
     "MECH-439"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "diagnostic",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-439": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -477,5 +479,6 @@
     "writer_defect": false,
     "n_agents": 8,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-16 governance, cycle governance-20260916] evidence_direction non_contributory per confirmed failure_autopsy_V3-EXQ-1012a_2026-09-14 (user Step 8 gate 2026-09-16T12:16:45Z; artifact commit REE_assembly 496d0c238c0; ratified at governance-20260916 Step 4). Diagnostic PASS: acceptance instrument for the amended commensurability target; sound but no reference value (no placebo arm). Not a MECH-439 retest. Was evidence_direction diagnostic on the flat copy."
 }

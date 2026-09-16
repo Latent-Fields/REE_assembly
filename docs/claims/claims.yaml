@@ -13623,16 +13623,16 @@
   claim_type: architectural_commitment
   subject: cognitive_modes.behavioral_consequence_of_commitment
   polarity: asserts
-  status: provisional
+  status: candidate
   epistemic_category: standard
   live_status:
-    reading: provisional
-    as_of: 2026-07-11
+    reading: "candidate"
+    as_of: "2026-09-16"
     needs_review: false
     evidence:
-      from: "failure_autopsy_604a-624a-630_2026-06-03#V3-EXQ-630"
-      as_of: 2026-06-03
-      verdict: non_contributory/measurement_test_design_defect
+      from: "failure_autopsy_V3-EXQ-063a_2026-09-14"
+      as_of: "2026-09-16"
+      verdict: "non_contributory -- V3-EXQ-063a PASS (2026-06-02) re-tagged: CONFOUNDED (occupancy forced by per-tick override before select_action; precision pinned by the same running_variance scalar; R-c gate exercised on 0 ticks in the ablated arm) with C3/C4 non-degeneracy VACUOUS by construction. It was the sole surviving positive experimental support, so ARC-029 demoted provisional -> candidate 2026-09-16 (governance judgment on the experimental record; literature untouched)."
   implementation_phase: v3
   evidence_quality_note: |
     EXQ-125 FAIL (2026-03-29): committed mode discriminative pair FAIL. Adding weakening
@@ -13667,6 +13667,53 @@
     [2026-06-03 governance / autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-630 (across-tick nav_competence ecological) re-tagged non_contributory: C4 FAIL -- OFF baseline showed the same readiness-conditioned commitment collapse (arm0_baseline_delta 1.0) as the gated arms, so the gate contribution is unattributable (SD-022 limb-damage degrade drives commitment via running_variance independent of nav_competence). measurement_test_design_defect; does NOT weaken this claim. Redesign NAMED but never queued (verified 2026-09-09, GFLAG-0149: no experiment_queue.json entry, no manifest, no substrate_queue.json row, no chip, no IGW assignment; ree-v3/experiment_queue.json items[] is empty). ARC-029 separately supported by V3-EXQ-063a PASS (committed-mode harm outcomes, R-c gate) 2026-06-02.
 
     [2026-09-09 governance, cycle governance-20260909 wave 4] ROUTED TO /failure-autopsy; status deliberately UNCHANGED at provisional this cycle (GFLAG-0148, user-adjudicated; that flag is LEFT OPEN as the autopsy target). The charge is that ARC-029's provisional rests on a run whose ablation is CONFOUNDED and whose non-degeneracy gate passed VACUOUSLY. Governance is not the right place to settle that: it is an evidence adjudication on a specific run's internals, the same shape as SD-024's ungated functional half routed this cycle as GFLAG-0246. Corroborating context recorded so the autopsy does not have to re-derive it: ARC-029 currently reads status provisional while experimental_confidence is 0.4 and evidence_quadrant is plausible_unproven -- i.e. the stored status is already out of step with the scored evidence, independent of whether the confound charge holds. SEPARATELY, and already discharged this cycle: GFLAG-0150 asked for an explicit epistemic_category: standard so the claim would stop inferring substrate_coherence from claim_type: architectural_commitment and suppressing its own promote/demote gating. That field is now set explicitly, so the gating is live -- but making the gate work is not the same as adjudicating the evidence, and GFLAG-0149's two never-executed routing follow-ups (the 2026-06-03 confound-isolation redesign, ~3 months stale with no queue entry, manifest, substrate_queue row, chip or IGW assignment; and the 2026-04-05 EXQ-125a redesign) also remain OPEN and unowned.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-063a_2026-09-14 (user Step 8 gate 2026-09-16T12:08:10Z, REE_assembly
+    496d0c238c0)] [2026-09-14, failure_autopsy_V3-EXQ-063a_2026-09-14, GFLAG-0148 adjudication]
+    V3-EXQ-063a PASS (2026-06-02) is CONFOUNDED and its C3/C4 non-degeneracy checks are VACUOUS BY
+    CONSTRUCTION -- re-tag non_contributory (from supports). Two independently sufficient defects,
+    both code-verified and red-team CONFIRMED: (1) OCCUPANCY: the driver never updates
+    agent.e3._running_variance during eval (no update_residue()/post_action_update() call in
+    _eval_condition), so the gate_active arm is frozen committed 100% of eval steps and the
+    gate_ablated arm is forced uncommitted 100% of eval steps by explicit per-tick override BEFORE
+    select_action -- n_committed_active_stable=1155.5 vs n_uncommitted_active_stable=0.0,
+    n_committed_ablated_stable=0.0 are read off the two forced-constant regimes the script installs,
+    not emergent gate behaviour, and the claim's own within-agent two-mode contrast is never
+    reached. (2) PRECISION: current_precision = 1/(running_variance+1e-6) is the same scalar as the
+    ablation target, so forcing running_variance to commit_threshold+0.1=0.50 also pins precision at
+    a fixed ~2.0 in the ablated arm -- structurally the same confound class the 2026-06-03 autopsy
+    used to retag V3-EXQ-630 non_contributory (failure_autopsy_604a-624a-630_2026-06-03).
+    ADDITIONALLY (new to this autopsy): the R-c commit-readiness gate this re-run's own title names
+    as its subject (should_admit_elevation) is exercised on every E3 tick in the gate_active arm and
+    on ZERO ticks in the gate_ablated arm, because beta_gate_bistable defaults False so the legacy
+    re-evaluate-every-tick branch runs (agent.py:9866) and result.committed -- the precondition for
+    calling should_admit_elevation at all -- is forced False every tick in the ablated arm before
+    select_action runs. So the specific R-c mechanism was, in a real sense, never comparably tested
+    across arms either. Do NOT count this PASS as support for ARC-029. ARC-029's other experimental
+    record: EXQ-125 (2 non-superseded runs, weakens/mixed; a 3rd run's own flat manifest reads
+    evidence_direction=superseded and is inactive) and V3-EXQ-227/V3-EXQ-630 (both non_contributory)
+    -- with 063a re-tagged, ARC-029's genuine experimental record has zero surviving supports
+    (claim_evidence.v1.json's current genuine_exp_direction_counts={supports:1(063a),weakens:1}
+    becomes {supports:0,weakens:1} once re-tagged). NOTE (red-team H1): 6 literature entries remain
+    (literature_confidence=0.785) and are untouched by this autopsy -- overall_confidence will not
+    collapse to zero, and the indexer's mechanical conflict_ratio-based demote_to_candidate
+    threshold (build_experiment_indexes.py, needs conflict_ratio>=0.55) will likely NOT fire
+    automatically post-retag (estimated ratio ~0.14). The recommended demotion below is a GOVERNANCE
+    JUDGMENT CALL on the EXPERIMENTAL record specifically (mirroring how this claim was originally
+    promoted candidate->provisional on experimental grounds, per its own status_note), not an
+    automatic index-triggered consequence -- say so explicitly when applying it. Redesign is NOT
+    blocked on new substrate: claims.yaml's own what_would_answer (P1-P3) already specifies the fix
+    using EXISTING levers (MECH-108 BreathOscillator effective_threshold sweep for a threshold-side,
+    precision-invariant mode driver; use_natural_commit_latch_hold for sustained within-run
+    occupancy) -- route to /queue-experiment. APPLIED 2026-09-16 (governance-20260916, user-approved
+    at the Step 3 gate): status provisional -> candidate; V3-EXQ-063a manifest evidence_direction
+    supports -> non_contributory (flat + run pack). This is a GOVERNANCE JUDGMENT CALL on the
+    experimental record (mirroring the 2026-03-23 promotion on experimental grounds), not an
+    index-triggered demotion: 6 literature entries (literature_confidence 0.785) are untouched and
+    the mechanical conflict_ratio demote threshold will not fire on its own. Redesign route per
+    what_would_answer P1-P3 with existing levers (MECH-108 effective_threshold sweep;
+    use_natural_commit_latch_hold) -> /queue-experiment; proposal EXP-1394 stays proposed.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
@@ -13675,6 +13722,10 @@
     harm_gap_volatile=0.00023 (advantage narrows, ratio=0.559 -- commitment is context-dependent,
     not universally beneficial). Ablation confirmed complete. Both predicted effects confirmed.
     Single experiment; more evidence desirable before active promotion.
+    Demoted provisional -> candidate 2026-09-16 (governance-20260916, user-approved; confirmed
+    failure_autopsy_V3-EXQ-063a_2026-09-14): EXQ-063/063a PASS re-tagged non_contributory (confounded; occupancy
+    and precision forced, not emergent), leaving zero surviving positive EXPERIMENTAL support. Literature (6 entries)
+    unchanged. Re-promotion requires a P1-P3-clean redesign per what_would_answer.
   depends_on:
     - ARC-016
     - MECH-090
@@ -34280,6 +34331,11 @@
     that additionally sweeps benefit_magnitude at pinned drive_level (the axis Duvelle 2019 and the
     substrate's own linear formula make opposite, currently-untested predictions on) alongside the
     already-planned drive_level sweep.
+
+    [2026-09-16 governance, cycle governance-20260916] Citation stamp for the GOV-APPLY-1 scan: the
+    adjudication above was applied by governance-20260915 from confirmed
+    failure_autopsy_V3-EXQ-900_2026-09-14 (note, live_status, what_would_answer C2 annotation); this
+    line records the artifact slug so the scan can certify it. No field moves.
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -44916,14 +44972,15 @@
   subject: dacc.conflict_saturation
   polarity: asserts
   status: provisional
+  epistemic_category: standard
   live_status:
     reading: provisional
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-468f_2026-06-20
-      as_of: 2026-06-20
-      verdict: non_contributory/no_change (self-route substrate_not_ready_requeue is correct; SD-034 provisional / MECH-268 candidate / MECH-090 active all stay non_contributory + pending_retest)
+      from: "failure_autopsy_V3-EXQ-729_2026-09-14"
+      as_of: "2026-09-16"
+      verdict: "supports, NARROWED -- V3-EXQ-729 x2 (2026-07-10, both machines, 3 seeds each; non_degenerate:false, degeneracy-excluded from scoring) is genuine evidence for the LIVE-WIRING bar only (C4: DACC.record_outcome called from the live select_action tail, FIFO populated); C1 is arithmetic once the FIFO saturates and C2/C3/C5 are tautologies of the OFF arm. NOT satisfied: V3-EXQ-468's commitment-vs-contradiction falsifier 'in spirit' (withdrawn), graded saturation in the live loop (sat_factor 0.25 is a constant), post-saturation PE. GFLAG-0070 adjudicated narrowly. Stays provisional; epistemic_category set standard; ecological gradedness successor -> /queue-experiment (non-saturating harm regime)."
   implementation_phase: v3
   v3_pending: false
   implementation_note: >
@@ -44986,6 +45043,12 @@
     Until V3-EXQ-729 lands a PASS the ecological demonstration is
     OUTSTANDING. This note documents wiring + a pending falsifier and
     PROMOTES NOTHING (status stays provisional).
+
+    [2026-09-14 failure-autopsy, applied 2026-09-16 governance-20260916] V3-EXQ-729 landed PASS x2
+    on 2026-07-10 (both machines, all seeds) -- the live-wiring gap this note describes as
+    OUTSTANDING is closed. See failure_autopsy_V3-EXQ-729_2026-09-14 for what specifically was and
+    was not established (live wiring: yes; graded/adapter behaviour in the live loop: no, still
+    untested).
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:
@@ -45067,6 +45130,43 @@
     SD-034 in a way the original V3 design did not capture. V3-EXQ-463
     (conflict saturation) and V3-EXQ-468 (commitment vs contradiction)
     are the primary falsifiers queued in ree-v3/experiment_queue.json.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-729_2026-09-14 (user Step 8 gate 2026-09-16T12:08:10Z, REE_assembly
+    496d0c238c0)] [2026-09-14 failure-autopsy, V3-EXQ-729, both runs; red-team CONTESTED, verdict
+    incorporated] GFLAG-0070 adjudicated, NARROWLY: a PASS carrying non_degenerate:false CAN count
+    as genuine evidence for MECH-268's live-wiring bar, but only for what V3-EXQ-729 actually
+    measured -- narrower than what_would_answer currently states. Of the five pre-registered
+    criteria, C2 (OFF sat>=0.99), C3 (ON<OFF) and C5 (OFF gating) are TAUTOLOGIES of the
+    implementation (dacc.py:237-238's early return when dacc_saturation_enabled=False, an arm state
+    never flipped in ARM_OFF) and carry no empirical content; C1 (ON sat<0.95) is arithmetic once
+    the FIFO saturates. The only genuinely contingent, informative criterion is C4's
+    live_record_calls>0 AND fifo_len_end>0 clauses -- which DO establish, for the first time, that
+    DACC.record_outcome is called from the live agent.py select_action tail (F-C3 wiring), not only
+    from V3-EXQ-463b's synthetic per-step injection. That live-wiring result is real and reproduced
+    independently on 2 machines, 3 seeds each. What this run does NOT establish, contrary to the
+    current what_would_answer text: (1) it does NOT satisfy V3-EXQ-468's commitment-vs-contradiction
+    falsifier 'in spirit' -- V3-EXQ-729 contains no commitment/counter-evidence manipulation of any
+    kind; the 468-series is an unrelated SD-034/MECH-090 closure-control-plane behavioural cluster;
+    (2) it is NOT graded evidence -- the ON-arm sat_factor (0.25 in all 6 seed-cells) is an
+    arithmetic constant (f_sat=1/(1+0.5*(8-2))=0.25, dacc.py:245-252) once the
+    (separately-flagged-degenerate) chronic-harm precondition saturates n_rec at the FIFO window
+    length, independent of behaviour or seed; (3) it does NOT measure post-saturation PE or any
+    downstream consequence -- only pre-saturation PE is recorded; (4) the claim's own registered
+    distinguishing property ('graded learning-rate adapter, NOT a binary cap', evidence_quality_note
+    lit-pull rec #1 / implementation_note) has ZERO loop-level or ecological evidence to date --
+    gradedness is validated only at the unit/arithmetic level (V3-EXQ-463
+    UC4_monotone_in_recurrences), never in the live loop. what_would_answer's 'ESTABLISHED (do not
+    re-test)'/'fully validated' language should be qualified (see
+    recommended_what_would_answer_amendment); implementation_note's stale 'QUEUED'/'OUTSTANDING'
+    language (predates the 2026-07-10 PASS) should also be updated (see
+    recommended_implementation_note_amendment). Full diagnosis + red-team pass:
+    failure_autopsy_V3-EXQ-729_2026-09-14. Recommended follow-up: /queue-experiment for a
+    non-saturating-harm-regime successor (lower EVAL_HAZARDS or raise
+    contextual_safety_harm_threshold so harm_class_fraction can vary; add a post-saturation PE
+    readout; record per-step series) to obtain the first ecological gradedness evidence -- this is a
+    NEW measurement question, not a same-ceiling re-derive of MECH-268's 3 prior substrate_ceiling
+    autopsies (all on the unrelated SD-034 closure-control-plane behavioural question).
   location: evidence/planning/sd033_governance_plan.md
 
   what_would_answer: >
@@ -45080,14 +45180,20 @@
        zero callers in the live agent path (saturation was validated only via
        synthetic injection); ree-v3 commit c7fc045 (2026-07-09) closed this,
        wiring record_outcome into agent.py's select_action tail.
-    3. ECOLOGICAL LEVEL (this claim's own previously-'OUTSTANDING' bar):
-       V3-EXQ-729 PASSED, evidence_direction: supports, on 2026-07-10,
-       replicated same day. It makes no manual record_outcome call, proves the
-       _outcome_history FIFO is populated by the live select_action path via a
-       counting spy, and confirms sat_factor < 0.95 (ON) vs ~1.0 (OFF) under
-       sustained chronic-harm exposure. This satisfies the secondary
-       falsifier's spirit (V3-EXQ-468's commitment-vs-contradiction question)
-       at the ecological rather than synthetic-injection level.
+    3. ECOLOGICAL LEVEL (this claim's own previously-'OUTSTANDING' bar) -- NARROWED 2026-09-14
+    (failure_autopsy_V3-EXQ-729_2026-09-14, GFLAG-0070; applied 2026-09-16 governance-20260916):
+    V3-EXQ-729 PASSED, evidence_direction: supports, on 2026-07-10, replicated independently same
+    day on 2 machines. It makes no manual record_outcome call and proves the _outcome_history FIFO
+    is populated by the live select_action path via a counting spy (F-C3 wiring, ree-v3 c7fc045) --
+    this is real, reproduced, and is what this bar was registered to test. It does NOT satisfy
+    V3-EXQ-468's commitment-vs-contradiction falsifier "in spirit" (729 has no
+    commitment/counter-evidence manipulation; that prior claim is withdrawn) and it does NOT
+    demonstrate graded saturation -- the observed sat_factor < 0.95 (ON, exactly 0.25 in every cell)
+    vs ~1.0 (OFF, tautological: dacc_saturation_enabled stays False in that arm) is an arithmetic
+    consequence of the FIFO's recurrence-count ceiling once the chronic-harm precondition itself
+    saturates (also flagged non_degenerate:false), not a measured graded effect. Gradedness -- this
+    claim's registered distinguishing property vs a binary cap -- remains validated only at the
+    unit/arithmetic level (V3-EXQ-463 UC4_monotone_in_recurrences), never in the live agent loop.
 
     RESIDUAL OPEN QUESTION (not yet addressed, correctly still V4-flagged per
     the original lit-pull): which dACC signal channel actually saturates --
@@ -45105,7 +45211,7 @@
     the cap+habituation dynamic itself remains supported.
 
     Production-default note: dacc_saturation_enabled still defaults False --
-    the mechanism is fully validated but not yet live by default, structurally
+    the mechanism is validated for live-path wiring and binary on/off firing; graded ecological sensitivity is untested; not yet live by default, structurally
     parallel to MECH-267's mode_partitioned_cem situation.
 
     [2026-08-27 thought-digestion]: implementation_note previously framed the
@@ -75544,6 +75650,27 @@
     reading: candidate
     as_of: 2026-07-21
     needs_review: false
+    evidence:
+      from: "governance-20260916 Step 2b walk (V3-EXQ-1040, driver skim logged)"
+      as_of: "2026-09-16"
+      verdict: "supports (qualified) -- V3-EXQ-1040 evidence PASS: centered cue key restores anchor differentiation (85/37/60 vs 1/1/1 anchors); C3 2/3 seeds; closed loop did not diverge between arms (open-loop live replication). Stays candidate under the v3 hold."
+  evidence_quality_note: >
+    [2026-09-16 governance, cycle governance-20260916] V3-EXQ-1040 (evidence PASS, supports;
+    DLAPTOP, seeds 42/43/44, 12 ep x 100 steps, n_slots=1024) is SD-077's FIRST live test and is
+    accepted as supports with a qualifying note. Load-bearing C1 (centered anchor_count >= raw + 4):
+    raw 1/1/1 vs centered 85/37/60, 3/3 seeds, margins 9x-21x the bar. C3 (frac_below_delta >= 0.50
+    on >= 2/3 seeds): 0.799 / 0.313 / 0.748 -- passes on the pre-registered majority rule with seed
+    43 a REAL miss (shortfall 0.187), not noise. Readiness R1 common_mode_ratio 0.9964-0.9993 (bar
+    0.80) is near-analytic on the untrained encoder, disclosed by the driver. Control arm is the
+    bit-identical-OFF code path (raw cosine key), not a no-op-vs-no-op. Step 2b driver skim (Sonnet,
+    logged): ONE moderate finding, does not flip the PASS -- arm_common_mode_ratio and total_writes
+    are identical to 6 decimals between raw_key and centered_key on every seed, so the closed loop
+    (anchor bank -> z_goal -> action -> next context) never diverged between arms even at full
+    length: this run is an OPEN-LOOP live replication with real writes of SD-077's prior offline
+    recompute, not the closed-loop test the docstring hoped for. C1/C3 remain a clean un-confounded
+    contrast because both arms traversed identical context sequences. Weight as supports for the
+    cue-key mechanism; do NOT read it as evidence that centering changes downstream behaviour.
+    Proposal EXP-1186 executed.
   implementation_phase: v3
   claim_level: architectural
   registered_utc: "2026-07-21"
@@ -76025,10 +76152,34 @@
   status: candidate
   evidence_quality_note: >
     [2026-08-16 governance, GFLAG-0036, cycle cranky-driscoll-126a36] V3-EXQ-784 (SD-074 probe_warmup de-saturation sweep, PASS 2026-07-18) is downgraded to PROVISIONAL: its headline informative_yield / target_met rest on a premise the manifest itself states and which is FALSE. sd074_note asserts that measure_action_mass is non-destructive, so reading at one checkpoint leaves the agent bit-identical for continued training. Measured on ree-cloud-5 2026-08-15: a probe read leaves 21 non-state_dict attributes changed, 17 of which SURVIVE agent.reset(). The load-bearing ones are agent._self_experience_buffer / _world_experience_buffer, which warmup_train samples via agent.compute_prediction_loss() -- so eval-rollout data enters the E1 training pool. Those buffers cap at 1000 while 784 reads 1081-1401 env steps, i.e. FULL DISPLACEMENT of the training pool by evaluation data. A controlled 2-seed replication of 784 ladder at its real config (budget-0 control cells bit-identical, as required) shows all six post-first-read cells differing by 0.011-0.146 on D_action_mass and TWO OF SIX FLIPPING THE SATURATION REGIME -- exactly the classification 784 informative_yield headline counts. No status change and no evidence_direction change is applied on this basis alone: the defect is in the measurement premise, not in the claim, and re-deriving the corrected yield needs the fix plus a re-run. Treat any downstream citation of 784 informative_yield / target_met as provisional until then. Full write-up and recommended fix: evidence/planning/probe_warmup_nonbuffer_audit_2026-08-15.md.
+
+    [2026-09-16 governance, cycle governance-20260916] V3-EXQ-784a (evidence PASS, supports;
+    supersedes V3-EXQ-784, whose manifests are now stamped evidence_direction superseded flat+pack)
+    is the CORRECTED re-run GFLAG-0036 owed: measured composite non-destructiveness gate (0
+    violations across all 56 cells, including budget-25 cells at the 1000-entry buffer cap -- the
+    exact GFLAG-0036 failure zone) plus per-checkpoint RNG re-pin, which 784 never had. 14 seeds,
+    budgets [0,4,10,25], DV D_action_mass_mean informative band (0.05,0.95). C1 (load-bearing, yield
+    > 0.5 at best swept budget): 0.9286 (13/14 at budget 25), margin +0.43; budget-0 control 0.357
+    is genuinely below the bar, so C1 can fail. C2 (yield > 0.4571) 0.9286 -- does no independent
+    work at n=14 (driver discloses C1 implies C2, load_bearing false). C3 control saturated-frac
+    0.6429 matches the 777a readiness anchor. Corrected dose-response 0.357 -> 0.429 -> 0.571 ->
+    0.929 stays monotonic; shape differs from 784's provisional curve (lower at intermediate
+    budgets, higher at 25) but the PASS is not a knife-edge flip. Step 2b driver skim (Sonnet,
+    logged): no arithmetic-by-construction, no arm asymmetry, no vacuous control. ONE moderate
+    finding, does not flip the PASS: the 784 autopsy's recommended paired within-seed
+    rescue-asymmetry statistic (the more robust, threshold-independent signal) is NOT computed by
+    784a, which reuses 784's threshold-based criteria unchanged to isolate the correction -- so the
+    PASS still rests on the yield-fraction metric. Future SD-074 validations should assert the
+    paired statistic. The PROVISIONAL downgrade of 784 recorded above is discharged by 784a.
+    Proposal EXP-1182 checked.
   live_status:
     reading: candidate
     as_of: 2026-07-18
     needs_review: false
+    evidence:
+      from: "governance-20260916 Step 2b walk (V3-EXQ-784a supersedes V3-EXQ-784; driver skim logged)"
+      as_of: "2026-09-16"
+      verdict: "supports -- V3-EXQ-784a corrected re-run PASS: yield 0.929 vs 0.5 bar at budget 25, non-destructiveness measured at 0 violations / 56 cells, budget-0 control below the bar. 784 superseded. PASS rests on the threshold metric (paired rescue asymmetry not computed). Stays candidate under the v3 hold."
   implementation_phase: v3
   claim_level: architectural
   registered_utc: "2026-07-18"
@@ -78730,9 +78881,9 @@
     as_of: 2026-09-05
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-1004_2026-09-05"
-      as_of: "2026-09-05"
-      verdict: "non_contributory -- read-across co-tag on the SD-WAYPOINT-FIELD build validation; claim not exercised; experiment stays blocked_substrate on two further unbuilt items"
+      from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+      as_of: "2026-09-16"
+      verdict: "non_contributory (x2: V3-EXQ-1030 H2 leg FAIL/precondition_unmet and V3-EXQ-1039 H1 leg VACUOUS null, both read-across co-tags; z_goal never active; neither claim's regime instantiated). INV-086 stays candidate; MECH-428 pending_retest_after_substrate stays true (884a still owed). Both portfolio legs remain ALIVE; successors: 1039a instrument repair (absorption precondition) and SD-ZWORLD-SENSE-PATH-PARITY discriminating probe."
   subject: goal.maintenance_feedback_necessity
   polarity: asserts
   depends_on: [INV-065, INV-034, MECH-116, MECH-217, ARC-030, SD-014]
@@ -78791,6 +78942,56 @@
     must have non-zero cross-seed range or the run self-routes substrate_not_ready.
   evidence_quality_note: |
     [2026-09-05 governance governance-20260905, confirmed failure_autopsy_V3-EXQ-1004_2026-09-05 (Fable 5.1 cross-model red-team CONTESTED, contests folded in, user gate)]: [2026-09-05, V3-EXQ-1004, PASS, diagnostic] Build validation of the SD-WAYPOINT-FIELD observable (ree-v3 7719385), NOT claim evidence. Four arms at 5 seeds: random 1.29 visits/ep, oracle 60.23, cloned-reader field-OFF 4.07, cloned-reader field-ON 57.71; sequences 0.23 (OFF) vs 18.87 (ON); imitation accuracy 0.575 vs 0.841; field_live_frac 1.0. C1 (load-bearing, ON-minus-OFF >= 15 visits/ep) met 5/5 seeds against a dv_headroom precondition denominated on the ORACLE control (56.3 achievable against a 15.0 threshold, ratio 3.75). The PASS is real and non-vacuous -- the OFF arm is zero-padded to the ON width so both nets are byte-identical at init, the oracle never reads the field, and the pre-registered off-ramps could have separated 'decodable but did not convert' from 'did not convert' -- but it is LOW-SURPRISE by construction: the field is an analytic function (1/(1+0.25d) over the 5x5 agent-centred patch) of the same environment ground truth the demonstrator oracle uses to choose its action, so the ON reader's task is a near-linear local-argmin decode of the demonstrator's own decision rule. What is established is that the channel is wired, live, decodable and behaviourally sufficient FOR A SUPERVISED READER. What is NOT established, and what INV-086/MECH-428 actually need, is that a REE agent -- z_world encoder into E1/E2/E3, reinforcement-trained under sparse reward -- can exploit it: the same driver reports an A2C reader on this task at 0.00 (OFF) / 0.10 (ON) visits/ep after 400 training episodes, which is why the reader was switched to behaviour cloning -- but that A2C figure is DOCSTRING-ONLY (seed 42 only, never committed to the repo, no manifest, no per-episode trace) and was measured BEFORE the SD-094 contamination gate, on a self-contaminating env where every arm ended health_depleted at 44-134 steps against a declared 400 and per-episode contamination (~-1.2) outweighed the waypoint reward (~+0.04) by 30:1, so not moving was reward-optimal -- it MOTIVATES the consumer-reach question, it is not evidence about it. Neither claim was exercised (no REE agent, no z_goal, no feedback-channel ablation, no forced-seed control), so both are non_contributory; the manifest's self-routed claim_directions of 'supports' must not be applied. PER-CLAIM: Read-across co-tag only. INV-086's what_would_answer needs a regime where MECH-116 working-memory maintenance has MEASURABLY DECAYED and all intermediate feedback channels are ablated; this run has no REE agent, no z_goal and no feedback channel, so it neither supports nor weakens the claim -- record it non_contributory with the drafted note and do NOT apply the manifest's self-routed `supports`. The note must ALSO say what this PASS does not unblock: EXP-0705 (INV-086's maintenance-axis test) names three builds in priority order and only the first has landed -- the waypoint proximity field (landed, validated by this run); an E3-scoring consumer of `_z_goal_parent` (chip-20260902-zgoal-parent-e3-consumer, unbuilt, so a MECH-427 restore arm is DV-invariant by construction); and a benefit/wanting-driven residue-centre allocation path (unbuilt, so MECH-216/217 writes starve in the hazard-free regime). INV-086's experiment therefore stays blocked_substrate after this PASS. INV-086 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1030_2026-09-14 (user Step 8 gate 2026-09-16T12:22:00Z, REE_assembly
+    496d0c238c0)] [2026-09-14, V3-EXQ-1030, FAIL(self-routed substrate_not_ready_requeue),
+    diagnostic] H2 leg (representation axis) of the waypoint_field_consumer_reach fan-out opened by
+    the confirmed failure_autopsy_V3-EXQ-1004_2026-09-05. READ-ACROSS ONLY for this claim,
+    unconditionally and by the driver's own declaration -- no REE agent in subgoal-mode navigation,
+    no z_goal, no feedback-channel ablation, no forced-seed control, so neither INV-086's nor
+    MECH-428's what_would_answer regime is instantiated. The run is ALSO uninterpretable on its own
+    DV: the load-bearing C1 null was suppressed by readiness R3, and R3's target (absolute grid
+    quadrant) is PRESENT in world_state but LAYOUT-BOUND (wall channel + layout-relative field
+    windows: raw world_state fits quadrant to train 0.91-0.94 on 5/5 seeds; on the same sense()-path
+    z_world the quadrant probe clears its own test majority in 9 of 10 cells, mean +0.10, vs 4 of 10
+    for the DV), so R3 DID certify probe competence -- what failed was R3's ABSOLUTE threshold form,
+    which a majority-relative threshold passes at margins up to 0.075, in which case C1 would have
+    been read (4 null seeds >= 3) [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), F1
+    -- the draft's 'target not in the feature space' claim is withdrawn]. Independently, the z_world
+    probe sits AT OR BELOW its own test majority-class rate in 6 of 10 cells, so the near-zero
+    ON-OFF lift is a difference between two floor-pinned numbers, not a measured null. H2 therefore
+    remains ALIVE and unresolved. Nothing about either claim's status, confidence or retest state
+    moves on this run.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1039_2026-09-16 (user Step 8 gate 2026-09-16T13:06:22Z, REE_assembly
+    62be57a67e9)] [2026-09-16, V3-EXQ-1039, PASS, diagnostic, awaiting_human_confirmation] H1 (drive
+    axis) of the GOV-FANOUT-1 `waypoint_field_consumer_reach` portfolio pre-registered by the
+    confirmed failure_autopsy_V3-EXQ-1004_2026-09-05. Read-across co-tag only: neither INV-086's
+    WM-decay + feedback-ablation regime nor MECH-428's seeding-sparse + forced-seed regime was
+    instantiated, and the manifest's own z_goal telemetry confirms z_goal was never active in any
+    tick (ticks_active 0 of 94434). non_contributory for both. The run self-routed
+    `training_signal_does_not_convert_h1_not_supported` (C1 lift cleared on 0 of 3 seeds under both
+    dense arms; shaped_mean 0.2 vs sparse_mean 0.2 vs oracle_mean 11.6, random_mean 0.5). That null
+    is NOT creditable as evidence about reward density: shaped_rl returned values bit-identical to
+    sparse_rl on every recorded BEHAVIOURAL metric in all three seeds (waypoints/ep 0.4/0.2/0.0 in
+    both arms; sequences/ep 0.0; distinct_cells/ep 25.3/9.2/8.3 in both arms; identical
+    lpfc_bias_head_moved flags) while carrying a training return two-plus orders of magnitude larger
+    under a random-policy proxy (250-500x across RNG draws; 253x/491x/254x per seed, cross-seed mean
+    301x, driver's own anchor RNG), and demo_warmstart's final supervised CE loss was 3.465736 =
+    ln(32) to seven decimals -- chance over the configured num_candidates=32 -- after 232 applied
+    optimizer steps on seed 42, the exact `demo_ce_final_loss == ln(K)` signature the driver's own
+    Step 4.5 red-team finding F3 named and built readiness gate C0d to catch; C0d passed at 0.667.
+    Neither treatment manipulation reached the consumer's behaviour-determining parameters, so the
+    leg is UNRESOLVED, not answered. Failure-location MIXED (MECHANISM + MEASURES), environment
+    adequate (oracle 10.8-12.0 vs random 0.3-0.6, span 11.1). Route: /queue-experiment same-question
+    instrument repair as V3-EXQ-1039a with a manipulation-ABSORPTION readiness precondition and
+    per-arm training-return recording; a substrate_queue entry is recommended for the shared-library
+    recording gap in experiments/_lib/allon_training.py. Claim layer unchanged: status stays
+    candidate, epistemic_category stays standard, diagnostic_evidence_adjudicated stays true,
+    MECH-428's pending_retest_after_substrate stays true (the V3-EXQ-884a retest remains owed and
+    this run is not it).
 
 - id: MECH-426
   title: progress_velocity_maintenance
@@ -79050,9 +79251,9 @@
     as_of: 2026-09-05
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-1004_2026-09-05"
-      as_of: "2026-09-05"
-      verdict: "non_contributory -- read-across co-tag; SD-094 implemented_validated and waypoint field validated; retest OWED as V3-EXQ-884a (two-kwarg edit to the 884 driver); pending_retest stays true"
+      from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+      as_of: "2026-09-16"
+      verdict: "non_contributory (x2: V3-EXQ-1030 H2 leg FAIL/precondition_unmet and V3-EXQ-1039 H1 leg VACUOUS null, both read-across co-tags; z_goal never active; neither claim's regime instantiated). MECH-428 stays candidate; MECH-428 pending_retest_after_substrate stays true (884a still owed). Both portfolio legs remain ALIVE; successors: 1039a instrument repair (absorption precondition) and SD-ZWORLD-SENSE-PATH-PARITY discriminating probe."
   subject: goal.subgoal_bootstrapped_seeding
   implementation_phase: v3
   depends_on: [INV-086, MECH-427, ARC-051, MECH-112, MECH-230]
@@ -79098,6 +79299,56 @@
     ambient self-contamination mechanic for this curriculum). pending_retest_after_substrate=true.
 
     [2026-09-05 governance governance-20260905, confirmed failure_autopsy_V3-EXQ-1004_2026-09-05 (Fable 5.1 cross-model red-team CONTESTED, contests folded in, user gate)]: [2026-09-05, V3-EXQ-1004, PASS, diagnostic] Build validation of the SD-WAYPOINT-FIELD observable (ree-v3 7719385), NOT claim evidence. Four arms at 5 seeds: random 1.29 visits/ep, oracle 60.23, cloned-reader field-OFF 4.07, cloned-reader field-ON 57.71; sequences 0.23 (OFF) vs 18.87 (ON); imitation accuracy 0.575 vs 0.841; field_live_frac 1.0. C1 (load-bearing, ON-minus-OFF >= 15 visits/ep) met 5/5 seeds against a dv_headroom precondition denominated on the ORACLE control (56.3 achievable against a 15.0 threshold, ratio 3.75). The PASS is real and non-vacuous -- the OFF arm is zero-padded to the ON width so both nets are byte-identical at init, the oracle never reads the field, and the pre-registered off-ramps could have separated 'decodable but did not convert' from 'did not convert' -- but it is LOW-SURPRISE by construction: the field is an analytic function (1/(1+0.25d) over the 5x5 agent-centred patch) of the same environment ground truth the demonstrator oracle uses to choose its action, so the ON reader's task is a near-linear local-argmin decode of the demonstrator's own decision rule. What is established is that the channel is wired, live, decodable and behaviourally sufficient FOR A SUPERVISED READER. What is NOT established, and what INV-086/MECH-428 actually need, is that a REE agent -- z_world encoder into E1/E2/E3, reinforcement-trained under sparse reward -- can exploit it: the same driver reports an A2C reader on this task at 0.00 (OFF) / 0.10 (ON) visits/ep after 400 training episodes, which is why the reader was switched to behaviour cloning -- but that A2C figure is DOCSTRING-ONLY (seed 42 only, never committed to the repo, no manifest, no per-episode trace) and was measured BEFORE the SD-094 contamination gate, on a self-contaminating env where every arm ended health_depleted at 44-134 steps against a declared 400 and per-episode contamination (~-1.2) outweighed the waypoint reward (~+0.04) by 30:1, so not moving was reward-optimal -- it MOTIVATES the consumer-reach question, it is not evidence about it. Neither claim was exercised (no REE agent, no z_goal, no feedback-channel ablation, no forced-seed control), so both are non_contributory; the manifest's self-routed claim_directions of 'supports' must not be applied. PER-CLAIM: Read-across co-tag only -- MECH-428's what_would_answer needs z_goal_norm against a 626b-style forced-seed control in a seeding-sparse regime, none of which this run instantiates; record non_contributory. Governance should ALSO refresh the evidence_quality_note to record the retest state ACCURATELY. (i) Attribution: the V3-EXQ-884 autopsy named ONE substrate item, SD-094 (two defects: waypoint-arrival detection, ambient contamination), now implemented_validated. The SD-WAYPOINT-FIELD observable came from the V3-EXQ-977 / EXP-0705 adjudication (session fable-queue-refill-20260902), NOT from the 884 autopsy; it landed 2026-09-04 and is reader-validated by this run. (ii) The retest driver EXISTS: ree-v3 experiments/v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding.py IS the EXP-0390 3-arm NO-SUBGOAL / SUBGOAL-BOOTSTRAP / FORCED-SEED driver (docstring line 7, 'Proposal: EXP-0390'; the proposal is status `executed`, executed_by V3-EXQ-884), and the confirmed 884 autopsy's instruction is to 're-queue V3-EXQ-884 (new letter, e.g. 884a) once the fix lands'. Any statement that the driver was never built is FALSE and must not be written into claims.yaml. (iii) The real gate on the retest is a two-kwarg edit: 884's _build_env sets neither `subgoal_arrival_position_check` nor `hazard_free_contamination_gate` (0 hits in the file), both default-off, so a verbatim re-queue reproduces the 884 failure. `complicated (buildable)`. (iv) 884 SCRIPTS the walk (_scripted_action), so SD-WAYPOINT-FIELD is not on 884a's code path at all -- 884a needs SD-094 only. `pending_retest_after_substrate` STAYS true because the retest has not run and no successor manifest to the 20260803T022131Z run exists. Governance should also refresh MECH-428's stale implementation_note, which still reads that EXP-0390's driver is 'STILL NEEDED' (dated SD-092, 2026-08-02 -- the day BEFORE the driver landed). MECH-428 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard NOTE ON implementation_note: its 'STILL NEEDED' line about the EXP-0390 driver is STALE (the driver landed 2026-08-03 as V3-EXQ-884) -- read this entry instead.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1030_2026-09-14 (user Step 8 gate 2026-09-16T12:22:00Z, REE_assembly
+    496d0c238c0)] [2026-09-14, V3-EXQ-1030, FAIL(self-routed substrate_not_ready_requeue),
+    diagnostic] H2 leg (representation axis) of the waypoint_field_consumer_reach fan-out opened by
+    the confirmed failure_autopsy_V3-EXQ-1004_2026-09-05. READ-ACROSS ONLY for this claim,
+    unconditionally and by the driver's own declaration -- no REE agent in subgoal-mode navigation,
+    no z_goal, no feedback-channel ablation, no forced-seed control, so neither INV-086's nor
+    MECH-428's what_would_answer regime is instantiated. The run is ALSO uninterpretable on its own
+    DV: the load-bearing C1 null was suppressed by readiness R3, and R3's target (absolute grid
+    quadrant) is PRESENT in world_state but LAYOUT-BOUND (wall channel + layout-relative field
+    windows: raw world_state fits quadrant to train 0.91-0.94 on 5/5 seeds; on the same sense()-path
+    z_world the quadrant probe clears its own test majority in 9 of 10 cells, mean +0.10, vs 4 of 10
+    for the DV), so R3 DID certify probe competence -- what failed was R3's ABSOLUTE threshold form,
+    which a majority-relative threshold passes at margins up to 0.075, in which case C1 would have
+    been read (4 null seeds >= 3) [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), F1
+    -- the draft's 'target not in the feature space' claim is withdrawn]. Independently, the z_world
+    probe sits AT OR BELOW its own test majority-class rate in 6 of 10 cells, so the near-zero
+    ON-OFF lift is a difference between two floor-pinned numbers, not a measured null. H2 therefore
+    remains ALIVE and unresolved. Nothing about either claim's status, confidence or retest state
+    moves on this run.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1039_2026-09-16 (user Step 8 gate 2026-09-16T13:06:22Z, REE_assembly
+    62be57a67e9)] [2026-09-16, V3-EXQ-1039, PASS, diagnostic, awaiting_human_confirmation] H1 (drive
+    axis) of the GOV-FANOUT-1 `waypoint_field_consumer_reach` portfolio pre-registered by the
+    confirmed failure_autopsy_V3-EXQ-1004_2026-09-05. Read-across co-tag only: neither INV-086's
+    WM-decay + feedback-ablation regime nor MECH-428's seeding-sparse + forced-seed regime was
+    instantiated, and the manifest's own z_goal telemetry confirms z_goal was never active in any
+    tick (ticks_active 0 of 94434). non_contributory for both. The run self-routed
+    `training_signal_does_not_convert_h1_not_supported` (C1 lift cleared on 0 of 3 seeds under both
+    dense arms; shaped_mean 0.2 vs sparse_mean 0.2 vs oracle_mean 11.6, random_mean 0.5). That null
+    is NOT creditable as evidence about reward density: shaped_rl returned values bit-identical to
+    sparse_rl on every recorded BEHAVIOURAL metric in all three seeds (waypoints/ep 0.4/0.2/0.0 in
+    both arms; sequences/ep 0.0; distinct_cells/ep 25.3/9.2/8.3 in both arms; identical
+    lpfc_bias_head_moved flags) while carrying a training return two-plus orders of magnitude larger
+    under a random-policy proxy (250-500x across RNG draws; 253x/491x/254x per seed, cross-seed mean
+    301x, driver's own anchor RNG), and demo_warmstart's final supervised CE loss was 3.465736 =
+    ln(32) to seven decimals -- chance over the configured num_candidates=32 -- after 232 applied
+    optimizer steps on seed 42, the exact `demo_ce_final_loss == ln(K)` signature the driver's own
+    Step 4.5 red-team finding F3 named and built readiness gate C0d to catch; C0d passed at 0.667.
+    Neither treatment manipulation reached the consumer's behaviour-determining parameters, so the
+    leg is UNRESOLVED, not answered. Failure-location MIXED (MECHANISM + MEASURES), environment
+    adequate (oracle 10.8-12.0 vs random 0.3-0.6, span 11.1). Route: /queue-experiment same-question
+    instrument repair as V3-EXQ-1039a with a manipulation-ABSORPTION readiness precondition and
+    per-arm training-return recording; a substrate_queue entry is recommended for the shared-library
+    recording gap in experiments/_lib/allon_training.py. Claim layer unchanged: status stays
+    candidate, epistemic_category stays standard, diagnostic_evidence_adjudicated stays true,
+    MECH-428's pending_retest_after_substrate stays true (the V3-EXQ-884a retest remains owed and
+    this run is not it).
   pending_retest_after_substrate: true
   what_would_answer: >
     In a regime where DIRECT superordinate-goal seeding is sparse (unscaffolded z_goal
@@ -79318,9 +79569,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-571b_2026-09-01"
-      as_of: "2026-09-01"
-      verdict: "non_contributory -- clamped monopoly premise ESTABLISHED for the 571-shape env (top-channel share 0.9368-0.9953, occupant f_weighted -> harm_weighted 4/4 seeds), but the 936a gate does NOT clear: the premise is REGIME-DEPENDENT -- 936a measured it ABSENT at 6.33e-06 under the same clamp ratio"
+      from: "failure_autopsy_V3-EXQ-1012a_2026-09-14"
+      as_of: "2026-09-16"
+      verdict: "non_contributory -- V3-EXQ-1012a is the acceptance instrument for the AMENDED SD-E3-CHANNEL-COMMENSURABILITY target (GFLAG-0234), not a MECH-439 retest: primary-argmin flip rate 0.821 fed / 0.724 starved is a sound, non-identity instrument but has NO reference value (bar = own 2x sd; no placebo-rescaling arm), so the rung is NOT validated and the 936-family / 654h-class refusal STAYS. Stays candidate / exhausted / pending_retest_after_substrate true."
   epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
@@ -79510,6 +79761,31 @@
     before it can be non-degenerate. PROMOTES/DEMOTES NOTHING.
 
     [2026-09-02 governance, governance-20260902, confirmed failure_autopsy_V3-EXQ-571c_2026-09-02.json]: V3-EXQ-571c is UNSCORED and non_contributory -- the arm readiness gate fired on n_live_channels (measured 1.0 vs threshold 2.0) in all four arms, and the gate precedes criterion evaluation, so criteria_non_degenerate is false for all six criteria. The load-bearing C1 was nonetheless arithmetically PASSED (modal within-tick cross-candidate variance share 0.999992, min 0.999989, vs a 0.85 bar, 4/4 B1 seeds unanimous) before being voided. The informative finding is that the monopoly's OCCUPANT is regime-dependent under the lineage's own F_COMPONENTS definition: F holds it in 7 of 8 residue-STARVED cells at 0.994-0.9998, while residue_weighted holds it in every FED cell with F falling to ~4e-06 to 1.1e-05. MECH-439's F-monopoly premise therefore HOLDS starved and FAILS fed, with the environment held fixed across the contrast. No channel is dead -- every non-structurally-zero component clears the absolute liveness floor (1e-12); every liveness failure is of the RELATIVE share floor (1e-3), which is what makes a commensurability operator the addressable lever. The re-derive brake FIRED (14 counted hits) and REFUSED a 571d that re-measures the monopoly with one more channel bounded; a run whose DV is the commensurability operator itself remains permitted and preferred. Status unchanged (candidate); epistemic_category standard; ceiling_decision remains exhausted. PROMOTES/DEMOTES NOTHING.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1012a_2026-09-14 (user Step 8 gate 2026-09-16T12:16:45Z, REE_assembly
+    496d0c238c0)] [2026-09-14, V3-EXQ-1012a, PASS, diagnostic] The acceptance instrument for
+    SD-E3-CHANNEL-COMMENSURABILITY's AMENDED readiness target (GFLAG-0234, /governance option A,
+    user-approved 2026-09-10), superseding the parked V3-EXQ-1012 whose original share-based target
+    was found to be an arithmetic identity of the operator it was meant to validate. NOT a test of
+    MECH-439 -- non_contributory, and the driver's own outcome_note says so: 'MECH-439's direction
+    does not move on this record.' WHAT IT ESTABLISHES: the operator is not a no-op at the
+    primary-score selection stage. Shadow OFF/ON replay, intra-tick with the EMA state frozen and a
+    self-check replay that must reproduce the live scores exactly (0 failures in 8 of 8 cells),
+    gives a primary-argmin flip rate of 0.821 fed / 0.724 starved over 158-258 genuine fresh
+    selections per cell. WHAT IT DOES NOT ESTABLISH, and what a reader must not infer: that the flip
+    is principled. There is no null arm. The criterion's bar is computed from the same four seeds it
+    tests (bar = 2 x sd of the arm's own rates, so it is a coefficient-of-variation test, not a test
+    against any reference), and a differential rescaling that spans four orders of magnitude between
+    the live channels would be expected to move the argmin at roughly the rate two unrelated
+    rankings disagree -- so this run cannot distinguish 'the operator imposes a different,
+    principled ranking' from 'the operator scrambles the ranking'. The reference it needs is a
+    PLACEBO differential rescaling carrying no commensurability content. Two further scope bounds:
+    the DV characterises the primary-score stage only, and the `final_commit_by_primary_frac`
+    readout the driver's own docstring calls mandatory interpretive context was not emitted, so
+    nothing relates these flips to the executed action; and two of the five declared
+    commensurability channels (benefit_weighted, goal_weighted) have a scale estimate of exactly 0.0
+    in every cell, so the operator arbitrated among 3 live channels, not 5.
   diagnostic_evidence_adjudicated: true
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
@@ -88498,9 +88774,9 @@
     as_of: 2026-09-05
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1027-1029-cluster_2026-09-14
-      as_of: '2026-09-15'
-      verdict: "non_contributory x2 (diagnostic legs 1 and 3 of the sd082 readout-locus portfolio) -- 1027 ELIMINATES H-replay-rule-state-mismatch at matched budget; 1029 CONFIRMS H-selection-authority-bounded (readout inert at selection without authority, magnitude closed from above); the lineage P1 surrogate is advantage-weighted imitation of E3; stays candidate_substrate_landed"
+      from: "failure_autopsy_V3-EXQ-1028_2026-09-15"
+      as_of: "2026-09-16"
+      verdict: "non_contributory, NOTE-ONLY -- V3-EXQ-1028 (diagnostic PASS, extended-budget learning-signal run, portfolio legs 2 and 4): budget question ANSWERED at P1 = 300 updates (criterion power on 5/5 seeds); no persistently-directed gradient anywhere in the budget (n_persistent 0/5 in W4); H-learning-signal-noisy supported at exactly 3/5 on a seed partition reproduced three times; H-learning-signal-sign stays ALIVE with two disagreeing readings. Successor V3-EXQ-1046 (consequence-trained readout, H1) QUEUED 2026-09-16. Stays candidate_substrate_landed."
   diagnostic_evidence_adjudicated: true
   implementation_phase: v3
   claim_level: architectural
@@ -88647,6 +88923,47 @@
     candidate_substrate_landed, epistemic_category standard, pending_retest_after_substrate false,
     diagnostic_evidence_adjudicated true. live_status.evidence.from re-pointed at this artifact.
     PROMOTES/DEMOTES NOTHING.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1028_2026-09-15 (user Step 8 gate 2026-09-16T12:08:10Z, REE_assembly
+    496d0c238c0)] [2026-09-15 governance, confirmed failure_autopsy_V3-EXQ-1028_2026-09-15 (SD-082
+    GOV-FANOUT-1 portfolio legs 2 and 4, the extended-budget learning-signal run; staged headless,
+    cross-model Fable red-team CONTESTED with all findings verified and folded in, user gate)]:
+    NOTE-ONLY, direction non_contributory. V3-EXQ-1028 ran V3-EXQ-1020's ARM_ON cell at T = 500
+    REINFORCE updates (7.1x 1020's T = 70) with windowed persistence and a frozen-init-head
+    episode-level advantage statistic. Outcome PASS on readiness AND C1 (bracket separation 1.00,
+    worst-cell update realisation 0.998, 0 candidate-summary fallbacks in 22188 calls, 11830
+    worst-cell P1 ticks; C1 gradient present 5/5) -- an instrument-liveness PASS whose content is
+    its label, c2_noisy__c3_sign_null. THE BUDGET QUESTION IS ANSWERED: P1 = 300 updates, on two
+    independent routes. Route A (primary, criterion power, recomputed from the run's per-episode
+    cells): 300 is the smallest budget at which the load-bearing C3 leg scores on 5/5 seeds with
+    real margin (worst half-count 70 against a floor of 50 init-head flip ticks per half; at T=200
+    the margin is 1.08x, and at T=150 two seeds starve at 45 and 48). Route B (the persistence
+    reading the cluster asked for): the pre-registered windowed classifier finds NO
+    persistently-directed gradient anywhere in the budget -- n_persistent = 0 of 5 in W4 = [300,
+    end], and the seed-mean fractional bracket position never reaches the midpoint in any of the
+    four windows (W1 0.320, W2 0.107, W3 0.366, W4 0.180) -- so a longer budget is not the lever.
+    Route B is reported WITH its limits and no refusal above 300 is derived from it: seed 633's W4
+    is 0.011 below a midpoint whose own across-seed realisation spread is 0.017, seed 622's W4 is
+    its MOST directed window on a monotonically rising profile, the window controls are single
+    realisations measured on fresh-init heads against a mid-training Adam, and in ratio terms flip
+    rate still falls a further 1.3x-13.2x after episode 300. H-learning-signal-sign is NOT
+    eliminated: the load-bearing episode-level statistic is a well-powered null (5/5 scoreable, the
+    starvation that made this leg unscoreable in 1020 is discharged; r_local +0.045..-0.002 inside
+    +/-2 SE bands of ~0.091), but the run ALSO records 1020's own statistic pointing the other way
+    -- adv_flip_minus_nonflip negative on 4 of 5 seeds, and 3 of 4 seeds eligible under 1020's own
+    sample floor, which on that rule reads SUPPORTED -- so the leg stays ALIVE with both readings
+    recorded rather than being resolved on a tie-break nobody pre-registered.
+    H-learning-signal-noisy passes at EXACTLY its 3-of-5 threshold (3 noisy, 2
+    directed-then-exhausted, 0 persistent), but the seed-to-class partition is now reproduced THREE
+    times -- 1020 ARM_ON, both V3-EXQ-1027 replay arms, and 1028's W1 window -- on the identical
+    split {622,633,644} low / {611,655} high, with 1028's W1 matching 1020's ARM_ON to within 2.5e-5
+    on the four seeds that realised all 70 updates and per-episode returns BIT-IDENTICAL across
+    machine classes (linux-x86_64/py3.10 vs darwin-arm64/py3.13) over those 70 episodes; so seed
+    identity is a deterministic explanatory variable and a majority over 5 seeds is not a population
+    estimate. Nothing stored moves: status stays candidate_substrate_landed, epistemic_category
+    standard, pending_retest_after_substrate false, diagnostic_evidence_adjudicated true.
+    live_status.evidence.from re-pointed at this artifact. PROMOTES/DEMOTES NOTHING.
   pending_retest_after_substrate: false  # cleared 2026-08-30 governance -- the 822d retest this flag stood on has run (V3-EXQ-822d); the per-candidate-summary amend is confirmed engaged, what is owed is an 822e spread-valued DV, not a retest of this design
   epistemic_category: standard
 - id: SD-083
@@ -90018,14 +90335,43 @@
     epistemic_category stays substrate_conditional and status stays candidate; retest is owed with a
     corrected reachability instrument and/or a positive-control arm, not simply a higher weight,
     before either a supports or weakens verdict on MECH-482 is warranted.
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-964b_2026-09-16 (user Step 8 gate 2026-09-16T11:10:54Z, REE_assembly
+    00bf53a62cb)] V3-EXQ-964b (2026-09-15, diagnostic, supersedes V3-EXQ-964a; ree-cloud-2, 3 seeds
+    x 3 ep x 60 steps, env seeded) does NOT bear on MECH-482's own claim hypothesis
+    (accumulation-with-satiation, distinctness from novelty/uncertainty/LP -- none of which it
+    measures). It is the first INSTRUMENT-VERIFIED null on the SD-102 realisation's selection
+    authority: the verify-lift positive control fires on 3/3 seeds at every rung of the
+    curiosity_bias_scale ladder {0.1, 0.5, 2, 10} (top rung selection divergence 0.55-0.69 of
+    E3-fresh ticks), the paired self-yoked control is bit-identical on both DVs, and the subject arm
+    (real accumulator, readiness knobs, shipped weight 0.05 and shipped curiosity_bias_scale 0.1)
+    still moves E3's committed SELECTION on 0 of 172 E3-fresh ticks (0/33, 0/101, 0/38) and the
+    committed action on 0/540. The load-bearing new fact is WHERE the shortfall sits: it is CONTENT
+    CONTRAST, not selection AUTHORITY. The subject's post-clamp bias range is 5.5e-3 / 2.1e-3 /
+    4.2e-3 (seeds 71/101/202) against a clamp rail of 0.2 -- 1-3% of the authority it already has,
+    clamp_saturated_frac exactly 0.0 on every seed -- while a railed synthetic ramp at the IDENTICAL
+    shipped authority (ARM_VERIFY_LIFT_S0.1, post-clamp range 0.2) moves selection on 3%/12%/21% of
+    E3-fresh ticks. C2 therefore reads 0.1 == shipped, i.e. the ladder's premise (authority is the
+    bottleneck) is refuted by the run's own cells, and the driver's route text's F-dominance/ARC-110
+    reading is NOT supported at shipped authority (it would require the real content at rail to
+    still fail, which is untested). What is unresolved -- and is the next question, a new EXQ, not a
+    lettered re-test -- is whether the real readout is MAGNITUDE-limited (a gain of ~37x / ~94x /
+    ~48x on seeds 71/101/202 -- i.e. ~100x to clear the rail on every seed -- brings the real
+    contrast to the rail where a synthetic already moves selection) or PATTERN-limited (the
+    readout's cross-candidate structure is orthogonal to E3's runner-up structure at any gain).
+    epistemic_category STAYS substrate_conditional; status STAYS candidate;
+    pending_retest_after_substrate STAYS true. The indexer's vacuous_pass flag on this run is the
+    ordered-gate false-flag class (V3-EXQ-946): outcome PASS means 'adjudicated (gate green, C1
+    met)' and C3's FAIL is the finding, not aggregation vacuity -- NOT sustained.
   live_status:
     reading: candidate/v3_pending/substrate_conditional
     as_of: '2026-08-07'
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-964a_20260914
-      as_of: '2026-09-15'
-      verdict: "non_contributory -- multitarget-readiness build VALIDATED (C1/C2/C5 non-arithmetic); C3 yoked divergence 0/540 but the reachability instrument is uninformative; retest owed with a corrected instrument / positive control; stays candidate, substrate_conditional, pending_retest true"
+      from: "failure_autopsy_V3-EXQ-964b_2026-09-16"
+      as_of: "2026-09-16"
+      verdict: "non_contributory / substrate_conditional -- V3-EXQ-964b (diagnostic PASS, supersedes 964a): first INSTRUMENT-VERIFIED null on the SD-102 readout's selection authority -- verify-lift control fires 3/3 seeds at every rung incl. shipped 0.1; real deficit moves E3 selection 0/172 E3-fresh ticks; shortfall is CONTENT CONTRAST (post-clamp range 1-3% of the 0.2 rail, clamp_saturated_frac 0), not authority; F-dominance reading NOT supported at shipped authority. Re-derive brake: explicit producer release (user-approved). Next: amplified-real-readout ladder k in {1,10,40,100} with range-matched/permuted controls (magnitude- vs pattern-limited). Stays candidate / v3_pending / pending_retest_after_substrate true."
   epistemic_category: substrate_conditional
   implementation_phase: v3
   v3_pending: true
@@ -94877,7 +95223,40 @@
     reading: candidate
     as_of: "2026-08-25"
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-1038_2026-09-14"
+      as_of: "2026-09-16"
+      verdict: "non_contributory -- V3-EXQ-1038 (diagnostic PASS) is the first live exercise of the SD-091/MECH-481 endogenous coalition trigger, not a test of ARC-131 (guaranteed-fire control is the only load-bearing criterion; no isolated-vs-composed dissociation scored). Factual update to the claim's motivating example applied to notes (capability form dies, composition form survives). Recruitment rate is scale-determined (609x margin spread vs fixed 0.05 threshold); SD-091 substrate entry amended. Stays candidate."
+  evidence_quality_note: >
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1038_2026-09-14 (user Step 8 gate 2026-09-16T12:22:00Z, REE_assembly
+    496d0c238c0)] [2026-09-14, V3-EXQ-1038, PASS, diagnostic] First live-run exercise of
+    SD-091/MECH-481's endogenous coalition-recruitment trigger (landed ree-v3 88c7c3332c), which had
+    no live caller of request_coalition() before it. NOT a test of ARC-131: the single load-bearing
+    criterion is the guaranteed-fire readiness control at margin_threshold=1e6, the driver assigns
+    PASS unconditionally of the measurement, and no isolated-vs-composed dissociation is scored --
+    non_contributory. What it DOES establish is a factual update to ARC-131's own motivating
+    example, which the claim's `notes` currently describe as 'inert until manually called and no
+    endogenous monitor invokes it': an endogenous monitor now exists and fires in 7/7 seeds at the
+    shipped default threshold of 0.05. That update is PARTIAL in exactly ARC-131's own
+    capability-vs-composition terms -- `use_endogenous_coalition_trigger` defaults to False and
+    exactly 1 driver in the ree-v3 corpus enables it (this one), so the DEFAULT composition still
+    does not recruit the controller. Read the recruitment RATE with care: it is scale-determined,
+    not architectural. The per-seed median E3 margin spans 0.0183 to 11.16 (a 609x range) against
+    the fixed 0.05 threshold, and per-seed recruitment tracks the fraction of margin samples below
+    that absolute threshold almost exactly (0.856 of samples -> 100% of episodes; 0.011 -> 13.3%).
+    The 'engaged' label is carried by ALL 7 seeds clearing a one-request-in-thirty-episodes bar
+    (frac_seeds_recruited = 7/7 = 1.0; removing the 3 high seeds still gives 4/4); what is bimodal
+    is the recruitment RATE -- 3 seeds at 87-100% of episodes, 4 at 10-23% -- and the label
+    statistic cannot see that split [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus),
+    F3]. ARC-131's evidence posture, for the narrow-supports check: claim_evidence.v1.json carries 6
+    supports / 0 weakens, all literature (0.803), genuine_exp_count 0, quadrant plausible_unproven
+    -- a single-pathway, literature-only support base; this diagnostic adds no experimental entry
+    [CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), F2]. E3's
+    channel-commensurability operator (MECH-439, SD-E3-CHANNEL-COMMENSURABILITY, implemented
+    2026-09-07) exists to normalise precisely that scale and was OFF in this run.
   epistemic_category: standard
+  diagnostic_evidence_adjudicated: true
   claim_level: architectural
   implementation_phase: v3
   version_relevance: v3
@@ -94946,7 +95325,7 @@
     Concrete REE examples cited in the raw thought as illustrating installability failure (not
     re-adjudicated here, cited only as motivating instances): coalition control (operator present,
     endogenous recruitment absent -- REE-v3 has typed control demands, coalition templates and a
-    controller, but it is inert until manually called and no endogenous monitor invokes it); rule
+    controller, but until 2026-09 it was inert until manually called with no endogenous monitor invoking it -- NARROWED 2026-09-16 per confirmed failure_autopsy_V3-EXQ-1038_2026-09-14: an endogenous monitor now exists (ree-v3 88c7c3332c) and V3-EXQ-1038 shows it firing in 7/7 seeds at the shipped default threshold, so the example survives only in its COMPOSITION form -- use_endogenous_coalition_trigger defaults False and exactly 1 corpus driver enables it, so the DEFAULT composition still does not recruit the controller -- and dies in its capability form); rule
     apprehension (a selector configured to demote candidates can be silently made equivalent to
     its own OFF arm by a permissive fallback envelope, so the intended causal contrast never
     occurs even though the surrounding experiment executes without error).
@@ -101166,9 +101545,9 @@
     as_of: '2026-09-15'
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1023_2026-09-14
-      as_of: '2026-09-15'
-      verdict: "mixed -- acceptance DV missed the 0.85 parity bar on 3/3 seeds while SD-106 ON beat OFF on every seed; budget-shortfall vs objective-ceiling question open, routed to a two-metric step-budget diagnostic before any weight change"
+      from: "failure_autopsy_V3-EXQ-1041_2026-09-16"
+      as_of: "2026-09-16"
+      verdict: "non_contributory -- V3-EXQ-1041 (diagnostic PASS, vacuous_pass flag NOT sustained) PARTIALLY attributes the V3-EXQ-1023 shortfall: in-training preservation_holdout.r2 under-reads the code by ~0.10 R^2 vs a post-hoc OLS probe (0.951-0.980 of the PCA-32 ceiling); the mechanism is NOT inert (beats paired OFF on 3/3 seeds at every budget, effect triples across the sweep, head not saturated); metric-vs-budget split OPEN (order-dependent decomposition; order-symmetric partition routes no_dominant_explanation). Mechanism defect EXCLUDED as dominant account. Next: v3_exq_1010 sweep UNCHANGED at SD-106-ON P0a epochs=40 (queue-experiment) + compression /lit-pull (chip-20260916-sd106-compression-litpull, already open). Acceptance measurement still owed; stays implemented / pending_retest_after_substrate true."
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true
   pending_retest_after_substrate: true
@@ -101235,7 +101614,47 @@
     both the in-training holdout R^2 and a post-hoc linear-probe R^2 across a step-budget arm before
     any further objective redesign or /lit-pull. Status stays implemented; not promoted, not
     demoted.
-  validation_experiment: 'V3-EXQ-1015 -- re-runs ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py
+
+    [2026-09-16 governance, cycle governance-20260916, applied confirmed
+    failure_autopsy_V3-EXQ-1041_2026-09-16 (user Step 8 gate 2026-09-16T13:06:22Z, REE_assembly
+    62be57a67e9)] V3-EXQ-1041 (diagnostic PASS, confirmed failure_autopsy_V3-EXQ-1041_2026-09-16)
+    ran the cheap P0-warmup-only two-metric step-budget probe that confirmed
+    failure_autopsy_V3-EXQ-1023_2026-09-14 routed. It PARTIALLY attributes V3-EXQ-1023's shortfall
+    and leaves the metric-vs-budget split OPEN. WHAT IS ESTABLISHED, order-free: (1) the in-training
+    `preservation_holdout.r2` (0.7490/0.7464/0.6999) is a jointly-SGD-trained head's own holdout
+    metric, not the post-hoc linear-decodability probe the design-time figures were, and it
+    under-reads the same code on the same buffer and same held-out split by 0.0979/0.0967/0.1289
+    absolute R^2; (2) under a post-hoc OLS probe the SD-106 code reaches 0.951 (as-shipped) to 0.980
+    (at ~3.3x the optimiser steps) of the in-run PCA-32 achievable ceiling; (3) the mechanism is NOT
+    inert and its measured effect over its own paired OFF control TRIPLES across the swept budget --
+    SD-106 minus OFF post-hoc medians +0.0169 (b_shipped) / +0.0315 (b_steps600) / +0.0509
+    (b_steps1200) / +0.0277 (b_designref), positive on 3/3 seeds at every budget, while OFF parity
+    stays flat (0.9245/0.9260/0.9208/0.9303) -- so V3-EXQ-1023's acceptance measurement measured
+    this mechanism at roughly one third of its within-range effect size; (4) the preservation head
+    has NOT saturated at the top of the sweep (sgd_head_r2 medians 0.746 -> 0.806 -> 0.854, still
+    rising at ~1160-1320 steps and still 0.014 below the post-hoc probe there). WHAT IS NOT
+    ESTABLISHED: which of the metric mismatch or the training budget dominates. The driver's shipped
+    decomposition measures the budget factor on `posthoc_ols_r2` while anchoring the gap at
+    `sgd_head_r2`, so head under-training is partitioned into the `metric` share by construction;
+    repartitioning the identical cells budget-first gives budget 0.769 median (0.800/0.769/0.762)
+    and routes `under_budgeted_p0a`, and the order-symmetric partition gives leader margins
+    0.095/0.078/0.042 -- below the pre-registered 0.15 on 3/3 seeds, i.e. the driver's own
+    pre-registered `no_dominant_explanation` branch, which its combination_rule defines as 'a
+    RESULT, not an instrument failure ... the shortfall has no single dominant cause'. The three
+    shares on that partition are metric 0.404 / budget 0.475 / residual 0.104. ALSO RECORDED: PCA-32
+    of the P0a rollout buffer explains only 0.888 of world_obs held-out and 0.893 in-sample on seed
+    42 (cross-seed held-out median 0.886), against the SD-106 design doc's 0.9983/0.9984 -- so the
+    design-time anchor was measured on a DIFFERENT observation distribution and the doc's
+    0.9974/0.9978 table is not comparable to any P0a acceptance number; every criterion in this run
+    is ceiling-relative, so the routing does not depend on it. ROUTING: a consumer-rung
+    discriminator re-run (v3_exq_1010_zworld_overcapacity_decoder_sweep.py UNCHANGED against an
+    SD-106-ON warmup at P0a epochs=40 -- the b_steps1200 cell this run already executed 6 times, one
+    config knob, existing harness), which simultaneously tests the budget question and discriminates
+    the two surviving readings of the consumer-rung shortfall with a ~0.09 predicted separation;
+    CO-PRIMARY and already chipped, the /lit-pull on generic-vs-task-relevant compression. Status
+    stays implemented; not promoted, not demoted; diagnostic, excluded from confidence and conflict
+    scoring.
+  validation_experiment: 'V3-EXQ-1023 -- re-runs ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py
     UNCHANGED against an SD-106-ON warmup. ACCEPTANCE TARGET (pre-set by governance gov-20260911, not
     invented at build time): the observation->z_world latent reaches PCA-32 parity -- >= 0.85 held-out
     oracle-action agreement at the consumer rung (x734.PPOPolicyNet at PPO_TRUNK_HIDDEN) on a seed

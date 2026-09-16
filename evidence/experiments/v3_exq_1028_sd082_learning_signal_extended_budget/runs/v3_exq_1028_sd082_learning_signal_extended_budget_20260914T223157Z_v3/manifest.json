@@ -23,8 +23,10 @@
     "SD-082"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-082": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -194,5 +196,6 @@
     "writer_defect": null,
     "n_agents": 5,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "[2026-09-16 governance, cycle governance-20260916] evidence_direction non_contributory per confirmed failure_autopsy_V3-EXQ-1028_2026-09-15 (user Step 8 gate 2026-09-16T12:08:10Z; artifact commit REE_assembly 496d0c238c0; ratified at governance-20260916 Step 4). Diagnostic PASS, note-only: budget answered at P1=300; no persistent gradient; sign leg alive. Was unknown."
 }

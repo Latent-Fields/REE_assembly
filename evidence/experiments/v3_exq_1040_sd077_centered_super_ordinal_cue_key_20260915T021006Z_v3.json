@@ -1,1 +1,505 @@
-{"run_id": "v3_exq_1040_sd077_centered_super_ordinal_cue_key_20260915T021006Z_v3", "experiment_type": "v3_exq_1040_sd077_centered_super_ordinal_cue_key", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["SD-077"], "claim_ids_tested": ["SD-077"], "experiment_purpose": "evidence", "timestamp_utc": "20260915T021006Z", "outcome": "PASS", "dry_run": false, "non_degenerate": true, "degeneracy_reason": "", "evidence_direction": "supports", "evidence_direction_per_claim": {"SD-077": "supports"}, "config": {"n_child": 12, "steps": 100, "seeds": [42, 43, 44], "probe_steps": 160, "n_slots": 1024, "salience_threshold": 0.5, "complexity_threshold": 0.2, "merge_similarity": 0.8, "write_alpha": 0.3, "baseline_alpha": 0.02, "forced_benefit": 0.5, "forced_drive": 0.9, "arm_centering": {"raw_key": false, "centered_key": true}, "common_mode_floor": 0.8, "writes_floor": 1, "anchor_delta_margin": 4, "frac_below_margin": 0.5, "complexity_margin_reported_only": 0.05, "raw_saturation_ceiling": 2, "seed_pass_fraction": 0.6666666666666666}, "metrics": {"readiness_met": true, "r1_common_mode_offset": true, "r2_writes_fire": true, "r3_cap_headroom": true, "min_common_mode_ratio": 0.996402, "min_total_writes": 913, "max_anchor_count_across_arms": 85, "slot_headroom": 939, "magnitude_censored_at_cap": false, "frac_c1_anchor_delta": 1.0, "frac_c2_raw_saturates": 1.0, "frac_c3_geometry_spread_delta": 0.6667, "frac_c3reported_mean_complexity_delta": 0.3333, "c3_reported_mean_complexity_pass": false, "min_frac_below_delta_worst": 0.313208, "min_anchor_delta_centered_minus_raw": 36, "min_complexity_delta_centered_minus_raw": 0.013593, "max_raw_key_anchor_count": 1, "c1_pass": true, "c2_raw_saturates_reported": true, "c3_pass": true, "seed_pass_n_required": 2}, "diagnostics": {"p0_geometry_per_seed": [{"seed": 42, "n_contexts": 160, "common_mode_ratio": 0.996998, "raw_pairwise": {"min": 0.986567, "mean": 0.993895, "frac_below_0p8": 0.0}, "centered_pairwise_1x_advance": {"min": -0.866252, "mean": 0.129266, "frac_below_0p8": 0.809041}, "centered_pairwise_2x_advance": {"min": -0.91217, "mean": 0.064021, "frac_below_0p8": 0.799214}, "frac_below_delta_worst": 0.799214, "centered_frac_below_worst": 0.799214, "raw_frac_below": 0.0}, {"seed": 43, "n_contexts": 160, "common_mode_ratio": 0.999319, "raw_pairwise": {"min": 0.991013, "mean": 0.998649, "frac_below_0p8": 0.0}, "centered_pairwise_1x_advance": {"min": 0.0, "mean": 0.794612, "frac_below_0p8": 0.313208}, "centered_pairwise_2x_advance": {"min": -0.17089, "mean": 0.643168, "frac_below_0p8": 0.400865}, "frac_below_delta_worst": 0.313208, "centered_frac_below_worst": 0.313208, "raw_frac_below": 0.0}, {"seed": 44, "n_contexts": 160, "common_mode_ratio": 0.996402, "raw_pairwise": {"min": 0.977557, "mean": 0.992725, "frac_below_0p8": 0.0}, "centered_pairwise_1x_advance": {"min": -0.778416, "mean": 0.27038, "frac_below_0p8": 0.747877}, "centered_pairwise_2x_advance": {"min": -0.966208, "mean": 0.109978, "frac_below_0p8": 0.830189}, "frac_below_delta_worst": 0.747877, "centered_frac_below_worst": 0.747877, "raw_frac_below": 0.0}]}, "arm_results": [{"arm": "raw_key", "seed": 42, "centering": false, "anchor_count": 1, "n_allocate": 1, "n_reinforce": 912, "n_baseline_seeds": 912, "total_writes": 913, "mean_complexity": 0.003209, "mean_complexity_allocate_only": 1.0, "mean_complexity_reinforce_only": 0.002117, "n_complexity_samples": 913, "n_allocate_samples": 1, "n_reinforce_samples": 912, "arm_common_mode_ratio": 0.994388, "n_ticks": 913, "slot_headroom": 1023, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "ce28c94457c821c6de400022338dc0a34bc1c93721426720731ba9c0689cd0c8", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_n_files": 209, "machine_class": "darwin-arm64-py3.13-torch2.12.0", "torch_version": "2.12.0", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"}}, {"arm": "centered_key", "seed": 42, "centering": true, "anchor_count": 85, "n_allocate": 85, "n_reinforce": 828, "n_baseline_seeds": 911, "total_writes": 913, "mean_complexity": 0.057054, "mean_complexity_allocate_only": 0.351231, "mean_complexity_reinforce_only": 0.026855, "n_complexity_samples": 913, "n_allocate_samples": 85, "n_reinforce_samples": 828, "arm_common_mode_ratio": 0.994388, "n_ticks": 913, "slot_headroom": 939, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "02fe234755e520d3130e831df53fd3c39f5c02b318a07ec05bc1ad51bcf1c269", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_n_files": 209, "machine_class": "darwin-arm64-py3.13-torch2.12.0", "torch_version": "2.12.0", "regime": "A", "seed": 42, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"}}, {"arm": "raw_key", "seed": 43, "centering": false, "anchor_count": 1, "n_allocate": 1, "n_reinforce": 1199, "n_baseline_seeds": 48, "total_writes": 1200, "mean_complexity": 0.001123, "mean_complexity_allocate_only": 1.0, "mean_complexity_reinforce_only": 0.00029, "n_complexity_samples": 1200, "n_allocate_samples": 1, "n_reinforce_samples": 1199, "arm_common_mode_ratio": 0.996769, "n_ticks": 1200, "slot_headroom": 1023, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "9e2980862406482711a5af282e4201c8c7705b4ec295f427e49b93e654d47647", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_n_files": 209, "machine_class": "darwin-arm64-py3.13-torch2.12.0", "torch_version": "2.12.0", "regime": "A", "seed": 43, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"}}, {"arm": "centered_key", "seed": 43, "centering": true, "anchor_count": 37, "n_allocate": 37, "n_reinforce": 1163, "n_baseline_seeds": 44, "total_writes": 1200, "mean_complexity": 0.014716, "mean_complexity_allocate_only": 0.367776, "mean_complexity_reinforce_only": 0.003484, "n_complexity_samples": 1200, "n_allocate_samples": 37, "n_reinforce_samples": 1163, "arm_common_mode_ratio": 0.996769, "n_ticks": 1200, "slot_headroom": 987, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "988564efdfd7b64bfb687bf559fc8ed044137c8fdb1fb158dee4381c4bf808db", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_n_files": 209, "machine_class": "darwin-arm64-py3.13-torch2.12.0", "torch_version": "2.12.0", "regime": "A", "seed": 43, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"}}, {"arm": "raw_key", "seed": 44, "centering": false, "anchor_count": 1, "n_allocate": 1, "n_reinforce": 1198, "n_baseline_seeds": 50, "total_writes": 1199, "mean_complexity": 0.001818, "mean_complexity_allocate_only": 1.0, "mean_complexity_reinforce_only": 0.000985, "n_complexity_samples": 1199, "n_allocate_samples": 1, "n_reinforce_samples": 1198, "arm_common_mode_ratio": 0.996698, "n_ticks": 1199, "slot_headroom": 1023, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "3caf3dc5e8432dc4742fbd619982b4ce14ffd4c95c8857db2f418b7fd2ae5e81", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_n_files": 209, "machine_class": "darwin-arm64-py3.13-torch2.12.0", "torch_version": "2.12.0", "regime": "A", "seed": 44, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"}}, {"arm": "centered_key", "seed": 44, "centering": true, "anchor_count": 60, "n_allocate": 60, "n_reinforce": 1139, "n_baseline_seeds": 47, "total_writes": 1199, "mean_complexity": 0.031532, "mean_complexity_allocate_only": 0.337759, "mean_complexity_reinforce_only": 0.015401, "n_complexity_samples": 1199, "n_allocate_samples": 60, "n_reinforce_samples": 1139, "arm_common_mode_ratio": 0.996698, "n_ticks": 1199, "slot_headroom": 964, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "cffdaa8dacfffa148a8a7ff5184ed88350ee816310ef5426eb5a510c0a5645eb", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_n_files": 209, "machine_class": "darwin-arm64-py3.13-torch2.12.0", "torch_version": "2.12.0", "regime": "A", "seed": 44, "config_slice_declared": false, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"}}], "interpretation": {"label": "centered_cue_key_restores_anchor_differentiation", "preconditions": [{"name": "R1_raw_zworld_common_mode_offset_present", "description": "PREMISE gate. SD-077 is conditioned on a dominant common-mode offset in raw z_world; without it centering is a no-op by construction and the claim is untested rather than falsified. Statistic is the WORST (minimum) seed, matching the all-seeds quantifier in met.", "measured": 0.996402, "threshold": 0.8, "direction": "lower", "control": "P0 write-free probe pass over the nursery with a centering=False agent; arm-invariant because centering never touches the encoder, only cue COMPARISON", "offending_cell": 44, "met": true}, {"name": "R2_super_ordinal_writes_fire", "description": "Non-vacuity gate: every cell must fire at least one super-ordinal write, else anchor_count is measured over an empty set (the V3-EXQ-669a defect). Worst cell reported, matching the min quantifier in met.", "measured": 913, "threshold": 1, "direction": "lower", "control": "forced supra-threshold benefit every step in both arms", "met": true}, {"name": "R3_anchor_bank_cap_headroom", "description": "SAME-STATISTIC censoring guard on the DV C1 routes on: no arm may saturate super_ordinal_n_slots, else anchor_count is censored and a NULL is uninterpretable. V3-EXQ-669c saturated at n_slots=64, which is why this run uses 1024. Scored against the NULL branch only -- censoring can only shrink the centered arm, so it can never manufacture a C1 pass.", "measured": 939, "threshold": 1, "direction": "lower", "control": "n_slots minus the maximum anchor_count over all cells", "met": true}], "criteria_non_degenerate": {"C1": true, "C3": true, "C2": true}, "combination_rule": "PASS requires C1 (behavioural: anchor cardinality) AND C3 (geometric: cue-key pairwise spread), each on >= ceil(2/3 * n_seeds) seeds, and only after R1 and R2 hold. The two are deliberately independent -- C3 is the asserted CAUSE measured on a fixed P0 probe, C1 the closed-loop CONSEQUENCE -- so C1-pass/C3-fail is informative rather than contradictory. C2 and C3R are reported context and never enter the verdict.", "criteria": [{"name": "C1_centered_more_anchors", "load_bearing": true, "passed": true, "measured": 3, "threshold": 2, "measured_min_anchor_delta": 36, "threshold_anchor_delta_margin": 4, "unit": "seeds passing (anchor_count centered - raw >= margin)"}, {"name": "C3_centered_key_spreads_cue_geometry", "load_bearing": true, "passed": true, "measured": 2, "threshold": 2, "measured_min_frac_below_delta": 0.313208, "threshold_frac_below_margin": 0.5, "unit": "seeds passing (P0 frac of pairwise cosines < 0.8: centered worst-case minus raw >= margin)"}, {"name": "C3R_centered_higher_mean_complexity_REPORTED", "load_bearing": false, "passed": false, "measured": 1, "threshold": 2, "measured_min_complexity_delta": 0.013593, "threshold_complexity_margin": 0.05, "unit": "seeds passing (mean_complexity over fired writes, centered - raw >= margin) -- DILUTES with run length, reported only"}, {"name": "C2_raw_key_saturates_REPORTED", "load_bearing": false, "passed": true, "measured": 3, "threshold": 2, "measured_max_raw_anchor_count": 1, "threshold_raw_saturation_ceiling": 2, "unit": "seeds passing (raw_key anchor_count <= ceiling)"}], "evidence_direction": "supports"}, "recording_schema": "rec/v1", "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3", "substrate_commit": {"commit": "61d8e24ce21c1a4575a5b9daf1cbe88e74446e56", "dirty": false, "branch": "main"}, "substrate_stable_across_run": true, "substrate_identity": {"source": "per_cell_fingerprint_hoist", "resolved_at_utc": "2026-09-15T01:48:08Z", "commit_source": "manifest_write_disk_read", "commit_resolved_at_utc": "2026-09-15T02:10:06Z", "stamped_at_utc": "2026-09-15T02:10:06Z", "lag_seconds": 1318, "stability_snapshots": 1, "drifted_since_resolved": false}, "z_goal_stream": {"ticks_total": 6624, "ticks_active": 6618, "writer_calls": 6624, "active_frac": 0.9990942028985508, "writer_defect": false, "n_agents": 6, "goal_state_present": true}, "enabled_default_off_flags": {"e3.benefit_eval_enabled": true, "e3.goal_weight": 1.0, "heartbeat.breath_period": 50, "goal.z_goal_enabled": true, "goal.use_super_ordinal_goal_anchors": true, "goal.super_ordinal_cue_centering": true}, "enabled_default_off_flags_source": "process_observed_config", "machine": "DLAPTOP-4.local", "machine_class": "darwin-arm64-py3.13-torch2.12.0", "elapsed_seconds": 1593.133055416998, "seeds": [42, 43, 44], "queue_id": "V3-EXQ-1040"}
+{
+  "run_id": "v3_exq_1040_sd077_centered_super_ordinal_cue_key_20260915T021006Z_v3",
+  "experiment_type": "v3_exq_1040_sd077_centered_super_ordinal_cue_key",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-077"
+  ],
+  "claim_ids_tested": [
+    "SD-077"
+  ],
+  "experiment_purpose": "evidence",
+  "timestamp_utc": "20260915T021006Z",
+  "outcome": "PASS",
+  "dry_run": false,
+  "non_degenerate": true,
+  "degeneracy_reason": "",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-077": "supports"
+  },
+  "config": {
+    "n_child": 12,
+    "steps": 100,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "probe_steps": 160,
+    "n_slots": 1024,
+    "salience_threshold": 0.5,
+    "complexity_threshold": 0.2,
+    "merge_similarity": 0.8,
+    "write_alpha": 0.3,
+    "baseline_alpha": 0.02,
+    "forced_benefit": 0.5,
+    "forced_drive": 0.9,
+    "arm_centering": {
+      "raw_key": false,
+      "centered_key": true
+    },
+    "common_mode_floor": 0.8,
+    "writes_floor": 1,
+    "anchor_delta_margin": 4,
+    "frac_below_margin": 0.5,
+    "complexity_margin_reported_only": 0.05,
+    "raw_saturation_ceiling": 2,
+    "seed_pass_fraction": 0.6666666666666666
+  },
+  "metrics": {
+    "readiness_met": true,
+    "r1_common_mode_offset": true,
+    "r2_writes_fire": true,
+    "r3_cap_headroom": true,
+    "min_common_mode_ratio": 0.996402,
+    "min_total_writes": 913,
+    "max_anchor_count_across_arms": 85,
+    "slot_headroom": 939,
+    "magnitude_censored_at_cap": false,
+    "frac_c1_anchor_delta": 1.0,
+    "frac_c2_raw_saturates": 1.0,
+    "frac_c3_geometry_spread_delta": 0.6667,
+    "frac_c3reported_mean_complexity_delta": 0.3333,
+    "c3_reported_mean_complexity_pass": false,
+    "min_frac_below_delta_worst": 0.313208,
+    "min_anchor_delta_centered_minus_raw": 36,
+    "min_complexity_delta_centered_minus_raw": 0.013593,
+    "max_raw_key_anchor_count": 1,
+    "c1_pass": true,
+    "c2_raw_saturates_reported": true,
+    "c3_pass": true,
+    "seed_pass_n_required": 2
+  },
+  "diagnostics": {
+    "p0_geometry_per_seed": [
+      {
+        "seed": 42,
+        "n_contexts": 160,
+        "common_mode_ratio": 0.996998,
+        "raw_pairwise": {
+          "min": 0.986567,
+          "mean": 0.993895,
+          "frac_below_0p8": 0.0
+        },
+        "centered_pairwise_1x_advance": {
+          "min": -0.866252,
+          "mean": 0.129266,
+          "frac_below_0p8": 0.809041
+        },
+        "centered_pairwise_2x_advance": {
+          "min": -0.91217,
+          "mean": 0.064021,
+          "frac_below_0p8": 0.799214
+        },
+        "frac_below_delta_worst": 0.799214,
+        "centered_frac_below_worst": 0.799214,
+        "raw_frac_below": 0.0
+      },
+      {
+        "seed": 43,
+        "n_contexts": 160,
+        "common_mode_ratio": 0.999319,
+        "raw_pairwise": {
+          "min": 0.991013,
+          "mean": 0.998649,
+          "frac_below_0p8": 0.0
+        },
+        "centered_pairwise_1x_advance": {
+          "min": 0.0,
+          "mean": 0.794612,
+          "frac_below_0p8": 0.313208
+        },
+        "centered_pairwise_2x_advance": {
+          "min": -0.17089,
+          "mean": 0.643168,
+          "frac_below_0p8": 0.400865
+        },
+        "frac_below_delta_worst": 0.313208,
+        "centered_frac_below_worst": 0.313208,
+        "raw_frac_below": 0.0
+      },
+      {
+        "seed": 44,
+        "n_contexts": 160,
+        "common_mode_ratio": 0.996402,
+        "raw_pairwise": {
+          "min": 0.977557,
+          "mean": 0.992725,
+          "frac_below_0p8": 0.0
+        },
+        "centered_pairwise_1x_advance": {
+          "min": -0.778416,
+          "mean": 0.27038,
+          "frac_below_0p8": 0.747877
+        },
+        "centered_pairwise_2x_advance": {
+          "min": -0.966208,
+          "mean": 0.109978,
+          "frac_below_0p8": 0.830189
+        },
+        "frac_below_delta_worst": 0.747877,
+        "centered_frac_below_worst": 0.747877,
+        "raw_frac_below": 0.0
+      }
+    ]
+  },
+  "arm_results": [
+    {
+      "arm": "raw_key",
+      "seed": 42,
+      "centering": false,
+      "anchor_count": 1,
+      "n_allocate": 1,
+      "n_reinforce": 912,
+      "n_baseline_seeds": 912,
+      "total_writes": 913,
+      "mean_complexity": 0.003209,
+      "mean_complexity_allocate_only": 1.0,
+      "mean_complexity_reinforce_only": 0.002117,
+      "n_complexity_samples": 913,
+      "n_allocate_samples": 1,
+      "n_reinforce_samples": 912,
+      "arm_common_mode_ratio": 0.994388,
+      "n_ticks": 913,
+      "slot_headroom": 1023,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "ce28c94457c821c6de400022338dc0a34bc1c93721426720731ba9c0689cd0c8",
+        "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+        "substrate_n_files": 209,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"
+      }
+    },
+    {
+      "arm": "centered_key",
+      "seed": 42,
+      "centering": true,
+      "anchor_count": 85,
+      "n_allocate": 85,
+      "n_reinforce": 828,
+      "n_baseline_seeds": 911,
+      "total_writes": 913,
+      "mean_complexity": 0.057054,
+      "mean_complexity_allocate_only": 0.351231,
+      "mean_complexity_reinforce_only": 0.026855,
+      "n_complexity_samples": 913,
+      "n_allocate_samples": 85,
+      "n_reinforce_samples": 828,
+      "arm_common_mode_ratio": 0.994388,
+      "n_ticks": 913,
+      "slot_headroom": 939,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "02fe234755e520d3130e831df53fd3c39f5c02b318a07ec05bc1ad51bcf1c269",
+        "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+        "substrate_n_files": 209,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"
+      }
+    },
+    {
+      "arm": "raw_key",
+      "seed": 43,
+      "centering": false,
+      "anchor_count": 1,
+      "n_allocate": 1,
+      "n_reinforce": 1199,
+      "n_baseline_seeds": 48,
+      "total_writes": 1200,
+      "mean_complexity": 0.001123,
+      "mean_complexity_allocate_only": 1.0,
+      "mean_complexity_reinforce_only": 0.00029,
+      "n_complexity_samples": 1200,
+      "n_allocate_samples": 1,
+      "n_reinforce_samples": 1199,
+      "arm_common_mode_ratio": 0.996769,
+      "n_ticks": 1200,
+      "slot_headroom": 1023,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "9e2980862406482711a5af282e4201c8c7705b4ec295f427e49b93e654d47647",
+        "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+        "substrate_n_files": 209,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"
+      }
+    },
+    {
+      "arm": "centered_key",
+      "seed": 43,
+      "centering": true,
+      "anchor_count": 37,
+      "n_allocate": 37,
+      "n_reinforce": 1163,
+      "n_baseline_seeds": 44,
+      "total_writes": 1200,
+      "mean_complexity": 0.014716,
+      "mean_complexity_allocate_only": 0.367776,
+      "mean_complexity_reinforce_only": 0.003484,
+      "n_complexity_samples": 1200,
+      "n_allocate_samples": 37,
+      "n_reinforce_samples": 1163,
+      "arm_common_mode_ratio": 0.996769,
+      "n_ticks": 1200,
+      "slot_headroom": 987,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "988564efdfd7b64bfb687bf559fc8ed044137c8fdb1fb158dee4381c4bf808db",
+        "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+        "substrate_n_files": 209,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"
+      }
+    },
+    {
+      "arm": "raw_key",
+      "seed": 44,
+      "centering": false,
+      "anchor_count": 1,
+      "n_allocate": 1,
+      "n_reinforce": 1198,
+      "n_baseline_seeds": 50,
+      "total_writes": 1199,
+      "mean_complexity": 0.001818,
+      "mean_complexity_allocate_only": 1.0,
+      "mean_complexity_reinforce_only": 0.000985,
+      "n_complexity_samples": 1199,
+      "n_allocate_samples": 1,
+      "n_reinforce_samples": 1198,
+      "arm_common_mode_ratio": 0.996698,
+      "n_ticks": 1199,
+      "slot_headroom": 1023,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "3caf3dc5e8432dc4742fbd619982b4ce14ffd4c95c8857db2f418b7fd2ae5e81",
+        "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+        "substrate_n_files": 209,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"
+      }
+    },
+    {
+      "arm": "centered_key",
+      "seed": 44,
+      "centering": true,
+      "anchor_count": 60,
+      "n_allocate": 60,
+      "n_reinforce": 1139,
+      "n_baseline_seeds": 47,
+      "total_writes": 1199,
+      "mean_complexity": 0.031532,
+      "mean_complexity_allocate_only": 0.337759,
+      "mean_complexity_reinforce_only": 0.015401,
+      "n_complexity_samples": 1199,
+      "n_allocate_samples": 60,
+      "n_reinforce_samples": 1139,
+      "arm_common_mode_ratio": 0.996698,
+      "n_ticks": 1199,
+      "slot_headroom": 964,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cffdaa8dacfffa148a8a7ff5184ed88350ee816310ef5426eb5a510c0a5645eb",
+        "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+        "substrate_n_files": 209,
+        "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+        "torch_version": "2.12.0",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "38ee829e2d34aee385791976aff9281eefb4dc0d308187d08ec00d9f23098011",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-09-15T01:48:08Z"
+      }
+    }
+  ],
+  "interpretation": {
+    "label": "centered_cue_key_restores_anchor_differentiation",
+    "preconditions": [
+      {
+        "name": "R1_raw_zworld_common_mode_offset_present",
+        "description": "PREMISE gate. SD-077 is conditioned on a dominant common-mode offset in raw z_world; without it centering is a no-op by construction and the claim is untested rather than falsified. Statistic is the WORST (minimum) seed, matching the all-seeds quantifier in met.",
+        "measured": 0.996402,
+        "threshold": 0.8,
+        "direction": "lower",
+        "control": "P0 write-free probe pass over the nursery with a centering=False agent; arm-invariant because centering never touches the encoder, only cue COMPARISON",
+        "offending_cell": 44,
+        "met": true
+      },
+      {
+        "name": "R2_super_ordinal_writes_fire",
+        "description": "Non-vacuity gate: every cell must fire at least one super-ordinal write, else anchor_count is measured over an empty set (the V3-EXQ-669a defect). Worst cell reported, matching the min quantifier in met.",
+        "measured": 913,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "forced supra-threshold benefit every step in both arms",
+        "met": true
+      },
+      {
+        "name": "R3_anchor_bank_cap_headroom",
+        "description": "SAME-STATISTIC censoring guard on the DV C1 routes on: no arm may saturate super_ordinal_n_slots, else anchor_count is censored and a NULL is uninterpretable. V3-EXQ-669c saturated at n_slots=64, which is why this run uses 1024. Scored against the NULL branch only -- censoring can only shrink the centered arm, so it can never manufacture a C1 pass.",
+        "measured": 939,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "n_slots minus the maximum anchor_count over all cells",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C3": true,
+      "C2": true
+    },
+    "combination_rule": "PASS requires C1 (behavioural: anchor cardinality) AND C3 (geometric: cue-key pairwise spread), each on >= ceil(2/3 * n_seeds) seeds, and only after R1 and R2 hold. The two are deliberately independent -- C3 is the asserted CAUSE measured on a fixed P0 probe, C1 the closed-loop CONSEQUENCE -- so C1-pass/C3-fail is informative rather than contradictory. C2 and C3R are reported context and never enter the verdict.",
+    "criteria": [
+      {
+        "name": "C1_centered_more_anchors",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 3,
+        "threshold": 2,
+        "measured_min_anchor_delta": 36,
+        "threshold_anchor_delta_margin": 4,
+        "unit": "seeds passing (anchor_count centered - raw >= margin)"
+      },
+      {
+        "name": "C3_centered_key_spreads_cue_geometry",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 2,
+        "threshold": 2,
+        "measured_min_frac_below_delta": 0.313208,
+        "threshold_frac_below_margin": 0.5,
+        "unit": "seeds passing (P0 frac of pairwise cosines < 0.8: centered worst-case minus raw >= margin)"
+      },
+      {
+        "name": "C3R_centered_higher_mean_complexity_REPORTED",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 1,
+        "threshold": 2,
+        "measured_min_complexity_delta": 0.013593,
+        "threshold_complexity_margin": 0.05,
+        "unit": "seeds passing (mean_complexity over fired writes, centered - raw >= margin) -- DILUTES with run length, reported only"
+      },
+      {
+        "name": "C2_raw_key_saturates_REPORTED",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 3,
+        "threshold": 2,
+        "measured_max_raw_anchor_count": 1,
+        "threshold_raw_saturation_ceiling": 2,
+        "unit": "seeds passing (raw_key anchor_count <= ceiling)"
+      }
+    ],
+    "evidence_direction": "supports"
+  },
+  "recording_schema": "rec/v1",
+  "substrate_hash": "4090fb0c6a858d0aec42b53b8fa8529429d719768e25807744a6651771c44fb3",
+  "substrate_commit": {
+    "commit": "61d8e24ce21c1a4575a5b9daf1cbe88e74446e56",
+    "dirty": false,
+    "branch": "main"
+  },
+  "substrate_stable_across_run": true,
+  "substrate_identity": {
+    "source": "per_cell_fingerprint_hoist",
+    "resolved_at_utc": "2026-09-15T01:48:08Z",
+    "commit_source": "manifest_write_disk_read",
+    "commit_resolved_at_utc": "2026-09-15T02:10:06Z",
+    "stamped_at_utc": "2026-09-15T02:10:06Z",
+    "lag_seconds": 1318,
+    "stability_snapshots": 1,
+    "drifted_since_resolved": false
+  },
+  "z_goal_stream": {
+    "ticks_total": 6624,
+    "ticks_active": 6618,
+    "writer_calls": 6624,
+    "active_frac": 0.9990942028985508,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  },
+  "enabled_default_off_flags": {
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "goal.use_super_ordinal_goal_anchors": true,
+    "goal.super_ordinal_cue_centering": true
+  },
+  "enabled_default_off_flags_source": "process_observed_config",
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "elapsed_seconds": 1593.133055416998,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "queue_id": "V3-EXQ-1040",
+  "evidence_direction_note": "[2026-09-16 governance, cycle governance-20260916] supports (SD-077), ratified at the Step 2b walk with a logged driver skim: C1 85/37/60 vs 1/1/1 anchors (bar +4), C3 2/3 seeds on the pre-registered majority rule (seed 43 real miss 0.313 vs 0.50); caveat -- closed loop never diverged between arms (arm_common_mode_ratio identical to 6 decimals), so this is an open-loop live replication with real writes, not a closed-loop test."
+}

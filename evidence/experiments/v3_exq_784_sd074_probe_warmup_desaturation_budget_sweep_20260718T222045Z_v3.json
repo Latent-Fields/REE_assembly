@@ -3760,6 +3760,6 @@
     83
   ],
   "queue_id": "V3-EXQ-784",
-  "evidence_direction": "supports",
-  "evidence_direction_note": "Adjudicated by failure_autopsy_V3-EXQ-784_2026-07-19. Diagnostic PASS: SD-074 probe_warmup de-saturation VALIDATED (14 seeds x 4 budget checkpoints = 56 cells, 56/56 readable, all probe_stop_reason='floors_met'). substrate_queue SD-074 -> implemented_validated (already applied). Carries no claim tags."
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Adjudicated by failure_autopsy_V3-EXQ-784_2026-07-19. Diagnostic PASS: SD-074 probe_warmup de-saturation VALIDATED (14 seeds x 4 budget checkpoints = 56 cells, 56/56 readable, all probe_stop_reason='floors_met'). substrate_queue SD-074 -> implemented_validated (already applied). Carries no claim tags. [2026-09-16 governance, cycle governance-20260916] SUPERSEDED by V3-EXQ-784a (v3_exq_784a_sd074_probe_warmup_desaturation_budget_sweep_corrected_20260915T135328Z_v3, evidence PASS 2026-09-15; queue entry supersedes: V3-EXQ-784). GFLAG-0036 (2026-08-16) found this run's probe reads leaked eval-rollout data into the E1 training buffer (2/6 cells flipped regime in replication) and it asserted rather than measured non-destructiveness; 784a measures it (0 violations / 56 cells) with a per-checkpoint RNG re-pin. Inactive for scoring."
 }

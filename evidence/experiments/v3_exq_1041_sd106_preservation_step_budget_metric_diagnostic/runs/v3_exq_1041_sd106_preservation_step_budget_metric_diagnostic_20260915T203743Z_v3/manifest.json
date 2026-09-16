@@ -23,8 +23,10 @@
     "SD-106"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-106": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -362,5 +364,6 @@
     "writer_defect": null,
     "n_agents": 24,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-16 governance, cycle governance-20260916] evidence_direction non_contributory per confirmed failure_autopsy_V3-EXQ-1041_2026-09-16 (user Step 8 gate 2026-09-16T13:06:22Z; artifact commit REE_assembly 62be57a67e9; ratified at governance-20260916 Step 4). Diagnostic PASS: partial attribution of the 1023 shortfall; metric-vs-budget split open; vacuous_pass flag NOT sustained. Was unknown."
 }

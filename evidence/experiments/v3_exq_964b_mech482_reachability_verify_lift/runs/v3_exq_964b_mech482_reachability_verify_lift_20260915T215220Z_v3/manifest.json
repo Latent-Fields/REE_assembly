@@ -23,8 +23,10 @@
     "MECH-482"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-482": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -342,5 +344,6 @@
     "writer_defect": null,
     "n_agents": 18,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "[2026-09-16 governance, cycle governance-20260916] evidence_direction non_contributory per confirmed failure_autopsy_V3-EXQ-964b_2026-09-16 (user Step 8 gate 2026-09-16T11:10:54Z; artifact commit REE_assembly 00bf53a62cb; ratified at governance-20260916 Step 4). Diagnostic PASS: instrument-verified null; content contrast not authority; vacuous_pass flag NOT sustained (ordered-gate false-flag class). Was unknown."
 }
