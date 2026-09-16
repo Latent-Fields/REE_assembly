@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_017",
+  "entry_id": "2026-09-16_mech_017_episodic_abstraction_null_talamini2022",
+  "timestamp_utc": "2026-09-16T16:07:36Z",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "source": {
+    "title": "No evidence for a preferential role of sleep in episodic memory abstraction",
+    "authors": [
+      "Lucia M. Talamini",
+      "Dirk van Moorselaar",
+      "Richard Bakker",
+      "Marlene Bulath",
+      "Sarolta Szegedi",
+      "Mohammadamin Sinichi",
+      "Marieke De Boer"
+    ],
+    "year": 2022,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2022.871188",
+    "pmid": "36570837",
+    "pmc": "PMC9780604",
+    "volume": "16",
+    "pages": "871188"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "Two experiments (N=37 across 12 h; N=46 across 60 h with a deprivation arm) converging on the same null, with a positive control inside the same data -- sleep DID protect temporal-order memory in Experiment 1 -- which rules out the cheapest dismissal, that the paradigm was simply insensitive to sleep. That internal dissociation is what earns 0.70 rather than the lower score a bare null would get. Capped by the absence of polysomnography and by the fact that a null over one generalisation task cannot establish the general absence of the effect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cross-episodic regularity extraction and generalisation to novel exemplars proceeded to the same extent over sleep and over wakefulness, so any REE design that attributes abstraction specifically to an offline phase has a documented human counterexample.",
+    "Generalisation performance was near-flat across the retention interval in both conditions (Experiment 1: 52.7% immediate vs 52.1% delayed), which is also consistent with abstraction having completed at encoding -- an outcome under which an offline consolidation phase has no fidelity work left to do.",
+    "Sleep protected arbitrary episodic detail (temporal order) while NOT preferentially improving generalisation -- the opposite dissociation to the one MECH-017 needs, since MECH-017 claims the offline phase serves model fidelity rather than trace preservation."
+  ],
+  "tags": [
+    "mech-017",
+    "null_result",
+    "abstraction",
+    "generalization",
+    "counterevidence",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across two experiments using hippocampus-dependent face-location association tasks, extraction of cross-episodic regularities and generalisation to novel exemplars occurred to a similar extent after sleep and after wakefulness, while sleep did specifically protect arbitrary episodic detail (temporal-order memory); the authors conclude this casts doubt on the widely accepted hypothesis that sleep preferentially transforms episodic memories into general knowledge.",
+    "ree_translation": "This is the direct counter-weight to MECH-017 and belongs in the claim's evidence set for that reason. If generalisation is equally served by quiet waking, then the offline phase is not where model fidelity is bought, and MECH-017's 'sleep improves the fidelity of the generative world model' would need restating as a claim about elapsed time or about trace protection -- ARC-011's territory -- rather than about sleep per se. REE should read the observed dissociation as a live alternative hypothesis, not as noise around Durrant.",
+    "mapping_caveat": "A null is not a disproof, and this one is bounded: one generalisation task, no polysomnography (so no test of the SWS dose-response that carries Durrant's result), and a face-location associative paradigm whose regularity structure is categorical rather than sequential. The sharpest reading is not that MECH-017 is false but that it is underdetermined by the human behavioural literature -- which is itself the finding REE should record.",
+    "source_context": "Healthy adult humans; face-location association / chessboard paradigm; Exp 1 sleep vs wake over 12 h, Exp 2 sleep deprivation vs normal sleep over 60 h; no PSG."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.3,
+    "notes": "source_quality is the highest of the three human entries -- two experiments, a deprivation arm, and an internal positive control -- despite the absence of PSG. mapping_fidelity is held below the supporting entries because 'episodic abstraction' is a narrower target than 'fidelity of the generative world model', so the null constrains MECH-017 without settling it."
+  }
+}

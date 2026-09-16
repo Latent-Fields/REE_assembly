@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_017",
+  "entry_id": "2026-09-16_mech_017_adversarial_dreaming_deperrois2022",
+  "timestamp_utc": "2026-09-16T16:07:36Z",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "source": {
+    "title": "Learning cortical representations through perturbed and adversarial dreaming",
+    "authors": [
+      "Nicolas Deperrois",
+      "Mihai A. Petrovici",
+      "Walter Senn",
+      "Jakob Jordan"
+    ],
+    "year": 2022,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.76384",
+    "pmid": "35384841",
+    "pmc": "PMC9071267",
+    "volume": "11",
+    "pages": "e76384"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The strongest entry in this pull for REE's purposes, because it is the only one that implements the claim rather than describing it, and it reports an ablation -- removing REM collapses semantic linear-readout accuracy from 58.25% to 46.00% on CIFAR-10 and from 78.92% to 42.30% on SVHN. That is a measured dependency of world-model quality on an offline phase, which is exactly MECH-017's shape. Held below 0.8 because the substrate is a GAN-flavoured autoencoder trained by backpropagation on 32x32 images, not a brain and not REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Removing the NREM phase leaves overall linear-readout accuracy essentially unchanged (58.25% -> 58.00% CIFAR-10; 78.92% -> 73.25% SVHN), so the model does NOT support a claim that replay-based NREM learning improves world-model fidelity in general -- its measured contribution is confined to robustness under occlusion.",
+    "The model's benefit is measured as linear separability of semantic categories, which is a proxy for world-model fidelity and not a direct measure of predictive accuracy; a substrate could improve on this proxy while its forward predictions got worse.",
+    "The architecture requires separable feedforward and feedback streams with lateral interactions gated off by brain state, and the authors state no mechanism for that gating -- if REE cannot implement the gating, the result does not transfer."
+  ],
+  "tags": [
+    "mech-017",
+    "generative_model",
+    "rem",
+    "nrem",
+    "adversarial",
+    "ablation",
+    "computational"
+  ],
+  "mapping": {
+    "source_claim_statement": "A cortical architecture organised as three brain states with complementary objectives -- wake (reconstruct external input), NREM (reconstruct replayed latent activity from perturbed generated input), REM (adversarially generate activity that appears externally driven) -- learns better semantic representations than ablated variants; REM-phase adversarial dreaming is necessary for extracting semantic concepts, while NREM-phase perturbed dreaming improves robustness of latent representations to occlusion.",
+    "ree_translation": "MECH-017's three named operations are not three descriptions of one process but a division of labour, and this model measures the division. Replay-based learning (NREM here) and prediction-error minimisation against internally generated input (REM here) improve different properties of the generative model, and only the latter improves semantic fidelity in the ablation. For REE this argues that an offline phase which only replays stored latents will buy robustness and not fidelity -- reality consolidation needs the generative, counterfactual arm as well.",
+    "mapping_caveat": "The correspondence between the model's 'REM' and biological or REE sleep is stipulated by the authors, not discovered. Credit assignment is backpropagation, training is batched, convolutional layers are used, and the hippocampal buffer is a simple store -- all of which the authors list as biologically implausible. The datasets are static 32x32 natural images with no temporal or agentive structure, so 'world model' here means an image-statistics model, considerably thinner than the world model MECH-017 is about.",
+    "source_context": "Computational model (GAN-inspired cortical architecture) trained on CIFAR-10 and SVHN; no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.5,
+    "notes": "source_quality is high for a computational entry: peer-reviewed at eLife with open review, and it reports the ablation rather than only the headline. transfer_risk is the binding constraint -- every claim about sleep here is an interpretation laid over an engineered training schedule."
+  }
+}

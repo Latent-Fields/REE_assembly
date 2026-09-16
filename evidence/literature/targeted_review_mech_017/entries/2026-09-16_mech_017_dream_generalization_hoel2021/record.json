@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_017",
+  "entry_id": "2026-09-16_mech_017_dream_generalization_hoel2021",
+  "timestamp_utc": "2026-09-16T16:07:36Z",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "source": {
+    "title": "The overfitted brain: Dreams evolved to assist generalization",
+    "authors": [
+      "Erik Hoel"
+    ],
+    "year": 2021,
+    "venue": "Patterns",
+    "doi": "10.1016/j.patter.2021.100244",
+    "pmid": "34036289",
+    "pmc": "PMC8134940",
+    "volume": "2",
+    "issue": "5",
+    "pages": "100244"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Mapping fidelity is the highest of any entry in this pull -- the paper's thesis is almost literally MECH-017's, that offline activity exists to improve the fidelity of a generative model rather than to preserve traces. But it is a hypothesis paper with no data of its own, so source_quality is capped well below an empirical entry. Aggregate is pulled down from the mapping score deliberately: a claim that matches REE this closely and supplies no measurement is a framing contribution, not evidence, and should not be allowed to raise MECH-017's confidence as though it were.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If dream deprivation (as distinct from sleep deprivation) leaves generalisation intact while memorisation is also intact, the central prediction fails and the mechanism does not exist as stated.",
+    "The hypothesis does not distinguish itself empirically from synaptic-homeostasis accounts, so an observed generalisation benefit after sleep is equally well explained by global downscaling and cannot discriminate the two.",
+    "Corrupted-input augmentation improves generalisation only when the corruption distribution is matched to the test distribution; a generative model that dreams the wrong perturbations would degrade rather than improve world-model fidelity."
+  ],
+  "tags": [
+    "mech-017",
+    "dreaming",
+    "generalization",
+    "overfitting",
+    "generative_model",
+    "support_tag:framing_only"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dreams evolved as a biological analogue of noise injection: stochastic, distorted replays of waking experience act as corrupted training samples that steer neural representations away from overfitting the day's specific episodes, so the function of dreaming is to improve generalisation rather than to store memories.",
+    "ree_translation": "MECH-017 asserts that sleep improves the fidelity of the generative world model. Hoel supplies the argument for why an offline phase is needed at all rather than simply more waking learning: a model trained only on encountered episodes overfits them, and fidelity to the world is not the same quantity as fidelity to the training set. This names the target of MECH-017's 'prediction error minimisation' as out-of-sample error, which is the distinction REE needs if reality consolidation is to mean anything more than trace replay.",
+    "mapping_caveat": "This is an argument, not a result. The paper imports its central intuition from deep-network regularisation, and the inference runs from artificial networks to brains -- the opposite direction to REE's usual transfer, and no less risky for it. Nothing here establishes that biological sleep actually performs the augmentation, nor that REE's substrate faces the overfitting regime the argument presupposes; REE's replay budget and data scale are not those of a mammal's day.",
+    "source_context": "Conceptual/theoretical paper; no species, task or sample -- argument by analogy to deep neural network regularisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.45,
+    "notes": "source_quality reflects a well-cited paper in a reputable venue that is nonetheless hypothesis-only. transfer_risk is elevated because the argument's warrant is an analogy to artificial networks, so the analogy is doing the work the data would otherwise do."
+  }
+}

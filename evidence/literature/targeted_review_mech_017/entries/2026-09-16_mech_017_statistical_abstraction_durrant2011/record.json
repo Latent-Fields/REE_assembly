@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_017",
+  "entry_id": "2026-09-16_mech_017_statistical_abstraction_durrant2011",
+  "timestamp_utc": "2026-09-16T16:07:36Z",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "source": {
+    "title": "Sleep-dependent consolidation of statistical learning",
+    "authors": [
+      "Simon J. Durrant",
+      "Charlotte Taylor",
+      "Scott Cairney",
+      "Penelope A. Lewis"
+    ],
+    "year": 2011,
+    "venue": "Neuropsychologia",
+    "doi": "10.1016/j.neuropsychologia.2011.02.015",
+    "pmid": "21335017",
+    "pmc": null,
+    "volume": "49",
+    "issue": "5",
+    "pages": "1322-1331"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Human, polysomnographically monitored, and measuring the right dependent variable -- abstraction of an implicit probabilistic structure, which is a generative-model property rather than a trace-retention one -- with the benefit replicated across an overnight and a nap design and correlated with slow-wave sleep amount. Held to 0.66 by the era and the design: a 2011 sleep-versus-wake comparison, no preregistration, sample sizes not recoverable from the abstract, and a dose-response correlation rather than a manipulation of SWS. Talamini 2022 in this same directory is the reason not to score it higher.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The SWS-to-improvement relationship is correlational; a third factor (baseline learning ability, time in bed, prior sleep debt) could drive both, and the study does not manipulate slow-wave sleep to test it.",
+    "The authors themselves report a time-based consolidation process operating alongside the sleep-specific one, so an offline interval alone -- not sleep -- produces part of the abstraction gain.",
+    "The paradigm is a passively-heard probabilistic tone sequence tested by recognition; if the gain is recognition fluency for statistically typical material rather than an improved forward model, the result would look identical and would not support MECH-017."
+  ],
+  "tags": [
+    "mech-017",
+    "statistical_learning",
+    "abstraction",
+    "slow_wave_sleep",
+    "polysomnography",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants exposed to tones in a probabilistically determined sequential structure improved significantly more at recognising novel sequences drawn from that same structure after a night of sleep than after equivalent daytime wakefulness, and more after a 4-hour afternoon interval containing a nap than one without; polysomnography revealed a significant correlation between improvement and the amount of slow-wave sleep obtained, alongside evidence of a separate time-based consolidation process.",
+    "ree_translation": "This is the closest human behavioural analogue available to MECH-017's assertion. What improves over sleep is performance on sequences the participant never heard, which can only come from a better model of the generating distribution -- the definition of increased generative-model fidelity. The SWS correlation additionally locates the operation in the phase REE's ARC-011 offline-integration scheduling already privileges, and the tone sequences are a temporal-structure task, closer to REE's world model than a static image-statistics benchmark.",
+    "mapping_caveat": "Auditory sequence statistics are a very thin world model: one modality, no agency, no consequences, no reward. MECH-017 claims fidelity gains for the model that grounds ethical decisions, and nothing in this paradigm speaks to whether structure learned about tones generalises to structure learned about a world an agent acts in. The sample sizes are not stated in the abstract and the full text was paywalled at the time of this pull, so the study's power is unverified here -- treat the effect size as unknown.",
+    "source_context": "Healthy adult humans; auditory statistical-learning paradigm; overnight sleep vs wake and nap vs no-nap, with polysomnography."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "transfer_risk is the lowest in this pull because the subject is a human brain doing offline abstraction -- no cross-species or in-silico step is required. source_quality carries the cost of an unverified N and a pre-replication-era design."
+  }
+}

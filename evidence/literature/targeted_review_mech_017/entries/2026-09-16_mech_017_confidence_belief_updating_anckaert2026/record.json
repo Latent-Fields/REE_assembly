@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_017",
+  "entry_id": "2026-09-16_mech_017_confidence_belief_updating_anckaert2026",
+  "timestamp_utc": "2026-09-16T16:07:36Z",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "source": {
+    "title": "Sleep deprivation disrupts the gatekeeping role of confidence in belief updating",
+    "authors": [
+      "C. Anckaert",
+      "Philippe Peigneux",
+      "Wim Gevers"
+    ],
+    "year": 2026,
+    "venue": "Journal of Experimental Psychology: Applied",
+    "doi": "10.1037/xap0000570",
+    "pmid": "41910560",
+    "pmc": null,
+    "volume": "32",
+    "issue": "3",
+    "pages": "338-354"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Two preregistered within-subject studies (N=36, N=49) with a clean and specific result: 24-hour total sleep deprivation did not merely make people worse, it removed the normal protective effect of high confidence on belief revision. That is a precision-weighting failure, which is the closest empirical handle in this pull on MECH-017's 'uncertainty recalibration'. Confidence is nonetheless the lowest of the empirical entries because the mapping is inferential: social belief updating is not world-model uncertainty, and a deprivation deficit shows sleep is necessary for maintenance without showing that sleep performs recalibration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The design is deprivation-versus-rested, so it cannot separate 'sleep recalibrates uncertainty' from 'wakefulness degrades it and sleep merely halts the degradation' -- only the first of these is MECH-017.",
+    "Sleep deprivation increased belief change regardless of feedback type, which is consistent with a general loss of response inhibition or effortful control rather than a specific miscalibration of uncertainty.",
+    "Only 24-hour total deprivation was tested; if partial sleep restriction leaves confidence-gating intact, the graded dose-response that a recalibration mechanism predicts would be absent."
+  ],
+  "tags": [
+    "mech-017",
+    "uncertainty",
+    "confidence",
+    "belief_updating",
+    "sleep_deprivation",
+    "precision_weighting",
+    "human",
+    "preregistered"
+  ],
+  "mapping": {
+    "source_claim_statement": "In two preregistered within-subject studies, 24 hours of total sleep deprivation increased belief change irrespective of feedback type and disrupted the stabilising role of initial confidence: high-confidence beliefs, normally resistant to revision, were revised more often when participants were sleep deprived, and larger confidence drops predicted more frequent belief change.",
+    "ree_translation": "MECH-017 lists uncertainty recalibration as one of three operations but the architecture doc says nothing about what a failure of it would look like. This paper supplies the signature: not uniformly higher or lower confidence, but a broken coupling between confidence and update magnitude -- beliefs held precisely stop behaving as though they were. In REE terms that is a precision-weighting failure on the posterior, and it gives the claim a dependent variable an experiment could actually measure, which 'recalibration' alone does not.",
+    "mapping_caveat": "The beliefs here are social and propositional, revised under peer feedback; MECH-017 is about the generative model of a physical world. Treating the two as the same quantity is the main transfer risk, and it is a real one -- confidence in a stated opinion may be regulated by mechanisms quite separate from precision on a sensory prediction. The deprivation design also licenses only the necessity direction: sleep is needed for calibrated gating to survive, which is weaker than the claim that sleep is when recalibration is performed.",
+    "source_context": "Healthy adult humans; 24 h total sleep deprivation vs rested; belief-updating task with peer feedback; two preregistered within-subject studies (N=36, N=49)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "source_quality is high on method grounds -- preregistered, replicated across two samples, within-subject. mapping_fidelity is the constraint and is set deliberately low: this is the only entry where the REE translation requires an inference across domains (social belief -> world-model precision) rather than a change of vocabulary."
+  }
+}
