@@ -10754,6 +10754,91 @@
     bonus, z_world/z_self detached from policy forward pass; maximum-entropy random walk
     (action_entropy=ln(5)=1.6094). Hippocampal valence constraint (ARC-007) never exercised.
     Gated on SD-004 hippocampal navigation implementation. See EXP-0095.
+  epistemic_category: standard
+  what_would_answer: |
+    Q-020 is FUSED: one leg is neuroanatomy already answered by
+    literature, one leg is a live REE dissociation. Named separately.
+
+    OUT-OF-DOMAIN LEG (answered; not REE-testable): "does the biological
+    hippocampus COMPUTE value -- RPE, utility, outcome evaluation?"
+    Answered 2026-04-02 by literature synthesis (Resolution A): it does
+    not; it stores the geometrically-encoded result of computation
+    performed externally (Bittner 2017 BTSP plateau write-triggers;
+    Teyler & Rudy 2007 indexing; McGaugh 2004 / Dolcos 2004 BLA
+    write-depth modulation; Gauthier 2018 reward cells reread as stable
+    BLA-tagged relays). V3-EXQ-266b does not bear on this leg and did NOT
+    reopen it -- its own manifest says so. New evidence here routes
+    through /lit-pull, never through the experiment queue.
+
+    REE LEG (live -- this is what the 2026-07-25 reopening actually put
+    in question): Resolution A asserts a DISSOCIATION -- the map EMBODIES
+    value-shaped geometry (MECH-073) while the proposer navigating it
+    computes no value (ARC-007 STRICT; MECH-073's conflict_note calls it
+    "the value-flat hippocampal proposer"). Only the EMBODIMENT half has
+    ever been tested: V3-EXQ-375 PASS 3/3, VALENCE_GEOM probe-AUROC
+    0.982/0.923, VALENCE_ABLATED at chance. The NON-COMPUTATION half --
+    that the proposer adds no value information the terrain did not
+    already supply -- is UNTESTED, and it is the half that carries
+    ARC-007's constraint. That is Q-020's own content. The shaped-vs-flat
+    harm advantage V3-EXQ-266b measured is ARC-007/MECH-073's behavioural
+    leg, sits in the C2 harm_advantage_not_reproduced cluster (114a /
+    120a / 266b), and must NOT be re-run under this claim.
+
+    Answered by EXPERIMENT: a SOURCE-DISSOCIATION decoding probe over one
+    frozen trained agent, deliberately carrying NO behavioural DV, so the
+    C2 cluster's harm-advantage collapse cannot be re-derived as this
+    claim's verdict. Decode a per-step harm/safe label from:
+    (S1) MAP GEOMETRY -- residue_field.evaluate / evaluate_valence at the
+    visited z_world points;
+    (S2) PROPOSER STATE -- HippocampalModule.propose_trajectories output
+    as PROPOSED, read before E3's J(zeta) ranks it;
+    (S3) the INCREMENT S2 adds over S1 -- AUROC(S1 (+) S2) minus
+    AUROC(S1), with S2 residualised on S1 so shared variance is not
+    double-counted. S3 is the load-bearing statistic; S1 and S2 alone are
+    context.
+
+    NON-DEGENERACY PRECONDITION (all four; any failure self-routes
+    substrate_not_ready_requeue, NEVER a verdict):
+    (a) TERRAIN LIVENESS, RELATIVE NOT ABSOLUTE. V3-EXQ-266b's P2 floor
+    was an ABSOLUTE spread >= 1e-4 and passed GREEN at spread 0.0034637
+    on a probe mean of 17.586 -- a 0.02% modulation riding a large DC
+    offset, i.e. a constant field with numerical jitter. Register
+    spread/|mean| against a declared floor, not raw spread.
+    (b) DECISION RELEVANCE. The terrain term must be able to move
+    selection: fraction of steps at which argmax J(zeta) differs from
+    argmax J(zeta) with the residue term zeroed, against a registered
+    floor. A field with large spread that never flips a rank is inert at
+    the decision scale however green an absolute-spread gate reads.
+    (c) SPATIAL COVERAGE. Distinct residue cells visited per episode must
+    exceed 1 by a registered margin. V3-EXQ-266b measured
+    mean_cells_per_episode = 1.2 -- the agent barely left one cell, so
+    there was no positional contrast for geometry to embody, and a field
+    probed at effectively one location is not a landscape.
+    (d) DECODER FLOOR + SHUFFLED-LABEL CONTROL. Registered minimum harm
+    and safe sample counts per seed, plus a label-permuted arm that must
+    land at chance. This is the representational analogue of 266b's
+    A2_STATIC no-op control: a contrast without a control that CANNOT
+    succeed is not adjudicable.
+
+    CONFIRMING signature (Resolution A holds; ARC-007 STRICT survives
+    MECH-073): S1 AUROC above a registered floor, replicating V3-EXQ-375;
+    S3 increment at or below a registered epsilon and inside the
+    shuffled-label band, in all seeds. The proposer carries no value
+    information the geometry did not already supply -- it embodies, it
+    does not compute.
+
+    FALSIFYING signature (Resolution A fails; the conflict_note's A/B
+    fork reopens): S3 increment above the registered epsilon and above
+    the shuffled-label band in a majority of seeds. The proposer computes
+    value of its own, which is exactly what ARC-007's
+    no-value-computation constraint forbids. The S1 x S3 2x2 SELECTS
+    which fork: S1 high AND S3 high routes to option (A), revise ARC-007
+    (the hippocampal stage computes value after all, and INV-014's
+    representation/regulation separation comes into play); S1 at chance
+    AND S3 high routes to option (B), reject MECH-073 (value never
+    entered the geometry and the proposer is doing the work). Apply the
+    outcome to ARC-022's conflict_note in the same pass -- it names the
+    same fork and defers to this claim.
   depends_on:
     - ARC-007
     - MECH-073
@@ -14019,6 +14104,8 @@
     - SD-010
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-09-16 bookkeeping (user-approved, chip-20260916-claims-bookkeeping-six-edits; staged in arc030_ceiling_recurrence_staged_2026-08-19.md and ceiling_lifted_retest_assessment_2026-08-22.md, both reviewed 2026-09-16): the operative blocker is MECH-457 (action-learning competence floor, approach-before-avoidance ordering; failure_autopsy_V3-EXQ-866a-G0_2026-08-08), NOT MECH-307. MECH-457 is itself candidate/v3_pending and depends on MECH-229, and its GOV-FANOUT-1 discrimination closed without a build target. The MECH-307 readiness gate V3-EXQ-899 ran twice on 2026-08-08 and FAILED both times (non_contributory: the FULL arm foraged below RANDOM on the G0 statistic). pending_retest_after_substrate stays true -- the discriminative retest is still owed, only its blocker is re-pointed: re-queue only after the MECH-457 thread delivers a FULL arm that clears RANDOM on G0. Governance prose already records this (2026-08-28, 2026-09-09); this is the structured field check_substrate_ceiling_audit.py reads (parked bucket)."
   what_would_answer: |
     ARC-030 is the most BASIC of three related open questions on this
     substrate (ARC-030: does Go/NoGo channel SYMMETRY itself produce any
@@ -20369,6 +20456,16 @@
     the cancel window is the transition zone between simulation-complete and
     execution-locked.
     Registered 2026-03-29 from Q-015 lit pull.
+  digestion_note: >
+    2026-09-16 (user, doc-review walk; chip-20260916-claims-bookkeeping-six-edits). The trial-2 thought-digestion
+    draft (thought_digestion_staged_2026-08-08_trial2_5claims.md DRAFT 5) proposed recategorising
+    this claim substrate_conditional on the ground that the cancel window is unbuilt and never
+    exercised. NOT APPLIED -- implicitly rejected: V3-EXQ-162 (2026-03-29, 9e3b4eaa) did run the
+    THREE_PHASE cancel-window design and returned PARTIAL_NO_CANCEL (n_cancel_events=0 in all four
+    cells under a random policy), which is real, if uninformative, experimental evidence on this
+    claim, so it is not unexercised in the sense substrate_conditional requires. epistemic_category
+    stays standard; the non-degeneracy precondition in what_would_answer already carries the 162
+    lesson. The trial-2 draft is closed for this claim.
   evidence: []
 
 - id: MECH-139
@@ -35812,9 +35909,8 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: ARC-054
+  implementation_phase: v4
+  phase_provenance: assigned
   depends_on:
     - INV-067
     - INV-068
@@ -35931,8 +36027,8 @@
     reading: candidate/v3_pending
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v3
-  v3_pending: true
+  implementation_phase: v4
+  phase_provenance: assigned
   v3_form_promoted_utc: "2026-04-26"
   depends_on:
     - INV-068
@@ -45588,8 +45684,8 @@
       from: "decision:MECH-270@2026-04-25T15:42:09.107859Z"
       as_of: 2026-04-25
       verdict: hold_pending_v3_substrate/applied
-  implementation_phase: v3
-  v3_pending: true
+  implementation_phase: v4
+  phase_provenance: assigned
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
@@ -50333,6 +50429,13 @@
   registered_utc: 2026-04-26
   ceiling_decision: deferred
   ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): goal_pipeline:GAP-4 was CLOSED 2026-06-09 (necessity reading falsified by V3-EXQ-490j; modulatory reading substrate-supported by 490j/493). The substrate_ceiling/pending_retest flags are retained ONLY for the OPTIONAL, non-GAP-blocking 490L modulatory-sufficiency retest, gated on scaffolded_sd054_onboarding (collapsed-candidate/weak-z_goal), NOT on MECH-307. Do not queue a MECH-307-driven retest."
+  digestion_note: >
+    2026-09-16 (user, doc-review walk; chip-20260916-claims-bookkeeping-six-edits). The trial-5 thought-digestion
+    draft (thought_digestion_staged_2026-08-07_trial5_5claims.md section 2.3, GFLAG-0007) proposed
+    substrate_ceiling -> standard with a redrafted falsifier. REJECTED by governance 2026-08-09
+    (REE_assembly 74172adf3f3, resolving GFLAG-0007): epistemic_category stays substrate_ceiling,
+    status stays candidate, no promotion/demotion; the draft falsifier was not applied. The
+    staging doc is closed for this claim.
   depends_on:
     - SD-012     # homeostatic drive (the input)
     - SD-014     # wanting/liking architecture (existing dissociation)
@@ -86604,6 +86707,17 @@
     (z_goal / z_resource / predictive wanting / affordance bias vs salience coordinator /
     operating mode / dACC / urgency interrupt / mode hysteresis) -- a glossary entry, not
     a claim.
+  governance_note_2026_09_16: >
+    Hypothesis-space disposal (user-ratified 2026-09-16 via the doc-review walk; chip-20260916-claims-bookkeeping-six-edits):
+    in hypothesis_space_registry.v1.json qid mech467_legc_event_denominator_cause, H-commitment
+    and H-cadence moved alive -> superseded, as mech467_govfanout_portfolio_staged_2026-08-19.md
+    section 1 recommended and navigation_immobility_scoping_2026-08-18.md (ratified 2026-09-16)
+    established: the near-immobility H-commitment names is the plain-navigation instance of
+    MECH-439 (F-dominance conversion ceiling, ceiling_decision exhausted, awaiting ARC-107), and
+    the E3 hold-and-repeat cadence H-cadence names is owned by the active hypothesis-space line
+    e3_fdominance_causal_discrimination. Neither is this portfolio's question to answer; the
+    H-commitment approach-run-length MEASUREMENT is retained as instrumentation. H-energy stays
+    deliberately unresolved and H-denominator stays confirmed (V3-EXQ-940/941, 2026-08-20).
   evidence_quality_note: >
     [2026-08-21 governance, gov-20260821-0203, confirmed failure_autopsy_940-941-mech467-cluster_2026-08-20.json]: V3-EXQ-941 (GOV-FANOUT-1 H-denominator leg, measurement axis) is a denominator diagnostic with zero wrong-target instrumentation and does not exercise MECH-467's falsifier; it bears on the claim in neither direction. Its FAIL is the INFORMATIVE result by design (the queue note says so explicitly: outcome PASS would have been the null). It localises the missing denominator upstream of arrival: 6 approach initiations, 2 arrivals and 4 consumption events over 3681 realised ticks, with approach_run_length_max = 1 in both arms -- no approach run ever exceeded a single step. Two caveats bound how far the finding travels. (1) The basis is thin: seed 43 sat fully immobile for 900/900 ticks in BOTH arms, contributing 48.9% of the denominator and zero signal, and its aliasing was meant to be caught by the approach_is_definable precondition whose 0.0 floor cannot fire (mean_distance_to_goal was exactly 1.0, one step from a target on a grid where one step is arrival). (2) C2 (0.333333) and C3 (4) are stamped passed but rest on <=6 events; C3 as coded is a pooled existence test (total_events > 0) across both arms despite owned_by_arms ARM_PRECOMMIT, and consumption exceeds arrivals 2:1 with 2 of the 4 events in cells recording zero initiations and zero arrivals -- so it certifies only that >=1 consumption happened somewhere, and the denominator_lost_at_consumption branch is unreachable in practice on this env. Neither affected the verdict (the routing tests C1 first). The run also newly quantifies the immobility at battery level: pooled_move_efficacy 0.0115/0.0124 and e3_tick_fraction_mean ~0.104. Its claim to 'confirm' the MECH-439 F-dominance ceiling should be read as 'is consistent with and quantifies', not as independent confirmation: at 98.8% blocked moves and 89-91% latched ticks both are near-ceiling simultaneously and cannot decompose the immobility, and no selection-layer measurement was taken.
 
@@ -97352,6 +97466,17 @@
     a fixed relatedness criterion, therefore fixed grain).
     DO NOT build in V3. DO NOT queue an experiment. The derivational toy in what_would_answer is
     the only sanctioned next step and needs no REE substrate.
+
+    UPDATE 2026-09-16 (bookkeeping, chip-20260916-claims-bookkeeping-six-edits; source
+    repr_authority_selection_thread_status_staged_20260829.md, reviewed 2026-09-16): the P0 this
+    claim shares with ARC-134 (an endogenous grain operator must exist -- there is no merge and
+    no split of perceptual tokens anywhere in V3) was split forward as MECH-531 on 2026-09-01
+    (GOV-V4CUT-1 F1, GFLAG-0101; GFLAG-0099 resolved the same cycle, REE_assembly 008d91c0ce),
+    exactly as ARC-134's own notes record: a minimal, v3-testable claim that the operator exists
+    at FIXED capacity and is corrigible by consequence evidence, with no dynamic per-population
+    regulation. This claim's own content (settling-derived occupancy as an order parameter, plus
+    the shared-normalisation third ingredient named under governance_2026_09_01) is unaffected by
+    the split and stays v4; MECH-531 is the gate it waits on, not a rival.
   governance_2026_09_01: |
     [GFLAG-0096 + GFLAG-0099, govdesk-20260901] THE OWED DERIVATIONAL PROBE WAS RUN; THIS CLAIM
     STILL SAYS IT WAS NOT. what_would_answer contains the sentence "Nothing in the record names
