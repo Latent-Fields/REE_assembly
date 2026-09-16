@@ -1,0 +1,356 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-16T14:14:41Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_note": "STAGING-MODE DRAFT (headless subagent autopsy-staging-935a-20260916, dispatched by metaworker orchestration session orchestrate-20260916-1305). Step 8's interactive gate was NOT held. Routing is a proposal; no claims.yaml / substrate_queue.json / review_tracker.json / hypothesis_space_registry.v1.json / manifest evidence_direction write was performed, and no follow-on chip was spawned (CLAUDE.md: a /failure-autopsy session does not chip follow-on off its own unreviewed finding). The next /governance walk gates this draft at its Step 1.5 / 2b.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "predecessor_autopsy": "failure_autopsy_V3-EXQ-935_2026-08-18",
+  "targets": [
+    {
+      "run_id": "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3",
+      "queue_id": "V3-EXQ-935a",
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "self_route_label": "rule_right_r_wrong_requeue",
+      "self_route_adjudication": "CONTESTED, not adopted. The self-route is correct that R_STAR=2.45 is not the best operating point on these seeds and that H-IDIO (no rule anywhere) is refuted: r=2.65 grades 4/5 here and also graded 4/5 on 935's own seeds 42-46, so a single r replicates out of sample. But 'rule right, r wrong' over-reads what the run measured, for three reasons the run's own cells carry (ground (ii) was revised after the Step 7c red-team contested its original form -- see red_team_7c and withdrawn_arguments). (i) The run's STRICTER, substrate-specified reproducibility bar -- the >=2 ADJACENT swept values each mixed on >=2/3 of seeds bar that mode-governance-engagement's own failure_record names -- returns graded=false, regime_shape='mixed_not_reproducible', longest_adjacent_run=1. H-KNIFE is deliberately looser (one r suffices), so the re-queue recommendation rests on the relaxed bar while the pre-registered strict one says the opposite. (ii, REVISED) The criterion is coarse and under-powered, so a 3/5-vs-4/5 outcome is close to a coin flip: MIN_FRACTION 2/3 on n=5 admits only 0/.2/.4/.6/.8/1.0, so 2/3 IS '>= 4 of 5', and at the generalisation rate the pooled two-set data supports for 2.45 (7/10) that bar is cleared with probability 0.53; even at 2.65's pooled 8/10 it is 0.74. One seed moved the verdict. (The original form of this ground -- that 4/5 is a structural POPULATION CEILING because ~1-in-5 seeds is un-gradeable at any cap -- was WITHDRAWN: see withdrawn_arguments W1.) (iii) substrate_hash_matches_v3_935 is FALSE. R_STAR=2.45 was derived on 935's substrate (921d0af6...) and tested on a different one (3984b01e...). The run RECORDS that, correctly and auditably -- and then neither the routing nor the self-route label consumes it. That is the same defect class 935 was autopsied for (a control computed and not wired into the verdict), recurring at one remove.",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1_rule_grades_at_r_star: 3/5 = 0.60 vs MIN_FRACTION 0.667 (seeds 47/49/51 graded; 48 at 0.9617 and 50 at 1.0000, both ABOVE the 0.9 ceiling -- i.e. the cap at R_STAR was too tight, external_task still saturating). C2_beats_best_absolute_cap PASSED (3 normalised vs 1 absolute). All four readiness anchors cleared 5/5 (contact, margin, calibration, r_star-measured) and manipulation_landed=true, so nothing was starved. Recomputed independently from interpretation.occupancy_gate.cells: graded-seed count per r = 2/5, 3/5, 4/5, 2/5, 2/5 at r = 2.25, 2.45, 2.65, 2.85, 3.05.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact for both, and MECH-266 is again PERIPHERAL. This driver has no asymmetric-threshold arm at all, so MECH-266's Schmitt trigger (exit_threshold < enter_threshold) was never instantiated -- the 8th consecutive run in this lineage in which the claim under test is not exercised. SD-032a's mode register behaved as its own functional_restatement specifies (transitions discrete, not graded); the step-function seeds are SD-032a working, not failing.",
+        "biological_reference": "partial. MECH-266 hysteresis lit is present (6 entries, targeted_review_connectome_mech_266). The gain-stage question 935's autopsy commissioned (targeted_review_salience_gain_normalisation) was never executed; adjacent-but-not-commissioned material exists (targeted_review_striatal_gain_control_bounding: SPN lateral inhibition, graded DA lateral inhibition; MECH-439 entries on Carandini canonical normalisation and Louie value divisive normalisation). The divergence 935 identified is unchanged in code and is load-bearing here too.",
+        "prerequisites": "present. foraging_contact_guard 5/5, external_task_drive_engages 5/5, calibration_statistic_alive 5/5, r_star cell measured 5/5 -- all against a 2/3 floor, all live checks on seeds with no banked data.",
+        "implementation": "partial. The affinity cap is implemented and functional. MECH-266's asymmetry is still unimplemented in this driver. The gain stage is still a hard clip: salience_coordinator.py tick() applies max(-cap, min(cap, value)) per affinity input while external_task_bias enters unclamped -- unchanged since 935 (git log on ree_core/cingulate/salience_coordinator.py shows no commit between 2026-08-16 and 2026-09-17). NOTE FOR GOVERNANCE: the substrate_queue entry mode-governance-engagement is TITLED 'Replace the hard affinity-input box clamp with a saturating/normalizing bounding operator; grade the commitment term; decide the production default' and carries status 'implemented_pending_validation', severity 'cosmetic', ready true -- but the titled replacement is NOT in the code. The status plausibly refers to the 2026-06-13 external-task-drive build under an amended title. Flagged, not adjudicated. This run supplies new quantitative support for the titled work: on seeds 48/50/51 (and 935's 45/46) ext_margin_mean is linear in cap at R^2 0.9996-0.9999, the signature of an input clipped at every cap tested.",
+        "environment": "partial. The curriculum produces agents whose external_task probability stream differs sharply in within-cell dispersion (p90 - p10 of the per-step operating_mode['external_task'] softmax value): seeds 47 (0.25-0.36) and 49 (0.23-0.35) versus 51 (0.027-0.041), 48 (0.008-0.012) and 50 (0.0000 at every one of its seven cells, identical to 4 dp). On the low-dispersion seeds ext_margin_mean is LINEAR in cap with R^2 0.9996-0.9999 (48, 50, 51; and 935's 45, 46), the signature of an affinity input clipped at every tested cap -- so the low dispersion is a SATURATION state, not an independent property of the input stream. That bears on H4 (clip rather than divisive normalisation) rather than opening a new axis. Stated against the tempting over-read: saturation does NOT preclude grading -- 935's seeds 45 and 46 are equally saturated (R^2 0.9999, spreads 0.014-0.034) and graded at 2 and 3 r values respectively. 935a is a member of the frozen z_goal scaffold family (pinned 32 -> 33 by ree-v3 2f575a9209 for this very run), so goal state is inherited frozen into the eval clones and is a candidate contributor to the saturation; unproven here and NOT claimed.",
+        "measurement": "under-instrumented -- DOMINANT LAYER, three established defects plus one flagged observation. (0) FLAGGED, NOT DIAGNOSED -- the within-run dispersion correlation. Within this run the number of graded r values is perfectly rank-ordered by calibration-cell dispersion (seed 50: 0.0000 -> 0 graded r; 48: 0.0077 -> 1; 51: 0.0401 -> 3; 49: 0.2252 -> 4; 47: 0.2484 -> 5; Spearman rho = 1.000, n=5). It does NOT survive its first out-of-sample check: on 935's seeds 42-46 the same statistic gives rho = -0.05, while the BASELINE MEAN margin -- the quantity this autopsy was briefly minded to call the wrong moment -- orders those seeds at rho = -0.975. 935's seed 44 settles it directly: calibration-cell spread 0.0004 (more saturated than any 935a seed) yet 0.16-0.32 at the swept caps, and graded at 2 r values. So dispersion measured at CAP_REF is itself cap-dependent and is not a covariate this autopsy can route on. Recorded as a pre-registerable hypothesis for the zero-compute re-score leg, nothing more; the stronger form was WITHDRAWN (withdrawn_arguments W2). (2) THE GRADED PREDICATE IS OCCUPANCY-ONLY. _graded(occ) tests 0.1 < occ < 0.9 and nothing else; it does not require within-episode alternation -- and the quantity it reads is a LATCHED register, not a per-step argmax: salience_coordinator.py:517-523 updates current_mode only when salience_aggregate > enter_threshold AND current_mode_prob < exit_threshold AND soft_argmax != current_mode, so occupancy can be pinned by the AGGREGATE gate independently of the cap under test. At R_STAR the three 'graded' seeds carry 57, 59 and 24 switches over 15 episodes -- 47 and 49 are genuine alternation, 51 is barely above the known-vacuous n_switches == n_episodes = 15 signature this lineage was already burned by (2026-06-12 autopsy). MECH-266's hysteresis expresses in the ALTERNATION, not the time-average, so an occupancy-only predicate is not the right instrument for the claim the lineage is aiming at. (3) THE NON-DEGENERACY FLAG IS MIS-SCOPED. criteria_non_degenerate = {C1: base_non_degenerate, C2: base_non_degenerate}, where base_non_degenerate is a RUN-level readiness AND manipulation_landed conjunction. It is per-criterion in name only and certifies nothing about the cells that actually decided C1. This matters downstream: the frozen-ledger elimination bar reads manifest.criteria_non_degenerate directly. (4) POWER. MIN_FRACTION 2/3 on n=5 is '>= 4 of 5'. At the generalisation rate the pooled data actually supports for 2.45 (7/10 across both seed sets) that criterion passes with probability 0.53; even at 2.65's pooled 8/10 it passes with probability 0.74. A single FAIL at R_STAR is therefore weak evidence against the rule, and a single PASS would have been weak evidence for it.",
+        "integration": "coupled but unstable. The three-way coupling -- curriculum (sets each agent's margin dispersion) x clip gain stage (scale-sensitive, so a per-agent constant is needed at all) x argmax register (renders everything discrete) -- is what makes a single common r unstable across seed sets. The graded window was 2 adjacent r wide in-sample (2.45 and 2.65 on 42-46) and 1 r wide out of sample (2.65 only on 47-51).",
+        "scale": "likely insufficient for the criterion as written. n=5 seeds against a >=4-of-5 bar, on a population containing a stable ~20% structurally un-gradeable subgroup."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED, MEASURES-dominant. Not chargeable to REE, and not to MECH-266, whose Schmitt trigger was never instantiated in this driver (exit_thresholds unset throughout). Implementation reads partial (no asymmetric arm; clip rather than a normalising gain stage), measurement reads under-instrumented on four counts, environment reads partial (three of five seeds run with the affinity input clipped at every tested cap), so REE FAILED is unreachable by the GOV-FAILLOC-1 threshold."
+      },
+      "biological_reference": {
+        "closest_mechanism": "gain control in cortico-basal-ganglia salience arbitration -- divisive normalisation (Carandini & Heeger canonical normalisation; in BG via lateral inhibition / FSI-mediated pooling), with the mode register as a BG action-selection analogue",
+        "dependencies": [
+          "aggregate salience vector (MECH-259 threshold)",
+          "SD-032a discrete operating_mode register",
+          "tonic-DA-analogue gain setting",
+          "a within-trial-varying salience input (the dependency this run newly implicates)"
+        ],
+        "is_formal_import": true,
+        "divergence": "Unchanged from 935 and now with a second consequence. The substrate hard-clips each affinity input and adds external_task_bias unclamped, where biology uses a scale-free divisive stage. 935 showed the first consequence (a free per-agent constant is needed at all, and a RATIO under-corrects because a clip is not a division). 935a adds the second: biological salience arbitration is driven by inputs that FLUCTUATE within a trial (interoceptive, attentional, reward-prediction-error streams), so a mixed occupancy regime is the normal case. Here the arbitration is between two constants for 3/5 agents, which no cap rule can make mixed. LOAD-BEARING.",
+        "lit_status": "PRESENT for both tagged claims' own questions: 6 entries for MECH-266 hysteresis (targeted_review_connectome_mech_266: Fallon 2016, O'Reilly 2006, Cools 2019, Cools & D'Esposito 2011, Collins & Frank 2014, Cools 2008) and 5 for SD-032a's salience-network switching (targeted_review_sd_032a: Menon 2011, Sridharan 2008, Goulden 2014, Uddin 2015, Molnar-Szakacs 2022). ADJACENT but not commissioned for the gain-stage question (targeted_review_striatal_gain_control_bounding: SPN lateral inhibition, graded DA lateral inhibition, D2 autoreceptor homeostat; plus MECH-439's Carandini canonical-normalisation and Louie value-divisive-normalisation entries). ABSENT ONLY for the SalienceCoordinator gain-stage question specifically -- 935's commissioned targeted_review_salience_gain_normalisation does not exist on disk and was never executed. The word ABSENT here is scoped to that one question and is not a claim that the tagged claims lack literature."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-266": "standard",
+        "SD-032a": "standard"
+      },
+      "recommended_epistemic_category_note": "Failure mode is measurement_test_design_defect: a >= 4-of-5 bar with 0.53-0.74 power at the rates observed, an occupancy-only graded predicate over a latched register, a run-level non-degeneracy flag named per-criterion, and a recorded-but-unconsumed substrate_hash mismatch on the pre-registered constant. That is a failure-mode diagnosis, not an epistemic_category, so it is recorded here and in four_layer_diagnosis rather than in the category field. `standard` is the behaviour-preserving mapping: no epistemic suppression, both claims stay GOV-GRAN-1-visible and v3-testable. Deliberately NOT substrate_ceiling / substrate_conditional -- the substrate did not ceiling: r=2.65 grades 4/5 on these fresh seeds and 4/5 on the predecessor's, which is the opposite of a ceiling. MECH-266 is additionally PERIPHERAL on this run (no asymmetric arm exists).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-266": "non_contributory",
+        "SD-032a": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "See per_claim_recommendation. Both claims take non_contributory on this run, for different reasons: MECH-266 because it was never instantiated, SD-032a because the run routed H-KNIFE (a further-correction finding, exactly as the driver pre-registered) and so returns no verdict on the register.",
+      "per_claim_recommendation": {
+        "MECH-266": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "UPHELD as stamped; direction and category both unchanged. PERIPHERAL / not exercised for the 8th consecutive run: V3-EXQ-935a sweeps a single SYMMETRIC affinity_input_cap and contains no asymmetric-threshold arm, so the Schmitt trigger could not express. pending_retest_after_substrate STAYS true. No substrate_ceiling attribution accrues and the brake count stays at 7. The applicable edit is the diagnostic-adjudication flag, which the claim does not currently carry -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays provisional"
+        },
+        "SD-032a": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "UPHELD as stamped. The run routed rule_right_r_wrong_requeue, which the driver pre-registered as non_contributory for SD-032a, and that is the honest read: the register was not under test. Narrow, non-scoring observation worth recording in the note -- on the live-margin seeds the register alternated genuinely (57 and 59 switches over 15 episodes at R_STAR on seeds 47/49), and on the static-margin seeds it produced a clean step function, which is SD-032a's own functional_restatement ('mode transitions are discrete, not graded') behaving as written rather than evidence against it. Status stays stable; the applicable edit is the flag the claim does not currently carry -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays stable"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mode-governance-engagement",
+        "title": "Replace the hard affinity-input box clamp with a saturating/normalizing bounding operator; grade the commitment term; decide the production default (existing entry title, unchanged by this autopsy)",
+        "implementation_hint": "Bookkeeping amend only -- append one failure_record item. This autopsy requests NO new build. The entry is already recorded IMPLEMENTED (2026-06-13 substrate half, 2026-09-11 instrument half) in ree-v3/CLAUDE.md and its two docs/substrate records. Two things for governance to look at rather than for this autopsy to decide: (a) the entry's TITLE names the clip -> normalising-operator replacement, and that replacement is not in salience_coordinator.py (the hard clip is still there, unchanged since 935), while the entry reads status implemented_pending_validation / severity cosmetic / ready true; (b) 935's commissioned lit-pull targeted_review_salience_gain_normalisation was never executed, and 935's autopsy was explicit that the clip-vs-normalisation question must not be converted into a substrate build ahead of that lit. Both are left exactly as governance has them here.",
+        "unblocks_claims": [
+          "MECH-266",
+          "SD-032a"
+        ],
+        "depends_on_unresolved": [],
+        "severity": null,
+        "substrate_paths": null,
+        "severity_and_paths_note": "Deliberately NOT set/changed. The existing entry already carries severity 'cosmetic' and four substrate_paths, reassessed by governance cycle gov-20260911-1612 / GFLAG-0262. This occurrence does not change that classification: nothing in 935a shows the clip CORRUPTING evidence -- it shows the test design normalising on the wrong statistic. Leave both fields as governance has them.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3",
+          "experiment_type": "v3_exq_935a_mech266_margin_normalised_cap_rule",
+          "metric": "Margin-normalised cap rule on 5 fully fresh seeds (47-51): C1 graded 3/5 at the pre-registered R_STAR=2.45 against a >= 4-of-5 bar (MIN_FRACTION 2/3 on n=5). r=2.65 clears at 4/5 -- and also cleared 4/5 on 935's seeds 42-46, so a single r replicates out of sample -- but the adjacent-value reproducibility bar this entry's own failure_record specifies returns graded=false with longest_adjacent_run=1 on the fresh seeds, and the criterion clears with probability 0.53-0.74 at the rates observed. Separately: on the seeds whose external_task probability is near-constant (935a 48/50/51, 935 45/46) ext_margin_mean is linear in cap at R^2 0.9996-0.9999, i.e. the affinity input is clipped at every tested cap -- quantitative support for this entry's own titled work (replace the box clamp with a saturating/normalising operator).",
+          "target": "A cap rule whose graded window is >= 2 adjacent swept values on >= 2/3 of fresh seeds at a POWERED seed count, with per-cell alternation above the n_switches == n_episodes vacuity floor.",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": true,
+        "count_at_this_autopsy": {
+          "MECH-266": 7,
+          "SD-032a": 7
+        },
+        "this_target_contributes": 0,
+        "why_not_fired": "Counted with the CLAUDE.md / SKILL.md R1-R3 recipe run verbatim over the committed corpus on 2026-09-16: 7 counting runs for each claim (464b, 467b, 464c, 467c, 464d, 467d, 797) -- the same set 935's autopsy named, plus 797, which the current tool counts. The literal count is at/over threshold, hence literal_count_meets_threshold: true. This target contributes 0 and the brake does not fire, and the recipe exits EARLY -- at the per-claim branch at the top of counts(), not at clause 3 (correction made after the Step 7c red-team re-ran the recipe itself): recommended_epistemic_category_per_claim declares `standard` for both claims, and a declared per-claim category without `substrate_ceiling` in it returns False immediately. The clause-3 producer release is therefore belt-and-braces rather than load-bearing; it is nonetheless honestly stamped and independently valid -- the recommended action is an `amend` whose target entry mode-governance-engagement is already recorded IMPLEMENTED in ree-v3/CLAUDE.md and docs/substrate/mode-governance-engagement-*.md (the counter's own `landed` resolution returns True for this sd_id, verified by running it), so the amend owes no build. Firing the brake here would refuse a re-queue that this autopsy's own routing has already narrowed on other grounds -- see refused_requeue below, which is a DESIGN refusal, not a brake firing.",
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
+          "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
+          "failure_autopsy_grandfathered-r5-batch23-mixed-findings_2026-08-08",
+          "failure_autopsy_backlog_2026-07-24"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "refused_requeue_note": "NOT a brake firing (fired: false), and NARROWED after the Step 7c red-team. What is refused is a SAME-DESIGN, n=5 re-pose at r=2.65: the run's own stricter adjacency bar already reads the 2.65 window as not reproducible (longest_adjacent_run=1), and a third 5-seed draw against a >= 4-of-5 criterion clears with probability ~0.74 even if the rule is exactly as good as the pooled two-set data says -- another letter buys a coin flip. What is NOT refused, and what the red-team correctly noted survives cleanly: the zero-compute re-score of the banked 935 + 935a cells, and after it a POWERED same-question re-test with the three instrument defects repaired. The original blanket refusal, and the reframed-redesign-instead recommendation that depended on the dispersion covariate, were WITHDRAWN (withdrawn_arguments W2/W3).",
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "sequencing": "The measurement leg is a ZERO-COMPUTE re-score of already-banked cells and GATES the others: it decides whether the H-B covariate is even live before any new compute is spent on it. Run it first.",
+        "live_hypotheses": [
+          "H-A (the self-route, and the best-supported reading): the rule form is right and only R_STAR was wrong; r=2.65 is the operating point. Basis: 2.65 grades 4/5 on 935's 42-46 AND 4/5 on 935a's 47-51 -- 8/10 pooled, a genuine out-of-sample replication for a specific r. Against it: the adjacency reproducibility bar returns false on the fresh seeds (longest_adjacent_run=1) and the criterion is under-powered either way.",
+          "H-B (flagged, NOT supported out of sample): gradedness is governed by the within-cell dispersion of the external_task probability rather than by the cap/mean-margin ratio. Basis: rho = 1.000 within 935a. Against it: rho = -0.05 on 935's seeds, where the MEAN margin orders them at rho = -0.975; and 935's seed 44 has calibration spread 0.0004 yet 0.16-0.32 at swept caps and grades. Carried as a hypothesis for the re-score leg ONLY.",
+          "H-D (carried from 935, its lit gate already closed): the scale-sensitivity is a consequence of the hard clip rather than a divisive normalisation. Basis unchanged and NEWLY STRENGTHENED here: the low-dispersion seeds are exactly the ones whose ext_margin_mean is linear in cap at R^2 0.9996-0.9999, i.e. clipped at every tested cap. Note the lit gate for H4 was recorded SATISFIED by existing literature at a user-confirmed Step 8 gate on 2026-08-25; no lit-pull is owed."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-A / H-B (discriminating, and it gates the rest)",
+            "axis": "measurement",
+            "sketch": "ZERO COMPUTE. Re-score the banked 935 + 935a cells (10 seeds, 60 ARM_NORM cells) and report, per seed: the graded WINDOW WIDTH in r rather than the count of grid points hit; per-cell n_switches against the n_switches == n_episodes vacuity floor; and the dispersion-vs-graded-count rank correlation POOLED over all 10 seeds rather than within a run. Declared nulls: (a) the graded window at r=2.65 is no wider than one grid step on >= 2/3 of seeds; (b) pooled dispersion-vs-gradedness rho is indistinguishable from 0."
+          },
+          {
+            "hypothesis": "H-A",
+            "axis": "arbitration",
+            "sketch": "Conditional on the re-score: a POWERED same-question re-test at r=2.65 with (i) a seed count chosen for the criterion actually used rather than a 2/3 fraction on n=5, (ii) a graded predicate conjoining occupancy with a per-cell alternation floor, (iii) criteria_non_degenerate scoped per criterion, and (iv) substrate_hash_matches_<predecessor> consumed by the ROUTING. Declared null: r=2.65 does not clear the powered bar on fresh seeds."
+          },
+          {
+            "hypothesis": "H-D",
+            "axis": "substrate",
+            "sketch": "A saturating / divisive bounding operator in place of max(-cap, min(cap, v)) in SalienceCoordinator.tick(), which is what the existing substrate_queue entry mode-governance-engagement is already TITLED for. Declared null: replacing the clip does not reduce the per-agent spread in the r at which the graded window sits. Sequenced LAST and gated on the re-score, per the 2026-08-25 note that a substrate proposal should be tested against a settled operating point."
+          }
+        ],
+        "note": "GOV-FANOUT-1: the bottleneck is a discrimination among live readings rather than one named build, so the next /queue-experiment should fan out across measurement / arbitration / substrate axes rather than emit one more sequential letter. The portfolio is deliberately SMALLER than this autopsy's first draft: an eval-dynamics leg aimed at unfreezing the z_goal scaffold was withdrawn (withdrawn_arguments W1) and the lit-pull leg was withdrawn as already closed (W4). This question already carries three fan-out growth events with one elimination; adding legs on a non-replicating covariate would make that worse, not better."
+      },
+      "learning_extracted": [
+        "A criterion stated as a FRACTION can hide how coarse it is. MIN_FRACTION 2/3 on n=5 is '>= 4 of 5': the attainable values are 0/.2/.4/.6/.8/1.0 and the bar falls between two of them, so a single seed decides the verdict. At the generalisation rate the pooled two-set data actually supports, the criterion clears 53-74% of the time -- it cannot separate a rule that generalises at 0.7 from one that does not, in either direction. Power the bar for the test, and state it in seeds.",
+        "A control that is RECORDED but not CONSUMED is the defect this lineage keeps repeating. 935 was autopsied for computing H-KNIFE and routing past it. 935a fixed that, and then recorded substrate_hash_matches_v3_935 = FALSE -- its pre-registered constant was derived on a different substrate than it was tested on -- without that fact entering the routing or the self-route label. Making a fact auditable is progress over asserting it in prose; giving it a NAMED BRANCH in the verdict is the step still missing.",
+        "A per-criterion flag name should mean a per-criterion check. criteria_non_degenerate maps BOTH criteria to one run-level readiness conjunction; it certifies nothing about the cells that decided C1, and it is exactly the field the frozen-ledger elimination bar reads. Same family as the INFO_ONLY H-KNIFE defect: a control whose NAME promises more than its computation delivers.",
+        "An occupancy-only gradedness predicate is not an instrument for a hysteresis claim, and the register it reads is LATCHED. MECH-266 predicts an asymmetry between ENTERING and LEAVING a mode, which lives in the switch sequence; current_mode updates only on a three-way gate (aggregate above the enter rail, current-mode probability below the exit rail, argmax disagreeing), so occupancy can be pinned by the aggregate gate independently of the cap under test. Eight consecutive runs have been scored on occupancy while the claim's own observable is alternation asymmetry -- and in none of them was exit_thresholds ever set, so the Schmitt trigger was inert throughout.",
+        "A within-run correlation of rho = 1.000 on n=5 is a hypothesis, not a diagnosis -- and this autopsy is the case study. A perfect, mechanistically plausible ordering (dispersion vs graded-r count) survived drafting and died on its first out-of-sample check (rho = -0.05 on the predecessor's seeds, with a direct counterexample in 935's seed 44). Check a new covariate against the PREDECESSOR's banked seeds before routing on it; the data to do it was already on disk and the check cost minutes.",
+        "The upper edge of a window is worth measuring even when the lower edge looks clean. 935's autopsy asked for the sweep to be extended, and the extension is what showed the graded-count curve is PEAKED (0.4/0.6/0.8/0.4/0.4), not monotone as 935's restricted range suggested -- and that the in-sample two-point window (2.45 and 2.65 both 4/5 on 42-46) narrows to a single point out of sample (2.65 only). An elimination or a band earned inside a range should be re-read whenever the range grows."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "kind": "SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covariate, and that recommendation was withdrawn when the covariate failed out of sample (withdrawn_arguments W2/W3).",
+        "refused": "A same-design, n=5 re-pose at r=2.65 with no instrument repair and no power calculation. See re_derive_brake.refused_requeue_note.",
+        "required_changes": [
+          "Run the zero-compute re-score FIRST (fanout probe 1). It costs nothing and it decides whether anything beyond a powered re-test is warranted.",
+          "Power the seed bar for the criterion actually used: >= 4-of-5 at a true rate of 0.7-0.8 clears only ~53-74% of the time. State the bar in seeds, not as a fraction that lands between two attainable values.",
+          "Replace the occupancy-only graded predicate with a conjunction: occupancy strictly inside (0.1, 0.9) AND per-cell n_switches strictly above the n_episodes vacuity floor, so a once-per-episode settle can never count as a mixed regime.",
+          "Scope criteria_non_degenerate per criterion, or rename it. Its consumers -- the frozen-ledger elimination bar among them -- read it as a per-criterion certificate and it is a run-level readiness conjunction.",
+          "Report the graded WINDOW WIDTH in r per seed, not the count of grid points hit; the count is grid-density-dependent, which is 935's own recorded lesson.",
+          "Consume substrate_hash_matches_<predecessor> in the ROUTING, not only in the manifest: a pre-registered constant inherited across a substrate move should force a recalibration branch rather than be scored as if its basis held.",
+          "Whenever the target is MECH-266 rather than the calibration upstream of it, instantiate an asymmetric-threshold arm. No run in this lineage has, and exit_thresholds is at its 1.0 no-op sentinel throughout this one."
+        ],
+        "debt_vocabulary": "The rule question is `complex (probe-gated) / puzzle (known rules)` -- a specific missing fact (does r=2.65 clear a POWERED bar), and the powered re-test is the spike. The re-score leg is `complicated (buildable)`: banked data, a named computation, no open question. H-D stays `complex (probe-gated) / puzzle (known rules)` but its probe-gate is already satisfied by existing literature per the 2026-08-25 user decision, so what it now owes is a substrate proposal, not a lit pull."
+      },
+      "secondary_routing": [
+        {
+          "route": "none -- explicitly NOT a lit-pull",
+          "note": "CORRECTED after the Step 7c red-team (finding F1). The first draft of this autopsy carried forward 935's commissioned targeted_review_salience_gain_normalisation as unexecuted. It is not owed: `evidence/planning/mech266_circling_review_20260825.md` section 4-5 records the H4 lit gate marked SATISFIED by the existing corpus (targeted_review_connectome_mech_439 canonical-normalisation entries, targeted_review_striatal_gain_control_bounding, targeted_review_connectome_mech_266), with the user confirming at a Step 8 gate on 2026-08-25 that no fresh commission and no narrowed scope is commissioned now, both answers logged to RECOMMENDATION_LOG.jsonl. Re-commissioning it would have re-opened a question the user closed. The residual gap that document itself names -- no entry measures divisive normalisation in a mode-ARBITRATION / task-commitment gate specifically -- is recorded there as deferred, not as owed."
+        }
+      ],
+      "read_across_not_adjudicated": [
+        {
+          "item": "H2-structural-bang-bang is stamped `eliminated` in hypothesis_space_registry.v1.json",
+          "bears_on": "NOT re-opened. The first draft of this autopsy proposed splitting H2 into a live-margin child (eliminated) and a static-margin child (alive). WITHDRAWN -- see withdrawn_arguments W1. What remains is a single recorded observation with no disposition attached: 935a seed 50 takes no interior occupancy value at any TESTED cap (0.839-1.137 in ARM_NORM, plus 1.75 in ARM_ABS), with the external_task probability constant to 4 dp and n_switches = 0 in its occupied cells. It is one seed, its untested cap interval (0.988, 1.063) is exactly where its transition lies, and nothing here distinguishes 'structural' from 'window narrower than the grid' -- which is 935's own recorded lesson about coarse grids turned on this autopsy."
+        },
+        {
+          "item": "substrate_queue entry mode-governance-engagement, status vs title",
+          "bears_on": "The entry is titled for the clip -> normalising-operator replacement and marked implemented_pending_validation / cosmetic / ready true, while the hard clip is still in salience_coordinator.py (no commit to that file between 2026-08-16 and 2026-09-17) and the H-D probe above is the work the title names. Left exactly as governance has it; flagged so the next walk can decide whether the title, the status, or neither should move."
+        },
+        {
+          "item": "MECH-266's exit_thresholds are unset throughout this run",
+          "bears_on": "salience_coordinator.py:514 falls back to a 1.0 sentinel when exit_thresholds has no entry for the current mode, which is always satisfied for a proper softmax. So the Schmitt trigger is not merely un-swept in this driver, it is inert. Eight consecutive runs in this lineage have been scored against MECH-266 without the mechanism ever being switched on. Reported, not adjudicated: the claim's own status and pending_retest_after_substrate already say the retest is owed."
+        }
+      ],
+      "hypothesis_space_ledger_pending": {
+        "note": "STAGING MODE -- hypothesis_space_registry.v1.json was NOT written. These are the intended edits for the confirming interactive session or the next /governance walk, and they are deliberately MINIMAL: after the Step 7c red-team, this autopsy proposes NO new hypothesis and NO change to any resolution state. The question already carries three fan-out growth events against one elimination; growing it further on a correlation that does not replicate would be the exact pathology its own fanout_growth_note warns about.",
+        "qid": "mech266_mode_arbitration_saturation",
+        "growth_restriction_checked": true,
+        "growth_restriction_value": null,
+        "growth_restriction_note": "Checked at Step 9b before drafting, per SKILL.md: the question's top-level growth_restriction is absent/null, so nothing gates an append. Recorded because a clean check is not the same as an unrun one.",
+        "denominator_change": "NONE proposed. initial_frozen_count stays 4; no fanout_growth_events or discovery_growth_events entry is owed.",
+        "mode_b_resolutions": [
+          {
+            "hid": "H1-cap-miscalibration",
+            "action": "stays alive, basis addendum only",
+            "resolving_runs": [
+              "V3-EXQ-935a"
+            ],
+            "basis_addendum": "935a is the first fully out-of-sample test. r=2.65 replicates at 4/5 across two independent seed sets (8/10 pooled), so H1 is materially STRENGTHENED -- but the pre-registered lower edge 2.45 fell to 3/5, the adjacency reproducibility bar returns graded=false on the fresh seeds (longest_adjacent_run=1), and the criterion clears with probability 0.53-0.74 at the rates observed, so this is not an elimination-bar event in either direction. Bar NOT met: met_elimination_bar false. Note for whoever fills the bar fields -- manifest criteria_non_degenerate is a RUN-LEVEL readiness conjunction (driver lines 1376-1383), not a per-criterion certificate, so it should not be copied into non_degenerate for this leg without saying so."
+          },
+          {
+            "hid": "H3-instrument-illposed",
+            "action": "stays alive, basis addendum only",
+            "basis_addendum": "935a repaired 935's INFO_ONLY H-KNIFE defect and its hardcoded route_reason, and exhibits three new instances of the same family: an occupancy-only graded predicate blind to alternation on a latched register; a run-level flag named per-criterion; and a recorded-but-unconsumed substrate_hash mismatch. The family keeps producing a fresh instance after each repair, which is itself the signal."
+          },
+          {
+            "hid": "H4-clip-not-normalisation",
+            "action": "stays alive, basis addendum only",
+            "basis_addendum": "NEW quantitative support from 935a, independent of anything withdrawn: the seeds with a near-constant external_task probability are exactly those whose ext_margin_mean is LINEAR in cap at R^2 0.9996-0.9999 (935a 48/50/51, 935 45/46), i.e. the affinity input is clipped at every tested cap -- so the clip is erasing within-cell variation for those agents. Not an elimination and not a confirmation: 935's seeds 45 and 46 are equally saturated and still graded."
+          }
+        ],
+        "withdrawn_from_this_ledger_edit": [
+          "A proposed SPLIT of H2-structural-bang-bang (withdrawn_arguments W1).",
+          "A proposed new leg H5-margin-dispersion-governs-gradedness (withdrawn_arguments W2). If the zero-compute re-score leg finds the pooled 10-seed rank correlation holds, H5 becomes a legitimate Mode A pre-registration at that point -- with its own future adjudicating run, which is what invariant 3a(a) wants and what this autopsy cannot supply."
+        ]
+      },
+      "withdrawn_arguments": [
+        {
+          "id": "W1",
+          "argument": "That ~1 seed in 5 is STRUCTURALLY un-gradeable at any cap (935a seed 50, 935 seed 42), making 4/5 a population ceiling, supporting a SPLIT of the eliminated H2-structural-bang-bang and an eval-dynamics probe aimed at unfreezing the z_goal scaffold.",
+          "why_withdrawn": "Two of its three supports fail. (a) 935's seed 42 is not a second instance: its external_task probability VARIES (spreads 0.098-0.173) and 935's own confirmed autopsy already recorded its zero graded count as an untested-range fact, since 935's sweep stopped at 2.65. (b) The prose absolute '3/5 seeds fall to exactly 0.0 with no intermediate' is contradicted by this run's own cells: seeds 48 (0.4086 at r=2.65) and 51 (0.7172 at r=2.65) pass through interior values first. Only seed 50 is a pure step. (c) For seed 50 alone, 'structural' is not distinguishable from 'window narrower than the grid': its transition lies in the untested cap interval (0.988, 1.063). A confirmed elimination should not be relitigated on one seed and a false absolute -- and Step 9b's split row requires non_degenerate true, which this run's run-level flag cannot honestly supply. Kept as a recorded observation with no disposition (read_across item 1).",
+          "source": "Step 7c red-team finding F4"
+        },
+        {
+          "id": "W2",
+          "argument": "That within-cell DISPERSION of the external_task probability, not the cap/mean ratio, governs whether a graded regime exists -- i.e. the rule normalises the wrong moment -- with a perfect rank correlation (rho = 1.000, n=5) as its basis, routed as a stratification requirement and a new ledger leg.",
+          "why_withdrawn": "It fails its first out-of-sample check. On 935's seeds 42-46 the same statistic gives rho = -0.05, while the baseline MEAN margin -- the quantity the argument called the wrong moment -- orders those seeds at rho = -0.975. 935's seed 44 is a direct counterexample: calibration-cell spread 0.0004, yet 0.16-0.32 at the swept caps and graded at 2 r values, so dispersion measured at CAP_REF is itself cap-dependent and a stratification keyed on it would have misclassified that seed. A within-run rho of 1.000 on n=5 is a hypothesis, not a diagnosis. Retained as a flagged observation (four_layer measurement item 0) and as the declared null of the zero-compute re-score leg.",
+          "source": "Step 7c red-team findings F2 and F3"
+        },
+        {
+          "id": "W3",
+          "argument": "That the correct routing is a reframed REDESIGN under a NEW EXQ number, and that any re-queue at r=2.65 should be refused outright.",
+          "why_withdrawn": "The redesign was keyed on W2's covariate and falls with it. The blanket refusal was over-broad: the grounds that survive (the adjacency bar, and the criterion's 0.53-0.74 power) argue against a SAME-DESIGN n=5 re-pose, not against a POWERED re-test with the instrument defects repaired. Narrowed accordingly.",
+          "source": "Step 7c red-team finding F5"
+        },
+        {
+          "id": "W4",
+          "argument": "That 935's commissioned lit-pull targeted_review_salience_gain_normalisation is still owed and should be carried forward.",
+          "why_withdrawn": "The user closed it. mech266_circling_review_20260825.md sections 4-5 record the H4 lit gate marked satisfied by the existing corpus and the user confirming at a Step 8 gate on 2026-08-25 that no fresh commission is owed, logged to RECOMMENDATION_LOG.jsonl. Carrying it forward would have re-opened a settled user decision -- the sharpest single finding of this autopsy's red-team pass.",
+          "source": "Step 7c red-team finding F1"
+        }
+      ],
+      "red_team_7c": {
+        "run": true,
+        "model": "fable (cross-model: this drafting session is Opus 5; SKILL.md 7c asks for the model that is NOT the session model)",
+        "foreground": true,
+        "reasoning_withheld": true,
+        "verdict": "CONTESTED",
+        "recomputed_independently_by_the_red_team": "C1 per r = 2/5, 3/5, 4/5, 2/5, 2/5; 935 at 2.45 and 2.65 = 4/5 each; adjacency run 1 with graded false; P(>=4/5) at p=0.7/0.8 = 0.528/0.737; the R1-R3 brake recipe run verbatim -> 7 hits each claim and counts()=False for this target; `landed` True for mode-governance-engagement; both `change` tails end on a field absent from both claims. All matched the draft.",
+        "findings_and_disposition": [
+          {
+            "finding": "F1 -- routing re-commissions a lit-pull the user closed 2026-08-25",
+            "disposition": "ACCEPTED IN FULL; secondary_routing rewritten, W4 recorded. Verified independently against mech266_circling_review_20260825.md sections 4-5."
+          },
+          {
+            "finding": "F2 -- the dispersion covariate fails out of sample (rho -0.05 on 935; mean margin orders those seeds at -0.975)",
+            "disposition": "ACCEPTED IN FULL; W2 recorded, the measurement row demoted to a flagged observation, the stratification requirement dropped. Verified by recomputation."
+          },
+          {
+            "finding": "F3 -- 'cap-invariant, not a clipping artefact' IS the clipping artefact; 935 seed 44 is the counterexample",
+            "disposition": "ACCEPTED IN FULL; environment row rewritten to a saturation reading, which strengthens H4 rather than opening a new axis. Verified: R^2 0.9996-0.9999 on the low-dispersion seeds."
+          },
+          {
+            "finding": "F4 -- the H2 split rests on a prose absolute the cells contradict (48 and 51 pass through interior values; seed 42's margin varies; seed 50 range-limited)",
+            "disposition": "ACCEPTED IN FULL; W1 recorded, the split withdrawn, the observation kept without a disposition."
+          },
+          {
+            "finding": "F5 -- the re-queue refusal is partly grounded; the offered alternative is no better supported",
+            "disposition": "ACCEPTED; W3 recorded, the refusal narrowed to a same-design n=5 re-pose, and the red-team's own observation that the zero-compute re-score leg survives cleanly was adopted as the FIRST probe."
+          }
+        ],
+        "minor_hygiene_accepted": [
+          "why_not_fired cited clause 3 while counts() actually exits at the per-claim branch -- corrected in re_derive_brake.",
+          "The DV reads a LATCHED, salience-gated register (salience_coordinator.py:517-523), not a bare per-step argmax -- corrected in the measurement row.",
+          "ext_margin is p(external_task) from the softmax (driver line 701), not a margin in the difference sense -- terminology corrected where it was load-bearing."
+        ],
+        "note": "A CONTESTED verdict here did its job: four of five findings changed what this artifact asserts or recommends, and one of them (F1) would otherwise have put a closed user decision back in front of the user as owed work."
+      },
+      "pre_routing_checks_7b": {
+        "tool": "scripts/autopsy_pre_routing_checks.py --artifact <draft>.json --json",
+        "run_utc": "2026-09-16T14:14:41Z",
+        "fire_count": 3,
+        "dispositions": [
+          {
+            "check": "C1",
+            "fired_on": [
+              "v3_exq_455a_sd032a_salience_with_vs",
+              "v3_exq_464_mech266_competing_goals",
+              "v3_exq_467_mech266_mode_stickiness"
+            ],
+            "disposition": "ACTED ON in part, then DISMISSED with reason -- and the fire is partly FALSE.",
+            "reason": "The check asserts these drivers exist on disk and have NEVER scored a run, nor has any same-question sibling. Verified directly against evidence/experiments/: FALSE for two of the three. v3_exq_464_mech266_competing_goals scored twice on 2026-04-21 (run packs ..._v3_20260421T180938Z_v3 and ..._v3_20260421T202359Z_v3) and v3_exq_467_mech266_mode_stickiness likewise (..._20260421T180948Z_v3, ..._20260421T202402Z_v3); both carry a non-canonical `_v3_<stamp>_v3` run_id tail, the likely reason the checker's scored-run lookup misses them. TRUE for the third: v3_exq_455a_sd032a_salience_with_vs has no manifest or run pack anywhere (only the unlettered v3_exq_455_sd032a_salience_behavioral scored, 2026-04-20). Substantively dismissed either way: all three are 2026-04-era drivers predating use_external_task_drive (2026-06-13) and the affinity_input_cap work, so none instruments the powered re-test or the zero-compute re-score this autopsy routes to. Naming them here is also the clause the check asked for."
+          },
+          {
+            "check": "C3",
+            "fired_on": [
+              "MECH-266 (6 entries)",
+              "SD-032a (5 entries + review dir)"
+            ],
+            "disposition": "DISMISSED -- correctly-scoped ABSENT; lit_status rewritten to make the scope unmissable.",
+            "reason": "C3 cannot read scope and fires on the literal token ABSENT anywhere in lit_status (SKILL.md 7b says so). The entries it names are exactly the ones this artifact declares PRESENT; the ABSENT clause is scoped to the SalienceCoordinator gain-stage question, whose commissioned review targeted_review_salience_gain_normalisation genuinely does not exist on disk -- and which, per the 2026-08-25 user decision recorded in secondary_routing, is NOT owed. lit_status now enumerates both claims' present entries by name."
+          }
+        ],
+        "inapplicable": [
+          {
+            "check": "C5",
+            "reason": "prose-keyed; run against the JSON draft before the .md existed"
+          },
+          {
+            "check": "C7",
+            "reason": "no arm/condition-structured result array with >= 2 arms and >= 2 seeds in this manifest shape"
+          }
+        ],
+        "not_fired": [
+          "C2-strict -- the recommended substrate action is an amend on the existing entry, which is what C2 checks for",
+          "C6-narrow"
+        ],
+        "note": "Re-run after the Step 7c revision. Neither C1 nor C3 is suppressed by the CONFIRMED/CONTESTED verdict and neither suppresses it: SKILL.md is explicit that the two layers are not nested."
+      },
+      "dry_run_checked": true,
+      "excluded_dry_run_ids": [],
+      "granularity_debt_trigger": {
+        "fires": false,
+        "reader": "granularity_debt_cluster.py MECH-266 (MECH-266 and SD-032a are co-tagged on every target in the cluster)",
+        "cluster_targets": 11,
+        "cluster_files": 7,
+        "claim_alignment_distribution": {
+          "intact": 6,
+          "unclear": 2,
+          "weakened": 2,
+          "unstamped": 1
+        },
+        "weakened_targets": [
+          "v3_exq_464d_mech266_competing_goals_behavioural_20260613T183908Z_v3 (weakened -- 6th consecutive non-engagement)",
+          "v3_exq_467d_mech266_mode_stickiness_behavioural_20260613T153223Z_v3 (weakened -- 6th consecutive non-engagement)"
+        ],
+        "why_not_fired": "The trigger needs at least one `weakened` target AND structurally DIFFERING signatures. The first holds; the second does not. Every target in this cluster carries the SAME signature -- MECH-266 is never reached because the arbitration is mis-calibrated: unreachable in 464b-d/467b-d, saturated in 464e/467e, mis-centred in 934/935/935a. Eight repetitions of one signature is calibration and measurement debt, not granularity debt: the claim is not several claims, it is one claim that has never yet been reached. This autopsy adds a ninth repetition of the same signature, so it strengthens that reading rather than diversifying the signatures. Unchanged from the 935 autopsy's own finding.",
+        "routing": "not /claim-synthesis"
+      }
+    }
+  ]
+}
