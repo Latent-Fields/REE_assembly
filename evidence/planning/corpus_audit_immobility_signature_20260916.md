@@ -72,3 +72,5 @@ One `evidence_discrepancy` governance flag for this audit, listing the claims wh
   --claim-id ARC-016 --claim-id ARC-032 --claim-id INV-034 --claim-id MECH-071 --claim-id MECH-089 --claim-id MECH-102 --claim-id MECH-467 --claim-id Q-021 --claim-id SD-003 \
   --summary "Corpus audit corpus_audit_immobility_signature_20260916.md: 14 runs (10 chip-scored) record a reach-dependent event count or per-tick rate at zero or below 1% of ticks (the MECH-439/E3-cadence immobility signature of navigation_immobility_scoping_2026-08-18.md); all but V3-EXQ-728b and 899 are already autopsied. Confirm per listed claim that the existing disposition accounts for a starved denominator rather than a substantive null."
 ```
+
+**RAISED 2026-09-16T23:22:18Z as `GFLAG-0305`** (`evidence_discrepancy`, 9 claims) by session `angry-leakey-c8b0a0`, once the blocking claim `campaign-w-scripts-corpus-20260916` closed. Landed `REE_assembly` `2f097b859c`, verified on `origin/master`; `status: open`, awaiting `/governance` adjudication.
