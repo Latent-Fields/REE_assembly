@@ -1,10 +1,14 @@
 # Cross-dispatcher-cycle collision detection: feasibility investigation
 
-**Status: AWAITING USER REVIEW.**
+**Status: STEP 3 BUILT 2026-09-16 (user); landed REE_Working fbf75a816.**
+The section 6 detector -- deferred here pending Fix A and Fix B -- was built once both
+prerequisites landed. Sections 1-7 below are the 2026-08-18 investigation as written and
+are NOT retrospectively edited; see section 8 for what the build actually did.
 
 Chip: `chip-20260817-hygienetick-crossdispatcher-collision-scan`
 Date: 2026-08-18 | Box: ree-cloud-5 (headless metaworker worker)
 Outcome: **detector NOT built -- withdrawn on evidence.** Two durable-fix chips spawned instead.
+(That was the 2026-08-18 outcome and was correct then. SUPERSEDED 2026-09-16 -- section 8.)
 
 ---
 
@@ -216,3 +220,55 @@ resolved without waiting.
 
 All figures above are reproducible from `TASK_CHIPS.json` and
 `git log --format=%aI --follow -- TASK_CHIPS.json` on `origin/master`.
+
+---
+
+## 8. Step 3 built -- 2026-09-16 (supersedes the section 7 gate line)
+
+Section 7's "`scripts/hygiene_routine_tick.py` and `scripts/test_hygiene_routine_tick.py`
+were **not modified**" describes the 2026-08-18 investigation only. Both files WERE modified
+on 2026-09-16 to build the section 6 detector, on the user's decision, once the two
+prerequisites this document made the build conditional on had landed:
+
+- **Fix A** -- `claimed_host` stamped on claim and cleared on unclaim. Landed REE_Working
+  `46283cde3` (chip `chip-20260818-chipledger-claim-stamps-claimed-host`, done).
+- **Fix B** -- the cross-box dispatch overlap decision. Resolved as *document the offset
+  scheme* rather than impose a cross-box lock, which is what makes this detector's
+  threshold a **regime** test rather than a breach alarm: overlap is accepted, so only a
+  change in its RATE is a finding.
+
+**What landed:** REE_Working `fbf75a816`, `scripts/hygiene_routine_tick.py` (+298) and
+`scripts/test_hygiene_routine_tick.py` (+139), on `origin/master`. One fleet-wide standing
+episodic chip `chip-crossdispatch-fleet` (W5a generation minting on re-fire, absence-done
+conditional on `scan_ok`), owner-gated to the Mac (`DLAPTOP`, override
+`REE_CROSSDISPATCH_OWNER`) as the ledger materialiser's reader. It fires when the trailing
+24h collision count clears `max(3, 2x the trailing-7-day daily mean)`.
+
+**The event stream is a documented PROXY, not a verdict.** This is the one place the build
+departs from section 6's assumption. Section 6 expected Fix A to make attribution
+"100%-and-exact", but `claimed_host` is **forward-looking only** -- `claim_note_history`
+never preserved it, so the 28 days of recorded history this detector had to be designed
+against carry no host field at all. The implemented event is therefore *any same-chip claim
+overwrite by a distinct claimant within W=300s*, which **upper-bounds** genuine cross-host
+collisions rather than measuring them. Sections 3 and 4's finding stands: no in-ledger
+machine discriminator exists for historical rows.
+
+**Measured baseline, live ledger 2026-09-16:** 2 overwrite events in 28 days, 0 of them
+inside the 300s window. That is far below section 5's ~3/day steady state, and consistent
+with cloud dispatchers having been STOP by policy since 2026-09-02 (and, since 2026-09-16,
+dispatching only from the campaign ledger). The detector was therefore built and tested
+against injected data, not a live burst -- the `max(3, ...)` absolute floor is what keeps it
+quiet while the fleet's true rate is near zero, and the trailing-mean term is what makes it
+fire on a return to the section 5 regime rather than on the regime itself.
+
+**Tests:** 10 cases in `CrossdispatchCollisionFindingsTest` -- quiet baseline, injected
+burst above floor fires, burst below floor quiet, events outside the 300s window are not
+collisions, same-claimant re-overwrite is not a collision, trailing mean raises the
+threshold above the floor, non-owner box fails open without scanning, ledger-read exception
+fails open, no double-mint on re-tick, episode slug advances after a resolution.
+
+**Provenance note.** The chip for this build (`chip-20260916-crossdispatcher-collision-rate-detector`)
+was dispatched twice within ~20s. The Campaign W session
+(`campaign-w-scripts-corpus-20260916`) won `task_claim.py` arbitration on the two script
+paths and did the build; the losing session stopped without editing, per the arbitration
+verdict, and wrote this section afterwards on the uncontended doc path.
