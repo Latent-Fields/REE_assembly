@@ -162,6 +162,17 @@ All commitment decisions must pass through:
 
 ---
 
+<a id="mech-563"></a>
+## Subjective now as the E1-rollout convergence point (MECH-563) -- V4 candidate
+
+**Claim ID:** MECH-563 (`temporal.subjective_now_convergence_point`, registered 2026-09-16, candidate / substrate_conditional / v4, version_relevance v3_v4)
+
+Subjective now is the temporal convergence point of E1 perceptual prediction and hippocampal trajectory rollout, not the moment of raw sensory arrival. The convergence sits ahead of real-time input (supplying the motor-execution buffer), plan origins are anchored where the two streams first agree, and backward hippocampal rollouts that converge on that point constitute retroactive causal inference over candidate pasts. Extends MECH-021 (which says subjective now is a control surface across horizons) by saying *where* that surface is constructed. The convergence-detection diagnostic is plausibly buildable on the live V3 E1/E3/rollout substrate and is flagged for `/governance` routing, not decided here. DO NOT build or queue until routed.
+
+Source: `docs/thoughts/2026-04-07_phase_segregation_perception_imagination.md` via `evidence/planning/thought_intake_2026-04-07_phase_segregation_perception_imagination.md` (registered by the 2026-09-16 intake-hygiene pass).
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -175,6 +186,7 @@ None noted in preserved sources.
 - INV-002
 - MECH-021
 - MECH-049
+- MECH-563 (subjective now as E1-rollout convergence point -- V4 candidate, extends MECH-021)
 
 ## References / Source Fragments
 

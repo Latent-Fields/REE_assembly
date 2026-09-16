@@ -91694,6 +91694,11 @@
     producing/consuming channel (see INV-003's current-state note) and no other-model
     slot (MECH-405 is substrate_conditional), so the separation is not yet expressible,
     let alone testable. Explicitly NOT a V3 blocker, per the intake.
+
+    ADDENDUM 2026-09-16 (intake-hygiene pass): the routing/lateralisation half named above is
+    no longer prose-only -- registered as ARC-146 (language.routing_vs_affect_separation); its
+    companion affect-coupling MECH stays unregistered behind the lit-pull gate (chip
+    chip-20260916-intake-hygiene-litpull-gates).
   what_would_answer: |
     SUBSTRATE PRECONDITION: requires BOTH a live language channel (a code path
     that emits symbols from agent state or maps received symbols onto it) and a
@@ -104470,3 +104475,308 @@
     V3-expressible class if CausalGridWorldV2's cue semantics can be remapped mid-life without a mode
     flag -- flagged for /governance routing, NOT decided here. DO NOT build in V3 and DO NOT queue an
     experiment from this entry.
+
+# =====================================================================================
+# ARC-146 -- from docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md
+# (intake-hygiene pass 2026-09-16, evidence/planning/thought_intake_hygiene_staged_2026-09-04.md)
+# =====================================================================================
+- id: ARC-146
+  title: >-
+    Dorsal high-fidelity structured symbolic routing is architecturally distinct from the
+    affective-coupling system, and a ventral interface binds affect to symbol: the pathway that
+    carries language's structure and sequencing and the pathway that carries graded affective
+    coupling are separate systems joined by a binding interface, so REE must not implement affect
+    as a property of the symbolic route nor symbolic routing as a property of the affect stream.
+    The claim is limited to the DISSOCIATION, which has clinical anchors (conduction aphasia
+    impairs structured repetition while preserving comprehension; right-hemisphere lesions impair
+    affective prosody while sparing propositional language), and deliberately does NOT assert the
+    broader "lateralisation = incompatible-regime separation" or precision-vs-flexibility principle.
+  claim_type: architectural_commitment
+  subject: language.routing_vs_affect_separation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md
+  depends_on:
+    - ARC-009    # language as symbolic mediation layer: the dorsal route is the structured half of THIS layer
+    - ARC-010    # social cognition by mirror modelling and coupling: the affective-coupling system this is separated FROM
+    - MECH-112   # structured latent goal representation distinct from harm avoidance: the same distinct-representation discipline, applied to routing
+    - ARC-123    # language vs ToM/fast-empathy separability (a DIFFERENT axis, see notes); ARC-123's own notes name this claim as the unregistered routing half
+    - MECH-486   # language/fast-empathy representational interference: a CONSEQUENCE this separation predicts, not the separation itself
+    - MECH-373   # LanguageAffectAdaptor: the nearest V5 implementation candidate for the ventral binding interface, not the commitment
+  location: docs/architecture/language.md#arc-146
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a substrate with BOTH a discrete symbolic routing channel and a graded affective-coupling channel that can each be measured and perturbed independently. V3 has neither a symbolic route nor an affect-to-symbol binding interface (ARC-009 is a positioning claim; MECH-373 is V5+), so zero non-degenerate attempts are possible today.
+    CONFIRMING: lesioning or degrading the symbolic-routing channel degrades structured symbol sequencing (order, binding of arguments) while affect-conditioned social responses to the same inputs are preserved, AND the reverse lesion degrades affect-conditioned response while structured routing survives -- a double dissociation with the ventral interface as the only shared component.
+    FALSIFYING: any single perturbation that degrades both channels proportionally across all tested loci, or a demonstration that affect-to-symbol binding is recoverable from the symbolic route alone with no separate coupling channel -- the separation is then an implementation convenience, not an architectural commitment, and this entry should be withdrawn in favour of ARC-009 plus MECH-373.
+    Disposition 2026-09-16: (c) substrate-blocked, substrate_conditional.
+  notes: >-
+    Registered 2026-09-16 by the intake-hygiene pass (staging doc
+    evidence/planning/thought_intake_hygiene_staged_2026-09-04.md, user decision 2026-09-16:
+    "housekeeping now; register after gate check") from
+    evidence/planning/thought_intake_2026-04-16_language_lateralisation.md, Section 3 -- the intake's
+    own "the one claim worth registering". VERIFIED ABSENT: no claims.yaml subject or title matched
+    "routing_vs_affect", "dorsal", "ventral interface", or "affect to symbol" before this entry; the only
+    prior mention is ARC-123's notes, which explicitly record this candidate as still prose-only.
+
+    GATE STATUS. The intake's Section 5-6 gate a companion MECH ("affective coupling runs on bilateral,
+    right-biased temporal-limbic circuits supporting prosody/intent", subject
+    affect.bilateral_right_biased_coupling) behind a dorsal/ventral language-stream, arcuate
+    lateralisation and RH affective-prosody lit-pull, and gate the broad regime-separation INV behind
+    the same pull. Checked 2026-09-16: no targeted_review under evidence/literature/ covers those
+    topics (one tangential prosody-as-language-precursor entry exists in
+    targeted_review_social_signal_legibility, Filippi 2016, anchored to ARC-048). So the MECH and the
+    INV are deliberately NOT registered here; the pull is routed via chip
+    chip-20260916-intake-hygiene-litpull-gates. This ARC is the ungated dissociation claim the
+    intake's Section 5 says to keep to, and its step 3 says to register "at most one integrating ARC".
+    The intake's third candidate (language emerges from social-latent compression) is folded into
+    ARC-009 per the intake's own verdict and gets no id.
+
+    DISTINCT FROM ARC-123, which separates LANGUAGE from THEORY-OF-MIND/FAST-EMPATHY as two specialist
+    systems over a shared core; this claim separates two pathways WITHIN the language-facing
+    system (structure-carrying vs affect-carrying) and asserts a binding interface between them.
+    DISTINCT FROM MECH-486 (representational interference between discrete language and graded
+    empathy representations): interference is what this separation PREDICTS when the two are forced
+    through one channel; MECH-486 is a consequence, not the commitment. DISTINCT FROM MECH-373: the
+    LanguageAffectAdaptor is a V5 component that would IMPLEMENT the ventral affect-to-symbol binding;
+    this entry is the requirement that such an interface exists as a separate thing from the route.
+
+    LITERATURE ANCHORS, UNVERIFIED in this pass: the clinical dissociations named in the title are
+    textbook-level (conduction aphasia / arcuate fasciculus; right-hemisphere aprosodia), and the
+    raw thought's related 2026-02-09 arcuate note is cited by the intake -- none was fetched here and
+    no /lit-pull has been run; per feedback_lit_exp_decoupled they are motivation only.
+
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+  source_documents:
+    - docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md
+    - evidence/planning/thought_intake_2026-04-16_language_lateralisation.md
+    - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
+
+# =====================================================================================
+# MECH-563 -- from docs/thoughts/2026-04-07_phase_segregation_perception_imagination.md
+# (intake-hygiene pass 2026-09-16)
+# =====================================================================================
+- id: MECH-563
+  title: >-
+    Subjective now is the temporal convergence point of E1 perceptual prediction and hippocampal
+    trajectory rollout, not the moment of raw sensory arrival: the convergence sits AHEAD of
+    real-time input (supplying the motor-execution buffer), plan origins are anchored where the
+    two streams first agree, and backward hippocampal rollouts that converge on that point
+    constitute retroactive causal inference over candidate pasts.
+  claim_type: mechanism_hypothesis
+  subject: temporal.subjective_now_convergence_point
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v3_v4
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-04-07_phase_segregation_perception_imagination.md
+  depends_on:
+    - MECH-021   # the coarser predecessor (subjective now as a control surface across horizons): this says WHERE that surface is constructed
+    - MECH-094   # simulation-vs-real content distinction: a backward rollout converging on now must stay tagged as hypothesis, not become experience
+    - INV-049    # unconstrained backward rollouts belong to sleep: the waking version is constrained to converge on the perceptual stream
+    - INV-067    # V(t) verisimilitude as phase-aligned correspondence: the same intake's registered sibling; convergence is where V(t) is evaluated
+  location: docs/architecture/temporal_dynamics.md#mech-563
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: an agent whose E1 prediction and hippocampal rollout are both live at the same tick and can be compared on a shared latent, with an instrumented lag between sensory arrival and the moment a committed action is anchored. V3 has E1, E3 and hippocampal rollout active but no convergence-detection instrumentation between the E1 prediction and the rollout proposal, so the precondition is buildable but not met today.
+    CONFIRMING: the tick at which the E1 prediction and the rollout proposal first agree (within a stated tolerance) precedes sensory arrival by a stable positive lead, plan origins cluster at that tick rather than at arrival, and shifting the lead (by delaying perception or shortening rollout) shifts action-anchoring by the same amount.
+    FALSIFYING: action anchoring tracks raw sensory arrival regardless of when the two streams agree, or the two streams never converge ahead of arrival in a substrate where both are demonstrably live -- subjective now is then not constructed at a convergence point and this entry should be withdrawn in favour of MECH-021 alone.
+    Disposition 2026-09-16: (c) substrate-blocked, substrate_conditional; the convergence-detection diagnostic is a plausibly V3-buildable instrument (see notes) -- flagged for /governance routing, NOT decided here.
+  notes: >-
+    Registered 2026-09-16 by the intake-hygiene pass (staging doc
+    evidence/planning/thought_intake_hygiene_staged_2026-09-04.md) from
+    evidence/planning/thought_intake_2026-04-07_phase_segregation_perception_imagination.md, the
+    fourth candidate of that intake; the other three (phase segregation as the perception/imagination
+    boundary, hallucination as phase-channel invasion, ephaptic enforcement) were registered 2026-04-12
+    as INV-067 and MECH-228 from the sibling verisimilitude intake, and this one was left behind.
+    VERIFIED ABSENT: no subject matched "subjective_now" or "convergence_point"; MECH-021 is the only
+    "subjective now" claim and it predates this intake with a coarser proposition (a control surface
+    across temporal horizons) that contains neither the convergence-point construction nor the
+    backward-rollout / retroactive-causal-inference content.
+
+    DISTINCT FROM MECH-021 (extends it: this says the surface is constructed at the E1-rollout
+    convergence and sits ahead of arrival). DISTINCT FROM SD-003 (superseded; counterfactual E2
+    self-attribution -- a different mechanism, cited by the intake for the backward-rollout
+    a_actual-vs-a_cf idea only, so it is NOT wired as a dependency). The "~80-200 ms perceptual lag"
+    literature the intake gestures at is NOT verified here and is motivation only.
+
+    VERSION ROUTING. The staging doc proposed gating this as v3_pending rather than v4 because the
+    E1/E3/hippocampal-rollout substrate is live; the skill default (v4, substrate_conditional) is
+    applied here and the V3 diagnostic possibility is flagged for /governance rather than decided
+    unilaterally. No lit-pull gate was named by the intake for this candidate.
+
+    DO NOT build in V3 and DO NOT queue an experiment from this entry until /governance has routed it.
+  source_documents:
+    - docs/thoughts/2026-04-07_phase_segregation_perception_imagination.md
+    - evidence/planning/thought_intake_2026-04-07_phase_segregation_perception_imagination.md
+    - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
+
+# =====================================================================================
+# MECH-564 / MECH-565 / ARC-147 -- from docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+# (intake-hygiene pass 2026-09-16)
+# =====================================================================================
+- id: MECH-564
+  title: >-
+    Verbal or symbolic representation of an undifferentiated affective action-pressure is itself a
+    low-risk PARTIAL commit: it discharges the pressure into a cheap committed trajectory, and when
+    that symbolic commit produces prediction mismatch (the articulated expectation fails) or social
+    witnessing (another agent responds to it), the mismatch updates future trajectory-arbitration
+    scoring for the affect's full-cost action alternatives -- which is the mechanism by which
+    articulating an urge changes what the agent later does.
+  claim_type: mechanism_hypothesis
+  subject: commitment.symbolic_commit_updates_arbitration
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+  depends_on:
+    - MECH-061   # commit-boundary token: a symbolic commit crosses a boundary too, but a cheaper one; this claim needs the boundary to exist
+    - MECH-090   # commit-entry predicate / gating of E3-to-action propagation: the symbolic commit passes a lower-cost version of this gate
+    - MECH-094   # simulation-vs-real content distinction: a symbolic commit must remain tagged partial, never accumulate as enacted experience
+    - ARC-009    # language as symbolic mediation layer: the symbolic route the partial commit runs on
+    - ARC-010    # social coupling: social witnessing is one of the two mismatch sources named here
+    - MECH-056   # residue constrains trajectories before distorting representations: the arbitration-update path this claim uses
+  location: docs/architecture/symbolic_commit_therapy_bridge.md#mech-564
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: an agent with a symbolic (verbal or imagined-rehearsal) commit channel whose cost is measurably lower than embodied commitment, plus an instrumented prediction-mismatch signal on that channel and, for the social leg, a second agent whose response is observable. V3 has no symbolic commit channel and no second agent, so zero non-degenerate attempts are possible today.
+    CONFIRMING: after a symbolic commit that produces mismatch (or witnessing), the arbitration scores of the pressure's embodied alternatives shift in the direction of the mismatch, and subsequent embodied choice changes accordingly; a matched symbolic commit that produces no mismatch leaves the scores unchanged (the MECH-565 contrast).
+    FALSIFYING: arbitration scores for the embodied alternatives change identically whether or not the symbolic commit produced mismatch or witnessing, or do not change at all after a mismatch-producing symbolic commit -- symbolic articulation is then not an arbitration-updating commit and this entry should be withdrawn.
+    Disposition 2026-09-16: (c) substrate-blocked, substrate_conditional (requires symbolic/language plus social-witnessing substrate).
+  notes: >-
+    Registered 2026-09-16 by the intake-hygiene pass (staging doc
+    evidence/planning/thought_intake_hygiene_staged_2026-09-04.md) from
+    evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md, Section 4 -- the intake's
+    "novel, therapy-bridge-only" content, which it explicitly separates from its proto-feeling audit
+    content (a duplicate of the ProtoFeelings intake, already handled by MECH-353/354/355 and not
+    re-registered here). VERIFIED ABSENT: no claims.yaml subject or title matched "symbolic commit",
+    "symbolic_commit" or "articulat" in this sense before this entry.
+
+    GATE STATUS. The intake names NO literature gate for this cluster; its Section 6 gate is the
+    symbolic/language plus social-witnessing SUBSTRATE, which is an implementation-phase gate, not a
+    registration gate, and is honoured by implementation_phase: v4 / substrate_conditional.
+
+    DISTINCT FROM MECH-061 and MECH-090 (the commit boundary and its entry predicate): this claim
+    asserts that a cheaper, symbolic crossing of the same boundary exists and is arbitration-relevant;
+    it does not restate either gate. DISTINCT FROM MECH-094: it depends on the simulation/real
+    distinction (the symbolic commit must not be booked as enactment) rather than asserting it.
+    Sibling MECH-565 is the failure mode (mismatch-free symbolic loop); sibling ARC-147 is the
+    typing requirement both need. The clinical framing (therapy as conversion of undifferentiated
+    action pressure into symbolic commits that can then be corrected) is the raw thought's own and is
+    motivation, not evidence; no literature anchor is claimed.
+
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+  source_documents:
+    - docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+    - evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md
+    - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
+
+- id: MECH-565
+  title: >-
+    Rumination is a mismatchless symbolic-commit loop: repeated symbolic commits (verbal or imagined
+    rehearsal of an affective pressure) that generate NO prediction mismatch and NO social witnessing
+    fail to re-rank the candidate set, so the same trajectory is re-proposed and re-committed
+    symbolically while arbitration never updates -- a perseveration signature distinct from
+    over-persistence of an EMBODIED commitment, and the discriminator between therapeutic
+    articulation and rumination is whether a symbolic commit changes subsequent arbitration scores.
+  claim_type: mechanism_hypothesis
+  subject: commitment.rumination_as_mismatchless_loop
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+  depends_on:
+    - MECH-564   # the mechanism whose degenerate (mismatch-free) case this is
+    - MECH-536   # BG-like post-commit persistence latch -> perseveration without competence: the EMBODIED perseveration signature this is distinguished from
+    - MECH-342   # commit maintenance / release: a symbolic loop never triggers the release path because nothing ever mismatches
+    - MECH-056   # residue constrains trajectories: with no mismatch no residue-side correction reaches arbitration either
+  location: docs/architecture/symbolic_commit_therapy_bridge.md#mech-565
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the same substrate as MECH-564 (a symbolic commit channel with an instrumented mismatch signal), plus a way to run repeated symbolic commits of one trajectory with mismatch either present or withheld. Not available in V3.
+    CONFIRMING: under withheld mismatch, repeated symbolic commits leave the candidate ranking unchanged and the same trajectory is re-proposed on every cycle (perseveration), while the identical loop with mismatch injected re-ranks the set and the re-proposal rate falls -- and the embodied-latch signature (MECH-536) is absent, i.e. no post-commit hysteresis is engaged.
+    FALSIFYING: repeated mismatch-free symbolic commits still re-rank the candidate set (something other than mismatch or witnessing updates arbitration), or the perseveration observed is fully explained by the embodied persistence latch with the symbolic channel contributing nothing -- rumination is then not a distinct symbolic failure mode and this entry should be withdrawn.
+    Disposition 2026-09-16: (c) substrate-blocked, substrate_conditional. The intake flags a possibly V3-tractable PROXY (residue plus prediction-mismatch instrumentation on existing commits) -- flagged for /governance, NOT built or queued here.
+  notes: >-
+    Registered 2026-09-16 by the intake-hygiene pass (staging doc
+    evidence/planning/thought_intake_hygiene_staged_2026-09-04.md) from
+    evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md, Section 4. VERIFIED ABSENT:
+    no claims.yaml subject matched "rumination" or "mismatchless"; docs/architecture/psychiatric_failure_modes.md
+    names rumination three times (OCD checking/rumination as an uncalibrated gate threshold;
+    rumination-loop catatonia; rumination/indecision/gate paralysis) but as CLINICAL ANALOGUES of
+    E3-gate failures, never as a symbolic-commit mechanism -- this entry is the mechanism those
+    analogue rows lack, and is cross-linked there.
+
+    DISTINCT FROM MECH-536 (embodied post-commit latch -> perseveration): the ruminative loop never
+    engages the latch because nothing is embodied; the two perseverations have different signatures
+    (latch hysteresis vs mismatch-free re-proposal) and the claim is falsified if they collapse.
+    DISTINCT FROM the OCD row in psychiatric_failure_modes.md ("endless re-evaluation without
+    commitment"): that row is a gate that never fires; this is a gate that fires cheaply and teaches
+    nothing. The staging doc asked whether a narrower V3-scoped variant is warranted at registration
+    time; the answer taken here is NO new variant claim -- the proxy is recorded in the disposition
+    line above for /governance to route, so that no second tracker of the same idea is created.
+
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+  source_documents:
+    - docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+    - evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md
+    - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
+
+- id: ARC-147
+  title: >-
+    Commits are TYPED: REE's commitment machinery must distinguish at least symbolic, embodied,
+    social-witnessed, repair, grief, boundary and rumination commit types, because each carries a
+    different cost, a different mismatch source (or none), a different residue consequence and a
+    different arbitration-update path -- a single untyped commit-boundary token cannot represent
+    that a symbolic partial commit and an embodied full commit of the same trajectory carry
+    different risk and teach different things.
+  claim_type: architectural_commitment
+  subject: commitment.commit_type_taxonomy
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-16'
+  source_thought: docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+  depends_on:
+    - MECH-061   # the untyped commit-boundary token this taxonomy extends
+    - MECH-094   # the hypothesis-tag / write-gate machinery the intake says this taxonomy extends (partial vs enacted is itself a type distinction)
+    - MECH-564   # symbolic commit: the type whose existence forces the taxonomy
+    - MECH-565   # rumination: the degenerate symbolic type, listed as its own commit type
+    - ARC-095    # the affect-stream taxonomy is declared open/extensible; the commit-type taxonomy inherits the same openness discipline
+  location: docs/architecture/symbolic_commit_therapy_bridge.md#arc-147
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a substrate that can emit at least two commit types with measurably different cost and mismatch source (minimally symbolic vs embodied). V3's commit machinery emits one untyped boundary token (MECH-061), so the precondition is not met.
+    CONFIRMING: an agent whose commit token carries a type field arbitrates differently across types in the ways the type predicts (symbolic commits update scores only on mismatch/witnessing; embodied commits also incur residue; repair and grief commits close prior residue rather than opening trajectories), and an ablation that collapses the type field to one value degrades exactly those distinctions.
+    FALSIFYING: collapsing the type field to a single untyped token leaves arbitration, residue and mismatch-handling behaviour unchanged across the listed cases -- the taxonomy is then descriptive labelling, not an architectural requirement, and this entry should be withdrawn in favour of MECH-061 alone.
+    Disposition 2026-09-16: (c) substrate-blocked, substrate_conditional.
+  notes: >-
+    Registered 2026-09-16 by the intake-hygiene pass (staging doc
+    evidence/planning/thought_intake_hygiene_staged_2026-09-04.md) from
+    evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md, Section 4. VERIFIED
+    ABSENT: no claims.yaml subject matched "commit_type" or "commit-type taxonomy". The type list is
+    the intake's own and is explicitly OPEN (per ARC-095's discipline for the affect-stream taxonomy):
+    the repair and grief types are owned conceptually by the V4 ethics cluster
+    (evidence/planning/thought_intake_2026-05-31_musings_on_v4.md, moral-self / repair thread) and
+    the intake's Section 6 step 3 asks that the therapy and moral-self threads register together
+    rather than fragment -- this cross-link is that request honoured at the registry level; the
+    ethics cluster's own claims are not modified here.
+
+    DISTINCT FROM MECH-061 (one boundary token) -- this extends it with a type; DISTINCT FROM ARC-095
+    (which types affect STREAMS, not commits; wired only for the openness discipline). No literature
+    anchor is claimed.
+
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
+  source_documents:
+    - docs/thoughts/2026-06-01_Therapy_and_Action_Pressure.md
+    - evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md
+    - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md

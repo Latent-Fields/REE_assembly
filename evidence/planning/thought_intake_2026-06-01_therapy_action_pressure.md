@@ -58,6 +58,8 @@ The rumination-as-mismatchless-loop framing connects to the perseveration failur
 
 ## 4. Candidate claims (therapy bridge only)
 
+> **REGISTERED 2026-09-16** (intake-hygiene pass, `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md`): symbolic-commit-updates-arbitration -> **MECH-564**; rumination-as-mismatchless-symbolic-loop -> **MECH-565**; commit-type-taxonomy -> **ARC-147**. All candidate / substrate_conditional / implementation_phase v4 (the symbolic/social substrate gate in Section 6 is honoured as an implementation-phase gate; this file names no literature gate). Home doc: `docs/architecture/symbolic_commit_therapy_bridge.md`. The possibly-V3-tractable rumination proxy is recorded in MECH-565's disposition line for `/governance` routing, not built.
+
 - **Candidate MECH (symbolic-commit-updates-arbitration)** -- verbal/symbolic representation of
   affective pressure is a low-risk partial commit; when it produces prediction mismatch or social
   witnessing, it updates future trajectory scoring. *[novel]*

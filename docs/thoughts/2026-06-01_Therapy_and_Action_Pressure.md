@@ -1,4 +1,5 @@
 Status: processed
+Claims registered: MECH-564, MECH-565, ARC-147 (2026-09-16, therapy-bridge content only)
 
 Processed in:
 - `evidence/planning/thought_intake_2026-06-01_therapy_action_pressure.md` (intake; proto-feeling audit content DUPLICATES ProtoFeelings -- cross-linked not re-processed; novel contribution = therapy-as-symbolic-commit bridge + commit-type taxonomy + rumination-as-mismatchless-loop)

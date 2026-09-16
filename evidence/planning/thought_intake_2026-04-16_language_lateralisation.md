@@ -46,6 +46,8 @@ one small "separable social/language systems" cluster, not independently.
 
 ## 3. Candidate claims
 
+> **Registration status 2026-09-16** (intake-hygiene pass, `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md`): the Candidate ARC below is **REGISTERED as ARC-146** (`language.routing_vs_affect_separation`, candidate / substrate_conditional / v4). The Candidate MECH is **NOT registered -- GATE OPEN**: the dorsal/ventral stream + arcuate lateralisation + RH affective-prosody lit-pull this file's Sections 5-6 require has not landed (no `targeted_review_*` under `evidence/literature/` covers it); the pull is routed via chip `chip-20260916-intake-hygiene-litpull-gates`. The Candidate HYP is folded into ARC-009 per the verdict below; no id.
+
 - **Candidate ARC** (language.routing_vs_affect_separation) -- dorsal high-fidelity structured
   routing is architecturally distinct from the affective-coupling system; a ventral interface
   binds affect to symbol. *[integrates existing pieces; the one claim worth registering]*

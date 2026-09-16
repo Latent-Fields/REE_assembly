@@ -1,4 +1,5 @@
 Status: processed
+Claims registered: ARC-146 (2026-09-16; the affect-coupling MECH stays gated behind the lit-pull, chip chip-20260916-intake-hygiene-litpull-gates)
 
 Processed in:
 - `evidence/planning/thought_intake_2026-04-16_language_lateralisation.md` (intake; process as a cluster with the two 2026-05-04 social/language thoughts; lit-pull before registering)

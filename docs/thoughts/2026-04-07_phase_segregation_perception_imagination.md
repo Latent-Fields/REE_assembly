@@ -1,6 +1,7 @@
 # Phase Segregation: Perception vs Imagination on Shared Substrate
 
 Status: processed
+Claims registered: MECH-563 (2026-09-16, subjective-now convergence point); INV-067, MECH-228 (2026-04-12, via the sibling verisimilitude intake)
 
 Processed in:
 - `evidence/planning/thought_intake_2026-04-07_phase_segregation_perception_imagination.md`

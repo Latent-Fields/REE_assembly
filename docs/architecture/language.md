@@ -183,6 +183,17 @@ Source: `docs/thoughts/2026-06-07-language-affect-adaptor-slm-emotion-recognitio
 
 ---
 
+<a id="arc-146"></a>
+## Routing-vs-affect separation (ARC-146) -- V4 candidate
+
+**Claim ID:** ARC-146 (`language.routing_vs_affect_separation`, registered 2026-09-16, candidate / substrate_conditional / v4)
+
+Dorsal high-fidelity structured symbolic routing is architecturally distinct from the affective-coupling system, and a ventral interface binds affect to symbol. The claim is limited to the clinical *dissociation* (conduction aphasia impairs structured repetition while preserving comprehension; right-hemisphere lesions impair affective prosody while sparing propositional language) and deliberately does not assert the broader "lateralisation = incompatible-regime separation" principle, which the source intake gates behind a lit-pull. Distinct from ARC-123 (language vs theory-of-mind separability, a different axis), from MECH-486 (the interference this separation predicts) and from MECH-373 (a V5 implementation candidate for the ventral binding interface). The companion mechanism claim (bilateral, right-biased temporal-limbic affective coupling) is **not** registered pending the dorsal/ventral + lateralisation literature pull. DO NOT build in V3.
+
+Source: `docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md` via `evidence/planning/thought_intake_2026-04-16_language_lateralisation.md`.
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -196,6 +207,7 @@ None noted in preserved sources.
 - INV-003
 - INV-007
 - MECH-373 (Language Affect Adaptor — V5+ candidate; depends_on ARC-009/ARC-010/Q-007/MECH-031)
+- ARC-146 (routing-vs-affect separation -- V4 candidate; depends_on ARC-009/ARC-010/MECH-112/ARC-123/MECH-486/MECH-373)
 
 ## References / Source Fragments
 

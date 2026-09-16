@@ -105,7 +105,7 @@ Non-synaptic field effects maintain or disrupt the phase boundaries that separat
 
 **Connects to:** Clinical atlas (hallucination, intrusive imagery, rumination, dream phenomenology, dissociation).
 
-### Candidate: Subjective now as perceptual-hippocampal convergence point
+### Candidate: Subjective now as perceptual-hippocampal convergence point -- REGISTERED 2026-09-16 as MECH-563
 
 "Subjective now" is defined by the temporal convergence of E1 perceptual prediction and hippocampal trajectory proposal — not by raw sensory arrival time. This convergence sits ahead of real-time input, providing the motor execution buffer. Plan origins are anchored to where the two streams first agree. Backward hippocampal rollouts that converge on subjective-now constitute retroactive causal inference (testing possible pasts).
 
