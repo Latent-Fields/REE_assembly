@@ -2858,6 +2858,280 @@ def test_948_manifest_shape_end_to_end():
     assert flag == "verified", flag
 
 
+# ---------------------------------------------------------------------------
+# (3b) PER-CRITERION SELECTOR ROLE -- `criteria[].role: "selector"`.
+#
+# Neither the default "all" (AND) mode nor the "any" (OR) mode above can
+# represent an ORDERED-GATE driver: one or more load_bearing:true criteria
+# exist to SELECT which PASS label applies (or which partition member wins),
+# not to gate the PASS itself. A driver marks such a criterion role:
+# "selector" and (3b)'s "all" mode AND-check stops treating its passed:false
+# as an aggregation-vacuity signal. Absent (or any other value) leaves the
+# criterion an ordinary AND-gate member -- every pre-2026-09-16 manifest is
+# unaffected. See the docstring "PER-CRITERION SELECTOR ROLE" entry and
+# failure_autopsy_V3-EXQ-964b_2026-09-16.md Sec.2 / failure_autopsy_V3-EXQ-
+# 1041_2026-09-16.md for the two confirmed instances that motivated this.
+# Regression target: chip-20260916-ordered-gate-vacuous-pass-false-flag.
+# ---------------------------------------------------------------------------
+
+def test_selector_role_excludes_criterion_from_and_check():
+    """THE FIX, minimal case. A load_bearing:true criterion tagged
+    role:'selector' fails; the only other load_bearing criterion passes. (3b)
+    must not flag -- the failing criterion is a label choice, not a gate."""
+    interp = {
+        "label": "x",
+        "criteria_non_degenerate": {"C1_gate": True, "C2_selector": True},
+        "criteria": [
+            {"name": "C1_gate", "load_bearing": True, "passed": True},
+            {"name": "C2_selector", "load_bearing": True, "passed": False,
+             "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_selector_role_still_flags_a_genuine_gate_failure():
+    """SAFETY. A selector-tagged criterion beside it does not blanket-
+    suppress (3b): a real (non-selector) load_bearing:true criterion that
+    fails still flags, exactly as before."""
+    interp = {
+        "label": "x",
+        "criteria": [
+            {"name": "C1_gate", "load_bearing": True, "passed": False},
+            {"name": "C2_selector", "load_bearing": True, "passed": False,
+             "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_selector_role_absent_keeps_and_semantics():
+    """NEGATIVE CONTROL. Without the `role` tag, behaviour is exactly the
+    pre-2026-09-16 AND rule -- a failing load_bearing criterion flags even
+    when a sibling passed, for the entire pre-convention population."""
+    interp = {
+        "label": "x",
+        "criteria": [
+            {"name": "C1_gate", "load_bearing": True, "passed": True},
+            {"name": "C2_selector", "load_bearing": True, "passed": False},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_selector_role_unrecognised_value_keeps_and_semantics():
+    """NEGATIVE CONTROL. An unrecognised `role` value (typo, future
+    extension, or a driver using `role` for some other purpose) must not
+    silently suppress the AND-check -- only the exact string "selector"
+    (case/whitespace-insensitive) does."""
+    interp = {
+        "label": "x",
+        "criteria": [
+            {"name": "C1_gate", "load_bearing": True, "passed": True},
+            {"name": "C2_selector", "load_bearing": True, "passed": False,
+             "role": "gate"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_selector_role_is_case_and_whitespace_insensitive():
+    """Mirrors criteria_aggregation's own compare -- ' Selector ' still
+    counts."""
+    interp = {
+        "label": "x",
+        "criteria_non_degenerate": {"C1_gate": True, "C2_selector": True},
+        "criteria": [
+            {"name": "C1_gate", "load_bearing": True, "passed": True},
+            {"name": "C2_selector", "load_bearing": True, "passed": False,
+             "role": " Selector "},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_selector_role_all_load_bearing_are_selectors_still_verified():
+    """A true partition/selector SET (every load_bearing:true criterion
+    tagged role:'selector', mirroring V3-EXQ-1041's three mutually-exclusive
+    shares) leaves gate_entries empty -- (3b)'s AND-check has nothing left to
+    fail on, regardless of how many selectors individually read False."""
+    interp = {
+        "label": "x",
+        "criteria_non_degenerate": {
+            "C1_share": True, "C2_share": True, "C3_share": True,
+        },
+        "criteria": [
+            {"name": "C1_share", "load_bearing": True, "passed": True,
+             "role": "selector"},
+            {"name": "C2_share", "load_bearing": True, "passed": False,
+             "role": "selector"},
+            {"name": "C3_share", "load_bearing": True, "passed": False,
+             "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_selector_role_does_not_apply_to_a_non_pass():
+    """A FAIL was never vacuous_pass; the role tag must not change that --
+    (3b) stays gated on status == PASS regardless of role."""
+    interp = {
+        "label": "x",
+        "criteria_non_degenerate": {"C1_selector": True},
+        "criteria": [
+            {"name": "C1_selector", "load_bearing": True, "passed": False,
+             "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "FAIL", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_selector_role_does_not_apply_inside_any_mode():
+    """DELIBERATE NON-INTERACTION (see docstring). 'any' mode's own
+    all-load_bearing-failed check is UNCHANGED by role -- it still reads
+    every load_bearing:true criterion, selector-tagged ones included. Two
+    criteria, both load_bearing:true, one tagged selector, both failed ->
+    'any' mode still flags (every load_bearing criterion failed, so the
+    OR-driver PASS genuinely rests on nothing)."""
+    interp = {
+        "label": "x",
+        "criteria_aggregation": "any",
+        "criteria": [
+            {"name": "C1_arm", "load_bearing": True, "passed": False},
+            {"name": "C2_selector", "load_bearing": True, "passed": False,
+             "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_964b_manifest_shape_end_to_end():
+    """The real V3-EXQ-964b shape: ORDERED GATE, C1 gates C3. C1/C2 pass, C3
+    (the selector between two PASS labels) fails. Declaring C3
+    role:'selector' resolves this to verified, not vacuous_pass.
+    failure_autopsy_V3-EXQ-964b_2026-09-16.md Sec.2."""
+    interp = {
+        "label": "mechanism_moves_selected_candidate",
+        "combination_rule": (
+            "ORDERED GATE, not an AND of PASSes. C1 gates C3: a detector "
+            "that cannot fire at the top of a four-decade ladder makes C3 "
+            "uninterpretable ... With C1 met, C3 selects between "
+            "mechanism_moves_selected_candidate and "
+            "mechanism_inert_at_own_magnitude_detector_verified."
+        ),
+        "criteria_non_degenerate": {
+            "C1_detector_sensitivity_top_rung_fires": True,
+            "C2_minimum_effective_authority_measured": True,
+            "C3_subject_moves_selected_candidate": True,
+        },
+        "criteria": [
+            {"name": "C1_detector_sensitivity_top_rung_fires",
+             "load_bearing": True, "passed": True},
+            {"name": "C2_minimum_effective_authority_measured",
+             "load_bearing": True, "passed": True},
+            {"name": "C3_subject_moves_selected_candidate",
+             "load_bearing": True, "passed": False, "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_1041_manifest_shape_end_to_end():
+    """The real V3-EXQ-1041 shape: SHORTFALL DECOMPOSITION, a 3-way
+    partition that sums to 1 by construction -- at most one share can lead.
+    C1 (metric share) is dominant and passes; C2/C3 (budget/residual share)
+    necessarily fail. Declaring all three role:'selector' (a full
+    partition/selector SET, not an asymmetric gate+selector like 964b)
+    resolves this to verified. failure_autopsy_V3-EXQ-1041_2026-09-16.md."""
+    interp = {
+        "label": "metrics_never_comparable",
+        "combination_rule": (
+            "SHORTFALL DECOMPOSITION, not an AND/OR of PASSes ... the three "
+            "sum to 1 by construction, so AT MOST ONE can lead the "
+            "runner-up by any positive margin and the criteria are a "
+            "partition."
+        ),
+        "criteria_non_degenerate": {
+            "C1_metric_share_dominant": True,
+            "C2_budget_share_dominant": True,
+            "C3_residual_share_dominant": True,
+        },
+        "criteria": [
+            {"name": "C1_metric_share_dominant", "load_bearing": True,
+             "passed": True, "role": "selector"},
+            {"name": "C2_budget_share_dominant", "load_bearing": True,
+             "passed": False, "role": "selector"},
+            {"name": "C3_residual_share_dominant", "load_bearing": True,
+             "passed": False, "role": "selector"},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+# --- out-of-scope regression pins ------------------------------------------
+#
+# The three genuine legacy flags and the 1020 hybrid shape (Part A items 1-4
+# of chip-20260916-ordered-gate-vacuous-pass-false-flag's claim_note) are
+# UNCHANGED by the selector-role fix above: it touches only the criteria[]
+# branch of (3b), never the legacy criteria_non_degenerate{} fallback below
+# it. None of these four runs is cleared by declaring role:'selector'.
+# Clearing item 4 (V3-EXQ-1020, no criteria[] array at all) needs the
+# legacy-path exclusion itself extended -- explicitly OUT OF SCOPE here and
+# OWED to a follow-up.
+
+def test_legacy_genuine_vacuity_unaffected_by_selector_role():
+    """V3-EXQ-767/768/792a shape: every load_bearing:true criteria[] entry
+    passed:True (so (3b)'s criteria[] check never fires, before or after
+    this change), but a criteria_non_degenerate{} key with no matching
+    criteria[] name reads False -- the legacy fallback still flags. A real,
+    unrelated pinned-across-seeds failure, not a selector."""
+    interp = {
+        "label": "x",
+        "criteria_non_degenerate": {
+            "pref_on_varies_across_seeds": False,
+            "density_a_exceeds_b": True,
+        },
+        "criteria": [
+            {"name": "L1a_pref_A_on", "load_bearing": True, "passed": True},
+            {"name": "L1b_propagation_delta", "load_bearing": True,
+             "passed": True},
+        ],
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
+def test_1020_hybrid_shape_unaffected_by_selector_role():
+    """V3-EXQ-1020 shape: no criteria[] array at all (only
+    criteria_non_degenerate{}), so (3b) never runs -- role:'selector' has
+    nowhere to attach and cannot help. Legacy path flags on
+    C3_advantage_negative_on_flips:False, unrelated to any selector
+    semantics. Confirms this change does not reach (or need to reach) the
+    no-criteria[] shape; clearing it is OUT OF SCOPE here (OWED -- needs the
+    legacy-path exclusion extended, not this mechanism)."""
+    interp = {
+        "label": "x",
+        "criteria_non_degenerate": {
+            "C1_gradient_present": True,
+            "C2_persistence_low": True,
+            "C3_advantage_negative_on_flips": False,
+            "C4_return_variance_present": True,
+        },
+    }
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "vacuous_pass", flag
+
+
 # --- atomic-write drift guard --------------------------------------------
 #
 # build_experiment_indexes.py rewrites ~10 shared artifacts under

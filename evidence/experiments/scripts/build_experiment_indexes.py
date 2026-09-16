@@ -516,6 +516,42 @@ def _compute_adjudication(interpretation: Any, status: str,
                              at the top-of-function purpose gate) regardless of
                              its criteria[] shape -- left unmodified.
 
+                             PER-CRITERION SELECTOR ROLE (2026-09-16,
+                             failure_autopsy_V3-EXQ-964b_2026-09-16.md Sec.2,
+                             failure_autopsy_V3-EXQ-1041_2026-09-16.md). Distinct
+                             again from the run-level "any" mode above: an
+                             ORDERED-GATE driver is neither an AND-gate (every
+                             load_bearing:true criterion must pass) nor an
+                             OR-driver (at least one must). Its load_bearing:true
+                             criteria include one or more SELECTORS -- entries
+                             whose job is to pick which of several PASS labels
+                             applies (V3-EXQ-964b's C3, gated by C1) or to
+                             partition a decomposition where at most one member
+                             can hold (V3-EXQ-1041's C1/C2/C3, which sum to 1 by
+                             construction). A selector's own passed:false is the
+                             LABEL-SELECTION result, not an aggregation-vacuity
+                             signal -- the run still adjudicated on real
+                             instrumentation. A driver declares this per
+                             criterion via `role: "selector"` on the criteria[]
+                             entry (case/whitespace-insensitive compare, mirrors
+                             `criteria_aggregation`); absent (or any other
+                             value) leaves the criterion a normal AND-gate
+                             member, so every pre-2026-09-16 manifest is
+                             unaffected. Selector-tagged criteria are removed
+                             from the "all" mode AND-check entirely (3b) fires
+                             only on a passed:false criterion that is NOT
+                             tagged role:"selector"; the "any" mode branch above
+                             is unchanged and still reads every load_bearing:true
+                             criterion (role included) -- no driver combines the
+                             two modes today, so that interaction is deliberately
+                             left unmeasured rather than guessed at. Requires
+                             DECLARATION: this only clears a driver's manifest
+                             once the driver adds the tag -- the six vacuous_pass
+                             flags standing on 2026-09-16 (V3-EXQ-767/768/792a
+                             genuine; V3-EXQ-1020 a distinct legacy-path shape,
+                             see below; V3-EXQ-964b/1041 this class) are NOT
+                             retroactively cleared by this code change alone.
+
                              CONVENTION for the legacy check: a key
                              in criteria_non_degenerate is a NON-DEGENERACY
                              ASSERTION (True=non-degenerate/good), so a False value
@@ -634,6 +670,16 @@ def _compute_adjudication(interpretation: Any, status: str,
     # (3b) test from "ANY load_bearing:true criterion failed" to "EVERY
     # load_bearing:true criterion failed" -- still catches a genuinely vacuous
     # OR-driver PASS, stops false-flagging a legitimate M-of-N OR pass.
+    #
+    # PER-CRITERION SELECTOR ROLE (2026-09-16, see the docstring entry above for
+    # the full rationale). `role: "selector"` on a criteria[] entry removes it
+    # from the "all" mode AND-check -- its passed:false picks a PASS label (or
+    # is one leg of a partition) rather than invalidating the gate. Undeclared
+    # (no `role`, or any value other than "selector") keeps the criterion a
+    # normal AND-gate member, so every pre-2026-09-16 manifest is unaffected.
+    # Deliberately NOT applied inside the "any" branch above -- no driver
+    # combines the two modes today (see docstring), so that interaction stays
+    # unmeasured rather than guessed at.
     if str(status).upper() == "PASS":
         criteria = interp.get("criteria")
         if isinstance(criteria, list):
@@ -643,7 +689,9 @@ def _compute_adjudication(interpretation: Any, status: str,
                 if lb_entries and all(c.get("passed") is False for c in lb_entries):
                     return label, "vacuous_pass"
             else:
-                for c in lb_entries:
+                gate_entries = [c for c in lb_entries
+                                 if str(c.get("role", "")).strip().lower() != "selector"]
+                for c in gate_entries:
                     if c.get("passed") is False:
                         return label, "vacuous_pass"
 
