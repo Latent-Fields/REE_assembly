@@ -293,16 +293,32 @@ class LiveCorpusTest(unittest.TestCase):
         reports the NEWEST qualifying row by design, so newer evidence arriving is
         the function working, not the fix regressing -- the old assertion pinned a
         corpus SNAPSHOT and would go red again on the next retest of any of the
-        three. Nothing about the mechanism had changed: all three still carried a
-        row exactly AT the cutoff and still counted it.
+        three.
 
-        What is pinned instead is the differential that actually separates fixed
-        from broken, isolated from any later run: the at-the-cutoff row exists,
-        and coverage computed over evidence restricted to AT OR BEFORE the cutoff
-        still finds it. Under the pre-FM11d strict `when > cutoff` rule that
-        restricted lookup returns None for all three -- which is the exact
-        self-cancelling shape, asserted in a form later evidence cannot satisfy
-        accidentally NOR falsify.
+        WHAT THIS TEST NO LONGER ASSERTS, and why (2026-09-16 cutoff-semantics
+        fix, chip-20260915-run-role-cutoff-semantics-then-backfill). SD-035 and
+        SD-016 both carry an `implemented_utc` (2026-04-21 / 2026-04-25) that
+        PREDATES every one of their post_build runs, and always has -- it is not
+        new. Before this fix, `_substrate_landing_cutoff` combined `implemented_utc`
+        and every post_build run on an entry via a single max, so on SD-016 (9
+        post_build runs accumulated 2026-04-25 .. 2026-08-12) the max picked
+        whichever run was LATEST at measurement time -- which is exactly the same
+        unbounded-growth defect fixed for the ARC-045/contextmemory case, just
+        with a coincidence that so far the latest accumulated run kept being one
+        of MECH-151/152's own covering runs, making it self-cancelling rather than
+        an outright hold. After the fix, an entry with `implemented_utc` uses it
+        EXCLUSIVELY (it is the authoritative bookkeeping stamp; see
+        `_substrate_landing_cutoff`'s docstring for the 9-item same-day-audit case
+        this also protects), so SD-035/SD-016's cutoff reverts to their actual
+        landing dates -- comfortably before all their evidence -- and these three
+        claims are covered by ordinary strict inequality, no longer by the
+        self-cancelling `>=` boundary at all. The self-cancelling MECHANISM
+        (inclusive `>=` when the cutoff source is itself a validation run) is
+        unchanged and still independently exercised by
+        `SelfCancellingCutoffIsFixedTest` in
+        test_generate_inter_governance_workset_completed_retest.py, on a fixture
+        entry that genuinely has no `implemented_utc` -- the one shape where the
+        mechanism is still load-bearing.
         """
         substrate = G._substrate_by_id()
         live_entries = G._claim_evidence_entries
@@ -310,33 +326,19 @@ class LiveCorpusTest(unittest.TestCase):
         for claim in ("MECH-074d", "MECH-151", "MECH-152"):
             G._claim_evidence_entries = live_entries
             cover = G._completed_retest_coverage(claim, substrate)
-            self.assertIsNotNone(cover, f"{claim}: self-cancelling cutoff is back")
-            self.assertTrue(cover["cutoff_is_validation_run"], claim)
-            self.assertIn("failure_record", cover["cutoff_source"], claim)
+            self.assertIsNotNone(cover, f"{claim}: substrate coverage is gone")
+            self.assertFalse(
+                cover["cutoff_is_validation_run"],
+                f"{claim}: SD-035/SD-016 both carry implemented_utc predating "
+                "all their post_build runs, so the cutoff should come from "
+                "implemented_utc, exclusively, not from a run -- see this "
+                "test's docstring",
+            )
+            self.assertIn("implemented_utc", cover["cutoff_source"], claim)
             cutoff = G._parse_evidence_ts(cover["cutoff_utc"])
-            self.assertGreaterEqual(
+            self.assertGreater(
                 G._parse_evidence_ts(cover["timestamp_utc"]), cutoff,
-                f"{claim}: coverage predates the landing cutoff",
-            )
-
-            # The self-cancelling shape on its own, with every later run hidden.
-            narrowed = [
-                e for e in live_entries()
-                if isinstance(e, dict)
-                and G._parse_evidence_ts(e.get("timestamp_utc")) is not None
-                and G._parse_evidence_ts(e.get("timestamp_utc")) <= cutoff
-            ]
-            G._claim_evidence_entries = lambda rows=narrowed: rows
-            at_cutoff = G._completed_retest_coverage(claim, substrate)
-            self.assertIsNotNone(
-                at_cutoff,
-                f"{claim}: the run that DEFINES the cutoff is not counted as "
-                "coverage -- the self-cancelling exclusion is back",
-            )
-            self.assertEqual(
-                at_cutoff["cutoff_utc"], at_cutoff["timestamp_utc"],
-                f"{claim}: the covering run IS the cutoff-defining run -- that is "
-                "the self-cancelling shape, and counting it is the fix",
+                f"{claim}: coverage does not postdate the landing cutoff",
             )
 
     def test_no_claim_is_dated_by_a_pre_build_run(self):
