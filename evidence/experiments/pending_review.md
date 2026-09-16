@@ -1,14 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-09-15T01:21:58Z`  
+Generated: `2026-09-16T13:13:49Z`  
 Last review: `2026-09-15T01:19:56Z`  
-Pending: **5** item(s) -- 3 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 4 diagnostic run(s) with no confirmed autopsy
+Pending: **11** item(s) -- 9 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 3 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability_20260914T125657Z_v3` | 2026-09-14T12:56 | INV-086, MECH-428 | — |
+| `v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3` | 2026-09-16T09:58 | MECH-266, SD-032a | — |
 
 ## PASS (verify & close)
 
@@ -17,6 +18,12 @@ Pending: **5** item(s) -- 3 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1
 | `v3_exq_1038_arc131_coalition_endogenous_recruitment_rate_probe_20260914T201122Z_v3` | 2026-09-14T20:11 | ARC-131 |
 | `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` | 2026-09-14T22:14 | MECH-439 |
 | `v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3` | 2026-09-14T22:31 | SD-082 |
+| `v3_exq_1036_ext002_stage2_revisit_rate_dv_calibration_20260915T003319Z_v3` | 2026-09-15T00:33 | (no claim tags) |
+| `v3_exq_1040_sd077_centered_super_ordinal_cue_key_20260915T021006Z_v3` | 2026-09-15T02:10 | SD-077 |
+| `v3_exq_1039_mech428_inv086_waypoint_field_consumer_drive_signal_20260915T025330Z_v3` | 2026-09-15T02:53 | INV-086, MECH-428 |
+| `v3_exq_784a_sd074_probe_warmup_desaturation_budget_sweep_corrected_20260915T135328Z_v3` | 2026-09-15T13:53 | SD-074 |
+| `v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3` | 2026-09-15T20:37 | SD-106 |
+| `v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3` | 2026-09-15T21:52 | MECH-482 |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -25,6 +32,8 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
 | `v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability_20260914T125657Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3` | PASS | metrics_never_comparable | **vacuous_pass** |
+| `v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3` | PASS | mechanism_inert_at_own_magnitude_detector_verified | **vacuous_pass** |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
 
@@ -32,18 +41,7 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 
 | Run ID | Status | Self-route label |
 |--------|--------|-------------------|
-| `v3_exq_1030_mech428_inv086_waypoint_field_zworld_decodability_20260914T125657Z_v3` | FAIL | substrate_not_ready_requeue |
-| `v3_exq_1038_arc131_coalition_endogenous_recruitment_rate_probe_20260914T201122Z_v3` | PASS | endogenous_recruitment_engaged_at_default_threshold |
-| `v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3` | PASS | operator_selection_consequential_both_regimes |
-| `v3_exq_1028_sd082_learning_signal_extended_budget_20260914T223157Z_v3` | PASS | c2_noisy__c3_sign_null |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_1036_ext002_stage2_revisit_rate_dv_calibration_20260915T003319Z_v3` | v3_exq_1036_ext002_stage2_revisit_rate_dv_calibration | V3-EXQ-1036 | diagnostic_no_direction |
+| `v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3` | FAIL | rule_right_r_wrong_requeue |
 
 ---
 

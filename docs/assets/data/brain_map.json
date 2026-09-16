@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-14T23:53:19Z",
+  "generated_at": "2026-09-16T13:19:32Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -148,7 +148,7 @@
           "pass_runs": 3,
           "fail_runs": 3,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.73
+          "overall_confidence": 0.729
         },
         {
           "id": "ARC-018",
@@ -160,7 +160,7 @@
           "pass_runs": 2,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.712
+          "overall_confidence": 0.711
         },
         {
           "id": "ARC-031",
@@ -172,7 +172,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.746
+          "overall_confidence": 0.745
         },
         {
           "id": "ARC-036",
@@ -184,7 +184,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.654
+          "overall_confidence": 0.653
         },
         {
           "id": "ARC-038",
@@ -232,7 +232,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.718
+          "overall_confidence": 0.717
         },
         {
           "id": "ARC-057",
@@ -244,7 +244,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.729
+          "overall_confidence": 0.728
         },
         {
           "id": "ARC-085",
@@ -256,7 +256,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.755
+          "overall_confidence": 0.754
         },
         {
           "id": "ARC-092",
@@ -622,7 +622,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.797
+          "overall_confidence": 0.796
         },
         {
           "id": "MECH-074",
@@ -646,7 +646,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.773
+          "overall_confidence": 0.772
         },
         {
           "id": "MECH-074b",
@@ -658,7 +658,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.786
+          "overall_confidence": 0.785
         },
         {
           "id": "MECH-074c",
@@ -670,7 +670,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.726
+          "overall_confidence": 0.724
         },
         {
           "id": "MECH-074d",
@@ -682,7 +682,7 @@
           "pass_runs": 0,
           "fail_runs": 4,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.595
+          "overall_confidence": 0.593
         },
         {
           "id": "MECH-078",
@@ -1036,7 +1036,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.861
+          "overall_confidence": 0.86
         },
         {
           "id": "MECH-131",
@@ -1132,7 +1132,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.854
+          "overall_confidence": 0.853
         },
         {
           "id": "MECH-298",
@@ -1168,7 +1168,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.757
+          "overall_confidence": 0.756
         }
       ],
       "implementation": "full",
@@ -1196,7 +1196,16 @@
         "MECH-358"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-1046",
+          "title": "SD-082 successor (H1-trained-discriminating-readout): the first CONSEQUENCE-TRAINED lateral_pfc rule readout -- with modulatory selection authority ON and gated_policy OFF during P1, does the trained readout change E3's top preference (argmin) MORE than the same substrate's frozen-init readout, tick for tick on the same yoked observation stream (per-seed paired exact test, minimal effect 0.05)?",
+          "status": "claimed",
+          "claim_ids": [
+            "SD-082"
+          ]
+        }
+      ],
       "conflict_refs": [],
       "coverage_tier": "expressed",
       "recent_experiments": [
@@ -1544,7 +1553,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.815
+          "overall_confidence": 0.814
         },
         {
           "id": "MECH-268",
@@ -1652,19 +1661,23 @@
         "MECH-480"
       ],
       "leading_edge": true,
-      "queued_exqs": [
-        {
-          "queue_id": "V3-EXQ-935a",
-          "title": "MECH-266/SD-032a margin-normalised cap rule -- corrected re-test on fresh seeds (R_STAR=2.45, extended sweep, H-KNIFE routing wired)",
-          "status": "claimed",
-          "claim_ids": [
-            "MECH-266"
-          ]
-        }
-      ],
+      "queued_exqs": [],
       "conflict_refs": [],
       "coverage_tier": "expressed",
       "recent_experiments": [
+        {
+          "run_id": "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3",
+          "experiment_type": "v3_exq_935a_mech266_margin_normalised_cap_rule",
+          "timestamp_utc": "2026-09-16T09:58:09Z",
+          "completed_at": "2026-09-16T09:58:09Z",
+          "outcome": "FAIL",
+          "summary": "rule_right_r_wrong_requeue",
+          "claim_ids": [
+            "MECH-266",
+            "SD-032a"
+          ],
+          "manifest_url": "/evidence/experiments/v3_exq_935a_mech266_margin_normalised_cap_rule/runs/v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3/manifest.json"
+        },
         {
           "run_id": "v3_exq_935_mech266_margin_normalised_cap_rule_20260817T075758Z_v3",
           "experiment_type": "v3_exq_935_mech266_margin_normalised_cap_rule",
@@ -1903,21 +1916,9 @@
             "MECH-261"
           ],
           "manifest_url": "/evidence/experiments/v3_exq_460d_sd034_closure_control_plane_behavioural/runs/v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3/manifest.json"
-        },
-        {
-          "run_id": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3",
-          "experiment_type": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural",
-          "timestamp_utc": "2026-06-13T04:51:29Z",
-          "completed_at": "2026-06-13T04:51:29Z",
-          "outcome": "FAIL",
-          "summary": "substrate_not_ready_requeue",
-          "claim_ids": [
-            "MECH-268"
-          ],
-          "manifest_url": "/evidence/experiments/v3_exq_468d_sd034_mech268_decommit_hold_behavioural/runs/v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3/manifest.json"
         }
       ],
-      "recent_experiments_total": 92
+      "recent_experiments_total": 93
     },
     {
       "id": "basal_ganglia",
@@ -1942,7 +1943,7 @@
         "docs/architecture/rule_apprehension_layer.md"
       ],
       "notes": "Three-gate candidacy; beta propagation; action-chunk cache (SD-045 dorsolateral loop). Not a named BG package.",
-      "claim_count": 25,
+      "claim_count": 26,
       "claim_ids": [
         "Q-019",
         "ARC-021",
@@ -1968,7 +1969,8 @@
         "MECH-464",
         "MECH-465",
         "MECH-516",
-        "MECH-536"
+        "MECH-536",
+        "MECH-558"
       ],
       "claims_sample": [
         {
@@ -1981,7 +1983,7 @@
           "pass_runs": 2,
           "fail_runs": 2,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.772
+          "overall_confidence": 0.77
         },
         {
           "id": "ARC-023",
@@ -2005,7 +2007,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.802
+          "overall_confidence": 0.801
         },
         {
           "id": "ARC-108",
@@ -2017,7 +2019,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.809
+          "overall_confidence": 0.808
         },
         {
           "id": "ARC-109",
@@ -2053,7 +2055,7 @@
           "pass_runs": 0,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.525
+          "overall_confidence": 0.523
         },
         {
           "id": "MECH-335",
@@ -2089,7 +2091,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.753
+          "overall_confidence": 0.752
         },
         {
           "id": "MECH-447",
@@ -2124,7 +2126,7 @@
         "quadrant_counts": {
           "plausible_unproven": 14,
           "confirmed_established": 3,
-          "unknown": 7,
+          "unknown": 8,
           "novel_discovery": 1
         }
       },
@@ -2431,7 +2433,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.754
+          "overall_confidence": 0.753
         },
         {
           "id": "ARC-090",
@@ -2527,7 +2529,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.741
+          "overall_confidence": 0.74
         }
       ],
       "implementation": "full",
@@ -2788,7 +2790,7 @@
         "docs/architecture/sleep/offline_phases.md"
       ],
       "notes": "NREM/REM ordering, replay, offline aggregation.",
-      "claim_count": 38,
+      "claim_count": 39,
       "claim_ids": [
         "INV-010",
         "ARC-011",
@@ -2826,6 +2828,7 @@
         "MECH-492",
         "ARC-137",
         "MECH-540",
+        "MECH-551",
         "SD-017",
         "SD-083"
       ],
@@ -2840,7 +2843,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.769
+          "overall_confidence": 0.768
         },
         {
           "id": "ARC-020",
@@ -2852,7 +2855,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.612
+          "overall_confidence": 0.611
         },
         {
           "id": "ARC-137",
@@ -2900,7 +2903,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.832
+          "overall_confidence": 0.831
         },
         {
           "id": "INV-063",
@@ -2923,8 +2926,8 @@
           "genuine_exp_count": 0,
           "pass_runs": 0,
           "fail_runs": 0,
-          "evidence_quadrant": "",
-          "overall_confidence": null
+          "evidence_quadrant": "plausible_unproven",
+          "overall_confidence": 0.759
         },
         {
           "id": "MECH-017",
@@ -2960,7 +2963,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.857
+          "overall_confidence": 0.856
         },
         {
           "id": "MECH-120",
@@ -2972,7 +2975,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.804
+          "overall_confidence": 0.802
         }
       ],
       "implementation": "full",
@@ -2981,7 +2984,7 @@
         "pass_runs": 6,
         "fail_runs": 3,
         "quadrant_counts": {
-          "plausible_unproven": 19,
+          "plausible_unproven": 20,
           "unknown": 12,
           "speculative": 4,
           "confirmed_established": 3
@@ -3341,7 +3344,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.821
+          "overall_confidence": 0.82
         },
         {
           "id": "MECH-280",
@@ -3365,7 +3368,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.822
+          "overall_confidence": 0.821
         },
         {
           "id": "Q-067",
@@ -3718,7 +3721,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.728
+          "overall_confidence": 0.727
         },
         {
           "id": "MECH-086",
@@ -3730,7 +3733,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.696
+          "overall_confidence": 0.694
         },
         {
           "id": "MECH-087",
@@ -3754,7 +3757,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.771
+          "overall_confidence": 0.77
         },
         {
           "id": "MECH-186",
@@ -3802,7 +3805,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.866
+          "overall_confidence": 0.865
         },
         {
           "id": "MECH-204",
@@ -4148,7 +4151,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.535
+          "overall_confidence": 0.534
         },
         {
           "id": "Q-004",
@@ -4160,7 +4163,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.749
+          "overall_confidence": 0.747
         },
         {
           "id": "Q-005",
@@ -4516,7 +4519,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.816
+          "overall_confidence": 0.815
         },
         {
           "id": "ARC-058",
@@ -4528,7 +4531,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.753
+          "overall_confidence": 0.752
         },
         {
           "id": "MECH-167",
@@ -4552,7 +4555,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "novel_discovery",
-          "overall_confidence": 0.739
+          "overall_confidence": 0.736
         },
         {
           "id": "MECH-220",
@@ -4576,7 +4579,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.819
+          "overall_confidence": 0.818
         },
         {
           "id": "MECH-305",
@@ -4985,7 +4988,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.645
+          "overall_confidence": 0.644
         }
       ],
       "implementation": "claim_only",
@@ -5688,7 +5691,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.806
+          "overall_confidence": 0.805
         },
         {
           "id": "MECH-116",
@@ -5700,7 +5703,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.573
+          "overall_confidence": 0.572
         },
         {
           "id": "MECH-128",
@@ -5724,7 +5727,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.671
+          "overall_confidence": 0.669
         },
         {
           "id": "MECH-153",
@@ -5736,7 +5739,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.675
+          "overall_confidence": 0.672
         },
         {
           "id": "MECH-154",
@@ -6104,7 +6107,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.785
+          "overall_confidence": 0.784
         },
         {
           "id": "MECH-081",
@@ -6164,7 +6167,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.772
+          "overall_confidence": 0.771
         },
         {
           "id": "SD-080",
@@ -6316,7 +6319,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.628
+          "overall_confidence": 0.627
         },
         {
           "id": "MECH-071",
@@ -6352,7 +6355,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.537
+          "overall_confidence": 0.535
         },
         {
           "id": "MECH-160",
@@ -6376,7 +6379,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.685
+          "overall_confidence": 0.684
         },
         {
           "id": "MECH-411",
@@ -6400,7 +6403,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.66
+          "overall_confidence": 0.659
         },
         {
           "id": "MECH-459",
@@ -6412,7 +6415,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.786
+          "overall_confidence": 0.785
         },
         {
           "id": "MECH-460",
@@ -6448,7 +6451,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.654
+          "overall_confidence": 0.653
         }
       ],
       "implementation": "full",
@@ -6748,7 +6751,7 @@
         "docs/architecture/control_plane_signal_map.md"
       ],
       "notes": "Heartbeat, regulators, commit gate (MECH-114), hypothesis tag (MECH-094/115), broadcast override (SD-037), theta-gamma multi-content packet (MECH-294).",
-      "claim_count": 72,
+      "claim_count": 73,
       "claim_ids": [
         "ARC-005",
         "MECH-001",
@@ -6797,6 +6800,7 @@
         "MECH-503",
         "MECH-515",
         "SD-105",
+        "Q-106",
         "INV-008",
         "MECH-002",
         "MECH-003",
@@ -6834,7 +6838,7 @@
           "pass_runs": 1,
           "fail_runs": 4,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.859
+          "overall_confidence": 0.857
         },
         {
           "id": "ARC-008",
@@ -6858,7 +6862,7 @@
           "pass_runs": 6,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.855
+          "overall_confidence": 0.853
         },
         {
           "id": "ARC-028",
@@ -6870,7 +6874,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.818
+          "overall_confidence": 0.817
         },
         {
           "id": "ARC-029",
@@ -6953,8 +6957,8 @@
           "genuine_exp_count": 0,
           "pass_runs": 0,
           "fail_runs": 0,
-          "evidence_quadrant": "",
-          "overall_confidence": null
+          "evidence_quadrant": "plausible_unproven",
+          "overall_confidence": 0.72
         },
         {
           "id": "MECH-004",
@@ -6977,7 +6981,7 @@
         "quadrant_counts": {
           "confirmed_established": 7,
           "unknown": 31,
-          "plausible_unproven": 34
+          "plausible_unproven": 35
         }
       },
       "v3_pending_count": 15,
@@ -7313,7 +7317,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.701
+          "overall_confidence": 0.7
         },
         {
           "id": "MECH-034",
@@ -7361,7 +7365,7 @@
           "pass_runs": 3,
           "fail_runs": 7,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.777
+          "overall_confidence": 0.775
         },
         {
           "id": "MECH-070",
@@ -7373,7 +7377,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.49
+          "overall_confidence": 0.489
         },
         {
           "id": "MECH-072",
@@ -7397,7 +7401,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.706
+          "overall_confidence": 0.705
         },
         {
           "id": "MECH-221",
@@ -7808,7 +7812,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.807
+          "overall_confidence": 0.806
         },
         {
           "id": "ARC-071",
@@ -7832,7 +7836,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.755
+          "overall_confidence": 0.754
         },
         {
           "id": "MECH-312",
@@ -7844,7 +7848,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.831
+          "overall_confidence": 0.83
         },
         {
           "id": "MECH-312a",
@@ -7904,7 +7908,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.877
+          "overall_confidence": 0.876
         }
       ],
       "implementation": "full",
@@ -8209,7 +8213,7 @@
         "docs/architecture/hippocampal_systems.md"
       ],
       "notes": "Theta-frontal-hippocampal coupling and similar cross-region claims; cognifold as the single cross-region interacting state-space (ARC-084/ARC-089).",
-      "claim_count": 45,
+      "claim_count": 50,
       "claim_ids": [
         "INV-014",
         "IMPL-015",
@@ -8250,6 +8254,11 @@
         "ARC-142",
         "MECH-545",
         "Q-104",
+        "ARC-144",
+        "MECH-557",
+        "INV-108",
+        "ARC-145",
+        "MECH-560",
         "ARC-084",
         "MECH-363",
         "Q-058",
@@ -8304,7 +8313,7 @@
           "pass_runs": 0,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.637
+          "overall_confidence": 0.636
         },
         {
           "id": "ARC-041",
@@ -8316,7 +8325,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.498
+          "overall_confidence": 0.496
         },
         {
           "id": "ARC-042",
@@ -8340,7 +8349,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.76
+          "overall_confidence": 0.759
         },
         {
           "id": "ARC-044",
@@ -8364,7 +8373,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.792
+          "overall_confidence": 0.791
         },
         {
           "id": "ARC-054",
@@ -8410,7 +8419,7 @@
         "fail_runs": 14,
         "quadrant_counts": {
           "plausible_unproven": 32,
-          "unknown": 12,
+          "unknown": 17,
           "confirmed_established": 1
         }
       },

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-16T00:02:03.484631Z",
+  "generated_at_utc": "2026-09-16T13:13:23.948842Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -1353,7 +1353,8 @@
       "suggested_experiment_type": "claim_probe_sd_014",
       "target_repo": "ree-v3",
       "why_now": [
-        "active_conflict"
+        "active_conflict",
+        "low_exp_conf"
       ]
     },
     {
@@ -1964,7 +1965,6 @@
     },
     {
       "backlog_id": "EVB-1368",
-      "blocked_note": "REFUSED at /queue-experiment Step 4.5 (red-team BLOCKING, 2026-09-16): the degradation criterion cannot fail and the claim's own falsifying world routes to non_contributory. Needs a TRAINED z_world/E1/E2 competing channel at the E3 selection layer -> /implement-substrate. Full record: REE_assembly/evidence/planning/inv095_harm_signal_falsifier_unroutable_20260916.md ; GFLAG-0291. | BLOCKED_BY RELINKED 2026-09-16: the owning substrate entry already exists -- `f_dominance_conversion_ceiling` (MECH-439, severity corrupting, ready:false), whose substrate_paths name `ree_core/predictors/e3_selector.py::score_trajectory` (the exact function the selection-level reading requires) and whose title is 'rebalance/bound the primary harm/goal score F so per-candidate diversity converts'. No new substrate id is owed and no /implement-substrate chip was spawned -- that would duplicate an open entry whose own status records the conversion route of record as EXHAUSTED. SEPARATELY: Step 2.5c's own gate SHOULD have fired on this overlap and did not. Its recipe treats a status containing any of implemented/validated/wontfix as CLOSED by SUBSTRING, and this entry's 619-char prose status contains 'validated' (inside mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional). Six entries with substrate_paths and ready:false are hidden the same way, THREE at corrupting severity (SD-056, f_dominance_conversion_ceiling, MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION). The gate is documented to fail toward blocking rather than silence; here it fails silent, fleet-wide. Chipped separately.",
       "claim_id": "INV-095",
       "dispatch_mode": "targeted_probe",
       "objective": "Reduce uncertainty for INV-095 via targeted experiment runs.",
@@ -1973,6 +1973,25 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_inv_095",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1755",
+      "claim_id": "INV-109",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for INV-109 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0193",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_inv_109",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -2630,11 +2649,13 @@
       "backlog_id": "EVB-1729",
       "claim_id": "MECH-537",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-1043",
+      "executed_queue_id": "V3-EXQ-1043",
       "objective": "Reduce uncertainty for MECH-537 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0133",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_537",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5508,38 +5529,6 @@
       "objective": "Improve literature grounding and confidence for INV-108.",
       "priority": "medium",
       "proposal_id": "LIT-0191",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1755",
-      "claim_id": "INV-109",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for INV-109 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0193",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_inv_109",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1755",
-      "claim_id": "INV-109",
-      "objective": "Improve literature grounding and confidence for INV-109.",
-      "priority": "medium",
-      "proposal_id": "LIT-0194",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -15656,11 +15645,13 @@
       "backlog_id": null,
       "claim_id": "MECH-537",
       "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-1043",
+      "executed_queue_id": "V3-EXQ-1043",
       "objective": "Test MECH-537 (communication-subspace routing: encoded but not exposed) per its what_would_answer, digested and applied 2026-09-15: on a source that passes adequacy, is the task target decodable from the full sender X yet poorly decodable from the estimated communication subspace P_comm X on held-out data, with the orthogonal complement carrying the decodability and the live consumer insensitive to the complement?",
       "priority": "medium",
       "proposal_id": "EXP-1403",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3"
     },
     {
@@ -17877,9 +17868,9 @@
       ]
     }
   ],
-  "n_executed": 242,
-  "n_proposed_exp": 187,
-  "n_proposed_lit": 483,
+  "n_executed": 244,
+  "n_proposed_exp": 185,
+  "n_proposed_lit": 482,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }

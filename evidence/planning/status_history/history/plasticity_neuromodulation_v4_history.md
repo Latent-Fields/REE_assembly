@@ -71,6 +71,7 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 
 ## `plasticity_neuromodulation_v4:PLW-2`
 
@@ -139,6 +140,7 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 
 ## `plasticity_neuromodulation_v4:PLW-3`
 
@@ -207,6 +209,7 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 
 ## `plasticity_neuromodulation_v4:PLW-4`
 
@@ -275,6 +278,7 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 
 ## `plasticity_neuromodulation_v4:PLW-5`
 
@@ -343,6 +347,7 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 
 ## `plasticity_neuromodulation_v4:PLW-6`
 
@@ -411,6 +416,7 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 
 ## `plasticity_neuromodulation_v4:PLW-7`
 
@@ -479,4 +485,5 @@ Source plan: `evidence/planning/plasticity_neuromodulation_v4_plan.md`
 - `2026-08-08T19:37Z` [autopsy] `failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08.json) :: autopsy non_contributory/measurement_degeneracy routing=governance-note-only
 - `2026-08-08T20:16Z` [autopsy] `failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08.json) :: autopsy non_contributory/measurement_test_design_defect routing=governance-note-only
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:ARC-075@2026-09-15T01:15:56.512055Z` -> [`evidence/decisions/decision_log.v1.jsonl#L492`](../../../../evidence/decisions/decision_log.v1.jsonl#L492) :: decision hold_pending_v3_substrate (applied)
 

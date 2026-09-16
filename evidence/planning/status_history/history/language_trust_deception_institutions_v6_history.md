@@ -7,24 +7,36 @@ Source plan: `evidence/planning/language_trust_deception_institutions_v6_plan.md
 ## `language_trust_deception_institutions_v6:LTI-1`
 
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:MECH-012@2026-09-15T01:15:56.624301Z` -> [`evidence/decisions/decision_log.v1.jsonl#L495`](../../../../evidence/decisions/decision_log.v1.jsonl#L495) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-15T01:15Z` [decision] `decision:MECH-013@2026-09-15T01:15:56.662132Z` -> [`evidence/decisions/decision_log.v1.jsonl#L496`](../../../../evidence/decisions/decision_log.v1.jsonl#L496) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `language_trust_deception_institutions_v6:LTI-2`
 
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:MECH-012@2026-09-15T01:15:56.624301Z` -> [`evidence/decisions/decision_log.v1.jsonl#L495`](../../../../evidence/decisions/decision_log.v1.jsonl#L495) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-15T01:15Z` [decision] `decision:MECH-013@2026-09-15T01:15:56.662132Z` -> [`evidence/decisions/decision_log.v1.jsonl#L496`](../../../../evidence/decisions/decision_log.v1.jsonl#L496) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `language_trust_deception_institutions_v6:LTI-3`
 
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:MECH-012@2026-09-15T01:15:56.624301Z` -> [`evidence/decisions/decision_log.v1.jsonl#L495`](../../../../evidence/decisions/decision_log.v1.jsonl#L495) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-15T01:15Z` [decision] `decision:MECH-013@2026-09-15T01:15:56.662132Z` -> [`evidence/decisions/decision_log.v1.jsonl#L496`](../../../../evidence/decisions/decision_log.v1.jsonl#L496) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `language_trust_deception_institutions_v6:LTI-4`
 
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:MECH-012@2026-09-15T01:15:56.624301Z` -> [`evidence/decisions/decision_log.v1.jsonl#L495`](../../../../evidence/decisions/decision_log.v1.jsonl#L495) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-15T01:15Z` [decision] `decision:MECH-013@2026-09-15T01:15:56.662132Z` -> [`evidence/decisions/decision_log.v1.jsonl#L496`](../../../../evidence/decisions/decision_log.v1.jsonl#L496) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `language_trust_deception_institutions_v6:LTI-5`
 
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:MECH-012@2026-09-15T01:15:56.624301Z` -> [`evidence/decisions/decision_log.v1.jsonl#L495`](../../../../evidence/decisions/decision_log.v1.jsonl#L495) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-15T01:15Z` [decision] `decision:MECH-013@2026-09-15T01:15:56.662132Z` -> [`evidence/decisions/decision_log.v1.jsonl#L496`](../../../../evidence/decisions/decision_log.v1.jsonl#L496) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `language_trust_deception_institutions_v6:LTI-6`
 
 - `2026-08-08T17:37Z` [autopsy] `failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08` -> [`evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json`](../../../../evidence/planning/failure_autopsy_grandfathered-wanting-liking-cluster_2026-08-08.json) :: autopsy superseded/n/a routing=governance-note-only **<- live head**
+- `2026-09-15T01:15Z` [decision] `decision:MECH-012@2026-09-15T01:15:56.624301Z` -> [`evidence/decisions/decision_log.v1.jsonl#L495`](../../../../evidence/decisions/decision_log.v1.jsonl#L495) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-15T01:15Z` [decision] `decision:MECH-013@2026-09-15T01:15:56.662132Z` -> [`evidence/decisions/decision_log.v1.jsonl#L496`](../../../../evidence/decisions/decision_log.v1.jsonl#L496) :: decision hold_candidate_resolve_conflict (applied)
 

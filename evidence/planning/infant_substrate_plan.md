@@ -11,14 +11,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, ARC-013]
       depends_on: []
@@ -28,14 +28,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-001, DEV-NEED-003, DEV-NEED-007, ARC-065]
       depends_on: []
@@ -45,14 +45,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-006, MECH-189]
       depends_on: []
@@ -62,14 +62,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-003, MECH-314]
       depends_on: []
@@ -79,14 +79,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-001, DEV-NEED-008]
       depends_on: []
@@ -96,14 +96,14 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, DEV-NEED-008]
       depends_on: ["infant_substrate:GAP-1"]
@@ -113,14 +113,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-002, DEV-NEED-005, DEV-NEED-008]
       depends_on: []
@@ -130,14 +130,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-007, DEV-NEED-008]
       depends_on: []
@@ -147,14 +147,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-008, ARC-046]
       depends_on: ["infant_substrate:GAP-1", "infant_substrate:GAP-2", "infant_substrate:GAP-3"]
@@ -164,14 +164,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, ARC-013]
       depends_on: ["infant_substrate:GAP-1", "infant_substrate:GAP-5", "infant_substrate:GAP-6"]
@@ -182,14 +182,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-006, MECH-189]
       depends_on: ["infant_substrate:GAP-3", "infant_substrate:GAP-5"]
@@ -205,14 +205,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [MECH-189, DEV-NEED-006]
       depends_on: ["infant_substrate:GAP-11"]
@@ -226,14 +226,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-001, DEV-NEED-007, ARC-065]
       depends_on: ["infant_substrate:GAP-2", "infant_substrate:GAP-5", "infant_substrate:GAP-7"]
@@ -244,14 +244,14 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-003, MECH-314]
       depends_on: ["infant_substrate:GAP-4", "infant_substrate:GAP-5", "infant_substrate:GAP-6"]
@@ -272,14 +272,14 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-09-04"
-        from: "failure_autopsy_V3-EXQ-996_2026-09-04"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["ARC-046", "f_dominance_conversion_ceiling", "infant_substrate:GAP-14", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["ARC-046", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "infant_substrate:GAP-14", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-008, ARC-046]
       depends_on: ["infant_substrate:GAP-9", "infant_substrate:GAP-5", "infant_substrate:GAP-6", "infant_substrate:GAP-7", "infant_substrate:GAP-8", "infant_substrate:GAP-14-c2"]
@@ -303,14 +303,14 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: []
       depends_on: ["infant_substrate:GAP-9"]
@@ -321,14 +321,14 @@ closure_plan:
       status: done
       severity: governance
       live:
-        as_of: "2026-09-02"
-        from: "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+        as_of: "2026-09-16"
+        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
-        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       completion_note: "developmental_curriculum.md Gate Criterion section replaced with 8-criterion table (C1-C3 blocking, C4-C8 advisory) matching developmental_metrics.md DEV-NEED-008. Thresholds noted as proposals pending EXQ-ISEF-001..004. 2026-05-17T10:54Z"
       unblocks_claims: [DEV-NEED-008]

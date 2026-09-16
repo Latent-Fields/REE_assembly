@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-14T23:46:22Z",
+  "generated_at": "2026-09-16T13:14:47Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -486,6 +486,17 @@
         "is_hero": false
       },
       {
+        "id": "mech482_deficit_selection_authority",
+        "title": "MECH-482 deficit selection authority",
+        "claims": [
+          "MECH-482"
+        ],
+        "surviving": 2,
+        "initial": 4,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
         "id": "mech536_latch_dissociation_representation_vs_gating",
         "title": "MECH-536 latch dissociation: representation vs gating",
         "claims": [
@@ -690,8 +701,8 @@
           "MECH-457",
           "INV-088"
         ],
-        "surviving": 1,
-        "initial": 5,
+        "surviving": 4,
+        "initial": 11,
         "convergence": "circling",
         "is_hero": false
       },
@@ -712,7 +723,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "145 / 181",
+      "value": "145 / 182",
       "detail": "modules recorded as built"
     },
     {
@@ -722,7 +733,7 @@
     },
     {
       "label": "Narrow",
-      "value": "121 / 169",
+      "value": "126 / 173",
       "detail": "rival explanations still standing"
     },
     {
@@ -736,7 +747,7 @@
       "id": "foundations",
       "title": "Foundations",
       "summary": "Invariants and premises carried into the programme.",
-      "total": 50,
+      "total": 49,
       "buckets": [
         {
           "key": "active",
@@ -811,6 +822,30 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-011",
+              "title": "Imagination must be possible without belief update.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "experiment_planned",
+              "attention_rank": 2,
+              "incoming_dependencies": 12,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-025",
+              "title": "Irreducible uncertainty is an epistemological constraint that cannot be engineered away.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "experiment_planned",
+              "attention_rank": 2,
+              "incoming_dependencies": 12,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-026",
               "title": "A self is an operational prerequisite for responsible agency.",
               "status": "active",
@@ -827,30 +862,6 @@
             {
               "id": "INV-003",
               "title": "Language emerges as functional self-representation, not a bolt-on.",
-              "status": "active",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 11,
-              "depends_on": [],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-011",
-              "title": "Imagination must be possible without belief update.",
-              "status": "active",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 11,
-              "depends_on": [],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-025",
-              "title": "Irreducible uncertainty is an epistemological constraint that cannot be engineered away.",
               "status": "active",
               "phase": "unset",
               "claim_class": "invariant_or_foundation",
@@ -931,8 +942,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 23,
-          "more_count": 13,
+          "count": 22,
+          "more_count": 12,
           "nodes": [
             {
               "id": "INV-077",
@@ -942,7 +953,7 @@
               "claim_class": "invariant_or_foundation",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 9,
+              "incoming_dependencies": 10,
               "depends_on": [
                 "INV-020",
                 "INV-024",
@@ -1022,25 +1033,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "INV-056",
-              "title": "Developmental hardening should be substrate-specific: social cognition, goal representation, and epistemic-ethical substrates should retain elevated plasticity throughout adulthood (selective neoteny), while procedural and motor substrates can fully harden.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 1,
-              "depends_on": [
-                "ARC-019",
-                "INV-041",
-                "INV-055",
-                "MECH-158",
-                "ARC-010",
-                "SD-014"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "INV-063",
               "title": "minimum_entropy_intake_sleep_dependency",
               "status": "candidate",
@@ -1107,6 +1099,22 @@
                 "ARC-024"
               ],
               "additional_dependencies": 0
+            },
+            {
+              "id": "INV-035",
+              "title": "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "experiment_planned",
+              "attention_rank": 2,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "ARC-004",
+                "ARC-003",
+                "ARC-007"
+              ],
+              "additional_dependencies": 0
             }
           ]
         }
@@ -1116,7 +1124,7 @@
       "id": "architecture",
       "title": "Architecture",
       "summary": "System commitments and mechanism-level design.",
-      "total": 274,
+      "total": 265,
       "buckets": [
         {
           "key": "active",
@@ -1244,7 +1252,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 19,
+              "incoming_dependencies": 21,
               "depends_on": [
                 "ARC-005",
                 "ARC-006",
@@ -1304,7 +1312,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 79,
+              "incoming_dependencies": 83,
               "depends_on": [
                 "ARC-014",
                 "INV-011",
@@ -1462,8 +1470,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 172,
-          "more_count": 162,
+          "count": 163,
+          "more_count": 153,
           "nodes": [
             {
               "id": "MECH-062",
@@ -1581,21 +1589,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "MECH-244",
-              "title": "Psychosis is a precision-weighting failure where prior beliefs persistently dominate sensory evidence; the generative model becomes self-sealing and sensory update is suppressed.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "mechanism_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 4,
-              "depends_on": [
-                "MECH-094",
-                "INV-011"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "ARC-044",
               "title": "Context-dependent neuromodulatory gain is a single unifying mechanism expressed at multiple levels: ARC-016 (temporal precision from prediction error variance), MECH-152 (contextual terrain weight from cue-indexed retrieval), MECH-026 (arousal-mediated vigilance sensitivity), and MECH-093 (z_beta heartbeat frequency modulation) are all facets of a global arousal/precision signal (LC-NE) modulated by a context-specific gain signal (vmPFC/OFC).",
               "status": "candidate",
@@ -1623,6 +1616,20 @@
               "incoming_dependencies": 3,
               "depends_on": [],
               "additional_dependencies": 0
+            },
+            {
+              "id": "GOV-BEHADJ-1",
+              "title": "REE Assembly needs a dedicated behavioural-adjudication methodology/skill for organism-level behavioural experiment design and interpretation (\"umpire, not ruler\": observe, preserve the observation without embedding an explanation, generate competing explanations, derive predictions, construct discriminating perturbations, blind condition labels where practical, apply pre-specified hypothesis-directed measures, also run discovery-oriented analysis for structure not anticipated in advance, adjudicate across the pattern of evidence, replicate, and test generalisation under environmental change) -- because a fixed, pre-specified scalar-metric approach risks conflating stochasticity/exploration/noise with the behavioural organisation actually of interest, and risks Goodharting once a convenient metric becomes the de facto definition of the phenomenon.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "Q-092"
+              ],
+              "additional_dependencies": 0
             }
           ]
         }
@@ -1632,7 +1639,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 238,
+      "total": 247,
       "buckets": [
         {
           "key": "active",
@@ -1883,8 +1890,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 209,
-          "more_count": 199,
+          "count": 218,
+          "more_count": 208,
           "nodes": [
             {
               "id": "INV-049",
@@ -2062,7 +2069,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 290,
+      "total": 294,
       "buckets": [
         {
           "key": "active",
@@ -2110,7 +2117,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 24,
+              "incoming_dependencies": 25,
               "depends_on": [
                 "ARC-023",
                 "ARC-014",
@@ -2128,7 +2135,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 18,
+              "incoming_dependencies": 19,
               "depends_on": [
                 "ARC-023",
                 "ARC-021"
@@ -2227,8 +2234,8 @@
               "additional_dependencies": 0
             },
             {
-              "id": "MECH-284",
-              "title": "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps).",
+              "id": "MECH-272",
+              "title": "MECH-271 routing is state-gated. In waking, the anchor channel dominates the hippocampal fan-out: replay preferentially reaches consolidation and viability-map consumers to support decision-making. In sleep, the probe channel dominates: replay preferentially seeds Bayesian schema restructuring -- testing which action-outcome attributions held up across episodes, creating new buckets for non-fitting experiences, revising causal graphs. The informational needs of sleep (schema revision) and waking (decision support) are distinct, and the routing bias reflects that.",
               "status": "provisional",
               "phase": "v3",
               "claim_class": "active_v3_closure",
@@ -2236,9 +2243,9 @@
               "attention_rank": 4,
               "incoming_dependencies": 9,
               "depends_on": [
+                "MECH-271",
                 "MECH-094",
-                "ARC-007",
-                "ARC-018"
+                "MECH-092"
               ],
               "additional_dependencies": 0
             }
@@ -2273,7 +2280,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 32,
+              "incoming_dependencies": 33,
               "depends_on": [],
               "additional_dependencies": 0
             },
@@ -2415,8 +2422,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 219,
-          "more_count": 209,
+          "count": 223,
+          "more_count": 213,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2464,10 +2471,27 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 21,
+              "incoming_dependencies": 22,
               "depends_on": [
                 "ARC-033",
                 "SD-013"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-439",
+              "title": "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 22,
+              "depends_on": [
+                "ARC-065",
+                "MECH-309",
+                "ARC-062",
+                "MECH-294"
               ],
               "additional_dependencies": 0
             },
@@ -2486,23 +2510,6 @@
                 "MECH-230",
                 "MECH-269",
                 "MECH-284"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-439",
-              "title": "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced.",
-              "status": "candidate",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 21,
-              "depends_on": [
-                "ARC-065",
-                "MECH-309",
-                "ARC-062",
-                "MECH-294"
               ],
               "additional_dependencies": 0
             },
@@ -2540,6 +2547,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-120",
+              "title": "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 18,
+              "depends_on": [
+                "MECH-092",
+                "MECH-094",
+                "ARC-016"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-062",
               "title": "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063 -- brought forward V4->V3 2026-05-18, this parenthetical is stale as of registration 2026-05-08). Architectural slot, not yet implemented.",
               "status": "candidate",
@@ -2573,22 +2596,6 @@
                 "MECH-269"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-120",
-              "title": "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio.",
-              "status": "candidate",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 17,
-              "depends_on": [
-                "MECH-092",
-                "MECH-094",
-                "ARC-016"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2598,7 +2605,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 274,
+      "total": 297,
       "buckets": [
         {
           "key": "active",
@@ -2653,8 +2660,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 272,
-          "more_count": 262,
+          "count": 295,
+          "more_count": 285,
           "nodes": [
             {
               "id": "ARC-023",
@@ -2664,7 +2671,7 @@
               "claim_class": "horizon_v4",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 15,
+              "incoming_dependencies": 16,
               "depends_on": [
                 "ARC-021",
                 "MECH-069"
@@ -2679,13 +2686,87 @@
               "claim_class": "horizon_v4",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 9,
+              "incoming_dependencies": 16,
               "depends_on": [
                 "ARC-121",
                 "MECH-517",
                 "MECH-532",
                 "MECH-507",
                 "INV-104"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-538",
+              "title": "Minimum bridge complexity as the measure of mutual legibility: for systems A and B and a family of constrained mappings of increasing expressiveness (native readout -> orthogonal/Procrustes -> affine -> low-rank affine -> constrained nonlinear -> high-capacity upper bound), define L(A -> B) = the minimum bridge complexity achieving a predeclared HELD-OUT functional criterion between FROZEN endpoints; lower L means greater mutual legibility, and the simpler the bridge that works the stronger the evidence that the sender already held an appropriately structured representation -- a high-capacity bridge that succeeds may be performing new cognition and is therefore evidence about the bridge, not about the endpoints. L must never be read alone: two systems that became identical because one LOST its specialisation would show falling L with worsening cognition, so development is tracked on two axes (local specialisation/competence, and cross-system legibility). Non-redundant developmental prediction: sender and receiver each improve local competence WHILE global representational similarity stays flat or falls, task information concentrates in the consumer-facing subspace, and minimum bridge rank falls -- coordination without homogenisation.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 14,
+              "depends_on": [
+                "ARC-139",
+                "MECH-537",
+                "INV-105"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-142",
+              "title": "The cognitive contract: a unified mind built from heterogeneous engines (E1 / E2 / E3 / hippocampus and later specialists, differing in representational geometry, temporal scale, compression level, learning dynamics and uncertainty representation) requires not a common latent space but an INVARIANT-PRESERVING CONTRACT -- a small set of relations I such that for any lossy translation x_A -> C_A(x_A) -> T_AB -> D_B -> x'_B, I(x_A) ~ I(x'_B), even though x'_B = x_A is meaningless across different spaces. The contract is relational / semantic, not representational: each engine may encode an invariant differently (explicit scalar, trajectory position, recurrent-state relation, geometric direction, ordering relation) so long as the relation is recoverable at the boundary when needed. It sits ABOVE the translation machinery and ABOVE schemas (cognitive contract -> representation / translation machinery -> schemas -> particular concepts, memories and environmental models): a schema rewrite, including offline reorganisation during sleep, changes WHAT the organism knows; contract failure changes WHETHER its subsystems can still understand one another. The contract specifies RECOVERABLE RELATIONSHIPS, never a fixed data structure or ontology -- engines encode invariants differently, new representational systems can be added, schemas reorganise, and contract dimensions may be added or retired. Its two failure poles are representation collapse (one canonical latent forced on every engine, destroying the specialisation that makes multiple engines useful) and cognitive fragmentation (engines keep exchanging tensors while progressively losing shared meaning -- computationally active, no longer one mind). Unity does not require representational sameness; it requires preservation of the relations that keep representations about the same cognitive world.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 12,
+              "depends_on": [
+                "ARC-139",
+                "INV-104",
+                "MECH-538",
+                "MECH-539",
+                "ARC-121",
+                "ARC-089",
+                "MECH-507",
+                "MECH-532"
+              ],
+              "additional_dependencies": 4
+            },
+            {
+              "id": "MECH-540",
+              "title": "Sleep as selective interface maintenance -- the third offline job: MECH-529 gives offline consolidation two functions, revising the representation (split/merge/reweight over equivalence classes) and re-indexing episodic traces so autobiographical addressability survives that revision. This claim adds a THIRD: adjusting or stabilising the INTERFACE -- the subspace through which another subsystem reads the revised representation. The prediction is explicitly NOT global alignment but a PLASTICITY/STABILITY DIVISION OF LABOUR across interfaces: some reconfigure because recent learning demands it, others remain stable because downstream continuity matters more, so the strongest test compares at least TWO interfaces with different predicted plasticity rather than asking whether all systems become more similar after sleep. Four distinguishable post-sleep signatures: S1 representational retuning (interface metrics move only because the sender moved), S2 interface recalibration (local competence stable, communication subspace or bridge complexity improves), S3 stable scaffold (representations move, mapping holds), S4 maladaptive homogenisation (similarity rises while local competence or task-specific differentiation worsens).",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "MECH-529",
+                "ARC-139",
+                "MECH-538",
+                "MECH-537"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-080",
+              "title": "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "ARC-006",
+                "MECH-278",
+                "ARC-059",
+                "SD-015",
+                "SD-049",
+                "SD-057",
+                "SD-039"
               ],
               "additional_dependencies": 0
             },
@@ -2723,6 +2804,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-539",
+              "title": "Dynamic interface compatibility: between PREDICTIVE systems, pointwise state correspondence across an interface is insufficient -- a mapping must additionally satisfy that receiver_transition(T(x_t), a_t) is compatible with T(x_(t+1)) under the relevant action/context, because a bridge can succeed pointwise while destroying transition geometry. The registered diagnostic separation is: map ONLY the initial state and let the receiver evolve natively, versus repeatedly mapping sender rollout states -- this distinguishes a bridge that supplies a compatible starting condition from one that must continually correct incompatible dynamics. Failure signature `good static + bad dynamic` routes to transition-geometry work rather than to representation work; `good one-step + degrading long-horizon` indicates compounding dynamics mismatch; `good dynamic but poor behaviour` routes downstream to valuation/selection.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "ARC-139",
+                "MECH-538",
+                "INV-088",
+                "MECH-537"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-047",
               "title": "Multi-agent gridworld with affective state leakage as gradient scent fields is the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression, and cooperative behavior claims.",
               "status": "candidate",
@@ -2739,93 +2837,6 @@
                 "IMPL-019"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-080",
-              "title": "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "ARC-006",
-                "MECH-278",
-                "ARC-059",
-                "SD-015",
-                "SD-049",
-                "SD-057",
-                "SD-039"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-359",
-              "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "MECH-055",
-                "SD-011",
-                "MECH-341",
-                "SD-056"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-538",
-              "title": "Minimum bridge complexity as the measure of mutual legibility: for systems A and B and a family of constrained mappings of increasing expressiveness (native readout -> orthogonal/Procrustes -> affine -> low-rank affine -> constrained nonlinear -> high-capacity upper bound), define L(A -> B) = the minimum bridge complexity achieving a predeclared HELD-OUT functional criterion between FROZEN endpoints; lower L means greater mutual legibility, and the simpler the bridge that works the stronger the evidence that the sender already held an appropriately structured representation -- a high-capacity bridge that succeeds may be performing new cognition and is therefore evidence about the bridge, not about the endpoints. L must never be read alone: two systems that became identical because one LOST its specialisation would show falling L with worsening cognition, so development is tracked on two axes (local specialisation/competence, and cross-system legibility). Non-redundant developmental prediction: sender and receiver each improve local competence WHILE global representational similarity stays flat or falls, task information concentrates in the consumer-facing subspace, and minimum bridge rank falls -- coordination without homogenisation.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "ARC-139",
-                "MECH-537",
-                "INV-105"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "SD-040",
-              "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "MECH-269",
-                "SD-039"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-090",
-              "title": "Externalised Default Mode Operation: play instantiates DMN functions (self-reference, autobiographical memory, social imagination, future simulation, counterfactual thought, narrative construction) externally -- pushed outward into objects, roles, movement, spoken narration, and temporary as-if worlds -- as the developmental precursor to the internal DMN, compressing into internal generative modelling over development.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "ARC-014",
-                "MECH-029",
-                "ARC-049",
-                "MECH-198",
-                "INV-058",
-                "INV-060"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2835,13 +2846,15 @@
   "record_counts": {
     "active": 181,
     "closed": 50,
-    "planned": 895
+    "planned": 921
   },
   "archive": {
-    "snapshot_count": 109,
-    "latest": "2026-09-14",
+    "snapshot_count": 111,
+    "latest": "2026-09-16",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-09-16",
+      "2026-09-15",
       "2026-09-14",
       "2026-09-13",
       "2026-09-12",
@@ -2849,9 +2862,7 @@
       "2026-09-08",
       "2026-09-07",
       "2026-09-06",
-      "2026-09-05",
-      "2026-09-03",
-      "2026-08-30"
+      "2026-09-05"
     ]
   }
 }
