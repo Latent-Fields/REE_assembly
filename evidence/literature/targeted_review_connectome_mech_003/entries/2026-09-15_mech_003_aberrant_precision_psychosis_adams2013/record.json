@@ -1,0 +1,63 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_003",
+  "entry_id": "2026-09-15_mech_003_aberrant_precision_psychosis_adams2013",
+  "timestamp_utc": "2026-09-15T23:51:56Z",
+  "claim_ids_tested": [
+    "MECH-003"
+  ],
+  "source": {
+    "title": "The computational anatomy of psychosis",
+    "authors": [
+      "Adams RA",
+      "Stephan KE",
+      "Brown HR",
+      "Frith CD",
+      "Friston KJ"
+    ],
+    "year": 2013,
+    "venue": "Frontiers in Psychiatry",
+    "doi": "10.3389/fpsyt.2013.00047",
+    "pmid": "23750138",
+    "pmc": "PMC3667557",
+    "volume": "4",
+    "pages": "47"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "MECH-003 does something unusual for an architecture claim: it names the clinical syndromes that are supposed to follow from violating it -- impulsivity, delusional certainty, manic over-commitment, reward hacking. That is a falsifiable commitment and it deserves a source that addresses it directly. Adams et al. is that source. Their thesis is that a family of psychotic phenomena -- hallucinosis, abnormal smooth pursuit, sensory attenuation deficits, catatonia, and delusions -- are expressions of ONE core pathology, 'an aberrant encoding of precision', specifically an imbalance in the RELATIVE precision of beliefs at different levels of a predictive hierarchy. This is precisely MECH-003's failure model: get the cross-level precision relationship wrong and you get delusional certainty. Confidence is 0.62 -- lower than the two entries above -- and the reason is honest rather than grudging: this is a theoretical review with simulations, not a clinical study. It establishes that MECH-003's predicted failure mode is a serious, well-developed position in computational psychiatry, not that it is established fact.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The direction of the imbalance does not straightforwardly match MECH-003's stated violation. Adams et al. model psychosis as 'a reduction in the precision of PRIOR beliefs, relative to sensory evidence' -- high-level precision too LOW. MECH-003's listed violation is 'using gamma-scale surprise to directly raise delta-scale certainty' -- high-level precision driven too HIGH by a fast signal. These can be reconciled (weak priors force large revisions of high-level beliefs to explain aberrant sensory evidence, and the resulting belief is then held with pathological confidence) but the reconciliation is an argument, not a finding, and REE should not quietly assume it.",
+    "This is a theoretical review whose empirical content is simulation. The perceptual synthesis, smooth pursuit and agency-attribution results are demonstrations that the proposed pathology CAN generate psychosis-like behaviour in a model, not measurements showing it DOES in patients.",
+    "The account is deliberately unifying -- one pathology for five symptom classes -- which is its appeal and its risk. A mechanism flexible enough to produce hallucinosis, catatonia and delusions from one parameter change is correspondingly hard to falsify from symptom data alone.",
+    "Precision is identified with post-synaptic gain and thence with NMDA receptor function and dopaminergic neuromodulation. That is a strong and contested implementational commitment; if it is wrong, the clinical mapping survives but the substrate story MECH-003 leans on does not."
+  ],
+  "tags": [
+    "mech_003",
+    "precision",
+    "tau_scoping",
+    "psychosis",
+    "delusions",
+    "hallucinations",
+    "predictive_coding",
+    "active_inference",
+    "post_synaptic_gain",
+    "nmda",
+    "failure_mode",
+    "computational_psychiatry"
+  ],
+  "mapping": {
+    "source_claim_statement": "Adams et al. consider psychotic symptoms as false inferences or beliefs, on the view that the brain is an inference machine constructing hypotheses to explain its sensations. They treat hallucinosis, abnormal eye movements, sensory attenuation deficits, catatonia and delusions as various expressions of the same core pathology: an aberrant encoding of precision -- the confidence assigned to beliefs about the world. From a cognitive perspective this is described as a failure of metacognition (beliefs about beliefs) that confounds perceptual inference; in active inference it can produce behaviour that is paradoxically MORE accurate than Bayes-optimal. The process theory is hierarchical predictive coding, in which precision is encoded by the post-synaptic gain of neurons reporting prediction error, linking the pathology to NMDA receptor function and dopaminergic neuromodulation. The claims are illustrated with simulations of perceptual synthesis, smooth pursuit eye movements and attribution of agency, all using one scheme and one pathology: a reduction in the precision of prior beliefs relative to sensory evidence.",
+    "ree_translation": "MECH-003's 'Prohibited Operations' section asserts that four specific violations -- using gamma-scale surprise to raise delta-scale certainty, collapsing the precisions into one attention scalar, letting E3 read untyped precision, and letting precision bypass phi gating -- 'correspond to known failure modes: impulsivity, delusional certainty, manic over-commitment, reward hacking'. Adams et al. supply the external warrant for the second of these. Their central move is that what goes wrong in psychosis is not the content of any single level but the RELATIVE precision ACROSS levels: when the balance between a high-level prior's confidence and the sensory evidence's confidence is disturbed, false high-level beliefs form and are held firmly. That is exactly the shape of failure MECH-003 predicts for mismanaged cross-tau precision, and it is why MECH-003 insists the projection operator be slow and lossy -- a lossy operator is precisely one that cannot let a sharp fast spike set a slow belief's confidence. The entry converts MECH-003's clinical gesture into a citable position with a worked process theory behind it.",
+    "mapping_caveat": "The polarity mismatch is the thing to hold onto. Adams et al.'s modelled pathology is prior precision too LOW relative to sensory precision; MECH-003's named violation is delta-scale certainty driven too HIGH by gamma-scale surprise. A reconciliation is available -- weak priors force large revisions of high-level belief to accommodate aberrant sensory evidence, and the revised belief is then held with pathological confidence, which is phenomenologically the delusion -- but that reconciliation is an inference REE is making, not a result the paper reports. Until it is argued explicitly, this entry supports MECH-003's general thesis (cross-level precision relationships are where psychopathology lives) more strongly than it supports MECH-003's specific violation clause. Beyond that: the evidence is simulation, not patient data; the account's unifying ambition makes it hard to falsify; hierarchical level is again not temporal depth; and the identification of precision with post-synaptic gain is a contested implementational commitment that MECH-003 inherits if it cites this.",
+    "source_context": "Theoretical review with simulations, in computational psychiatry. Human clinical phenomena (schizophrenia and psychosis) interpreted through hierarchical predictive coding and active inference; demonstrations via simulations of perceptual synthesis, smooth pursuit eye movements and agency attribution. No new patient data."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.5,
+    "notes": "Source quality 0.65: an influential and carefully-argued review by a strong author group, but a review with simulations rather than an empirical study, and published in a venue with a lighter review burden than the two Neuron entries here. Mapping fidelity 0.70: the core idea -- pathology as disturbed RELATIVE precision across hierarchical levels -- maps directly onto MECH-003's failure model, but the polarity of the disturbance does not match MECH-003's stated violation without an interpolating argument. Transfer risk 0.50: the highest in this directory, because the chain runs from simulated agents to clinical syndromes to a claim about REE's control architecture, and each link is loose. Weighted toward mapping_fidelity as an architectural claim but capped by source_quality, giving 0.62."
+  }
+}

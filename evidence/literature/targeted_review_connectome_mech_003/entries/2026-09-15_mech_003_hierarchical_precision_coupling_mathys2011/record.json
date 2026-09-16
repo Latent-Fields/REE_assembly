@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_003",
+  "entry_id": "2026-09-15_mech_003_hierarchical_precision_coupling_mathys2011",
+  "timestamp_utc": "2026-09-15T23:51:56Z",
+  "claim_ids_tested": [
+    "MECH-003"
+  ],
+  "source": {
+    "title": "A Bayesian foundation for individual learning under uncertainty",
+    "authors": [
+      "Mathys C",
+      "Daunizeau J",
+      "Friston KJ",
+      "Stephan KE"
+    ],
+    "year": 2011,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2011.00039",
+    "pmid": "21629826",
+    "pmc": "PMC3096853",
+    "volume": "5",
+    "pages": "39"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the closest formal analogue to MECH-003 that exists in the literature, and it is the reason this directory is worth opening at all. The hierarchical Gaussian filter (HGF) does not merely permit depth-indexed precision -- it REQUIRES it: each level carries its own state, its own uncertainty, and its own update, and the influence of one level on another is carried by explicit, named coupling parameters rather than by a shared scalar. MECH-003's normative core ('precision values at different tau depths MUST be stored, updated, and applied independently'; 'cross-tau influence MUST pass through a projection operator') is, in HGF terms, simply a description of how the model is built. Confidence is set at 0.78 rather than higher for two reasons that are different in kind. The first is ordinary: this is a modelling paper, so it establishes that a tau-scoped precision architecture is coherent, tractable and fits behaviour -- not that the brain implements one. The second is specific and matters more: HGF's dominant coupling direction is the OPPOSITE of the one MECH-003 nominates. See the caveat and failure signatures; this is a genuine tension, not a translation wrinkle, and it is the main thing this entry buys us.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The HGF's principal cross-level coupling runs from the HIGHER level DOWNWARD: the step size of the Gaussian random walk at each level is determined by the next level up, so a volatility estimate at a long timescale sets the effective learning rate at a short one. MECH-003 asserts that cross-tau projection is 'Directional (usually short -> long tau only)'. The most successful formal model of exactly this structure therefore has its main control arrow pointing the other way, with short->long influence carried separately by ascending prediction errors. MECH-003's directionality clause is the part of the claim least supported by this source and should be treated as the live falsifiable sub-claim.",
+    "The HGF's separation of levels is a modelling stipulation, not a measured fact. The paper shows that a model built with independent per-level precisions fits behaviour well; it does not compare against a well-specified single-global-precision alternative and find the latter inferior. MECH-003's strong prohibition ('There is no global precision scalar in REE') therefore receives no direct comparative test here.",
+    "Coupling parameters in the HGF are fitted per subject and are known to trade off against one another during estimation. A model in which cross-level influence is slow could be mimicked by one in which it is fast but weakly weighted, so the 'Slow (many samples required)' property of MECH-003's projection operator is not independently identified by the fits reported here."
+  ],
+  "tags": [
+    "mech_003",
+    "precision",
+    "tau_scoping",
+    "hierarchical_gaussian_filter",
+    "volatility",
+    "precision_weighted_prediction_error",
+    "variational_bayes",
+    "coupling",
+    "neuromodulation",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mathys et al. introduce a generic hierarchical Bayesian framework for individual learning under multiple forms of uncertainty (environmental volatility and perceptual uncertainty). The model assumes Gaussian random walks of states at all but the first level, with the step size at each level determined by the next highest level. The coupling between levels is controlled by parameters that shape the influence of uncertainty on learning in a subject-specific fashion. Using variational Bayes under a mean-field approximation, the authors derive analytic trial-by-trial update equations that are efficient enough for real-time learning, have a natural reinforcement-learning interpretation, and contain parameters representing precision-weighting of prediction error. The authors note these parameters allow expression of individual differences in learning and may relate to specific neuromodulatory mechanisms.",
+    "ree_translation": "This is the formal skeleton MECH-003 is asserting as an architectural requirement. Map the HGF's levels onto REE's tau bands and the correspondence is close to term-by-term: each level's state is z_tau; each level's uncertainty is pi_tau; the trial-by-trial update in which a prediction error is weighted by a ratio of precisions is exactly MECH-003's 'Delta z_tau proportional to pi_tau * epsilon_tau'; and the level-specific step sizes are MECH-003's tau-specific alpha_tau (gamma >> beta >> theta >> delta). Most importantly, the HGF's coupling parameters ARE the projection operator P that MECH-003 demands: cross-level influence in the HGF cannot happen except through them, which is the computational content of 'no module may aggregate precisions without a projection operator'. The entry therefore supports MECH-003's central structural assertion -- that a working hierarchical learner keeps precision depth-indexed and routes cross-depth influence through an explicit, parameterised operator -- while simultaneously putting MECH-003's directionality sub-clause under pressure.",
+    "mapping_caveat": "Three boundaries. (1) DIRECTION: the HGF's headline coupling is long->short (the higher level sets the lower level's step size), whereas MECH-003 says projection is 'usually short -> long tau only'. Both directions exist in the HGF -- ascending prediction errors update higher levels, descending volatility estimates set lower-level learning rates -- so the honest reading is that the HGF supports BIDIRECTIONAL coupling and contradicts the unidirectional gloss. (2) LEVELS ARE NOT TIMESCALES: HGF levels are levels of a statistical hierarchy (outcome, tendency, volatility), and while they acquire distinct effective timescales as a consequence, they are not defined by frequency bands. REE's tau bands are defined by temporal depth and given an explicit oscillatory reading (gamma/beta/theta/delta). Identifying the two is an architectural assumption. (3) NORMATIVE vs DESCRIPTIVE: MECH-003 is a MUST; the HGF is a model that happens to be built this way. Demonstrating that a tau-scoped model works is not the same as demonstrating that a non-tau-scoped one fails, and only the latter would discharge MECH-003's prohibition on a global precision scalar.",
+    "source_context": "Theoretical / computational paper. Derivation of a hierarchical Bayesian learning model (the HGF) via variational Bayes under a mean-field approximation, with a novel approximation to the posterior energy function; illustrated by simulations and by analyses of empirical time series. No new experimental data collected."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.80: a heavily-cited, technically careful derivation that became the standard tool for this class of question, but it is a modelling paper without new data, so the ceiling is lower than for a causal experiment. Mapping fidelity 0.85: the term-by-term correspondence with MECH-003's formalism is unusually tight -- precision-weighted update, level-specific step size, explicit coupling operator -- and held below 0.9 only by the levels-are-not-frequency-bands gap. Transfer risk 0.35: model-to-architecture transfer is the risk, not species or task; the HGF was designed for precisely this structure, so the risk is mainly that MECH-003 reads more biological commitment into it than is there. Weighted toward mapping_fidelity as the skill directs for architectural claims, giving 0.78."
+  }
+}

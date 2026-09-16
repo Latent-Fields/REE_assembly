@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_003",
+  "entry_id": "2026-09-15_mech_003_volatility_slow_integration_behrens2007",
+  "timestamp_utc": "2026-09-15T23:51:56Z",
+  "claim_ids_tested": [
+    "MECH-003"
+  ],
+  "source": {
+    "title": "Learning the value of information in an uncertain world",
+    "authors": [
+      "Behrens TEJ",
+      "Woolrich MW",
+      "Walton ME",
+      "Rushworth MFS"
+    ],
+    "year": 2007,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn1954",
+    "pmid": "17676057",
+    "volume": "10",
+    "issue": "9",
+    "pages": "1214-1221"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "This entry is targeted at one specific property of MECH-003's projection operator: that it is 'Slow (many samples required)'. Behrens et al. show that humans track environmental volatility in a near-optimal way, that this volatility estimate is necessarily accumulated across many trials, and that it then governs the learning rate applied to each new outcome -- with an ACC signal at outcome time whose magnitude tracks that outcome's salience for future prediction, and whose between-subject variation predicts between-subject variation in learning rate. The direction is recorded as MIXED rather than supports, deliberately. The slow-accumulation half of MECH-003's projection story is supported cleanly. The DIRECTIONALITY half is contradicted just as cleanly: the operative control relationship here is a slowly-built long-timescale estimate setting a fast-timescale learning rate, which is long -> short, the direction MECH-003 says projection usually does NOT take. Recording this as 'supports' would launder a real disconfirmation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's central mechanism is a LONG -> SHORT control relationship: a slowly accumulated volatility estimate sets the learning rate applied to the next single outcome. MECH-003 states cross-tau projection is 'Directional (usually short -> long tau only)'. Taken with the same contradiction in Mathys et al. (2011), two independent and highly-cited sources in this directory now point the opposite way on this sub-clause. It should be treated as probably wrong as written rather than as merely unsupported.",
+    "MECH-003 asserts that the projection operator is 'Lossy (cannot preserve sharp spikes)'. Behrens et al. do not test this. Their volatility estimate is an integrator, which is lossy in the trivial sense that integration discards high-frequency structure, but no manipulation here asks whether a single sharp surprise can or cannot propagate to the slow estimate. The lossiness property remains untested by this entry.",
+    "The hierarchy tested is two-level (outcome rate, and volatility of that rate). MECH-003 posits four tau bands with an ordering constraint among their update rates (alpha_gamma >> alpha_beta >> alpha_theta >> alpha_delta). A two-level result is consistent with that ordering but provides no evidence for four distinct bands or for the specific ordering.",
+    "The ACC finding is a BOLD correlate of a model-derived quantity, and the individual-difference result -- ACC signal variation predicting learning-rate variation -- is correlational across subjects, so it does not establish that the ACC signal causes the learning-rate adjustment."
+  ],
+  "tags": [
+    "mech_003",
+    "precision",
+    "tau_scoping",
+    "volatility",
+    "learning_rate",
+    "anterior_cingulate",
+    "model_based_fmri",
+    "projection_operator",
+    "slow_integration",
+    "directionality_tension"
+  ],
+  "mapping": {
+    "source_claim_statement": "Behrens et al. asked how much influence each past outcome should have on the next decision, arguing that the weight given to decision outcomes should reflect their salience for predicting future outcomes, and that this salience should be modulated by the volatility of the reward environment. They show that human subjects assess volatility in an optimal manner and adjust their decision-making accordingly. This optimal volatility estimate is reflected in the fMRI signal in anterior cingulate cortex at the time each trial outcome is observed: when a new piece of information is witnessed, ACC activity levels reflect its salience for predicting future outcomes. Variations in this ACC signal across the population predict variations in subjects' learning rates.",
+    "ree_translation": "MECH-003 requires that cross-tau influence pass through a projection operator with four named properties -- slow, directional, lossy, context-gated -- and gives as its canonical example 'repeated beta-scale precision -> gradual theta-scale confidence'. This paper is the cleanest empirical demonstration that the SLOW property is real and behaviourally consequential in humans: an estimate of how changeable the world is cannot be formed from one observation, is in fact built up across many trials, and once built determines how strongly each subsequent single outcome is allowed to move belief. In REE terms, a long-tau quantity is genuinely a different register with a genuinely different time constant, not a smoothed copy of the fast one -- which is MECH-003's separation requirement, observed. But the SAME result runs against MECH-003's directionality gloss, because the causal arrow that does the work points from the slow register to the fast one.",
+    "mapping_caveat": "This entry should be read as evidence about ONE property of the projection operator, not about MECH-003 as a whole, and as evidence AGAINST another. Supported: slowness -- volatility is accumulated over many samples. Contradicted: unidirectionality -- the operative control is long -> short. Untested: lossiness and phi/context-gating. Beyond that, the standard limits apply: the hierarchy here is two-level rather than four-band, so nothing here speaks to the alpha ordering across gamma/beta/theta/delta; the ACC result is a BOLD correlate of a model-derived regressor rather than a measured control signal; and the individual-differences link between ACC signal and learning rate is correlational. Finally, 'volatility' is a statistical property of a reward schedule, whereas REE's tau bands are temporal depths of a state hierarchy; the identification is an assumption.",
+    "source_context": "Human model-based fMRI. Healthy adult volunteers performing a probabilistic reward-learning task in which outcome contingencies changed at varying rates; behaviour modelled with a Bayesian learner that estimates volatility, with model-derived trial-wise regressors tested against BOLD signal, focusing on anterior cingulate cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.85: Nature Neuroscience, a foundational and much-replicated result that established volatility-dependent learning-rate adjustment as a real human phenomenon. Mapping fidelity 0.55: deliberately modest -- the paper speaks precisely to ONE of the projection operator's four named properties, is silent on two others, and runs against the fourth. Transfer risk 0.40: human behavioural and imaging data, so low on species and modality, but the volatility-to-tau-depth identification is an assumption REE is making. Aggregated to 0.60, below what source quality alone would give, because a high-quality paper that speaks to a quarter of the claim and contradicts another quarter should not be recorded as strong support."
+  }
+}

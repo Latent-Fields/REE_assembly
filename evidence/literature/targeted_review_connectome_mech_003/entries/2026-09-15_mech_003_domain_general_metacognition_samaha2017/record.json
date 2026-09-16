@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_003",
+  "entry_id": "2026-09-15_mech_003_domain_general_metacognition_samaha2017",
+  "timestamp_utc": "2026-09-15T23:51:56Z",
+  "claim_ids_tested": [
+    "MECH-003"
+  ],
+  "source": {
+    "title": "Correlated individual differences suggest a common mechanism underlying metacognition in visual perception and visual short-term memory",
+    "authors": [
+      "Samaha J",
+      "Postle BR"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rspb.2017.2035",
+    "pmid": "29167365",
+    "pmc": "PMC5719179",
+    "volume": "284",
+    "issue": "1867"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.48,
+  "confidence_rationale": "Every other entry in this directory was selected because it supports some part of MECH-003. This one is here because MECH-003 makes an unusually strong negative assertion -- 'There is no global precision scalar in REE', and collapsing the precisions into 'a single attention scalar' is listed as an architectural violation -- and a directory with no counterweight to that would be a rhetorical exercise rather than an evidence base. Samaha and Postle provide the counterweight. Since MECH-003 explicitly equates precision with confidence ('REE treats precision and confidence as the same control variable'), evidence about whether confidence is domain-general is evidence about whether precision is scoped. They find that metacognitive accuracy in visual perception and in visual short-term memory correlates strongly across individuals, not explained by task performance or average confidence -- a domain-GENERAL metacognitive architecture. Confidence is 0.48, and the low value is the honest one: the study's axis is task domain, not temporal depth, so the transfer to tau-scoping is real but indirect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A shared metacognitive resource across two task domains is prima facie evidence for something MECH-003 forbids: a confidence/precision quantity that is not scoped to the process that generated it. If confidence were strictly per-register, cross-domain metacognitive ability should not covary as strongly as it does.",
+    "The study's axis is TASK DOMAIN (perception vs visual short-term memory), not TEMPORAL DEPTH (gamma/beta/theta/delta). MECH-003 forbids collapsing across tau, and says nothing about whether precision may be shared across modalities at a fixed tau. The entry is therefore a weakener by analogy, and its force depends on an argument that domain-generality and depth-generality are the same kind of leak -- which is not obvious.",
+    "The paper's own third experiment substantially qualifies the headline: the cross-domain correlation emerged ONLY when both tasks shared the same task-relevant stimulus feature (orientation), and vanished when the perceptual task was switched to contrast judgements. So the shared resource is FEATURE-CONDITIONAL, not a free-floating global scalar -- which is much closer to MECH-003's scoped picture than the headline suggests.",
+    "The authors note their result contrasts with previous work comparing perception and long-term memory, which largely found domain-SPECIFIC metacognition. The literature is unsettled, and -- relevantly for MECH-003 -- the comparison that spans the widest TEMPORAL range (perception vs long-term memory) is the one that found separation.",
+    "Individual-differences correlations are the evidence base. These are correlational, sensitive to reliability of the underlying measures, and the sample sizes typical of this design are modest for stable correlation estimates."
+  ],
+  "tags": [
+    "mech_003",
+    "precision",
+    "tau_scoping",
+    "metacognition",
+    "confidence",
+    "domain_general",
+    "visual_short_term_memory",
+    "individual_differences",
+    "counterevidence",
+    "global_precision_scalar"
+  ],
+  "mapping": {
+    "source_claim_statement": "Samaha and Postle investigated whether metacognitive ability is supported by the same mechanisms across different tasks, comparing metacognition of visual perception with metacognition of visual short-term memory. Subjects estimated the perceived or remembered orientation of a grating and rated their confidence. Strong positive correlations were observed between individual differences in metacognitive accuracy across the two tasks; this relationship was not accounted for by individual differences in task performance or average confidence, and held across two metrics of metacognition and in both experiments. A model-based analysis of a third experiment showed that the cross-domain correlation emerged only when both tasks shared the same task-relevant stimulus feature: metacognition for perception and VSTM correlated when both required orientation judgements, but not when the perceptual task required contrast judgements. The authors conclude that metacognition of visual perception and VSTM is supported by a domain-general metacognitive architecture, but only when both domains share the same task-relevant stimulus feature.",
+    "ree_translation": "MECH-003 opens by stating that REE 'treats precision and confidence as the same control variable operating at different temporal depths', and then makes that identification do heavy normative work: there is to be no global precision scalar, and collapsing the per-depth precisions into 'a single attention scalar' is an architectural violation. Having equated precision with confidence, REE inherits the empirical literature on whether confidence is scoped -- and that literature does not uniformly say it is. Samaha and Postle find a shared metacognitive resource spanning perception and short-term memory, which are processes operating at different temporal depths in any reasonable mapping. On REE's own identification, that is a confidence signal that is not strictly scoped to the process that produced it. The finding does not refute MECH-003 -- see the caveat, and note especially that the sharing turned out to be feature-conditional -- but it is the shape of result that should exist if MECH-003's strongest negative sentence were too strong, and the directory should carry it.",
+    "mapping_caveat": "This is a weakener by ANALOGY and its force should not be overstated. The study's axis is task domain (perception vs VSTM), not temporal depth; MECH-003 forbids collapsing across TAU and is silent on sharing across modalities at fixed tau. Making this bite requires arguing that domain-generality and depth-generality are the same kind of leak, which is not established. More importantly, the paper's own third experiment pulls hard in MECH-003's favour: the cross-domain correlation appeared only when both tasks shared the same task-relevant feature and disappeared when it did not, so what was found is a CONDITIONAL, feature-scoped shared resource rather than the free-floating global scalar MECH-003 prohibits. The authors also note that prior work spanning perception and LONG-TERM memory -- the comparison with the widest temporal separation, and hence the one closest to REE's tau axis -- largely found domain-SPECIFIC metacognition, which is the result MECH-003 would predict. Finally the evidence is correlational individual differences, with the reliability and sample-size sensitivities that design carries.",
+    "source_context": "Human psychophysics. Three experiments; subjects estimated the perceived or remembered orientation (or, in the third experiment's variant, the contrast) of grating stimuli and rated confidence. Metacognitive accuracy quantified by two distinct metrics and compared across individuals; experiment 3 additionally analysed model-based."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.70: Proc B, clean psychophysics, two metrics, an internal replication and a well-designed third experiment that qualifies its own headline -- but individual-differences correlations at typical psychophysics sample sizes. Mapping fidelity 0.40: low and honestly so, because the study's axis is task domain rather than temporal depth, and MECH-003's prohibition is specifically about tau. Transfer risk 0.55: the highest in this directory; the inference from 'metacognition is shared across two visual task domains' to 'precision is not strictly tau-scoped' passes through an analogy that the paper's own feature-conditionality result partly undercuts. Aggregated to 0.48 -- recorded as a real but weak weakener, which is the correct weight for a counterexample that is genuinely relevant and genuinely indirect."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_003",
+  "entry_id": "2026-09-15_mech_003_hierarchical_prediction_errors_iglesias2013",
+  "timestamp_utc": "2026-09-15T23:51:56Z",
+  "claim_ids_tested": [
+    "MECH-003"
+  ],
+  "source": {
+    "title": "Hierarchical prediction errors in midbrain and basal forebrain during sensory learning",
+    "authors": [
+      "Iglesias S",
+      "Mathys C",
+      "Brodersen KH",
+      "Kasper L",
+      "Piccirelli M",
+      "den Ouden HEM",
+      "Stephan KE"
+    ],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.09.009",
+    "pmid": "24139048",
+    "volume": "80",
+    "issue": "2",
+    "pages": "519-530"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the empirical counterpart to the Mathys entry and the strongest direct evidence in this directory for MECH-003's non-normative biological correspondence section -- specifically the sentence 'anatomical separation enforcing tau isolation'. Using the same hierarchical Bayesian model, Iglesias et al. show that prediction errors at different levels of the hierarchy are expressed in ANATOMICALLY DIFFERENT structures: low-level PEs about stimulus outcome in the midbrain, high-level PEs about stimulus probabilities in the basal forebrain. That is a dissociation of depth-indexed error signals by substrate, which is the observable consequence one would predict if precision registers really are kept separate rather than collapsed. The replication in a second independent group is what lifts this above the usual model-based-fMRI confidence band. It is held to 0.72 rather than higher because the paper measures PREDICTION ERRORS at different levels, not PRECISIONS at different levels -- a related but distinct quantity -- and because fMRI in midbrain and basal forebrain cannot identify neuron types, a limitation the authors state themselves.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation demonstrated is between hierarchically distinct PREDICTION ERRORS, not between hierarchically distinct PRECISIONS. MECH-003 is a claim about pi_tau, not about epsilon_tau. Under the model used, the two are coupled -- a precision-weighted PE is what is actually regressed against the BOLD signal -- so separate registers for one are suggestive of separate registers for the other, but the entry should not be read as a direct measurement of tau-scoped precision.",
+    "The authors are explicit that fMRI 'measures do not reveal the exact neuron types activated in midbrain and basal forebrain'. The dopamine/acetylcholine attribution is an inference from the anatomy of the activated regions, not a measurement of transmitter release, so the mapping onto MECH-003's 'phasic dopamine -> pi_gamma / pi_beta, tonic dopamine -> pi_theta / pi_delta' correspondence is looser than it first appears -- and in fact cross-cuts it, since the high-level signal here is CHOLINERGIC rather than tonically dopaminergic.",
+    "Midbrain and basal forebrain are small structures near sources of physiological noise; BOLD signal there is harder to measure reliably than in cortex. The two-group replication substantially mitigates this but does not eliminate it.",
+    "Hierarchical level in this paradigm is statistical abstraction (outcome vs probability), not temporal depth. That the two covary in this task is plausible but untested here, so the inference to TAU-scoping specifically rests on an assumption the study does not check."
+  ],
+  "tags": [
+    "mech_003",
+    "precision",
+    "tau_scoping",
+    "hierarchical_prediction_error",
+    "midbrain",
+    "basal_forebrain",
+    "dopamine",
+    "acetylcholine",
+    "model_based_fmri",
+    "anatomical_separation",
+    "replication"
+  ],
+  "mapping": {
+    "source_claim_statement": "In Bayesian brain theories, hierarchically related prediction errors play a central role for predicting sensory inputs and inferring their underlying causes. Iglesias et al. tested whether PEs at different hierarchical levels are encoded by different neuromodulatory transmitters, using computational fMRI of audio-visual learning analysed with a hierarchical Bayesian model. Low-level PEs about visual stimulus outcome were reflected by widespread activity in visual and supramodal areas and also in the midbrain; high-level PEs about stimulus probabilities were encoded by the basal forebrain. The findings were replicated in two groups of healthy volunteers. The authors conclude the results suggest a dichotomy between neuromodulatory systems, linking dopamine to low-level PEs about stimulus outcome and acetylcholine to more abstract PEs about stimulus probabilities.",
+    "ree_translation": "MECH-003 closes with a non-normative note that the tau-scoped separation it mandates 'mirrors ... anatomical separation enforcing tau isolation', and asserts as an architectural violation the act of 'collapsing pi_gamma...pi_delta into a single attention scalar'. Iglesias et al. provide the observable signature that makes this more than an assertion: when a hierarchical model is fitted to behaviour and its level-specific error terms are regressed against brain activity, the levels come apart ANATOMICALLY. A fast, concrete error signal and a slow, abstract one are not two readings of one graded quantity distributed over one structure; they appear in different structures, with different neuromodulatory identities. For REE this is the empirical licence for treating tau-indexed registers as physically separate stores rather than as a bookkeeping convenience, and it is a direct embarrassment for any implementation that would route all depths through a single shared precision variable.",
+    "mapping_caveat": "The transfer risk here is specific and should not be waved through. First, this is evidence about ERROR signals, not PRECISION signals; MECH-003 is about the latter. Second, and more awkwardly, the paper's own transmitter attribution CUTS ACROSS MECH-003's stated biological correspondence: MECH-003 proposes phasic dopamine -> pi_gamma/pi_beta and tonic dopamine -> pi_theta/pi_delta, i.e. one transmitter split by timescale, whereas Iglesias et al. find the low/high split falls between dopamine and ACETYLCHOLINE. If their dichotomy is right, MECH-003's non-normative note is at best incomplete and the cholinergic axis needs a place in it. Third, hierarchical level in this task is statistical abstraction rather than temporal depth; the identification of the two is REE's assumption, not the paper's finding. Fourth, the neuromodulator identities are inferred from where the BOLD signal appeared, which the authors are careful to flag as not identifying neuron types.",
+    "source_context": "Human computational fMRI. Audio-visual associative learning paradigm; trial-wise regressors derived from a fitted hierarchical Bayesian (HGF-family) model; results reported in two independent groups of healthy volunteers, with the key midbrain and basal forebrain findings replicated across both."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.85: Neuron, model-based fMRI done carefully, and -- unusually and importantly -- replicated in a second independent group, which is the single biggest reason to trust it. Mapping fidelity 0.70: the anatomical dissociation of hierarchically distinct error signals is genuinely the right KIND of evidence for MECH-003's separation requirement, but it is about epsilon rather than pi, and its transmitter dichotomy does not match the one MECH-003 names. Transfer risk 0.35: human data, healthy volunteers, replicated -- but hierarchical level must be assumed to stand in for temporal depth. Weighted toward source_quality as the skill directs for empirical claims, and pulled down by the mapping gap, giving 0.72."
+  }
+}
