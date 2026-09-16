@@ -3089,3 +3089,4 @@ One line per hourly tick. ASCII only.
 2026-09-16T14:57:59Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 251 items, 30 ready, 0 in flight)
 2026-09-16T14:56:44Z STAGE IGW-20260916-217 skill=/implement-substrate prio=25 worktree=igw-217-substrate-ready-sd-zworld-sense (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-16T16:03:06Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 251 items, 30 ready, 0 in flight)
+2026-09-16T16:01:26Z SPAWN IGW-20260916-240 skill=/lit-pull prio=40 uuid=ef5f7a31-00d4-4747-8dad-cfb08f232538 pid=88775 worktree=igw-240-literature-proposal-for-mech-017
