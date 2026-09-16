@@ -1,6 +1,6 @@
 # MECH-152 measurement redesign -- DESIGNED, NOT QUEUED (gated on an open corrupting substrate defect)
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml, experiment_queue.json, or substrate_queue.json.**
+**Status: REVIEWED 2026-09-16 (user) -- design (incl. 2026-08-25 amendment) APPROVED as-is; still GATED on contextmemory-write-path-addressing-degeneracy validation (now an instrument redesign, GFLAG-0139); chip-20260818-mech152-redesign-queue-gated stays open.**
 
 - **Generated:** 2026-08-18T21:00Z
 - **Session:** `metaworker-chip-20260816-mech152-measurement-redesign` (headless metaworker chip)

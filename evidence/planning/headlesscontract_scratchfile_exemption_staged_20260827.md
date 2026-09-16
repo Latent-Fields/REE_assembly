@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW**
+**Status: REVIEWED 2026-09-16 (user) -- landed ede1b6700 / b3dab9756.**
 
 # `.headless_contract.md` / `HEADLESS_CONTRACT.md` missing from `METAWORKER_SCRATCH_FILES`
 

@@ -1,6 +1,6 @@
 # ARC-039 phase reclassification -- staged disposition
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: REVIEWED 2026-09-16 (user) -- all three edits landed REE_assembly 68691a86bf5 (2026-08-10).**
 
 - **Date:** 2026-08-08
 - **Session:** `metaworker-chip-20260808-arc039-phase-consistency-review` (headless, metaworker-dispatch)

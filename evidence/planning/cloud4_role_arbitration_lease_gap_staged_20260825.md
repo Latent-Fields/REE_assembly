@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: REVIEWED 2026-09-16 (user) -- SUPERSEDED: option B tried (Healer) then replaced by ree-role-arbiter.service/.timer (2026-08-29).**
 
 # ree-cloud-4 role arbitration vs. the 2026-08-25 Dispatcher/Healer lease split
 

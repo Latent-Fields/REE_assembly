@@ -1,6 +1,6 @@
 # MECH-151 affordance-set-size instrumentation -- staged design (BLOCKED at /queue-experiment Step 2.5c)
 
-**Status: AWAITING USER REVIEW / BLOCKED ON SUBSTRATE. Nothing was queued. No experiment script was written.**
+**Status: REVIEWED 2026-09-16 (user) -- SUPERSEDED by mech151_affordance_set_instrumentation_design_blocked_20260818.md.**
 
 - **Generated (UTC):** 2026-08-16T20:42:35Z
 - **Session:** `metaworker-chip-20260816-queueexp-mech151-affordance-set-instrumentation-v2` (headless metaworker chip, Mac / `DLAPTOP`)

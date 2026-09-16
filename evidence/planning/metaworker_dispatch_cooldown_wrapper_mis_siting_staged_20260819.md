@@ -1,6 +1,6 @@
 # Why four cooldown fixes have not held: the gate is mis-sited one layer too deep
 
-**Status: AWAITING USER REVIEW**
+**Status: REVIEWED 2026-09-16 (user) -- wrapper pre-check + heartbeat autostamp landed 3c9d9022f / 80728ad20 (2026-08-20).**
 
 Chip `chip-20260819-metaworker-learning-cooldown-4-fixes-failed`, routed here by the user's
 2026-08-19 `AskUserQuestion` decision on `chip-20260819-usagelimit-cooldown-not-holding-5th`

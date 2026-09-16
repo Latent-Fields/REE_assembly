@@ -1,7 +1,7 @@
 > **RESCUED ARTIFACT -- provenance banner prepended 2026-08-08T06:35:28Z; everything below the
 > horizontal rule is the original file, byte-for-byte unmodified.**
 >
-> **Status: AWAITING USER REVIEW. Nothing in this file has been written to `claims.yaml`,
+**Status: REVIEWED 2026-09-16 (user) -- GFLAG-0005..0010 resolved; SD-020 demoted; MECH-295 category change REJECTED (74172adf3f3); Q-020 falsifier + rejection notes -> chip-20260916-claims-bookkeeping-six-edits.**
 > and nothing in it has been minted into `manual_proposals.v1.json`.** (The six
 > `governance_flags.v1.json` entries described in §1 were landed separately by the
 > original session and are already on `origin/master`; they are read-only-consumed by

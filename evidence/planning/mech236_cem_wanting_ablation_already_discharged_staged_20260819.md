@@ -1,6 +1,6 @@
 # MECH-236 CEM wanting causal ablation -- ALREADY DISCHARGED by V3-EXQ-931; residual routes to /implement-substrate
 
-**Status: AWAITING USER REVIEW.**
+**Status: REVIEWED 2026-09-16 (user) -- build landed 2026-08-19 (cem_elite_authority_throughput_design), validated V3-EXQ-945, ratified governance-cycle-20260828.**
 
 - Author: headless metaworker chip `chip-20260816-mech236-cem-wanting-causal-ablation`
 - Date: 2026-08-19T08:16:36Z

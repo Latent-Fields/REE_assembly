@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW.**
+**Status: APPROVED 2026-09-16 (user) -- deletion of REE_assembly_corrupt_backup_20260801T112859Z on ree-cloud-4 is USER-RUN (5 GB, irreversible); not executed by any session or chip.**
 
 # ree-cloud-4: `REE_assembly_corrupt_backup_20260801T112859Z/` -- deletion recommendation
 

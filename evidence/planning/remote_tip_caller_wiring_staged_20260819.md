@@ -1,4 +1,4 @@
-**Status: LANDED (code), AWAITING USER REVIEW (this writeup's recommendation).
+**Status: REVIEWED 2026-09-16 (user) -- wiring landed 307de8d3d; its 'do not flip default' advice was overridden by ca0e8c1b7 (2026-08-24, gated default).**
 The code described here (the `ree_commit_once()` sha-tracking fix and the
 `--to-remote-tip` CLI wiring on `task_claim.py`/`chip_ledger.py`) is on
 `REE_Working` `origin/master` as of `307de8d3d0` -- it is fully opt-in

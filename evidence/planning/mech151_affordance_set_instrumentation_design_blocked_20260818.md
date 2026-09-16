@@ -1,6 +1,6 @@
 # MECH-151 affordance-set-size instrumentation -- DESIGN BLOCKED at `/queue-experiment` Step 2.5c
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml, substrate_queue.json, experiment_queue.json, or any other registry.**
+**Status: REVIEWED 2026-09-16 (user) -- substrate cleared (V3-EXQ-943/436g); MECH-151 qualified by governance 2026-09-05 (GFLAG-0133, wontfix). Corrected paired-ablation EXQ optional, not owed.**
 
 - **Written:** 2026-08-18T03:12:46Z
 - **Session:** `metaworker-chip-20260816-queueexp-mech151-affordance-set-instrumentation-v2` (headless metaworker chip)

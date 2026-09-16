@@ -1,6 +1,6 @@
 **Status: RECOMMENDATION ACCEPTED AND DEPLOYED (2026-08-16T12:24:02Z). The section 6 "Do" rows landed as `ree-v3` `f675427d` and are live on the hub -- see the Deployment record at the end of this file. Nothing in this file has been written to claims.yaml (or whichever registry); the "Don't" rows remain NOT done, deliberately.**
 
-*(Original header, superseded: "Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry). No coordinator code was changed.")*
+**Status: REVIEWED 2026-09-16 (user) -- deployed ree-v3 f675427d (2026-08-16); doctrine in CLAUDE.md machine-identity note.**
 
 # Coordinator canonical machine identity -- scoping investigation
 

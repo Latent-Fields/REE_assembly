@@ -1,6 +1,6 @@
 # ContextMemory write-address selection: landed vs salvaged, independent comparison
 
-**Status: COMPLETE. AWAITING USER REVIEW — no substrate change was made and none is
+**Status: REVIEWED 2026-09-16 (user) -- refractory mode landed ree-v3 692f852, validated V3-EXQ-943; gumbel_learned since (636d0e4).**
 recommended without a separate decision.**
 
 **Chip:** `chip-20260819-contextmemory-writesel-verify-measurement`

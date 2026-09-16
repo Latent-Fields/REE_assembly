@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml.**
+**Status: REVIEWED 2026-09-16 (user) -- ran as V3-EXQ-919 (FAIL), autopsied 2026-08-13; GFLAG-0014/0015/0021 applied; lineage CLOSED 2026-09-10 (GFLAG-0192/0193).**
 
 The one registry edit this session DID make is `evidence/planning/hypothesis_space_registry.v1.json`
 qid `mech321_harm_aware_selection_task_effect` -> `decision.live_gate` (a live-state field the chip

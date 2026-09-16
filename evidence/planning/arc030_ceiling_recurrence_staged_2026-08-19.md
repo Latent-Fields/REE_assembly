@@ -1,6 +1,6 @@
 # ARC-030 "ceiling-may-have-lifted" -- third recurrence, re-confirmed NOT queueable
 
-**Status: AWAITING USER REVIEW.**
+**Status: REVIEWED 2026-09-16 (user) -- substance recorded by governance 2026-08-28/09-09; structured ceiling_decision field -> chip-20260916-claims-bookkeeping-six-edits.**
 
 Session: `metaworker-chip-20260816-arc030-ceiling-lifted-retest` (headless, DLAPTOP)
 Chip: `chip-20260816-arc030-ceiling-lifted-retest`

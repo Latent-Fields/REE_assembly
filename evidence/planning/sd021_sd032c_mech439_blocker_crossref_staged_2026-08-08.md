@@ -1,6 +1,6 @@
 # SD-021 / SD-032c blocker framing vs MECH-439 — cross-reference review (staged)
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: REVIEWED 2026-09-16 (user) -- SUPERSEDED: 878a queued+ran (FAIL); wording overtaken by the 2026-08-22 from_dims correction; depends_on left untouched as advised.**
 
 - **Date:** 2026-08-08
 - **Session:** `metaworker-chip-20260808-sd021-sd032c-mech439-crossref` (headless, metaworker-dispatch)

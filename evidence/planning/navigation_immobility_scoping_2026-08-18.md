@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW** -- scoping spike, not an experiment, not a substrate build.
+**Status: RATIFIED 2026-09-16 (user) -- MECH-439 + E3 hold-cadence account accepted; unblocks MECH-467 H-commitment/H-cadence disposal (chip-20260916-claims-bookkeeping-six-edits); corpus QA sweep -> chip-20260916-corpus-audits-contamination-immobility.**
 
 # Navigation immobility scoping spike -- CausalGridWorldV2, P0-trained agent
 

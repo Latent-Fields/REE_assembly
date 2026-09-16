@@ -1,6 +1,6 @@
 # ContextMemory `refractory` write-selection mode -- data-flow plan
 
-**Status: AWAITING USER REVIEW.** The BUILD was authorised by the user on 2026-08-19
+**Status: REVIEWED 2026-09-16 (user) -- build landed ree-v3 692f852; validation V3-EXQ-943 PASS; chip-naming gap self-corrected.**
 (option (c) of `chip-20260819-contextmemory-writesel-disposition-evidenced`: "Landing c
 keeping the landed implementation and adding refractory as an additional mode via
 /implement-substrate has a go from me"). This document is the `/implement-substrate`

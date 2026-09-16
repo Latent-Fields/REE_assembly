@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml, substrate_queue.json, or any registry. No substrate code was changed.**
+**Status: REVIEWED 2026-09-16 (user) -- user accepted option A 2026-08-08; substrate_queue entry closed; routed to 866c and G0 autopsy chips.**
 
 # scaffolded_sd054_onboarding "hazard-rebalance" chip — diagnosis says the scoped fix is misdirected
 

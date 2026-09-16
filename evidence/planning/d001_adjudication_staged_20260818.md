@@ -1,6 +1,6 @@
 # D-001 cycle-1 adjudication — proposal to /governance
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: APPROVED 2026-09-16 (user) -- 24 suppressions applied 2026-08-18; the 3-claim phase fix (ARC-053/054, MECH-270) -> chip-20260916-claims-bookkeeping-six-edits (the stale tag already misled gov-20260911-1612's hold).**
 
 - **Adjudicated:** 2026-08-18T04:29:37Z, session `chip-20260817-d001-unowned-v3-claims` (headless, `ree-cloud-5`)
 - **Base:** `REE_assembly` `b3b95d7938` (clean read of `origin/master` in a detached worktree — the shared cloud-5 checkout was `[ahead 194, behind 178]` and its `docs/claims/claims.yaml` differed, so it was not used)

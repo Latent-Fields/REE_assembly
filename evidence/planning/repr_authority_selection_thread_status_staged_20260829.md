@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry) beyond the single governance flag (GFLAG-0099) explicitly noted below, which was raised through `governance_flag.py` per standing procedure.**
+**Status: REVIEWED 2026-09-16 (user) -- GFLAG-0099 resolved 2026-09-01 (MECH-531 split, 008d91c0ce); MECH-521 cross-ref -> chip-20260916-claims-bookkeeping-six-edits.**
 
 # repr->authority->selection research thread -- status note, 2026-08-29T02:09:38Z
 

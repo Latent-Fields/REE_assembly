@@ -1,6 +1,6 @@
 # TASK_CLAIMS/TASK_CHIPS working-tree + index skew: root-cause clustering and a narrow durable fix
 
-**Status: AWAITING USER REVIEW**
+**Status: REVIEWED 2026-09-16 (user) -- Cluster 1 landed REE_Working f82499737 (index-only MM repair); Cluster 2 superseded by the worktree-lag readers work (9545e59df1, 145986069b, b86ac47bae).**
 
 Session `metaworker-learning-taskclaims-skew-20260828` (DLAPTOP), 2026-08-28.
 Skill: `/metaworker-learning`. Source chips (both open at time of writing):

@@ -1,6 +1,6 @@
 # SD-016 Selection-Mechanism GOV-FANOUT-1 Discrimination Portfolio — Scope of Record
 
-**Status: AWAITING USER REVIEW before any leg is built or queued.** This is a scoping
+**Status: REVIEWED 2026-09-16 (user) -- H1 (V3-EXQ-907) + H3 (V3-EXQ-908) CONFIRMED, production-defaulted (ree-v3 110a2785b6, eeb999a).**
 artifact produced headlessly by chip `chip-20260809-sd016-fanout-portfolio`. It designs the
 portfolio and routes each leg; it does **not** itself write experiment scripts or append queue
 entries. Each leg still runs through the full `/queue-experiment` skill (Step 2.5 readiness →

@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or any registry). The CODE it describes (`scripts/ree_commit.py`'s new `--to-remote-tip` mode) has been landed on `master` -- it is fully opt-in and inert unless a caller explicitly passes the new flag, so no existing writer's behavior changed. What is under review here is the SEPARATE, larger decision of whether/when to wire `task_claim.py` / `chip_ledger.py` to actually pass it, which this document deliberately does NOT do.**
+**Status: REVIEWED 2026-09-16 (user) -- SUPERSEDED by remote_tip_caller_wiring_staged_20260819.md; callers wired 307de8d3d, default flipped ca0e8c1b7.**
 
 # Committing bookkeeping writes onto origin/<branch> tip (2026-08-18)
 

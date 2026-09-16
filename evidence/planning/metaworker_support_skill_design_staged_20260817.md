@@ -1,6 +1,6 @@
 # `/metaworker-support` sister skill — design research + split recommendation
 
-**Status: AWAITING USER REVIEW -- no skill file has been created yet.**
+**Status: REVIEWED 2026-09-16 (user) -- both skills landed 112abc306 (2026-08-18); hygiene_tick sources 13/14/24-29 built.**
 Chip: `chip-20260817-metaworker-support-skill-design`. Researched and drafted 2026-08-17 by
 headless session `github-write-access-setup-88d6ec` (worktree
 `.claude/worktrees/github-write-access-setup-88d6ec`). This is a research + design artifact

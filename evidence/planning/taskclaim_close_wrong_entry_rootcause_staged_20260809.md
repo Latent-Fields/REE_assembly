@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW — investigation complete; the in-code fix is HANDED OFF, not applied (see §6).**
+**Status: REVIEWED 2026-09-16 (user) -- all three recommendations landed (verify_close_landed 3f6c33423/a07302f7b/e31d83f1d; verify_cherry_pick_faithful; closed_at<claimed_at INFO-only).**
 
 # task_claim.py `close` wrote one session's closure onto another entry — root cause & recommendation
 

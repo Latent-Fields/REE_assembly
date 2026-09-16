@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW.**
+**Status: REVIEWED 2026-09-16 (user) -- guard deployed (second pass 2026-08-16); audit recipe now CLAUDE.md doctrine.**
 
 # ree-cloud-5 shared-checkout wedge: why a landed guard never ran, and the verified repair
 
