@@ -322,3 +322,73 @@ queued seeds (F4). Hedge, stated: C1 is formally fail-able in the band rho_A0 in
 if that band is read as "can discriminate", the verdict is CONTESTED on F1-F4 rather than
 BLOCKING. Either way the run as designed answers "does a trained regressor beat noise",
 not "does REE's harm machinery implement INV-095's consequence for E3 selection" (F3).
+
+---
+
+## 7. Addendum (2026-09-16T01:55Z): the blocker was already owned, and Step 2.5c should have said so
+
+Two corrections to sections 2 and 5, made after the refusal was already committed.
+
+### 7a. `blocked_by` relinked to the existing owner -- no new substrate id, no chip
+
+Section 5 named the owed build as if it were new. It is not. The owning entry already exists:
+
+**`f_dominance_conversion_ceiling`** (`substrate_queue.json`; MECH-439; severity **corrupting**;
+`ready: false`), titled *"F-dominance committed-selection variance monopoly (MECH-439):
+rebalance/bound the primary harm/goal score F so per-candidate diversity converts"*, with
+
+    substrate_paths: ree_core/predictors/e3_selector.py::score_trajectory
+                     ree_core/residue/field.py::add_residue
+                     ree_core/residue/field.py::RBFLayer.forward
+    unblocks_claims: ARC-062, ARC-063, ARC-107, MECH-260, MECH-263, MECH-280, MECH-281,
+                     MECH-309, MECH-313, MECH-341, MECH-439, MECH-445..449, Q-045, Q-078, SD-037
+
+`score_trajectory` is the exact function INV-095's selection-level reading has to be taken on, and
+"bound F so per-candidate diversity converts" is exactly the release condition this refusal
+derived independently. So `blocked_by` has been relinked from an invented id
+(`z_world-trained-competing-channel-at-selection-layer`) to `[f_dominance_conversion_ceiling,
+MECH-439]`, and **no `/implement-substrate` chip was spawned** -- it would duplicate an open entry
+whose own status string records the conversion route of record as EXHAUSTED (709/711/713 autopsy
+2026-07-05, "no new build owed"). INV-095 should be added to that entry's `unblocks_claims` by
+governance; this session did not edit the substrate entry.
+
+This also reframes the refusal usefully: INV-095's testable leg is not blocked on something
+nobody has looked at. It is blocked behind the **known conversion ceiling**, alongside 19 other
+claims. That is a much better-understood place to be blocked, and it is why the honest route is
+governance restating the falsifier (GFLAG-0291) rather than anyone building anything new.
+
+### 7b. Step 2.5c's gate should have fired here, and silently did not -- fleet-wide
+
+The Step 2.5c check this session ran (section 2's call trace) concluded "no open `corrupting`
+entry overlaps". That conclusion was WRONG, and the reason is a defect in the gate's own recipe
+rather than in this session's trace.
+
+The recipe classifies an entry CLOSED by **substring**:
+
+    CLOSED = ('implemented','implemented_validated','validated','wontfix','closed_aleatoric')
+    if 'pending' in s1 or 'pending' in s2: pass
+    elif any(m in s1 or m in s2 for m in CLOSED): continue
+
+`f_dominance_conversion_ceiling`'s `status` is a **619-character prose blob**, and it contains the
+substring `validated` -- inside `mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional`. It has
+no `pending`, so it is skipped as closed despite `ready: false` and severity `corrupting`.
+
+Measured over the live `substrate_queue.json`: **6 entries with `substrate_paths` and
+`ready: false` are hidden this way, 3 of them at `corrupting` severity** --
+
+    SD-056                                          corrupting
+    f_dominance_conversion_ceiling                  corrupting
+    MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION     corrupting
+    INF-ENV-001                                     degrading
+    SD-E3-SCORER-COMPLETION                         degrading
+    waypoint-proximity-field-observable             degrading
+
+`SD-056` and `f_dominance_conversion_ceiling` both name paths in the E3 scorer / residue field,
+which a large fraction of drivers touch. Step 2.5c's own prose says the check "fails toward
+blocking, not toward silence"; on these six it does the exact opposite, for every session that
+runs it. Chipped separately as an infrastructure defect nothing audits.
+
+Suggested direction (not implemented here -- it is a standing-rule/recipe change and needs its own
+GOV-HELDOUT-1 check): stop inferring openness from free-text status substrings. Prefer the
+structured fields the entries already carry (`ready`, `severity`), and treat a status that is
+prose rather than an enum as OPEN by default, which is the direction the gate claims to fail in.
