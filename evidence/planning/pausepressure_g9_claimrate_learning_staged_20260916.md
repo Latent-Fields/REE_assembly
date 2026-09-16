@@ -1,6 +1,6 @@
 # Pause-pressure gate, generation 9: the claim-rate collapse -- root-cause pass
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to any script, skill, or registry.**
+**Status: DECIDED 2026-09-16 (option 1) and BUILT -- see section 8. The design above is the record; the code is REE_Working 57a5563950.**
 
 - Produced by: `/metaworker-learning`, chip `chip-20260916-learning-pausepressure-g9-claimrate`, session `eloquent-jepsen-5f6242` (Mac, `DLAPTOP`).
 - Authorized by: user decision 2026-09-16 (orchestrate-20260916-1305 decision lane): route `chip-pausepressure-dlaptop-g9` to `/metaworker-learning` rather than re-fix the instance or accept the backlog as parked. The net-sink decision chip `chip-20260916-curation-net-sink-trend-decision` (recorded_7d 368 -> 379 -> 372 -> 402 over four cycles) was folded in.
@@ -140,3 +140,13 @@ This check cost about a quarter of the session and it changed the proposal: an e
 ## 7. Decision chip
 
 `chip-20260916-decision-pausepressure-capacity-arm-retype` (kind `decision`, origin `headless`) carries the options: (1) build C1+C2+C3 as designed; (2) build them AND adopt a standing curated-campaign lease window (a cost decision this pass does not make); (3) suspend the capacity arm entirely per C2.6's second clause and accept the backlog as parked; (4) hold. Recommendation: (1).
+
+---
+
+## 8. Decision and landing (2026-09-16T19:45Z)
+
+**User decision (live chat, session `eloquent-jepsen-5f6242`): option 1 -- build C1+C2+C3.** Built and landed the same session: REE_Working `57a5563950` (merge `b073beec9` on origin/master), `scripts/pause_pressure.py` + `scripts/test_pause_pressure.py` (`ClaimRateArmTest` -> `ClaimFlowArmTest`, 17 tests carrying the section-5 held-out record; 64 pass from the main checkout). No threshold on any pre-existing arm changed; nothing installed on the hub or workers; no lease granted.
+
+First live read after landing: `claim_flow_72h 53% (141/264 authored work chips spawned 2026-09-06..2026-09-13 claimed within 72h) < 60% -- NOT tripped: cloud dispatch STOP by policy: ree-cloud-4, ree-cloud-5 (stop requested by orchestrate-20260913-1643 at 2026-09-14T21:48:18Z)`; backlog line `authored open_chips 65 > 40 (... 33 science-class / 30 other)`; `claims_in_flight = 1`. The gate stays PRESSURE on the backlog arm, the episodic arm and signal 3, honestly; the capacity arm no longer mints a generation against the standing stop.
+
+**Retune trigger, restated:** revisit `CLAIM_FLOW_MIN` after the first cloud lease window post-landing, when a third regime exists. The status header at the top of this file now refers only to the *design review*; the build is done.
