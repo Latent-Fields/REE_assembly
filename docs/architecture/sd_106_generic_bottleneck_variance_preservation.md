@@ -12,7 +12,7 @@ status_claim: SD-106
 
 **Claim ID:** SD-106
 **Subject:** encoder.generic_bottleneck_variance_preservation
-**Status:** IMPLEMENTED (2026-09-11; validation owed -- V3-EXQ-1015)
+**Status:** IMPLEMENTED (2026-09-11; validation owed -- V3-EXQ-1023 [was V3-EXQ-1015; corrected 2026-09-16 per failure_autopsy_V3-EXQ-1023_2026-09-14])
 **Registered:** 2026-09-11 (minted by `/governance` gov-20260911; this doc written the same day,
 the entry carried `design_doc: null`)
 **Depends on:** SD-005 (split encoder), SD-070 (the P0 recipe this extends). No unresolved
@@ -116,6 +116,8 @@ autopsy reports decodes the oracle at 0.9735-0.9832 from raw, hence its use as t
 | preservation 50 + skip | 0.9962 / 0.9962 | 0.9813 / 0.9841 |
 | **preservation 200 + skip** | **0.9974 / 0.9978** | **0.9857 / 0.9908** |
 
+> **Distribution caveat (added 2026-09-16 by governance-20260916, from confirmed failure_autopsy_V3-EXQ-1041_2026-09-16 / GFLAG-0288).** The obs R^2 figures in this table (PCA-32 anchor 0.9983 / 0.9984; preservation 200 + skip 0.9974 / 0.9978) were measured at design time on a DIFFERENT observation distribution from the SD-070 P0a rollout buffer that the acceptance measurement uses. V3-EXQ-1041 measured PCA-32 of the P0a rollout buffer at only 0.888 held-out / 0.893 in-sample on seed 42 (cross-seed held-out median 0.886). These design-time absolutes are therefore NOT comparable to any P0a acceptance number (V3-EXQ-1023, V3-EXQ-1041); every criterion in the step-budget diagnostic is ceiling-relative for exactly this reason. Do not lean on the absolute values here until the table is re-derived on the P0a distribution and labelled with it.
+
 SD-070's anti-collapse gate survives (participation ratio 14.68 -> 13.86 against a >= 2.0 gate).
 
 **The cost, stated rather than buried.** At a realistic P0 step count (600 steps, 4000 buffered
@@ -148,7 +150,7 @@ reaches PCA-32 parity -- `>= 0.85` held-out oracle-action agreement at the consu
 (`x734.PPOPolicyNet` at `PPO_TRUNK_HIDDEN`) on a seed majority -- re-measured by re-running
 `ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` **UNCHANGED**. The harness,
 dataset recipe, calibration anchor and negative control all already exist and need no new build.
-Queued as **V3-EXQ-1015**.
+Queued as **V3-EXQ-1023** (originally minted as V3-EXQ-1015; corrected 2026-09-16 -- see failure_autopsy_V3-EXQ-1023_2026-09-14 and the V3-EXQ-1041 step-budget diagnostic).
 
 Phased training: P0 only, unchanged from SD-070 -- P1 must train on stop-gradient z_world with
 the encoder optimiser NOT stepped (EXQ-166b/c/d).

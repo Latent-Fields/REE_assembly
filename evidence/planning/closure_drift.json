@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-16T13:18:40Z",
+  "generated_at": "2026-09-16T13:47:04Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 4,
+    "stale_since": 0,
     "suppressed": 4,
     "assembling": 11,
     "assembling_revisit_due": 0,
@@ -116,47 +116,5 @@
     }
   ],
   "drifted": [],
-  "stale_since": [
-    {
-      "node_id": "behavioral_diversity_isolation:GAP-I",
-      "plan": "behavioral_diversity_isolation_plan.md",
-      "node_status": "in-progress",
-      "owner_exq": null,
-      "node_last_updated": "2026-09-02",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-1012a_2026-09-14.json (2026-09-15) reclassified MECH-439"
-      ]
-    },
-    {
-      "node_id": "commitment_closure:GAP-4",
-      "plan": "commitment_closure_plan.md",
-      "node_status": "in-progress",
-      "owner_exq": null,
-      "node_last_updated": "2026-09-08",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-729_2026-09-14.json (2026-09-14) reclassified MECH-268"
-      ]
-    },
-    {
-      "node_id": "commitment_closure:GAP-4-battery",
-      "plan": "commitment_closure_plan.md",
-      "node_status": "in_progress",
-      "owner_exq": null,
-      "node_last_updated": "2026-08-21",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-729_2026-09-14.json (2026-09-14) reclassified MECH-268"
-      ]
-    },
-    {
-      "node_id": "orienting_epistemic_deficit_v3:ORNT-2",
-      "plan": "orienting_epistemic_deficit_v3_plan.md",
-      "node_status": "in_progress",
-      "owner_exq": "V3-EXQ-964a",
-      "node_last_updated": "2026-09-15",
-      "reasons": [
-        "owner_exq pins V3-EXQ-964a but later same-lineage sibling V3-EXQ-964b has terminal evidence (manifest `v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3.json`)",
-        "failure_autopsy_V3-EXQ-964b_2026-09-16.json (2026-09-16) reclassified MECH-482"
-      ]
-    }
-  ]
+  "stale_since": []
 }
