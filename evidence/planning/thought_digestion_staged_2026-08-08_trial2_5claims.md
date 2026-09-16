@@ -1,6 +1,6 @@
 # STAGED (not applied): `/thought-digestion` drafts (trial 2) for INV-004, SD-033e, MECH-264, INV-073, MECH-138
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to `claims.yaml`.**
+**Status: APPLIED 2026-08-08 (4 of 5); MECH-138 draft rejected (real evidence contradicts 'untestable'); INV-073 follow-on REFUSED 2026-09-16 -- GFLAG-0301 (not queued; see note under DRAFT 4).**
 
 - Drafted: 2026-08-08T06:30:19Z (wave completed; drafts below are the agents' verbatim output, lightly reformatted)
 - Session: `metaworker-chip-20260808-thoughtdigestion-trial2-5` (headless dispatch chip,
@@ -609,6 +609,16 @@ chippable `/queue-experiment` follow-on -- advances SD-055 + ARC-072 gap 2 indep
 fate; add `SD-055` to `depends_on` (ARC-072 already depends on INV-073, so add only the forward
 SD-055 edge to avoid a cycle); refresh the "is severed" notes per the documentation-currency block
 above.
+
+> **Follow-on outcome (2026-09-16, session `keen-pare-09e5ab`, chip `chip-20260916-sd055-cem-onoff-inv073-queue`):**
+> user-approved for queueing, then **REFUSED at `/queue-experiment` Step 2.5a -- no queue id.** A live-agent probe
+> (40 `agent.act` ticks, `sd016_enabled=True`, `use_differentiable_cem=True`) shows the flag reaches the config but
+> `agent.py` detaches `z_world` before `extract_cue_context` and detaches `action_bias` itself every tick, and no live
+> loss backprops through `propose_trajectories`, so `cue_action_proj.weight.grad` stays `None`: precondition (4)
+> above ("gradient flows from task reward back to cue_action_proj") holds only for the synthetic tensor EXQ-568
+> tested, never on a trained-policy run. An ON/OFF run would have the loop severed in BOTH arms and could neither
+> confirm nor falsify the LOOP-NOT-LOAD-BEARING route. Raised **GFLAG-0301** (INV-073 / ARC-072 / SD-055);
+> measured record: `evidence/planning/sd055_cem_onoff_inv073_refused_20260917.md`.
 
 ---
 
