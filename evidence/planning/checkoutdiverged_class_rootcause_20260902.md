@@ -1,6 +1,6 @@
 # checkoutdiverged: class root-cause investigation
 
-**Status: AWAITING USER REVIEW**
+**Status: REVIEWED 2026-09-16 (user). R1+R2+R3 landed REE_Working 4a2c76131; R5 landed 37dd942d2; R4 APPROVED -> chip-20260916-r4-sync-repair-puller-cloud45 (both boxes).**
 
 Date: 2026-09-02T22:11:43Z
 Session: `learning-checkoutdiverged-20260902` (`/metaworker-learning`)

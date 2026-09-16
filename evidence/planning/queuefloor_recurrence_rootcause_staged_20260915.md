@@ -1,6 +1,6 @@
 # Queue-floor recurrence: root-cause pass at generation 10
 
-**AWAITING USER REVIEW -- staged by `/metaworker-learning`, nothing built**
+**Status: REVIEWED 2026-09-16 (user). P1 done (8 dead proposal chips withdrawn); P2 landed REE_Working e701ecb56; P3 landed (queue-experiment SKILL.md step 2b); P4 APPROVED as a paced governance item -> chip-20260916-p4-falsifier-authoring-tranche1 (15 per tranche).**
 
 Session `learning-queuefloor-g10-20260915` | 2026-09-15T17:55Z
 Routed from `chip-queuefloor-fleet-g10` via `chip-20260915-metaworkerlearning-queuefloor-recurrence-g10`

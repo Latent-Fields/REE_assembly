@@ -1,6 +1,6 @@
 # Morning-digest scheduler misfire: ROOT CAUSE FOUND (account/org profile outage)
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml or any
+**Status: REVIEWED 2026-09-16 (user) -- twin scheduled tasks live since 2026-09-02 and holding; root cause of the profile switch -> chip-20260916-scheduler-profile-switch-rootcause (diagnostic only).**
 other registry. One live action is recommended in section 8 and has NOT been taken.**
 
 Chip: `chip-20260823-morning-digest-scheduler-misfire`

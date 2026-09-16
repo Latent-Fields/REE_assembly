@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or any other registry).**
+**Status: REVIEWED 2026-09-16 (user) -- staleness self-check landed REE_Working 6264f356a (2026-09-14).**
 
 # TASK_CHIPS.json "week stale on cloud5" -- root-cause findings (2026-09-14)
 

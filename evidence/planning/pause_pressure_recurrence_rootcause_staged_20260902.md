@@ -1,6 +1,6 @@
 # Pause-pressure gate: generation-3 root-cause pass
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to any script, skill, or registry.**
+**Status: REVIEWED 2026-09-16 (user) -- Fix A (proposal_routine_tick pacing), Fix B (REE_Working 097c5b8cd) and the g5 hold lane (7df1f4bdc) all landed; capacity arm retyped 2026-09-16 (57a5563950, see pausepressure_g9_claimrate_learning_staged_20260916.md).**
 
 - Produced by: `/metaworker-learning`, headless chip `chip-20260902-metaworkerlearning-pausepressure-g3-rootcause` (box `ree-cloud-4`).
 - Authorized by: user decision via the Orchestrator lane, 2026-09-02T16:31Z -- route `chip-pausepressure-dlaptop-g3` to a root-cause pass INSTEAD of a third instance-fix or a full pause window.

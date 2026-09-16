@@ -112,7 +112,7 @@ closure_plan:
         ARC-065 in substrate_queue.json remains ready:false, and that
         queue's own 2026-08-21 next_implement_substrate reconcile concluded
         no implement-substrate build is ready fleet-wide. The design doc
-        itself is still status AWAITING USER REVIEW, unchanged since
+**Status: REVIEWED 2026-09-16 (user) -- living closure tracker, no pending decision; ORNT-2 ladder retest is chip-20260916-mech482-amplified-readout-ladder-queue (in flight).**
         2026-08-08.
       reconcile_2026_08_27: >
         GATES-CLEARED CORRECTION (session f-dominance-regime-retest-ddbe10,

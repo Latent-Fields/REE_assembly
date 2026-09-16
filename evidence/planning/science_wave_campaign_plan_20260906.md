@@ -19,7 +19,7 @@
 | Fleet | `ree-worker-1` hub running (runner retired). `ree-worker-2`/`-3` off. **`ree-worker-4` and `ree-worker-5` powered on and idle** (load 0.03 / 0.58; `ree-metaworker.timer` and `ree-runner.service` inactive on both) -- unchanged since wave 2 decision 2, i.e. billable-idle since 2026-09-01T19:15Z. Resident dispatchers are OFF. |
 | Live-status "V3-EXQ-906c on DLAPTOP-4.local" | stale heartbeat (668 h old); the Mac runner is deliberately off. Not a live run. |
 | Workset ready items (non-plan), 10 | 3 GOV-CONFIRM-1 items (MECH-267/057b/489), EXT-009 proposal + lit, IMPL-016/019 lit, IMPL-023 proposal, ARC-019 retest, queue-depth ops. Dispositions in section 2 (C3) -- **at most 1 of the 10 is worth a session this wave**. |
-| Pending user reviews | `thought_digestion_staged_2026-09-04_v3closure.md`: 47/47 claims drafted, AWAITING USER REVIEW, nothing applied; the `thought-digestion-v3-20260904` claim is idle on it. 4 decision chips (section 6). |
+**Status: REVIEWED 2026-09-16 (user) -- SUPERSEDED by science_wave_campaign_plan_20260907/20260908/20260908b.md; hold lane now lives in hold_lane.v1.json.**
 | Open governance flags bearing on this wave | GFLAG-0131 (978 eval-protocol confound, open by design), GFLAG-0138 (EXT-008/INV-077 wording), GFLAG-0117/0120 (dry-run filter blind spot), GFLAG-0115 (hero decision block stale). |
 | Umbrella checkout | `REE_Working` master diverged (ahead 1, behind 29, 1 staged path). All ledger writes this session went through the coordinator; no umbrella git write. |
 

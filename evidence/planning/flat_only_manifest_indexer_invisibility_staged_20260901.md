@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW.**
+**Status: REVIEWED 2026-09-16 (user) -- indexer fix landed REE_assembly 76921a56cee (2026-09-01), orphans 23 -> 0; MECH-112 quadrant flip is a /governance item.**
 
 # Flat-only experiment manifests are structurally invisible to claim_evidence.v1.json
 

@@ -1,6 +1,6 @@
 # Refwedge class, REE_assembly/master on DLAPTOP: root cause and durable fix (2026-09-16)
 
-**Status: AWAITING USER REVIEW**
+**Status: ACCEPTED 2026-09-16 (user, doc-review walk). Build F-A+F-C+rescue landed REE_Working b4a44af59 (12:32Z). Post-fix recurrence (g9, af9608e14 stranded 20:15Z) routed to chip-20260916-refwedge-g9-post-fix-strand; converge command to be refreshed there (section 7's sha list is stale).**
 
 Skill: `/metaworker-learning`. Session: `metaworker-learning-refwedge-20260916` (interactive,
 DLAPTOP, main checkout). Claim opened 2026-09-16T12:04:03Z. Decision chip: see section 8.

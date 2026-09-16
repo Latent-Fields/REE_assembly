@@ -1,6 +1,6 @@
 # Always-Loaded Context Cost -- measurement
 
-Status: AWAITING USER REVIEW
+**Status: REVIEWED 2026-09-16 (user) -- programme executed over 30 CLAUDE.md commits (245 KB -> 133 KB); re-measure is the held chip token-split-remeasure-b2 (~2026-09-21).**
 
 Measured 2026-08-23T11:26:12Z, session `elated-jackson-f12eae` (Mac, `DLAPTOP`).
 **Measurement only. Nothing was restructured; no rule, skill, or file was edited.**

@@ -1,6 +1,6 @@
 # Queue-floor detector: root-cause respec (generation 9)
 
-**Status: AWAITING USER REVIEW**
+**Status: REVIEWED 2026-09-16 (user) -- option C landed REE_Working 49f1a6a57 (2026-09-07); superseded by queuefloor_recurrence_rootcause_staged_20260915.md.**
 
 Session `objective-hamilton-1d00ce` | `/metaworker-learning` | 2026-09-07T23:1xZ
 Chip: `chip-20260907-queuefloor-detector-respec` (routed from `chip-queuefloor-fleet-g8`)
