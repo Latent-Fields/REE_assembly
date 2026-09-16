@@ -4230,6 +4230,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0301",
+      "claim_ids": [
+        "INV-073",
+        "ARC-072",
+        "SD-055"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "chip-20260916-sd055-cem-onoff-inv073-queue (user decision 2026-09-16, trial-2 thought-digestion staging doc INV-073 also-proposed): the SD-055 use_differentiable_cem ON/OFF cue-conditioned-divergence experiment was REFUSED at /queue-experiment Step 2.5a (doc-vs-runtime probe) and NOT queued. Measured on a live REEAgent (sd016_enabled=True, use_differentiable_cem=True, 40 agent.act ticks): the flag reaches HippocampalConfig and the committed candidates carry a grad graph, but agent.py detaches z_world before extract_cue_context (line ~5964) and detaches action_bias itself (line ~5971) every tick, and no live loss backprops through propose_trajectories, so cue_action_proj.weight.grad stays None -- the gradient route SD-055 restores is unreachable from cue_action_proj on any trained-policy run. V3-EXQ-568's grad_max=372 was measured on a synthetic requires_grad tensor passed directly to propose_trajectories, never on cue_action_proj; V3-EXQ-922's docstring already records the same gap (its only validated cue_action_proj training recipe bypasses propose_trajectories, making the flag inert). An ON/OFF run would therefore compare soft-refit vs hard-elite refit with the feedback loop severed in BOTH arms and could neither confirm nor falsify INV-073's LOOP-NOT-LOAD-BEARING route (falsifier precondition 4 / (iii) is stale: the flag IS silently inert for that purpose). Owed decisions for /governance: (1) correct INV-073 what_would_answer precondition (4)/(iii) and SD-055/ARC-072 implementation_note wording 'closes the gradient barrier' to 'closes the CEM-side barrier; the agent-side detach (SD-016 design: cue signals are modulation inputs) still severs it'; (2) decide whether ARC-072 gap 2 warrants an /implement-substrate build that un-detaches action_bias and adds a loss routed through propose_trajectories (ARC-007 STRICT value-flat implications; GFLAG-0133 decision B qualified the adjacent MECH-151 ranking-authority question 2026-09-05) -- a design decision, so this session did not chip it; (3) substrate_queue SD-055 entry should carry this as a failure_record. Full measured record: REE_assembly/evidence/planning/sd055_cem_onoff_inv073_refused_20260917.md.",
+      "raised_by_session": "keen-pare-09e5ab",
+      "raised_at": "2026-09-16T23:04:19Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
