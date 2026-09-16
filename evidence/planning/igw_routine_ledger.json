@@ -5412,6 +5412,31 @@
       "outcome": "NO_OP",
       "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
       "worktree_gc_at": "2026-09-16T11:52:24Z"
+    },
+    {
+      "igw_id": "IGW-20260916-217",
+      "stable_hash": "f2a1a5aab7ab",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: SD-ZWORLD-SENSE-PATH-PARITY",
+      "worktree": ".claude/worktrees/igw-217-substrate-ready-sd-zworld-sense",
+      "branch": "claude/igw-217-substrate-ready-sd-zworld-sense",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260916-217",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-217-substrate-ready-sd-zworld-sense && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-217-substrate-ready-sd-zworld-sense-20260916T145819Z",
+      "task_claim_claimed_at": "2026-09-16T14:58:19Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-09-16T14:56:44Z",
+      "staged_at": "2026-09-16T14:56:44Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
