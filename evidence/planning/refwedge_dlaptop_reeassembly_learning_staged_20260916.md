@@ -425,3 +425,5 @@ merge on the identical byte test, so the verifier gate is not bypassed. Disjoint
 by two writers, any non-append change by origin, and anything without a trailing
 newline stay fatal exactly as before. Landing commit: see the WORKSPACE_STATE.md line for
 this chip.
+
+Landed: REE_Working 25dc09539 on origin/master (local worktree commit 2cc625c7d4), 2026-09-16, with 10 tests in `test_ree_commit_structural_reapply.py`; `run_scripts_tests.sh --changed` 22/22 green.
