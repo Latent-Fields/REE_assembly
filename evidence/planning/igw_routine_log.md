@@ -3087,3 +3087,4 @@ One line per hourly tick. ASCII only.
 2026-09-16T12:53:57Z no eligible item (skipped 255): IGW-20260916-001:skill /governance not allowed; IGW-20260916-005:skill /governance not allowed; IGW-20260916-006:skill /governance not allowed
 2026-09-16T13:56:42Z skip: paused (.igw_routine_pause present)
 2026-09-16T14:57:59Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 251 items, 30 ready, 0 in flight)
+2026-09-16T14:56:44Z STAGE IGW-20260916-217 skill=/implement-substrate prio=25 worktree=igw-217-substrate-ready-sd-zworld-sense (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
