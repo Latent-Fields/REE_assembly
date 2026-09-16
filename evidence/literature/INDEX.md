@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-15T06:08:53.722011Z`
+Generated: `2026-09-16T00:02:03.484631Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -98,6 +98,7 @@ Generated: `2026-09-15T06:08:53.722011Z`
 | `targeted_review_connectome_arc_108` | [`2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026`](targeted_review_connectome_arc_108/entries/2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026/record.json) | 4 | [`summary`](targeted_review_connectome_arc_108/entries/2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026/summary.md) |
 | `targeted_review_connectome_arc_110` | [`2026-06-29_arc_110_parallel_loops_alexander1986`](targeted_review_connectome_arc_110/entries/2026-06-29_arc_110_parallel_loops_alexander1986/record.json) | 2 | [`summary`](targeted_review_connectome_arc_110/entries/2026-06-29_arc_110_parallel_loops_alexander1986/summary.md) |
 | `targeted_review_connectome_mech_002` | [`2026-09-08_mech_002_serotonin_patience_miyazaki2014`](targeted_review_connectome_mech_002/entries/2026-09-08_mech_002_serotonin_patience_miyazaki2014/record.json) | 5 | [`summary`](targeted_review_connectome_mech_002/entries/2026-09-08_mech_002_serotonin_patience_miyazaki2014/summary.md) |
+| `targeted_review_connectome_mech_003` | [`2026-09-15_mech_003_volatility_slow_integration_behrens2007`](targeted_review_connectome_mech_003/entries/2026-09-15_mech_003_volatility_slow_integration_behrens2007/record.json) | 5 | [`summary`](targeted_review_connectome_mech_003/entries/2026-09-15_mech_003_volatility_slow_integration_behrens2007/summary.md) |
 | `targeted_review_connectome_mech_004` | [`2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000`](targeted_review_connectome_mech_004/entries/2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000/record.json) | 5 | [`summary`](targeted_review_connectome_mech_004/entries/2026-09-09_mech_004_striatonigrostriatal_spiral_haber2000/summary.md) |
 | `targeted_review_connectome_mech_005` | [`2026-09-09_mech_005_reboxetine_explore_exploit_null_jepma2010`](targeted_review_connectome_mech_005/entries/2026-09-09_mech_005_reboxetine_explore_exploit_null_jepma2010/record.json) | 5 | [`summary`](targeted_review_connectome_mech_005/entries/2026-09-09_mech_005_reboxetine_explore_exploit_null_jepma2010/summary.md) |
 | `targeted_review_connectome_mech_016` | [`2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012`](targeted_review_connectome_mech_016/entries/2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012/record.json) | 5 | [`summary`](targeted_review_connectome_mech_016/entries/2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012/summary.md) |
