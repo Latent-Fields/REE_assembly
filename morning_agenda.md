@@ -400,3 +400,12 @@ Report-only — `--apply` is deliberately not run from the digest.
   alone deliberately — this is live session work, not a fault.
 - **`WORKSPACE_STATE.md` append skipped** for this run, per the Tier 2 rule (whole-file
   read-modify-write would adopt other sessions' uncommitted edits). This file records the run instead.
+- **An armed staged deletion was found and defused in the shared `REE_assembly` checkout.** While
+  landing this agenda, the branch move adopted upstream's packed-run layout for V3-EXQ-1047 and left
+  `evidence/experiments/v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3.json` staged
+  as a deletion (`D `) while still present on disk — the next plain `git commit` by any session would
+  have landed it as a removal of a tracked evidence manifest. On-disk content differs from HEAD, so it
+  is live session work: the staged deletion was cleared **index-only** (`git reset -q -- <path>`, no
+  file content read, written or discarded) and the path now reads as an ordinary unstaged ` M`.
+  Nothing was restored or reverted. `ree_commit.py` separately materialised 3 packed-run files and
+  cleared 1 `MM` index fossil on `evidence/planning/igw_routine_log.md`.
