@@ -241,6 +241,32 @@ def build_runpack_docs(data: dict, experiment_type: str):
               f"evidence_direction_per_claim -- blanket '{evidence_direction}' applied to all: "
               f"{claim_ids}")
 
+    # DELIBERATE OMISSIONS -- do not "fix" these by adding them to the literal
+    # below. `criteria`, `arm_results`, `readout`, `per_seed_dv`,
+    # `control_policies`, `bears_on`, `stage2_routing` and the other per-run rich
+    # blocks are NOT projected into the pack, on purpose. The reasoning and the
+    # consumer audit live in ree-v3 validate_recording.py (the comment block above
+    # _PACK_PROVENANCE_KEYS). Re-verified 2026-09-17, against the indexer source:
+    #   * `arm_results` -- build_experiment_indexes reads it from the FLAT
+    #     manifests by its own glob (_iter_manifests_with_arm_results iterates
+    #     base_dir.glob("*.json") as well as **/runs/**/manifest.json), so the
+    #     arm-fingerprint index sees it whether or not the pack carries it.
+    #   * top-level `criteria` -- read NOWHERE. Every criteria read in the indexer
+    #     is interp.get("criteria") / interp.get("criteria_non_degenerate") on the
+    #     `interpretation` block, which IS carried through below.
+    #   * scalar readouts -- their channel is metrics.json `values`, harvested
+    #     further down from metrics / aggregates / summary_metrics / readout.
+    # Projecting them would inflate every pack with bytes no consumer reads.
+    #
+    # This note is HERE because the decision was recorded only in ree-v3
+    # validate_recording.py -- a different REPO from the converter that implements
+    # it -- so a reader of this function saw an unexplained whitelist with no
+    # rationale in sight. That cost a re-litigation on 2026-09-17: the
+    # V3-EXQ-1036 autopsy measured the four blocks missing from the pack, and the
+    # follow-on chip re-derived the entire consumer audit from scratch before
+    # finding the decision. Precisely the outcome the "so it does not get
+    # re-litigated" sentence in validate_recording.py was written to prevent, and
+    # it failed because it was filed in the wrong repo.
     manifest = {
         "schema_version": "experiment_pack/v1",
         "architecture_epoch": data.get("architecture_epoch", "ree_hybrid_guardrails_v1"),
@@ -319,6 +345,40 @@ def build_runpack_docs(data: dict, experiment_type: str):
         _val = data.get(_prov)
         if _val is not None and str(_val).strip() != "":
             manifest[_prov] = _val
+
+    # source_repo.commit provenance (2026-09-17). The literal above hardcodes
+    # `commit: ""` because this converter has no repo it can honestly interrogate.
+    # pack_writer.discover_source_repo shells out to `git rev-parse HEAD` in the
+    # live ree-v3 checkout, but there is no such HEAD here: a pack is materialised
+    # from a FLAT MANIFEST, possibly on the hub and days after the run, from a
+    # checkout sitting at an unrelated commit. So the value cannot be DISCOVERED,
+    # it has to be CARRIED -- and the flat already carries it, as `substrate_commit`
+    # ({commit, dirty, branch}), the sha of the ree-v3 tree the run actually
+    # executed. Measured 2026-09-17 across the evidence tree: all 1617 timestamped
+    # packs carried commit "", while 283 of the 1019 packs with a surviving flat
+    # sibling had a usable substrate_commit going unread. Same whitelist-omission
+    # shape as machine_class (2026-07-16), claim_ids_tested (2026-08-08),
+    # enabled_default_off_flags (2026-09-01) and the always-core four (2026-09-09):
+    # the flat had the field the whole time and the mapping simply never read it.
+    #
+    # WHY "" IS KEPT WHEN THE FLAT HAS NOTHING, rather than the "unknown" that
+    # pack_writer.discover_source_repo falls back to: the one consumer,
+    # REE_assembly scripts/generate_experiment_profile.py, tests
+    # `if not embedded_source_commit` and then REPORTS the gap and substitutes a
+    # git-history fallback. "unknown" is truthy, so adopting it here would silence
+    # that report and make a pack with no provenance read as a pack with
+    # provenance -- strictly worse than the empty string, which is at least
+    # honestly falsy. `dirty` is deliberately not folded in: source_repo's schema
+    # is {name, commit, branch} on both writers, and the full dict (dirty
+    # included) already reaches the pack intact as `substrate_commit` above.
+    # Conditional, so a flat with no substrate_commit produces byte-identical
+    # output to before this change.
+    _sc = data.get("substrate_commit")
+    if isinstance(_sc, dict) and str(_sc.get("commit") or "").strip():
+        manifest["source_repo"]["commit"] = str(_sc["commit"]).strip()
+        _sc_branch = str(_sc.get("branch") or "").strip()
+        if _sc_branch:
+            manifest["source_repo"]["branch"] = _sc_branch
 
     # enabled_default_off_flags / substrate_commit_unavailable (2026-09-01) --
     # carried SEPARATELY from the loop above, not appended to it, because both
