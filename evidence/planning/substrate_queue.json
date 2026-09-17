@@ -10117,10 +10117,10 @@
       "sd_id": "infant-curriculum-warmup-port",
       "title": "Port the 603n-style harm/survival warm-up so it can precede an InfantCurriculumScheduler run -- GAP-14 prerequisite (b) was cleared on scaffolded_sd054_onboarding and had never been validated on the scheduler EXQ-ISEF-005 actually exercises",
       "node_class": "complicated (buildable)",
-      "status": "implemented_validated_NOT_YET_LANDED",
-      "implementation_status": "implemented_pending_landing",
-      "status_phase": "built_and_contract_validated_blocked_on_unrelated_red_gate",
-      "ready": false,
+      "status": "implemented_validated",
+      "implementation_status": "implemented_validated",
+      "status_phase": "built_and_contract_validated",
+      "ready": true,
       "severity": "medium",
       "severity_rationale": "Without it any InfantCurriculumScheduler curriculum-vs-flat run returns a vacuous z_goal ~ 0 null -- the Phase 1 -> 2 gate (z_goal.norm() >= 0.30) can never clear on a cold agent, so the run would be uninterpretable rather than wrong. Not `corrupting`: nothing already measured is invalidated, and the module is new so no landed run changes behaviour.",
       "design_doc": "evidence/planning/infant_gap14_redesign_staged_20260827.md",
@@ -10144,8 +10144,7 @@
       "known_limitations": [
         "SUBSTRATE-PATH OVERLAP (Step 2.5c, severity `degrading` -- NOT a block, recorded so a later run and its autopsy can see it): this warm-up drives Stage-H via `ree-v3/experiments/scaffolded_sd054_onboarding.py`, which is named by the open entry `mech357-freeze-incompatible-pressure-mechanism` (severity degrading, status validated_negative). That entry records all four named Stage-H hazard-pressure designs as exhausted and instructs that no FIFTH pressure mechanism be opened. This port opens none -- it runs the existing MECH-357 protective-scaffold anneal unchanged (scaffold_avoidance_driver_enabled=True, floor 0.8 -> 0.0). The consequence to carry forward is that Stage-H survival training may be weaker than the 603n manifest alone suggests, so a consuming experiment should read `harm_eval_range` and `hazard_survival_gate_passed` off `WarmupResult` as live readiness values rather than assuming 603n's numbers reproduce.",
         "HARM-GRADIENT CHANNEL: `INFANT_STRUCT_ENV_KWARGS` leaves `use_proxy_fields` at the CausalGridWorldV2 factory default (True), under which `harm_gradient_enabled` is STRUCTURALLY INERT -- `hazard_approach` pre-empts the `transition_type == 'none'` gate (confirmed failure_autopsy_V3-EXQ-996_2026-09-04 red-team F1/F3; pinned by tests/contracts/test_harm_gradient_gap1.py::test_c3_suppressed_by_proxy_approach; reachable only above proximity_approach_threshold ~0.33 or with use_proxy_fields=False). The infant curriculum's Phase 1/2/3 env_kwargs set `harm_gradient_enabled=True`, so a consumer MUST NOT narrate that channel as the curriculum's mechanism of action -- 996 measured `transient_benefit_enabled` alone reproducing its entire phase divergence. Record a per-cell harm-gradient fire count and treat zero as a readiness reading, not a measurement."
-      ],
-      "ready_blocked_by": "NOT a defect in this work. The code is written and its contract is green (8/8 locally, and on the hub within a 4963-passed run), but it is UNCOMMITTED in the ree-v3 main checkout at experiments/_lib/infant_warmup.py and tests/contracts/test_infant_warmup_port.py. scripts/precommit_contracts.sh fires a full contracts run on any change under experiments/_lib/ and blocks (exit 2) on a non-zero suite; the suite is RED ON TRUNK for two tests in tests/contracts/test_from_dims_flag_reachability.py naming use_e3_channel_commensurability in V3-EXQ-1038a (b544b10). Those failures reproduce with BOTH of these files removed from the tree, so they are pre-existing and foreign. They are also a scanner FALSE POSITIVE (verified by AST: 1038a enables the flag correctly by sub-config attribute assignment at line 403; its only live from_dims call passing the flag, line 1153, is a deliberate negative control asserting the value is NOT accepted at line 1157). Landing is therefore gated on chip-20260916-fromdims-scanner-false-positive (task_691bc9b8), OR on an operator decision to permit a --no-verify commit -- which was attempted and DENIED by the harness auto-mode classifier as a CI bypass, correctly, and was not worked around. The module is deliberately under experiments/_lib/ because that path IS bound into substrate_hash: a change to the warm-up must bust cached arm-reuse baselines (a cheap false MISS). Relocating it to top-level experiments/ would dodge the guard but would remove it from substrate_hash and create a FALSE-HIT reuse hazard, so it was not done."
+      ]
     }
   ],
   "schema_version": "substrate_queue/v2",
