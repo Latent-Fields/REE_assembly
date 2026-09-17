@@ -5531,7 +5531,11 @@
       "task_claim_session_id": "igw-auto-igw-235-literature-proposal-for-mech-018-20260917T090124Z",
       "task_claim_claimed_at": "2026-09-17T09:01:24Z",
       "assigned_at": "2026-09-17T08:59:31Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T09:11:52Z",
+      "completion_summary": "lit-pull MECH-018: 6 entries (4 supports/1 mixed/1 weakens) landed REE_assembly 5ad020bcb1; readout (ii) split 3 ways so the naive-decay comparator arm is load-bearing; 2 design constraints noted for the already-open chip-20260917-residue-integrate-no-gradient-step",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-018: 6 entries (4 supports/1 mixed/1 weakens) landed REE_assembly 5ad020bcb1; readout (ii) split 3 ways so the naive-decay comparator arm is load-bearing; 2 design constraints noted for the already-open chip-20260917-residue-integrate-no-gradient-step"
     }
   ],
   "dispositions": [
@@ -7913,6 +7917,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T08:05:40Z",
       "re_eligible_after": "2026-09-19T08:05:40Z"
+    },
+    {
+      "stable_hash": "ade0bf32c39a",
+      "igw_id_at_disposition": "IGW-20260917-235",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-018"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-018",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T09:11:53Z",
+      "re_eligible_after": "2026-09-19T09:11:53Z"
     }
   ]
 }
