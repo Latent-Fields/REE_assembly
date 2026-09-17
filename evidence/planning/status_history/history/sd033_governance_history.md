@@ -100,7 +100,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-CLAIMS`
 
@@ -198,7 +199,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-EXP_PROPOSALS`
 
@@ -296,7 +298,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-SD034`
 
@@ -394,7 +397,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-MECH267`
 
@@ -492,7 +496,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-MECH268`
 
@@ -590,7 +595,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-MECH266`
 
@@ -688,7 +694,8 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 
 ## `sd033_governance:CHK-PUSH`
 
@@ -786,5 +793,6 @@ Source plan: `evidence/planning/sd033_governance_plan.md`
 - `2026-09-14T11:14Z` [autopsy] `failure_autopsy_V3-EXQ-729_2026-09-14#V3-EXQ-729` -> [`evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-729_2026-09-14.json) :: autopsy supports/standard routing=governance-note-only + queue-experiment
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 

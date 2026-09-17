@@ -1,278 +1,278 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-16T13:14:47Z",
+  "generated_at": "2026-09-17T10:58:11Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 182,
-      "built_modules": 145,
-      "fraction_built": 0.7967,
+      "total_modules": 185,
+      "built_modules": 146,
+      "fraction_built": 0.7892,
       "state_counts": {
-        "proposed": 37,
+        "proposed": 39,
         "implemented": 96,
         "implemented_pending_validation": 24,
-        "validated": 25
+        "validated": 26
       },
       "build_proof_gap": 120,
-      "build_proof_gap_note": "145 modules built, 120 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap_note": "146 modules built, 120 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 72.4,
-      "node_total": 98,
-      "node_done_weighted": 70.9,
+      "closure_pct": 75.0,
+      "node_total": 92,
+      "node_done_weighted": 69.0,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 126,
-      "total_initial": 214,
-      "total_initial_at_registration": 173,
+      "total_surviving": 129,
+      "total_initial": 220,
+      "total_initial_at_registration": 179,
       "total_fanout_added": 41,
-      "total_resolved_out": 67,
+      "total_resolved_out": 68,
       "total_confirmed": 48,
-      "total_superseded": 1,
-      "reduction_pct_vs_current": 31.3,
-      "net_narrowing_pct": 27.2,
+      "total_superseded": 3,
+      "reduction_pct_vs_current": 30.9,
+      "net_narrowing_pct": 27.9,
       "convergence_classes": {
         "static": 27,
-        "narrowing": 24,
+        "narrowing": 26,
         "circling": 5,
         "refining": 3,
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "126 alive against 173 originally enumerated, and against 214 including 41 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 60
+      "honest_pair_note": "129 alive against 179 originally enumerated, and against 220 including 41 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 62
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 23,
-      "open_questions": 60
+      "open_questions": 62
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 213,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 219,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-11",
-      "surviving": 212,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 218,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-13",
-      "surviving": 210,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 216,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-15",
-      "surviving": 206,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 212,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-16",
-      "surviving": 205,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 211,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-17",
-      "surviving": 202,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 208,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-18",
-      "surviving": 196,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 202,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-19",
-      "surviving": 192,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 198,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-20",
-      "surviving": 191,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 197,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-24",
-      "surviving": 190,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 196,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-27",
-      "surviving": 188,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 194,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-29",
-      "surviving": 187,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 193,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-07-31",
-      "surviving": 186,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 192,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-01",
-      "surviving": 184,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 190,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-02",
-      "surviving": 178,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 184,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-04",
-      "surviving": 177,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 183,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-06",
-      "surviving": 176,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 182,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-08",
-      "surviving": 174,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 180,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-09",
-      "surviving": 172,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 178,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-10",
-      "surviving": 171,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 177,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-11",
-      "surviving": 170,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 176,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-12",
-      "surviving": 169,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 175,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-14",
-      "surviving": 167,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 173,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-17",
-      "surviving": 166,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 172,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-20",
-      "surviving": 165,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 171,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-24",
-      "surviving": 164,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 170,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-29",
-      "surviving": 161,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 167,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-08-30",
-      "surviving": 159,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 165,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-02",
-      "surviving": 158,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 164,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-05",
-      "surviving": 157,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 163,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-07",
-      "surviving": 153,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 159,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-08",
-      "surviving": 152,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 158,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-09",
-      "surviving": 151,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 157,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-14",
-      "surviving": 150,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 156,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
       "date": "2026-09-15",
-      "surviving": 147,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "surviving": 153,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     },
     {
-      "date": "2026-09-16",
-      "surviving": 126,
-      "closure_pct": 72.4,
-      "build_pct": 79.7
+      "date": "2026-09-17",
+      "surviving": 129,
+      "closure_pct": 75.0,
+      "build_pct": 78.9
     }
   ],
   "questions": [
@@ -2225,9 +2225,11 @@
           "axis": "measurement",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-838"
+            "V3-EXQ-838",
+            "V3-EXQ-849",
+            "V3-EXQ-865"
           ],
-          "basis": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis.",
+          "basis": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis. | V3-EXQ-849 and V3-EXQ-865 attempted to probe this leg and were both INSTRUMENT-INVALID, so neither narrows it. 849: the probe's checked signal set has no live wired path from the lever for any of its 8 populated signals (the repo's own contract test, test_q081_pair_reach_check.py:436-443), and the maximal lesion also returns false; the run additionally executed on a pre-seed-determinism-fix substrate so its cells are not seed-controlled. 865: agent.vs_rollout_gate is None under the probe's own config, so the gated half of every snapshot is a verbatim copy of the raw half in 60/60 snapshots -- the probe compared a value with itself. Both emitted PASS while their sole load-bearing criterion recorded passed=false. State unchanged; see failure_autopsy_preflight_verdict_decoupling_cluster_2026-09-17.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -2388,9 +2390,10 @@
           "axis": "integration",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-850"
+            "V3-EXQ-850",
+            "V3-EXQ-864a"
           ],
-          "basis": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01.",
+          "basis": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01. | V3-EXQ-864a's recorded statistics do not narrow this leg (its verdict is decoupled from its own question: both branches set PASS and the load-bearing criterion restates the precondition gate). BUT its BANKED TRAJECTORIES contain an unexamined effect directly relevant here: in 12/12 cells rv falls below wci_symmetric_rv_ref at every episode reset and recovers mid-episode, with recovery latency shortening across training (e.g. 75->40 and 72->12 ticks) -- a recalibration-speed curve. No criterion reads the arrays. A re-analysis of the existing run pack is owed and may narrow this leg at zero compute cost. State unchanged pending that re-analysis.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -4181,30 +4184,32 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.25,
-      "bits_removed_vs_registration": 0.42,
+      "net_narrowing_ratio": 0.75,
+      "bits_removed_vs_registration": 2.0,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 2 fully closed",
         "families_closed": [
-          "instrumentation"
+          "instrumentation",
+          "process"
         ],
-        "families_touched": [],
+        "families_touched": [
+          "process"
+        ],
         "families_fresh": [
-          "process",
           "world"
         ],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 3,
-      "alive": 3,
+      "surviving": 1,
+      "alive": 1,
       "resolved_out": 0,
       "confirmed": 1,
-      "superseded": 0,
+      "superseded": 2,
       "reduction_numerator": 0,
       "reduction_ratio": 0.0,
-      "bits_removed": 0.42,
+      "bits_removed": 2.0,
       "synthesis": null,
       "hypotheses": [
         {
@@ -4212,9 +4217,9 @@
           "label": "H-commitment",
           "desc": "the agent cannot sustain a multi-step approach long enough to complete a consume",
           "axis": "process",
-          "state": "alive",
+          "state": "superseded",
           "evidence_runs": [],
-          "basis": null,
+          "basis": "RATIFIED DISPOSITION 2026-09-16 (user, doc-review walk; chip-20260916-claims-bookkeeping-six-edits; recommended by mech467_govfanout_portfolio_staged_2026-08-19.md section 1/1c/7 item 1, grounded in navigation_immobility_scoping_2026-08-18.md, ratified 2026-09-16): SUPERSEDED / resolved by other means -- not this question's leg to adjudicate. The near-immobility this leg names (the agent cannot sustain a multi-step approach) is not a new finding but the plain-navigation instance of MECH-439 (F-dominance conversion ceiling, ceiling_decision exhausted, awaiting ARC-107), evidenced by 21 ARC-062 GAP-B autopsies + 9 direct MECH-439 hits; no degenerate-proposer bug exists and the collapse sits at the comparator/selection stage. Owned by MECH-439 substrate work, not by this portfolio. The approach-run-length MEASUREMENT this leg proposed is retained as instrumentation (V3-EXQ-941 recorded approach_run_length_max = 1 in both arms). Truth value not adjudicated here; no run of this question eliminated it.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -4249,9 +4254,9 @@
           "label": "H-cadence",
           "desc": "the genuine-E3-tick fraction bounds the achievable selection rate and therefore the event rate",
           "axis": "selection",
-          "state": "alive",
+          "state": "superseded",
           "evidence_runs": [],
-          "basis": null,
+          "basis": "RATIFIED DISPOSITION 2026-09-16 (user, doc-review walk; chip-20260916-claims-bookkeeping-six-edits; recommended by mech467_govfanout_portfolio_staged_2026-08-19.md section 1/1c/7 item 1, grounded in navigation_immobility_scoping_2026-08-18.md, ratified 2026-09-16): SUPERSEDED / resolved by other means -- not this question's leg to adjudicate. The E3 heartbeat hold-and-repeat (e3_steps_per_tick, default 10, MECH-093-modulated 5-20) means ~85-90% of env ticks are not re-selection at all, documented across 5 prior autopsies + 1 dedicated diagnostic; the deeper causal question is owned by the ACTIVE hypothesis-space line e3_fdominance_causal_discrimination (H0-H5), and re-deriving it under this qid would duplicate an in-flight owned investigation. Truth value not adjudicated here; no run of this question eliminated it.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -6336,9 +6341,10 @@
           "state": "alive",
           "evidence_runs": [
             "V3-EXQ-983",
-            "V3-EXQ-983a"
+            "V3-EXQ-983a",
+            "V3-EXQ-1036"
           ],
-          "basis": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire.",
+          "basis": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire. | V3-EXQ-1036 adds no support. The decline_rate_gap is exactly 0.0 on 2 of 3 pooled seeds and the aggregate is a deterministic function of the single remaining seed (effective n = 1), so the run supplies no evidence that residue shapes re-approach. Recorded as provenance; state unchanged.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -6349,9 +6355,10 @@
           "axis": "process",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-983a"
+            "V3-EXQ-983a",
+            "V3-EXQ-1036"
           ],
-          "basis": "Not eliminated: reach into executed behaviour is present in 5/8 seeds and absent in 3/8 on the same substrate; whether the absent cases are latching (one candidate class for every candidate) or a residue-readout failure is unmeasured. The stage-1 latching spike routed by the autopsy is the confirmer.",
+          "basis": "Not eliminated: reach into executed behaviour is present in 5/8 seeds and absent in 3/8 on the same substrate; whether the absent cases are latching (one candidate class for every candidate) or a residue-readout failure is unmeasured. The stage-1 latching spike routed by the autopsy is the confirmer. | V3-EXQ-1036 (stage 2a calibration) is CONSISTENT WITH this leg but does not discriminate it. 2 of 3 pooled seeds produced bit-identical revisit streams across A0_INTACT and A1_RESIDUE_FROZEN (31 vs 31; 55 vs 55), and their action-stream divergence (0.00138, 0.00323) sits inside 983a's own 'did not reach executed behaviour' bucket (0.00-0.03). That is what written-not-read predicts. But it is equally consistent with the revisit-rate DV being unable to resolve a manipulation of this magnitude, and 1036 cannot separate the two. State unchanged: an uninformative run narrows nothing. Observation bottleneck for Dimension 4.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -6604,8 +6611,10 @@
           "desc": "Decision-tick-only scoring of executed action against the local hazard gradient is indistinguishable from a hazard-blind null.",
           "axis": "measurement",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": null,
+          "evidence_runs": [
+            "V3-EXQ-1036"
+          ],
+          "basis": "V3-EXQ-1036 bears on this leg without resolving it. executed_action_classes = 1.0 in 6 of 10 arm_results cells -- the single-action-latching signature this leg names. Separately, this question's decision_question rests on V3-EXQ-1014's ~1/8 per-seed pass rate; 1036 realised 3/5, BUT the two are not the same predicate (1014's rate is completion-gate AND divergence/diversity gates; 1036's is completion-gate only, the gates being explicitly omitted). The gate-matched comparator is 983a's 2/8 = 0.25, against which 3/5 is unremarkable. The apparent discrepancy is largely definitional and is NOT offered as a measured contradiction of the decision_question. State unchanged.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -6831,9 +6840,189 @@
         "live_gate": "H-mag vs H-pat spike (new EXQ) scores",
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "arc131_sd091_recruitment_scale_invariance",
+      "title": "Does E3 channel commensurability make endogenous coalition recruitment scale-invariant, or is a scale-relative recruitment threshold still owed?",
+      "short_title": "Recruitment scale-invariance",
+      "claims": [
+        "ARC-131"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.3333,
+      "bits_removed_vs_registration": 0.58,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "representation"
+        ],
+        "families_touched": [
+          "representation"
+        ],
+        "families_fresh": [
+          "constitution",
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 1,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.3333,
+      "bits_removed": 0.58,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-comm-suffices",
+          "label": "Divisive channel commensurability alone makes recruitment scale-invariant",
+          "desc": null,
+          "axis": "representation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-1038a"
+          ],
+          "basis": "ELIMINATED on NON-CIRCULAR statistics only (basis rewritten at Step 7c; the original cited F2 and G3b, which the red-team showed are near-circular -- each pairs a sample's median against that same sample's CDF at 0.05). What carries the elimination: (a) a RESIDUAL ON-arm recruitment spread of 5.48x with CV 0.449 under the shipped fixed threshold -- scale-invariance would mean no such spread; (b) a residual ON-arm cross-seed median-margin ratio of 4.67x; (c) the driver's own pre-registered post-hoc, run at autopsy, showing that re-thresholding the SAME samples at a scale-relative bar collapses the spread to 1.45x and CV to 0.124, which is the direct demonstration that the residual is scale and the fixed gate is what reads it. The manipulation demonstrably engaged on the ON arm only (G1) and moved the DV on every seed (G1c, dv_moved_fraction 1.0), and the sample floors were cleared (G2, 560 vs 250). NOT relied upon: F2's 0.9643, G3b's 0.991, and F2's non-degeneracy certificate, which is gated on G3b and inherits its circularity.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-scale-relative-threshold-owed",
+          "label": "A recruitment threshold expressed relative to the channel's own scale statistic is required; normalisation of the input is not sufficient while the gate is a fixed constant",
+          "desc": null,
+          "axis": "arbitration",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Indicated by this run but not itself tested -- no arm here implements a scale-relative threshold.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-operator-amplifies",
+          "label": "The commensurability operator is itself defective -- its EMA divisor amplifies intermittent low-SD channels -- so the persistence of scale determination is an operator fault rather than a missing threshold",
+          "desc": null,
+          "axis": "substrate",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Adjudicating run V3-EXQ-1012a (the operator's own validation) is OPEN. Pre-registered here rather than queued, to avoid duplicating that run.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Is a scale-relative coalition recruitment threshold (SD-091) required, or does the existing divisive normalisation already deliver scale-invariant recruitment?",
+        "distance_phrase": "one leg eliminated by V3-EXQ-1038a; the remaining two are separated by whether the operator is itself sound, which V3-EXQ-1012a owns",
+        "live_gate": "ON-arm |Spearman rho| between per-seed median E3 margin and per-seed eligibility fraction < 0.4, with the cross-seed margin-spread ratio held under 10.0",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "mech537_communication_subspace_orientation",
+      "title": "At the world_state -> z_world interface, does the fitted communication subspace carry ORIENTATION beyond a random subspace of the same rank, or is the routing question not instantiated there at all?",
+      "short_title": "Communication-subspace orientation",
+      "claims": [
+        "MECH-537"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-small-but-real",
+          "label": "the orientation effect is real and positive but smaller than the pre-registered 0.05 floor; judged against a within-run null it is distinguishable from zero.",
+          "desc": "Raise n with SEED_MAJORITY re-specified proportionally, and report a confidence interval on the C2 mean rather than a floor test. Declared null: the CI excludes 0.05 (H1 falsified, not rescued).",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered at fan-out; the adjudicating run (V3-EXQ-1043a) has not been queued yet.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-no-orientation",
+          "label": "the fitted communication subspace is not meaningfully different from a random subspace of the same rank at this interface; C2's positivity is noise and will not survive a permutation null.",
+          "desc": "Permutation null on the RRR fit itself (refit on shuffled sender-receiver pairing) to give C2 a within-run reference distribution instead of a hand-set floor. Declared null: the observed C2 sits inside the permutation null.",
+          "axis": "instrumentation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered at fan-out; the adjudicating run (V3-EXQ-1043a) has not been queued yet.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-no-low-rank-bottleneck",
+          "label": "the routing question as the biology poses it is not instantiated at this interface at all -- z_world is an almost perfectly linear readout of world_state at any rank >= 8, so at the CV-selected rank = dy the 'communication subspace' is unconstrained OLS and there is no low-rank channel to be routed through. C2 measured at the parsimonious rank is the test.",
+          "desc": "Sweep C2 across ranks 1..32 and read it at the parsimonious rank (8-10, r2 within 0.001 of max), where the low-rank premise holds. Declared null: C2 is flat in rank, so rank is not what hid the orientation signal.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered at fan-out; the adjudicating run (V3-EXQ-1043a) has not been queued yet.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is MECH-537's encoded-but-not-exposed routing failure present at this interface?",
+        "distance_phrase": "one diagnostic run completed and undetermined; three rivals pre-registered, none yet adjudicated",
+        "live_gate": "C2 (D_randrank - D_comm at matched rank) clearing its floor against a within-run reference distribution, read at a rank where the low-rank premise holds",
+        "observation_bottleneck": "The CV-selected rank sits at the receiver dimension, where the RRR fit is unconstrained OLS, so the low-rank channel the biology posits is not instantiated at the evaluation point."
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-1038a",
+      "all_runs": [
+        "V3-EXQ-1038a"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "arc131_sd091_recruitment_scale_invariance",
+      "claims": [
+        "ARC-131"
+      ],
+      "moved": "ELIMINATED on NON-CIRCULAR statistics only (basis rewritten at Step 7c; the original cited F2 and G3b, which the red-team showed are near-circular -- each pairs a sample's median against that same sample's CDF at 0.05). What carries the elimination: (a) a RESIDUAL ON-arm recruitment spread of 5.48x with CV 0.449 under the shipped fixed threshold -- scale-invariance would mean no such spread; (b) a residual ON-arm cross-seed median-margin ratio of 4.67x; (c) the driver's own pre-registered post-hoc, run at autopsy, showing that re-thresholding the SAME samples at a scale-relative bar collapses the spread to 1.45x and CV to 0.124, which is the direct demonstration that the residual is scale and the fixed gate is what reads it. The manipulation demonstrably engaged on the ON arm only (G1) and moved the DV on every seed (G1c, dv_moved_fraction 1.0), and the sample floors were cleared (G2, 560 vs 250). NOT relied upon: F2's 0.9643, G3b's 0.991, and F2's non-degeneracy certificate, which is gated on G3b and inherits its circularity.",
+      "resolved_utc": "2026-09-17T00:17:17Z",
+      "evidence_direction": "weakens"
+    },
     {
       "run": "V3-EXQ-964b",
       "all_runs": [
@@ -7047,10 +7236,11 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-983a",
+      "run": "V3-EXQ-1036",
       "all_runs": [
         "V3-EXQ-983",
-        "V3-EXQ-983a"
+        "V3-EXQ-983a",
+        "V3-EXQ-1036"
       ],
       "momentum_class": "underpowered",
       "qid": "residue_error_persistence_readout",
@@ -7058,7 +7248,7 @@
         "EXT-002",
         "ARC-013"
       ],
-      "moved": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire.",
+      "moved": "Twice uninformative, not discriminated: 983's DV realised 3.2x too little range with an ungated seed population (control passed at 51x); 983a's DV had no agent-side freedom on a pinned board (heterogeneity 0.00, achievable range 0.0 vs 0.04), key registration on fresh ticks only hid ~90% of harms, and 6/8 seeds died to single-action latching. Observation bottleneck: an avoidance-rate DV with certified freedom, held-tick-aware keys, and a seed population with a repertoire. | V3-EXQ-1036 adds no support. The decline_rate_gap is exactly 0.0 on 2 of 3 pooled seeds and the aggregate is a deterministic function of the single remaining seed (effective n = 1), so the run supplies no evidence that residue shapes re-approach. Recorded as provenance; state unchanged.",
       "resolved_utc": "2026-09-05T14:14:59Z",
       "evidence_direction": "non_contributory"
     },
@@ -7675,9 +7865,10 @@
       "evidence_direction": "weakens"
     },
     {
-      "run": "V3-EXQ-850",
+      "run": "V3-EXQ-864a",
       "all_runs": [
-        "V3-EXQ-850"
+        "V3-EXQ-850",
+        "V3-EXQ-864a"
       ],
       "momentum_class": "control_repaired",
       "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
@@ -7685,7 +7876,7 @@
         "MECH-204",
         "SD-076"
       ],
-      "moved": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01.",
+      "moved": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01. | V3-EXQ-864a's recorded statistics do not narrow this leg (its verdict is decoupled from its own question: both branches set PASS and the load-bearing criterion restates the precondition gate). BUT its BANKED TRAJECTORIES contain an unexamined effect directly relevant here: in 12/12 cells rv falls below wci_symmetric_rv_ref at every episode reset and recovers mid-episode, with recovery latency shortening across training (e.g. 75->40 and 72->12 ticks) -- a recalibration-speed curve. No criterion reads the arrays. A re-analysis of the existing run pack is owed and may narrow this leg at zero compute cost. State unchanged pending that re-analysis.",
       "resolved_utc": "2026-08-01T00:48:23Z",
       "evidence_direction": "inconclusive"
     },
@@ -8446,16 +8637,18 @@
       "evidence_direction": "pending"
     },
     {
-      "run": "V3-EXQ-838",
+      "run": "V3-EXQ-865",
       "all_runs": [
-        "V3-EXQ-838"
+        "V3-EXQ-838",
+        "V3-EXQ-849",
+        "V3-EXQ-865"
       ],
       "momentum_class": "control_repaired",
       "qid": "q081-cross-stream-shared-organisation",
       "claims": [
         "Q-081"
       ],
-      "moved": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis.",
+      "moved": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis. | V3-EXQ-849 and V3-EXQ-865 attempted to probe this leg and were both INSTRUMENT-INVALID, so neither narrows it. 849: the probe's checked signal set has no live wired path from the lever for any of its 8 populated signals (the repo's own contract test, test_q081_pair_reach_check.py:436-443), and the maximal lesion also returns false; the run additionally executed on a pre-seed-determinism-fix substrate so its cells are not seed-controlled. 865: agent.vs_rollout_gate is None under the probe's own config, so the gated half of every snapshot is a verbatim copy of the raw half in 60/60 snapshots -- the probe compared a value with itself. Both emitted PASS while their sole load-bearing criterion recorded passed=false. State unchanged; see failure_autopsy_preflight_verdict_decoupling_cluster_2026-09-17.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
     },

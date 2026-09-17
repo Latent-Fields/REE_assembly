@@ -1,14 +1,25 @@
 # Pending Experiment Review
 
-Generated: `2026-09-16T13:46:00Z`  
+Generated: `2026-09-17T10:57:09Z`  
 Last review: `2026-09-16T13:45:48Z`  
-Pending: **2** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Pending: **7** item(s) -- 2 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3` | 2026-09-16T09:58 | MECH-266, SD-032a | — |
+| `v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3` | 2026-09-16T11:16 | MECH-537 | — |
+| `v3_exq_1044_hippocampal_assay_a_access_mechanism_20260916T141717Z_v3` | 2026-09-16T14:17 | (no claim tags) | — |
+| `v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3` | 2026-09-17T05:38 | SD-082 | — |
+| `v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched_20260917T102244Z_v3` | 2026-09-17T10:22 | MECH-017 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3` | 2026-09-17T00:17 | ARC-131 |
+| `v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3` | 2026-09-17T02:54 | MECH-482 |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
 
@@ -16,15 +27,8 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 
 | Run ID | Status | Self-route label |
 |--------|--------|-------------------|
-| `v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3` | FAIL | rule_right_r_wrong_requeue |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| FAIL | `v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3` | v3_exq_1043_mech537_communication_subspace_routing | V3-EXQ-1043 | mixed |
+| `v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3` | PASS | deficit_readout_magnitude_limited |
+| `v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3` | FAIL | h1_weakened_training_reduced_readout_consequence |
 
 ---
 

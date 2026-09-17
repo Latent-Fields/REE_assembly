@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-16T13:19:43Z
+Generated: 2026-09-17T11:06:30Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (144)
+## Unresolved with a hand status line -- INFO (146)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -102,6 +102,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `neuromodulatory_control_planes.md` -- "candidate"
 - `non_deficit_action_drives.md` -- "family slot registered 2026-05-10 (ARC-066 + ARC-067 + ARC-068 candidate / pending_design)."
 - `offline_representational_reindexing.md` -- "candidate / substrate_conditional / implementation_phase v4. Promote/demote-suppressed."
+- `organism_level_validation_doctrine.md` -- "candidate governance doctrine, registered 2026-09-16 from"
 - `overview.md` -- "legacy"
 - `papez_circuit.md` -- "provisional"
 - `path_authority_and_interrupts.md` -- "provisional"
@@ -158,6 +159,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `soft_competitive_disinhibition_settling.md` -- "IMPLEMENTED 2026-07-02. PROMOTES NOTHING. Behind a no-op-default flag, byte-identical OFF"
 - `spintronic_memristive_cognifold_substrate.md` -- "candidate compass — POST-V5 / future physical instantiation."
 - `sustained_drive_anticipatory_wanting.md` -- "goal_pipeline:GAP-3 **DONE** 2026-05-20. Option 1 (`drive_ema_alpha`)"
+- `symbolic_commit_therapy_bridge.md` -- "candidate / substrate_conditional / implementation_phase v4 -- all three. DO NOT build in V3; DO NOT queue an experiment"
 - `temporal_dynamics.md` -- "provisional"
 - `temporally_displaced_actionable_present.md` -- "candidate / substrate_conditional / implementation_phase v4. Promote/demote-suppressed. Not a V3 build target."
 - `three_loop_learning_channels.md` -- "candidate"

@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-16T13:14:47Z",
+  "generated_at": "2026-09-17T10:58:11Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -68,6 +68,17 @@
         ],
         "surviving": 1,
         "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
+        "id": "arc131_sd091_recruitment_scale_invariance",
+        "title": "Recruitment scale-invariance",
+        "claims": [
+          "ARC-131"
+        ],
+        "surviving": 2,
+        "initial": 3,
         "convergence": "narrowing",
         "is_hero": false
       },
@@ -458,9 +469,9 @@
         "claims": [
           "MECH-467"
         ],
-        "surviving": 3,
+        "surviving": 1,
         "initial": 4,
-        "convergence": "static",
+        "convergence": "narrowing",
         "is_hero": false
       },
       {
@@ -505,6 +516,17 @@
         ],
         "surviving": 2,
         "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "mech537_communication_subspace_orientation",
+        "title": "Communication-subspace orientation",
+        "claims": [
+          "MECH-537"
+        ],
+        "surviving": 3,
+        "initial": 3,
         "convergence": "static",
         "is_hero": false
       },
@@ -723,17 +745,17 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "145 / 182",
+      "value": "146 / 185",
       "detail": "modules recorded as built"
     },
     {
       "label": "Prove",
-      "value": "72.4%",
+      "value": "75.0%",
       "detail": "weighted closure, not an overall score"
     },
     {
       "label": "Narrow",
-      "value": "126 / 173",
+      "value": "129 / 179",
       "detail": "rival explanations still standing"
     },
     {
@@ -1263,6 +1285,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-061",
+              "title": "Commit-boundary token reclassifies pre-commit vs post-commit error routing.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 19,
+              "depends_on": [
+                "ARC-003",
+                "ARC-015",
+                "INV-012",
+                "MECH-060"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-002",
               "title": "E2 is the fast forward predictor of affordances.",
               "status": "active",
@@ -1276,23 +1315,6 @@
                 "ARC-004",
                 "ARC-001",
                 "ARC-005"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-061",
-              "title": "Commit-boundary token reclassifies pre-commit vs post-commit error routing.",
-              "status": "active",
-              "phase": "unset",
-              "claim_class": "mechanism_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 17,
-              "depends_on": [
-                "ARC-003",
-                "ARC-015",
-                "INV-012",
-                "MECH-060"
               ],
               "additional_dependencies": 0
             }
@@ -1312,7 +1334,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 83,
+              "incoming_dependencies": 86,
               "depends_on": [
                 "ARC-014",
                 "INV-011",
@@ -1523,6 +1545,20 @@
               "additional_dependencies": 0
             },
             {
+              "id": "GOV-BEHADJ-1",
+              "title": "REE Assembly needs a dedicated behavioural-adjudication methodology/skill for organism-level behavioural experiment design and interpretation (\"umpire, not ruler\": observe, preserve the observation without embedding an explanation, generate competing explanations, derive predictions, construct discriminating perturbations, blind condition labels where practical, apply pre-specified hypothesis-directed measures, also run discovery-oriented analysis for structure not anticipated in advance, adjudicate across the pattern of evidence, replicate, and test generalisation under environmental change) -- because a fixed, pre-specified scalar-metric approach risks conflating stochasticity/exploration/noise with the behavioural organisation actually of interest, and risks Goodharting once a convenient metric becomes the de facto definition of the phenomenon.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "Q-092"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-047",
               "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
               "status": "candidate",
@@ -1616,20 +1652,6 @@
               "incoming_dependencies": 3,
               "depends_on": [],
               "additional_dependencies": 0
-            },
-            {
-              "id": "GOV-BEHADJ-1",
-              "title": "REE Assembly needs a dedicated behavioural-adjudication methodology/skill for organism-level behavioural experiment design and interpretation (\"umpire, not ruler\": observe, preserve the observation without embedding an explanation, generate competing explanations, derive predictions, construct discriminating perturbations, blind condition labels where practical, apply pre-specified hypothesis-directed measures, also run discovery-oriented analysis for structure not anticipated in advance, adjudicate across the pattern of evidence, replicate, and test generalisation under environmental change) -- because a fixed, pre-specified scalar-metric approach risks conflating stochasticity/exploration/noise with the behavioural organisation actually of interest, and risks Goodharting once a convenient metric becomes the de facto definition of the phenomenon.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "other",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 3,
-              "depends_on": [
-                "Q-092"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1639,7 +1661,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 247,
+      "total": 251,
       "buckets": [
         {
           "key": "active",
@@ -1691,6 +1713,24 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-009",
+              "title": "Language is a symbolic mediation and coordination layer.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 28,
+              "depends_on": [
+                "INV-003",
+                "INV-007",
+                "ARC-010",
+                "ARC-005",
+                "ARC-004"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-015",
               "title": "Self-impact attribution and responsibility flow are required.",
               "status": "provisional",
@@ -1706,24 +1746,6 @@
                 "ARC-004",
                 "ARC-013",
                 "ARC-007"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-009",
-              "title": "Language is a symbolic mediation and coordination layer.",
-              "status": "active",
-              "phase": "unset",
-              "claim_class": "substrate_gap_marked",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 26,
-              "depends_on": [
-                "INV-003",
-                "INV-007",
-                "ARC-010",
-                "ARC-005",
-                "ARC-004"
               ],
               "additional_dependencies": 0
             },
@@ -1890,8 +1912,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 218,
-          "more_count": 208,
+          "count": 222,
+          "more_count": 212,
           "nodes": [
             {
               "id": "INV-049",
@@ -1901,7 +1923,7 @@
               "claim_class": "substrate_gap_marked",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 27,
+              "incoming_dependencies": 28,
               "depends_on": [
                 "INV-044",
                 "INV-045",
@@ -2069,13 +2091,13 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 294,
+      "total": 291,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 55,
-          "more_count": 45,
+          "count": 54,
+          "more_count": 44,
           "nodes": [
             {
               "id": "SD-012",
@@ -2101,7 +2123,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 29,
+              "incoming_dependencies": 30,
               "depends_on": [
                 "ARC-023",
                 "ARC-021",
@@ -2422,8 +2444,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 223,
-          "more_count": 213,
+          "count": 221,
+          "more_count": 211,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2496,6 +2518,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-112",
+              "title": "E3 requires a structured latent goal representation (positive attractor in z_world or z_goal sub-space) distinct from harm avoidance.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 21,
+              "depends_on": [
+                "SD-005",
+                "ARC-007",
+                "MECH-069",
+                "ARC-030"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-292",
               "title": "Inactive or strained anchors whose preserved goal payload still matches the current goal form a ranked ghost-goal bank; priority scales with wanting, goal-match, staleness, and recoverability rather than with staleness alone.",
               "status": "candidate",
@@ -2510,23 +2549,6 @@
                 "MECH-230",
                 "MECH-269",
                 "MECH-284"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-112",
-              "title": "E3 requires a structured latent goal representation (positive attractor in z_world or z_goal sub-space) distinct from harm avoidance.",
-              "status": "candidate",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 20,
-              "depends_on": [
-                "SD-005",
-                "ARC-007",
-                "MECH-069",
-                "ARC-030"
               ],
               "additional_dependencies": 0
             },
@@ -2605,7 +2627,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 297,
+      "total": 306,
       "buckets": [
         {
           "key": "active",
@@ -2621,7 +2643,7 @@
               "claim_class": "horizon_v5",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 35,
+              "incoming_dependencies": 37,
               "depends_on": [
                 "INV-005",
                 "ARC-004",
@@ -2660,8 +2682,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 295,
-          "more_count": 285,
+          "count": 304,
+          "more_count": 294,
           "nodes": [
             {
               "id": "ARC-023",
@@ -2751,6 +2773,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-053",
+              "title": "Temporal Coherence Loop (TCL): architecture must include a distributed loop responsible for maintaining phase alignment and temporal synchrony necessary for V(t) to be computable.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "INV-067",
+                "INV-068",
+                "MECH-089"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "ARC-080",
               "title": "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms.",
               "status": "candidate",
@@ -2819,24 +2857,6 @@
                 "MECH-537"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-047",
-              "title": "Multi-agent gridworld with affective state leakage as gradient scent fields is the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression, and cooperative behavior claims.",
-              "status": "candidate",
-              "phase": "v5",
-              "claim_class": "horizon_v5",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "MECH-041",
-                "MECH-031",
-                "MECH-036",
-                "MECH-127",
-                "IMPL-019"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2844,9 +2864,9 @@
     }
   ],
   "record_counts": {
-    "active": 181,
+    "active": 180,
     "closed": 50,
-    "planned": 921
+    "planned": 932
   },
   "archive": {
     "snapshot_count": 111,

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T01:43:30.050889Z",
+  "generated_at_utc": "2026-09-17T10:55:50.551609Z",
   "items": [
     {
       "acceptance_checks": [
@@ -2284,6 +2284,46 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1784",
+      "claim_id": "SD-082",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for SD-082 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0249",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_sd_082",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "directional_conflict_alert",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-0464",
       "claim_id": "MECH-323",
       "decision_deadline_utc": "",
@@ -2638,6 +2678,48 @@
       "seed_policy": "matched_shared_seeds",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_ext_003",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1390",
+      "claim_id": "MECH-017",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-017 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0753",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_017",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -3869,6 +3951,51 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1211",
+      "claim_id": "ARC-083",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-083 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0486",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_arc_083",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1345",
       "blocked_by": [
         "contextmemory-write-path-addressing-degeneracy",
@@ -4175,17 +4302,27 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-1390",
-      "claim_id": "MECH-017",
+      "backlog_id": "EVB-1391",
+      "blocked_by": [
+        "MECH-018",
+        "ARC-011",
+        "ARC-007"
+      ],
+      "blocked_note": "ResidueField.integrate() performs NO gradient step, and is never called from the sleep cycle -- MECH-018's four readouts are all structurally pinned, so a run today returns its own FALSIFYING branch by construction.",
+      "claim_id": "MECH-018",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-17T08:01:12Z",
+      "gated_by_session": "igw-235-proposal-for-mech-018",
+      "gating_reason": "EXP-0755 REFUSED at the /queue-experiment Step 2.5 / 2.5a substrate gate (session igw-235-proposal-for-mech-018, IGW-20260917-235, 2026-09-17). Node is `complicated (buildable)`, NOT `complex (probe-gated)`: the correct route is /implement-substrate, not an experiment.\n\nMECH-018's own claims.yaml what_would_answer already carries the disposition (2026-09-16): 'substrate_conditional on the WRITEBACK wiring (and possibly a centre-merge op) ... Do not mint an EXP for this until the call site lands.' This session CONFIRMED that independently and found the gap to be STRICTLY WIDER than that note records -- there are THREE blockers, not one, and the extra one is the decisive one.\n\n(B1) THE OPERATION IS INERT BY CONSTRUCTION -- NOT MERELY UNWIRED. This is the blocker the claims.yaml SUBSTRATE note does not have. ResidueField.integrate() (ree-v3/ree_core/residue/field.py:1122-1144, last touched 00449c7 2026-08-11) computes F.mse_loss(neural_field(sample_points), rbf_field(sample_points)) in a num_steps loop and accumulates .item() -- but it never calls loss.backward(), and the module declares no optimizer at all (grep for 'optim|backward()' over the whole 1259-line file returns nothing). It is a METRIC loop wearing the shape of a training loop, and the 'integration_loss' it returns reads as training progress while nothing trains. Verified EMPIRICALLY this session by a throwaway one-tick probe (Step 2.5a), 6 harm events, num_steps=25: rbf weights changed False / active_mask changed False / active_centers 6 -> 6 / neural_field params changed False / evaluate() at the recorded harm locations changed False / any neural_field param has .grad False. Consistent with V3-EXQ-996's ISEF-005 finding (autopsy failure_autopsy_V3-EXQ-996_2026-09-04.json, status=confirmed), which recorded agent.residue_field.integrate() as 'confirmed to train nothing' -- but that autopsy left recommended_substrate_queue_entry NULL, so the defect has sat unowned since.\n\n(B2) NO CALL SITE IN THE SLEEP CYCLE (the blocker claims.yaml names). ree_core/sleep/phase_manager.py (63e70d6 2026-08-26) contains no residue_field / ResidueField reference in code at all -- only comments about the WAKING update_residue path -- and the WRITEBACK phase runs self_model_aggregator.offline_gradient_pass + the MECH-204 serotonin recalibration, nothing residue-side. The only wrapper, REEAgent.offline_integration() (ree_core/agent.py:12248-12271), is called by NOTHING in ree_core/; every live caller is an experiment driver.\n\n(B3) NO CENTRE-MERGE OPERATION EXISTS, so readout (iii) COMPRESSION has no mechanism that could move active_centers even after B1+B2 land. integrate() approximates the RBF field with the neural field; it never merges centres. claims.yaml flags this as an open question ('may need a centre-merging step the claim implies but no module provides'); this session confirms no such module exists.\n\nWHY THIS MAKES A RUN VACUOUS RATHER THAN MERELY WEAK -- the decisive point. MECH-018 lists 'the operation is geometrically inert (no change on any of the four readouts while the cycle is live)' as an explicit FALSIFYING outcome. B1 guarantees exactly that outcome with probability 1, from a missing optimizer step. So the experiment would not fail to answer its question -- it would return a CONFIDENT FALSE FALSIFICATION of the mechanism, attributable entirely to a substrate defect, and it would do so while satisfying readout (i) PRESERVATION vacuously (residue at harm contexts cannot fall if nothing changes). A naive-decay comparator arm would move and the integration arm would not, which reads as clean discriminative evidence against MECH-018. That is worse than a null result: it is a vacuous PASS on (i) fused to a spurious FAIL on (ii)/(iii)/(iv), and it would land in claim_evidence as a genuine weakens.\n\nNO COMMITMENT-FREE DIAGNOSTIC SUBSTITUTE WAS QUEUED EITHER, and that was considered rather than skipped. The one measurement-only thing runnable today is MECH-018's own NON-DEGENERACY PRECONDITION (the pre-sleep specificity ratio -- residue at harm contexts vs at equidistant matched non-harm contexts), which needs no integration call and no sleep cycle. Rejected as a separate queue slot: it yields no PASS-or-FAIL on MECH-018 (it is a precondition the claim requires BEFORE its test, not a verdict on it), and it is a handful of lines that the post-release experiment must run in its own setup anyway, so queuing it separately buys a queue slot's worth of nothing and mints an EXQ id that later reads as MECH-018 having been tested.\n\nOWNERSHIP CHECKED, AND THE BUILD IS GENUINELY UNOWNED: evidence/planning/substrate_queue.json (185 entries) has no row for the sleep-residue wiring or the missing optimizer step -- the only residue row is SD-RESIDUE-VALENCE-BOUND (implemented, unrelated: valence-accumulator clamping); no open chip in TASK_CHIPS.json covers it; the V3-EXQ-996 autopsy that FOUND B1 recorded recommended_substrate_queue_entry=null. This session runs HEADLESS with no spawn_task tool, so it could not chip /implement-substrate directly; instead it raised a governance_flag.py evidence_discrepancy flag on MECH-018 (evidence/planning/governance_flags.v1.json, 2026-09-17), which /governance re-derives into its worklist and is explicitly authorised to convert into an /implement-substrate chip plus a substrate_queue.json row. The release_condition below is the build spec.",
       "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-017 with matched seeds and pre-registered thresholds.",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-018 with matched seeds and pre-registered thresholds.",
       "priority": "medium",
-      "proposal_id": "EXP-0753",
+      "proposal_id": "EXP-0755",
       "proposal_type": "experimental",
+      "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -4198,8 +4335,8 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_017",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_018",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -4209,10 +4346,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "retired_by_igw": "IGW-20260916-231",
-      "retired_reason": "igw outcome=USEFUL_LANDED: MECH-017 experiment designed, smoke-tested, red-teamed and QUEUED. The authoring session (igw-231-proposal-for-mech-017) completed design + smoke + a full red-team pass, the",
-      "retired_at": "2026-09-17T10:13:37Z"
+      ]
     },
     {
       "acceptance_checks": [
@@ -5956,6 +6090,49 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-0368",
+      "claim_id": "ARC-081",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-01T20:34:39Z",
+      "gated_by_session": "metaworker-chip-proposal-exp-0367",
+      "gating_reason": "claims.yaml implementation_phase=v4 for ARC-081 (live_status.evidence.verdict=held_v4_by_architectural_commitment/applied, user-confirmed decision 2026-06-06T07:53:48Z). ARC-081 is a substrate_coherence/architectural_commitment coherence-map claim describing the V4 self-object-file-slot cutover; its own SCOPE/GUARD states 'epistemic_category inferred to substrate_coherence (architectural_commitment) -- promote/demote suppressed; this is a coherence map, not an empirical assertion to be gated' and 'registering this child introduces NO substrate code, NO experiments, and changes NO V3 behaviour... must NOT enter V3 closure.' No V3 experiment can test a V4-scoped architectural commitment that explicitly disclaims empirical gating. Confirmed live (not stale) by v3pending_v4_phase_audit_20260901.md Bucket A: ARC-081 (with MECH-265, MECH-325) resolves to assembly_state=gated_v3 today and is deliberately V4-deferred by architectural commitment, not merely awaiting substrate readiness. Re-derive when the DR-10..DR-14 self-model integration audit brings the object-file-slot cutover forward; do not re-open via another lettered /queue-experiment pass on the same architectural-commitment shape.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for ARC-081 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0351",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "gated",
+      "suggested_experiment_type": "claim_probe_arc_081",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1210",
       "claim_id": "ARC-082",
       "decision_deadline_utc": "",
@@ -6413,49 +6590,6 @@
       "seed_policy": "distinct_seeds",
       "status": "gated",
       "suggested_experiment_type": "claim_probe_q_078",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-0368",
-      "claim_id": "ARC-081",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-01T20:34:39Z",
-      "gated_by_session": "metaworker-chip-proposal-exp-0367",
-      "gating_reason": "claims.yaml implementation_phase=v4 for ARC-081 (live_status.evidence.verdict=held_v4_by_architectural_commitment/applied, user-confirmed decision 2026-06-06T07:53:48Z). ARC-081 is a substrate_coherence/architectural_commitment coherence-map claim describing the V4 self-object-file-slot cutover; its own SCOPE/GUARD states 'epistemic_category inferred to substrate_coherence (architectural_commitment) -- promote/demote suppressed; this is a coherence map, not an empirical assertion to be gated' and 'registering this child introduces NO substrate code, NO experiments, and changes NO V3 behaviour... must NOT enter V3 closure.' No V3 experiment can test a V4-scoped architectural commitment that explicitly disclaims empirical gating. Confirmed live (not stale) by v3pending_v4_phase_audit_20260901.md Bucket A: ARC-081 (with MECH-265, MECH-325) resolves to assembly_state=gated_v3 today and is deliberately V4-deferred by architectural commitment, not merely awaiting substrate readiness. Re-derive when the DR-10..DR-14 self-model integration audit brings the object-file-slot cutover forward; do not re-open via another lettered /queue-experiment pass on the same architectural-commitment shape.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-081 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0351",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_arc_081",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -7310,140 +7444,6 @@
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1211",
-      "claim_id": "ARC-083",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for ARC-083 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0486",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_arc_083",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1211",
-      "claim_id": "ARC-083",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-083.",
-      "priority": "medium",
-      "proposal_id": "LIT-0488",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_083",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1212",
-      "claim_id": "ARC-084",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-084.",
-      "priority": "medium",
-      "proposal_id": "LIT-0489",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_084",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
         "synthetic_signals_only"
       ]
     },
@@ -15358,102 +15358,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_015",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1391",
-      "blocked_by": [
-        "MECH-018",
-        "ARC-011",
-        "ARC-007"
-      ],
-      "blocked_note": "ResidueField.integrate() performs NO gradient step, and is never called from the sleep cycle -- MECH-018's four readouts are all structurally pinned, so a run today returns its own FALSIFYING branch by construction.",
-      "claim_id": "MECH-018",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-17T08:01:12Z",
-      "gated_by_session": "igw-235-proposal-for-mech-018",
-      "gating_reason": "EXP-0755 REFUSED at the /queue-experiment Step 2.5 / 2.5a substrate gate (session igw-235-proposal-for-mech-018, IGW-20260917-235, 2026-09-17). Node is `complicated (buildable)`, NOT `complex (probe-gated)`: the correct route is /implement-substrate, not an experiment.\n\nMECH-018's own claims.yaml what_would_answer already carries the disposition (2026-09-16): 'substrate_conditional on the WRITEBACK wiring (and possibly a centre-merge op) ... Do not mint an EXP for this until the call site lands.' This session CONFIRMED that independently and found the gap to be STRICTLY WIDER than that note records -- there are THREE blockers, not one, and the extra one is the decisive one.\n\n(B1) THE OPERATION IS INERT BY CONSTRUCTION -- NOT MERELY UNWIRED. This is the blocker the claims.yaml SUBSTRATE note does not have. ResidueField.integrate() (ree-v3/ree_core/residue/field.py:1122-1144, last touched 00449c7 2026-08-11) computes F.mse_loss(neural_field(sample_points), rbf_field(sample_points)) in a num_steps loop and accumulates .item() -- but it never calls loss.backward(), and the module declares no optimizer at all (grep for 'optim|backward()' over the whole 1259-line file returns nothing). It is a METRIC loop wearing the shape of a training loop, and the 'integration_loss' it returns reads as training progress while nothing trains. Verified EMPIRICALLY this session by a throwaway one-tick probe (Step 2.5a), 6 harm events, num_steps=25: rbf weights changed False / active_mask changed False / active_centers 6 -> 6 / neural_field params changed False / evaluate() at the recorded harm locations changed False / any neural_field param has .grad False. Consistent with V3-EXQ-996's ISEF-005 finding (autopsy failure_autopsy_V3-EXQ-996_2026-09-04.json, status=confirmed), which recorded agent.residue_field.integrate() as 'confirmed to train nothing' -- but that autopsy left recommended_substrate_queue_entry NULL, so the defect has sat unowned since.\n\n(B2) NO CALL SITE IN THE SLEEP CYCLE (the blocker claims.yaml names). ree_core/sleep/phase_manager.py (63e70d6 2026-08-26) contains no residue_field / ResidueField reference in code at all -- only comments about the WAKING update_residue path -- and the WRITEBACK phase runs self_model_aggregator.offline_gradient_pass + the MECH-204 serotonin recalibration, nothing residue-side. The only wrapper, REEAgent.offline_integration() (ree_core/agent.py:12248-12271), is called by NOTHING in ree_core/; every live caller is an experiment driver.\n\n(B3) NO CENTRE-MERGE OPERATION EXISTS, so readout (iii) COMPRESSION has no mechanism that could move active_centers even after B1+B2 land. integrate() approximates the RBF field with the neural field; it never merges centres. claims.yaml flags this as an open question ('may need a centre-merging step the claim implies but no module provides'); this session confirms no such module exists.\n\nWHY THIS MAKES A RUN VACUOUS RATHER THAN MERELY WEAK -- the decisive point. MECH-018 lists 'the operation is geometrically inert (no change on any of the four readouts while the cycle is live)' as an explicit FALSIFYING outcome. B1 guarantees exactly that outcome with probability 1, from a missing optimizer step. So the experiment would not fail to answer its question -- it would return a CONFIDENT FALSE FALSIFICATION of the mechanism, attributable entirely to a substrate defect, and it would do so while satisfying readout (i) PRESERVATION vacuously (residue at harm contexts cannot fall if nothing changes). A naive-decay comparator arm would move and the integration arm would not, which reads as clean discriminative evidence against MECH-018. That is worse than a null result: it is a vacuous PASS on (i) fused to a spurious FAIL on (ii)/(iii)/(iv), and it would land in claim_evidence as a genuine weakens.\n\nNO COMMITMENT-FREE DIAGNOSTIC SUBSTITUTE WAS QUEUED EITHER, and that was considered rather than skipped. The one measurement-only thing runnable today is MECH-018's own NON-DEGENERACY PRECONDITION (the pre-sleep specificity ratio -- residue at harm contexts vs at equidistant matched non-harm contexts), which needs no integration call and no sleep cycle. Rejected as a separate queue slot: it yields no PASS-or-FAIL on MECH-018 (it is a precondition the claim requires BEFORE its test, not a verdict on it), and it is a handful of lines that the post-release experiment must run in its own setup anyway, so queuing it separately buys a queue slot's worth of nothing and mints an EXQ id that later reads as MECH-018 having been tested.\n\nOWNERSHIP CHECKED, AND THE BUILD IS GENUINELY UNOWNED: evidence/planning/substrate_queue.json (185 entries) has no row for the sleep-residue wiring or the missing optimizer step -- the only residue row is SD-RESIDUE-VALENCE-BOUND (implemented, unrelated: valence-accumulator clamping); no open chip in TASK_CHIPS.json covers it; the V3-EXQ-996 autopsy that FOUND B1 recorded recommended_substrate_queue_entry=null. This session runs HEADLESS with no spawn_task tool, so it could not chip /implement-substrate directly; instead it raised a governance_flag.py evidence_discrepancy flag on MECH-018 (evidence/planning/governance_flags.v1.json, 2026-09-17), which /governance re-derives into its worklist and is explicitly authorised to convert into an /implement-substrate chip plus a substrate_queue.json row. The release_condition below is the build spec.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-018 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0755",
-      "proposal_type": "experimental",
-      "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_018",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1391",
-      "claim_id": "MECH-018",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-018.",
-      "priority": "medium",
-      "proposal_id": "LIT-0756",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_018",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -35450,53 +35354,6 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
-      "backlog_id": "EVB-1363",
-      "claim_id": "INV-086",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for INV-086.",
-      "priority": "medium",
-      "proposal_id": "LIT-0711",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_inv_086",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
       "backlog_id": "EVB-0662",
       "claim_id": "MECH-482",
       "decision_deadline_utc": "",
@@ -35530,6 +35387,52 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_482",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1363",
+      "claim_id": "INV-086",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for INV-086.",
+      "priority": "medium",
+      "proposal_id": "LIT-0711",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_inv_086",
       "target_repo": "REE_assembly",
       "why_now": [
         "low_exp_conf",
@@ -41075,9 +40978,9 @@
       "claims_tested": [
         "MECH-285"
       ],
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "dispatch_mode": "discriminative_pair",
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
       "prerequisites": [
         "MECH-285 offline-arm substrate wired (ree_core/hippocampal/sleep_replay_sampler.py or equivalent; HippocampalConfig.use_mech285_sleep_priority flag)",

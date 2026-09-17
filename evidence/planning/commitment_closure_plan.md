@@ -13,9 +13,9 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -39,9 +39,9 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -57,9 +57,9 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -76,9 +76,9 @@ closure_plan:
       severity: high
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -127,9 +127,9 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -154,9 +154,9 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -172,9 +172,9 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -189,9 +189,9 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -211,9 +211,9 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -244,9 +244,9 @@ closure_plan:
       severity: low
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -262,9 +262,9 @@ closure_plan:
       severity: medium
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
@@ -281,9 +281,9 @@ closure_plan:
       severity: load-bearing
       live:
         as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
         brake: "fired"
         needs_review: false
       join:
