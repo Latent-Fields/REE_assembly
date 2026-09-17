@@ -1,0 +1,236 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1047_mech482_amplified_readout_ladder",
+  "run_id": "v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-17T02:54:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-482"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "deficit_readout_magnitude_limited",
+    "routing": "H-MAG SUPPORTED, H-pat weakened: the real readout's own ORDERING moves the COMMITTED E3 selection once amplified to the rail (k=100), so its content is selection-relevant and the shortfall is SIZE. WHAT THIS DOES AND DOES NOT LICENSE (red-team pass 1, finding 2): it licenses 'the ordering is selection-relevant'. It does NOT by itself license 'a gain on curiosity_learning_progress_weight makes the mechanism behaviourally live' -- at the shipped curiosity_bias_scale the clamp pins every railed candidate, the real arm is already partially saturated at the rail, and further weight is ABSORBED rather than transmitted. The next lever is therefore AUTHORITY (curiosity_bias_scale) or the weight AND the clamp together, not the weight alone. Read `real_clamp_saturated_frac__k*` and `real_action_divergence_frac_fresh` at the rail rung before sizing anything. Route to /governance to decide the lever; the re-derive brake does NOT fire.",
+    "rail_rung_gain": 100,
+    "preconditions": [
+      {
+        "name": "G0_positive_control_fires",
+        "description": "the retained V3-EXQ-964b verify-lift arm fires in THIS run -- the detector works here, not only in the predecessor",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "V3-EXQ-964b measured this arm firing on 3 of 3 seeds at every rung",
+        "met": true
+      },
+      {
+        "name": "G1_top_rung_reaches_clamp_rail",
+        "description": "the REAL arm at k=100 reaches the clamp rail (>= 0.95 x 0.20). Without this the H-mag question was never posed and a silent real arm means nothing",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "V3-EXQ-964b measured the real readout's pre-clamp range at 0.0021222 and the gain to rail at 36.6 / 94.2 / 47.5 per seed, so k=100 clears it on the worst seed",
+        "met": true
+      },
+      {
+        "name": "G2_synthetic_range_matched",
+        "description": "the synthetic control's realised post-clamp range matches the real arm's",
+        "measured": 2.593312657067628e-06,
+        "threshold": 0.05,
+        "direction": "upper",
+        "control": "worst relative mismatch over every rung and seed",
+        "met": true
+      },
+      {
+        "name": "G3_permuted_range_matched",
+        "description": "the permuted control's realised post-clamp range matches the real arm's -- it should match essentially exactly, same value multiset",
+        "measured": 2.593312657067628e-06,
+        "threshold": 0.05,
+        "direction": "upper",
+        "control": "worst relative mismatch over every rung and seed",
+        "met": true
+      },
+      {
+        "name": "G6_committed_channel_reachable_at_rail",
+        "description": "at the rail rung the REAL arm records at least one ARITHMETICALLY REACHABLE committed flip (x964b's corrected `corrected_n_flip_reachable_total`, i.e. a committed tick whose positive margin the post-clamp perturbation could cross) on a seed majority. WITHOUT THIS the H-mag leg is unposeable on the deterministic channel: the clamp bounds the argmin-relevant deviation at 2 * curiosity_bias_scale = 0.20, so if every committed margin exceeds that, no gain on the readout can move a committed selection at ANY k and a silent real arm means nothing.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "V3-EXQ-964b measured corrected_n_flip_reachable_total = 2 / 42 / 25 on seeds 71 / 101 / 202 for its shipped-authority arm at this same realised range of 0.20, so the committed channel is live at full scale on 3 of 3 seeds",
+        "met": true
+      },
+      {
+        "name": "G7_committed_partition_present",
+        "description": "every seed group carries the committed/sampled trace partition. The routed DV is COMMITTED-tick divergence; without the partition it would silently fall back to the pooled fraction, which mixes in softmax-SAMPLED ticks where follower and reference share one uniform draw and divergence is a magnitude-scaled, PATTERN-BLIND lottery",
+        "measured": 3.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "control": "one per seed group, EVERY follower arm partitioned, by construction",
+        "met": true
+      },
+      {
+        "name": "G4_self_yoked_control_exactly_zero",
+        "description": "an arm yoked against itself must diverge exactly 0 on both DVs",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "control": "V3-EXQ-964b's own seeded self-yoked control, imported",
+        "met": true
+      },
+      {
+        "name": "G5_no_identity_permutations",
+        "description": "no permuted-real tick fell back to the identity permutation, which would make that arm a copy of the real one",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "count over every permuted cell; the transform resamples up to 16 times",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C0_instrument_gate",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 8.0,
+        "threshold": 8.0,
+        "threshold_note": "THE ONLY load-bearing criterion, and what `outcome` tracks: a PASS means a valid instrument-verified measurement was obtained. The scientific content is read off the LABEL, never off a failed load-bearing criterion under a PASS -- the ordered-gate vacuous-pass shape V3-EXQ-964b was false-flagged for."
+      },
+      {
+        "name": "F_MAG_real_fires_at_rail",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 2.0,
+        "threshold": 2.0,
+        "threshold_note": "routes the LABEL, not the outcome. H-mag leg."
+      },
+      {
+        "name": "F_PAT_controls_fire_where_real_does_not",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 1.0,
+        "threshold": 2.0,
+        "measured_real_seeds_firing": 2.0,
+        "threshold_note": "routes the LABEL, not the outcome. H-pat leg: requires the real arm BELOW the majority and BOTH controls at or above it, at the same rung."
+      }
+    ],
+    "combination_rule": "C0 alone decides the OUTCOME. F_MAG and F_PAT decide the LABEL and are MUTUALLY EXCLUSIVE BY CONSTRUCTION -- one requires the real arm to fire at the rail rung, the other requires it not to -- so no combination of them can produce an aggregation-vacuity PASS. Neither firing is `inconclusive_controls_did_not_separate`.",
+    "criteria_non_degenerate": {
+      "C0_instrument_gate": true,
+      "F_MAG_real_fires_at_rail": true,
+      "F_PAT_controls_fire_where_real_does_not": true
+    },
+    "gate_reason": null,
+    "null_reading": "`inconclusive_controls_did_not_separate` means the harness could not separate H-mag from H-pat -- NOT that the mechanism is fine and NOT that it is broken. Neither leg is licensed and the re-derive brake does NOT fire on it."
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "5c5bd966a9723d23b0a04b849968660f706dd49d4f82641e1296745ea61982a6",
+  "substrate_commit": {
+    "commit": "45544c556a2293dca7d022aa5d959355ba258dd3",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/infant_warmup.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.reafference_action_dim": 5,
+    "latent.use_e2_world_uncertainty": true,
+    "latent.use_e2_world_uncertainty_online_training": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_structured_curiosity": true,
+    "epistemic_deficit_persist_targets_across_episodes": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 8663.729523834016,
+  "config": {
+    "seeds": [
+      71,
+      101,
+      202
+    ],
+    "episodes": 3,
+    "steps_per_episode": 60,
+    "gain_ladder": [
+      1,
+      10,
+      40,
+      100
+    ],
+    "shipped_curiosity_bias_scale": 0.1,
+    "rail_range": 0.2,
+    "arms": [
+      "ARM_READINESS",
+      "ARM_REAL_K10",
+      "ARM_REAL_K40",
+      "ARM_REAL_K100",
+      "ARM_SYN_K1",
+      "ARM_SYN_K10",
+      "ARM_SYN_K40",
+      "ARM_SYN_K100",
+      "ARM_PERM_K1",
+      "ARM_PERM_K10",
+      "ARM_PERM_K40",
+      "ARM_PERM_K100",
+      "ARM_VERIFY_LIFT_S10"
+    ],
+    "reference_arm": "ARM_PREREADINESS",
+    "pre_registered_thresholds": {
+      "RAIL_FRACTION": 0.95,
+      "RANGE_MATCH_TOL": 0.05,
+      "DIVERGENCE_FLOOR": 1e-09,
+      "SEED_MAJORITY": 2
+    },
+    "inherited_from": "V3-EXQ-964b",
+    "dry_run": false
+  },
+  "seeds": [
+    71,
+    101,
+    202
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 7560,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 42,
+    "goal_state_present": false
+  }
+}
