@@ -3164,3 +3164,9 @@ One line per hourly tick. ASCII only.
 2026-09-17T16:17:40Z complete igw-243-literature-proposal-for-mech-021 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-021: 5 entries (targeted_review_mech_021), literature_confidence 0
 2026-09-17T16:21:10Z retire-proposal EXP-0759 -> executed (igw-242-proposal-for-mech-021; complete)
 2026-09-17T16:21:10Z auto-defer igw-242-proposal-for-mech-021 hash=f3517989b566 for 48h (complete)
+2026-09-17T16:22:28Z complete igw-242-proposal-for-mech-021 spawned->completed outcome=USEFUL_LANDED: queued V3-EXQ-1050 for MECH-021 (ree-v3 d269a820cd, live in coordinator DB); red
+2026-09-17T16:45:48Z GC removed worktree igw-242-proposal-for-mech-021 (removed; branch deleted)
+2026-09-17T16:45:53Z GC removed worktree igw-243-literature-proposal-for-mech-021 (removed; branch deleted)
+2026-09-17T16:44:06Z GC sweep removed 2 orphan worktree(s), kept 14
+2026-09-17T16:46:20Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
+2026-09-17T16:44:06Z no eligible item (skipped 254): IGW-20260917-001:skill /governance not allowed; IGW-20260917-002:skill /governance not allowed; IGW-20260917-003:skill /governance not allowed
