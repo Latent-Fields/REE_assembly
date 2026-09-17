@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-09-17T18:29:46Z",
+  "last_updated_utc": "2026-09-17T19:07:47Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -413,7 +413,9 @@
       "completion_criterion": {
         "kind": "claims_registered",
         "detail": "a TRANSFER mechanism candidate claim -- what makes an encoder objective's gains reach a downstream action consumer -- registered in claims.yaml and wired into SD-106's depends_on (and offered to the zworld_actor_adequacy_locus re-pose as a candidate re-operationalization). It must name a mechanism, not another LOCUS: the registered partition already carries four confirmed loci and that is the shape GOV-HOTHER-1 flagged.",
-        "satisfied": false
+        "satisfied": true,
+        "satisfied_utc": "2026-09-17T19:07:47Z",
+        "satisfied_by": "Mine+Register executed 2026-09-17 (session cdq010-transfer-mechanism-20260917, chip-20260917-cdq010-transfer-mechanism-intake). Three candidate claims registered in docs/claims/claims.yaml -- MECH-566, MECH-567, MECH-568 -- all status candidate / implementation_phase v3 / v3_pending, each with an explicit what_would_answer, and all three wired into SD-106.depends_on (REE_assembly 23423d024a; claim graph verified 0 cycles, 0 dangling edges). Each names a MECHANISM, not a locus, as the criterion required. Biology precondition discharged FIRST per CLAUDE.md biology-before-formal-definitions: evidence/literature/targeted_review_objective_consumer_transfer/ (5 entries, REE_assembly 20b3610bbaf; validate_literature OK 2654 records / 0 findings). Intakes EXTENDED, not re-cloned: REE_convergence/sources/muzero/consumer_trained_encoder.md and REE_convergence/sources/dreamer-v3/objective_transfer_balance.md (REE_convergence 2423603fdb), with +MUZERO-OBJ-002/003, +MUZERO-MOD-002, +DREAMER-V3-OBJ-005/006. Architecture stub: docs/architecture/objective_consumer_transfer_mechanisms.md."
       },
       "target_nodes": [
         "zworld_adequacy:ZW-1"
@@ -423,23 +425,27 @@
         {
           "name": "muzero",
           "path": "REE_convergence/sources/muzero",
-          "intake_state": "EXISTS",
+          "intake_state": "COMPLETED (EXTENDED)",
           "why": "MuZero is the sharpest available negative of REE's current design: its latent model is trained ONLY through the value / policy / reward heads -- it deliberately refuses a reconstruction-or-preservation objective on the representation and instead trains the encoder THROUGH its consumer. SD-106 is the opposite construction (a generic preservation objective, consumer downstream of it), and the ~50x transfer shortfall is exactly the failure that design choice predicts. What to mine is the mechanism, not the architecture: what has to be true for consumer gradients to shape an encoder without collapsing it."
         },
         {
           "name": "dreamer-v3",
           "path": "REE_convergence/sources/dreamer-v3",
-          "intake_state": "EXISTS",
+          "intake_state": "COMPLETED (EXTENDED)",
           "why": "Dreamer-V3 is the MIXED case and therefore the discriminating one: it carries BOTH a reconstruction term and value/actor gradients into the same latent, with published balance machinery. If a mechanism exists for making a preservation objective transfer rather than replacing it, this is where it is."
         }
       ],
-      "intake_state": "NEW",
+      "intake_state": "COMPLETED",
       "priority": 1,
       "generation": "v3",
       "blocks_v3_critical_path": false,
       "in_flight": null,
-      "registered_candidate_claims": [],
-      "last_known_state_note": "Registered by the Sense pass of governance cycle governance-20260917 (Step 6b), off confirmed failure_autopsy_V3-EXQ-1023a_2026-09-17 (ratified REE_assembly eeeb0550ed5). SIBLING, read it before mining so the two are not worked twice: CDQ-007 (conversion_ceiling_campaign:P-comp) is the same SHAPE one layer down -- 'a learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation'. CDQ-007 is a sufficient-observation -> policy transfer failure; this row is a trained-objective -> consumer transfer failure. They may share a mechanism, and if the intake finds one it should be registered ONCE and wired into both. SENSE ONLY -- no claims registered, no intake opened, no thread opened in REE_convergence."
+      "registered_candidate_claims": [
+        "MECH-566",
+        "MECH-567",
+        "MECH-568"
+      ],
+      "last_known_state_note": "Registered by the Sense pass of governance cycle governance-20260917 (Step 6b), off confirmed failure_autopsy_V3-EXQ-1023a_2026-09-17 (ratified REE_assembly eeeb0550ed5). SIBLING, read it before mining so the two are not worked twice: CDQ-007 (conversion_ceiling_campaign:P-comp) is the same SHAPE one layer down -- 'a learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation'. CDQ-007 is a sufficient-observation -> policy transfer failure; this row is a trained-objective -> consumer transfer failure. They may share a mechanism, and if the intake finds one it should be registered ONCE and wired into both. SENSE ONLY -- no claims registered, no intake opened, no thread opened in REE_convergence. || MINE+REGISTER COMPLETE 2026-09-17 (session cdq010-transfer-mechanism-20260917). REGISTERED: MECH-566 (LEAD -- the preservation loss is EXACTLY invariant to GL(32) acting on the code, because W is a freely-trained linear decoder in the same optimiser: (A.f, W.A^-1) attains an identical loss. The substrate's own comment cites Baldi & Hornik 1989 as its anchor, and that theorem yields the principal SUBSPACE only up to an arbitrary invertible transform, never the principal COMPONENTS -- so PCA-32 is the well-conditioned representative of the SAME orbit, which is why it clears the bar 3/3 at matched reconstruction while SD-106 falls 0.1227 short. Falsifier is cheap and decisive both ways: ZCA-whiten the FROZEN latent, which changes no information and leaves preservation R^2 exactly unchanged, then re-measure the consumer); MECH-567 (the objective carries no term with the consumer's target -- MuZero trains the encoder ONLY through consumer heads and needs an MCTS-IMPROVED target to avoid a degenerate self-agreement fixed point, while DreamerV3 carries the consumer's TARGET rather than its GRADIENT; registered in the DreamerV3 auxiliary-head shape because z_world is SHARED and MuZero's single-consumer latent is unaffordable here); MECH-568 (a task-aligned term must be protected by a SATURATING FLOOR, not a weight ratio -- REE's crowding curve is ALREADY MEASURED on SD-106's landing at 0.5702/0.4313/0.4064/0.3982 and was recorded as a cost, never read as a mechanism). CORRECTION OF RECORD, this row's own premise: DreamerV3 does NOT carry actor/value gradients into the latent -- actor and critic train on DETACHED model states. What it carries is the consumer's TARGET (reward + continue heads at beta_pred=1.0), not its GRADIENT, and that distinction IS the mechanism, because it is what lets a preservation objective transfer without any one consumer owning a shared latent. SIBLING FINDING, answering this row's explicit instruction: CDQ-007 and CDQ-010 do NOT share a mechanism, so nothing was registered once across both. MECH-459 locates its failure in the RETURN PATHWAY (two stacked two-sided normalisers); MECH-566 locates its failure in the ENCODER OBJECTIVE (GL-invariance of a jointly-trained reconstruction loss). Different operator, different pathway, different falsifier, and a single claim spanning both would have no single falsifier. What they DO share is a family resemblance and a diagnostic habit -- an invariance sitting between a lever and a consumer annihilates the lever, so a 'this lever is exhausted' conclusion should be preceded by a check for one -- recorded in both claims' notes and in the architecture stub rather than merged. OFFERED TO THE RE-POSE, not applied: MECH-566 is offered as a candidate re-operationalization of zworld_actor_adequacy_locus, being the first non-LOCUS shape available to that question and therefore responsive to the GOV-HOTHER-1 rotation event. hypothesis_space_registry.v1.json was NOT edited -- its single producer is /failure-autopsy Step 9b; the re-pose is routed on GFLAG-0312 and the registry corrections on GFLAG-0329. CONSTRAINTS HONOURED: biology lit-pull run FIRST as a precondition sub-step and scoped to TRANSFER, deliberately not duplicating the generic-vs-task-relevant COMPRESSION pull owned by the open chip chip-20260916-sd106-compression-litpull (1023a routes it primary with an explicit do-not-spawn-a-second instruction); no build licensed; no experiment queued; generation v3 and blocks_v3_critical_path unchanged at false. NOTABLE FOR ADJUDICATION: REE already owns the MuZero-shaped lever (config.actor_critic_cotrain_encoder, exercised at V3-EXQ-742/752/772/780/788) and has never pointed it at SD-106's acceptance DV -- but because REE has NO policy-improvement operator, a co-train arm is the predicted DEGENERATE case, so latent participation ratio must be logged under co-training before its DV is read. Cheapest next measurement overall is MECH-568's per-term gradient-norm audit: no substrate change, and it can weaken a claim before anything is built."
     }
   ]
 }
