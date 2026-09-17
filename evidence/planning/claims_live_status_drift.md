@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-09-17T11:17:15Z
+Generated: 2026-09-17T18:15:56Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -29,11 +29,16 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 | SD-017 | `stable/substrate_ceiling` | promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (0)
+## Event-provenance drift -- SOFT (4)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
-_None -- every stamped `evidence` block matches its re-projection._
+| claim | stored evidence.from | re-projected from |
+|-------|----------------------|-------------------|
+| MECH-017 | `_none_` | `failure_autopsy_V3-EXQ-1048_2026-09-17` |
+| SD-082 | `failure_autopsy_V3-EXQ-1028_2026-09-15` | `failure_autopsy_V3-EXQ-1046_2026-09-17` |
+| MECH-482 | `failure_autopsy_V3-EXQ-964b_2026-09-16` | `failure_autopsy_V3-EXQ-1047_2026-09-17` |
+| SD-106 | `failure_autopsy_V3-EXQ-1043_2026-09-17` | `failure_autopsy_V3-EXQ-1023a_2026-09-17` |
 
 ## Never reviewed (no `last_reviewed`) -- INFO (1141 of 1162)
 

@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-09-17T11:19:39Z`  
+Generated: `2026-09-17T18:15:07Z`  
 Last review: `2026-09-17T11:19:24Z`  
-Pending: **3** item(s) -- 1 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
+Pending: **4** item(s) -- 1 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
@@ -10,21 +10,13 @@ Pending: **3** item(s) -- 1 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0
 |--------|-----------|--------|--------------------|
 | `v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3` | 2026-09-17T05:38 | SD-082 | — |
 | `v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched_20260917T102244Z_v3` | 2026-09-17T10:22 | MECH-017 | — |
+| `v3_exq_1023a_sd106_preservation_parity_epochs40_20260917T144824Z_v3` | 2026-09-17T14:48 | SD-106 | — |
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
 | `v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3` | 2026-09-17T02:54 | MECH-482 |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3` | PASS | deficit_readout_magnitude_limited |
-| `v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3` | FAIL | h1_weakened_training_reduced_readout_consequence |
 
 ---
 
