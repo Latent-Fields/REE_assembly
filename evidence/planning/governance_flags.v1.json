@@ -4497,9 +4497,9 @@
       "summary": "Two experiment proposals carry status 'proposed' in experiment_proposals.v1.json while the substrate they need does not exist, so they read as queueable when they are not. EXP-1005 (MECH-328, synthetic vs real z_goal manifold) needs the play-mode subsystem: /usr/bin/grep returns ZERO hits in ree-v3 for z_goal_synthetic, play_to_real and PlayMode, and that subsystem is not even registered in substrate_queue.json. EXP-0855 (MECH-082, hippocampal map distortion propagating through E2) needs MECH-081's E2-to-E1 attentional-sampling channel, which has zero code representation and which the architecture doc itself records as never experimentally probed. Both were found by a read-only pre-flight on 2026-09-17; three sibling proposals checked in the same pass (INV-040, MECH-221, MECH-251) already carried blocked_substrate, so the existing triage missed 2 of 5. Governance should set the blocked_substrate disposition in BOTH proposal files, since a hand-set status in only one is reverted by the next regen.",
       "raised_by_session": "orchestrate-20260917-1138",
       "raised_at": "2026-09-17T11:48:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-17T11:49:12Z",
+      "resolution_note": "Superseded by the corrected reissue raised immediately after it by orchestrate-20260917-1138 on 2026-09-17. GFLAG-0316 named EXP-1005 and EXP-0855, which are the chip-ref numbers of chip-proposal-exp-1005-paced / chip-proposal-exp-0855-paced, NOT proposal_ids -- in experiment_proposals.v1.json those ids belong to unrelated items (EXP-0855 is claim MECH-136). The correct proposal_ids are EXP-0971 (MECH-328) and EXP-0822 (MECH-082). The substantive finding was and remains correct; only the identifiers were wrong."
     },
     {
       "flag_id": "GFLAG-0317",
