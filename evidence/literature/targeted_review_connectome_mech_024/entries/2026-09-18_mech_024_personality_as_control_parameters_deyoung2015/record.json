@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_024",
+  "entry_id": "2026-09-18_mech_024_personality_as_control_parameters_deyoung2015",
+  "timestamp_utc": "2026-09-17T23:43:26Z",
+  "claim_ids_tested": [
+    "MECH-024"
+  ],
+  "source": {
+    "title": "Cybernetic Big Five Theory",
+    "authors": [
+      "Colin G. DeYoung"
+    ],
+    "year": 2015,
+    "venue": "Journal of Research in Personality",
+    "doi": "10.1016/j.jrp.2014.07.004",
+    "pmid": null,
+    "volume": "56",
+    "pages": "33-58"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "This entry is scored against MECH-024's self-identified weakest link -- the claim's own text concedes that 'the personality readout is the weakest operationalisation and should be pre-registered as such'. CB5T is the strongest available external licence for the exact operationalisation REE proposes: traits AS variation in the parameters of goal-directed control mechanisms, not as descriptive summaries of behaviour. If that identification is right, reading personality off LatentStack precision logits and CommitReadiness settings is not a metaphor, it is the definition. Confidence is capped at 0.58 because CB5T is a theoretical synthesis rather than an empirical test, and because it is a framework REE would be adopting rather than evidence REE would be constrained by.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a theory paper. It supplies a definition REE can borrow, not a measurement REE must match, so it cannot falsify MECH-024 and cannot on its own raise the claim's confidence beyond making the personality operationalisation defensible.",
+    "CB5T locates traits in parameter variation ACROSS individuals over developmental time. REE's proposed personality lesion freezes precision logits and readiness floors at their INIT values within a single trained agent. Freezing a parameter at initialisation is not the same manipulation as varying it across agents -- it may abolish the trait dimension rather than shift it, which would show up as a suspiciously large diagonal and could be mistaken for a clean targeted lesion.",
+    "The framework's own distinction between traits and characteristic adaptations cuts against a single personality readout: goals, interpretations and strategies are held to be a separate level from parameter variation. If the ethical commitments REE wants to lesion are characteristic adaptations rather than traits, then in CB5T's own terms personality and ethics sit at different levels of the system and need not couple in the way MECH-024 expects."
+  ],
+  "tags": [
+    "mech_024",
+    "personality",
+    "operationalisation",
+    "cybernetics",
+    "control_parameters",
+    "weakest_axis",
+    "theoretical_review"
+  ],
+  "mapping": {
+    "source_claim_statement": "DeYoung argues that cybernetics -- the study of goal-directed, adaptive systems -- is the best framework for an integrative theory of personality. Psychological individual differences divide into personality traits, which reflect variation in the parameters of evolved cybernetic mechanisms, and characteristic adaptations, which are goals, interpretations and strategies defined relative to an individual's life circumstances. The paper identifies the mechanisms whose parameter variation is responsible for traits at the top three levels of the Big Five hierarchy, describes the causal dynamics between traits and characteristic adaptations, and links trait function and dysfunction to psychopathology and well-being.",
+    "ree_translation": "MECH-024 must operationalise PERSONALITY on built V3 substrate, and proposes to do so as long-run tuning biases -- the learned LatentStack precision logits plus E3 commit-readiness and temperature settings -- read out as a control-sensitivity profile over SalienceCoordinator operating_mode and CommitReadiness.get_readiness across a fixed probe set. CB5T says this is what a personality trait IS: a setting of a parameter in a goal-directed control loop. Under that reading REE's personality axis is not an analogy dressed up in trait vocabulary but a direct instantiation, and the claim's own hedge about it being the weakest operationalisation can be narrowed from 'is this personality at all?' to the sharper empirical question 'does this particular parameter set carry enough variance across seeds to be a non-degenerate readout?'.",
+    "mapping_caveat": "CB5T is a framework, and adopting a framework is not acquiring evidence. Two specific boundaries. First, CB5T grounds traits in BETWEEN-individual parameter variation arising over development; REE's lesion clamps parameters WITHIN one agent at their initialisation values, which may destroy the dimension rather than move along it. Second, CB5T's trait / characteristic-adaptation distinction is a genuine hazard for MECH-024: if REE's ethical constraints are characteristic adaptations rather than trait parameters, CB5T predicts a level separation between the personality and ethics axes, which is closer to MECH-024's falsifying branch than to its confirming one. This entry supports the personality OPERATIONALISATION and is at best neutral, arguably adverse, on the convergence hypothesis itself.",
+    "source_context": "Theoretical synthesis in personality psychology; no new data, integrating the Big Five hierarchy with cybernetic and neurobiological accounts of goal-directed regulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.55,
+    "notes": "Source quality is high for what it is -- a heavily cited integrative framework in a mainstream personality journal -- but 'high-quality theory' is a different currency from 'measured result', and the aggregate confidence is held down accordingly rather than averaged up. Mapping fidelity is the strongest component here because REE's proposed readout matches CB5T's definition almost term for term. Transfer risk is mid-range: the parameter-freezing-versus-parameter-varying mismatch is a real methodological gap and it sits inside the manipulation, not at its edges."
+  }
+}

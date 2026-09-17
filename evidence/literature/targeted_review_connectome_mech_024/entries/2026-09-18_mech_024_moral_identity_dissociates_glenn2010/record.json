@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_024",
+  "entry_id": "2026-09-18_mech_024_moral_identity_dissociates_glenn2010",
+  "timestamp_utc": "2026-09-17T23:43:26Z",
+  "claim_ids_tested": [
+    "MECH-024"
+  ],
+  "source": {
+    "title": "Moral identity in psychopathy",
+    "authors": [
+      "Andrea L. Glenn",
+      "Spassena Koleva",
+      "Ravi Iyer",
+      "Jesse Graham",
+      "Peter H. Ditto"
+    ],
+    "year": 2010,
+    "venue": "Judgment and Decision Making",
+    "doi": "10.1017/S1930297500001662",
+    "pmid": null,
+    "pmc": null,
+    "volume": "5",
+    "issue": "7",
+    "pages": "497-505"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "This is the only entry in the pull that supplies the PERSONALITY row rather than the ethics row, and it does so twice over with opposite signs. A personality-trait measure predicts a self-construct that is defined by its ethical content -- moral identity -- at beta between -0.55 and -0.58, which is a large personality-to-(self x ethics) coupling and the cleanest available human instance of MECH-024's personality row having non-zero off-diagonals. But the same studies find moral identity and moral judgment DISSOCIATING, each carrying an independent relationship with psychopathy. That splits the ETHICS axis into two readouts that do not move together, which is a direct hazard for a design that reads ethics off one number. Confidence at 0.55 reflects sound execution (two studies, 200+ participants each, converging measures) against wholly self-report methodology in non-clinical online samples.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The ethics axis fractionates, mirroring what the bvFTD entry shows for the selfhood axis. Moral identity and moral judgment relate to psychopathy independently: the utilitarian shift in judgment does not explain the weakened moral identity. MECH-024 proposes to read ETHICS as the harm-veto / residue-cost rate on a hazard probe set -- a judgment-flavoured readout. If the identity-flavoured aspect of ethics is what actually couples to selfhood and personality, the chosen readout may be the one that does NOT move, producing a false null in two of the three off-diagonals.",
+    "Psychopathy is measured by self-report (Levenson Self-Report Psychopathy Scale) in non-clinical online samples, and moral identity is likewise self-reported. A single response-style or self-presentation factor could generate the observed association without any coupling between the underlying constructs; the authors themselves list the absence of behavioural data and the reliance on self-report as limitations.",
+    "The design is correlational and between-subjects. MECH-024 requires a LESION: freeze the personality parameters and observe whether the ethics and selfhood readouts move. Trait covariation across people is compatible with a common developmental or genetic cause acting on all three axes independently, which is the common-cause reading MECH-024's falsifier treats as non-confirming."
+  ],
+  "tags": [
+    "mech_024",
+    "personality",
+    "ethics",
+    "selfhood",
+    "personality_row",
+    "ethics_axis_fractionates",
+    "behavioral_human",
+    "counterweight"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across two online studies (approximately 204-221 and 214 participants), individuals scoring higher on the Levenson Self-Report Psychopathy Scale showed significantly weaker moral identity as measured by the Self-Importance of Moral Identity Scale and an adapted good-self assessment (standardised coefficients approximately -0.55 to -0.58). Moral identity and moral judgment dissociated: psychopathy predicted more utilitarian responses on personal moral dilemmas, but that shift did not account for the reduction in moral identity. The authors note the limitations of online sampling, self-report psychopathy measurement and absence of behavioural data.",
+    "ree_translation": "MECH-024's matrix has three rows, and four of the five entries in this pull speak only to the ethics row. This one speaks to the PERSONALITY row. Psychopathy is a trait-level construct -- in CB5T terms a setting of control parameters, which is exactly how MECH-024 proposes to operationalise its personality axis -- and it predicts moral identity, a construct that is simultaneously about the self (what kind of person I take myself to be) and about ethics (which constraints are constitutive of me). A large coefficient from a personality parameter to a self-and-ethics readout is the personality row's off-diagonal in human correlational form. The dissociation finding then cuts the other way and is the more design-relevant half: moral identity and moral judgment are not one readout, so 'the ethics axis' is at least two measurements that need not co-move under a lesion.",
+    "mapping_caveat": "Three transfers, each contestable. First, trait covariation is not lesion response: MECH-024 asks what happens when you FREEZE the personality parameters, and a between-subjects correlation cannot answer that, since a common cause upstream of all three axes produces the same correlations without any coupling. Second, psychopathy is a clinical-adjacent construct with an affective-deficit core, so mapping it onto 'precision logits and readiness floors' imports assumptions about which parameters constitute it that this paper does not license. Third, and most importantly, moral identity has no built V3 readout at all -- REE has a residue-cost rate and a z_self coherence measure, but nothing that measures which constraints the agent takes as constitutive of itself. The finding most useful to MECH-024 therefore names a readout the substrate does not currently have.",
+    "source_context": "Non-clinical adult online samples (US, mixed age and education); self-report psychopathy, moral identity and moral-dilemma judgement measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Source quality is middling-good: two studies with converging measures and adequate samples, undercut by being wholly self-report in online panels, which is exactly the design where a self-presentation factor can manufacture the headline association. Mapping fidelity is limited by moral identity having no V3 analogue. Transfer risk is the highest component because the study is correlational and MECH-024 is a lesion claim -- the inferential gap between the two is the gap the REE experiment exists to close, so this entry sharpens the design rather than substituting for it."
+  }
+}

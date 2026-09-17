@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_024",
+  "entry_id": "2026-09-18_mech_024_vmpfc_lesion_selective_moral_shift_koenigs2007",
+  "timestamp_utc": "2026-09-17T23:43:26Z",
+  "claim_ids_tested": [
+    "MECH-024"
+  ],
+  "source": {
+    "title": "Damage to the prefrontal cortex increases utilitarian moral judgements",
+    "authors": [
+      "Michael Koenigs",
+      "Liane Young",
+      "Ralph Adolphs",
+      "Daniel Tranel",
+      "Fiery Cushman",
+      "Marc Hauser",
+      "Antonio Damasio"
+    ],
+    "year": 2007,
+    "venue": "Nature",
+    "doi": "10.1038/nature05631",
+    "pmid": "17377536",
+    "pmc": "PMC2244801",
+    "volume": "446",
+    "issue": "7138",
+    "pages": "908-911"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Graded against MECH-024's NON-DEGENERACY PRECONDITION rather than against its coupling hypothesis, and on that narrower question it is strong: a focal, anatomically specified lesion moves the ethics readout, and moves it SELECTIVELY -- the same patients judged normally on other dilemma classes. That is the diagonal cell of the ethics row being demonstrably non-inert and demonstrably targeted, which is the precondition MECH-024 says must hold before any off-diagonal is interpretable. Held at 0.68 by the sample: six patients. It says nothing directly about whether the lesion also moved selfhood or personality readouts, because those were not measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "N = 6. Focal bilateral vmPFC damage is rare and the patients are the same Iowa cohort that appears throughout this literature, so the finding is not independent of the other vmPFC results one might cite alongside it. A coupling matrix argued from this cohort is argued from roughly six people.",
+    "Only the ethics readout was measured. This entry certifies the DIAGONAL cell and is silent on every off-diagonal in the ethics row -- whether the same lesion shifted self-representation or trait-level control sensitivity was not tested here, so any claim that it did must come from a different literature.",
+    "The effect is confined to high-conflict personal moral dilemmas; judgements were normal elsewhere. If REE's harm-veto / residue-cost readout on a fixed hazard probe set is not similarly conflict-graded, the analogy to 'the ethics lesion moves its own readout' may hold only over a narrow slice of the probe set, and a probe set chosen without that structure could show an inert lesion for reasons that are about probe design rather than about the substrate."
+  ],
+  "tags": [
+    "mech_024",
+    "ethics",
+    "diagonal_cell",
+    "non_degeneracy_precondition",
+    "vmpfc",
+    "lesion",
+    "targeted_not_global"
+  ],
+  "mapping": {
+    "source_claim_statement": "Six patients with focal bilateral damage to ventromedial prefrontal cortex produced an abnormally utilitarian pattern of judgements on moral dilemmas pitting aggregate welfare against emotionally aversive personal harm, while their judgements on other classes of moral dilemma were normal. The authors conclude vmPFC is critical for normal judgements of right and wrong on this selective set, supporting a necessary role for emotion in generating those judgements.",
+    "ree_translation": "MECH-024 states a precondition before any of its cross-lesion inferences are allowed to run: each of the three targeted lesions must move ITS OWN readout, or the matrix is vacuous. This is the human demonstration for the ethics row. A focal lesion to an anatomically specified region shifts the moral readout, and does so without wrecking moral judgement generally -- which is the additional property MECH-024 needs, since the claim requires the lesion to be targeted rather than globally disruptive. In REE terms this is the closest external evidence that freezing or zeroing the residue field should be expected to produce a measurable, bounded change in harm-veto rate rather than either nothing or total collapse.",
+    "mapping_caveat": "The substrate mapping is analogical, not anatomical. REE's ethics lesion is freezing or zeroing the residue field (ree_core/residue/field.py); vmPFC is not the residue field, and the claim that the residue field is REE's vmPFC analogue is itself an architectural commitment rather than a measured correspondence. What transfers is the METHODOLOGICAL point -- that a targeted lesion to a valuation structure produces a selective, dilemma-class-specific shift in moral output rather than a proportional degradation everywhere. Treat this entry as calibrating what a non-degenerate, targeted diagonal cell should look like, not as evidence about the coupling claim proper.",
+    "source_context": "Human focal-lesion patients (Iowa cohort), bilateral ventromedial prefrontal damage, moral-dilemma judgement task against brain-damaged and healthy comparison groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.5,
+    "notes": "Source quality reflects Nature-level lesion work with matched comparison groups against an N of six -- the design is about as good as focal bilateral vmPFC damage allows, and the result survived a published reanalysis exchange. Mapping fidelity is moderate because the entry is scored against the non-degeneracy precondition, which it fits well, rather than against the convergence claim, which it does not address. Transfer risk sits at 0.5 because the residue-field-as-vmPFC correspondence is assumed by REE rather than established."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_024",
+  "entry_id": "2026-09-18_mech_024_moral_faculty_drives_identity_strohminger2015",
+  "timestamp_utc": "2026-09-17T23:43:26Z",
+  "claim_ids_tested": [
+    "MECH-024"
+  ],
+  "source": {
+    "title": "Neurodegeneration and Identity",
+    "authors": [
+      "Nina Strohminger",
+      "Shaun Nichols"
+    ],
+    "year": 2015,
+    "venue": "Psychological Science",
+    "doi": "10.1177/0956797615592381",
+    "pmid": "26270072",
+    "pmc": null,
+    "volume": "26",
+    "issue": "9",
+    "pages": "1469-1479"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the closest thing in the human literature to MECH-024's off-diagonal cell, and it has the property the REE design most needs: STRUCTURE rather than COLLAPSE. Three neurodegenerative diseases of differing severity give a natural lesion gradient; structural equation modelling isolates moral-faculty damage as the predictor of perceived identity discontinuity while amnesia and global cognitive decline come out null. A null on amnesia is exactly the control MECH-024's falsifier demands -- it rules out the reading in which every readout degrades proportionally under every lesion. Held below 0.8 because the readout is caregiver-PERCEIVED identity rather than any first-person or mechanistic measure of self-representation, and because the lesions are diseases, not targeted ablations, so the ethics manipulation is confounded with everything else frontotemporal dementia does.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dependent variable is THIRD-PERSON perceived identity, supplied by a caregiver who is also rating the symptoms. REE's z_self coherence readout is internal to the agent and has no observer; if the human effect is partly about what damage to moral conduct does to an OBSERVER's model of the patient rather than to the patient's own self-representation, the mapping to a cross-lesion coupling matrix inside one agent fails outright.",
+    "Frontotemporal dementia is not a targeted ethics lesion. It is diffuse frontal and anterior temporal degeneration that also alters personality, affect and insight, so the study cannot separate a moral-faculty pathway to identity from a personality pathway to identity. Read strictly, this is evidence that SOME frontally-mediated axis couples to identity, not specifically that the ethics axis does -- and MECH-024 requires the axes to be told apart.",
+    "The design is cross-sectional and correlational within disease groups; the SEM establishes which symptom domain carries the variance, not that damaging the moral faculty causes identity discontinuity. A shared upstream factor (e.g. degeneration severity in a region serving both) would produce the same covariance pattern and is not excluded."
+  ],
+  "tags": [
+    "mech_024",
+    "selfhood",
+    "ethics",
+    "off_diagonal",
+    "frontotemporal_dementia",
+    "structured_not_global",
+    "clinical_case"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 248 caregivers of patients with frontotemporal dementia, Alzheimer's disease or amyotrophic lateral sclerosis, structural equation models showed that injury to the moral faculty plays the primary role in perceived identity discontinuity, while other cognitive deficits including amnesia had no measurable impact on identity persistence. Frontotemporal dementia produced the largest effect on perceived identity and ALS the smallest. Perceived identity change fully mediated the effect of disease on deterioration of the patient-caregiver relationship. The authors present this as a departure from theories grounding personal identity in memory, distinctiveness, dispositional emotion or global mental function.",
+    "ree_translation": "MECH-024 predicts that lesioning the ETHICS axis moves the SELFHOOD readout -- one specific off-diagonal cell of its 3x3 coupling matrix. This study is that cell in human clinical form: degrade the moral faculty and the self-continuity readout moves; degrade memory and it does not. The null on amnesia is the more important half for REE, because MECH-024's falsifier explicitly rejects an off-diagonal pattern explained by a single global-disruption factor. Here the off-diagonal is selective: one symptom domain carries it, another equally severe domain does not. That is the signature of structured coupling, which is what the CONFIRMING branch asks for.",
+    "mapping_caveat": "Two boundaries. First, the human 'moral faculty' as operationalised here is a bundle of conduct-level symptoms rated by a relative -- honesty, empathy, cruelty, moral reasoning -- whereas REE's ethics readout is the harm-veto and residue-cost rate on a fixed hazard probe set. Overlap is thematic, not measurement-level. Second, and more serious for MECH-024's non-degeneracy precondition, disease is not a targeted lesion: bvFTD moves personality and ethics together, so this study cannot certify that the ethics lesion is TARGETED in MECH-024's sense. It shows a coupling exists; it does not show which row of the matrix it belongs to.",
+    "source_context": "Human clinical sample; 248 family caregivers rating patients with three neurodegenerative diseases on symptom domains and on perceived identity change."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high for a study of this kind -- large N for a clinical caregiver sample, a disease gradient that functions as a dose manipulation, SEM with an informative null. Mapping fidelity is the limiting term: perceived identity is an observer's construct and z_self coherence is not. Transfer risk is moderate rather than high because the finding REE actually leans on is the DISSOCIATION (moral yes, memory no), which is a structural fact about the covariance and travels better than the absolute effect does."
+  }
+}

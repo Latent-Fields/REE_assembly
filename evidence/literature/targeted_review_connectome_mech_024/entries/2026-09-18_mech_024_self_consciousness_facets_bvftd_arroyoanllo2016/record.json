@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_024",
+  "entry_id": "2026-09-18_mech_024_self_consciousness_facets_bvftd_arroyoanllo2016",
+  "timestamp_utc": "2026-09-17T23:43:26Z",
+  "claim_ids_tested": [
+    "MECH-024"
+  ],
+  "source": {
+    "title": "Self-Consciousness in Patients with Behavioral Variant Frontotemporal Dementia",
+    "authors": [
+      "Eva M. Arroyo-Anllo",
+      "Adele Turpin Bouston",
+      "Marie-Noelle Fargeau",
+      "Begona Orgaz Baz",
+      "Roger Gil"
+    ],
+    "year": 2016,
+    "venue": "Journal of Alzheimer's Disease",
+    "doi": "10.3233/JAD-150821",
+    "pmid": "26599058",
+    "pmc": null,
+    "volume": "49",
+    "issue": "4",
+    "pages": "1021-1029"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Included because it is the one entry in this pull that measures selfhood and ethics INSIDE the same instrument on the same patients, and it returns a split answer. Moral judgment is among the most disturbed facets of self-consciousness in bvFTD, which is coupling; but awareness of personal identity is among the LEAST disturbed, which is dissociation within the very axis MECH-024 wants to treat as one readout. Both halves are relevant and they point opposite ways, hence `mixed`. Confidence is held at 0.5 by a small sample (21 patients, 21 matched controls), a single questionnaire instrument whose author-defined facet structure is doing all the interpretive work, and facet results reported as most-versus-least disturbed rather than with effect sizes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The selfhood axis fractionates. Personal-identity awareness is preserved while moral judgment and anosognosia are disturbed, in the same patients on the same instrument. MECH-024 treats SELFHOOD as a single readout (z_self coherence); if the human construct splits into facets that dissociate under one lesion, a single scalar z_self readout may average away exactly the structure the coupling matrix is trying to detect, and a null off-diagonal could be an artefact of readout aggregation rather than a fact about the substrate.",
+    "Anosognosia is among the most disturbed facets, and anosognosia is loss of insight into one's own deficits. That raises a measurement hazard with no clean REE analogue: a patient whose self-monitoring is impaired is an unreliable reporter of their own self-consciousness, so the instrument's selfhood facets and its ethics facet may be contaminated by a common impaired-introspection factor rather than being coupled.",
+    "The authors attribute the deficit pattern to orbito-frontal dysfunction, which is a single-region account. A single shared upstream region driving both the moral and the self facets is the 'common cause' reading that MECH-024's falsifier warns about -- structured coupling in the matrix sense requires the axes to influence one another, not merely to share a substrate that can be damaged together."
+  ],
+  "tags": [
+    "mech_024",
+    "selfhood",
+    "ethics",
+    "facet_dissociation",
+    "bvftd",
+    "readout_aggregation_hazard",
+    "counterweight"
+  ],
+  "mapping": {
+    "source_claim_statement": "Twenty-one patients with behavioural variant frontotemporal dementia and 21 matched controls completed a self-consciousness questionnaire measuring personal identity, anosognosia, affective state, body representation, prospective memory, introspection and moral judgments. The most disturbed aspects in patients were anosognosia, affective state and moral judgments; the least disturbed were awareness of identity and of body representation. No significant correlations were found between the self-consciousness score and any clinical or demographic characteristic. The authors conclude the core deficiency is in behavioural self-consciousness aspects, which they take to be more dependent on orbito-frontal functioning.",
+    "ree_translation": "This is the only source in the MECH-024 pull that puts a selfhood readout and an ethics readout in the same instrument, administered to the same patients under the same lesion -- structurally the closest human approximation to one row of MECH-024's coupling matrix. The result is genuinely two-sided. Moral judgment moving together with other self-consciousness facets is the ethics-selfhood coupling MECH-024 predicts. But identity awareness being among the LEAST disturbed facets means the coupling does not reach the facet REE's z_self coherence readout most resembles. Taken at face value, the human data say: damage this region and the evaluative, conduct-facing parts of self-consciousness go, while the sense of being a continuing particular person stays.",
+    "mapping_caveat": "The instrument is a questionnaire with author-defined facets, and the entire interpretive weight here rests on the assumption that 'awareness of identity' is the human correlate of z_self coherence while 'moral judgments' is the human correlate of the harm-veto rate. Neither identification is established; both are mine. There is also a direct tension with the Strohminger and Nichols entry in this same directory, which found moral-faculty damage to be the primary driver of identity discontinuity -- but the two studies measure identity from opposite sides, third-person perceived identity there versus first-person reported identity awareness here, so the disagreement may be informative rather than contradictory. That contrast is the most useful thing in this entry and should not be resolved by picking whichever result suits the claim.",
+    "source_context": "Human clinical sample; 21 bvFTD patients and 21 controls matched on age, education, gender and nationality, assessed with a multi-facet self-consciousness questionnaire."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Source quality is the weakest of the five entries: small N, one questionnaire, facet-level results reported qualitatively rather than with effect sizes. It earns its place on design rather than power -- it is the only study here that measures both axes at once, which is what a coupling claim needs and what larger single-axis studies cannot provide. Mapping fidelity is held at 0.5 because the facet-to-REE-readout correspondences are asserted, not measured."
+  }
+}
