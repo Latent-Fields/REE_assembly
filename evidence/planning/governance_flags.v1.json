@@ -4758,6 +4758,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0335",
+      "claim_ids": [
+        "MECH-042"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MECH-042 SPLIT PER ITS OWN 2026-09-16 DISPOSITION. Sub-claim (1) READ-ONLY/NON-PARTICIPATION LANDED as a ree-v3 contract test, tests/contracts/test_mech042_telemetry_readonly_nonparticipation.py: 5 checks (bit-identical action / weight / commit trajectory between a read-every-tick arm and a never-read arm; a non-degeneracy check that every named channel is present and the surface non-constant, so the bit-identity checks cannot pass vacuously; and C5 on the claim's specifically-named risk that agent.py already reads e3.last_score_diagnostics into _last_control_vector). It was mutation-tested before landing -- injecting one torch.rand(1) into the read path breaks C1 and C2 -- so the green is not vacuous. Sub-claim (2) DEVELOPMENTAL-SAFETY LEAD TIME was authored as V3-EXQ-1053, smoke-tested, then REFUSED at Step 4.5 on a BLOCKING red-team verdict; NOT queued, slot closed --not-landed, driver committed unqueued with a DO-NOT-QUEUE header. Verified blockers: (1) the MODE_LOCK pathology arm is INERT -- SalienceCoordinatorConfig.enter_thresholds is field(default_factory=dict) and agent.py never populates it, so the driver's fallback wrote dead keys while the real mode names are external_task/internal_planning/internal_replay/offline_consolidation (salience_coordinator.py:75-80, :316); the pilot corroborates exactly, CONTROL and MODE_LOCK both ran 221 ticks bit-identically. Even a corrected injection would be unobservable because operating_mode is a softmax computed at :489-490 upstream of the enter-threshold gate at :508-522, which acts only on _current_mode, a channel not in the telemetry vector. (2) The injected-channel exclusion is incomplete and rebuilds the tautology it exists to prevent: recalibrate_precision_to hard-sets _running_variance, and committed = commit_variance < effective_threshold reads that same variable (e3_selector.py:3843-3847), so the RETAINED channel is_committed is the identity 1[injected < threshold]. (3) Lead time is censored at each cell's own tick count, which is an OUTCOME of the manipulation (the never-committing arm survived 366 ticks vs 221), so a longer-running cell manufactures a larger positive lead. (4) The matched-false-alarm precondition -- the degeneracy guard the claim itself names -- is in-sample arithmetic (0.95 quantile then crossing rate on the same series) and cannot fail under any outcome. OWED: repair (1)-(4) and re-run Step 4.5 before queueing sub-claim (2). Sub-claim (1) needs no further run.",
+      "raised_by_session": "queue-exp-20260917-starved",
+      "raised_at": "2026-09-17T20:03:40Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
