@@ -5683,7 +5683,11 @@
       "task_claim_session_id": "igw-auto-igw-243-literature-proposal-for-mech-023-20260917T201212Z",
       "task_claim_claimed_at": "2026-09-17T20:12:12Z",
       "assigned_at": "2026-09-17T19:56:21Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T20:50:37Z",
+      "completion_summary": "lit-pull MECH-023: 5 entries (0 -> literature_confidence 0.745, quadrant plausible_unproven); REE_assembly origin/master bd372beb7b2 + 01b3b6ce39a",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-023: 5 entries (0 -> literature_confidence 0.745, quadrant plausible_unproven); REE_assembly origin/master bd372beb7b2 + 01b3b6ce39a"
     }
   ],
   "dispositions": [
@@ -8150,6 +8154,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T16:21:10Z",
       "re_eligible_after": "2026-09-19T16:21:10Z"
+    },
+    {
+      "stable_hash": "bae5fb819655",
+      "igw_id_at_disposition": "IGW-20260917-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-023"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-023",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T20:50:38Z",
+      "re_eligible_after": "2026-09-19T20:50:38Z"
     }
   ]
 }
