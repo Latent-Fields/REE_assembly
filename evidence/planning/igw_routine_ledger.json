@@ -5436,7 +5436,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-16T14:56:44Z",
       "staged_at": "2026-09-16T14:56:44Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-17T15:49:20Z",
+      "completion_summary": "WITHDRAWN on user decision 2026-09-17T15:36Z (Orchestrator decision lane, orchestrate-20260917-1532). The discriminating probe mandated by the 2026-09-16 cross-model red-team (F3) reported 2026-09-17T12:29Z (chip-20260916-zworld-sense-path-parity-probe-spike; ree-v3 cd60233+72befcc, REE_assembly 3e57e1c3fe4) and resolved attribution as NEITHER cause: the ~0.10 sense()-vs-direct z_world decodability gap does not reproduce (+0.007/+0.019 paired over 50 cells vs 1030's +0.1015; -0.018/+0.002 at 10x probe budget; -0.028/-0.023 standardised). Cause B refuted by an encoder-free matched-width control; Cause A's fix recovers ~0.00. Root cause is linear-probe under-convergence on 5x-smaller features plus episode-split noise. Both candidate fixes are therefore moot on decodability grounds, so this build is not run. What survives is a genuine code-level train/inference path divergence, kept as a hygiene/latent-hazard item on the substrate_queue entry, gating nothing.",
+      "outcome": "NO_OP",
+      "outcome_evidence": "WITHDRAWN on user decision 2026-09-17T15:36Z (Orchestrator decision lane, orchestrate-20260917-1532). The discriminating probe mandated by the 2026-09-16 cross-model red-team (F3) reported 2026-09-17T12:29Z (chip-20260916-zworld-sense-path-parity-probe-spike; ree-v3 cd60233+72befcc, REE_assembly 3e57e1c3fe4) and resolved attribution as NEITHER cause: the ~0.10 sense()-vs-direct z_world decodability gap does not reproduce (+0.007/+0.019 paired over 50 cells vs 1030's +0.1015; -0.018/+0.002 at 10x probe budget; -0.028/-0.023 standardised). Cause B refuted by an encoder-free matched-width control; Cause A's fix recovers ~0.00. Root cause is linear-probe under-convergence on 5x-smaller features plus episode-split noise. Both candidate fixes are therefore moot on decodability grounds, so this build is not run. What survives is a genuine code-level train/inference path divergence, kept as a hygiene/latent-hazard item on the substrate_queue entry, gating nothing."
     },
     {
       "igw_id": "IGW-20260916-240",
@@ -8053,6 +8057,21 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T13:48:23Z",
       "re_eligible_after": "2026-09-19T13:48:23Z"
+    },
+    {
+      "stable_hash": "f2a1a5aab7ab",
+      "igw_id_at_disposition": "IGW-20260916-217",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: SD-ZWORLD-SENSE-PATH-PARITY",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T15:49:21Z",
+      "re_eligible_after": "2026-09-19T15:49:21Z"
     }
   ]
 }
