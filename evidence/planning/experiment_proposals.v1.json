@@ -15490,14 +15490,27 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_023",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "residue-field-ring-capacity",
+        "residue-field-kernel-resolution"
+      ],
+      "blocked_note": "Refused at /queue-experiment Step 4.5 (adversarial design review, verdict BLOCKING); both findings independently re-measured and CONFIRMED 2026-09-17. MECH-023's registered falsifier needs a fork of a trained agent to carry a DIVERGENT harm-path history, read as pre-sampling E3 candidate geometry. Two structural blockers: (1) CAPACITY -- RBFLayer.add_residue is a 32-slot RING BUFFER (num_basis_functions=32 under REEConfig.from_dims; centers.data[idx] is OVERWRITTEN and next_center_idx wraps mod 32), and harm fires on 62.5% of steps, measured 895 harm events into 32 slots = 28 ring wraps in 720 steps -- so injecting a fork history RELOCATES the most-recent trained centres instead of adding, and the field is a sliding window over the last 32 harm locations rather than a path. (2) RESOLUTION -- residue kernel_bandwidth = 1.0 while the entire visited z_world manifold has max pairwise distance 0.1249, so the two most distant reachable points differ by 0.8% to the kernel (exp(-0.1249^2/2) = 0.9922); the residue field is spatially near-uniform, i.e. a near-broadcast constant, which is argmin-invariant. NOT the f_dominance_conversion_ceiling: that Step 2.5c overlap was audited and cleared -- V3-EXQ-936's ~1e-40 residue variance share is an EMPTY field, while V3-EXQ-697 with a POPULATED field measured residue flipping the pre-sampling argmin on 6.0-99.6% of decisions. Full measurements, the design, and the release condition: REE_assembly/evidence/planning/mech023_residue_geometry_substrate_blocked_20260917.md",
+      "gated_on": [
+        "residue-field-ring-capacity",
+        "residue-field-kernel-resolution"
+      ],
+      "gated_utc": "2026-09-17T21:16:49Z",
+      "gated_by_session": "igw-242-proposal-for-mech-023",
+      "gating_reason": "residue field cannot represent a harm PATH (32-slot ring, 28 wraps/720 steps) and cannot resolve WHERE harm occurred (kernel bandwidth 1.0 vs manifold diameter 0.125 -> 0.992 RBF contrast between the two most distant points)",
+      "release_condition": "BOTH: (a) residue capacity exceeds a trained run's harm-event count so a fork history is additive not a relocation (num_harm_events < num_centers), or an append-only/consolidating accumulation path replaces the ring; AND (b) residue kernel bandwidth is commensurate with the z_world manifold so distinct visited regions are resolvable (target pole_sep/bandwidth >= 2, measured 0.125). Both complicated (buildable); route via /implement-substrate."
     },
     {
       "acceptance_checks": [
