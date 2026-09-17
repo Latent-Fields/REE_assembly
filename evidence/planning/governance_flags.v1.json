@@ -4427,6 +4427,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0312",
+      "claim_ids": [
+        "SD-106",
+        "INV-088",
+        "MECH-457",
+        "SD-018"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "GOV-FROZEN-1 FAN-OUT RECURRENCE, ACTIONABLE, user-ratified routing (2026-09-17 governance cycle): the question 'zworld_actor_adequacy_locus' has reached the FANOUT_RECURRENCE_N=3 threshold at FOUR distinct labelled portfolios -- exq1002_redteam_findings_20260904.md (+2), failure_autopsy_V3-EXQ-1008_2026-09-08 (+1), the V3-EXQ-1041 driver itself (+4), and failure_autopsy_V3-EXQ-1041_2026-09-16 (+2). Every portfolio was individually legitimate; THE RECURRENCE IS THE SIGNAL, and the reading GOV-FROZEN-1 prescribes is that the question may be MIS-POSED rather than under-enumerated. USER DECISION at this cycle's walk: route a re-pose of the operationalization, and do NOT open a fifth portfolio on the current framing until that re-pose has happened. NON-CONVERGENCE EVIDENCE, reported on BOTH denominators as the rule requires: the question carries 11 legs of which only 2 predate any fan-out, so the denominator inflated ~5.5x while the campaign was failing to converge; leg states are 4 confirmed / 3 alive / 2 eliminated / 2 split, and it carries NO top-level growth_restriction, so it is LIVE and still open to further growth (it is NOT in the acknowledged bucket). CONVERGING SECOND SIGNAL: the same question is simultaneously one of the four GOV-HOTHER-1 model-misspecification CANDIDATES (>=2 confirmed legs coexisting with >=1 alive leg and no h_other_events entry recorded) -- four confirmed legs that have not closed the question is the machine-visible form of 'several legs are simultaneously required', which points at partition misspecification rather than at needing more legs. Both audits point the same way. PRODUCER BOUNDARY, stated so the next session does not get it wrong: hypothesis_space_registry.v1.json has a SINGLE producer (/failure-autopsy Step 9b) and governance is derive-only over it, so this cycle deliberately patched NOTHING in the registry. The re-pose and any top-level growth_restriction must be authored by a /failure-autopsy session, which is also the only route that can record an h_other_events entry with its routed response (rotation / partition_expansion). Warn-only; promotes and demotes nothing (these are questions, not claims).",
+      "raised_by_session": "governance-20260917",
+      "raised_at": "2026-09-17T11:20:52Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
