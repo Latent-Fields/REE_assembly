@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-17T20:38:08.724106Z`
+Generated: `2026-09-17T23:49:53.872102Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -106,6 +106,7 @@ Generated: `2026-09-17T20:38:08.724106Z`
 | `targeted_review_connectome_mech_016` | [`2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012`](targeted_review_connectome_mech_016/entries/2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012/record.json) | 5 | [`summary`](targeted_review_connectome_mech_016/entries/2026-09-15_mech_016_sleep_deprivation_d2r_downregulation_volkow2012/summary.md) |
 | `targeted_review_connectome_mech_022` | [`2026-04-02_mech_092_awake_remote_replay_karlsson2009`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/record.json) | 4 | [`summary`](targeted_review_connectome_mech_022/entries/2026-04-02_mech_092_awake_remote_replay_karlsson2009/summary.md) |
 | `targeted_review_connectome_mech_023` | [`2026-09-17_mech_023_replay_not_simple_experience_gupta2010`](targeted_review_connectome_mech_023/entries/2026-09-17_mech_023_replay_not_simple_experience_gupta2010/record.json) | 5 | [`summary`](targeted_review_connectome_mech_023/entries/2026-09-17_mech_023_replay_not_simple_experience_gupta2010/summary.md) |
+| `targeted_review_connectome_mech_024` | [`2026-09-18_mech_024_vmpfc_lesion_selective_moral_shift_koenigs2007`](targeted_review_connectome_mech_024/entries/2026-09-18_mech_024_vmpfc_lesion_selective_moral_shift_koenigs2007/record.json) | 5 | [`summary`](targeted_review_connectome_mech_024/entries/2026-09-18_mech_024_vmpfc_lesion_selective_moral_shift_koenigs2007/summary.md) |
 | `targeted_review_connectome_mech_025` | [`2026-04-28_mech_025b_soa_brain_disorders_malik2022`](targeted_review_connectome_mech_025/entries/2026-04-28_mech_025b_soa_brain_disorders_malik2022/record.json) | 9 | [`summary`](targeted_review_connectome_mech_025/entries/2026-04-28_mech_025b_soa_brain_disorders_malik2022/summary.md) |
 | `targeted_review_connectome_mech_026` | [`2026-04-02_mech_026_vigilance_arousal_physiology_2006`](targeted_review_connectome_mech_026/entries/2026-04-02_mech_026_vigilance_arousal_physiology_2006/record.json) | 6 | [`summary`](targeted_review_connectome_mech_026/entries/2026-04-02_mech_026_vigilance_arousal_physiology_2006/summary.md) |
 | `targeted_review_connectome_mech_029` | [`2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019`](targeted_review_connectome_mech_029/entries/2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019/record.json) | 6 | [`summary`](targeted_review_connectome_mech_029/entries/2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019/summary.md) |
