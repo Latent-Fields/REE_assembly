@@ -3127,3 +3127,4 @@ One line per hourly tick. ASCII only.
 2026-09-17T06:51:24Z no eligible item (skipped 246): IGW-20260917-001:skill /governance not allowed; IGW-20260917-002:skill /governance not allowed; IGW-20260917-003:skill /governance not allowed
 2026-09-17T07:55:52Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 246 items, 32 ready, 0 in flight)
 2026-09-17T07:54:23Z SPAWN IGW-20260917-235 skill=/queue-experiment prio=40 uuid=26a06ba4-c6c8-4e61-87c2-7e4eb61a2266 pid=73059 worktree=igw-235-proposal-for-mech-018
+2026-09-17T08:05:40Z auto-defer igw-235-proposal-for-mech-018 hash=3571ffe17d6e for 48h (complete)
