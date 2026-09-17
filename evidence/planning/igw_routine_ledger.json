@@ -5612,7 +5612,11 @@
       "task_claim_session_id": "igw-auto-igw-242-proposal-for-mech-021-20260917T143001Z",
       "task_claim_claimed_at": "2026-09-17T14:30:01Z",
       "assigned_at": "2026-09-17T14:28:03Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T16:21:01Z",
+      "completion_summary": "queued V3-EXQ-1050 for MECH-021 (ree-v3 d269a820cd, live in coordinator DB); red-team BLOCKING -> 7 fixed 1 declared; Step 7 registry flip barred by a rival claim, raised as GFLAG-0325",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "queued V3-EXQ-1050 for MECH-021 (ree-v3 d269a820cd, live in coordinator DB); red-team BLOCKING -> 7 fixed 1 declared; Step 7 registry flip barred by a rival claim, raised as GFLAG-0325"
     },
     {
       "igw_id": "IGW-20260917-243",
@@ -8090,6 +8094,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T16:15:42Z",
       "re_eligible_after": "2026-09-19T16:15:42Z"
+    },
+    {
+      "stable_hash": "f3517989b566",
+      "igw_id_at_disposition": "IGW-20260917-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-021"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-021",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T16:21:10Z",
+      "re_eligible_after": "2026-09-19T16:21:10Z"
     }
   ]
 }
