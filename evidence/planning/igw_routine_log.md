@@ -3161,3 +3161,6 @@ One line per hourly tick. ASCII only.
 2026-09-17T15:49:47Z complete f2a1a5aab7ab staged->completed outcome=NO_OP: WITHDRAWN on user decision 2026-09-17T15:36Z (Orchestrator decision lane, orches
 2026-09-17T15:50:20Z GC removed worktree igw-217-substrate-ready-sd-zworld-sense (removed; branch deleted)
 2026-09-17T16:15:42Z auto-defer igw-243-literature-proposal-for-mech-021 hash=128b21ecf607 for 48h (complete)
+2026-09-17T16:17:40Z complete igw-243-literature-proposal-for-mech-021 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-021: 5 entries (targeted_review_mech_021), literature_confidence 0
+2026-09-17T16:21:10Z retire-proposal EXP-0759 -> executed (igw-242-proposal-for-mech-021; complete)
+2026-09-17T16:21:10Z auto-defer igw-242-proposal-for-mech-021 hash=f3517989b566 for 48h (complete)
