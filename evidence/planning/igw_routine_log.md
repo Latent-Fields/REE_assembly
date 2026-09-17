@@ -3157,3 +3157,4 @@ One line per hourly tick. ASCII only.
 2026-09-17T14:28:03Z SPAWN IGW-20260917-242 skill=/queue-experiment prio=40 uuid=b6430fc7-eed9-4970-9674-e3500d4aa465 pid=85838 worktree=igw-242-proposal-for-mech-021
 2026-09-17T15:36:49Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
 2026-09-17T15:33:51Z SPAWN IGW-20260917-243 skill=/lit-pull prio=40 uuid=5a4794d5-aee7-4b16-8cdc-adb3b1b0eeed pid=40210 worktree=igw-243-literature-proposal-for-mech-021
+2026-09-17T15:49:21Z auto-defer f2a1a5aab7ab hash=f2a1a5aab7ab for 48h (complete)
