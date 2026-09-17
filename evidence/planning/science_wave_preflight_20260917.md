@@ -230,10 +230,49 @@ read "2 live campaign(s)" in its preexit check and then reported "Zero science
 entries" at Step 4, because `list --live` is coordinator-first while
 `dispatch_candidate_order` is file-based.
 
-Two follow-ons, both in flight:
-- **Server half** -- `chip-20260917-coordinator-science-lane-schema`: teach
-  `/campaign/add` the science lane. Note `campaign_is_live()` carries the same
-  `lane != CAMPAIGN_LANE` test, so the id regex alone is not sufficient.
+Two follow-ons, both since RESOLVED:
+- **Server half** -- `chip-20260917-coordinator-science-lane-schema`, LANDED
+  ree-v3 `2e2bd598af` and deployed on the hub. (`campaign_is_live()` carried the
+  same `lane != CAMPAIGN_LANE` test, so the id regex alone was not sufficient --
+  the fix covered both.)
 - **Client half** -- LANDED, REE_Working `382333121`: `dispatch_campaigns.py`
   now DIES on a coordinator rejection rather than falling back to git, so this
   failure can never again read as success.
+
+## The lane needed THREE fixes, and only the first was visible by inspection
+
+Recorded because a future re-curation will otherwise stop at the first one and
+repeat the other two. Each layer was correct in isolation and failed at the seam
+with the next; each was found only by actually trying to dispatch, never by
+reading:
+
+1. **The lane itself** (REE_Working `0ae48e3f7`). Science was refused from the
+   curation ledger, so it could not be a cloud candidate at all. Found by reading.
+2. **The coordinator** (ree-v3 `2e2bd598af`). `/campaign/add` rejected
+   `lane: science` on its `campaign_id` regex; the git fallback then wrote entries
+   that verified on origin and were deleted by the materializer two minutes later.
+   Found by curating and watching them vanish.
+3. **The launcher** (REE_Working `41d771ce3`,
+   `chip-20260917-dispatchremote-selftarget-ssh-gap`). A resident cycle on
+   `ree-cloud-5` could not launch a campaign whose `target_box` is `ree-cloud-5`:
+   `dispatch_remote_launch.py` coupled the EXECUTION target (SSH vs local
+   subprocess) to the CAMPAIGN-TARGET-MATCH identity through the single `--box`
+   string. `--box ree-cloud-5` self-SSHed and got `Permission denied` (no box has
+   a self-SSH key); `--box local` set `this_host=None` and `machine_class="mac"`,
+   failing `targets_box()`. Fixed with `is_self_target()`, resolved through
+   `machine_identity.canonical_machine_name` (allowlist, never a raw hostname
+   compare). Found by `orchestrate-20260917-1532` triggering a real cycle: 9
+   minutes, 1m51s CPU, both entries listed, neither launched.
+
+**The generalisable bit: LISTING IS NOT LAUNCHING.** This session verified that
+`ree-cloud-5` listed both entries, ordered them ahead of the bundles and exempted
+them from the starvation withhold -- all true, all verified -- and inferred from
+that that a cycle trigger would dispatch them. It would not. A `--dry-run` from
+the target box is the cheap predicate that distinguishes the two; prefer it over
+any amount of candidate-listing evidence.
+
+Note also that the obvious workaround does NOT work: re-curating to
+`--target-box cloud` still fails, because `--box local` hardcodes
+`machine_class="mac"`. `--target-box any` would have passed (`targets_box`
+short-circuits on `any` before consulting either field), at the cost of recording
+the launch as `box: "local"` in the ledger's provenance.
