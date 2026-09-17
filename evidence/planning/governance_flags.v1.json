@@ -4514,6 +4514,28 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0318",
+      "claim_ids": [
+        "MECH-132",
+        "MECH-133",
+        "MECH-134",
+        "MECH-159",
+        "MECH-190",
+        "MECH-227",
+        "MECH-233",
+        "MECH-246",
+        "MECH-247",
+        "MECH-249"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "Batch pre-flight (read-only, live ree-v3, 2026-09-17, metaworker-orchestrate Step 1d-iii) returned RED on all ten of these claims: each still carries an experimental proposal with status 'proposed' (EXP-0849/0851/0853/0866/0874/0902/0906/0924/0926/0930) but has no runnable substrate, so each invites a /queue-experiment session that would refuse. RECOMMENDED DISPOSITION: annotate epistemic_category substrate_conditional and withdraw the EXP proposal (leave the paired LIT proposal proposed), exactly as was done for MECH-234/248/250/327 on 2026-09-17. Blockers by group -- no social/identity or multi-agent substrate, which ree_core itself records as not yet existing (claustrum/coalition_templates.py:12-14) and scopes to V5 (utils/config.py:10177): MECH-132, MECH-159, MECH-190. No manipulable variable for the quantity the claim dissociates: MECH-134 (approach pull, 0 hits), MECH-249 (acetylcholine and noradrenaline, 0 hits each; ree_core/neuromodulation/ contains serotonin only). Whole measurement framework and every depends_on absent: MECH-227 (D_V, INV-067, INV-068, ARC-053, MECH-225, MECH-228 all 0 hits). Instrument unreachable as recorded: MECH-133, where the MECH-303 contextual safety terrain is default-off and its 0.05 harm threshold sits 11x below the measured z_harm_a safe baseline ~0.547 (V3-EXQ-764), giving num_safety_steps=0 for a whole run (V3-EXQ-916) -- and config.py:4106-4109 records that a reachable threshold cannot discriminate safe from unsafe, an SD-011 encoder limitation. Reference pathway measured substrate-not-ready: MECH-246 and MECH-247, both defined by contrast with MECH-244, which V3-EXQ-826a left untested (outcome FAIL, substrate_not_ready_requeue; world_model_converged_phaseA_control 0.1525 vs 0.25, regime_change_disconfirms_control 0.9660 vs 1.15, at 240000 E1 ticks). Asymmetry not instantiated: MECH-233, where the BLA arm is real and default-on (agent.py:5270 producer) but the VTA-DA representational-fidelity arm does not exist (place_field and place_cell 0 hits), and BLA currently carries both jobs via arousal_tag and encoding_gain. Full per-claim evidence with file:line is recorded in each chip's own prompt (chip-proposal-exp-0880/0882/0884/0895/0907/0935/0939/0957/0959/0963-paced) via chip_ledger amend-prompt.",
+      "raised_by_session": "cranky-wiles-c85265",
+      "raised_at": "2026-09-17T12:17:32Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
