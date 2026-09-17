@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_self_other_mergence_frontal_wittmann2016",
+  "timestamp_utc": "2026-09-17T07:01:47Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Self-Other Mergence in the Frontal Cortex during Cooperation and Competition",
+    "authors": [
+      "Wittmann MK",
+      "Kolling N",
+      "Faber NS",
+      "Scholl J",
+      "Nelissen N",
+      "Rushworth MF"
+    ],
+    "year": 2016,
+    "venue": "Neuron",
+    "volume": "91",
+    "issue": "2",
+    "pages": "482-493",
+    "doi": "10.1016/j.neuron.2016.06.022",
+    "pmid": "27477020",
+    "pmc": "PMC4961240"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "The clearest counterweight in this pull to ARC-083's separability assumption, and included for that reason. Self and other ability representations are not merely co-located, they are INTERDEPENDENT: estimates of one's own ability partly merged with others' performance and vice versa, with the direction of contamination reversing between cooperative and competitive contexts. Confidence slightly above the hippocampal entries because the measured quantity (an ability/competence estimate of agent j) maps onto a non-spatial field of ARC-083's proposed slot, which is where those entries were weakest, and because it is human data with an explicit computational account. Capped at 0.62 by the usual architectural-translation risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Estimates of another agent's ability incorporated the participant's OWN performance, and self-estimates incorporated the other's performance -- a token-keyed slot for agent j that is contaminated by agent i's state is not carrying agent j's properties, it is carrying a blend.",
+    "The direction of the contamination reversed between cooperative and competitive contexts, so the degree of self-other separation is not a fixed architectural property at all but a context-dependent variable -- which a static per-agent slot specification cannot express.",
+    "The authors' own conclusion is that dorsomedial frontal area 9 carries INTERDEPENDENT representations of self and other; if REE adopts strictly independent slots it departs from the substrate it cites as motivation."
+  ],
+  "tags": [
+    "arc-083",
+    "self_other_mergence",
+    "dorsomedial_prefrontal",
+    "area_9",
+    "perigenual_acc",
+    "ability_estimation",
+    "social_cognition",
+    "human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans estimated their own and others' abilities across cooperative and competitive contexts. Perigenual anterior cingulate cortex monitored the participant's own performance, while dorsomedial frontal area 9 tracked others' performance and also integrated contextual and self-related information. Behaviourally, self-estimates were partly merged with others' performance and estimates of others incorporated one's own performance; whether proximity to a high performer raised or lowered self-estimates depended on whether the context was cooperative or competitive. The authors conclude area 9 carries interdependent representations of self and other.",
+    "ree_translation": "Weakens ARC-083's core separability commitment. ARC-083 gives agent j a slot holding, among other things, a drive/competence estimate for j. This paper measures exactly that quantity in humans and finds it systematically contaminated by the estimator's own state -- and finds the contamination's SIGN to be context-dependent. For REE this suggests that if a per-agent slot is built, it will need an explicit self-other coupling term with its own sign, rather than the clean independence the claim currently implies.",
+    "mapping_caveat": "Human ability-estimation with a computational account, not a representational-format study: it shows the CONTENT of other-estimates is contaminated, not that the underlying representational slots are shared. Those are distinct architectural possibilities -- separate slots with a strong coupling term would produce this behaviour while leaving ARC-083's allocation claim intact. So this constrains the claim rather than falsifying it, and it should not be read as a demotion trigger on its own.",
+    "source_context": "Human; ability estimation about self and others under cooperative vs competitive framing; combined behavioural modelling and fMRI (pgACC, dorsomedial frontal area 9)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Neuron, Rushworth lab, explicit computational modelling -- strong. Mapping fidelity is the best in the ARC-083 set because the measured variable (competence estimate of another agent) is literally one of the slot fields the claim specifies, rather than the spatial proxy the hippocampal work offers. Transfer risk lower than the animal entries since this is human social cognition."
+  }
+}

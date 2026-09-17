@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_084",
+  "entry_id": "2026-09-17_arc_084_directed_anticorrelation_causality_uddin2009",
+  "timestamp_utc": "2026-09-17T07:01:47Z",
+  "claim_ids_tested": [
+    "ARC-084"
+  ],
+  "source": {
+    "title": "Functional connectivity of default mode network components: correlation, anticorrelation, and causality",
+    "authors": [
+      "Uddin LQ",
+      "Kelly AM",
+      "Biswal BB",
+      "Castellanos FX",
+      "Milham MP"
+    ],
+    "year": 2009,
+    "venue": "Human Brain Mapping",
+    "volume": "30",
+    "issue": "2",
+    "pages": "625-637",
+    "doi": "10.1002/hbm.20531",
+    "pmid": "18219617",
+    "pmc": "PMC3654104"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Structurally the closest match in this pull to ARC-084's literal edge specification. Two findings do the work: the anticorrelated relationship is DIRECTED and asymmetric in strength (vmPFC and PCC influence their anticorrelated networks more than the reverse), which supplies the source/target/gain fields that Fox et al. cannot; and different default-mode nodes have DISTINCT competitive partners, which means the negative sign is a property of particular edges rather than a blanket property of the field pair -- exactly the granularity ARC-084 asserts. Held at 0.55 because Granger causality applied to BOLD is methodologically contested: regional differences in haemodynamic response latency can masquerade as directed influence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Granger causality on BOLD signals is confounded by regional variation in haemodynamic response latency; a region with a faster haemodynamic response can appear to drive a slower one with no underlying directed neural influence, so the asymmetric gain this entry relies on may be vascular rather than computational.",
+    "If the default mode network is heterogeneous enough that vmPFC and PCC compete with different systems, then 'field' is not the right level of description for signed coupling in the first place -- which would undercut ARC-084's framing of the cognifold edge as an inter-FIELD relationship even while supporting its typed-edge formalism."
+  ],
+  "tags": [
+    "arc-084",
+    "anticorrelation",
+    "granger_causality",
+    "directed_connectivity",
+    "default_mode_network",
+    "signed_coupling",
+    "edge_typing",
+    "network_heterogeneity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using resting-state functional connectivity and Granger causality analysis, the authors found that ventromedial prefrontal cortex and posterior cingulate cortex exert greater influence on their anticorrelated networks than the reverse, and that these two default-mode nodes show distinct competitive interactions with different task-related systems rather than behaving as a homogeneous unit.",
+    "ree_translation": "Supports ARC-084's specific formalism more directly than any other entry in this pull. ARC-084 says a cognifold edge is `{source, target, sign, gain, ...}` -- directed, signed and carrying its own magnitude. Uddin et al. report precisely that shape at the macroscale: the negative relationship has a direction, the two directions differ in strength, and the edge identity depends on which node you start from rather than which network. A purely emergent account of competition predicts none of that asymmetry.",
+    "mapping_caveat": "Granger causality on haemodynamic signals is a contested inference about directed influence, and the paper's own heterogeneity finding cuts both ways for REE: it supports per-edge typing while undermining the idea that the coupled units are coherent FIELDS. If competitive structure lives below the field level, ARC-084's cognifold-edge framing may be at the wrong grain even though its typed-signed-edge formalism is vindicated.",
+    "source_context": "Human; resting-state BOLD fMRI; seed-based connectivity plus Granger causality on vmPFC and PCC default-mode nodes."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.5,
+    "notes": "Source quality docked well below Fox et al. because BOLD Granger causality is the weakest common method in this set. Mapping fidelity is the highest in the ARC-084 group -- directed, signed, asymmetric-gain, node-specific is close to a literal instantiation of the claimed edge object."
+  }
+}

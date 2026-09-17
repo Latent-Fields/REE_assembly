@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_084",
+  "entry_id": "2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b",
+  "timestamp_utc": "2026-09-17T07:01:47Z",
+  "claim_ids_tested": [
+    "ARC-084"
+  ],
+  "source": {
+    "title": "Quantifying synergy and redundancy between networks",
+    "authors": [
+      "Luppi AI",
+      "Olbrich E",
+      "Finn C",
+      "Suarez LE",
+      "Rosas FE",
+      "Mediano PAM",
+      "Jost J"
+    ],
+    "year": 2024,
+    "venue": "Cell Reports Physical Science",
+    "volume": "5",
+    "issue": "4",
+    "pages": "101892",
+    "doi": "10.1016/j.xcrp.2024.101892",
+    "pmid": "38720789",
+    "pmc": "PMC11077508"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Genuinely two-directional, which is why it is the most useful entry here for a governance decision. It SUPPORTS ARC-084's typed-edge formalism as strongly as anything available: it is a worked, quantitative decomposition of coupling BETWEEN two networks into distinct types (unique to one, redundant across either, synergistic requiring both), validated across 125 species' connectomes. It simultaneously WEAKENS the claim's signed half, because that type space contains no competitive or negative mode and does not appear to need one. Confidence 0.55 reflects a well-specified formal framework with low transfer risk, discounted for the same axis mismatch that limits the companion eLife entry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The framework's type space is {unique, redundant, synergistic} -- entirely non-negative -- and it accounts for structural and communication-efficiency findings across 125 connectomes without any competitive mode. If a typed-but-unsigned inter-network coupling formalism suffices for these data, ARC-084's assertion that sign<0 is a FIRST-CLASS GENERATIVE mode is not established by the typed-edge literature and requires independent warrant.",
+    "The decomposition is defined over shortest paths in a structural graph, so the 'coupling type' is a property of routing topology rather than of a dynamic generative parameter with gain, precision, gate or timescale -- the typing this paper validates is thinner than the typing ARC-084 asserts."
+  ],
+  "tags": [
+    "arc-084",
+    "synergy",
+    "redundancy",
+    "partial_information_decomposition",
+    "typed_coupling",
+    "connectome",
+    "network_science",
+    "unsigned_typology"
+  ],
+  "mapping": {
+    "source_claim_statement": "The authors present an analytical framework decomposing the shortest paths between nodes as contributed uniquely by one source network, redundantly by either, or synergistically by both together. Applied across 125 species, long-range white-matter connections made substantial unique contributions to structural organisation, and communication efficiency showed significantly greater synergy between long-range and short-range fibres than expected by chance.",
+    "ree_translation": "Cuts both ways for ARC-084 and should be read as a constraint on its formalisation rather than as support or opposition. It vindicates the general move of typing an inter-network edge -- this is a rigorous, validated instance of exactly that -- while demonstrating that a successful typology of inter-network coupling need contain no competitive mode at all. For REE, that isolates the actual burden on ARC-084: not to show that edges can be typed, which is settled, but to show that ADDING A SIGN buys causal power that an unsigned typology cannot reproduce.",
+    "mapping_caveat": "This is a structural-connectome and graph-theoretic result, not a dynamic coupling result: the decomposition applies to shortest-path routing, so its 'types' are topological rather than generative. ARC-084's edge carries gain, precision, gate and timescale as manipulable dynamic parameters, none of which has an analogue here. The weakening inference should therefore be held carefully -- the absence of a competitive mode in a TOPOLOGICAL typology is weaker evidence against a DYNAMIC signed mode than it first appears.",
+    "source_context": "Comparative structural connectomics across 125 species; partial-information-decomposition-style analysis of shortest-path contributions between two source networks."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.4,
+    "notes": "Formal framework with broad comparative validation; transfer risk is the lowest in this pull because a mathematical decomposition transfers to an artificial substrate far more cleanly than a species-specific physiological finding does."
+  }
+}

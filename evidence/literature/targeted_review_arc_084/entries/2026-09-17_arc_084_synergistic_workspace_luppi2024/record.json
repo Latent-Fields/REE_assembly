@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_084",
+  "entry_id": "2026-09-17_arc_084_synergistic_workspace_luppi2024",
+  "timestamp_utc": "2026-09-17T07:01:47Z",
+  "claim_ids_tested": [
+    "ARC-084"
+  ],
+  "source": {
+    "title": "A synergistic workspace for human consciousness revealed by Integrated Information Decomposition",
+    "authors": [
+      "Luppi AI",
+      "Mediano PAM",
+      "Rosas FE",
+      "Allanson J",
+      "Pickard J",
+      "Carhart-Harris RL",
+      "Williams GB",
+      "Craig MM",
+      "Finoia P",
+      "Owen AM",
+      "Naci L",
+      "Menon DK",
+      "Bor D",
+      "Stamatakis EA"
+    ],
+    "year": 2024,
+    "venue": "eLife",
+    "volume": "12",
+    "issue": "RP88173",
+    "doi": "10.7554/eLife.88173",
+    "pmid": "39022924",
+    "pmc": "PMC11257694"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Supports the TYPED half of ARC-084 while being silent, by construction, on the SIGNED half. Two contributions: it demonstrates that inter-regional couplings come in functionally distinguishable kinds (synergistic vs redundant) that are not reducible to one connectivity scalar and that dissociate under loss of consciousness; and its gateway-versus-broadcaster distinction is a genuine empirical analogue of ARC-084's write_authority field, which no other entry in this pull evidences at all. Confidence held to 0.50 because mapping fidelity is the weakest in the ARC-084 set: synergy/redundancy is a DIFFERENT axis from cooperation/competition, and conflating them is precisely the error this claim's own CAUTIONS (citing Luppi) warn against.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The synergy/redundancy axis is orthogonal to the cooperation/competition axis: redundancy is not competition and synergy is not cooperation. A V4 design that operationalises ARC-084's coupling modes as information-theoretic synergy and redundancy would be measuring a different distinction while believing it had tested the claim.",
+    "The decomposition here is non-negative throughout; nothing in the framework requires or represents a competitive mode, so the paper demonstrates that a rich typed-edge account of brain coupling can be built with no signed component at all."
+  ],
+  "tags": [
+    "arc-084",
+    "synergy",
+    "redundancy",
+    "integrated_information_decomposition",
+    "typed_coupling",
+    "write_authority",
+    "gateway_broadcaster",
+    "consciousness"
+  ],
+  "mapping": {
+    "source_claim_statement": "Applying Integrated Information Decomposition to fMRI from 100 individuals, plus 15 volunteers under anaesthesia and patients with disorders of consciousness, the authors distinguish synergistic from redundant information between brain regions and identify 'gateway' regions (corresponding to the default mode network) and 'broadcaster' regions (corresponding to the executive control network). Loss of consciousness coincided with a breakdown of information integration within the synergistic workspace, particularly in gateway regions.",
+    "ree_translation": "Supports ARC-084's premise that inter-field coupling is TYPED -- that couplings come in functionally distinct kinds doing different work, rather than differing only in weight. It also supplies the only empirical analogue in this pull for the edge's write_authority field: a broadcaster region holds release authority over information that a gateway region does not, which is structurally what ARC-084's gated-decoupling mode needs in order to isolate simulation or unsafe candidates from release.",
+    "mapping_caveat": "The axis is wrong, and knowingly so. Synergy and redundancy are information-theoretic relations, not cooperative and competitive coupling modes; ARC-084's own notes cite Luppi precisely to warn against this conflation. This entry should be read as evidence that typed edges are a defensible formalism, NOT as evidence for the specific three-mode typology (cooperative / competitive / gated-decoupling) the claim proposes.",
+    "source_context": "Human; resting-state and anaesthesia fMRI (n=100; n=15) plus disorders-of-consciousness patients; Integrated Information Decomposition."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Large multi-cohort design with a clinical validation arm -- strong. Mapping fidelity deliberately set low: the paper is the source of the very caution ARC-084 carries about not conflating information-theoretic coupling types with competition."
+  }
+}

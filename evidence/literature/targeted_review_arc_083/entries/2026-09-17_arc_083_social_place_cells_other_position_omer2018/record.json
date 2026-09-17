@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_social_place_cells_other_position_omer2018",
+  "timestamp_utc": "2026-09-17T07:01:47Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Social place-cells in the bat hippocampus",
+    "authors": [
+      "Omer DB",
+      "Maimon SR",
+      "Las L",
+      "Ulanovsky N"
+    ],
+    "year": 2018,
+    "venue": "Science",
+    "volume": "359",
+    "issue": "6372",
+    "pages": "218-224",
+    "doi": "10.1126/science.aao3474",
+    "pmid": "29326274",
+    "pmc": null
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Strong, direct evidence that a nervous system carries a dedicated representation of ANOTHER agent's state, in the same allocentric format it uses for the world -- which is the core of ARC-083's 'other-as-a-special-case-of-the-object-file'. Marked mixed rather than supports because roughly half of these social place-cells ALSO encoded the observer's own position: the biological implementation is a partially shared code, not the cleanly segregated token-keyed slot ARC-083 posits. Held at 0.60 because mapping fidelity is the binding constraint for an architectural claim -- the paper evidences one field of the proposed slot (spatial state of agent j) and none of the others (harm, drive, commitment chain).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "About half of the cells representing the other bat's position also represented the observer's own position, so the biological code for 'other' is not disjoint from the code for 'self' -- an architecture that allocates agent j a wholly separate slot is not what the hippocampus does.",
+    "The recordings establish an allocentric code for the other agent's POSITION only; nothing in them speaks to the non-spatial fields (z_harm_a_j, drive, commitment chain) that ARC-083's slot also asserts, so the slot as specified is under-evidenced even where the claim is supported."
+  ],
+  "tags": [
+    "arc-083",
+    "social_place_cells",
+    "hippocampus",
+    "other_agent_representation",
+    "allocentric",
+    "object_file",
+    "bat"
+  ],
+  "mapping": {
+    "source_claim_statement": "Recording from dorsal CA1 in bats while an observer bat watched a demonstrator bat fly to a goal, the authors found a neuronal subpopulation representing the position of the OTHER bat in allocentric coordinates. About half of these 'social place-cells' also represented the observer's own position.",
+    "ree_translation": "Partially supports ARC-083's PILLAR-4 commitment that another agent is carried as its own token-keyed slot within the ARC-080 object-file machinery. The load-bearing correspondence is FORMAT: the other agent is encoded in the same allocentric frame the animal uses for places and objects, which is what licenses treating other-as-object rather than as a separate subsystem. The load-bearing DISSONANCE is separability: the code is partly shared with self, so REE's clean per-agent slot is an idealisation of a partially entangled biological code.",
+    "mapping_caveat": "Bat dorsal CA1 during an observational spatial task, transferred to a V4 agent architecture that does not yet exist. Only the spatial field of the proposed slot is evidenced. Critically, whether these cells are AGENT-specific or would equally track any behaviourally relevant moving object is the question ARC-083 most needs answered, and the abstract alone does not settle it -- if they track any moving object, this is evidence for the ARC-080 object-file generally and NOT for an others-specific specialisation.",
+    "source_context": "Bat; dorsal CA1 single-unit recording; observational spatial task with a demonstrator conspecific."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Science, Ulanovsky lab, careful design -- source quality near ceiling. Mapping and transfer are what hold confidence down: an architectural V4 commitment is being supported by rodent-order electrophysiology of one slot field."
+  }
+}

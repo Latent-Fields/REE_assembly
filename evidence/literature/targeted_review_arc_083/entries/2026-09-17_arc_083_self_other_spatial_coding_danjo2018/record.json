@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_self_other_spatial_coding_danjo2018",
+  "timestamp_utc": "2026-09-17T07:01:47Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Spatial representations of self and other in the hippocampus",
+    "authors": [
+      "Danjo T",
+      "Toyoizumi T",
+      "Fujisawa S"
+    ],
+    "year": 2018,
+    "venue": "Science",
+    "volume": "359",
+    "issue": "6372",
+    "pages": "213-218",
+    "doi": "10.1126/science.aao3898",
+    "pmid": "29326273",
+    "pmc": null
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "An independent convergent replication of the Omer result in a different species (rat), different paradigm (observational T-maze) and different laboratory, published back-to-back. The convergence raises confidence that other-agent spatial coding in the hippocampus is real rather than paradigm-specific. Direction is mixed for the same reason as Omer: the authors report self and other are 'jointly and discretely encoded' (supports separability) while a subset of CA1 cells had spatial receptive fields IDENTICAL for self and other (weakens token-keying). Held at 0.60, matching Omer, since the mapping limitation is identical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A subset of CA1 pyramidal cells had spatial receptive fields that were identical for self and for the other animal -- these cells cannot be said to key a representation to a particular agent token at all, since the same cell fires for the same place regardless of who occupies it.",
+    "As with Omer et al., only the spatial field of ARC-083's proposed slot is evidenced; the paradigm cannot speak to whether a persistent per-agent file survives the other animal leaving the maze, which is the 'permanence' half of the claim's stated prerequisite."
+  ],
+  "tags": [
+    "arc-083",
+    "hippocampus",
+    "self_other_coding",
+    "ca1",
+    "other_agent_representation",
+    "object_file",
+    "rat",
+    "convergent_replication"
+  ],
+  "mapping": {
+    "source_claim_statement": "Recording CA1 pyramidal cells in rats performing an observational T-maze task, the authors found that information reflecting the spatial location of both the self and the other was jointly and discretely encoded. A subset of CA1 pyramidal cells exhibited spatial receptive fields that were identical for the self and the other.",
+    "ree_translation": "Converges with Omer et al. (2018) in supporting ARC-083's premise that another agent's state is carried inside the ordinary spatial/object representational machinery rather than in a dedicated social module. 'Jointly and discretely encoded' is the phrase that does the most work for REE: it asserts that self and other are simultaneously present AND distinguishable within one population -- which is closer to a multiplexed field than to the discrete per-agent slot ARC-083 specifies, but is at least a code from which distinct agent identities are recoverable.",
+    "mapping_caveat": "Rat CA1 during a constrained two-arm observational task with a single other animal. A single-other paradigm cannot test the property that makes ARC-083's claim architectural -- that each of SEVERAL others gets its own token-keyed slot. Distinguishing self from one other is a far weaker result than maintaining separate persistent files for agents j=1..n, and the transfer to the latter is an extrapolation this paper does not license.",
+    "source_context": "Rat; dorsal CA1 single-unit recording; observational T-maze task with one conspecific."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Science, back-to-back with Omer, independent lab and species -- the convergence is the main source-quality asset. Mapping capped by the single-other paradigm, which cannot address the multi-agent slot allocation that is ARC-083's actual content."
+  }
+}
