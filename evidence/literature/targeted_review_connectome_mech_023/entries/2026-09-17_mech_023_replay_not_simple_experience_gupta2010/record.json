@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_023",
+  "entry_id": "2026-09-17_mech_023_replay_not_simple_experience_gupta2010",
+  "timestamp_utc": "2026-09-17T20:28:11Z",
+  "claim_ids_tested": [
+    "MECH-023",
+    "MECH-094"
+  ],
+  "source": {
+    "title": "Hippocampal replay is not a simple function of experience",
+    "authors": [
+      "Anoopum S Gupta",
+      "Matthijs A A van der Meer",
+      "David S Touretzky",
+      "A David Redish"
+    ],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.01.034",
+    "pmid": "20223204",
+    "pmc": "PMC4460981",
+    "volume": "65",
+    "issue": "5",
+    "pages": "695-705"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "Directed at MECH-023's third CONFIRMING criterion -- that hypothesis-tagged (simulated / replayed) content must NOT shape the geometry the way real commitment does. Gupta et al. show hippocampal replay covers physically available but never-traversed trajectories and over-represents the LESS-practised routes, so the map is demonstrably rehearsing paths the animal did not take. If replay writes back into the same map that carries harm history, the clean real-versus-simulated separation REE enforces at accumulate() has no straightforward biological warrant. Held at 0.62 because the paper shows replay CONTENT, not that replay deforms the residue-bearing geometry -- the inference to a write-back is mine, not theirs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay content is not proportional to experience: sequence B was replayed frequently after more than ten minutes of performing sequence A, and less-frequently-run routes were replayed MORE than heavily practised ones. A REE residue field updated by anything replay-like would accumulate along paths never actually committed to.",
+    "Replay covered never-experienced novel shortcut trajectories -- the strongest form of the problem, since there is no real committed episode anywhere in the animal's history for that path.",
+    "The paper does not measure whether these replayed sequences produce plasticity in the same substrate that stores aversive history, so the challenge it poses to the MECH-094 gate is structural rather than demonstrated. Treat it as a design warning, not as disconfirming evidence."
+  ],
+  "tags": [
+    "mech_023",
+    "mech_094",
+    "replay",
+    "simulation_real_distinction",
+    "counterweight",
+    "hippocampus"
+  ],
+  "mapping": {
+    "source_claim_statement": "In rats performing two distinct behavioural sequences, hippocampal replay during sharp-wave ripples did not simply mirror recent experience: sequence B was replayed frequently even after more than ten minutes of performing sequence A, replay covered all physically available trajectories including never-experienced novel paths, and less-frequently-performed routes were replayed more often than heavily practised ones.",
+    "ree_translation": "MECH-023's third CONFIRMING criterion imports the MECH-094 gate: hypothesis-tagged harm in region R must NOT produce the rank divergence that real harm produces, because only what was actually done is supposed to shape the geometry. REE enforces this by construction -- ResidueField.accumulate refuses hypothesis-tagged content. This paper is the reason that enforcement should be treated as an architectural DECISION with a cost, not as a biological fact being modelled: the biological system that ARC-013 names as the residue substrate spends its offline time traversing paths the animal never took, weighted inversely to how much it actually did take them.",
+    "mapping_caveat": "The inferential step from 'replay includes never-experienced trajectories' to 'simulated content deforms the harm-history geometry' is not made by the authors and is not measured here. Replay could be entirely read-only with respect to the residue-bearing map, in which case there is no tension at all. What the paper establishes is that the simulation channel is rich, promiscuous and not experience-proportional -- which makes the write-back question live rather than answering it.",
+    "source_context": "Rat hippocampal ensemble recording during sharp-wave ripple events on a multi-route maze task with two distinct behavioural sequences."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "High source quality -- a heavily cited Neuron paper whose central finding has held up. Mapping fidelity is the limiting term: the paper is about replay content and REE's question is about write permissions, one inferential step away."
+  }
+}

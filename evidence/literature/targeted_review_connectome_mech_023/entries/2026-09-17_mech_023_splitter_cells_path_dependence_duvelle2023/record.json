@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_023",
+  "entry_id": "2026-09-17_mech_023_splitter_cells_path_dependence_duvelle2023",
+  "timestamp_utc": "2026-09-17T20:26:14Z",
+  "claim_ids_tested": [
+    "MECH-023",
+    "ARC-013"
+  ],
+  "source": {
+    "title": "Temporal context and latent state inference in the hippocampal splitter signal",
+    "authors": [
+      "Eloise Duvelle",
+      "Roddy M Grieves",
+      "Matthijs A A van der Meer"
+    ],
+    "year": 2023,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.82357",
+    "pmid": "36622350",
+    "pmc": "PMC9829411",
+    "volume": "12",
+    "pages": "e82357"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the closest thing in neuroscience to a direct existence proof for the non-Markovian half of MECH-023: splitter cells are, by definition, neurons whose firing at an IDENTICAL location differs according to which trajectory the animal arrived on. The phenomenon is replicated across labs, tasks and species, which is why source_quality is high. It is a review rather than a primary dataset, and the mapping is to spatial/task state rather than to moral state, so it grounds the MECHANISM (history-conditioned representation at a matched state) without speaking to the ETHICAL content REE attaches to it -- hence not higher.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Splitting is task-dependent and not universal: the same cells stop splitting when the task no longer requires the distinction, so a history-conditioned representation is not guaranteed to be present merely because a history exists -- the REE analogue is that residue may be present in the field yet not consulted by E3, which is exactly the FALSIFYING branch of MECH-023.",
+    "The review reports that neither temporal-context nor latent-state-inference accounts explains all splitter properties, so the FORM of the history dependence (graded decay vs discrete state assignment) is unsettled -- REE's residue field commits to a particular form and inherits that uncertainty.",
+    "Splitter signals are read off a population code; nothing in this literature shows that a downstream selector actually uses the split to rank actions differently, which is the step MECH-023 needs."
+  ],
+  "tags": [
+    "mech_023",
+    "arc_013",
+    "splitter_cells",
+    "path_dependence",
+    "non_markovian",
+    "hippocampus",
+    "cognitive_map"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal 'splitter' neurons fire differentially on physically overlapping trajectory segments depending on where the animal came from (retrospective coding) or where it is going (prospective coding); this signal is graded with temporal distance to the divergence point and is modulated by task demands, and is best explained by some combination of temporal-context and latent-state-inference accounts.",
+    "ree_translation": "MECH-023 asserts that two agents in the same state may differ because of how they arrived. Splitter cells are the biological demonstration that a cognitive map does NOT reduce the present to a Markov state: the representation at a matched location carries the path. In REE terms this licenses the architectural premise behind ARC-013 (residue as persistent latent-space curvature over a hippocampal-style map) and makes the MECH-023 CONFIRMING criterion (i) -- rank divergence at a matched z_world exceeding the identical-history noise baseline -- a measurement the brain is already known to support in the representational layer.",
+    "mapping_caveat": "The divergence here is representational (place-cell firing), not evaluative. Nothing in the splitter literature is about harm, responsibility, or committed action; the histories that split are task histories, not moral ones. Treating this as evidence for MECH-023 therefore imports the mechanism and NOT the ethical interpretation -- it supports 'the geometry can be path-dependent', not 'responsibility lives in that path dependence'.",
+    "source_context": "Rodent hippocampal single-unit recording across continuous and delayed alternation, T/plus mazes and related tasks; review synthesising ~two decades of primary studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Transfer risk is moderate rather than low: rodent spatial navigation to an artificial agent's z_world is a real leap, but REE's residue field is explicitly designed as a map-over-latent-space analogue, so the structural correspondence is intended rather than opportunistic."
+  }
+}

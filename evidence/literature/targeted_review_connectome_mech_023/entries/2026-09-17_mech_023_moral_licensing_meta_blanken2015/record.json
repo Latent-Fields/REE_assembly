@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_023",
+  "entry_id": "2026-09-17_mech_023_moral_licensing_meta_blanken2015",
+  "timestamp_utc": "2026-09-17T20:27:48Z",
+  "claim_ids_tested": [
+    "MECH-023"
+  ],
+  "source": {
+    "title": "A meta-analytic review of moral licensing",
+    "authors": [
+      "Irene Blanken",
+      "Niels van de Ven",
+      "Marcel Zeelenberg"
+    ],
+    "year": 2015,
+    "venue": "Personality and Social Psychology Bulletin",
+    "doi": "10.1177/0146167215572134",
+    "pmid": "25716992",
+    "volume": "41",
+    "issue": "4",
+    "pages": "540-558"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "This is the human behavioural analogue of MECH-023's B-prime control, and it is included because it cuts BOTH ways. It supports the non-Markovian half decisively -- present moral behaviour depends on moral history at a matched present situation, d = 0.31 across 91 studies and 7,397 participants. But the effect as characterised is DOMAIN-GENERAL moral-self-image accounting, which is much closer to the 'global cost shift' alternative MECH-023 names as a falsifier than to region-shaped geometry. Confidence is held at 0.55 because the meta-analysis itself reports publication status as the only supported moderator and calls the literature underpowered.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The licensing effect is generally reported ACROSS domains -- a prior good deed in one domain licenses transgression in an unrelated one -- which is the signature of a scalar moral-credit ledger, not of a path-shaped terrain. If REE's residue produced the same divergence for the A and B-prime forks, MECH-023 would be falsified by its own criterion (ii); the human literature's default finding sits on the falsifying side.",
+    "Sign is opposite to residue: licensing predicts that a GOOD history makes subsequent transgression MORE likely, whereas REE's residue predicts that a HARM history makes subsequent harm-adjacent commitment LESS likely. The two effects can coexist in humans (licensing and cleansing are both reported) but a single scalar residue term cannot produce both, so the architecture may be modelling only one arm of the human phenomenon.",
+    "Publication status was the only moderator with support and published studies showed larger effects; the authors state the primary studies are underpowered for moderator detection. The domain-generality conclusion is therefore itself uncertain, which is the one respect in which this entry's challenge to MECH-023 is weaker than it looks."
+  ],
+  "tags": [
+    "mech_023",
+    "moral_licensing",
+    "non_markovian",
+    "counterweight",
+    "global_vs_local",
+    "behavioral_human"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 91 studies and 7,397 participants, people who have initially behaved morally are subsequently more likely to display immoral, unethical or otherwise problematic behaviour (Cohen's d = 0.31). Publication status was the only moderator with empirical support; the authors conclude that primary studies are substantially underpowered for moderator analysis.",
+    "ree_translation": "MECH-023 asserts that responsibility is path-dependent and non-Markovian. Moral licensing is the most robust human demonstration that moral decisions are not a function of the present situation alone -- two people facing an identical choice diverge according to what they did earlier. That is criterion (i) in human behavioural form. But the licensing literature also characterises the mechanism as a domain-general moral self-concept or moral-credential account, in which the history contributes a scalar to a self-image ledger. In REE terms that is a global cost shift, and MECH-023 explicitly names the global-shift outcome as FALSIFYING: if fork A and fork B-prime (equal harm mass, distant region) diverge identically, the geometry is not path-shaped.",
+    "mapping_caveat": "Two transfers are doing heavy lifting and both are contestable. First, human moral self-image involves explicit narrative self-report and social accountability, neither of which REE's residue field has; the mechanisms may be homologous in effect and unrelated in kind. Second, the DIRECTION is inverted -- licensing runs from good history to subsequent transgression, residue runs from harm history to subsequent avoidance. The moral-cleansing literature supplies the matching direction, but the meta-analysis here covers licensing specifically, so the sign match is asserted by analogy rather than measured. Read this entry as a sharpening of MECH-023's own falsifier, not as support for it.",
+    "source_context": "Meta-analysis of laboratory and field studies of human moral behaviour, predominantly Western undergraduate and online samples."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.65,
+    "notes": "Mapping fidelity is deliberately low: what the meta-analysis measures (self-image accounting over explicit moral acts) and what MECH-023 measures (residue-weighted candidate ranking at a matched latent state) share a shape and not a substrate. High transfer risk is the point of including it -- it names the alternative hypothesis the REE design must beat."
+  }
+}

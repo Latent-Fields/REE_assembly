@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_023",
+  "entry_id": "2026-09-17_mech_023_aversive_remapping_memory_blair2023",
+  "timestamp_utc": "2026-09-17T20:27:04Z",
+  "claim_ids_tested": [
+    "MECH-023",
+    "ARC-013"
+  ],
+  "source": {
+    "title": "Hippocampal place cell remapping occurs with memory storage of aversive experiences",
+    "authors": [
+      "Garrett J Blair",
+      "Changliang Guo",
+      "Shiyun Wang",
+      "Michael S Fanselow",
+      "Peyman Golshani",
+      "Daniel Aharoni",
+      "Hugh T Blair"
+    ],
+    "year": 2023,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.80661",
+    "pmid": "37466236",
+    "pmc": "PMC10368421",
+    "volume": "12",
+    "pages": "e80661"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "The scopolamine manipulation is what raises this above the general aversive-remapping literature: it dissociates PERCEIVING the shock from REMEMBERING it, and remapping tracks the memory, not the stimulus. That is precisely the distinction MECH-023 needs -- residue is supposed to be laid down by what was committed and retained, not by transient aversive input. Rodent calcium imaging with n=14 and a within-subject design is solid; the ceiling is set by the fact that remapping is a representational change, not a demonstrated change in what the animal will subsequently commit to.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Remapping is correlated with memory formation, not shown to cause the subsequent avoidance behaviour; a REE experiment that found residue-driven rank divergence without any behavioural consequence would be in the same evidential position.",
+    "Neutral barriers produced significantly LESS remapping than shock, but not zero -- so a non-aversive change of the state's affordances also perturbs the map. The MECH-023 design's B arm (harm-free path of equal length) must therefore be matched on affordance change, not only on path length, or the noise baseline is inflated.",
+    "Scopolamine is a systemic anticholinergic and blocks encoding broadly; the dissociation it buys is 'remembered vs forgotten', not 'harm vs non-harm', so the paper does not isolate a harm-specific accumulation channel."
+  ],
+  "tags": [
+    "mech_023",
+    "arc_013",
+    "aversive_remapping",
+    "place_cells",
+    "residue",
+    "memory_storage",
+    "hippocampus"
+  ],
+  "mapping": {
+    "source_claim_statement": "In freely behaving rats trained on a food-reward path preference and then shocked on the preferred short path, CA1 place cells remapped significantly more following shocks that were remembered than following shocks rendered amnestic by pre-shock scopolamine; neutral barrier insertion produced significantly less remapping than aversive shock.",
+    "ree_translation": "This is the accumulation half of MECH-023's substrate. ARC-013 holds that residue is persistent latent-space curvature; here an aversive event on a specific path produces a persistent, memory-gated reorganisation of the map over exactly that space. The scopolamine arm maps onto the MECH-094 gate REE already enforces at the ResidueField.accumulate boundary: content that is not committed to the viability map does not deform the geometry. In the rat, a shock that is not encoded does not deform the map either.",
+    "mapping_caveat": "The rat's remapping is measured in the representation and its behavioural consequence (avoidance) is reported at the level of the trained preference, not at the level of a ranked candidate set. MECH-023 requires the divergence to show up in E3 candidate ranking at a MATCHED state with identical non-residue surfaces -- a control the rodent preparation cannot run, since a shocked and an unshocked rat differ in far more than their residue field.",
+    "source_context": "Rat CA1 miniscope calcium imaging (n=14), linear-track path-preference task with mild footshock conditioning and a scopolamine (1 mg/kg) amnestic arm."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.38,
+    "notes": "The memory-gating result is the load-bearing part and is the part most directly analogous to a REE architectural commitment (the hypothesis_tag refusal in accumulate). Weighted accordingly rather than averaged."
+  }
+}

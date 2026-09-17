@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_023",
+  "entry_id": "2026-09-17_mech_023_threat_localized_field_shift_mamad2019",
+  "timestamp_utc": "2026-09-17T20:27:26Z",
+  "claim_ids_tested": [
+    "MECH-023"
+  ],
+  "source": {
+    "title": "Extrafield Activity Shifts the Place Field Center of Mass to Encode Aversive Experience",
+    "authors": [
+      "Olsen Mamad",
+      "Bassel Agayby",
+      "Lars Stumpp",
+      "Richard B Reilly",
+      "Marian Tsanov"
+    ],
+    "year": 2019,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0423-17.2019",
+    "pmid": "30923741",
+    "pmc": "PMC6437659",
+    "volume": "6",
+    "issue": "2",
+    "pages": "ENEURO.0423-17.2019"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "This is the entry that speaks to MECH-023's hardest criterion -- (ii), that the divergence must be HISTORY-SPECIFIC and localised to the region where harm occurred rather than a global cost shift. The paper reports exactly that geometry: place fields shift their centre of mass TOWARD the threat location, and the authors state the remapping depends on the perceived location of threat rather than being random. Held below 0.8 because the readout is a single-cell centre-of-mass statistic in a small rodent sample, and the optogenetic BLA arm establishes a driver of the shift rather than its behavioural consequence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The shift is TOWARD the aversive location, not away from it -- the map allocates more representational resource to the threatened region. A REE residue field that simply raises cost in R and suppresses candidates entering R implements the opposite sign at the policy level; if the V3 run finds residue producing avoidance WITHOUT any increase in representational resolution over R, that is a real dissociation from this literature and should be reported, not smoothed over.",
+    "Spatial locality of the effect is established relative to threat location within a single maze, not against a matched-mass aversive event in a DISTANT region -- so the paper does not run the B-prime control MECH-023 declares load-bearing, and cannot by itself exclude a global cost shift that happens to look local.",
+    "Innately aversive odour (TMT) rather than an action the animal committed; there is no agency or self-attribution in this preparation at all, so 'responsibility' has no purchase -- only 'harm history' does."
+  ],
+  "tags": [
+    "mech_023",
+    "locality",
+    "history_specificity",
+    "place_field_shift",
+    "amygdala",
+    "threat",
+    "hippocampus"
+  ],
+  "mapping": {
+    "source_claim_statement": "CA1 place cells with fields outside the arms of a maze where an innately aversive odour (TMT) was presented showed increased extrafield spiking in those arms during the aversive episode and subsequently shifted their place field centre of mass toward the TMT locations; optogenetic basolateral amygdala activation triggered the extrafield spiking and predicted the magnitude of place field plasticity; the authors conclude that aversive remapping depends on the perceived location of threat rather than being random.",
+    "ree_translation": "MECH-023's CONFIRMING criterion (ii) requires that the A-vs-B rank divergence be concentrated on candidates whose rollouts enter the harm region R, and that an equal-mass harm in a distant region R-prime produce divergence localised to R-prime instead. What that criterion needs from biology is a demonstration that aversive history deforms the map in a SPATIALLY ADDRESSED way rather than as a uniform gain change. This paper is that demonstration: the deformation is keyed to where the threat was perceived to be, and an identified amygdalar input supplies the addressing signal.",
+    "mapping_caveat": "Locality here is measured within one maze against the non-threat arms, not against a second equal-mass aversive region. The paper therefore supports 'the deformation has an address' but does NOT discriminate the two hypotheses MECH-023's B-prime control was built to separate -- a genuinely region-shaped geometry versus a global cost that is merely strongest near the event. That discrimination remains the REE experiment's own burden. Separately, TMT is an innate threat with no action attribution, so nothing here bears on the self-caused-versus-world-caused routing that ARC-015/MECH-095 place upstream of residue.",
+    "source_context": "Rat CA1 single-unit recording in a maze with TMT (fox odour) exposure; optogenetic activation of basolateral amygdala."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "eNeuro, modest sample, single-cell statistic. Included for the locality result specifically, which is scarce in this literature and is the criterion REE is least equipped to import from elsewhere."
+  }
+}
