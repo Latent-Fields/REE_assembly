@@ -4591,6 +4591,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0323",
+      "claim_ids": [
+        "MECH-303",
+        "SD-091"
+      ],
+      "flag_type": "stale_note",
+      "summary": "substrate_queue.json status-token hygiene sweep (chip-20260917-substrate-queue-status-enum-hygiene) found two entries whose status field is stale but which CANNOT be corrected by the sanctioned shape (set implementation_status, leave status verbatim), because /queue-experiment Step 2.5c tests 'pending' as a substring across BOTH fields and that test runs BEFORE, and overrides, the exact-match CLOSED test -- so an entry whose status token still reads 'pending' cannot be closed by adding implementation_status at all; only editing status itself works, which is a governance call. (1) SD-MECH303-THRESHOLD-SOURCING: the 2026-08-16 governance amend moved status_phase validation_owed -> validated on V3-EXQ-930 meeting its acceptance target, and its status_note routes the residual to the MECH-303 behavioural retest (chipped, resolved done 2026-08-18) rather than to another substrate item -- yet status still reads implemented_pending_validation, so the entry gates as OPEN. Its substrate_paths name ree_core/agent.py and ree_core/utils/config.py, which essentially every driver imports, so this stale token is putting a degrading Step 2.5c note on nearly every queued experiment. Governance to decide whether status should be advanced to implemented_validated. (2) SD-091: its own governance_2026_09_16 field already records this decision as owed ('governance to decide whether the status string should be re-expressed so a severity is enforceable'); adding the mechanism -- check_substrate_path_overlap.py ORs its CLOSED substring test across implementation_status and status, so an entry can be re-opened for the BACKWARD scan only by editing status, never by adding a field. SD-091 therefore currently reads OPEN to the forward gate and CLOSED to the backward scan at the same time. No entry was closed on a guess in this sweep; 17 of the 19 open-with-paths entries were verified genuinely open and left alone.",
+      "raised_by_session": "cranky-wiles-c85265",
+      "raised_at": "2026-09-17T15:50:55Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
