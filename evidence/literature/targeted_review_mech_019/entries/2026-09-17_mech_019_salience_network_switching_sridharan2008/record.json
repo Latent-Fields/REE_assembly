@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_019",
+  "entry_id": "2026-09-17_mech_019_salience_network_switching_sridharan2008",
+  "timestamp_utc": "2026-09-17T13:27:58Z",
+  "claim_ids_tested": [
+    "MECH-019"
+  ],
+  "source": {
+    "title": "A critical role for the right fronto-insular cortex in switching between central-executive and default-mode networks",
+    "authors": [
+      "Devarajan Sridharan",
+      "Daniel J. Levitin",
+      "Vinod Menon"
+    ],
+    "year": 2008,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0800005105",
+    "pmid": "18723676",
+    "pmc": "PMC2527952",
+    "volume": "105",
+    "issue": "34",
+    "pages": "12569-12574"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Highly-cited PNAS paper with unusually good construct correspondence -- the SalienceCoordinator is explicitly a cingulate/anterior-insula module and its aic_salience channel is named for this circuit, while the CEN/DMN pair maps onto external_task and internal_planning. That correspondence is why the entry is included. Confidence is capped at 0.60 by method: Granger causality on BOLD is a contested inferential route (haemodynamic lag confounds), the temporal resolution is far too coarse to see transition SHAPE, and the paper's framing is switch-like throughout, which is the position MECH-019 is arguing against.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The best-characterised biological analogue of the SalienceCoordinator's AIC channel is described in the literature as a SWITCH initiator -- a discrete causal trigger between network states -- rather than as a continuous shaper of a landscape.",
+    "Granger causality on BOLD cannot resolve whether the network transition is graded or step-like; the method establishes directionality of influence, not transition shape, so this circuit's dynamics remain unconstrained by fMRI evidence."
+  ],
+  "tags": [
+    "mech-019",
+    "salience-network",
+    "anterior-insula",
+    "default-mode-network",
+    "network-switching",
+    "granger-causality",
+    "support_tag:construct_correspondence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across three fMRI experiments -- auditory event segmentation, a visual attention oddball task, and task-free rest -- central-executive network activation was accompanied by default-mode network deactivation together with right fronto-insular cortex and anterior cingulate activation; Granger causality analysis indicated that the right fronto-insular cortex plays a critical and causal role in initiating the switch between the two networks, across paradigms and stimulus modalities.",
+    "ree_translation": "The SalienceCoordinator is REE's cingulate/anterior-insula analogue, and its `aic_salience` and `dacc_*` channels are named for precisely this circuit. The CEN/DMN antagonism maps onto the external_task / internal_planning opposition in the operating_mode vector. Sridharan et al. therefore give strong biological warrant for the ARCHITECTURAL placement MECH-019 depends on -- a salience-driven module with causal authority over which large-scale mode is occupied. What they do NOT give is warrant for the claim's distinctive part: their circuit is characterised as a switch initiator, which is closer to the substrate's `mode_switch_trigger` than to continuous landscape-shaping.",
+    "mapping_caveat": "Two serious boundaries. (1) fMRI cannot see transition shape: with a haemodynamic response on the order of seconds, the graded-versus-step distinction MECH-019 turns on is entirely below the measurement's resolution, so this paper is silent on the claim's actual contested content. (2) Granger causality applied to BOLD is methodologically contested -- regional differences in haemodynamic lag can produce spurious directionality -- and this specific analysis drew published criticism on those grounds. The entry should be read as construct-level support for where the control plane sits, never as evidence about how it operates.",
+    "source_context": "Healthy human adults; fMRI across three paradigms (auditory event segmentation, visual oddball attention task, task-free resting state); network activation/deactivation analysis plus Granger causality between right fronto-insular cortex, anterior cingulate, and central-executive and default-mode network nodes."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "source_quality marked down from what PNAS and the citation count alone would suggest, because the causal inference rests on Granger analysis of BOLD, which is contested for exactly this application. mapping_fidelity is moderate: excellent construct correspondence to the substrate's anatomy, poor correspondence to the dynamical property under test. Aggregate 0.60 reflects that this entry constrains WHERE the control plane sits and not HOW it operates."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_019",
+  "entry_id": "2026-09-17_mech_019_discrete_steps_vs_ramping_latimer2015",
+  "timestamp_utc": "2026-09-17T13:27:58Z",
+  "claim_ids_tested": [
+    "MECH-019"
+  ],
+  "source": {
+    "title": "Single-trial spike trains in parietal cortex reveal discrete steps during decision-making",
+    "authors": [
+      "Kenneth W. Latimer",
+      "Jacob L. Yates",
+      "Miriam L. R. Meister",
+      "Alexander C. Huk",
+      "Jonathan W. Pillow"
+    ],
+    "year": 2015,
+    "venue": "Science",
+    "doi": "10.1126/science.aaa4056",
+    "pmid": "26160947",
+    "pmc": "PMC4799998",
+    "volume": "349",
+    "issue": "6244",
+    "pages": "184-187"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "High source quality (Science, macaque single-unit, explicit model comparison between the two competing dynamical hypotheses, ~3/4 of choice-selective LIP neurons favouring stepping). Mapping fidelity is moderate rather than high: the latent variable compared is a decision variable in LIP, not a mode-occupancy vector in a salience coordinator, so the transfer is by analogy of DYNAMICAL FORM, not of subject matter. What makes the entry load-bearing despite that is not the neuroscience conclusion but the methodological one, which transfers exactly: a graded aggregate trajectory is not evidence of graded single-trial dynamics.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A trial-averaged ramp in a latent variable can be produced entirely by discrete single-trial jumps occurring at variable latencies, so averaged graded migration is not evidence of graded dynamics.",
+    "Approximately three-quarters of choice-selective LIP neurons were better fit by a discrete stepping model than by a continuous diffusion-to-bound model, in a system long treated as the canonical example of continuous accumulation.",
+    "If MECH-019's confirming test reads operating_mode averaged across seeds, trials or ticks, it cannot distinguish its own CONFIRMING from its own FALSIFYING outcome."
+  ],
+  "tags": [
+    "mech-019",
+    "arc-005",
+    "mode-transitions",
+    "graded-vs-discrete",
+    "instrumentation-caveat",
+    "model-comparison",
+    "support_tag:methodological_falsifier"
+  ],
+  "mapping": {
+    "source_claim_statement": "In macaque area LIP, single-trial spike trains during a motion-discrimination decision are better described by a model in which the latent decision variable makes discrete, stochastically-timed steps than by one in which it drifts continuously to a bound; the familiar gradual ramp appears only after averaging across trials, and the inferred steps carry more information about the animal's choice than spike counts alone.",
+    "ree_translation": "MECH-019's CONFIRMING criterion asks for probability mass to migrate across the operating_mode simplex over several ticks before the argmax flip. Latimer et al. establish that exactly this observation, if taken on an aggregate, is consistent with a substrate that is discretely switching on every individual run at a jittered time. The paper therefore does not argue that REE's control plane IS a discrete chooser; it removes the inference that would otherwise let a graded aggregate trajectory establish that it is not -- which is the claim's whole point of contention with the legacy MECH-008/020 framing.",
+    "mapping_caveat": "Two boundaries. First, this is a decision variable, not a mode vector: LIP's latent is one-dimensional and terminates in a saccadic commitment, whereas operating_mode is a four-component simplex with no terminal absorbing state, so the stepping/ramping dichotomy is not guaranteed to carve the same joint. Second, the result was contested -- Shadlen and colleagues published a Comment and Latimer et al. a Response (Science 2016, 351:1406, doi:10.1126/science.aad3596) -- and the model-comparison verdict depends on assumptions about spike-count noise. The durable, uncontested content is the identifiability point, and that is what is being imported here; the specific claim about LIP is not.",
+    "source_context": "Macaque monkeys, extracellular single-unit recording in lateral intraparietal cortex during a random-dot motion-discrimination task; latent-variable model comparison (stepping vs diffusion-to-bound) fit per neuron on single trials."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-019 is an architectural claim, which would normally pull the aggregate down. Held at 0.72 anyway because the transferred content is a statistical-identifiability argument rather than a biological finding, and identifiability arguments carry across substrates far better than mechanisms do. transfer_risk is non-trivial (0.35) mostly because of the published dispute, not because of the macaque-to-substrate step."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_019",
+  "entry_id": "2026-09-17_mech_019_graded_arousal_cortical_state_mcginley2015",
+  "timestamp_utc": "2026-09-17T13:27:58Z",
+  "claim_ids_tested": [
+    "MECH-019"
+  ],
+  "source": {
+    "title": "Cortical Membrane Potential Signature of Optimal States for Sensory Signal Detection",
+    "authors": [
+      "Matthew J. McGinley",
+      "Stephen V. David",
+      "David A. McCormick"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.05.038",
+    "pmid": "26074005",
+    "pmc": "PMC4631312",
+    "volume": "87",
+    "issue": "1",
+    "pages": "179-192"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Strong empirical source: intracellular membrane-potential recording in behaving mice with simultaneous pupillometry and a psychophysical readout, which is about as direct as the arousal-to-cortical-state link gets. Mapping fidelity is genuinely good for the 'continuous channel, graded consequence' half of MECH-019 -- pupil-indexed arousal is a continuously-varying control variable and both the physiological and the behavioural readouts vary smoothly along it. It is weaker for the half the claim actually contests, because the paper reports a graded PERFORMANCE curve rather than a graded TRANSITION between named modes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The arousal-performance relationship is inverted-U rather than monotonic, so a monotonicity requirement imposed on a control-plane sweep may fail for a substrate that is nonetheless behaving as MECH-019 describes.",
+    "Walking coincided consistently with hyper-arousal, meaning the continuous arousal variable is not cleanly dissociable from discrete behavioural state in this preparation."
+  ],
+  "tags": [
+    "mech-019",
+    "arc-005",
+    "arousal",
+    "pupillometry",
+    "cortical-state",
+    "graded-modulation",
+    "inverted-u",
+    "support_tag:continuous_channel"
+  ],
+  "mapping": {
+    "source_claim_statement": "In mice performing a difficult tone-in-noise detection task, pupil-indexed arousal predicts distinct modes of auditory cortical membrane potential; optimal detection performance and the largest sound-evoked responses occur at INTERMEDIATE arousal, where the pre-decision membrane potential is stably hyperpolarised and background synaptic noise is low, with performance falling off at both low and high arousal.",
+    "ree_translation": "This is the closest biological instance of the 'control plane channel' MECH-019 posits: a single continuously-varying global variable that does not select a behaviour but sets the regime in which sensory evidence is processed -- gain on evoked responses, level of background noise, stability of the operating point. It maps onto the SalienceCoordinator's continuous input channels (aic_salience, dacc_pe) shaping the operating_mode landscape rather than picking a mode, and it supports the claim's core assertion that what looks like choice from outside is regime-shaping from inside.",
+    "mapping_caveat": "The paper's graded quantity is task PERFORMANCE and membrane-potential statistics along an arousal axis, not occupancy of named cognitive modes, and certainly not the shape of a transition between them. McGinley et al. therefore evidence the premise of MECH-019 (a continuous channel produces graded, not step-like, consequences) but not its contested prediction (graded precursor migration before an argmax flip). Note also the inverted-U: the relationship is smooth but NOT monotonic, which is in direct tension with MECH-019's CONFIRMING criterion as written -- see the summary.",
+    "source_context": "Head-fixed mice trained on a tone-in-noise detection task; whole-cell/intracellular membrane potential recording in auditory cortex with simultaneous pupillometry, hippocampal recording and locomotion monitoring."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.35,
+    "notes": "Aggregate held slightly below what source_quality alone would give, because for an architectural claim mapping_fidelity is weighted heavily and this paper lands on the claim's premise rather than its contested prediction. transfer_risk 0.35: mouse auditory cortex to a four-mode coordinator is a real distance, but arousal-as-continuous-gain is one of the better-replicated cross-species findings in systems neuroscience, which caps the risk."
+  }
+}

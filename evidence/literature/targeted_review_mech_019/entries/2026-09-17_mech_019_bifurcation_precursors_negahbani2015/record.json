@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_019",
+  "entry_id": "2026-09-17_mech_019_bifurcation_precursors_negahbani2015",
+  "timestamp_utc": "2026-09-17T13:27:58Z",
+  "claim_ids_tested": [
+    "MECH-019"
+  ],
+  "source": {
+    "title": "Noise-Induced Precursors of State Transitions in the Stochastic Wilson-Cowan Model",
+    "authors": [
+      "Ehsan Negahbani",
+      "D. Alistair Steyn-Ross",
+      "Moira L. Steyn-Ross",
+      "Marcus T. Wilson",
+      "Jamie W. Sleigh"
+    ],
+    "year": 2015,
+    "venue": "Journal of Mathematical Neuroscience",
+    "doi": "10.1186/s13408-015-0021-x",
+    "pmid": "25859420",
+    "pmc": "PMC4388113",
+    "volume": "5",
+    "pages": "9"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Source quality is solid for what it is -- rigorous bifurcation analysis with an Ornstein-Uhlenbeck linearisation, plus validation against in vitro mouse LFP preceding seizure-like events -- but it is a specialist mathematical-neuroscience venue and the empirical component is secondary to the theory. Mapping fidelity is the reason this entry is here at all: it addresses MECH-019's CONFIRMING criterion (a detectable graded precursor before a discrete flip) more directly than any other paper in this pull, and it supplies the precursor OBSERVABLE the criterion is currently missing. Held below 0.7 because the evidence is mostly theoretical and the transfer is by universality argument.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The precursor of an impending transition appears in the second-order statistics of fluctuations (variance growth, spectral focusing toward low frequencies, lengthening autocorrelation), NOT necessarily in the mean trajectory of the state variable -- so a test that watches only the mean operating_mode vector can miss a real, detectable graded precursor entirely.",
+    "Critical slowing is a property of approach to a bifurcation, so its presence indicates the system is near a threshold, which is compatible with the substrate being a threshold device."
+  ],
+  "tags": [
+    "mech-019",
+    "critical-slowing-down",
+    "bifurcation",
+    "early-warning-signals",
+    "wilson-cowan",
+    "state-transitions",
+    "support_tag:precursor_observable"
+  ],
+  "mapping": {
+    "source_claim_statement": "In the Wilson-Cowan neural-field model driven by small-amplitude spatio-temporal white noise, approach to a bifurcation produces divergent changes in the correlation and spectral characteristics of subthreshold fluctuations -- variance grows and spectral power focuses toward lower frequencies (critical slowing). The authors report the same signature empirically in local field potentials recorded from mouse brain slices in the period preceding spontaneous seizure-like events, and argue such noise-induced precursors are a universal feature of neural systems approaching a state change.",
+    "ree_translation": "MECH-019's CONFIRMING criterion asks for a detectable graded precursor before the discrete argmax flip, and currently nominates migration of probability mass in the mean operating_mode vector as that precursor. This paper says the precursor is real and generic, but that it lives in the VARIANCE and SPECTRUM of the fluctuations rather than in the mean -- and that this holds even when the transition itself is sharply discrete. Applied to the SalienceCoordinator: as a swept channel carries the system toward the MECH-259 threshold, tick-to-tick variance in operating_mode occupancy should grow and its autocorrelation lengthen, before any argmax flip. That is a second, independent confirming observable -- and unlike the mean it is not manufacturable by averaging over jittered discrete events.",
+    "mapping_caveat": "The transfer rests on a universality argument, not on measurement: critical slowing is a generic property of systems approaching a bifurcation, and the SalienceCoordinator is a softmax-plus-threshold device rather than a continuous dynamical system, so it is NOT established that it sits near a bifurcation in the relevant sense or that it carries enough intrinsic noise to express the signature. This entry should be read as proposing a measurable prediction, not as evidence that the prediction holds in REE. The empirical component (mouse slice, pre-seizure LFP) is a pathological transition and is adjacent to the claim at best.",
+    "source_context": "Mathematical Wilson-Cowan neural-field model with additive spatio-temporal white noise; bifurcation analysis and Ornstein-Uhlenbeck linearisation with stochastic simulation; validated against local field potentials from in vitro mouse brain slices preceding spontaneous seizure-like events."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "The lowest confidence in this pull, and deliberately so: the content is largely theoretical and the transfer is by universality rather than by measured correspondence, giving the highest transfer_risk here (0.45). It earns its place because it is the only entry that supplies a CONSTRUCTIVE fix to the identifiability problem Latimer et al. raise -- a precursor observable that averaging cannot fake -- rather than another caution."
+  }
+}
