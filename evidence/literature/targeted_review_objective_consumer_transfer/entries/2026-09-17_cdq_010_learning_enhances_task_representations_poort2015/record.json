@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_objective_consumer_transfer",
+  "entry_id": "2026-09-17_cdq_010_learning_enhances_task_representations_poort2015",
+  "timestamp_utc": "2026-09-17T19:20:00Z",
+  "claim_ids_tested": [
+    "CDQ-010"
+  ],
+  "source": {
+    "title": "Learning Enhances Sensory and Multiple Non-sensory Representations in Primary Visual Cortex.",
+    "authors": [
+      "Jasper Poort",
+      "Adil G Khan",
+      "Marius Pachitariu",
+      "Abdellatif Nemri",
+      "Ivana Orsolic",
+      "Julija Krupic",
+      "Marius Bauza",
+      "Maneesh Sahani",
+      "Georg B Keller",
+      "Thomas D Mrsic-Flogel",
+      "Sonja B Hofer"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.05.037",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26051421/"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Included deliberately as the COUNTERWEIGHT entry. It shows learning improves the discriminability of task-relevant stimuli in V1 -- consistent with MECH-567 -- but it also shows V1 simultaneously acquires multiple NON-sensory signals, i.e. the encoder becomes less a clean sensory code and more a task-entangled one. That cuts against any simple 'just add the task target and the code gets better for everyone' reading, which matters because REE's z_world is a SHARED latent with many declared consumers.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Enhanced discriminability is reported for the trained task; the paper does not test whether the reshaped V1 code is better or WORSE for an untrained downstream use, which is the shared-latent risk REE actually faces.",
+    "Non-sensory (choice, reward, locomotion) signals appearing in V1 mean task-shaping ENTANGLES the code; for a multi-consumer latent this is a cost, not only a benefit.",
+    "Mouse V1 in a head-fixed virtual-corridor discrimination task; the consumer is a licking report, far simpler than a policy over an action set."
+  ],
+  "tags": [
+    "cdq_010",
+    "mech_567",
+    "counterweight",
+    "shared_latent_cost",
+    "task_entanglement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Learning a visual discrimination task increases the discriminability of task-relevant stimuli in mouse V1 population activity, and concurrently V1 comes to represent multiple non-sensory variables including choice, reward and locomotion signals.",
+    "ree_translation": "The first half supports MECH-567: task-relevant supervision reaching the encoder improves exactly the discriminations the consumer needs. The second half is the registered COST: task-shaping entangles the code with task variables. REE's z_world is explicitly a shared representation -- SD-106's own note lists SD-015, ARC-030, MECH-117, the EXQ-085h..o cluster, MECH-457 and ARC-065 as consumers -- so an unrestricted MECH-567 build risks improving one consumer at the expense of the others. This is the biological reason MECH-567 is registered as an AUXILIARY-HEAD claim (DreamerV3 shape) rather than as MuZero's consumer-only training, which would make z_world single-consumer by construction.",
+    "mapping_caveat": "Neither half is measured against an UNTRAINED downstream use, so the shared-latent cost is inferred from the presence of non-sensory signals rather than demonstrated as a degradation. Recorded as a risk to instrument for, not as an established penalty.",
+    "source_context": "Mouse V1 two-photon imaging across learning of a virtual-corridor visual discrimination task."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.48,
+    "notes": "Included for its counterweight value as much as its support. The shared-latent cost is the part REE most needs and is the part the paper evidences least directly."
+  }
+}

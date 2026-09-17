@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_objective_consumer_transfer",
+  "entry_id": "2026-09-17_cdq_010_information_exceeds_behaviour_rumyantsev2020",
+  "timestamp_utc": "2026-09-17T19:20:00Z",
+  "claim_ids_tested": [
+    "CDQ-010"
+  ],
+  "source": {
+    "title": "Fundamental bounds on the fidelity of sensory cortical coding.",
+    "authors": [
+      "Oleg I Rumyantsev",
+      "J\u00e9r\u00f4me A Lecoq",
+      "Oscar Hernandez",
+      "Yanping Zhang",
+      "Joan Savall",
+      "Rados\u0142aw Chrapkiewicz",
+      "Jane Li",
+      "Hongkui Zeng",
+      "Surya Ganguli",
+      "Mark J Schnitzer"
+    ],
+    "year": 2020,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-020-2130-2",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32238928/"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly establishes the dissociation CDQ-010 rests on: the sensory population contains substantially more task information than the animal's behaviour extracts. That is the biological form of 'the objective is well-trained and the consumer is not benefiting'. Discounted because the gap is attributed largely to information-limiting correlations and downstream noise rather than to code geometry specifically, so it supports the EXISTENCE of a transfer gap more strongly than it discriminates among its mechanisms.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own primary explanatory construct is information-limiting CORRELATIONS bounding the population's asymptotic information -- a sender-side ceiling. That is a different mechanism from a readout/geometry failure, and this entry must not be cited as if it selected the latter.",
+    "Behavioural discrimination thresholds depend on attention, motivation and motor report, so the neural-vs-behavioural gap is not purely a readout-efficiency measurement.",
+    "Mouse V1 orientation discrimination is a perceptual-report task; there is no action-selection consumer of the kind SD-106 is scored against."
+  ],
+  "tags": [
+    "cdq_010",
+    "mech_566",
+    "mech_567",
+    "information_vs_behaviour",
+    "readout_efficiency"
+  ],
+  "mapping": {
+    "source_claim_statement": "Large-scale two-photon recordings of mouse V1 populations carry far more orientation information than is reflected in the animal's behavioural discrimination threshold; the population's information is bounded asymptotically by information-limiting correlations, and behaviour falls well short even of that bound.",
+    "ree_translation": "Information PRESENT in a representation and information USED by a consumer are separately measurable and routinely differ by a large factor in biology. This is the general licence for CDQ-010's framing: the V3-EXQ-1023a result (objective +0.1184 R^2, consumer +0.0081) is a normal shape for a biological sender-consumer pair, not an anomaly implying the objective failed. It is also the reason 'the lever is exhausted' was the wrong conclusion and 'the lever is not connected' was the right one.",
+    "mapping_caveat": "The paper's leading explanation is a SENDER-side ceiling (information-limiting correlations), whereas MECH-566 and MECH-567 are CONSUMER-side and objective-side accounts. This entry therefore supports the existence and size of a present-vs-used gap; it does not adjudicate between the three registered mechanisms and must not be scored as if it did.",
+    "source_context": "Mouse primary visual cortex, ~10^4 neurons imaged with two-photon mesoscopy during an orientation-discrimination task."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.5,
+    "notes": "Excellent measurement; the discount is entirely about specificity -- it establishes the gap, not its mechanism, and the paper's own favoured account is a sender-side one."
+  }
+}

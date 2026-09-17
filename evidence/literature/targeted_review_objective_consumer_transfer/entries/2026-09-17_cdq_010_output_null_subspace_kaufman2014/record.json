@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_objective_consumer_transfer",
+  "entry_id": "2026-09-17_cdq_010_output_null_subspace_kaufman2014",
+  "timestamp_utc": "2026-09-17T19:20:00Z",
+  "claim_ids_tested": [
+    "CDQ-010"
+  ],
+  "source": {
+    "title": "Cortical activity in the null space: permitting preparation without movement.",
+    "authors": [
+      "Matthew T Kaufman",
+      "Mark M Churchland",
+      "Stephen I Ryu",
+      "Krishna V Shenoy"
+    ],
+    "year": 2014,
+    "venue": "Nat Neurosci",
+    "doi": "10.1038/nn.3643",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24487233/"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "A rare case where the downstream readout is explicitly MODELLED, so 'what the consumer can and cannot see' is a stated quantity rather than an inference. It establishes that a large fraction of an upstream population's variance can lie in directions the consumer provably cannot read -- the biological form of MECH-566's claim that an objective can improve on a quantity the consumer is blind to. Discounted because the null/potent decomposition is derived from a fitted linear readout model, so it is a property of the assumed readout as much as of the biology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The output-null / output-potent split is defined RELATIVE TO A FITTED LINEAR READOUT. A different readout class relabels which dimensions are null, so this is evidence about a representation-readout PAIR, which is the right shape for MECH-566 but must not be quoted as an intrinsic property of motor cortex.",
+    "Preparatory null-space activity is functionally purposeful (it sets up movement without causing it) -- it is not wasted or mis-encoded variance. Reading it as 'the upstream squandered its capacity' inverts the paper.",
+    "Motor cortex -> muscle is a far more constrained interface than z_world -> policy MLP; REE's consumer is itself learned and can in principle rotate its own readout, which the muscle plant cannot."
+  ],
+  "tags": [
+    "cdq_010",
+    "mech_566",
+    "output_null",
+    "readout_geometry",
+    "alignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "Preparatory activity in motor cortex is large but produces no movement because it occupies an 'output-null' subspace with respect to the downstream readout, while movement-generating activity occupies an 'output-potent' subspace. The same population can carry substantial variance that the consumer is, by the geometry of the readout, unable to see.",
+    "ree_translation": "This is the biological existence proof for the central MECH-566 mechanism: the magnitude of variance in an upstream code is not the quantity a consumer responds to; the ALIGNMENT of that variance with the consumer's readout is. An encoder objective scored on total preserved variance is therefore measuring along an axis that is, in this paper's terms, partly output-null by construction -- and adding budget moves the code further along axes the consumer cannot read. The measured REE transfer slope of 0.068 agreement per unit R^2 against a PCA-anchored 3.4655 is what a largely output-null improvement looks like.",
+    "mapping_caveat": "The paper's null space is defined against a FIXED linear readout (the muscle plant). REE's consumer is a TRAINED MLP that could in principle learn to read any direction, so the REE analogue is not a hard geometric null space but a soft, optimisation-limited one: directions the consumer COULD read in principle but cannot reach with finite capacity, finite data and standard initialisation. That softening is exactly why MECH-566's falsifier is a whitening test rather than a subspace-alignment test.",
+    "source_context": "Macaque motor and premotor cortex during delayed-reach tasks; linear readout model fitted to relate population activity to muscle activity."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Strong, well-replicated result and unusually explicit about the readout. The fixed-plant vs learned-consumer disanalogy is the main discount and is stated rather than smoothed over."
+  }
+}

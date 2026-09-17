@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_objective_consumer_transfer",
+  "entry_id": "2026-09-17_cdq_010_task_reward_reshapes_encoder_david2012",
+  "timestamp_utc": "2026-09-17T19:20:00Z",
+  "claim_ids_tested": [
+    "CDQ-010"
+  ],
+  "source": {
+    "title": "Task reward structure shapes rapid receptive field plasticity in auditory cortex.",
+    "authors": [
+      "Stephen V David",
+      "Jonathan B Fritz",
+      "Shihab A Shamma"
+    ],
+    "year": 2012,
+    "venue": "Proc Natl Acad Sci U S A",
+    "doi": "10.1073/pnas.1117717109",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22308415/"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This is the positive-control biology for MECH-567: the sensory encoder itself is reshaped by the TASK's reward structure, not merely by input statistics, and the reshaping is specific to the reward contingency rather than to the stimulus being attended. It is the biological form of 'put the consumer's target into the encoder's objective'. Discounted because it shows reward-structure-dependent plasticity, not that this plasticity is what makes a downstream consumer competent -- the causal link to readout performance is not measured here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Receptive-field plasticity is measured at the ENCODER; the paper does not measure a downstream consumer's performance, so 'this is what makes transfer work' is an inference, not a result.",
+    "Rapid (minutes-scale) attentional/task-driven RF changes are partly transient gain effects and may not be the same process as the slow representational restructuring an encoder objective performs.",
+    "Ferret A1 under trained behavioural contingencies is a heavily over-trained regime; the REE question is a from-scratch encoder-training question, where no task contingency yet exists to shape the code."
+  ],
+  "tags": [
+    "cdq_010",
+    "mech_567",
+    "task_relevant_shaping",
+    "reward_modulated_plasticity",
+    "auditory_cortex"
+  ],
+  "mapping": {
+    "source_claim_statement": "Auditory cortical receptive fields change rapidly during behaviour in a way that depends on the TASK's reward structure: representations sharpen for task-relevant stimuli, and responses to stimuli signalling aversive outcomes and behavioural inhibition are amplified. Top-down shaping of sensory processing tracks the reward contingency, not only the sensory discrimination required.",
+    "ree_translation": "Biology does not rely on a task-agnostic preservation objective to make a sensory code usable; it routes the task's own reward structure INTO the encoder. This is MECH-567's mechanism with a biological existence proof, and it is the specific reason MECH-567 proposes an auxiliary consumer-target head on the SAME latent during P0a rather than more preservation budget. It also grounds the DreamerV3 construction (reward and continue heads inside the representation objective) as the biologically closer of the two external sources, with MuZero's consumer-only training as the extreme limit.",
+    "mapping_caveat": "The paper measures encoder change, not consumer competence. It therefore supports 'task structure DOES reach and reshape the encoder in biology'; it does not establish that doing so is what lifts a downstream readout, which is precisely what MECH-567's falsifier has to measure in REE.",
+    "source_context": "Ferret primary auditory cortex; spectrotemporal receptive fields measured during behaviour under differing task reward contingencies."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Direct, well-established line of work from the Shamma/Fritz group. Discount is the missing encoder-change -> consumer-competence link, which is the REE-side measurement MECH-567 owes."
+  }
+}

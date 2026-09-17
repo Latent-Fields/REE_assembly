@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_objective_consumer_transfer",
+  "entry_id": "2026-09-17_cdq_010_communication_subspace_semedo2019",
+  "timestamp_utc": "2026-09-17T19:20:00Z",
+  "claim_ids_tested": [
+    "CDQ-010"
+  ],
+  "source": {
+    "title": "Cortical Areas Interact through a Communication Subspace.",
+    "authors": [
+      "Jo\u00e3o D Semedo",
+      "Amin Zandvakili",
+      "Christian K Machens",
+      "Byron M Yu",
+      "Adam Kohn"
+    ],
+    "year": 2019,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2019.01.026",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30770252/"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "This is the closest biological statement of the exact CDQ-010 mechanism question, and it is a direct simultaneous-population measurement rather than an inference from single units. The load-bearing detail is not that a subspace exists but that it is DISTINCT from the dominant within-area fluctuations -- which is precisely the discriminating fact a variance-preservation objective needs and does not have. Discounted because it is anaesthetised macaque V1->V2 under drifting gratings, a feedforward sensory relay rather than a representation->action-consumer interface, and because the subspace is characterised statistically (reduced-rank regression on trial-to-trial fluctuations) rather than shown to be causally load-bearing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "V1->V2 is a sensory-to-sensory relay; CDQ-010's interface is representation-to-ACTION-consumer. The claim that the same low-dimensional routing constraint governs a policy readout is an extrapolation the paper does not make.",
+    "The communication subspace is identified from trial-to-trial response fluctuations to repeated gratings. It is a description of shared variability, not a demonstration that V2 CANNOT read the remaining V1 dimensions -- absence of correlation is not proof of an inaccessible channel.",
+    "Recordings are from anaesthetised animals in most conditions, so any task- or reward-dependent reshaping of the subspace (which is what MECH-567 would predict) is by construction absent and untestable here."
+  ],
+  "tags": [
+    "cdq_010",
+    "mech_566",
+    "mech_567",
+    "communication_subspace",
+    "population_geometry",
+    "readout"
+  ],
+  "mapping": {
+    "source_claim_statement": "Trial-to-trial fluctuations of V2 population activity are related to only a small subset of V1 population activity patterns -- a low-dimensional 'communication subspace' -- and these patterns are distinct from the largest fluctuations shared among neurons within V1. The authors propose the communication subspace as a general population-level mechanism for selectively routing activity across areas.",
+    "ree_translation": "The downstream consumer does not receive the upstream population's dominant-variance directions. If that holds at REE's observation->z_world->consumer interface, then an objective that maximises preserved INPUT VARIANCE is optimising a quantity whose dominant directions are, biologically, the ones least likely to be read. This supplies the biological reference the V3-EXQ-1023a autopsy recorded as ABSENT, and it is the reason CDQ-010's deliverable had to be a transfer mechanism rather than another adequacy locus: the information can be present in the sender and still not be in the channel.",
+    "mapping_caveat": "The strongest reading -- 'dominant variance is never what transfers' -- is NOT supported and is in fact embarrassed by REE's own PCA-32 anchor, which keeps precisely the top-32 principal directions and clears the consumer bar 3/3. So this entry licenses 'preserved variance is not automatically transferred variance', not 'high-variance directions are useless'. The REE-side discriminator between those two readings is code GEOMETRY at matched variance (MECH-566), which this paper does not address.",
+    "source_context": "Simultaneous multi-electrode recordings from macaque V1 and V2 populations; reduced-rank regression used to characterise the dimensionality of V1 activity predictive of V2."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Highly cited, methodologically clean, and the 'distinct from the largest within-area fluctuations' result is exactly on point. Main discount is the sensory-relay-to-action-consumer transfer risk, plus the fact that REE's own PCA anchor bounds how strongly this can be read."
+  }
+}
