@@ -4471,6 +4471,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0315",
+      "claim_ids": [
+        "MECH-221",
+        "MECH-222",
+        "INV-040"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The SD-070 world-encoder training recipe (substrate_queue sd_zworld_warmup_optimizer_group, status validated) is DEFAULT-OFF: zworld_p0_episodes defaults to 0 in the x734/737 driver family, with an in-code comment at v3_exq_728_trained_allon_capability_point.py:537 stating that 0 is exactly the prior behaviour and bit-identical. Only 44 of 1503 experiment drivers mention the parameter at all (~2.9 percent), so z_world is a FROZEN RANDOM PROJECTION in the default regime and any z_world decodability or residualization result recorded without it is a measurement of an untrained projection. A read-only pre-flight on 2026-09-17 found three current substrate-build chips sitting downstream of this fact without naming it, and independently re-measured z_world exogenous-event decodability at chance (AUC 0.53-0.63 across 6 measurements). This flag asks governance to decide whether affected evidence needs an evidence_direction review and whether the default should flip.",
+      "raised_by_session": "orchestrate-20260917-1138",
+      "raised_at": "2026-09-17T11:47:47Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
