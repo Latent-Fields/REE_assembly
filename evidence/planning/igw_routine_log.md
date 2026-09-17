@@ -3143,3 +3143,5 @@ One line per hourly tick. ASCII only.
 2026-09-17T10:14:18Z complete IGW-20260916-231 completed_resumable->completed outcome=USEFUL_LANDED: MECH-017 experiment designed, smoke-tested, red-teamed and QUEUED. The authoring
 2026-09-17T11:09:01Z skip: paused (.igw_routine_pause present)
 2026-09-17T12:11:53Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 253 items, 34 ready, 0 in flight)
+2026-09-17T12:09:09Z SPAWN IGW-20260917-241 skill=/queue-experiment prio=40 uuid=3230d9cb-fcbd-42f8-b6b6-b3da033cbc8b pid=17389 worktree=igw-241-proposal-for-mech-019
+2026-09-17T13:23:42Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 253 items, 34 ready, 0 in flight)
