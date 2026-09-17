@@ -15589,14 +15589,29 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_024",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "residue-field-ring-capacity",
+        "residue-field-kernel-resolution",
+        "residue-cost-untrained-neural-field"
+      ],
+      "blocked_note": "Refused at /queue-experiment Step 2.5 (substrate readiness) before any script was written. MECH-024 needs a 3x3 lesion x readout coupling matrix whose CONFIRMING branch requires a CONNECTED graph (so the ethics row/column must be readable) at a sign-consistent shift >= 2 SD(seeds). Measured this session from V3-EXQ-697 (5 seeds, populated residue field): the ethics channel's own seed dispersion is mean_weight max/min = 21.5x (CV 0.830) and flip_intact_vs_zeroed SD = 0.4203 on a [0,1] DV, so 2 SD = 0.84 spans 84% of the measurable range -- the criterion is arithmetically unreachable on this channel at any effect size. Structural cause is MECH-023's 32-slot residue ring buffer (num_basis_functions=32, ~28 wraps in 720 steps) arriving by a different route: MECH-024 injects no fork history, so the relocation artifact does not apply, but its corollary does -- total field mass is a sample of the last 32 harm events, not a stable property of the agent. MECH-024-SPECIFIC third blocker: ResidueField.neural_field (field.py:434) is a randomly-initialised, never-trained MLP contributing 0.1*MLP(z) to every evaluate_trajectory (re-verified: no loss/optimizer touches any residue parameter); it cancels across MECH-023's fork-vs-fork contrast but NOT across MECH-024's intact-vs-zeroed lesion, so it enters the ethics diagonal and every ethics-column off-diagonal as unmodelled seed-varying offset. Not counted as blockers because levers exist: the PERSONALITY readout (SalienceCoordinator.operating_mode) collapses one-hot at the default salience_affinity_input_cap=None (unbounded dacc_pe ~16-17 vs [0,1] engagement signals, salience_coordinator.py:275-292) -- saturated per the claim's own non-degeneracy precondition, fixable by setting the cap; and the registered PERSONALITY lesion ('freeze precision logits at init values' on a trained agent) is a reset-to-init, i.e. the global disruption the falsifier itself excludes -- a what_would_answer amendment, not substrate work. SELFHOOD axis is READY (V4-EXQ-002 PASS 2026-07-01: state_departure 1.1472 vs floor 0.001, perturbation-isolated 3/3 seeds). The claim's own 2026-09-16 disposition ('queue only after MECH-023 has a result') is also unsatisfiable: EVB-1394/EXP-0761 went blocked_substrate 2026-09-17T21:16:49Z on the same residue substrate. Full measurements, the run's predicted vacuous FALSIFYING verdict, and the release condition: REE_assembly/evidence/planning/mech024_cross_lesion_coupling_substrate_blocked_20260917.md",
+      "gated_on": [
+        "residue-field-ring-capacity",
+        "residue-field-kernel-resolution",
+        "residue-cost-untrained-neural-field"
+      ],
+      "gating_reason": "ethics channel is unreadable at the registered 2 SD(seeds) criterion (CV 0.830 on mean_weight, 2 SD = 0.84 on a [0,1] DV) because the 32-slot residue ring makes field mass a sample of the last 32 harm events, and an untrained neural_field adds a seed-varying offset that does not cancel under an intact-vs-zeroed lesion; with 3 axes the CONFIRMING branch requires ethics to be readable for the coupling graph to be connected",
+      "release_condition": "ALL THREE: (a) residue accumulation is no longer a 32-slot window over the most recent harm events, so total field mass is a stable property of the agent (num_harm_events < num_centers over the schedule, or an append-only/consolidating path); AND (b) residue kernel bandwidth is commensurate with the z_world manifold (pole_sep / bandwidth >= 2) -- note SD-067's opt-in safety_terrain_bandwidth fixes this for the MECH-303 safety terrain only, the harm residue field is untouched and unowned; AND (c) ResidueField.neural_field is either trained or gated off for intact-vs-zeroed reads, the way e3_include_untrained_fallback_scorers=False already gates E3's untrained fallback scorers. Two non-blocking preconditions a successor must also carry: set salience_affinity_input_cap and assert H(operating_mode) > 0 per seed; and get the PERSONALITY lesion disambiguated in what_would_answer (freeze-at-training vs reset-at-probe).",
+      "gated_by_session": "igw-243-proposal-for-mech-024",
+      "gated_utc": "2026-09-17T22:50:00Z"
     },
     {
       "acceptance_checks": [
