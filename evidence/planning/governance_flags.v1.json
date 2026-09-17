@@ -4632,6 +4632,19 @@
       "status": "superseded",
       "resolved_at": "2026-09-17T16:23:02Z",
       "resolution_note": "SUPERSEDED, mostly self-discharged. igw_routine_tick.py complete (same session, minutes later) flipped the (EVB-1393, experimental) row to status=executed on origin/master -- correctly leaving its literature twin LIT-0760 at proposed -- so the material risk this flag named (the indexer re-deriving EVB-1393 as proposed and re-spawning work already queued) is CLOSED. RESIDUE, and the only reason this is superseded rather than resolved: the tick sets status but NOT the execution provenance, so EXP-0759 still carries executed_by=None and executed_queue_id=None where the correct value for both is V3-EXQ-1050. Re-raised narrowly as the successor flag."
+    },
+    {
+      "flag_id": "GFLAG-0326",
+      "claim_ids": [
+        "MECH-021"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Successor to GFLAG-0325 (superseded). Narrow data gap, ~30s fix: experiment_proposals.v1.json row (backlog_id EVB-1393, proposal_type experimental, currently EXP-0759) now correctly reads status=executed, but carries executed_by=None and executed_queue_id=None. Both should be V3-EXQ-1050 (ree-v3 d269a820cd, on origin/main, live in the coordinator DB). igw_routine_tick.py complete sets the STATUS but not the execution provenance, so nothing re-derives these two fields and the link from the proposal to the run that executed it is otherwise lost permanently. Apply to the experimental row ONLY -- its literature twin LIT-0760 is correctly still proposed.",
+      "raised_by_session": "igw-242-proposal-for-mech-021",
+      "raised_at": "2026-09-17T16:24:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
