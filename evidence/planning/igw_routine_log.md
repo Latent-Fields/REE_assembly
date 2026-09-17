@@ -3149,3 +3149,8 @@ One line per hourly tick. ASCII only.
 2026-09-17T13:39:43Z auto-defer igw-241-proposal-for-mech-019 hash=81968e5195cd for 48h (complete)
 2026-09-17T13:41:47Z complete igw-241-proposal-for-mech-019 spawned->completed outcome=USEFUL_LANDED: No experiment queued -- MECH-019 is untestable on any validated V3 config. Marke
 2026-09-17T13:48:23Z auto-defer igw-242-literature-proposal-for-mech-019 hash=e18d11bd0605 for 48h (complete)
+2026-09-17T13:49:37Z complete igw-242-literature-proposal-for-mech-019 spawned->completed outcome=USEFUL_LANDED: MECH-019 lit-pull landed: 5 entries in REE_assembly evidence/literature/targeted
+2026-09-17T14:29:20Z GC removed worktree igw-241-proposal-for-mech-019 (removed; branch deleted)
+2026-09-17T14:29:21Z GC removed worktree igw-242-literature-proposal-for-mech-019 (removed; branch deleted)
+2026-09-17T14:28:03Z GC sweep removed 2 orphan worktree(s), kept 15
+2026-09-17T14:29:35Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
