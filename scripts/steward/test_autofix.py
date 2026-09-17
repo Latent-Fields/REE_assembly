@@ -266,6 +266,169 @@ def test_d006_shipped_registry_needs_no_fixes():
     assert D006.fix(load_context(repo), NOW, dry_run=True) == []
 
 
+# ---------------------------------------------------------------------------
+# D-006 -- supersession chains are not near-duplicates (GFLAG-0314 / 0328)
+#
+# HALF OF THESE ARE NEGATIVE CONTROLS, for the reason in this file's docstring
+# applied one level up: the T1 report's failure mode is now SILENCE, not over-
+# eager editing. A predicate widened until it swallows a genuine near-duplicate
+# loses the finding with no trace at all.
+# ---------------------------------------------------------------------------
+
+REISSUE = ("CORRECTED REISSUE of %s, narrowed by a measurement taken after it "
+           "was raised. " + "x" * 400)
+# GFLAG-0308's shape: a DIFFERENT finding that cites its predecessor in passing
+# at the very end. Offset ~980 on the live registry.
+TRAILING_CITE = ("y" * 900 + " Supersedes %s, whose summary predates the "
+                 "tick's status write.")
+
+
+def _chain_pair(pred_status="superseded", succ_tmpl=REISSUE):
+    """A canonical predecessor + a successor declaring itself as such."""
+    return [
+        flag("GFLAG-0500", ["MECH-900"], raised="2026-09-17T10:00:00Z",
+             summary="the original finding", status=pred_status,
+             resolution_note="Superseded by the corrected reissue.",
+             resolved_at="2026-09-17T10:30:00Z"),
+        flag("GFLAG-0501", ["MECH-900"], raised="2026-09-17T11:00:00Z",
+             summary=succ_tmpl % "GFLAG-0500", status="open"),
+    ]
+
+
+def _run(root):
+    return D006.run(ctx_for(root))[0]
+
+
+def test_d006_supersession_chain_does_not_escalate(tmp_path):
+    """The GFLAG-0315/0320 shape: reported, but never wakes a model."""
+    root = make_tree(tmp_path / "repo")
+    write_flags(root, _chain_pair())
+    findings = _run(root)
+    assert len(findings) == 1
+    f = findings[0]
+    assert f["escalate"] is False
+    assert f["evidence"]["supersession_chain"] == ["GFLAG-0500", "GFLAG-0501"]
+    assert "supersession chain" in f["title"]
+
+
+def test_d006_trailing_citation_still_escalates(tmp_path):
+    """THE NEGATIVE CONTROL -- GFLAG-0307/0308, named by GFLAG-0328.
+
+    Same statuses, same cross-reference, same grouping key as the case above.
+    The ONLY difference is that the flag_id sits at the END of a DIFFERENT
+    finding rather than in an opening successor declaration. Measured offsets on
+    the live registry: 11-21 for every true chain, 981 here.
+    """
+    root = make_tree(tmp_path / "repo")
+    write_flags(root, _chain_pair(succ_tmpl=TRAILING_CITE))
+    findings = _run(root)
+    assert len(findings) == 1
+    assert findings[0]["escalate"] is True
+    assert findings[0]["evidence"]["supersession_chain"] is None
+
+
+def test_d006_all_members_dispositioned_is_not_enough(tmp_path):
+    """REJECTED WIDER PREDICATE #1 -- do not re-propose.
+
+    "Suppress when every member is dispositioned" also suppresses the negative
+    control (GFLAG-0307 superseded + GFLAG-0308 resolved). Two distinct resolved
+    findings sharing claim+type+date, naming nothing, must keep escalating.
+    """
+    root = make_tree(tmp_path / "repo")
+    write_flags(root, [
+        flag("GFLAG-0600", ["MECH-025b"], summary="first distinct finding",
+             status="resolved", resolution_note="applied",
+             resolved_at="2026-09-10T06:27:23Z"),
+        flag("GFLAG-0601", ["MECH-025b"], raised="2026-08-08T07:00:00Z",
+             summary="second distinct finding", status="resolved",
+             resolution_note="applied", resolved_at="2026-09-10T06:27:23Z"),
+    ])
+    findings = _run(root)
+    assert len(findings) == 1
+    assert findings[0]["escalate"] is True
+
+
+def test_d006_resolution_note_crossref_is_not_enough(tmp_path):
+    """REJECTED WIDER PREDICATE #2 -- do not re-propose.
+
+    Reading the cross-reference out of `resolution_note` also swallows the
+    negative control, whose predecessor's note names its successor.
+    """
+    root = make_tree(tmp_path / "repo")
+    write_flags(root, [
+        flag("GFLAG-0700", ["SD-063"], summary="first distinct finding",
+             status="resolved",
+             resolution_note="See GFLAG-0701 for the companion item.",
+             resolved_at="2026-09-10T06:27:24Z"),
+        flag("GFLAG-0701", ["SD-063"], raised="2026-08-08T07:00:00Z",
+             summary="second distinct finding", status="resolved",
+             resolution_note="applied", resolved_at="2026-09-10T06:27:24Z"),
+    ])
+    findings = _run(root)
+    assert len(findings) == 1
+    assert findings[0]["escalate"] is True
+
+
+def test_d006_open_predecessor_still_escalates(tmp_path):
+    """An `open` predecessor has its own owed action -- not yet history."""
+    root = make_tree(tmp_path / "repo")
+    write_flags(root, _chain_pair(pred_status="open"))
+    findings = _run(root)
+    assert len(findings) == 1
+    assert findings[0]["escalate"] is True
+
+
+def test_d006_flag_id_without_supersession_vocabulary_still_escalates(tmp_path):
+    """Both clauses are required: a bare id in the opening is a citation."""
+    root = make_tree(tmp_path / "repo")
+    write_flags(root, _chain_pair(
+        succ_tmpl="Follow-up measurement contradicting %s on its own terms."))
+    findings = _run(root)
+    assert len(findings) == 1
+    assert findings[0]["escalate"] is True
+
+
+def test_d006_supersession_chain_never_blocks_the_t0_lane(tmp_path):
+    """A byte-identical `open` re-write is a retry-loop duplicate regardless.
+
+    The suppression is a REPORT-side narrowing only. If it ever reached the
+    autofix lane, a genuine duplicate inside a chain group would go unrepaired.
+    """
+    root = make_tree(tmp_path / "repo")
+    items = _chain_pair()
+    twin = dict(items[0])
+    twin["flag_id"] = "GFLAG-0502"
+    twin["status"] = "open"
+    twin["resolution_note"] = None
+    twin["resolved_at"] = None
+    items[0] = dict(items[0], status="open", resolution_note=None,
+                    resolved_at=None)
+    write_flags(root, items + [twin])
+    planned = D006.fix(ctx_for(root), NOW, dry_run=True)
+    assert [r["subject"] for r in planned] == ["GFLAG-0502"]
+
+
+def test_d006_live_registry_suppresses_every_gflag_0328_group():
+    """The three 2026-09-17 PM groups GFLAG-0328 measured, plus its control.
+
+    Pinned as a PROPERTY of named groups rather than as a count, per this
+    file's docstring: the count falls as governance acts, the verdict must not.
+    """
+    repo = Path(__file__).resolve().parents[2]
+    if not (repo / D006.REGISTRY_REL).exists():
+        pytest.skip("live registry not present")
+    findings = D006.run(load_context(repo))[0]
+    verdict = {f["subject"]: bool(f["escalate"]) for f in findings}
+    for subject in ("GFLAG-0315", "GFLAG-0316", "GFLAG-0325"):
+        if subject in verdict:
+            assert verdict[subject] is False, (
+                "%s is a GFLAG-0328 supersession chain and must not escalate"
+                % subject)
+    if "GFLAG-0307" in verdict:
+        assert verdict["GFLAG-0307"] is True, (
+            "GFLAG-0307/0308 is GFLAG-0328's named negative control")
+
+
 # ===========================================================================
 # D-008 -- plan frontmatter date drift
 # ===========================================================================

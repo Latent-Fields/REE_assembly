@@ -66,7 +66,7 @@ of them".
 |----|------|---------------|-----------|
 | **D-002** | T1 | Orphan V3 claim: claim reads as live V3, every owning closure node is `deferred` -> invisible to closure accounting. The SD-031 class. | yes -- precision 4/4 |
 | **D-001** | T1 | Claim `implementation_phase` disagrees with the `generation` of every plan that owns it. Same denominator-invisibility harm, reached along the generation axis. | no |
-| **D-006** | T0 | Duplicate entries in `governance_flags.v1.json` (same claims + type + day). Auto-fixable when they are byte-identical re-writes of one raise. | yes -- 0 FP on the live registry |
+| **D-006** | T0 | Duplicate entries in `governance_flags.v1.json` (same claims + type + day). Auto-fixable when they are byte-identical re-writes of one raise. A group that is an explicit SUPERSESSION CHAIN is reported but never escalated (GFLAG-0328). | yes -- 0 FP on the live registry (autofix); T1 report narrowed 2026-09-17 after 3/3 FP |
 | **D-007** | T1 | Stale gate reference: a node's `blocking_external` / `resume_condition` names a closure node that is now `done`. Reports that the gate TEXT is stale -- never that the node should open. | yes -- 3/3, independently re-adjudicated, small/one-plan sample |
 | **D-008** | T0 | Plan-level `last_updated` older than its newest node's, inflating the morning digest's staleness figure. | yes -- 19 real, 0 FP |
 | **D-010** | T2 | Guards the accounting itself: recomputes the V3 denominator independently and reports every way it differs from what a reader would assume. | n/a (structural) |
@@ -262,6 +262,46 @@ duplicate groups are fully dispositioned. That is the correct result and it is
 what the clean-tree test pins. Its root cause is also already closed upstream --
 `governance_flag.py`'s raise path was made idempotent across a CAS retry -- so
 D-006 is a residue-cleaner and regression guard, not a live alarm.
+
+### Do not widen D-006's supersession-chain suppression (GFLAG-0314 / 0328)
+
+D-006's **T1 report** -- separate from the autofix lane above -- escalated a
+shape it should never have: a flag and its own explicit successor, raised the
+same day. Those match (claim_ids, flag_type, date) exactly and are a correctly
+recorded CORRECTION, not a duplicate. Because every careful reissue makes one,
+the shape recurs indefinitely. Measured twice: GFLAG-0314 (2026-09-17 AM), then
+decisively by GFLAG-0328 -- the PM cycle escalated exactly **three** new
+findings and **all three** were this shape, a 100% false-positive rate for the
+whole escalation budget. Reproduced here: on that cycle's state the old
+detector escalates 4, the narrowed one escalates 1, and the finding it keeps
+(GFLAG-0327/0330) is the genuine one.
+
+The predicate is POSITIONAL, and that is the part not to re-derive. A group is
+a chain when a dispositioned member's flag_id appears in the **first 160
+characters** of another member's summary alongside a supersession token. The
+window is the only thing on the live registry that separates the true chains
+(offsets 11-21) from **GFLAG-0307/0308**, which GFLAG-0328 names as the case
+that must keep escalating (offset 981 -- a different finding citing its
+predecessor in passing, not a successor declaring itself). No status, note or
+timestamp separates them.
+
+**Two wider predicates were tried against the live registry and rejected**,
+because each also suppresses GFLAG-0307/0308: *"every member is dispositioned"*
+(0307 `superseded` + 0308 `resolved`) and *"the cross-reference may live in the
+`resolution_note`"* (0307's note names 0308). Both are pinned as negative
+controls in `test_autofix.py`. Do not re-propose either without first retiring
+0307/0308 as the control.
+
+**Three of the six groups GFLAG-0314 listed are deliberately still reported**,
+because measurement says they are not chains at all: GFLAG-0151/0152 and
+GFLAG-0216/0217 are distinct thought-digestion items that never name each
+other, and GFLAG-0270 opens "CORRECTION TO GFLAG-0265's REMEDY" -- it supersedes
+GFLAG-0265, whose `claim_ids` put it in a *different* group. 0314's "identical
+shape" reading was a guess about six groups it had not opened.
+
+The suppression de-prioritises, it never hides: the group stays in the report
+with `escalate: false` and a detail naming the chain, per
+`state/suppressions.yaml`'s own doctrine. It never touches the T0 lane.
 
 ### D-008 is a one-line, monotonic, precedented edit
 
