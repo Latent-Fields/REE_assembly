@@ -3147,3 +3147,5 @@ One line per hourly tick. ASCII only.
 2026-09-17T13:23:42Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 253 items, 34 ready, 0 in flight)
 2026-09-17T13:22:05Z SPAWN IGW-20260917-242 skill=/lit-pull prio=40 uuid=53da66ab-44d4-4635-b4d9-a209e636cd8d pid=48817 worktree=igw-242-literature-proposal-for-mech-019
 2026-09-17T13:39:43Z auto-defer igw-241-proposal-for-mech-019 hash=81968e5195cd for 48h (complete)
+2026-09-17T13:41:47Z complete igw-241-proposal-for-mech-019 spawned->completed outcome=USEFUL_LANDED: No experiment queued -- MECH-019 is untestable on any validated V3 config. Marke
+2026-09-17T13:48:23Z auto-defer igw-242-literature-proposal-for-mech-019 hash=e18d11bd0605 for 48h (complete)
