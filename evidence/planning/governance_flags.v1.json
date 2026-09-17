@@ -4536,6 +4536,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0319",
+      "claim_ids": [
+        "SD-071",
+        "MECH-170"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "A standing instrument contract blocks the only evidence SD-071 still needs, and the same contract blocks MECH-170. SD-071's what_would_answer states its REMAINING CONDITION FOR PROMOTION is 'one NON-DIAGNOSTIC run tagging this claim' -- both supporting runs (V3-EXQ-778c nrem null_slope_ratio 0.1445 CI95 [0.1438,0.1451]; V3-EXQ-778g sws 0.1495 CI95 [0.1344,0.1646] ceiling_inside_ci95 FALSE 8/8 seeds, C3 ladder 0.1108 vs the 0.01 floor) are experiment_purpose=diagnostic and so do not weight confidence. But the only instrument that can produce that evidence, the SD-068 consolidation lesion harness (ree-v3/experiments/_lib/consolidation_lesion_harness.py, 1843 lines, 89 importers), carries an unconditional contract at REE_assembly/docs/architecture/sd_068_consolidation_lesion_harness.md:548-558 (mirrored at consolidation_lesion_harness.py:143-147), headed 'Prerequisite caveat -- MECH-121 hold (respected, not lifted)': 'Any run built on it: MUST be EXPERIMENT_PURPOSE=\"diagnostic\"; MUST NOT tag MECH-121 as promotion evidence or change its status'. As written, SD-071 can never be promoted. DECISION REQUESTED: whether a narrow carve-out is warranted -- non-diagnostic permitted when a run tags ONLY instrument-validity claims (SD-071) and tags neither MECH-120 nor MECH-121. The caveat's stated rationale is the MECH-121 hold and MECH-121 BEHAVIOURAL validation, whereas SD-071 asserts only that the readouts are content-contingent instruments, which is precisely the 'representation-level plumbing instrumentation' the caveat says the harness is; so the carve-out would honour the hold's purpose. MECH-170 is bundled because the same contract blocks it, and it has two further blockers of its own: the harness sweeps DAMAGE only (run_staged_sweep, harness:1777) with no staged-RESTORATION mode, while MECH-170 predicts a RECOVERY order; and its predicted recovery order (precision, then slot-filling, then slot-formation) is the same downstream-first order as the harness's already-banked staged-DECLINE order (harness:15, V3-EXQ-778a), so without a stated discriminator the criterion cannot distinguish the two. Substrate for SD-071 is otherwise fully built and verified read-only: nrem_transfer_fidelity harness:523 called :1039, _sws_pattern_completion harness:400 called :379. Full evidence in chip-proposal-exp-1206-paced and chip-proposal-exp-0905-paced prompts.",
+      "raised_by_session": "cranky-wiles-c85265",
+      "raised_at": "2026-09-17T12:18:20Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
