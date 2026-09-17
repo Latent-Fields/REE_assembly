@@ -1,0 +1,219 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-17T02:35:00Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3",
+   "queue_id": "V3-EXQ-1043",
+   "claim_ids": [
+    "MECH-537"
+   ],
+   "bears_on": [
+    "MECH-547",
+    "MECH-555",
+    "SD-080",
+    "SD-106"
+   ],
+   "experiment_purpose": "diagnostic",
+   "outcome": "FAIL",
+   "self_route_label": "routing_signature_incomplete_undetermined",
+   "failed_criterion": "discrimination",
+   "failed_criterion_detail": "TWO load-bearing criteria failed, of different types. C2 (D_randrank - D_comm at MATCHED rank) is the ONLY rank-matched contrast and the only one licensing an orientation reading: mean 0.03196 against a 0.05 floor, 0 of 3 seeds individually clearing, sd 0.01688. It fails all THREE of _paired_positive's sub-tests at once (mean<floor; mean<2*sd, i.e. 0.03196 < 0.03377; n_clear=0 < 2) on one noisy signal. Every per-seed value is nonetheless POSITIVE ([0.03724, 0.04949, 0.00916]), so the dedicated non-positive falsification predicate _c2_falsified returns False and no rank-explains-it falsification is licensed either. C4b (absolute complement/comm sensitivity ceiling) is an ABSOLUTE criterion: mean 0.84684 against a <=0.5 ceiling, 3 of 3 seeds above it.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the claim COULD have expressed itself (all 7 readiness preconditions green, the C1 phenotype present at 0.1717 vs a 0.05 floor, and the C5 single-subspace premise held at 0.6357 vs 0.3699 required), but the one contrast that discriminates orientation from rank was underpowered. This is NOT a weakening of MECH-537.",
+    "biological_reference": "clear -- communication-subspace routing between populations is a real, directly-measured neural phenomenon (Semedo 2019 V1-V2), and the claim is an empirical import rather than a formal-definition import. Literature is PRESENT: targeted_review_mutual_legibility_communication_subspaces carries Semedo2019, Binish2026 and Gonzalez2026 entries registered 2026-09-08. CAVEAT recorded rather than smoothed: MECH-537's own notes field states those references were taken from the originating thought's reference list and are NOT independently verified.",
+    "prerequisites": "present -- all 7 readiness preconditions met, each reported on its worst seed: source_adequacy_ws250_full 0.9335 vs 0.8; source_elevation_over_strongest_trivial 0.3532 vs 0.2; rrr_heldout_r2 0.9971 vs 0.5; randrank_control_supra_trivial 0.2188 vs 0.05; heldout_steps 1965 vs 500; zworld_encoder_trained_in_p0 0.2884 vs 1e-06; zworld_not_collapsed 3.8375 vs 2.0.",
+    "implementation": "partial -- the PROBE is completely implemented and its instrument anchors are reachable (3/3 reference cells scored). The SUBSTRATE under test is known-limited: SD-106 (status implemented, live_status '0/3 seeds at PCA-32 parity') is carried in this run's own bears_on and the run executed with p0a_field_weight_on = 0.0, i.e. the shipped P0 objective supplies no gradient toward decision-relevant content at the very encoder whose communication subspace is being estimated.",
+    "environment": "adequate for the question asked -- the readiness gate establishes the oracle action IS in the 250-dim sender (0.9335) and is not a trivial-predictor artefact (elevation 0.3532). The routing question is therefore askable on this source.",
+    "measurement": "under-instrumented -- DOMINANT, but on ONE count, not two (revised after the Step 7c red-team refuted the second). The real defect: C2's predicate is a THREE-way conjunction (mean>=0.05 floor AND mean>=2*sd AND seed-majority) evaluated at n=3, with sd 0.01688 of the same order as the mean 0.03196, so all three clauses fail together on one noisy signal. C4b also failed (0.84684 against a <=0.5 ceiling, 3/3 seeds above), and the ceiling is genuinely the least externally-anchored threshold in the design -- but the fix is to ANCHOR IT, not to promote C4a. WITHDRAWN: the draft reading that C4a is 'the better-anchored statistic' that 'agrees with the claim'. The driver marks C4a retention_confounded and scored_as_conjunct false for a stated reason -- once the weights are in, a random subspace is no longer matched on RETENTION, so the margin is partly a retention difference. Quantified from the manifest's own raw component norms: the margin an isotropic Jacobian would produce from retention geometry ALONE is 0.348 / 0.267 / 0.365 against observed 0.548 / 0.555 / 0.342 -- a majority of the margin on two seeds, and on seed 44 geometry OVER-predicts, meaning the fitted subspace does slightly worse than an encoder with no routing structure at all. C4a is a recorded diagnostic with a named confound, not a better-anchored statistic.",
+    "integration": "coupled, and NOT rank-censored (revised after the Step 7c red-team). RRR_RANKS is range(1,33) = 1..dy, the whole mathematically meaningful range -- at rank dy the constraint is inactive and the fit IS unconstrained OLS, so the ladder CANNOT be extended further. selected_rank 32 on 3/3 seeds reflects a FLAT asymptote, not a truncated optimum: heldout r2 gains from rank 16 to 32 are 8.5e-5 / 1.1e-4 / 1.6e-4 and from 31 to 32 are ~3e-7 to 7e-7, and the smallest rank within 0.001 of the maximum is 8 / 10 / 10. The design's own pre-registered hazard was the OPPOSITE one (queue-entry STATED LIMITATIONS (b): C2's reachability degrades if CV selects a LOW rank), so selecting the highest rank put C2's reachability at its most favourable, not its worst. The substantive finding the rank curve DOES support: this interface has no low-rank bottleneck -- z_world is an almost perfectly linear readout of world_state at any rank >= 8 (worst-seed heldout r2 0.9971). That is what makes the biology's low-rank premise untestable AT rank = dy and testable at the parsimonious rank.",
+    "scale": "likely insufficient -- 3 seeds, seed-majority bar of 2, against contrasts whose per-seed spread is of the same order as the effect."
+   },
+   "biological_reference": {
+    "closest_mechanism": "Population-to-population communication subspaces (Semedo, Zandvakili, Machens, Yu, Kohn 2019, V1->V2): a source population's activity reaches its target through a low-dimensional subspace that does not span the source's full task-informative variance, so a variable can be present in the source and absent from what the target receives.",
+    "dependencies": [
+     "a trained sender whose latent carries the task variable",
+     "a trained receiver-facing bottleneck",
+     "a consumer that actually reads the receiver input",
+     "enough data to estimate the subspace out of sample"
+    ],
+    "is_formal_import": false,
+    "divergence": "Not a formal-definition substitute -- the REE operationalisation (cross-validated RRR from sender activity to the actual consumer input tensor) is the same estimator family used in the source neuroscience. The load-bearing translation gap is about RANK, and it is the opposite of an instrument defect: in cortex the communication subspace is strictly LOWER-rank than the receiver population, whereas here cross-validation saturates and selects rank = dy, where the RRR is unconstrained OLS. So the biological premise -- that a low-rank channel is what content must pass through -- is not instantiated at this interface, which is a finding about the substrate rather than about the probe.",
+    "lit_status": "present"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "partial",
+    "ree": false,
+    "net_classification": "MIXED, MEASURES-dominant. Not chargeable to REE and not to MECH-537. Implementation reads partial (the probe is complete, but the encoder under test carries the SD-106 limitation and ran with p0a_field_weight_on = 0.0), measurement reads under-instrumented on two independent counts (n=3 against a three-way conjunctive predicate; an un-anchored absolute ceiling contradicted by its own null-controlled companion), so the GOV-FAILLOC-1 threshold for REE FAILED is not approached. The run is the driver's designed fifth branch -- an honest 'no verdict claimed', not a failure of the mechanism."
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "Failure mode is measurement_power_plus_unanchored_absolute_threshold, NOT a substrate ceiling. Recorded here rather than in the category field on purpose: substrate_ceiling / substrate_conditional would put MECH-537 into _EPI_SUPPRESS_PROPOSAL and make it not-v3-testable, starving a claim whose very first experimental run just demonstrated that its readiness gate passes and its phenotype criterion is present. standard is the behaviour-preserving mapping for 'this run did not adjudicate'.",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "MECH-537 -- [2026-09-17 | V3-EXQ-1043 | failure_autopsy_V3-EXQ-1043_2026-09-17] mixed, diagnostic, excluded from scoring. FIRST experimental evidence for this claim (registered 2026-09-08; the confirmed-autopsy corpus contains no prior MECH-537 target). All 7 readiness preconditions passed, the C1 phenotype (full sender decodes the oracle action 0.1717 better than the fitted communication subspace) passed, and the C5 single-subspace premise held (0.6357 vs 0.3699 required), so the run was NOT routed away to MECH-547/MECH-555. It did not adjudicate: the only rank-matched contrast, C2, came in at 0.03196 against a 0.05 floor with 0 of 3 seeds clearing while remaining POSITIVE on every seed, so neither the confirming signature nor the dedicated rank-explains-it falsification was reached. C4b failed against an absolute 0.5 ceiling that the driver itself records as the least externally-anchored threshold in the design, while C4a -- the same measurement against its own matched null -- passed on every seed. Treat as underpowered, not as pressure on the claim.",
+   "per_claim_recommendation": {
+    "MECH-537": {
+     "recommended_evidence_direction": "mixed",
+     "recommended_epistemic_category": "standard",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate",
+     "change": "Direction and category both STAND as stamped (mixed / standard): this is the claim's first experimental run and it was designed to be able to return no verdict, which is what it did. The claim is NOT weakened -- C2 was positive on all three seeds and merely underpowered, and C4b's bar is un-anchored by the driver's own admission. The applicable edit is the diagnostic-adjudication flag, which MECH-537 does not currently carry -> diagnostic_evidence_adjudicated: true"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "note": "No substrate build is requested. The failure is measurement power and an un-anchored threshold, both repairable inside a lettered re-test. SD-106 is already a registered, IMPLEMENTED entry and is recorded here as a known limitation on the measurement path (bears_on), not as a new defect this run discovered."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "count_at_this_autopsy": {
+     "MECH-537": 0
+    },
+    "this_target_contributes": 0,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "why_not_fired": "Counted with the CLAUDE.md / SKILL.md R1-R3 recipe run verbatim over the committed corpus on 2026-09-17: ZERO counting runs for MECH-537, and zero autopsy targets tagging it at all -- an unrestricted grep over all failure_autopsy_*.json files finds no reference to MECH-537 in any field. This target contributes 0 (category standard, direction mixed, no substrate build owed). A lettered re-test is therefore NOT the loop the brake exists to stop; it is this question's second measurement."
+   },
+   "granularity_debt_trigger": {
+    "fires": false,
+    "tagging_targets": 0,
+    "files": 0,
+    "alignment_distribution": {},
+    "routing": null,
+    "basis": "granularity_debt_cluster.py MECH-537 reports 0 targets across 0 files -- no tagging targets exist, so the trigger cannot fire. Counted by targets[].claim_ids, not by prose mentions."
+   },
+   "learning_extracted": [
+    "A three-way conjunctive pass predicate evaluated at n=3 has no power to separate a small real effect from noise -- but 'raise n' is NOT automatically the repair. Here only ONE of the three clauses responds to n: the across-seed sd is a population sd (ddof=0), not a standard error, so the 2*sd clause does not shrink; and SEED_MAJORITY is a FIXED constant 2, so raising n turns 'a majority of seeds' into 'any 2 seeds' and converts a conjunctive predicate into a near-disjunctive one. Raising n without re-specifying the majority clause proportionally is threshold-gaming dressed as a power fix.",
+    "A statistic computed against a null is not thereby better-anchored than an absolute one. C4a is arithmetically C4b_null - C4b_measured, but the fitted and random subspaces are NOT matched on retention, and retention geometry alone accounts for a majority of C4a's margin on two seeds and all of it on a third. When a driver marks a statistic retention_confounded and declines to score it, an autopsy that promotes it owes an argument against the stated confound -- not silence.",
+    "A selected rank sitting at the ladder ceiling does NOT imply the ceiling chose it. Read the cross-validation curve before concluding censoring: here it is flat to seven significant figures above rank ~10, so CV picked the argmax of a saturated asymptote. The finding that survives is more interesting than the artefact that did not -- this interface has no low-rank bottleneck at all, which is precisely why the biology's low-rank premise cannot be tested at rank = dy.",
+    "MECH-537's claims.yaml entry carries a live 'DO NOT queue an experiment from this entry' instruction (2026-09-08) alongside a later disposition (2026-09-15) that mints EXP-1403 and authorises exactly this run. Both are current text on the same entry.",
+    "Before requiring a successor to RECORD something, check the manifest: this run already records rrr_heldout_r2_by_rank for all 32 ranks on all 3 seeds and the full per-eps sensitivity arrays with raw component norms. The recorded curve is what refutes the censoring reading -- a recording demand can be a symptom of not having read the recording."
+   ],
+   "routing": "queue-experiment",
+   "routing_detail": {
+    "debt_class": "complex (probe-gated) / puzzle (known rules)",
+    "why": "The frame is well-posed and the instrument works end to end; what is missing is a FACT -- whether C2's consistently-positive but small contrast survives when it is judged against a within-run reference rather than a hand-set floor, and at a rank where the low-rank premise actually holds. That is a spike, not a build and not a reframe.",
+    "recommended_form": "ALPHABETIC SUFFIX (V3-EXQ-1043a) -- same scientific question, instrument repair. NOT a new EXQ number.",
+    "required_changes": [
+     "ANCHOR C4b's ABSOLUTE 0.5 CEILING from a measured reference, the way the readiness anchors already are against V3-EXQ-1008. Do NOT promote C4a to the scored conjunct: it is retention-confounded by the driver's own stated design decision, and retention geometry alone accounts for most of its margin (0.348/0.267/0.365 predicted vs 0.548/0.555/0.342 observed; seed 44 over-predicted). Keep C4a recorded as a diagnostic WITH its confound stated in the manifest prose, which is what the driver already does.",
+     "RE-ESTIMATE AND REPORT C2 AS A FUNCTION OF RANK, and read it at the PARSIMONIOUS rank (8-10, where heldout r2 is already within 0.001 of its maximum). The low-rank premise the biology supplies is not testable at rank = dy, where the RRR fit is unconstrained OLS; it is testable there. This REPLACES the withdrawn 'extend the ladder' item, which is mathematically impossible -- rank into a 32-dim receiver is bounded by 32 and the ladder already spans 1..32.",
+     "IF n IS RAISED, RE-SPECIFY SEED_MAJORITY PROPORTIONALLY in the pre-registration (it is a fixed constant 2, inherited from x1002). Otherwise the seed-majority clause becomes trivially satisfiable and the successor's PASS is partly an artefact of the seed count. Note also the honest expectation: at adequate n the likely outcome is a confidence interval EXCLUDING 0.05 -- i.e. H1 falsified rather than rescued. Raise n to settle the question, not to pass it.",
+     "GIVE C2 A WITHIN-RUN REFERENCE DISTRIBUTION -- refit the RRR on shuffled sender-receiver pairing to build a permutation null, so the orientation contrast is judged against the instrument's own noise rather than a hand-set 0.05 floor. This is the single change least dependent on any contested reading above."
+    ],
+    "refused": "A same-design n=3 re-pose that simply re-runs and hopes C2 clears. The observed spread makes that a coin flip.",
+    "secondary_routing": "none -- explicitly NOT a lit-pull. targeted_review_mutual_legibility_communication_subspaces already carries Semedo2019/Binish2026/Gonzalez2026 for exactly this question.",
+    "withdrawn_required_changes": [
+     "WITHDRAWN 'EXTEND THE RRR RANK LADDER' -- mathematically impossible (rank <= dy = 32; the ladder is already 1..32, and the author extended it from the shared instrument's default of 16 for exactly this reason).",
+     "WITHDRAWN 'RECORD the sensitivity arrays and the rank-ladder r2 curve' -- already recorded in this very run (per_seed_results[i].rrr_heldout_r2_by_rank, all 32 ranks x 3 seeds; sensitivity_decision_targeted.by_eps[...] with per_decision_index and raw component norms).",
+     "WITHDRAWN 'promote C4a to the scored conjunct' (the second option of the old C4b item) -- would make the successor score a known-confounded statistic in place of a control-free one. A regression, not a repair."
+    ]
+   },
+   "read_across_not_adjudicated": [
+    "SD-106 -- this run executed with p0a_field_weight_on = 0.0 on the very encoder whose communication subspace was estimated. Not adjudicated here; recorded because any re-read of C2's magnitude bears on whether the subspace was estimated on a P0-starved latent.",
+    "MECH-547 / MECH-555 -- NOT routed to, because C5's single-subspace premise held (0.6357 vs 0.3699). Recorded so a later session does not assume the premise question is still open for this source."
+   ],
+   "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+     "H1-small-but-real: the orientation effect is real and positive but smaller than the pre-registered 0.05 floor; judged against a within-run null it is distinguishable from zero.",
+     "H2-no-orientation: the fitted communication subspace is not meaningfully different from a random subspace of the same rank at this interface; C2's positivity is noise and will not survive a permutation null.",
+     "H3-no-low-rank-bottleneck: the routing question as the biology poses it is not instantiated at this interface at all -- z_world is an almost perfectly linear readout of world_state at any rank >= 8, so at the CV-selected rank = dy the 'communication subspace' is unconstrained OLS and there is no low-rank channel to be routed through. C2 measured at the parsimonious rank is the test."
+    ],
+    "suggested_probes": [
+     {
+      "hypothesis": "H1-small-but-real",
+      "axis": "measurement",
+      "sketch": "Raise n with SEED_MAJORITY re-specified proportionally, and report a confidence interval on the C2 mean rather than a floor test. Declared null: the CI excludes 0.05 (H1 falsified, not rescued)."
+     },
+     {
+      "hypothesis": "H2-no-orientation",
+      "axis": "instrumentation",
+      "sketch": "Permutation null on the RRR fit itself (refit on shuffled sender-receiver pairing) to give C2 a within-run reference distribution instead of a hand-set floor. Declared null: the observed C2 sits inside the permutation null."
+     },
+     {
+      "hypothesis": "H3-no-low-rank-bottleneck",
+      "axis": "representation",
+      "sketch": "Sweep C2 across ranks 1..32 and read it at the parsimonious rank (8-10, r2 within 0.001 of max), where the low-rank premise holds. Declared null: C2 is flat in rank, so rank is not what hid the orientation signal."
+     }
+    ],
+    "note": "GOV-FANOUT-1: the open question is a DISCRIMINATION among three live readings of one weak contrast, not a single named build. Each probe sits on a different design axis (measurement / instrumentation / representation) and none is a power-bump of the same design. H3 was RESPECIFIED after the Step 7c red-team: its original sketch ('extend the ladder past the receiver dimension') was inadmissible, and its original declared null is already answered by data in this manifest."
+   },
+   "pre_routing_checks_7b": {
+    "fire_count": 1,
+    "fires": [
+     {
+      "check": "C7",
+      "metric": "heldout_steps",
+      "message": "1 metric named in this artifact varies across seeds but is BIT-IDENTICAL across every arm in every seed -- the manipulated factor moved it not at all, so it cannot discriminate between the arms.",
+      "disposition": "DISMISSED with reason, not silently. heldout_steps is the held-out SAMPLE COUNT (1965 vs a 500 floor), a readiness precondition shared by all four arms by construction -- every arm decodes from the same held-out episodes. It was never a discriminating metric and nothing in this artifact reads it as one. A fire here is the check working as designed on a benign case."
+     }
+    ],
+    "inapplicable": [
+     "C5"
+    ],
+    "note": "C1, C2 and C3 were APPLICABLE on this target (claim_ids is non-empty) and did not fire."
+   },
+   "red_team_7c": {
+    "verdict": "CONTESTED",
+    "model": "session model (Opus 5) -- SAME-MODEL pass",
+    "model_note": "The skill prescribes a cross-model pass (fable for an Opus session). The fable spawn FAILED with a monthly spend limit on that model (HTTP 429), so per the skill's stated fallback the pass was re-spawned once with no model override and inherited the session model. Recorded explicitly so a later reader does not mistake this for a cross-model CONFIRMED. Reasoning was withheld from the agent and the JSON-before-prose ordering was enforced, so independence of REASONING holds; independence of PRIORS does not.",
+    "recomputed_load_bearing": [
+     "C2 mean/sd/2*sd/n_clear = 0.03196494 / 0.01688262 / 0.03376524 / 0 -- MATCHED",
+     "C4a == C4b_null - C4b_measured per seed -- MATCHED",
+     "RRR r2 gain rank 16->32 = 8.5e-5..1.6e-4; 31->32 = ~5e-7 -- DID NOT MATCH the draft's censored-optimum reading",
+     "C4a margin from retention geometry alone = 0.348/0.267/0.365 vs observed 0.548/0.555/0.342 -- DID NOT MATCH the draft's better-anchored reading"
+    ],
+    "verdict_moving_findings": 8,
+    "cleared_checks": 13,
+    "hygiene_findings": 2,
+    "accepted_and_applied": [
+     "M1 C4a is retention-confounded; the promote-C4a option was a regression and is WITHDRAWN.",
+     "M2 + A3 the rank ladder is already the full admissible range and the r2 curve is flat, not censored; the 'extend the ladder' change is WITHDRAWN and the reading replaced with 'this interface has no low-rank bottleneck'.",
+     "M3 the power model was false; the seed-count item is rewritten to require re-specifying SEED_MAJORITY and to state that H1 is more likely falsified than rescued at adequate n.",
+     "M4 the recording item was a no-op and is WITHDRAWN.",
+     "H1 the (a)/(b)/(c) STATED LIMITATIONS list lives in the V3-EXQ-1043 queue-entry red-team note (ree-v3 459bbd1), not the driver docstring -- citation corrected throughout.",
+     "H2 'matched random-subspace null' language removed; 'matched' is precisely what the driver denies."
+    ],
+    "cleared_by_red_team": [
+     "the FAIL and the routing_signature_incomplete_undetermined label",
+     "failed_criterion: discrimination",
+     "the MEASURES-dominant / not-chargeable-to-REE failure-location net",
+     "evidence_direction mixed",
+     "epistemic_category standard and the reasoning for not using substrate_ceiling",
+     "status_change none",
+     "diagnostic_evidence_adjudicated true (field verified ABSENT on the claim)",
+     "re_derive_brake.fired false and the count of 0 (513 artifacts searched)",
+     "granularity_debt_trigger.fires false",
+     "recommended_substrate_queue_entry.action none",
+     "the alphabetic 1043a suffix (CLAUDE.md tie-break: when in doubt, new letter)",
+     "no duplicate 1043a driver exists",
+     "the refusal of a same-design n=3 re-pose",
+     "secondary_routing none",
+     "the claims.yaml DO-NOT-QUEUE vs 2026-09-15-disposition contradiction (verified verbatim, both live)",
+     "the readiness preconditions: rrr_heldout_r2 self-anchoring is a REACHABILITY claim and can still fail; randrank_control shares a measurement with C2 but is a different contrast, not a circularity"
+    ]
+   },
+   "withdrawn_arguments": [
+    "W1 -- 'C4a is the better-anchored statistic and it agrees with the claim.' WITHDRAWN on quantified grounds (retention geometry alone predicts most of its margin; on seed 44 it over-predicts). The driver's retention_confounded marking stands and the autopsy should have engaged it rather than gone around it.",
+    "W2 -- 'the CV-selected rank was CENSORED by the ladder ceiling on 3/3 seeds.' WITHDRAWN. The ladder is 1..32 = 1..dy, the full admissible range; the r2 curve is flat to seven significant figures above rank ~10. The design's own pre-registered hazard was a LOW selected rank, the opposite concern. Replaced by the surviving finding: there is no low-rank bottleneck at this interface.",
+    "W3 -- 'raise the seed count, deriving n from the observed sd.' WITHDRAWN as stated. Only one of C2's three clauses responds to n; the sd clause uses a population sd that does not shrink, and SEED_MAJORITY is a fixed 2, so raising n weakens the predicate. Retained only in the re-specified form.",
+    "W4 -- 'require the successor to record the sensitivity arrays and the rank curve.' WITHDRAWN as already satisfied by this run."
+   ]
+  }
+ ],
+ "step8_gate_decisions": {
+  "held_utc": "2026-09-17T02:35:00Z",
+  "held_with": "user, interactive",
+  "decision": "CONFIRMED at the interactive Step 8 gate. The Step 7c pass returned CONTESTED with 8 verdict-moving findings; all were accepted and applied before the gate (C4a's promotion withdrawn as retention-confounded, the rank-censoring reading withdrawn and replaced, the power model corrected, the already-satisfied recording item withdrawn). Routing confirmed as queue-experiment / V3-EXQ-1043a with the revised repair list. The claims.yaml internal contradiction (a live 'DO NOT queue an experiment from this entry' alongside the 2026-09-15 disposition that mints EXP-1403) is surfaced to governance, not resolved here."
+ }
+}

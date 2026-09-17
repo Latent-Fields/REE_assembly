@@ -1,0 +1,278 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-17T02:35:00Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_1044_hippocampal_assay_a_access_mechanism_20260916T141717Z_v3",
+   "queue_id": "V3-EXQ-1044",
+   "claim_ids": [],
+   "bears_on": [
+    "hippocampal_campaign_assay_a:gate_a1_conditional_access",
+    "ARC-139",
+    "MECH-537",
+    "MECH-538",
+    "MECH-540",
+    "MECH-547",
+    "MECH-548",
+    "INV-105"
+   ],
+   "bears_on_note": "The confirmed-autopsy corpus carries NO prior bears_on token for this campaign (all 513 artifacts searched; the nearest driver-family predecessors 1002/1008/1010 all carry ['INV-088','MECH-457'], a different lineage). This target therefore ESTABLISHES the campaign's token, 'hippocampal_campaign_assay_a:gate_a1_conditional_access'. Every successor in this campaign must reuse that string VERBATIM -- a prose variant restarts the GOV-DIAG-1 chain count at 1 instead of advancing it toward N=3. The manifest's own 7 claim ids are carried alongside it unchanged.",
+   "experiment_purpose": "diagnostic",
+   "outcome": "FAIL",
+   "self_route_label": "conditional_access_earns_nothing_at_any_bandwidth",
+   "failed_criterion": "discrimination",
+   "failed_criterion_detail": "Both load-bearing criteria failed their floor, but the draft's original English was WRONG and is corrected here. C1b (A4 over its best fitted rival at M*): mean delta -0.07364, per-seed [-0.16452, +0.02000, -0.07639]. C1a (same contrast at M_A4): mean delta -0.01409, per-seed [+0.01412, +0.02000, -0.07639]. CORRECT STATEMENT: 0 of 3 seeds CLEARED the +0.05 floor at either width -- the manifest field is named n_seeds_positive but driver:1281 computes it as (arr >= DELTA_FLOOR).sum(), i.e. seeds clearing 0.05, NOT seeds above zero. At M_A4 the per-seed delta is POSITIVE on 2 of 3 seeds (+0.014, +0.020) and the mean is carried negative by seed 45 alone (-0.076). So 'TRAILS its best rival at both evaluation points' and 'wrong-signed at both widths' were false as English and are withdrawn. The two widths are also NOT independent corroboration: per_seed_M_star [3,3,2] and per_seed_M_A4 [4,3,2] coincide on seeds 43 and 45, so C1a and C1b share two thirds of their cells byte-identically and differ on ONE seed. Two refinements also failed: C3 (attribution under receiver-state permutation) at 0.04327 vs a 0.05 floor with 1 of 2 seeds, and C7 (repeated-use stability) at a minimum margin of -0.36660.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a -- claim_ids is empty by design. SCOPE GUARD, retained and re-sourced: the manifest's FORBIDDEN clause ('any statement that the interface is unconditional in general') binds every restatement of this run. CORRECTED at Step 7c: the draft attributed that clause and the result pattern to a 'null table C1a and C1b FAIL row'. NO SUCH ROW EXISTS -- the strings C1a and C1b do not occur in the spec at all; they are the driver's criterion names, and spec sec 2.8's table is keyed on RESULT PATTERNS, not criterion failures. The observed pattern matches none of the spec's rows cleanly: at M3 the seed-means are A5 0.7007, A1 0.6768, A3 0.6714, A4 0.5892, A2 0.5549, A6 0.4114, A7 0.3614 -- the best rivals were A5 and A1, not A6 or A2, and A6 is the single RED arm. The FORBIDDEN clause is kept because it is a good scope guard, NOT because a pre-registered row licenses it.",
+    "biological_reference": "partial -- receiver-conditioned translation (MECH-547) and recurrent interface stability (MECH-548) are both implementation_phase v4 claims resting on a hippocampal-campaign literature tranche. The instrument here is a SYNTHETIC frozen-interface bridge in a hazard-free grid rung, and the spec explicitly forbids biological statements from it. So the biology is not what this run bears on; it bears on whether the mechanism is NEEDED at a synthetic interface where an unconditional bridge is available.",
+    "prerequisites": "present, but '99 of 99' overstates the independence: the 99 entries are 5 precondition FAMILIES (query_not_state_blind, head_native_elevation, fit_final_ce_below_uniform, cond_message_spread, cond_reaches_committed_action) replicated across arms and seeds, not 99 distinct checks, and two of the families are close to un-failable by construction. The one RED arm (A6_selector_k@M2, failing fit_final_ce_below_uniform) is deliberately carried under per_arm_gate.red rather than in the flat list, to stop a known arm-blind indexer read from vacating the whole run on a single arm.",
+    "implementation": "complete AS REDESIGNED -- but the fitted-arm residuals invalidate the SIGN of the result, which is the finding that matters. The redesign genuinely closed the predecessor's structural hole: the earlier design fitted by MSE to a query-invariant target, so A4 collapsed onto A1 by construction. Verified in code: the loss is CrossEntropy on the query-specific oracle action with gradient flowing only into the bridge (_fit_end_to_end, 976-1017), arms are masked by _cond_mask (964-973), and every fitted arm has identical architecture and parameter count (in_dim 33). A4 is therefore NOT handicapped relative to A1 -- and that is exactly what breaks the negative reading: nesting requires A4 >= A1, and 16 of 30 cells violate it. The driver's own header already anticipated this ('a one-shot unconditional fit is non-monotone in M at 60 passes'); N_RESTARTS=3 with block-2 argmax was the mitigation, and the residuals show it did not work.",
+    "environment": "adequate for the narrow question, and narrow on purpose -- rung D3_hazard_free, grid 12, 0 hazards, 5 resources, 200 steps/episode. It cannot speak to conditioning under hazard or richer pressure, and the spec does not ask it to.",
+    "measurement": "under-instrumented -- DOMINANT, and on the LOAD-BEARING pair too, not only the refinements (corrected at Step 7c; the draft originally exempted the load-bearing pair on the grounds that a wrong-signed effect needs no power argument). That exemption is void because the sign itself is unreliable: median within-cell restart spread 0.0573 exceeds the 0.05 floor, and the paired SE of the C1b mean (0.0533) equals it. C3 remains separately underpowered (0.04327 vs 0.05, SD-bar 0.05359, 1 of 2 seeds). WITHDRAWN: the draft's claim that 'sd_gate_measured is numerically IDENTICAL to measured' evidences fragility -- driver:1286-1287 assigns both fields the SAME variable, so the identity is a schema tautology true on every run of this shape. The real 2*SD gate is sd_gate_threshold (0.1846 for C1b, 0.1081 for C1a), and that is the number that carries the fragility argument.",
+    "integration": "coupled but unstable -- and this is the run's second substantive finding. C7 shows A4's closed-loop step-20 agreement collapsing below its own trivial bar on 2 of 3 seeds (margins +0.0619 / -0.3666 / -0.2321), with only a third to two-thirds of rollout episodes still alive at step 20 (alive fractions 0.6333 / 0.3667 / 0.3333). One-step utility does not survive repeated application.",
+    "scale": "adequate for the load-bearing pair (3 seeds x 3 restarts x 10 widths, wrong-signed deltas), insufficient for the refinements (C3 at n=3)."
+   },
+   "biological_reference": {
+    "closest_mechanism": "Receiver-conditioned inter-areal translation: in cortex and hippocampal-retrosplenial circuits what a sender exposes is modulated by the receiver's current state, rather than being one globally fixed alignment. MECH-548's analogue is recurrent interface stability -- a coupling that is useful once but destabilises under repeated closed-loop application.",
+    "dependencies": [
+     "a receiver whose state genuinely varies and is available to the interface",
+     "a task where the right message differs by receiver state",
+     "enough interface capacity that conditioning could pay for itself"
+    ],
+    "is_formal_import": false,
+    "divergence": "Not a formal-definition import; the divergence that matters here is SCOPE, not fidelity. The claims are implementation_phase v4; the instrument is a v3 synthetic frozen-interface bridge in a hazard-free rung. A negative here is evidence about NECESSITY AT THIS INTERFACE and is not admissible as evidence against the biological mechanism.",
+    "lit_status": "present"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "not_established",
+    "environment": "partial",
+    "ree": false,
+    "net_classification": "MIXED, and emphatically NOT a REE-level failure. Stated explicitly because this claim-free diagnostic carries organism-level numbers that could be written up as 'REE failed'. It cannot be: the native arm A0_native_canonical scores 11.59 at the actual evaluation widths against A4's 2.70, so REE's own closed-loop competence is intact and what degrades is the BRIDGED interface, i.e. the apparatus under test. (Corrected at Step 7c: the draft quoted 1.34-2.46 vs 11.84 from readout.closed_loop_foraging__*, which averages over ALL widths carrying rollouts rather than the eval widths.) Mechanism is not established -- a v4-phase claim probed by a v3 synthetic instrument whose own self-consistency residuals exceed the effect floor. Measures are not established, now including the load-bearing pair. Environment reads partial (hazard-free rung, narrow by design). The GOV-FAILLOC-1 threshold for REE FAILED requires all three adequate and is nowhere near met."
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "standard is stamped on the TARGET to satisfy GOV-CAT-1's presence requirement, and it asserts no epistemic suppression -- which is the correct verdict for a claim-free diagnostic. It is NOT a recommendation to change any bears_on claim's stored category: MECH-547, MECH-548 and ARC-139 are substrate_conditional and should STAY so (implementation_phase v4), and INV-105 is derivational and should stay so.",
+   "recommended_evidence_direction": "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note",
+   "recommended_evidence_direction_scope_note": "CHANGED at Step 7c. The draft retained the manifest's 'weakens' stamp as 'the honest description'. It is not: once the instrument's own nested-arm and restart residuals are admitted, a null this instrument cannot resolve weakens nothing. The registry effect is zero either way (claim_ids is empty, so nothing is scored), but the autopsy should FLAG the stamp as unsupported rather than endorse it. Recommended to governance: leave the manifest field as recorded (it is the run's own self-route and rewriting history is worse), and record in the note that the direction is not supported by the instrument's self-consistency.",
+   "recommended_evidence_quality_note": "[2026-09-17 | V3-EXQ-1044 | failure_autopsy_V3-EXQ-1044_2026-09-17] Claim-free diagnostic, excluded from scoring. Hippocampal campaign assay A, Gate A1: adjudicated UNDETERMINED, not negative. Receiver-state-conditioned access (A4) did not clear its +0.05 floor at either pre-registered evaluation width (C1b mean -0.0736 at M*, C1a mean -0.0141 at M_A4; 0 of 3 seeds cleared the floor, though at M_A4 2 of 3 per-seed deltas were positive and the mean is carried by seed 45 alone). The result CANNOT be read as a negative, because the instrument's own residuals exceed the effect it is built to detect: A4's hypothesis class strictly contains A1's, yet A4 < A1 on 16 of 30 matched cells (7 by at least 0.05, worst -0.195); the median within-cell restart spread over 210 fitted cells is 0.0573 against a 0.05 floor; and 27 of 135 adjacent-width steps run downward although width M nests M-1. The paired SE of the C1b mean equals the floor. This IS the post-redesign instrument -- the predecessor's structural artefact (an MSE fit to a query-invariant target) was genuinely closed -- so the finding is an instrument-resolution limit, not the old confound recurring. SCOPE, binding on every restatement: this FORBIDS any statement that the interface is unconditional in general. Refinements: C3 (attribution) is an underpowered null at 0.0433 vs 0.05; C7 (repeated use) fails, but on a denominator issue that limits what it can carry. OWED FIRST, at zero compute: re-adjudicate C1a/C1b from the banked restart arrays using a within-cell median instead of the block-2 argmax, and report the nested-order violation rate as an instrument gate.",
+   "per_claim_recommendation": {
+    "MECH-547": {
+     "recommended_evidence_direction": null,
+     "recommended_epistemic_category": null,
+     "note_only": true,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays candidate",
+     "scope_note": "NOTE-ONLY. This run carries claim_ids: [] BY DESIGN -- it is a claim-free diagnostic and must not create a scoring evidence entry on any claim. recommended_evidence_direction is deliberately null: do NOT write a direction, do NOT set diagnostic_evidence_adjudicated (the run tagged no claim, so that flag would assert something untrue), and do NOT change epistemic_category (it is substrate_conditional and correctly so -- these are implementation_phase v4 claims and a v3 synthetic frozen-interface instrument cannot adjudicate them). The ONLY edit owed is the note plus the citation.",
+     "change": "NOTE-ONLY, no direction and no flag. Record that the strong R3 reading of receiver-conditioned translation was tested at a synthetic frozen interface across a 10-point bandwidth ladder and DID NOT CLEAR its +0.05 floor at either evaluation width -- but that the instrument's own nested-arm and restart residuals (median within-cell restart spread 0.057; 16 of 30 nested-order violations up to -0.195) EXCEED that floor, so Gate A1 is UNDETERMINED at this instrument rather than negative. Do not record this as a weakening. Category stays substrate_conditional; the claim is implementation_phase v4 and a v3 instrument cannot adjudicate it -> stamp failure_autopsy_V3-EXQ-1044_2026-09-17"
+    },
+    "MECH-548": {
+     "recommended_evidence_direction": null,
+     "recommended_epistemic_category": null,
+     "note_only": true,
+     "recommended_diagnostic_evidence_adjudicated": false,
+     "status_change": "none -- stays candidate",
+     "downgraded_at_7c": true,
+     "scope_note": "REDUCED at Step 7c from a claim-linked observation to a non-attributed instrument observation. The draft let C7 carry a MECH-548 note; the red-team showed that survives only if the spec's own gating on C7 is ignored, and C7's statistic and its bar use DIFFERENT denominators, making its pass region vanishingly narrow on the seed the draft leaned on hardest.",
+     "change": "NOTE-ONLY and NON-ATTRIBUTED. Record as an observation about the BRIDGED interface generally, not as evidence about recurrent interface stability: across the bridged arms, closed-loop agreement at step 20 fell below the arm's own trivial bar on 2 of 3 seeds, with 33-63 percent of rollout episodes still alive at step 20. This is NOT scoring evidence for MECH-548 -- C7 is a non-load-bearing refinement, measured on an arm that had no established advantage to be unstable about, and its denominator does not match its bar -> stamp failure_autopsy_V3-EXQ-1044_2026-09-17"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "note": "No substrate build is requested and none is implied. The load-bearing result is a clean negative on a v4-phase question asked at a v3 synthetic interface; nothing here names a v3 substrate gap. The instrument fragilities (C3 power, the near-unreachable 2*SD gate) belong to the assay family's successors, not to a substrate entry."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "count_at_this_autopsy": {},
+    "this_target_contributes": 0,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": true,
+    "why_not_fired": "The brake counts per CLAIM and this target carries claim_ids: [], so it accumulates on no claim and the formal count is 0 for every id involved. Recorded explicitly because that is exactly the blind spot GOV-DIAG-1 exists to cover: a claim-free diagnostic chain accumulates nothing on the brake or on GOV-CEIL-1 and is invisible unless the bears_on token is carried forward verbatim. A Gate A1 re-pose is refused below on DESIGN grounds, not by the brake."
+   },
+   "granularity_debt_trigger": {
+    "fires": false,
+    "tagging_targets": 0,
+    "files": 0,
+    "alignment_distribution": {},
+    "routing": null,
+    "basis": "No claim is tagged by this target, so no claim has a recurrence cluster to read. The trigger cannot fire."
+   },
+   "learning_extracted": [
+    "A wrong-SIGNED effect is only decisive if the instrument's own self-consistency supports the sign. When one arm's hypothesis class strictly CONTAINS another's, the nested arm cannot be worse at the optimum -- so the violation rate of that ordering is a free, assumption-light instrument gate. Here it is 16 of 30, and it converts an apparently clean negative into an undetermined one. Compute it before adjudicating any nested-arm contrast.",
+    "When a nested arm is robustly WORSE than the arm it contains, the finding is about the OPTIMISER, not the mechanism. Here the deficit strengthened under median aggregation (C1b -0.074 -> -0.224, all seeds negative) while the nesting violation rate stayed at 53% -- so the run reliably measures that the conditioned arm under-converges, and cannot measure whether conditioning would help a fit that converged. Warm-starting the nested arm from the contained arm's solution makes the ordering hold by construction and is the natural repair.",
+    "Compare a criterion's effect floor against the instrument's OWN within-cell noise before treating a miss as a result. The median restart spread here (0.0573, over 210 fitted cells) exceeds the 0.05 floor the criterion exists to detect, so the design could not have reliably seen the effect in either direction.",
+    "A field NAME is not a fact. n_seeds_positive counts seeds CLEARING the floor, not seeds above zero; reproducing the name as English turned '2 of 3 seeds right-signed but sub-floor' into '0 of 2 seeds positive' and made an underpowered null read as a clean negative.",
+    "Two evaluation widths selected per-seed can silently coincide. M* and M_A4 agreed on 2 of 3 seeds, so C1a and C1b shared two thirds of their cells byte-identically -- reporting them as independent corroboration double-counts one measurement.",
+    "A claim-free diagnostic accumulates on NOTHING -- not the re-derive brake, not GOV-CEIL-1, not a granularity cluster. Its only lineage handle is the bears_on token, which must be reused byte-for-byte or the GOV-DIAG-1 chain silently restarts at 1.",
+    "Check that a cited pre-registration row EXISTS. The draft twice cited a spec 'null table C1a/C1b FAIL row'; the spec's table is keyed on result patterns and contains no such row, and the observed pattern matches none of its rows cleanly."
+   ],
+   "routing": "queue-experiment",
+   "routing_detail": {
+    "debt_class": "complex (probe-gated) / puzzle (known rules)",
+    "owed_first_zero_compute": {
+     "what": "Re-adjudicate C1a and C1b from the ALREADY-BANKED restart arrays: for every (arm, width, seed) replace the block-2-argmax restart with the within-cell MEDIAN of restarts_block3_agreement, recompute both deltas, and report the spread. In the same pass compute the A4-minus-A1 nested-order violation rate as an instrument gate (it should be near zero).",
+     "why": "It costs minutes, needs no run, and can settle whether Gate A1 is negative or merely unresolved. If the violation rate stays above roughly 10 percent, Gate A1 is UNDETERMINED by the instrument's own self-consistency independent of any claim about conditioning.",
+     "debt_class": "complicated (buildable)",
+     "gates": "This gates the re-pose below. Do not queue a new run before it is done."
+    },
+    "why": "Gate A1's question is NOT answered -- the draft's ground for saying so does not survive the instrument audit. What is missing is a FACT that the banked data may already contain, and failing that, a re-pose with a materially different instrument.",
+    "recommended_form": "NEW EXQ NUMBER, not a letter -- and for a corrected reason. Not because Gate A1 is answered (it is not), but because a successor must carry a materially DIFFERENT INSTRUMENT (variance control on the load-bearing pair, a C7 denominator fix, C6 flagged), which is a different measurement design rather than a bug fix to this one.",
+    "required_changes": [
+     "VARIANCE CONTROL ON THE LOAD-BEARING PAIR, not only on C3. Raise restarts and aggregate within-cell by median rather than block-2 argmax, and pre-register the nested-order (A4 >= A1) violation rate as a hard readiness gate that must be near zero before C1a/C1b are read at all.",
+     "CARRY THE BANDWIDTH LADDER AND THE BLOCK-2 SELECTION RULE. A single pre-registered bottleneck width would make the headline contrast an artefact of that integer.",
+     "FIX C7's DENOMINATOR so the statistic and its bar are computed over the same episode set, and add an applicability precondition so C7 is not read on an arm with no established advantage.",
+     "FLAG C6 EXPLICITLY as structurally-expected: it is a conjunction that passes whenever its first conjunct (A7 high) never fires, which is what happened on all 3 seeds, and it carries no structurally_expected_pass marker.",
+     "POWER C3 or demote it to explicitly diagnostic, so a successor does not read its FAIL as attribution.",
+     "RECORD ROLLOUT ALIVENESS as a first-class readout: with 37-67 percent of episodes dead by step 20, C7's agreement is computed over a shrinking, non-random survivor set."
+    ],
+    "refused": "A Gate A1 re-pose WITH THIS INSTRUMENT -- same restart policy, same aggregation, same unaudited nested-order residuals. CORRECTED at Step 7c: the draft refused ANY Gate A1 re-pose on the ground that the deltas were wrong-signed and power would not move them. That ground is withdrawn -- at M_A4 two of three seeds are right-signed and sub-floor and the paired SE equals the floor, which is a near-miss profile, not a settled negative.",
+    "secondary_routing": "none -- explicitly NOT a lit-pull. The campaign's tranche-3 literature already records the relevant prior; there is no gap to pull."
+   },
+   "read_across_not_adjudicated": [
+    "ARC-139 -- the parent mutual-legibility commitment. This run is evidence about one mechanism's NECESSITY at one synthetic interface, not about the commitment. Not adjudicated; recorded so a later session does not roll a Gate A1 negative up into ARC-139.",
+    "MECH-537 -- carried in bears_on and independently the target of V3-EXQ-1043, adjudicated in the same batch. The two runs touch the same interface question from different sides (routing vs conditioning) and neither settles the other.",
+    "INV-105 (the seven-way latent-access ladder, derivational) -- this run exercises the 'usable by a consumer' rung specifically. Not adjudicated; recorded because a Gate A1 negative is a statement about that rung only and INV-105's whole point is that the rungs must never be collapsed.",
+    "The instrument-family fragilities (C3 power, the 2*SD gate, rollout aliveness) bear on every assay in this campaign, not only Gate A1.",
+    "The instrument-resolution finding (nested-order violations, restart spread exceeding the effect floor) bears on EVERY assay in this campaign that uses the same fit-and-restart machinery, not only Gate A1. Not adjudicated here; flagged because a successor inheriting the instrument inherits the limit."
+   ],
+   "fanout_recommendation": {
+    "is_discrimination": false,
+    "note": "OMITTED. Gate A1 did not produce a bottleneck among live rivals; it produced an instrument-resolution limit. The next action is the zero-compute re-analysis above, which is a single unambiguous piece of work, not a portfolio. Revisit after it reports."
+   },
+   "hypothesis_space_ledger_pending": {
+    "note": "NO ledger write is proposed. There is no registry question for this campaign (no question's claims include ARC-139, MECH-547 or INV-105), and this autopsy declines to open one: the campaign already carries its own pre-registered gate structure and null table in evidence/planning/hippocampal_campaign_assay_specifications_20260910.md, which is a frozen pre-registration in everything but file format. Opening a parallel registry question would create a second, competing denominator for the same campaign. Flagged for the user at the Step 8 gate as a deliberate abstention rather than an oversight -- if governance would rather the campaign be tracked in the frozen ledger too, that is a reasonable call and this is the natural moment to make it.",
+    "growth_restriction_checked": true,
+    "growth_restriction_value": null,
+    "growth_restriction_applicability": "inapplicable -- no question targeted"
+   },
+   "self_route_label_adjudication": {
+    "manifest_label": "conditional_access_earns_nothing_at_any_bandwidth",
+    "verdict": "CONTESTED -- NOT adopted as written",
+    "adjudicated_label": "gate_a1_undetermined_instrument_noise_exceeds_effect_floor",
+    "why": "A4's hypothesis class STRICTLY CONTAINS A1's -- identical architecture and parameter count, and _cond_mask gives A1 an all-zero conditioning vector, so zeroing A4's conditioning columns makes A4 numerically identical to A1 under the same optimiser, lr, passes and clipping. A4 minus A1 is therefore required to be >= 0 at the optimum. Recomputed independently in this session from arm_results block-3 consumer_use_agreement: 16 of 30 matched (seed,width) cells VIOLATE it, 7 of them by at least 0.05, worst -0.1947. A quantity that cannot be negative except through optimisation noise is negative on a majority of cells. Corroborated twice from the same manifest: the median WITHIN-CELL restart spread over all 210 fitted cells is 0.0573 (mean 0.1109, p90 0.3012, max 0.4727) -- LARGER than the 0.05 effect the criterion exists to detect -- and 27 of 135 adjacent-width steps run DOWNWARD although width M nests M-1. The paired SE of the C1b mean delta is 0.0923/sqrt(3) = 0.0533, the same size as the floor, so a true +0.05 effect had well under 50% detection probability. The instrument cannot distinguish 'conditioning earns nothing' from 'conditioning earns about 0.05 and we cannot see it'."
+   },
+   "pre_routing_checks_7b": {
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+     "C1",
+     "C2",
+     "C3",
+     "C5"
+    ],
+    "note": "0 fires, but FOUR checks reported INAPPLICABLE. C1/C2/C3 are claim-keyed and structurally blind on a claim_ids: [] target, so this is NOT a clean bill -- the checks could not look. Recorded because a quiet mechanical report on a claim-free target is exactly the blind spot the skill names, and the Step 7c pass was briefed to carry the whole load here. It did: the decisive finding came from 7c, not 7b."
+   },
+   "red_team_7c": {
+    "verdict": "CONTESTED",
+    "model": "session model (Opus 5) -- SAME-MODEL pass",
+    "model_note": "The skill prescribes a cross-model pass (fable for an Opus session). Fable was unavailable this month (HTTP 429 monthly spend limit), so per the skill's stated fallback the pass ran on the session model. Recorded so this is not read as a cross-model verdict.",
+    "recomputed_load_bearing": [
+     "mean C1b delta = 0.6063576 - 0.6799947 = -0.0736371 -- MATCHED the manifest exactly (as did mean C1a delta, mean_bandwidth_saving, and all three C7 margins)",
+     "A4-minus-A1 nested-order violations: 16 of 30 cells, 7 by >= 0.05, worst -0.1947 -- INDEPENDENTLY RE-VERIFIED in this session",
+     "within-cell restart spread over 210 fitted cells: median 0.0573, mean 0.1109, p90 0.3012, max 0.4727 -- INDEPENDENTLY RE-VERIFIED; median exceeds the 0.05 effect floor",
+     "27 of 135 adjacent-width steps downward although M nests M-1"
+    ],
+    "verdict_moving_findings": "A=4 (1 decisive), B=3 (1 decisive, 1 cleared in the draft's favour), C=4 (1 decisive), D=4 (1 cleared)",
+    "hygiene_findings": 5,
+    "accepted_and_applied": [
+     "A1 DECISIVE -- the instrument's fit noise exceeds the effect floor and the nested-arm ordering is violated on 16/30 cells; the negative reading is withdrawn and the label re-adjudicated to undetermined.",
+     "C1 DECISIVE -- '0 of 2 seeds positive' and 'trails at both points' were false as English; n_seeds_positive counts seeds CLEARING 0.05. Corrected everywhere.",
+     "C2 -- M* and M_A4 coincide on 2 of 3 seeds, so C1a/C1b are not independent corroboration.",
+     "C3 -- the sd_gate_measured == measured identity is a schema tautology and is withdrawn as evidence.",
+     "C4 -- the cited spec 'null table C1a/C1b FAIL row' does not exist; the FORBIDDEN clause is kept but re-sourced.",
+     "B1 -- the bandwidth-saving headline is a statistic the driver's own pre-registration demoted to a diagnostic; demoted here too.",
+     "B3 -- C7's MECH-548 note over-records; reduced to a non-attributed bridged-interface observation.",
+     "D2 -- 'receiver state' is operationalised as the externally-assigned query cue, a FIDELITY divergence the tranche names, not merely a scope one.",
+     "D4 -- the refusal of a Gate A1 re-pose is corrected to refuse a re-pose WITH THIS INSTRUMENT, with the zero-compute re-analysis owed first.",
+     "hygiene -- alive/dead fractions reconciled (33-63 percent ALIVE = 37-67 percent dead); the closed-loop foraging figures re-quoted at the eval widths (A4 2.70 vs native 11.59) instead of the all-width aggregate."
+    ],
+    "cleared_by_red_team": [
+     "the literature prior (T3-10) is quoted accurately",
+     "evaluating A4 at a different width from its rival is NOT a defect",
+     "note-only for the bears_on claims is correct -- and for a STRONGER reason than the draft gave: the instrument cannot resolve the effect, so there is no adjudication to record on any claim",
+     "declining to open a hypothesis-ledger question is sound, not an evasion",
+     "a NEW EXQ number rather than a letter is right, though the ground changes"
+    ]
+   },
+   "withdrawn_arguments": [
+    "W1 -- 'the deltas are NEGATIVE, so no power argument rescues a wrong-signed effect.' WITHDRAWN as the load-bearing premise. The sign is not reliable: nested-order violations on 16/30 cells and a median within-cell restart spread (0.0573) above the 0.05 floor mean the instrument cannot resolve the effect in either direction.",
+    "W2 -- 'A4 TRAILS its best rival at both evaluation points; 0 of 2 seeds positive.' WITHDRAWN as false English. 0 of 3 seeds CLEARED the floor; at M_A4 two of three deltas are positive.",
+    "W3 -- 'this is the null table's C1a-and-C1b-FAIL row.' WITHDRAWN: no such row exists in the spec. The FORBIDDEN scope clause is retained on its own merits.",
+    "W4 -- 'the bandwidth-saving hypothesis fails directionally' as a headline. WITHDRAWN to the status the driver's own pre-registration gives it: a non-criterial diagnostic.",
+    "W5 -- C7 as evidence bearing on MECH-548. WITHDRAWN to a non-attributed observation about the bridged interface.",
+    "W6 -- 'sd_gate_measured is numerically IDENTICAL to measured' as corroboration of fragility. WITHDRAWN as a schema tautology; the substantive fragility point stands on sd_gate_threshold instead."
+   ],
+   "zero_compute_reanalysis_run_at_gate": {
+    "authorised_by": "user, at the Step 8 gate 2026-09-17",
+    "what": "The driver's own pre-registered re-analysis, run on the ALREADY-BANKED restarts_block3_agreement arrays: for every (arm, width, seed) replace the block-2-argmax restart with the WITHIN-CELL MEDIAN, recompute C1b at M* and C1a at M_A4 (pre-registered widths held fixed so only the aggregation changes), and recompute the nested-order violation rate as an instrument gate.",
+    "result": {
+     "argmax_as_run": {
+      "C1b": {
+       "mean": -0.07364,
+       "sd": 0.07535,
+       "per_seed": [
+        -0.16452,
+        0.02,
+        -0.07639
+       ],
+       "seeds_clearing_floor": 0,
+       "seeds_above_zero": 1
+      },
+      "C1a": {
+       "mean": -0.01409,
+       "sd": 0.04412,
+       "per_seed": [
+        0.01412,
+        0.02,
+        -0.07639
+       ],
+       "seeds_clearing_floor": 0,
+       "seeds_above_zero": 2
+      },
+      "nested_order_violations": "16/30 (53%), worst -0.1947"
+     },
+     "median_reanalysis": {
+      "C1b": {
+       "mean": -0.22397,
+       "sd": 0.00343,
+       "per_seed": [
+        -0.22836,
+        -0.22,
+        -0.22354
+       ],
+       "seeds_clearing_floor": 0,
+       "seeds_above_zero": 0
+      },
+      "C1a": {
+       "mean": -0.16974,
+       "sd": 0.07359,
+       "per_seed": [
+        -0.06568,
+        -0.22,
+        -0.22354
+       ],
+       "seeds_clearing_floor": 0,
+       "seeds_above_zero": 0
+      },
+      "nested_order_violations": "16/30 (53%), worst -0.2718"
+     }
+    },
+    "reading": "TWO findings, and they point in different directions -- both are reported. (1) The DIRECTION is ROBUST to aggregation, and robust the opposite way from a rescue: under the median the A4-minus-best-rival deficit grows (C1b -0.0736 -> -0.2240, C1a -0.0141 -> -0.1697) and every seed turns negative, with C1b's across-seed sd collapsing to 0.0034. So 'A4 does not beat its rivals at these widths' is NOT an artefact of the block-2-argmax selection, and the two per-seed positives at M_A4 do not survive it. That closes the near-miss reading the red-team raised at C1. (2) The INSTRUMENT GATE still fails, identically: the nested-order violation rate is 16/30 (53%) under BOTH aggregations, and the worst violation gets WORSE under the median (-0.2718). The red-team's own pre-stated threshold was that a rate above ~10% leaves Gate A1 undetermined by the instrument's own self-consistency. 53% is not close. NET: the adjudication STAYS UNDETERMINED, but for a sharper reason than before. A4's hypothesis class strictly contains A1's, so a persistent, aggregation-robust A4 DEFICIT cannot be a fact about conditioning -- at the optimum it is impossible. It is a fact about the FIT: the extra conditioning columns make this optimiser reliably converge worse. The run therefore measures an optimisation pathology, not the value of receiver-state conditioning, and neither a negative nor a null about MECH-547 can be read off it.",
+    "consequence_for_routing": "STRENGTHENS the case that a successor needs a materially different instrument rather than more seeds. More seeds of a fit that systematically under-converges the larger hypothesis class would reproduce the same deficit with tighter error bars, which is the worst outcome available -- a confident wrong answer. The nested-order violation rate must be a hard pre-registered readiness gate in any successor, and the fit must be shown to close it (more restarts, better init, longer schedule, or a warm-start of A4 from A1's solution) BEFORE C1a/C1b are read at all.",
+    "note": "A warm-start of the conditioned arm from the unconditional arm's fitted solution is the cheapest candidate repair: it makes the nesting constructive rather than merely theoretical, so A4 cannot end up worse than A1 by construction."
+   }
+  }
+ ],
+ "step8_gate_decisions": {
+  "held_utc": "2026-09-17T02:35:00Z",
+  "held_with": "user, interactive",
+  "decision": "CONFIRMED at the interactive Step 8 gate. The Step 7c pass returned CONTESTED with a decisive instrument finding; the verdict was re-adjudicated from a clean negative to UNDETERMINED. USER DECISION at the gate: adopt UNDETERMINED AND run the driver's pre-registered zero-compute re-analysis in-session. That re-analysis was run and is recorded on the target: the direction is robust to aggregation (the deficit GROWS under the median) while the nested-order violation rate stays at 53%, so the run measures an optimisation pathology rather than the value of receiver-state conditioning. Adjudication stays UNDETERMINED on a sharper basis."
+ }
+}

@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-935a (MECH-266 / SD-032a)
 
-**STATUS: `awaiting_human_confirmation` -- STAGING DRAFT. Routing is a proposal, not a decision.**
+**STATUS: `confirmed`** -- the interactive Step 8 gate this staging draft could not hold was held 2026-09-17 (session `failure-autopsy-batch-20260917`). Routing below is CONFIRMED.
 
 | | |
 |---|---|
@@ -363,3 +363,20 @@ against a powered re-test.
 8. **Chip the follow-on.** This session deliberately spawned none (CLAUDE.md: a
    `/failure-autopsy` session does not chip follow-on off its own unreviewed finding).
    Governance chips the re-score leg and, conditional on it, the powered re-test.
+
+---
+
+## 10. Step 8 gate -- held 2026-09-17 (this was written as a staging draft)
+
+The staging run could not hold Step 8; the gate was held interactively on 2026-09-17 by the `failure-autopsy-batch-20260917` session, which also re-verified the draft before putting it to the user:
+
+- **Dry-run gate**: re-confirmed clean (4 ids, 0 dry).
+- **Re-derive brake**: re-counted with the R1-R3 recipe over the committed corpus -- **7** for each claim, this target contributing **0**. Does not fire.
+- **`change` tails**: both end on `diagnostic_evidence_adjudicated: true`, and the claim registry was checked at confirmation time -- **neither MECH-266 nor SD-032a currently carries that field**, so both tails are actionable and not already-true (the A-24 trap).
+- **Step 7b re-run against current state**: the same **two C3 fires** and, notably, **no C1 fire** this time. The draft's dispositions stand.
+
+**USER DECISION: CONFIRMED AS-IS**, including the C3 literature-scope dismissal. C3 cannot read scope and fires identically on a flatly-false `ABSENT` and on a correctly-scoped one; the user adjudicated that this artifact's `ABSENT` is correctly scoped to the gain-stage question only, and that the 2026-08-25 closure of the lit commission stands.
+
+**One factual slip corrected at confirmation.** The ledger-pending note said the question "already carries three fan-out growth events against one elimination". The registry carries **one** (`initial_frozen_count` 4 vs `initial_frozen_count_at_registration` 3). The restraint conclusion it argues for -- propose no new leg and no denominator change -- is unchanged, and if anything rests on slightly weaker grounds than the draft claimed.
+
+**Ledger addenda applied by the confirming session.** The three Mode-B basis addenda (H1 strengthened but bar not met; H3 three new instances of its family; H4 new quantitative support) are now written to `hypothesis_space_registry.v1.json` as `basis_addenda` entries on the existing legs. **No state change, no new leg, no denominator change** -- `initial_frozen_count` stays 4. The growth-restriction check was re-run at apply time and the field is absent/null, as the draft recorded.

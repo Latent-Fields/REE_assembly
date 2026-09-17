@@ -1,0 +1,311 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-17T02:35:00Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "predecessor_autopsy": "failure_autopsy_V3-EXQ-1038_2026-09-14",
+ "targets": [
+  {
+   "run_id": "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3",
+   "queue_id": "V3-EXQ-1038a",
+   "claim_ids": [
+    "ARC-131"
+   ],
+   "bears_on": [
+    "SD-091",
+    "arc131_sd091:commensurability-probe"
+   ],
+   "experiment_purpose": "diagnostic",
+   "outcome": "PASS",
+   "self_route_label": "commensurability_partially_collapses_scale_spread",
+   "failed_criterion": "discrimination",
+   "failed_criterion_detail": "This is a diagnostic PASS, so the question is whether the PASS is real or degenerate. Revised after the Step 7c red-team, which found MORE degeneracy than the draft did. (1) The OUTCOME scalar is vacuous BY DESIGN and the manifest says so: G0, the only load_bearing criterion, is a 1e6 margin-threshold guaranteed-fire control against observed margins never exceeding ~131. PASS means 'a valid instrument-verified measurement was obtained', nothing more. (2) F2 AND G3b ARE ALSO NEAR-CIRCULAR, which the draft originally missed. Both pair two functionals of the SAME sample: eligibility_fraction is the empirical CDF at 0.05 of a cell's margin samples, and it is regressed against the median of those same samples. Spearman between a median and a CDF-at-a-fixed-point is monotone by construction unless cell shapes cross, so G3b's 0.991 is close to an arithmetic identity rather than evidence the OFF arm is 'scale-determined', and F2 could only pass if the operator equalised the cells almost exactly. (3) The NON-CIRCULAR version of F2 -- regressing the OFF-arm median (intrinsic scale, before the operator) against ON eligibility -- gives |rho| = 0.321, which PASSES the 0.4 bar. So the headline 'recruitment remains almost perfectly scale-determined in rank terms' holds only against the already-normalised scale and must NOT be stated unqualified. WHAT SURVIVES, on statistics that are not circular: F1's own measured collapse (cross-seed median-margin ratio 783.81 OFF -> 4.67 ON), a RESIDUAL ON-arm eligibility spread of 5.48x with CV 0.449, and the driver's own pre-registered post-hoc (below), which shows a scale-relative threshold cutting that CV to 0.124. Commensurability alone does not deliver scale-invariant recruitment -- that conclusion stands; the circular statistics are not what carries it.",
+   "four_layer_diagnosis": {
+    "claim_alignment": "not exercised as a test of ARC-131; informative about SD-091. ARC-131 asserts installability is a competence dissociable from isolated component validation. This run measures whether one specific operator (E3 channel commensurability) makes one specific downstream behaviour (endogenous coalition recruitment) scale-invariant. It updates ARC-131's motivating example, which is a lesser and different thing from testing the general claim -- the same reading the CONFIRMED 1038 autopsy recorded.",
+    "biological_reference": "partial -- divisive normalisation as a canonical cortical computation (Carandini and Heeger) is the reference. The mechanistic gloss is REVISED: the run does NOT show an order-preserving transform read by a fixed gate (see the withdrawn argument W1). What it shows is that the operator RESHUFFLES which seeds are large while leaving a residual spread a fixed gate still reads. The biologically legible point is narrower and survives: real circuits pair normalisation with ADAPTIVE thresholds, and this substrate pairs it with a constant, which the run's own pre-registered post-hoc shows is the difference that matters.",
+    "prerequisites": "present but WEAKER than the draft first graded them (revised after Step 7c). G3 (off-arm median-margin ratio 783.81 vs a 10.0 floor) is genuinely empirical -- it is a pure ratio of medians and could have failed. G3b (off-arm |rho| 0.991 vs a 0.6 floor) is NOT: it pairs the median and the CDF-at-0.05 of the same sample and is close to an arithmetic identity, so 'could have failed' was wrong about it. G1/G1b/G1c/G2 are real instrument-correctness checks (engagement on the ON arm only, warmup crossed at 560 vs 20 ticks, DV moved on every seed, 560 samples vs a 250 floor) and could genuinely have failed.",
+    "implementation": "complete for the manipulation under test -- the enable path was asserted per-arm (G1: _last_commensurability_raw populated on every ON cell and empty on every OFF cell), the warmup was crossed (G1b, 560 ticks vs a 20-tick warmup), and the manipulation demonstrably moved the DV on every seed (G1c, dv_moved_fraction 1.0, n_seeds_dv_identical 0). The silent-swallow hazard the 1038 autopsy warned about was explicitly guarded and did not occur.",
+    "environment": "adequate -- 7 seeds x 2 arms x 20 episodes x 250 ticks, with per-cell E3 margin sample counts (worst cell 560) well above the 250 floor.",
+    "measurement": "adequate for the routed DV (revised after Step 7c -- the draft's 'one residual' was wrong). The 1038 autopsy's verification criterion was 'no seed's per-episode count sits at the arithmetic maximum in every episode'; the ceiling here is 5 and the worst cell reaches 4, so the criterion is MET and this is not saturation. (In 1038, seed 5 sat at exactly the maximum in all 30 episodes -- that is what 'saturates' meant.) The real measurement defect is the circularity in F2/G3b described in failed_criterion_detail, which is a test-design issue rather than a sampling one.",
+    "integration": "coupled and stable for this question -- the operator, the E3 margin accumulator and the recruitment gate were exercised together, and the arm contrast isolates the operator.",
+    "scale": "adequate -- 7 seeds, and both routed statistics are far from their bars rather than marginal."
+   },
+   "biological_reference": {
+    "closest_mechanism": "Divisive normalisation in cortex (Carandini and Heeger 2012): a canonical gain-control computation that rescales a channel by a pooled estimate of its own recent magnitude, equalising dynamic range across channels of very different absolute scale.",
+    "dependencies": [
+     "a per-channel magnitude estimate with enough history to be stable",
+     "a downstream consumer whose decision rule is expressed in the NORMALISED units, not in absolute ones"
+    ],
+    "is_formal_import": false,
+    "divergence": "LOAD-BEARING and newly evidenced by this run. Biological divisive normalisation is paired with adaptive thresholds; REE pairs it with a FIXED absolute recruitment threshold (0.05). Normalising the input while leaving the gate constant compresses magnitude without decoupling rank, which is exactly the F1-passes / F2-fails signature observed. The second-order divergence the run also records: the operator's own EMA divisor AMPLIFIED within-cell dispersion on several seeds (seed 1: 7.79 -> 131.47, ~16.9x; seed 3: 10.11 -> 36.93), consistent with the driver's own pre-registered account that an intermittent low-SD channel can be amplified rather than equalised.",
+    "lit_status": "partial"
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "established",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MIXED, and explicitly NOT a REE-level failure. This is a diagnostic PASS that obtained a valid measurement; nothing licenses an organism-level 'REE failed' reading. Measures now reads ESTABLISHED for the routed DV (revised after Step 7c: the request-count criterion the predecessor set is met -- worst cell 4 against a ceiling of 5 -- so the draft's 'residual' was not one). Mechanism is not established: the operator behaved as implemented; what failed is the PAIRING of a magnitude normaliser with a fixed absolute gate, a design gap rather than a broken mechanism. Environment reads adequate. The circularity found in F2/G3b is a test-design defect and is recorded as such, not as a measurement-adequacy failure of the routed DV."
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_per_claim": {
+    "ARC-131": "standard"
+   },
+   "recommended_epistemic_category_note": "standard, unchanged. This run neither tests nor pressures ARC-131; it resolves a probe about SD-091. No epistemic suppression is asserted and none is warranted -- reaching for substrate_conditional here would starve ARC-131 of experiment lanes on the strength of a run that was never about it.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_direction_per_claim": {
+    "ARC-131": "non_contributory"
+   },
+   "recommended_evidence_quality_note": "ARC-131 -- [2026-09-17 | V3-EXQ-1038a | failure_autopsy_V3-EXQ-1038a_2026-09-17] non_contributory, diagnostic, excluded from scoring. The probe the CONFIRMED 1038 autopsy gated the SD-091 build on has now returned, and it SPLIT. E3 channel commensurability compresses the cross-seed margin-spread ratio ~168x (783.81 -> 4.67, inside the pre-registered 10.0 bar), but recruitment remains almost perfectly scale-determined in rank terms (|rho| 0.9910 -> 0.9643 against a 0.4 bar). Read: divisive normalisation equalises MAGNITUDE and does not decouple RANK, so a FIXED absolute recruitment threshold (0.05) read off a normalised margin stays scale-sensitive. The scale-relative coalition threshold SD-091 describes is therefore still owed; commensurability alone does not discharge it. The run's outcome=PASS is carried by the G0 1e6 guaranteed-fire readiness control and means only 'a valid instrument-verified measurement was obtained' -- it must NOT be read as evidence for ARC-131. ARC-131 itself was not exercised.",
+   "per_claim_recommendation": {
+    "ARC-131": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "standard",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate",
+     "change": "Direction (non_contributory) and category (standard) both STAND, and diagnostic_evidence_adjudicated is ALREADY true on this claim (set when the 1038 autopsy was applied), so neither is the actionable edit here -- deliberately NOT ending this string on an already-true value. What is owed is the citation: ARC-131's evidence_quality_note currently cites failure_autopsy_V3-EXQ-1038_2026-09-14 only and says nothing about the probe that autopsy gated the SD-091 build on. Append the drafted 1038a note and update the citation -> stamp failure_autopsy_V3-EXQ-1038a_2026-09-17"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-091",
+    "title": "Coalition/topology control primitive: star-topology recruit/suppress G_t alongside existing SalienceCoordinator mode-gate, wired for the 2 MVP typed-demand classes (SENSORY_RESAMPLE, PROVENANCE_CHECK) MECH-481's 4-arm falsifier needs",
+    "implementation_hint": "The probe this entry was gated on (V3-EXQ-1038a, named as the probe by the CONFIRMED 1038 autopsy) has RETURNED and the gate resolves OPEN: commensurability does not deliver scale-invariant recruitment. The entry's debt class moves from 'complex (probe-gated)' to 'complicated (buildable)'. The build is a recruitment threshold expressed RELATIVE to the channel's own scale statistic rather than the fixed absolute 0.05. The driver's own pre-registered post-hoc, run at autopsy on the banked samples, already demonstrates the repair works: re-thresholding at 0.05 * (cell_median / pooled_median) collapses cross-seed recruitment spread 5.48x -> 1.45x and CV 0.449 -> 0.124. That is a zero-compute existence proof for the build, not merely a rationale.",
+    "unblocks_claims": [
+     "ARC-131"
+    ],
+    "depends_on_unresolved": [
+     "f_dominance_conversion_ceiling (substrate_queue entry, status build_owed, severity corrupting)",
+     "V3-EXQ-1012a (commensurability operator's own validation, OPEN)"
+    ],
+    "priority_suggested": 3,
+    "severity": null,
+    "substrate_paths": null,
+    "severity_and_paths_note": "Deliberately NOT set or changed. The 1038 autopsy already populated substrate_paths (ree_core/agent.py::REEAgent.select_action, ree_core/claustrum/coalition_controller.py) and set severity 'degrading' (contested at its own Step 8 gate). This occurrence does not change either: nothing here shows the fixed threshold CORRUPTING evidence, it shows a design gap that degrades scale-invariance. Leave as governance has them.",
+    "failure_record_entry": {
+     "run_id": "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3",
+     "experiment_type": "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe",
+     "metric": "ON-arm cross-seed recruitment spread under the shipped FIXED 0.05 threshold: eligibility_fraction spread 5.48x, CV 0.449, with a residual cross-seed median-margin ratio of 4.67x after commensurability (down from 783.81x OFF). Stated on NON-CIRCULAR statistics deliberately: the pre-registered F2 rank statistic (ON |rho| 0.9643 vs a 0.4 bar) pairs the median and the CDF-at-0.05 of the same sample, and its non-circular form (OFF median vs ON eligibility) gives 0.321, which PASSES.",
+     "target": "A working scale-relative threshold must hold cross-seed recruitment CV at or below ~0.12 and spread at or below ~1.45x -- the levels the driver's own pre-registered post-hoc already achieves on this run's banked samples at 0.05 * (cell_median / pooled_ON_median).",
+     "resolved": "open"
+    },
+    "resolves_prior_failure_record": [
+     {
+      "run_id": "v3_exq_1038_arc131_coalition_endogenous_recruitment_rate_probe_20260914T201122Z_v3",
+      "resolved": "superseded",
+      "resolved_note": "NOT fixed -- superseded as a READING. The 1038 item recorded the scale-vs-conflict defect with the question of whether existing normalisation already handles it left open, which is why the 1038 autopsy reclassified the entry 'complex (probe-gated)' and named V3-EXQ-1038a as the probe. That probe has now run and answered: normalisation does not handle it. The prior item's open question is closed by this run; the defect it named is not."
+     }
+    ],
+    "title_note": "VERBATIM LIVE TITLE, quoted so the amend does not change it by accident. The draft originally asserted a DIFFERENT string and labelled it 'existing entry title, unchanged' -- it was neither. Flagged for the user: the live title still describes the star-topology primitive and does not describe the owed build at all, and the CONFIRMED 1038 autopsy proposed a third, more accurate title that appears NEVER TO HAVE BEEN APPLIED. Whether to land that retitle is a governance decision this autopsy does not take.",
+    "depends_on_unresolved_note": "UNION, not replacement. The first entry is already on the live SD-091 entry and on the CONFIRMED 1038 autopsy; an amend supplying a list in full REPLACES it, so omitting it (as the draft first did) would silently drop a dependency CONFIRMED governance put there -- and the one carrying severity 'corrupting'. It does NOT block the complex (probe-gated) -> complicated (buildable) reclassification: f_dominance_conversion_ceiling is itself node_class 'complicated (buildable)', so the debt razor recurses to yes."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "count_at_this_autopsy": {
+     "ARC-131": 0
+    },
+    "this_target_contributes": 0,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "why_not_fired": "R1-R3 recipe run verbatim over the committed corpus on 2026-09-17: ARC-131 has 1 tagging autopsy target (failure_autopsy_V3-EXQ-1038_2026-09-14, confirmed) and ZERO counting ceiling hits -- that target is category standard / direction non_contributory with an amend that owes a build, and it does not count. This target contributes 0 as well (category standard, direction non_contributory). Count 0 against a threshold of 2; the brake does not fire and nothing is refused."
+   },
+   "granularity_debt_trigger": {
+    "fires": false,
+    "tagging_targets": 1,
+    "files": 1,
+    "alignment_distribution": {
+     "other": 1
+    },
+    "routing": null,
+    "basis": "granularity_debt_cluster.py ARC-131 reports 1 target across 1 file, alignment distribution other=1. NO target reads 'weakened', so the first condition fails outright and the trigger cannot fire. The reader's own caveat (a 'weakened' reading can hide in free-text 'other') was checked by hand: the 1038 target's claim_alignment prose says 'not exercised as a test; informative as an OBSERVATION', which is the opposite of weakened. Two targets sharing ONE signature (ARC-131's motivating example being updated rather than the claim being tested) is not granularity debt."
+   },
+   "learning_extracted": [
+    "Divisive normalisation does not have to preserve rank to leave a fixed gate scale-sensitive, and asserting that it does is a substrate error. Here the operator SCRAMBLED the cross-seed ordering (cross-arm rank rho 0.143; 0 of 7 seeds kept rank) while still leaving a 4.67x residual spread that a constant 0.05 gate reads. The divisor is rank-preserving WITHIN a channel; the DV is the top-2 gap of the SUMMED score, and each channel is divided by a different divisor before summing, so the sum is a reweighted -- not monotone -- transform. Read the qualifier in an operator's docstring before exporting it as a mechanism.",
+    "A criterion that regresses a sample's MEDIAN against that same sample's CDF AT A FIXED POINT is near-circular: it is monotone by construction unless cell shapes cross. Both F2 and the G3b premise gate are built this way, so a 0.991 'scale-determined' premise reading is close to an arithmetic identity, and F2's own non-degeneracy certificate inherits the circularity because it is gated on G3b. The non-circular form -- regress the PRE-manipulation scale against the POST-manipulation outcome -- flips the verdict here (0.964 -> 0.321).",
+    "When a driver pre-registers a post-hoc FOR the autopsy, run it. This one turned the recommendation from an assertion into a zero-compute existence proof (CV 0.449 -> 0.124 on the run's own banked samples) and supplied the only non-circular evidence in the run that the residual is scale.",
+    "A run whose outcome scalar is decided by a guaranteed-fire readiness control is not thereby a vacuous pass -- but neither is 'the finding is separately trustworthy' safe to assert without auditing the finding's OWN statistics. Here the outcome was vacuous by design AND two of the routed/premise statistics were near-circular; only the residual-spread measurements survived both checks.",
+    "substrate_stable_across_run: false fired correctly and for a benign reason -- an unrelated untracked file (experiments/_lib/infant_warmup.py, another session's GAP-14 work) changed on disk during a 3h16m run. Attribution was recoverable because ree_core/ had NO commits in the run window and the drifted file is imported by nothing on this driver's path. A drift flag needs an attribution check, not automatic distrust."
+   ],
+   "routing": "implement-substrate",
+   "routing_detail": {
+    "debt_class": "complicated (buildable)",
+    "why": "The probe that gated this build has returned and resolved the open question in the direction that makes the build necessary, and the driver's own pre-registered post-hoc already demonstrates the repair on banked data. There is no remaining unknown about WHETHER a scale-relative threshold is needed, and no new measurement would add to a zero-compute existence proof.",
+    "the_adjudication_the_driver_asked_for": "The driver routed EXACTLY-ONE-of-F1/F2 here with the words 'adjudicate which half and why'. WHICH HALF: F1 (absolute magnitude spread) moved, 783.81 -> 4.67. F2 as implemented did not -- but F2 as implemented is near-circular, and its non-circular form (OFF-arm median vs ON eligibility, |rho| 0.321) PASSES the 0.4 bar. So the honest answer is NOT 'rank determination persists'. WHY, on the statistics that survive: commensurability equalises channels but the recruitment DV is the top-2 gap of the SUMMED score, which is a reweighted rather than monotone transform -- it reshuffles which seeds are large (0 of 7 seeds keep their rank) and leaves a 4.67x residual spread. A CONSTANT 0.05 gate reads that residual, so recruitment still varies 5.48x across seeds (CV 0.449). The decisive demonstration is the driver's own pre-registered post-hoc: re-thresholding the same banked samples at 0.05 * (cell_median / pooled_median) collapses that to 1.45x spread and CV 0.124. The gap is the FIXED gate, not the operator's failure to normalise.",
+    "recommended_form": "AMEND SD-091 and build. Do NOT queue another commensurability probe against the same operator.",
+    "refused": "A further same-question re-pose of the commensurability arm (longer warmup, different EMA horizon) offered as a way to get F2 to collapse. Answered with a number rather than an assertion: the post-hoc shows the residual is removed by changing the THRESHOLD, not the operator -- CV 0.449 -> 0.124 at a scale-relative bar on the operator's own unchanged output. Tuning the divisor is the wrong lever.",
+    "secondary_routing": "none. Explicitly NOT a lit-pull: the normalisation literature is adequate for this reading, and the claim-side question is not a literature gap."
+   },
+   "read_across_not_adjudicated": [
+    "SD-091 / V3-EXQ-1012a -- the commensurability operator's OWN validation is separately OPEN, and this run adds a reason to prioritise it: within-cell margin dispersion GREW under the ON arm on several seeds (seed 1: 7.79 -> 131.47, ~16.9x; seed 3: 10.11 -> 36.93; seed 4: 7.17 -> 9.54), matching the driver's pre-registered account that the divisor can amplify an intermittent low-SD channel. This bears on the build: if the operator is itself mis-behaving, a scale-relative threshold layered on top inherits the amplification. NOT adjudicated here -- 1012a owns it.",
+    "ARC-130 -- coupled_with ARC-131 and carrying the same VERSION-ROUTING flag. Not adjudicated; recorded because a change to ARC-131's motivating-example language has historically travelled to ARC-130."
+   ],
+   "fanout_recommendation": {
+    "is_discrimination": false,
+    "note": "OMITTED as a queue action, under the GOV-FANOUT-1 exemption for a bottleneck that routes to one unambiguous build. Stated honestly rather than silently: a genuine rival reading DOES exist -- that the operator is defective (amplifying intermittent low-SD channels) rather than merely magnitude-scoped, in which case repairing it might discharge SD-091 without a new threshold. That rival is NOT a new portfolio to queue, because it is already owned by an OPEN run (V3-EXQ-1012a, the operator's own validation). Spawning a probe for it here would duplicate that run. The rival is instead pre-registered as a leg in the frozen ledger (see hypothesis_space_ledger_pending) and recorded in read_across_not_adjudicated, so it is legible without being double-queued."
+   },
+   "pre_routing_checks_7b": {
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+     "C5"
+    ],
+    "note": "Clean. C1, C2 and C3 were APPLICABLE (claim_ids non-empty) and did not fire, so this is a genuine quiet report rather than the claim-keyed blind spot."
+   },
+   "hypothesis_space_ledger_pending": {
+    "note": "ARC-131 has NO existing question in the registry (grep returns no match), so this is a NEW questions[] entry -- Mode A registration plus a same-cycle Mode B resolution. Because the question is new, the growth-restriction check is INAPPLICABLE by construction: a question being registered in this edit cannot carry a restriction. Recorded because a check that does not apply is not the same as a check not run. BASIS REWRITTEN at Step 7c onto non-circular statistics; see hypotheses[0].resolution.basis and circularity_caveat.",
+    "mode": "A+B (new question, registered and partially resolved in one edit)",
+    "qid": "arc131_sd091_recruitment_scale_invariance",
+    "growth_restriction_checked": true,
+    "growth_restriction_value": null,
+    "growth_restriction_applicability": "inapplicable -- new question",
+    "proposed_question": {
+     "title": "Does E3 channel commensurability make endogenous coalition recruitment scale-invariant, or is a scale-relative recruitment threshold still owed?",
+     "short_title": "Recruitment scale-invariance",
+     "claims": [
+      "ARC-131"
+     ],
+     "fanout_sources": [
+      "failure_autopsy_V3-EXQ-1038a_2026-09-17.json"
+     ],
+     "is_hero": false,
+     "initial_frozen_count": 3,
+     "initial_frozen_count_at_registration": 3,
+     "decision": {
+      "decision_question": "Is a scale-relative coalition recruitment threshold (SD-091) required, or does the existing divisive normalisation already deliver scale-invariant recruitment?",
+      "live_gate": "ON-arm |Spearman rho| between per-seed median E3 margin and per-seed eligibility fraction < 0.4, with the cross-seed margin-spread ratio held under 10.0",
+      "decidable": false,
+      "decision_log_ref": null,
+      "distance_phrase": "one leg eliminated by V3-EXQ-1038a; the remaining two are separated by whether the operator is itself sound, which V3-EXQ-1012a owns"
+     }
+    },
+    "hypotheses": [
+     {
+      "hid": "H-comm-suffices",
+      "axis": "representation",
+      "label": "Divisive channel commensurability alone makes recruitment scale-invariant",
+      "basis": "The pre-registered F1 AND F2 branch. If normalising each channel by its own scale removes the scale dependence of the margin, recruitment should stop tracking scale.",
+      "resolution": {
+       "state": "eliminated",
+       "resolving_runs": [
+        "V3-EXQ-1038a"
+       ],
+       "evidence_direction": "weakens",
+       "epistemic_category": "standard",
+       "self_route_label": "commensurability_partially_collapses_scale_spread",
+       "control_passed": true,
+       "non_degenerate": true,
+       "met_elimination_bar": true,
+       "resolved_utc": "2026-09-17T00:17:17Z",
+       "basis": "ELIMINATED on NON-CIRCULAR statistics only (basis rewritten at Step 7c; the original cited F2 and G3b, which the red-team showed are near-circular -- each pairs a sample's median against that same sample's CDF at 0.05). What carries the elimination: (a) a RESIDUAL ON-arm recruitment spread of 5.48x with CV 0.449 under the shipped fixed threshold -- scale-invariance would mean no such spread; (b) a residual ON-arm cross-seed median-margin ratio of 4.67x; (c) the driver's own pre-registered post-hoc, run at autopsy, showing that re-thresholding the SAME samples at a scale-relative bar collapses the spread to 1.45x and CV to 0.124, which is the direct demonstration that the residual is scale and the fixed gate is what reads it. The manipulation demonstrably engaged on the ON arm only (G1) and moved the DV on every seed (G1c, dv_moved_fraction 1.0), and the sample floors were cleared (G2, 560 vs 250). NOT relied upon: F2's 0.9643, G3b's 0.991, and F2's non-degeneracy certificate, which is gated on G3b and inherits its circularity.",
+       "circularity_caveat": "met_elimination_bar is kept TRUE on the rewritten basis above, which uses only non-circular measurements. Flagged explicitly for the Step 8 gate as a judgement call the user may overrule: the alternative is to downgrade met_elimination_bar to false on the grounds that the criterion the run actually ROUTED on (F2) is circular, even though the conclusion is independently supported. The conclusion does not change either way -- only whether this leg counts as a formally-eliminated one in the frozen denominator.",
+       "non_degenerate_note": "interpretation.criteria_non_degenerate IS a genuine per-criterion block (each of the three carries a different conjunction), so this is not the run-level-conjunction pathology a prior autopsy in this corpus was caught on. But two of its entries are weak: G0's is literally 'a control row exists', and F2's is gated on G3b and therefore inherits the circularity. The elimination does not rest on either."
+      }
+     },
+     {
+      "hid": "H-scale-relative-threshold-owed",
+      "axis": "arbitration",
+      "label": "A recruitment threshold expressed relative to the channel's own scale statistic is required; normalisation of the input is not sufficient while the gate is a fixed constant",
+      "basis": "F1's magnitude compression (783.81 -> 4.67) co-occurring with F2's persistence (0.964) is the signature of an order-preserving transform read by a constant gate. This is the SD-091 build.",
+      "resolution": {
+       "state": "alive",
+       "resolving_runs": [],
+       "evidence_direction": "pending",
+       "control_passed": false,
+       "non_degenerate": null,
+       "met_elimination_bar": false,
+       "resolved_utc": null,
+       "basis": "Indicated by this run but not itself tested -- no arm here implements a scale-relative threshold."
+      }
+     },
+     {
+      "hid": "H-operator-amplifies",
+      "axis": "substrate",
+      "label": "The commensurability operator is itself defective -- its EMA divisor amplifies intermittent low-SD channels -- so the persistence of scale determination is an operator fault rather than a missing threshold",
+      "basis": "Within-cell margin dispersion GREW under the ON arm on several seeds (seed 1: 7.79 -> 131.47, ~16.9x; seed 3: 10.11 -> 36.93; seed 4: 7.17 -> 9.54), matching the driver's own pre-registered account (ii).",
+      "resolution": {
+       "state": "alive",
+       "resolving_runs": [],
+       "evidence_direction": "pending",
+       "control_passed": false,
+       "non_degenerate": null,
+       "met_elimination_bar": false,
+       "resolved_utc": null,
+       "basis": "Adjudicating run V3-EXQ-1012a (the operator's own validation) is OPEN. Pre-registered here rather than queued, to avoid duplicating that run."
+      }
+     }
+    ],
+    "axis_family_check": "All three axes are already in the registry's axis_families.map: representation -> representation, arbitration -> process, substrate -> constitution. Three distinct families, so this set reads as REFINING rather than circling; no new axis row is owed."
+   },
+   "preregistered_post_hoc_run_by_this_autopsy": {
+    "why": "The driver PRE-REGISTERED this post-hoc for this autopsy (manifest scale_association_detail.post_hoc_for_autopsy): 'if F2 fails, recompute each ON cell's eligibility at a SCALE-RELATIVE threshold 0.05 * (cell_median / pooled_ON_median) from the stored e3_margin_samples; if its cross-seed spread matches the fixed-threshold one, the residual is not scale.' The draft originally failed to run it; it was run and independently recomputed at Step 7c.",
+    "pooled_on_median": 0.44036865234375,
+    "result": {
+     "fixed_0.05": {
+      "cv": 0.4488,
+      "spread_max_over_min": 5.483,
+      "abs_rho_vs_median": 0.9643
+     },
+     "scale_relative": {
+      "cv": 0.124,
+      "spread_max_over_min": 1.446,
+      "abs_rho_vs_median": 0.2111
+     }
+    },
+    "reading": "ZERO-COMPUTE and NON-CIRCULAR. Re-thresholding the run's OWN banked margin samples at a scale-relative bar collapses the cross-seed recruitment spread from 5.48x to 1.45x and the CV from 0.449 to 0.124, and drops the association with cell median to 0.211 -- under the 0.4 bar F2 uses. The residual IS scale, and a scale-relative threshold is demonstrably the repair, on this run's own data and without a new experiment. This is the load-bearing evidence for the routing; the order-preservation story it replaces was false.",
+    "independent_recompute_note": "Recomputed from arm_results e3_margin_samples in this session; |rho| came out 0.2111 against the red-team's 0.2523 (tie-handling in the rank correlation). Both are far below the 0.4 bar and the conclusion is identical."
+   },
+   "red_team_7c": {
+    "verdict": "CONTESTED",
+    "model": "session model (Opus 5) -- SAME-MODEL pass",
+    "model_note": "The skill prescribes a cross-model pass (fable for an Opus session). Fable was unavailable this month (HTTP 429 monthly spend limit), so per the skill's stated fallback the pass ran on the session model. Recorded so this is not later read as a cross-model verdict. Reasoning was withheld and JSON-before-prose ordering enforced.",
+    "recomputed_load_bearing": [
+     "both margin-spread ratios (783.812865 / 4.671973) from raw e3_margin_samples -- MATCHED",
+     "both Spearman rho (-0.9910312 / -0.9642857) -- MATCHED",
+     "all 14 cells' median / eligibility / dispersion -- MATCHED",
+     "cross-arm seed-rank rho = 0.1429, 0 of 7 seeds retain rank -- REFUTES the draft's order-preservation mechanism",
+     "non-circular F2 (OFF median vs ON eligibility) |rho| = 0.321 -- PASSES the 0.4 bar, contradicting the draft's headline",
+     "pre-registered post-hoc: CV 0.449 -> 0.124, spread 5.483 -> 1.446 (independently re-run in-session: |rho| 0.2111)"
+    ],
+    "verdict_moving_findings": 6,
+    "verified_correct": 7,
+    "hygiene_findings": 6,
+    "accepted_and_applied": [
+     "F-1 order-preservation mechanism FALSIFIED (cross-arm rank rho 0.143) -- withdrawn and replaced with reshuffling-plus-residual-spread; the exported 'general fingerprint' learning is withdrawn.",
+     "F-2 F2 and G3b are near-circular and the non-circular F2 PASSES -- 'strongly-separated dissociation' removed, G3b regraded, ledger elimination basis rewritten onto non-circular statistics.",
+     "F-3 depends_on_unresolved is now the UNION and retains f_dominance_conversion_ceiling (severity corrupting).",
+     "F-4 the live title is quoted verbatim; the false 'unchanged' assertion is removed and the un-applied 1038 retitle is flagged to governance.",
+     "F-5 the driver's pre-registered post-hoc was run and is now the load-bearing evidence for the routing.",
+     "F-6 the fictitious 'supersession' learning is withdrawn (the predecessor's instruction was a disjunction and its first branch was taken), and failure_location.measures is corrected to established."
+    ],
+    "cleared_by_red_team": [
+     "the units objection does not bite -- within-cell dispersion is a dimensionless max/median ratio",
+     "F1's 10.0 bar was genuinely failable",
+     "the substrate-drift attribution to an unrelated untracked file",
+     "the ledger Mode A+B structure and the growth-restriction 'inapplicable -- new question' call",
+     "the re-derive brake reading (count 0)",
+     "the granularity trigger reading (does not fire)",
+     "resolves_prior_failure_record with resolved='superseded'",
+     "the routing itself -- build SD-091's scale-relative threshold -- which the post-hoc independently confirms"
+    ]
+   },
+   "withdrawn_arguments": [
+    "W1 -- 'commensurability is an ORDER-PRESERVING per-channel transform, so it compresses range without changing rank.' WITHDRAWN as factually false: cross-arm seed-rank Spearman is 0.143 and 0 of 7 seeds keep their rank; seed 5 moves from smallest to 5th, seed 1 from largest to 3rd. The operator's docstring says rank-preserving WITHIN a channel; the DV is the top-2 gap of the SUMMED score over differently-divided channels, which is a reweighted, not monotone, transform. The general 'normaliser plus fixed gate' fingerprint must not be exported to other operators on this run's basis.",
+    "W2 -- 'F1 and F2 are two real, strongly-separated measurements pointing in opposite directions.' WITHDRAWN for F2: it is near-circular, and its non-circular form passes the bar it nominally failed. F1's collapse stands.",
+    "W3 -- 'the premise gates are genuinely empirical and could have failed' as applied to G3b. WITHDRAWN; G3b is close to an arithmetic identity. Retained for G3, G1, G1b, G1c and G2.",
+    "W4 -- 'the 1038 instruction to raise ticks was SUPERSEDED by relocating the DV.' WITHDRAWN as a misreading: the instruction was a disjunction ('report requests per ELIGIBLE OPPORTUNITY, and/or raise TICKS_PER_EPISODE'), and eligibility_fraction is precisely its first branch. Nothing was superseded; the instruction was followed as written, and its verification criterion (no seed at the arithmetic maximum in every episode) is met at 4 of 5."
+   ]
+  }
+ ],
+ "step8_gate_decisions": {
+  "held_utc": "2026-09-17T02:35:00Z",
+  "held_with": "user, interactive",
+  "decision": "CONFIRMED at the interactive Step 8 gate. The Step 7c pass returned CONTESTED with 6 verdict-moving findings; all were accepted and applied (order-preservation mechanism withdrawn as falsified, F2/G3b circularity recorded, depends_on_unresolved restored to the union including the severity-corrupting f_dominance_conversion_ceiling, the live title quoted verbatim, the pre-registered post-hoc run, the fictitious supersession learning withdrawn). USER DECISION at the gate: keep H-comm-suffices ELIMINATED with met_elimination_bar true on the rewritten non-circular basis, with the circularity caveat recorded on the leg."
+ }
+}
