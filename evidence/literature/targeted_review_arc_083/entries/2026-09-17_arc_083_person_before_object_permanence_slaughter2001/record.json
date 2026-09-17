@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_person_before_object_permanence_slaughter2001",
+  "timestamp_utc": "2026-09-17T10:15:00Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Decalage in Infants' Search for Mothers Versus Toys Demonstrated With a Delayed Response Task",
+    "authors": [
+      "Slaughter V",
+      "Boh W"
+    ],
+    "year": 2001,
+    "venue": "Infancy",
+    "volume": "2",
+    "issue": "3",
+    "pages": "405-413",
+    "doi": "10.1207/S15327078IN0203_8",
+    "pmid": "33451209",
+    "pmc": null
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.5,
+  "confidence_rationale": "The only entry in this pull that tests the OBJECT-PERMANENCE half of DEV-NEED-021, and it reverses the assumed ordering: infants over 8 months tolerated significantly longer delays when searching for their mother than for a toy, i.e. permanence for a social other outran permanence for an inanimate object in the same children on the same task. That is the opposite of the PILLAR 1 -> PILLAR 4 direction ARC-083 encodes. Confidence is held to 0.50 -- the lowest in this pull -- because the sample is very small (31 tested, 17 completing), because the decalage's existence has been actively disputed in this literature on task-demand grounds since Jackson, Campos and Fischer (1978), and because a mother is not an arbitrary other agent: attachment-driven motivational salience is an obvious confound and is arguably the whole effect. That last point is the reason the entry is still worth its place, since the confound is itself REE-relevant.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Infants older than 8 months sustained successful search across significantly longer delays for their mother than for a large toy, so persistence of a social other preceded persistence of an inanimate object in the same infants. DEV-NEED-021's ordering -- object permanence as a prerequisite that otherness inference is built on top of -- has the arrow pointing the wrong way for this pair of capacities.",
+    "The decalage is contested. Jackson, Campos and Fischer (1978, Developmental Psychology 14(1) 1-10) argued that task demands rather than the nature of the sought entity account for person-object differences, and this entry's result does not settle that objection -- a mother hidden behind a curtain and a toy hidden behind a curtain differ in more than category.",
+    "Only 17 of 31 infants completed the delayed-response procedure. A 45 percent attrition rate on the critical task leaves open that the completing subsample differed systematically, and the paper is too small to rule this out."
+  ],
+  "tags": [
+    "arc-083",
+    "dev-need-021",
+    "object_permanence",
+    "person_permanence",
+    "decalage",
+    "delayed_response",
+    "developmental_ordering",
+    "prerequisite_claim",
+    "attachment",
+    "sd-039",
+    "motivational_salience"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using a delayed-response task in which infants aged 7 to 14 months searched for either their mother or a large toy hidden under curtained tables, with the delay incremented after each success, infants sustained significantly longer successful delays when searching for mothers than for toys. The authors conclude that mother permanence precedes object permanence in infants older than 8 months.",
+    "ree_translation": "This is the only direct evidence located on the object-permanence half of DEV-NEED-021, and it inverts the stated ordering: the persistence of a social other is established BEFORE, not after, the persistence of an inanimate object. For ARC-083 that undercuts the specific reason PILLAR 1 is listed as a prerequisite of PILLAR 4 -- the idea that a general object-file persistence buffer must exist first and is then applied to agents. The human data suggest agent-permanence is not a downstream application of object-permanence but a separately and earlier maturing capacity, plausibly because it is motivationally weighted rather than generic. That reading is directly useful rather than merely corrective: it is an argument that SD-039's motivational ghost bank -- which ARC-083's own functional_restatement dismisses as 'not a true object-file persistence buffer' -- may be closer to the correct primitive for other-agent persistence than the true object-file would be.",
+    "mapping_caveat": "A mother is not an arbitrary other agent j. She is the single most motivationally salient entity in a 12-month-old's world, so this may be an effect of attachment-driven salience on search persistence rather than of a category distinction between agents and objects -- in which case it shows nothing about otherness at all. The task-demand critique (Jackson, Campos and Fischer 1978) attacks the decalage on exactly this kind of ground and is not answered here. The sample is very small with high attrition, and the measure is tolerable delay in a search task, which is a memory-persistence proxy and not the token-keyed object-file ARC-083 specifies.",
+    "source_context": "Human infants 7-14 months, n=31 with 17 completing; delayed-response search task with mother versus large toy hidden under curtained tables, delay incremented after each success."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.6,
+    "notes": "Source quality is the weakest in this pull: a small early-2000s study in Infancy, 17 completing infants, addressing a question the field had already contested for two decades without resolution. Mapping fidelity is moderate -- the ordering it tests is genuinely the ordering DEV-NEED-021 asserts, which is rare here, but the mother-versus-toy contrast confounds agency with attachment salience. Transfer risk is the highest in the pull because the confound that weakens it as a test of ordering (motivational weighting) is precisely the mechanism REE would be importing, so the transfer and the caveat are entangled rather than independent."
+  }
+}

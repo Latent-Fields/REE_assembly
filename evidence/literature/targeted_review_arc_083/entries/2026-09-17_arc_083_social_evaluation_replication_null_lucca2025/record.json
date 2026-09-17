@@ -1,0 +1,65 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_social_evaluation_replication_null_lucca2025",
+  "timestamp_utc": "2026-09-17T10:15:00Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Infants' Social Evaluation of Helpers and Hinderers: A Large-Scale, Multi-Lab, Coordinated Replication Study",
+    "authors": [
+      "Lucca K",
+      "Yuen F",
+      "Wang Y",
+      "Alessandroni N",
+      "Byers-Heinlein K",
+      "Frank MC",
+      "Rakoczy H",
+      "Sommerville J",
+      "Hamlin JK"
+    ],
+    "year": 2025,
+    "venue": "Developmental Science",
+    "volume": "28",
+    "issue": "1",
+    "pages": "e13581",
+    "doi": "10.1111/desc.13581",
+    "pmid": "39600132",
+    "pmc": null
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "This is support by SUBTRACTION and the confidence figure is set to say so. The single strongest published counterexample to DEV-NEED-021's ordering was Hamlin, Wynn and Bloom (2007, Nature 450:557-559), which reported third-party social evaluation in 6-month-olds -- an age at which manual-search object permanence is absent and mirror self-recognition is a year away. If real, that finding would have flatly falsified the prerequisite. It did not survive: 37 labs on five continents, 1018 infants tested and 567 analysed, found 49.34 percent preferring Helpers over Hinderers, indistinguishable from chance, with the original author a co-author on the replication. Source quality is therefore near ceiling and the methodological standing of the result is the highest of anything in this directory. Confidence is nonetheless only 0.45 because removing a disconfirmer is not the same as producing evidence for the claim: ARC-083 is no better supported than before, it is merely no longer contradicted from this direction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This entry establishes nothing positive about DEV-NEED-021. It removes one counterexample to the ordering and leaves the prerequisite exactly as unevidenced as it was, so it must not be read or aggregated as affirmative support for ARC-083's dependency structure.",
+    "The replication is a null on the hill paradigm specifically. Other evidence for early infant social cognition (goal attribution, gaze following, agent individuation) is untouched by it, so the broader question of whether some form of otherness inference precedes object permanence remains open and this entry does not close it.",
+    "The failure of a flagship 2007 Nature result under high-powered replication is itself a calibration warning for this whole literature: several of the developmental findings REE would want to lean on, including the Bischof-Kohler self-recognition-to-empathy link in this same directory, have never been subjected to comparable scrutiny and should not be assumed to survive it."
+  ],
+  "tags": [
+    "arc-083",
+    "dev-need-021",
+    "replication",
+    "null_result",
+    "social_evaluation",
+    "helper_hinderer",
+    "preverbal_infants",
+    "developmental_ordering",
+    "multi_lab",
+    "calibration_warning"
+  ],
+  "mapping": {
+    "source_claim_statement": "A preregistered coordinated replication across 37 laboratories on five continents tested 1018 infants aged 5.5 to 10.5 months (567 included in analysis) on the hill paradigm of Hamlin, Wynn and Bloom (2007). 49.34 percent of infants preferred Helpers over Hinderers and 55.85 percent preferred characters that pushed an inanimate object up rather than down; neither differed from chance. The authors conclude the evidence is against infants' prosocial preferences in this paradigm, and that the original effect is weaker, absent, and/or develops later than previously estimated.",
+    "ree_translation": "DEV-NEED-021 asserts that otherness inference requires object permanence and self-stability. The most direct published threat to that ordering was evidence of rich third-party social evaluation at 6 months -- before manual-search object permanence and long before mirror self-recognition. That threat is now withdrawn by the field's own highest-powered test. ARC-083's ordering is therefore not falsified from the early-social-competence direction, and the age at which agent-directed evaluation can be demonstrated is later than the 2007 result implied, which is at least consistent with otherness inference sitting downstream of the capacities DEV-NEED-021 names.",
+    "mapping_caveat": "Consistency is not support. Nothing here shows that object permanence or self-stability is required for anything; it shows that one capacity REE's ordering forbids at 6 months cannot be demonstrated at 6 months. Those are very different propositions and this entry must not be allowed to function as affirmative evidence when the directory is read in aggregate -- which is a live risk, since it is the only 'supports' entry among the four new ones. The replication also speaks only to the hill paradigm; other early social-cognitive findings are unaffected.",
+    "source_context": "Human infants 5.5-10.5 months; 37 laboratories across five continents; preregistered coordinated replication of the Hamlin, Wynn and Bloom (2007) hill paradigm; n=1018 tested, 567 analysed."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is the highest in the whole directory -- 37 labs, preregistered, an order of magnitude more infants than any other study here, and the original author participating in the replication of her own result. Mapping fidelity is by far the lowest, at 0.35, and that asymmetry is deliberate: the paper is methodologically excellent and evidentially oblique, because it bears on ARC-083 only by removing a disconfirmer. The aggregate confidence of 0.45 weights mapping_fidelity far above source_quality, as the interface contract's guidance for architectural claims requires."
+  }
+}

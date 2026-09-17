@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_self_recognition_empathy_prerequisite_bischofkohler2012",
+  "timestamp_utc": "2026-09-17T10:15:00Z",
+  "claim_ids_tested": [
+    "ARC-083",
+    "ARC-081"
+  ],
+  "source": {
+    "title": "Empathy and Self-Recognition in Phylogenetic and Ontogenetic Perspective",
+    "authors": [
+      "Bischof-Kohler D"
+    ],
+    "year": 2012,
+    "venue": "Emotion Review",
+    "volume": "4",
+    "issue": "1",
+    "pages": "40-48",
+    "doi": "10.1177/1754073911421377",
+    "pmid": null,
+    "pmc": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-083": "supports",
+    "ARC-081": "supports"
+  },
+  "confidence": 0.55,
+  "confidence_rationale": "This is the canonical statement of exactly the dependency DEV-NEED-021 asserts, and its empirical core has the right logical SHAPE for a necessity claim rather than a correlation: across 126 children aged 15-24 months, essentially every child who showed empathic concern for a distressed other had also passed the rouge test, while non-recognizers were perplexed or indifferent. That is the one-sided pattern a prerequisite predicts (self-recognition necessary, not sufficient), and it is what lifts this above a bare correlation. Confidence is nonetheless held at 0.55 rather than higher for two reasons stated in the summary: the design is cross-sectional within a narrow age band in which self-recognition, symbolic representation, invisible-displacement search and pronoun use all arrive together, so a shared-maturation common cause is not excluded by this evidence; and empathic concern for a distressed peer is a narrower construct than the otherness INFERENCE ARC-083 needs.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The supporting pattern is cross-sectional and drawn from a narrow age window (15-24 months) in which mirror self-recognition, symbolic representation, invisible-displacement object search, synchronic imitation and personal-pronoun use all emerge together -- so the design cannot separate a genuine prerequisite relation from a shared maturational common cause, which is precisely the inference DEV-NEED-021 needs.",
+    "The dependent measure is empathic concern toward a distressed other, not the inference that an entity IS another agent. A system could in principle individuate other agents without ever mounting an empathic response, so the entailment from this result to ARC-083's otherness-inference prerequisite is an extension the paper does not itself make.",
+    "Bischof-Kohler's own framing places the mechanism in synchronic identification -- representing self and other simultaneously at different locations -- which is a capacity for SIMULTANEOUS self/other representation rather than for a stable self per se. On that reading the prerequisite is a relational competence, not the self-stability ARC-081 supplies, and DEV-NEED-021's wording may be attributing the work to the wrong node."
+  ],
+  "tags": [
+    "arc-083",
+    "arc-081",
+    "dev-need-021",
+    "mirror_self_recognition",
+    "rouge_test",
+    "empathy",
+    "self_other_differentiation",
+    "developmental_ordering",
+    "prerequisite_claim",
+    "synchronic_identification"
+  ],
+  "mapping": {
+    "source_claim_statement": "Empathy -- understanding another person's emotional or intentional state by vicariously sharing it -- requires self-other awareness and therefore emerges only once the child has achieved self-objectification, the same capacity that underwrites recognising oneself in a mirror. In a study of 126 children aged 15-24 months, almost all mirror recognizers showed compassion and tried to help a distressed person, whereas non-recognizers were perplexed or remained indifferent. The author extends the argument phylogenetically, predicting empathy only in species that pass the mirror test.",
+    "ree_translation": "This is the source of the developmental ordering DEV-NEED-021 encodes and ARC-083 inherits: a stable self-representation is a PREREQUISITE for other-directed inference, not merely a correlate of it. In REE terms it licenses the PILLAR 2 -> PILLAR 4 arrow -- z_self must be a settled, self-objectified representation (ARC-081) before per-agent other-object slots (z_self_j) can be allocated. The one-sided distribution of the data is the part that matters architecturally: recognizers who did not empathise were common, empathisers who did not recognise were essentially absent, which is the asymmetry a necessity relation predicts and a symmetric correlation does not.",
+    "mapping_caveat": "Cross-sectional data inside a single narrow developmental window cannot distinguish a prerequisite from a common cause, and this window is unusually crowded -- the paper itself notes that mirror-passers also acquire pretence, invisible displacement, synchronic imitation and pronoun use at the same time. Every one of those is an equally good candidate for whatever is actually gating the empathic response. Furthermore the paper's own proposed mechanism is synchronic identification (representing self and other at once), which is not the same primitive as a stable self, so even taken at face value it may locate the prerequisite somewhere ARC-081 does not sit.",
+    "source_context": "Human toddlers, 15-24 months, rouge/mirror self-recognition test plus a staged distress episode; review with an accompanying phylogenetic argument about great apes."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Source quality is good rather than excellent: a theoretical review in a respected venue summarising the author's own decades-old experimental programme, without the independent multi-lab replication that the 2025 Lucca entry shows this literature badly needs. Mapping fidelity is the highest in this pull because the paper asserts the very dependency DEV-NEED-021 asserts; it is capped below 0.7 by the gap between empathic concern and otherness inference. Transfer risk is moderate -- human toddler development to a V4 agent architecture -- and is the reason confidence sits below the mapping_fidelity figure."
+  }
+}

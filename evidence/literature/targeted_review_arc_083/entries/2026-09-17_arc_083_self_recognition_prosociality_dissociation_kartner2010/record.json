@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_self_recognition_prosociality_dissociation_kartner2010",
+  "timestamp_utc": "2026-09-17T10:15:00Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Cognitive and social influences on early prosocial behavior in two sociocultural contexts",
+    "authors": [
+      "Kartner J",
+      "Keller H",
+      "Chaudhary N"
+    ],
+    "year": 2010,
+    "venue": "Developmental Psychology",
+    "volume": "46",
+    "issue": "4",
+    "pages": "905-914",
+    "doi": "10.1037/a0019718",
+    "pmid": "20604610",
+    "pmc": null
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the cleanest dissociation available against the self-stability half of DEV-NEED-021, and it is clean in the specific way that matters: the two cultural samples did NOT differ in how much prosocial behaviour the toddlers actually produced, but the mirror-self-recognition-to-prosociality link held only in Berlin and was absent in Delhi. Equivalent other-directed behaviour with and without the self-recognition association is exactly the pattern a universal prerequisite forbids. Confidence at 0.62 -- above the hippocampal entries in this directory and above Bischof-Kohler -- because the design directly targets the necessity claim rather than testing it incidentally, and because a null in one sample alongside a positive in the other is far more informative than a null alone. Capped there by sample size (38 and 39), by the fact that prosocial helping is a proxy for otherness inference rather than a measure of it, and because a cultural moderator is not by itself a mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Delhi toddlers at 19 months produced prosocial behaviour at the same rate as Berlin toddlers, but their prosociality was uncorrelated with mirror self-recognition -- so other-directed action was mounted in a population where the proposed self-representational prerequisite did no predictive work at all. A genuinely universal prerequisite cannot have a null association in half the samples tested.",
+    "The variable that DID predict prosociality across both samples was maternal emphasis on relational socialisation goals, not any property of the child's self-representation. The developmental evidence therefore locates the driver of early other-directed behaviour outside the child's own representational maturation entirely, which DEV-NEED-021's framing has no place for.",
+    "Taken together with Bischof-Kohler's result, the honest reading is that the self-recognition-to-empathy link is a finding about WEIRD samples rather than a developmental universal. The prerequisite DEV-NEED-021 states as architectural necessity may be a culturally contingent developmental pathway, which would make it the wrong kind of fact to hard-code into a claim dependency."
+  ],
+  "tags": [
+    "arc-083",
+    "dev-need-021",
+    "mirror_self_recognition",
+    "prosocial_behavior",
+    "cross_cultural",
+    "dissociation",
+    "developmental_ordering",
+    "prerequisite_claim",
+    "weird_samples",
+    "toddlers"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 19-month-old toddlers from Berlin (n=38) and Delhi (n=39), the predicted universal relationship between mirror self-recognition and prosociality did not hold across both samples: self-recognition correlated with prosociality only in the Berlin sample and not in the Delhi sample. There were no significant cross-cultural differences in the toddlers' actual prosocial behaviour. At the individual level, maternal emphasis on relational socialisation goals significantly predicted prosocial conduct in both groups.",
+    "ree_translation": "This is a direct test of the necessity direction of DEV-NEED-021's self-stability prerequisite, and it comes back negative. If a stable, self-objectified self-representation were REQUIRED before an agent can act on the basis of another agent's state, then a population showing undiminished other-directed behaviour without the self-recognition association should not exist. It does. For REE the consequence is specific: the PILLAR 2 -> PILLAR 4 arrow ARC-083 inherits should be treated as ONE developmental route to per-agent other-object slots rather than as a gating condition on them, and an implementation that hard-blocks other-object allocation on a self-stability audit would be encoding a contingent pathway as an architectural invariant.",
+    "mapping_caveat": "Prosocial helping is not otherness inference. A toddler can hand over a dropped object in response to a cue structure without ever individuating the recipient as a persisting other agent, which is what ARC-083's slot actually requires -- so the dissociation may be occurring one level below the capacity under test. The samples are also small (38 and 39) and the Delhi result is a null, which is weaker evidence than a reversal would be. And a socialisation-goals moderator explains variance without supplying a mechanism: it does not tell us what the Delhi toddlers were representing instead.",
+    "source_context": "Human toddlers at 19 months; two sociocultural contexts (Berlin, Germany and Delhi, India); mirror self-recognition plus observed prosocial behaviour and maternal socialisation-goal interview."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Developmental Psychology, a deliberate cross-cultural design aimed at the universality of exactly this link, with the informative feature that behaviour levels were matched while the association was not -- that matching is what rules out the obvious 'Delhi toddlers are simply less prosocial' reading. Source quality held below 0.8 by sample size and by the usual difficulty of interpreting a null in a small cell. Mapping fidelity matches Bischof-Kohler's because the two papers share the same proxy problem in opposite directions, and it would be inconsistent to credit the supporting study's proxy and discount the weakening study's."
+  }
+}

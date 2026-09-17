@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_083",
+  "entry_id": "2026-09-17_arc_083_joint_attention_mediation_null_sodian2015",
+  "timestamp_utc": "2026-09-17T10:15:00Z",
+  "claim_ids_tested": [
+    "ARC-083"
+  ],
+  "source": {
+    "title": "Declarative joint attention as a foundation of theory of mind",
+    "authors": [
+      "Sodian B",
+      "Kristen-Antonow S"
+    ],
+    "year": 2015,
+    "venue": "Developmental Psychology",
+    "volume": "51",
+    "issue": "9",
+    "pages": "1190-1200",
+    "doi": "10.1037/dev0000039",
+    "pmid": "26192041",
+    "pmc": null
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "The highest-confidence entry in this pull, because it is the only one whose design can do what the prerequisite claim actually requires: a longitudinal sample (n=83) followed from 12 to 50 months, with the candidate predictors measured at the early wave and theory of mind at the late one, and with the age-and-language confound the chip flagged handled by explicit statistical control. The finding relevant to DEV-NEED-021 is a MEDIATION NULL: mirror self-recognition and level-1 visual perspective taking were both associated with joint attention, but neither mediated the path from declarative pointing at 12 months to false-belief understanding at 50 months. The predictive path ran through a communicative capacity and not through self-representation. Confidence 0.68 rather than higher because a mediation null in n=83 is a statement about which route carries variance, not a demonstration that self-recognition is dispensable, and because false-belief understanding is a later and narrower target than otherness inference.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Mirror self-recognition did not mediate the path from 12-month declarative joint attention to 50-month false-belief understanding, despite being correlated with the predictor. On the only test in this pull with a longitudinal design and controls for gender and language, the self-representational variable DEV-NEED-021 nominates as the prerequisite carried none of the predictive path.",
+    "The variable that did predict later theory of mind was DECLARATIVE (not imperative) pointing -- a communicative act of sharing attention to a third thing with another agent. That is a dyadic coupling primitive, not a self-stability primitive, and it has no node in ARC-083's stated prerequisite structure at all.",
+    "Level-1 visual perspective taking also failed to mediate. Since perspective taking is the capacity closest to the 'model the other from the self' operation ARC-010 mirror-modelling specifies, its failure to carry the path weakens the broader simulationist route that ARC-083's V5 plan nodes are built on, not only the self-stability gate."
+  ],
+  "tags": [
+    "arc-083",
+    "dev-need-021",
+    "longitudinal",
+    "joint_attention",
+    "declarative_pointing",
+    "false_belief",
+    "mirror_self_recognition",
+    "mediation_null",
+    "confound_controlled",
+    "developmental_ordering",
+    "theory_of_mind"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 83 children assessed repeatedly between 12 and 50 months, declarative -- but not imperative -- point production at 12 months predicted false-belief understanding at 50 months. The relation held after controlling for child gender and language ability, and independently of temperament and emotion recognition. Mirror self-recognition and level-1 visual perspective taking were both related to joint attention but did NOT mediate the relation between declarative pointing and later false-belief understanding.",
+    "ree_translation": "This is the confound-controlled ordering test DEV-NEED-021's prerequisite has never had, and the self-stability node loses. If a stable self-representation were the gate through which early social competence becomes otherness inference, mirror self-recognition should have mediated this path; it was measured, it was correlated with the predictor, and it did not. What carried the path instead was declarative pointing -- sharing attention to a third object with another agent for its own sake. For REE that nominates a DIFFERENT prerequisite than the one ARC-083 carries: a triadic self-other-object coupling primitive, which is architecturally much closer to the ARC-080 object-file machinery plus a communicative channel than it is to ARC-081's stable z_self.",
+    "mapping_caveat": "A mediation null is weaker than a dissociation: it shows self-recognition did not carry variance on this path in this sample, not that otherness inference can proceed without it. With n=83 and a 38-month gap between waves, a real but modest mediation could be missed. The outcome measure is also explicit false-belief understanding at 50 months, which is a considerably later and more demanding capacity than the entity-level otherness inference ARC-083's slot allocation needs -- it is entirely possible that self-stability gates the early inference while joint attention predicts the later metarepresentational elaboration, in which case this result and DEV-NEED-021 are not in conflict at all.",
+    "source_context": "Human longitudinal cohort, 12 to 50 months, n=83; declarative and imperative pointing, mirror self-recognition, level-1 visual perspective taking, false-belief battery; path analysis with gender and language controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is the highest in this pull for an individual-differences study: Developmental Psychology, genuinely longitudinal across 38 months, with the specific controls (gender, language) that the age-confound objection demands, plus temperament and emotion recognition ruled out separately. Mapping fidelity is moderate because the outcome is false belief rather than otherness inference, and because a null mediation licenses a weaker conclusion than the summary's framing could be read to imply. Transfer risk is the lowest here -- a claim about which developmental route carries the dependency transfers to an architecture more cleanly than a claim about a specific neural code does."
+  }
+}
