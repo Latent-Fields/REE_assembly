@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_018",
+  "entry_id": "2026-09-17_mech_018_rem_recall_vs_generalization_lerner2021",
+  "timestamp_utc": "2026-09-17T09:04:07Z",
+  "claim_ids_tested": [
+    "MECH-018"
+  ],
+  "source": {
+    "title": "Sleep to remember, sleep to forget: Rapid eye movement sleep can have inverse effects on recall and generalization of fear memories.",
+    "authors": [
+      "Lerner I",
+      "Lupkin SM",
+      "Tsai A",
+      "Khawaja A",
+      "Gluck MA"
+    ],
+    "year": 2021,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2021.107413",
+    "pmid": "33609741",
+    "pmc": null,
+    "volume": "180",
+    "pages": "107413"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Genuinely mixed, and the most decision-relevant paper in the pull for that reason. It finds REM improving discriminative generalisation -- MECH-018's readout (ii) -- while at the same time IMPAIRING recall of the original threat memories, which is MECH-018's readout (i) going the wrong way. Two experiments with converging SCR and fMRI measures gives it real weight; modest N, a bespoke paradigm not independently replicated, and a post-hoc predictiveness account of the dissociation keep source quality moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "REM sleep impaired recall of the original threat memories while improving generalisation to novel threat/safety discriminations -- so the operation that delivered MECH-018's CONTEXT-TYING readout degraded its PRESERVATION readout in the same participants. MECH-018's confirming design requires both to move favourably at once; this is a direct demonstration that they can dissociate in opposite directions.",
+    "The authors themselves note contradictory findings in the prior literature regarding the DIRECTION of REM's modulation of fear memory -- so the biological prior MECH-018 leans on is not settled, and a REE result in either direction can find literature agreeing with it.",
+    "The reconciling account (that the effect depends on how predictive the threat/safety balance was for a given stimulus) is offered post hoc rather than pre-registered, so it explains the dissociation without having predicted it."
+  ],
+  "tags": [
+    "mech-018",
+    "rem_sleep",
+    "fear_generalization",
+    "preservation_vs_specificity",
+    "tension",
+    "rem_recalibration_hypothesis"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across two experiments using sleep-deprivation protocols and a fear-conditioning paradigm requiring discrimination between coexisting threat and safety signals, REM sleep showed two opposing effects: it impaired recall of the original threat memories while improving the ability to generalise those memories to novel situations emphasising threat/safety discrimination. The authors suggest both effects follow from how predictive the threat/safety balance was for a given stimulus, an account they relate to the REM recalibration hypothesis.",
+    "ree_translation": "This is a direct empirical dissociation between MECH-018's readouts (i) and (ii). REE's claim is that one sleep-phase operation delivers preservation AND context-tying together, and its confirming design requires the integration arm to beat both a no-sleep arm and a naive-decay arm on all four readouts sign-consistently. Lerner et al. observe the biological version of that operation moving the two readouts in OPPOSITE directions. If the same dissociation appears in the REE substrate once the WRITEBACK call site lands, it should be read as the claim's pre-registered FALSIFYING branch ('integration ERASES'), not as partial confirmation.",
+    "mapping_caveat": "The paper's 'generalisation' is discriminative -- correctly extending a threat memory to novel situations that require telling threat from safety -- whereas MECH-018's over-generalisation is the failure mode of residue bleeding into non-harm contexts. These are not the same axis, and better discrimination is compatible with both a rising and a falling REE specificity ratio depending on which side the improvement comes from. The dissociation with recall is the transferable finding; the sign of the generalisation effect is not directly importable.",
+    "source_context": "Healthy human participants; two complementary experiments; sleep-deprivation protocols; skin conductance response and fMRI; a novel fear-conditioning paradigm with coexisting threat and safety signals."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Confidence reflects how well the entry establishes the TENSION, which it does well, rather than how well it settles the direction, which it does not and does not claim to."
+  }
+}

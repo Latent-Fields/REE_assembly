@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_018",
+  "entry_id": "2026-09-17_mech_018_activity_dependent_downscaling_gonzalezrueda2018",
+  "timestamp_utc": "2026-09-17T09:04:07Z",
+  "claim_ids_tested": [
+    "MECH-018"
+  ],
+  "source": {
+    "title": "Activity-Dependent Downscaling of Subthreshold Synaptic Inputs during Slow-Wave-Sleep-like Activity In Vivo.",
+    "authors": [
+      "Gonzalez-Rueda A",
+      "Pedrosa V",
+      "Feord RC",
+      "Clopath C",
+      "Paulsen O"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.01.047",
+    "pmid": "29503184",
+    "pmc": "PMC5873548",
+    "volume": "97",
+    "issue": "6",
+    "pages": "1244-1252.e5"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Methodologically the strongest source here -- whole-cell recording with optogenetic input control in vivo, plus a computational model, in Neuron -- and the only entry that speaks directly to MECH-018's NAIVE-DECAY comparator at the mechanistic level: sleep-associated downscaling is activity-dependent and input-specific, NOT uniform, and the authors name preservation of stored information as one of its two computational advantages. Confidence is nonetheless capped at 0.60 by a high transfer risk: urethane-anaesthetised mouse cortex and cortical synaptic weights are a structural analogy for an RBF residue field over z_world, not the same object.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The protective rule is that connections contributing to POSTSYNAPTIC SPIKING are spared. REE residue has no equivalent activity criterion at sleep time -- a harm centre the agent has not recently revisited generates no analogue of postsynaptic drive, so a faithful port of this mechanism would preferentially protect RECENTLY ACTIVE harm contexts and let dormant ones decay. That is a preservation-floor violation for exactly the oldest moral injuries, which is the opposite of what MECH-018 wants.",
+    "Recordings were made under urethane anaesthesia, which produces slow-wave-sleep-LIKE activity rather than natural sleep; the paper does not establish that the same gating operates across natural sleep cycles.",
+    "The mechanism demonstrated is depression plus protection, i.e. compression with a floor. It provides no analogue of centre-merging, which is the operation MECH-018's SUBSTRATE note specifically worries `integrate` may be unable to deliver."
+  ],
+  "tags": [
+    "mech-018",
+    "synaptic_downscaling",
+    "synaptic_homeostasis",
+    "compression",
+    "naive_decay_comparator",
+    "slow_wave_sleep"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using whole-cell recordings and optogenetic stimulation of presynaptic input in urethane-anaesthetised mice exhibiting slow-wave-sleep-like activity, synaptic plasticity rules were shown to be gated by cortical dynamics in vivo: Down states support conventional spike-timing-dependent plasticity, while Up states are biased toward depression such that presynaptic stimulation alone produces synaptic depression, yet connections contributing to postsynaptic spiking are protected against this weakening. The authors identify two computational advantages of this activity-dependent, input-specific downscaling: improved signal-to-noise ratio, and preservation of previously stored information.",
+    "ree_translation": "This is the mechanistic answer to the comparator MECH-018 builds its confirming design around. The claim requires the integration arm to beat a NAIVE-DECAY arm defined as uniform multiplicative attenuation of all weights, on the grounds that uniform decay would satisfy COMPRESSION (iii) and TRAVERSABILITY (iv) while violating PRESERVATION (i). Gonzalez-Rueda et al. show that the biological implementation of sleep-associated downscaling is precisely not uniform: depression is the default but a protection rule exempts the connections that matter, and the stated payoff is better signal-to-noise WITH stored information preserved. Compression-with-a-floor is therefore a real neural operation and not merely REE's wished-for one, which raises the prior that a correctly written `integrate` can beat naive decay.",
+    "mapping_caveat": "Cortical synaptic weights and an RBF residue field over z_world are different objects, and the correspondence is structural rather than substantive. The sharper problem is the protection CRITERION: here it is postsynaptic spiking, i.e. recent causal participation. REE's residue has no such signal available at sleep time, so a port of this rule would have to choose a substitute, and every obvious substitute (recency, visit frequency) protects recently-encountered harm contexts and abandons dormant ones -- which would fail MECH-018's preservation floor exactly where the claim's clinical motivation is strongest.",
+    "source_context": "Urethane-anaesthetised mice exhibiting slow-wave-sleep-like cortical activity; in vivo whole-cell recording with optogenetic presynaptic stimulation; accompanying computational model."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Transfer risk is the dominant penalty and is set high deliberately: anaesthesia-induced SWS-like activity, rodent cortex, and a synapse-level mechanism being read across to a field-level operation. The aggregate sits above the naive mean because what transfers is the EXISTENCE PROOF that selective downscaling is biologically real, which is robust to most of that risk."
+  }
+}

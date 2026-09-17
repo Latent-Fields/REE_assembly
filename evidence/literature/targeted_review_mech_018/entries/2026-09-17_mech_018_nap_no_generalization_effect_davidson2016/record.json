@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_018",
+  "entry_id": "2026-09-17_mech_018_nap_no_generalization_effect_davidson2016",
+  "timestamp_utc": "2026-09-17T09:04:07Z",
+  "claim_ids_tested": [
+    "MECH-018"
+  ],
+  "source": {
+    "title": "Sleep and the generalization of fear learning.",
+    "authors": [
+      "Davidson P",
+      "Carlsson I",
+      "Jonsson P",
+      "Johansson M"
+    ],
+    "year": 2016,
+    "venue": "Journal of Sleep Research",
+    "doi": "10.1111/jsr.12339",
+    "pmid": "26359128",
+    "pmc": null,
+    "volume": "25",
+    "issue": "1",
+    "pages": "88-95"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.52,
+  "confidence_rationale": "A clean, well-targeted NULL on precisely MECH-018's crux readout: a graded generalisation test with eight novel intermediate stimuli found the expected similarity gradient but NO difference in its degree between a nap group and a wake group. Confidence is modest and deliberately so -- a null from a single nap study is weak evidence of absence, the sample is small by current standards, and a daytime nap contains far less REM than the overnight sleep the supporting entries in this directory relied on. Included because a null on the readout that will decide this claim is exactly the evidence that must not be omitted.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep produced NO change in the fear generalisation gradient relative to wake -- the specificity ratio did not rise. If MECH-018's REE analogue of readout (ii) comes back flat, the claim's own FALSIFYING branch ('the operation is geometrically inert') is live, and this entry says the corresponding human result has already been observed once.",
+    "The null is a nap rather than a full night, so it is confounded with REM quantity; it therefore cannot distinguish 'sleep does not sharpen fear specificity' from 'a nap contains too little REM to sharpen it', and the paper cannot settle which.",
+    "A single-study null with a modest sample is weak evidence of absence; it establishes that the effect is not robust across designs, not that it is absent."
+  ],
+  "tags": [
+    "mech-018",
+    "fear_generalization",
+    "null_result",
+    "specificity_ratio",
+    "nap",
+    "counterevidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants were fear-conditioned on a small and a large circle, one paired with an aversive sound, then after a delay containing either a nap or wake were tested on the two original circles plus eight novel circles graded in size between them. The fear response increased as a function of similarity to the conditioned stimulus, confirming a generalisation gradient, but there was no difference in the degree of generalisation between the sleep and the wake group.",
+    "ree_translation": "This is a direct test of MECH-018 readout (ii) with the geometry REE actually cares about: a continuous similarity dimension with intermediate probe points, which is the human analogue of measuring residue at graded distances from a harm centre rather than at one designed 'matched non-harm' partner. The pre-sleep gradient is REE's over-generalisation; the prediction is that sleep steepens it. It did not. The specificity ratio was unchanged by sleep.",
+    "mapping_caveat": "A daytime nap is not a night of sleep, and REM is the phase every supporting entry in this directory implicates. The null is therefore confounded with sleep-phase composition, and a generous reading is 'a nap does not sharpen fear specificity' rather than 'sleep does not'. The paradigm is also unimodal -- a single perceptual dimension with no context manipulation -- so it tests narrowing of a kernel rather than the tying of residue to CONTEXT, which is what MECH-018 actually asserts. It may be measuring the easier half of the readout and finding nothing there.",
+    "source_context": "Healthy human adults; auditory-aversive conditioning on a perceptual size dimension; daytime nap versus wake delay; graded generalisation test with eight novel intermediate stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity is the highest of the three because the graded-probe design is the closest human match in this pull to REE's distance-graded specificity ratio; source quality carries the usual discount for a single-study null with a modest sample."
+  }
+}

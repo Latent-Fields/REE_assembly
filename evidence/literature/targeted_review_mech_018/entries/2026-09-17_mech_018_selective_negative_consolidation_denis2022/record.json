@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_018",
+  "entry_id": "2026-09-17_mech_018_selective_negative_consolidation_denis2022",
+  "timestamp_utc": "2026-09-17T09:04:07Z",
+  "claim_ids_tested": [
+    "MECH-018"
+  ],
+  "source": {
+    "title": "Sleep preferentially consolidates negative aspects of human memory: Well-powered evidence from two large online experiments.",
+    "authors": [
+      "Denis D",
+      "Sanders KEG",
+      "Kensinger EA",
+      "Payne JD"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.2202657119",
+    "pmid": "36279434",
+    "pmc": "PMC9636942",
+    "volume": "119",
+    "issue": "44",
+    "pages": "e2202657119"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The strongest source in this pull and the one that most directly evidences a specificity RATIO rising across sleep: negative emotional objects are retained at the expense of their paired neutral backgrounds. Two large samples (250+), explicitly designed as a well-powered replication answering the underpowering criticism levelled at this literature, published in PNAS. Confidence is held at 0.72 rather than higher because the design is an online behavioural sleep-versus-wake delay with no polysomnography -- so it cannot attribute the effect to a sleep PHASE or to any particular operation within one -- and because scene memory is a looser analogue of a residue field than the claim's readouts assume.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The trade-off is asymmetric: the effect held for negative material but sleep did NOT modulate the corresponding advantage for positive material, so the mechanism is valence-specific rather than a general salience-weighted consolidation -- MECH-018 as written does not predict that asymmetry and does not explain it.",
+    "The 'at the expense of' framing means the specificity ratio rises partly because the NEUTRAL term falls, not only because the harm term is held up. A residue field could reproduce this by attenuating everything and attenuating non-harm regions slightly faster, which would pass the specificity-ratio readout while failing the preservation floor -- the two readouts must be scored jointly, not in sequence.",
+    "No polysomnography: the paper cannot say the effect belongs to REM, SWS, or to any operation running inside a cycle, so it cannot adjudicate MECH-018's SUBSTRATE question of whether the integration call site is doing the work."
+  ],
+  "tags": [
+    "mech-018",
+    "emotional_memory",
+    "selective_consolidation",
+    "specificity_ratio",
+    "preservation",
+    "replication"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across two large online experiments (250+ participants), sleep selectively benefited memory for negative emotional objects at the expense of their paired neutral backgrounds, confirming a sleep-specific benefit for negative information; in a second experiment, participants remembered positive objects better than their neutral backgrounds, but sleep did not modulate that effect.",
+    "ree_translation": "This is the closest human-behavioural analogue of MECH-018's pre-registered CONTEXT-TYING readout (ii) and its PRESERVATION readout (i) measured jointly. The emotional object is the harm context; the paired neutral background is the equidistant matched non-harm context. The finding is that the ratio between them RISES across sleep and does not rise across an equivalent waking interval -- which is exactly the specificity-ratio gain MECH-018 predicts and exactly what a naive uniform-decay comparator cannot produce.",
+    "mapping_caveat": "Object-on-background scene memory is a two-item associative structure; REE's residue is a continuous RBF field whose over-generalisation arises from kernel overlap between neighbouring z_world locations. The paper's 'background' is paired with the object by experimental construction, not by metric proximity in a latent space, so the geometry that makes REE's over-generalisation problem hard is not the geometry being tested. The result also concerns item recognition, not an aversive cost, so 'memory retained' and 'residue preserved' are related but distinct quantities.",
+    "source_context": "Healthy adults across a range of ages and backgrounds; online scene-memory task; sleep-versus-wake delay design without polysomnography; two experiments, negative and positive valence respectively."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is high and deliberately so -- this paper exists to answer the charge that the sleep/emotional-memory literature is underpowered, and it is the replication that charge asked for. Mapping fidelity is the binding constraint."
+  }
+}

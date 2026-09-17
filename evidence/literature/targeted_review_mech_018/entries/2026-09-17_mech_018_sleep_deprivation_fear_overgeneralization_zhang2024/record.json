@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_018",
+  "entry_id": "2026-09-17_mech_018_sleep_deprivation_fear_overgeneralization_zhang2024",
+  "timestamp_utc": "2026-09-17T09:04:07Z",
+  "claim_ids_tested": [
+    "MECH-018"
+  ],
+  "source": {
+    "title": "Sleep deprivation increases the generalization of perceptual and concept-based fear: An fNIRS study.",
+    "authors": [
+      "Zhang J",
+      "Wang J",
+      "Wang Y",
+      "Zhang D",
+      "Li H",
+      "Lei Y"
+    ],
+    "year": 2024,
+    "venue": "Journal of Anxiety Disorders",
+    "doi": "10.1016/j.janxdis.2024.102892",
+    "pmid": "38889495",
+    "pmc": null,
+    "volume": "105",
+    "pages": "102892"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Directly on MECH-018's crux readout and in the claim's favour: withhold sleep and fear generalisation increases across both perceptual and conceptual similarity axes. Held at 0.55 because a deprivation design licenses only the NECESSITY of sleep for maintaining specificity, not the existence of a positive integration operation -- MECH-018's substrate question is precisely whether an operation runs, and absence-of-sleep evidence cannot distinguish an active re-contextualising step from passive protection against waking interference. fNIRS is also a coarse imaging modality and the significant effects fell on an unexplained subset of cue types (P+ and C-).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The elevation in shock-expectancy was specific to P+ and C- cues rather than uniform across the four generalised categories; a clean over-generalisation account predicts a broader flattening of the gradient, so the pattern is not fully explained by the authors' framing.",
+    "Deprivation shows sleep is NECESSARY for maintaining specificity; it cannot show that a contextualisation OPERATION produced the specificity. Passive protection from waking interference predicts the identical result and is the null MECH-018 has to beat.",
+    "Davidson et al. 2016 (PMID 26359128), using a within-modality generalisation-gradient design across a nap, found NO difference in generalisation between sleep and wake -- so the necessity direction reported here is not uncontested."
+  ],
+  "tags": [
+    "mech-018",
+    "sleep_deprivation",
+    "fear_generalization",
+    "overgeneralization",
+    "specificity_ratio",
+    "fnirs"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a between-subjects design, one night of total sleep deprivation, compared with a typical night's sleep, increased generalisation of conditioned fear to novel categories along both perceptual and concept-based similarity axes -- higher shock-expectancy ratings (notably for P+ and C- cues), increased oxygenated haemoglobin in dorsolateral prefrontal cortex and increased activation in triangular inferior frontal gyrus during the generalisation test. The authors read this as insight into the over-generalisation characteristic of anxiety and fear-related disorders.",
+    "ree_translation": "MECH-018 readout (ii), CONTEXT-TYING: the specificity ratio should RISE across a sleep cycle, and its failure mode is spurious generalisation of the harm signal into non-harm contexts. This paper supplies the contrapositive in humans -- remove sleep and the ratio falls, with fear spreading to stimuli that are merely similar. It also maps unusually well onto REE's geometry, because the paradigm separates PERCEPTUAL similarity from CONCEPTUAL category membership, which is the closest human analogue of asking whether residue spreads by raw z_world kernel distance or by learned contextual structure.",
+    "mapping_caveat": "A deprivation contrast is a between-subjects absence manipulation, so the causal claim it supports is 'sleep is necessary for maintaining specificity', not 'an integration operation produces specificity'. MECH-018's SUBSTRATE note makes clear that the live question is whether the operation runs inside the cycle at all; this design cannot adjudicate that, and an REE no-sleep arm showing degraded specificity would be consistent with both MECH-018 and with a purely passive account in which waking updates simply keep smearing the field.",
+    "source_context": "Healthy human adults, between-subjects; one night total sleep deprivation versus normal sleep; fear acquisition at 21:00 and generalisation test at 07:00; shock-expectancy ratings, skin conductance and functional near-infrared spectroscopy."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "The perceptual/conceptual factorisation genuinely raises mapping fidelity above what a single-axis generalisation gradient would earn; the deprivation logic and the coarse imaging hold source quality down."
+  }
+}

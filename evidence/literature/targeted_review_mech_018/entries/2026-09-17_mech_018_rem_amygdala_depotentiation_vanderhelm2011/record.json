@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_018",
+  "entry_id": "2026-09-17_mech_018_rem_amygdala_depotentiation_vanderhelm2011",
+  "timestamp_utc": "2026-09-17T09:04:07Z",
+  "claim_ids_tested": [
+    "MECH-018"
+  ],
+  "source": {
+    "title": "REM sleep depotentiates amygdala activity to previous emotional experiences.",
+    "authors": [
+      "van der Helm E",
+      "Yao J",
+      "Dutt S",
+      "Rao V",
+      "Saletin JM",
+      "Walker MP"
+    ],
+    "year": 2011,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2011.10.052",
+    "pmid": "22119526",
+    "pmc": "PMC3237718",
+    "volume": "21",
+    "issue": "23",
+    "pages": "2029-2032"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical and widely cited demonstration of the readout MECH-018 calls TRAVERSABILITY -- overnight dissipation of amygdala reactivity to already-encoded emotional material, with REM physiology as the covariate. Source quality is good but not exceptional (single night, modest N, 2011, and the REM-gamma component of the result is correlational rather than manipulated). Mapping fidelity is the limiting term: the paper measures affective REACTIVITY to a re-presented stimulus, whereas MECH-018 measures the residue COST levied on a hippocampal proposal. These are analogous, not identical, so confidence is held below the source-quality figure.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study demonstrates reduced next-day amygdala reactivity but does not independently establish that the underlying memory was preserved, so it evidences readout (iv) far more strongly than readout (i); a residue field could produce this same signature by simple erasure, which is the exact failure mode MECH-018 pre-registers as FALSIFYING.",
+    "The REM-EEG association is correlational: no arm manipulated REM to show the dissipation follows it, so a third factor (time, wake rehearsal, adaptation to repeated presentation) is not excluded."
+  ],
+  "tags": [
+    "mech-018",
+    "rem_sleep",
+    "amygdala",
+    "emotional_memory",
+    "traversability",
+    "sleep_to_forget_sleep_to_remember"
+  ],
+  "mapping": {
+    "source_claim_statement": "REM sleep physiology is associated with an overnight dissipation of amygdala activity in response to previous emotional experiences, altering functional connectivity and reducing next-day subjective emotionality; the proposed mechanism is the marked suppression of central adrenergic neurotransmission during REM combined with activation of amygdala-hippocampal networks that encode salient events.",
+    "ree_translation": "MECH-018 readout (iv), TRAVERSABILITY: after a sleep cycle, the fraction of hippocampal proposals rejected on residue cost should fall. The paper supplies the biological analogue -- the affective charge attached to an already-encoded episode is attenuated overnight while the episode itself remains recognisable and re-presentable. It also supplies the neuromodulatory story REE's sleep phases are built around: a low-noradrenaline window in which salient traces are reactivated and their affective weighting is re-set, rather than a window in which they are deleted.",
+    "mapping_caveat": "The paper does not measure anything like a specificity ratio, so it says nothing about readout (ii); and its retention evidence is weak, so it cannot by itself distinguish integration from erasure. Read as support for (iv) only. The residue field is also a persistent scalar over z_world, whereas amygdala BOLD is a transient evoked response -- 'cost falls' and 'reactivity falls' coincide only if REE's residue cost is what drives proposal rejection, which is an architectural assumption, not a finding.",
+    "source_context": "Healthy human adults; polysomnography plus fMRI; emotional image viewing before and after a night of sleep versus an equivalent waking interval."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-018 is an architectural claim about what a sleep operation does to a field's geometry; the neuroscience is the analogy, not the measurement."
+  }
+}
