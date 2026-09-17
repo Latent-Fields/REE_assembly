@@ -4619,6 +4619,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0325",
+      "claim_ids": [
+        "MECH-021"
+      ],
+      "flag_type": "stale_note",
+      "summary": "OWED REGISTRY WRITE: experiment_proposals.v1.json item (backlog_id EVB-1393, proposal_type experimental, currently proposal_id EXP-0759) still reads status=proposed, but it WAS executed -- V3-EXQ-1050 is queued and live in the coordinator DB (ree-v3 d269a820cd, on origin/main, POST /queue/add applied=true). Set status=executed, executed_by=V3-EXQ-1050, executed_queue_id=V3-EXQ-1050 on the (EVB-1393, experimental) row ONLY -- NOT its literature twin LIT-0760 -- then re-run build_experiment_indexes.py. The queue-experiment session (igw-242-proposal-for-mech-021) was BARRED from making this write: task_claim arbitration named autopsy-20260917-batch4-pause (claimed 2026-09-17T16:05:06Z) as owner of experiment_proposals.v1.json and the not-owner stop is binding. Without the flip the indexer re-derives EVB-1393 as proposed each cycle and the item can be re-proposed and re-spawned against work that is already queued.",
+      "raised_by_session": "igw-242-proposal-for-mech-021",
+      "raised_at": "2026-09-17T16:13:04Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
