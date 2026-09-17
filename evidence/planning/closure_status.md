@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-17T10:58:08Z
+Generated: 2026-09-17T11:22:29Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **75.0%** across 92 non-deferred nodes in 17 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **29** nodes.
+- Weighted progress: **72.3%** across 98 non-deferred nodes in 18 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **34** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **11** nodes.
 - Deferred (not required for v3 closure): 10 nodes.
-- Done: 63 nodes.
-- Status tally: assembling=11  blocked=12  blocked_pending_substrate=3  deferred=10  done=63  in_progress=7  open=2  partial=3  upstream_blocked=2
+- Done: 64 nodes.
+- Status tally: assembling=11  blocked=13  blocked_pending_substrate=3  deferred=10  done=64  in_progress=9  open=4  partial=3  upstream_blocked=2
 
 ## Plans
 
@@ -25,6 +25,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `zworld_adequacy_plan.md` | observation -> z_world encoding adequacy (the V3 binding-constraint interface) | 2 | 10% | assembling:1 upstream_blocked:1 | 2026-09-11 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-09-04 |
+| `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 32% | blocked:1 done:1 in_progress:2 open:2 | 2026-09-16 |
 | `mech357_avoidance_efficacy_plan.md` | MECH-357 Avoidance-Efficacy / Freeze-Suppression Gate (SD-058) | 1 | 50% | partial:1 | 2026-08-29 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 56% | blocked:1 blocked_pending_substrate:2 deferred:3 done:4 in_progress:2 partial:1 | 2026-09-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-16 |
@@ -37,16 +38,21 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-16 |
 
-## Remaining work to close v3 (29)
+## Remaining work to close v3 (34)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-1` | Pre-approach orienting/surveying mode (cue-triggered, narrow vector resolution) | blocked | 1 | high |  |  | 2026-08-13 |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | epistemic_deficit: persistent target-bound model-inadequacy accumulator | in_progress | 1 | high | V3-EXQ-964b | MECH-482's own claims.yaml non-degeneracy precondition -- a substrate where target-bound u | 2026-09-16 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-08-18 |
 | zworld_adequacy_plan.md | `zworld_adequacy:ZW-2` | SD-018 shape (b) raw-field side-channel -- HELD as a bypass of the interface, no | upstream_blocked | 1 | medium |  | Held by decision, on ONE surviving ground, pending ZW-1. SD-018 shape (a) (supervise one n | 2026-09-11 |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | MECH-489 validation: defensive-orienting phasic behavioural chain | in_progress | 2 | high | V3-EXQ-910b | V3-EXQ-910b RAN 2026-08-22 and is CONFIRMED-AUTOPSIED (failure_autopsy_V3-EXQ-910b_2026-08 | 2026-08-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-08-18 |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-3` | orient/survey: third primitive behavioural regime (diffuse, epistemic_deficit-dr | open | 2 | medium |  | depends_on: orienting_epistemic_deficit_v3:ORNT-2 | 2026-08-13 |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-4` | Open Q: does epistemic-deficit-driven orienting explain the cold-start competenc | open | 2 | medium |  | depends_on: orienting_epistemic_deficit_v3:ORNT-2, orienting_epistemic_deficit_v3:ORNT-3 | 2026-08-13 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P3` | Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lif | blocked | 3 | high |  | depends_on: sd_037_axis_b:P2 | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-3` | MECH-257 dual-function 3-arm ablation re-queue | blocked | 3 | medium | TBD | depends_on: self_attribution:GAP-1, self_attribution:GAP-2 | 2026-06-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- terminal behavioural validation (4-arm 2x2) on the a | blocked | 4 | high |  | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
@@ -106,7 +112,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030 z_self materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (63)
+## Done (64)
 
 - `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A` -- Does the control plane route at all? Channel-vs-content double dissociation over precision
 - `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A-precision-diagnostic` -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, no
@@ -151,6 +157,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `infant_substrate_plan.md` `infant_substrate:GAP-8` -- post_sleep_z_goal_retention metric (z_goal.norm ratio before/after sleep integration; repl
 - `infant_substrate_plan.md` `infant_substrate:GAP-9` -- 4-phase infant curriculum scheduler (config hook for phase-gated parameter switching; Phas
 - `mech303_safety_threshold_plan.md` `mech303_safety_threshold:BUILD` -- Give MECH-303's contextual_safety_harm_threshold a dedicated proximity-anticipatory harm s
+- `orienting_epistemic_deficit_v3_plan.md` `orienting_epistemic_deficit_v3:ORNT-5` -- Defensive-orienting response: PAG-analog phasic gate (DefensiveOrientingGate)
 - `sd033_governance_plan.md` `sd033_governance:CHK-ANCHOR` -- Anchor doc + auto-memory + task_inbox lit-pulls
 - `sd033_governance_plan.md` `sd033_governance:CHK-CLAIMS` -- SD-034 + MECH-266/267/268 registered in claims.yaml
 - `sd033_governance_plan.md` `sd033_governance:CHK-EXP_PROPOSALS` -- 9 EXP proposals (EXP-0156..0164; V3-EXQ-460..468 reserved)
@@ -172,14 +179,13 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (4)
+## Plans WITHOUT closure_plan frontmatter (3)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 - `evidence/planning/claude_code_update_integration_plan.md`
 - `evidence/planning/context_budget_restructure_plan.md`
 - `evidence/planning/igw_governance_flag_coordinator_migration_plan.md`
-- `evidence/planning/orienting_epistemic_deficit_v3_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 

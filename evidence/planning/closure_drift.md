@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-09-17T10:57:58Z
+Generated: 2026-09-17T11:22:29Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -10,12 +10,14 @@ Warn-only -- this script never blocks the governance pipeline.
 
 _None._
 
-## Suppressed (legitimately non-terminal) (2)
+## Suppressed (legitimately non-terminal) (4)
 
 Nodes whose `owner_exq` reached a terminal state but where suppression rules say the node is legitimately non-terminal (Case-3 self-tag or non-contributory manifest evidence_direction). Listed here for audit; not counted as drift.
 
 | plan | node | status | owner_exq | suppress reason |
 |------|------|--------|-----------|-----------------|
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-2` | in_progress | V3-EXQ-964b | manifest_evidence_direction=non_contributory |
+| orienting_epistemic_deficit_v3_plan.md | `orienting_epistemic_deficit_v3:ORNT-6` | in_progress | V3-EXQ-910b | case_3_self_tag |
 | policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | blocked | V3-EXQ-938 | manifest_evidence_direction=non_contributory |
 | self_attribution_plan.md | `self_attribution:GAP-1` | blocked | V3-EXQ-445h | case_3_self_tag |
 

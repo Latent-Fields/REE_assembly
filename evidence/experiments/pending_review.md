@@ -1,16 +1,13 @@
 # Pending Experiment Review
 
-Generated: `2026-09-17T10:57:09Z`  
-Last review: `2026-09-16T13:45:48Z`  
-Pending: **7** item(s) -- 2 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
+Generated: `2026-09-17T11:19:39Z`  
+Last review: `2026-09-17T11:19:24Z`  
+Pending: **3** item(s) -- 1 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3` | 2026-09-16T09:58 | MECH-266, SD-032a | — |
-| `v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3` | 2026-09-16T11:16 | MECH-537 | — |
-| `v3_exq_1044_hippocampal_assay_a_access_mechanism_20260916T141717Z_v3` | 2026-09-16T14:17 | (no claim tags) | — |
 | `v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3` | 2026-09-17T05:38 | SD-082 | — |
 | `v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched_20260917T102244Z_v3` | 2026-09-17T10:22 | MECH-017 | — |
 
@@ -18,7 +15,6 @@ Pending: **7** item(s) -- 2 PASS, 5 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3` | 2026-09-17T00:17 | ARC-131 |
 | `v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3` | 2026-09-17T02:54 | MECH-482 |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)

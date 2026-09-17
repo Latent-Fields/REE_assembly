@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-16T13:45:48Z",
+  "last_review_utc": "2026-09-17T11:19:24Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1314,7 +1314,11 @@
     "v3_exq_1040_sd077_centered_super_ordinal_cue_key",
     "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic",
     "v3_exq_784a_sd074_probe_warmup_desaturation_budget_sweep_corrected",
-    "v3_exq_964b_mech482_reachability_verify_lift"
+    "v3_exq_964b_mech482_reachability_verify_lift",
+    "v3_exq_935a_mech266_margin_normalised_cap_rule",
+    "v3_exq_1043_mech537_communication_subspace_routing",
+    "v3_exq_1044_hippocampal_assay_a_access_mechanism",
+    "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4291,7 +4295,11 @@
     "v3_exq_1039_mech428_inv086_waypoint_field_consumer_drive_signal_20260915T025330Z_v3",
     "v3_exq_784a_sd074_probe_warmup_desaturation_budget_sweep_corrected_20260915T135328Z_v3",
     "v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic_20260915T203743Z_v3",
-    "v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3"
+    "v3_exq_964b_mech482_reachability_verify_lift_20260915T215220Z_v3",
+    "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3",
+    "v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3",
+    "v3_exq_1044_hippocampal_assay_a_access_mechanism_20260916T141717Z_v3",
+    "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5359,6 +5367,28 @@
       "landed_after_regen": [
         "v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3"
       ]
+    },
+    {
+      "utc": "2026-09-17T11:19:24Z",
+      "session": "governance-20260917",
+      "reviewed_run_ids": [
+        "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3",
+        "v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3",
+        "v3_exq_1044_hippocampal_assay_a_access_mechanism_20260916T141717Z_v3",
+        "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_935a_mech266_margin_normalised_cap_rule",
+        "v3_exq_1043_mech537_communication_subspace_routing",
+        "v3_exq_1044_hippocampal_assay_a_access_mechanism",
+        "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe"
+      ],
+      "left_pending": [
+        "v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3",
+        "v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3",
+        "v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched_20260917T102244Z_v3"
+      ],
+      "landed_after_regen": []
     }
   ],
   "review_log": [
@@ -7034,6 +7064,11 @@
       "utc": "2026-09-16T13:45:48Z",
       "session": "governance-20260916",
       "note": "governance 2026-09-16 (cycle governance-20260916, Mac DLAPTOP, user present, Fable 5.1), ONE WAVE. ELEVEN pending (9 PASS / 2 FAIL, 0 runner-only). TEN cleared: V3-EXQ-1030 (INV-086/MECH-428 diag FAIL, confirmed autopsy -> non_contributory x2, SD-ZWORLD-SENSE-PATH-PARITY created), 1039 (same claims, diag PASS = VACUOUS null -> non_contributory x2, sd-allon-training-signal-absorption-telemetry created), 1038 (ARC-131 diag PASS -> non_contributory; first evidence_quality_note + diagnostic_evidence_adjudicated + notes narrowed; SD-091 amended, priority 2->4 disclosed), 1012a (MECH-439 diag PASS -> non_contributory; rung-3 instrument sound but no null; f_dominance amended, brake refusal stays), 1028 (SD-082 diag PASS -> non_contributory note-only; P1=300 budget answered; 1020 record resolved; successor 1046 already queued), 964b (MECH-482 diag PASS -> non_contributory/substrate_conditional; instrument-verified null, content contrast not authority; producer release approved; 964a resolved), 1041 (SD-106 diag PASS -> non_contributory; partial attribution, metric-vs-budget open; validation_experiment 1015->1023; attribution-note record), 1040 (SD-077 evidence PASS supports; SKIM: one moderate finding -- closed loop never diverged between arms, open-loop live replication; accepted with qualifying note), 784a (SD-074 evidence PASS supports, supersedes 784 [stamped superseded flat+pack]; SKIM: no by-construction criterion, budget-0 control below the bar; caveat: paired rescue-asymmetry statistic not computed), 1036 (claim-free EXT-002 stage-2 DV calibration baseline, banked; cleared as discussed). ONE left pending per Step 1.5 route B (user decision): V3-EXQ-935a (MECH-266/SD-032a diag FAIL, rule_right_r_wrong_requeue, C1 0.6 vs 0.667, H-KNIFE r=2.65) needs /failure-autopsy. V3-EXQ-1043 (MECH-537 diag FAIL, C2 0.032 vs 0.05) landed on origin DURING the regen, outside this cycle's index -- needs /failure-autopsy next cycle. GOV-APPLY-1 applied: ARC-029 provisional -> candidate (063a re-tagged non_contributory flat+pack; user-approved), MECH-268 narrowed per 729 autopsy (epistemic_category standard; wwa point 3 replaced; implementation_note corrected; stays provisional), SD-024 stamp added. Step 3: ARC-079 + INV-109 hold_pending_v3_substrate accepted and recorded; GFLAG-0289 resolved (drivers seeded ree-v3 bd83702), GFLAG-0288 resolved (SD-106 doc annotated)."
+    },
+    {
+      "utc": "2026-09-17T11:19:24Z",
+      "session": "governance-20260917",
+      "note": "governance 2026-09-17 (cycle governance-20260917, Mac DLAPTOP, user present, Opus 5), ONE WAVE. SEVEN pending (2 PASS / 5 FAIL, 0 runner-only). FOUR cleared, all on CONFIRMED autopsies landed 2026-09-16/17: V3-EXQ-935a (MECH-266/SD-032a diag FAIL -> non_contributory x2 UPHELD; MECH-266 peripheral/not-exercised for the 8th consecutive run, symmetric cap only so the Schmitt trigger could not express, pending_retest STAYS true, brake count stays 7; SD-032a routed H-KNIFE which the driver pre-registered as non_contributory; diagnostic_evidence_adjudicated added to BOTH), 1043 (MECH-537 diag FAIL -> mixed UPHELD, FIRST experimental evidence for the claim; C2 0.03196 vs 0.05 floor with 0/3 seeds clearing but POSITIVE on every seed, C4b's 0.5 ceiling is the driver's own least-anchored threshold while C4a passed on every seed -- UNDERPOWERED, not pressure on the claim; diagnostic_evidence_adjudicated added), 1044 (claim-free diagnostic, claim_ids: [] by design; hippocampal assay A Gate A1 adjudicated UNDETERMINED NOT negative -- instrument residuals exceed the effect: median within-cell restart spread 0.0573 vs a 0.05 floor, nested A4>=A1 violated 16/30, paired SE of the C1b mean equals the floor; MECH-547 + MECH-548 NOTE-ONLY, MECH-548 non-attributed per the autopsy's own Step 7c reduction; NO direction, NO flag, NO epistemic_category change on either), 1038a (ARC-131 diag PASS -> non_contributory; the PASS is carried by the G0 guaranteed-fire readiness control and is NOT evidence for ARC-131, which was not exercised). MANIFEST WRITE (user-approved): V3-EXQ-1044's run pack corrected weakens -> non_contributory with an evidence_direction_note -- its own confirmed autopsy flagged the 'weakens' stamp as UNSUPPORTED on a claim_ids: [] run. Pack only; the FLAT sibling was deliberately NOT written because a concurrent session (cranky-wiles-c85265) holds it uncommitted. Pack-annotated + flat-unannotated means the pack wins under _merge_flat_manifest_overrides, so scoring is correct. DECISION FLIP (723 rule): 1038a resolves the SD-091 build gate OPEN. Commensurability compresses cross-seed margin spread ~168x (783.81 -> 4.67, inside the 10.0 bar) but recruitment stays scale-determined in RANK (|rho| 0.9910 -> 0.9643 vs a 0.4 bar) -- divisive normalisation equalises MAGNITUDE, not RANK, so a fixed absolute 0.05 threshold on a normalised margin stays scale-sensitive. SD-091 debt class moves complex (probe-gated) -> complicated (buildable); the driver's own pre-registered post-hoc already demonstrates the scale-relative repair works. THREE left pending per Step 1.5 route B (user decision): V3-EXQ-1046 (SD-082 diag FAIL), 1047 (MECH-482 diag PASS), 1048 (MECH-017 EVIDENCE FAIL) -- all need /failure-autopsy. PIPELINE BLOCKER cleared: governance.sh exited 1 at Step 4b (G2 backward traceability, 8 developmental claims unreferenced). Closed by 3 DEV-NEED rows (055 ARC-143, 056 MECH-549, 057 MECH-550) + 5 exemptions (MECH-542/543/560 incidental keyword, GOV-CONTRACT-2/GOV-ECOL-1 which a register row can NEVER clear because extract_register_claim_ids has no GOV- alternative). REE_assembly c764d26fb5. NEW FINDING GFLAG-0310: the SHP-4 provenance projection lets a bears_on-ONLY mention outrank a real per-claim adjudication by date -- MECH-537's live_status.evidence.from projects to the 1044 claim-free artifact instead of 1043, which actually adjudicated it. 24 claims across 8 artifacts sit in that shape. Step 3: all four pending_user holds (ARC-054, ARC-083, MECH-017, MECH-018) accepted as recommended; no claim moves. Noted that three of the four have exp_entries=0, so their conflict_ratio is lit-only -- the defect GFLAG-0123 already registers against the generator. Step 0f pause-pressure: PRESSURE (open chips 70>40, recorded_7d 230>150, wedge_repairs_7d 61>2, episodic generation g11); claim_flow 55% reported-not-tripped under the cloud-4/5 policy STOP. Steward: run 1 reported ESCALATE=YES (1 NEW, near-duplicate of GFLAG-0307, MECH-017/stale_note); the post-fix re-run showed ESCALATE=no ONLY because the ledger had demoted it new->recurring -- an artifact of the double run, not an adjudication. Finding stands."
     }
   ]
 }

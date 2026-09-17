@@ -21,7 +21,7 @@
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -1442,5 +1442,6 @@
     42,
     43,
     45
-  ]
+  ],
+  "evidence_direction_note": "[2026-09-17 | governance cycle 2026-09-17 | REE_assembly c764d26fb5..] Corrected from 'weakens' to 'non_contributory' on the ratified recommendation of the CONFIRMED autopsy failure_autopsy_V3-EXQ-1044_2026-09-17 (dry_run_checked: true), whose own recommended_evidence_direction field reads 'weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED' and whose scope_note states that this run 'carries claim_ids: [] BY DESIGN -- it is a claim-free diagnostic and must not create a scoring evidence entry on any claim'. Gate A1 is adjudicated UNDETERMINED, not negative: the instrument's own residuals exceed the effect it is built to detect (median within-cell restart spread 0.0573 against a 0.05 floor; nested A4 >= A1 violated on 16 of 30 matched cells; paired SE of the C1b mean equals the floor). A 'weakens' stamp asserted a negative the autopsy explicitly refuses. User-approved at the 2026-09-17 governance walk."
 }

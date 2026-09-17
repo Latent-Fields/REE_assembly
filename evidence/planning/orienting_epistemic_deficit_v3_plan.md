@@ -112,7 +112,6 @@ closure_plan:
         ARC-065 in substrate_queue.json remains ready:false, and that
         queue's own 2026-08-21 next_implement_substrate reconcile concluded
         no implement-substrate build is ready fleet-wide. The design doc
-**Status: REVIEWED 2026-09-16 (user) -- living closure tracker, no pending decision; ORNT-2 ladder retest is chip-20260916-mech482-amplified-readout-ladder-queue (in flight).**
         2026-08-08.
       reconcile_2026_08_27: >
         GATES-CLEARED CORRECTION (session f-dominance-regime-retest-ddbe10,
@@ -518,6 +517,7 @@ closure_plan:
 
 **Registered:** 2026-08-13
 **Status:** active
+**Status: REVIEWED 2026-09-16 (user) -- living closure tracker, no pending decision; ORNT-2 ladder retest is chip-20260916-mech482-amplified-readout-ladder-queue (in flight).**
 **Scope:** the six-claim orienting/epistemic-deficit family that had either no
 closure-map owner at all (MECH-482, MECH-483, Q-089, MECH-489, SD-099) or an
 owner filed under the wrong generation (MECH-395, previously
