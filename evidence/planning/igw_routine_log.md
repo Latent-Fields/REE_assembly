@@ -3182,3 +3182,7 @@ One line per hourly tick. ASCII only.
 2026-09-17T21:27:51Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
 2026-09-17T21:23:23Z no eligible item (skipped 254): IGW-20260917-001:skill /governance not allowed; IGW-20260917-002:skill /governance not allowed; IGW-20260917-003:skill /governance not allowed
 2026-09-17T21:31:25Z auto-defer igw-242-proposal-for-mech-023 hash=f7544e3ab0f0 for 48h (complete)
+2026-09-17T21:32:47Z complete igw-242-proposal-for-mech-023 spawned->completed outcome=USEFUL_LANDED: MECH-023 refused at Step 4.5 (BLOCKING, re-measured): EVB-1394/EXP-0761 -> block
+2026-09-17T22:33:11Z GC removed worktree igw-242-proposal-for-mech-023 (removed; branch deleted)
+2026-09-17T22:31:47Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-17T22:33:24Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
