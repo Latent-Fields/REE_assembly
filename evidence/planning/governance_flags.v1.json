@@ -4483,9 +4483,9 @@
       "summary": "The SD-070 world-encoder training recipe (substrate_queue sd_zworld_warmup_optimizer_group, status validated) is DEFAULT-OFF: zworld_p0_episodes defaults to 0 in the x734/737 driver family, with an in-code comment at v3_exq_728_trained_allon_capability_point.py:537 stating that 0 is exactly the prior behaviour and bit-identical. Only 44 of 1503 experiment drivers mention the parameter at all (~2.9 percent), so z_world is a FROZEN RANDOM PROJECTION in the default regime and any z_world decodability or residualization result recorded without it is a measurement of an untrained projection. A read-only pre-flight on 2026-09-17 found three current substrate-build chips sitting downstream of this fact without naming it, and independently re-measured z_world exogenous-event decodability at chance (AUC 0.53-0.63 across 6 measurements). This flag asks governance to decide whether affected evidence needs an evidence_direction review and whether the default should flip.",
       "raised_by_session": "orchestrate-20260917-1138",
       "raised_at": "2026-09-17T11:47:47Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-17T12:31:59Z",
+      "resolution_note": "Superseded 2026-09-17 by the corrected reissue raised immediately after it, following the z_world sense-path discriminating probe (ree-v3 cd60233+72befcc). The default-off mechanism GFLAG-0315 reported is correct and carried forward verbatim; what it overstated was the inference that z_world decodability evidence generally measures an untrained projection -- the probe measured an ENABLED regime with all 4 world_encoder tensors moving, and separately showed V3-EXQ-1030's 0.10 gap to be an under-converged-probe artifact rather than a substrate defect. The reissue carries both the mechanism and that counter-measurement."
     },
     {
       "flag_id": "GFLAG-0316",
