@@ -5662,7 +5662,11 @@
       "task_claim_session_id": "igw-auto-igw-242-proposal-for-mech-023-20260917T185354Z",
       "task_claim_claimed_at": "2026-09-17T18:53:54Z",
       "assigned_at": "2026-09-17T18:51:48Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T21:31:23Z",
+      "completion_summary": "MECH-023 refused at Step 4.5 (BLOCKING, re-measured): EVB-1394/EXP-0761 -> blocked_substrate; residue field is a 32-slot ring (28 wraps/720 steps) and kernel bw 1.0 vs manifold 0.125 -> near-uniform. REE_assembly 055b4d3555 + GFLAG-0337",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-023 refused at Step 4.5 (BLOCKING, re-measured): EVB-1394/EXP-0761 -> blocked_substrate; residue field is a 32-slot ring (28 wraps/720 steps) and kernel bw 1.0 vs manifold 0.125 -> near-uniform. REE_assembly 055b4d3555 + GFLAG-0337"
     },
     {
       "igw_id": "IGW-20260917-243",
@@ -8168,6 +8172,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T20:50:38Z",
       "re_eligible_after": "2026-09-19T20:50:38Z"
+    },
+    {
+      "stable_hash": "f7544e3ab0f0",
+      "igw_id_at_disposition": "IGW-20260917-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-023"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-023",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T21:31:25Z",
+      "re_eligible_after": "2026-09-19T21:31:25Z"
     }
   ]
 }
