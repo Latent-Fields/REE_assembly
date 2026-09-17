@@ -182,3 +182,62 @@ rewritten.
   exists in the runner, which re-executes a claimed queue item from the start.
 - **`DLAPTOP-4.local` attribution is unchanged and unimportant.** The edit did occur, on that machine,
   in that window. It simply could not reach the process.
+
+---
+
+## 9. CONFIRMATION (2026-09-17, user gate) -- appended, nothing above is altered
+
+**Status: `proposed` -> `confirmed`.** This artifact was written in staging mode on 2026-07-20 and
+never received its Step 8 gate. Per the staging-mode rule, staging describes the user's availability
+AT GATE TIME, not a fixed property of the session, so the gate stayed OWED for 59 days.
+
+**Why it sat unnoticed.** It was invisible to every discovery net: the run is in `reviewed_run_ids`,
+it is **not** in `fail_autopsy_grandfather.json`, and it does not appear in a freshly regenerated
+`pending_review.md`. Nothing re-derived it. It was found only by a by-hand sweep for unsettled
+artifact statuses.
+
+**The argument was re-verified against source, not taken on trust.** The rung-(b) claim is sound:
+`ree_core.agent` and `ree_core.utils.config` bind at driver module scope; the arm loop opens 936
+lines later at line 1065; and the driver contains **zero** `multiprocessing` / `Popen(` / `os.fork(` /
+`ProcessPoolExecutor` / `joblib` / `importlib` / `__import__` / `reload(` constructs and **zero**
+function-scope `ree_core` or `experiments` imports, so the residual lazy-import channel really is
+empty. **D3 is REFUTED; the withdrawal stands.**
+
+**Two citation corrections.** Section 3 cites the imports at lines 128 and 130; they are at **129 and
+131**, and the gap to the arm loop is **936** lines, not 937. The driver has not been modified since
+2026-07-12 (ree-v3 `e636530`), *before* this artifact was written, so this is transcription drift,
+not file drift. The argument is unaffected -- both imports are module-scope either way.
+
+**Dry-run gate:** `check_dry_run_citations.py` over the cited run_id and queue_id -- 1 clean, 0 dry.
+
+### Status of the four recommendations, 59 days on
+
+| # | Recommendation | State at confirmation |
+|---|---|---|
+| 1 | MECH-448: no change | **APPLIED 2026-07-20** -- the claim's `evidence_quality_note` carries the D3 CORRECTION paragraph naming this artifact and `REE_assembly 8618f2c4bd` |
+| 2 | Re-derive brake unchanged, MECH-448 = 0 | **STANDS** -- re-verified 2026-09-17 with the R1-R3 predicate; count 0, shape (c) supersedes rather than adds |
+| 3 | Re-run spec unaffected | **MOOT** -- V3-EXQ-689i is the repaired-instrument successor (see below) |
+| 4 | New `inert_arm_knob` lint | **DISCHARGED -- BUILT.** It exists as `ree-v3/experiments/_lib/inert_arm_knob.py` |
+
+### Superseded by science
+
+`failure_autopsy_V3-EXQ-689i_2026-07-24` (confirmed, direction `supports`) closed all three 689d
+defects plus a power increase (3->4 seeds, 2-of-3 -> 3-of-4 bar) and restored the ARC-107 BG-selector
+constitution on repaired grounds. **This artifact remains the authoritative record for the D3
+withdrawal specifically; MECH-448's live evidential state now rests on 689i.**
+
+### Two deliberate non-actions
+
+- **No `per_claim_recommendation` was added.** The disposition is already applied, so a citation-stamp
+  tail could never clear (`live_status.evidence.from` points at
+  `failure_autopsy_backlog_2026-07-24#V3-EXQ-699b`) and would sit in GOV-APPLY-1's ACTIONABLE bucket
+  permanently as a false hit.
+- **The out-of-enum `recommended_epistemic_category` was LEFT AS WRITTEN** (user decision at the gate),
+  with an explanatory `recommended_epistemic_category_note` added instead. `measurement_test_design_defect`
+  is not one of the eight enum values; the compliant equivalent here is `standard`. It is not normalised
+  because nothing is written through to `claims.yaml` from this target, and because sibling
+  `failure_autopsy_V3-EXQ-689i_2026-07-24` carries the identical value -- normalising one of a pair
+  would imply a corpus cleanliness that does not exist. **Corpus-wide: 208 artifacts / 652 targets carry
+  an out-of-enum category** (`measurement_test_design_defect` x250, `competence_implementation_gap` x105,
+  `precondition_unmet` x77, `measurement_degeneracy` x65, `measurement_gap` x44, `n/a` x13). Chipped as a
+  separate infrastructure finding; **not** fixed here.

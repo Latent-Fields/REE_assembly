@@ -2,7 +2,7 @@
  "schema_version": "failure_autopsy/v1",
  "generated_utc": "2026-07-20T07:46:13Z",
  "scope": "single",
- "status": "proposed",
+ "status": "confirmed",
  "session_id": "musing-einstein-c80816",
  "commissioned_by": "intra_run_substrate_divergence_sweep_2026-07-20.md sec 3a (triage ladder), added after failure_autopsy_V3-EXQ-782/604c/778a_2026-07-20 refuted 3 of 3 SEVERE D3 routings",
  "readjudication": {
@@ -15,7 +15,9 @@
   {
    "run_id": "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
    "queue_id": "V3-EXQ-689d",
-   "claim_ids": ["MECH-448"],
+   "claim_ids": [
+    "MECH-448"
+   ],
    "landed_outcome": "PASS",
    "landed_evidence_direction": "supports",
    "defects": [
@@ -32,11 +34,24 @@
       "clears": false,
       "note": "changed files ARE on the executed import path -- this is not a glob-scope artefact",
       "bands": [
-       {"substrate_hash_prefix": "19b4073c", "commit": "f53c28123eff", "committer_date": "2026-06-20T19:48:43Z", "n_files": 104},
-       {"substrate_hash_prefix": "fc6d17ce", "commit": "c15f84ee494f", "committer_date": "2026-06-21T06:31:42Z", "n_files": 104}
+       {
+        "substrate_hash_prefix": "19b4073c",
+        "commit": "f53c28123eff",
+        "committer_date": "2026-06-20T19:48:43Z",
+        "n_files": 104
+       },
+       {
+        "substrate_hash_prefix": "fc6d17ce",
+        "commit": "c15f84ee494f",
+        "committer_date": "2026-06-21T06:31:42Z",
+        "n_files": 104
+       }
       ],
       "both_hashes_reconstruct_byte_exact": true,
-      "changed_globbed_files": ["ree_core/agent.py", "ree_core/utils/config.py"],
+      "changed_globbed_files": [
+       "ree_core/agent.py",
+       "ree_core/utils/config.py"
+      ],
       "diffstat": "2 files changed, 128 insertions(+), 0 deletions(-)",
       "closure_globbed_files": 95
      },
@@ -81,8 +96,23 @@
      "reverification": {
       "method": "field-by-field comparison of ARM_PROPOSER_CTRL vs ARM_MATCHED_NOISE on all three seeds",
       "common_fields": 27,
-      "differing_fields": ["temperature"],
-      "n_p1_ticks": {"42": [387, 387], "43": [3616, 3616], "44": [224, 224]},
+      "differing_fields": [
+       "temperature"
+      ],
+      "n_p1_ticks": {
+       "42": [
+        387,
+        387
+       ],
+       "43": [
+        3616,
+        3616
+       ],
+       "44": [
+        224,
+        224
+       ]
+      },
       "finding": "26 of 27 fields bit-identical including tick counts -- identical trajectories; they are the same arm, so the 'NOT noise-as-diversity' half of C_PRIMARY never tested anything"
      }
     }
@@ -93,13 +123,19 @@
    "recommended_status_change": "none -- reading unchanged",
    "re_derive_brake": {
     "fired": false,
-    "claim_counts_under_R1_R3": {"MECH-448": 0},
+    "claim_counts_under_R1_R3": {
+     "MECH-448": 0
+    },
     "changed_by_this_readjudication": false,
     "supersedes_autopsy": "failure_autopsy_V3-EXQ-689d_2026-07-20",
     "note": "shape (c): direction + category retained, only supporting reasoning withdrawn -> supersedes, never adds (R2). R3 not engaged: category was never substrate_ceiling."
    },
-   "granularity_debt_trigger": {"fires": false},
-   "recommended_substrate_queue_entry": {"action": "none"},
+   "granularity_debt_trigger": {
+    "fires": false
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
    "pending_retest_after_substrate": false,
    "requeue_spec_note": "unaffected; the corrected re-run must still fix the DV and defect 2. Requirement 3 (substrate homogeneity) is moot for 689d specifically but harmless to retain as general hygiene.",
    "learning_extracted": [
@@ -112,8 +148,28 @@
     "name": "inert_arm_knob",
     "shape": "for any multi-arm manifest, compare every declared-distinct arm pair; WARN if bit-identical on all recorded per-cell fields except the knob naming their difference",
     "rationale": "would have caught 689d D2 at write time; manifest-local, no substrate dependency, higher yield than the D3 divergence check"
-   }
+   },
+   "recommended_epistemic_category_note": "PRE-2026-08-09 OUT-OF-ENUM LABEL, left as written by user decision at the 2026-09-17 gate. `measurement_test_design_defect` is NOT one of the eight claims.yaml enum values (answer_state / derivational / governance_rule / out_of_domain / standard / substrate_ceiling / substrate_coherence / substrate_conditional). The enum-compliant equivalent for this target is `standard` -- it asserts no epistemic suppression -- with the failure mode carried in prose, which is what this field now does. It is left unchanged rather than normalised for two reasons: nothing is written through to claims.yaml from this target (routing is governance-affirm, no claim change, and MECH-448 already reads `standard`), and its direct sibling failure_autopsy_V3-EXQ-689i_2026-07-24 carries the identical value -- normalising this one alone would make the pair inconsistent and imply a corpus cleanliness that does not exist. Corpus-wide as of 2026-09-17: 208 artifacts / 652 targets carry an out-of-enum category. That is chipped as a separate infrastructure finding; it is NOT fixed here.",
+   "recommendation_status_at_confirmation": {
+    "1_mech448_no_change": "STANDS and was APPLIED 2026-07-20 -- MECH-448's evidence_quality_note carries the D3 CORRECTION paragraph citing this artifact.",
+    "2_brake_unchanged": "STANDS. Re-verified 2026-09-17 with the R1-R3 predicate: MECH-448 literal count 0. Shape (c) -- direction and category retained, only supporting reasoning withdrawn -- so this supersedes its predecessor rather than adding (R2).",
+    "3_requeue_spec_unaffected": "MOOT in the useful sense: V3-EXQ-689i (2026-07-22 run, failure_autopsy_V3-EXQ-689i_2026-07-24, CONFIRMED, direction `supports`) IS the repaired-instrument successor. It closed all three defects plus a power increase (3->4 seeds, 2-of-3 -> 3-of-4 bar) and restored the ARC-107 BG-selector constitution on repaired grounds.",
+    "4_inert_arm_knob_lint": "DISCHARGED -- BUILT since. The recommended lint now exists as ree-v3/experiments/_lib/inert_arm_knob.py. No further action owed on this recommendation."
+   },
+   "superseded_by_science": "failure_autopsy_V3-EXQ-689i_2026-07-24 (confirmed). This artifact remains the authoritative record for the D3 WITHDRAWAL specifically; 689i is where MECH-448's live evidential state now rests."
   }
  ],
- "scope_note": "Analysis and hand-off only. No manifest was edited -- completed runs are re-adjudicated via autopsy, never rewritten. claims.yaml, review_tracker.json and substrate_queue.json are untouched; /governance applies the recommendations."
+ "scope_note": "Analysis and hand-off only. No manifest was edited -- completed runs are re-adjudicated via autopsy, never rewritten. claims.yaml, review_tracker.json and substrate_queue.json are untouched; /governance applies the recommendations.",
+ "confirmation": {
+  "confirmed_utc": "2026-09-17T18:09:00Z",
+  "confirmed_by": "user gate, interactive session autopsy-20260917-689d",
+  "gate_owed_since": "2026-07-20T07:46:13Z",
+  "why_it_sat": "Written in staging mode by session musing-einstein-c80816 and never gated. Per the /failure-autopsy staging-mode rule, staging describes the user's availability AT GATE TIME, not a fixed property of the session -- so the interactive gate remained OWED. It was invisible to every discovery net: the run is in reviewed_run_ids, it is not in fail_autopsy_grandfather.json, and it does not appear in a freshly regenerated pending_review.md, so nothing re-derived it.",
+  "substance_verified_at_confirmation": "The load-bearing rung-(b) argument was re-verified against source on 2026-09-17, not taken on trust: ree_core.agent and ree_core.utils.config are bound at DRIVER MODULE SCOPE, the arm loop opens 936 lines later at line 1065, and the driver contains ZERO multiprocessing / Popen( / os.fork( / ProcessPoolExecutor / joblib / importlib / __import__ / reload( constructs and ZERO function-scope ree_core or experiments imports (no lazy arm-conditional import). The refutation of D3 stands.",
+  "citation_corrections": "The .md section 3 cites the two imports at lines 128 and 130; they are at 129 and 131, and the gap to the arm loop is 936 lines, not 937. The driver has not been modified since 2026-07-12 (ree-v3 e636530), BEFORE this artifact was written, so this is transcription drift and not file drift. The argument is unaffected -- both imports are module-scope either way.",
+  "dry_run_gate": "check_dry_run_citations.py run over the cited run_id and queue_id on 2026-09-17: 1 clean, 0 dry. Not a smoke.",
+  "no_per_claim_recommendation_deliberate": "NOT added, on purpose. This artifact's disposition was already APPLIED to MECH-448's evidence_quality_note on 2026-07-20 (the note carries the D3 CORRECTION paragraph naming this artifact and REE_assembly 8618f2c4bd). A per_claim_recommendation ending on a citation stamp would never clear -- the claim's live_status.evidence.from points at failure_autopsy_backlog_2026-07-24#V3-EXQ-699b -- and would sit in GOV-APPLY-1's ACTIONABLE bucket permanently as a false hit."
+ },
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": []
 }
