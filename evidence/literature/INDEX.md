@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-17T13:34:42.594611Z`
+Generated: `2026-09-17T15:57:25.627457Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -304,6 +304,7 @@ Generated: `2026-09-17T13:34:42.594611Z`
 | `targeted_review_mech_017` | [`2026-09-16_mech_017_statistical_abstraction_durrant2011`](targeted_review_mech_017/entries/2026-09-16_mech_017_statistical_abstraction_durrant2011/record.json) | 5 | [`summary`](targeted_review_mech_017/entries/2026-09-16_mech_017_statistical_abstraction_durrant2011/summary.md) |
 | `targeted_review_mech_018` | [`2026-09-17_mech_018_sleep_deprivation_fear_overgeneralization_zhang2024`](targeted_review_mech_018/entries/2026-09-17_mech_018_sleep_deprivation_fear_overgeneralization_zhang2024/record.json) | 6 | [`summary`](targeted_review_mech_018/entries/2026-09-17_mech_018_sleep_deprivation_fear_overgeneralization_zhang2024/summary.md) |
 | `targeted_review_mech_019` | [`2026-09-17_mech_019_salience_network_switching_sridharan2008`](targeted_review_mech_019/entries/2026-09-17_mech_019_salience_network_switching_sridharan2008/record.json) | 5 | [`summary`](targeted_review_mech_019/entries/2026-09-17_mech_019_salience_network_switching_sridharan2008/summary.md) |
+| `targeted_review_mech_021` | [`2026-09-17_mech_021_timescale_hierarchy_circuit_chaudhuri2015`](targeted_review_mech_021/entries/2026-09-17_mech_021_timescale_hierarchy_circuit_chaudhuri2015/record.json) | 5 | [`summary`](targeted_review_mech_021/entries/2026-09-17_mech_021_timescale_hierarchy_circuit_chaudhuri2015/summary.md) |
 | `targeted_review_mech_044_relational_binding` | [`2026-06-19_mech_044_relational_memory_representations_konkel2009`](targeted_review_mech_044_relational_binding/entries/2026-06-19_mech_044_relational_memory_representations_konkel2009/record.json) | 3 | [`summary`](targeted_review_mech_044_relational_binding/entries/2026-06-19_mech_044_relational_memory_representations_konkel2009/summary.md) |
 | `targeted_review_mech_045_object_file` | [`2026-06-09_mech_045_visual_index_pylyshyn2001`](targeted_review_mech_045_object_file/entries/2026-06-09_mech_045_visual_index_pylyshyn2001/record.json) | 5 | [`summary`](targeted_review_mech_045_object_file/entries/2026-06-09_mech_045_visual_index_pylyshyn2001/summary.md) |
 | `targeted_review_mech_054` | [`2026-08-18_mech054_two_dopamine_channels_matsumoto2009`](targeted_review_mech_054/entries/2026-08-18_mech054_two_dopamine_channels_matsumoto2009/record.json) | 2 | [`summary`](targeted_review_mech_054/entries/2026-08-18_mech054_two_dopamine_channels_matsumoto2009/summary.md) |
