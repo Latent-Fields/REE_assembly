@@ -5712,7 +5712,11 @@
       "task_claim_session_id": "igw-auto-igw-243-proposal-for-mech-024-20260917T223344Z",
       "task_claim_claimed_at": "2026-09-17T22:33:44Z",
       "assigned_at": "2026-09-17T22:31:47Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T22:45:33Z",
+      "completion_summary": "MECH-024 EVB-1395/EXP-0763 -> blocked_substrate at /queue-experiment Step 2.5; no experiment queued. Ethics axis unreadable at the registered 2 SD(seeds) criterion (V3-EXQ-697: CV 0.830 on mean_weight, SD 0.4203 on a [0,1] DV), cause = MECH-023's 32-slot residue ring reaching MECH-024 as mass instability, plus a MECH-024-specific untrained ResidueField.neural_field that does not cancel under an intact-vs-zeroed lesion. SELFHOOD ready (V4-EXQ-002); PERSONALITY has levers, not blockers. REE_assembly master: proposals+index+memo mech024_cross_lesion_coupling_substrate_blocked_20260917.md, GFLAG-0338 raised. LIT-0764 left proposed.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-024 EVB-1395/EXP-0763 -> blocked_substrate at /queue-experiment Step 2.5; no experiment queued. Ethics axis unreadable at the registered 2 SD(seeds) criterion (V3-EXQ-697: CV 0.830 on mean_weight, SD 0.4203 on a [0,1] DV), cause = MECH-023's 32-slot residue ring reaching MECH-024 as mass instability, plus a MECH-024-specific untrained ResidueField.neural_field that does not cancel under an intact-vs-zeroed lesion. SELFHOOD ready (V4-EXQ-002); PERSONALITY has levers, not blockers. REE_assembly master: proposals+index+memo mech024_cross_lesion_coupling_substrate_blocked_20260917.md, GFLAG-0338 raised. LIT-0764 left proposed."
     }
   ],
   "dispositions": [
@@ -8207,6 +8211,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T21:31:25Z",
       "re_eligible_after": "2026-09-19T21:31:25Z"
+    },
+    {
+      "stable_hash": "692dc7489f8f",
+      "igw_id_at_disposition": "IGW-20260917-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-024"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-024",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T22:45:35Z",
+      "re_eligible_after": "2026-09-19T22:45:35Z"
     }
   ]
 }
