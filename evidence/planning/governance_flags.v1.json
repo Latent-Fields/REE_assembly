@@ -4550,6 +4550,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0320",
+      "claim_ids": [
+        "MECH-221",
+        "MECH-222",
+        "INV-040"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "CORRECTED REISSUE of GFLAG-0315, narrowed by a measurement taken after it was raised. UNCHANGED AND VERIFIED: the SD-070 world-encoder warmup is default-off -- zworld_p0_episodes defaults to 0 at five signature sites, and commit b523b9c's own message records OFF giving latent_stack 0/61, world_encoder 0/4, max_delta 0.0 with the guard REFUSING, against ON training world_encoder 4/4. Only 44 of 1503 experiment drivers mention the parameter, though mentioning is not enabling and the two were not separately counted. WHAT GFLAG-0315 OVERSTATED: it implied that z_world decodability evidence generally is measuring an untrained projection. The discriminating probe run on 2026-09-17 (ree-v3 cd60233+72befcc, REE_assembly evidence/planning/zworld_sense_path_parity_spike_20260916.md) measured an ENABLED regime and found all 4 world_encoder tensors move on every seed (max_abs_delta 0.23-0.39), so z_world is NOT frozen there. The scope is therefore drivers that do not enable the warmup, not the z_world evidence base as a whole. SEPARATE AND LARGER FINDING FROM THE SAME PROBE, which governance should treat on its own: V3-EXQ-1030's headline ~0.10 sense-vs-direct decodability gap DOES NOT REPRODUCE -- +0.007 and +0.019 paired over 50 cells against 1030's +0.1015, -0.018/+0.002 at 10x probe budget, -0.028/-0.023 standardised, against a null contrast resolving to +-0.004. The cause is a measurement defect, not substrate: 1030 compared feature sets differing 5x in magnitude using a fixed learning rate and fixed step budget, leaving the sense-path probe under-converged, and 1030's own manifest shows sense-path TRAIN accuracy below the direct path in all 10 cells. An encoder-free matched-width control shows a random Linear+ReLU costs about 0.00 of linear decodability, so neither candidate fix for SD-ZWORLD-SENSE-PATH-PARITY is a decodability repair. Recommended: demote that entry from degrading to hygiene and re-scope it to making the two paths agree; and require any V3-EXQ-1030a to standardise or verify probe convergence, use one split seed for both paths, and report train accuracy.",
+      "raised_by_session": "orchestrate-20260917-1138",
+      "raised_at": "2026-09-17T12:31:42Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
