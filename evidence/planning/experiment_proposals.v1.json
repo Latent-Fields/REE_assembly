@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T10:55:50.551609Z",
+  "generated_at_utc": "2026-09-17T13:34:42.594611Z",
   "items": [
     {
       "acceptance_checks": [
@@ -2701,6 +2701,8 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-1048",
+      "executed_queue_id": "V3-EXQ-1048",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-017 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -2726,9 +2728,7 @@
         "directional_conflict_alert",
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ],
-      "executed_by": "V3-EXQ-1048",
-      "executed_queue_id": "V3-EXQ-1048"
+      ]
     },
     {
       "acceptance_checks": [
@@ -3983,6 +3983,58 @@
         "active_conflict",
         "directional_conflict_alert",
         "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1392",
+      "blocked_by": [
+        "SD-032a-OPERATING-MODE-NO-LIVE-CONSUMER"
+      ],
+      "blocked_note": "Refused at /queue-experiment Step 4.5 (adversarial design review), twice, on two structurally different designs; root cause is a substrate-configuration gap, not a design flaw. operating_mode has no live consumer, so no available control-plane manipulation can separate MECH-019's confirming from its falsifying signature. See gating_reason for the per-channel measurements and release_condition for the concrete unblock + its validation check. Corroborating landed evidence: V3-EXQ-846 (ARC-005 per-channel occupancy attribution) -- 3 of its 4 channels failed C1 and the two that matter here move the mode vector by exactly zero.",
+      "claim_id": "MECH-019",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-17T13:29:22Z",
+      "gated_by_session": "igw-241-proposal-for-mech-019",
+      "gating_reason": "MECH-019 is NOT TESTABLE on any validated V3 substrate config: every control-plane manipulation available is a closed-form re-parameterisation of ONE trajectory, so the claim's CONFIRMING signature (graded redistribution of operating_mode as a channel is swept) and its FALSIFYING signature (flat-then-snaps) are not separable by any of them. ROOT CAUSE: operating_mode has NO LIVE CONSUMER in this config (salience_apply_to_dacc_bias False, hippocampal mode_conditioning off, no SD-033 PFC write-gate consumer instantiated), so the control plane's own output never feeds back onto the trajectory it would have to shape. MEASURED, per channel of the ARC-005 four-channel control plane: (1) 5-HT and (2) phasic-burst move the mode vector by EXACTLY ZERO -- landed manifest v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3 has ARM_5HT_OFF and ARM_PHASIC_OFF at mode_entropy_mean 0.139807, identical to ARM_ALL_ON to all recorded digits (delta 0.000e+00), and 846's own C1_5HT_attribution / C1_PHASIC_attribution both FAILED. (3) mode-prior (salience_external_task_bias) is a pure additive shift on one logit with no consumer, so it provably cannot move the trajectory: a 3-level dry run measured salience_aggregate_mean, salience_aggregate_sd, enter_threshold_mean, log10_precision_mean, effective_temperature_mean, n_latched_steps, n_env_steps and n_salience_ticks ALL BIT-IDENTICAL to 8 dp across bias 1.00 / 2.50 / 4.00, and a 40-tick runtime probe measured the realised log-odds slope at 1.6330 against 1/T = 1.6329. (4) pcc_stability sets the softmax temperature to a CONFIGURED CONSTANT, not an emergent one: across the L0 and L2 arms the recovered bias-free logit vectors are identical in canonical form to 1e-6 while T_L0/T_L2 = 1.56831218 equals exp(mu_L2 - mu_L0) = 1.56831219 to 8 significant figures, and pcc_stability_mean is its configured baseline minus 0.008628 in both arms. CONSEQUENCE: two structurally different pre-registered designs were authored, smoke-tested and adversarially reviewed for this proposal, and BOTH returned BLOCKING for the same root reason in different coordinates -- a channel-3 ladder whose load-bearing criterion reduced to the authoring constant 2*T*ln3/LADDER_STEP (same recorded ticks gave the 'graded' verdict at step 0.25 and the 'discrete' verdict at step 1.50), and a two-arm temperature contrast whose arms turned out to be one trajectory re-softmaxed at exp(delta mu). Queuing either would have spent fleet compute to produce an unattributable result and registered MECH-019 as supported on a substrate where the mode vector is at a rail 97 percent of ticks at its own configured operating point.",
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-019 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0757",
+      "proposal_type": "experimental",
+      "release_condition": "A V3 config in which operating_mode is GENUINELY CONSUMED, validated to be non-degenerate before any MECH-019 experiment is designed against it. Concretely: enable exactly ONE of salience_apply_to_dacc_bias (cheapest -- write_gate('e3_policy') is a soft-weighted sum over the mode vector), hippocampal mode_conditioning_enabled, or an SD-033 PFC write-gate consumer; then DEMONSTRATE that the realised trajectory diverges across control-plane channel settings -- the direct falsifier is the check that killed both designs here: recover the per-tick bias-free affinity logits (T*ln(p) minus the configured bias, exact because softmax is shift-invariant) and show max_t ||canon(g_t^{armA}) - canon(g_t^{armB})|| is ABOVE rounding noise rather than at it. Note the known hazard that makes this a validation task and not a config flip: V3-EXQ-848 measured dacc_adapter's response at ~1e-8, four to seven orders of magnitude below the other dACC score_bias components, consistent with an untrained consumer -- so enabling the flag may leave the path inert, which is exactly the degenerate condition this block exists to stop being tested against. ree-v3/validate_experiments.py already carries an 'inert-salience-dacc_bias' check, which is the natural gate for that validation. Once the divergence check passes, MECH-019 becomes testable and a channel sweep becomes a real manipulation rather than a re-read of one trajectory.",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_019",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -15360,100 +15412,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_015",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1392",
-      "claim_id": "MECH-019",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-019 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0757",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_019",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "SD-032a-OPERATING-MODE-NO-LIVE-CONSUMER"
-      ],
-      "gating_reason": "MECH-019 is NOT TESTABLE on any validated V3 substrate config: every control-plane manipulation available is a closed-form re-parameterisation of ONE trajectory, so the claim's CONFIRMING signature (graded redistribution of operating_mode as a channel is swept) and its FALSIFYING signature (flat-then-snaps) are not separable by any of them. ROOT CAUSE: operating_mode has NO LIVE CONSUMER in this config (salience_apply_to_dacc_bias False, hippocampal mode_conditioning off, no SD-033 PFC write-gate consumer instantiated), so the control plane's own output never feeds back onto the trajectory it would have to shape. MEASURED, per channel of the ARC-005 four-channel control plane: (1) 5-HT and (2) phasic-burst move the mode vector by EXACTLY ZERO -- landed manifest v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3 has ARM_5HT_OFF and ARM_PHASIC_OFF at mode_entropy_mean 0.139807, identical to ARM_ALL_ON to all recorded digits (delta 0.000e+00), and 846's own C1_5HT_attribution / C1_PHASIC_attribution both FAILED. (3) mode-prior (salience_external_task_bias) is a pure additive shift on one logit with no consumer, so it provably cannot move the trajectory: a 3-level dry run measured salience_aggregate_mean, salience_aggregate_sd, enter_threshold_mean, log10_precision_mean, effective_temperature_mean, n_latched_steps, n_env_steps and n_salience_ticks ALL BIT-IDENTICAL to 8 dp across bias 1.00 / 2.50 / 4.00, and a 40-tick runtime probe measured the realised log-odds slope at 1.6330 against 1/T = 1.6329. (4) pcc_stability sets the softmax temperature to a CONFIGURED CONSTANT, not an emergent one: across the L0 and L2 arms the recovered bias-free logit vectors are identical in canonical form to 1e-6 while T_L0/T_L2 = 1.56831218 equals exp(mu_L2 - mu_L0) = 1.56831219 to 8 significant figures, and pcc_stability_mean is its configured baseline minus 0.008628 in both arms. CONSEQUENCE: two structurally different pre-registered designs were authored, smoke-tested and adversarially reviewed for this proposal, and BOTH returned BLOCKING for the same root reason in different coordinates -- a channel-3 ladder whose load-bearing criterion reduced to the authoring constant 2*T*ln3/LADDER_STEP (same recorded ticks gave the 'graded' verdict at step 0.25 and the 'discrete' verdict at step 1.50), and a two-arm temperature contrast whose arms turned out to be one trajectory re-softmaxed at exp(delta mu). Queuing either would have spent fleet compute to produce an unattributable result and registered MECH-019 as supported on a substrate where the mode vector is at a rail 97 percent of ticks at its own configured operating point.",
-      "release_condition": "A V3 config in which operating_mode is GENUINELY CONSUMED, validated to be non-degenerate before any MECH-019 experiment is designed against it. Concretely: enable exactly ONE of salience_apply_to_dacc_bias (cheapest -- write_gate('e3_policy') is a soft-weighted sum over the mode vector), hippocampal mode_conditioning_enabled, or an SD-033 PFC write-gate consumer; then DEMONSTRATE that the realised trajectory diverges across control-plane channel settings -- the direct falsifier is the check that killed both designs here: recover the per-tick bias-free affinity logits (T*ln(p) minus the configured bias, exact because softmax is shift-invariant) and show max_t ||canon(g_t^{armA}) - canon(g_t^{armB})|| is ABOVE rounding noise rather than at it. Note the known hazard that makes this a validation task and not a config flip: V3-EXQ-848 measured dacc_adapter's response at ~1e-8, four to seven orders of magnitude below the other dACC score_bias components, consistent with an untrained consumer -- so enabling the flag may leave the path inert, which is exactly the degenerate condition this block exists to stop being tested against. ree-v3/validate_experiments.py already carries an 'inert-salience-dacc_bias' check, which is the natural gate for that validation. Once the divergence check passes, MECH-019 becomes testable and a channel sweep becomes a real manipulation rather than a re-read of one trajectory.",
-      "blocked_note": "Refused at /queue-experiment Step 4.5 (adversarial design review), twice, on two structurally different designs; root cause is a substrate-configuration gap, not a design flaw. operating_mode has no live consumer, so no available control-plane manipulation can separate MECH-019's confirming from its falsifying signature. See gating_reason for the per-channel measurements and release_condition for the concrete unblock + its validation check. Corroborating landed evidence: V3-EXQ-846 (ARC-005 per-channel occupancy attribution) -- 3 of its 4 channels failed C1 and the two that matter here move the mode vector by exactly zero.",
-      "gated_by_session": "igw-241-proposal-for-mech-019",
-      "gated_at_utc": "2026-09-17T13:29:22Z"
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1392",
-      "claim_id": "MECH-019",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-019.",
-      "priority": "medium",
-      "proposal_id": "LIT-0758",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_019",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -40988,9 +40946,9 @@
       "claims_tested": [
         "MECH-285"
       ],
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "dispatch_mode": "discriminative_pair",
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
       "prerequisites": [
         "MECH-285 offline-arm substrate wired (ree_core/hippocampal/sleep_replay_sampler.py or equivalent; HippocampalConfig.use_mech285_sleep_priority flag)",

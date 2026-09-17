@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T10:55:50.551609Z",
+  "generated_at_utc": "2026-09-17T13:34:42.594611Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -1121,6 +1121,8 @@
       "backlog_id": "EVB-1390",
       "claim_id": "MECH-017",
       "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-1048",
+      "executed_queue_id": "V3-EXQ-1048",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-017 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0753",
@@ -1645,6 +1647,26 @@
         "active_conflict",
         "directional_conflict_alert",
         "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1392",
+      "claim_id": "MECH-019",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-019 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0757",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_019",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -5704,38 +5726,6 @@
       "objective": "Improve literature grounding and confidence for MECH-015.",
       "priority": "medium",
       "proposal_id": "LIT-0750",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1392",
-      "claim_id": "MECH-019",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-019 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0757",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_019",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1392",
-      "claim_id": "MECH-019",
-      "objective": "Improve literature grounding and confidence for MECH-019.",
-      "priority": "medium",
-      "proposal_id": "LIT-0758",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -17985,7 +17975,7 @@
   ],
   "n_executed": 246,
   "n_proposed_exp": 181,
-  "n_proposed_lit": 488,
+  "n_proposed_lit": 487,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }
