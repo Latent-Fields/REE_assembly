@@ -4392,6 +4392,25 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0310",
+      "claim_ids": [
+        "MECH-537",
+        "MECH-538",
+        "MECH-540",
+        "ARC-139",
+        "INV-105",
+        "SD-080",
+        "MECH-555"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SHP-4 provenance projection lets a bears_on-ONLY mention outrank a real per-claim adjudication, purely by being later-dated. Found 2026-09-17 by the governance cycle while re-stamping live_status. CONCRETE INSTANCE: MECH-537's live_status.evidence.from is stamped failure_autopsy_V3-EXQ-1044_2026-09-17 -- an artifact whose single target carries claim_ids: [] and names MECH-537 only in bears_on, and whose own scope_note says a claim-free diagnostic 'must not create a scoring evidence entry on any claim'. The artifact that actually adjudicated MECH-537 is failure_autopsy_V3-EXQ-1043_2026-09-17, which carries a real per_claim_recommendation for it (mixed/standard, diagnostic_evidence_adjudicated true) and is DATED THE SAME DAY but loses the join. MEASURED SCOPE: 24 claims across 8 confirmed artifacts currently carry an evidence.from whose artifact names them only in bears_on (full list in the cycle's WORKSPACE_STATE entry); most are plausibly the designed bears_on join, but MECH-537 is the shape where it is clearly wrong because a competing per_claim_recommendation exists and is overridden. TENSION WITH THE DESIGN'S OWN RULE: scripts/project_status_head.py line 21 documents join(node) as bears_on-token UNION claim_ids, while lines 77/83-84 state that 'a claim id lives in claim_ids, NOT the join-token' and _is_harvestable_token explicitly excludes claim ids -- so a claim id appearing in bears_on is documented as not a join token, yet joins anyway at the claim level. GOVERNANCE DECISION OWED: should the projection prefer an artifact carrying a per_claim_recommendation / claim_ids hit over a bears_on-only hit regardless of date (recommended reading), or is bears_on-join intended to be date-ordered and equal-weight? Warn-only; nothing was hand-edited, and the 2026-09-17 re-stamp itself is correct-by-construction over the regenerable status plane.",
+      "raised_by_session": "governance-20260917",
+      "raised_at": "2026-09-17T11:17:52Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
