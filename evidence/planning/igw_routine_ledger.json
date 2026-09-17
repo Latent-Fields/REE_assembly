@@ -5558,7 +5558,11 @@
       "task_claim_session_id": "igw-auto-igw-241-proposal-for-mech-019-20260917T121210Z",
       "task_claim_claimed_at": "2026-09-17T12:12:10Z",
       "assigned_at": "2026-09-17T12:09:09Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T13:39:40Z",
+      "completion_summary": "No experiment queued -- MECH-019 is untestable on any validated V3 config. Marked EVB-1392/EXP-0757 blocked_substrate with durable keys (REE_assembly origin/master 03b0dc94032); raised GFLAG-0321 (contested_disposition); chipped chip-20260917-sd032a-operating-mode-no-consumer for /implement-substrate. Root cause: operating_mode has NO live consumer, so every ARC-005 control-plane manipulation is a closed-form re-parameterisation of one trajectory -- channels 1+2 move the mode vector by exactly zero (landed V3-EXQ-846, delta 0.000e+00), channel 3 is a pure additive logit shift (trajectory bit-identical to 8 dp across bias 1.00/2.50/4.00), channel 4 only sets the softmax temperature to a configured constant (T ratio = exp(dmu) to 8 sf). Two structurally different pre-registered designs were authored, smoke-tested and adversarially reviewed; BOTH returned BLOCKING for that same root cause. LIT-0758 literature twin left proposed and unaffected.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "No experiment queued -- MECH-019 is untestable on any validated V3 config. Marked EVB-1392/EXP-0757 blocked_substrate with durable keys (REE_assembly origin/master 03b0dc94032); raised GFLAG-0321 (contested_disposition); chipped chip-20260917-sd032a-operating-mode-no-consumer for /implement-substrate. Root cause: operating_mode has NO live consumer, so every ARC-005 control-plane manipulation is a closed-form re-parameterisation of one trajectory -- channels 1+2 move the mode vector by exactly zero (landed V3-EXQ-846, delta 0.000e+00), channel 3 is a pure additive logit shift (trajectory bit-identical to 8 dp across bias 1.00/2.50/4.00), channel 4 only sets the softmax temperature to a configured constant (T ratio = exp(dmu) to 8 sf). Two structurally different pre-registered designs were authored, smoke-tested and adversarially reviewed; BOTH returned BLOCKING for that same root cause. LIT-0758 literature twin left proposed and unaffected."
     },
     {
       "igw_id": "IGW-20260917-242",
@@ -7975,6 +7979,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T09:11:53Z",
       "re_eligible_after": "2026-09-19T09:11:53Z"
+    },
+    {
+      "stable_hash": "81968e5195cd",
+      "igw_id_at_disposition": "IGW-20260917-241",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-019"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-019",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T13:39:43Z",
+      "re_eligible_after": "2026-09-19T13:39:43Z"
     }
   ]
 }
