@@ -1,0 +1,234 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe",
+  "run_id": "v3_exq_1038a_arc131_coalition_recruitment_commensurability_probe_20260917T001717Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-17T00:17:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-131"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "commensurability_partially_collapses_scale_spread",
+    "routing": "exactly one of F1/F2 moved -> /failure-autopsy to adjudicate which half and why. NOT an automatic build and NOT an automatic close.",
+    "preconditions": [
+      {
+        "name": "G0_endogenous_trigger_mechanism_live",
+        "description": "every (arm x seed) 1e6 control burst fires at least once",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "margin_threshold=1e6 guaranteed-fire burst (250 ticks/cell), matching contract test W11",
+        "met": true
+      },
+      {
+        "name": "G1_commensurability_engaged_on_arm_only",
+        "description": "_last_commensurability_raw is non-empty on EVERY comm_on cell and empty on EVERY comm_off cell -- the manipulation engaged, and only where it was asked for",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "the operator populates this dict itself; probed at authoring time as 5 channel keys under ON and {} under OFF",
+        "met": true
+      },
+      {
+        "name": "G1b_commensurability_warmup_completed",
+        "description": "every comm_on cell's _chan_scale_n reached the configured warmup -- below it _commensurability_scale returns an exact 1.0 and the operator is a no-op while still reporting as engaged",
+        "measured": 560.0,
+        "threshold": 20.0,
+        "direction": "lower",
+        "offending_cell": "comm_on@seed1",
+        "control": "worst (minimum) _chan_scale_n over every comm_on cell; measured at authoring time as 75 after 600 ticks and 188 after 1500, against a configured warmup of 20",
+        "met": true
+      },
+      {
+        "name": "G1c_manipulation_moves_the_dv",
+        "description": "the comm_on and comm_off median E3 margins DIFFER on EVERY seed -- the mechanical form of this run's DV-symmetry declaration. Equal medians mean the manipulation is invisible to the DV by arithmetic and F1/F2 are identities, not measurements",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "offending_cell": null,
+        "control": "paired same-seed comparison with a fresh env and a complete RNG reset per cell; measured at authoring time as OFF 0.13548 vs ON 0.17944 at 600 ticks on seed 0",
+        "met": true
+      },
+      {
+        "name": "G2_eligibility_dv_sample_sufficiency",
+        "description": "every cell collected at least 50% of the FRESH E3 margin samples its schedule implies, so each cell's eligibility fraction -- the recruitment DV -- is a real statistic. Deliberately NOT a gate on the per-episode request count, which is rate-capped by the 51-tick coalition debounce and on which nothing routes.",
+        "measured": 560.0,
+        "threshold": 250.0,
+        "direction": "lower",
+        "offending_cell": "comm_off@seed1",
+        "control": "worst (minimum) fresh-margin sample count over every cell, against n_episodes x (ticks // e3_steps_per_tick) = 500 expected",
+        "met": true
+      },
+      {
+        "name": "G3_off_arm_margin_spread_discriminable",
+        "description": "the comm_off reference arm's own cross-seed median-margin ratio -- without spread here there is nothing for normalisation to collapse and F1 would pass vacuously",
+        "measured": 783.812865497076,
+        "threshold": 10.0,
+        "direction": "lower",
+        "control": "V3-EXQ-1038 published 605.7x on these same 7 seeds under this same condition, so this floor is cleared with ~60x to spare",
+        "met": true
+      },
+      {
+        "name": "G3b_off_arm_is_scale_determined",
+        "description": "|Spearman rho| between per-seed median E3 margin and per-seed eligibility fraction in the comm_off arm -- the PREMISE this run tests the repair of. Without it there is no scale-determination for normalisation to remove and F2 would collapse vacuously",
+        "measured": 0.9910312089651149,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "V3-EXQ-1038's own published per-seed margins and recruitment give |rho| = 0.830 under this same condition, so this floor is cleared with 0.23 to spare",
+        "met": true
+      },
+      {
+        "name": "G3a_off_arm_eligibility_cv_non_degenerate",
+        "description": "the comm_off arm's cross-seed ELIGIBILITY-FRACTION CV -- F2 is a HALVING test against this reference and would pass vacuously on a flat arm",
+        "measured": 1.5786650226694916,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "measured at authoring time on seed 5 at 250 ticks: eligibility 0.938 (comm_off) vs 0.328 (comm_on), so the statistic is live and moves",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "G0_readiness_control_fires",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 1.0,
+        "threshold": 1.0
+      },
+      {
+        "name": "F1_on_arm_margin_spread_below_bar",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 4.671972860125261,
+        "threshold": 10.0,
+        "threshold_note": "ABSOLUTE pre-registered bar, fixed from V3-EXQ-1038's published 605.7x. Routes the LABEL, not the outcome."
+      },
+      {
+        "name": "F2_on_arm_scale_association_collapsed",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0.9642857142857143,
+        "threshold": 0.4,
+        "reference_off_scale_association": 0.9910312089651149,
+        "threshold_note": "|Spearman rho| between per-seed median E3 margin (SCALE) and per-seed eligibility fraction (RECRUITMENT). An ABSOLUTE pre-registered bar from V3-EXQ-1038's own |rho| = 0.830, NOT a ratio against a realised reference: the eligibility CV of a bimodal 7-vector is a function of how many seeds sit in the high mode, so a halving bar on it would be a statement about that split rather than about the operator (red-team pass 2, finding 1). Routes the LABEL, not the outcome."
+      },
+      {
+        "name": "F2c_eligibility_cv_halved_CONTEXT_ONLY",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.44881867650507196,
+        "threshold": 0.7893325113347458,
+        "reference_off_cv": 1.5786650226694916,
+        "threshold_note": "RECORDED, NOT ROUTED ON -- superseded by F2. Retained so a reader can see the statistic the first draft would have used and why it was withdrawn."
+      }
+    ],
+    "combination_rule": "G0 (with the other preconditions) decides the OUTCOME: all green -> PASS, meaning a valid instrument-verified measurement was obtained. F1 and F2 decide the LABEL and the routing: F1 AND F2 -> commensurability_collapses_scale_spread (no SD-091 build owed); NEITHER -> scale_spread_persists_under_commensurability (build owed); EXACTLY ONE -> partial, route to /failure-autopsy.",
+    "criteria_non_degenerate": {
+      "G0_readiness_control_fires": true,
+      "F1_on_arm_margin_spread_below_bar": true,
+      "F2_on_arm_scale_association_collapsed": true
+    },
+    "gate_reason": null,
+    "null_reading": "A null (F1 and F2 both false) means the existing divisive normalisation does NOT make recruitment scale-invariant on this harness. It does NOT by itself establish that the SD-091 threshold build is the right repair: the operator's own divisor is an equally live account (red-team F2; see this label's routing). It also does not bear on whether commensurability is correct for its OWN purpose -- that operator's validation is separately OPEN (V3-EXQ-1012a)."
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "4d8a18d63cc0b9757662161d9032d8319a0fbbff3f2d1714579af933d38c4f30",
+  "substrate_commit": {
+    "commit": "45544c556a2293dca7d022aa5d959355ba258dd3",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/infant_warmup.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_coalition_controller": true,
+    "use_endogenous_coalition_trigger": true,
+    "e3.use_e3_channel_commensurability": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 11797.756033749989,
+  "config": {
+    "arms": [
+      "comm_off",
+      "comm_on"
+    ],
+    "swept_factor": "E3Config.use_e3_channel_commensurability",
+    "endogenous_coalition_margin_threshold": 0.05,
+    "coalition_max_duration_ticks": 50,
+    "n_episodes": 20,
+    "ticks_per_episode": 250,
+    "request_count_ceiling": 5,
+    "control_margin_threshold": 1000000.0,
+    "control_ticks": 250,
+    "grid_size": 5,
+    "num_hazards": 1,
+    "num_resources": 1,
+    "action_dim": 4,
+    "self_dim": 16,
+    "world_dim": 16,
+    "margin_spread_ratio_bar": 10.0,
+    "cv_halving_ratio_context_only": 0.5,
+    "g3b_off_scale_association_floor": 0.6,
+    "g3_off_margin_ratio_floor": 10.0,
+    "g3a_off_cv_floor": 0.1,
+    "predecessor": "V3-EXQ-1038",
+    "dry_run": false
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 28,
+    "goal_state_present": false
+  }
+}
