@@ -4578,6 +4578,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0322",
+      "claim_ids": [
+        "MECH-019"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-019's what_would_answer CONFIRMING criterion requires a MONOTONIC graded redistribution of the operating_mode vector as a control-plane channel is swept, but the arousal literature it implicitly rests on reports an INVERTED-U: McGinley, David & McCormick (2015, Neuron 87:179-192, PMID 26074005) show cortical state and detection performance varying smoothly but non-monotonically with pupil-indexed arousal, peaking at intermediate levels. A substrate behaving exactly as MECH-019 describes could therefore produce a non-monotonic occupancy curve that the criterion as written would score as a failure to confirm. The property the claim actually needs is CONTINUITY (smooth occupancy as a function of the channel, with no flat-then-snap structure), not monotonicity; recommend rewording the criterion to test smoothness plus a comparison against a step-function fit. Separately, Latimer et al. (2015, Science 349:184-187, PMID 26160947) show that a trial-averaged graded trajectory is reproducible by jittered DISCRETE single-trial steps, so the criterion must also specify a PER-RUN readout -- as written, an averaged occupancy curve cannot separate MECH-019's CONFIRMING from its FALSIFYING outcome. Both points are documented with mappings in evidence/literature/targeted_review_mech_019 (REE_assembly origin/master 874be02c8e4). This is a falsifier-wording defect, not a challenge to the claim's status; it is worth fixing before MECH-019 is designed against, which matters now because sibling session igw-241 has just marked the MECH-019 experiment proposal (EVB-1392/EXP-0757) blocked_substrate with a release_condition that will eventually re-open exactly this test.",
+      "raised_by_session": "igw-242-literature-proposal-for-mech-019",
+      "raised_at": "2026-09-17T13:35:46Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
