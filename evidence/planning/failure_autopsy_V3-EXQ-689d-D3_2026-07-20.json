@@ -171,5 +171,13 @@
   "no_per_claim_recommendation_deliberate": "NOT added, on purpose. This artifact's disposition was already APPLIED to MECH-448's evidence_quality_note on 2026-07-20 (the note carries the D3 CORRECTION paragraph naming this artifact and REE_assembly 8618f2c4bd). A per_claim_recommendation ending on a citation stamp would never clear -- the claim's live_status.evidence.from points at failure_autopsy_backlog_2026-07-24#V3-EXQ-699b -- and would sit in GOV-APPLY-1's ACTIONABLE bucket permanently as a false hit."
  },
  "dry_run_checked": true,
- "excluded_dry_run_ids": []
+ "excluded_dry_run_ids": [],
+ "epistemic_category_metabolized": {
+  "recorded_utc": "2026-09-17T18:15:19Z",
+  "session": "eloquent-jepsen-5f6242",
+  "metabolized_hits": [
+   "measurement_test_design_defect"
+  ],
+  "note": "GOV-CAT-1 validity arm, user-decided at the 2026-09-17 gate: this target keeps its pre-2026-08-09 out-of-enum label measurement_test_design_defect AS WRITTEN. The value predates the 2026-08-09 enum-compliance fix and is identical to the one carried by the sibling artifact failure_autopsy_V3-EXQ-689i_2026-07-24, which the 2026-08-09 baseline already excludes; stamping this field on 2026-09-17 created a NEW out-of-enum instance in a file absent from that baseline, so the arm correctly reported it as live rather than legacy. This marker records the adjudication instead of rewriting the artifact or regenerating the baseline (a regen would silently absorb everything accumulated since 2026-08-09). Hit-scoped as designed: any OTHER out-of-enum value in this artifact still fires. If this label is ever migrated, the behaviour-preserving target is standard with the failure mode moved into recommended_epistemic_category_note -- NOT substrate_ceiling or substrate_conditional, which carry GOV-GRAN-1 suppression and v3-testability consequences. See recommended_epistemic_category_note on targets[0]."
+ }
 }
