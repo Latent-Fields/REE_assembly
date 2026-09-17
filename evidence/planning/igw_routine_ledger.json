@@ -5583,7 +5583,11 @@
       "task_claim_session_id": "igw-auto-igw-242-literature-proposal-for-mech-019-20260917T132403Z",
       "task_claim_claimed_at": "2026-09-17T13:24:03Z",
       "assigned_at": "2026-09-17T13:22:05Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-17T13:48:22Z",
+      "completion_summary": "MECH-019 lit-pull landed: 5 entries in REE_assembly evidence/literature/targeted_review_mech_019 (874be02c8e4) + reindex (9590e58355); MECH-019 goes 0 -> literature_confidence 0.706, LIT-0758 discharged; raised GFLAG-0322 (stale_note) on the what_would_answer monotonicity/per-run-readout defect.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-019 lit-pull landed: 5 entries in REE_assembly evidence/literature/targeted_review_mech_019 (874be02c8e4) + reindex (9590e58355); MECH-019 goes 0 -> literature_confidence 0.706, LIT-0758 discharged; raised GFLAG-0322 (stale_note) on the what_would_answer monotonicity/per-run-readout defect."
     }
   ],
   "dispositions": [
@@ -7993,6 +7997,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T13:39:43Z",
       "re_eligible_after": "2026-09-19T13:39:43Z"
+    },
+    {
+      "stable_hash": "e18d11bd0605",
+      "igw_id_at_disposition": "IGW-20260917-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-019"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-019",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-17T13:48:23Z",
+      "re_eligible_after": "2026-09-19T13:48:23Z"
     }
   ]
 }
