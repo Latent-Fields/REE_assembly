@@ -489,15 +489,61 @@ def build_profile_data(target: Target) -> tuple[dict[str, str], list[dict[str, s
                     "fallback": "computed content hash",
                 }
             )
+    # Environment provenance gaps. Two distinct kinds, reported separately
+    # because they mean different things to a reader:
+    #
+    #   "unknown"  -- the writer said so. Honest absence: the driver supplied no
+    #                 environment and the pack records that faithfully.
+    #   FABRICATED -- the value is one of the hardcoded literals both writers
+    #                 emitted before 2026-09-17 (ree-v3 pack_writer.DEFAULT_ENVIRONMENT
+    #                 and this repo's evidence/experiments/scripts/sync_v3_results.py),
+    #                 which asserted env_id "ree.causal_grid_world_v3" / env_version
+    #                 "3.0.0" / tier "causal_grid_world_v3" for EVERY pack regardless
+    #                 of which environment the run actually used. There is no
+    #                 CausalGridWorldV3: ree_core.environment.causal_grid_world defines
+    #                 one class, CausalGridWorld, and CausalGridWorldV2 is an alias
+    #                 factory. 1752 packs carry it (measured 2026-09-17), including
+    #                 runs whose config was CausalGridWorldV2 -- the V3-EXQ-1036
+    #                 autopsy is what surfaced it.
+    #
+    # The existing packs are NOT backfillable: the data was never recorded anywhere,
+    # and a pack is materialised from a flat manifest that never had it either. So
+    # the remedy for the existing corpus is exactly this -- REPORT the value as
+    # unreliable rather than silently let it read as provenance. Both writers now
+    # emit "unknown" for these fields, so the FABRICATED branch applies only to
+    # packs written before 2026-09-17 and does not grow.
+    _FABRICATED_ENV = {
+        "env_id": "ree.causal_grid_world_v3",
+        "env_version": "3.0.0",
+        "tier": "causal_grid_world_v3",
+    }
     env = run_manifest.get("environment", {})
     if isinstance(env, dict):
-        for key in ("dynamics_hash", "reward_hash", "observation_hash", "config_hash"):
-            if env.get(key) == "unknown":
+        for key in (
+            "env_id", "env_version", "tier",
+            "dynamics_hash", "reward_hash", "observation_hash", "config_hash",
+        ):
+            value = env.get(key)
+            if value == "unknown":
                 missing.append(
                     {
                         "field": f"run_pack.manifest.environment.{key}",
                         "source": sources["run_manifest"],
                         "status": "recorded as unknown; no fallback located",
+                        "fallback": "not populated",
+                    }
+                )
+            elif key in _FABRICATED_ENV and value == _FABRICATED_ENV[key]:
+                missing.append(
+                    {
+                        "field": f"run_pack.manifest.environment.{key}",
+                        "source": sources["run_manifest"],
+                        "status": (
+                            f"recorded as {value!r}, but this is the pre-2026-09-17 "
+                            "hardcoded writer default emitted for every pack "
+                            "regardless of the environment actually used; treat as "
+                            "unrecorded, not as provenance"
+                        ),
                         "fallback": "not populated",
                     }
                 )

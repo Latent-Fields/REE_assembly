@@ -288,14 +288,20 @@ def build_runpack_docs(data: dict, experiment_type: str):
             "sd004_action_objects": True,
             "sd006_multirate_clock": True,
         },
+        # All-"unknown" environment block: the honest default when the flat
+        # manifest carried no environment. See the conditional carry below for
+        # why this converter cannot DISCOVER one, and ree-v3
+        # experiments/pack_writer.DEFAULT_ENVIRONMENT (whose literal this
+        # mirrors byte-for-byte, deliberately) for why "unknown" rather than a
+        # plausible name, and why the block is emitted rather than omitted.
         "environment": {
-            "env_id": "ree.causal_grid_world_v3",
-            "env_version": "3.0.0",
+            "env_id": "unknown",
+            "env_version": "unknown",
             "dynamics_hash": "unknown",
             "reward_hash": "unknown",
             "observation_hash": "unknown",
             "config_hash": "unknown",
-            "tier": "causal_grid_world_v3",
+            "tier": "unknown",
         },
         "failure_signatures": [],
     }
@@ -379,6 +385,40 @@ def build_runpack_docs(data: dict, experiment_type: str):
         _sc_branch = str(_sc.get("branch") or "").strip()
         if _sc_branch:
             manifest["source_repo"]["branch"] = _sc_branch
+
+    # environment identity (2026-09-17). Carry a usable `environment` block from
+    # the flat manifest, overriding the all-"unknown" literal above.
+    #
+    # WHY THIS CANNOT BE DISCOVERED HERE, only carried -- same shape as
+    # source_repo.commit above: a pack is materialised FROM A FLAT MANIFEST,
+    # possibly on the hub and days after the run, by a process that never
+    # constructed the environment and cannot construct it (it has the run's
+    # outputs, not its config object). Only the producer holds the environment,
+    # so only the producer can identify it; ree-v3
+    # pack_writer.environment_for(env) is the producer-side half, and this is the
+    # transport.
+    #
+    # ON ITS OWN THIS CARRY CHANGES NOTHING, and that is expected -- measured
+    # 2026-09-17, only 11 flat manifests in the whole tree carry an `environment`
+    # block at all and all 11 are byte-identical copies of the old hardcoded
+    # default, so today this branch either does not fire or writes what the
+    # literal already said. It is here because it is the ONLY channel by which a
+    # driver's real environment identity can ever reach a pack: without it the
+    # producer-side fix lands in flats and dies there. Do not read "no measurable
+    # effect today" as "unnecessary"; the two halves are only useful together.
+    #
+    # Field-wise merge rather than wholesale replacement, so a flat carrying a
+    # partial block (say config_hash only) contributes what it has and the rest
+    # stay honestly "unknown" instead of vanishing. A blank or whitespace-only
+    # value is treated as absent -- it is not an assertion of anything.
+    _env = data.get("environment")
+    if isinstance(_env, dict):
+        for _k, _v in _env.items():
+            if _v is None:
+                continue
+            _v = str(_v).strip()
+            if _v:
+                manifest["environment"][_k] = _v
 
     # enabled_default_off_flags / substrate_commit_unavailable (2026-09-01) --
     # carried SEPARATELY from the loop above, not appended to it, because both
