@@ -356,3 +356,144 @@ its trip, because it is the one signal-1 arm that has actually decayed as the pr
   a third time.
 - **The g6 curated agenda and the g3 root-cause doc remain unreviewed**, which is what generation 8
   was resolved pending. That is a live thread this pass does not close.
+
+---
+
+## 9. Implementation record (2026-09-17, same session)
+
+The user ratified REC-1 through REC-4 directly in conversation on 2026-09-17, in place of
+routing them through the Orchestrator decision lane. All four are built. This section is the
+record of what changed, so a later reader does not have to reconstruct it from the diff.
+
+### What now trips, and what only prints
+
+| Signal | Before | After |
+|---|---|---|
+| S1 open (`open_chips_authored_actionable > 40`) | trips | **report-only** |
+| S1 rate (`recorded_7d_authored > 150`, gross) | trips | **report-only** (now printed as `minted / resolved`) |
+| **S1 net (authored mint minus resolve, two windows)** | did not exist | **trips** |
+| S1 generator (dominant automated origin) | trips | trips (unchanged) |
+| S1c capacity (`claim_flow_72h < 0.60`) | trips | trips (unchanged) |
+| S2 episodic (any class at generation >= 2) | trips | **report-only** |
+| S3 wedge (`wedge_repairs_7d > 2`) | trips | **report-only**, routed to `chip-refwedge-*` |
+| S4 enablement (`findings > 0`) | trips | **report-only** |
+| S5 inert slices | report-only | report-only (unchanged) |
+
+Every number the gate has ever reported is still printed; five of them no longer gate the
+verdict. `evaluate()` returns a new `reported` list alongside `tripped`, and the printer emits
+it under `reported :`.
+
+### REC-1, in the shared machinery (`hygiene_routine_tick.py`)
+
+- `_EPISODIC_REGENERATION_QUIET_HOURS = 24` and `_regeneration_too_soon()`. A re-fire landing
+  inside the quiet window no longer escalates the generation counter; it returns
+  `mode="regeneration-suppressed"` and the tick prints `QUIET <ref> -> ... generation N NOT
+  minted`. **Fails open**: an absent or unparseable `resolved_at` regenerates exactly as before,
+  because suppressing on un-established evidence would hide a real recurrence. A future-dated
+  resolution (clock skew) counts as inside the window rather than as licence to escalate.
+- The generation note now says each re-fire was "at least 24h after the previous resolution",
+  which the old text could not claim and which is what makes the escalation to
+  `/metaworker-learning` mean something.
+- This benefits `chip-queuefloor-*`, `chip-refwedge-*` and `chip-daemondrift-*` identically --
+  applied to the ten generations measured here, seven of the nine regenerations would have been
+  suppressed.
+
+### REC-3, the net arm
+
+`NET_AUTHORED_7D_MAX = 50`, tripping only when **both** the current 7-day window and the
+preceding one exceed it. Two windows are computed from the same chip list, so the gate stays
+stateless and seconds-fast. Generator-origin chips are excluded from both sides of the
+subtraction, preserving the g3 attribution fix. The threshold is a trial value but, unlike its
+predecessors, it is stated against the observed distribution: it sits above every weekly net in
+the record except the isolated +54 of week ending 2026-08-19, which cleared at -21 the week after.
+
+### Live reading immediately after the change
+
+```
+pause-pressure: PRESSURE
+  CAPACITY : claim_flow_72h 56% (140/250 ...) < 60%
+  -> grant dispatch leases / raise capacity; a pause window is NOT indicated for this arm
+  reported : authored open_chips 73 (ref 40; ...)
+  reported : authored recorded_7d 255 minted / 265 resolved (ref 150; ...) -- GROSS, report-only
+  reported : authored NET accumulation -10 this 7d, +17 the 7d before (trips only when BOTH > +50)
+  reported : episodic generation >= 2: chip-queuefloor-fleet-g11 (report-only ...)
+  reported : wedge_repairs_7d 61 (61 unrepaired) -- report-only; owned by the chip-refwedge-* class
+```
+
+The verdict now rests on the single arm with demonstrated two-regime discrimination, and it says
+in its own words that a pause window is not what is indicated. The backlog reads **-10** this
+week -- draining -- which is the number the gate could never see before.
+
+### Contracts
+
+`scripts/test_pause_pressure.py` and `scripts/test_hygiene_tick_episodic.py`, 106 tests green.
+New: `NetBacklogArmTest` (7 cases, including the single-window-spike negative control and the
+mint-volume-held-constant case that isolates the gross/net difference in one assertion) and
+`RegenerationQuietWindowTest` (6 cases, including fail-open on four malformed stamps, the
+inclusive boundary, and clock skew). Fourteen pre-existing tests asserted the old tripping
+behaviour and were rewritten to assert report-only; where a test used the backlog arm merely as
+a vehicle for something else (chip framing, dispatch-class split, the policy line), its fixture
+was moved to the net arm so it still tests its original subject. `_net_backlog()`'s spawn dates
+sit deliberately outside the claim-flow cohort window so it can be used in capacity-arm tests
+without moving the flow number under test.
+
+### GOV-HELDOUT-1
+
+Recorded outcome: **the check ran and caught an over-broad rule.** The replay corpus is the
+gate's own 15 historical readings and the 43-window distribution in R1 -- cases the new wording
+was not written from in the only sense that matters, since they are what the old wording was
+applied to.
+
+- **Non-degeneracy.** For REC-2 the old and new wording differ on **all 15** readings (every one
+  was PRESSURE; under the new wording 13 of 15 are QUIET, the exceptions being the two readings
+  where the generator or capacity arm independently fired). For REC-1 they differ on **9 of 9**
+  resolve-to-re-fire intervals, 7 of which fall inside the quiet window. Well past the
+  three-case minimum, and no case is a rubber stamp.
+- **What it caught.** The first draft of REC-2 demoted the backlog arm outright. Replaying the
+  seven weekly nets showed that leaves *no* backlog trip at all, including for a genuine
+  sustained drift -- over-broad. That is what forced REC-3's two-window net arm to be part of the
+  same change rather than a later addition, and it is why the demotion and the replacement
+  landed together.
+- **Negative control, preserved.** The generation-3 generator fix. Under both old and new wording
+  that intervention is correct and still recommended; the generator arm keeps its trip precisely
+  because it is the one signal-1 arm that has actually decayed as its problem was fixed. A rule
+  that silenced it too would have been wrong, and the check is what confirms it is not.
+
+### GOV-HELDOUT-1, second record: the `/governance` Step 1b wording
+
+REC-2/REC-4 made the skill text wrong, so it was changed in the same pass (both
+`.claude/skills/governance/SKILL.md` and `.agents/skills/governance/SKILL.md`, mirrored). That
+is a standing-rule edit and owes its own check.
+
+**Old wording:** "PRESSURE -> name the tripped signals and recommend scheduling a pause window."
+**New wording:** read which ARM tripped; pause only for the BACKLOG (net) arm; GENERATOR routes
+to a generator fix; CAPACITY routes to dispatch leases.
+
+Four non-degenerate historical cases -- old and new give **different** recommendations in each,
+and in each the new one matches what was actually found to be correct afterwards:
+
+1. **g5, 2026-09-03.** `proposal_tick` held 187 of 264 open chips (71%); the generator arm fired.
+   Old: pause window. New: fix the named generator. What actually worked was the generator fix --
+   aggregate 7-day mint fell from ~1,149 to ~400 and stayed there. New is right.
+2. **g8, 2026-09-14.** Capacity arm fired at 8.6%. Old: pause window. New: grant leases or
+   accept the parked queue. The g9 learning pass then established the driver was the cloud
+   dispatchers being STOP by policy since 2026-09-02. A pause window would have been precisely
+   backwards. New is right.
+3. **g9, 2026-09-16.** Capacity again, 1.6%, same driver, same answer. New is right.
+4. **The live reading taken during this pass, 2026-09-17T19:15Z.** Capacity only
+   (`claim_flow_72h` 56%), with net accumulation at **-10** -- the backlog draining. Old: pause
+   window. New: grant leases; explicitly not a pause. New is right.
+
+**What the check caught.** The first draft of the new wording said only "name the arm that
+tripped and route accordingly", dropping the pause recommendation entirely. Replaying g1 -- whose
+pause window genuinely did discharge real work -- showed that loses the one case where a pause IS
+the right call. The shipped wording therefore keeps an explicit BACKLOG-arm branch that says so.
+Same failure direction as the REC-2 catch above, caught the same way.
+
+**Negative control.** A genuine sustained-net-drift reading: old and new wording agree that a
+curated pause window is the recommendation. The change narrows when a pause is recommended; it
+does not remove the recommendation.
+
+**Boundary case, recorded rather than counted:** g1 itself is only partly non-degenerate -- under
+the new wording its size-arm trip would not have fired at all, so the two versions are not
+comparable on the same input. It is the source of the catch above, not evidence for the rule.
