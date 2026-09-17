@@ -3158,3 +3158,6 @@ One line per hourly tick. ASCII only.
 2026-09-17T15:36:49Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
 2026-09-17T15:33:51Z SPAWN IGW-20260917-243 skill=/lit-pull prio=40 uuid=5a4794d5-aee7-4b16-8cdc-adb3b1b0eeed pid=40210 worktree=igw-243-literature-proposal-for-mech-021
 2026-09-17T15:49:21Z auto-defer f2a1a5aab7ab hash=f2a1a5aab7ab for 48h (complete)
+2026-09-17T15:49:47Z complete f2a1a5aab7ab staged->completed outcome=NO_OP: WITHDRAWN on user decision 2026-09-17T15:36Z (Orchestrator decision lane, orches
+2026-09-17T15:50:20Z GC removed worktree igw-217-substrate-ready-sd-zworld-sense (removed; branch deleted)
+2026-09-17T16:15:42Z auto-defer igw-243-literature-proposal-for-mech-021 hash=128b21ecf607 for 48h (complete)
