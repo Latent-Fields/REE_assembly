@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-17T18:19:06Z",
+  "generated_at": "2026-09-17T18:35:51Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -1991,7 +1991,7 @@
           "id": "ARC-107",
           "title": "Basal-ganglia-like E3 selector constitution: committed-action selection should be governed by an explicit BG-mirroring eligibility-gating CONSTITUTION -- candidate actions pass through an eligibility mask, bounded Go (direct-pathway promotion) and No-Go (indirect-pathway suppression) pressures, a conflict-sensitive hold / threshold-raise / candidate-set widening (hyperdirect-STN), striatal-like parallel channel competition (rather than one scalar monarch), a pallidal-like permission-to-commit gate (rather than bare argmax), and a stable post-commit latch / de-commit -- so that an upstream signal's STRENGTH is necessary but not sufficient: it also needs LAWFUL ACCESS to committed action. The translation target is functional (a divergence-ledgered, falsifier-validated BG analogue), NOT anatomical mimicry.",
           "subject": "selection.basal_ganglia_selector_constitution",
-          "status": "candidate",
+          "status": "provisional",
           "v3_pending": false,
           "genuine_exp_count": 2,
           "pass_runs": 2,
@@ -6339,7 +6339,7 @@
           "id": "MECH-152",
           "title": "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation.",
           "subject": "e1_e3.cue_indexed_terrain_precision_modulation",
-          "status": "provisional",
+          "status": "candidate",
           "v3_pending": false,
           "genuine_exp_count": 1,
           "pass_runs": 0,

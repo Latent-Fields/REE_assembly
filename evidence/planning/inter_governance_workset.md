@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-17T18:15:28Z`
+Generated: `2026-09-17T18:32:49Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -11,7 +11,7 @@ UI: http://localhost:8000/workset
 
 - Items: **254** (ready 35, in_flight 0, blocked 163)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 88, v4 76, v5 38, v6 25
-- Pending review: **4**
+- Pending review: **0**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-1050, V3-EXQ-906c
@@ -20,28 +20,7 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260917-001 -- Complete governance review (4 pending)
-
-- **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 4 item(s) -- must clear before new work packages.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260917-001
-Title: Complete governance review (4 pending)
-Lane: governance | Skill: /governance
-Status: ready
-Why now: pending_review.md lists 4 item(s) -- must clear before new work packages.
-
-Instructions:
-- Run /governance from REE_assembly; walk pending_review with user.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260917-002 -- Governance decision: ARC-054
+### IGW-20260917-001 -- Governance decision: ARC-054
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
 - **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
@@ -49,7 +28,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260917-002
+REE inter-governance work item: IGW-20260917-001
 Title: Governance decision: ARC-054
 Lane: governance | Skill: /governance
 Status: ready
@@ -63,7 +42,7 @@ Instructions:
 
 </details>
 
-### IGW-20260917-003 -- Governance decision: ARC-083
+### IGW-20260917-002 -- Governance decision: ARC-083
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
 - **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
@@ -71,7 +50,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260917-003
+REE inter-governance work item: IGW-20260917-002
 Title: Governance decision: ARC-083
 Lane: governance | Skill: /governance
 Status: ready
@@ -85,7 +64,7 @@ Instructions:
 
 </details>
 
-### IGW-20260917-004 -- Governance decision: MECH-017
+### IGW-20260917-003 -- Governance decision: MECH-017
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
 - **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
@@ -93,7 +72,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260917-004
+REE inter-governance work item: IGW-20260917-003
 Title: Governance decision: MECH-017
 Lane: governance | Skill: /governance
 Status: ready
@@ -107,7 +86,7 @@ Instructions:
 
 </details>
 
-### IGW-20260917-005 -- Governance decision: MECH-018
+### IGW-20260917-004 -- Governance decision: MECH-018
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
 - **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
@@ -115,7 +94,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260917-005
+REE inter-governance work item: IGW-20260917-004
 Title: Governance decision: MECH-018
 Lane: governance | Skill: /governance
 Status: ready
@@ -129,20 +108,42 @@ Instructions:
 
 </details>
 
-### IGW-20260917-006 -- Governance decision: MECH-019
+### IGW-20260917-005 -- Governance decision: MECH-019
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
-- **Why now:** promotion_demotion recommends demote_to_candidate.
+- **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260917-005
+Title: Governance decision: MECH-019
+Lane: governance | Skill: /governance
+Status: ready
+Claims: MECH-019
+Why now: promotion_demotion recommends hold_candidate_resolve_conflict.
+
+Instructions:
+- Run /governance from REE_assembly; walk pending_review with user.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260917-006 -- Governance decision: MECH-152
+
+- **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
+- **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260917-006
-Title: Governance decision: MECH-019
+Title: Governance decision: MECH-152
 Lane: governance | Skill: /governance
 Status: ready
-Claims: MECH-019
-Why now: promotion_demotion recommends demote_to_candidate.
+Claims: MECH-152
+Why now: promotion_demotion recommends hold_candidate_resolve_conflict.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -2642,7 +2643,7 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40 | **Generation:** v3
 - **Gap(s):** orienting_epistemic_deficit_v3:ORNT-2
-- **Owner EXQ:** V3-EXQ-964b
+- **Owner EXQ:** V3-EXQ-1047
 - **Why now:** Two-step gate; neither step is owned today. (1) The design doc mech314bc_percandidate_extension_staged_2026-08-08.md receives its owed user review, releasing its follow-on routing. (2) The SD-063 E2WorldUncertaintyHead training loop lands a
 
 <details><summary>Agent brief (copy-paste)</summary>
@@ -2653,7 +2654,7 @@ Title: epistemic_deficit: persistent target-bound model-inadequacy accumulator
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
 Gap(s): orienting_epistemic_deficit_v3:ORNT-2
-Owner EXQ: V3-EXQ-964b
+Owner EXQ: V3-EXQ-1047
 Claims: MECH-482
 Why now: Two-step gate; neither step is owned today. (1) The design doc mech314bc_percandidate_extension_staged_2026-08-08.md receives its owed user review, releasing its follow-on routing. (2) The SD-063 E2WorldUncertaintyHead training loop lands a
 

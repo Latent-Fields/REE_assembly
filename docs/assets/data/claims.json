@@ -1127,7 +1127,7 @@
     "what_would_answer": "ARC-106 is a standing construction-method claim, not a single-experiment\nhypothesis -- confirmation/falsification is read off the AGGREGATE\npattern across the divergence ledger's worked examples\n(docs/architecture/arc_106_biology_grounding_framework.md S5), each\nscored by the claim's own load-bearing-vs-decorative test (S4.2):\nablate/gap-blind the biologically-motivated constraint while holding\neverything else fixed; if a pre-registered behavioural metric is\nunchanged, that component's grounding is decorative.\n\nCONFIRMS (per-component, moves a ledger row to L3): a component's\nfalsifier returns a clean load-bearing verdict -- the biological\nconstraint's ablation measurably degrades the pre-registered metric, and\nthe effect is specific to the biologically-motivated form (not\nreproduced by an equally-complex non-biological control). SD-011 (dual\nnociceptive streams) and drive/incentive salience (BG-4, V3-EXQ-514u)\nare the claim's own confirmed L3 exemplars.\n\nWEAKENS a SPECIFIC component (drops it to decorative, per S4.2 verbatim):\nthe ablation/gap-blind control matches or exceeds the biologically-named\nconstruction on the pre-registered metric -- the biological name was\ncosmetic.\n\nCURRENT STATE OF EVIDENCE (first worked example, S6): the E3 action\nselector (MECH-439 F-dominance) is the claim's own keystone case and\nsits at L2, not yet L3. V3-EXQ-689a (2026-06-20) is the load-bearing\ntest in practice but returned a MIXED result the framework's simple\nPASS/uniform-lift/no-lift trichotomy (S6.5) does not cleanly resolve:\nthe combined conflict-graded levers (ARM_A1B1) did not convert (FAIL,\nnon_contributory, conversion_ceiling_persists_despite_conflict_grade),\nwhile an isolated single lever (Factor B, gap-scaled commit-T) showed a\nload-bearing-looking lift (2/3 seeds above both gap-blind controls) that\ndid NOT replicate on isolation retest (V3-EXQ-689c, FAIL/\nnon_contributory). Net: the action-selector row's grounding is NEITHER\nconfirmed load-bearing NOR shown decorative yet -- the claim escalated\n(per its own G3 guardrail) to the constitutional BG build\n(ARC-107/MECH-448/449) rather than resolving the L2 ledger row directly,\nand MECH-439 itself was separately demoted to contested/exhausted on\n2026-07-09 (GOV-CEIL-1, 10 confirmed substrate_ceiling autopsies)\npending a positive discrimination from that constitutional route. This\nis consistent with the claim's own \"no lift => the blocker is\ndownstream, re-ground that row instead\" branch (S6.5), not either the\nPASS or decorative branches -- track it as such, not as a resolved\nverdict either way.\n\nARC-106 WHOLESALE FALSIFICATION / ABANDONMENT: not a single-run result,\nbut a TREND -- if, across a critical mass of worked examples (the\naction selector plus at minimum 2-3 more ledger rows carried to a\nfalsifier verdict, e.g. the Go/No-Go split, the commitment latch, the\ndopaminergic RPE substrate), the pattern is that biologically-motivated\nconstraints, when tested under S4.2, repeatedly turn out decorative\nrather than load-bearing, that is evidence the biology-grounding method\nitself is not earning its cost and the standing constraint should be\nrevisited or abandoned as a construction discipline. A single\nnon-contributory or ambiguous result (as with 689a above) is explicitly\nNOT this pattern -- the doc's own S4.4 treats divergence/non-conversion\nas data, not failure. Revisit only when a worked-example falsifier\nmaterially changes the aggregate ledger picture -- i.e. either a run of\nconfirmed decorative verdicts across multiple independent components,\nor (positive direction) enough L3 confirmations that the method's cost\nis clearly earning its keep.\n"
   },
   "ARC-107": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "mature",
     "assembly_status": "queued",
     "awaiting": "f_dominance_conversion_ceiling",
     "coupled_with": [
@@ -1137,7 +1137,7 @@
       "Q-078"
     ],
     "epistemic_stance": "shown",
-    "status": "candidate",
+    "status": "provisional",
     "subject": "selection.basal_ganglia_selector_constitution",
     "title": "Basal-ganglia-like E3 selector constitution: committed-action selection should be governed by an explicit BG-mirroring eligibility-gating CONSTITUTION -- candidate actions pass through an eligibility mask, bounded Go (direct-pathway promotion) and No-Go (indirect-pathway suppression) pressures, a conflict-sensitive hold / threshold-raise / candidate-set widening (hyperdirect-STN), striatal-like parallel channel competition (rather than one scalar monarch), a pallidal-like permission-to-commit gate (rather than bare argmax), and a stable post-commit latch / de-commit -- so that an upstream signal's STRENGTH is necessary but not sufficient: it also needs LAWFUL ACCESS to committed action. The translation target is functional (a divergence-ledgered, falsifier-validated BG analogue), NOT anatomical mimicry.",
     "type": "architectural_commitment",
@@ -3971,10 +3971,10 @@
     "what_would_answer": "NON-DEGENERACY PRECONDITION: residue must have accumulated at >= k DISTINCT harm contexts whose RBF kernels OVERLAP non-harm contexts before sleep (pre-sleep specificity ratio -- residue at harm contexts / residue at equidistant matched non-harm contexts -- below a pre-registered ceiling, so over-generalisation is MEASURABLE); sleep cycles must fire; and the integration operation must actually run inside the cycle (see SUBSTRATE: today it does not). Degenerate if the field has one centre (nothing to tie to context or compress) or if the naive-decay comparator is not run (without it a specificity gain cannot be told from uniform shrinkage).\nCONFIRMING: sleep-phase residue integration does all four things the claim names, measured on the field's geometry pre vs post cycle: (i) PRESERVATION -- residue evaluated at the recorded harm z_world locations (ResidueField.evaluate at _harm_history) does not fall below a floor (the field's own 'cannot be erased' invariant, checked not assumed); (ii) CONTEXT-TYING / anti-over-generalisation -- the specificity ratio RISES; (iii) COMPRESSION -- active_centers falls or the neural_field approximates the RBF field with lower integration_loss at fewer parameters while (i) holds; (iv) TRAVERSABILITY -- the fraction of hippocampal proposals in NON-harm regions rejected on residue cost falls. CONFIRMING if the integration arm beats BOTH a no-sleep arm and a NAIVE-DECAY arm (uniform multiplicative attenuation of all weights, which would satisfy (iii)/(iv) by violating (i)), sign-consistent across >=3 seeds.\nFALSIFYING: integration ERASES -- residue at harm contexts drops as much as elsewhere (indistinguishable from naive decay; violates (i), the moral-injury-overload fix has become forgetting); or integration INCREASES over-generalisation (specificity ratio falls -- the spurious-guilt failure mode the claim says sleep prevents); or the operation is geometrically inert (no change on any of the four readouts while the cycle is live).\nSUBSTRATE: ree_core/residue/field.py -- ResidueField.integrate(num_steps) EXISTS (offline contextualisation: trains neural_field to approximate rbf_field around jittered harm locations, no erasure) and discharge_domain (bounded attenuation) exists, BUT integrate is NOT called from SleepLoopManager._run_cycle (ree_core/sleep/phase_manager.py; the cross-module consolidator's contract is explicitly 'no residue / memory writes'). The wiring -- one call site in the WRITEBACK phase, flag-gated -- is a small /implement-substrate build; readouts (i)-(iv) are driver-side. Whether integrate as written can deliver (ii) and (iii) is itself part of the question: it approximates, it does not merge centres, so (iii) may need a centre-merging step the claim implies but no module provides.\nDisposition 2026-09-16: substrate_conditional on the WRITEBACK wiring (and possibly a centre-merge op); complicated (buildable) once wired. Do not mint an EXP for this until the call site lands -- that is exactly the shape the queuefloor pass measured.\n"
   },
   "MECH-019": {
-    "assembly_state": "mature",
+    "assembly_state": "remaining",
     "coupled_with": [],
     "epistemic_stance": "believed",
-    "status": "provisional",
+    "status": "candidate",
     "subject": "control_plane.mode_shaping",
     "title": "Control plane shapes modes of cognition, not discrete choices.",
     "type": "mechanism_hypothesis",
@@ -5409,12 +5409,12 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-152": {
-    "assembly_state": "mature",
+    "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "SD-016",
     "coupled_with": [],
     "epistemic_stance": "believed",
-    "status": "provisional",
+    "status": "candidate",
     "subject": "e1_e3.cue_indexed_terrain_precision_modulation",
     "title": "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation.",
     "type": "mechanism_hypothesis",

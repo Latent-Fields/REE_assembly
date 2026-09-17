@@ -478,13 +478,13 @@
       "timestamp_utc": "2026-07-09T19:00:29.843047Z"
     },
     "ARC-107": {
-      "actor": "governance",
-      "decision_needed": "Promotion review: candidate -> provisional",
+      "actor": "user (governance cycle governance-20260917 Step 3)",
+      "decision_needed": "Promote ARC-107 candidate -> provisional",
       "decision_status": "applied",
-      "rationale": "937b methodological repair is real but all 6 criteria are analytically entailed. 926a already supports. Status stays candidate. Cycle 2026-08-21 gov-20260821-0203.",
+      "rationale": "exp_conf 0.749, 2 exp + 5 lit, 7 supports / 0 weakens, conflict_ratio 0, quadrant confirmed_established, v3_pending false; no open flag, no pending retest, no substrate_ceiling",
       "recommendation": "promote_to_provisional",
-      "selected_option": "HOLD promotion until a behavioural confirming run; V3-EXQ-937b is analytically entailed and does not support",
-      "timestamp_utc": "2026-08-21T17:11:38.948216Z"
+      "selected_option": "Promote ARC-107 to provisional",
+      "timestamp_utc": "2026-09-17T18:27:47.968656Z"
     },
     "ARC-112": {
       "actor": "user",
@@ -755,6 +755,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-09-15T01:15:56.662132Z"
+    },
+    "MECH-019": {
+      "actor": "user (governance cycle governance-20260917 Step 3)",
+      "decision_needed": "Demote MECH-019 provisional -> candidate",
+      "decision_status": "applied",
+      "rationale": "exp_entries 0, lit-only conflict_ratio 0.667. Concern raised at the walk and reaffirmed by the user: GFLAG-0321 (not testable on any validated V3 config) and GFLAG-0322 (confirming criterion not satisfiable as written) both stay open -- read candidate as not-yet-evidenced under a known substrate block, not as tested-and-found-wanting",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "Demote MECH-019 to candidate",
+      "timestamp_utc": "2026-09-17T18:27:48.004829Z"
     },
     "MECH-025": {
       "actor": "user",
@@ -1297,13 +1306,13 @@
       "timestamp_utc": "2026-03-31T20:20:00.000000Z"
     },
     "MECH-152": {
-      "actor": "governance",
-      "decision_needed": "Demotion review: provisional -> candidate",
+      "actor": "user (governance cycle governance-20260917 Step 3)",
+      "decision_needed": "Demote MECH-152 provisional -> candidate",
       "decision_status": "applied",
-      "rationale": "Write-path still implemented_pending_validation after V3-EXQ-943 occupancy PASS. Status stays provisional. Cycle 2026-08-21 gov-20260821-0203.",
+      "rationale": "exp_conf 0.244, conflict_ratio 0.667. Same demotion was HELD on 2026-08-21 as GFLAG-0044 pending the still-open corrupting write-path defect contextmemory-write-path-addressing-degeneracy; user reaffirmed with that history in view. pending_retest_after_substrate STAYS true -- the demotion does not discharge the owed ablation",
       "recommendation": "demote_to_candidate",
-      "selected_option": "HOLD demotion (GFLAG-0044); owed work is a measurement redesign gated on the corrupting write-path",
-      "timestamp_utc": "2026-08-21T17:11:38.985180Z"
+      "selected_option": "Demote MECH-152 to candidate",
+      "timestamp_utc": "2026-09-17T18:27:48.040632Z"
     },
     "MECH-153": {
       "actor": "user",
@@ -3142,7 +3151,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-16T16:15:45.791844Z",
+  "generated_at_utc": "2026-09-17T18:32:03.567288Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

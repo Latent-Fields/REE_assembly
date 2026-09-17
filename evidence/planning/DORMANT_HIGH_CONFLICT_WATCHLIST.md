@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-09-17T18:14:38.692494Z`
+Generated: `2026-09-17T18:32:03.567288Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -35,13 +35,13 @@ Sorted worst-conflict-first.
 | `INV-040` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `INV-047` | `chronic_under_threshold` | 0.667 | `candidate` | 10 |
 | `INV-087` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
-| `MECH-019` | `dormant_low_activity` | 0.667 | `provisional` | 0 |
+| `MECH-019` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `MECH-025b` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
 | `MECH-112` | `chronic_under_threshold` | 0.667 | `candidate` | 22 |
 | `MECH-118` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
 | `MECH-130` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `MECH-143` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
-| `MECH-152` | `chronic_under_threshold` | 0.667 | `provisional` | 4 |
+| `MECH-152` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
 | `MECH-445` | `chronic_under_threshold` | 0.667 | `candidate` | 8 |
 | `MECH-459` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
 | `MECH-466` | `dormant_low_activity` | 0.667 | `candidate` | 1 |

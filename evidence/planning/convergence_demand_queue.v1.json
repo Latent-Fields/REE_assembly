@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-09-03T07:28:04Z",
+  "last_updated_utc": "2026-09-17T18:29:46Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -405,6 +405,41 @@
       "priority": 1,
       "in_flight": null,
       "last_known_state_note": "SENSE-ONLY row: no intake run, no claim registered, no REE_convergence thread opened. Appended by the /governance 2026-09-03 Step 6b Sense pass because the 969-972 portfolio's confirmed cluster autopsy re-confirmed sleep_substrate:GAP-2's substrate_ceiling from the objective side and named the representation as the binding constraint. Both blocks_on gates are OPEN, so this row is NOT dispatchable now -- the held-out probe must resolve first. Flagged to the user in the cycle's closing report; the external_sources naming is a FIRST PASS by the Sense step and is the part most likely to need revision at Mine time."
+    },
+    {
+      "row_id": "CDQ-010",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "a TRANSFER mechanism candidate claim -- what makes an encoder objective's gains reach a downstream action consumer -- registered in claims.yaml and wired into SD-106's depends_on (and offered to the zworld_actor_adequacy_locus re-pose as a candidate re-operationalization). It must name a mechanism, not another LOCUS: the registered partition already carries four confirmed loci and that is the shape GOV-HOTHER-1 flagged.",
+        "satisfied": false
+      },
+      "target_nodes": [
+        "zworld_adequacy:ZW-1"
+      ],
+      "mechanism_gap": "A well-trained encoder objective's gains do not reach the consumer, and the shortfall is NON-TRANSFER rather than exhaustion. Measured V3-EXQ-1023a (confirmed autopsy, 2026-09-17): 3.3x P0a optimiser budget moved held-out preservation R^2 +0.1184 (0.7318 -> 0.8501, still rising -- the head has NOT saturated) while consumer oracle-action agreement moved +0.0081 against a 0.1227 shortfall; observed transfer slope 0.068 agreement per unit R^2 against a PCA-anchored 3.4655, a ~50x shortfall. H-transfer-amplification FALSIFIED; the budget branch is closed. REE has no mechanism for this: the frozen-registry question zworld_actor_adequacy_locus carries 11 legs, four of them confirmed, and EVERY leg names a LOCUS at which adequacy is lost -- none names a transfer failure between an adequate objective and its consumer. That is the GOV-HOTHER-1 `rotation` event recorded on the question the same day.",
+      "external_sources": [
+        {
+          "name": "muzero",
+          "path": "REE_convergence/sources/muzero",
+          "intake_state": "EXISTS",
+          "why": "MuZero is the sharpest available negative of REE's current design: its latent model is trained ONLY through the value / policy / reward heads -- it deliberately refuses a reconstruction-or-preservation objective on the representation and instead trains the encoder THROUGH its consumer. SD-106 is the opposite construction (a generic preservation objective, consumer downstream of it), and the ~50x transfer shortfall is exactly the failure that design choice predicts. What to mine is the mechanism, not the architecture: what has to be true for consumer gradients to shape an encoder without collapsing it."
+        },
+        {
+          "name": "dreamer-v3",
+          "path": "REE_convergence/sources/dreamer-v3",
+          "intake_state": "EXISTS",
+          "why": "Dreamer-V3 is the MIXED case and therefore the discriminating one: it carries BOTH a reconstruction term and value/actor gradients into the same latent, with published balance machinery. If a mechanism exists for making a preservation objective transfer rather than replacing it, this is where it is."
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": 1,
+      "generation": "v3",
+      "blocks_v3_critical_path": false,
+      "in_flight": null,
+      "registered_candidate_claims": [],
+      "last_known_state_note": "Registered by the Sense pass of governance cycle governance-20260917 (Step 6b), off confirmed failure_autopsy_V3-EXQ-1023a_2026-09-17 (ratified REE_assembly eeeb0550ed5). SIBLING, read it before mining so the two are not worked twice: CDQ-007 (conversion_ceiling_campaign:P-comp) is the same SHAPE one layer down -- 'a learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation'. CDQ-007 is a sufficient-observation -> policy transfer failure; this row is a trained-objective -> consumer transfer failure. They may share a mechanism, and if the intake finds one it should be registered ONCE and wired into both. SENSE ONLY -- no claims registered, no intake opened, no thread opened in REE_convergence."
     }
   ]
 }

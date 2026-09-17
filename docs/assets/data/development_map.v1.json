@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-17T18:15:33Z",
+  "generated_at": "2026-09-17T18:32:53Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -1151,8 +1151,8 @@
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 76,
-          "more_count": 66,
+          "count": 75,
+          "more_count": 65,
           "nodes": [
             {
               "id": "ARC-005",
@@ -1492,8 +1492,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 163,
-          "more_count": 153,
+          "count": 164,
+          "more_count": 154,
           "nodes": [
             {
               "id": "MECH-062",
@@ -1574,6 +1574,20 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-019",
+              "title": "Control plane shapes modes of cognition, not discrete choices.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-075",
               "title": "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics.",
               "status": "candidate",
@@ -1639,18 +1653,6 @@
                 "MECH-093",
                 "ARC-041"
               ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "EXT-003",
-              "title": "Reward hacking: scalar reward conflates incommensurable error signals.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "other",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 3,
-              "depends_on": [],
               "additional_dependencies": 0
             }
           ]
@@ -2864,9 +2866,9 @@
     }
   ],
   "record_counts": {
-    "active": 180,
+    "active": 179,
     "closed": 50,
-    "planned": 932
+    "planned": 933
   },
   "archive": {
     "snapshot_count": 111,

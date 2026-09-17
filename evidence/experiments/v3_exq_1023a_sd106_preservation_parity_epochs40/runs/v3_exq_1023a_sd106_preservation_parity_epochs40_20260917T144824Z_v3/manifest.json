@@ -23,7 +23,7 @@
     "SD-106"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "weakens",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -400,5 +400,6 @@
     "writer_defect": false,
     "n_agents": 3,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-17 governance, cycle governance-20260917] evidence_direction set to `weakens` per the CONFIRMED failure_autopsy_V3-EXQ-1023a_2026-09-17 (ratified REE_assembly eeeb0550ed5, user-approved at this cycle's Step 2b walk). The run-pack previously scored `unknown` and the flat manifest carried no direction at all, so the adjudicated result was INERT on the scoring path. Basis: consumer oracle-action agreement 0.7542/0.7356/0.6921 (mean 0.7273) against the 0.85 bar, 0 of 3 seeds; the budget branch closes on a TRANSFER-RATE argument (+0.1184 held-out R^2 upstream buys +0.0081 downstream, a ~50x transfer shortfall against the PCA-anchored 3.4655), not on exhaustion -- the head has not saturated. H-transfer-amplification FALSIFIED. dry_run verified absent-and-clean (real run: machine ree-worker-3, seeds 42/43/44, supersedes V3-EXQ-1023)."
 }

@@ -3,7 +3,7 @@ closure_plan:
   id: orienting_epistemic_deficit_v3
   title: "Orienting & Epistemic-Deficit Cluster (V3 closure)"
   registered: 2026-08-13
-  last_updated: 2026-09-16
+  last_updated: 2026-09-17
   scope_claims: [MECH-395, MECH-482, MECH-483, Q-089, MECH-489, SD-099]
   sibling_plans: [drives_motivation_v4, goal_pipeline]
   registered_note: >
@@ -80,7 +80,7 @@ closure_plan:
       phase: 1
       status: in_progress
       severity: high
-      owner_exq: "V3-EXQ-964b"
+      owner_exq: "V3-EXQ-1047"
       unblocks_claims: ["MECH-482"]
       depends_on: []
       cross_plan_link: []
@@ -145,7 +145,32 @@ closure_plan:
         legitimately startable; flip to in_progress at that point. Until
         then status stays `open`, and the correct next action is clearing
         gate (1) -- a governance/user decision, NOT a build.
-      last_updated: 2026-09-16
+      last_updated: 2026-09-17
+      governance_2026_09_17: >
+        LINEAGE-ADVANCED REPOINT (governance cycle governance-20260917, user-approved at
+        the Step 2b walk): owner_exq V3-EXQ-964b -> V3-EXQ-1047, applying confirmed
+        failure_autopsy_V3-EXQ-1047_2026-09-17 (ratified REE_assembly eeeb0550ed5). This
+        node was the ONE entry in this cycle's closure-drift "Stale since last update"
+        section, flagged because that autopsy reclassified MECH-482 after the node's
+        2026-09-16 last_updated.
+        WHAT 1047 SETTLES: it ran exactly the amplified-real-readout ladder
+        (k in {1,10,40,100}, range-matched synthetic + within-tick permuted-real controls)
+        that governance_2026_09_16 above named as NEXT. It did NOT discriminate
+        magnitude- vs pattern-limited. Its own self-routed label
+        `deficit_readout_magnitude_limited` (H-MAG SUPPORTED) is REFUTED BY ITS OWN CELLS:
+        F_MAG carries no control term and is satisfiable by the real arm alone; "firing"
+        is one diverged committed tick above a 1e-9 floor, and the two firing seeds
+        carried exactly 1 tick each; at the same rail rung the controls MATCH OR BEAT the
+        real arm on every seed where it fires, and NO cell at ANY rung has the real arm
+        above BOTH controls. Direction non_contributory; MECH-482 stays candidate /
+        substrate_conditional / pending_retest true -- nothing storable moved.
+        STATUS STAYS in_progress, and the owed work is UNCHANGED in kind: the build
+        landed 2026-08-29 and the VALIDATION still has not returned a usable
+        discrimination. Routing is /implement-substrate on the existing substrate_queue
+        entry `sd_epistemic_deficit_multitarget_readiness`, NOT another ladder rung --
+        the re-derive brake FIRED on MECH-482 by user decision at the 2026-09-17 autopsy
+        batch and a same-claim re-queue is REFUSED. Read that refusal as binding on this
+        node: the next action here is a substrate build, not an experiment.
       governance_2026_09_16: "Lineage-advanced REPOINT (governance cycle governance-20260916): owner_exq V3-EXQ-964a -> V3-EXQ-964b (confirmed failure_autopsy_V3-EXQ-964b_2026-09-16, user gate 11:10Z, applied this cycle). 964b supersedes 964a: detector VERIFIED (verify-lift positive control fires 3/3 seeds at every curiosity_bias_scale rung incl. shipped 0.1; paired self-yoked control bit-identical; env seeded), and the real SD-102 readout still moves E3 selection on 0/172 E3-fresh ticks -- the shortfall is CONTENT CONTRAST (post-clamp range 1-3% of the 0.2 rail, clamp_saturated_frac 0), NOT selection authority; the F-dominance reading is NOT supported at shipped authority. MECH-482 direction non_contributory / substrate_conditional; stays candidate; re-derive brake given an explicit producer release (user-approved). sd_epistemic_deficit_multitarget_readiness amended (964a resolved, 964b post_build record). NEXT: amplified-real-readout ladder k in {1,10,40,100} with range-matched synthetic + within-tick permuted-real controls (new EXQ, magnitude- vs pattern-limited discrimination; ledger question mech482_deficit_selection_authority registered). Status stays in_progress."
       governance_2026_08_30: >
         STATUS FLIP OPEN -> IN_PROGRESS (governance cycle 2026-08-30 PM, session

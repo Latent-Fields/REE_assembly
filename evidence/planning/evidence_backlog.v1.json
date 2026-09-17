@@ -316,12 +316,12 @@
     {
       "claim_id": "MECH-019",
       "conflict_ratio": 0.667,
-      "current_status": "provisional",
+      "current_status": "candidate",
       "entries_total": 5,
       "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
+        "decision_status": "applied",
+        "recommendation": "demote_to_candidate",
+        "timestamp_utc": "2026-09-17T18:27:48.004829Z"
       },
       "pattern": "dormant_low_activity",
       "recent_targeted_batches": 0
@@ -394,12 +394,12 @@
     {
       "claim_id": "MECH-152",
       "conflict_ratio": 0.667,
-      "current_status": "provisional",
+      "current_status": "candidate",
       "entries_total": 6,
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "demote_to_candidate",
-        "timestamp_utc": "2026-08-21T17:11:38.985180Z"
+        "timestamp_utc": "2026-09-17T18:27:48.040632Z"
       },
       "pattern": "chronic_under_threshold",
       "recent_targeted_batches": 4
@@ -640,7 +640,7 @@
     }
   ],
   "evidence_scope": "current_epoch_applicable,epoch=ree_hybrid_guardrails_v1",
-  "generated_at_utc": "2026-09-17T18:14:38.692494Z",
+  "generated_at_utc": "2026-09-17T18:32:03.567288Z",
   "items": [
     {
       "adjudication_context": {
@@ -3503,7 +3503,7 @@
       "latest_decision": {
         "decision_status": "applied",
         "recommendation": "demote_to_candidate",
-        "timestamp_utc": "2026-08-21T17:11:38.985180Z"
+        "timestamp_utc": "2026-09-17T18:27:48.040632Z"
       },
       "next_action": "Run targeted experimental probe.",
       "priority": "high",
@@ -3521,7 +3521,7 @@
           "literature_confidence": 0.679
         },
         "conflict_ratio": 0.667,
-        "current_status": "provisional",
+        "current_status": "candidate",
         "entries_total": 6,
         "fresh_batches_since_decision": 0,
         "overall_confidence": 0.477,
@@ -6189,8 +6189,8 @@
       "signals": {
         "claim_type": "invariant",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.202,
-          "experimental_confidence": 0.574,
+          "delta_lit_minus_exp": 0.203,
+          "experimental_confidence": 0.573,
           "literature_confidence": 0.776
         },
         "conflict_ratio": 0.4,
@@ -9863,15 +9863,16 @@
         "experimental"
       ],
       "latest_decision": {
-        "decision_status": "none",
-        "recommendation": "",
-        "timestamp_utc": ""
+        "decision_status": "applied",
+        "recommendation": "demote_to_candidate",
+        "timestamp_utc": "2026-09-17T18:27:48.004829Z"
       },
       "next_action": "Run targeted experimental probe.",
       "priority": "medium",
       "reasons": [
         "active_conflict",
         "directional_conflict_alert",
+        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -9886,15 +9887,16 @@
           "literature_confidence": 0.706
         },
         "conflict_ratio": 0.667,
-        "current_status": "provisional",
+        "current_status": "candidate",
         "entries_total": 5,
+        "fresh_batches_since_decision": 0,
         "overall_confidence": 0.706,
         "source_counts": {
           "experimental": 0,
           "literature": 5
         }
       },
-      "status": "open"
+      "status": "in_progress"
     },
     {
       "adjudication_context": {
@@ -24407,14 +24409,14 @@
       "signals": {
         "claim_type": "architecture_hypothesis",
         "confidence_split": {
-          "delta_lit_minus_exp": 0.743,
+          "delta_lit_minus_exp": 0.742,
           "experimental_confidence": 0.0,
-          "literature_confidence": 0.743
+          "literature_confidence": 0.742
         },
         "conflict_ratio": 0.0,
         "current_status": "candidate",
         "entries_total": 2,
-        "overall_confidence": 0.743,
+        "overall_confidence": 0.742,
         "source_counts": {
           "experimental": 0,
           "literature": 2
