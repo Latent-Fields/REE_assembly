@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_021",
+  "entry_id": "2026-09-17_mech_021_timescale_dilation_task_abstraction_cellier2025",
+  "timestamp_utc": "2026-09-17T15:43:31Z",
+  "claim_ids_tested": [
+    "MECH-021"
+  ],
+  "source": {
+    "title": "Aperiodic neural timescales in prefrontal cortex dilate with increased task abstraction",
+    "authors": [
+      "Dillan Cellier",
+      "Justin Riddle",
+      "Ryan Hammonds",
+      "Flavio Frohlich",
+      "Bradley Voytek"
+    ],
+    "year": 2025,
+    "venue": "bioRxiv (preprint)",
+    "doi": "10.1101/2025.04.21.649913",
+    "pmid": "40462968",
+    "pmc": "PMC12132356"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Deliberately low. A preprint with no stated sample size in the abstract, using EEG-derived aperiodic autocorrelation as a proxy for integration window. Included because it is the only source found that bears on whether the integration window is a FIXED parameter or an actively-set one -- which is a direct methodological challenge to MECH-021's discriminative pair. Weak evidence, but it bears on a design decision no other entry touches.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Neural timescales dilate with task demand rather than being fixed structural constants, so MECH-021's arm design (theta_buffer_size fixed at 1 versus 10 for the run) tests a narrower proposition than the claim states: whether a fixed-wide window beats a fixed-narrow one, not whether an appropriately-set window beats a badly-set one.",
+    "If the biological window is adaptive, a REE substrate that cannot adapt its window may show a flat anticipatory-restraint fraction for reasons having nothing to do with whether 'now' is a control surface -- producing a FALSIFYING result that is actually an artefact of the fixed-buffer implementation.",
+    "Aperiodic autocorrelation decay measured from scalp EEG is several inferential steps from a functional integration window; the finding may reflect changes in excitation-inhibition balance rather than in the width of any integrated present."
+  ],
+  "tags": [
+    "mech-021",
+    "intrinsic-neural-timescales",
+    "aperiodic",
+    "task-dependence",
+    "preprint",
+    "design-caveat",
+    "adaptive-window"
+  ],
+  "mapping": {
+    "source_claim_statement": "Aperiodic neural timescales, estimated from the autocorrelation function of the aperiodic (non-oscillatory) component of human EEG, dilate over prefrontal cortical regions as the abstraction of task-relevant contextual information increases.",
+    "ree_translation": "MECH-021 treats the width of 'now' as the manipulated variable and the anticipatory-restraint fraction as the outcome. Cellier et al. suggest the width is itself an OUTPUT of control rather than a fixed input to it: prefrontal integration windows expand when the task requires holding more abstract context. Read charitably this strengthens the claim's spirit -- the temporal window really is part of the control apparatus, not inert plumbing. Read strictly it complicates the falsifier, because REE fixes theta_buffer_size per arm and therefore cannot express the adaptive setting that the biology appears to use.",
+    "mapping_caveat": "This is a preprint, and the inferential chain from scalp-EEG aperiodic autocorrelation decay to 'width of the integrated present' is long: the measure is also sensitive to excitation-inhibition balance, and the abstract does not state a sample size. The direction of causation is unresolved -- timescales may dilate BECAUSE more context is held, rather than dilating in order to hold it -- and only the latter reading supports the control-surface framing. Treat as a design caveat on MECH-021's falsifier, not as evidence for or against the claim's substance.",
+    "source_context": "Human scalp EEG during a cognitive-control task manipulating the abstraction level of task-relevant context; aperiodic component isolated from oscillatory confounds; no aversive or avoidance component."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Source quality held low: unrefereed preprint, no sample size in the abstract, and a proxy measure whose interpretation is contested. Transfer risk raised above the other entries because the causal direction of the effect is unresolved and only one direction supports the control-surface reading."
+  }
+}

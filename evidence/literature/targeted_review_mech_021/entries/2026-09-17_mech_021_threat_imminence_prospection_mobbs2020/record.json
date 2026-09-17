@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_021",
+  "entry_id": "2026-09-17_mech_021_threat_imminence_prospection_mobbs2020",
+  "timestamp_utc": "2026-09-17T15:43:31Z",
+  "claim_ids_tested": [
+    "MECH-021"
+  ],
+  "source": {
+    "title": "Space, Time, and Fear: Survival Computations along Defensive Circuits",
+    "authors": [
+      "Dean Mobbs",
+      "Drew B. Headley",
+      "Weilun Ding",
+      "Peter Dayan"
+    ],
+    "year": 2020,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.12.016",
+    "pmid": "32029360",
+    "pmc": null,
+    "volume": "24",
+    "issue": "3",
+    "pages": "228-241"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "The strongest entry in this pull. It is the only source that speaks directly to MECH-021's actual readout -- whether avoidance is prospective or reactive -- and it states the horizon-dependence as its central organising finding, synthesising a large animal and human literature. Confidence is not higher because it is a review rather than a single decisive experiment, and because the independent variable is defensive DISTANCE (a property of the environment) rather than the agent's INTERNAL integration window, which is what REE manipulates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Under proximal threat the system explicitly does NOT integrate: it contracts to reduced decision and state spaces and model-free reflexive responses. If REE's hazards are reachable in too few steps, the substrate should be expected to look reactive in EVERY arm -- which is MECH-021's own degeneracy condition, and this paper makes it the empirically expected outcome rather than a remote possibility.",
+    "The review treats reactive model-free control under imminence as ADAPTIVE rather than deficient, so a low anticipatory-restraint fraction is not by itself evidence of a broken control surface; it may be evidence of correctly-calibrated threat imminence.",
+    "Model-free and model-based defensive computations are described as intertwined, with model-based operations instructing model-free control; a clean dissociation between anticipatory and reactive restraint may therefore not exist even in biology."
+  ],
+  "tags": [
+    "mech-021",
+    "threat-imminence",
+    "defensive-distance",
+    "model-based",
+    "prospection",
+    "anticipatory-avoidance",
+    "harm"
+  ],
+  "mapping": {
+    "source_claim_statement": "Predator-avoidance decisions are organised along spatial and temporal dimensions of defensive distance: proximal threats are addressed by a limited repertoire of reflexive and myopic actions reflecting reduced decision and state spaces and model-free architectures, whereas distal threats allow increased information processing supported by model-based operations including affective prospection, replay and planning; the two are often intertwined, with safety permitting model-based instruction of model-free control.",
+    "ree_translation": "This is MECH-021's predicted pattern observed in biology. The claim holds that commitment integrates predictions across horizons rather than reacting to the current sensory timestamp, and measures this as the anticipatory-restraint fraction -- trajectories rejected or de-committed BEFORE realised harm rises above zero. Mobbs et al. report exactly that dissociation as the organising principle of defensive behaviour: when the hazard lies beyond the immediate horizon, control is prospective and model-based (REE's E2-rollout-scored restraint); when it is within it, control collapses to reactive and myopic (REE's realised-harm-PE-triggered response). The paper also supplies the biological reading of MECH-021's degeneracy precondition.",
+    "mapping_caveat": "The independent variable differs from REE's in a way that matters. Mobbs et al. vary defensive distance -- how far the hazard is in the world -- while MECH-021's discriminative pair varies the agent's internal integration window and rollout horizon with the environment held fixed. These are dual manipulations of the same ratio (horizon versus time-to-harm) only if the substrate's window is what limits its effective prospection, which is the very thing under test; assuming it would be circular. Further, this is a review of mammalian defensive circuitry with rich evolutionarily-specified structure (periaqueductal grey, amygdala, hypothalamic circuits) that REE does not possess, so shared behavioural signature does not license shared mechanism.",
+    "source_context": "Review synthesising rodent and human threat-imminence literature -- ethological predator-avoidance paradigms, human flight-initiation-distance and virtual-predator fMRI studies; genuinely aversive outcomes throughout."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.42,
+    "notes": "Both components high because this is the only source addressing the claim's actual dependent variable (anticipatory versus reactive avoidance of genuine harm) with the horizon as the organising independent variable. Transfer risk held at 0.42 rather than lower because mammalian defensive circuitry is heavily evolutionarily specified and REE's hazard machinery is learned."
+  }
+}

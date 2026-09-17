@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_021",
+  "entry_id": "2026-09-17_mech_021_intrinsic_timescales_integration_wolff2022",
+  "timestamp_utc": "2026-09-17T15:43:31Z",
+  "claim_ids_tested": [
+    "MECH-021"
+  ],
+  "source": {
+    "title": "Intrinsic Neural Timescales: Temporal Integration and Segregation",
+    "authors": [
+      "Annemarie Wolff",
+      "Nareg Berberian",
+      "Mehrshad Golesorkhi",
+      "Javier Gomez-Pilar",
+      "Federico Zilio",
+      "Georg Northoff"
+    ],
+    "year": 2022,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2021.11.007",
+    "pmid": "34991988",
+    "pmc": null,
+    "volume": "26",
+    "issue": "2",
+    "pages": "159-173"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "A well-sourced TiCS review establishing that intrinsic neural timescales form a unimodal-to-transmodal hierarchy and that this hierarchy is functionally central to how inputs are integrated versus segregated. Supports MECH-021's framing of 'now' as a graded integration window rather than an instant. Confidence is held at moderate because it is a review rather than a primary result, and because it evidences integration in perception/cognition generally, not the control-surface-over-hazard reading MECH-021 requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review reports that intrinsic timescales vary with task and state rather than being fixed structural constants, which complicates any REE manipulation that treats window length as a static hyperparameter set once per arm.",
+    "Integration is documented for stimulus/input processing and conscious perception; no evidence is offered that a longer integration window improves anticipatory avoidance of a predicted aversive outcome."
+  ],
+  "tags": [
+    "mech-021",
+    "intrinsic-neural-timescales",
+    "temporal-integration",
+    "temporal-segregation",
+    "now-construction"
+  ],
+  "mapping": {
+    "source_claim_statement": "A hierarchy of intrinsic neural timescales -- shorter in unimodal regions, longer in transmodal regions -- is central to the temporal integration and segregation of external inputs, and is observable across species and across resting-state fMRI, EEG and MEG.",
+    "ree_translation": "MECH-021's 'subjective now' is operationalised in REE as ThetaBuffer.summary() over a window of E1 steps. Wolff et al. establish that the brain does not process at a single temporal grain: it maintains a graded family of windows, and which window a region occupies determines whether it integrates inputs into an extended present or segregates them into discrete events. This is the functional counterpart to Chaudhuri et al.'s structural account, and it is the closest the empirical literature comes to saying that 'now' has a settable width.",
+    "mapping_caveat": "The review's integration/segregation dichotomy is about perceptual and cognitive input processing -- how a stimulus stream is parsed -- whereas MECH-021 is about ACTION: whether commitment is computed over the window or over the instantaneous sample. Inferring the second from the first assumes the window that binds perception is also the window that gates commitment, which this review neither tests nor asserts. The review also documents state- and task-dependence of these timescales, which sits awkwardly against REE's fixed-per-arm buffer length.",
+    "source_context": "Review synthesising resting-state fMRI, EEG and MEG findings across multiple species; no aversive or avoidance paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Review-level evidence, so source_quality is capped below a strong primary study despite the venue. Mapping fidelity limited by the perception-versus-action gap: the paper is about parsing input streams, MECH-021 is about gating commitment."
+  }
+}

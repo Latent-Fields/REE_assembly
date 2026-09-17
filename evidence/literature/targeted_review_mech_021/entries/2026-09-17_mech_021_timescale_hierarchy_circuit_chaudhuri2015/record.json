@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_021",
+  "entry_id": "2026-09-17_mech_021_timescale_hierarchy_circuit_chaudhuri2015",
+  "timestamp_utc": "2026-09-17T15:43:31Z",
+  "claim_ids_tested": [
+    "MECH-021"
+  ],
+  "source": {
+    "title": "A Large-Scale Circuit Mechanism for Hierarchical Dynamical Processing in the Primate Cortex",
+    "authors": [
+      "Rishidev Chaudhuri",
+      "Kenneth Knoblauch",
+      "Marie-Alice Gariel",
+      "Henry Kennedy",
+      "Xiao-Jing Wang"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.09.008",
+    "pmid": "26439530",
+    "pmc": "PMC4630024",
+    "volume": "88",
+    "issue": "2",
+    "pages": "419-431"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "High source quality (Neuron; anatomically constrained macaque model grounded in quantitative tract-tracing). Supports the PRECONDITION of MECH-021 -- that temporal integration windows longer than one input step are a real, graded architectural feature that emerges from connectivity -- but says nothing about harm, restraint, or commitment, so mapping fidelity to the anticipatory-restraint readout is only moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hierarchy of timescales in this model emerges from graded excitatory strength and connectivity, not from an explicit buffer of fixed length; a substrate that fixes theta_buffer_size as a scalar hyperparameter may not reproduce the graded, area-specific windows this model predicts.",
+    "Integration here is demonstrated for decision-making and working memory, not for anticipatory avoidance; the paper provides no evidence that a longer window improves harm avoidance specifically."
+  ],
+  "tags": [
+    "mech-021",
+    "temporal-integration",
+    "timescale-hierarchy",
+    "primate-cortex",
+    "connectivity-model"
+  ],
+  "mapping": {
+    "source_claim_statement": "A hierarchy of timescales emerges naturally from a large-scale model of macaque neocortex built on directed- and weighted-connectivity data: sensory areas show brief transient responses to input, whereas association areas integrate inputs over time and exhibit persistent activity suitable for decision-making and working memory.",
+    "ree_translation": "MECH-021 presumes that the 'now' available to E3 is a window that integrates more than one E1 step rather than the instantaneous sensory sample. Chaudhuri et al. supply the mechanistic warrant for that presumption: integration windows of graded length are not an engineering convenience but a predicted consequence of cortical connectivity, and the long-window end of that hierarchy is precisely where decision and commitment live. This is evidence for the claim's non-degeneracy precondition (theta_buffer_size > 1 is biologically the normal case), not for its confirming readout.",
+    "mapping_caveat": "The model's integration is a continuous dynamical property of recurrent circuits with graded timescales, whereas REE's ThetaBuffer is a discrete fixed-length buffer whose summary() is read by E3. Ablating that buffer to length 1 is therefore a cruder manipulation than anything this model licenses, and a null result under the REE ablation would not straightforwardly contradict this paper. The model also carries no hazard or harm signal at all, so the 'restraint before harm' clause is entirely outside its scope.",
+    "source_context": "Computational model of macaque neocortex (29 areas) constrained by quantitative retrograde tract-tracing; no behavioural task, no aversive manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Weighted toward source_quality for an empirically-constrained modelling paper, but held down by mapping_fidelity: this evidences the existence and origin of graded integration windows, not their causal role in anticipatory harm avoidance, which is what MECH-021's falsifier actually measures."
+  }
+}

@@ -1,0 +1,23 @@
+# Friston et al. (2017) -- Deep temporal models and active inference
+
+## What the paper did
+
+This is the reference statement of temporal depth within active inference. Friston, Rosch, Parr, Price and Bowman formalise generative models in which hierarchical levels evolve at nested timescales, with higher levels supplying the context that constrains state transitions at lower ones -- so that evidence accumulates over multiple timeframes simultaneously and inference ranges over extended sequences rather than instants. Their central structural point is that temporal depth is not a quantitative extension of a shallow model but a qualitative one: it *affords* a capability shallow models simply lack, namely planning. A temporally deep agent can predict the consequences of action sequences, score those policies by expected free energy, and select the one expected to deliver preferred outcomes, rather than merely exploiting whatever affordances the present offers. Prospection, counterfactual imagination, and retrospective re-evaluation all fall out of the same construction.
+
+## What it says about MECH-021
+
+Of the five papers in this pull this is the one whose content most nearly *is* MECH-021, restated in another vocabulary. "The subjective now is a control surface across temporal horizons" and "temporally deep generative models afford policy selection over predicted futures" are close to the same proposition. And the correspondence to REE's substrate is unusually clean rather than analogical: E1 is the deep slow predictor with a horizon of 20, E2 does fast rollouts through `world_forward`, E3 scores those rollouts including a harm term. That is a temporally deep generative model with policy selection over expected outcomes, in this paper's precise sense. The anticipatory-restraint fraction that MECH-021 proposes as its readout is, translated into this framework, a direct measurement of whether E3's scoring is actually running over predicted futures or is collapsing onto reaction to realised prediction error.
+
+That gives me high mapping fidelity -- 0.88, the highest here. It also, I think, tells us something about how to *read* a result: if REE's anticipatory fraction turns out to be flat across window and horizon, the interesting question is not whether active inference is wrong but whether REE's E3 is doing the thing its architecture nominally affords.
+
+## Limitations -- and why I discounted this heavily
+
+Here is the discipline I want to hold. High mapping fidelity is not high evidential weight, and conflating the two is the standing failure mode when a theory paper aligns neatly with an in-house claim.
+
+This paper is normative and formal. It establishes what an agent with a temporally deep model *should* do given the free-energy objective. It does not measure any biological or artificial system exhibiting anticipatory harm restraint, and it contains no aversive paradigm at all. MECH-021's falsifier is an empirical question about one trained substrate at two window settings, and this framework cannot answer it in either direction. A null result in REE would be entirely consistent with the framework -- it would indict the implementation, not the theory. That is the signature of evidence that cannot discriminate the hypotheses, and it is why I put source quality at 0.72 rather than letting the paper's stature carry it.
+
+There is a second, subtler asymmetry that I think matters for governance. MECH-021 allows a falsifying branch in which the *integrating window lowers* anticipatory restraint because it smears the hazard signal. An optimality framework is structurally incapable of predicting that outcome: agents in this formalism minimise expected free energy, so deeper models do not degrade. So this paper should not be counted as evidence against the smearing branch -- it is silent on it by construction, not by finding. Recording that explicitly, because a naive reading of "supports" would quietly treat the smearing possibility as disfavoured when nothing here disfavours it.
+
+## Confidence reasoning
+
+0.62, and the components matter more than the aggregate. Mapping fidelity 0.88; source quality 0.72; transfer risk 0.45 -- raised above the neuroscience entries specifically because normative frameworks systematically under-predict implementation failure, and REE is an implementation. The aggregate sits below what the mapping alone would suggest, deliberately. This paper tells us MECH-021 is a coherent and well-posed claim in a mature formal tradition. It does not tell us the claim is true of REE's substrate, which is the only thing the falsifier is asking.

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_021",
+  "entry_id": "2026-09-17_mech_021_deep_temporal_models_friston2017",
+  "timestamp_utc": "2026-09-17T15:43:31Z",
+  "claim_ids_tested": [
+    "MECH-021"
+  ],
+  "source": {
+    "title": "Deep temporal models and active inference",
+    "authors": [
+      "Karl J. Friston",
+      "Richard Rosch",
+      "Thomas Parr",
+      "Cathy Price",
+      "Howard Bowman"
+    ],
+    "year": 2017,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2017.04.009",
+    "pmid": "28416414",
+    "pmc": "PMC5461873",
+    "volume": "77",
+    "pages": "388-402"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The highest mapping fidelity in this pull -- 'temporal depth affords planning and policy selection' is close to a restatement of MECH-021's core assertion -- but it is theory, not measurement. A formal framework cannot discriminate MECH-021's CONFIRMING from its FALSIFYING branch, both of which are empirical outcomes in a trained substrate. Confidence reflects strong conceptual alignment discounted hard for absence of empirical content.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The framework asserts that temporal depth AFFORDS planning; it does not establish that any particular implementation with a deep temporal model will actually exhibit anticipatory behaviour, so a null REE result would be consistent with the framework and would indict the implementation rather than the theory.",
+    "Because the account is normative (agents minimise expected free energy), it cannot supply a failure mode in which a deeper temporal model produces WORSE anticipatory restraint -- which is one of the two branches MECH-021's falsifier explicitly allows for."
+  ],
+  "tags": [
+    "mech-021",
+    "active-inference",
+    "temporal-depth",
+    "policy-selection",
+    "prospection",
+    "theory"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hierarchical generative models with temporal depth -- nested levels evolving at different timescales, with higher levels constraining the state transitions of lower ones -- afford capabilities unavailable to shallow models, principally planning: predicting the consequences of action sequences and selecting policies expected to deliver preferred outcomes rather than merely exploiting present affordances.",
+    "ree_translation": "This is the formal statement of what MECH-021 asserts as a mechanism claim. REE's E1 (deep, prediction_horizon 20), E2 (fast rollouts over world_forward) and E3 (selection over rolled-out harm) instantiate a temporally deep generative model, and MECH-021's 'control surface across horizons' is the active-inference claim that policy selection is computed over predicted futures rather than over the current observation. The anticipatory-restraint fraction is, in this vocabulary, a measurement of whether E3 is genuinely scoring policies by their expected future harm or is reacting to realised prediction error.",
+    "mapping_caveat": "This is a normative and formal framework, not an empirical result: it says what a temporally deep agent SHOULD do, not what any given trained substrate DOES. REE's falsifier is an empirical question about one implementation, and this paper cannot answer it in either direction. Worse for balance, the framework is structurally incapable of predicting the 'window smears the hazard signal' outcome that MECH-021 lists as a falsifying branch, so it should not be read as evidence against that branch.",
+    "source_context": "Theoretical/computational review with simulations of hierarchical inference (including reading/narrative tasks); no aversive or avoidance paradigm and no biological measurement of harm restraint."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.45,
+    "notes": "Mapping fidelity is the highest in this pull because REE's architecture is explicitly of this family. Source quality is deliberately NOT set by citation count: as theory it carries no empirical weight against the falsifier, and transfer risk is raised because normative frameworks systematically under-predict implementation failure."
+  }
+}
