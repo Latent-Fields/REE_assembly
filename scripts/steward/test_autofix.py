@@ -429,6 +429,44 @@ def test_d006_live_registry_suppresses_every_gflag_0328_group():
             "GFLAG-0307/0308 is GFLAG-0328's named negative control")
 
 
+def test_d006_gflag_0307_is_dispositioned_at_the_SUPPRESSION_layer_only():
+    """GFLAG-0307/0308: suppressed as a FINDING, still live as a PREDICATE control.
+
+    User decision 2026-09-17: dispose of this one pair via state/suppressions.yaml
+    rather than widening D-006's supersession-chain predicate to reach it, because
+    the wider predicates that would reach it also swallow the whole class of
+    trailing-citation groups (the two REJECTED-predicate tests above).
+
+    The two halves must not be confused, and this test is what keeps them apart:
+      * the DETECTOR still emits it with escalate=True -- pinned by
+        test_d006_trailing_citation_still_escalates, which calls run() directly;
+      * the RUNNER marks it suppressed, so it never spends escalation budget.
+    A future session that "simplifies" the suppression into the detector, or
+    drops the entry believing the detector already handles it, breaks one half.
+    """
+    repo = Path(__file__).resolve().parents[2]
+    state = repo / "scripts" / "steward" / "state"
+    if not (repo / D006.REGISTRY_REL).exists() or not (state / "suppressions.yaml").exists():
+        pytest.skip("live registry or suppressions file not present")
+
+    findings = D006.run(load_context(repo))[0]
+    live = {f["subject"]: f for f in findings}
+    if "GFLAG-0307" not in live:
+        pytest.skip("GFLAG-0307 group no longer present in the registry")
+
+    # half 1 -- the detector has NOT been widened to cover it
+    assert live["GFLAG-0307"]["escalate"] is True, (
+        "the predicate must still escalate this group; it is the negative "
+        "control GFLAG-0328 named")
+
+    # half 2 -- the shipped suppression dispositions it at the report layer
+    sups = runner.load_suppressions(state / "suppressions.yaml")
+    match = runner.match_suppression("D-006:GFLAG-0307", sups)
+    assert match is not None, (
+        "state/suppressions.yaml must carry the D-006:GFLAG-0307 disposition")
+    assert (match.get("reason") or "").strip(), "a suppression without a reason buries a defect"
+
+
 # ===========================================================================
 # D-008 -- plan frontmatter date drift
 # ===========================================================================

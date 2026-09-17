@@ -292,6 +292,30 @@ because each also suppresses GFLAG-0307/0308: *"every member is dispositioned"*
 controls in `test_autofix.py`. Do not re-propose either without first retiring
 0307/0308 as the control.
 
+**GFLAG-0307/0308 is now dispositioned at the SUPPRESSION layer, and that is NOT
+the same as retiring it as the control** (user decision, 2026-09-17). Its own
+group had nothing left owed either -- GFLAG-0314's adjudication of that exact
+pair reads *"nothing was owed on the pair AS A PAIR"*, and 0308's own action has
+since been applied -- so it was escalating for no purpose. It is therefore
+recorded in `state/suppressions.yaml` as `D-006:GFLAG-0307`, which stops it
+spending escalation budget while leaving it in the report marked `suppressed`
+with its reason attached.
+
+The decision was *disposition, not predicate*, for an asymmetry worth keeping in
+view: suppressing this one pair silences exactly one group that was individually
+adjudicated, whereas widening the predicate to reach it would silence the whole
+**trailing-citation** class -- every future flag that cites a dispositioned
+predecessor in passing while making a different finding -- unseen and without
+adjudication. One is a recorded call; the other is a standing blind spot.
+
+So the two layers now say different things on purpose, and
+`test_d006_gflag_0307_is_dispositioned_at_the_SUPPRESSION_layer_only` pins both
+halves: `D006.run()` still emits it with `escalate: True` (the predicate has NOT
+been widened), and the runner marks it suppressed. **Do not "simplify" this by
+folding the suppression into the detector, and do not drop the suppression entry
+on the belief that the detector already handles it** -- each move breaks one half
+and the other half looks fine.
+
 **Three of the six groups GFLAG-0314 listed are deliberately still reported**,
 because measurement says they are not chains at all: GFLAG-0151/0152 and
 GFLAG-0216/0217 are distinct thought-digestion items that never name each
@@ -302,6 +326,25 @@ shape" reading was a guess about six groups it had not opened.
 The suppression de-prioritises, it never hides: the group stays in the report
 with `escalate: false` and a detail naming the chain, per
 `state/suppressions.yaml`'s own doctrine. It never touches the T0 lane.
+
+**GFLAG-0307/0308 is now dispositioned -- at the SUPPRESSION layer, not the
+predicate** (user decision, 2026-09-17). Having established that the pair has
+nothing owed on it either -- GFLAG-0314's own adjudication says so, and 0308 is
+resolved -- the question was whether to widen the predicate to reach it. The
+answer was no: widen it and you silence the whole class of trailing-citation
+groups unseen, where a `state/suppressions.yaml` entry disposes of this one pair
+and stays auditable. That entry now exists (`D-006:GFLAG-0307`), alongside the
+two governance already recorded for `GFLAG-0106` and `GFLAG-0126`.
+
+**This does NOT retire 0307/0308 as the predicate's negative control, and the
+distinction is the whole point of splitting the two layers.** The detector still
+emits it with `escalate: true` -- `test_d006_trailing_citation_still_escalates`
+calls `run()` directly, below the suppression layer, and must keep passing --
+while the runner marks it `suppressed` so it never spends escalation budget.
+`test_d006_gflag_0307_is_dispositioned_at_the_SUPPRESSION_layer_only` asserts
+both halves together, so a later session cannot "simplify" the suppression into
+the detector, nor drop the entry believing the detector already covers it,
+without a red. The two rejected wider predicates above stay rejected.
 
 ### D-008 is a one-line, monotonic, precedented edit
 

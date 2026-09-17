@@ -509,3 +509,42 @@ suppressions:
     added: "2026-09-04"
     added_by: "governance-20260903T2013"
     review_after: "2026-12-01"
+
+  - finding_id: "D-006:GFLAG-0307"
+    reason: >-
+      GFLAG-0307 and GFLAG-0308 share claim (MECH-017), flag_type (stale_note)
+      and date (2026-09-17), which is what D-006 keys on, and they are an
+      explicit supersession chain: 0307 is status superseded with a
+      resolution_note naming 0308, and 0308's summary ends "Supersedes
+      GFLAG-0307, whose summary predates the tick's status write". GFLAG-0314's
+      own adjudication of this exact pair reads "Nothing was owed on the pair AS
+      A PAIR; what WAS owed was GFLAG-0308's own action, which this cycle
+      applied" -- and 0308 is now resolved. So there is nothing left to
+      adjudicate here, by the same test GFLAG-0328 applied to the three
+      2026-09-17 PM chains.
+      WHY A DISPOSITION AND NOT A WIDER DETECTOR PREDICATE (user decision,
+      2026-09-17). This pair is the one case GFLAG-0328 named as the negative
+      control that must keep escalating, and the D-006 narrowing shipped in
+      REE_assembly d8453a12ac4 deliberately preserves it: its supersession-chain
+      clause is POSITIONAL, because on the live registry nothing else separates
+      0307/0308 from the three PM chains -- true chains declare themselves in
+      the opening clause (offsets 11-21), where GFLAG-0308 makes a DIFFERENT
+      finding (EXP-0753's provenance fields unset) and cites its predecessor in
+      passing at offset 981 of 1090. Two wider predicates that would have caught
+      this pair were tried and rejected because each also swallows it
+      structurally ("every member is dispositioned"; "read the cross-reference
+      from resolution_note"); both are pinned as negative-control tests in
+      scripts/steward/test_autofix.py. Suppressing this ONE pair by recorded
+      disposition costs nothing the predicate protects, where widening the
+      predicate would silence the whole class of trailing-citation groups
+      unseen. That asymmetry is the decision.
+      SCOPE. This retires 0307/0308 as an ESCALATING FINDING only. It does NOT
+      retire it as the detector's negative control: test_d006_trailing_citation
+      _still_escalates asserts on D-006.run() directly, below this suppression
+      layer, and must keep passing. Recorded disposition, not a mute -- the
+      finding stays in the report marked suppressed. If a THIRD stale_note flag
+      lands on MECH-017 the canonical subject may change and this entry stop
+      matching; re-read rather than assuming it still covers the group.
+    added: "2026-09-17"
+    added_by: "steward-d006-gflag0307-suppression-20260917"
+    review_after: "2026-12-17"
