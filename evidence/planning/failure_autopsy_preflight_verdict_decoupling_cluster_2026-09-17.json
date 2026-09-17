@@ -1,0 +1,632 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-17T10:07:04Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "reviewed_before_adjudication": true,
+  "reviewed_before_adjudication_note": "ALL FIVE targets were already marked reviewed in review_tracker.json (present in BOTH reviewed_run_ids and discussed_experiment_dirs) before any confirmed autopsy existed. They were invisible to pending_review.md, which lists only results NOT yet marked reviewed. Governance had moved on. This artifact adjudicates them retrospectively; the review markings have deliberately NOT been reverted.",
+  "discovery_provenance": "Surfaced by an audit on 2026-09-17 (session failure-autopsy-batch-20260917) which found 146 diagnostic/baseline runs on disk with no autopsy target. Most predate the 2026-08-07 rule that ALL diagnostic-purpose results need a confirmed autopsy and are a grandfathered backlog; twelve postdate it. Six of those twelve are ERROR runs belonging to /diagnose-errors. These five (plus V3-EXQ-1036, adjudicated separately in failure_autopsy_V3-EXQ-1036_2026-09-17.json) are the other six.",
+  "targets": [
+    {
+      "run_id": "v3_exq_849_q081_reach_preflight_scan_20260801T005934Z_v3",
+      "queue_id": "V3-EXQ-849",
+      "claim_ids": [
+        "Q-081"
+      ],
+      "self_route_label": "q081_reach_preflight_no_lever_found",
+      "failed_criterion": "absolute (C1_any_lever_shows_precursor_reach, measured 0.0 vs threshold 1.0, load_bearing true) -- yet outcome is PASS",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- the probe's checked signal set has no wired path from the lever, so Q-081 could not express itself",
+        "biological_reference": "n/a -- instrument pre-flight, no mechanism under test",
+        "prerequisites": "missing -- substrate predates the seed-determinism fix (commit 02c155c is NOT an ancestor of this run's substrate_commit 1bca42e7)",
+        "implementation": "stub -- the checked signals are populated but unwired from the manipulation",
+        "environment": "unknown -- not exercised as a variable",
+        "measurement": "misleading -- a readiness control that cannot fail is reported as evidence of readiness",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "instrument_defect": {
+        "unwired_signal_set": "The repository's own contract test states it: test_q081_pair_reach_check.py:436-443 -- 'It does NOT mean the probe's checked signal set has a live wired path FROM boundary events at all under q081_profile_kwargs() -- per point 2 above, it structurally does not, for any of the 8 populated signals.' The MAXIMAL lesion (suppress) also returns has_pair_specific_reach=False.",
+        "audit_timing": "That contract test was authored in 02c155c (2026-08-01 19:51) -- AFTER 849 ran (00:59Z) and BEFORE 865 ran (22:13Z).",
+        "seed_nondeterminism": "The INTACT arm is mode='off' in every cell, so per-seed boundary counts should match across levers. In 849 they never do (seed 0: 27/544 vs 23/405; seed 3: 88/1034 vs 1/62; seed 4: 0/28 vs 116/1200). In 865, on the post-fix substrate, they are identical at all 20 cells. 849's `seed` label does not identify the agent initialisation -- its cells are process-history-dependent and not seed-controlled.",
+        "unconditional_readiness_control": "has_behavioural_reach=true in all 10 cells is guaranteed by construction: the probe hardcodes use_anchor_sets=True / use_per_region_vs=True two statements before calling assert_behavioural_reach, which reads only those flags. The parent module's own docstring calls this 'a BLANKET FLAG CHECK ... necessary but NOT sufficient' -- it is the defect the probe was built to replace.",
+        "manipulation_arm_unverified": "The manipulated arm's preservation report is computed and DISCARDED (_manip_preservation assigned, never read: q081_pair_reach_check.py:538). dropped_ticks == {'intact':0,'manipulated':0} in all cells -- no recorded evidence the manipulated arm differed from intact at all."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- instrument defect. Not chargeable to REE and no claim-layer verdict available."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect -- the probe's checked signal set is structurally unwired from the lever, per the repo's own contract test, and the run additionally executed on a pre-seed-determinism-fix substrate. No epistemic suppression is asserted against Q-081; 'standard' is the enum-compliant spelling of 'no category applies'. Owes NO substrate build, so this target does NOT count toward the Q-081 re-derive brake (R3 clause 2).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-849 emitted outcome PASS while its sole load-bearing criterion C1_any_lever_shows_precursor_reach recorded passed=false (measured 0.0 against threshold 1.0). The 'no lever found' reading is not interpretable as evidence about Q-081: the repository's own contract test (test_q081_pair_reach_check.py:436-443) states the probe's checked signal set has no live wired path from the lever for any of its 8 populated signals, and the maximal lesion also returns false. The run additionally executed on a substrate predating the seed-determinism fix, so its per-seed cells are not seed-controlled (INTACT arm is mode='off' yet boundary counts differ across levers in every seed). Run was cleared as reviewed before this adjudication existed.",
+      "per_claim_recommendation": {
+        "Q-081": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Q-081 currently carries epistemic_category 'standard' already and this run adds no claim-layer movement; record the adjudication by citation -> stamp this cluster artifact",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "Q081-REACH-CHECK-PAIR-SPECIFIC",
+        "note": "CORRECTED from action 'none' after the Step 7b C2 check fired. That entry (status 'implemented', unblocks Q-081/INV-091) already covers this exact gap, and its implementation_hint instructs verbatim: 'Do NOT flip another blanket flag: build a cheap low-episode pre-flight reach probe that asserts at least one arm moves.' V3-EXQ-849 and V3-EXQ-865 ARE that pre-flight reach probe -- and they omit precisely the required assertion (the manipulated arm's preservation report is computed and discarded; dropped_ticks is zero in every cell), while hardcoding the very blanket flag the entry warns against relying on (use_per_region_vs=True, which the readiness control then reads). This is a SECOND DROPPED HANDOFF in this batch, structurally identical to the 983a->1036 one.",
+        "status_review_recommended": "The entry's status is 'implemented'. On this evidence the probe exists but does not perform the assertion the entry specifies, so /governance should consider whether 'implemented' is still the right status.",
+        "severity_recommendation": "corrupting -- the probe emits readiness certifications (has_behavioural_reach=true, and a PASS verdict) that look valid while being constructed from flags the probe itself set. Recommended, not asserted; severity is currently null on the entry and the call is governance's.",
+        "substrate_paths_recommendation": [
+          "experiments/q081_pair_reach_check.py",
+          "experiments/q081_pair_reach_check_stream.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_849_q081_reach_preflight_scan_20260801T005934Z_v3",
+          "experiment_type": "v3_exq_849_q081_reach_preflight_scan",
+          "metric": "probe emits has_behavioural_reach=true in 10/10 cells from flags it hardcoded two statements earlier; manipulated-arm preservation report computed and discarded (q081_pair_reach_check.py:538); dropped_ticks zero in all cells; checked signal set structurally unwired from the lever for all 8 populated signals per test_q081_pair_reach_check.py:436-443",
+          "target": "a pre-flight reach probe that ASSERTS at least one arm moves, per this entry's own implementation_hint",
+          "resolved": "open"
+        }
+      },
+      "learning_extracted": [
+        "A readiness control that reads only flags the caller hardcoded two statements earlier certifies nothing. The parent module's own docstring already named this as the defect the probe was built to replace -- and the probe reintroduced it.",
+        "A run whose substrate predates a determinism fix cannot be seed-controlled; the seed label silently stops identifying the initialisation."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3",
+      "queue_id": "V3-EXQ-865",
+      "claim_ids": [
+        "Q-081"
+      ],
+      "self_route_label": "q081_zgoal_and_zharm_a_no_lever_found",
+      "failed_criterion": "absolute (C1_any_target_shows_precursor_reach, measured 0.0 vs threshold 1.0, load_bearing true) -- yet outcome is PASS",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- the mechanism under test does not exist in this run's own configuration",
+        "biological_reference": "n/a -- instrument pre-flight",
+        "prerequisites": "missing -- agent.vs_rollout_gate is None under the exact config the probe builds",
+        "implementation": "absent -- the two gate_stream call sites the design names never execute",
+        "environment": "unknown",
+        "measurement": "misleading -- the gated half of every snapshot is a verbatim copy of the raw half",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "instrument_defect": {
+        "mechanism_absent_from_own_config": "agent.vs_rollout_gate is None under the exact config the probe builds -- use_vs_rollout_gating is never set, and ree_core/agent.py:2739-2745 gates construction on it. Consequently the two gate_stream call sites the queue note and module docstring name as THE reach paths (ree_core/agent.py:5886-5887 and :10124-10125) never execute; agent.hippocampal.per_stream_vs stays {} for the whole rollout (config.py:2836 use_per_stream_vs defaults False, in-source comment: 'when off, update_per_stream_vs() is a no-op and per_stream_vs stays empty'); and q081_pair_reach_check_stream.py:224-233 takes its `else: gated_value = raw_value` branch.",
+        "measured_consequence": "The *_gated_* half of every snapshot is a verbatim copy of the *_raw_* half -- measured 60/60 snapshots.",
+        "queue_note_asserts_the_opposite": "The queue note states 'both gate_stream call sites ... re-read directly from current ree_core source this session ... already-config-reachable paths.' That assertion is false for this run's configuration.",
+        "ran_after_the_audit_landed": "The contract test documenting the unwired signal set landed at 02c155c (2026-08-01 19:51); 865 ran at 22:13Z the same day.",
+        "unconditional_readiness_control": "Same hardcoded-flag readiness control as 849: has_behavioural_reach=true in all 20 cells, guaranteed by construction.",
+        "manipulation_arm_unverified": "Same discarded preservation report (q081_pair_reach_check_stream.py:434); dropped_ticks zero in all cells."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES -- the strongest instance in this cluster. The experiment could not have tested what it was built to test."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_invalid -- the gating mechanism under test was absent from the run's own configuration, so gated == raw at every tick and the probe's discriminating comparison was between a value and itself. No epistemic suppression asserted against Q-081. Owes NO substrate build (the flag exists; the driver did not set it), so this target does NOT count toward the Q-081 re-derive brake (R3 clause 2).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-865 emitted outcome PASS while its sole load-bearing criterion C1_any_target_shows_precursor_reach recorded passed=false (measured 0.0 against threshold 1.0). The 'no lever found' reading carries no information about Q-081: agent.vs_rollout_gate is None under the config this probe builds (use_vs_rollout_gating is never set; ree_core/agent.py:2739-2745 gates construction on it), so the two gate_stream call sites the design names never execute and the *_gated_* half of every snapshot is a verbatim copy of the *_raw_* half in 60/60 snapshots. The probe compared a value with itself. Its queue note asserts these paths were 'already-config-reachable', which is false for this run. Run was cleared as reviewed before this adjudication existed.",
+      "per_claim_recommendation": {
+        "Q-081": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "no claim-layer movement; record the adjudication by citation -> stamp this cluster artifact",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "Q081-REACH-CHECK-PAIR-SPECIFIC",
+        "note": "CORRECTED from action 'none' after the Step 7b C2 check fired. That entry (status 'implemented', unblocks Q-081/INV-091) already covers this exact gap, and its implementation_hint instructs verbatim: 'Do NOT flip another blanket flag: build a cheap low-episode pre-flight reach probe that asserts at least one arm moves.' V3-EXQ-849 and V3-EXQ-865 ARE that pre-flight reach probe -- and they omit precisely the required assertion (the manipulated arm's preservation report is computed and discarded; dropped_ticks is zero in every cell), while hardcoding the very blanket flag the entry warns against relying on (use_per_region_vs=True, which the readiness control then reads). This is a SECOND DROPPED HANDOFF in this batch, structurally identical to the 983a->1036 one.",
+        "status_review_recommended": "The entry's status is 'implemented'. On this evidence the probe exists but does not perform the assertion the entry specifies, so /governance should consider whether 'implemented' is still the right status.",
+        "severity_recommendation": "corrupting -- the probe emits readiness certifications (has_behavioural_reach=true, and a PASS verdict) that look valid while being constructed from flags the probe itself set. Recommended, not asserted; severity is currently null on the entry and the call is governance's.",
+        "substrate_paths_recommendation": [
+          "experiments/q081_pair_reach_check.py",
+          "experiments/q081_pair_reach_check_stream.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3",
+          "experiment_type": "v3_exq_865_q081_zgoal_reach_preflight_scan",
+          "metric": "agent.vs_rollout_gate is None under the probe's own config (use_vs_rollout_gating never set; ree_core/agent.py:2739-2745 gates construction on it), so the gated half of every snapshot is a verbatim copy of the raw half in 60/60 snapshots and the two named gate_stream call sites never execute",
+          "target": "a pre-flight reach probe that asserts the gating mechanism under test is LIVE before reporting a negative",
+          "resolved": "open"
+        }
+      },
+      "learning_extracted": [
+        "A probe must ASSERT that the mechanism it is probing is live before it reports a negative. A null from a probe whose gate object is None is a statement about the config, not the substrate.",
+        "Where a driver compares a gated against a raw value, equality of the two across 100% of snapshots is a positive control that the gate is inert -- it costs nothing to check and would have caught this at run time."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_852_sd085_f_weight_substrate_readiness_20260801T124251Z_v3",
+      "queue_id": "V3-EXQ-852",
+      "claim_ids": [],
+      "bears_on": [
+        "e3_f_weight_substrate_readiness"
+      ],
+      "self_route_label": "sd085_f_weight_substrate_ready",
+      "failed_criterion": "none (PASS) -- but no criterion carries a `measured` or `threshold` field, and C2 is an arithmetic tautology",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids empty",
+        "biological_reference": "n/a -- readiness check",
+        "prerequisites": "present",
+        "implementation": "partial -- a real instrumentation defect in substrate code (see substrate defect below)",
+        "environment": "unknown",
+        "measurement": "misleading -- a tautological criterion reported as a readiness certification",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "instrument_defect": {
+        "tautological_criterion": "C2_default_arm_bit_identical_to_raw_f cannot fail for any input. The driver sets agent.e3.config.f_weight = 1.0 on ARM_DEFAULT (driver:127), which is already the substrate default (config.py:991); C2 then checks abs(tick0_f_weighted - tick0_f_raw) <= 0.0 + 1e-9, where both values come from the SAME dict, SAME score_trajectory call, SAME tensor -- f and f_weight * f (e3_selector.py:1505, :1604, :1609). 1.0 * f is bit-identical in IEEE-754, so the difference is exactly 0. The only branch that could break it (use_e3_channel_commensurability, e3_selector.py:1510-1525) defaults False (config.py:1073) and is never enabled by this driver.",
+        "self_declared_unfailable_precondition": "The lone precondition candidate_pool_non_trivial (measured 32.0 vs threshold 1.0) is declared unfailable BY THE DRIVER ITSELF in ANCHOR_REACHABILITY_EXEMPT (driver:74-81): 'reachable by construction'. Two of the three criteria_non_degenerate flags are literally that same boolean; the third is the literal True.",
+        "remaining_criteria": "C3 is a NaN smoke check (0/180 violations). C1 is not a strict tautology but only tests that multiplying a nonzero term by 0.5 changes a sum."
+      },
+      "substrate_defect_found": {
+        "description": "score_trajectory is called PER-CANDIDATE in a loop (e3_selector.py:3062-3092) and _last_traj_components is overwritten on each iteration, so the recorded tick0_f_raw is the LAST candidate's value, not the 32-candidate mean the field name and downstream reads imply.",
+        "corroborating_arithmetic": "This is why seed 22's recorded diff 5.460163116455078 does not equal 0.5 * 11.305198669433594 = 5.652599334716797.",
+        "severity_rationale": "USER-CONFIRMED `corrupting` at the Step 8 gate: the field produces a number that looks like a population statistic but is one arbitrary sample, so any downstream read of it is silently wrong while appearing valid. Classified by effect on evidence quality, not by fix difficulty."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES dominant, MECHANISM partial (a real substrate instrumentation defect). Not chargeable to REE."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect plus a genuine substrate instrumentation defect. The readiness PASS certifies nothing: its discriminating criterion is an IEEE-754 identity. Claim-free, so no claim-layer disposition is owed.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-852 reported all three load-bearing criteria passed, none of which carries a `measured` or `threshold` value, and its discriminating criterion C2_default_arm_bit_identical_to_raw_f is an arithmetic tautology (1.0 * f versus f at tolerance 1e-9, from the same tensor). Its lone precondition is declared unfailable by the driver's own ANCHOR_REACHABILITY_EXEMPT. The run therefore provides no readiness certification for SD-085. It did, however, expose a real substrate instrumentation defect: e3_selector.py overwrites _last_traj_components per candidate in a scoring loop, so tick0_f_raw records the last candidate's value rather than a pool statistic. Run was cleared as reviewed before this adjudication existed.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "e3-traj-components-per-candidate-overwrite",
+        "title": "e3_selector._last_traj_components is overwritten per candidate, so recorded trajectory components are one arbitrary sample rather than a pool statistic",
+        "implementation_hint": "score_trajectory is invoked per-candidate in the selection loop (e3_selector.py:3062-3092) and assigns _last_traj_components each time. Any consumer reading it after the loop gets the LAST candidate's components. Either accumulate across the pool (and name the field for what it is) or record it per candidate so consumers cannot mistake it for an aggregate.",
+        "unblocks_claims": [
+          "SD-085"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e3_selector.py::score_trajectory"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_852_sd085_f_weight_substrate_readiness_20260801T124251Z_v3",
+          "experiment_type": "v3_exq_852_sd085_f_weight_substrate_readiness",
+          "metric": "recorded tick0_f_raw is the last candidate's value, not the 32-candidate pool statistic its name implies (seed 22: recorded diff 5.460163116455078 vs 0.5 * 11.305198669433594 = 5.652599334716797)",
+          "target": "a recorded trajectory-component readout that is either a true pool aggregate or explicitly per-candidate",
+          "resolved": "open"
+        }
+      },
+      "learning_extracted": [
+        "A criterion asserting bit-identity between x and 1.0*x computed from the same tensor is an IEEE-754 identity, not a test. A readiness criterion must be shown capable of failing before it is counted as certification.",
+        "When a driver's own source declares a precondition 'reachable by construction' in an exemption list, that precondition must not also be reported as a passed non-degeneracy flag -- here the same boolean fills two of three such flags and a literal True fills the third."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3",
+      "queue_id": "V3-EXQ-864a",
+      "claim_ids": [
+        "SD-076"
+      ],
+      "self_route_label": "no_crossover_in_swept_range",
+      "failed_criterion": "the criterion naming the experiment (C1_crossover_bracketed_in_swept_range) is load_bearing FALSE and passed FALSE; the sole load-bearing criterion is a restatement of the precondition gate",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested on the trajectory question; correctly answered (negative) on the narrower sweep question",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "complete -- the data collection worked; the ANALYSIS is what is blind",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- three summary statistics, all blind to an effect present in 12/12 cells of the run's own banked arrays",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "instrument_defect": {
+        "verdict_decoupled": "Driver:813-818 -- BOTH branches of the crossover test set outcome = 'PASS'. C1 cannot move the verdict.",
+        "load_bearing_criterion_is_circular": "The single load-bearing criterion C0_trajectory_data_usable is literally bool(gate['all_green']) (driver:775) -- the same expression as readiness_ok (driver:809). It restates the precondition gate rather than testing anything.",
+        "unconditional_readiness_control": "real_exposure_achieved is 1.0 by construction -- the driver's own comment (driver:344-345) says 'trivially 1.0 by construction (the inner loop never breaks)'. global_tick increments unconditionally (driver:612). Measured 1.0 in 12/12 cells against a 0.999 floor.",
+        "crossover_field_is_a_reset_artifact": "crossover_global_tick is non-null in all 12 cells but equals EXACTLY steps_per_ep in every one (200/500/1000) -- the episode-boundary reset transient. It carries no information about the scientific question."
+      },
+      "unexamined_effect_in_banked_data": {
+        "finding": "VERIFIED INDEPENDENTLY BY THIS SESSION. In 12/12 cells, exactly half the sign flips sit at episode boundaries (reset) and half MID-EPISODE. After every reset, rv falls BELOW wci_symmetric_rv_ref (diff negative) and then RECOVERS above it mid-episode, and the recovery latency SHORTENS as training proceeds -- a recalibration-speed learning curve.",
+        "per_cell_recovery_latency_ticks": {
+          "ARM_INFL_LO_seed0_spe200": [
+            75,
+            75,
+            60,
+            50,
+            50,
+            40,
+            50
+          ],
+          "ARM_INFL_LO_seed1_spe200": [
+            70,
+            60,
+            60,
+            65,
+            60,
+            45,
+            35
+          ],
+          "ARM_INFL_HI_seed0_spe200": [
+            65,
+            70,
+            50,
+            45,
+            45,
+            40,
+            45
+          ],
+          "ARM_INFL_HI_seed1_spe200": [
+            60,
+            55,
+            55,
+            60,
+            50,
+            40,
+            30
+          ],
+          "ARM_INFL_LO_seed0_spe500": [
+            72,
+            60,
+            72,
+            60,
+            72,
+            48,
+            12
+          ],
+          "ARM_INFL_LO_seed1_spe500": [
+            72,
+            72,
+            60,
+            60,
+            48,
+            36,
+            24
+          ],
+          "ARM_INFL_HI_seed0_spe500": [
+            60,
+            48,
+            72,
+            60,
+            60,
+            36,
+            12
+          ],
+          "ARM_INFL_HI_seed1_spe500": [
+            60,
+            60,
+            60,
+            48,
+            48,
+            36,
+            12
+          ],
+          "ARM_INFL_LO_seed0_spe1000": [
+            75,
+            75,
+            75,
+            75,
+            50
+          ],
+          "ARM_INFL_LO_seed1_spe1000": [
+            75,
+            75,
+            50,
+            50,
+            25,
+            50,
+            50
+          ],
+          "ARM_INFL_HI_seed0_spe1000": [
+            75,
+            75,
+            50,
+            50,
+            50
+          ],
+          "ARM_INFL_HI_seed1_spe1000": [
+            75,
+            50,
+            25,
+            50,
+            25,
+            25,
+            25
+          ]
+        },
+        "why_the_statistics_miss_it": "sign_flip_seen compares only the FIRST and LAST sample (driver:653-654) and both are positive, so it is false in 12/12 -- a correct statement about what it measures. C1 reads only six seed-mean diff_final scalars, asking whether the sign changes between adjacent sweep points (driver:744-768): no variance, no statistical test, and it NEVER TOUCHES the trajectory arrays the experiment was built to collect.",
+        "stated_precisely": "The run does NOT report a false result. Its recorded statistics are correct about what they measure. The defect is that all three are blind to a systematic effect present in 12/12 cells of its OWN banked data.",
+        "remedy_is_cheap": "This is NOT a recording gap (the readout WAS recorded) and NOT a re-run case. The trajectories are already in the run pack. The answer is recoverable by RE-ANALYSIS at zero compute cost."
+      },
+      "recurrence": {
+        "predecessor": "V3-EXQ-864, autopsied measurement_test_design_defect / evidence_direction non_contributory / substrate action none / routing queue-experiment, user-gated 2026-08-01",
+        "observation": "864's sweep was bit-identical across all three swept values (-0.008332025904674908 at 200, 500 and 1000) and it ALSO reported outcome PASS under the identical criteria architecture with the identical interpretation.label. 864a reproduces both. The predecessor autopsy's lesson did not reach the successor driver.",
+        "note": "864's diff_final values are all negative; 864a's are all positive -- the sign flipped between predecessor and successor without either run's criteria noticing."
+      },
+      "other_flags": {
+        "substrate_stable_across_run": "false -- process-snapshot drift on ree-cloud-2",
+        "cost_estimate_error": "estimated_minutes 45 vs 290.7 min actual (~6.5x)",
+        "timestamp_skew": "run_id stamp 20260802T095052Z vs timestamp_utc 20260802T144134Z (= the elapsed 17441.955641347 s)",
+        "bit_identical_across_arms": "wci_symmetric_rv_ref_after_training (half the primary DV) is bit-identical across arms in 6/6 (steps, seed) pairs -- expected by design here, but recorded because the same signature is the decisive defect in V3-EXQ-1036."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES -- analysis-layer blindness over adequate data collection. Not chargeable to REE."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect. The verdict is structurally independent of the experiment's own question (both branches PASS; the question-bearing criterion is not load-bearing), and the analysis never reads the arrays the run collected. No epistemic suppression asserted against SD-076.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-864a emitted PASS via a load-bearing criterion (C0_trajectory_data_usable) that is literally bool(gate['all_green']), a restatement of its own precondition gate; the criterion naming the experiment (C1_crossover_bracketed_in_swept_range) is load_bearing false and passed false, and both branches of the crossover test set PASS. Its recorded no-crossover statistics are correct about what they measure but are blind to a systematic effect present in 12/12 cells of its own banked trajectories: after every episode reset rv falls below wci_symmetric_rv_ref and recovers mid-episode, with recovery latency shortening across training (e.g. 75->40 and 72->12 ticks). sign_flip_seen compares only first and last sample; crossover_global_tick equals steps_per_ep in all 12 cells (a reset artifact). The effect is recoverable from the existing run pack by re-analysis at no compute cost. Predecessor V3-EXQ-864 was already autopsied for the same test-design defect. Run was cleared as reviewed before this adjudication existed.",
+      "per_claim_recommendation": {
+        "SD-076": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "SD-076 already carries epistemic_category 'standard'; the disposition here is the adjudication record plus the owed re-analysis -> stamp this cluster artifact",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Step 7b C2 fired naming sd_waking_confidence_inflation_headroom (status 'implemented', unblocks MECH-204/SD-076). MENTIONED AND DISMISSED: that entry is an rv-FLOOR MECHANISM repair (scale-relative + softplus-saturating floor). 864a's defect is an ANALYSIS-layer blindness -- the data was collected correctly and never read. Different gap, so no amend. The dismissal is recorded rather than left silent, and one connection is worth governance's eye: the unexamined post-reset rv dip-and-recovery this artifact documents is dynamics OF the rv floor, so the owed re-analysis may produce evidence bearing on that entry's repair."
+      },
+      "learning_extracted": [
+        "An experiment that collects trajectories and then decides its verdict from endpoint scalars has not tested the trajectory. Check that at least one load-bearing criterion READS the array the run was built to collect.",
+        "A criterion defined as bool(gate['all_green']) where gate is the run's own precondition gate is a restatement, not a test -- it cannot disagree with the preconditions.",
+        "Where a predecessor was already autopsied for a test-design defect, the successor's criteria architecture should be diffed against that finding before queuing. 864a inherited 864's architecture unchanged.",
+        "A signal recorded at exactly the episode-boundary index in 100% of cells is a reset artifact; a detector that fires there is measuring the reset, not the phenomenon."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3",
+      "queue_id": null,
+      "queue_id_note": "ABSENT from the manifest. The driver defines QUEUE_ID = 'V3-EXQ-899' (line 188) but uses it only in a print and the markdown header; it never enters the result dict. The field is normally added at landing by the spool (experiment_runner.py:1064). This manifest bypassed the spool -- hand-recovered at 7141d4c9190, 'recover stranded V3-EXQ-899 run from ree-cloud-2 (batch retry, 15:31Z attempt never reached spool)'. A sibling run the same day (20260808T214833Z) landed via the spool and DOES carry queue_id.",
+      "claim_ids": [],
+      "bears_on": [
+        "arc030_mech307_g0_readiness",
+        "actor_adequacy_monostrategy"
+      ],
+      "self_route_label": "readiness_fail_curriculum_gate_blocks_retest",
+      "failed_criterion": "absolute -- and ARITHMETICALLY UNREACHABLE (see below). 'Negative control passes, discrimination fails' does NOT hold: there is one criterion and no separately-scored negative control; what passed are two kind:'readiness' preconditions.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids empty; tags NEITHER ARC-030 nor MECH-307 despite the run name",
+        "biological_reference": "n/a -- readiness gate",
+        "prerequisites": "present -- the run executed 9/9 cells over 5h13m",
+        "implementation": "partial",
+        "environment": "too sparse -- 5 resources per episode, no respawn, 30 episodes",
+        "measurement": "misleading -- the DV is anti-correlated with competence",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "criterion_unreachable": {
+        "finding": "VERIFIED INDEPENDENTLY BY THIS SESSION. Resources spawn 5 per episode, never respawn, 30 episodes => a hard ceiling of 150 resource events per cell. resource_visit_rate = n_resource_events / total_steps, so the ceiling rate is 150/total_steps.",
+        "per_cell": [
+          {
+            "condition": "FULL_M307_ON",
+            "seed": 42,
+            "total_steps": 5413,
+            "n_resource_events": 15,
+            "rate": 0.0027711065952336967,
+            "ceiling_at_150": 0.02771,
+            "required": 0.0625,
+            "reachable": false
+          },
+          {
+            "condition": "FULL_M307_OFF",
+            "seed": 42,
+            "total_steps": 4433,
+            "n_resource_events": 14,
+            "rate": 0.00316,
+            "ceiling_at_150": 0.03384,
+            "required": 0.0568,
+            "reachable": false
+          },
+          {
+            "condition": "FULL_M307_ON",
+            "seed": 43,
+            "total_steps": 3649,
+            "n_resource_events": 10,
+            "rate": 0.00274,
+            "ceiling_at_150": 0.04111,
+            "required": 0.0568,
+            "reachable": false
+          },
+          {
+            "condition": "FULL_M307_OFF",
+            "seed": 43,
+            "total_steps": 4233,
+            "n_resource_events": 12,
+            "rate": 0.00283,
+            "ceiling_at_150": 0.03544,
+            "required": 0.0568,
+            "reachable": false
+          },
+          {
+            "condition": "FULL_M307_ON",
+            "seed": 44,
+            "total_steps": 4035,
+            "n_resource_events": 10,
+            "rate": 0.00248,
+            "ceiling_at_150": 0.03717,
+            "required": 0.0658,
+            "reachable": false
+          },
+          {
+            "condition": "FULL_M307_OFF",
+            "seed": 44,
+            "total_steps": 3849,
+            "n_resource_events": 9,
+            "rate": 0.00234,
+            "ceiling_at_150": 0.03897,
+            "required": 0.0658,
+            "reachable": false
+          }
+        ],
+        "verdict": "A PERFECT FORAGER collecting every resource in every episode would still have FAILED G0 in all six trained cells. The criterion could not have passed. The G0 FAIL is therefore not a measurement of the substrate.",
+        "additional_narrowing": "benefit_approach fires zero times (use_proxy_fields defaults False and is not passed; independently unreachable without proximity_approach_magnitude_tiebreak), so only transition_type == 'resource' counts toward the numerator."
+      },
+      "dv_is_competence_inverted": {
+        "finding": "VERIFIED INDEPENDENTLY BY THIS SESSION. The RANDOM arm scores ~4.4x the trained arms on the DV while having survival_rate EXACTLY 0.0 in all three seeds.",
+        "per_cell": [
+          {
+            "condition": "RANDOM",
+            "seed": 42,
+            "total_steps": 320,
+            "n_resource_events": 4,
+            "rate": 0.0125,
+            "survival_rate": 0.0
+          },
+          {
+            "condition": "RANDOM",
+            "seed": 43,
+            "total_steps": 296,
+            "n_resource_events": 2,
+            "rate": 0.00676,
+            "survival_rate": 0.0
+          },
+          {
+            "condition": "RANDOM",
+            "seed": 44,
+            "total_steps": 317,
+            "n_resource_events": 5,
+            "rate": 0.01577,
+            "survival_rate": 0.0
+          }
+        ],
+        "mechanism": "The DV's denominator is total_steps. Dying at ~300 steps instead of surviving ~4000 inflates events/steps by an order of magnitude. The metric REWARDS EARLY DEATH, so any ranking read off it is inverted with respect to competence."
+      },
+      "self_route_is_a_mislabel": {
+        "label": "readiness_fail_curriculum_gate_blocks_retest",
+        "why_wrong": "The label asserts a curriculum gate blocked the retest. But curriculum_reached_p2 measured 1.0 (it tests only total_steps > 0, firing unconditionally once the measurement loop runs), p2_window_admits_contact measured 1.0, and the run executed 9/9 cells over 5h13m. Nothing about a curriculum gate was measured as blocking. Per /failure-autopsy's precondition_unmet guidance, the assumption was NOT unmet, so the label misnames the cause.",
+        "actual_cause": "An arithmetically unreachable criterion on a competence-inverted DV.",
+        "emission_mechanism": "The label is emitted by elimination from a three-way if/elif/else; no code inspects any curriculum outcome to reach it.",
+        "unread_signal": "hazard_survival_gate_passed VARIES across cells (True on arm 0, False on arm 1; false on 5 of 6 trained cells) and is read by NO criterion.",
+        "foreseeable": "The pre-queue smoke already returned G0_ON=0 and was recorded as the gate 'correctly' routing readiness_fail."
+      },
+      "monostrategy_signature": {
+        "observation": "policy_entropy = -1.0e-09 (exactly 0 to float precision) in all 6 trained cells, against 1.6 for RANDOM. n_held / total_steps ~ 94% (e.g. 5094/5413, 3912/4233). The trained actor is fully deterministic and overwhelmingly in HELD state.",
+        "cross_target_link": "The same signature appears independently in V3-EXQ-1036 in this batch (executed_action_classes = 1.0 in 6 of 10 cells). Recorded as a link under the shared actor_adequacy_monostrategy token, NOT adjudicated here."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MEASURES dominant with an ENVIRONMENT contribution (150-event ceiling). NOT chargeable to REE -- and explicitly NOT an organism-level 'REE failed' read, despite the FAIL verdict and the readiness framing."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_invalid -- the criterion was arithmetically unreachable and the DV is anti-correlated with competence. No claim is tagged, so no epistemic suppression is asserted against ARC-030 or MECH-307. NOTE for governance: ARC-030 already carries epistemic_category substrate_ceiling from earlier work; nothing here touches it, and this target adds no ceiling hit because it tags no claim.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-899 FAILED a G0 readiness criterion that could not have passed: with 5 non-respawning resources over 30 episodes the hard ceiling is 150 events per cell, giving ceiling rates of 0.0277-0.0411 against required thresholds of ~0.057-0.066 -- a perfect forager fails in all six trained cells. The DV (resource events / total_steps) is additionally anti-correlated with competence: the RANDOM arm scores ~4.4x the trained arms while having survival_rate exactly 0.0, purely because dying at ~300 steps shrinks the denominator. Its self-route label readiness_fail_curriculum_gate_blocks_retest is a mislabel -- both readiness preconditions measured 1.0 and the run completed 9/9 cells; nothing about a curriculum gate was measured as blocking. The manifest tags no claim_ids and carries no queue_id (hand-recovered run that bypassed the spool). Run was cleared as reviewed before this adjudication existed.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "g0-readiness-gate-competence-inverted-dv",
+        "title": "G0 readiness gate uses a resource-rate DV denominated on total_steps, making it unreachable at realistic episode lengths and anti-correlated with competence",
+        "implementation_hint": "resource_visit_rate = n_resource_events / total_steps has a hard numerator ceiling (5 resources x 30 episodes = 150) while the denominator grows with survival, so a competent long-surviving agent scores BELOW a random agent that dies immediately, and the threshold is unreachable even at perfect play. Re-denominate per episode or per available-resource-opportunity, and re-derive the G0 threshold against the resulting reachable range. USER-CONFIRMED at the Step 8 gate that this warrants a substrate entry so other experiments sharing this readiness gate are protected.",
+        "unblocks_claims": [
+          "ARC-030",
+          "MECH-307"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "experiments/v3_exq_899_arc030_mech307_g0_readiness.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_899_arc030_mech307_g0_readiness_20260808T153148Z_v3",
+          "experiment_type": "v3_exq_899_arc030_mech307_g0_readiness",
+          "metric": "G0 ceiling rate 0.0277-0.0411 at perfect play vs required 0.0568-0.0658 in all 6 trained cells; RANDOM (survival 0.0) outscores both trained arms ~4.4x",
+          "target": "a G0 DV whose threshold is reachable at perfect play and whose ordering is not inverted with respect to survival",
+          "resolved": "open"
+        }
+      },
+      "learning_extracted": [
+        "Before a readiness criterion is queued, compute its value AT PERFECT PLAY. If the ceiling is below the threshold, the criterion is not a measurement. Here the ceiling is fixed by the environment (5 resources x 30 episodes) and was knowable before the run.",
+        "A rate DV whose denominator is total_steps rewards early death whenever the numerator is capped by the environment. Check the ordering against a random-policy control that dies: if RANDOM wins, the metric is inverted.",
+        "A self-route label emitted by elimination from an if/elif/else, with no code inspecting the condition it names, will confidently misattribute the cause. The label asserted a curriculum block that nothing measured.",
+        "A pre-queue smoke returning the degenerate value (G0_ON=0) was read as the gate 'correctly routing readiness_fail' rather than as the criterion being unreachable -- the same observation, the opposite conclusion."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "The emitted outcome is DECOUPLED FROM THE SCIENTIFIC QUESTION, and a readiness/precondition control fires unconditionally by construction. In all five: 849 PASS with its sole load-bearing criterion passed=false (0.0 vs 1.0); 865 the same; 864a PASS where the criterion naming the experiment is load_bearing FALSE and passed FALSE and both branches set PASS; 852 PASS on three criteria with no measured/threshold values and a discriminating criterion that is an IEEE-754 identity; 899 FAIL on a criterion that perfect play could not have satisfied. And the self-certifying readiness control: 849/865 hardcode the two flags the check reads two statements before calling it; 852's driver declares its own precondition unfailable in ANCHOR_REACHABILITY_EXEMPT; 864a's comment says 'trivially 1.0 by construction'; 899's curriculum_reached_p2 tests only total_steps > 0.",
+    "is_independent_bugs": false,
+    "structural_property": "This is one property of the substrate-readiness / pre-flight experiment family as authored in the 2026-08-01..2026-08-08 window, not five independent bugs. The family's verdict machinery certifies that the harness RAN, not that the substrate has the property under test -- and because the certification is constructed from values the driver itself has just set, it cannot report otherwise. The convergence across structurally different claims (Q-081 an open_question, SD-076 and SD-085 design decisions, ARC-030/MECH-307 untagged) is what makes this a family property rather than a per-experiment defect.",
+    "readings": [
+      "test_design_ceiling",
+      "verdict_machinery_decoupled_from_question"
+    ],
+    "which_reading_is_live": "test_design_ceiling is NOT the live reading here. A substrate-enrichment reading would require that the experiments tested the substrate and found it wanting; in four of five the substrate was never interrogated at all (unwired signals, an absent gate object, a tautological identity, an unreachable threshold), and in the fifth the data was collected and never analysed. The live reading is verdict_machinery_decoupled_from_question.",
+    "planning_decision_forced": "Whether the readiness/pre-flight experiment family needs a standing structural check -- that at least one load-bearing criterion be demonstrated capable of BOTH outcomes before a run is queued, and that a readiness control not be computed from values the driver itself set. USER-CONFIRMED at the Step 8 gate to file as a cluster; the standing-check question is surfaced for /governance, not decided here.",
+    "re_derive_brake_note": "Q-081 already stands at 2 counting ceiling autopsies (v3_exq_824a via failure_autopsy_2026-07-28-sweep.json, and v3_exq_838 via failure_autopsy_v3-exq-838_2026-07-29.json), which MEETS the default RE_DERIVE_BRAKE_THRESHOLD of 2. Both 849 and 865 RAN AFTER those two autopsies were filed (2026-07-28/29 vs 2026-08-01). Neither of this artifact's Q-081 targets ADDS to that count -- both are stamped standard with instrument-defect notes and owe no substrate build, so R3 clause 2 excludes them. Flagged for /governance: a further Q-081 probe at the same granularity is already brake-gated, and the correct next step for Q-081 is instrument repair (making the probe capable of detecting a lever at all), which is a different question from re-testing the claim.",
+    "cross_batch_link": "V3-EXQ-1036 (adjudicated separately in failure_autopsy_V3-EXQ-1036_2026-09-17.json) is NOT part of this cluster -- its load-bearing criterion passed legitimately on its own terms. It is linked here only by the independent monostrategy signature it shares with V3-EXQ-899 under the actor_adequacy_monostrategy token."
+  },
+  "pre_routing_checks": {
+    "tool": "scripts/autopsy_pre_routing_checks.py",
+    "fire_count": 5,
+    "dispositions": [
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-849",
+        "disposition": "ACTED ON",
+        "detail": "action none -> amend on Q081-REACH-CHECK-PAIR-SPECIFIC; see that target's recommended_substrate_queue_entry. The check surfaced a dropped handoff the draft had missed."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-865",
+        "disposition": "ACTED ON",
+        "detail": "action none -> amend on Q081-REACH-CHECK-PAIR-SPECIFIC, same reason."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-864a",
+        "disposition": "DISMISSED WITH REASON",
+        "detail": "sd_waking_confidence_inflation_headroom is an rv-floor mechanism repair; 864a's defect is analysis-layer blindness over correctly-collected data. Different gap. Mentioned in the entry note, with the one live connection flagged."
+      },
+      {
+        "check": "C7",
+        "queue_id": "V3-EXQ-852",
+        "disposition": "ACCEPTED AS EXPECTED-BY-DESIGN, RECORDED",
+        "detail": "tick0_f_raw is bit-identical across arms in every seed. This is expected: f_raw is the UNWEIGHTED channel and the arms differ only in f_weight. Recorded rather than left silent because it corroborates the tautology finding -- the arm manipulation provably never moved the raw channel that C2 compares against."
+      },
+      {
+        "check": "C7",
+        "queue_id": "V3-EXQ-864a",
+        "disposition": "ACCEPTED AS EXPECTED-BY-DESIGN, RECORDED",
+        "detail": "wci_symmetric_rv_ref_after_training is bit-identical across arms in 6/6 (steps, seed) pairs. Expected -- it is the reference half of the DV, not the manipulated half. Already noted in this target's other_flags; formalised here."
+      }
+    ],
+    "inapplicable": [
+      {
+        "check": "C5",
+        "reason": "prose-keyed check ran before the sibling .md existed"
+      }
+    ],
+    "note": "C1/C3 applied (targets carry claim_ids) and did not fire. Re-run after the .md lands to give C5 its narrative."
+  }
+}

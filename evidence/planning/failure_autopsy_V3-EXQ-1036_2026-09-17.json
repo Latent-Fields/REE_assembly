@@ -1,0 +1,158 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-17T10:07:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "reviewed_before_adjudication": true,
+  "reviewed_before_adjudication_note": "This run was already marked reviewed in review_tracker.json (present in BOTH reviewed_run_ids and discussed_experiment_dirs) before any confirmed autopsy existed. Governance had moved on. This artifact adjudicates it retrospectively; the review marking has deliberately NOT been reverted.",
+  "red_team": {
+    "ran": true,
+    "verdict": "CONTESTED",
+    "model": "session model (Opus 5) -- SAME-MODEL pass",
+    "model_note": "The skill prefers a DIFFERENT model from the drafter. The cross-model spawn was attempted first and failed with a monthly spend limit on that model (HTTP 429), so per the skill's fallback the pass was re-spawned once with no model override and inherited the session model. This is a valid pass but is WEAKER than a cross-model one: it does not remove the drafter's shared priors. Recorded so a later reader does not mistake this CONTESTED for a cross-model verdict.",
+    "findings_accepted": ["C1", "C2", "C3", "C4", "C5", "C6", "C8"],
+    "findings_that_failed": ["criterion-reachability challenge (draft survived: P(<2 survivors in 30 | p=0.125) = 0.09624, so 'roughly 10%' was exact)", "collapsed-arm / cached-cell hypothesis (REFUTED: candidate_score_range_min differs across arms on both suspect seeds; run_cell has no cache path)"]
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_1036_ext002_stage2_revisit_rate_dv_calibration_20260915T003319Z_v3",
+      "queue_id": "V3-EXQ-1036",
+      "claim_ids": [],
+      "bears_on": ["actor_adequacy_monostrategy", "residue_error_persistence_readout"],
+      "self_route_label": "stage2_dv_calibration_banked",
+      "failed_criterion": "none (PASS; adjudicating a claim-free calibration deliverable)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids is empty by design (governance instruction); no claim-layer verdict is available or owed",
+        "biological_reference": "n/a for the calibration question; no mechanism under test",
+        "prerequisites": "present -- inherits 983a's red-teamed substrate helpers and completion-gate bands; substrate_hash 06a03d0c..., substrate_stable_across_run true",
+        "implementation": "partial -- CO-EQUAL with measurement, see failure_location. On the two zero-gap seeds the residue-freeze ablation did NOT reach executed behaviour by the lineage's own calibration (divergence 0.00138 and 0.00323, inside 983a's 0.00-0.03 'reached behaviour not at all' bucket).",
+        "environment": "partial -- 2/5 completion-gate casualties (steps_realized_frac 0.3811, 0.4125 vs 0.60 floor); low absolute revisit volume (min-across-pooled-cells early revisits 18, below 983a's own THRESH_C4_MIN_REVISITS of 20)",
+        "measurement": "under-instrumented -- decline_rate_gap is exactly 0.0 on 2 of 3 pooled seeds because A0_INTACT and A1_RESIDUE_FROZEN produced bit-identical revisit streams (31 vs 31; 55 vs 55) and bit-identical rate_early/rate_late",
+        "integration": "isolated -- calibration pass by design",
+        "scale": "likely insufficient -- effective n for the gap statistic is 1, not 3"
+      },
+      "readout_effective_n": {
+        "nominal_pooled_seeds": 3,
+        "seeds_with_zero_gap_by_bit_identity": [95973, 70497],
+        "seeds_contributing_gap_signal": [570199],
+        "effective_n_for_gap_statistics": 1,
+        "verification": "Recomputed from per_seed_dv. Gap set = {0.0, 0.0, -0.0012937332778568018}. mean = -0.0004312444259522673 (exactly one third of seed 570199's gap) MATCHES readout.decline_rate_gap_mean. range = 0.0012937332778568018 MATCHES readout.decline_rate_gap_range and equals |570199's gap|. population sd (ddof=0) = 0.0006098717158794963 MATCHES readout.decline_rate_gap_sd. Every banked gap statistic is a deterministic function of ONE seed. Independently reproduced by the Step 7c red-team pass."
+      },
+      "withdrawn_arguments": [
+        {
+          "argument": "control_arm_A1_decline_rate_range (0.0012766870909924556) is sound at n=3 and is a usable fallback bar for stage 2.",
+          "status": "WITHDRAWN -- verified false",
+          "evidence": "Its range endpoints are seed 95973 (max, A1 = 0.00045850527281063747) and seed 70497 (min, A1 = -0.0008181818181818182) -- EXACTLY the two seeds where A1 == A0. Seed 570199 (A1 = -0.0005658669081032158), the only seed where the ablation changed anything, lies strictly INTERIOR and contributes nothing to the range. On both endpoint seeds A1_decline_rate is numerically IDENTICAL to A0_decline_rate, so it is not a control-arm statistic distinct from treatment at all.",
+          "consequence": "NO usable stage-2 threshold is derivable from this run by any route."
+        },
+        {
+          "argument": "The residue-freeze manipulation demonstrably reaches the action stream in all three pooled seeds (divergence > 0).",
+          "status": "WITHDRAWN -- verified false by the lineage's own calibration",
+          "evidence": "failure_autopsy_V3-EXQ-983a_2026-09-06.md buckets divergence as 'changed executed actions in 5/8 seeds (0.12-0.57) and none in 3/8 (0.00-0.03)'. The zero-gap seeds here are 0.00138 and 0.00323 -- inside the 'not at all' bucket.",
+          "consequence": "MECHANISM becomes CO-EQUAL with MEASURES in the failure-location, and registry leg H-residue-written-not-read is revived rather than merely borne on."
+        },
+        {
+          "argument": "V3-EXQ-1036 supplies the FIRST divergence-vs-DV-sensitivity data in this lineage.",
+          "status": "WITHDRAWN -- verified false",
+          "evidence": "983a already supplied the bucketing AND the remedy. 983a autopsy learning #4, verbatim: 'The residue signal's reach into executed behaviour is all-or-nothing per seed (0.00/0.00/0.03 vs 0.12-0.57) ... Recorded, not gated, unexplained; the successor should gate per seed on divergence > 0.'",
+          "consequence": "Reframed as a DROPPED HANDOFF (see dropped_handoff below), which is a stronger and more actionable finding."
+        },
+        {
+          "argument": "The manipulation-inert degeneracy is a mismatch nobody had listed.",
+          "status": "WITHDRAWN -- verified false",
+          "evidence": "THRESH_C4_MIN_REVISITS = 20 ('per period, worst case across POOLED arm/seed', v3_exq_983a_ext002_residue_error_persistence_headroom.py:452) was listed, and min_across_pooled_cells_revisits_early = 18.0 breaches it."
+        },
+        {
+          "argument": "The realized 3/5 survival rate contradicts the ~1/8 premise carried from V3-EXQ-1014 and should be routed at ext002_lineage_survival_lever's decision_question.",
+          "status": "HEAVILY QUALIFIED -- the two rates are not the same predicate",
+          "evidence": "1014's ~1/8 is completion-gate AND divergence/diversity gates; 1036's 3/5 is completion-gate ONLY (the driver declares the gates omitted). The gate-matched comparator is 983a's 2/8 = 0.25, against which 3/5 is unremarkable.",
+          "consequence": "The apparent surprise is largely DEFINITIONAL. It is recorded as a note, NOT routed as a measured discrepancy at the registered decision_question."
+        }
+      ],
+      "dropped_handoff": {
+        "prior_artifact": "failure_autopsy_V3-EXQ-983a_2026-09-06.json",
+        "prior_recommendation": "the successor should gate per seed on divergence > 0 (983a autopsy learning #4)",
+        "successor_action": "V3-EXQ-1036 explicitly declined to gate -- its docstring states 'No P7-style DV freedom under a control policy certification and no action-stream-divergence / action-class-diversity GATES. The routing note's full apparatus is for the EVIDENCE run; this is calibration.'",
+        "consequence": "The exact defect the recommended gate would have prevented then occurred, on 2 of 3 pooled seeds.",
+        "verified_magnitude": "983a's ratified P7 precondition FLOOR_REVISIT_HETEROGENEITY = 0.10 (v3_exq_983a...py:614 PreconditionSpec). revisit_outcome_heterogeneity across ALL TEN of this run's arm_results cells = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05555555555555555, 0.058823529411764705, 0.09090909090909091, 0.08333333333333333]. MAX = 0.0909 < 0.10. 983a's already-ratified screen would have rejected 100% of this run's population."
+      },
+      "degeneracy_mode_not_caught": {
+        "name": "manipulation_inert (distinct from revisit_degenerate)",
+        "description": "The run's revisit_population_non_degenerate precondition (red-team F2's fix on this driver) tests that TOTAL REVISIT COUNT is non-zero in both arms. All three pooled seeds pass it (31, 55, 288). It cannot see a seed whose revisit counts are non-zero AND IDENTICAL ACROSS ARMS -- a structural zero in a DIFFERENCE DV arriving through a door the count-based test does not cover.",
+        "consequence": "The load-bearing criterion calibration_population_adequate (measured 3.0, threshold 1.5) PASSED legitimately on its own terms but does NOT certify what it was written to certify -- that there is a population to characterise a DV range over.",
+        "correct_remedy": "NOT a new outcome-denominated precondition (that would select on the outcome and inflate the bar by construction). The correct remedy is to APPLY 983a's two existing, ratified, outcome-INDEPENDENT screens."
+      },
+      "criterion_reachability": {
+        "criterion": "calibration_population_adequate",
+        "measured": 3.0,
+        "threshold": 1.5,
+        "could_it_have_failed": "YES in principle, NEAR-CERTAIN to pass in realization. MAX_DRAWS = 30 genuinely bounds the loop and n_pooled is computed after it. At the design's assumed ~1/8 per-seed survival, P(fewer than 2 survivors in 30 draws) = 0.09624 -- independently computed in the Step 7c pass, which attacked this claim and lost.",
+        "verdict": "NOT vacuous-by-construction, but a procedural population-adequacy flag, not a scientific result. Must not be credited as evidence for EXT-002/ARC-013 or anything else."
+      },
+      "nested_arm_ordering_gate": {
+        "arms_are_nested": true,
+        "nesting": "A1_RESIDUE_FROZEN is an ablation of A0_INTACT, so A0's hypothesis class strictly contains A1's and an ordering expectation is available as a free instrument gate",
+        "computed": "gap = A0 - A1 per seed: 95973 = 0.0 (tie), 70497 = 0.0 (tie), 570199 = -0.0012937332778568018 (violation)",
+        "verdict": "THE GATE IS UNCOMPUTABLE ON THIS POPULATION. With 2 of 3 cells structurally tied the ordering test has effective n=1 and cannot discriminate an instrument defect from a real effect in either direction. Recorded so the single negative cell is not read directionally."
+      },
+      "confound_not_resolvable_by_this_run": "Bit-identical revisit streams under a residue-freeze ablation are consistent with BOTH (i) residue is written but never read on the re-approach pathway (registry leg H-residue-written-not-read) and (ii) the revisit-rate DV cannot resolve a manipulation of this magnitude. Given the divergence values sit in 983a's 'did not reach behaviour' bucket, (i) is now the better-supported reading -- but V3-EXQ-1036 cannot DISCRIMINATE them. This is the observation bottleneck the calibration surfaced.",
+      "monostrategy_signature": {
+        "observation": "executed_action_classes = 1.0 in 6 of 10 arm_results cells (indices 0,1,2,3,6,9), 2.0 in 3 cells, 3.0 in 1 cell -- the single-action-latching signature.",
+        "bears_on": "actor_adequacy_monostrategy, a token this run carries",
+        "discrepancy_flagged_not_resolved": "action_class_diversity_by_seed reports 3/3/5 (a probe-side measure) against executed_action_classes 1-3 (training-side). Different quantities; the gap between them is noted, not adjudicated here.",
+        "cross_target_link": "The same signature appears independently in V3-EXQ-899 in this batch (policy_entropy = -1.0e-09 and n_held/total_steps ~ 94% in all 6 trained cells). Recorded as a link, not adjudicated."
+      },
+      "recording_provenance": {
+        "always_core_present_in_flat_manifest": ["recording_schema", "substrate_hash", "machine", "machine_class", "elapsed_seconds", "config", "seeds"],
+        "always_core_absent_in_flat_manifest": [],
+        "run_pack_gaps": "SCOPE CORRECTION (red-team C8): the completeness verdict above is about the FLAT manifest. The RUN PACK -- which per the indexer's own read path is what gets scored -- omits per_seed_dv, arm_results and criteria, carries source_repo.commit as an empty string, and names causal_grid_world_v3 while the config is CausalGridWorldV2. Reported as a recording-hygiene finding against the pack writer, not against this driver."
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- calibration/instrumentation run, no mechanism under test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a -- no literature question is posed by a DV-calibration pass"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- MECHANISM and MEASURES co-equal, with a partial ENVIRONMENT contribution. NOT chargeable to REE, and not a claim-layer verdict of any kind. Revised from a MEASURES-only reading after the Step 7c pass established that the zero-gap seeds' divergence sits inside 983a's own 'did not reach executed behaviour' bucket."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No epistemic suppression is asserted. Claim-free calibration pass with no pre-registered threshold; 'standard' is the enum-compliant spelling of 'no category applies'. The substantive failure mode is a jointly mechanism-reach and DV-sensitivity failure, recorded in the diagnosis fields rather than in the category.",
+      "recommended_evidence_direction": "diagnostic_no_direction",
+      "recommended_evidence_quality_note": "V3-EXQ-1036 (EXT-002 lineage stage 2a) set out to bank a revisit-rate DV range on 3 freshly-drawn completion-gate survivors. Its load-bearing criterion passed legitimately but certifies population SIZE only. 2 of the 3 pooled seeds produced BIT-IDENTICAL revisit streams across A0_INTACT and A1_RESIDUE_FROZEN (31 vs 31; 55 vs 55), so decline_rate_gap is exactly 0.0 on both and every banked gap statistic is a deterministic function of the single remaining seed -- EFFECTIVE n = 1. The fallback control-arm statistic is NOT an alternative: its range endpoints are precisely those two zero-gap seeds. NO stage-2 threshold is derivable from this run. Both zero-gap seeds' action-stream divergence (0.00138, 0.00323) sits inside 983a's own 'did not reach executed behaviour' bucket, and 983a's ratified P7 heterogeneity floor (0.10) would have rejected all ten cells (max 0.0909). Run was cleared as reviewed before this adjudication existed.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No substrate build is owed. The finding is an experiment-apparatus screening gap whose remedy already exists in ratified code (983a's P7 heterogeneity floor and its recommended per-seed divergence gate). Routing is to the evidence run's design, not to implement-substrate."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "NOT APPLICABLE -- claim_ids is empty, so there is no claim for the brake to count ceiling hits against. Stated explicitly so the absence is not read as an unstamped target."
+      },
+      "learning_extracted": [
+        "For any A-minus-B DIFFERENCE DV, a non-degeneracy precondition denominated on PER-ARM event counts cannot see a cell whose counts are non-zero but identical across arms. The test must be denominated on the DIFFERENCE, or on an outcome-INDEPENDENT per-arm screen such as 983a's revisit_outcome_heterogeneity.",
+        "A precondition denominated on the DV's own value (e.g. 'require gap != 0') is selection on the outcome and inflates any threshold banked from the survivors. When a screen is needed for a calibration run, it must be outcome-independent.",
+        "A calibration run that banks a range should report the EFFECTIVE n of that range alongside the pooled-seed count. Here they differed by 3x and only the pooled-seed count reached the criteria block.",
+        "When a range statistic is offered as a fallback bar, check WHICH cells define its endpoints. Here the 'control-arm' fallback was defined entirely by the two cells the primary finding had just condemned -- a failure mode invisible to any check that reads only the aggregate.",
+        "DROPPED HANDOFF: 983a's confirmed autopsy recommended the successor gate per seed on divergence > 0. The successor declined on a calibration-vs-evidence-run distinction, and the precise defect that gate prevents then occurred. A prior autopsy's recommendation declined by a successor deserves an explicit, recorded justification in the successor's docstring that engages the specific failure mode, not a category distinction.",
+        "The ratified screen that would have caught this ALREADY EXISTED and was already coded (FLOOR_REVISIT_HETEROGENEITY = 0.10). Before recommending a new precondition, check whether the lineage already ratified one."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "USER-CONFIRMED at the Step 8 gate (2026-09-17): the stage-2 evidence run must apply the two screens 983a ALREADY RATIFIED rather than inventing a new precondition -- (a) revisit_outcome_heterogeneity >= FLOOR_REVISIT_HETEROGENEITY (0.10), the ratified PreconditionSpec at v3_exq_983a...py:614; (b) per-seed action-stream divergence > 0, per 983a autopsy learning #4. Both are outcome-independent, both are already in code. NO threshold is to be taken from V3-EXQ-1036 by any route, including the control-arm statistic. Raising the draw target alone is explicitly NOT sufficient: the ratified screens would have rejected all five draws, so a larger draw under the same screening would mostly add rejected seeds."
+    }
+  ],
+  "cluster_pattern": null
+}
