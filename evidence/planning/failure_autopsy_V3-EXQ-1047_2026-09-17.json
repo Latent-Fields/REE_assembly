@@ -1,0 +1,144 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-17T17:57:22Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "red_team_pass": {
+  "ran": true,
+  "verdict": "CONTESTED",
+  "model": "claude-opus-5 (SESSION MODEL, NOT cross-model)",
+  "cross_model_attempted": true,
+  "cross_model_unavailable_reason": "claude-fable-5-1 returned HTTP 429 monthly spend limit on two spawn attempts; re-spawned once on the session model per SKILL.md Step 7c.",
+  "caveat": "Same-model pass: shares the drafter's priors and blind spots."
+ },
+ "pre_routing_checks_7b": {
+  "ran": true,
+  "fire_count": 0,
+  "inapplicable": [
+   "C5",
+   "C7"
+  ],
+  "note": "inapplicable is NOT no-fire: those checks could not look."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3",
+   "queue_id": "V3-EXQ-1047",
+   "claim_ids": [
+    "MECH-482"
+   ],
+   "bears_on": [
+    "orienting_epistemic_deficit_v3_plan:ORNT-2"
+   ],
+   "failed_criterion": "discrimination",
+   "self_route_REFUTED": {
+    "manifest_label": "deficit_readout_magnitude_limited",
+    "manifest_claim": "H-MAG SUPPORTED: the real readout's own ORDERING moves the COMMITTED E3 selection once amplified to the rail.",
+    "verdict": "NOT SUPPORTED. The honest label is the driver's own inconclusive_controls_did_not_separate branch."
+   },
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear -- the run does not test MECH-482's own signatures. It tests whether an amplified SD-102 readout can move selection, and the instrument cannot answer that.",
+    "biological_reference": "partial -- novelty/uncertainty-driven orienting via LC-NE biasing action selection. The REE translation adds an ELEMENTWISE-CLAMPED additive bias, which is not how neuromodulatory gain enters selection biologically; at saturation the clamp destroys the ordering it is meant to carry.",
+    "prerequisites": "present -- readiness gate 8/8 green; positive control fires 3/3 at every rung.",
+    "implementation": "complete for the ladder harness; the DEFECT is in the finding criterion, not the substrate.",
+    "environment": "adequate",
+    "measurement": "UNDER-INSTRUMENTED AND MISLEADING -- this is the dominant layer. F_MAG contains NO control term (driver L847-853): it is real_seeds_firing >= majority, satisfied by the real arm alone. 'Firing' is one diverged tick above a 1e-9 floor. outcome PASS is decided by the instrument gate alone; 3 of the driver's 4 branches emit PASS; criteria_non_degenerate[C0_instrument_gate] is a hard-coded literal True (L998).",
+    "integration": "isolated",
+    "scale": "3 seeds; seed_majority 2. The F_MAG majority rests on two seeds carrying exactly ONE diverged tick each (1/96 and 1/33)."
+   },
+   "biological_reference": {
+    "closest_mechanism": "LC-NE / superior-colliculus orienting to epistemic deficit, biasing action selection",
+    "dependencies": [
+     "a selection stage whose dynamic range admits the bias",
+     "competing candidates near threshold"
+    ],
+    "is_formal_import": true,
+    "divergence": "an elementwise clamp to +/-curiosity_bias_scale is not a biological gain mechanism; it pins every railed candidate to an identical value, so amplification past the rail destroys ordering rather than expressing it.",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "measurement_test_design_defect -- a control-free finding criterion (F_MAG) evaluated at a rung where the clamp removes the ordering it claims to test. No epistemic suppression is asserted by this target; the claim-level substrate_conditional already stored on MECH-482 is UNCHANGED and is not re-asserted here.",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "V3-EXQ-1047 ran the H-mag vs H-pat spike that failure_autopsy_V3-EXQ-964b_2026-09-16 pre-registered (amplified-REAL-readout ladder, k in {1,10,40,100} at shipped authority). Its self-routed label deficit_readout_magnitude_limited (H-MAG SUPPORTED) is NOT SUSTAINED, refuted by the run's own cells. (1) F_MAG is real_seeds_firing >= 2 with NO control term (driver L847-853); it is satisfied by the real arm alone. (2) 'Firing' is one diverged committed tick above a 1e-9 floor; the two firing seeds carried exactly 1 tick each (1/96 seed 101, 1/33 seed 202) and seed 71 fired 0/28 at every rung. (3) At the SAME rail rung the controls MATCH OR BEAT the real arm on every seed where it fires: seed 101 real 0.01042 vs synthetic 0.03125 (3x); seed 202 real 0.03030 vs synthetic 0.06061 (2x) and PERMUTED 0.12121 (4x). At k=10 the permuted control fired on a seed majority while the real arm fired zero. Conditioned on reachable flips at k=100 the real arm converts 2/26 (7.7%) against synthetic 19.2% and permuted 15.4%. NO cell at ANY rung has the real arm above BOTH controls. (4) k=40 -> k=100 left the real arm's committed divergence unchanged (1/96, 1/33 at both) while both controls rose. (5) No seed MAJORITY is both at-rail and firing: at-rail {71,202}, firing {101,202}, intersection {202} -- one seed carrying one tick. (Two claims in this autopsy's first draft were withdrawn at the Step 7c pass and are recorded as withdrawn: the at-rail and firing sets are NOT disjoint, and real_clamp_saturated_frac 0.53125 is a maximum over ticks AND seeds occurring on seed 71, which fires nothing, so 'the clamp provably destroys the ordering' is NOT supported at the firing cells -- the clamp collapse remains a live mechanism the driver itself names, but it is not established by that number.) The instrument cannot currently discriminate real ordering from a value-shuffled control, so this run is non-contributory about MECH-482 in either direction. epistemic_category STAYS substrate_conditional; status STAYS candidate; pending_retest_after_substrate STAYS true.",
+   "per_claim_recommendation": {
+    "MECH-482": {
+     "recommended_evidence_direction": "non_contributory",
+     "recommended_epistemic_category": "substrate_conditional",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": true,
+     "status_change": "none -- stays candidate",
+     "change": "epistemic_category STAYS substrate_conditional, status STAYS candidate, pending_retest_after_substrate STAYS true and diagnostic_evidence_adjudicated is already true -- none is an actionable tail. What governance applies is the evidence_quality_note above (the self-route refutation) and the live_status.evidence citation, which currently names failure_autopsy_V3-EXQ-964b_2026-09-16 -> stamp this artifact"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "sd_epistemic_deficit_multitarget_readiness",
+    "severity": "degrading",
+    "severity_note": "UNCHANGED at degrading -- the entry's existing value.",
+    "substrate_paths": [
+     "ree_core/policy/epistemic_deficit.py",
+     "ree_core/policy/structured_curiosity.py"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_1047_mech482_amplified_readout_ladder_20260917T025403Z_v3",
+     "experiment_type": "v3_exq_1047_mech482_amplified_readout_ladder",
+     "metric": "Amplified-real ladder k in {1,10,40,100} at shipped authority. The real readout never separates above BOTH controls at ANY rung. At the rail rung, on every seed where real fires, synthetic fires 2-3x more and permuted up to 4x more; conditioned on reachable flips real converts 7.7% vs synthetic 19.2% / permuted 15.4%.",
+     "target": "A real-arm committed-selection divergence that exceeds BOTH the range-matched synthetic and the value-permuted control on a seed majority, at a rung below clamp saturation.",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "literal_count_meets_threshold": true,
+    "count_at_this_autopsy": {
+     "MECH-482": 3
+    },
+    "count_excluding_this_target": 3,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_V3-EXQ-964_2026-08-30 (v3_exq_964)",
+     "failure_autopsy_V3-EXQ-964a_20260914 (v3_exq_964a)",
+     "failure_autopsy_V3-EXQ-964b_2026-09-16 (v3_exq_964b)"
+    ],
+    "supersedes_autopsy": null,
+    "refused_requeue": true,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "sd_epistemic_deficit_multitarget_readiness",
+    "note": "FIRES. USER DECISION AT THE STEP 8 GATE (2026-09-17). The brake is CLAIM-LEVEL and MECH-482's literal count is already 3 against a threshold of 2 WITHOUT this target -- the gate is >=, so whether this target itself counts is moot. The producer releases stamped by failure_autopsy_V3-EXQ-964a and _964b are INOPERATIVE under R3 clause 3: both owe an amend (owes=True) and sd_epistemic_deficit_multitarget_readiness is implemented_pending_validation, not IMPLEMENTED/VALIDATED, so the landed-release does not take. This is the SECOND consecutive gate at which this brake has been reached and the FIRST at which it has been allowed to fire (964b released it by explicit user decision). REFUSED: a further same-claim lettered re-test of the SD-102 readout's selection consequence against the same substrate. NOT REFUSED: a different-mechanism redesign under a new EXQ number with different claim_ids.",
+    "consequence_recorded": "The instrument defect identified above therefore remains UNREPAIRED while the substrate build proceeds. The next run on this claim risks reproducing the same uninterpretable result unless the build itself addresses the control-free criterion. Recorded here so the cost of firing is legible, not hidden."
+   },
+   "fanout_recommendation": {
+    "is_discrimination": true,
+    "gated_behind": "implement-substrate on sd_epistemic_deficit_multitarget_readiness (the brake fired; this portfolio is NOT licensed to run before that build lands).",
+    "live_hypotheses": [
+     "H-mag: content contrast too small at shipped gain (magnitude-limited) -- STILL ALIVE, not resolved by this run",
+     "H-pat: readout pattern orthogonal to E3's runner-up structure (pattern-limited) -- STILL ALIVE, not resolved by this run"
+    ],
+    "suggested_probes": [
+     {
+      "hypothesis": "H-mag",
+      "axis": "measurement",
+      "sketch": "Re-run the ladder with a CONTROL-BEARING finding criterion: require real > max(synthetic, permuted) on a seed majority, evaluated at the highest rung whose real_clamp_saturated_frac is below a pre-registered ceiling, so ordering survives the clamp. Declared null: real does not exceed both controls."
+     },
+     {
+      "hypothesis": "H-pat",
+      "axis": "representation",
+      "sketch": "Score the real readout's cross-candidate ordering directly against E3's runner-up structure (rank correlation on near-tie ticks), independent of any gain, so the pattern question is not routed through the clamp at all. Declared null: zero rank correlation with the runner-up ordering."
+     }
+    ],
+    "registry_note": "BOTH legs are EXISTING legs on the EXISTING question mech482_deficit_selection_authority. This autopsy opens NO leg and performs NO Mode A growth -- the probes above re-specify how the SAME two legs are discriminated. No growth event is owed.",
+    "note": "GOV-FANOUT-1 recorded but GATED: the bottleneck is a genuine 2-hypothesis discrimination, so a portfolio is the right shape, but the brake fired and routes to a build first."
+   },
+   "learning_extracted": [
+    "A finding criterion with no control term cannot establish a finding, however many preconditions are green. F_MAG (real_seeds_firing >= majority) fired at a rung where a VALUE-SHUFFLED control outperformed the real arm 4x on the seed both fired on. The driver already contained the honest branch (inconclusive_controls_did_not_separate) and its text names the collapse mechanism exactly -- branch ORDER let the control-free test pre-empt it.",
+    "An outcome field carries no information when 3 of 4 branches emit PASS and PASS is decided by the instrument gate alone. Read the LABEL, and read the criterion behind the label; and treat criteria_non_degenerate entries that are hard-coded literals (L998) as absent rather than as a degeneracy check.",
+    "A per-run MAXIMUM is not the run's state. real_clamp_saturated_frac 0.53125 is a max over ticks AND seeds, landing on the seed that fires nothing. This autopsy's own first draft misused it and the Step 7c pass caught it."
+   ],
+   "routing": "implement-substrate"
+  }
+ ]
+}

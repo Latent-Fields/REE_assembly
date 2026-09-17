@@ -1,0 +1,120 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-17T17:57:22Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "red_team_pass": {
+  "ran": true,
+  "verdict": "CONTESTED",
+  "model": "claude-opus-5 (SESSION MODEL, NOT cross-model)",
+  "cross_model_attempted": true,
+  "cross_model_unavailable_reason": "claude-fable-5-1 returned HTTP 429 monthly spend limit on two spawn attempts; re-spawned once on the session model per SKILL.md Step 7c.",
+  "caveat": "Same-model pass: shares the drafter's priors and blind spots. Weaker than a cross-model pass; a CONFIRMED here would NOT have been cross-model evidence."
+ },
+ "pre_routing_checks_7b": {
+  "ran": true,
+  "fire_count": 0,
+  "inapplicable": [
+   "C5",
+   "C7"
+  ],
+  "note": "inapplicable is NOT no-fire: those checks could not look."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3",
+   "queue_id": "V3-EXQ-1046",
+   "claim_ids": [
+    "SD-082"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened -- SD-082 was tested under conditions where it could express itself (56/56 readiness gates green, self-yoke positive control 0 divergent ticks over 18509, raw-identical filter excluded 0 ticks, init pair live 7/7) and its asserted coupling did not appear.",
+    "biological_reference": "partial -- corticostriatal rule-to-action bias learning shaped by candidate-specific RPE. The REE translation trains the readout by REINFORCE on an OPEN loop; the biological analogue requires the selected action to have consequences that feed back. That divergence is load-bearing and is the likeliest locus.",
+    "prerequisites": "present -- the SD-082 head is built and trained; authority_active_fraction 1.0 on 35/35 runners.",
+    "implementation": "complete -- the head trains and produces a large, candidate-differentiating bias. The defect is WHAT it learned, not whether it runs.",
+    "environment": "adequate -- 7 seeds, 2583-2859 ticks each.",
+    "measurement": "adequate -- paired, raw-identical-filtered, with a known-zero positive control. C1neg's zero headroom (threshold 4 == reachable 4) runs CONSERVATIVE (it required a unanimous sweep of every reachable seed), so it cannot manufacture a false weakens.",
+    "integration": "coupled but unstable -- the readout has authority and uses it, but on a rule-independent basis.",
+    "scale": "adequate"
+   },
+   "biological_reference": {
+    "closest_mechanism": "corticostriatal rule-to-action bias (PFC rule_state -> striatal action bias) shaped by dopaminergic RPE",
+    "dependencies": [
+     "a CLOSED action-outcome loop",
+     "a credit signal that is candidate-specific rather than global"
+    ],
+    "is_formal_import": true,
+    "divergence": "REINFORCE on an open loop is not the biological credit signal. LOAD-BEARING: it is the most likely reason the head learned a rule-independent preference rather than a rule-conditioned one.",
+    "lit_status": "partial"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "No epistemic suppression is asserted. The failure mode is a TRAINING-PROCEDURE defect (open-loop REINFORCE surrogate), not a substrate ceiling and not an instrument defect.",
+   "recommended_evidence_direction": "weakens",
+   "recommended_evidence_quality_note": "V3-EXQ-1046 is the FIRST weakens of any kind on SD-082 (prior record: 0 weakens, 0 experimental posterior entries, overall_confidence 0.828 entirely from literature). C1 -- the consequence-trained readout changing E3's top preference MORE than the same substrate's frozen-init readout -- is a clean, adequately-powered NULL: 0 of 7 ready seeds, mean paired DV -0.0837 against a +0.05 floor. The mirror C1neg fires on 4 of 4 REACHABLE seeds (3 seeds had init_div_in_joint < 0.05, making DV <= -0.05 unattainable by construction; recorded as n_ready_seeds_c1neg_unreachable = 3), routing FAIL -> weakens. MECHANISM, read off the run's own cells and CORRECTED at the Step 7c red-team pass: training made the readout RULE-INVARIANT while leaving it strongly candidate-opinionated -- NOT a collapse toward a candidate-uniform output. trained_head_flip_fraction 0.01807 vs init 0.20076 (11.1x), and the trained pair (intact vs rule-zeroed) diverges only 0.0028-0.0315 against the init pair's 0.0377-0.2115; yet the trained head's cross-candidate modulatory spread is 6.13x-42.80x LARGER than init's on every seed (authority_scale_factor_median is a DIVISOR -- scale_factor = target_range / modulatory_spread, e3_selector.py:3425 -- and raw_score_range_mean is identical between the runners by construction), and pairs.head_effect.argmin_divergence is 0.2058-0.8343 on all 7 seeds. The open-loop REINFORCE surrogate therefore learned a STRONG candidate preference that is essentially INDEPENDENT of rule_state -- the precise inverse of SD-082's asserted content. NO CONTRADICTION with V3-EXQ-1029's confirmed H-selection-authority-bounded: 1029's 0/1694 is off_pair PREFERENCE argmin measured with authority OFF (n_both_committed = 0 across all 40 runners, so no committed argmin existed); 1046 measures with authority ON, and its init pair reproduces 1029's authority-ON on_pair reference, so 1046 CORROBORATES that leg. Diagnostic-purpose, excluded from confidence and conflict scoring.",
+   "per_claim_recommendation": {
+    "SD-082": {
+     "recommended_evidence_direction": "weakens",
+     "recommended_epistemic_category": "standard",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate_substrate_landed",
+     "change": "epistemic_category already reads standard and diagnostic_evidence_adjudicated is already true, so neither is an actionable tail. What governance applies is the evidence_quality_note above (the first weakens on this claim, with the corrected rule-invariance mechanism) and the live_status.evidence citation, which currently names failure_autopsy_V3-EXQ-1028_2026-09-15 -> stamp this artifact"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "SD-082",
+    "severity": "corrupting",
+    "severity_note": "UNCHANGED at corrupting -- the entry's existing value. This run does not reclassify it.",
+    "substrate_paths": [
+     "ree_core/predictors/e3_selector.py",
+     "experiments/_lib/allon_training.py::_lpfc_reinforce_loss"
+    ],
+    "failure_record_entry": {
+     "run_id": "v3_exq_1046_sd082_consequence_trained_readout_20260917T053813Z_v3",
+     "experiment_type": "v3_exq_1046_sd082_consequence_trained_readout",
+     "metric": "Consequence-trained readout vs frozen-init, paired argmin divergence: C1 0/7 ready seeds, mean paired DV -0.0837 against a +0.05 floor; C1neg 4/4 reachable. Trained head is rule-INVARIANT (flip fraction 0.018 vs init 0.201; rule-zeroing moves it 0.003-0.032 vs init 0.038-0.212) while its candidate spread is 6.13-42.80x LARGER than init's.",
+     "target": "A trained readout whose argmin consequence EXCEEDS the frozen-init readout's by >= 0.05 on a seed majority.",
+     "resolved": "open"
+    }
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "count_at_this_autopsy": {
+     "SD-082": 3
+    },
+    "this_target_contributes": 0,
+    "prior_substrate_ceiling_autopsies": [
+     "failure_autopsy_2026-07-28-sweep (v3_exq_822b)",
+     "failure_autopsy_V3-EXQ-822c_2026-08-29",
+     "failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30 (v3_exq_822d)"
+    ],
+    "refused_requeue": false,
+    "why_not_fired": "This target does not COUNT: recommended_epistemic_category is standard and recommended_evidence_direction is weakens, so the R1-R3 predicate's first gate (substrate_ceiling in cat OR non_contributory in direction) is not met and counts() returns False immediately. SD-082's literal count stays 3. Independently verified by the Step 7c red team, which ran the predicate and scan verbatim over the live committed corpus."
+   },
+   "learning_extracted": [
+    "SD-082's open-loop REINFORCE surrogate learns a candidate preference that is INDEPENDENT of rule_state. The head is not weak or silent -- its bias is 6-43x LARGER than init's and reorders E3's top preference on 21-83% of raw-identical ticks -- it is simply not rule-conditioned. A successor must attack the rule-conditioning of the credit signal, not the head's capacity or its authority.",
+    "A scale FACTOR is a divisor. authority_scale_factor_median smaller on an arm means that arm's modulatory spread is LARGER, not smaller. Reading it as a magnitude inverted the mechanism in the first draft of this autopsy and was caught only by the Step 7c pass recomputing from arm_results against e3_selector.py:3421-3428.",
+    "A criterion whose threshold equals its REACHABLE count (C1neg: 4 == 4) is a knife edge, but the bias runs CONSERVATIVE -- it demanded a unanimous sweep. The driver's stated guard ('SEED_MAJORITY is absolute, never a fraction of the realised ready count') governs the DENOMINATOR, not REACHABILITY; reachability is handled separately and honestly by recording c1neg_reachable per seed. Worth knowing that the guard does not cover this mechanism."
+   ],
+   "read_across_not_adjudicated": [
+    {
+     "leg": "H2-uniform-common-mode (qid sd082_candidate_discriminating_readout_locus)",
+     "bears_on": "This run is evidence AGAINST this leg, not for it: the leg asserts a common-mode shift near-identical across candidates that PRESERVES argmax order, and the cells show spread 6-43x larger than init with argmax order NOT preserved (head_effect 0.21-0.83). NOT adjudicated here -- recorded so a later session does not read 1046 as supporting it."
+    },
+    {
+     "leg": "H-learning-signal-sign (same qid)",
+     "bears_on": "SPLIT. Its flip-rate conjunct HOLDS (p1_half_profile flip ticks fall first->second half on 6/7). Its SIGN conjunct is CONTRADICTED: adv_flip_minus_nonflip is negative on only 1 of 7 seeds, mean +0.0604. NOT adjudicated -- but this is the disagreement the V3-EXQ-1028 red team left unresolved, now resolvable in this regime."
+    }
+   ],
+   "routing": "queue-experiment"
+  }
+ ]
+}

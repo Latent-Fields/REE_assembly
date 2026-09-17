@@ -1,0 +1,97 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-17T17:57:22Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "red_team_pass": {
+  "ran": true,
+  "verdict": "CONTESTED",
+  "model": "claude-opus-5 (SESSION MODEL, NOT cross-model)",
+  "cross_model_attempted": true,
+  "cross_model_unavailable_reason": "claude-fable-5-1 returned HTTP 429 monthly spend limit; re-spawned once on the session model per SKILL.md Step 7c.",
+  "caveat": "Same-model pass: shares the drafter's priors and blind spots."
+ },
+ "pre_routing_checks_7b": {
+  "ran": true,
+  "fire_count": 0,
+  "inapplicable": [
+   "C5"
+  ],
+  "note": "inapplicable is NOT no-fire: those checks could not look."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched_20260917T102244Z_v3",
+   "queue_id": "V3-EXQ-1048",
+   "claim_ids": [
+    "MECH-017"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "MIXED, and faithfully so -- the run implements MECH-017's own what_would_answer grid verbatim. Its CONFIRMING leg on early probes is met at 9x the floor; its FALSIFYING clause ('A > B ... against the online comparator') is triggered on late probes, 5/5 seeds, replicated on a second DV.",
+    "biological_reference": "clear -- hippocampal-neocortical replay consolidating older experience against catastrophic interference. The translation is faithful in kind; no load-bearing divergence.",
+    "prerequisites": "present -- all 12 readiness preconditions met, including forgetting_present_in_control at 2.4854 vs a 1.1 floor.",
+    "implementation": "complete -- gradient budget matched exactly (192 extra steps in every A and B cell, delta 0.0).",
+    "environment": "adequate for the question as posed; 18 training episodes x 30 steps per cell.",
+    "measurement": "adequate on the tested axis, INCOMPLETE against the claim -- two of the claim's three named readouts were never measured: E2 world_forward (declared limit, no trainer exists in ree_core) and precision_error_corr (absent from driver and manifest entirely).",
+    "integration": "coupled",
+    "scale": "adequate for a 5/5 sign-consistent contrast; 406s elapsed, 1056 gradient updates per A/B cell."
+   },
+   "biological_reference": {
+    "closest_mechanism": "hippocampal-neocortical replay during SWS; systems consolidation against catastrophic interference",
+    "dependencies": [
+     "a replay sampler that covers old states",
+     "a consolidation window separate from waking encoding"
+    ],
+    "is_formal_import": false,
+    "divergence": "none load-bearing",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "No epistemic suppression. This is a genuine two-sided experimental result on a claim that bundles two predictions.",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "V3-EXQ-1048 is MECH-017's FIRST and ONLY experimental entry (prior record: 5 literature entries, 4 supports / 1 weakens; genuine_exp_count was 0). It implements the claim's own what_would_answer grid verbatim and returns a genuinely two-sided result. CONFIRMING leg MET: arm A (whole-buffer offline replay) beats the budget-matched arm B on EARLY-state probes on 5 of 5 seeds, mean relative gain 0.4542 against a pre-registered 0.05 floor (9.1x). FALSIFYING leg TRIGGERED: the claim's falsifier is 'A > B (replaying stale traces DEGRADES the model against the online comparator)', stated without a probe stratum; on LATE-state probes A > B on 5 of 5 seeds (+9.25% to +95.13%, mean +41.4%), and the effect REPLICATES on the untouched second DV (E2 self-forward late, A 11.9% worse). C2 -- 'seeds with e1_holdout_mse_late(A) <= 1.1 * e1_holdout_mse_late(B)' -- transcribes the claim's own CONFIRMING clause ('A <= B on late-state probes (no cost to recency)'), so the failing criterion is the claim's question, not a mis-specification. THE CLAIM BUNDLES TWO PREDICTIONS and this run separates them cleanly: 'replay counters forgetting' is SUPPORTED; 'at no cost to recency' is WEAKENED. Recorded for a future granularity review; the GOV-GRAN-1 recurrence trigger does NOT fire (this is the claim's only autopsy target). LIMITS, stated rather than buried: two of the claim's three named readouts were never measured (E2 world_forward, declared -- no trainer exists in ree_core; and precision_error_corr, absent from driver and manifest entirely), so the CONFIRMING conjunction was never fully evaluable; and the run calls the consolidator directly rather than inside a sleep cycle (declared, driver:52-61). Arm C (no extra training) is a readiness control under the claim's own non-degeneracy precondition (i) and is correctly NOT used as the cost comparator. LATE_TOL = 0.10 is an unanchored pre-registered constant with no measured noise floor, but it is NOT load-bearing here: C2 would need a tolerance of >= 0.4706 to flip, and the A > B sign is consistent 5/5 on both DVs.",
+   "per_claim_recommendation": {
+    "MECH-017": {
+     "recommended_evidence_direction": "mixed",
+     "recommended_epistemic_category": "standard",
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate",
+     "change": "MECH-017 currently carries NO epistemic_category field at all, so set one -> epistemic_category: standard"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "note": "No substrate build is requested. The substrate performed as designed: budget matched exactly, all 12 preconditions green, consolidator updated E1 and E2 96 times per cell. The open question is scientific, not a substrate defect."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count_meets_threshold": false,
+    "count_at_this_autopsy": {
+     "MECH-017": 0
+    },
+    "this_target_contributes": 0,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "why_not_fired": "Zero counting runs for MECH-017 and zero prior autopsy targets tagging it -- this is the claim's first. Direction mixed and category standard also fail the R1-R3 first gate independently."
+   },
+   "claim_granularity_flag": {
+    "fires": true,
+    "reason": "MECH-017's what_would_answer conjoins two separable predictions ('replay counters forgetting' AND 'at no cost to recency'). This run supports the first at 9x its floor and triggers the claim's own falsifier on the second, 5/5, on two independent DVs. That is a clean structural split, not tuning noise.",
+    "routing": "RECORDED ONLY -- not routed to /claim-synthesis. The GOV-GRAN-1 recurrence trigger does not fire: this is MECH-017's only autopsy target and the reader reports 0 tagging targets prior. Surfaced here so a second circling run makes the split actionable rather than starting the count from scratch.",
+    "user_decision": "Step 8 gate 2026-09-17: record the flag, do not route."
+   },
+   "learning_extracted": [
+    "MECH-017 is two claims wearing one id. A matched-budget design cannot satisfy both conjuncts at once unless replay strictly dominates a stratum specialist on that specialist's own stratum -- and the run shows it does not. The separable successor question is whether the recency deficit is INTRINSIC to replay or an artefact of REALLOCATING a fixed budget; that needs an arm with ADDITIONAL rather than reallocated budget, and it is a NEW question, not a re-spec of C2.",
+    "When an autopsy wants to change a failing criterion's comparator, check the CLAIM's own pre-registration first. This autopsy's first draft proposed re-specifying C2 against arm C and was wrong: the claim itself names arm B on that leg, and arm C only as a readiness control. The Step 7c pass caught it, and also showed the swap would not even have rescued C2 (3/5 against a threshold of 4).",
+    "A cost claim and a foregone-benefit claim need different comparators, and the manifest supported both readings -- but only one of them is the claim's."
+   ],
+   "routing": "queue-experiment"
+  }
+ ]
+}

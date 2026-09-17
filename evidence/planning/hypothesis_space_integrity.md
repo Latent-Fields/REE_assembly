@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-17T10:58:24Z
+Generated: 2026-09-17T18:01:07Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **62** open question(s) across **49** time-series snapshot(s). **5** flag(s) raised, **62** advisory note(s), **25** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
+Audited **62** open question(s) across **49** time-series snapshot(s). **5** flag(s) raised, **62** advisory note(s), **27** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -127,7 +127,7 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 **A count of 0 here is NOT the same as 'no recurrence'.** 1 recurrence(s) are ACKNOWLEDGED this cycle and listed in the next section rather than here -- read both before concluding the ledger is quiet.
 
-- `zworld_actor_adequacy_locus`: 3 distinct labelled fan-out portfolios (>= N=3); denominator 2 -> 11, 3 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 4; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `exq1002_redteam_findings_20260904.md`, `failure_autopsy_V3-EXQ-1008_2026-09-08.json`, `failure_autopsy_V3-EXQ-1041_2026-09-16.json`
+- `zworld_actor_adequacy_locus`: 3 distinct labelled fan-out portfolios (>= N=3); denominator 2 -> 11, 1 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 4; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `exq1002_redteam_findings_20260904.md`, `failure_autopsy_V3-EXQ-1008_2026-09-08.json`, `failure_autopsy_V3-EXQ-1041_2026-09-16.json`
 
 ## Recurrence acknowledged (1, advisory) -- worked, not live
 
@@ -162,7 +162,7 @@ _Mirrors the fan-out recurrence overlay above, for the discovery-growth path. Ev
 
 _None._
 
-## Pre-registration provenance (25 witnessed, 0 unverifiable)
+## Pre-registration provenance (27 witnessed, 0 unverifiable)
 
 _`pre_registered_utc` is SELF-REPORTED and written into the registry after the fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- no audit reading only the registry can detect that. A fan-out leg whose adjudicating run had ALREADY RESOLVED when it was added therefore clears only on **git-witnessed** provenance: its `pre_registration_source` artifact (or its own registry entry) must have been durably committed before the run resolved. The honest case self-clears with no human adjudication; a back-dated one cannot manufacture a commit._
 
@@ -191,22 +191,23 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `zworld_actor_adequacy_locus`/`H-D-warmup-not-the-locus`: `exq1002_redteam_findings_20260904.md` committed 2026-09-04 <= resolution 2026-09-05
 - `zworld_actor_adequacy_locus`/`H-E-channel-input-capacity`: `failure_autopsy_V3-EXQ-1002_2026-09-05.json` committed 2026-09-05 <= resolution 2026-09-07
 - `zworld_actor_adequacy_locus`/`H-F-content-discarded-at-encode`: `failure_autopsy_V3-EXQ-1008_2026-09-08.json` committed 2026-09-08 <= resolution 2026-09-09
+- `zworld_actor_adequacy_locus`/`H-under-budgeted-p0a`: entered the registry 2026-09-16 <= resolution 2026-09-17
+- `zworld_actor_adequacy_locus`/`H-transfer-amplification`: `failure_autopsy_V3-EXQ-1041_2026-09-16.json` committed 2026-09-16 <= resolution 2026-09-17
 - `sd082_candidate_discriminating_readout_locus`/`H-replay-rule-state-mismatch`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 - `sd082_candidate_discriminating_readout_locus`/`H-selection-authority-bounded`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 
-## Advisory -- H-other / model-misspecification route (0 recorded event(s), 4 candidate(s); GOV-HOTHER-1, NOT violations)
+## Advisory -- H-other / model-misspecification route (1 recorded event(s), 3 candidate(s); GOV-HOTHER-1, NOT violations)
 
 _Every important question must preserve a route OUTSIDE its registered partition: the pattern may be explained by none of the enumerated legs. A recorded `h_other_events[]` entry is a /failure-autopsy Step 9b Mode D judgement naming the pattern-level signal (no leg explains the full outcome; seeds or environments pick incompatible legs; interaction-only effects; omitted timing or development explains the variance; several legs simultaneously required; every survivor needs a rescue clause) and the routed `response` (rotation via GOV-ROTATE-1, labelled partition expansion, or deferred with a named trigger) -- to be acted on BEFORE another run is queued on a surviving leg. H-other is never a leg and never `confirmed`. A CANDIDATE below is the one machine-visible signal (>= 2 confirmed legs alongside an alive one, no event recorded): a prompt to ask the Mode D question, never a verdict._
 
 **Recorded events**
 
-_None._
+- `zworld_actor_adequacy_locus` h_other_events[0]: signal='(5) two or more registered legs are simultaneously required, and (1) no single registered leg explains the full outcome. The question now carries FOUR confirmed legs coexisting with alive ones -- H-D-warmup-not-the-locus, H-F-content-discarded-at-encode, H-metric-mismatch and H-anchor-off-distribution -- plus two SPLIT legs (H-C-geometry-mismatch, H-mechanism-defect). It has grown from 2 legs at registration to 11 across FOUR labelled fan-out events, and check_hypothesis_space_integrity.py already lists it under both fan-out recurrence (N>=3, ACTIONABLE) and H-other CANDIDATE.' response=rotation source=failure_autopsy_V3-EXQ-1023a_2026-09-17.json legs=['H-D-warmup-not-the-locus', 'H-F-content-discarded-at-encode', 'H-metric-mismatch', 'H-anchor-off-distribution', 'H-C-geometry-mismatch', 'H-mechanism-defect', 'H-which-directions'] recorded=2026-09-17 -- V3-EXQ-1023a adds a finding no registered leg carries: the SD-106 objective trains hard (+0.1184 held-out R^2 for 3.3x steps, still climbing per V3-EXQ-1041) while almost none of that gain reaches the consumer (+0.0081, a ~50x transfer shortfall against the PCA-anchored expectation). Each surviving leg names a LOCUS at which adequacy is lost; none of them names a TRANSFER FAILURE between a well-trained objective and its consumer. Four confirmed loci coexisting is itself the tell: the partition is enumerating places to look rather than carving the phenomenon, which is the shape GOV-HOTHER-1 exists to catch. H-other is NOT a leg and is NOT confirmed -- this records that the partition may be mis-posed.
 
 **Candidates (no event recorded)**
 
 - `e3_fdominance_causal_discrimination`: 2 confirmed leg(s) coexist with 4 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
 - `mech152_terrain_modulation_depth`: 2 confirmed leg(s) coexist with 2 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
-- `zworld_actor_adequacy_locus`: 4 confirmed leg(s) coexist with 3 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
 - `mech465_commit_gate_headroom_reachability`: 2 confirmed leg(s) coexist with 1 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
 
 ## Advisory -- drafted ledger edits not reflected in the registry (0, NOT violations)

@@ -5320,7 +5320,8 @@
     "exq1002_redteam_findings_20260904.md",
     "failure_autopsy_V3-EXQ-1002_2026-09-05.json",
     "failure_autopsy_V3-EXQ-1008_2026-09-08.json",
-    "failure_autopsy_V3-EXQ-1041_2026-09-16.json"
+    "failure_autopsy_V3-EXQ-1041_2026-09-16.json",
+    "failure_autopsy_V3-EXQ-1023a_2026-09-17.json"
    ],
    "is_hero": false,
    "initial_frozen_count": 11,
@@ -5511,18 +5512,17 @@
       "the owed v3_exq_1010 re-run at P0a epochs=40"
      ],
      "resolution": {
-      "state": "alive",
+      "state": "eliminated",
       "resolving_runs": [
-       "V3-EXQ-1041"
+       "V3-EXQ-1023a"
       ],
-      "evidence_direction": "non_contributory",
+      "evidence_direction": "weakens",
       "epistemic_category": "standard",
-      "self_route_label": "metrics_never_comparable",
       "control_passed": true,
       "non_degenerate": true,
-      "met_elimination_bar": false,
-      "resolved_utc": null,
-      "basis": "EXPLICITLY NOT ELIMINATED, reversing this autopsy's own first draft (which stamped it `eliminated` with the full bar on the strength of the order-dependent 0.181 budget share -- withdrawn under red-team F1, recorded rather than deleted). Repartitioned budget-first the identical cells give this leg 0.799640/0.768843/0.762308 (median 0.769), leading the runner-up on 3/3 seeds and routing `under_budgeted_p0a` at the same pre-registered 0.15; order-symmetric it holds 0.475, the largest of the three, with no leader clearing the margin. Two corroborating order-free facts: the head has NOT saturated at the top of the sweep (sgd_head_r2 medians 0.746 -> 0.806 -> 0.854, still rising at ~1160-1320 steps and still 0.014 below the post-hoc probe there), and at the design doc's own named reference budget it alone closes 0.362-0.444 of the gap on the reported statistic. Per the state-mapping table an uninformative-on-this-leg run narrows nothing: state stays `alive`, with resolving_runs and basis recorded. Its discriminator is the owed v3_exq_1010 re-run at P0a epochs=40."
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-09-17T14:48:24Z",
+      "basis": "This leg predicted the consumer DV moving toward or past the 0.85 bar under a raised P0a budget. V3-EXQ-1023a raised P0a epochs 12 -> 40 on the SD-106 track (1320/1320/1160 optimiser steps vs a shipped 396/396/348, ~3.3x) and the DV reached mean 0.7273 -- 0 of 3 seeds clearing. The mean did rise (+0.0081 over V3-EXQ-1023) but the TRANSFER RATE falsifies the leg: 3.3x the steps bought ~6.6% of the 0.1227 shortfall, while the upstream objective moved +0.1184 held-out R^2 over the same manipulation (transfer slope 0.068 agreement per unit R^2 against an anchored 3.4655, a ~50x shortfall). The budget lever is not exhausted -- V3-EXQ-1041 recorded the head still rising at 40 epochs -- it is NON-TRANSFERRING. FALSIFIED."
      }
     },
     {
@@ -5599,14 +5599,18 @@
       "the owed v3_exq_1010 re-run at P0a epochs=40"
      ],
      "resolution": {
-      "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
-      "resolved_utc": null,
-      "control_passed": false,
-      "non_degenerate": null,
-      "met_elimination_bar": false,
-      "basis": "DECLARED NULL: at the b_steps1200 post-hoc R^2 of 0.868412, an interpolated monotone transfer (slope 3.4655 agreement per unit R^2, from the two known points) predicts consumer agreement ~0.8068."
+      "state": "eliminated",
+      "resolving_runs": [
+       "V3-EXQ-1023a"
+      ],
+      "evidence_direction": "weakens",
+      "epistemic_category": "standard",
+      "self_route_label": "sd106_below_pca32_parity",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-09-17T14:48:24Z",
+      "basis": "V3-EXQ-1023a's manifest carries a PRE-REGISTERED discrimination block staging exactly this leg against H-which-directions: predicted 0.806 vs 0.719, separation 0.087. Observed SD-106 consumer oracle-action agreement mean 0.727289 sits 0.0787 from this leg's prediction and 0.0083 from its rival -- 9.5x closer to the rival. Control passed: the raw-field ceiling control cleared its floor at 0.9735 vs 0.60, and the PCA-32 anchor cleared the 0.85 parity bar on 3/3 seeds, so the bar is achievable at the consumer width and the instrument reads. FALSIFIED."
      }
     },
     {
@@ -5625,10 +5629,13 @@
       "resolving_runs": [],
       "evidence_direction": "pending",
       "resolved_utc": null,
-      "control_passed": false,
-      "non_degenerate": null,
+      "control_passed": true,
+      "non_degenerate": true,
       "met_elimination_bar": false,
-      "basis": "DECLARED NULL: consumer agreement stays at ~0.7192, i.e. NO MOVE from V3-EXQ-1023's shipped measurement, despite the post-hoc R^2 having risen from 0.843123 to 0.868412. Separation from its rival's null ~0.0876 on the shipped DV at 3 seeds."
+      "basis": "SURVIVING leg after V3-EXQ-1023a. Observed 0.727289 sits 0.0083 from this leg's pre-registered null of 0.719 against a 0.087 separation, and its two rivals on that block are falsified. Deliberately left ALIVE rather than confirmed: a point-prediction match plus elimination of rivals is not positive confirmation, and the elimination bar for a CONFIRMED state is not met by this run. The already-chipped lit-pull (chip-20260916-sd106-compression-litpull) on generic vs task-relevant compression is what failure_autopsy_V3-EXQ-1041_2026-09-16 commissioned to ground exactly this reading.",
+      "adjudicating_runs": [
+       "V3-EXQ-1023a"
+      ]
      }
     }
    ],
@@ -5694,7 +5701,26 @@
      "note": "Fourth fan-out growth event on this question, and a GOV-FANOUT-1 portfolio in the strict sense: these two legs are the live discrimination V3-EXQ-1041 leaves behind, pre-registered BEFORE their adjudicating run exists (Mode A). Their discriminator is the v3_exq_1010 sweep unchanged against an SD-106-ON warmup at P0a epochs=40, with declared nulls ~0.8068 and ~0.7192. See circling_check for why H-transfer-amplification is not the eliminated H-B-consumer-learning under a new name."
     }
    ],
-   "fanout_growth_note": "Third and fourth fan-out growth events (2026-09-16, V3-EXQ-1041). This question has not converged: its denominator has now moved 2 -> 5 -> 11 across four events, so its headline narrowing ratio is deflated precisely now, and one leg in each of two families re-enters territory that already holds an eliminated leg (justified per the autopsy's circling_check, not silently). Read convergence_class alongside h_fanout_recurrence."
+   "fanout_growth_note": "Third and fourth fan-out growth events (2026-09-16, V3-EXQ-1041). This question has not converged: its denominator has now moved 2 -> 5 -> 11 across four events, so its headline narrowing ratio is deflated precisely now, and one leg in each of two families re-enters territory that already holds an eliminated leg (justified per the autopsy's circling_check, not silently). Read convergence_class alongside h_fanout_recurrence.",
+   "h_other_events": [
+    {
+     "recorded_utc": "2026-09-17T17:57:22Z",
+     "source": "failure_autopsy_V3-EXQ-1023a_2026-09-17.json",
+     "signal": "(5) two or more registered legs are simultaneously required, and (1) no single registered leg explains the full outcome. The question now carries FOUR confirmed legs coexisting with alive ones -- H-D-warmup-not-the-locus, H-F-content-discarded-at-encode, H-metric-mismatch and H-anchor-off-distribution -- plus two SPLIT legs (H-C-geometry-mismatch, H-mechanism-defect). It has grown from 2 legs at registration to 11 across FOUR labelled fan-out events, and check_hypothesis_space_integrity.py already lists it under both fan-out recurrence (N>=3, ACTIONABLE) and H-other CANDIDATE.",
+     "legs": [
+      "H-D-warmup-not-the-locus",
+      "H-F-content-discarded-at-encode",
+      "H-metric-mismatch",
+      "H-anchor-off-distribution",
+      "H-C-geometry-mismatch",
+      "H-mechanism-defect",
+      "H-which-directions"
+     ],
+     "rationale": "V3-EXQ-1023a adds a finding no registered leg carries: the SD-106 objective trains hard (+0.1184 held-out R^2 for 3.3x steps, still climbing per V3-EXQ-1041) while almost none of that gain reaches the consumer (+0.0081, a ~50x transfer shortfall against the PCA-anchored expectation). Each surviving leg names a LOCUS at which adequacy is lost; none of them names a TRANSFER FAILURE between a well-trained objective and its consumer. Four confirmed loci coexisting is itself the tell: the partition is enumerating places to look rather than carving the phenomenon, which is the shape GOV-HOTHER-1 exists to catch. H-other is NOT a leg and is NOT confirmed -- this records that the partition may be mis-posed.",
+     "response": "rotation",
+     "routing_note": "User decision at the Step 8 gate, 2026-09-17. Route to /claim-synthesis on the question's own claims MECH-457 and INV-088 (GOV-ROTATE-1) BEFORE any further rescue run on a surviving leg. Note the ordering constraint this creates: the SD-106 lit-pull (chip-20260916-sd106-compression-litpull) is already open and grounds H-which-directions; the rotation is about the QUESTION's framing, not a substitute for that grounding."
+    }
+   ]
   },
   {
    "qid": "sd_e1_var_bar_readout_crush",
@@ -6651,7 +6677,8 @@
    "fanout_sources": [
     "failure_autopsy_V3-EXQ-822e_2026-09-05.json",
     "failure_autopsy_V3-EXQ-822f_2026-09-09.json",
-    "failure_autopsy_V3-EXQ-1020_2026-09-11.json"
+    "failure_autopsy_V3-EXQ-1020_2026-09-11.json",
+    "failure_autopsy_V3-EXQ-1046_2026-09-17.json"
    ],
    "is_hero": false,
    "initial_frozen_count": 9,
@@ -6695,18 +6722,18 @@
       "V3-EXQ-822f"
      ],
      "resolution": {
-      "state": "alive",
+      "state": "eliminated",
       "resolving_runs": [
-       "V3-EXQ-822f"
+       "V3-EXQ-1046"
       ],
-      "evidence_direction": "inconclusive",
+      "evidence_direction": "weakens",
       "epistemic_category": "standard",
-      "self_route_label": "discrimination_within_init_head_spread_inconclusive",
+      "self_route_label": "h1_weakened_training_reduced_readout_consequence",
       "control_passed": true,
       "non_degenerate": true,
-      "met_elimination_bar": false,
-      "resolved_utc": "2026-09-08T23:11:45Z",
-      "basis": "Rejected at adequate power on the index: paired trained-minus-init D mean 0.063 sd 0.20 n=5, t(4) = -4.9 against the pre-registered 0.5 (criterion reachable: positive control 5.28). Not eliminated: the pre-registered weakens branch was foreclosed by the dead-ReLU control on this run (4/5 ON cells >= 0.50) and the learning-signal rivals are unmeasured."
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-09-17T05:38:13Z",
+      "basis": "V3-EXQ-1046 measured the TRAINED readout's argmin consequence against the same substrate's FROZEN-INIT readout, paired. C1 (trained > init by >= 0.05 on a seed majority) is a clean null: 0 of 7 ready seeds, mean paired DV -0.0837 against a +0.05 floor; the mirror C1neg fired on 4 of 4 REACHABLE seeds. Control passed: the self-yoked positive control (TRAINED_INTACT vs REF_SELF) showed 0 divergent ticks on 7/7 seeds over 18509 ticks, and the raw-identical filter excluded 0 ticks. The trained readout is LESS argmin-consequential than its own initialisation, so the leg's asserted property is not merely unestablished but measured in the opposite direction. Mechanism (see failure_autopsy_V3-EXQ-1046_2026-09-17): the head became RULE-INVARIANT while remaining strongly candidate-opinionated -- spread 6.13-42.80x LARGER than init, head_effect argmin divergence 0.2058-0.8343, flip fraction 0.018 vs 0.201."
      }
     },
     {
@@ -7471,7 +7498,8 @@
    ],
    "registered_utc": "2026-09-16T11:10:54Z",
    "fanout_sources": [
-    "failure_autopsy_V3-EXQ-964b_2026-09-16.json"
+    "failure_autopsy_V3-EXQ-964b_2026-09-16.json",
+    "failure_autopsy_V3-EXQ-1047_2026-09-17.json"
    ],
    "is_hero": false,
    "initial_frozen_count": 4,
@@ -7532,11 +7560,16 @@
      "resolution": {
       "state": "alive",
       "resolving_runs": [],
-      "evidence_direction": "pending",
+      "evidence_direction": "non_contributory",
       "resolved_utc": null,
       "control_passed": false,
       "non_degenerate": null,
-      "met_elimination_bar": false
+      "met_elimination_bar": false,
+      "adjudicating_runs": [
+       "V3-EXQ-1047"
+      ],
+      "epistemic_category": "standard",
+      "basis": "V3-EXQ-1047 ran the amplified-REAL-readout ladder this question's live_gate names (k in {1,10,40,100} at shipped authority). It DID NOT DISCRIMINATE and the leg STAYS ALIVE. The run's own F_MAG criterion contains no control term (driver L847-853) and fired on two seeds carrying exactly one diverged committed tick each above a 1e-9 floor. At the rail rung, on every seed where the real arm fires, the range-matched SYNTHETIC fires 2-3x more and on seed 202 the value-PERMUTED control fires 4x more; at k=10 the permuted control fired on a seed majority while the real arm fired zero. Conditioned on reachable flips at k=100 the real arm converts 2/26 (7.7%) against synthetic 19.2% and permuted 15.4%. No cell at any rung has the real arm above BOTH controls. The manifest self-routes H-MAG SUPPORTED; that routing is NOT SUSTAINED -- see failure_autopsy_V3-EXQ-1047_2026-09-17."
      },
      "adjudicating_runs_note": "pending: the routed H-mag/H-pat spike (queue-experiment, new EXQ) is not yet queued"
     },
@@ -7551,11 +7584,16 @@
      "resolution": {
       "state": "alive",
       "resolving_runs": [],
-      "evidence_direction": "pending",
+      "evidence_direction": "non_contributory",
       "resolved_utc": null,
       "control_passed": false,
       "non_degenerate": null,
-      "met_elimination_bar": false
+      "met_elimination_bar": false,
+      "adjudicating_runs": [
+       "V3-EXQ-1047"
+      ],
+      "epistemic_category": "standard",
+      "basis": "V3-EXQ-1047 did not adjudicate this leg either. Its F_PAT criterion requires real < majority AND synthetic >= majority AND permuted >= majority; measured 1.0 against a threshold of 2.0, and its first conjunct was false in any case. The instrument cannot currently separate real ordering from a value-shuffled control, so pattern-limitation is neither established nor excluded. STAYS ALIVE."
      },
      "adjudicating_runs_note": "pending: the routed H-mag/H-pat spike (queue-experiment, new EXQ) is not yet queued"
     }
@@ -7563,10 +7601,10 @@
    "synthesis": null,
    "decision": {
     "decision_question": "Is the SD-102 readout selection-relevant at any gain <= the curiosity_bias_scale rail (so a gain change suffices), or is its pattern selection-irrelevant (so a readout/target-frame build or authority segregation is required)?",
-    "live_gate": "H-mag vs H-pat spike (new EXQ) scores",
+    "live_gate": "UNMET. V3-EXQ-1047 ran the H-mag vs H-pat spike but its finding criterion was control-free and evaluated at clamp saturation; it did not discriminate. A control-BEARING criterion below saturation is owed -- and is GATED behind the implement-substrate build on sd_epistemic_deficit_multitarget_readiness, because the re-derive brake FIRED on MECH-482 at the 2026-09-17 gate.",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "one 15-minute yoked diagnostic away"
+    "distance_phrase": "blocked: brake fired; substrate build owed before the discrimination can be re-posed"
    },
    "pre_registration_note": "Single-cycle Mode A+B: H-instr/H-auth were pre-registered by the V3-EXQ-964b driver (queued 2026-09-15) and resolved by its run; H-mag/H-pat are pre-registered here at confirmation for the routed H-mag/H-pat spike, whose queue_id is not yet allocated (governance chips the /queue-experiment); fill adjudicating_runs when it is queued."
   },
