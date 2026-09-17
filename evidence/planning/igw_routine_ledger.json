@@ -5482,10 +5482,12 @@
       "task_claim_session_id": "igw-auto-igw-231-proposal-for-mech-017-20260916T222438Z",
       "task_claim_claimed_at": "2026-09-16T22:24:38Z",
       "assigned_at": "2026-09-16T22:22:44Z",
-      "status": "completed_resumable",
+      "status": "completed",
       "reaped_at": "2026-09-16T22:57:02Z",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-017 experiment designed, smoke-tested, red-teamed and QUEUED. The authoring session (igw-231-proposal-for-mech-017) completed design + smoke + a full red-team pass, then died on an API monthly-spend limit before writing the queue entry; the orchestrator rescued the staged script to ree-v3 e592f65 ('script only, NOT QUEUED'), and session bold-swanson-1789a0 finished it through /queue-experiment. V3-EXQ-1048 is now on ree-v3 origin/main (sha 7e75552) and LIVE in the coordinator DB (/queue/active confirms present; queue depth restored 1 -> 2). Proposal EXP-0753 (EVB-1390) could NOT be marked executed: task_claim arbitration named a live rival owner (angry-leakey-c8b0a0-pause) on experiment_proposals.v1.json, so that write is routed to /governance as GFLAG-0307 (stale_note, MECH-017) rather than left as prose.",
+      "completed_at": "2026-09-17T10:13:35Z",
+      "completion_summary": "MECH-017 experiment designed, smoke-tested, red-teamed and QUEUED. The authoring session (igw-231-proposal-for-mech-017) completed design + smoke + a full red-team pass, then died on an API monthly-spend limit before writing the queue entry; the orchestrator rescued the staged script to ree-v3 e592f65 ('script only, NOT QUEUED'), and session bold-swanson-1789a0 finished it through /queue-experiment. V3-EXQ-1048 is now on ree-v3 origin/main (sha 7e75552) and LIVE in the coordinator DB (/queue/active confirms present; queue depth restored 1 -> 2). Proposal EXP-0753 (EVB-1390) could NOT be marked executed: task_claim arbitration named a live rival owner (angry-leakey-c8b0a0-pause) on experiment_proposals.v1.json, so that write is routed to /governance as GFLAG-0307 (stale_note, MECH-017) rather than left as prose."
     },
     {
       "igw_id": "IGW-20260917-235",
@@ -7901,8 +7903,8 @@
       "title": "Proposal for MECH-017",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-16T22:57:08Z",
-      "re_eligible_after": "2026-09-18T22:57:02Z"
+      "noted_at": "2026-09-17T10:13:44Z",
+      "re_eligible_after": "2026-09-19T10:13:44Z"
     },
     {
       "stable_hash": "3571ffe17d6e",
