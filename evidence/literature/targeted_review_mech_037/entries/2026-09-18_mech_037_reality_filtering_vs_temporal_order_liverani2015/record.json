@@ -1,0 +1,59 @@
+{
+  "claim_ids_tested": [
+    "MECH-037"
+  ],
+  "source": {
+    "title": "Memory in time: electrophysiological comparison between reality filtering and temporal order judgment",
+    "authors": [
+      "Maria Chiara Liverani",
+      "Aurélie L. Manuel",
+      "Aurélie Bouzerda-Wahlen",
+      "M. Genetti",
+      "Adrian G. Guggisberg",
+      "Louis Nahum",
+      "Armin Schnider"
+    ],
+    "year": 2015,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2014.12.064",
+    "pmid": "25595982",
+    "volume": "289",
+    "pages": "279-288"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the most directly on-mechanism paper available for MECH-037 and it runs against the claim's stated gating variable. Seventeen healthy subjects performed a task combining reality filtering (ORF) and temporal order judgment (TOJ) within one paradigm and one time frame -- the controlled comparison MECH-037 needs. The two dissociate behaviourally (TOJ markedly slower and less accurate) and electrophysiologically: similar potentials at 240-280 ms, then divergence in amplitude and electrical source at 310-360 ms and again at 530-560 ms, engaging different brain areas. Crucially, only ORF failure has a clinical correlate; TOJ failure as tested has none. MECH-037 makes temporal-ordering confidence a gate input; here the temporal-ordering computation is slow, effortful, dissociable, and clinically inert. Confidence 0.74: high mapping fidelity to the exact question, human data, sound within-subject design, but modest N and a single laboratory.",
+  "failure_signatures": [
+    "Temporal order judgment is markedly slower and less accurate than reality filtering in the same subjects on the same stimuli -- a gate that had to wait on a temporal-ordering read-out could not run at the 200-300 ms latency at which reality filtering demonstrably runs.",
+    "The two processes share early potentials (240-280 ms) but diverge in amplitude and electrical source from 310 ms, so early similarity is not evidence of a shared computation.",
+    "Failure of temporal order judgment, as tested, has no known clinical manifestation, whereas failure of reality filtering produces confabulation and disorientation -- the two cannot be the same gate."
+  ],
+  "tags": [
+    "mech-037",
+    "papez",
+    "reality-filtering",
+    "temporal-order",
+    "provenance-gating",
+    "erp",
+    "dissociation",
+    "falsifier"
+  ],
+  "mapping": {
+    "source_claim_statement": "Orbitofrontal reality filtering (sensing whether an evoked memory refers to present reality) and temporal order judgment (conscious knowledge of when something happened) were compared within one combined continuous-recognition paradigm in 17 healthy subjects. They dissociated behaviourally -- subjects were markedly slower and less accurate at TOJ -- and electrophysiologically: similar evoked potentials at 240-280 ms, then rapid divergence in amplitude and electrical source at 310-360 ms and 530-560 ms, engaging different brain areas. The authors conclude that consciously ordering memories in time is effortful and slow, in contrast to sensing a memory's relation to the present, and note that only ORF failure has a known clinical correlate.",
+    "ree_translation": "MECH-037's operational checklist names 'temporal ordering confidence' as an input to the provenance gate, alongside trace presence and recency. This paper is the controlled test of whether the fast pre-commitment filter actually reads that signal, and the answer is no: the ordering read-out is a separate, slower, effortful process with a different electrical source. For REE this is a design constraint, not merely a citation. If the substrate implements provenance gating by consulting a temporal-ordering estimate, it is implementing the slow deliberate process, not the fast gate -- and the fast gate is the one whose failure produces the confabulation phenotype MECH-037 is trying to capture. The claim's non-degeneracy precondition already demands that the trace/ordering signal VARY across conditions; this paper adds a sharper demand, that trace presence and temporal ordering be varied SEPARATELY, because in humans they come apart.",
+    "mapping_caveat": "N = 17 healthy adults, one laboratory, one paradigm; the ORF/TOJ contrast is defined by that paradigm and may not exhaust either construct. ERP source localisation is a low-spatial-resolution inference and 'different brain areas' should not be read as a confident anatomical assignment. Most importantly, the temporal-ordering construct tested here is CONSCIOUS, REPORTABLE order knowledge; REE's 'temporal ordering confidence' could be an implicit, non-reportable signal that this paradigm never touches. That is the escape route for MECH-037 -- but it is an escape route that has to be paid for with an experiment, not asserted.",
+    "source_context": "Human high-density evoked potentials, 17 healthy adults, combined continuous recognition task with interleaved ORF and TOJ demands."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Mapping fidelity is unusually high -- the paper asks almost exactly MECH-037's question about the gating variable. Source quality moderate: solid within-subject design and peer-reviewed, but N = 17, single lab, ERP source inference. Transfer risk moderate: human data, but conscious TOJ may not be the implicit ordering signal REE means."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_037",
+  "entry_id": "2026-09-18_mech_037_reality_filtering_vs_temporal_order_liverani2015",
+  "timestamp_utc": "2026-09-18T06:15:39Z",
+  "summary_path": "summary.md"
+}

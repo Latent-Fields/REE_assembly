@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-037"
+  ],
+  "source": {
+    "title": "An electrophysiological dissociation between orbitofrontal reality filtering and context source monitoring",
+    "authors": [
+      "Aurélie Bouzerda-Wahlen",
+      "Louis Nahum",
+      "Maria Chiara Liverani",
+      "Adrian G. Guggisberg",
+      "Armin Schnider"
+    ],
+    "year": 2015,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn_a_00686",
+    "pmid": "25061928",
+    "volume": "27",
+    "issue": "1",
+    "pages": "164-174"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly relevant and cuts both ways. Within one continuous-recognition task, reality filtering produced a frontal positivity with posterior medial orbitofrontal activity at 200-300 ms, while context source monitoring had NO electrophysiological expression in that early window and instead produced a prolonged frontal positivity from 400 ms, slower and less accurate. This SUPPORTS MECH-037's architectural boundary -- the paper's own framing is that the gate amplifies or suppresses candidates without being the slower, deliberate source-attribution process, which is exactly REE's 'the loop does not mint authority writes and does not bypass E3/verifier commit checks'. It WEAKENS the claim's content model: MECH-037 has the gate reading provenance (where/when the content came from), and provenance read-out here is demonstrably the slow post-gate process, not the gate. Confidence 0.70 -- strong design and direct relevance, but healthy participants only, N not stated in the abstract, single lab, and the authors themselves flag that the behavioural correlate of deficient source monitoring remains unverified.",
+  "failure_signatures": [
+    "Context source monitoring has no electrophysiological expression at 200-300 ms, the window in which the reality-filtering gate operates -- so a gate implemented as a source/provenance look-up cannot run at gate latency.",
+    "Source monitoring is slower and less accurate than reality filtering on the same stimuli in the same subjects, indicating two mechanisms rather than one graded one.",
+    "Deficient orbitofrontal reality filtering has an established behavioural correlate (reality confusion in thinking); deficient source monitoring does not yet have a verified one, so the two failures are not interchangeable evidence for one gate."
+  ],
+  "tags": [
+    "mech-037",
+    "papez",
+    "reality-filtering",
+    "source-monitoring",
+    "provenance-gating",
+    "erp",
+    "dissociation",
+    "commitment-gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Context source monitoring (remembering the precise past context in which a piece of information was acquired) and orbitofrontal reality filtering (sensing whether an upcoming thought refers to present reality and may be acted upon) were juxtaposed within a single continuous recognition task while high-resolution evoked potentials were recorded in healthy participants. They dissociated both behaviourally and electrophysiologically: reality filtering induced a frontal positivity and posterior medial orbitofrontal activity at 200-300 ms, while source monitoring had no electrophysiological expression in that early period, was slower and less accurate, and induced a prolonged frontal positivity starting at 400 ms.",
+    "ree_translation": "Two things for REE, pointing opposite ways. The supportive one is structural and worth keeping: there really is a fast gate that runs BEFORE the deliberate source-attribution machinery, and it is dissociable from it. That is the shape MECH-037 asserts when it says the loop 'can amplify or suppress candidate trajectories' but 'does not mint authority writes and does not bypass E3/verifier commit checks' -- a fast pre-commitment bias, not a second verifier. The weakening one is about content: MECH-037 has the gate reading provenance, and in humans provenance read-out is the 400 ms process, not the 200-300 ms one. Combined with Liverani et al. 2015 in this same directory, the pattern is consistent -- everything REE nominates as the gate's INPUT (temporal order, source context) turns out to be a slow process downstream of the gate.",
+    "mapping_caveat": "Healthy participants only; the abstract does not state N. ERP source localisation is coarse, so 'posterior medial orbitofrontal activity' is an inference, not a measurement. The dissociation is established within one task, and the authors explicitly note that the behavioural correlate of deficient source monitoring still needs controlled exploration -- so the asymmetry in clinical consequence is an open question, not a settled finding. Mapping REE's E1/E3 commitment architecture onto a continuous-recognition ERP paradigm is a substantial abstraction in both directions.",
+    "source_context": "Human high-resolution evoked potentials in healthy participants; single continuous recognition task combining source-monitoring and reality-filtering demands."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Good peer-reviewed within-task dissociation with direct bearing on both halves of MECH-037 (the architectural boundary it supports, the content model it weakens). Docked for unstated N, single lab, healthy-only sample, and coarse source localisation."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_037",
+  "entry_id": "2026-09-18_mech_037_reality_filtering_vs_source_monitoring_bouzerdawahlen2015",
+  "timestamp_utc": "2026-09-18T06:15:39Z",
+  "summary_path": "summary.md"
+}

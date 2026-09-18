@@ -1,0 +1,55 @@
+{
+  "claim_ids_tested": [
+    "MECH-037"
+  ],
+  "source": {
+    "title": "Frontal tDCS modulates orbitofrontal reality filtering",
+    "authors": [
+      "Aurélie L. Manuel",
+      "A. W. David",
+      "Marom Bikson",
+      "Armin Schnider"
+    ],
+    "year": 2014,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2014.01.052",
+    "pmid": "24508152",
+    "volume": "265",
+    "pages": "21-27"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The only causal gate-degradation manipulation in this pull, and MECH-037's confirming signature explicitly calls for one: 'degrading or disabling the gate ... produces a measurable increase in high-confidence commitments of ungrounded content'. Twenty healthy subjects, three sessions at least a week apart, cathodal / anodal / sham over the frontal pole, with computational current-flow modelling predicting polarity-specific flow across posterior medial OFC. Cathodal stimulation specifically impaired reality filtering relative to both anodal and sham. That is a sham-controlled, polarity-specific, within-subject causal demonstration that the gate is a real dissociable faculty whose integrity can be degraded independently of the content it gates -- the single most important structural commitment MECH-037 makes. Confidence 0.68 rather than higher: tDCS spatial specificity is weak, the effect is on filtering accuracy rather than on confidence-of-commitment (which is what REE actually predicts), and the manipulation targets OFC, not the Papez loop.",
+  "failure_signatures": [
+    "Cathodal stimulation degraded reality filtering while anodal and sham did not, so the deficit is not a general task-difficulty or fatigue effect -- a REE gate that could only be degraded by degrading the whole commitment pathway would not reproduce this specificity.",
+    "The effective montage was modelled to produce current flow across posterior medial orbitofrontal cortex, not hippocampus or the diencephalic relay -- the causal handle on this function in humans is prefrontal.",
+    "The measured outcome is filtering accuracy, not confidence attached to ungrounded commitments; a REE experiment that measured only accuracy would leave MECH-037's actual confirming signature untested."
+  ],
+  "tags": [
+    "mech-037",
+    "papez",
+    "reality-filtering",
+    "tdcs",
+    "causal-manipulation",
+    "gate-degradation",
+    "provenance-gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "Twenty healthy subjects performed a reality-filtering task while receiving cathodal, anodal or sham transcranial direct current stimulation over the frontal pole, in three sessions separated by at least one week. Computational modelling predicted that this montage produces polarity-specific current flow across posterior medial orbitofrontal cortex. Cathodal tDCS specifically impaired reality filtering relative to anodal and sham stimulation, showing that this orbitofrontal function can be causally modulated.",
+    "ree_translation": "MECH-037's confirming signature has two halves. The first -- untraced content is held at lower precision and licensed for commitment at a lower rate -- is a correlational prediction. The second is causal: degrading the gate should produce a measurable increase in high-confidence commitments of ungrounded content. This paper is the human instance of that second half. Reality filtering degrades selectively under a polarity-specific, sham-controlled manipulation, while the memory content being filtered is untouched. For REE that licenses the experimental DESIGN the claim demands: a gate-intact versus gate-degraded arm, with content quality held constant, is a real manipulation in a real nervous system and not merely a convenient ablation. It also tells REE where to put the lesion in an analogue experiment -- on the gate's own parameters, not on the trace signal feeding it.",
+    "mapping_caveat": "tDCS has poor spatial specificity; the OFC targeting rests on a computational current-flow model, not on measurement, and frontal-pole montages affect much besides posterior medial OFC. N = 20 healthy adults, single lab. The dependent measure is reality-filtering accuracy, whereas MECH-037 predicts a shift in CONFIDENCE attached to ungrounded commitments -- a related but not identical quantity, and the gap matters because an accuracy-only REE criterion would not test the claim as written. Finally, the causal handle here is orbitofrontal, so this supports 'the gate is a degradable faculty' much more strongly than it supports 'the gate is the Papez-like loop'.",
+    "source_context": "Human non-invasive brain stimulation; 20 healthy adults, within-subject cathodal/anodal/sham over frontal pole, reality-filtering continuous recognition task."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Within-subject sham-controlled design with polarity specificity is the strength; tDCS spatial resolution and the accuracy-versus-confidence mismatch with MECH-037's stated signature are the weaknesses. Transfer risk moderate: healthy human data, but the anatomical target is OFC rather than the Papez loop REE names."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_037",
+  "entry_id": "2026-09-18_mech_037_tdcs_gate_degradation_manuel2014",
+  "timestamp_utc": "2026-09-18T06:15:39Z",
+  "summary_path": "summary.md"
+}

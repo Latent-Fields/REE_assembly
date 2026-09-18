@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-037"
+  ],
+  "source": {
+    "title": "Simultaneous Reality Filtering and Encoding of Thoughts: The Substrate for Distinguishing between Memories of Real Events and Imaginations?",
+    "authors": [
+      "Raphaël Thézé",
+      "Aurélie L. Manuel",
+      "Louis Nahum",
+      "Adrian G. Guggisberg",
+      "Armin Schnider"
+    ],
+    "year": 2017,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2017.00216",
+    "pmid": "29163088",
+    "pmc": "PMC5671946",
+    "volume": "11",
+    "pages": "216"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "The only entry in this pull that puts the medial temporal lobe inside the gating window, which is why it is here: high-density evoked potentials during a continuous recognition task show encoding setting in at ~210 ms, reality filtering ~35 ms later, both ending ~330 ms, with increased theta-band coherence in MTL during encoding and in OFC during filtering. The authors propose an OFC-MTL interaction whereby thoughts are re-encoded while they undergo filtering, and suggest the joint 200-300 ms influence leaves a memory trace that supports later effortless reality monitoring. For MECH-037 this is the first positive evidence that the hippocampal/MTL side participates at gate latency rather than only downstream. Confidence is held at 0.58: the abstract does not state N, coherence is correlational and does not establish direction of influence, the MTL signal indexes ENCODING rather than trace-support read-out, and the authors' own framing is a proposal ('suggests', and a title ending in a question mark).",
+  "failure_signatures": [
+    "The MTL theta signal indexes encoding of the current thought, not read-out of prior trace support -- if REE implements the gate as consuming a trace-presence signal, it is implementing something this result does not evidence.",
+    "Coherence is symmetric and correlational: the data do not establish that MTL influences the orbitofrontal filter rather than the reverse, or that a third structure drives both.",
+    "Encoding precedes filtering by only ~35 ms and both terminate together, so the two are close to simultaneous rather than serially ordered -- a strictly feed-forward trace-gate-commit pipeline is not what the timing shows."
+  ],
+  "tags": [
+    "mech-037",
+    "papez",
+    "reality-filtering",
+    "medial-temporal-lobe",
+    "theta-coherence",
+    "encoding",
+    "reality-monitoring",
+    "provenance-gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using high-density evoked potentials over two runs of a continuous recognition task, encoding (indexed by the MTL-emanating signal to immediately repeated stimuli) set in at about 210 ms, some 35 ms before orbitofrontal reality filtering, and both processes ended at about 330 ms. Both were characterised by increased theta-band coherence -- in the medial temporal lobe during encoding, in orbitofrontal cortex during filtering. The authors propose a complex OFC-MTL interaction allowing thoughts to be re-encoded while they undergo reality filtering, and suggest the combined influence of these two processes at 200-300 ms may leave a memory trace supporting later effortless reality monitoring.",
+    "ree_translation": "This is the one result in the pull that puts the hippocampal/MTL side inside the gate's own time window, and MECH-037 needs exactly that: its pathway is hippocampal trace signal -> precision down-weighting -> E3 commitment licensing, and the other entries here show every candidate provenance read-out arriving too late. Theta coherence linking MTL and OFC across 200-330 ms is a plausible substrate for the fast interaction the claim requires. But the mapping needs one correction that REE should absorb rather than elide: the MTL signal here indexes ENCODING of the current thought, not RETRIEVAL of prior trace support. Read literally, the finding says the gate and the trace-writer run concurrently and interact, which suggests a different REE architecture from the one MECH-037 describes -- less 'consult the trace store, then license commitment', more 'commit and inscribe in one coupled operation, with the filter shaping what gets written'. That is closer to the architecture doc's own retrieval-augmentation-before-commitment reading than to its operational checklist, and the two are not the same design.",
+    "mapping_caveat": "N is not stated in the abstract. Scalp-EEG coherence attributed to the medial temporal lobe is a strong claim from a weak spatial method, and MTL theta is notoriously difficult to resolve from surface recordings. Coherence establishes coupling, not direction, so 'MTL gates OFC' is not licensed by these data. The authors present the OFC-MTL interaction as a proposal, not a demonstration -- the title is a question. And the paper's construct is reality MONITORING (later memory for whether an event was real or imagined), which is adjacent to but not identical with MECH-037's online commitment gate.",
+    "source_context": "Human high-density evoked potentials with theta-band coherence analysis; two runs of a continuous recognition task combining encoding and reality-filtering demands in healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "The most speculative entry in this pull and deliberately weighted as such. Its value is that it is the only positive evidence for MTL participation at gate latency, which is the pathway MECH-037 asserts; its weaknesses are unstated N, correlational coherence, surface-EEG MTL attribution, and an encoding-versus-retrieval mismatch with what the claim needs."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_037",
+  "entry_id": "2026-09-18_mech_037_ofc_mtl_theta_coherence_theze2017",
+  "timestamp_utc": "2026-09-18T06:15:39Z",
+  "summary_path": "summary.md"
+}

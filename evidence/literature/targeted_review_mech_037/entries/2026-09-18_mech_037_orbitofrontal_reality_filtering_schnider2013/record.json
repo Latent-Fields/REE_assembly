@@ -1,0 +1,53 @@
+{
+  "claim_ids_tested": [
+    "MECH-037"
+  ],
+  "source": {
+    "title": "Orbitofrontal reality filtering",
+    "authors": [
+      "Armin Schnider"
+    ],
+    "year": 2013,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2013.00067",
+    "pmid": "23772208",
+    "pmc": "PMC3677127",
+    "volume": "7",
+    "pages": "67"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical review by the group that defined the reality-filtering paradigm, synthesising two decades of patient and electrophysiological work. It is strong, well-replicated evidence that a dedicated pre-commitment gate EXISTS -- a distinct faculty that decides whether an evoked memory 'refers to the present and can be acted upon' -- which is precisely MECH-037's functional posit, and the failure phenotype (confabulation acted upon, plus disorientation) is exactly the failure MECH-037 predicts. Direction is mixed rather than supports because the review locates the gate's decision mechanism in orbitofrontal extinction capacity and reward-system structures, NOT in hippocampal trace strength or temporal-ordering support. MECH-037 as currently written routes the gate through a hippocampal trace / temporal-ordering signal; the best-developed human account of this same function routes it elsewhere. Source quality is high but it is a narrative review, not primary data, so confidence is held below the 0.8 band.",
+  "failure_signatures": [
+    "Confabulating patients act upon evoked memories that no longer relate to the present, while item recognition and general memory capacity can be comparatively spared -- so a gate keyed only on trace STRENGTH would not produce this phenotype.",
+    "Disorientation and confabulation co-occur and recover together, indicating a single gating faculty rather than a byproduct of graded memory degradation.",
+    "The locus of the critical lesion is posterior medial orbitofrontal cortex / basal forebrain, not hippocampus -- a REE implementation that made the hippocampal trace signal the sole gate variable would have no analogue of the human lesion that actually abolishes the function."
+  ],
+  "tags": [
+    "mech-037",
+    "papez",
+    "reality-filtering",
+    "provenance-gating",
+    "confabulation",
+    "orbitofrontal",
+    "commitment-gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Studies of patients who confuse reality (confabulation, disorientation) indicate that the brain determines whether an evoked memory refers to the present -- and may therefore be acted upon -- by recruiting a phylogenetically old orbitofrontal faculty, extinction, together with reward-system structures. Failure of this filter, not failure of memory storage, is what produces behaviourally enacted confabulation.",
+    "ree_translation": "This is the closest human-neuroscience analogue of MECH-037's core posit: a filtering stage sits between retrieved/generated candidate content and the decision to commit and act on it, and the filter is dissociable from the content it filters. In REE terms, that is exactly a gate between E1-generated candidates and E3 commitment licensing, and the reviewed phenotype confirms that degrading the gate yields high-confidence commitment of ungrounded content -- MECH-037's stated confirming signature. What it does NOT support is MECH-037's choice of gating VARIABLE. The review's mechanism is orbitofrontal extinction: suppressing memory traces that no longer have current reward/behavioural relevance. That is a relevance/valence computation, not a trace-presence or temporal-ordering computation. If REE keeps MECH-037 as stated, the substrate should probably carry BOTH inputs -- trace/ordering support AND an extinction-like relevance suppressor -- and an experiment should be able to tell which one is doing the gating work.",
+    "mapping_caveat": "A narrative review, so the evidence is summarised rather than presented; effect sizes and individual study designs must be taken from the primary papers. The human 'reality filter' is defined operationally by a continuous recognition task, which is a far narrower construct than REE's general provenance gate over arbitrary E1 content. Most critically, the transfer assumed here -- that REE's Papez-like loop is the right analogue for a function the review attributes to orbitofrontal cortex and the reward system -- is the very thing in question; treating this paper as confirmation of the Papez routing would be circular.",
+    "source_context": "Human clinical neuropsychology and evoked-potential work; confabulating and disoriented patients versus controls, continuous recognition paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (canonical review, well-replicated paradigm, human data). Mapping fidelity is the limiting term: the paper's construct maps well onto 'pre-commitment gate' but poorly onto 'hippocampal trace / temporal-ordering signal as the gating variable'. Transfer risk moderate -- the construct is human and behavioural, and REE's generalisation from a recognition-task filter to a general provenance gate is untested."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_037",
+  "entry_id": "2026-09-18_mech_037_orbitofrontal_reality_filtering_schnider2013",
+  "timestamp_utc": "2026-09-18T06:15:39Z",
+  "summary_path": "summary.md"
+}
