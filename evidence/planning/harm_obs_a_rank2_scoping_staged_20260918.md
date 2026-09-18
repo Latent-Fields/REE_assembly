@@ -569,13 +569,20 @@ These are corrections, not builds. None touches the substrate and none is blocke
 
 ---
 
-## 7. Governance registration -- no new flag raised, deliberately
+## 7. Governance registration
 
 The chip said to register the finding "if no flag already covers it (the SD-086 session raised one
 -- check first, do not duplicate)". Checked: **GFLAG-0348** (open, `evidence_discrepancy`, claims
 `SD-086` + `SD-011`, raised 2026-09-18T18:52:46Z by `metaworker-science-20260918-sd086-zharma-readout`)
 carries the rank-2 measurement and names the SD-011 second-order finding explicitly. **No new flag
 was raised.**
+
+**GFLAG-0350 raised (`stale_note`, claims SD-011 / SD-019 / SD-022, 2026-09-18).** The section 4d
+finding is genuinely NEW and is a different *type* of finding on different claims, so it is not a
+duplicate of GFLAG-0348: it records that SD-011's `what_would_answer` misstates the
+`harm_history_len` regime of its own four validated results, that applying its own clause (i) makes
+two of them vacuous, and that SD-022's `functional_restatement` describes the pre-2026-03-28
+construction. It explicitly proposes no `evidence_direction` for any run.
 
 Two amendments for /governance to make **on GFLAG-0348 when it adjudicates** -- as widenings of
 that flag, not as a second near-duplicate flag (STEWARD D-006 exists precisely to catch that shape):
