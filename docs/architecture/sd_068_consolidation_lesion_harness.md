@@ -561,8 +561,21 @@ behavioural validation. Any run built on it:
   **`{SD-071}`** and nothing else; and (ii) it tags **NEITHER MECH-120 NOR
   MECH-121**. An instrument-validity claim asserts that a readout of this harness is
   a content-contingent measurement (it clears the C1 null-slope ceiling); it asserts
-  nothing about sleep biology or about consolidation BEHAVIOUR, which is why such a
-  run cannot bear on MECH-121 even incidentally. **The exception is an enumeration,
+  nothing about sleep biology or about consolidation BEHAVIOUR, which is why such a run
+  cannot MOVE MECH-121's status. **Narrowed 2026-09-18 (GFLAG-0351), and the two
+  CONDITIONS above are UNCHANGED -- only this rationale sentence is:** it previously read
+  "cannot bear on MECH-121 even incidentally", which is stronger than the source
+  supports for the NREM leg. That leg's readout is computed through
+  `ree_core/sleep/cross_module_consolidation.py`'s `CrossModuleConsolidator` -- whose own
+  module header names it the MECH-121 consolidation cluster -- stepping with
+  `torch.optim.Adam` (`:162`); Adam's per-parameter step normalisation is non-linear, and
+  under a LINEAR consolidator the nrem injected and null error series would differ by a
+  sigma-independent constant, i.e. ratio 1.0 by arithmetic. So the nrem leg's
+  content-contingency is not wholly independent of that operator's update rule. The
+  carve-out is unaffected because its conditions are about TAGGING, and a qualifying run
+  tags neither MECH-120 nor MECH-121 and cannot move MECH-121's status under any
+  outcome -- but do not read a qualifying run as fully operator-agnostic for that leg.
+  **The exception is an enumeration,
   not a category**: adding any claim id to it is a fresh governance decision, and
   the presence of SD-071 here is NOT precedent for a claim that merely resembles it.
   Every run outside this exception stays `EXPERIMENT_PURPOSE="diagnostic"`;
