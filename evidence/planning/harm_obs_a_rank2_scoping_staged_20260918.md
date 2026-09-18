@@ -14,6 +14,13 @@
 ## 0. STOP-CHECK (run at start, 2026-09-18T19:45Z)
 
 - `evidence/planning/` contained no existing `harm_obs_a` / `rank2` scoping doc. Clear.
+- **Correction, added post-red-team:** the STOP-CHECK as run searched `evidence/planning/` for a
+  *document* but did not search `substrate_queue.json` for an *entry*. It should have. The entry
+  `sd_zharm_a_warmup_optimizer_group` (updated 2026-09-18) already carries the rank-2 fact in its
+  `severity_note_2026_09_18` and an `affected_completed_runs_candidates_2026_09_18` list -- prior
+  work on this chip's question (b). It is incorporated in section 4e. That entry is the **trainer**
+  lever (the affective encoder has no optimizer group); the entry proposed in section 6 is the
+  **env-construction** lever. They are siblings, not duplicates -- see 6a.
 - `ree-v3` origin/main had no commit touching `ree_core/environment/causal_grid_world.py` after 2026-09-18T19:00Z. Clear.
 - `task_claim.py check` on this file's path: no overlap. Claim opened 2026-09-18T19:45:40Z.
 - Producer site re-verified live, not taken from the brief (see section 2).
@@ -31,9 +38,12 @@ construction**. The architecture doc's written spec (`harm_obs_a = EMA(harm_obs_
 `docs/architecture/sd_011_dual_nociceptive_streams.md`) was never updated and the code has diverged
 from it ever since. The registry already carries the ratified remedy -- **SD-022**, registered
 2026-04-09, whose own `functional_restatement` diagnoses exactly this defect -- but it is
-**default-OFF** (`limb_damage_enabled=False`), and it is 7-d with signal rank 4, not an arbitrary
-enrichment. The live exposure is therefore narrower than the finding first suggests (section 4)
-and the decision owed is a **containment-and-default question**, not an emergency (section 6).
+**default-OFF** (`limb_damage_enabled=False`), and it is 7-d with 4 free dimensions, not an
+arbitrary enrichment. **No completed run's pre-registered criterion is arithmetically invalidated**
+(section 4b) -- but SD-011's *own* registered precondition, applied for the first time, classifies
+two of its four validated results as **vacuous tests of SD-011** for an adjacent reason the rank-2
+measurement explains (section 4d). The decision owed is therefore a **containment-and-default
+question plus three corrections**, not an emergency (section 6).
 
 ---
 
@@ -62,7 +72,7 @@ Two further code paths touch `harm_obs_a_ema` and **neither raises the rank**:
 
 - **Q-080.a effort injection** (`:3080-3081`) adds `alpha_a * eff_harm`, a scalar, to `[:25]`.
   A uniform block plus a scalar stays uniform. Rank still 2.
-- **SD-MECH303 safety-proximity EMA** (`:3042-3050`) reads the *same* `hazard_at_agent` scalar but
+- **SD-MECH303 safety-proximity EMA** (`:3049-3053`) reads the *same* `hazard_at_agent` scalar but
   writes a **separate** accumulator (`_safety_proximity_ema`), so it neither enriches nor is
   enriched by `harm_obs_a`.
 
@@ -71,18 +81,29 @@ SD-086 measured.
 
 ### 2c. NEW, and it materially narrows the finding: there are TWO `harm_obs_a` paths, not one
 
-`causal_grid_world.py:4145-4163` branches on `limb_damage_enabled`:
+`causal_grid_world.py:4144-4163` branches on `limb_damage_enabled`:
 
 | Path | Gate | Shape | Signal rank | Content |
 |---|---|---|---|---|
 | **Legacy** | `limb_damage_enabled=False` (**default**) | 50 | **2** | `hazard_at_agent` EMA, `resource_at_agent` EMA |
-| **SD-022 body** | `limb_damage_enabled=True` | **7** | **4** | `limb_damage[4]`, then `max`, `mean`, `residual_pain` -- all deterministic functions of the same 4 |
+| **SD-022 body** | `limb_damage_enabled=True` | **7** | **4 free / 5 numerical** | `limb_damage[4]`, then `max`, `mean`, `residual_pain` -- all deterministic functions of the same 4 |
 
 The SD-022 path is *not* rank 7: `max`, `mean` and `residual_pain` (`sum * residual_pain_scale`)
-are functions of `limb_damage[4]`, so the free dimension count is 4. That is **twice** the legacy
-path and, unlike it, is **causally independent of current world proximity** -- which is precisely
-what SD-022 was registered to provide. `config.py:8858-8864` auto-sets
+are all deterministic functions of `limb_damage[4]`, so the **free dimension count is 4**.
+
+**The two rank numbers must not be conflated, and the first draft of this doc did conflate them.**
+`mean` and `residual_pain` are *linear* in `limb_damage`, but `max()` is **not** in their linear
+span, so the **numerical** rank of the 7-d body vector is **5**, not 4 (measured on 2000 uniform
+draws: singular values `[67.24, 13.31, 13.13, 12.70, 6.01, 0, 0]`). The legacy path's "rank 2" is a
+*numerical* rank. So the like-for-like comparison is **2 vs 5**, and the
+information-theoretic one is **2 vs 4**. Either way the SD-022 path is **at least twice** the
+legacy path and, unlike it, is **causally independent of current world proximity** -- which is
+precisely what SD-022 was registered to provide. `config.py:8862-8864` auto-sets
 `latent.harm_obs_a_dim = 7` when the flag is on, so the encoder side already follows.
+
+This distinction is load-bearing for section 6: a naive acceptance target of "numerical rank >= 4"
+would be **already satisfied by simply flipping `limb_damage_enabled` on**, and would therefore
+fail to discriminate the construction this spike is actually proposing.
 
 ### 2d. SD-048 noise does not repair the rank
 
@@ -131,7 +152,9 @@ dimensionality:
   proximity**. The legacy path carries *only* world proximity at the agent's cell. This is the
   gap SD-022 exists to close.
 - **Chen 2023 / Hoskin 2023 / Horing 2022 (AIC encodes unsigned intensity PE, not magnitude),
-  cited on SD-020 and MECH-258.** Requires **surprise to be separable from magnitude**. Two
+  cited on SD-020** -- and the same substance, on **Seymour 2019 (*Neuron*), pain-as-precision**,
+  which is MECH-258's own grounding (the first draft mis-attributed the 2022/2023 AIC citations to
+  MECH-258; they are SD-020's). Requires **surprise to be separable from magnitude**. Two
   co-evolving single-tau EMAs of the same two scalars cannot carry both.
 
 **Synthesis.** The biology demands *low-dimensional but multi-functional*: diffuse (no spatial
@@ -191,19 +214,33 @@ Method: pulled every `exp:simulation` entry for SD-011/SD-019/SD-020/SD-022/SD-0
 `evidence/experiments/claim_evidence.v1.json` (71 entries), then read each *live* (non-superseded,
 non-`non_contributory`) supporting run's driver for `limb_damage_enabled`.
 
+**Stated scope limit (post-red-team).** That six-claim filter is **narrower than the question**, and
+a conclusion of the form "no completed run is invalidated" cannot be established from it alone.
+Section 4d widens the population; section 4e incorporates a pre-existing candidate list this spike's
+STOP-CHECK missed. Even after both, the sweep is not exhaustive, and the conclusion in 4b should be
+read as *"nothing found, over a population that is now stated"*, not as a proof of absence.
+
 ### 4a. Sourcing-mode split of the live supporting runs
 
-| Run id | Claim(s) | Direction | Path |
-|---|---|---|---|
-| `v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3` | SD-011 | supports/PASS | **legacy (rank 2)** |
-| `v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3` | SD-011 | supports/PASS | **legacy (rank 2)** |
-| `v3_exq_198_sd011_dual_stream_stability_20260401T232341Z_v3` | SD-011 | supports/PASS | **legacy (rank 2)** |
-| `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | SD-011 | supports/PASS | **legacy (rank 2)**, `harm_history_len=10` |
-| `v3_exq_463_mech268_dacc_conflict_saturation_v3_20260421T180917Z_v3` (+`...T202354Z`) | MECH-258 | supports/PASS | **neither** -- synthetic `z_harm_a = [1,0,0,0]` unit-contract fixture, never reads env `harm_obs_a` |
-| `v3_exq_319_sd022_harm_stream_dissociation_20260410T093948Z_v3` | SD-011, SD-022 | supports/PASS | SD-022 body (rank 4) |
-| `v3_exq_323a_sd019_harm_nonredundancy_20260416T172811Z_v3` | SD-011, SD-019, SD-022 | supports/PASS | SD-022 body (rank 4) |
-| `v3_exq_324b_sd020_harm_surprise_pe_*` (3 runs, 2026-04-18/19) | SD-020 | supports/PASS | SD-022 body (rank 4) |
-| `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` | SD-011 | supports/PASS | SD-022 body (rank 4) |
+`scoring_excluded` is copied verbatim from `claim_evidence.v1.json`: it is what determines whether
+an entry actually weights governance confidence, and three of these six legacy-path entries are
+already excluded.
+
+| Run id | Claim(s) | Direction | `scoring_excluded` | Path |
+|---|---|---|---|---|
+| `v3_exq_106_harm_obs_a_temporal_persistence_20260428T171409Z_v3` | SD-011 | supports/PASS | -- | **legacy (rank 2)** |
+| `v3_exq_178b_sd011_dual_stream_dissociation_20260330T193525Z_v3` | SD-011, ARC-033 | supports/PASS | -- | **legacy (rank 2)** |
+| `v3_exq_198_sd011_dual_stream_stability_20260401T232341Z_v3` | SD-011 | supports/PASS | **`superseded`** | **legacy (rank 2)** |
+| `v3_exq_472_sd011_platform_stability_pilot_20260421T183651Z_v3` | SD-011 | supports/PASS | **`diagnostic_probe`** | **legacy (rank 2)**, `harm_history_len=10` |
+| `v3_exq_463_mech268_dacc_conflict_saturation_v3_20260421T180917Z_v3` (+`...T202354Z`) | MECH-258, MECH-268, SD-032b, SD-034 | supports/PASS | **`diagnostic_probe`** | **neither** -- synthetic `z_harm_a = [1,0,0,0]` unit-contract fixture (driver `:219`), never constructs an env |
+| `v3_exq_319_sd022_harm_stream_dissociation_20260410T093948Z_v3` | SD-011, SD-022 | supports/PASS | -- | SD-022 body |
+| `v3_exq_323a_sd019_harm_nonredundancy_20260416T172811Z_v3` | SD-011, SD-019, SD-022 | supports/PASS | -- | SD-022 body |
+| `v3_exq_324b_sd020_harm_surprise_pe_*` (3 runs, 2026-04-18/19) | SD-020 | supports/PASS | -- | SD-022 body |
+| `v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3` | SD-011 | supports/PASS | **`diagnostic_probe`** | **BOTH** -- it crosses `num_hazards` with `SOURCING_MODE` (`damage_sourced` x `proximity_ema_sourced`) by design; driver docstring `:30`. It is the one run that *measured* the two paths against each other. |
+
+**Net: only two unexcluded, live, legacy-path supporting entries exist -- EXQ-178b and EXQ-106.**
+EXQ-198 is `superseded` and EXQ-472/463/917 are `diagnostic_probe`, so they do not weight
+confidence today regardless of what this spike concludes about them.
 
 ### 4b. Of the legacy-path runs, which conclusions actually REQUIRE rank > 2?
 
@@ -246,6 +283,64 @@ Everything downstream of `z_harm_a`'s **degenerate range** -- MECH-258's forward
 Q-086 -- is **already** covered by GFLAG-0210/0212/0348 and is deliberately not restated as new
 exposure here.
 
+### 4d. The sharper exposure the first draft missed: SD-011's OWN clause (i) calls two of its four validated results VACUOUS
+
+SD-011's `what_would_answer` opens with a non-degeneracy precondition whose clause (i) reads, verbatim:
+
+> *"SECOND SOURCE LIVE. LatentStackConfig.harm_history_len defaults to 0. At 0, AffectiveHarmEncoder
+> receives only harm_obs_a and z_harm_a is a monotone transform of the sensory stream -- the D3
+> reversal documented in the 2026-04-06 governance meta. A run with harm_history_len=0 is **VACUOUS**
+> as an SD-011 test regardless of what its stream_corr reads, and must be reported as such rather than
+> as a weakens."*
+
+Measured against the drivers: **EXQ-178b (`:158`), EXQ-198 (`:196`) and EXQ-323a (`:326`) all
+construct `AffectiveHarmEncoder(harm_obs_a_dim=..., z_harm_a_dim=...)` with no `harm_history_len`
+argument**, so they take the default `0` (`ree_core/latent/stack.py:208-209`). Only EXQ-472 sets
+`harm_history_len=10` -- and EXQ-472 is `scoring_excluded: diagnostic_probe`.
+
+Two consequences, both for /governance and neither adjudicated here:
+
+1. **Section 4c understates the exposure.** It is not only that C2/C3 pass "for a reason that is not
+   the reason SD-011 asserts": on the legacy path at `harm_history_len=0`, SD-011's own registered
+   rule classifies those runs as **vacuous tests of SD-011**. The rank-2 measurement explains *why*
+   the rule was right -- with only `harm_obs_a` as input and `harm_obs_a` carrying two scalars,
+   `z_harm_a` cannot be anything but a transform of the sensory stream.
+2. **SD-011's `what_would_answer` contains a factual error about its own evidence base.** It states
+   that its four validated results (EXQ-178b, EXQ-198, EXQ-323a, the D3-reversal resolution) "were
+   ALL obtained in one specific regime ... harm_history_len=10". Three of the four named drivers use
+   the default `0`. This is a `stale_note`-class correction, owed regardless of any decision in
+   section 6.
+
+This is the single most consequential finding of the spike and it is **not** a new rule -- it is the
+registry's existing rule, applied to its own evidence for the first time.
+
+### 4e. Population checked beyond the six claims, and the prior candidate list
+
+Widened after the red-team, by scanning for drivers that read env `harm_obs_a` or measure a
+`z_harm_a` quantity outside the six-claim filter:
+
+| Run / driver | Claim | DV shape | Exposed? |
+|---|---|---|---|
+| `v3_exq_854_sd036_gaba_tone_dose_response_*` | SD-036 | `harm_a_sustain_ratio` = mean/peak of **`\|\|z_harm_a\|\|`** (driver `:34`, `:304`); reads `od.get("harm_obs_a")` at `:200` | **No** -- norm statistic, rank-blind |
+| `v3_exq_501_sd035_amygdala_analog_*` | SD-035 | `z_harm_a_dim` config only | No |
+| `v3_exq_760`, `v3_exq_939a` | MECH-303 | `\|\|z_harm_a\|\|` threshold gate | **No** -- norm |
+| `v3_exq_262_mech220_harm_hub`, `v3_exq_260_sd020_harm_surprise_pe`, `v3_exq_445_sd032b_dacc_analog` | SD-011 / SD-020 / MECH-258 | norm / scalar | No |
+
+Prior work, from `substrate_queue.json` entry **`sd_zharm_a_warmup_optimizer_group`**
+(`affected_completed_runs_candidates_2026_09_18`), which this spike's STOP-CHECK should have found
+and did not. It classifies candidates into `vector_or_channel_readers`
+(`v3_exq_906_full_stack_observational_fishtank.py` -- `z_harm_a` recorded per tick as a CORE_CHANNEL),
+`norm_readers_low_impact` (`v3_exq_1018`, `v3_exq_1015`) and `config_dim_only_not_affected`
+(`v3_exq_724`, `v3_exq_728`, `v3_exq_728b`, `exq885_mech426_velocity_baseline`). That list was
+derived for the **trainer** defect; it applies unchanged to the **construction** defect, because
+both bound the same quantity. **`v3_exq_906` is the one VECTOR reader identified anywhere in either
+sweep** and is the run /governance should look at first.
+
+**Conclusion, restated at the strength the evidence supports:** across the population in 4a, 4e and
+the prior candidate list, **no completed run's pre-registered criterion is arithmetically
+invalidated by the rank-2 finding** -- every `z_harm_a`-touching DV found is a norm or scalar
+statistic. The live exposure is the construct-validity issue in 4c and the vacuity issue in 4d.
+
 ---
 
 ## 5. (c) Candidate richer constructions
@@ -268,7 +363,9 @@ Replace the single `alpha_a` with `K` EMAs of the same two scalars at different 
   (set `latent.harm_obs_a_dim = 2K`). No new module. ~1 session including contract tests.
 - **Biology:** strongest fit. Diffuse (no spatial map) *and* multi-timescale, which is the actual
   C-fiber phenomenology.
-- **Risk:** changes `harm_obs_a`'s **shape** -> see 5c, this is the RNG-hazardous class.
+- **Risk:** changes `harm_obs_a`'s **shape**, which is the RNG-hazardous class (5d route 1) --
+  **but the repo already contains the pattern that neutralises it** (5d, "the dedicated-generator
+  precedent"). With that pattern applied, C1's only differentiating risk against C2 disappears.
 
 ### 5b. C2 -- Allocentric per-cell exposure map
 
@@ -286,7 +383,9 @@ window out of **that** instead of out of the instantaneous field.
   the A-delta / S1 property, not the C-fiber / ACC one (section 3a). Recorded because it is the
   construction the written spec implies and the one a reader of that doc would expect -- **and it
   should probably be rejected on the biology**, which is itself worth writing down.
-- **Risk:** keeps 50 dims, so it is the only candidate that is **RNG-shape-neutral** (5c).
+- **Risk:** keeps 50 dims, so it is **RNG-shape-neutral without needing any mitigation** (5d). The
+  first draft of this doc treated that as C2's decisive technical advantage over C1; the
+  dedicated-generator precedent in 5d means it is an advantage of convenience, not of kind.
 
 ### 5c. C3 -- Flip the SD-022 body path on by default
 
@@ -304,11 +403,12 @@ No new code: set `limb_damage_enabled=True` as the default.
 
 ### 5d. Effect on fixed-seed RNG streams -- the part that must not be got wrong
 
-`causal_grid_world.py` uses **one** generator, `self._rng = np.random.default_rng(seed)`
-(`:1604`), at **54 call sites** including hazard placement (`:4239`, `:4283-4284`), movement
-failure (`:2915`), scheduled limb damage (`:3156`), external hazards (`:3201`), transients
-(`:3338`) and SD-048 autonomic noise (`:5096`). Two distinct ways a construction change
-desynchronises it:
+`causal_grid_world.py` uses **one** generator for env dynamics, `self._rng =
+np.random.default_rng(seed)` (`:1604`), at **43 call sites** (`grep 'self\._rng\.'`, comment lines excluded) including hazard placement (`:4239`,
+`:4283-4284`), movement failure (`:2915`), scheduled limb damage (`:3156`), external hazards
+(`:3201`), transients (`:3338`) and SD-048 autonomic noise (`:5097`). `reset()` does **not** reseed
+it, so a desynchronisation persists for the life of the env, not just the episode. Two distinct ways
+a construction change desynchronises it:
 
 1. **Shape-driven (silent, and the one that catches people).** SD-048's autonomic noise draws
    `self._rng.standard_normal(size=out.shape)` on `harm_obs_a`. Changing `harm_obs_a` from 50 dims
@@ -321,6 +421,22 @@ desynchronises it:
    `z_harm_a`, which changes selection, which changes the action sequence, which changes *when*
    the movement-failure and scheduled-injection draws happen. **No flag design can preserve
    fixed-seed comparability in the ON arm.** Say so rather than designing around it.
+
+**The dedicated-generator precedent (added post-red-team, and it changes the C1-vs-C2 balance).**
+Route 1 is **avoidable**, and the repo already solved this exact problem once. `causal_grid_world.py:1438`
+creates a second generator for trajectory telemetry, with the comment at `:1433-1434`:
+
+> *"`_traj_pair_rng` is separate from `self._rng` to preserve bit-identity of env dynamics when
+> telemetry is ON vs OFF."*
+
+Routing SD-048's `standard_normal(size=harm_obs_a.shape)` draw to a dedicated
+`_interoceptive_noise_rng` seeded the same way would make the autonomic-noise draw count
+**irrelevant to env dynamics**, and C1's shape change would then be RNG-neutral like C2's. That is a
+small, well-precedented change -- but it is **itself** a bit-identity break for any existing run
+with `interoceptive_noise_enabled=True`, so it must be part of the same default-off flag, not a
+separate "harmless tidy-up". Note that `interoceptive_noise_enabled` defaults to `False`
+(`autonomic_noise_enabled` defaults `True` but is gated by the master), so the affected population
+is small and enumerable -- which is what makes this tractable rather than a second regression.
 
 ### 5e. Containment: what a default-off flag does and does not buy
 
@@ -349,13 +465,28 @@ the right pattern and should be followed exactly:
 
 Proposed only. `/governance` ratifies (Step 2b/4/6a) before anything is written.
 
+### 6a. Relationship to the existing `sd_zharm_a_warmup_optimizer_group` entry -- sibling, not duplicate
+
+`substrate_queue.json` already carries `sd_zharm_a_warmup_optimizer_group`
+(`status_phase: validation_pending`, `severity: degrading`, updated 2026-09-18): the affective
+encoder has **no optimizer group** in the `_train_all_on_agent` warmup, so `z_harm_a` is a frozen
+random projection. That is the **trainer** lever and is the "build the trainer fix now" half of the
+2026-09-18 user decision. The entry proposed below is the **env-construction** lever -- the "scope
+the env fix first" half. They are genuinely different levers on the same bottleneck and neither
+substitutes for the other: that entry's own `severity_note_2026_09_18` says it outright --
+*"harm_obs_a has exact rank 2 (sec 4a), so no amount of encoder training adds d.o.f. the input does
+not carry."* Training an encoder on a rank-2 input cannot manufacture rank; enriching the input
+without a trainable encoder leaves a frozen random projection of a richer signal. **Both are
+needed, and the sequencing the user already chose (trainer now, env scoped) is the right one.**
+`sd_id: harm-obs-a-rank2-enrichment` is collision-free against all 185 existing entries.
+
 ```json
 {
   "sd_id": "harm-obs-a-rank2-enrichment",
   "title": "harm_obs_a is structurally rank 2 on the default path: two scalars broadcast over 25 dims each, capping every z_harm_a readout at 2 d.o.f.",
   "node_class": "puzzle (known rules)",
-  "status": "candidate_pending_governance",
-  "status_phase": "decision_owed",
+  "status": "PROPOSED_BY_SCOPING_SPIKE_2026_09_18__decision_owed__not_ratified__see_design_doc_section_6_for_the_three_options",
+  "status_phase": "build_owed",
   "severity": "degrading",
   "ready": false,
   "priority": 2,
@@ -368,25 +499,25 @@ Proposed only. `/governance` ratifies (Step 2b/4/6a) before anything is written.
   "depends_on_unresolved": [],
   "unblocks_claims": ["SD-011", "SD-019", "SD-020", "SD-086", "MECH-258"],
   "failure_record": [],
-  "implementation_hint": "Add a default-off env flag harm_obs_a_construction ('scalar_broadcast' default | 'multiscale_bank'). Multiscale bank = K EMAs of hazard_at_agent and resource_at_agent at K time constants, emitting 2K dims; wire latent.harm_obs_a_dim = 2K in config.py following the SD-022 precedent at config.py:8858-8864. OFF path must be BIT-IDENTICAL including the emitted shape (50,), because SD-048 autonomic noise draws standard_normal(size=harm_obs_a.shape) off the SHARED env RNG -- a shape change desynchronises hazard placement and every other stochastic element at the same seed. Comparisons spanning the flag are NOT fixed-seed comparable; the flag must enter the arm fingerprint so pre-change baselines are refused for reuse, and any validating experiment mints its own baseline in-line.",
+  "implementation_hint": "Add a default-off env flag harm_obs_a_construction ('scalar_broadcast' default | 'multiscale_bank'). Multiscale bank = K EMAs of hazard_at_agent and resource_at_agent at K time constants, emitting 2K dims; wire latent.harm_obs_a_dim = 2K in config.py following the SD-022 precedent at config.py:8862-8864. OFF path must be BIT-IDENTICAL including the emitted shape (50,), because SD-048 autonomic noise draws standard_normal(size=harm_obs_a.shape) off the SHARED env RNG (causal_grid_world.py:5097) and reset() does not reseed it -- a shape change desynchronises hazard placement and every other stochastic element at the same seed, permanently. In the ON arm, route that draw to a dedicated generator following the _traj_pair_rng precedent (causal_grid_world.py:1433-1441), inside the SAME flag, so the shape change stops being an env-dynamics perturbation. Comparisons spanning the flag are NOT fixed-seed comparable under any design; the flag must enter the arm fingerprint so pre-change baselines are refused for reuse, and any validating experiment mints its own baseline in-line. SIBLING ENTRY: sd_zharm_a_warmup_optimizer_group is the TRAINER lever on the same bottleneck -- neither substitutes for the other.",
   "metric_trajectory": {
-    "primary_metric": "numerical_rank(harm_obs_a) over a >=500-tick rollout",
-    "primary_metric_description": "Free dimension count of the affective observation. Bounds the information any z_harm_a readout -- norm or trained head -- can carry about the world.",
+    "primary_metric": "numerical_rank(harm_obs_a) ON THE DEFAULT PATH (limb_damage_enabled=False), over a >=500-tick rollout",
+    "primary_metric_description": "Numerical rank of the affective observation as emitted by the DEFAULT configuration. Bounds the information any z_harm_a readout -- norm or trained head -- can carry about the world. Scoped to the default path on purpose: the SD-022 body path already reaches numerical rank 5 / 4 free dimensions, so an unscoped rank target would be satisfied by flipping an existing flag and would not discriminate this entry at all.",
     "direction": "higher_is_better",
-    "target": "rank >= 4 with at least two distinguishable time constants (SD-019 wind-up-vs-recovery)",
+    "target": "numerical_rank >= 4 ON THE DEFAULT PATH, AND at least two distinguishable time constants (SD-019 wind-up-vs-recovery), AND EXQ-106's lag-10 autocorrelation criterion (>0.30) still met at the slow tau",
     "current_blocker": "Default path emits two scalars at ONE time constant (causal_grid_world.py:3037-3038, since ree-v3 2fbf5d62, 2026-03-28)",
     "observations": [
       "2026-04-08 EXQ-241b: r2_s_to_a = 0.996 on the legacy path -- the redundancy, measured empirically",
       "2026-08-11 V3-EXQ-917: safe/unsafe AUC ~0.500 under SD-022 damage sourcing vs up to 0.969 under legacy proximity sourcing -- the two paths are not interchangeable readouts",
       "2026-09-18 SD-086 probe (GFLAG-0348): singular values [22.597, 6.698, 0, 0]; numerical rank EXACTLY 2; z_harm_a 97.1% variance in PC1",
-      "2026-09-18 this spike: SD-022 body path is 7-dim with signal rank 4 (max/mean/residual_pain are functions of limb_damage[4]); Q-080 effort injection and the MECH-303 proximity EMA add no rank"
+      "2026-09-18 this spike: SD-022 body path is 7-dim with 4 FREE dimensions but numerical rank 5 (mean/residual_pain are linear in limb_damage[4]; max() is not in their span); Q-080 effort injection and the MECH-303 proximity EMA add no rank; EXQ-178b/198/323a all run at harm_history_len=0, which SD-011 what_would_answer (i) classifies as VACUOUS"
     ],
     "prediction": "A K=5 multiscale bank yields rank 10 with lag-10 autocorrelation preserved at the slow taus, so EXQ-106's temporal-persistence criterion continues to pass while SD-019's nonredundancy criterion becomes non-trivially testable on the DEFAULT path for the first time."
   },
   "validation_experiment": null,
   "added_session": "metaworker-science-20260918-sd011-harm-obs-a-rank2-spike",
   "added_utc": "2026-09-18T19:51:24Z",
-  "origin": "Scoping spike off GFLAG-0348 / SD-086 refusal, under the 2026-09-18T19:19:21Z user decision 'Build the trainer fix now; scope the env fix first'. PROPOSED ONLY -- not applied; /governance ratifies."
+  "origin": "Scoping spike off GFLAG-0348 / SD-086 refusal, under the 2026-09-18T19:19:21Z user decision 'Build the trainer fix now; scope the env fix first'. Design doc red-teamed in-session (verdict NON-BLOCKING-FINDINGS; five material corrections applied, recorded in section 10). PROPOSED ONLY -- not applied; /governance ratifies."
 }
 ```
 
@@ -401,24 +532,40 @@ by this session.
 > enrichment breaks fixed-seed comparability in its ON arm and, if it changes shape, risks breaking
 > the OFF arm too (section 5d route 1) -- which do we do?**
 
-- **Option 1 -- Build C1 (multiscale bank), default-off.** ~1 session. Gives the default path a
-  substrate on which SD-019's nonredundancy and SD-020's surprise-vs-magnitude are testable for the
-  first time. Cost: the shape-change RNG hazard must be handled exactly as 5e specifies, and every
-  ON-arm experiment mints its own baseline. **This session's recommendation**, because it is the
-  only option that addresses the biology's *unmet* requirements (3a) rather than the one it already
-  meets.
-- **Option 2 -- Do not build; scope-note instead.** Add the rank-2 fact to SD-011/SD-019's
-  `what_would_answer` as a mandatory sourcing declaration (extending the existing clause (iii)),
-  correct SD-022's stale `functional_restatement` sentence (3b), and route all future SD-011-family
-  work to the SD-022 body path. **Zero substrate risk, zero comparability break.** Weaker: rank 4
-  is still below what SD-020/MECH-258 need, and it leaves the default path degraded.
+- **Option 1 -- Build C1 (multiscale bank), default-off.** ~1 session, plus the dedicated-generator
+  change of 5d inside the same flag. Gives the **default** path a substrate on which SD-019's
+  nonredundancy and SD-020's surprise-vs-magnitude are testable for the first time. Cost: the
+  shape-change RNG hazard must be handled exactly as 5d/5e specify, and every ON-arm experiment
+  mints its own baseline. **This session's recommendation**, because it is the only option that
+  addresses the biology's *unmet* requirements (3a) rather than the one it already meets.
+- **Option 2 -- Do not build; scope-note instead.** Route all future SD-011-family work to the
+  SD-022 body path and take the three corrections in 6b. **Zero substrate risk, zero comparability
+  break, and it is the honest option if the answer is "we are not going to run this family again
+  soon".** Weaker: 4 free dimensions is still below what SD-020/MECH-258 need, and it leaves the
+  default path degraded and the architecture doc still wrong.
 - **Option 3 -- Build C2 (allocentric exposure map).** Matches the written architecture spec and is
-  RNG-shape-neutral. **This session recommends against it** on the biology (3a): it re-introduces a
-  spatial map into the pathway whose defining property is that it has none. If chosen, the
-  architecture doc is right and section 3a is the thing to argue with.
+  RNG-shape-neutral *without* the 5d mitigation. **This session recommends against it** on the
+  biology (3a): it re-introduces a spatial map into the pathway whose defining property is that it
+  has none. Stated plainly so the recommendation can be attacked at its weakest joint: **the
+  strongest case for Option 3 is that it is the only option whose correctness argument does not
+  depend on this doc's reading of the biology.** If the biology reading in 3a is wrong, Option 3 is
+  right and Option 1 is a detour.
 
-**Recommendation: Option 1, with Option 2's scope-note and SD-022 correction done regardless of
-which is chosen** -- those are cheap, are owed independently, and do not touch the substrate.
+### 6b. Owed regardless of which option is chosen
+
+These are corrections, not builds. None touches the substrate and none is blocked on the decision:
+
+1. **SD-011 `what_would_answer`** -- correct the false statement that its four validated results
+   were all at `harm_history_len=10` (4d finding 2), and make the sourcing-mode + `harm_history_len`
+   declaration that clause (i)/(iii) already require actually enforced on the four runs.
+2. **SD-022 `functional_restatement`** -- correct the sentence describing the legacy path as
+   "structurally identical to harm_obs with a slower time constant"; that describes the
+   **pre-2026-03-28** construction (3b).
+3. **`docs/architecture/sd_011_dual_nociceptive_streams.md:73`** -- `harm_obs_a = EMA(harm_obs_s,
+   tau=10-30_steps)` has not described the code since 2026-03-28. Either the doc or the code is
+   wrong, and section 6's decision determines which; until then the doc should carry a note.
+
+**Recommendation: Option 1, with 6b done regardless of which option is chosen.**
 
 ---
 
@@ -435,10 +582,16 @@ that flag, not as a second near-duplicate flag (STEWARD D-006 exists precisely t
 
 1. **Widen `claim_ids`** from `[SD-086, SD-011]` to include **SD-019, SD-020, SD-022, MECH-258** --
    sections 3a/3b establish that each carries an unmet requirement traceable to this construction.
-2. **Record the sourcing-mode split** (section 4a) and the `stale_note`-class correction to SD-022's
-   `functional_restatement` (section 3b). If governance prefers, the SD-022 sentence is cleanly
-   separable as its own `stale_note` flag; it is recorded here rather than raised so that this
-   session does not pre-empt that call.
+2. **Record the sourcing-mode split** (section 4a) and the two `stale_note`-class corrections:
+   SD-022's `functional_restatement` (3b) and **SD-011's `what_would_answer` misstatement about its
+   own `harm_history_len` regime (4d finding 2)**. Either is cleanly separable as its own
+   `stale_note` flag; both are recorded here rather than raised so that this session does not
+   pre-empt that call. The SD-011 one is the more consequential: it is a claim asserting something
+   false about the provenance of its own supporting evidence.
+3. **Note the vacuity finding (4d).** Applying SD-011's clause (i) to EXQ-178b/198/323a is a
+   disposition for /governance, not for this spike; it is stated as a measured fact about the
+   drivers (`:158`, `:196`, `:326` all default `harm_history_len=0`) with no `evidence_direction`
+   proposed.
 
 ---
 
@@ -453,7 +606,42 @@ that flag, not as a second near-duplicate flag (STEWARD D-006 exists precisely t
 - **Did not write to `claims.yaml`, `substrate_queue.json`, `experiment_queue.json`,
   `governance_flags.v1.json`, or the curation ledger.**
 
-## 9. Reproduction
+## 9. Red-team record
+
+Reviewed in-session by a foreground adversarial red-team pass over the committed first draft
+(`REE_assembly b61eacdad7`), tasked to verify every load-bearing claim against the live repo.
+
+**Verdict: NON-BLOCKING-FINDINGS.** The headline verdict (section 1/3c, "it is a regression
+introduced by `2fbf5d62`") was independently re-verified from `git show db45993a` / `git show
+2fbf5d62` and **held**, as did the producer-site quote, the exhaustive writer sweep, the two-path
+split, the architecture-spec divergence, the sourcing-mode table, the EXQ-463 fixture finding, the
+norm-based-criteria finding, the RNG mechanism, GFLAG-0348's contents, and scope compliance
+(1 file, doc only).
+
+Five material findings were raised and **all five are incorporated above**, each re-verified by this
+session before acceptance rather than taken on the reviewer's word:
+
+| # | Finding | Where fixed |
+|---|---|---|
+| 1 | The proposed acceptance target `rank >= 4` is already met by flipping `limb_damage_enabled` -- and the body path's *numerical* rank is 5, not 4 | 2c, 6 (target now scoped to the DEFAULT path) |
+| 2 | SD-011's `what_would_answer` clause (i) was omitted; applied, it calls EXQ-178b/198/323a **vacuous**, and the claim misstates its own `harm_history_len` regime | **new 4d** |
+| 3 | Section 4's six-claim method under-scoped a universally-stated conclusion | 4 method note, **new 4e** |
+| 4 | STOP-CHECK missed `substrate_queue` entry `sd_zharm_a_warmup_optimizer_group` and its pre-existing affected-runs candidate list | 0, 4e, **new 6a** |
+| 5 | `status_phase: "decision_owed"` was an invented enum value | 6 (now `build_owed`) |
+
+Minor corrections also applied: the `_traj_pair_rng` dedicated-generator precedent (which materially
+weakens C2's advantage over C1 -- 5a/5b/5d), `scoring_excluded` flags and the EXQ-917 both-paths
+relabel (4a), the MECH-258 citation attribution (3a), the RNG call-site count (53, not 54), and
+line-number drift at `:3049-3053`, `:4144`, `:5097`. The call-site figure was corrected twice: the
+first draft's 54 counted every `self._rng` mention (assignment and a docstring line included) and
+the red-team's 53 subtracted only the assignment; the accurate count of `self._rng.` call-site lines
+excluding comments is **43**.
+
+**Not accepted:** nothing. The red-team raised no finding this session judged wrong.
+
+---
+
+## 10. Reproduction
 
 All read-only, all from `REE_Working` on ree-cloud-5 at the heads named in the header:
 
@@ -463,9 +651,12 @@ BASE=/Users/dgolden/REE_Working
 sed -n '3026,3085p'  $BASE/ree-v3/ree_core/environment/causal_grid_world.py
 sed -n '4136,4165p'  $BASE/ree-v3/ree_core/environment/causal_grid_world.py
 sed -n '8855,8870p'  $BASE/ree-v3/ree_core/utils/config.py
+# 2c -- the 4-free-vs-5-numerical rank of the SD-022 body vector
+python3 -c "import numpy as np; r=np.random.default_rng(0); d=r.random((2000,4)); M=np.column_stack([d,d.max(1),d.mean(1),np.clip(d.sum(1)*0.25,0,1)]); print(np.round(np.linalg.svd(M,compute_uv=False),4), np.linalg.matrix_rank(M))"
 # 2d/5d -- SD-048 noise, and the single shared generator
 sed -n '5006,5128p'  $BASE/ree-v3/ree_core/environment/causal_grid_world.py
-grep -n 'self\._rng' $BASE/ree-v3/ree_core/environment/causal_grid_world.py | wc -l   # 54
+grep 'self\._rng\.' $BASE/ree-v3/ree_core/environment/causal_grid_world.py | grep -vc '^\s*#'  # 43
+sed -n '1430,1442p' $BASE/ree-v3/ree_core/environment/causal_grid_world.py   # _traj_pair_rng precedent
 # 2e -- provenance
 git -C $BASE/ree-v3 log --format='%h %ad %s' --date=short -S 'harm_obs_a_ema' -- ree_core/environment/causal_grid_world.py
 git -C $BASE/ree-v3 show 2fbf5d62 --stat
@@ -473,5 +664,12 @@ git -C $BASE/ree-v3 show db45993a -- ree_core/environment/causal_grid_world.py
 # 4a -- evidence entries, then sourcing mode per driver
 python3 -c "import json;d=json.load(open('$BASE/REE_assembly/evidence/experiments/claim_evidence.v1.json'));print([ (e['claim_id'],e.get('run_id'),e.get('evidence_direction')) for e in d['entries'] if e.get('claim_id') in {'SD-011','SD-019','SD-020','SD-022','SD-086','MECH-258'} and str(e.get('evidence_class','')).startswith('exp')])"
 grep -c 'limb_damage_enabled=True' $BASE/ree-v3/experiments/v3_exq_178b_sd011_dual_stream_dissociation.py   # 0
-grep -c 'limb_damage_enabled=True' $BASE/ree-v3/experiments/v3_exq_323a_sd019_harm_nonredundancy.py         # 6
+grep -c 'limb_damage_enabled=True' $BASE/ree-v3/experiments/v3_exq_323a_sd019_harm_nonredundancy.py         # 5
+# 4d -- harm_history_len defaults to 0 in all three
+grep -n 'AffectiveHarmEncoder(' -A2 $BASE/ree-v3/experiments/v3_exq_178b_sd011_dual_stream_dissociation.py
+grep -n 'AffectiveHarmEncoder(' -A2 $BASE/ree-v3/experiments/v3_exq_198_sd011_dual_stream_stability.py
+grep -n 'AffectiveHarmEncoder(' -A2 $BASE/ree-v3/experiments/v3_exq_323a_sd019_harm_nonredundancy.py
+sed -n '206,212p' $BASE/ree-v3/ree_core/latent/stack.py
+# 4e -- the prior candidate list this STOP-CHECK missed
+python3 -c "import json;d=json.load(open('$BASE/REE_assembly/evidence/planning/substrate_queue.json'));print([i for i in d['queue'] if i['sd_id']=='sd_zharm_a_warmup_optimizer_group'][0]['affected_completed_runs_candidates_2026_09_18'])"
 ```
