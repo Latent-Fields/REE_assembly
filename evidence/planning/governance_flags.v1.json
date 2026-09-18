@@ -4741,9 +4741,9 @@
       "summary": "substrate_queue.json SD-082 is internally inconsistent and is gating unrelated work through /queue-experiment Step 2.5c. Its severity_note_2026_09_09 records that substrate_paths was DELIBERATELY EMPTIED (originals preserved in substrate_paths_resolved_2026_09_09 = [lateral_pfc_analog.py::compute_bias, agent.py]) because a live code footprint on a RESOLVED defect was gating unrelated work, and governance_2026_09_15 and governance_2026_09_16 BOTH assert 'severity/substrate_paths UNCHANGED (corrupting / [], emptied 2026-09-09)'. But the live value is NOT empty: substrate_paths = ['ree_core/predictors/e3_selector.py', 'experiments/_lib/allon_training.py::_lpfc_reinforce_loss'] -- two DIFFERENT paths from the ones recorded as resolved. Either a later cycle re-added a new footprint and the notes were not updated, or the emptying regressed. Second, separable finding: REE_assembly/scripts/check_substrate_path_overlap.py::_entry_is_open uses a SUBSTRING test against _CLOSED_MARKERS, so SD-082 (implementation_status 'implemented', status 'implemented_pending_validation') reads CLOSED to the tool while /queue-experiment Step 2.5c's own prescribed rule -- where any status containing 'pending' is OPEN, tested BEFORE an exact-match CLOSED test -- reads it OPEN. The tool and the skill therefore disagree on this entry, so the backward-half audit under-reports runs against this footprint. Found by V3-EXQ-1053 (MECH-042) whose driver reads agent.get_state() and so touches e3_selector.py; that run recorded the overlap and disposed of it as NOT REACHABLE following the V3-EXQ-1015 precedent named in SD-082's own severity_note, rather than STOP-GATEing on a footprint the entry says should not exist.",
       "raised_by_session": "queue-exp-20260917-starved",
       "raised_at": "2026-09-17T19:47:11Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-18T19:11:06Z",
+      "resolution_note": "User decision 2026-09-18T18:50:48Z (Option A, via Orchestrator): SD-082 substrate_paths emptied again in substrate_queue.json, applied by governance-20260918-sd082 with a governance_2026_09_18 note; V3-EXQ-1046 finding stays degrading on sd-allon-training-signal-absorption-telemetry; V3-EXQ-1039a can be re-raised. Path-overlap checker substring-CLOSED defect (check_substrate_path_overlap.py:149-164) still owed."
     },
     {
       "flag_id": "GFLAG-0334",
