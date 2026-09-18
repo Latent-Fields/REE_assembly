@@ -4950,6 +4950,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0349",
+      "claim_ids": [
+        "MECH-547, MECH-548, MECH-439, INV-086, MECH-428"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "GOV-APPLY-1 (REE_assembly/scripts/check_unapplied_autopsy_recommendations.py) reports 9 unapplied_disposition rows after governance-20260918 that are DETECTOR defects, not owed writes. Three shapes: (1) _target_state's _STAMP_RE (stamp .*? (failure_autopsy_...)) takes the FIRST slug in a prose change and not the artifact's own, so INV-086/MECH-428 rows from failure_autopsy_V3-EXQ-1039_2026-09-16 and MECH-439 from failure_autopsy_V3-EXQ-1012a_2026-09-14 demand a stamp of an EARLIER artifact (1004 / 571b) that cannot be true once the newer one is stamped; the older-artifact rows (1030, 571b) are then permanently unappliable because live_status.evidence.from holds one value. (2) _missing_structured_field treats a key present on rec with value False as 'claim must carry the key': MECH-547/MECH-548 (failure_autopsy_V3-EXQ-1044_2026-09-17) recommend recommended_diagnostic_evidence_adjudicated False and say explicitly do NOT set diagnostic_evidence_adjudicated (claim-free diagnostic), yet the row stays ACTIONABLE because the key is absent. (3) same False-as-required shape for SD-024's diag flag (its epistemic_category was genuinely owed and was written). Fix direction is the detector: parse the artifact's own slug for 'stamp this artifact' rows, treat a False/None recommended boolean as satisfied-by-absence, and let a newer stamp for the same claim retire an older stamp row. Do NOT widen it to tolerate missing fields generally (see its 2026-09-01 repair note). Applied this cycle: MECH-021 epistemic_category, SD-024 epistemic_category, SD-076 and Q-081 diagnostic_evidence_adjudicated true (13 -> 9 rows).",
+      "raised_by_session": "governance-20260918",
+      "raised_at": "2026-09-18T19:08:08Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
