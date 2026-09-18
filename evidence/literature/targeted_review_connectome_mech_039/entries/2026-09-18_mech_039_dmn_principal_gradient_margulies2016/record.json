@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_039",
+  "entry_id": "2026-09-18_mech_039_dmn_principal_gradient_margulies2016",
+  "timestamp_utc": "2026-09-18T10:27:35Z",
+  "claim_ids_tested": [
+    "MECH-039"
+  ],
+  "source": {
+    "title": "Situating the default-mode network along a principal gradient of macroscale cortical organization",
+    "authors": [
+      "Margulies DS",
+      "Ghosh SS",
+      "Goulas A",
+      "Falkiewicz M",
+      "Huntenburg JM",
+      "Langs G",
+      "Bezgin G",
+      "Eickhoff SB",
+      "Castellanos FX",
+      "Petrides M",
+      "Jefferies E",
+      "Smallwood J"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1608282113",
+    "pmid": "27791099",
+    "pmc": "PMC5098630",
+    "volume": "113",
+    "issue": "44",
+    "pages": "12574-12579"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "This is the canonical citation for 'the default-mode network is not a discrete module but one extreme of a continuum', and MECH-039's headline is 'not separate modules', so the rhetorical fit is close and the source is strong (PNAS, human and macaque convergence, heavily replicated since). The confidence is nonetheless held below 0.6 -- deliberately low for so influential a paper -- because the continuum it establishes is SPATIAL, a gradient of connectivity across the cortical sheet, whereas MECH-039 is a claim about the temporal dynamics of control state. A continuous spatial organisation is fully compatible with discrete temporal switching, so this entry constrains the claim far less than the wording overlap suggests. It is included precisely so that the caveat is on the record rather than left for a future session to rediscover.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The gradient is a property of the connectivity ARCHITECTURE, not of the moment-to-moment state trajectory. A system whose components are continuously graded in anatomical space can still switch between a small number of discrete operating regimes in time. This paper therefore neither confirms nor falsifies MECH-039's actual assertion, and citing it as support for the dynamics claim would be an equivocation between two different senses of 'continuous'.",
+    "The result concerns the default-mode network specifically, at one pole of one gradient. MECH-039's claim is about a joint space spanned by six named control channels in which three modes sit as regions; a single principal gradient anchored by sensory/motor at one end and DMN at the other is a one-dimensional object and cannot exhibit the multi-channel clustering structure the claim's confirming signature requires.",
+    "Gradient decomposition of a connectivity matrix returns continuous components by construction -- diffusion-map and PCA-style embeddings cannot emit discrete cluster labels. So 'the DMN lies on a continuum' is partly a statement about the method's output space, and the paper's evidence against modularity is weaker than it reads."
+  ],
+  "tags": [
+    "mech_039",
+    "control_plane",
+    "principal_gradient",
+    "default_mode_network",
+    "cortical_hierarchy",
+    "continuum_vs_module",
+    "macaque",
+    "spatial_versus_temporal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Decomposition of connectivity data in humans and the macaque reveals a principal gradient anchored at one end by regions serving primary sensory/motor functions and at the other by transmodal regions known in humans as the default-mode network. The DMN regions lie at the greatest geodesic distance along the cortical surface from primary sensory/motor landmarks, and are precisely equidistant from them. The gradient provides an organising spatial framework for multiple large-scale networks and characterises 'a spectrum from unimodal to heteromodal activity'. The authors conclude that the DMN's cognitive role 'might arise from its position at one extreme of a hierarchy' rather than from being a discrete system.",
+    "ree_translation": "MECH-039 says that what look like separate mode-modules are better described as locations in a continuous space. Margulies et al. make that move for the most module-like object in systems neuroscience: the DMN turns out to be definable by WHERE it sits on a graded axis rather than by being a bounded thing. For REE this licenses the general architectural stance -- that a named regime can be fully specified by coordinates without needing a dedicated module -- and it supplies the default-mode-like mode in particular with a principled non-modular description. It is best read as support for the claim's framing and vocabulary, not as evidence about its measurable signature.",
+    "mapping_caveat": "This is the widest transfer gap in the pull and it should be stated plainly: the paper's continuum is across CORTICAL SPACE, MECH-039's is across CONTROL-CHANNEL VALUES OVER TIME. These are different axes and a result about one does not transfer to the other. The claim's falsifying signature -- transitions that are instantaneous and simultaneous across all channels -- could obtain in full while this paper's gradient remains exactly as reported. The entry is therefore recorded at low confidence with the equivocation named, so that the corpus carries the caveat alongside the citation rather than allowing a later reading to treat the DMN-is-not-a-module literature as if it settled the dynamics question.",
+    "source_context": "Human resting-state functional connectivity analysed at the group level, with convergent macaque tract-tracing connectivity and a functional meta-analysis; connectivity decomposition into gradient components. Participant counts are not stated in the abstract and the analysis operates on group-level connectivity."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.88: PNAS, cross-species convergence (human plus macaque), a landmark result that has been extensively replicated and extended since 2016. Mapping fidelity 0.45 is what holds this entry down -- the paper's 'continuous' and the claim's 'continuous' refer to different axes (space versus control-channel dynamics), and the overlap is largely one of vocabulary. Transfer risk 0.55, the highest in this pull, for the same reason. The aggregate 0.58 weights mapping fidelity heavily, per the guidance for architectural claims; a mean of the components would have overstated this entry considerably."
+  }
+}

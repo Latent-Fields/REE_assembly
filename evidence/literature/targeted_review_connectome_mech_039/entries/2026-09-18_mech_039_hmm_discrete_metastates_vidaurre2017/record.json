@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_039",
+  "entry_id": "2026-09-18_mech_039_hmm_discrete_metastates_vidaurre2017",
+  "timestamp_utc": "2026-09-18T10:27:35Z",
+  "claim_ids_tested": [
+    "MECH-039"
+  ],
+  "source": {
+    "title": "Brain network dynamics are hierarchically organized in time",
+    "authors": [
+      "Vidaurre D",
+      "Smith SM",
+      "Woolrich MW"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1705120114",
+    "pmid": "29087305",
+    "pmc": "PMC5715736",
+    "volume": "114",
+    "issue": "48",
+    "pages": "12827-12832"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "This entry is deliberately included as the falsifier-side evidence, and it cuts both ways. It SUPPORTS the clustering half of MECH-039: across 820 HCP subjects the state sequence is non-random and partitions into two 'metastates' the brain tends to cycle WITHIN rather than between, which is a stable-region signature at a coarser grain, and the time spent in each is subject-specific, heritable and behaviourally predictive -- so the regions are real, individually characteristic, and not an artifact of one cohort. It WEAKENS the continuity half: the model that fits this data so well is a hidden Markov model with 12 discrete one-hot states, which is very close to the discrete-module reading MECH-039 names as its falsifier. Confidence 0.65 reflects high source quality against a mapping that is indirect (network-connectivity states, not channel values) and a direction that is genuinely split rather than merely hedged.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model class that assumes discrete states will report discrete states. An HMM with 12 one-hot states fits 820 subjects' resting fMRI well enough to yield heritable, behaviourally predictive occupancy measures -- which is to say MECH-039's stated falsifying alternative (transitions indistinguishable from a one-hot module switch) is not a strawman but a well-supported working model in this literature. The paper does not adjudicate continuous versus discrete because its method cannot.",
+    "DIRECTLY ACTIONABLE FOR THE FALSIFIER DESIGN: any REE diagnostic that instruments modes with a discrete-state estimator -- an HMM, k-means over channel vectors, or an argmax over a mode-prior distribution -- inherits this same blindness and will report discrete switching regardless of which reading is true. MECH-039's confirming signature requires evidence of GRADED, channel-by-channel co-movement, so the instrument must be able to represent a state that is between modes. An argmax readout over MECH-046 mode priors is exactly the wrong instrument for this claim.",
+    "The recovered coarse structure is TWO metastates (sensorimotor/perceptual versus higher-order cognition). MECH-039 names three modes with a different cut (task-engaged, default-mode-like, emergency). If the empirically robust partition of state space is two-fold and organised along a sensory-versus-abstract axis, REE's three-mode taxonomy may be importing a distinction the dynamics do not support -- or may be tracking something this resting-state paradigm cannot elicit, since a resting scan contains no emergency.",
+    "Metastate dwell times are short and heterogeneous -- the authors report that around 50% of metastate visits are shorter than the threshold they use to rule out sleep/wake confounds, and around 20 s spent in the sensorimotor metastate during the first minute. Short, frequent visits are hard to reconcile with a reading of modes as deep, committed regimes, and suggest that whatever these states are, they are not operating at the timescale of REE's commitment-threshold channel."
+  ],
+  "tags": [
+    "mech_039",
+    "control_plane",
+    "hidden_markov_model",
+    "brain_states",
+    "metastates",
+    "discrete_vs_continuous",
+    "falsifier_design",
+    "heritability",
+    "hcp",
+    "instrument_bias"
+  ],
+  "mapping": {
+    "source_claim_statement": "A hidden Markov model with 12 states, inferred from temporally concatenated resting fMRI across 820 Human Connectome Project subjects, shows that transitions between whole-brain network states are non-random and that this sequencing is itself hierarchically organised into 'two distinct sets of networks, or metastates, that the brain has a tendency to cycle within' -- one sensorimotor/perceptual, one associated with higher-order cognition. Fractional occupancy of each state and metastate is a consistent subject-specific measure, is significantly heritable, and relates to cognitive traits.",
+    "ree_translation": "For MECH-039 this is the honest counterweight. The metastate result is a genuine stable-region finding: the state space is partitioned into basins the system stays within, which is what 'modes are stable regions' predicts, and the heritability result says those regions are a real individual-level property rather than a fitting artifact. But the vehicle is a discrete-state model, and it works. REE should read this as establishing that the DISCRETE-MODULE reading is the live competitor to MECH-039 rather than a hypothetical -- and, more usefully, as a constraint on how MECH-039 must be instrumented. The claim's confirming signature demands evidence of continuous trajectories through channel space; an estimator that can only emit one-hot state labels cannot produce that evidence, and the fact that such an estimator fits large human datasets well means a REE run using one would return a confident confirmation of the wrong reading.",
+    "mapping_caveat": "The states here are patterns of whole-brain activity and functional connectivity, not values on named control channels, so the mapping to MECH-039 runs through an assumed correspondence between 'network state' and 'control-plane mode' that this paper does not establish. The paradigm is also resting-state only: there is no task engagement and no threat, so two of REE's three named modes (task-engaged, emergency) are not elicited at all, and the recovered two-fold partition should not be treated as an empirical refutation of the three-mode taxonomy so much as a report from a paradigm that could not have found it. Finally, HMM state count is a chosen hyperparameter (12 here); a different K yields a different partition, which is itself a reason to be cautious about reading any particular state inventory as ontology.",
+    "source_context": "Human resting-state fMRI, 820 Human Connectome Project subjects, four sessions each; 12-state hidden Markov model fit to temporally concatenated group data; heritability estimated using the HCP twin structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.90, the highest in this pull: PNAS, N=820, an out-of-sample prediction of occupancy in held-out sessions, and a heritability result that is hard to obtain by chance. Mapping fidelity 0.58: network-connectivity states are two steps removed from control-channel values, and the paper's own cut of state space (two metastates, sensory versus abstract) does not align with REE's three named modes. Transfer risk 0.45: elevated because the resting-state paradigm structurally cannot elicit the emergency mode, so any inference about REE's full mode inventory is extrapolation. The aggregate is held at 0.65 rather than nearer source quality because for a MIXED entry the useful quantity is how much the entry should move a governance reading in EITHER direction, and the indirect mapping limits that in both."
+  }
+}

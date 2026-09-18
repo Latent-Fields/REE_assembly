@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_039",
+  "entry_id": "2026-09-18_mech_039_module_attractor_basins_ashourvan2017",
+  "timestamp_utc": "2026-09-18T10:27:35Z",
+  "claim_ids_tested": [
+    "MECH-039"
+  ],
+  "source": {
+    "title": "The energy landscape underpinning module dynamics in the human brain connectome",
+    "authors": [
+      "Ashourvan A",
+      "Gu S",
+      "Mattar MG",
+      "Vettel JM",
+      "Bassett DS"
+    ],
+    "year": 2017,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2017.05.067",
+    "pmid": "28602945",
+    "pmc": "PMC5600845",
+    "volume": "157",
+    "pages": "364-380"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The paper delivers precisely the structural object MECH-039 asserts -- an energy landscape whose 'local minima represent attractor states', with basins, and with simulated transitions between basins that are 'statistically consistent with empirically observed transitions in resting state fMRI data'. That last clause is what lifts it above a modelling exercise: the attractor structure makes a transition prediction and the prediction holds. Held at 0.70 because the space in which those basins live is module-allegiance space, not the control-channel space MECH-039 names, and because the empirical clustering the paper recovers does not match REE's named modes -- it collapses default-mode and salience into a single community, which MECH-039 treats as two distinct modes (default-mode-like and emergency).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The landscape is constructed over patterns of regional allegiance to functional modules, not over the arousal / readiness / precision / commitment-threshold channels MECH-039 names. Read strictly, the paper evidences that brain states have attractor form; it does not evidence that they are regions of the CONTROL-CHANNEL space, which is the specific parameterisation the claim asserts.",
+    "The clustering recovers three classes of ROI, and one of them is 'a putative default mode and salience community' -- the two collapsed together. MECH-039 lists default-mode-like and emergency as separate modes with near-opposite channel signatures (low readiness / low precision versus high arousal / high readiness / high veto). If the empirically recoverable basins merge them, either the mode taxonomy is too fine for the data or the basins are being read at the wrong granularity.",
+    "The pairwise maximum-entropy model assumes that all structure in the data is captured by first- and second-order statistics. Higher-order dependencies among modules would be projected into a spurious landscape topography, and the resulting minima would be artifacts of the fit rather than attractors of the system.",
+    "'Energy' here is information-theoretic, defined so that low energy means high probability of occurrence. This makes 'is an attractor' and 'occurs often' definitionally close, so the claim that a mode is a stable region risks being unfalsifiable within this method unless stability is independently established by a dwell-time or perturbation-recovery measure."
+  ],
+  "tags": [
+    "mech_039",
+    "control_plane",
+    "energy_landscape",
+    "attractor_states",
+    "maximum_entropy",
+    "module_dynamics",
+    "basins_of_attraction",
+    "brain_state",
+    "resting_state"
+  ],
+  "mapping": {
+    "source_claim_statement": "Fitting a pairwise maximum entropy model to each region's pattern of allegiance to functional modules produces 'an energy landscape in which local minima represent attractor states characterized by specific patterns of modular structure'. Simulating transitions as a random walk over this landscape yields transition probabilities between basins that are statistically consistent with those observed empirically in resting-state fMRI. The authors conclude with a view of 'the brain as a dynamical system that transitions between basins of attraction ... and that the strength of these attractors depends on the ongoing cognitive computations'.",
+    "ree_translation": "MECH-039 asserts that modes are stable regions rather than modules, and that switching is a trajectory through a space rather than a flag flip. Ashourvan et al. give the sharpest available empirical content to the first half: a state is a basin, a basin has a depth, and the depth is not fixed but depends on what the system is currently doing. The final clause is the one REE should take most seriously -- 'the strength of these attractors depends on the ongoing cognitive computations' is the same dependency MECH-039 needs in order for mode stability to be a consequence of channel settings rather than a hard-coded property of a module. The random-walk validation also matters architecturally: it says that if you know the landscape, you can predict the transition statistics, which is exactly the kind of instrument a REE diagnostic for MECH-039 would need to build.",
+    "mapping_caveat": "The axes are wrong for a strict reading of the claim. MECH-039 is specifically about the CONTROL-CHANNEL space (arousal, readiness, precision, commitment threshold, replay scheduling, veto); this landscape is spanned by module-allegiance patterns, which are a downstream consequence of control state rather than the control state itself. So this entry supports the FORM of the claim (modes as basins, with depths that vary) while remaining silent on its PARAMETERISATION. Additionally, the paper is correlational and resting-state only, with no manipulation of any control variable, so 'attractor depth depends on ongoing computation' is inferred from co-variation rather than demonstrated by intervention.",
+    "source_context": "Human resting-state fMRI; pairwise maximum entropy model over regional module allegiance; random-walk simulation of inter-basin transitions validated against empirical transition statistics."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.78: NeuroImage, methodologically careful, and the random-walk-versus-empirical-transitions comparison is a real out-of-sample check rather than a restatement of the fit -- but the maximum-entropy step carries a strong pairwise assumption and the analysis is resting-state and correlational. Mapping fidelity 0.68: the attractor/basin vocabulary maps cleanly onto 'stable regions', but the space is module allegiance rather than control channels, and the recovered communities do not respect REE's mode taxonomy. Transfer risk 0.40: moderate-to-high, because a landscape defined over a different set of axes may not preserve its topography when re-expressed in REE's channel coordinates."
+  }
+}

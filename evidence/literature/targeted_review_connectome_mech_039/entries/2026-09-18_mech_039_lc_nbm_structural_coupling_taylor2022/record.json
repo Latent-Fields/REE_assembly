@@ -1,0 +1,65 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_039",
+  "entry_id": "2026-09-18_mech_039_lc_nbm_structural_coupling_taylor2022",
+  "timestamp_utc": "2026-09-18T10:27:35Z",
+  "claim_ids_tested": [
+    "MECH-039"
+  ],
+  "source": {
+    "title": "Structural connections between the noradrenergic and cholinergic system shape the dynamics of functional brain networks",
+    "authors": [
+      "Taylor NL",
+      "D'Souza A",
+      "Munn BR",
+      "Lv J",
+      "Zaborszky L",
+      "Muller EJ",
+      "Wainstein G",
+      "Calamante F",
+      "Shine JM"
+    ],
+    "year": 2022,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2022.119455",
+    "pmid": "35809888",
+    "pmc": "PMC10114918",
+    "volume": "260",
+    "pages": "119455"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Included specifically for MECH-039's NON-DEGENERACY PRECONDITION, which is the part of the claim most likely to be silently violated in a REE run and which nothing else in this pull addresses head-on. The result is genuinely two-sided: the noradrenergic and cholinergic channels are separately identifiable and produce dissociable dynamic signatures (supporting non-degeneracy), but the paper's headline is that they are STRUCTURALLY COUPLED and that the strength of that coupling is what predicts flexibility -- so the channels are neither independent nor redundant, they are partially coupled, which is exactly the regime where the precondition must be measured rather than assumed. Confidence 0.55 reflects that the mapping is useful but the method (tractography between two very small nuclei) is at the edge of what diffusion MRI can resolve, and the design is correlational across individuals.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's named control channels are coupled to the degree reported here, a run may show cross-channel correlation high enough that the effective dimensionality of the joint channel space is materially lower than the channel count. MECH-039's own precondition states that a run where all channels move in lockstep cannot discriminate 'stable region in a continuous space' from 'discrete module' -- partial coupling is the regime where that discrimination degrades gracefully and silently rather than failing loudly, so the precondition needs an explicit measured cross-channel variance check, not an assumption.",
+    "White-matter tractography between the locus coeruleus and the nucleus basalis of Meynert asks diffusion MRI to resolve a pathway between two structures each at or below its effective resolution, in a region crowded with crossing fibres. Tractography is known to generate false-positive streamlines under exactly these conditions; a spurious streamline count correlated with head motion or anatomy would reproduce the reported individual-differences result without any underlying connection.",
+    "The design is correlational across individuals: people with denser estimated LC-nbM connectivity show more integration after LC-relative-to-nbM peaks and 'a heightened ability to shift to novel brain states'. Nothing is manipulated, so the causal direction claimed (structure constrains dynamics) is an interpretation, and a third factor -- overall white-matter integrity, age, or data quality -- could drive both.",
+    "The paper's framing treats the two neuromodulatory systems as 'interactive components rather than independent axes'. MECH-039's channel model presents its six channels as separable control dimensions. If the biological analogue is strongly interactive, the architectural decision to expose them as independent scalars is a simplification that the claim's own precondition would flag -- and the claim would then be evidenced in a substrate whose channels are independent BY CONSTRUCTION, which is a weaker test than it appears."
+  ],
+  "tags": [
+    "mech_039",
+    "control_plane",
+    "non_degeneracy_precondition",
+    "locus_coeruleus",
+    "nucleus_basalis",
+    "noradrenaline",
+    "acetylcholine",
+    "channel_independence",
+    "tractography",
+    "network_integration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Estimating white-matter connectivity between the locus coeruleus and the nucleus basalis of Meynert and relating it to resting-state functional dynamics, the authors report 'a significant positive relationship between the strength of white-matter connections between the LC and nbM and the extent of network-level integration following BOLD signal peaks in LC relative to nbM activity', and that individuals with denser interconnecting streamlines 'demonstrated a heightened ability to shift to novel brain states'. They conclude that 'the underlying static features of the neuromodulatory hubs can impose some constraints on the dynamic features of the brain', and frame the two systems as anatomically interconnected rather than operating in isolation.",
+    "ree_translation": "MECH-039 carries an explicit precondition before its confirming or falsifying signature can be read at all: the named control channels must be independently measurable and show non-zero cross-condition variance, because channels moving in lockstep cannot distinguish a stable region in a continuous space from a discrete module. This paper is the closest biological evidence on that precondition for the two channels REE models most directly. It supports separability -- LC-driven and nbM-driven dynamics are distinguishable, and their relative timing is what the integration measure keys on -- while simultaneously reporting that they are anatomically yoked, with the degree of yoking predicting how readily the system changes state. The operational lesson for REE is that channel coupling is not a nuisance to be designed away but a quantity to be measured per run and reported alongside any MECH-039 verdict.",
+    "mapping_caveat": "Two boundaries. First, this is evidence about the biological analogues of two REE channels, not about REE's channels, and REE's control plane exposes its channels as separately writable scalars -- so the substrate can trivially satisfy the non-degeneracy precondition by construction while the biology does not, which makes a REE confirmation of MECH-039 a weaker result than it would be if the channels were emergent. That asymmetry should be stated in any experiment that cites this entry. Second, the transfer is from a cross-sectional individual-differences correlation in humans to a within-run dynamical property in REE; the paper gives no evidence that the same coupling structure holds moment-to-moment within an individual, which is the timescale the claim actually concerns.",
+    "source_context": "Human diffusion MRI tractography between locus coeruleus and nucleus basalis of Meynert, combined with resting-state fMRI network dynamics; cross-sectional individual-differences design."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.72: NeuroImage, careful analysis and an established lab, but tractography between two sub-resolution nuclei is a hard measurement with known false-positive modes, and the design is correlational with no manipulation. Mapping fidelity 0.60: the paper speaks directly to channel separability, which is what the precondition needs, but does so via structural connectivity and individual differences rather than by measuring channel values over time. Transfer risk 0.45: the cross-sectional-to-within-run gap is real, and there is an additional asymmetry -- REE's channels are independent by construction, so the substrate cannot fail the precondition the way biology might, which limits how much this entry should license."
+  }
+}

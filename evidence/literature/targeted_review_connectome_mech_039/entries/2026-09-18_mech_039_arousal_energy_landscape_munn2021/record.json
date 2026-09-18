@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_039",
+  "entry_id": "2026-09-18_mech_039_arousal_energy_landscape_munn2021",
+  "timestamp_utc": "2026-09-18T10:27:35Z",
+  "claim_ids_tested": [
+    "MECH-039"
+  ],
+  "source": {
+    "title": "The ascending arousal system shapes neural dynamics to mediate awareness of cognitive states",
+    "authors": [
+      "Munn BR",
+      "Muller EJ",
+      "Wainstein G",
+      "Shine JM"
+    ],
+    "year": 2021,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-021-26268-x",
+    "pmid": "34650039",
+    "pmc": "PMC8516926",
+    "volume": "12",
+    "issue": "1",
+    "pages": "6016"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "This is the closest thing in the human literature to a direct measurement of MECH-039's central picture: brain states as valleys in a low-dimensional energy landscape, and neuromodulatory tone as the control variable that reshapes that landscape rather than as a switch that selects a module. The two channels dissociate in OPPOSITE directions from the same dataset -- phasic locus coeruleus bursts flatten the landscape (making otherwise unlikely state transitions accessible) while basal-forebrain peaks accentuate the wells -- which is both the strongest available support for the claim's 'stable regions in channel space' framing and the single most useful result for its non-degeneracy precondition, since two channels moving in opposite directions cannot be in lockstep. Held at 0.80 rather than higher because the landscape is a derived statistical object (computed from mean-squared BOLD displacement), not a measured potential, and because the paper never asks whether REE's three NAMED modes each occupy a distinct well.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The locus coeruleus is roughly 2-3 mm across and sits immediately adjacent to the fourth ventricle; the LC and basal-forebrain timeseries here are BOLD signals extracted at 2 mm isotropic resolution. Despite explicit CSF control, if the physiological confound is the signal rather than the noise, then the reported LC/BNM dissociation -- the paper's load-bearing result for channel non-degeneracy -- is an artifact of pulsatile CSF motion rather than a property of the arousal system.",
+    "The 'energy landscape' is computed from the likelihood of BOLD change (mean-squared displacement), not from an independently measured potential. A landscape whose estimated topography shifts with arousal is consistent with an underlying attractor dynamics but does not demonstrate one; a non-attractor system with arousal-dependent autocorrelation would produce the same statistic.",
+    "The paper demonstrates that a control channel changes the DEPTH of wells. It does not demonstrate that the named modes MECH-039 lists (task-engaged, default-mode-like, emergency) each correspond to a distinct, identifiable well, nor that transitions between them are graded rather than abrupt. The claim's clustering half and its continuity half are both untested here.",
+    "The meditator cohort is 14 participants. The conscious-awareness arm of the paper -- the part that ties landscape reconfiguration to a subjectively reported state change -- rests on that sample and should not be treated as established."
+  ],
+  "tags": [
+    "mech_039",
+    "control_plane",
+    "energy_landscape",
+    "locus_coeruleus",
+    "basal_forebrain",
+    "noradrenaline",
+    "acetylcholine",
+    "brain_state",
+    "neural_gain",
+    "arousal",
+    "mode_transitions"
+  ],
+  "mapping": {
+    "source_claim_statement": "The ascending arousal system modulates cortical neural gain so as to alter the low-dimensional energy landscape of cortical dynamics. In 59 participants scanned at 7T, phasic bursts in locus coeruleus led to 'a flattening or reduction of the energy landscape', whereas peaks in nucleus basalis of Meynert 'lead to an accentuation of the well by raising the energy landscape'. Brain states are explicitly described as evolving along this landscape 'much like a ball rolls under the influence of gravity down a valley', with the energy of a state corresponding inversely to its probability of occurrence.",
+    "ree_translation": "This is MECH-039's architecture stated in neurobiological terms. REE's control plane exposes continuous channels; the claim is that modes are stable regions in that channel space rather than separate modules. Munn et al. supply both halves: the 'stable region' is the energy well (a set of states the system settles into and must be driven out of), and the 'channel' is neuromodulatory tone, which does not select a mode but changes how deep the wells are and therefore how readily the system leaves one. Mapped onto REE's named channels, locus coeruleus tone behaves like the arousal-volatility / interruptibility channel (flattening the landscape lowers the effective commitment threshold) and basal-forebrain tone like the precision-and-gain-routing channel (deepening wells raises it). Critically for the claim's non-degeneracy precondition, these two channels move the landscape in OPPOSITE directions within the same dataset, which is direct evidence that the control channels are not a single collapsed arousal scalar.",
+    "mapping_caveat": "Three boundaries. First, REE's channels are engineered scalars read directly off the control plane, whereas here they are BOLD proxies for the activity of two small subcortical nuclei -- the mapping from 'LC BOLD burst' to 'REE arousal channel value' is an interpretation, not a measurement correspondence. Second, this paper evidences that CHANGING a channel reshapes the landscape; it does not evidence that the landscape's minima correspond to REE's named modes, which is the part of MECH-039 that the confirming signature actually specifies. Third, the paper treats the landscape as low-dimensional without committing to which dimensions -- so 'stable regions in channel space' is supported at the level of form, not at the level of the specific six-channel parameterisation control_plane.md proposes.",
+    "source_context": "Human 7T resting-state fMRI, 59 healthy adults (2 mm isotropic, TR 586 ms; 65 recruited, 6 excluded); second cohort of 14 expert meditators performing a breath-focus task with button-press reports of attentional drift."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Source quality 0.85: Nature Communications, 7T acquisition, an a-priori directional hypothesis (NA flattens, ACh deepens) confirmed in the predicted directions, and a second independent cohort -- but small brainstem ROIs at 2 mm and a 14-subject replication arm. Mapping fidelity 0.85, the highest in this pull: the paper's own prose is nearly a restatement of MECH-039, including the ball-in-a-valley image and the insistence that neuromodulation changes the landscape rather than flipping a state. Transfer risk 0.30: human neuromodulatory tone to engineered REE control scalars is a real but well-understood gap, and the direction of the effect (not its magnitude) is what MECH-039 needs."
+  }
+}
