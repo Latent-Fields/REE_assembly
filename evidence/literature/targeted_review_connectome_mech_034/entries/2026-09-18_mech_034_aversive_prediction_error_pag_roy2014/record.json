@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_034",
+  "entry_id": "2026-09-18_mech_034_aversive_prediction_error_pag_roy2014",
+  "timestamp_utc": "2026-09-18T04:03:24Z",
+  "claim_ids_tested": [
+    "MECH-034"
+  ],
+  "source": {
+    "title": "Representation of aversive prediction errors in the human periaqueductal gray",
+    "authors": [
+      "Mathieu Roy",
+      "Daphna Shohamy",
+      "Nathaniel Daw",
+      "Marieke Jepma",
+      "G. Elliott Wimmer",
+      "Tor D. Wager"
+    ],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3832",
+    "pmid": "25282614",
+    "pmc": "PMC4213247",
+    "volume": "17",
+    "issue": "11",
+    "pages": "1607-1612"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Supplies the piece Glascher et al. cannot: a HARM-specific prediction error with its own dedicated subcortical substrate and its own downstream routing, established with an axiomatic PE test plus dynamic causal modelling rather than by regressor correlation alone. Confidence is moderate because the paper never contrasts this circuit against a model-mismatch signal in the same subjects -- it establishes that harm learning has distinct circuitry, not that harm learning and mismatch learning are mutually non-contaminating.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study does not include a harm-free mismatch condition, so it cannot rule out that the PAG signal also moves under pure model violation -- the off-diagonal MECH-034 needs closed.",
+    "Pain PE and pain expectation are hard to fully deconfound in an instrumental avoidance task; the axiomatic tests constrain but do not eliminate an expectation-driven account."
+  ],
+  "tags": [
+    "mech-034",
+    "aversive_prediction_error",
+    "periaqueductal_gray",
+    "harm",
+    "residue",
+    "vmpfc"
+  ],
+  "mapping": {
+    "source_claim_statement": "In an instrumental pain-avoidance task, prediction errors about pain satisfy axiomatic PE criteria in the periaqueductal gray; dynamic causal modelling indicates vmPFC (supported by putamen) supplies an expected-value input to PAG, which then conveys the PE onward to orbitofrontal, anterior mid-cingulate and dorsomedial prefrontal cortex for behavioural regulation.",
+    "ree_translation": "REE reads this as evidence that the harm axis is not a sign-flipped reward axis riding the same hardware, but has its own error computation and its own onward routing to regions that regulate behaviour. That is the architectural precedent for residue being a distinct write path terminating in trajectory cost, rather than a component of a single generic post-action error. The vmPFC-to-PAG expected-value input is also the closest biological analogue REE has for ARC-035's stored-residue-to-anticipatory-signal conversion.",
+    "mapping_caveat": "This paper establishes distinctness of the harm PE from reward circuitry; it says nothing directly about the mismatch/navigability surface, which is MECH-034's other half. Reading it as support for the double dissociation requires chaining it with a separate source for the mismatch side, and a chained inference is weaker than a within-subject contrast. Nociceptive pain in humans is also a narrower construct than REE's harm/violation outcomes, which include ethical violation with no nociceptive analogue.",
+    "source_context": "Human fMRI, instrumental pain-avoidance task with thermal stimulation; axiomatic PE testing plus dynamic causal modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "The axiomatic approach is a real methodological strength -- it tests the formal signatures a PE must have rather than accepting any correlated regressor -- and is why source quality is high for an fMRI study. Transfer risk carries the nociceptive-pain to ethical-violation substitution, which is the largest single leap in this entry."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_034",
+  "entry_id": "2026-09-18_mech_034_dopamine_drives_model_learning_sharpe2017",
+  "timestamp_utc": "2026-09-18T04:03:24Z",
+  "claim_ids_tested": [
+    "MECH-034"
+  ],
+  "source": {
+    "title": "Dopamine transients are sufficient and necessary for acquisition of model-based associations",
+    "authors": [
+      "Melissa J. Sharpe",
+      "Chun Yun Chang",
+      "Melissa A. Liu",
+      "Hannah M. Batchelor",
+      "Lauren E. Mueller",
+      "Joshua L. Jones",
+      "Yael Niv",
+      "Geoffrey Schoenbaum"
+    ],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4538",
+    "pmid": "28368385",
+    "pmc": "PMC5413864",
+    "volume": "20",
+    "issue": "5",
+    "pages": "735-742"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.71,
+  "confidence_rationale": "Strong causal design (optogenetic sufficiency AND necessity, sensory preconditioning) reported in Nature Neuroscience, which makes the source quality high. It weakens MECH-034 because it shows the canonical value-coded signal is itself causally required for building the model of the world -- the exact confound the claim's falsifier names as 'one signal wearing two names'. Confidence held at 0.71 because dopamine is not a clean stand-in for REE residue: REE's residue is harm-keyed and non-erasable, dopamine transients here are driven by neutral stimulus-stimulus transitions with no reward at all.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The value-coded transient is not confined to the value surface: suppressing dopamine across a neutral stimulus-stimulus transition PREVENTS model learning, so the two putative currencies share a causal channel rather than merely co-occurring.",
+    "If REE's residue write path were implemented on a shared error broadcast, a harm-only manipulation would raise the staleness surface as a side effect -- the off-diagonal failure MECH-034's falsifier pre-registers as refutation.",
+    "A dissociation established by anatomical read-out (Glascher et al. 2010) can survive alongside a shared causal driver; read-out separability is therefore not sufficient evidence for MECH-034."
+  ],
+  "tags": [
+    "mech-034",
+    "dopamine",
+    "sensory_preconditioning",
+    "optogenetics",
+    "prediction_error",
+    "confound"
+  ],
+  "mapping": {
+    "source_claim_statement": "Prediction errors underlying stimulus-stimulus (non-rewarded) learning can be blocked behaviourally and reinstated by optogenetically activating dopamine neurons, and suppressing those neurons across the transition prevents normal stimulus-stimulus learning; dopamine transients are therefore both sufficient and necessary for acquiring model-based associations, contrary to the value-only canon.",
+    "ree_translation": "REE reads this as the strongest available counterweight to MECH-034. The neuromodulatory signal that REE's residue channel is architecturally analogous to turns out to be causally required for writing the world model -- the surface MECH-034 wants to keep separate. If the same holds in V3, a harm-only manipulation should contaminate the staleness surface and the claimed double dissociation collapses.",
+    "mapping_caveat": "The analogy from dopamine to REE residue is loose and should not be over-drawn. Dopamine here is carrying a general associative error over NEUTRAL stimuli, with no reward and no harm anywhere in the preconditioning phase; REE residue is defined by harm and violation outcomes specifically. So the paper shows a value-CODED substrate doing model work, not a harm-coded one. It weakens MECH-034 by supplying a concrete mechanism for the co-variation failure mode, not by directly measuring it. Rodent optogenetics to a latent-geometry substrate is a long transfer.",
+    "source_context": "Rats, sensory preconditioning with optogenetic activation and inhibition of VTA dopamine neurons; no primary reward present during the critical stimulus-stimulus phase."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Two erratum notices are attached to this paper (2017, 2018); neither retracts the central optogenetic result, but they are noted here because the record should not present the paper as unamended. Mapping fidelity is the weak component: dopamine-as-residue is an architectural analogy REE has not itself committed to."
+  }
+}

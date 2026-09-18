@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_034",
+  "entry_id": "2026-09-18_mech_034_state_vs_reward_prediction_error_glascher2010",
+  "timestamp_utc": "2026-09-18T04:03:24Z",
+  "claim_ids_tested": [
+    "MECH-034"
+  ],
+  "source": {
+    "title": "States versus rewards: dissociable neural prediction error signals underlying model-based and model-free reinforcement learning",
+    "authors": [
+      "Jan Gläscher",
+      "Nathaniel Daw",
+      "Peter Dayan",
+      "John P. O'Doherty"
+    ],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2010.04.016",
+    "pmid": "20510862",
+    "pmc": "PMC2895323",
+    "volume": "66",
+    "issue": "4",
+    "pages": "585-595"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Directly instantiates the structural shape MECH-034 asserts -- two post-action error signals, computed from the same experience, carried by non-overlapping substrates. High source quality (Neuron, canonical, heavily replicated). Mapping fidelity is good but not exact: the paper's SPE is transition-structure error, whereas MECH-034's viability surface is a navigability/path-stability map, and its RPE is reward value rather than harm-specific ethical curvature. Confidence is held below 0.8 because the value axis the paper dissociates is appetitive, not harm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is anatomical, not informational: the paper does not test whether an SPE-driving manipulation leaves the RPE substrate unmoved, only that the two regressors load on different regions. A REE off-diagonal test needs the manipulation-side control the paper does not run.",
+    "Both signals in this task are driven by the same experienced transitions, so the study cannot speak to the case where harm and mismatch are delivered independently -- exactly the manipulation H / manipulation M design MECH-034's falsifier requires."
+  ],
+  "tags": [
+    "mech-034",
+    "prediction_error",
+    "model_based_rl",
+    "double_dissociation",
+    "viability_mapping",
+    "residue"
+  ],
+  "mapping": {
+    "source_claim_statement": "A state prediction error reporting discrepancies between the learner's transition model and observed state transitions is encoded in intraparietal sulcus and lateral prefrontal cortex, anatomically separable from the reward prediction error in ventral striatum, in humans solving a probabilistic Markov decision task.",
+    "ree_translation": "REE reads this as the biological precedent for MECH-034's core assertion: a model-mismatch signal and an outcome-value signal are two different post-action learning currencies, not one signal read twice. The SPE maps onto the feasibility/staleness surface (MECH-284 StalenessAccumulator, region-keyed V_s residual staleness updated from predicted-observed mismatch); the RPE maps onto the axis residue curvature occupies, though REE's residue is harm-keyed rather than reward-keyed.",
+    "mapping_caveat": "The paper dissociates model error from REWARD value. MECH-034 asserts a dissociation between model error and HARM-derived ethical curvature. Reward and harm are not interchangeable poles of one axis in REE's architecture -- residue is explicitly non-erasable and asymmetric -- so this entry supports the general two-currencies structure, not REE's specific harm reading. Transfer from a discrete-state Markov task to REE's continuous latent geometry is a further gap.",
+    "source_context": "Human fMRI, 18 participants, probabilistic Markov decision task with a separate transition-learning (no-reward) phase followed by a reward phase; model-based regressor analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity dominates the aggregate for an architectural claim per the skill's calibration guide, which is why 0.92 source quality does not pull the total above 0.8. The transfer risk that matters here is appetitive-value-to-ethical-curvature, not human-to-machine."
+  }
+}

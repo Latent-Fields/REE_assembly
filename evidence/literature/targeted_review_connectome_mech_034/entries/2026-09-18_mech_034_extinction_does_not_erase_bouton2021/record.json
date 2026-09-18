@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_034",
+  "entry_id": "2026-09-18_mech_034_extinction_does_not_erase_bouton2021",
+  "timestamp_utc": "2026-09-18T04:03:24Z",
+  "claim_ids_tested": [
+    "MECH-034"
+  ],
+  "source": {
+    "title": "Behavioral and neurobiological mechanisms of Pavlovian and instrumental extinction learning",
+    "authors": [
+      "Mark E. Bouton",
+      "Stephen Maren",
+      "Gavan P. McNally"
+    ],
+    "year": 2021,
+    "venue": "Physiological Reviews",
+    "doi": "10.1152/physrev.00016.2020",
+    "pmid": "32970967",
+    "pmc": "PMC8428921",
+    "volume": "101",
+    "issue": "2",
+    "pages": "611-681"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "Speaks to the SECOND, less-examined half of MECH-034's confirming criterion -- that the two surfaces differ not only in what writes them but in how they persist. Decades of behavioural and circuit evidence that aversive learning is not erased by contradicting evidence, only inhibited and context-gated, is a strong and well-replicated base (Physiological Reviews, three authoritative authors). Confidence is 0.65 rather than higher because the review addresses persistence of aversive learning without any comparison to the persistence profile of a model-mismatch signal, so the asymmetry MECH-034 asserts is only half-evidenced.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review documents that extinction is expressed context-specifically, so an apparent DECAY of aversive value can be a retrieval failure rather than an erasure -- a V3 readout that measures residue only in the training context could report false decay.",
+    "It offers no persistence comparison against a model-mismatch or state-prediction-error signal, so MECH-034's claimed asymmetry (residue persists, staleness decays with re-visitation) has literature support on one side only."
+  ],
+  "tags": [
+    "mech-034",
+    "extinction",
+    "renewal",
+    "aversive_learning",
+    "persistence",
+    "residue",
+    "non_erasure"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neither Pavlovian nor instrumental extinction depends substantially on erasure of the original learning; it depends instead on new inhibitory learning that is primarily expressed in the context in which it was learned, as exemplified by the renewal effect, supported at the neural level by an amygdala-prefrontal-hippocampal circuit for Pavlovian extinction and distinct corticostriatal and striatopallidal ensembles for instrumental extinction.",
+    "ree_translation": "REE reads this as biological warrant for residue's non-erasability. MECH-034's confirming criterion requires that residue at a harmed region PERSIST and continue to raise trajectory cost, while the mismatch/staleness surface decays with re-visitation and routes to replay. The extinction literature is the strongest available evidence that harm-derived learning genuinely has the first of those two profiles -- contradicting evidence adds an inhibitor, it does not subtract the original.",
+    "mapping_caveat": "The review covers the persistence of AVERSIVE learning only. It makes no comparison to the persistence profile of a model-mismatch or state-prediction-error signal, so it evidences one arm of MECH-034's asymmetry and leaves the other arm ungrounded. It is also a review rather than a single experiment, so the mapping is to an accumulated consensus rather than to a specific measured effect. Separately, the context-specificity finding is a methodological warning for REE rather than support: measured residue decay may be retrieval failure, which V3 readouts at fixed region centres would not distinguish.",
+    "source_context": "Review of behavioural and circuit neuroscience of Pavlovian and instrumental extinction across rodent and human work."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.38,
+    "notes": "Source quality is high (Physiological Reviews, canonical authors, decades of replication). Mapping fidelity is the lowest in this pull because the review addresses one arm of a two-arm asymmetry and because review-level consensus maps less crisply onto a pre-registered effect-size bound than a single measured study does."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-18T01:57:55.219231Z`
+Generated: `2026-09-18T04:06:52.978271Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -112,6 +112,7 @@ Generated: `2026-09-18T01:57:55.219231Z`
 | `targeted_review_connectome_mech_029` | [`2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019`](targeted_review_connectome_mech_029/entries/2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019/record.json) | 6 | [`summary`](targeted_review_connectome_mech_029/entries/2026-04-02_mech_029_moral_neuroscience_social_decisionmaking_2019/summary.md) |
 | `targeted_review_connectome_mech_030` | [`2026-03-22_mech030_maladaptive_consolidation_walker2004`](targeted_review_connectome_mech_030/entries/2026-03-22_mech030_maladaptive_consolidation_walker2004/record.json) | 4 | [`summary`](targeted_review_connectome_mech_030/entries/2026-03-22_mech030_maladaptive_consolidation_walker2004/summary.md) |
 | `targeted_review_connectome_mech_033` | [`2026-03-29_mech_033_preplay_prospective_olafsdottir2015`](targeted_review_connectome_mech_033/entries/2026-03-29_mech_033_preplay_prospective_olafsdottir2015/record.json) | 4 | [`summary`](targeted_review_connectome_mech_033/entries/2026-03-29_mech_033_preplay_prospective_olafsdottir2015/summary.md) |
+| `targeted_review_connectome_mech_034` | [`2026-09-18_mech_034_state_vs_reward_prediction_error_glascher2010`](targeted_review_connectome_mech_034/entries/2026-09-18_mech_034_state_vs_reward_prediction_error_glascher2010/record.json) | 5 | [`summary`](targeted_review_connectome_mech_034/entries/2026-09-18_mech_034_state_vs_reward_prediction_error_glascher2010/summary.md) |
 | `targeted_review_connectome_mech_046` | [`2026-04-21_mech_046_many_roads_pessoaadolphs2010`](targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_many_roads_pessoaadolphs2010/record.json) | 2 | [`summary`](targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_many_roads_pessoaadolphs2010/summary.md) |
 | `targeted_review_connectome_mech_047` | [`2026-03-22_mech047_lc_ne_arousal_astonjones2005`](targeted_review_connectome_mech_047/entries/2026-03-22_mech047_lc_ne_arousal_astonjones2005/record.json) | 4 | [`summary`](targeted_review_connectome_mech_047/entries/2026-03-22_mech047_lc_ne_arousal_astonjones2005/summary.md) |
 | `targeted_review_connectome_mech_053` | [`2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017`](targeted_review_connectome_mech_053/entries/2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_053/entries/2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017/summary.md) |

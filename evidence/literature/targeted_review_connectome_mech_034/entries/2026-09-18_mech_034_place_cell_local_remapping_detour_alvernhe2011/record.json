@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_034",
+  "entry_id": "2026-09-18_mech_034_place_cell_local_remapping_detour_alvernhe2011",
+  "timestamp_utc": "2026-09-18T04:03:24Z",
+  "claim_ids_tested": [
+    "MECH-034"
+  ],
+  "source": {
+    "title": "Local remapping of place cell firing in the Tolman detour task",
+    "authors": [
+      "Alice Alvernhe",
+      "Etienne Save",
+      "Bruno Poucet"
+    ],
+    "year": 2011,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/j.1460-9568.2011.07653.x",
+    "pmid": "21395871",
+    "pmc": null,
+    "volume": "33",
+    "issue": "9",
+    "pages": "1696-1705"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The most literal biological instance of MECH-034's 'viability mapping' half available: a hippocampal representation that updates specifically when a path becomes unavailable, with no harm and no reward change anywhere in the manipulation. The spatial confinement of the remapping is a direct empirical analogue of the region-locality MECH-034's falsifier requires of the mismatch surface. Confidence is held at 0.72 by rodent-to-latent-substrate transfer and by the paper's own reported inconsistency with the authors' earlier shortcut study.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors explicitly report that this result conflicts with their own earlier shortcut-task finding of altered CA3 discharge for DISTANT fields -- so path-availability changes do not always produce spatially confined updates, and the locality MECH-034 leans on is condition-dependent.",
+    "Blocking a familiar path and opening a novel one are shown not to be equivalent manipulations, which means a REE mismatch perturbation must specify which of the two it implements before the locality prediction is well posed."
+  ],
+  "tags": [
+    "mech-034",
+    "place_cells",
+    "hippocampus",
+    "navigability",
+    "viability_mapping",
+    "detour",
+    "arc-018"
+  ],
+  "mapping": {
+    "source_claim_statement": "When a transparent barrier blocks the shortest central path of a familiar three-way maze, rats rapidly choose the shortest alternative detour, and CA1 and CA3 place cells with fields near the barrier show local remapping while cells with fields away from the barrier are unaffected; blocking a familiar path and making a novel path available are not equivalent manipulations.",
+    "ree_translation": "This is MECH-034's 'viability mapping' in the wild: a spatial representation whose update is triggered by a change in PATH AVAILABILITY rather than by harm or by reward, and whose update is confined to the region where the availability changed. It maps onto the region-keyed staleness surface (MECH-284 StalenessAccumulator) that the claim's falsifier proposes as the built candidate for the feasibility half, and onto ARC-018's hippocampal viability mapping directly.",
+    "mapping_caveat": "The barrier manipulation changes both the sensory prediction (the rat expected to pass and could not) and the affordance structure, so the paper cannot separate mismatch-driven from affordance-driven remapping -- and MECH-034 defines viability mapping as updating from predicted-observed self-sensory mismatch specifically. A transparent barrier in a physical maze is also a much coarser perturbation than the region-scoped dynamics perturbation a V3 manipulation-M arm would apply. Rodent place fields are a spatial code; REE's navigability surface is over action-object space, not physical space.",
+    "source_context": "Rats, CA1 and CA3 single-unit recording, Tolman-type detour problem on a familiar three-way maze with a transparent barrier."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.42,
+    "notes": "Mapping fidelity is the highest in this pull because the paper's dependent variable really is a navigability representation, not a value one. Source quality reflects a solid but single-lab EJN study whose central locality finding the authors themselves report as inconsistent with their prior work."
+  }
+}

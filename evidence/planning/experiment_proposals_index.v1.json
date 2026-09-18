@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-17T23:49:53.872102Z",
+  "generated_at_utc": "2026-09-18T04:06:52.978271Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -1139,6 +1139,24 @@
       ]
     },
     {
+      "backlog_id": "EVB-1393",
+      "claim_id": "MECH-021",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-1050",
+      "executed_queue_id": "V3-EXQ-1050",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-021 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0759",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_021",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "directional_conflict_alert",
+        "low_exp_conf"
+      ]
+    },
+    {
       "backlog_id": "EVB-0188",
       "claim_id": "SD-047",
       "dispatch_mode": "discriminative_pair",
@@ -1841,6 +1859,26 @@
       ]
     },
     {
+      "backlog_id": "EVB-1400",
+      "claim_id": "MECH-034",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-034 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0772",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_034",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
       "backlog_id": "EVB-1200",
       "claim_id": "ARC-055",
       "dispatch_mode": "discriminative_pair",
@@ -2180,26 +2218,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1393",
-      "claim_id": "MECH-021",
-      "dispatch_mode": "targeted_probe",
-      "executed_by": "V3-EXQ-1050",
-      "executed_queue_id": "V3-EXQ-1050",
-      "objective": "Reduce uncertainty for MECH-021 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0759",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_021",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1395",
       "claim_id": "MECH-024",
       "dispatch_mode": "targeted_probe",
@@ -2209,6 +2227,24 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_024",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1397",
+      "claim_id": "MECH-028",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-028 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0765",
+      "proposal_type": "experimental",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_028",
       "target_repo": "ree-v3",
       "why_now": [
         "lit_only_above_cap",
@@ -5796,54 +5832,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1397",
-      "blocked_at_utc": "2026-09-18T00:46:31Z",
-      "blocked_by": [
-        "mode-governance-engagement",
-        "MECH-261"
-      ],
-      "blocked_by_session": "igw-242-proposal-for-mech-028",
-      "blocked_evidence_run_ids": [
-        "v3_exq_935a_mech266_margin_normalised_cap_rule_20260916T095809Z_v3"
-      ],
-      "blocked_note": "Refused at /queue-experiment Step 2.5a (empirical probe contradicts the doc). claims.yaml MECH-028 SUBSTRATE says 'Built', but a one-tick probe against the live substrate shows TWO of the claim's OWN pre-registered non-degeneracy preconditions cannot be satisfied today. (1) TRANSITIONS DO NOT OCCUR: the claim requires mode_switch_trigger to fire and current_mode to change >=k times per life with hazards on BOTH sides of a transition. The mode lineage is inert at production defaults (use_salience_coordinator=False, use_external_task_drive=False, salience_affinity_input_cap=None), and across the whole 464c/d/e + 467/a/b/c/d/e + 934 + 935/935a lineage n_switches == n_episodes (an episode-boundary settle artifact, NOT within-life transitions). substrate_queue 'mode-governance-engagement' records the switching half as explicitly NOT resolved. The most recent word, V3-EXQ-935a (2026-09-16, FAIL/non_contributory, label rule_right_r_wrong_requeue) reports regime_shape_reachable=1 but regime_shape_graded=0 with C1 at 3/5 seeds -- a graded/mixed mode regime is still not established on the real curriculum, and a requeue is owed. With no genuine within-life transitions, arm B (mode-locked) is behaviourally identical to arm A (intact) and arm C (reset-on-switch) never fires: all three arms collapse before any compute. (2) NO HARM-RELEVANT WRITE-GATE CONSUMER: the claim states it is degenerate if MECH-261 mode-conditioned write gating has no live consumer that gates a write path mattering for harm learning. Measured: DEFAULT_GATE_WEIGHTS registers only [sd_033a, sd_033b, sd_033c, sd_033d, hc_viability, sensory_buffer, autonomic, e3_policy], and every live salience.write_gate() call site in ree_core/agent.py is one of autonomic, e3_policy, sd_033a (x2), sd_033b. residue_field.accumulate() (agent.py:10914, the num_harm_events write) and e2_harm_s are UNGATED by the coordinator. The locked mode therefore gates no harm-learning write path -- the claim's own degeneracy condition, met. Node class: complicated (buildable) -> route to /implement-substrate, not another experiment. No commitment-free MECH-028 diagnostic exists in the meantime: the representational readout for arm C is an arithmetic identity (the manipulation IS the DV), and a mode-free harm-reacquisition probe would not test MECH-028 at all.",
-      "claim_id": "MECH-028",
-      "dispatch_mode": "targeted_probe",
-      "gated_on": [
-        "mode-governance-engagement",
-        "MECH-261"
-      ],
-      "gating_reason": "mode_transitions_not_established_and_no_harm_write_gate_consumer -- two of MECH-028's own pre-registered non-degeneracy preconditions are unsatisfiable on the current substrate",
-      "objective": "Reduce uncertainty for MECH-028 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0765",
-      "proposal_type": "experimental",
-      "release_condition": "BOTH must hold. (a) Genuine within-life mode transitions demonstrated on the real curriculum: n_switches > n_episodes with a graded (not bang-bang) regime, i.e. regime_occupancy_gate reports 'graded' -- the V3-EXQ-935a requeue that substrate_queue 'mode-governance-engagement' still owes. (b) A MECH-261 write_gate target registered on a harm-learning write path (residue_field.accumulate and/or e2_harm_s), so a locked mode actually gates harm consolidation. Re-check this proposal after the 935-lineage requeue lands a graded regime; until then a run can only re-derive the known ceiling.",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_028",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1397",
-      "claim_id": "MECH-028",
-      "objective": "Improve literature grounding and confidence for MECH-028.",
-      "priority": "medium",
-      "proposal_id": "LIT-0766",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1398",
       "claim_id": "MECH-031",
       "dispatch_mode": "targeted_probe",
@@ -5881,38 +5869,6 @@
       "objective": "Improve literature grounding and confidence for MECH-032.",
       "priority": "medium",
       "proposal_id": "LIT-0771",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1400",
-      "claim_id": "MECH-034",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-034 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0772",
-      "proposal_type": "experimental",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_034",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1400",
-      "claim_id": "MECH-034",
-      "objective": "Improve literature grounding and confidence for MECH-034.",
-      "priority": "medium",
-      "proposal_id": "LIT-0773",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -18050,8 +18006,8 @@
     }
   ],
   "n_executed": 247,
-  "n_proposed_exp": 180,
-  "n_proposed_lit": 487,
+  "n_proposed_exp": 179,
+  "n_proposed_lit": 485,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }
