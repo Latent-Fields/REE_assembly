@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_035",
+  "entry_id": "2026-09-18_mech_035_scalar_reward_not_enough_vamplew2022",
+  "timestamp_utc": "2026-09-18T05:09:24Z",
+  "claim_ids_tested": [
+    "MECH-035"
+  ],
+  "source": {
+    "title": "Scalar reward is not enough: a response to Silver, Singh, Precup and Sutton (2021)",
+    "authors": [
+      "Peter Vamplew",
+      "Benjamin J. Smith",
+      "Johan Kallstrom",
+      "Gabriel Ramos",
+      "Roxana Radulescu",
+      "Diederik M. Roijers",
+      "Conor F. Hayes",
+      "Fredrik Heintz",
+      "Patrick Mannion",
+      "Pieter J. K. Libin",
+      "Richard Dazeley",
+      "Cameron Foale"
+    ],
+    "year": 2022,
+    "venue": "Autonomous Agents and Multi-Agent Systems",
+    "doi": "10.1007/s10458-022-09575-5",
+    "arxiv_id": "2112.15422",
+    "pmid": null,
+    "pmc": null,
+    "volume": "36",
+    "issue": "2",
+    "pages": "41"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the closest published statement of MECH-035's own thesis outside REE, and it is peer-reviewed rather than a preprint, which is why mapping fidelity is high (0.85). It is held below 0.8 because it is an argumentative position paper, not an empirical or formal result: its force comes from worked counter-examples and an alignment argument, not from a measurement or a proof. It can establish that the vector-valued posit is a live, defended architectural position; it cannot establish that any particular system's rankings are in fact non-collapsible, which is exactly what MECH-035's falsifier demands.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own concession is the sharpest risk to MECH-035: the authors accept that for many tasks a scalar reward is adequate, and rest their case on a subset of problems (conflicting objectives, safety constraints, alignment) where it is not. A REE scenario that happens to fall outside that subset would be correctly ranked by a scalar blend, and MECH-035 would read as falsified on that scenario without the architecture being wrong in general.",
+    "The multi-objective framework the authors advocate is most often operationalised as a scalarisation function applied at decision time -- a weighted sum, a Chebyshev norm, a utility function over the vector. If REE's ranking rule is implemented that way, the vector is preserved in representation and collapsed in use, which is precisely the failure mode MECH-035 names as refuting ('functioning as a de facto scalar reward regardless of its vector representation')."
+  ],
+  "tags": [
+    "mech-035",
+    "valence",
+    "multi_objective_rl",
+    "scalar_collapse",
+    "reward_hypothesis",
+    "alignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "Silver et al.'s assumption that the reward driving intelligent behaviour can be scalar-valued is unsupported; scalar reward cannot account for several aspects of natural and artificial intelligence, and explicitly multi-objective models of reward maximisation are needed -- both descriptively and because scalar reward poses unacceptable safety and ethical risks for AGI.",
+    "ree_translation": "REE reads this as independent argumentative support for MECH-035's structural posit: that VALENCE should stay a vector of predicted deltas across tagged streams (HOMEOSTASIS, HARM, TEMPORAL_COHERENCE, SELF_IMPACT error, option volume, inferred other welfare) rather than being summed into one number before E3 (ARC-003) ranks candidate trajectories. The paper's alignment argument is the same argument REE makes for non-scalar ethics: a scalar reward buys tractability by making every dimension purchasable with enough of another, and harm is the dimension where that purchase must not be available.",
+    "mapping_caveat": "This is a position paper in the RL literature about how to SPECIFY objectives for an agent designer. MECH-035 is a claim about what REE's running valence substrate DOES. Agreement on the normative question ('objectives should be vector-valued') is not evidence on the mechanistic question ('this system's observed rankings are not reproducible by any fixed scalar weighting'). Treating the two as the same would be the central mis-transfer here. The paper also argues from biological intelligence by analogy rather than from neural data, so it carries no independent neuroscientific weight beyond the citations it inherits.",
+    "source_context": "Computational / AI theory; a formal response in the multi-objective reinforcement learning literature to Silver, Singh, Precup and Sutton's 'Reward is enough' (Artificial Intelligence, 2021). No new experiments or proofs; argument by counter-example and by alignment consequence."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Source quality is capped by genre, not venue: AAMAS is a strong journal and the author list is the multi-objective RL field's core, but a response paper's evidentiary weight is argumentative. Mapping fidelity is the highest in this pull because the paper's thesis and MECH-035's thesis are near-identical in content. Transfer risk is moderate -- AI-design-norm to REE-mechanism is a real gap, but not a species or modality gap."
+  }
+}

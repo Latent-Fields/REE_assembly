@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_035",
+  "entry_id": "2026-09-18_mech_035_sacred_values_deontic_rules_berns2012",
+  "timestamp_utc": "2026-09-18T05:09:24Z",
+  "claim_ids_tested": [
+    "MECH-035"
+  ],
+  "source": {
+    "title": "The price of your soul: neural evidence for the non-utilitarian representation of sacred values",
+    "authors": [
+      "Gregory S. Berns",
+      "Emily Bell",
+      "C. Monica Capra",
+      "Michael J. Prietula",
+      "Sara Moore",
+      "Brittany Anderson",
+      "Jeremy Ginges",
+      "Scott Atran"
+    ],
+    "year": 2012,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2011.0262",
+    "pmid": "22271790",
+    "pmc": "PMC3260841",
+    "volume": "367",
+    "issue": "1589",
+    "pages": "754-762"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The only entry in this pull that tests the constraint-first half of MECH-035 rather than the vector half, and the only one where a dimension is observed to resist monetary trade-off with a distinct neural signature. Values participants refused to sell recruited left temporoparietal junction and ventrolateral prefrontal cortex -- semantic rule retrieval -- rather than the valuation circuitry a cost-benefit computation would engage. That is a lexicographic barrier with a substrate. Confidence is held at 0.62 because the domain is personal moral commitment in humans, several transfers away from a HARM stream in an artificial substrate, and because a regional dissociation is suggestive rather than decisive about the computation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is regional, not causal. Increased TPJ and vlPFC activity for refused items is consistent with rule retrieval, but also with moral emotion, self-referential processing, or simply the reappraisal of an offensive offer. Nothing in the design rules those out, so the inference from 'different region' to 'different comparison rule' is an interpretation the data underdetermine.",
+    "Sacredness was operationalised through personal integrity items and a real monetary sell offer. Refusal may reflect reputational and self-concept costs entering the SAME utility calculation at very high weight rather than a genuine lexicographic exclusion -- a sufficiently large scalar weight is behaviourally indistinguishable from a constraint at the price points a laboratory can offer.",
+    "MECH-035 asserts vector ranking across six named streams. This paper speaks to at most one stream being non-tradeable. A single protected dimension riding on top of an otherwise scalar comparison would produce this result and would not satisfy the claim."
+  ],
+  "tags": [
+    "mech-035",
+    "valence",
+    "sacred_values",
+    "protected_values",
+    "lexicographic",
+    "constraint_first",
+    "harm_stream",
+    "deontic"
+  ],
+  "mapping": {
+    "source_claim_statement": "When offered real money to renounce personal values, the values participants refused to sell were associated with increased activity in left temporoparietal junction and ventrolateral prefrontal cortex -- regions previously implicated in retrieval and application of semantic and deontic rules -- rather than with the valuation regions engaged by cost-benefit processing, indicating that sacred values are processed deontologically rather than utilitarianly.",
+    "ree_translation": "MECH-035 asserts that trajectory selection is constraint-first: a candidate dominated on HARM is rejected even when a scalar blend would prefer it for gains elsewhere. This paper is the nearest biological instance of that structure -- a dimension on which no exchange rate is offered, handled by rule retrieval rather than by comparison, and dissociable in substrate from the machinery that does compare. It is the closest thing available to evidence that a lexicographic barrier is a real cognitive architecture rather than only a design preference.",
+    "mapping_caveat": "Three transfers stack here and each is real: personally held moral commitments to a HARM stream over candidate trajectories; humans to an artificial substrate; and a regional BOLD dissociation to a claim about the comparison rule in use. The last is the weakest link -- 'a different region was active' does not establish 'a different algorithm ran'. This entry should be read as demonstrating that constraint-first comparison is biologically instantiated somewhere, not as evidence about REE's VALENCE streams specifically, and never as evidence for the vector-arity half of MECH-035, which it does not address at all.",
+    "source_context": "Human fMRI; participants offered real monetary incentives to sell personal values, with integrity items used as a proxy for sacredness; contrast between values sold and values refused. Sample size not stated in the abstract and not independently verified for this entry."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.72: a good venue and a genuinely clever paradigm, but a 2012 single-site fMRI study in an area where replication has been uneven, and reverse inference from TPJ/vlPFC to 'rule retrieval' is exactly the kind of localisation argument the field has since become cautious about. Transfer risk 0.55 is the highest in this pull and is what caps the aggregate at 0.62 -- three stacked transfers, the last of them a regional-to-algorithmic inference. Retained despite that because no other available source tests the constraint-first half of the claim at all."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_035",
+  "entry_id": "2026-09-18_mech_035_attribute_decomposition_ofc_suzuki2017",
+  "timestamp_utc": "2026-09-18T05:09:24Z",
+  "claim_ids_tested": [
+    "MECH-035"
+  ],
+  "source": {
+    "title": "Elucidating the underlying components of food valuation in the human orbitofrontal cortex",
+    "authors": [
+      "Shinsuke Suzuki",
+      "Logan Cross",
+      "John P. O'Doherty"
+    ],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-017-0008-x",
+    "pmid": "29184201",
+    "pmc": "PMC6214455",
+    "volume": "20",
+    "issue": "12",
+    "pages": "1780-1786"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "The most informative entry in this pull for experiment design, because it does not adjudicate the dispute -- it localises it. Lateral OFC carries the elemental attributes separately; medial OFC carries an integrated overall value built from them. Both halves of MECH-035's alternative are present in one brain, in one task, at different stages. That makes the claim's real question not 'vector or scalar' but 'where in the pipeline does the collapse happen, and does the ranking read from before or after it'. Confidence 0.71: strong venue and a clean multivariate design, but the attributes are nutritive constituents of a single appetitive good, several steps removed from REE's heterogeneous streams.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The architecture this paper reports is exactly MECH-035's stated falsification condition realised in tissue: component representations that are genuinely separable upstream, feeding an integrated overall value that the choice then reads. A REE substrate with the same shape -- vector VALENCE computed, scalar summary formed, E3 ranking on the summary -- would satisfy every representational check MECH-035 proposes while the claim's behavioural assertion is false.",
+    "The separable attributes here are nutritive constituents (protein, fat, carbohydrate, vitamin content) of one appetitive category. They are commensurable in a way REE's streams deliberately are not: HARM and option volume do not compose into a super-good the way macronutrients compose into a food's value. The paper therefore demonstrates attribute decomposition in the easy case and is silent on the case MECH-035 cares about.",
+    "Subjective value was predictable from beliefs about the attributes -- a linear-ish integration. If REE's VALENCE components predict E3's ranking through a comparable integration step, the fitted weighting IS the scalar collapse, and no amount of upstream vector structure rescues the claim."
+  ],
+  "tags": [
+    "mech-035",
+    "valence",
+    "orbitofrontal_cortex",
+    "attribute_decomposition",
+    "value_integration",
+    "scalar_collapse",
+    "multivariate_fmri"
+  ],
+  "mapping": {
+    "source_claim_statement": "Subjective values assigned to foods can be predicted from participants' beliefs about the foods' constituent nutritive attributes; lateral orbitofrontal cortex represents those elemental attributes, while medial orbitofrontal cortex computes the overall value by integrating them.",
+    "ree_translation": "REE reads this as a staged architecture rather than a verdict: a component-wise representation and an integrated scalar coexist, separated anatomically and in processing order. Mapped onto REE, lateral OFC is the analogue of VALENCE as MECH-035 defines it -- a vector of per-stream deltas -- and medial OFC is the collapse MECH-035 denies. The claim's real content is therefore about which stage E3 (ARC-003) reads: if trajectory ranking consumes the uncollapsed vector, MECH-035 holds; if it consumes an integrated summary, the vector is upstream decoration.",
+    "mapping_caveat": "The attributes are macronutrients within a single appetitive good -- constituents that compose naturally into one quantity. REE's streams (HOMEOSTASIS, HARM, TEMPORAL_COHERENCE, SELF_IMPACT error, option volume, inferred other welfare) are asserted to be non-composable in exactly the way macronutrients are composable, so the paper models the benign case and leaves the contested one untouched. A second caveat: the design cannot show that medial OFC's integrated value is what CHOICE reads -- the ordering is inferred from representational content, not from a causal manipulation.",
+    "source_context": "Human fMRI; food-valuation task with elicited beliefs about nutritive attributes; multivariate and model-based analysis of lateral versus medial OFC. Sample size not stated in the abstract and not independently verified for this entry."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.85: Nature Neuroscience, a clean design with an explicit attribute model rather than a post hoc parametric regressor. Mapping fidelity 0.65 is limited by commensurability -- macronutrients are the wrong kind of components to test a claim whose whole point is incommensurable streams. Transfer risk 0.4 is human-BOLD-to-substrate plus the inference from representational content to what choice actually reads. Aggregate 0.71 is above the mapping figure because this entry earns its weight as design guidance rather than as a verdict."
+  }
+}

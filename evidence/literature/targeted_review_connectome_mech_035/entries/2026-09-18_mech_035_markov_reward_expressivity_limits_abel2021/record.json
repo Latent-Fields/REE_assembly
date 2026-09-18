@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_035",
+  "entry_id": "2026-09-18_mech_035_markov_reward_expressivity_limits_abel2021",
+  "timestamp_utc": "2026-09-18T05:09:24Z",
+  "claim_ids_tested": [
+    "MECH-035"
+  ],
+  "source": {
+    "title": "On the Expressivity of Markov Reward",
+    "authors": [
+      "David Abel",
+      "Will Dabney",
+      "Anna Harutyunyan",
+      "Mark K. Ho",
+      "Michael L. Littman",
+      "Doina Precup",
+      "Satinder Singh"
+    ],
+    "year": 2021,
+    "venue": "Advances in Neural Information Processing Systems 34 (NeurIPS 2021)",
+    "doi": null,
+    "pmid": null,
+    "pmc": null,
+    "url": "https://proceedings.neurips.cc/paper/2021/hash/4079016d940210b4ae9ae7d41c4a2065-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The only formal result in this pull, and the only source that supplies MECH-035 with a decision procedure rather than an argument: for a partial ordering over trajectories, the authors give a polynomial-time algorithm that constructs a Markov reward function realising the ordering OR proves that none exists. That is the falsifier MECH-035 asks for, stated as a computable test rather than a curve fit. Source quality is high (NeurIPS oral, proofs, DeepMind/Brown/Princeton authorship). Confidence is held at 0.74 because the paper is agnostic about REE: it establishes that non-collapsible orderings EXIST, not that REE's rankings are among them, and its constructive half is equally available as evidence AGAINST the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's positive result cuts against MECH-035 as sharply as its negative one: for every task type studied the authors also give an algorithm that CONSTRUCTS a Markov reward function when one exists. Applied to REE, the same machinery is a scalar-collapse detector -- if it returns a reward function reproducing E3's rankings, MECH-035 is falsified by construction rather than by statistical fit, which is a far stronger refutation than the claim's stated falsifier contemplates.",
+    "The impossibility results are about MARKOV reward -- a function of (state, action, next-state). An ordering inexpressible by Markov reward may still be expressible by a scalar with memory or history dependence. A REE ranking that resists Markov scalarisation therefore does not establish 'no scalar collapse' in the general sense MECH-035 asserts, only 'no memoryless scalar collapse'.",
+    "The formalism assumes a finite, discrete environment with an enumerable trajectory set. REE's candidate trajectories live in a continuous latent geometry with a candidate set generated on the fly, so the algorithms are not directly runnable against E3 without a discretisation step whose fidelity is itself untested."
+  ],
+  "tags": [
+    "mech-035",
+    "valence",
+    "reward_hypothesis",
+    "expressivity",
+    "partial_order",
+    "scalar_collapse",
+    "falsifier_instrument"
+  ],
+  "mapping": {
+    "source_claim_statement": "Formalising a 'task' three ways -- as a set of acceptable behaviours, a partial ordering over behaviours, or a partial ordering over trajectories -- there exist instances of each type that no Markov reward function can capture; and for each type there is a polynomial-time algorithm that constructs a realising Markov reward function or correctly reports that none exists.",
+    "ree_translation": "MECH-035's confirming signature is stated as the existence of candidate pairs whose ranking no fixed scalar combination of the VALENCE components reproduces, while a dominance or lexicographic rule over the raw vector does. Abel et al. prove that such orderings exist in general and, more usefully, turn the question into a decidable one: given E3's (ARC-003) realised ranking over candidate trajectories, ask their algorithm whether any Markov reward function realises it. A negative answer is the confirming evidence MECH-035 wants; a positive answer is its falsification, with the scalar weighting handed over explicitly rather than inferred.",
+    "mapping_caveat": "This is a result about what reward functions can express, not about what any system does or what any brain computes. It licenses the CLAIM SHAPE and supplies an instrument; it contributes no evidence about REE's actual rankings, and it should never be cited as if it did. The Markov restriction is the sharpest boundary: the theorems say nothing about history-dependent scalar objectives, so a REE result leaning on this paper must state 'not expressible as a memoryless scalar' rather than 'not scalar'.",
+    "source_context": "Theoretical reinforcement learning; finite discrete environments; proofs plus small-scale empirical validation of the constructed reward functions. No biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Mapping fidelity is the binding constraint and is set below 0.7 deliberately: the paper is about a claim-shaped possibility, not about REE. Transfer risk 0.4 is driven by the discrete-to-continuous gap and by the Markov-versus-history-dependent gap, either of which could void a REE application of the algorithms. Per the skill's calibration guide mapping fidelity dominates for an architectural claim, which is why 0.92 source quality does not lift the aggregate above 0.75."
+  }
+}

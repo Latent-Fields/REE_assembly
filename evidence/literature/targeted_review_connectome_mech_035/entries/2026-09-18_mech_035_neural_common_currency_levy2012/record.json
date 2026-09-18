@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_035",
+  "entry_id": "2026-09-18_mech_035_neural_common_currency_levy2012",
+  "timestamp_utc": "2026-09-18T05:09:24Z",
+  "claim_ids_tested": [
+    "MECH-035"
+  ],
+  "source": {
+    "title": "The root of all value: a neural common currency for choice",
+    "authors": [
+      "Dino J. Levy",
+      "Paul W. Glimcher"
+    ],
+    "year": 2012,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2012.06.001",
+    "pmid": "22766486",
+    "pmc": "PMC4093837",
+    "volume": "22",
+    "issue": "6",
+    "pages": "1027-1038"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "The counter-position, and the strongest single piece of evidence against MECH-035 in this pull. A quantitative synthesis across thirteen human fMRI studies converging on a ventromedial prefrontal / orbitofrontal subregion that encodes subjective values of qualitatively different reward types on a shared scale -- which is precisely the scalar collapse MECH-035 denies, observed across exactly the cross-category comparisons where a common currency is hardest to explain away. Confidence 0.7 rather than higher because the synthesis is over BOLD value correlates in binary-choice tasks, and a shared representational scale for appetitive goods is weaker than the exchange-rate-across-all-streams that would actually refute MECH-035.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's VALENCE streams turn out to converge on a shared internal scale before E3 ranks them -- the direct analogue of what this synthesis reports for vmPFC -- MECH-035 is false in the way the claim itself specifies: vector-shaped in representation, scalar in use.",
+    "The paper's evidence is exclusively about appetitive goods being compared (money, food, consumer items). It does not test whether a harm or constraint dimension enters the same common scale, so it cannot be cited as showing that ALL valence streams collapse -- and MECH-035's load-bearing assertion is specifically about HARM not being purchasable.",
+    "Coordinate convergence across studies is a weak test of a shared code: two distinct value signals in adjacent or interdigitated populations can produce one blob at fMRI resolution. The synthesis establishes a common region far more securely than it establishes a common currency."
+  ],
+  "tags": [
+    "mech-035",
+    "valence",
+    "common_currency",
+    "vmpfc",
+    "scalar_collapse",
+    "counter_evidence",
+    "neuroeconomics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across thirteen human neuroimaging studies that required subjects to choose between qualitatively different categories of reward, a consistent subregion of ventromedial prefrontal cortex and orbitofrontal cortex represents the subjective values of those different reward types on a single common neural scale, as standard economic choice theory predicts.",
+    "ree_translation": "This is the position MECH-035 is written against. If the brain's solution to comparing incommensurable goods is to convert them into one currency in vmPFC, then an architecture that keeps VALENCE as an uncollapsed vector and ranks by dominance is choosing a route biology apparently declined. REE takes this as the counter-hypothesis that MECH-035's first experiment must be powered to detect, not as a settled refutation.",
+    "mapping_caveat": "Two boundaries constrain how far this weakens the claim. First, every comparison in the synthesis is between APPETITIVE goods; nothing here shows a harm, constraint or welfare dimension entering the same scale, and MECH-035's substantive assertion is about exactly those. A common currency for money-versus-food is entirely compatible with a lexicographic barrier around harm. Second, a shared BOLD subregion is not a shared code -- fMRI cannot separate one common-currency population from several interdigitated stream-specific ones. The finding is therefore evidence against universal non-collapse and much weaker evidence against REE's actual architecture.",
+    "source_context": "Human fMRI; synthesis across thirteen studies of binary choice between reward categories; BOLD value correlates and coordinate convergence in vmPFC/OFC. Review article by proponents of the common-currency position."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.8: Current Opinion in Neurobiology, canonical, authored by the position's leading proponents -- which is also why it should be read as advocacy for a hypothesis rather than a neutral survey. Mapping fidelity 0.62 reflects the appetitive-only scope and the resolution limit. Transfer risk 0.45 is the human-BOLD-to-REE-substrate gap plus the risk of over-reading convergence of coordinates as convergence of code. Recorded as the honest counterweight to the Hayden and Niv entry; neither should be cited without the other."
+  }
+}

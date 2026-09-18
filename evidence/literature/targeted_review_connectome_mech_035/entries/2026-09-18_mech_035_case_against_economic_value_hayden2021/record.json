@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_035",
+  "entry_id": "2026-09-18_mech_035_case_against_economic_value_hayden2021",
+  "timestamp_utc": "2026-09-18T05:09:24Z",
+  "claim_ids_tested": [
+    "MECH-035"
+  ],
+  "source": {
+    "title": "The case against economic values in the orbitofrontal cortex (or anywhere else in the brain)",
+    "authors": [
+      "Benjamin Y. Hayden",
+      "Yael Niv"
+    ],
+    "year": 2021,
+    "venue": "Behavioral Neuroscience",
+    "doi": "10.1037/bne0000448",
+    "pmid": "34060875",
+    "pmc": "PMC12398331",
+    "volume": "135",
+    "issue": "2",
+    "pages": "192-201"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Filed mixed rather than supports on purpose. The paper's negative half is strong support for MECH-035's negative half -- it argues the neuroeconomic common-currency value signal is not established and that the apparent evidence for it is explicable without a reified scalar. But its positive proposal, direct learning of action policies, dissolves the ranking stage altogether, and MECH-035 needs that stage: it asserts an explicit component vector that E3 compares. If Hayden and Niv are right, REE's scalar is absent because there is no value readout at all, not because the readout is a vector. Confidence 0.6 reflects a high-quality argument that lands only half on the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors' preferred alternative -- direct policy learning without an intermediate value representation -- would make MECH-035 unfalsifiable as stated rather than confirmed. Under that account there is no vector to rank and no scalar to collapse it into; E3's observed rankings would be an artefact of the policy, not evidence about a valence representation's shape.",
+    "The argument is deflationary about neural evidence in general: the authors show that a neuron correlating with value can be explained by attention, salience, motor preparation or policy without value being the variable encoded. The same deflation applies to any REE result claiming a component stream is 'independently computable' -- correlation of an internal quantity with a named stream does not establish that the stream is the represented variable.",
+    "It is a position paper in an active controversy with well-resourced opposition (Padoa-Schioppa, Glimcher, Rustichini). Citing it as settled neuroscience would misrepresent the field's state; the Levy and Glimcher entry in this directory is the counter-position and is not weaker."
+  ],
+  "tags": [
+    "mech-035",
+    "valence",
+    "common_currency",
+    "orbitofrontal_cortex",
+    "neuroeconomics",
+    "value_representation",
+    "policy_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "There is scant direct evidence that the brain computes and represents economic value as a distinct quantity. Neural correlates of value in orbitofrontal cortex and elsewhere are explicable by alternatives -- most notably direct learning of action policies -- and the field's reification of value as a represented variable is not warranted by the data.",
+    "ree_translation": "REE reads the negative half of this argument as the strongest neuroscientific pressure available on the scalar-collapse assumption MECH-035 denies. If the common-currency value signal is not established even in its home region, then an architecture that declines to compute one -- keeping VALENCE as a vector of stream deltas that E3 (ARC-003) compares constraint-first -- is not departing from a settled biological fact. It is declining to import a contested one.",
+    "mapping_caveat": "The paper attacks scalar value and REE's alternative to scalar value from the same direction. Hayden and Niv do not argue for a vector-valued value representation; they argue against value representation as such. That makes this entry supporting evidence for MECH-035's polarity ('asserts: without scalar collapse') and simultaneously a challenge to its subject ('valence.vector_ranking'). Any citation of it must carry both halves. A second caveat: the claim concerns a running artificial substrate, and this paper's target is a claim about primate and human brains -- MECH-035 does not depend on biological realism, so the transfer is by analogy only.",
+    "source_context": "Theoretical review and critical reanalysis of the primate and human neuroeconomics literature (single-unit orbitofrontal recordings, human value fMRI). No new data. Published in a dedicated Behavioral Neuroscience section alongside opposing commentary."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high for its genre -- two senior investigators, peer-reviewed, heavily cited, and explicitly framed as one side of a live dispute rather than as consensus. Mapping fidelity is the low figure and is what caps the aggregate: the paper's positive proposal is orthogonal to, arguably incompatible with, MECH-035's posited mechanism. Transfer risk 0.45 covers both the brain-to-substrate analogy and the risk of quoting a contested position as established."
+  }
+}
