@@ -1,7 +1,14 @@
 # Thought intake: fast empathy as developmental stream-binding (not an empathy module)
 
 **Date:** 2026-05-04 (raw); intake written 2026-06-05
-**Status:** intake / candidate cluster (NOT yet registered). V4-leaning with one V3-proxy experiment.
+**Status:** intake / **REGISTERED** -- ARC-094 (prohibition), ARC-095 (open taxonomy), MECH-405
+(stream-binding mechanism), MECH-406 (A/B/C/D dissociation), MECH-407 (residue-aware repair),
+MECH-408 (developmental ordering), Q-073 (why the ordering). Header corrected 2026-09-18: this
+file read "NOT yet registered" long after all seven candidates had been registered.
+V4-leaning with one V3-proxy experiment.
+**Successor intake:** `evidence/planning/thought_intake_2026-09-18_empathy_bootstrapping_object_stage.md`
+-- reads the cluster developmentally (fast empathy BOOTSTRAPS cognitive empathy), which changes how
+section 6 step 3's gated lit-pull resolves; registers MECH-569/570/571.
 **Raw thought file:** `docs/thoughts/2026-05-04_Empathy_development.md`
 **Origin:** Wu et al. 2026 (eLife) adolescent repeated-Prisoner's-Dilemma -- adolescents
 estimate partner cooperation as well as adults but show weaker *intrinsic reward for

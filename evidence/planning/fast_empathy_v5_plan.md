@@ -141,7 +141,7 @@ closure_plan:
     - id: "fast_empathy_v5:EMP-7"
       title: "Biology grounding for the social affect-binding + reciprocity-development streams (lit-pull)"
       phase: 2
-      status: deferred
+      status: in_progress
       severity: medium
       owner_exq: null
       unblocks_claims: ["MECH-405", "MECH-408"]
@@ -152,7 +152,7 @@ closure_plan:
         - "Seed anchors already present: Wu et al. 2026 (eLife) reciprocity development; Preston & de Waal 2002 / Lamm 2011 (PAM, already cited by MECH-183); the affect_primitives.md pain-dissociation anchors (Loffler 2018, Craig, Rainville) for the suffering stream"
         - "Targeted review to commission: developmental ordering of empathic concern vs prosocial reward; mirror/PAM substrate for other-bound affect; reciprocity intrinsic-reward maturation"
       last_updated: 2026-06-10
-      completion_note: "Grounding debt tracker. MECH-031/MECH-183 already carry PAM lit anchors; the NEW developmental-ordering and stream-binding claims do not yet have a dedicated social-development pull. Deferred (not blocked) because it can begin independently of the substrate, but it is a registration gate for EMP-3 and EMP-6 promotion."
+      completion_note: "Grounding debt tracker. MECH-031/MECH-183 already carry PAM lit anchors. PARTIALLY DISCHARGED 2026-09-18 (REE_assembly f2af0b691f2 + 046eaaac236, intake evidence/planning/thought_intake_2026-09-18_empathy_bootstrapping_object_stage.md). Of the three commissioned topics: (a) mirror/PAM substrate for other-bound affect -- COVERED (Umilta 2001 macaque F5 object-dependence; Lamm/Decety/Singer 2011; Krishnan 2016; Zhang 2025); (b) developmental ordering of empathic concern vs prosocial reward -- PARTLY COVERED (Moller 2014 visual cliff, retagged to MECH-408, which previously had NO literature at all; plus the three pre-existing targeted_review_q_073 entries incl. Davidov 2020); (c) reciprocity intrinsic-reward maturation -- NOT COVERED, Wu et al. 2026 remains a seed anchor with no pull. (c) is the remaining debt and is what still gates promotion. The pull also produced three NEW registered claims: MECH-569 (fast empathy bootstraps cognitive empathy -- adult self/vicarious dissociation is the PREDICTED endpoint, so Krishnan 2016 is not a falsifier of ARC-094 once it is read developmentally), MECH-570 (affect self-access is socially acquired -- Gergely and Watson 1996 run the arrow other -> self, a load-bearing biology-vs-design divergence against the self stage ARC-059/INV-064 presuppose), MECH-571 (the object term is ROUTE-SPECIFIC -- constitutive of the mirror route per Umilta, absent from Meltzoff 2007's bodily-correspondence route). Owed to governance: reword ARC-094 from concurrent binding to temporal scaffolding."
 ---
 # Fast Empathy as Stream-Binding -- V5 Forward Roadmap
 
@@ -204,7 +204,7 @@ prerequisites must land before the V5 social step is honest to build.
 | A/B/C/D dissociation | EMP-4 | NEWCLAIM (mechanism) | V5 (blocked) | EMP-3 or scripted-partner proxy |
 | residue-aware repair | EMP-5 | NEWCLAIM (mechanism) | V5 (blocked) | self-state goal channel (SELF-5/MECH-214) + INV-029 |
 | developmental ordering | EMP-6 | NEWCLAIM (mechanism) + Q | V5 (blocked) | EMP-3 multi-stream; ARC-059 spine |
-| biology grounding | EMP-7 | (grounding debt) | cross-cutting | social-development lit-pull |
+| biology grounding | EMP-7 | (grounding debt) | cross-cutting | social-development lit-pull -- **partly discharged 2026-09-18**; reciprocity intrinsic-reward maturation still owed |
 
 ---
 
@@ -258,6 +258,18 @@ are tagged V4 although their subject is intrinsically social; see the
 ---
 
 ## Decision log
+
+- **2026-09-18** -- EMP-7 moved `deferred` -> `in_progress`. Two of its three commissioned
+  topics are now covered by landed literature (REE_assembly f2af0b691f2, 046eaaac236); the
+  third, reciprocity intrinsic-reward maturation, is untouched and is the remaining
+  registration gate. MECH-408 gained its first literature evidence (Moller et al. 2014,
+  retagged). Three new claims registered -- MECH-569, MECH-570, MECH-571 -- all
+  `candidate` / `v5` / `substrate_conditional`, located on this plan. The load-bearing
+  reframe: ARC-094 read DEVELOPMENTALLY (fast empathy bootstraps cognitive empathy, user-
+  confirmed intent) rather than as concurrent composition, under which Krishnan et al. 2016
+  ceases to be a falsifier and becomes the predicted mature endpoint. ARC-094 still needs
+  rewording -- a governance action, deliberately not applied here. Intake:
+  `evidence/planning/thought_intake_2026-09-18_empathy_bootstrapping_object_stage.md`.
 
 - **2026-06-10** -- Plan registered as a V5 (social tier) forward-roadmap.
   Seven nodes: EMP-1 (no-scalar prohibition, the spine), EMP-2 (open taxonomy),

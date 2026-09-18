@@ -1,6 +1,7 @@
 {
   "claim_ids_tested": [
-    "ARC-094"
+    "ARC-094",
+    "MECH-408"
   ],
   "source": {
     "title": "Fathers' versus mothers' social referencing signals in relation to infant anxiety and avoidance: a visual cliff experiment",
@@ -20,25 +21,29 @@
   "evidence_class": "behavioral_human",
   "evidence_direction": "supports",
   "confidence": 0.62,
-  "confidence_rationale": "Social referencing is the empirical situation where ARC-094's three terms are unavoidably present at once -- the infant (self) reads the parent's affect (other) in order to evaluate the drop (object) -- and this is a reasonably powered experimental instance of it (81 infants, randomised to parent). Supports the claim that the object is the medium through which another's affect becomes usable rather than a bystander. Held at 0.62 because the study was designed to test a parent-gender question, not the architecture: the triadic structure is the paradigm's premise, so the paper assumes it rather than testing it.",
+  "confidence_rationale": "Social referencing is the empirical situation where ARC-094's three terms are unavoidably present at once -- the infant (self) reads the parent's affect (other) in order to evaluate the drop (object) -- and this is a reasonably powered experimental instance of it (81 infants, randomised to parent). Supports the claim that the object is the medium through which another's affect becomes usable rather than a bystander. Held at 0.62 because the study was designed to test a parent-gender question, not the architecture: the triadic structure is the paradigm's premise, so the paper assumes it rather than testing it. RETAGGED 2026-09-18 to add MECH-408 (which previously had NO literature evidence at all): the paper's selective-transmission finding is direct, if cross-sectional, support for protective-before-appetitive other-bound streams. Confidence unchanged at 0.62 -- it was already set by the premise-not-finding limitation, which applies equally here.",
   "failure_signatures": [
     "The triadic self-object-other structure is the visual cliff paradigm's PREMISE, not its finding, so this entry cannot be cited as evidence that the structure exists -- only that it is the established way to operationalise infant affect-reading, and that it behaves lawfully.",
     "Parental encouragement alone had no relationship to infant anxiety or avoidance, and only PATERNAL expressed anxiety predicted infant anxiety and avoidance -- so the affect transmitted across the triad is selective by signal valence and by which adult sends it, not a general other-to-self affect channel.",
-    "Infant temperament moderated the paternal effect, so the mapping from another's displayed affect to the infant's own state is gated by the receiver's prior disposition rather than being a fixed transfer."
+    "Infant temperament moderated the paternal effect, so the mapping from another's displayed affect to the infant's own state is gated by the receiver's prior disposition rather than being a fixed transfer.",
+    "For MECH-408 specifically: this is a CROSS-SECTIONAL snapshot at 10-15 months, not a measurement of developmental ORDERING -- it shows that at one age band an other-bound threat signal transmits while an other-bound positive signal does not, which is consistent with protective-before-appetitive but does not establish the sequence. A study measuring both stream types across ages is what would actually test the ordering."
   ],
   "tags": [
     "arc-094",
-    "object_stage",
-    "social_referencing",
-    "visual_cliff",
-    "triadic_attention",
     "developmental",
-    "infant"
+    "developmental_ordering",
+    "infant",
+    "mech-408",
+    "object_stage",
+    "protective_before_appetitive",
+    "social_referencing",
+    "triadic_attention",
+    "visual_cliff"
   ],
   "mapping": {
     "source_claim_statement": "81 infants aged 10-15 months were randomised to a father (n=41) or mother (n=40) condition on a visual cliff, with the parent at the deep side encouraging the infant to cross. Mothers showed more intense facial encouragement but infants crossed equally fast with comparable anxiety. Paternal, but not maternal, expressed anxiety was positively associated with infant expressed anxiety and avoidance, moderated by infant temperament; parental encouragement alone was unrelated to either outcome.",
-    "ree_translation": "This is the convergence point of the two senses of 'object' ARC-094 intends. The infant cannot evaluate the drop from its own resources, so it reads the parent's face -- and the parent's affect is only usable BECAUSE it is about the drop. Self, object and other are bound in a single act, with the object supplying the referent that makes the other's affective signal interpretable. That is the object stage doing work: not a way-station on a path from self to other, but the thing that gives the other's state content the self can act on.",
-    "mapping_caveat": "The design tests a parent-gender hypothesis and takes the triadic structure for granted, so it illustrates the object stage rather than evidencing it -- a paradigm's premise cannot also be its result. The selective findings also complicate the simple reading: only paternal anxiety transmitted, encouragement did not transmit at all, and infant temperament gated the effect, so this is not a clean other-to-self affect channel. Finally, 10-15 months is well after the fast/cognitive split ARC-094 cares about is presumed to begin, so it speaks to the stage's operation rather than to its ontogenetic ordering.",
+    "ree_translation": "This is the convergence point of the two senses of 'object' ARC-094 intends. The infant cannot evaluate the drop from its own resources, so it reads the parent's face -- and the parent's affect is only usable BECAUSE it is about the drop. Self, object and other are bound in a single act, with the object supplying the referent that makes the other's affective signal interpretable. That is the object stage doing work: not a way-station on a path from self to other, but the thing that gives the other's state content the self can act on. FOR MECH-408 (added after the initial tagging, which named only ARC-094): the asymmetry IS the evidence. Paternal expressed ANXIETY predicted infant anxiety and avoidance; parental ENCOURAGEMENT predicted neither. That is an other-bound protective/threat stream functioning as a behaviour-altering input while an other-bound appetitive/positive stream does not -- the pattern MECH-408 asserts, observed in the same infants, same paradigm, same session, so the asymmetry cannot be attributed to differing measurement sensitivity between two studies.",
+    "mapping_caveat": "The design tests a parent-gender hypothesis and takes the triadic structure for granted, so it illustrates the object stage rather than evidencing it -- a paradigm's premise cannot also be its result. The selective findings also complicate the simple reading: only paternal anxiety transmitted, encouragement did not transmit at all, and infant temperament gated the effect, so this is not a clean other-to-self affect channel. Finally, 10-15 months is well after the fast/cognitive split ARC-094 cares about is presumed to begin, so it speaks to the stage's operation rather than to its ontogenetic ordering. For MECH-408 the caveat is different and sharper than for ARC-094: a single 10-15-month age band cannot evidence an ORDERING, only a snapshot consistent with one. MECH-408 also gives a REASON (early positive other-reward is destabilising/exploitable) which this study does not test at all -- that is Q-073's territory.",
     "source_context": "Human infants 10-15 months; randomised visual cliff experiment; Dutch community sample."
   },
   "confidence_components": {
@@ -51,5 +56,9 @@
   "literature_type": "targeted_review_self_object_other_ontogeny",
   "entry_id": "2026-09-18_arc_094_social_referencing_visual_cliff_moller2014",
   "timestamp_utc": "2026-09-18T10:46:29Z",
-  "summary_path": "summary.md"
+  "summary_path": "summary.md",
+  "evidence_direction_per_claim": {
+    "ARC-094": "supports",
+    "MECH-408": "supports"
+  }
 }
