@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-17T18:32:52Z
+Generated: 2026-09-18T18:50:32Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -31,7 +31,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 71% | assembling:1 blocked:1 deferred:2 done:5 in_progress:2 partial:1 | 2026-09-16 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 88% | assembling:1 deferred:1 done:8 in_progress:2 | 2026-09-16 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 11 | 91% | deferred:1 done:9 upstream_blocked:1 | 2026-08-14 |
-| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-04 |
+| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-09-16 |
 | `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 100% | done:3 | 2026-08-13 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 100% | done:7 | 2026-06-15 |
 | `mech303_safety_threshold_plan.md` | MECH-303 Safety-Threshold Sourcing | 1 | 100% | done:1 | 2026-08-16 |
@@ -197,7 +197,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
 - **PROCESS**: 94.5% across 56 non-deferred nodes in 10 plan(s).
 - **V4**: 32.4% across 96 non-deferred nodes in 14 plan(s).
-- **V5**: 16.8% across 38 non-deferred nodes in 6 plan(s).
+- **V5**: 17.4% across 39 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
 
 | gen | plan | node | title | status | sev | gate (readiness) | last_updated |
@@ -335,7 +335,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P2-V4-REGISTERS` | Phase 2 -- V4 governance registers (welfare-risk full, assembly routin | deferred | medium | authored when each gate's first requires_welfare_review node activates (gains owner_exq);  | 2026-06-19 |
 | process | experiment_verification_harness_plan.md | `experiment_verification_harness:GAP-2` | tests/contracts/LINT_INDEX.md -- one row per test_*_lint.py file (bug  | done | medium |  | 2026-08-03 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:WORKSPACE-HEALTH` | TASK_CLAIMS staleness + orphaned-stash surfacing via a third corner-do | done | medium |  | 2026-08-02 |
-| v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-7` | Biology grounding for the social affect-binding + reciprocity-developm | deferred | medium | Per project rule feedback_biology_before_formal_definitions: the suffering/empathy social  | 2026-06-10 |
+| v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-7` | Biology grounding for the social affect-binding + reciprocity-developm | in_progress | medium | Per project rule feedback_biology_before_formal_definitions: the suffering/empathy social  | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-6` | PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD | blocked | medium | V3 HOOKS: MECH-089 theta-gamma packaging (formats content for E3) + SD-026 z_goal write ch | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-8` | Biology grounding completion (frontopolar deliberation, counterfactual | done | medium | L1 frontopolar/area-10 counterfactual deliberation (Koechlin & Hyafil 2007 branching; Boor | 2026-06-13 |
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P2` | Wire the confirmer lane to the hourly IGW autospawn at strictly LOW pr | done | medium |  | 2026-07-14 |

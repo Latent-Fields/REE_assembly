@@ -1,8 +1,8 @@
 ---
 title: "SD-097: typed multi-relation possibility topology"
 nav_exclude: true
-status: candidate/substrate_conditional
-status_asof: 2026-09-17
+status: candidate
+status_asof: 2026-09-18
 status_claim: SD-097
 ---
 

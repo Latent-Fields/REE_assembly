@@ -1,14 +1,20 @@
 # Pending Experiment Review
 
-Generated: `2026-09-18T05:02:48Z`  
+Generated: `2026-09-18T18:50:02Z`  
 Last review: `2026-09-17T18:30:55Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
+Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_1050_mech021_subjective_now_horizon_integration_20260918T010410Z_v3` | 2026-09-18T01:04 | MECH-021 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3` | 2026-09-18T18:23 | SD-098 |
 
 ## Evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
 

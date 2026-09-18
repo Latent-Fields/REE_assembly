@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-17T18:32:53Z",
+  "generated_at": "2026-09-18T18:50:34Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -986,6 +986,27 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-064",
+              "title": "e1_e2_e3_maturational_sequence_necessity",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "INV-055",
+                "INV-056",
+                "ARC-001",
+                "ARC-002",
+                "ARC-003",
+                "ARC-019",
+                "MECH-212",
+                "MECH-213"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-050",
               "title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
               "status": "candidate",
@@ -1001,27 +1022,6 @@
                 "MECH-120",
                 "MECH-121",
                 "MECH-123"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-064",
-              "title": "e1_e2_e3_maturational_sequence_necessity",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "INV-055",
-                "INV-056",
-                "ARC-001",
-                "ARC-002",
-                "ARC-003",
-                "ARC-019",
-                "MECH-212",
-                "MECH-213"
               ],
               "additional_dependencies": 0
             },
@@ -1526,6 +1526,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-035",
+              "title": "VALENCE is vector-valued and ranked without scalar collapse.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "ARC-017",
+                "ARC-003",
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-168",
               "title": "Progressive sleep deprivation or neurodegeneration causes staged failure of the offline consolidation pipeline in reverse dependency order: precision recalibration (MECH-123/Phase 4) degrades first, producing early MCI features; slot-filling (MECH-121/Phase 2-3) next, producing the classic early Alzheimer's episodic profile (intact remote, absent new); slot-formation (MECH-120/Phase 1-2) last, producing middle-stage contextual identity loss and schema destabilisation; global context collapse last.",
               "status": "candidate",
@@ -1637,23 +1653,6 @@
                 "Q-015"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-044",
-              "title": "Context-dependent neuromodulatory gain is a single unifying mechanism expressed at multiple levels: ARC-016 (temporal precision from prediction error variance), MECH-152 (contextual terrain weight from cue-indexed retrieval), MECH-026 (arousal-mediated vigilance sensitivity), and MECH-093 (z_beta heartbeat frequency modulation) are all facets of a global arousal/precision signal (LC-NE) modulated by a context-specific gain signal (vmPFC/OFC).",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "architecture_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 3,
-              "depends_on": [
-                "ARC-016",
-                "MECH-152",
-                "MECH-093",
-                "ARC-041"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1663,7 +1662,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 251,
+      "total": 253,
       "buckets": [
         {
           "key": "active",
@@ -1914,8 +1913,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 222,
-          "more_count": 212,
+          "count": 224,
+          "more_count": 214,
           "nodes": [
             {
               "id": "INV-049",
@@ -2093,7 +2092,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 291,
+      "total": 292,
       "buckets": [
         {
           "key": "active",
@@ -2289,7 +2288,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 75,
+              "incoming_dependencies": 76,
               "depends_on": [
                 "SD-010",
                 "ARC-027"
@@ -2446,8 +2445,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 221,
-          "more_count": 211,
+          "count": 222,
+          "more_count": 212,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2629,7 +2628,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 306,
+      "total": 309,
       "buckets": [
         {
           "key": "active",
@@ -2645,7 +2644,7 @@
               "claim_class": "horizon_v5",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 37,
+              "incoming_dependencies": 39,
               "depends_on": [
                 "INV-005",
                 "ARC-004",
@@ -2684,8 +2683,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 304,
-          "more_count": 294,
+          "count": 307,
+          "more_count": 297,
           "nodes": [
             {
               "id": "ARC-023",
@@ -2868,7 +2867,7 @@
   "record_counts": {
     "active": 179,
     "closed": 50,
-    "planned": 933
+    "planned": 939
   },
   "archive": {
     "snapshot_count": 111,

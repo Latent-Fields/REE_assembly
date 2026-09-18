@@ -1,15 +1,28 @@
 {
-  "generated_at": "2026-09-17T18:33:12Z",
+  "generated_at": "2026-09-18T18:51:02Z",
   "counts": {
-    "total": 1162,
+    "total": 1168,
     "reading_drift": 0,
-    "unstamped": 0,
+    "unstamped": 3,
     "needs_review": 2,
-    "never_reviewed": 1141,
-    "provenance_drift": 3
+    "never_reviewed": 1147,
+    "provenance_drift": 5
   },
   "reading_drift": [],
-  "unstamped": [],
+  "unstamped": [
+    {
+      "claim": "MECH-566",
+      "would_derive": "candidate/v3_pending"
+    },
+    {
+      "claim": "MECH-567",
+      "would_derive": "candidate/v3_pending"
+    },
+    {
+      "claim": "MECH-568",
+      "would_derive": "candidate/v3_pending"
+    }
+  ],
   "needs_review": [
     {
       "claim": "SD-016",
@@ -1167,7 +1180,13 @@
     "MECH-563",
     "MECH-564",
     "MECH-565",
-    "ARC-147"
+    "ARC-147",
+    "MECH-566",
+    "MECH-567",
+    "MECH-568",
+    "MECH-569",
+    "MECH-570",
+    "MECH-571"
   ],
   "provenance_drift": [
     {
@@ -1181,9 +1200,19 @@
       "derived_from": "decision:MECH-019@2026-09-17T18:27:48.004829Z"
     },
     {
+      "claim": "MECH-021",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-1050_2026-09-18"
+    },
+    {
       "claim": "MECH-482",
       "stored_from": "failure_autopsy_V3-EXQ-1047_2026-09-17",
       "derived_from": "failure_autopsy_V3-EXQ-1047_2026-09-17"
+    },
+    {
+      "claim": "SD-098",
+      "stored_from": null,
+      "derived_from": "sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3"
     }
   ],
   "provenance_available": true

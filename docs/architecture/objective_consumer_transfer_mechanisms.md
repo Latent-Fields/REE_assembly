@@ -1,3 +1,9 @@
+---
+status: candidate/v3_pending
+status_asof: 2026-09-18
+status_claim: MECH-566
+---
+
 # Objective -> consumer transfer mechanisms
 
 **Status:** stub. Three `candidate` claims, no experimental evidence, no build licensed.

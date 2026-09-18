@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-18T13:45:46.011117Z`
+Generated: `2026-09-18T18:25:20.928099Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -121,6 +121,7 @@ Generated: `2026-09-18T13:45:46.011117Z`
 | `targeted_review_connectome_mech_043` | [`2026-09-18_mech_043_striatal_dopamine_hallucination_prior_gain_cassidy2018`](targeted_review_connectome_mech_043/entries/2026-09-18_mech_043_striatal_dopamine_hallucination_prior_gain_cassidy2018/record.json) | 5 | [`summary`](targeted_review_connectome_mech_043/entries/2026-09-18_mech_043_striatal_dopamine_hallucination_prior_gain_cassidy2018/summary.md) |
 | `targeted_review_connectome_mech_046` | [`2026-04-21_mech_046_many_roads_pessoaadolphs2010`](targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_many_roads_pessoaadolphs2010/record.json) | 2 | [`summary`](targeted_review_connectome_mech_046/entries/2026-04-21_mech_046_many_roads_pessoaadolphs2010/summary.md) |
 | `targeted_review_connectome_mech_047` | [`2026-03-22_mech047_lc_ne_arousal_astonjones2005`](targeted_review_connectome_mech_047/entries/2026-03-22_mech047_lc_ne_arousal_astonjones2005/record.json) | 4 | [`summary`](targeted_review_connectome_mech_047/entries/2026-03-22_mech047_lc_ne_arousal_astonjones2005/summary.md) |
+| `targeted_review_connectome_mech_049` | [`2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018`](targeted_review_connectome_mech_049/entries/2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018/record.json) | 5 | [`summary`](targeted_review_connectome_mech_049/entries/2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018/summary.md) |
 | `targeted_review_connectome_mech_053` | [`2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017`](targeted_review_connectome_mech_053/entries/2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_053/entries/2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017/summary.md) |
 | `targeted_review_connectome_mech_056` | [`2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016`](targeted_review_connectome_mech_056/entries/2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016/record.json) | 9 | [`summary`](targeted_review_connectome_mech_056/entries/2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016/summary.md) |
 | `targeted_review_connectome_mech_057a` | [`2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012`](targeted_review_connectome_mech_057a/entries/2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012/record.json) | 2 | [`summary`](targeted_review_connectome_mech_057a/entries/2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012/summary.md) |
