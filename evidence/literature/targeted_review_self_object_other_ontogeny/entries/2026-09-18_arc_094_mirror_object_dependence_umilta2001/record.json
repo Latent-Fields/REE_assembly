@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "ARC-094"
+  ],
+  "source": {
+    "title": "I know what you are doing. A neurophysiological study",
+    "authors": [
+      "M Alessandra Umilta",
+      "Evelyne Kohler",
+      "Vittorio Gallese",
+      "Leonardo Fogassi",
+      "Luciano Fadiga",
+      "Christian Keysers",
+      "Giacomo Rizzolatti"
+    ],
+    "year": 2001,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(01)00337-3",
+    "pmid": "11498058",
+    "volume": "31",
+    "issue": "1",
+    "pages": "155-165"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Landmark single-unit study with a clean four-condition design isolating exactly the variable ARC-094's object stage names: macaque F5 mirror neurons discharge when a grasp's decisive hand-object contact is HIDDEN but an object is known to be behind the screen, and do NOT discharge for the same visible kinematics when the monkey knows no object is there. That makes the object constitutive of the self-other action mapping rather than incidental to it -- the strongest mechanistic support available for an object stage sitting BETWEEN self and other. Held at 0.78 because it is macaque motor cortex and action understanding, two transfers away from human empathy.",
+  "failure_signatures": [
+    "Mirror neurons do not discharge for mimed (intransitive) actions with identical kinematics, so a self-other mapping built on movement correspondence alone -- with no object term -- has no neural correlate here; an architecture that binds self to other directly, skipping an object, is not what this circuit does.",
+    "The evidence is about ACTION understanding in macaque premotor cortex, not about affect sharing, so it constrains the structure of the self-other mapping without establishing that the empathic pathway inherits that structure.",
+    "The decisive object manipulation is not recoverable from the PubMed abstract (see summary.md provenance note), so a reader verifying this entry from the abstract alone will not find the claim it rests on."
+  ],
+  "tags": [
+    "arc-094",
+    "object_stage",
+    "mirror_neurons",
+    "self_object_other",
+    "action_understanding",
+    "macaque"
+  ],
+  "mapping": {
+    "source_claim_statement": "Macaque F5 mirror neurons were tested in four conditions: grasping a visible object, miming a grasp, and both of those with the final hand-object interaction occluded by a screen. Neurons discharged in the hidden condition when the monkey had been shown an object behind the screen, but not when it had been shown there was none, and generally not for mimed action. An inferable goal, not the visible movement, is what drives the response.",
+    "ree_translation": "The object is not a third thing the self and other happen to both look at -- it is the term that makes the self-other mapping fire at all. Strip the object out and the same kinematics stop mapping. This is direct mechanistic support for ARC-094's ordering containing an object stage rather than running self -> other directly, and it gives the object stage a concrete computational job: supplying the inferable goal against which another's action is interpreted using one's own motor apparatus.",
+    "mapping_caveat": "Two transfers, both real. This is macaque, and it is ACTION understanding rather than affect. ARC-094 is about fast empathy in a human-like architecture, and nothing here shows the affective pathway shares the mirror system's object-dependence -- the inference that it does is an extrapolation from structural analogy. Note also the object here is a graspable physical thing and the goal is motor; the object-relations sense of 'object' the claim also intends is entirely outside this paper's scope.",
+    "source_context": "Single-unit recording in macaque ventral premotor cortex (area F5); observation and execution of grasping, with occlusion and miming controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "source_quality very high -- a canonical, replicated single-unit result with the control condition built in. transfer_risk elevated by the double step (macaque -> human, action -> affect), which is what holds the aggregate below source_quality."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_object_other_ontogeny",
+  "entry_id": "2026-09-18_arc_094_mirror_object_dependence_umilta2001",
+  "timestamp_utc": "2026-09-18T10:46:29Z",
+  "summary_path": "summary.md"
+}

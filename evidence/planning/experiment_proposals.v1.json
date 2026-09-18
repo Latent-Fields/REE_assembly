@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T07:05:12.321888Z",
+  "generated_at_utc": "2026-09-18T10:48:04.066789Z",
   "items": [
     {
       "acceptance_checks": [
@@ -5548,6 +5548,97 @@
       "seed_policy": "distinct_seeds",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_028",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1404",
+      "blocked_note": "MECH-038 needs a two-agent environment with a discrete signalling action and a joint-attention-gated resource as the experimental frame, plus AF-analog routing from the theta packet into E2 affordances over those signalling actions as the IV. ree-v3 has one single-agent environment (causal_grid_world.py), zero signalling substrate, and no pre-commit self-correction hook; the theta-packet SOURCE exists but has no sink. The claim's own non-degeneracy precondition (the LESION arm must show some emergence without any channel) is unevaluable without a second agent, so even a FAIL would be uninterpretable. Same wall as the ARC-009 language cluster (EXP-0741/0743/0745/0747). Literature lane (LIT-0784) deliberately left 'proposed' -- lit evidence is still accruable for a substrate-blocked claim, and both 'missing_literature_evidence' and the claim's own request for a targeted lit-pull on dorsal-stream lesion effects on protolanguage BEFORE the build are why_now reasons a lit pull can genuinely discharge.",
+      "claim_id": "MECH-038",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-18T07:24:18Z",
+      "gated_by_session": "igw-245-proposal-for-mech-038",
+      "gating_reason": "EXP-0783 (MECH-038, 'Arcuate-like sequence-to-motor channel nudges language emergence.') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-245-proposal-for-mech-038, IGW-20260918-245). MECH-038 is a NUDGE claim: an AF-like fast routing from hippocampal rollout / E1 sequence summaries (the multi-content theta packet) into E2 affordances over SIGNALLING actions, plus a pre-commit self-correction loop, should raise the rate and lower the latency of emergent symbolic coordination between two agents without being required for it. Its three readouts -- referential consistency (mutual information between emitted signal and referent world state, above a shuffled-referent baseline), coordination success rate, and time-to-first-consistent-use -- are all defined over a SECOND agent, and its design demands a matched ON-vs-LESION pair where the signalling action is equally available in both arms and only the fast routing differs. None of that substrate exists in ree-v3. Verified directly against the tree this session (ree-v3 ea9d188): ree_core/environment/ contains exactly one environment, causal_grid_world.py (single-agent) -- there is no two-agent variant, no discrete signalling action, and no joint-attention-gated resource; greps over ree_core/ for multi_agent|multiagent|n_agents|num_agents|other_agent|signalling|signaling_action|utterance|symbol_channel|message_pass|joint_attention return exactly ONE non-pycache file, ree_core/policy/policy_decomposition.py:561, whose hit is the English phrase 'caller-signalling flag' in a docstring; greps for arcuate|articulat|protolanguage|dorsal_stream return one hit, the word 'articulation' in a Berridge & Kringelbach citation sentence at ree_core/regulators/mech295_liking_bridge.py:54; and greps for pre_commit|precommit_correct|self_correct|emitted_signal return zero files, so the pre-commit self-correction loop the ON arm requires has no substrate either. The SOURCE half of the claim's own build (2) DOES exist -- ree_core/latent/multi_content_theta_packet.py is present and ARC-018 hippocampal rollouts are active -- but the SINK does not: there are no signalling actions for E2 to hold affordances over, so there is nothing to route the packet INTO. This independently reproduces MECH-038's own what_would_answer ('SUBSTRATE: NOT BUILT', naming two builds in order: a two-agent CausalGridWorld variant with a signalling action and a joint-attention-gated resource, then the AF-analog routing) and its recorded 2026-09-16 disposition ('substrate_conditional -- do NOT mint an EXP; route to /implement-substrate scoping only after the plan-of-record decides whether V3 hosts a multi-agent environment at all'). The claim's NON-DEGENERACY PRECONDITION is the decisive point and is stronger than the usual missing-IV argument: the LESION arm must show demonstrable coordination attempts and at least occasional success WITHOUT any channel, or the result is uninterpretable (no pressure, not no nudge) -- and the CONFIRMING pattern explicitly requires LESION to still show some emergence, to distinguish a nudge from a required module. With zero multi-agent substrate there is no baseline arm at all, so the precondition cannot even be evaluated, let alone met. A commitment-free measurement-only variant was considered and REJECTED on mapping fidelity, not runnability: the encoder half alone (does a theta-packet sequence summary measurably bias E2 affordances over ordinary single-agent actions, and does a pre-commit PE hook change the committed action?) is buildable and would test ROUTING mechanics, but MECH-038's entire falsifiable content is the comparative social effect -- rate, latency and referential consistency of emergent coordination between two agents -- so a PASS would leave every one of the three readouts untested and could not attach to MECH-038 at defensible mapping fidelity. A claim_probe_mech_038 queued now would have no second agent to coordinate with, no signalling action to route into, and no LESION baseline -- a vacuous result that would only re-derive the known absence of a multi-agent environment, not a verdict. Classification is ALREADY routed to /governance as GFLAG-0298 (open, raised 2026-09-16), which names MECH-038 explicitly and asks for epistemic_category: substrate_conditional on exactly this ground ('no multi-agent env / signalling affordance / AF-analog routing'); no new flag raised this session. Note on why MECH-038 reached the IGW experiment lane at all despite the language cluster already being classified under GFLAG-0269: MECH-038 carries no epistemic_category, but unlike MECH-011..015 its depends_on set is MIXED -- ARC-009 is substrate_conditional while ARC-002, ARC-005 and ARC-018 are standard -- so it falls outside the 'ALL parents substrate_conditional' predicate that audit swept (12 claims on a re-run this session). That predicate should NOT simply be widened to 'ANY substrate_conditional parent': the widened set is 156 claims, and most are testable because the substrate_conditional parent does not carry the child's independent variable. MECH-038 is blocked because ARC-009 carries its IV specifically. The per-claim epistemic_category route GFLAG-0298 already asks for is the right fix here.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-038 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0783",
+      "proposal_type": "experimental",
+      "release_condition": "Release when ree-v3 has, in this order, the two builds MECH-038's own what_would_answer names: (1) a two-agent CausalGridWorld variant carrying a discrete low-cost signalling action available IDENTICALLY in both arms and a joint-attention-gated resource, with the non-degeneracy precondition demonstrated empirically first -- non-zero coordination attempts per episode and at least occasional success in the un-channelled baseline; and (2) the AF-analog routing itself -- fast delivery of hippocampal-rollout / E1 sequence summaries from ree_core/latent/multi_content_theta_packet.py into E2 affordances over the signalling actions, plus a pre-commit self-correction hook (E2 PE on the agent's own emitted signal, evaluated before commit and able to interrupt or refine it), severable to form the LESION arm. Both are gated behind the multi-agent-environment research-direction decision (ARC-047 SocialGridWorld, candidate, implementation_phase v5) which the plan-of-record has not taken -- that is a research-direction call, not a queue decision. The claim also asks that a targeted lit-pull on dorsal-stream lesion effects on protolanguage PRECEDE the build. Re-derive readiness from the tree, not from this note.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_038",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1405",
+      "blocked_by": [
+        "ARC-005",
+        "ARC-016",
+        "MECH-019",
+        "salience_coordinator_mode_taxonomy"
+      ],
+      "blocked_note": "Substrate-readiness check (2026-09-02): MECH-039 requires 6 named control channels independently measurable at runtime plus 3 named modes (task-engaged, default-mode-like, emergency) as stable clusters. Only 3/6 channels have live default-reachable attributes (e3.current_precision [ARC-016], e3.commit_threshold + beta_gate.is_elevated, sleep_loop_manager phase enum). The other 3 (arousal, action-readiness/motor-gating, hard-veto) have no unified live attribute: arousal would need combining unlabeled proxies (e3.volatility_estimate + clock.e3_steps_per_tick); action-readiness exists only as a private CommitReadiness._readiness field gated off by default (use_commit_readiness=False); hard-veto has no implemented concept at all (closest proxy pag_freeze_gate.is_active is a freeze-specific gate, default off, narrower than a general veto). The implemented mode taxonomy (SalienceCoordinator.current_mode, SD-032a, default off) has 4 modes (external_task/internal_planning/internal_replay/offline_consolidation) with no \"emergency\" mode at all. Running now would mean combining 3 previously-uncombined default-off flags for the first time and substituting weaker proxies for 2 undefined channels -- not a probe-gated unknown but buildable substrate work (public accessors for readiness, a defined veto signal, an emergency-mode branch). Route via /implement-substrate before re-attempting this experiment.",
+      "claim_id": "MECH-039",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-039 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0787",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_039",
       "target_repo": "ree-v3",
       "why_now": [
         "lit_only_above_cap",
@@ -15848,190 +15939,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_036",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1404",
-      "claim_id": "MECH-038",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-038 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0783",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_038",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "gated_at_utc": "2026-09-18T07:24:18Z",
-      "gated_by_session": "igw-245-proposal-for-mech-038",
-      "gating_reason": "EXP-0783 (MECH-038, 'Arcuate-like sequence-to-motor channel nudges language emergence.') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-245-proposal-for-mech-038, IGW-20260918-245). MECH-038 is a NUDGE claim: an AF-like fast routing from hippocampal rollout / E1 sequence summaries (the multi-content theta packet) into E2 affordances over SIGNALLING actions, plus a pre-commit self-correction loop, should raise the rate and lower the latency of emergent symbolic coordination between two agents without being required for it. Its three readouts -- referential consistency (mutual information between emitted signal and referent world state, above a shuffled-referent baseline), coordination success rate, and time-to-first-consistent-use -- are all defined over a SECOND agent, and its design demands a matched ON-vs-LESION pair where the signalling action is equally available in both arms and only the fast routing differs. None of that substrate exists in ree-v3. Verified directly against the tree this session (ree-v3 ea9d188): ree_core/environment/ contains exactly one environment, causal_grid_world.py (single-agent) -- there is no two-agent variant, no discrete signalling action, and no joint-attention-gated resource; greps over ree_core/ for multi_agent|multiagent|n_agents|num_agents|other_agent|signalling|signaling_action|utterance|symbol_channel|message_pass|joint_attention return exactly ONE non-pycache file, ree_core/policy/policy_decomposition.py:561, whose hit is the English phrase 'caller-signalling flag' in a docstring; greps for arcuate|articulat|protolanguage|dorsal_stream return one hit, the word 'articulation' in a Berridge & Kringelbach citation sentence at ree_core/regulators/mech295_liking_bridge.py:54; and greps for pre_commit|precommit_correct|self_correct|emitted_signal return zero files, so the pre-commit self-correction loop the ON arm requires has no substrate either. The SOURCE half of the claim's own build (2) DOES exist -- ree_core/latent/multi_content_theta_packet.py is present and ARC-018 hippocampal rollouts are active -- but the SINK does not: there are no signalling actions for E2 to hold affordances over, so there is nothing to route the packet INTO. This independently reproduces MECH-038's own what_would_answer ('SUBSTRATE: NOT BUILT', naming two builds in order: a two-agent CausalGridWorld variant with a signalling action and a joint-attention-gated resource, then the AF-analog routing) and its recorded 2026-09-16 disposition ('substrate_conditional -- do NOT mint an EXP; route to /implement-substrate scoping only after the plan-of-record decides whether V3 hosts a multi-agent environment at all'). The claim's NON-DEGENERACY PRECONDITION is the decisive point and is stronger than the usual missing-IV argument: the LESION arm must show demonstrable coordination attempts and at least occasional success WITHOUT any channel, or the result is uninterpretable (no pressure, not no nudge) -- and the CONFIRMING pattern explicitly requires LESION to still show some emergence, to distinguish a nudge from a required module. With zero multi-agent substrate there is no baseline arm at all, so the precondition cannot even be evaluated, let alone met. A commitment-free measurement-only variant was considered and REJECTED on mapping fidelity, not runnability: the encoder half alone (does a theta-packet sequence summary measurably bias E2 affordances over ordinary single-agent actions, and does a pre-commit PE hook change the committed action?) is buildable and would test ROUTING mechanics, but MECH-038's entire falsifiable content is the comparative social effect -- rate, latency and referential consistency of emergent coordination between two agents -- so a PASS would leave every one of the three readouts untested and could not attach to MECH-038 at defensible mapping fidelity. A claim_probe_mech_038 queued now would have no second agent to coordinate with, no signalling action to route into, and no LESION baseline -- a vacuous result that would only re-derive the known absence of a multi-agent environment, not a verdict. Classification is ALREADY routed to /governance as GFLAG-0298 (open, raised 2026-09-16), which names MECH-038 explicitly and asks for epistemic_category: substrate_conditional on exactly this ground ('no multi-agent env / signalling affordance / AF-analog routing'); no new flag raised this session. Note on why MECH-038 reached the IGW experiment lane at all despite the language cluster already being classified under GFLAG-0269: MECH-038 carries no epistemic_category, but unlike MECH-011..015 its depends_on set is MIXED -- ARC-009 is substrate_conditional while ARC-002, ARC-005 and ARC-018 are standard -- so it falls outside the 'ALL parents substrate_conditional' predicate that audit swept (12 claims on a re-run this session). That predicate should NOT simply be widened to 'ANY substrate_conditional parent': the widened set is 156 claims, and most are testable because the substrate_conditional parent does not carry the child's independent variable. MECH-038 is blocked because ARC-009 carries its IV specifically. The per-claim epistemic_category route GFLAG-0298 already asks for is the right fix here.",
-      "blocked_note": "MECH-038 needs a two-agent environment with a discrete signalling action and a joint-attention-gated resource as the experimental frame, plus AF-analog routing from the theta packet into E2 affordances over those signalling actions as the IV. ree-v3 has one single-agent environment (causal_grid_world.py), zero signalling substrate, and no pre-commit self-correction hook; the theta-packet SOURCE exists but has no sink. The claim's own non-degeneracy precondition (the LESION arm must show some emergence without any channel) is unevaluable without a second agent, so even a FAIL would be uninterpretable. Same wall as the ARC-009 language cluster (EXP-0741/0743/0745/0747). Literature lane (LIT-0784) deliberately left 'proposed' -- lit evidence is still accruable for a substrate-blocked claim, and both 'missing_literature_evidence' and the claim's own request for a targeted lit-pull on dorsal-stream lesion effects on protolanguage BEFORE the build are why_now reasons a lit pull can genuinely discharge.",
-      "release_condition": "Release when ree-v3 has, in this order, the two builds MECH-038's own what_would_answer names: (1) a two-agent CausalGridWorld variant carrying a discrete low-cost signalling action available IDENTICALLY in both arms and a joint-attention-gated resource, with the non-degeneracy precondition demonstrated empirically first -- non-zero coordination attempts per episode and at least occasional success in the un-channelled baseline; and (2) the AF-analog routing itself -- fast delivery of hippocampal-rollout / E1 sequence summaries from ree_core/latent/multi_content_theta_packet.py into E2 affordances over the signalling actions, plus a pre-commit self-correction hook (E2 PE on the agent's own emitted signal, evaluated before commit and able to interrupt or refine it), severable to form the LESION arm. Both are gated behind the multi-agent-environment research-direction decision (ARC-047 SocialGridWorld, candidate, implementation_phase v5) which the plan-of-record has not taken -- that is a research-direction call, not a queue decision. The claim also asks that a targeted lit-pull on dorsal-stream lesion effects on protolanguage PRECEDE the build. Re-derive readiness from the tree, not from this note."
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1404",
-      "claim_id": "MECH-038",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-038.",
-      "priority": "medium",
-      "proposal_id": "LIT-0784",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_038",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1405",
-      "blocked_by": [
-        "ARC-005",
-        "ARC-016",
-        "MECH-019",
-        "salience_coordinator_mode_taxonomy"
-      ],
-      "blocked_note": "Substrate-readiness check (2026-09-02): MECH-039 requires 6 named control channels independently measurable at runtime plus 3 named modes (task-engaged, default-mode-like, emergency) as stable clusters. Only 3/6 channels have live default-reachable attributes (e3.current_precision [ARC-016], e3.commit_threshold + beta_gate.is_elevated, sleep_loop_manager phase enum). The other 3 (arousal, action-readiness/motor-gating, hard-veto) have no unified live attribute: arousal would need combining unlabeled proxies (e3.volatility_estimate + clock.e3_steps_per_tick); action-readiness exists only as a private CommitReadiness._readiness field gated off by default (use_commit_readiness=False); hard-veto has no implemented concept at all (closest proxy pag_freeze_gate.is_active is a freeze-specific gate, default off, narrower than a general veto). The implemented mode taxonomy (SalienceCoordinator.current_mode, SD-032a, default off) has 4 modes (external_task/internal_planning/internal_replay/offline_consolidation) with no \"emergency\" mode at all. Running now would mean combining 3 previously-uncombined default-off flags for the first time and substituting weaker proxies for 2 undefined channels -- not a probe-gated unknown but buildable substrate work (public accessors for readiness, a defined veto signal, an emergency-mode branch). Route via /implement-substrate before re-attempting this experiment.",
-      "claim_id": "MECH-039",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-039 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0787",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_039",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1405",
-      "claim_id": "MECH-039",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-039.",
-      "priority": "medium",
-      "proposal_id": "LIT-0788",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_039",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -40846,9 +40753,9 @@
       "claims_tested": [
         "MECH-285"
       ],
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "dispatch_mode": "discriminative_pair",
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
       "prerequisites": [
         "MECH-285 offline-arm substrate wired (ree_core/hippocampal/sleep_replay_sampler.py or equivalent; HippocampalConfig.use_mech285_sleep_priority flag)",

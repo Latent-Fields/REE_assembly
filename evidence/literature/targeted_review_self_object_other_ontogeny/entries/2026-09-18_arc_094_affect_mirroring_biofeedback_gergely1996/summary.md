@@ -1,0 +1,19 @@
+# The arrow may run the other way
+
+This is the object-relations stream, and it turned out to be the entry that most seriously questions ARC-094 -- not by contradicting its prohibition, which survives everything in this pull, but by inverting its first step.
+
+Gergely and Watson's proposal is that infants become sensitised to their own categorical emotion states through the caregiver's *marked* reflections of those states. The parent produces an exaggerated, pretend-like version of the infant's affect -- marked in the way pretend play is marked, signalling "this is a representation, not the real thing" -- and the infant's contingency-detection machinery picks up the correspondence between its own internal state and the reflection it reliably elicits. Out of that come three things: better state regulation, secondary representations that let the infant attribute emotions to itself, and a generalised communicative code of marked expressions with referential decoupling.
+
+The direction is the finding. Emotional self-awareness is not the starting point from which the infant reaches outward to others; it is constructed *from* the other's reflection. Other to self, not self to other.
+
+ARC-094 presupposes a self stage that is already there to be extended -- the self's motivational-affective streams, bound outward across object to other. If Gergely and Watson are right, that starting condition is not given. The self's access to its own affect is itself a social achievement, and the ordering's first step is not merely worded wrongly but pointed the wrong way.
+
+I want to be careful about how much that costs the claim, because there is a distinction that rescues a good deal of it. "The self is socially constructed" and "the self stage comes first architecturally" are not straightforwardly incompatible. A system could perfectly well have primitive affect states from the outset and gain *access* to them -- the ability to represent and attribute them -- only through mirroring. That would leave ARC-094's ordering intact at the substrate level while inverting it at the level of self-knowledge. Which of those two ARC-094 means is, as far as I can tell from the claim text, unresolved. That is a question for the restatement rather than something this pull settles.
+
+There is also something here that supports the claim's prohibition, and it is a better argument than the ones in this morning's pull. The secondary representations Gergely and Watson describe are *decoupled* from the primary affect state -- referentially anchored to it but suspended from its realistic consequences. That is precisely the computational shape a system needs in order to represent another's affect without entering it. A scalar `empathy_score` collapses exactly the decoupling that makes the representation useful. So the object-relations stream arrives at the no-scalar prohibition from a completely different direction than the neuroimaging did.
+
+Limits, stated plainly. This is theory, in a psychoanalytic journal, without new data. The contingency-detection component rests on a real empirical literature; the marked-mirroring component is considerably more inferential. And psychoanalytic constructs translate into computational architecture with more slippage than the developmental-psychology ones do -- "marked" is doing a great deal of work and is not operationalised in a way a substrate could straightforwardly implement.
+
+Read alongside the Meltzoff entry, the two disagree about direction: Meltzoff has self-other equivalence as the given starting point, Gergely and Watson have the self's affective self-knowledge as the achievement. That disagreement is live in the literature, not an artefact of this pull, and ARC-094 currently sits on Meltzoff's side without acknowledging the alternative.
+
+Confidence 0.60.

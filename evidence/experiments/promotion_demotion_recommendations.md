@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-18T07:05:12.321888Z`
+Generated: `2026-09-18T10:48:04.066789Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -818,7 +818,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-094
 - Current status: `candidate`
 - Decision needed: Held by V5 architectural commitment (no V3-substrate decision required)
-- Why this decision is needed: Claim is v3_pending AND implementation_phase=v5: it is deferred to V5 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V5 substrate work is scheduled.; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v5: it is deferred to V5 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V5 substrate work is scheduled.; directions supports=5, weakens=0, mixed=2, unknown=0, conflict_ratio=0
 - Recommendation: `held_v4_by_architectural_commitment`
 - Options (pros/cons):
   - Keep held under the V5 architectural commitment (correct path).
@@ -1044,7 +1044,7 @@ Use this as the human-in-the-loop review queue.
 ### EXT-005
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.743, conflict_ratio=0.4, exp_entries=1, lit_entries=5; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.742, conflict_ratio=0.4, exp_entries=1, lit_entries=5; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1199,7 +1199,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-088
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.175, conflict_ratio=0.5, exp_entries=1, lit_entries=6; directions supports=3, weakens=1, mixed=3, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.174, conflict_ratio=0.5, exp_entries=1, lit_entries=6; directions supports=3, weakens=1, mixed=3, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1218,7 +1218,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-091
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.321, conflict_ratio=1, exp_entries=3, lit_entries=5; directions supports=3, weakens=3, mixed=2, unknown=0, conflict_ratio=1
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.32, conflict_ratio=1, exp_entries=3, lit_entries=5; directions supports=3, weakens=3, mixed=2, unknown=0, conflict_ratio=1
 - Evidence quality note: [2026-07-29 governance, V3-EXQ-827 non_contributory + V3-EXQ-827a non_contributory + V3-EXQ-828 weakens; failure_autopsy_batch-822a-826-817a-827_2026-07-26 + failure_autopsy_2026-07-28-sweep, both confirmed]: three runs of the ablation-series falsifier. 827 (2026-07-26) failed its own pre-registered non-degeneracy guard: _force_lockstep() collapsed e1/e2/e3 tick rates to 1, confounding tick-count/…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -3079,7 +3079,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-463
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.241, conflict_ratio=0.667, exp_entries=2, lit_entries=3; directions supports=1, weakens=2, mixed=2, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.24, conflict_ratio=0.667, exp_entries=2, lit_entries=3; directions supports=1, weakens=2, mixed=2, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
