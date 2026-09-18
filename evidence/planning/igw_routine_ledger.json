@@ -5912,7 +5912,11 @@
       "task_claim_session_id": "igw-auto-igw-245-proposal-for-mech-038-20260918T071837Z",
       "task_claim_claimed_at": "2026-09-18T07:18:37Z",
       "assigned_at": "2026-09-18T07:15:55Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T07:28:28Z",
+      "completion_summary": "MECH-038 substrate-blocked: marked EXP-0783 blocked_substrate (REE_assembly 7f5e1b99d5), LIT-0784 left proposed; no multi-agent env / signalling affordance / AF-analog routing in ree-v3",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-038 substrate-blocked: marked EXP-0783 blocked_substrate (REE_assembly 7f5e1b99d5), LIT-0784 left proposed; no multi-agent env / signalling affordance / AF-analog routing in ree-v3"
     }
   ],
   "dispositions": [
@@ -8519,6 +8523,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-18T06:26:42Z",
       "re_eligible_after": "2026-09-20T06:26:42Z"
+    },
+    {
+      "stable_hash": "ba2a85308253",
+      "igw_id_at_disposition": "IGW-20260918-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-038"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-038",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T07:28:30Z",
+      "re_eligible_after": "2026-09-20T07:28:30Z"
     }
   ]
 }
