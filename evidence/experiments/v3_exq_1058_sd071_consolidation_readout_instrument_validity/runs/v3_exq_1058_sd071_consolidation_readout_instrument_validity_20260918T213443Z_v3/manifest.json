@@ -1,0 +1,343 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1058_sd071_consolidation_readout_instrument_validity",
+  "run_id": "v3_exq_1058_sd071_consolidation_readout_instrument_validity_20260918T213443Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-18T21:34:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "5bb8b3fbaa09f3851cc5c45add69182b05c6a8fc",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-071"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-071": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "consolidation_readouts_content_contingent_instruments_validated",
+    "combination_rule": "overall_pass = C2 (readiness, BOTH legs' denominators supra-floor, all seeds) AND C1 (ceiling_inside_ci95 FALSE on BOTH gated legs, cohort-level CI95 over the C2-eligible subgroup) AND C3 (sws ladder spread > 0.01, all seeds). A plain AND of three criteria; C1 is the only cohort-level one. The recorded-not-gated checks (ladder_content_signal_ratio_supra_floor, ci95_high_below_ceiling_<leg>) are NOT in this rule -- they inform the self-route label, the evidence_direction, and the non-degeneracy net only.",
+    "preconditions": [
+      {
+        "name": "injected_arm_nrem_sigma_slope_supra_floor",
+        "description": "C2 for the nrem leg. The ratio's DENOMINATOR -- the same statistic C1 routes on -- measured on the known-damaged injected arm (the positive control). If the sigma sweep never moved the nrem readout, the ratio is 0/0 and the control cannot discriminate.",
+        "control": "injected arm (content_scale=1.0) across the full sigma grid",
+        "measured": 0.09667174055435042,
+        "threshold": 1e-06,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "injected_arm_sws_sigma_slope_supra_floor",
+        "description": "C2 for the sws leg. Declared separately from the nrem entry because C1 gates BOTH legs, so each leg's denominator needs its own recomputable (measured, threshold) pair -- one combined entry could not reproduce `met` from a single statistic.",
+        "control": "injected arm (content_scale=1.0) across the full sigma grid",
+        "measured": 0.3231758770786943,
+        "threshold": 1e-06,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ladder_content_slope_spread_supra_floor",
+        "description": "C3, the 0.01 floor SD-071 names. Guards the scale-invariance artifact: the rebuilt sws readout is cosine-based and therefore flat in sigma without content BY CONSTRUCTION, so the null ratio alone is partly implied by the readout's form. If the sigma-slope does not VARY with content amplitude, the readout is not tracking content and a low null ratio means nothing. WORST CELL reported, matching the all(...) aggregation of `met`.",
+        "control": "sws content_scale ladder on the injected path",
+        "measured": 0.11084844688174605,
+        "threshold": 0.01,
+        "comparator": ">",
+        "direction": "lower",
+        "met": true,
+        "offending_cell": {
+          "seed_index": 2
+        }
+      },
+      {
+        "name": "ladder_content_signal_ratio_supra_floor",
+        "description": "RECORDED, NOT GATED. The content-bearing rungs' several-fold stronger sigma-response than the content-free rung. 778g gated this at 3.0x as a diagnostic; SD-071's falsifier names only the 0.01 spread floor, so gating it here would add a criterion the claim does not pre-register. Reported so a weak signal ratio is visible without silently re-scoping the claim. Relative, not absolute: the zero-content rung carries a small nonzero slope from the sigma=0 store-is-exactly-zero discontinuity.",
+        "control": "sws content_scale ladder on the injected path",
+        "measured": 6.83087233855748,
+        "threshold": 3.0,
+        "comparator": ">",
+        "direction": "lower",
+        "met": true,
+        "gating": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_ceiling_outside_ci95_both_legs",
+        "load_bearing": true,
+        "passed": true,
+        "measured": {
+          "nrem": {
+            "ceiling_inside_ci95": false,
+            "ci95_low": 0.1438307957080869,
+            "ci95_high": 0.14508005694606754,
+            "mean": 0.14445542632707722
+          },
+          "sws": {
+            "ceiling_inside_ci95": false,
+            "ci95_low": 0.1343745658782548,
+            "ci95_high": 0.16463146974191323,
+            "mean": 0.14950301781008402
+          }
+        },
+        "threshold": 0.25,
+        "requirement": "ceiling_inside_ci95 == false on BOTH gated legs (SD-071 what_would_answer, verbatim)"
+      },
+      {
+        "name": "C2_ratio_interpretable",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.09667174055435042,
+        "threshold": 1e-06
+      },
+      {
+        "name": "C3_sws_ladder_spread_tracks_content",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.11084844688174605,
+        "threshold": 0.01
+      }
+    ],
+    "anchor_reachability_guards": {
+      "injected_arm_nrem_sigma_slope_supra_floor": {
+        "anchor_name": "injected_arm_nrem_sigma_slope_supra_floor",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-778g completed run v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3 (outcome PASS, sws_readout_content_contingent_validated, 8/8 seeds; per-seed null_control.injected_slope_nrem / injected_slope_sws + ladder_slopes recorded in arm_results)",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 8,
+        "n_reference_scored_true": 8,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "injected_arm_sws_sigma_slope_supra_floor": {
+        "anchor_name": "injected_arm_sws_sigma_slope_supra_floor",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-778g completed run v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3 (outcome PASS, sws_readout_content_contingent_validated, 8/8 seeds; per-seed null_control.injected_slope_nrem / injected_slope_sws + ladder_slopes recorded in arm_results)",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 8,
+        "n_reference_scored_true": 8,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "ladder_content_slope_spread_supra_floor": {
+        "anchor_name": "ladder_content_slope_spread_supra_floor",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-778g completed run v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3 (outcome PASS, sws_readout_content_contingent_validated, 8/8 seeds; per-seed null_control.injected_slope_nrem / injected_slope_sws + ladder_slopes recorded in arm_results)",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 8,
+        "n_reference_scored_true": 8,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "ladder_content_signal_ratio_supra_floor": {
+        "anchor_name": "ladder_content_signal_ratio_supra_floor",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-778g completed run v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3 (outcome PASS, sws_readout_content_contingent_validated, 8/8 seeds; per-seed null_control.injected_slope_nrem / injected_slope_sws + ladder_slopes recorded in arm_results)",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 8,
+        "n_reference_scored_true": 8,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    "harness_carveout_compliance": {
+      "purpose": "evidence",
+      "claim_ids": [
+        "SD-071"
+      ],
+      "enumerated_set": [
+        "SD-071"
+      ],
+      "forbidden_absent": [
+        "MECH-120",
+        "MECH-121"
+      ],
+      "condition_i_claim_ids_enumerated_only": true,
+      "condition_ii_no_mech120_mech121": true,
+      "decision": "user 2026-09-18T19:47:16Z, orchestrate-20260918-1840-cloud4, GFLAG-0319",
+      "amendment_commits": {
+        "REE_assembly": "d202c2d73c",
+        "ree-v3": "6371c9fc8a"
+      }
+    },
+    "gated_phases": [
+      "nrem",
+      "sws"
+    ],
+    "context_phases_not_gated": [
+      "rem"
+    ],
+    "ladder_phase": "sws",
+    "rem_leg_owner": "V3-EXQ-778d/e/f (GOV-FANOUT-1 portfolio)",
+    "c3_ladder_is_a_sigma_reparameterisation": {
+      "finding": "The content-scale ladder is a SIGMA-REPARAMETERISATION of the injected arm's own damage curve, not an independent content-tracking probe. Damage is referenced to the UNSCALED content (diffuse_perturb rms_ref=...), so it is held numerically fixed while content is scaled by cs; under a SCALE-INVARIANT cosine readout, scaling content by cs at damage d is arithmetically the same as scaling damage by 1/cs at full content. Hence error(content_scale=cs, sigma=s) == error(content_scale=1.0, sigma=s/cs).",
+      "verified": "Confirmed BIT-EXACTLY on 8/8 seeds against the recorded V3-EXQ-778g ladder_error_series: with the doubling sigma grid [0.0, 0.25, 0.5, 1.0, 2.0], rung0.5[i] == rung1.0[i+1] and rung0.25[i] == rung1.0[i+2] for every i>=1 (the sigma=0 point is 0 in every rung by construction).",
+      "what_c3_therefore_ACTUALLY_tests": "That the injected damage curve is GRADED over the sigma grid rather than step-shaped. That is a real and failable property -- a saturating or step-shaped curve gives spread ~0 and C3 fails -- so C3 is NOT vacuous and the run still answers its own question.",
+      "what_c3_CANNOT_do": "Independently discharge the scale-invariance caveat. SD-071's what_would_answer and the V3-EXQ-778g docstring both present C3 as the check that closes that caveat; it cannot, because it is GENERATED by the same invariance. A C3 pass should not be read as evidence that the sws readout tracks content AMOUNT independently of its own damage response.",
+      "related_sws_null_arm_shape": "Same root cause, recorded for the same reason: the sws NULL-arm error series is {0, c, c, c, c} (n_distinct 2 on 8/8 seeds in 778g) -- flat above sigma=0 because the cosine annihilates the sigma factor when the store is pure noise. The sws null SLOPE is therefore driven entirely by the sigma=0 discontinuity, so a low sws null_slope_ratio is partly implied by the readout's form. The harness's own NULL_MIN_NULL_SERIES_DISTINCT = 2 is what lets this series count as non-degenerate.",
+      "disposition": "RECORDED, NOT DESIGNED AROUND. C1 and C3 are transcribed verbatim from SD-071's own pre-registered falsifier; re-scoping either to close this would change what the run measures, which is a governance decision and not this run's to make. Raised for governance as a claim-level finding on SD-071 (governance_flag.py, flag_type evidence_discrepancy) so a PASS here is weighted knowing what C3 does and does not establish.",
+      "red_team": "Step 4.5 adversarial design review, model fable, verdict CONTESTED"
+    },
+    "outcome_vs_direction_note": "`outcome` is the pre-registered rule (C2 AND C1 AND C3) and nothing else. Because SD-071's C1 is stated as `ceiling_inside_ci95 == false`, a leg whose CI95 sits entirely ABOVE the ceiling PASSES C1 while being fully CONFOUNDED. That case is recorded as outcome=PASS with evidence_direction=weakens, label consolidation_readout_leg_confounded, and non_degenerate=false (so it is excluded from confidence scoring). outcome=PASS with direction=weakens is therefore DIAGNOSTIC of exactly that case and must not be read as support.",
+    "c2_requeue_branch_reachability_note": "Recorded honestly: C2's 1e-6 floor sits 4-5 orders of magnitude below where C1 actually fails (recorded injected slopes ~0.097 nrem, ~0.32 sws), and the harness independently reports the phase UNAVAILABLE at NULL_MIN_INJECTED_SLOPE = 1e-9. So the substrate_not_ready_requeue branch is effectively unreachable, and a reduced-sensitivity outcome routes to `weakens` rather than `unknown`. C2 is kept because it is the correct shape for a denominator guard and because `met` is recomputable; it should be read as 'the ratio was computable', never as 'the substrate was ready'.",
+    "nrem_leg_mech121_bearing_note": "Recorded because the harness's carve-out rationale is stronger than the source supports for this leg. The nrem DV is the output of ree_core/sleep/cross_module_consolidation.py CrossModuleConsolidator, whose own module header names it the MECH-121 consolidation cluster and which steps with torch.optim.Adam (:162) and skips exactly-zero-loss modules (:173-177). Adam's per-parameter step normalisation is non-linear, and a LINEAR consolidator would make the nrem injected and null error series differ by a sigma-independent constant -- i.e. ratio 1.0 by arithmetic, the same affine cancellation that retired the old sws SNR readout. So the nrem leg's content-contingency is not wholly independent of that operator's update rule. THIS DOES NOT BREACH THE CARVE-OUT: its conditions are about TAGGING, and this run tags neither MECH-120 nor MECH-121 and cannot move MECH-121's status under any outcome. What it does mean is that a reader should not take an SD-071 pass as fully operator-agnostic for the nrem leg.",
+    "ci95_side_of_ceiling_note": "ceiling_inside_ci95 == false is TWO-WAY AMBIGUOUS: false below the ceiling is the content-contingent reading SD-071 asserts, false above it is the CONFOUNDED reading that refutes it. C1 as pre-registered cannot separate them, so the side is recorded per leg (ci95_high_below_ceiling / ci95_low_above_ceiling) and used by the self-route label, the evidence_direction and the non-degeneracy net rather than by a criterion the claim did not name."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "162c2bd28afa90f4aa37e462ed852e0047a0f685f8731c8453af9c95fedeeb15",
+  "substrate_commit": {
+    "commit": "5bb8b3fbaa09f3851cc5c45add69182b05c6a8fc",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_e2_harm_s_forward": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "shy_enabled": true,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_aggregation_cluster": true,
+    "use_sleep_loop": true,
+    "use_mech285_sampler": true,
+    "use_mech272_routing": true,
+    "use_mech272_routing_consumer": true,
+    "use_mech275_aggregator": true,
+    "use_mech273_self_model": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1674.8071477960002,
+  "config": {
+    "sigmas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "warm_steps": 40,
+    "arms": [
+      "INJECTED",
+      "NULL"
+    ],
+    "ladder_scales": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "null_slope_ratio_ceiling": 0.25,
+    "injected_slope_floor": 1e-06,
+    "ladder_spread_floor": 0.01,
+    "ladder_signal_ratio_recorded_not_gated": 3.0,
+    "gated_phases": [
+      "nrem",
+      "sws"
+    ],
+    "context_phases": [
+      "rem"
+    ],
+    "ladder_phase": "sws",
+    "shy_decay_rate": 0.85,
+    "body_obs_dim": 12,
+    "world_obs_dim": 250,
+    "action_dim": 4,
+    "harm_obs_dim": 51
+  },
+  "seeds": [
+    42,
+    7,
+    123,
+    2024,
+    99,
+    7777,
+    314,
+    1000
+  ]
+}
