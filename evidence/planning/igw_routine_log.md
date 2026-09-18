@@ -3206,3 +3206,7 @@ One line per hourly tick. ASCII only.
 2026-09-18T01:47:43Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
 2026-09-18T01:46:04Z SPAWN IGW-20260918-242 skill=/lit-pull prio=40 uuid=bd970d42-3c93-44b3-ba51-cb7820ba1aa5 pid=58702 worktree=igw-242-literature-proposal-for-mech-028
 2026-09-18T02:01:37Z auto-defer igw-242-literature-proposal-for-mech-028 hash=c28db5719540 for 48h (complete)
+2026-09-18T02:03:08Z complete igw-242-literature-proposal-for-mech-028 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-028: 5 entries landed (REE_assembly 84b3b3a3114 + index 6d8e2046ff
+2026-09-18T02:54:13Z GC removed worktree igw-242-literature-proposal-for-mech-028 (removed; branch deleted)
+2026-09-18T02:52:42Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-18T02:54:26Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
