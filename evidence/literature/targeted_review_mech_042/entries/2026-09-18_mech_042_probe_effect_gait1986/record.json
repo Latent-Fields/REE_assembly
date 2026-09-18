@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_042",
+  "entry_id": "2026-09-18_mech_042_probe_effect_gait1986",
+  "timestamp_utc": "2026-09-18T12:35:23Z",
+  "claim_ids_tested": ["MECH-042"],
+  "source": {
+    "title": "A probe effect in concurrent programs",
+    "authors": ["Jason Gait"],
+    "year": 1986,
+    "venue": "Software: Practice and Experience",
+    "doi": "10.1002/spe.4380160304",
+    "volume": "16",
+    "issue": "3",
+    "pages": "225-233",
+    "pmid": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The canonical source for the probe effect, and the only entry in this directory that speaks to MECH-042 sub-claim (1) at all. Its finding is a conditional with both branches live, which is why the direction is 'mixed': a program with no order-dependence shows NO probe effect (supports the read-only premise, and tells REE exactly what property it must establish), while a program with order-dependent behaviour has its observed error frequency changed by instrumentation -- and Gait's experiment showed that for sufficiently large observation delays the probe effect can almost completely MASK the very errors the instrumentation was added to find, which is the worst possible failure mode for a safety instrument. Held at 0.72 rather than higher: it is a 1986 single-program experimental study, pre-dating essentially all modern instrumentation practice, and the mechanism it isolates (timing perturbation from inserted delays) is only one of the routes by which a REE telemetry read could perturb selection -- RNG-stream consumption is the more likely REE-specific route and Gait does not cover it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In the presence of order-dependence, adding observation changed the frequency of run-time errors non-monotonically -- high at small delays, oscillating as the delay grew, settling toward zero at large delays. An instrument can therefore make a system look HEALTHIER than it is, which is the exact inversion of what a safety instrument is for.",
+    "The absence of a probe effect is CONDITIONAL on the absence of order-dependence, not a property of the instrument being nominally read-only. A channel that mutates nothing can still perturb behaviour by changing what else happens, or in what order, or how much of a shared consumable resource is used.",
+    "For REE specifically, the analogous consumable is the RNG stream: e3_selector.py has seven torch.multinomial call sites in the live selection path, so any telemetry read that draws from, reseeds, or reorders draws on the same generator breaks bit-identity of the action trajectory while mutating no state. A 'read-only' code review cannot detect this; only the hashed-trajectory comparison sub-claim (1) already specifies can.",
+    "Gait's condition -- no synchronization errors implies no probe effect -- means a PASSING sub-claim (1) result is evidence of two things at once (the channel is non-participating AND the substrate is order-independent over the probe window) and cannot separate them. A pass is therefore not portable to a future REE configuration that introduces concurrency."
+  ],
+  "tags": ["mech-042", "probe_effect", "observer_effect", "instrumentation", "read_only", "non_participation", "determinism", "control_plane"],
+  "mapping": {
+    "source_claim_statement": "An experimental study of concurrent programs found that introducing delays for observation purposes alters the frequency of observed run-time computational errors: if the program contains no synchronization errors there is no probe effect, but where synchronization errors exist the observed error frequency starts high for small delays, oscillates rapidly as the delay increases, and settles toward zero for large delays -- so sufficiently heavy instrumentation can almost completely mask the errors it was introduced to reveal.",
+    "ree_translation": "MECH-042 sub-claim (1) asserts that reading every telemetry channel each tick yields a bit-identical action, commit and weight trajectory versus never reading any of them. Gait is the reason that assertion needs an experiment rather than a code review. The paper establishes the general result that non-interference by an observer is a conditional property of the observed system -- it holds when behaviour is order-independent and fails otherwise -- rather than a property conferred by the instrument declining to write anything. The constructive half maps directly onto REE's favour: a deterministic single-threaded tick loop with a fixed seed is the order-independent case, where Gait predicts no probe effect and sub-claim (1) should pass cleanly. The cautionary half is the more useful one: it says what a pass actually licenses, which is narrower than it looks.",
+    "mapping_caveat": "The transfer is at the level of a general principle about observation and non-interference, not a shared mechanism. Gait's perturbation route is timing -- inserted delays in a genuinely concurrent program -- which is not REE's situation: REE's tick loop is deterministic and the plausible perturbation routes are different in kind (consuming or reordering RNG draws shared with e3_selector's multinomial call sites; a diagnostics dict being read back into _last_control_vector and thence into selection, which the claim itself flags in agent.py; lazily-computed telemetry forcing evaluation that changes cached state). The 1986 vintage also matters: the paper predates modern low-overhead tracing entirely, so it should be read as establishing that the probe effect EXISTS and is conditional, not as a quantitative estimate of how likely REE is to suffer one. It supports no inference about sub-claim (2).",
+    "source_context": "Experimental study of a sample concurrent program under varying inserted observation delays; software engineering, not a biological or ML system."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.65: a canonical and durable result -- the term 'probe effect' traces to it -- but a single-program experimental study in a practice journal, not a replicated or meta-analysed finding, and forty years old. Mapping fidelity 0.75: the conditional it establishes maps cleanly onto what sub-claim (1) must demonstrate, and clarifies what a pass does and does not license. Transfer risk 0.4: the specific perturbation mechanism (timing in concurrent code) is NOT REE's, so the principle transfers while the mechanism does not."
+  }
+}

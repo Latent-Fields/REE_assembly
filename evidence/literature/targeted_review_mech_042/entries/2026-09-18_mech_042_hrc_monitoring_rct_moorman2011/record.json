@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_042",
+  "entry_id": "2026-09-18_mech_042_hrc_monitoring_rct_moorman2011",
+  "timestamp_utc": "2026-09-18T12:35:23Z",
+  "claim_ids_tested": ["MECH-042"],
+  "source": {
+    "title": "Mortality reduction by heart rate characteristic monitoring in very low birth weight neonates: a randomized trial",
+    "authors": ["J. Randall Moorman", "Waldemar A. Carlo", "John Kattwinkel", "Robert L. Schelonka", "Peter J. Porcelli", "Christina T. Navarrete", "Eduardo Bancalari", "Judy L. Aschner", "M. Whit Walker", "Jose A. Perez", "Charles Palmer", "George J. Stukenborg", "Douglas E. Lake", "T. Michael O'Shea"],
+    "year": 2011,
+    "venue": "The Journal of Pediatrics",
+    "doi": "10.1016/j.jpeds.2011.06.044",
+    "pmid": "21864846",
+    "volume": "159",
+    "issue": "6",
+    "pages": "900-906.e1"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the strongest available external evidence for MECH-042 sub-claim (2) and for the developmental framing in the source thought. It is a multi-centre randomised controlled trial (n=3003, 9 NICUs) in which the ONLY manipulated variable was whether a continuously-computed internal-state telemetry index was DISPLAYED to caregivers or masked -- i.e. a direct randomised test of whether exposing a low-bandwidth read-only physiological channel adds diagnostic value over the behavioural/clinical observation stream that was available to both arms. It found a mortality reduction (10.2% -> 8.1%, HR 0.78, 95% CI 0.61-0.99, p=0.04, NNM 48; larger in <1000 g infants, HR 0.74, p=0.02, NNM 23). The population is PREVERBAL, which is precisely the developmental window the MECH-042 thought names. Held below 0.9 because the effect sits at the edge of significance on a secondary outcome ordering (the primary endpoint, days alive and ventilator-free, did not separate significantly, p=0.08) and because the trial measures caregiver-mediated benefit rather than detector lead time directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The trial's PRIMARY endpoint (days alive and ventilator-free within 120 days: 95.9 vs 93.6) did NOT reach significance (p=0.08); only mortality did (p=0.04). An analogous REE result -- telemetry detector helps on one pre-registered readout and not the headline one -- should be read as a weak positive, not a clean confirmation, and MECH-042's falsifier should be pre-registered to say which readout is decisive BEFORE the run.",
+    "The trial randomised DISPLAY, not detection: both arms had identical telemetry computed, and the benefit is mediated entirely by a caregiver acting on it. MECH-042 sub-claim (2) has no such actor -- it compares two automated detectors -- so this paper cannot show that the telemetry detector itself has positive lead time; it shows only that the channel carried actionable information the behaviour stream did not already supply.",
+    "Benefit was concentrated in the sickest stratum (<1000 g, NNM 23 vs 48 overall). If REE's telemetry advantage is similarly concentrated in a subpopulation of runs (e.g. only severe injected pathologies), a whole-cohort detector comparison at matched false-alarm rate could report zero lead time while a real, stratum-specific advantage exists."
+  ],
+  "tags": ["mech-042", "telemetry", "early_warning", "lead_time", "preverbal", "physiomarker", "control_plane", "randomized_trial"],
+  "mapping": {
+    "source_claim_statement": "Displaying a continuously-computed heart rate characteristics index (reduced variability and transient decelerations, derived passively from the ECG already being recorded) to NICU clinicians, versus masking that same index, reduced mortality in very low birth weight infants from 10.2% to 8.1% (HR 0.78, 95% CI 0.61-0.99); the index detects impending late-onset sepsis before overt clinical signs appear.",
+    "ree_translation": "This is the closest real-world instance of MECH-042's whole proposition. A low-bandwidth, read-only channel is derived from internal state that the system is already generating (no new actuation pathway, no change to the patient's own regulation), exposed purely as a diagnostic surface, and shown by randomisation to carry information about an impending internal pathology earlier and more usefully than the behavioural/clinical stream alone. It maps to MECH-042 sub-claim (2) (developmental-safety value) and to the source thought's specific argument that telemetry is most valuable across the PREVERBAL stage, where the system cannot report its own state: the neonate is exactly that patient, and the trial is the evidence that instrumenting such a patient is not merely convenient but outcome-relevant.",
+    "mapping_caveat": "Three boundaries, and all matter. (1) The trial randomised DISPLAY to a human, not detector-versus-detector: the causal chain runs telemetry -> clinician judgement -> intervention, whereas MECH-042 sub-claim (2) compares two automated pre-registered detectors with no actor in between; this paper therefore evidences that the channel carries non-redundant information, not that an automated detector on it wins on lead time at matched false-alarm rate. (2) The pathology here is EXOGENOUS and biological (bacterial sepsis) whereas MECH-042 injects an ENDOGENOUS control-plane fault (precision collapse, commit latch, mode lock, residue overgeneralisation); the analogy holds at the level of 'internal regulatory signature precedes behavioural decompensation', not at the level of pathophysiology. (3) The trial says nothing at all about sub-claim (1): heart rate characteristics are computed from a passive ECG that was being recorded regardless, so the read-only property is trivially satisfied there and is NOT trivially satisfied in REE, where a telemetry read is a method call inside a live tick.",
+    "source_context": "Very low birth weight human neonates (<1500 g), 9 US neonatal intensive care units, n=3003, two-group parallel randomised controlled trial, 2004-2010; intervention was display versus masking of the HeRO heart rate characteristics index."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: large multi-centre RCT with a pre-specified primary endpoint and an honest report that the primary endpoint did not separate. Mapping fidelity 0.7 -- the construct (read-only internal-state channel adds information the behaviour stream lacks, in a patient that cannot report) transfers cleanly, but the detector-vs-detector design MECH-042 specifies is not what was run. Transfer risk 0.35: human physiology to an artificial control plane is a large jump, mitigated by the fact that the claim being transferred is an information-theoretic one (does the internal channel lead the behavioural one?) rather than a substrate-specific one."
+  }
+}

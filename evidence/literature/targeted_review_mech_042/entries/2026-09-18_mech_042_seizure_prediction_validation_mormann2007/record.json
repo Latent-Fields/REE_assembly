@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_042",
+  "entry_id": "2026-09-18_mech_042_seizure_prediction_validation_mormann2007",
+  "timestamp_utc": "2026-09-18T12:35:23Z",
+  "claim_ids_tested": ["MECH-042"],
+  "source": {
+    "title": "Seizure prediction: the long and winding road",
+    "authors": ["Florian Mormann", "Ralph G. Andrzejak", "Christian E. Elger", "Klaus Lehnertz"],
+    "year": 2007,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awl241",
+    "pmid": "17008335",
+    "volume": "130",
+    "issue": "Pt 2",
+    "pages": "314-333"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "A high-citation critical review in a top clinical neuroscience journal, covering three decades of attempts to detect an impending internal-state transition from a continuous internal signal earlier than it manifests behaviourally -- structurally the same problem as MECH-042 sub-claim (2). Its value here is almost entirely METHODOLOGICAL and largely CAUTIONARY: the field's early optimistic lead-time results did not survive proper statistical control, and the review sets out why (no comparison against chance/surrogate baselines, unmatched false-prediction rates, in-sample threshold selection, selective reporting of favourable channels and patients). Direction is 'mixed' rather than 'weakens' because the review does not conclude that internal signals carry no pre-transition information -- it concludes that the evidence to date was not gathered in a way that could establish it. Confidence 0.78: strong as a statement about what a valid design requires, weaker as a substantive verdict, since the field has moved since 2007.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Early seizure-prediction studies reported large positive lead times that later, better-controlled evaluations could not reproduce. The dominant cause was not fraud or bad signal processing but evaluation design: detectors were not benchmarked against a chance/random-predictor baseline operating at the SAME false-prediction rate, so an apparently long lead time was often purchasable by simply alarming more often.",
+    "Selecting the detector threshold, the recording channel, or the patient subset using the same data on which lead time is then reported inflates the result. MECH-042 must fix the telemetry detector's threshold, the channel set, and the seed set BEFORE seeing the pathology runs, or its lead time is not interpretable.",
+    "Defining WHEN the event 'occurred' is itself contested (seizure onset by EEG versus by clinical manifestation differ), and the choice moves the measured lead time directly. MECH-042 has the identical problem: the injected pathology's behavioural 'onset' (harm rate or reward departing from control) is a threshold crossing on a noisy stream, and moving that threshold moves the lead time without any change in the underlying detectors.",
+    "A predictor can look strong on a subset of patients or channels and be at chance overall. Sign-consistency across >=3 seeds and >=2 pathology types, as MECH-042's what_would_answer already requires, is the right shape of guard -- this review is the evidence that the guard is load-bearing and not ceremonial."
+  ],
+  "tags": ["mech-042", "early_warning", "lead_time", "false_alarm_rate", "detector_validation", "preictal", "methodology", "control_plane"],
+  "mapping": {
+    "source_claim_statement": "Three decades of attempts to predict epileptic seizures from continuous intracranial and scalp EEG produced early reports of reliable preictal detection with clinically useful lead times, but subsequent evaluations applying proper statistical validation -- comparison against random predictors at matched false-prediction rates, out-of-sample threshold selection, prospective testing on long continuous recordings -- could not reproduce those findings; the review attributes this to systematic methodological pitfalls and proposes validation guidelines.",
+    "ree_translation": "This is the negative-control literature for MECH-042 sub-claim (2). The seizure-prediction problem is structurally identical to what MECH-042 proposes: run a detector on a continuous internal-state stream, run a matched detector on the manifestation stream, and ask whether the internal one fires first with a usable margin. The field's experience is that this comparison is EASY to get wrong in the optimistic direction, and that nearly every way of getting it wrong inflates lead time. The claim's own what_would_answer already anticipates the central trap ('degenerate if the behaviour-stream detector is given a looser threshold than the telemetry detector -- match false-alarm rates on control runs first'); this review is the external evidence that this precaution is the difference between a real result and three decades of irreproducible ones. It also supplies the guard set REE should adopt wholesale: chance-level surrogate baseline, out-of-sample thresholds, pre-declared event-onset definition, and consistency across seeds rather than best-of.",
+    "mapping_caveat": "This is evidence about METHOD, not about REE's substrate, and it should not be recorded as evidence that MECH-042's mechanism is false. Two disanalogies cut in REE's favour and must be stated so the caution is not over-applied: (1) REE INJECTS the pathology at a known tick, so the ground-truth onset time is known exactly, whereas seizure prediction must infer onset from the same data -- this removes one of the review's largest error sources; (2) REE can run matched control seeds arbitrarily many times to calibrate the false-alarm rate empirically, whereas clinical recordings are scarce and unrepeatable. Conversely one disanalogy cuts against REE: the review's cohorts are large relative to MECH-042's proposed >=3 seeds x >=2 pathology types, so REE's design is MORE exposed to a lucky-subset result, not less. The review is 2007 and the field has since produced better-controlled positive results (implanted advisory-device trials), so it should be read as 'this is how the comparison must be run', not as 'this comparison has been settled negatively'.",
+    "source_context": "Critical review of the human seizure-prediction literature from the 1970s to 2006, covering intracranial and scalp EEG, univariate and bivariate nonlinear measures, and the statistical-validation methods used to evaluate them."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.25,
+    "notes": "Source quality 0.85: authoritative, heavily cited critical review in Brain, written by groups that produced both the optimistic early results and their subsequent deflation -- an unusually well-positioned set of authors to be honest about the failure modes. Mapping fidelity 0.8, high because what transfers is an evaluation protocol, and the two problems are structurally the same comparison. Transfer risk 0.25, low for the same reason: methodological warnings about matched false-alarm rates and out-of-sample thresholds are domain-independent."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_042",
+  "entry_id": "2026-09-18_mech_042_internal_feature_detector_lee2018",
+  "timestamp_utc": "2026-09-18T12:35:23Z",
+  "claim_ids_tested": ["MECH-042"],
+  "source": {
+    "title": "A Simple Unified Framework for Detecting Out-of-Distribution Samples and Adversarial Attacks",
+    "authors": ["Kimin Lee", "Kibok Lee", "Honglak Lee", "Jinwoo Shin"],
+    "year": 2018,
+    "venue": "Advances in Neural Information Processing Systems 31 (NeurIPS 2018)",
+    "arxiv_id": "1807.03888",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2018/hash/abdeb6f575ac5c6676b747bca8d09cc2-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "The nearest same-substrate evidence available for MECH-042 sub-claim (2): a peer-reviewed, heavily-cited NeurIPS paper showing that a detector built on a neural network's INTERNAL features (class-conditional Gaussians over low- and upper-level layer activations, scored by Mahalanobis distance) outperforms detectors built on the network's OUTPUT surface (softmax posterior) at identifying abnormal inputs -- and doing so on a pre-trained network without retraining it, i.e. as a genuinely read-only instrument. The abstract itself states the motivating asymmetry: softmax classifiers 'produce highly overconfident posterior distributions even for such abnormal samples', which is precisely MECH-042's premise that the output/behaviour stream is a lagging and lossy view of internal state. Confidence 0.65 because the comparison is detection QUALITY on a static per-sample decision, not LEAD TIME over a temporally-extended manifestation, so the structural analogy is one step removed from what sub-claim (2) measures.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own premise is that the OUTPUT surface is actively misleading: softmax posteriors are highly overconfident on abnormal inputs. If REE's behaviour stream (harm rate, reward) has the analogous property under an injected control-plane pathology -- looking nominal while internal state has already degraded -- then a behaviour-stream detector is not merely slower but systematically biased, and matching false-alarm rates on CONTROL runs will not correct for that bias on PATHOLOGY runs.",
+    "The detector needed class-conditional statistics estimated from training data, i.e. a calibration corpus of 'normal'. MECH-042's telemetry detector needs the same thing and the claim does not currently say where it comes from; if calibration is drawn from the same runs on which lead time is reported, the result is in-sample and uninterpretable (the Mormann entry in this directory documents that failure mode costing a field three decades).",
+    "Performance depended on which layers were used and on feature ensembling across layers. The analogous REE risk is that lead time depends on WHICH of the seven-plus telemetry channels the detector reads, so a channel set selected after seeing the pathology runs would inflate the result; the channel set must be fixed in advance alongside the threshold.",
+    "The setting is a static per-sample classification decision with no time axis, so the paper cannot evidence that internal state moves EARLIER than output -- only that it is more INFORMATIVE at the same instant. These are different properties, and MECH-042 sub-claim (2) needs the former."
+  ],
+  "tags": ["mech-042", "internal_state", "out_of_distribution", "anomaly_detection", "read_only_probe", "mahalanobis", "control_plane", "telemetry"],
+  "mapping": {
+    "source_claim_statement": "Fitting class-conditional Gaussian distributions to the low- and upper-level features of a pre-trained deep classifier under Gaussian discriminant analysis, and scoring test samples by Mahalanobis distance, detects both out-of-distribution and adversarial samples better than methods operating on the softmax output, without retraining the network, and remains robust when training labels are noisy or training data is scarce.",
+    "ree_translation": "This is the same-substrate version of MECH-042's core intuition. A neural system's internal representation carries information about abnormality that its output surface does not expose -- indeed the output surface is confidently wrong -- and that information can be read off by an instrument attached to intermediate activations without altering the network at all (no retraining, no gradient, no change to the forward computation). Translated to REE: a detector reading current_precision, running_variance, commit-readiness state and mode telemetry should be able to identify an abnormal internal regime that the harm/reward stream still reports as nominal. It also independently corroborates the read-only half of MECH-042 from the other direction: an instrument on intermediate state can be genuinely non-participating in the substrate REE is actually built from, which is a stronger prior for sub-claim (1) than Gait's concurrent-programs result gives.",
+    "mapping_caveat": "The decisive disanalogy is the missing time axis. Lee et al. compare internal-feature and output-based detectors on a STATIC per-sample decision -- more informative at the same instant. MECH-042 sub-claim (2) asks whether the telemetry detector fires EARLIER on a temporally-extended trajectory, which is a different property; a channel could be strictly more informative and still confer zero lead time if the behaviour stream degrades simultaneously. This paper therefore supports the informational premise underlying sub-claim (2) without testing its temporal assertion. Second caveat: the abnormality is an out-of-distribution or adversarial INPUT, whereas MECH-042 injects a fault in the system's own control plane -- an internal pathology with no distributional shift at the input. Third: the detector is a learned statistical model fitted on a calibration corpus, heavier than the pre-registered threshold-style detector the claim envisages, and its robustness results do not transfer to a hand-specified detector.",
+    "source_context": "Deep image classifiers (ResNet, DenseNet) on CIFAR-10/100, SVHN and related OOD and adversarial benchmarks; detectors attached to a pre-trained network's intermediate feature layers, compared against softmax-output baselines."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.3,
+    "notes": "Source quality 0.8: NeurIPS 2018, very heavily cited, method independently reproduced and widely used as a baseline since. Mapping fidelity 0.55 is the binding constraint -- the internal-versus-output contrast is exactly right but the temporal dimension that sub-claim (2) turns on is absent. Transfer risk 0.3, the lowest in this directory: this is a neural network with intermediate activations being probed by a read-only instrument, which is structurally the same kind of system as REE, so the substrate jump is small even though the task is not REE's."
+  }
+}

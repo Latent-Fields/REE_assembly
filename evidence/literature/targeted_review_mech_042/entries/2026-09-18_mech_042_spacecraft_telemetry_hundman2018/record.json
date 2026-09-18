@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_042",
+  "entry_id": "2026-09-18_mech_042_spacecraft_telemetry_hundman2018",
+  "timestamp_utc": "2026-09-18T12:35:23Z",
+  "claim_ids_tested": ["MECH-042"],
+  "source": {
+    "title": "Detecting Spacecraft Anomalies Using LSTMs and Nonparametric Dynamic Thresholding",
+    "authors": ["Kyle Hundman", "Valentino Constantinou", "Christopher Laporte", "Ian Colwell", "Tom Soderstrom"],
+    "year": 2018,
+    "venue": "Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (KDD '18)",
+    "doi": "10.1145/3219819.3219845",
+    "arxiv_id": "1802.04431",
+    "pages": "387-395"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Peer-reviewed, heavily-cited (900+) operational deployment of exactly the architecture MECH-042 proposes: a fleet of low-bandwidth read-only telemetry channels on a safety-critical autonomous system, monitored by automated detectors, with the explicit operational purpose of reducing risk and monitoring burden. Its evidential value for MECH-042 is that this is a WORKING, deployed instance of the pattern in an engineering system rather than a biological one, evaluated against expert-labelled ground truth from two real missions (SMAP, MSL Curiosity), and that the authors treat false-positive mitigation as a first-class design problem rather than an afterthought -- the same posture MECH-042's matched-false-alarm-rate requirement takes. Confidence held to 0.68 because the paper evaluates DETECTION quality (precision/recall against labelled anomalies) and not LEAD TIME against a behaviour-stream detector, which is the specific quantity MECH-042 sub-claim (2) needs; it therefore corroborates the pattern's viability without testing the claim's comparative proposition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's central operational problem is false positives, not missed detections: the authors devote explicit machinery to false-positive mitigation because an anomaly detector on a large telemetry fleet that alarms too often is operationally useless regardless of its sensitivity. MECH-042's telemetry detector faces the same asymmetry across its seven-plus named channels (current_precision, running_variance, is_committed / beta_elevated, e3_steps_per_tick, CommitReadiness.get_state, SalienceCoordinator operating_mode, residue coverage), and a per-channel detector bank will alarm far more often than a single behaviour-stream detector unless the multiple-comparison cost is paid in the threshold.",
+    "Thresholds had to be set nonparametrically and dynamically because static thresholds on telemetry channels do not hold across operating regimes. REE's channels have the same property -- what counts as anomalous current_precision early in a life is not what counts as anomalous late in it -- so a fixed pre-registered threshold risks either missing the pathology or firing throughout the developmental ramp.",
+    "Ground truth was expert-labelled anomalies from real missions, and the authors are explicit that this labelling is incomplete. MECH-042 avoids this failure mode entirely by injecting its pathology at a known tick, which is a genuine methodological advantage worth stating rather than assuming.",
+    "The system detects anomalies in telemetry; it does not establish that telemetry beats the behaviour stream, because for a spacecraft there is effectively no separate behaviour stream to compare against. The pattern's operational success is therefore weaker evidence for MECH-042's COMPARATIVE claim than it first appears."
+  ],
+  "tags": ["mech-042", "telemetry", "anomaly_detection", "early_warning", "false_alarm_rate", "safety_critical", "control_plane", "operational_deployment"],
+  "mapping": {
+    "source_claim_statement": "LSTM-based prediction models applied to expert-labelled spacecraft telemetry channels from the SMAP satellite and the MSL Curiosity rover, combined with an unsupervised nonparametric dynamic thresholding scheme and explicit false-positive mitigation, detect operational anomalies well enough to reduce the monitoring burden on operations engineers and lower operational risk.",
+    "ree_translation": "This is MECH-042's mechanism, deployed and working, in an engineering system. A safety-critical autonomous system exposes a large number of low-bandwidth read-only internal-state channels; those channels feed automated detectors; the detectors exist purely to catch internal faults early, and add no actuation pathway of their own. The paper corroborates the architectural premise -- that a telemetry surface is a legitimate safety instrument for an autonomous system whose internal faults would otherwise only be discovered through their consequences -- and, more usefully, supplies two operational lessons MECH-042's experiment design should absorb: that false positives dominate the engineering problem once the channel count is large, and that static thresholds on regime-dependent channels do not work.",
+    "mapping_caveat": "The load-bearing gap: this paper does NOT measure lead time of a telemetry detector against a matched detector on a behaviour stream, because a spacecraft has no behaviour stream in the relevant sense -- telemetry is essentially the only observable. MECH-042 sub-claim (2) is specifically a COMPARATIVE claim (positive lead time over a behaviour-stream detector at matched false-alarm rate), and this paper cannot speak to the comparison, only to the viability of one of its two arms. It should be cited as evidence that the telemetry-detector arm is buildable and operationally worthwhile, never as evidence that it wins. Secondary caveats: an LSTM predictive-residual detector is far heavier than the pre-registered detector MECH-042 envisages and its performance figures do not transfer; the anomalies are real-mission and exogenous rather than injected; and 'anomaly' in this setting means departure from learned nominal behaviour, which is a weaker target than identifying a specific injected control-plane pathology.",
+    "source_context": "Operational anomaly detection on real telemetry from two NASA missions -- the Soil Moisture Active Passive satellite and the Mars Science Laboratory rover Curiosity -- with expert-labelled anomaly ground truth; engineering deployment, not a controlled experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.8: peer-reviewed at a top data-mining venue, very highly cited, and validated against real operational data rather than a benchmark -- but it is an engineering-deployment paper, so it reports what worked in production rather than a controlled comparison. Mapping fidelity is the binding constraint at 0.55: the architectural pattern maps almost exactly, but the comparative proposition at the heart of sub-claim (2) is simply not tested here. Transfer risk 0.35: engineering telemetry to an artificial cognitive control plane is a modest jump, and the operational lessons (false-positive dominance, regime-dependent thresholds) transfer more readily than the method does."
+  }
+}
