@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "governance-20260905",
-  "last_updated_utc": "2026-09-18T19:20:00Z",
+  "last_seen_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build",
+  "last_updated_utc": "2026-09-18T20:05:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -10173,6 +10173,78 @@
         "SUBSTRATE-PATH OVERLAP (Step 2.5c, severity `degrading` -- NOT a block, recorded so a later run and its autopsy can see it): this warm-up drives Stage-H via `ree-v3/experiments/scaffolded_sd054_onboarding.py`, which is named by the open entry `mech357-freeze-incompatible-pressure-mechanism` (severity degrading, status validated_negative). That entry records all four named Stage-H hazard-pressure designs as exhausted and instructs that no FIFTH pressure mechanism be opened. This port opens none -- it runs the existing MECH-357 protective-scaffold anneal unchanged (scaffold_avoidance_driver_enabled=True, floor 0.8 -> 0.0). The consequence to carry forward is that Stage-H survival training may be weaker than the 603n manifest alone suggests, so a consuming experiment should read `harm_eval_range` and `hazard_survival_gate_passed` off `WarmupResult` as live readiness values rather than assuming 603n's numbers reproduce.",
         "HARM-GRADIENT CHANNEL: `INFANT_STRUCT_ENV_KWARGS` leaves `use_proxy_fields` at the CausalGridWorldV2 factory default (True), under which `harm_gradient_enabled` is STRUCTURALLY INERT -- `hazard_approach` pre-empts the `transition_type == 'none'` gate (confirmed failure_autopsy_V3-EXQ-996_2026-09-04 red-team F1/F3; pinned by tests/contracts/test_harm_gradient_gap1.py::test_c3_suppressed_by_proxy_approach; reachable only above proximity_approach_threshold ~0.33 or with use_proxy_fields=False). The infant curriculum's Phase 1/2/3 env_kwargs set `harm_gradient_enabled=True`, so a consumer MUST NOT narrate that channel as the curriculum's mechanism of action -- 996 measured `transient_benefit_enabled` alone reproducing its entire phase divergence. Record a per-cell harm-gradient fire count and treat zero as a readiness reading, not a measurement."
       ]
+    },
+    {
+      "sd_id": "sd_zharm_a_warmup_optimizer_group",
+      "title": "Adopt an affective-harm-encoder training path in the _train_all_on_agent driver family: the P0/P1 warmup has no optimizer group covering latent_stack.affective_harm_encoder, so z_harm_a is a frozen random projection. Sibling of sd_zworld_warmup_optimizer_group, same file, same shape, other stream.",
+      "node_class": "complicated (buildable)",
+      "status": "p0h_stage_BUILT_default_OFF_2026_09_18__contracts_GREEN__NO_DRIVER_OPTS_IN_YET__readiness_reads_FALSE_on_the_SD-011_target_because_accumulated_harm_is_near_constant__signal_question_RAISED_as_a_decision_chip__no_experiment_queued",
+      "status_phase": "validation_pending",
+      "ready": false,
+      "severity": "degrading",
+      "substrate_paths": [
+        "experiments/_lib/allon_training.py::_train_all_on_agent"
+      ],
+      "severity_note_2026_09_18": "DEGRADING, not corrupting, and the call is measured rather than cautious. The corrupting reading would be right for the narrow subset of experiments whose DV is the z_harm_a VECTOR; it is wrong for the rest of the all-ON family, and the schema cannot express the difference -- check_substrate_path_overlap matches at MODULE granularity, so a corrupting stamp on experiments/_lib/allon_training.py would BLOCK every experiment on the standard all-ON path regardless of its DV. That is exactly the over-gating SD-082's substrate_paths were emptied for, twice (2026-09-09 and 2026-09-18 user decisions). Two measurements support degrading on the merits, not only on the gate cost: (a) corr(||z_harm_a||, hazard_EMA) = 0.9885 at the FROZEN projection (sd086 staged doc sec 4c), independently reproduced this session at 0.987 untrained vs 0.989 trained -- so the NORM-reading consumers, which are most of them (E3 urgency = ||z_harm_a|| * urgency_weight), barely move; (b) harm_obs_a has exact rank 2 (sec 4a), so no amount of encoder training adds d.o.f. the input does not carry. The module-granularity path is already carried at 'degrading' by sd-allon-training-signal-absorption-telemetry, so this entry adds a second WARN on a path that already warns, and no new gate class.",
+      "affected_completed_runs_candidates_2026_09_18": {
+        "note": "CANDIDATES for governance to adjudicate, NOT a claim that any result is invalid. Derived by a static scan of drivers on the _train_all_on_agent path that reference z_harm_a in a measured quantity (as opposed to a config dim). Each needs the vector-vs-norm distinction applied to it: a NORM consumer is barely affected per the severity note; a VECTOR consumer measured a random projection.",
+        "vector_or_channel_readers": [
+          "experiments/v3_exq_906_full_stack_observational_fishtank.py -- z_harm_a is a CORE_CHANNEL recorded per tick; its own header records a 'z_harm_a-saturation finding'"
+        ],
+        "norm_readers_low_impact": [
+          "experiments/v3_exq_1018_mech005_nu_path_authority_live_agent.py -- urgency = ||z_harm_a|| * urgency_weight (e3_selector.py:3796)",
+          "experiments/v3_exq_1015_mech465_zworld_warmup_budget_dispersion_sweep.py -- calibrates urgency_weight = target / ||z_harm_a||, so the projection largely cancels"
+        ],
+        "config_dim_only_not_affected": [
+          "experiments/v3_exq_724_competence_localization_diagnostic.py",
+          "experiments/v3_exq_728_trained_allon_capability_point.py",
+          "experiments/v3_exq_728b_trained_allon_capability_point.py",
+          "experiments/_lib/baselines/exq885_mech426_velocity_baseline.py"
+        ]
+      },
+      "design_doc": "docs/architecture/sd_011_dual_nociceptive_streams.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-086",
+        "SD-011",
+        "SD-020",
+        "MECH-258"
+      ],
+      "failure_record": [
+        {
+          "run_id": "sd086_zharma_readout_precondition_staged_20260918",
+          "experiment_type": "read_only_precondition_probe",
+          "metric": "parameter-identity intersection against the optimizers built at allon_training.py:541-548: latent_stack param tensors 53, affective_harm_encoder param tensors 4, affective encoder params COVERED 0, AFFECTIVE ENCODER REACHABLE BY TRAINER False. z_harm_a is therefore a frozen random projection of a rank-2 input on every all-ON run.",
+          "target": "affective-encoder weight-delta > 0 on an opted-in arm, with a held-out lift over a constant-mean predictor > 0 (the second half is what separates a trained encoder from a constant fit)",
+          "run_role": "pre_build",
+          "run_role_basis": "R0 explicit -- the gap-characterisation probe that motivated this entry",
+          "resolved": "open",
+          "source": "REE_assembly/evidence/planning/sd086_zharma_readout_precondition_staged_20260918.md sec 4b"
+        }
+      ],
+      "implementation_hint": "The fix has the same two parts as its z_world sibling and the architecture already supplies both, so this was an ADOPTION, not a new recipe. (a) A gradient path reaching latent_stack.affective_harm_encoder: an opt-in P0 stage owning its own optimizer group. (b) A supervision target: agent.compute_harm_accum_loss, the SD-011 'second source' aux loss, which ree_core/predictors/e2_harm_a.py's own 'Phased training required' block already names as the missing P0 stage ('P0: AffectiveHarmEncoder warmup ... accumulated-harm / harm-surprise supervision per SD-020'). SD-020's precision-weighted PE target is the SAME loss under the caller's existing REEConfig.harm_surprise_pe_enabled, not a rival recipe. Requires LatentStackConfig.harm_history_len > 0 on the agent AND a matching harm_history_len on the env, or the aux head does not exist and the loss short-circuits to zero -- the stage refuses loudly on each of those rather than reporting a clean run.",
+      "priority": 2,
+      "added_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build",
+      "last_seen_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build",
+      "source_chip": "chip-20260918-sd086-affective-encoder-trainer-build",
+      "implementation_status": "BUILT_DEFAULT_OFF",
+      "implemented_utc": "2026-09-18T20:05:00Z",
+      "implemented_by_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build",
+      "implementation_note": "BUILT 2026-09-18 as ree-v3 experiments/_lib/zharm_a_p0_warmup.py (run_zharm_a_p0), an opt-in P0h stage wired into the SHARED _train_all_on_agent between P0a (SD-070 z_world) and the P0b e2 contrastive warmup. ORDERING: z_harm_a feeds E3 commit gating on every tick of P0b and P1, so training it later would leave every selection decision in those phases taken against the random projection -- the same defect one phase later. DEFAULT zharm_a_p0_episodes=0 is bit-identical prior behaviour: no optimizer, no tensor, no RNG draw (contract C2). RNG neutrality reuses zworld_p0_warmup._rng_neutral as the SAME OBJECT (contract C6) so the two stages cannot drift on the property that makes fixed-seed ON/OFF contrasts valid; the SD-020 expected-harm tracker agent._harm_obs_ema is snapshotted and restored for the same reason. VERIFIED at 6 warmup episodes: OFF moves no parameter and draws no RNG; ON moves 6 of 6 affective-encoder tensors (max_abs_delta 6.4e-02; 6 not 4 because harm_history_len>0 adds the harm_accum_head), epoch mean loss 6.5e-03 -> 6.4e-04, held-out loss 2.11e-02 -> 9.08e-05. Downstream liveness on a real fixed-seed 120-tick rollout: mean ||z_harm_a|| 0.874 OFF -> 9.459 ON, aux-readout MAE 0.469 -> 0.033. 19 contracts in tests/contracts/test_zharm_a_p0_warmup.py, C0 of which pins the DEFECT (the three legacy optimizer groups stay disjoint from the encoder) so a later change that covers it elsewhere cannot silently make this record wrong.",
+      "implementation_caveats": [
+        "NO DRIVER OPTS IN. The stage is default-OFF and nothing sets zharm_a_p0_episodes > 0, so no existing or future run is affected until a driver opts in. That is deliberate (the commissioning chip forbade queueing an experiment), but it means this entry is BUILT and NOT VALIDATED: the owed validation is an opted-in arm, not this landing.",
+        "v3_exq_728b_trained_allon_capability_point.py defines its OWN _train_all_on_agent copy and was deliberately NOT touched. Editing it would invalidate the banked arms of a live PASS run (it passes include_driver_script_in_hash=True), which is the documented DO-NOT-COLLAPSE reason on sd_zworld_warmup_optimizer_group. Wiring the P0h stage into that copy is owed only if and when a driver on that copy needs to opt in.",
+        "THE READINESS GATE READS FALSE ON THE DEFAULT SD-011 TARGET, and this is the finding, not a build defect. accumulated_harm is near-constant on this substrate (mean 0.0276, std 0.0041 over a 600-tick random rollout), and harm_accum_head ends in a Sigmoid starting near 0.5 -- so the steep loss drop is the head learning that OFFSET. Scored against a constant-mean predictor fitted on the train split, the trained head is WORSE on held-out episodes (lift -58.9). p0h_holdout_vs_constant and p0h_readiness_met exist precisely so that vacuous fit cannot be read as a trained encoder. CONSEQUENCE: 'z_harm_a is now trainable' is true mechanically and NOT yet true informationally, so SD-086 option C (vector-vs-norm on a TRAINED encoder) is not straightforwardly unblocked by this landing.",
+        "The rank-2 bound still applies and is upstream of everything here: harm_obs_a writes one scalar into 25 dims and a second into the other 25 (causal_grid_world.py:3037-3038), so no encoder training can give z_harm_a more than 2 independent d.o.f. about the world. Training changes WHICH 2, not how many."
+      ],
+      "validation_experiment": null,
+      "open_decision": {
+        "chip_ref": "chip-20260918-zharm-a-training-signal-degenerate-target",
+        "question": "Given that the SD-011 accumulated_harm target is near-constant on this substrate, which signal should the P0h stage train on before SD-086 option C runs on a 'trained' encoder?",
+        "raised_by": "metaworker-science-20260918-sd086-affective-encoder-trainer-build",
+        "why_not_decided_here": "It changes what a downstream experiment would measure, and the architecture docs specify the SD-011 target that the measurement just showed to be near-degenerate -- a user decision under the consent rule, not a worker's."
+      },
+      "landing_status": "PENDING at write time; see the session's WORKSPACE_STATE entry for the ree-v3 sha on origin/main."
     }
   ],
   "schema_version": "substrate_queue/v2",
