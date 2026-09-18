@@ -32754,10 +32754,6 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1657",
-      "blocked_by": [
-        "MECH-121"
-      ],
-      "blocked_note": "EXP-1178: refused at /queue-experiment STOP-GATE -- NOT a substrate gap. The SD-068 consolidation lesion harness is fully built and both legs SD-071 names are live (nrem_transfer_fidelity harness:523 called :1039; _sws_pattern_completion harness:400 called :379). The block is a standing INSTRUMENT CONTRACT: REE_assembly/docs/architecture/sd_068_consolidation_lesion_harness.md:548-558 (mirrored at ree-v3/experiments/_lib/consolidation_lesion_harness.py:143-147), 'Prerequisite caveat -- MECH-121 hold (respected, not lifted)', requires unconditionally that 'Any run built on it MUST be EXPERIMENT_PURPOSE=\"diagnostic\"'. SD-071's what_would_answer states its REMAINING CONDITION FOR PROMOTION is 'one NON-DIAGNOSTIC run tagging this claim', so as written the only instrument that can produce SD-071's remaining evidence is forbidden from producing it. A queue session cannot resolve that by tagging a run non-diagnostic -- it is a governance call. Pending decision: GFLAG-0319 (contested_disposition, open, raised 2026-09-17 by cranky-wiles-c85265, bundling MECH-170 which the same contract blocks), proposing a narrow carve-out: non-diagnostic permitted when a run tags ONLY instrument-validity claims (SD-071) and tags neither MECH-120 nor MECH-121. If the carve-out is granted this is GREEN and the design is already written (re-run both legs at n>=8 seeds, EXPERIMENT_PURPOSE=evidence, tagging SD-071 only, C1 ceiling_inside_ci95 FALSE on both legs, C3 content-scale ladder against the 0.01 floor) -- set status back to proposed then. Recorded by science-20260918-sd071-consolidation-readouts (chip-proposal-exp-1206-paced).",
       "claim_id": "SD-071",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -32780,7 +32776,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "blocked_on_gate",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_sd_071",
       "target_repo": "ree-v3",
       "why_now": [
