@@ -68,6 +68,35 @@ class HelperTest(unittest.TestCase):
         self.assertTrue(self.M._entry_is_open(
             {"status": "pending_implementation, awaiting design doc"}))
 
+    def test_entry_is_open_true_when_pending_validation(self):
+        # GOV-SUBPATH-1 lockstep fix (2026-09-18): 'implemented' is a strict
+        # prefix of 'implemented_pending_validation', so a substring test
+        # misread this as CLOSED. The /queue-experiment Step 2.5c predicate
+        # this checker must mirror tests 'pending' FIRST and always reads it
+        # as OPEN -- landed but unconfirmed is exactly the window a
+        # corrupting defect is most likely still live in.
+        self.assertTrue(self.M._entry_is_open(
+            {"status": "implemented_pending_validation"}))
+        self.assertTrue(self.M._entry_is_open(
+            {"implementation_status": "implemented",
+             "status": "implemented_pending_validation"}))
+
+    def test_entry_is_open_true_for_exact_closed_token_substring_of_prose(self):
+        # A status that merely CONTAINS a closed token as a substring of a
+        # longer free-text word must NOT read as closed -- only an EXACT
+        # match against the enum does. Confirmed live-registry miss
+        # (2026-09-16): 'mech448_lead_lever_BUILT_VALIDATED_PROMOTED...'
+        # contains 'validated' but is not one of the closed enum values.
+        self.assertTrue(self.M._entry_is_open(
+            {"status": "mech448_lead_lever_built_validated_promoted_provisional"}))
+
+    def test_entry_is_open_false_for_exact_closed_token(self):
+        # An exact match against the closed enum (no surrounding prose,
+        # no 'pending') is still CLOSED.
+        self.assertFalse(self.M._entry_is_open({"status": "validated"}))
+        self.assertFalse(self.M._entry_is_open({"status": "wontfix"}))
+        self.assertFalse(self.M._entry_is_open({"status": "closed_aleatoric"}))
+
     def test_run_timestamp_extracts_stamp(self):
         self.assertEqual(
             self.M._run_timestamp("v3_exq_330_sd013_contrastive_20260411T023725Z_v3"),

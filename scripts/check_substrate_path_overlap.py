@@ -141,14 +141,17 @@ except ImportError as exc:  # pragma: no cover - environment problem, be loud
         "cannot import from scripts/check_dry_run_citations.py: %s" % exc
     )
 
-# implementation_status / status substrings that mean an entry is CLOSED (no
-# longer a live gate). Substring match, case-insensitive -- the `status` field
-# in this file is heavily free-text (confirmed: dozens of distinct long-form
-# values), so an exact-value enum would miss most real closures. Ambiguous
-# reads as OPEN (the safe direction for a corrupting-severity gate).
+# implementation_status / status values that mean an entry is CLOSED (no
+# longer a live gate). EXACT match only, case-insensitive -- see
+# _entry_is_open below. This is the same enum /queue-experiment Step 2.5c
+# tests against (`.claude/skills/queue-experiment/SKILL.md`, that gate's
+# lockstep forward half); the two must never drift apart (GOV-SUBPATH-1
+# closed-test lockstep fix, 2026-09-18 -- a substring test here previously
+# read `implemented_pending_validation` as CLOSED via the `implemented`
+# substring, disagreeing with the skill's exact-match + pending-first rule).
 _CLOSED_MARKERS = (
-    "implemented_validated",
     "implemented",
+    "implemented_validated",
     "validated",
     "wontfix",
     "closed_aleatoric",
@@ -158,10 +161,25 @@ _TIMESTAMP_RE = re.compile(r"(\d{8}T\d{6}Z)")
 
 
 def _entry_is_open(entry: Dict[str, Any]) -> bool:
-    """Mirrors the /queue-experiment Step 2.5c 'open' rule -- see module docstring."""
+    """Mirrors the /queue-experiment Step 2.5c 'open' rule -- see module
+    docstring and Step 2.5c itself. `status`/`implementation_status` in this
+    registry is heavily free-text, so an exact-value enum match (not a
+    substring test) is required: a substring test would read a CLOSED token
+    like `validated` inside unrelated prose (e.g.
+    `mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__...`) and
+    silently close an entry that is not actually one of the closed states.
+    `pending` anywhere in either field is tested FIRST and always means
+    OPEN -- e.g. `implemented_pending_validation` is landed but unconfirmed,
+    exactly the window a corrupting defect is most likely still live in --
+    since otherwise `implemented` would match as a strict prefix and
+    short-circuit past it. Ambiguous (no exact match, no `pending`) reads as
+    OPEN (the safe direction for a corrupting-severity gate).
+    """
     s1 = str(entry.get("implementation_status") or "").lower()
     s2 = str(entry.get("status") or "").lower()
-    return not any(marker in s1 or marker in s2 for marker in _CLOSED_MARKERS)
+    if "pending" in s1 or "pending" in s2:
+        return True
+    return not (s1 in _CLOSED_MARKERS or s2 in _CLOSED_MARKERS)
 
 
 def _module_from_path(path: str) -> Optional[str]:
