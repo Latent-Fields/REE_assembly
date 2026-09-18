@@ -1,0 +1,325 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1057a_mech017_reality_consolidation_replay_additive_budget_pass_order",
+  "run_id": "v3_exq_1057a_mech017_reality_consolidation_replay_additive_budget_pass_order_20260918T234946Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-18T23:49:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "dc25ae7510ffdc168f6d4ebe651d8d83d9b8006b",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "forgetting_present_in_control",
+        "measured": 2.4750167490267976,
+        "threshold": 1.1,
+        "direction": "lower",
+        "control": "MEAN over seeds, ARM_C only (no extra training): the WITHIN-STRATUM ratio (EARLY-probe E1 MSE at end of life) / (same probe set, same arm, measured immediately after capture, before the late block). Same probe tensors on both sides, so intrinsic regime difficulty cancels -- a cross-stratum early/late ratio would not. `met` is the same central-tendency comparison the measured value reports. Below the floor the model has not forgotten the early states, so there is nothing for replay to counter and all arms tie. Read off an arm the A-vs-B verdict does not use.",
+        "worst_seed": 456,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_window_separation",
+        "measured": 0.7333333333333334,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "min over seeds of (ARM_A early-regime replay share - ARM_B early-regime replay share). This is the MANIPULATION itself: if the two windows do not separate, A and B are the same run and 'A == B' says nothing about MECH-017. Caught exactly this in the first smoke of this script.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "manipulation_reaches_dv",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "seeds where ARM_A and ARM_B produced DIFFERENT early-probe E1 MSE. A bit-identical pair is a dead manipulation, not a null result.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e1_has_skill_over_persistence_compared_arms",
+        "measured": 0.10544178957951644,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "WORST SEED of max(ARM_A skill, ARM_B skill), where skill = 1 - (E1 early-probe MSE / do-nothing persistence-baseline MSE on the same windows). Ranges over the two arms C1/C3 actually compare -- NOT the ARM_C reference, whose sub-persistence skill is the phenomenon under study. A seed where NEITHER compared arm beats a do-nothing predictor makes that seed's A-vs-B difference noise about noise.",
+        "offending_seed": 123,
+        "min_skill_over_compared_arms": -0.6628623043876001,
+        "min_skill_arm_c_reference_only": -1.2010145304698976,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "gradient_budget_matched",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "|extra gradient steps ARM_A - ARM_B|. This is the DESIGN INVARIANT that makes C1/C3 a replay result rather than a compute result, so a mismatch is an INSTRUMENT failure, not evidence about MECH-017. Red-team Finding 1 (CONFIRMED): as a pass/fail CRITERION it routed a budget mismatch to `weakens`; as a precondition it correctly routes to substrate_not_ready_requeue.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_budget_is_a_plus_b",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "worst over the two order arms of |extra gradient steps - (ARM_A + ARM_B)|. Both order arms are deliberately budget-UNMATCHED against A and B -- that IS this run's manipulation -- so the gradient_budget_matched gate above deliberately still compares A against B ONLY. This gate is its counterpart for D: it asserts the budget was genuinely ADDED (A's whole-buffer pass PLUS B's recent-window pass, 2 x CMC_STEPS per point) rather than reallocated. If D's budget is not exactly A+B the dose of the manipulation is not what was pre-registered, which is an INSTRUMENT failure, not evidence about the reallocation Ranges over BOTH order arms (the worse of the two), since they carry the identical additive dose and differ only in the order it is spent. Measured: D1=384, D2=384, A=192, B=192.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_arm_retains_replay_gain_d2",
+        "measured": 5.0,
+        "threshold": 4.0,
+        "direction": "lower",
+        "control": "seeds with e1_holdout_mse_early(ARM_D2) < e1_holdout_mse_early(ARM_B) -- V3-EXQ-1048's C1 form with ARM_D2 substituted for ARM_A, same comparator arm and same seed-majority constant. ARM_D2 is only an ADDITIVE-BUDGET arm if it is still doing the REPLAY the budget was added for, and the load-bearing C4 is read off D2, so this gate protects the verdict. GATES ON D2 ONLY, on purpose: V3-EXQ-1057 MEASURED the whole-then-recent order at 0/5 on this exact quantity, so a gate ranging over BOTH order arms would fire on D1 every time and void D2 -- destroying the very comparison this run exists to make. D1's counterpart is REPORTED below and in the readout, never gated.",
+        "arm_d1_reported_not_gated": 0.0,
+        "arm_d1_mean_early": 0.00017403090059815441,
+        "arm_d2_mean_early": 7.478938625051038e-05,
+        "arm_b_mean_early": 0.00014706747694314494,
+        "arm_a_mean_early": 8.026583282116917e-05,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_arm_retains_recency_benefit_d2",
+        "measured": 2.0,
+        "threshold": 4.0,
+        "direction": "lower",
+        "control": "seeds with e1_holdout_mse_late(ARM_D2) < e1_holdout_mse_late(ARM_A) -- the SYMMETRIC twin of the replay-gain gate above, on the other leg and against the other parent. ARM_D2 runs its whole-buffer (replay) pass LAST, and each consolidate() call builds a fresh Adam, so the likely degenerate mode is D2 collapsing onto ARM_A: it would clear the replay-gain gate trivially and then fail C4, and the run would record 'the recency cost is INTRINSIC to replay' when the real mechanism is 'the last pass overwrites the first, in either order' -- an instrument property V3-EXQ-1057's own D1 arm demonstrates (D1 late/B 0.95-1.11, tracking its last pass B, against A late/B 1.09-1.95). Below this floor D2 is not a COMBINATION of the two passes and cannot answer the reallocation question in either direction. Reported for D1 too, never gated on it, for the same reason as the replay-gain gate.",
+        "arm_d1_reported_not_gated": 5.0,
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_replay_gain_clears_floor_d2",
+        "measured": 0.4807296554602094,
+        "threshold": 0.05,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "mean over seeds of (early_B - early_D2)/early_B, against MIN_REL_GAIN_EARLY = 0.05 -- this script's OWN pre-registered effect-size floor, the one V3-EXQ-1048 pairs with C1 as C3. The sign-count gate above is a strict inequality with NO margin, so a D2 that merely equals B plus noise passes it on 4/5 seeds by chance and then passes C4 trivially -- recording 'reallocation artefact' for an arm that is simply B. (The dry-run smoke sat at D2/B early = 1.0015, inside that noise band.) The probe path also carries ~0.8% arm-correlated sampling noise (see DECLARED SUBSTRATE LIMIT 3), which this 5% floor clears by ~6x. No new constant: MIN_REL_GAIN_EARLY is already defined and already load-bearing for C3.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "pass_order_separates_the_arms",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "seeds where ARM_D1 and ARM_D2 produced DIFFERENT early-probe E1 MSE. D1 and D2 run the SAME two passes with the SAME budget, windows and lr, differing ONLY in order, so a bit-identical pair would mean the ordering factor this run isolates does not exist in the instrument -- a dead manipulation, not a finding about order.",
+        "d1_minus_d2_mean_early": 9.924151434764403e-05,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_manipulation_reaches_dv",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "min over the two order arms of the seeds where that arm and ARM_B produced DIFFERENT LATE-probe E1 MSE -- the exact leg the load-bearing C4 reads. Same form and same threshold as manipulation_reaches_dv above, re-pointed at the compared pairs: a bit-identical pair is a dead manipulation, and would otherwise be scored as a clean C4 PASS ('D is not worse than B') on no manipulation at all. Takes the WORSE of the two order arms (min), so it is strictly stronger than V3-EXQ-1057's single-arm form.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_covers_early_regime",
+        "measured": 0.7333333333333334,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of the mean early-regime share of the buffer slice visible at the LATE-block consolidation points. compute_prediction_loss draws start_idx ~ Uniform[0, buf_len-1), so this share IS the per-draw probability of an early-regime trace. ARM_B comparator = 0.0000.",
+        "arm_b_share": 0.0,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "consolidation_updated_e1",
+        "measured": 96.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of CrossModuleConsolidator's own updates_e1 counter -- the pass must actually move the module the load-bearing DV reads.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "consolidation_updated_e2",
+        "measured": 96.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of updates_e2 (E2 SELF-forward; the secondary readout).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "early_late_state_divergence",
+        "measured": 0.8780487804878049,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "min over ALL cells of the Jaccard DISTANCE between early-regime and late-regime occupied grid cells. If old and recent states coincide there is nothing for replay to add (sleep_substrate:GAP-2 vacuous case).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_set_identical_across_arms",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "sha256 over each cell's concatenated probe [z_self, z_world] tensors; all five arms of a seed must agree EXACTLY, which is what makes the probe set FIXED rather than arm-dependent.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_target_variance",
+        "measured": 0.006881691515445709,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "min over all cells/strata of the variance of the held-out E1 target tensor -- a frozen target would make the MSE trivially satisfiable.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd016_writepath_mode_off",
+        "measured": 25.0,
+        "threshold": 25.0,
+        "direction": "lower",
+        "control": "runtime read of E1Config.sd016_writepath_mode in every cell. 'off' means the open CORRUPTING defect contextmemory-write-path-addressing-degeneracy (e1_deep.py::ContextMemory.write) is never called on this run's path.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {}
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ea090718d8387e64a821673855690987b5f5dab76cdca8ac63c6e918fdbccc93",
+  "substrate_commit": {
+    "commit": "dc25ae7510ffdc168f6d4ebe651d8d83d9b8006b",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 854.7696902751923,
+  "config": {
+    "arms": [
+      "ARM_A_OFFLINE_REPLAY",
+      "ARM_B_BUDGET_MATCHED_RECENT",
+      "ARM_C_NO_EXTRA_TRAINING",
+      "ARM_D1_ADDITIVE_WHOLE_THEN_RECENT",
+      "ARM_D2_ADDITIVE_RECENT_THEN_WHOLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456,
+      2026,
+      45
+    ],
+    "grid_size": 9,
+    "num_hazards": 1,
+    "num_resources": 1,
+    "self_dim": 16,
+    "world_dim": 16,
+    "alpha_world": 0.9,
+    "alpha_self": 0.9,
+    "episode_steps": 30,
+    "warmup_episodes": 6,
+    "early_episodes": 6,
+    "late_episodes": 6,
+    "probe_episodes": 4,
+    "train_episodes": 18,
+    "consolidate_every": 3,
+    "recent_window": 90,
+    "cmc_steps": 24,
+    "wake_steps": 24,
+    "cmc_lr": 0.0002,
+    "cmc_batch": 16,
+    "early_start": [
+      2,
+      2
+    ],
+    "late_start": [
+      6,
+      6
+    ],
+    "hazards": [
+      [
+        4,
+        4
+      ]
+    ],
+    "resources": [
+      [
+        4,
+        2
+      ]
+    ],
+    "registered_thresholds": {
+      "min_window_separation": 0.2,
+      "persistence_skill_floor": 0.0,
+      "wake_lr": 0.001,
+      "cmc_lr": 0.0002,
+      "sign_consistency_required": 4,
+      "late_tol": 0.1,
+      "min_rel_gain_early": 0.05,
+      "forgetting_floor": 1.1,
+      "replay_early_share_floor": 0.2,
+      "updates_floor": 1.0,
+      "state_divergence_floor": 0.2,
+      "probe_target_var_floor": 0.0001
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    2026,
+    45
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 25,
+    "goal_state_present": false
+  }
+}
