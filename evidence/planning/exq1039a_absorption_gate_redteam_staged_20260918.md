@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml, substrate_queue.json, hypothesis_space_registry.v1.json or experiment_queue.json.**
+**Status: RESOLVED 2026-09-18T22:58Z -- the user chose OPTION B (real AskUserQuestion, via decision chip `chip-20260918-exq1039a-readiness-gate-amendment`). Applied and queued; see section 7. Nothing in this file was written to claims.yaml, substrate_queue.json or hypothesis_space_registry.v1.json, then or now.**
 
 # V3-EXQ-1039a -- absorption-gated re-run: red-team CONTESTED, one gate decision owed
 
@@ -220,3 +220,46 @@ experiment driver.
 - **Hypothesis space:** `waypoint_field_consumer_reach:H-wpfield-objective-sparsity` stays
   ALIVE; `hypothesis_space_registry.v1.json` is NOT edited by this session (single producer
   is `/failure-autopsy` Step 9b).
+
+
+---
+
+## 7. Resolution (appended 2026-09-18T23:10Z)
+
+**Decision: OPTION B**, by the user via `AskUserQuestion` at 2026-09-18T22:58Z on decision
+chip `chip-20260918-exq1039a-readiness-gate-amendment`.
+
+- Precondition **A2 is narrowed to `A2_GATED_ARMS = ("shaped_rl",)`** -- the arms whose
+  manipulation IS the training signal. `sparse_rl` and `demo_warmstart` surviving-advantage
+  fractions are RECORDED per cell under the precondition's `ungated_arms_surviving_frac`,
+  not gated. `demo_warmstart`'s absorption evidence remains precondition A3.
+- **Option C DECLINED:** `lpfc_bias_saturated_frac` stays RECORDED, not gated. No ceiling.
+- **Option D DECLINED:** `e3.e3_score_decomp_enabled` stays OFF; the lPFC-share readout
+  (autopsy item 3's remaining half) is deferred to its own `/implement-substrate` pass and
+  is NOT part of V3-EXQ-1039a.
+
+**Applied and verified.** The post-amendment `--dry-run` re-run confirms
+`adv_surviving_frac_clears_floor` now MET at 1.0 on `shaped_rl@seed42`, with
+`sparse_rl@seed42: 0.0` and `demo_warmstart@seed42: 0.0` recorded as ungated telemetry --
+i.e. exactly the configuration that would have failed the gate under the original
+quantifier now passes it while still reporting the same numbers. The precondition carries
+`scope_amendment: "user-ratified 2026-09-18 (option B); the autopsy's own wording was 'in
+every treatment cell'"` so the departure from the autopsy is self-describing in every
+manifest.
+
+**Landed.**
+
+| Artifact | Where |
+|---|---|
+| Driver + queue entry (one commit) | `ree-v3` **`80dae9b9bb`**, on `origin/main`; `ree_commit` delta `items: +1 (V3-EXQ-1039a)` |
+| `validate_queue.py` | OK |
+| `validate_experiments.py --strict` | OK, 0 non-conforming |
+| `evidence_discrepancy` governance flag | **GFLAG-0353** (INV-086, MECH-428), on `origin/master` in `evidence/planning/governance_flags.v1.json` -- so `/governance` can set V3-EXQ-1039's manifest `evidence_direction: superseded` once 1039a lands. Its existing `non_contributory` stamp is left alone |
+
+**Still open, deliberately:** autopsy item 3's lPFC SHARE of the summed modulatory
+accumulator is NOT recorded by V3-EXQ-1039a (option D declined). The existing
+`score_bias_*` / `modulatory_authority_*` keys are whole-`score_bias` aggregates across all
+channels, not the lateral-PFC channel. If a 1039a null needs attributing to "the head was
+outvoted in the arbitration" rather than "density does not convert", that readout is what
+would settle it, and it needs `e3_score_decomp_enabled` audited for behaviour-neutrality
+across its ~24 gated sites first.
