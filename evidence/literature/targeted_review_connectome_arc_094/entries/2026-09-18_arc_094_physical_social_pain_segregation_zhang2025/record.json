@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "ARC-094"
+  ],
+  "source": {
+    "title": "Neural mechanisms of physical and social pain empathy: an activation likelihood estimation meta-analysis of fMRI studies",
+    "authors": [
+      "Peng Zhang",
+      "Ling Ding",
+      "Meng Wang",
+      "Shijun Qiu"
+    ],
+    "year": 2025,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhaf227",
+    "pmid": "40833263",
+    "volume": "35",
+    "issue": "8",
+    "pages": "bhaf227"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "A 35-study ALE meta-analysis finding that physical pain empathy and social pain empathy engage segregated networks -- left-lateralised mirror-neuron-system regions versus the mentalizing network -- with no shared activated areas detected between subtypes. This is direct support for ARC-094's prohibition: if empathy fractionates by the CONTENT of the other's state, there is no single quantity an empathy_score could represent. Confidence held to 0.68 because the headline result is a conjunction NULL, and absence of detected overlap in thresholded ALE is sensitive to study count and threshold choice rather than being strong evidence of absence.",
+  "failure_signatures": [
+    "Physical and social pain empathy produced no shared activated brain areas in the differential analysis, so an architecture exposing a single empathy quantity would have to average over two networks that do not overlap -- the scalar would not correspond to any implemented variable.",
+    "Physical pain empathy activated left-lateralised mirror-neuron-system regions while social pain empathy selectively activated the mentalizing network, so which streams get bound depends on the CONTENT of the other's state, not on a general other-directedness parameter.",
+    "The central finding is a null from a thresholded conjunction across 35 studies, which is weak evidence of absence: ALE conjunction sensitivity scales with study count per subtype and with threshold choice, so 'no shared areas detected' should not be read as 'no shared areas exist'."
+  ],
+  "tags": [
+    "arc-094",
+    "empathy",
+    "meta_analysis",
+    "ale",
+    "mentalizing_network",
+    "mirror_neuron_system",
+    "no_empathy_scalar"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 35 fMRI studies, empathy for another's physical pain shows significant left-lateralised activation in mirror-neuron-system regions, whereas empathy for another's social pain selectively activates the mentalizing network; differential analysis detected no shared activated areas between the two empathy subtypes, supporting functional segregation.",
+    "ree_translation": "Direct support for ARC-094's prohibition clause. Empathy does not behave like one faculty with one output. It fractionates by the content of the other's state -- bodily harm recruits action/mirror machinery, social harm recruits mentalizing machinery -- which is what binding of content-appropriate existing streams predicts and what an empathy_enabled flag or empathy_score primitive cannot represent. A scalar would have to summarise two networks that do not overlap, and would correspond to no implemented quantity in either.",
+    "mapping_caveat": "The headline is a conjunction null, and ALE nulls are weak evidence of absence -- sensitivity depends on the number of studies contributing to each subtype and on cluster-forming thresholds, so complete non-overlap is very likely an overstatement of a real but partial dissociation. This is also coordinate-based meta-analysis, inheriting the resolution limitation that Krishnan et al. 2016 exposed: it can speak to which regions engage, not to whether representations are shared. Finally, physical-versus-social is a distinction in the TARGET's state; ARC-094's self -> object -> other axis is a different partition entirely and is not tested here.",
+    "source_context": "Coordinate-based ALE meta-analysis of 35 human fMRI studies; healthy adult participants; empathy paradigms separated by whether the observed distress was physical or social."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "source_quality reflects a recent, adequately powered ALE in a good venue, discounted because ALE is coordinate-based and the key claim rests on a null. mapping_fidelity is decent: the fractionation result speaks quite directly to the no-scalar prohibition, even though the partition used is not ARC-094's own."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_094",
+  "entry_id": "2026-09-18_arc_094_physical_social_pain_segregation_zhang2025",
+  "timestamp_utc": "2026-09-18T07:02:52Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,61 @@
+{
+  "claim_ids_tested": [
+    "ARC-094"
+  ],
+  "source": {
+    "title": "Somatic and vicarious pain are represented by dissociable multivariate brain patterns",
+    "authors": [
+      "Anjali Krishnan",
+      "Choong-Wan Woo",
+      "Luke J Chang",
+      "Luka Ruzic",
+      "Xiaosi Gu",
+      "Marina Lopez-Sola",
+      "Philip L Jackson",
+      "Jesus Pujol",
+      "Jin Fan",
+      "Tor D Wager"
+    ],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.15166",
+    "pmid": "27296895",
+    "volume": "5",
+    "pages": "e15166"
+  },
+  "evidence_class": "fmri_mvpa_decoding",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Methodologically strong multivariate study from the group that developed the neurologic pain signature, with a decisive cross-prediction result: patterns classifying somatic and vicarious pain intensity each at 100% perform at CHANCE predicting the other. This directly weakens the strong shared-stream reading that ARC-094's self -> other binding leans on. It simultaneously supports the claim's prohibition half, since empathy cannot be read off the self-pain code and therefore is not a scalar derived from it. Mixed on balance. Confidence relatively high because the cross-prediction null is a clean, hard-to-explain-away result rather than an underpowered absence.",
+  "failure_signatures": [
+    "Patterns predicting somatic pain intensity and vicarious pain intensity cross-predict at chance, so the representational content of self-pain is not reused for other-pain -- a self -> other binding architecture that routes other-directed affect through the self's own affective code is not what the brain does for pain.",
+    "Somatotopic information was recoverable at 93% accuracy for both somatic and vicarious pain but from DISTINCT circuits -- somatosensory for somatic, mentalizing-related for vicarious -- so even apparently body-referenced vicarious representation is carried by different machinery than the first-person case, not by the same machinery re-indexed.",
+    "The region-level overlap reported by Lamm et al. 2011 survives here while the representational sharing does not, which establishes that coordinate-level overlap in anterior insula and cingulate is insufficient evidence for stream reuse in any architecture that depends on it."
+  ],
+  "tags": [
+    "arc-094",
+    "empathy",
+    "mvpa",
+    "vicarious_pain",
+    "shared_representation",
+    "dissociable_patterns",
+    "self_other_distinction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Multivariate patterns predicting somatic pain intensity (high vs low, 100%) and vicarious pain intensity (high vs low, 100%) are dissociable: each performs at chance when used to predict the other. Somatotopic classification reached 93% accuracy for both, but from distinct circuits -- somatosensory regions for somatic pain and mentalizing-related regions for vicarious pain.",
+    "ree_translation": "Bears in opposite directions on ARC-094's two halves. Against the positive half: the claim asserts fast empathy emerges from binding EXISTING motivational-affective streams across self -> object -> other, and the most natural implementation -- routing other-directed affect through the self's own affective representation -- is ruled out for pain, since the two codes do not share content. For the prohibition half it is supportive: if other-pain cannot be decoded from the self-pain code, then empathy is certainly not a scalar read off first-person affect, and an empathy_score primitive derived that way would be measuring nothing. The constructive reading is that vicarious affect is carried by OTHER existing streams -- mentalizing circuitry -- which preserves ARC-094's no-module commitment while relocating which streams get bound.",
+    "mapping_caveat": "Dissociable multivariate patterns do not establish separate modules; both patterns are distributed across overlapping regions, and the vicarious pattern sits in mentalizing circuitry that plainly has other jobs, so nothing here supports an empathy module and this must not be read as doing so. The study also concerns pain only, and vicarious pain is induced by observing others' pain in a laboratory setting, which may engage deliberate perspective-taking rather than the FAST empathy ARC-094 specifically scopes -- the fast/slow distinction is not addressed by the design.",
+    "source_context": "Human fMRI, multivariate pattern analysis with cross-prediction and somatotopic classification; healthy adults; somatic pain via noxious stimulation vs vicarious pain via observation of others in pain."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "source_quality high: eLife, Wager group, rigorous cross-validated multivariate design, and the key result is a cross-prediction null against 100% within-condition accuracy, which is far more informative than a simple failure to find an effect. mapping_fidelity moderated because the fast-vs-deliberate empathy distinction that ARC-094 scopes is not addressed by the paradigm."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_094",
+  "entry_id": "2026-09-18_arc_094_dissociable_vicarious_pain_krishnan2016",
+  "timestamp_utc": "2026-09-18T07:02:52Z",
+  "summary_path": "summary.md"
+}

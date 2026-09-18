@@ -1,0 +1,53 @@
+{
+  "claim_ids_tested": [
+    "ARC-094"
+  ],
+  "source": {
+    "title": "Meta-analytic evidence for common and distinct neural networks associated with directly experienced pain and empathy for pain",
+    "authors": [
+      "Claus Lamm",
+      "Jean Decety",
+      "Tania Singer"
+    ],
+    "year": 2011,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2010.10.014",
+    "pmid": "20946964",
+    "volume": "54",
+    "issue": "3",
+    "pages": "2492-2502"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Dual-method meta-analysis (image-based over 9 independent fMRI datasets plus coordinate-based over 32 studies), highly cited, and directly on the claim's core assertion: empathy for pain recruits bilateral anterior insula and medial/anterior cingulate that overlap with first-hand pain, i.e. it reuses existing affective machinery rather than engaging a dedicated empathy region. The finding that the recruited network SHIFTS with the route of access (picture-based paradigms engage somatosensory and action-understanding areas, abstract cues engage mentalizing regions) is a second, independent support for the binding-of-existing-streams framing. Held below 0.8 because coordinate-level overlap is a coarse measure of representational sharing -- the limitation that Krishnan et al. 2016 subsequently made concrete.",
+  "failure_signatures": [
+    "Activation overlap in anterior insula and anterior cingulate is established at blob/coordinate resolution, which is compatible with spatially adjacent but functionally distinct neuronal populations; overlap at this resolution does not establish that the same representational stream is reused, and a later MVPA study (Krishnan et al. 2016, eLife) shows it is not.",
+    "Anterior insula and anterior mid-cingulate are among the most reliably activated regions in the entire neuroimaging literature across salience, effort and arousal manipulations, so their recruitment during empathy is weakly diagnostic of anything specific to empathy and could reflect generic salience rather than affective sharing."
+  ],
+  "tags": [
+    "arc-094",
+    "empathy",
+    "shared_representation",
+    "anterior_insula",
+    "no_empathy_module",
+    "pain"
+  ],
+  "mapping": {
+    "source_claim_statement": "Empathy for pain and directly experienced pain activate a common core network of bilateral anterior insula and medial/anterior cingulate cortex; the wider network recruited depends on how the other's pain is conveyed, with picture-based cues engaging somatosensory and action-understanding regions and abstract affective cues engaging mentalizing regions (precuneus, ventromedial prefrontal cortex, superior temporal cortex, temporo-parietal junction).",
+    "ree_translation": "Empathic response is carried by affective machinery the organism already has for its own states, recruited under a different access route -- not by a dedicated empathy system. This is ARC-094's positive half: fast empathy emerges from binding existing motivational-affective streams. The route-dependence finding is the sharper support: the SAME empathic outcome is reached through different stream combinations depending on the input modality, which is what binding-of-existing-streams predicts and what a dedicated empathy module with a single scalar output does not.",
+    "mapping_caveat": "This evidences self-other sharing for PAIN only, a single strongly-conserved aversive affective state, and says nothing about the self -> object -> other progression ARC-094 specifies -- the object stage has no correlate in this literature at all. It also cannot distinguish shared affective representation from shared salience: anterior insula and anterior cingulate respond to almost any arousing or effortful manipulation, so their overlap is consistent with both a genuine affective-stream reuse and a generic attentional response that would not support empathy in REE's sense.",
+    "source_context": "Human fMRI meta-analysis; image-based over 9 independent datasets, coordinate-based over 32 studies; healthy adult participants; pain empathy paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "source_quality high: dual meta-analytic method, large study base, and the image-based component avoids the coordinate-only limitations of standard ALE. mapping_fidelity limited by the coordinate-resolution issue and by the gap between 'pain empathy' and ARC-094's three-stage self -> object -> other binding. transfer_risk low -- human data, and the claim is about human-like social architecture."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_094",
+  "entry_id": "2026-09-18_arc_094_shared_pain_empathy_network_lamm2011",
+  "timestamp_utc": "2026-09-18T07:02:52Z",
+  "summary_path": "summary.md"
+}

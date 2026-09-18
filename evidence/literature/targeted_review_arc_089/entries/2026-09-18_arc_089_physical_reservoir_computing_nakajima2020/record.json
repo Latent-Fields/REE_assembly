@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "ARC-089"
+  ],
+  "source": {
+    "title": "Physical reservoir computing - an introductory perspective",
+    "authors": [
+      "Kohei Nakajima"
+    ],
+    "year": 2020,
+    "venue": "Japanese Journal of Applied Physics",
+    "doi": "10.35848/1347-4065/ab8d4f",
+    "arxiv_id": "2005.00992",
+    "pmid": null,
+    "volume": "59",
+    "issue": "6",
+    "pages": "060501"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Peer-reviewed perspective by the field's leading author, and it states in disciplined form exactly the instantiate-vs-execute distinction ARC-089 is built on: in physical reservoir computing the substrate's own intrinsic dynamics ARE the computation, rather than a target an architecture is imposed upon. Confidence held to 0.62 because this is an architectural claim, so mapping_fidelity dominates, and RC's substrate criteria (high-dimensional measurable state, nonlinear response, fading memory) are a much thinner list than REE's nine primitives -- the paper validates the FORM of ARC-089's evaluation move without validating its CONTENT.",
+  "failure_signatures": [
+    "Reservoir computing's substrate admission criteria are satisfiable by physical systems that have no commitment boundary between simulated and released action and no offline reintegration phase, so a hardware-neutral primitive vocabulary modelled on RC's criteria would fail to discriminate a REE-adequate substrate from an inadequate one.",
+    "Physical reservoir computing leaves the readout layer trained in conventional digital hardware, so even its exemplar systems only partially instantiate the loop they are credited with -- a substrate can satisfy the dynamics criteria and still require a non-substrate-native component to close the loop.",
+    "Fading memory is in tension with REE's persistent-state and residue primitives: RC's canonical requirement is that the influence of past input DECAYS, whereas residue-as-deformation-of-the-future-action-landscape requires history to persist as structure."
+  ],
+  "tags": [
+    "arc-089",
+    "substrate_independence",
+    "physical_reservoir_computing",
+    "neuromorphic",
+    "cognifold_primitives"
+  ],
+  "mapping": {
+    "source_claim_statement": "Physical systems with sufficiently rich intrinsic nonlinear dynamics can be exploited directly as information-processing devices; computation emerges from the system's own dynamics rather than from an architecture imposed on it, and a candidate substrate is assessed on whether its dynamics have the required properties (high-dimensional measurable state, nonlinear input-driven response, fading memory).",
+    "ree_translation": "This is the methodological move ARC-089 commits to, in an established and independently motivated field: specify what DYNAMICS a substrate must exhibit, then evaluate candidate physical substrates against that dynamical specification rather than against their ability to execute a given modular software stack. It supports the coherence of ARC-089's proposed evaluation stance -- a substrate-independent primitive vocabulary IS the way a mature field evaluates physical computational substrates.",
+    "mapping_caveat": "The support is for the FORM of the evaluation move, not for REE's particular primitive list. RC's criteria are far thinner than the nine cognifold primitives and one of them (fading memory) pulls against REE's persistence/residue primitives. Treating this paper as endorsement of REE's specific vocabulary would substantially overread it; it endorses only that dynamical-affordance evaluation of substrates is a legitimate and practised methodology.",
+    "source_context": "Review/perspective spanning photonic, analog-electronic, soft-material and biological reservoirs; edge-computing and soft-robotics applications."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Weighted toward mapping_fidelity because ARC-089 is an architectural_commitment: what matters is whether the source's framing genuinely licenses REE's framing, not the empirical robustness of any single measurement. transfer_risk is mid-range because the transfer is field-to-field (computational substrate theory -> cognitive architecture spec) rather than species-to-species."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_089",
+  "entry_id": "2026-09-18_arc_089_physical_reservoir_computing_nakajima2020",
+  "timestamp_utc": "2026-09-18T07:02:52Z",
+  "summary_path": "summary.md"
+}
