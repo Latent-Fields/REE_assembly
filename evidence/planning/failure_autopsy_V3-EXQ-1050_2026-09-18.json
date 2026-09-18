@@ -1,0 +1,104 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-18T18:41:55Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1050_mech021_subjective_now_horizon_integration_20260918T010410Z_v3",
+      "queue_id": "V3-EXQ-1050",
+      "claim_ids": [
+        "MECH-021"
+      ],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "discrimination",
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "partial",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED (mechanism+measures+environment all partial); not chargeable to REE"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- C2 (past-window) never instrumented; C1 (future horizon) sign-inconsistent 2/3 seeds",
+        "biological_reference": "partial -- cortical/cerebellar fast-slow prediction (targeted_review_mech_021, 5 lit entries, lit_conf 0.81); translation of a graded integration window",
+        "prerequisites": "present (ARC-008, ARC-005 depends_on implemented); seed-0 warm-up hazard_survival_gate FAILED (hazard_median_last_window 8.5) yet its cells scored green",
+        "implementation": "partial -- ThetaBuffer.summary() is wired, fed and consumed (agent.py:5999, 6120; divergence median strictly >0: 8.5e-6/3.7e-5/6.3e-5) but its effect is negligible: summary_10 vs summary_1 L2 ~1e-5 (floor 1e-3). Consumed but rank-invariant, not literally inert (seed-2 max rolled z_world norm 97.4 vs 108.8 between arms).",
+        "environment": "partial -- hazards static (drift pinned 0), eval 3 hazards vs 1 in warm-up; in-band ticks (~1200-1500/seed) heavily autocorrelated across 20 episodes",
+        "measurement": "partial -- P5 divergence gate worked as designed and caught the inert window; but the readiness gate does not include warm-up survival and its z_world norm ceiling (1e6) is non-binding against observed 24-145",
+        "integration": "coupled but inert in effect (arm trajectories and per-episode contacts identical); cause: z_world temporal near-invariance over the window and/or E3 firing on 119/120 steps (n_e3_ticks 2380 of 2400 vs nominal every 10), so the cross-rate regime MECH-021/MECH-089 assume was never entered",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "graded temporal integration windows across cortical hierarchy (Chaudhuri 2015 timescale hierarchy) + forward model rollout depth",
+        "dependencies": [
+          "z_world that varies over the window",
+          "action-discriminative world_forward",
+          "trained harm landscape"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Instrument/precondition gap (C2 unmeasurable: theta window inert at eval; C1 borderline sign-inconsistent). No suppression asserted; failure mode = precondition_unmet / coupled-but-inert.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1050 (MECH-021, evidence, FAIL): non_contributory. C2 (past-window lift) was never instrumented -- ARM_WIN10 summary_10 was indistinguishable from summary_1 (L2 ~1e-5 vs floor 1e-3) in all 3 seeds, so ARM_WIN1 and ARM_WIN10 produced bit-identical trajectories. C1 (future-horizon depth lift) pooled +0.076 (>= 0.05 margin) but sign-consistent in only 2/3 seeds (seed 0 -0.174, its warm-up hazard-survival gate failed) and the curves are non-monotone. Neither the FALSIFYING nor CONFIRMING branch was reached. pending re-run with the window made live.",
+      "per_claim_recommendation": {
+        "MECH-021": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-021 currently carries NO epistemic_category field; direction stays as the run's own unknown -> epistemic_category: standard",
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py MECH-021: 0 tagging targets; measurement/implementation debt, not granularity debt"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "Theta window is wired, fed and consumed but has negligible effect: summary_10 vs summary_1 differ by ~1e-5 (floor 1e-3) in all 3 seeds, versus ~1e-1 moved by a single ACTION (wf_action_spread 0.107/0.191/0.563). Arms ARM_WIN1/ARM_WIN10 give equal per-episode contacts; C2 was never instrumented. H3 (eval-path buffer feed defect) is REFUTED (divergence median strictly positive); H1 (agent frozen) is constrained (n_inband_ticks mod 119 = 7/22/114, hazards static).",
+        "Fourth candidate cause, recorded but unremarked in the run: E3 fired on 2380 of 2400 steps (n_latched 20) against a configured e3_steps_per_tick=10 (MECH-093 arousal-scaled rate is the candidate mechanism). The cross-rate regime never occurred, and the ~1300 in-band ticks per seed are adjacent-step pseudo-replicates (pooled arf_shallow 0.477).",
+        "Remaining live causes: H2 z_world temporal under-differentiation (v3 observation->z_world binding constraint) and H4 E3-rate collapse. One recording probe discriminates them (z_world step delta, encoded z0 norm, e3 tick period trace, position trace) -- no fan-out portfolio needed.",
+        "C1: pooled +0.076 passes the margin but 2/3 seeds positive (seed 0 -0.174; its warm-up hazard_survival_gate FAILED, hazard_median_last_window 8.5, yet scored green; arf 0.449->0.275, below chance). Curves non-monotone: seed 2 D=20 dip 0.395 then D=30 0.768; seed 1 lift already at D=10 (+0.165), so the D>=20-only/drift reading holds for seeds 0 and 2 only.",
+        "Readiness gap: no warm-up-survival precondition; rolled z_world norm ceiling 1e6 is non-binding (observed 24-145), so drift cannot be separated from integration. Recording gap: z_world step delta, z0 norm, e3 tick period and position trace existed at run time but were not recorded.",
+        "Manifest hygiene: the stored combination_rule string omits the non-degeneracy branch and read literally routes this run to weakens; the code correctly routes to unknown (driver L812-814). Read the direction from evidence_direction / interpretation, never the string."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Confirmed by user 2026-09-18: non_contributory + standard; /queue-experiment same-question re-run (1050a) that (a) diagnoses why E3 ticks ~every step, (b) makes the theta window span a real cross-rate interval, (c) adds warm-up-survival and z_world-norm-ratio readiness gates, (d) records z_world step delta, z0 norm, e3 tick trace, position trace. No substrate entry; brake not fired. Governance chips the follow-on (autopsy does not spawn it)."
+    }
+  ],
+  "read_across_not_adjudicated": [
+    {
+      "bears_on": "MECH-089",
+      "note": "ThetaBuffer summary window has negligible effect at production defaults in this bed; the MECH-089 cross-rate packaging premise is not exercised here (E3 ticks every step). Not adjudicated."
+    }
+  ],
+  "red_team": {
+    "model": "opus",
+    "verdict": "CONTESTED",
+    "disposition_survived": true,
+    "accepted": [
+      "H3 refuted",
+      "H1 constrained",
+      "E3 rate collapse (fourth cause)",
+      "seed-1 D10 lift scoped",
+      "consumed-but-rank-invariant wording",
+      "combination_rule string discrepancy"
+    ],
+    "cheap_confirmers_run": "recompute of pooled C1 (exact), per-cell divergence medians, n_inband mod 119"
+  }
+}
