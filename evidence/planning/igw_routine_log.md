@@ -3253,3 +3253,4 @@ One line per hourly tick. ASCII only.
 2026-09-18T11:21:27Z GC sweep removed 1 orphan worktree(s), kept 14
 2026-09-18T11:22:55Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 257 items, 38 ready, 0 in flight)
 2026-09-18T11:21:27Z SPAWN IGW-20260918-245 skill=/queue-experiment prio=40 uuid=1110fe6e-57c9-4a5b-8c80-1470d658057f pid=90067 worktree=igw-245-proposal-for-mech-042
+2026-09-18T11:56:33Z auto-defer igw-245-proposal-for-mech-042 hash=9387a613f2be for 48h (complete)
