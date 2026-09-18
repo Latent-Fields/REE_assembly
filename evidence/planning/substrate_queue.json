@@ -10297,6 +10297,27 @@
         "landed": "ree-v3 7e093f27cc (instrument + contracts 19->22) and b3cf3d4d10 (docs/substrate record + CLAUDE.md index), both on origin/main.",
         "raised_for_decision": "chip-20260918-sd011-sd020-harm-target-respecification"
       }
+    },
+    {
+      "sd_id": "sd068-staged-restoration-mode",
+      "title": "SD-068 consolidation lesion harness has no staged-RESTORATION mode: run_staged_sweep (consolidation_lesion_harness.py:1806) sweeps DAMAGE only, so MECH-170's predicted RECOVERY order cannot be measured at all. Commissioned by user decision 2026-09-18T22:54Z (option B) on chip-20260918-mech170-carveout-scope.",
+      "node_class": "complicated (buildable)",
+      "status": "CANDIDATE_2026_09_18__commissioned_by_user_option_B__base_sweep_is_buildable_now__ONE_DESIGN_AXIS_PENDING_a_user_choice_of_discriminator_see_the_staged_doc__do_NOT_build_a_naive_descending_sigma_mode",
+      "status_phase": "build_owed",
+      "ready": false,
+      "severity_deliberately_unset_note_2026_09_18": "No severity: this is a MISSING CAPABILITY, not a defect. Nothing already run is corrupted or degraded by the absence of a restoration mode, so per _schema_notes.severity the entry is correctly unmarked ('not-yet-run' bucket) and Step 2.5c takes no action on it. Deliberate, because substrate_paths matches at MODULE granularity and consolidation_lesion_harness.py has 89 importers -- any severity stamp here would gate all of them for a gap that invalidates no result.",
+      "substrate_paths": [
+        "experiments/_lib/consolidation_lesion_harness.py::run_staged_sweep",
+        "experiments/_lib/consolidation_lesion_harness.py::phase_integrity_at_sigma"
+      ],
+      "unblocks_claims": [
+        "MECH-170"
+      ],
+      "implementation_hint": "WHAT IS MISSING. run_staged_sweep (:1806) applies a single uniform diffuse-damage scalar sigma and derives observed_order by ranking phases on damage-tolerance (which phase crosses 50% degradation at the lowest sigma). There is no restoration direction: 'restor' appears exactly ONCE in the 1,900-line harness, at :334, in unrelated prose about SHY flattening attractors. MECH-170 predicts a RECOVERY order under sustained sleep-architecture restoration, which this instrument cannot express. || THE TRAP -- DO NOT BUILD THIS. A 'restoration mode' implemented as the existing sigma grid read in DESCENDING order is NOT a new measurement. phase_integrity_at_sigma (:1029) gives each phase a FRESH agent on purpose (:1039-1042: 'a serial pass would bake in the very error-compounding the non-vacuity contract must avoid'), so each phase's reading is its own static monotone transfer function of sigma; re-indexing that grid downward reproduces the decline order BY ARITHMETIC and would manufacture a false confirmation of MECH-170. This is the same defect species confirmed on SD-071's C3 ladder this session (GFLAG-0351) -- a reparameterisation of an existing measurement presented as an independent check. || WHAT IS BUILDABLE NOW, independent of the open question: a restoration PATH primitive -- damage to a fixed sigma_max, then progressively restore, reading the same three per-phase readouts (nrem_transfer_fidelity :523, _sws_pattern_completion :400, the rem legs) at each restoration point, and reporting the restoration trajectory per phase rather than a single order. || ONE DESIGN AXIS IS gated on puzzle (known rules) -- the missing fact is which discriminator MECH-170's experiment will rest on, which is a USER DECISION, not a build choice, and it determines what this mode must additionally EXPOSE: D1 hysteresis needs ONE agent instance carried across both path directions plus a per-phase hysteresis area (and therefore a deliberate, recorded relaxation of the fresh-agent-per-phase isolation for the restoration arm only); D2 restoration RATE needs a restoration SCHEDULE (a step axis, not a reversed sigma grid) plus per-phase threshold-crossing step counts; D3 selective restoration needs a per-phase restoration MASK (restore phase X, hold the others damaged) and is the mildest, preserving the existing per-phase-independent design. Build the base primitive; do not pick the axis. || READ FIRST: evidence/planning/mech170_staged_restoration_discriminator_staged_20260918.md -- it states the open question, the three candidates with costs, and the decision the user must make. Experiment-layer only (experiments/_lib/), no ree_core change expected.",
+      "blocks_experiments": [
+        "EXP-0872 (EVB-1449, MECH-170)"
+      ],
+      "provenance_2026_09_18": "Commissioned by user decision 2026-09-18T22:54:02Z (real AskUserQuestion, Orchestrator decision lane orchestrate-20260918-1840-cloud4) answering decision chip chip-20260918-mech170-carveout-scope with OPTION B -- commission the build -- over the raising session's recommendation to park. The MECH-121 purpose-contract carve-out (GFLAG-0319, resolved) is NOT widened and does not reach MECH-170. Entry written by science-20260918-sd071-carveout-and-run, which holds the analysis; it deliberately did NOT start /implement-substrate, so IGW auto-discovery stages the build as its own consented chip. Work chip chip-proposal-exp-0905-paced stays open and unclaimed and must NOT be worked as a /queue-experiment item until the discriminator decision is taken."
     }
   ],
   "schema_version": "substrate_queue/v2",
