@@ -3212,3 +3212,7 @@ One line per hourly tick. ASCII only.
 2026-09-18T02:54:26Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
 2026-09-18T02:52:42Z SPAWN IGW-20260918-243 skill=/queue-experiment prio=40 uuid=8732f3a2-8aae-45a0-b4fd-597497f062b1 pid=91894 worktree=igw-243-proposal-for-mech-034
 2026-09-18T03:06:40Z auto-defer igw-243-proposal-for-mech-034 hash=091c74bd3f1f for 48h (complete)
+2026-09-18T03:08:03Z complete igw-243-proposal-for-mech-034 spawned->completed outcome=USEFUL_LANDED: MECH-034 NOT queued: Step 2.5a probe shows MECH-284 staleness is not a viability
+2026-09-18T03:59:16Z GC removed worktree igw-243-proposal-for-mech-034 (removed; branch deleted)
+2026-09-18T03:57:55Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-18T03:59:31Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 35 ready, 0 in flight)
