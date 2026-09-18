@@ -1,10 +1,22 @@
 # Pending Experiment Review
 
-Generated: `2026-09-17T18:32:26Z`  
+Generated: `2026-09-18T05:02:48Z`  
 Last review: `2026-09-17T18:30:55Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_1050_mech021_subjective_now_horizon_integration_20260918T010410Z_v3` | 2026-09-18T01:04 | MECH-021 | — |
+
+## Evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
+
+These `experiment_purpose: "evidence"` results carry a manifest-level `non_degenerate: false` (or a `false` entry in `non_degenerate_per_claim`) -- the driver's own pre-registered non-degeneracy check on its load-bearing criterion failed. The indexer already excludes them from scoring (`scoring_excluded: "degenerate"`), but nothing else routes them for review: `_compute_adjudication` only fires for `experiment_purpose` in {diagnostic, baseline}, so an evidence-purpose degenerate PASS/FAIL sails into the plain PASS/FAIL table above with no flag (confirmed: V3-EXQ-1007). **Route to `/failure-autopsy` (it accepts a PASS target too); do not verify-and-close.**
+
+| Run ID | Status | Claims | Degeneracy reason |
+|--------|--------|--------|--------------------|
+| `v3_exq_1050_mech021_subjective_now_horizon_integration_20260918T010410Z_v3` | FAIL | MECH-021 | PARTIAL non-vacuity: arm 'ARM_WIN10_s0' failed theta_summary_divergence; arm 'ARM_WIN10_s1' failed theta_summary_diverge |
 
 ---
 
