@@ -1,0 +1,292 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1057_mech017_reality_consolidation_replay_additive_budget",
+  "run_id": "v3_exq_1057_mech017_reality_consolidation_replay_additive_budget_20260918T211119Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-18T21:11:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "3e2e8bae678810f4561db73a5baa6f7ac120140c",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "forgetting_present_in_control",
+        "measured": 2.4853917328308244,
+        "threshold": 1.1,
+        "direction": "lower",
+        "control": "MEAN over seeds, ARM_C only (no extra training): the WITHIN-STRATUM ratio (EARLY-probe E1 MSE at end of life) / (same probe set, same arm, measured immediately after capture, before the late block). Same probe tensors on both sides, so intrinsic regime difficulty cancels -- a cross-stratum early/late ratio would not. `met` is the same central-tendency comparison the measured value reports. Below the floor the model has not forgotten the early states, so there is nothing for replay to counter and all arms tie. Read off an arm the A-vs-B verdict does not use.",
+        "worst_seed": 456,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_window_separation",
+        "measured": 0.7333333333333334,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "min over seeds of (ARM_A early-regime replay share - ARM_B early-regime replay share). This is the MANIPULATION itself: if the two windows do not separate, A and B are the same run and 'A == B' says nothing about MECH-017. Caught exactly this in the first smoke of this script.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "manipulation_reaches_dv",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "seeds where ARM_A and ARM_B produced DIFFERENT early-probe E1 MSE. A bit-identical pair is a dead manipulation, not a null result.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e1_has_skill_over_persistence_compared_arms",
+        "measured": 0.1054424323446228,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "WORST SEED of max(ARM_A skill, ARM_B skill), where skill = 1 - (E1 early-probe MSE / do-nothing persistence-baseline MSE on the same windows). Ranges over the two arms C1/C3 actually compare -- NOT the ARM_C reference, whose sub-persistence skill is the phenomenon under study. A seed where NEITHER compared arm beats a do-nothing predictor makes that seed's A-vs-B difference noise about noise.",
+        "offending_seed": 123,
+        "min_skill_over_compared_arms": -0.6626848236431526,
+        "min_skill_arm_c_reference_only": -1.2010222048636243,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "gradient_budget_matched",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "|extra gradient steps ARM_A - ARM_B|. This is the DESIGN INVARIANT that makes C1/C3 a replay result rather than a compute result, so a mismatch is an INSTRUMENT failure, not evidence about MECH-017. Red-team Finding 1 (CONFIRMED): as a pass/fail CRITERION it routed a budget mismatch to `weakens`; as a precondition it correctly routes to substrate_not_ready_requeue.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_budget_is_a_plus_b",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "|extra gradient steps ARM_D - (ARM_A + ARM_B)|. ARM_D is deliberately budget-UNMATCHED against A and B -- that IS this run's manipulation -- so the gradient_budget_matched gate above deliberately still compares A against B ONLY. This gate is its counterpart for D: it asserts the budget was genuinely ADDED (A's whole-buffer pass PLUS B's recent-window pass, 2 x CMC_STEPS per point) rather than reallocated. If D's budget is not exactly A+B the dose of the manipulation is not what was pre-registered, which is an INSTRUMENT failure, not evidence about the reallocation question. Measured: D=384, A=192, B=192.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_arm_retains_replay_gain",
+        "measured": 0.0,
+        "threshold": 4.0,
+        "direction": "lower",
+        "control": "seeds with e1_holdout_mse_early(ARM_D) < e1_holdout_mse_early(ARM_B) -- V3-EXQ-1048's C1 form with ARM_D substituted for ARM_A, same comparator arm and same seed-majority constant. ARM_D is only an ADDITIVE-BUDGET arm if it is still doing the REPLAY the budget was added for. Its second pass is byte-identical to ARM_B's single pass (same window, same lr, same fresh per-module Adam) and runs LAST, immediately before the probes, so a last-writer-wins overwrite would leave D behaving as B -- making C4 a B-vs-B comparison that passes trivially and would be recorded as 'the recency cost was a reallocation artefact'. Below this floor the additive manipulation did not hold and the run routes to substrate_not_ready_requeue instead of to a MECH-017 verdict.",
+        "arm_d_mean_early": 0.00017398279812065693,
+        "arm_b_mean_early": 0.00014698203249281506,
+        "arm_a_mean_early": 8.024892273776155e-05,
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "additive_manipulation_reaches_dv",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "seeds where ARM_D and ARM_B produced DIFFERENT LATE-probe E1 MSE -- the exact leg the load-bearing C4 reads. Same form and same threshold as manipulation_reaches_dv above, re-pointed at the compared pair: a bit-identical D/B pair is a dead manipulation, and would otherwise be scored as a clean C4 PASS ('D is not worse than B') on no manipulation at all.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_covers_early_regime",
+        "measured": 0.7333333333333334,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of the mean early-regime share of the buffer slice visible at the LATE-block consolidation points. compute_prediction_loss draws start_idx ~ Uniform[0, buf_len-1), so this share IS the per-draw probability of an early-regime trace. ARM_B comparator = 0.0000.",
+        "arm_b_share": 0.0,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "consolidation_updated_e1",
+        "measured": 96.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of CrossModuleConsolidator's own updates_e1 counter -- the pass must actually move the module the load-bearing DV reads.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "consolidation_updated_e2",
+        "measured": 96.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of updates_e2 (E2 SELF-forward; the secondary readout).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "early_late_state_divergence",
+        "measured": 0.8780487804878049,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "min over ALL cells of the Jaccard DISTANCE between early-regime and late-regime occupied grid cells. If old and recent states coincide there is nothing for replay to add (sleep_substrate:GAP-2 vacuous case).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_set_identical_across_arms",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "sha256 over each cell's concatenated probe [z_self, z_world] tensors; all four arms of a seed must agree EXACTLY, which is what makes the probe set FIXED rather than arm-dependent.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_target_variance",
+        "measured": 0.006881691515445709,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "min over all cells/strata of the variance of the held-out E1 target tensor -- a frozen target would make the MSE trivially satisfiable.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd016_writepath_mode_off",
+        "measured": 20.0,
+        "threshold": 20.0,
+        "direction": "lower",
+        "control": "runtime read of E1Config.sd016_writepath_mode in every cell. 'off' means the open CORRUPTING defect contextmemory-write-path-addressing-degeneracy (e1_deep.py::ContextMemory.write) is never called on this run's path.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {}
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2720142185a7e8541df5137ad2aa3ace99a206b202cc78cd30ea68c3cfe5f860",
+  "substrate_commit": {
+    "commit": "3e2e8bae678810f4561db73a5baa6f7ac120140c",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 516.4758205413818,
+  "config": {
+    "arms": [
+      "ARM_A_OFFLINE_REPLAY",
+      "ARM_B_BUDGET_MATCHED_RECENT",
+      "ARM_C_NO_EXTRA_TRAINING",
+      "ARM_D_ADDITIVE_BUDGET"
+    ],
+    "seeds": [
+      42,
+      123,
+      456,
+      2026,
+      45
+    ],
+    "grid_size": 9,
+    "num_hazards": 1,
+    "num_resources": 1,
+    "self_dim": 16,
+    "world_dim": 16,
+    "alpha_world": 0.9,
+    "alpha_self": 0.9,
+    "episode_steps": 30,
+    "warmup_episodes": 6,
+    "early_episodes": 6,
+    "late_episodes": 6,
+    "probe_episodes": 4,
+    "train_episodes": 18,
+    "consolidate_every": 3,
+    "recent_window": 90,
+    "cmc_steps": 24,
+    "wake_steps": 24,
+    "cmc_lr": 0.0002,
+    "cmc_batch": 16,
+    "early_start": [
+      2,
+      2
+    ],
+    "late_start": [
+      6,
+      6
+    ],
+    "hazards": [
+      [
+        4,
+        4
+      ]
+    ],
+    "resources": [
+      [
+        4,
+        2
+      ]
+    ],
+    "registered_thresholds": {
+      "min_window_separation": 0.2,
+      "persistence_skill_floor": 0.0,
+      "wake_lr": 0.001,
+      "cmc_lr": 0.0002,
+      "sign_consistency_required": 4,
+      "late_tol": 0.1,
+      "min_rel_gain_early": 0.05,
+      "forgetting_floor": 1.1,
+      "replay_early_share_floor": 0.2,
+      "updates_floor": 1.0,
+      "state_divergence_floor": 0.2,
+      "probe_target_var_floor": 0.0001
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    2026,
+    45
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 20,
+    "goal_state_present": false
+  }
+}
