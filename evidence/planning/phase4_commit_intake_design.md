@@ -314,6 +314,75 @@ is substantially live, per the parent plan's PHASE-3 node.
   degrade-to-git (the transport already does), so code can land freely
   and activation is a clean, separate, authorised event per deploy.
 
+- **DP-12 -- adoption is ASSUMED, not enforced, and section 8 is what
+  makes that dangerous (added 2026-09-18, user-directed).** Every benefit
+  in this document is conditional on every writer of a routed file
+  actually routing. One non-compliant writer, on one box, reintroduces the
+  concurrent-writer class for that file -- and does so INVISIBLY: the
+  routed clients keep acking `applied` while the file races exactly as
+  before, so the failure looks like the old failures and is attributed to
+  them.
+
+  The asymmetry that matters: **partial adoption is not partial benefit.**
+  Section 8 retires a file's DEFENCES once it routes. Retire the doctrine
+  while one unrouted writer persists and the mitigation is gone while the
+  hazard is not -- strictly worse than never having routed that file. So
+  **enforcement (or at minimum the measurement below) must LEAD section 8's
+  decommissioning, never follow it.** This is the one DP that can make the
+  plan net-negative if it is got wrong.
+
+  **Instruction will not carry it, and the record is against it.** The
+  first-action claim instruction is documented in root CLAUDE.md as
+  advisory prompt text and confirmed unreliable; the code-level auto-claim
+  that tried to close that gap was reverted (2026-08-22..25);
+  `.claude/settings.json` is gitignored and per-machine, so hook coverage
+  is deliberately non-uniform (the hub/worker exclusion is Closed on
+  measurement); and root CLAUDE.md itself carried a factually false claim
+  about ree-v3 CI from 2026-07-27 to 2026-09-18 without any process
+  tripping over it. Docs, skills and prompts are not a control surface.
+
+  **The only uniform lever is the REMOTE.** Measured 2026-09-18: neither
+  `Latent-Fields/ree-v3` nor `Latent-Fields/REE_assembly` has branch
+  protection at all -- the API returns `Branch not protected` -- so today
+  any key can push anything. Restricting push on the default branches to
+  the hub writer's key makes non-compliance IMPOSSIBLE rather than
+  discouraged, uniformly across the Mac, the workers and every automation,
+  regardless of what any local hook says or fails to say.
+
+  **Unresolved tension with DP-2 -- settle it BEFORE pulling that lever.**
+  DP-2's fallback is "degrade to the git path", which a push-restricted
+  remote refuses. Restricting push therefore removes the degrade route for
+  every routed file at once, and would do it during precisely the incident
+  (hub unreachable) when it is most needed. The `dispatcher_control.json`
+  row already establishes the shape of an answer -- retain a git render as
+  the degraded read plus a documented direct-ssh break-glass for the case
+  that must survive a hub outage -- but the equivalent for editorial files
+  has to be DECIDED, not discovered mid-outage. Note also that the "no
+  commit guards on the hub or the cloud workers" rule (root CLAUDE.md,
+  Closed on measurement) is premised on the hub's phase3 writers BEING the
+  concurrent writer such a gate would wedge; if the hub becomes the sole
+  serialiser that premise changes, and the rule must be re-derived rather
+  than inherited.
+
+  **Cheap interim, and it should precede both decommissioning and
+  enforcement: MEASURE non-compliance instead of assuming it away.** Per
+  routed file, count commits touching it whose committer is not the hub
+  writer, over a window -- the data is already in git log and needs no new
+  machinery. That turns "everyone follows the plan" from an assumption into
+  a number, gives section 7's soak criteria the compliance axis they
+  currently lack (they measure whether the ROUTE works, not whether it is
+  the only route taken), and is the evidence that would justify -- or
+  defer -- the remote-side lever.
+
+  **Scope note:** this DP is about files already in section 5's routing
+  table. Whether the code plane should join that table is a separate and
+  currently open question; section 5's last row excludes it on the grounds
+  that it "has its own defence (integration branches)", and the 2026-09-17
+  four-session pre-commit-gate incident is evidence that that defence is
+  thinner than the row assumes -- integration branches serialise COMMITS
+  and do nothing about concurrent sessions sharing one WORKING TREE. Not
+  settled here.
+
 ## 10. Sequencing (next slices, in order)
 
 > **2026-08-29 reconciliation (session `wedge-clear-20260829`):** the
@@ -348,7 +417,9 @@ is substantially live, per the parent plan's PHASE-3 node.
    is warranted by 409 churn.
 7. **Typed queue amend/remove endpoints** (option C completion).
 8. **PHASE-3 doctrine pass** using section 8's ledger, once the table is
-   substantially live.
+   substantially live -- and gated on DP-12: run the per-file
+   non-compliance count first, and do not retire a file's defences while
+   commits to it are still arriving from anything but the hub writer.
 
 Each slice: claim-first, tests in `ree-v3/coordinator/` + scripts corpus,
 full coordinator suite on a worker before landing, deploy = hub pull,
