@@ -616,17 +616,54 @@ document. Read-only summary -- this design session did not touch `ree_core/`.
   `goal_match` and on the edge; the successor's own nature is never consulted.
   **This constraint binds every future stage in this document too.**
 
-### Open wiring debt (stage 1)
+### Config wiring -- CLOSED 2026-09-17 (`ree-v3` `eabecb2`)
 
-`HippocampalConfig.use_possibility_topology` **does not exist yet** --
+This section recorded an open debt when first written, a few hours before it was
+discharged; it is kept as the resolved record rather than deleted, because the
+form the fix took is architecturally load-bearing for every later stage.
+
+**The debt.** `HippocampalConfig.use_possibility_topology` did not exist --
 `ree_core/utils/config.py` was held by a concurrent session at build time, so
-`HippocampalModule.__init__` resolves the flag through `getattr(..., False)` and
-the block is inert. The interim wiring path is
-`HippocampalModule.attach_possibility_topology()`, which wires both call sites
-(write side `AnchorSet`, read side `GhostGoalBank`) or raises -- attaching to
-only one produces a store nothing writes or nothing reads. **Landing that config
-knob is a prerequisite for the stage-2b falsifier**, which cannot configure the
-arms without it.
+`HippocampalModule.__init__` resolved the flag through `getattr(..., False)` and
+the block was inert, reachable only via the interim
+`HippocampalModule.attach_possibility_topology()`.
+
+**How it was closed, and why NOT as a nested config object.** The obvious fix --
+a `possibility_topology_config: PossibilityTopologyConfig` field mirroring
+`ghost_goal_bank_config` -- is **impossible**: `possibility_topology` imports
+`AnchorKey` from `anchor_set`, which imports `config`, so a nested field would
+close a circular import. `eabecb2` therefore lands **FIVE FLAT SCALARS** on
+`HippocampalConfig` and has `HippocampalModule` assemble the dataclass itself:
+
+| knob | default |
+|---|---|
+| `use_possibility_topology` | `False` |
+| `possibility_topology_seed_relation` | `"enables"` |
+| `possibility_topology_relation_weight` | `0.5` |
+| `possibility_topology_max_successors_per_parent` | `2` |
+| `possibility_topology_max_relational_admits` | `8` |
+| `possibility_topology_write_on_anchor_remap` | `True` |
+
+threaded through `REEConfig.from_dims` (config.py:8147-8150, :9699-9701).
+
+**Consequence for later stages -- read this before adding a second relation.**
+The import cycle is a property of the node primitive, not of this one relation:
+any relation keyed on `AnchorKey` inherits it. So **stage 2 and stage 3 knobs
+must also be flat scalars on `HippocampalConfig`**, not a growing nested config
+object, and a stage that wants structured per-relation configuration has to
+solve the cycle first (or accept a flat namespace per relation). Do not
+"tidy" the flat knobs into a nested field later; it will not import.
+
+**Contract coverage** (`ree-v3/tests/contracts/test_sd_097_possibility_topology.py`,
+18 tests, 30 passed on `ree-worker-4` with the MECH-293 neighbour): O1-O4 pin the
+OFF path including disabled-with-edges **bit-identity** -- the property SD-098's
+live falsifier reads; W1/W2 pin the flat-knob construction and the
+`use_anchor_sets` precondition raise; S1 pins that **no stored node-type field**
+exists anywhere, which is SD-098's comparison arm; R1 pins that `requires` and
+`is_part_of` are reachable with one `register_relation()` call and no schema
+change.
+
+The stage-2b falsifier's configuration prerequisite is therefore **met**.
 
 ---
 
