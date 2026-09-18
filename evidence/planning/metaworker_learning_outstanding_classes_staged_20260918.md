@@ -1,0 +1,119 @@
+# Metaworker-learning: outstanding classes, batched pass (staged)
+
+**Status: AWAITING USER REVIEW**
+Written 2026-09-18T18:32Z by session `ml-outstanding-classes-20260918` (chip
+`chip-20260918-metaworker-learning-all-outstanding-classes`). Nothing below has been built or landed.
+Counts are re-derived from live chip resolution notes this session (Step 1 discipline: same root cause,
+from resolution notes, withdrawn false positives excluded). Full per-class working (four research passes)
+is summarised here; the per-class agent reports were scratch files, so the load-bearing evidence is
+quoted inline.
+
+## Verdict table
+
+| Class | Verdict | Why |
+|---|---|---|
+| P1 refwedge / checkoutdiverged | **DESIGN** (narrow) | Root cause F (DLAPTOP REE_Working pure ref lag, ~9 instances) has no fix landed. |
+| P2 staleclaim | **HAND BACK** (optional tuning only) | 47% self-resolve, 29% landed-unclosed bookkeeping, 4% true abandonment. Volume is expected churn. |
+| P3 statusregress | **DESIGN + REPAIR** | One genuine coordinator-side bug (commit `70f6849fab`, 22 rows still 19 open). |
+| P4 fleet-health | **DESIGN** (build chip exists) | 6 root causes, 1 clean true positive in 22 repair chips. |
+| P5 daemondrift | **HAND BACK** | All true positives; restarts stay manual (user decision 2026-09-10). |
+| P6a deployeddrift | **HAND BACK** | One cause; Orchestrator sudo redeploy 09-15, no chip since. |
+| P6b pausepressure | **WATCH** | Root-caused and built (`394308564`); watch for generation 11. |
+| P7 metaworkergc / strandedwt / scriptscorpus / routedwriter | **NOT LEARNING JOBS** | By-design or owned elsewhere; not re-surveyed. |
+
+The shared-fix hypothesis (P4 expectation gate covering P5/P6) fails: P5/P6a are true positives whose
+intended actor is a human or consent. The one genuinely shared cause, the generation counter shared by four
+chip families, is already fixed.
+
+## P1 -- refwedge / checkoutdiverged
+
+Population: 57 non-withdrawn instance chips (36 DLAPTOP, 21 cloud), 08-15..09-18. Root causes:
+A route-A false negatives (~11, fixed 08-18 route C); B prune push default (1-2, fixed 08-19); C the latch
+(~30, R1 `f0eab5fc6` 08-28, confounded by coordinator cutover); D checkoutdiverged sync-repair defects
+(~7, R1/R2/R3/R5 by 09-07); E IGW tick stale-base commits on REE_assembly (8, fixed 09-16 `b4a44af59`,
+`25dc09539`, too early to judge); **F DLAPTOP REE_Working pure ref lag (~9, NO FIX)**.
+
+The healer-topology candidate fits repair LATENCY (DLAPTOP detect lag ~56 min vs 11-15; duration ~4.8h vs
+1.3-2.4h) but NOT occurrence: cloud boxes wedged ~9 times with healers resident and stopped after R1/R3/R4.
+The better-fitting difference is that DLAPTOP's checkout is human-live, so the automated adopt cannot run;
+human authorisation is the residual gate. Routing the audit to cloud healers covers the audit half of up to
+~25 instances and prevents 0 occurrences: ship it as a latency/toil fix, not a cure.
+
+**Proposed (in order):**
+1. Run the owed R1 re-measure (`chip-20260910-merge-refwedge-class`, never run) before building.
+2. `scripts/hygiene_routine_tick.py`: split the wedge chip into an UNPINNED audit chip and a DLAPTOP-pinned,
+   human-gated MOVE chip (host-pin text near L742, `_HOST_DECLARATION_MARKERS` near L5995).
+3. `scripts/ree_commit.py`: after a throwaway-worktree push on the shared checkout, extend post-push
+   convergence to the F shape using existing routes A/B/C only. Fixture: 09-18 g5 (10 ahead, all redundant).
+4. Bring the R3 hybrid into the Mac's `ree_git_sync_repair.sh` for clean-tree, known-lag paths.
+
+Explicitly NOT proposed: relaxing the refusal, a heuristic third proof route, a resident Mac healer.
+
+**Held-out check:** only 3 non-degenerate cases (08-25 wedge at 54 ahead; g5 09-18; REE_assembly g8), all
+differing on latency not outcome. Three others were identical or self-cleared. Finding: scope item 2 as a
+latency/toil change, do not present it as a rate fix.
+
+## P3 -- statusregress
+
+53 chips; ~44-47 detector false positives (legitimate unclaims, self-heals); 5-8 git-side stale-disk clobbers
+that self-healed (led to the monotone-terminal guard `ddbafb8243`); **2 real done->open regressions**:
+`60a8d779cd` (git-side, self-healed) and `70f6849fab` (2026-09-18, 22 rows genuine, coordinator-side).
+
+`70f6849fab` changed 1183 rows; 22 went terminal->open with resolution fields nulled, and 1178 lost `archived`
+markers. Most likely mechanism (from code, NOT confirmed on the hub -- no DB access from this box):
+`upsert_chip` in `ree-v3/coordinator/db.py` Case B (~L546-547, "only git moved -> adopt git") adopts a
+differing incoming entry with no terminal check; the terminal guard exists only in the final `else`
+(L548-553). Candidate stale sources: shadow-sync `-stale-local` fallback
+(`task_claim_chip_shadow_sync.py` L107-121) and the materializer `ingest()`. Confirm from the hub journals
+around 12:51-12:55Z and `updated_at` on the 22 rows before building.
+
+**Repair (data, separate from design):** 19 of the 22 still open (3 re-resolved by others). Restore via
+`chip_ledger.py resolve --chip-ref <ref> --status done|withdrawn --note ...` (16 done, 2 withdrawn), original
+`resolved_at` recorded in the note, lost note text from `70f6849fab^`. Never hand-edit TASK_CHIPS.json.
+
+**Proposed fix:** hoist the terminal-status guard above the Case A/B split in `upsert_chip`; refuse incoming
+entries that drop an `archived` marker; mirror the guard in `upsert_task_claim`; refuse the `-stale-local`
+fallback once the DB has rendered rows; add a materializer tripwire that fails closed when a render flips
+many rows terminal->open.
+
+**Held-out check:** one clean differing case (`70f6849fab` itself); others are controls. A deliberate reopen
+(`resolve --status open`, e.g. `0b395755f`) would be newly blocked, which needs a decision on whether reopen
+stays supported. Finding: this rule is scoped to its motivating incident; ship as a narrow monotone guard and
+say so.
+
+## P4 -- fleet-health
+
+Six root causes in `check_dispatch_fleet_health.py`; precision 1 clean true positive in 22 repair chips
+(~33 sessions). Lease-stop case (09-17) shipped nothing. A 09-18 live reading still flags 2 of 2 machines
+that are both `retired:true` / deliberately stopped.
+
+**Proposed:** read `dispatcher_pauses.json` and `dispatcher_control.json` before issuing a verdict; add a
+non-fault "unobservable"/"expected-stopped" status outside `FAULT_STATUSES`; fix L1046-1054 so unobservable
+boxes stop minting repair chips; mirror the Step 1 wording in `metaworker-dispatch` SKILL.md in both
+`.claude/` and `.agents/`. This IS the open build chip `chip-20260918-fleethealth-gate-on-declared-expectation`.
+
+**Held-out (differ):** ree-cloud-4 lease stop since 09-14 (old flags ALIVE-STALLED, new silent); both
+dispatchers retired since 08-25 (old flags 2/2, new silent); SSH auth gap 08-20 (old faults innocent box, new
+observability only). A fourth (scaler power-off) is soft. Adequate: 3 clean cases; the true positive (a
+dispatcher that rebooted itself) is flagged either way.
+
+## P2 / P5 / P6 -- handed back
+
+- **P2:** optional tick-side mint grace (keep the 6h audit threshold and G/P auto-close; mint only at age
+  >=12h or stale on two ticks >=3h apart). Would suppress ~62/66 self-resolved and all 12 live-owner false
+  positives; delays true-abandonment review ~6h. Real gain ~12 adjudications in 6 weeks. All four held-out
+  cases come from the motivating window, so run GOV-HELDOUT-1 on August cases first. Never auto-close
+  beyond G and P.
+- **P5 / P6a:** true positives; restart is human/consent-gated by decision (auto-restart disproven by
+  held-out check; auto-redeploy rejected 08-26). Not a detector defect.
+- **P6b:** watch for generation 11 only.
+
+## Honest counterweight
+
+Held-out validation and this whole batched pass cost real cycles; two of the three DESIGN items have thin
+held-out evidence (P1: latency-only, P3: one case). That is stated rather than padded.
+
+## Ask (one decision chip)
+
+Options: (A) proceed with P3 fix + repair, P4 build (existing chip), P1 steps 1-2 only; hand back P2/P5/P6a;
+(B) constrain to the P3 data repair and P4 only; (C) hold everything.
