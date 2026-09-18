@@ -3237,3 +3237,6 @@ One line per hourly tick. ASCII only.
 2026-09-18T07:15:55Z SPAWN IGW-20260918-245 skill=/queue-experiment prio=40 uuid=62e70925-f3df-493d-9fce-5a669ce50059 pid=70647 worktree=igw-245-proposal-for-mech-038
 2026-09-18T07:28:30Z auto-defer igw-245-proposal-for-mech-038 hash=ba2a85308253 for 48h (complete)
 2026-09-18T07:31:26Z complete igw-245-proposal-for-mech-038 spawned->completed outcome=USEFUL_LANDED: MECH-038 substrate-blocked: marked EXP-0783 blocked_substrate (REE_assembly 7f5e
+2026-09-18T08:25:09Z GC removed worktree igw-245-proposal-for-mech-038 (removed; branch deleted)
+2026-09-18T08:22:53Z GC sweep removed 1 orphan worktree(s), kept 14
+2026-09-18T08:25:32Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 257 items, 38 ready, 0 in flight)
