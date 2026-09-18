@@ -29,11 +29,11 @@ observation
   -> z_world / E1-E2
   -> affordance-and-action geometry
   -> competing approach / avoidance / investigation tendencies
-  -> E3 and ethical commitment boundary
+  -> E3 / commitment boundary
   -> motor policy / action
 ```
 
-The bridge should turn a representation of the world into a representation of **what this organism can now do in this world**, then make the consequences of those possibilities available to competing value, viability, social, and ethical processes before a policy is committed.
+The bridge should turn a representation of the world into a representation of **what this organism can now do in this world**, then make the consequences of those possibilities available to competing viability, affective, and social processes before a policy is committed. Later cognitive systems can reconstruct, compare and generalise the grounds of that organisation.
 
 This is a stronger formulation than “perception feeds action.” It says that sensory information may be progressively reformatted from a description of what is present into a field of reachable, action-conditioned futures.
 
@@ -101,7 +101,7 @@ Let the system’s present state include:
 `z_world` — inferred world structure  
 `z_self` — body, needs, capabilities, commitments and current position  
 `C` — control state: precision, mode, urgency, uncertainty, inhibition  
-`K` — known constraints, including harm and responsibility constraints
+`K` — commitments, learned relational regularities, and later-reconstructible constraint structure
 
 The bridge constructs something like:
 
@@ -112,6 +112,7 @@ where `A_t` is not a chosen action. It is a structured set of possible action tr
 - feasibility from the present organism/world state;
 - expected state transitions;
 - expected self-maintenance and harm/benefit consequences;
+- affectively loaded social consequences, including fast empathic relevance where present;
 - uncertainty and provenance;
 - effects on other agents where such models exist;
 - the processing phase: orienting, imagining, preparing, acting, or reviewing.
@@ -142,7 +143,8 @@ proposal
   + predicted consequences
   + confidence / uncertainty
   + provenance
-  + constraint exposure
+  + affective / relational exposure
+  + cognitively reconstructible grounds, where development makes them available
   + current stability / dominance
 ```
 
@@ -157,7 +159,8 @@ It should govern a change in causal jurisdiction:
 ```
 represented possibility
   -> receiver-potent prepared tendency
-  -> constraint-checked candidate
+  -> affectively shaped candidate
+  -> cognitively reconstructible comparison, where available
   -> committed policy
   -> executable motor sequence
 ```
@@ -191,28 +194,23 @@ This links directly to the earlier “phase as address” thought. The differenc
 
 ---
 
-## Ethical consequence: value must enter before motor finality
+## Ethical organisation begins in affect before it is cognitively reconstructed
 
-The bridge creates a natural location for ethics without imagining that ethics floats outside action.
+The bridge creates a natural location for ethics without imagining that an abstract ethical evaluator floats outside action, or that it is fully present from the beginning.
 
-An ethically relevant prediction is not only “this action has negative value.” It may be:
+The more developmentally faithful possibility is that what later becomes ethical thought begins as affectively and socially organised consequence. Fast empathy and other empathy systems make another organism’s distress, vulnerability, agency, or affiliation status action-relevant. This changes the shape and felt urgency of the candidate field before the organism can articulate a moral rule or explicitly compare competing principles.
 
-- this path exposes another organism to harm;
-- the harm is preventable by a different reachable path;
+Thus an ethically important prediction is initially not necessarily “this action violates rule X.” It may be a structured affective-relational change:
+
+- this path predicts distress, threat, loss of agency, or rupture for another;
+- an alternative path predicts protection, repair, affiliation, or preserved joint possibility;
 - the prediction is uncertain or weakly evidenced;
 - the action would close off later repair;
-- the action conflicts with an extant commitment;
-- a pause or information-seeking action preserves more responsible future agency.
+- a pause or information-seeking action preserves both organisms’ future agency.
 
-Therefore, ethical processing can act at more than one point:
+Later cognitive systems can reconstruct these action-ground relations, compare counterfactuals, retain provenance, generalise beyond the immediate emotional situation, and notice when an immediate affective pull is miscalibrated. This later reconstruction is crucial; it is not the origin of ethical relevance.
 
-- reshape the affordance field by marking trajectories as prohibited, costly, or requiring more evidence;
-- alter precision or stability of competing tendencies;
-- set a veto or higher commitment threshold;
-- require a specific counterfactual comparison;
-- preserve a route for re-opening after action when outcome evidence conflicts with prediction.
-
-This is consonant with “we never needed a ruler; we needed an umpire.” The ethical system need not author every action. It needs jurisdiction over whether a candidate trajectory may become causally privileged.
+So E3 should not be framed as a cold ethical veto that adds morality after value. It is the umpire of affectively shaped, socially consequential trajectories: it can maintain contestability, request evidence, preserve re-opening routes, and prevent a locally dominant tendency from prematurely gaining jurisdiction.
 
 ---
 
@@ -229,16 +227,16 @@ sensation -> simple reachable action -> consequence -> retained sensorimotor con
 Later:
 
 ```
-world regularity -> action-conditioned affordance -> multi-step rollout -> competing tendency -> constraint-sensitive commitment
+world regularity -> action-conditioned affordance -> multi-step rollout -> competing tendency -> affectively and socially shaped commitment
 ```
 
 Later still, with other-agent models:
 
 ```
-my action -> predicted other state / agency -> social consequence -> responsible choice
+my action -> predicted other state / agency -> fast empathic consequence -> later cognitive reconstruction -> responsible choice
 ```
 
-The architecture should not presume adult-like orbitofrontal concepts at the beginning. It should let approach, avoidance, investigation and attachment-like behaviours emerge from the organism’s own viability and learning history, then progressively become available to social and ethical counterfactuals.
+The architecture should not presume adult-like orbitofrontal concepts at the beginning. It should let approach, avoidance, investigation and attachment-like behaviours emerge from the organism’s own viability and learning history, then progressively become available to social counterfactuals and to the later cognitive reconstruction of ethical grounds.
 
 ---
 
@@ -306,7 +304,7 @@ The key dependent measures are not just total reward. They include anticipation 
 - **Premature narrowing:** alternatives are eliminated during motor preparation before uncertainty or ethical constraints can act.
 - **Endless alternation:** competing tendencies never achieve dominance or escalation into information gathering, making the organism inert.
 - **Flat valuation:** all relevant consequences are collapsed into a single score too early, destroying provenance and contestability.
-- **Ethics as afterthought:** harm/other-agent prediction reaches the system only after motor selection.
+- **Ethics as afterthought:** social and empathic consequence reaches the system only after motor selection, or is treated as an abstract rule detached from its affective developmental origin.
 - **Over-literal neuroscience:** REE imports named cortical regions rather than the computational constraints suggested by the evidence.
 - **Local success without organismal benefit:** a neat subspace metric improves while behaviour, viability, learning or responsible action does not.
 
@@ -314,7 +312,7 @@ The key dependent measures are not just total reward. They include anticipation 
 
 ## Compact formulation
 
-> **The path from sensory input to motor output should be modelled as a changing geometry of reachable, consequence-bearing possibilities. Parietal-like processing supplies action-conditioned affordance structure; orbitofrontal-like dynamics preserve and contest rival action tendencies; E3 and the ethical boundary decide which tendency gains jurisdiction to become committed behaviour.**
+> **The path from sensory input to motor output should be modelled as a changing geometry of reachable, affectively and socially consequence-bearing possibilities. Parietal-like processing supplies action-conditioned affordance structure; orbitofrontal-like dynamics preserve and contest rival action tendencies; E3 decides which tendency gains jurisdiction to become committed behaviour, while later cognition can reconstruct and interrogate the ethical grounds of that organisation.**
 
 The bridge is therefore neither a new ruler nor an action selector added beside E3. It is the missing terrain on which world modelling, movement, value, responsibility and commitment can meet.
 
