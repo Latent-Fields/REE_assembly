@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_049",
+  "entry_id": "2026-09-18_mech_049_phase_coding_multiitem_pfc_siegel2009",
+  "timestamp_utc": "2026-09-18T14:47:49Z",
+  "claim_ids_tested": [
+    "MECH-049"
+  ],
+  "source": {
+    "title": "Phase-dependent neuronal coding of objects in short-term memory",
+    "authors": [
+      "Siegel M",
+      "Warden MR",
+      "Miller EK"
+    ],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0908193106",
+    "pmid": "19926847",
+    "pmc": "PMC2779828",
+    "volume": "106",
+    "issue": "50",
+    "pages": "21341-21346"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The value of this entry is that it is INDEPENDENT of the Hasselmo lineage that supplies the other two neuroscience entries in this directory, and that it is primate prefrontal rather than rodent hippocampal -- both closer to the deliberative architecture MECH-049 describes. It establishes the claim's substrate premise in a setting where the competing things are genuinely concurrent: two objects held in memory at the same time are encoded at significantly different phases of a 32 Hz population rhythm, ordered by presentation. That is phase separation doing disambiguation work between simultaneously-active representations, which is the general capability MECH-049 needs to exist. Held at 0.62 because what is separated is CONTENT (two objects) rather than FUNCTIONAL STAGE (propose vs evaluate vs veto), and because separation of content by phase is a multiplexing result, not an independence-preservation result -- the two objects are not in any tension with one another the way an optimiser and a constraint on it are.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "What is separated here is CONTENT, not FUNCTION. Two memoranda occupy different phases of the same cycle; they are not two different OPERATIONS with conflicting requirements. MECH-049's argument depends on the separated items being in tension -- proposal wants to maximise, harm evaluation wants to bound -- and two remembered objects have no such tension. The paper shows phase can multiplex; it does not show phase can protect a constraint from an optimiser.",
+    "The phases are statistically distinct OPTIMA of information content, not disjoint windows. Information about each object is 'enhanced at specific phases', which means it is present at all phases and merely peaks at different ones. As in the Manns 2007 entry, this is graded phase preference rather than compartmentalisation, and it would be produced by any system that modulates two representations in antiphase without ever isolating either.",
+    "The ordering effect (first-presented object peaks significantly earlier in the 32 Hz cycle than the second) is elegant but implies that phase here encodes SERIAL POSITION. If phase is carrying order information, it is not free to carry functional-stage identity as well without a multiplexing scheme the paper does not describe -- so a REE architecture that wanted to use phase both to order proposals and to separate proposal from veto would face a capacity conflict this result does not address.",
+    "The recorded rhythm is around 32 Hz (low gamma/beta), with a second component near 3 Hz. MECH-049's motivating thought reasons from cycle times on the order of 100-300 ms (theta). A 32 Hz cycle is ~31 ms, which is too fast to contain a deliberative harm evaluation; if REE reads this paper as evidence for its phase architecture, it is importing a result from a timescale two orders of magnitude away from the one the claim needs.",
+    "This is a correlational recording during a memory delay with no manipulation of phase. Nothing establishes that the phase separation is CAUSAL for the disambiguation -- the authors say encoding at distinct phases 'may play a role'. A perturbation result would be needed to show that collapsing the phase difference degrades memory for the two items."
+  ],
+  "tags": [
+    "mech_049",
+    "phase_coding",
+    "prefrontal_cortex",
+    "short_term_memory",
+    "oscillatory_multiplexing",
+    "primate",
+    "gamma",
+    "interference",
+    "temporal_compartmentalisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neuronal activity was recorded from monkey prefrontal cortex while the animals held two visual objects in short-term memory over a brief delay. During the memory interval, prefrontal population activity was rhythmically synchronised at frequencies around 32 Hz and 3 Hz, and spikes 'carried the most information about the memorized objects at specific phases'. Critically, 'according to their order of presentation, optimal encoding of the first presented object was significantly earlier in the 32 Hz cycle than that for the second object'. The authors conclude that oscillatory synchronisation mediates phase-dependent coding and that 'encoding at distinct phases may play a role for disambiguating information about multiple objects in short-term memory'.",
+    "ree_translation": "MECH-049 needs one thing to be true of the substrate before its architectural argument can even start: that temporal phase is a usable resource for keeping concurrently-active things from contaminating one another. Siegel, Warden & Miller establish that, in primate prefrontal cortex, at a level of independence from the Hasselmo lineage that matters for the evidence base here. Two things held at once are not smeared into a single superposed representation; they are assigned distinct phases, and the assignment is systematic (ordered by presentation) rather than arbitrary. For REE this supports the weakest and most portable version of the claim -- that a phase-structured substrate can maintain distinguishable concurrent processes -- and it does so in the cortical structure where REE's proposal and evaluation stages would have to live, rather than in hippocampus. It is the existence proof under MECH-049, not the claim itself.",
+    "mapping_caveat": "The gap between this result and MECH-049 is the gap between multiplexing and protection, and it is wide. Two remembered objects are symmetric, mutually indifferent, and equally passive; neither is trying to influence the other. An optimiser and a constraint on that optimiser are asymmetric and in tension, and the whole content of MECH-049 is that the tension is resolved the wrong way -- constraint absorbed into objective -- unless separation is enforced. Showing that phase can keep two indifferent representations apart does not show that phase can keep a constraint safe from a process that has a gradient-descent incentive to erode it. There is also a timescale mismatch: the operative rhythm here is ~32 Hz (~31 ms per cycle), whereas the thought behind MECH-049 reasons at 100-300 ms. And the study is correlational, with no perturbation of phase to establish that the separation is doing causal work.",
+    "source_context": "Multi-electrode recording of spiking activity and local field potentials from prefrontal cortex of macaque monkeys during a two-object short-term memory delay; spike-information content analysed as a function of LFP phase at ~32 Hz and ~3 Hz."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.85: PNAS, Miller lab, primate prefrontal multi-electrode recording with an information-theoretic analysis and a non-obvious ordering effect that is hard to produce by artifact; it drew a commentary in the same issue. Correlational, which caps it short of 0.9. Mapping fidelity 0.50: it separates content rather than function, and MECH-049 is a claim about function -- this is the existence proof for the substrate premise, not evidence for the claim proper. Transfer risk 0.45: primate prefrontal is the right structure and the right species, which pulls risk down, but the ~32 Hz timescale is far from the 100-300 ms the claim reasons at, and symmetric memoranda are a poor model for an asymmetric optimiser/constraint pair."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_049",
+  "entry_id": "2026-09-18_mech_049_theta_phase_encoding_retrieval_hasselmo2002",
+  "timestamp_utc": "2026-09-18T14:46:34Z",
+  "claim_ids_tested": [
+    "MECH-049"
+  ],
+  "source": {
+    "title": "A proposed function for hippocampal theta rhythm: separate phases of encoding and retrieval enhance reversal of prior learning",
+    "authors": [
+      "Hasselmo ME",
+      "Bodelon C",
+      "Wyble BP"
+    ],
+    "year": 2002,
+    "venue": "Neural Computation",
+    "doi": "10.1162/089976602317318965",
+    "pmid": "11936962",
+    "volume": "14",
+    "issue": "4",
+    "pages": "793-817"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the foundational statement of the exact architectural argument MECH-049 makes, and it makes it for a reason REE should find compelling: the separation is not proposed as an efficiency or a scheduling convenience, but because two operations sharing one substrate impose CONTRADICTORY requirements on that substrate. Encoding needs strong afferent drive and active synaptic modification; retrieval needs strong recurrent drive and must NOT write. Run them at once and the system encodes its own retrievals -- which is proactive interference, and is why the model's headline result is about REVERSAL of prior learning, the case where old and new associations directly compete. That is a necessity argument for separation, not a correlation, and necessity arguments are what MECH-049 needs. Held at 0.72 rather than higher because the separated operations are encoding and retrieval, not proposal and veto, and because the paper is a model: its central physiological prediction (that LTP at CA3 synapses is strongest at the phase where transmission through them is weakest) is derived, not measured, in this paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The separation demonstrated is between MEMORY OPERATIONS (encoding vs retrieval), not between an optimisation process and a normative constraint on it. MECH-049's distinctive content is that ETHICAL constraint survives compartmentalisation; nothing in this model speaks to a constraint that must remain non-optimisable. Read strictly, the paper evidences the general principle that mutually-interfering computations need temporal separation, and leaves REE's specific application of that principle to harm evaluation entirely unevidenced.",
+    "The model's separation is oscillatory and phase-locked, with a 100-300 ms cycle. MECH-049 explicitly states that oscillatory phase-locking is 'plausible but not required' and that clocked schedulers or discrete event gates would also satisfy the claim. So the paper supports the claim through ONE implementation while saying nothing about whether the non-oscillatory implementations REE is more likely to build inherit the benefit.",
+    "The interference the separation cures is specific to an autoassociative network with Hebbian modification on recurrent synapses. A system whose proposal and evaluation stages do not share weights has no analogous interference to cure, so the argument does not automatically transfer to an architecture where E3 selection and harm evaluation are already parameterised separately -- in that case temporal separation would be solving a problem the architecture does not have.",
+    "'Separate phases' in the model means a continuous sinusoidal modulation of relative input strength, not a hard gate. Encoding drive is never zero during the retrieval phase; it is merely weaker. If REE reads this paper as licensing GRADED phase separation, it gets a system in which harm evaluation is only ever attenuated during proposal, never absent -- which is exactly the smoothing MECH-049 says must not happen."
+  ],
+  "tags": [
+    "mech_049",
+    "theta_rhythm",
+    "phase_separation",
+    "encoding_retrieval",
+    "hippocampus",
+    "proactive_interference",
+    "temporal_compartmentalisation",
+    "spear_model",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal theta rhythm provides 'separate functional phases during each 100-300 msec cycle': encoding is favoured at the phase where entorhinal input to CA3 and CA1 is strong and CA3 recurrent input is weak, and retrieval is favoured at the opposite phase, where entorhinal input is weak and CA3 input is strong. The model further requires that long-term potentiation at CA3 synapses be strongest at the phase when synaptic transmission at those same synapses is weakest. The functional payoff demonstrated is enhanced reversal of prior learning -- the network can acquire a new association that contradicts an old one without the old one corrupting the acquisition.",
+    "ree_translation": "MECH-049 asserts that REE should compartmentalise trajectory proposal, self-impact prediction, harm evaluation, precision update and policy consolidation into distinct temporal phases, so that ethical constraints are not 'smoothed into optimisation gradients'. Hasselmo et al. supply the general form of that argument and, more usefully, its MECHANISM: separation is required precisely when two operations make incompatible demands on shared machinery, and the cost of not separating them is that one operation silently writes into the substrate the other is reading. Translated to REE, the worry MECH-049 names -- constraint collapsing into reward -- is the same failure shape: an evaluation process that is supposed to READ a proposal instead MODIFIES the parameters that generate proposals, so that over time the constraint is absorbed into the generator rather than standing outside it. The paper's second, sharper contribution is the LTP/transmission anti-phase requirement: it is not enough to separate when things happen; you must also separate WHEN LEARNING IS ALLOWED from when influence is allowed. For REE that reads as a design rule -- the phase in which harm evaluation exerts its strongest influence on selection should be the phase in which it is least able to modify the selector's weights.",
+    "mapping_caveat": "The transfer is from memory-operation separation to normative-constraint separation, and that is a real leap, not a relabelling. Encoding and retrieval interfere for a concrete and local reason: they are read and write on the same synaptic matrix. Proposal and harm evaluation in REE need not share a matrix at all, and if they do not, the paper's necessity argument does not apply -- temporal separation would then be a redundant safeguard rather than the mechanism that makes independence possible. Additionally the paper is a simulation whose key physiological prediction was untested at the time of writing, and its separation is graded and oscillatory rather than the explicit hard separation MECH-049 asks for.",
+    "source_context": "Computational model of hippocampal region CA3/CA1 circuitry with entorhinal afferents, sinusoidal theta-frequency modulation of relative input strength and of synaptic modification; evaluated on associative learning and reversal tasks. No animal recordings in this paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.82: Neural Computation, and the model has had unusual staying power -- it became the SPEAR model and generated a testable physiological prediction that later work went and checked (see the Manns 2007 entry in this directory). It is nonetheless a simulation, which caps it below the 0.9 band. Mapping fidelity 0.62: the FORM of the argument (incompatible operations require temporal separation) maps cleanly and is the part REE should take; the CONTENT (encoding vs retrieval) does not map onto proposal vs veto without an additional assumption that the two REE stages share a substrate the way read and write share a synaptic matrix. Transfer risk 0.40: moderate, because the necessity argument is contingent on shared machinery, and REE may or may not have it."
+  }
+}

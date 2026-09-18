@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_049",
+  "entry_id": "2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018",
+  "timestamp_utc": "2026-09-18T14:47:49Z",
+  "claim_ids_tested": [
+    "MECH-049"
+  ],
+  "source": {
+    "title": "Safe Reinforcement Learning via Shielding",
+    "authors": [
+      "Alshiekh M",
+      "Bloem R",
+      "Ehlers R",
+      "Koenighofer B",
+      "Niekum S",
+      "Topcu U"
+    ],
+    "year": 2018,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "doi": "10.1609/aaai.v32i1.11797",
+    "arxiv_id": "1708.08611",
+    "volume": "32",
+    "issue": "1"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Shielding is the clearest existing implementation of what MECH-049 asks for, and the architectural correspondence is close enough to be worth stating plainly: a separate reactive module sits at a distinct point in the decision cycle, the constraint it enforces is never entered into the reward, and it intervenes ONLY on violation -- 'corrects them only if the chosen action causes a violation of the specification'. That is proposal and veto as temporally distinct stages, with the constraint held as a hard boundary outside the optimisation entirely. The result that lifts this above a design proposal is the convergence analysis: the authors identify the requirements a shield must meet to PRESERVE THE LEARNER'S CONVERGENCE GUARANTEES. That is the independence claim in both directions -- the optimiser cannot erode the constraint, and the constraint does not corrupt the optimiser. Held at 0.74 rather than higher because the safety specification is a temporal-logic formula over an abstraction known in advance, which REE's harm constraint is not and probably cannot be.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The shield requires the safety property to be specified in temporal logic IN ADVANCE, and requires an abstraction of the environment dynamics sufficient to synthesise the shield automaton. REE's harm constraint is evaluative and must be inferred by the agent's own self-impact prediction over open-ended consequences; there is no automaton to synthesise. This is the central transfer risk, and it is not a detail -- the entire guarantee rests on the specification being complete, and an incomplete harm specification yields a shield that confidently permits the harms nobody enumerated.",
+    "Shielding enforces the constraint on ACTIONS at the interface. It does not prevent the learner's internal representations from drifting toward policies that would violate the constraint if unshielded -- it merely blocks the output. An agent that has learned a harmful policy and is being continuously corrected at the boundary is not an agent with an intact ethical constraint; it is a dangerous agent with a working seatbelt. MECH-049 is a claim about preserving constraint independence WITHIN the architecture, and shielding achieves it at the perimeter instead.",
+    "The 'minimal interference' property cuts both ways. Because the shield acts only on violation, it provides no gradient at all in the safe region, so the learner receives no signal distinguishing barely-safe from robustly-safe behaviour and will happily converge to a policy that rides the constraint boundary -- relying on the shield permanently rather than internalising the bound.",
+    "The convergence-preservation result is conditional on requirements the paper states, not unconditional. A shield that removes actions the learner needs for exploration can change the reachable policy set, so 'preserves convergence' means 'preserves convergence given the shield is constructed to these conditions', and a REE harm shield synthesised from an incomplete or mis-specified model would not inherit the guarantee.",
+    "The paper demonstrates on discrete, formally-modellable scenarios. There is no result here on high-dimensional continuous control, on learned world models, or on constraints whose violation is a matter of degree rather than a boolean automaton transition -- all of which describe REE's setting."
+  ],
+  "tags": [
+    "mech_049",
+    "shielding",
+    "safe_rl",
+    "temporal_logic",
+    "veto",
+    "constraint_independence",
+    "runtime_enforcement",
+    "hard_constraint",
+    "ethical_constraint",
+    "propose_veto_separation"
+  ],
+  "mapping": {
+    "source_claim_statement": "'Reinforcement learning algorithms discover policies that maximize reward, but do not necessarily guarantee safety during learning or execution phases.' The authors synthesise a reactive system -- a shield -- from a temporal-logic specification, and insert it into the learning loop in one of two positions: before the agent, providing a list of safe actions at each decision point; or after the agent, monitoring the chosen action and correcting it 'only if the chosen action causes a violation of the specification'. They then 'discuss which requirements a shield must meet to preserve the convergence guarantees of the learner', and demonstrate the approach across several reinforcement learning scenarios.",
+    "ree_translation": "This is MECH-049's architecture, already built and analysed, in a machine-learning setting. The post-posed shield in particular is exactly the propose-then-veto structure the claim's source thought describes: the agent generates a candidate trajectory, a separate module evaluates it against a constraint, and the constraint either passes it or blocks it. The constraint never appears in the reward. It is not weighted, not traded, not annealed; it is a boundary, enforced by machinery the optimiser has no gradient access to. That is precisely the 'constrained sampling rather than scalar reward maximisation' framing in REE's own 2026-02-11 phase-separation thought, and the correspondence is close enough that REE should treat shielding as a reference implementation rather than an analogy. The convergence result is what makes it evidence rather than mere existence: MECH-049 implicitly promises that separation is not merely safe but COMPATIBLE with competent optimisation, and the shielding analysis discharges that promise under stated conditions -- the learner still converges, and the constraint still holds, because neither is reaching into the other. Note also that shielding delivers the temporal separation MECH-049 wants WITHOUT any oscillation: the shield is a discrete event gate in the decision cycle. That directly supports the claim's own statement that phase-locking is 'plausible but not required'.",
+    "mapping_caveat": "The shield's guarantee is inherited entirely from its specification, and that is where the transfer to REE breaks. A temporal-logic formula over a known abstraction is a complete, closed, checkable object; REE's harm constraint is an open-ended evaluative judgement over consequences the agent must itself predict. An incomplete harm specification does not yield a partially-safe shield -- it yields a shield that confidently permits every harm nobody thought to enumerate, with the full authority of a formal guarantee behind it. There is a second, subtler mismatch: shielding secures the constraint at the ACTION INTERFACE, whereas MECH-049 asserts independence WITHIN the architecture. A learner whose internal policy has drifted toward harm but is blocked at the boundary satisfies the shield and fails the claim. Demonstrations are on discrete, formally-modellable scenarios rather than high-dimensional continuous control with learned world models.",
+    "source_context": "Safe reinforcement learning; shield synthesised from linear temporal logic safety specifications over an abstraction of environment dynamics; evaluated in both pre-posed (action-masking) and post-posed (action-correcting) configurations across several discrete reinforcement learning scenarios."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.78: AAAI main track and the foundational reference for a now-substantial runtime-enforcement literature; it is primarily a method-and-analysis paper with demonstrations rather than a benchmark study, which caps it. Mapping fidelity 0.80: the highest here. The post-posed shield IS the propose/veto separation MECH-049 describes, the constraint is held outside the reward exactly as the claim requires, and the convergence analysis addresses the independence property in both directions. Transfer risk 0.45: the guarantee is inherited from a complete formal specification that REE cannot write for harm, and enforcement is at the action interface rather than within the architecture."
+  }
+}

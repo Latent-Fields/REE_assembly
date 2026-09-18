@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_049",
+  "entry_id": "2026-09-18_mech_049_ca1_theta_phase_empirical_manns2007",
+  "timestamp_utc": "2026-09-18T14:46:34Z",
+  "claim_ids_tested": [
+    "MECH-049"
+  ],
+  "source": {
+    "title": "Hippocampal CA1 spiking during encoding and retrieval: relation to theta phase",
+    "authors": [
+      "Manns JR",
+      "Zilli EA",
+      "Ong KC",
+      "Hasselmo ME",
+      "Eichenbaum H"
+    ],
+    "year": 2007,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2006.05.007",
+    "pmid": "16839788",
+    "volume": "87",
+    "issue": "1",
+    "pages": "9-20"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "This is the empirical test of the Hasselmo 2002 prediction, and it is the entry that should most change how REE designs a falsifier for MECH-049. What it found is real and in the predicted direction: CA1 pyramidal cells showed a DIFFERENT preferred theta phase when the rat inspected repeated (retrieval-heavy) versus non-repeated (encoding-heavy) items. What it did NOT find -- and could not, given the measure -- is two discrete, non-overlapping phase compartments. A shift in PREFERRED phase is a shift in the mean of a broad circular distribution; the distributions for encoding and retrieval overlap heavily. The extended modelling in the same paper makes this explicit and, to my reading, decisive: the observed phase differences are reproduced by GRADED levels of CA3 input, spanning a continuum from novel items with no retrieval to familiar items with extensive retrieval. That is a phase BIAS that varies continuously with the encode/retrieve mixture -- which is evidence for phase coding, and evidence AGAINST compartmentalisation in the strong sense MECH-049 requires. Scored 0.50 and mixed because both halves are solid.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A difference in PREFERRED theta phase is a difference in the mean of a broad, overlapping circular distribution, not a partition into disjoint windows. MECH-049 asserts COMPARTMENTALISATION -- that the phases are separate enough to preserve independence. Nothing in this result establishes that; a system with heavily overlapping encoding and retrieval phase distributions is one in which both operations are active at essentially every phase, with only their relative weighting changing.",
+    "The paper's own extended model reproduces the observed phase differences as a consequence of GRADED CA3 input level, varying continuously from novel nonmatch stimuli (no retrieval) to highly familiar repeated stimuli (extensive retrieval). If mean phase is a continuous readout of the encode/retrieve MIXTURE, then the underlying system is blending the two operations and reporting the blend ratio as a phase -- which is the opposite of compartmentalisation, and would be indistinguishable from it under any mean-phase instrument.",
+    "MEASUREMENT TRAP, and the most important item here: mean preferred phase will report a clean, significant 'separation' for a system that is in fact continuously blended. Any REE diagnostic that operationalises MECH-049 as 'do the stages occupy different phases?' will therefore return PASS on an architecture that has no compartmentalisation at all. The claim needs an independence instrument (interference under load, or mutual information between a stage's output and the other stage's parameters), not a phase-offset instrument.",
+    "Encoding and retrieval are not manipulated experimentally; they are INFERRED from the match/nonmatch status of the stimulus. A repeated item is assumed to be retrieval-dominant and a novel one encoding-dominant. Any other correlate of familiarity -- attention, running speed, sampling duration, reward expectation -- would produce the same phase difference without any encode/retrieve separation being involved.",
+    "The recordings are rat CA1 during odour and object recognition. MECH-049 is a claim about proposal, harm evaluation and veto in a deliberative architecture. There is no veto-like operation anywhere in this dataset, so the entry evidences the substrate premise of the claim and is silent on its subject matter."
+  ],
+  "tags": [
+    "mech_049",
+    "theta_phase",
+    "ca1",
+    "encoding_retrieval",
+    "single_unit",
+    "falsifier_design",
+    "measurement_trap",
+    "graded_vs_discrete",
+    "temporal_compartmentalisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "CA1 pyramidal cells were recorded in rats performing an odour-cued delayed nonmatch-to-sample recognition task and a spontaneous-novelty-preference object recognition task. In the test period of both tasks, 'the preferred theta phase exhibited by CA1 pyramidal cells differed between moments when the rat inspected repeated (match) and non-repeated (nonmatch) items'. Additional modelling in the same paper extended the Hasselmo 2002 model to cover the mean phase of CA1 spiking across stimuli 'inducing varying levels of retrieval relative to encoding, ranging from novel nonmatch stimuli with no retrieval to highly familiar repeated stimuli with extensive retrieval', and showed the observed phase differences are consistent with different levels of CA3 synaptic input to CA1.",
+    "ree_translation": "This is where MECH-049 meets its measurement problem, and REE should treat the entry primarily as falsifier-design evidence rather than as confirmation. The claim asserts temporal COMPARTMENTALISATION: stages separate enough that ethical constraint retains independence from the optimiser. The natural instrument -- do the stages occupy different phases? -- is exactly what Manns et al. applied, and it returned a significant difference. But the same paper's modelling shows that a continuously BLENDED system, in which CA3 input level varies smoothly with familiarity, produces precisely that signature. So the instrument cannot distinguish compartmentalisation from blending: a mean-phase difference is what BOTH architectures emit. For REE this generalises into a design rule. A MECH-049 falsifier must not ask whether the stages are temporally offset, because a system that smoothly interpolates between proposing and evaluating will pass. It must ask whether they are INDEPENDENT -- for instance whether harm evaluation's output is statistically decoupled from the selector's gradient, or whether loading one stage degrades the other's performance in the way shared machinery would predict. Offset is cheap and can be simulated by any continuous modulation; independence is the thing the claim actually asserts, and it requires an interference or information measure to detect.",
+    "mapping_caveat": "Two directions of strain, pulling opposite ways, which is why this entry is mixed. Upward: the prediction was specific, made in advance by a published model, and confirmed in the predicted direction in two independent task paradigms -- that is a genuine and non-trivial success for the phase-separation framework. Downward: the confirmation is of a mean-phase SHIFT, and the authors' own model attributes it to a graded input level rather than to a switch between two regimes, so the result is fully compatible with continuous blending and therefore cannot support the compartmentalisation reading MECH-049 needs. Layered on top is that encoding and retrieval are inferred from stimulus novelty rather than manipulated, and that rat recognition memory contains no operation resembling harm evaluation or veto.",
+    "source_context": "Extracellular single-unit recording from CA1 pyramidal cells in behaving rats; odour-cued delayed nonmatch-to-sample and spontaneous object recognition; spike phase referenced to concurrent hippocampal theta LFP; accompanied by extension of the Hasselmo (2002) computational model. Sample size not stated in the abstract."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.70: solid in vivo electrophysiology from Eichenbaum's lab testing an a-priori published prediction in two paradigms, which is the right way to do it; capped by the fact that encoding and retrieval are inferred from stimulus status rather than manipulated, and that the abstract reports no sample size or effect magnitude. Mapping fidelity 0.45: low, and this is the load-bearing number. The paper measures phase OFFSET; MECH-049 asserts COMPARTMENTALISATION, and the paper's own modelling shows offset is produced by graded blending. The instrument and the claim are not the same object. Transfer risk 0.55: high -- rodent recognition memory to a deliberative propose/evaluate/veto architecture, with no veto-like operation present in the data at all."
+  }
+}

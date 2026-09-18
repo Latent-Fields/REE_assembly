@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_049",
+  "entry_id": "2026-09-18_mech_049_lagrangian_constraint_oscillation_stooke2020",
+  "timestamp_utc": "2026-09-18T14:47:49Z",
+  "claim_ids_tested": [
+    "MECH-049"
+  ],
+  "source": {
+    "title": "Responsive Safety in Reinforcement Learning by PID Lagrangian Methods",
+    "authors": [
+      "Stooke A",
+      "Achiam J",
+      "Abbeel P"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 37th International Conference on Machine Learning (PMLR)",
+    "arxiv_id": "2007.03964",
+    "volume": "119",
+    "pages": "9133-9143",
+    "doi": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the closest thing in the ML literature to a direct test of MECH-049's ETHICAL limb, and it cuts both ways, which is why it is scored mixed rather than as support. In its favour, and it is a strong favour: the paper documents that when a safety constraint is dissolved into the objective through a Lagrange multiplier -- which is precisely 'smoothing the constraint into the optimisation gradient', the failure MECH-049 names -- the resulting learning dynamics oscillate and overshoot, and the agent VIOLATES THE CONSTRAINT DURING TRAINING. The diagnosis is mechanistically specific: the classical multiplier update is integral control only, producing the 90-degree phase lag between cost and multiplier that is the signature of an integral loop, and the authors report seeing cost oscillation or overshoot with slow settling in a MAJORITY of Safety Gym environments. That is a reproducible pathology of the exact architecture MECH-049 says is wrong. Against it: the remedy is not temporal separation. It is better control -- adding proportional and derivative terms on the multiplier -- which keeps the constraint inside the gradient and fixes the instability anyway. That is direct evidence against the strong reading in which compartmentalisation is NECESSARY.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own fix falsifies the necessity reading of MECH-049. If constraint-violating oscillation under a Lagrangian scheme is curable by adding proportional and derivative terms to the multiplier update -- leaving the constraint fully inside the optimisation gradient -- then temporal compartmentalisation is not required to keep a constraint satisfied. MECH-049 as written says separation 'preserves' independence; this result says adequate feedback control also preserves it, and more cheaply.",
+    "The quantitative support is thinner than the qualitative claim. The authors report observing 'cost oscillations or overshoot with slow settling time in a majority of Safety Gym environments' but do not give aggregate violation statistics, overshoot percentages, or settling times across environments; the evidence in Figures 1 and 3 is largely visual, and their headline metric is a constructed 'constraint figure of merit' summing non-discounted violations over learning iterates rather than a directly interpretable violation rate.",
+    "Constraint violation here occurs DURING TRAINING and is transient -- the multiplier eventually rises and the policy is pulled back. MECH-049's worry is qualitatively worse and structurally different: that the constraint is PERMANENTLY absorbed into the reward, so that the converged policy has internalised harm as a tradeable quantity. An oscillating-but-converging Lagrangian agent has not had its constraint smoothed away; it has had it badly tuned. The paper therefore evidences a control-stability failure, not a constraint-integrity failure, and REE should not conflate them.",
+    "Safety Gym costs are scalar, dense, observable and known to the environment. REE's harm constraint is none of these -- it is evaluative, must be inferred by the agent's own self-impact prediction, and is asserted to be non-optimisable in principle rather than merely weighted heavily. A constraint that the optimiser can measure exactly is a far easier object to keep satisfied than one it must estimate, so the transfer flatters the gradient-based approach.",
+    "The 90-degree phase lag the authors identify is a property of INTEGRAL CONTROL, and would appear in any integral feedback loop regardless of whether the controlled quantity is an ethical constraint. Reading it as evidence about ethics specifically is an over-interpretation; it is evidence about a control topology that happens to have been applied to safety."
+  ],
+  "tags": [
+    "mech_049",
+    "constrained_rl",
+    "lagrangian",
+    "safe_rl",
+    "safety_gym",
+    "constraint_violation",
+    "optimisation_gradient",
+    "reward_hacking",
+    "pid_control",
+    "ethical_constraint"
+  ],
+  "mapping": {
+    "source_claim_statement": "'Lagrangian methods are widely used algorithms for constrained optimization problems, but their learning dynamics exhibit oscillations and overshoot which, when applied to safe reinforcement learning, leads to constraint-violating behavior during agent training.' The authors attribute this to the classical Lagrange multiplier update being integral control only, and observe the 90-degree phase shift between the constraint function and the multiplier that is characteristic of an integral loop. They report cost oscillation or overshoot with slow settling time in a majority of Safety Gym environments tested (PointGoal1, CarButton1, DoggoButton1, DoggoGoal1, DoggoGoal2), and propose adding proportional and derivative terms to the multiplier update, which damps the oscillations and expands the reward/cost Pareto frontier.",
+    "ree_translation": "MECH-049's sharpest sentence is that compartmentalisation 'keeps ethical constraints from being smoothed into optimisation gradients'. The Lagrangian method is the canonical machine-learning instantiation of doing exactly what that sentence forbids: a hard constraint is converted into a soft penalty term whose weight is itself learned, so the constraint stops being a boundary and becomes a quantity traded against reward at an exchange rate the optimiser is free to adjust. Stooke et al. show that this architecture is not merely philosophically uncomfortable but DYNAMICALLY UNSTABLE -- the agent cycles between over-caution and constraint violation, and the violations are real behaviour, not bookkeeping. For REE, the entry does two things. It supplies the first genuinely on-point evidence that the failure mode MECH-049 names occurs in practice in a learning system, which the neuroscience entries in this directory cannot do. And it sets a bar the claim must clear: because the same paper repairs the instability WITHOUT separating anything, MECH-049 cannot be defended as 'separation is the only way to protect a constraint'. Its defensible form is narrower -- that separation protects constraint INTEGRITY (the constraint remains a boundary rather than a tradeable term) even where feedback control would suffice for constraint SATISFACTION (the boundary is, in the end, mostly respected). That distinction is worth writing into the claim, because it is the difference between an agent that does not harm and an agent that has priced harm correctly.",
+    "mapping_caveat": "The constraint in Safety Gym is scalar, dense, exactly observable and supplied by the environment; REE's harm constraint is evaluative, self-inferred, and asserted to be non-optimisable in principle. Those are different objects, and the easier one is being used to reason about the harder. More importantly, the violation this paper documents is TRANSIENT and occurs during training, with the multiplier eventually correcting the policy -- whereas MECH-049's worry is PERMANENT absorption of the constraint into the objective at convergence. An oscillating Lagrangian agent has a tuning problem; an agent whose constraint has been smoothed into its reward has an integrity problem. This paper is direct evidence for the first and only suggestive about the second, and the entry should not be cited as though it demonstrated the second. The quantitative reporting is also thinner than the rhetorical claim: 'a majority of environments' is asserted without aggregate statistics.",
+    "source_context": "Deep constrained reinforcement learning; Safety Gym benchmark suite (PointGoal1, CarButton1, DoggoButton1, DoggoGoal1, DoggoGoal2) with environment-supplied scalar cost functions and specified cost limits; comparison of classical Lagrangian multiplier updates against PID multiplier updates."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.80: ICML main track, authors central to the safe-RL literature (Achiam wrote CPO and co-built Safety Gym), a clean control-theoretic diagnosis and a fix that works. Marked down because the empirical support for the central 'majority of environments' claim is visual and qualitative rather than tabulated. Mapping fidelity 0.72: the highest in this directory -- the paper is literally about what happens when a safety constraint is folded into an optimisation gradient, which is MECH-049's named failure, in a learning agent rather than an analogy. Transfer risk 0.35: relatively low as ML-to-REE transfers go, since REE is itself a learning system with an optimiser and a constraint; the residual risk is that Safety Gym's observable scalar cost is a much easier constraint than REE's evaluative harm bound."
+  }
+}
