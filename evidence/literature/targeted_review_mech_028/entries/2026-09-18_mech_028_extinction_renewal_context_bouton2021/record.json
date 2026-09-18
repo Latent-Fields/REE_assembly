@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_028",
+  "entry_id": "2026-09-18_mech_028_extinction_renewal_context_bouton2021",
+  "timestamp_utc": "2026-09-18T01:52:08Z",
+  "claim_ids_tested": [
+    "MECH-028"
+  ],
+  "source": {
+    "title": "Behavioral and Neurobiological Mechanisms of Pavlovian and Instrumental Extinction Learning",
+    "authors": [
+      "Mark E. Bouton",
+      "Stephen Maren",
+      "Gavan P. McNally"
+    ],
+    "year": 2021,
+    "venue": "Physiological Reviews",
+    "doi": "10.1152/physrev.00016.2020",
+    "pmid": "32970967",
+    "pmc": null,
+    "volume": "101",
+    "issue": "2",
+    "pages": "611-681"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The canonical modern review of extinction, in the strongest possible venue, and it bears on MECH-028 in two opposite directions at once -- which is why the direction is 'mixed' rather than 'supports'. It supports the preservation clause for INHIBITORY (safety) learning, which is demonstrably context-bound and returns on a context change. It simultaneously predicts the claim's own FALSIFYING branch for EXCITATORY (harm) learning, which the review's central thesis holds is not erased and transfers readily. Confidence is high in the finding and moderate in whether REE's harm learning behaves like the excitatory or the inhibitory side.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's central thesis -- extinction is new inhibitory learning, not erasure -- predicts that the original aversive association is relatively context-independent and survives a state change intact. Mapped onto REE, harm learning may transfer across mode switches whether or not the residue field is reset, which is exactly the claim's stated falsifying outcome (C) = (A).",
+    "Renewal is asymmetric: it is the SAFETY learning that fails to generalise across contexts, not the threat learning. A V3 design whose only readout is harm recurrence may therefore be measuring the context-robust half of the pair and will look null even if cross-mode transfer failure is real on the avoidance-cost side."
+  ],
+  "tags": [
+    "mech-028",
+    "extinction",
+    "renewal",
+    "context_dependence",
+    "inhibitory_learning",
+    "falsifier_relevant"
+  ],
+  "mapping": {
+    "source_claim_statement": "Extinction does not erase the original learning; it establishes new inhibitory learning that is bound to the context in which extinction occurred. Renewal -- the return of the extinguished response when the context changes -- is the primary evidence for this, and it holds across Pavlovian and instrumental paradigms. Pavlovian extinction depends on amygdala-prefrontal-hippocampal circuits, with prefrontal inhibition of fear-encoding neurons enabling retrieval of the extinction memory; instrumental extinction engages distinct corticostriatal and striatopallidal pathways.",
+    "ree_translation": "REE's preservation clause predicts that learning acquired before a mode transition should govern behaviour after it. The extinction literature says this holds unevenly and in a direction that matters: aversive/excitatory learning is the robust half, and it is the inhibitory, safety-signalling half that is context-bound and does not carry across. If REE's mode switch functions as a context change, MECH-028's harm-recurrence readout is aimed at the component least likely to be lost, and the over-generalised-avoidance readout (its second, co-equal criterion) is aimed at the component most likely to be.",
+    "mapping_caveat": "Renewal is demonstrated across EXTERNAL contexts (chamber, odour, physical setting) rather than internal control-plane regimes, and REE's mode is internal. The review also treats context-dependence as a property of retrieval in an intact memory system, whereas REE's (C) arm manipulates the stored representation directly. Treating a mode switch as equivalent to an ABA context change is an assumption the V3 design should state, not inherit.",
+    "source_context": "Comprehensive review of rodent and human Pavlovian and instrumental extinction; behavioural, circuit and synaptic levels."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Source quality near-ceiling (Physiological Reviews; the three most-cited authors in the field). Mapping fidelity held at 0.62 because the external/internal context distinction is load-bearing here and unresolved. Aggregate weighted toward source quality because the finding invoked is empirical and extremely well replicated, not architectural."
+  }
+}

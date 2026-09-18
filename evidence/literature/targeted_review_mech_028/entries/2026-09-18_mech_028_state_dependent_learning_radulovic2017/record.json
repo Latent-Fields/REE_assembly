@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_028",
+  "entry_id": "2026-09-18_mech_028_state_dependent_learning_radulovic2017",
+  "timestamp_utc": "2026-09-18T01:52:08Z",
+  "claim_ids_tested": [
+    "MECH-028"
+  ],
+  "source": {
+    "title": "Neurobiological mechanisms of state-dependent learning",
+    "authors": [
+      "Jelena Radulovic",
+      "Vladimir Jovasevic",
+      "Kevin A. Meyer"
+    ],
+    "year": 2017,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2017.05.013",
+    "pmid": "28558266",
+    "pmc": null,
+    "volume": "45",
+    "pages": "92-98"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Authoritative review in a strong venue, and the phenomenon it reviews -- information encoded under one internal state being unretrievable under another -- is the closest biological analogue REE has to the reset-on-switch (C) arm. Marked down for mapping: the review's own admission that SDL 'has not been subjected to rigorous neuroscientific study' means the mechanism is well-attested behaviourally but thinly specified neurally, and REE's mode switch is a control-plane reconfiguration rather than the pharmacological or stress-hormone state shift that generates SDL in these paradigms.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "State-dependent learning is demonstrated predominantly by pharmacological state induction (GABAergic agonists, ethanol, opioids); if REE's mode switch does not reconfigure the encoding substrate as deeply as a drug state does, the (C) arm may be modelling a discontinuity biology does not actually impose on mode transitions.",
+    "The review reports SDL as a RETRIEVAL gate -- the memory persists and returns when the state is reinstated -- whereas REE's (C) arm implements an actual reversion of residue counts and e2_harm_s weights. A REE result showing permanent loss would exceed what this literature supports."
+  ],
+  "tags": [
+    "mech-028",
+    "state_dependent_learning",
+    "cognitive_modes",
+    "memory_retrieval",
+    "cross_state_transfer"
+  ],
+  "mapping": {
+    "source_claim_statement": "Information can be stored and retrieved in a manner restricted to a particular neurobiological state, such that what was learned under one state is not accessible under another; established underpinnings include inhibitory (GABAergic) neurotransmission and microRNA regulation, with additional cellular and circuit mechanisms proposed.",
+    "ree_translation": "MECH-028's preservation clause asserts that harm learning acquired in one cognitive mode must survive the transition into another for ethical behaviour to hold. State-dependent learning is the biological demonstration that this survival is not automatic: a sufficiently large shift in internal state can render prior learning behaviourally inert. This is precisely the condition the reset-on-switch (C) arm manufactures deliberately by reverting ResidueField num_harm_events and the e2_harm_s weights at each mode switch.",
+    "mapping_caveat": "SDL is induced by pharmacological or hormonal state changes, not by control-plane mode reconfiguration; the two are analogous in effect but not in mechanism. SDL is also usually reversible on state reinstatement, which REE's (C) arm is not. The literature therefore licenses the PREMISE that cross-state transfer can fail, not the specific magnitude or permanence of the failure REE will impose.",
+    "source_context": "Review spanning rodent pharmacological SDL paradigms and human dissociative-amnesia analogies; no single task or species."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.38,
+    "notes": "Source quality high (Curr Opin Neurobiol, established authors in the SDL field). Mapping fidelity moderate: the phenomenon transfers, the mechanism does not. Transfer risk is mid-range because the analogy is structural (state boundary blocks retrieval) rather than substrate-level."
+  }
+}

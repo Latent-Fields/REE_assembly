@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_028",
+  "entry_id": "2026-09-18_mech_028_costly_avoidance_generalization_wong2020",
+  "timestamp_utc": "2026-09-18T01:52:08Z",
+  "claim_ids_tested": [
+    "MECH-028"
+  ],
+  "source": {
+    "title": "Costly avoidance triggered by categorical fear generalization",
+    "authors": [
+      "Alex H. K. Wong",
+      "Andre Pittig"
+    ],
+    "year": 2020,
+    "venue": "Behaviour Research and Therapy",
+    "doi": "10.1016/j.brat.2020.103606",
+    "pmid": "32224325",
+    "pmc": null,
+    "volume": "129",
+    "pages": "103606"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "unknown",
+  "confidence": 0.58,
+  "confidence_rationale": "Deliberately filed as 'unknown' direction: this paper does not bear on whether MECH-028 is true. It bears on whether one of the claim's two READOUTS is a valid construct. It establishes that over-generalised avoidance is separately measurable, imposes real cost, and dissociates from the fear response itself -- which is what makes 'avoidance cost' a usable dependent variable rather than a restatement of harm recurrence. Confidence reflects the quality of that methodological warrant, not support for the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Avoidance and fear generalisation gradients are dissociable -- participants avoided generalised stimuli at a cost, and reductions in costly avoidance tracked reductions in US expectancy rather than fear per se. A REE design that treats avoidance cost as a proxy for harm learning will therefore conflate two dissociable quantities.",
+    "Generalisation here is CATEGORICAL (conceptual category membership), not perceptual similarity. REE's avoidance-cost readout over non-harm resources presumes some generalisation gradient exists in the substrate; if V3's resources carry no category structure, the readout may have nothing to generalise along and will read null for a reason that has nothing to do with mode transitions."
+  ],
+  "tags": [
+    "mech-028",
+    "avoidance_cost",
+    "readout_validity",
+    "fear_generalization",
+    "overgeneralisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Fear acquired to a conditioned stimulus generalised to novel stimuli belonging to the same conceptual category as the threat stimulus, but not to items from a fear-irrelevant category; participants then avoided those generalised stimuli even though avoidance carried an explicit cost. Reductions in costly avoidance aligned with reductions in unconditioned-stimulus expectancy, suggesting that behavioural approach can facilitate extinction.",
+    "ree_translation": "MECH-028's CONFIRMING criterion names two readouts: harm recurrence, and the avoidance COST -- approach-suppression of non-harm resources, i.e. over-generalised avoidance -- in the post-transition mode. This paper is the construct-validity warrant for the second readout: it shows that over-generalised avoidance is a real, separately measurable behaviour that people pay for, and that its magnitude is not simply read off the fear response. That is what makes the (B) arm's predicted 'hypervigilance lock' a distinguishable outcome rather than a redescription of the (C) arm's harm recurrence.",
+    "mapping_caveat": "This paper says nothing about mode transitions, cognitive modes, or cross-state preservation, and should not be counted as evidence for or against MECH-028's substantive content. It is admitted here for readout validity only. The generalisation mechanism it uses is conceptual-category membership in humans, which V3's resource structure may not possess; if not, the avoidance-cost readout has no gradient to express itself along.",
+    "source_context": "Healthy human adults; laboratory fear-acquisition training followed by a costly avoidance test with explicit response cost."
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Source quality good (well-regarded clinical-experimental venue, standard costly-avoidance paradigm). Mapping fidelity deliberately mid: the mapping is to the DEPENDENT VARIABLE, not to the claim, and the aggregate should not be read as support. Transfer risk covers the category-structure assumption V3 must satisfy for the readout to have any range."
+  }
+}

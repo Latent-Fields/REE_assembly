@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_028",
+  "entry_id": "2026-09-18_mech_028_sleep_loss_helping_bensimon2022",
+  "timestamp_utc": "2026-09-18T01:52:08Z",
+  "claim_ids_tested": [
+    "MECH-028"
+  ],
+  "source": {
+    "title": "Sleep loss leads to the withdrawal of human helping across individuals, groups, and large-scale societies",
+    "authors": [
+      "Eti Ben Simon",
+      "Raphael Vallat",
+      "Aubrey Rossi",
+      "Matthew P. Walker"
+    ],
+    "year": 2022,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.3001733",
+    "pmid": "35998121",
+    "pmc": "PMC9398015",
+    "volume": "20",
+    "issue": "8",
+    "pages": "e3001733"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.61,
+  "confidence_rationale": "Three converging designs at three scales -- one-night total deprivation with fMRI, within-subject nightly sleep variation, and a natural experiment over 3+ million charitable donations around the Daylight Saving transition -- which is unusually strong for a behavioural claim about prosociality. Confidence is nonetheless held at 0.61 because the mapping to MECH-028 runs through a substitution: 'ethical behaviour' here is operationalised as helping/donating, while REE's readout is harm avoidance and avoidance cost, and sleep deprivation is a blunt manipulation that degrades much besides mode transitions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sleep deprivation is not a clean mode-lock. It degrades attention, working memory and affect regulation simultaneously, so a prosociality deficit is not by itself evidence that the missing MODE TRANSITION (rather than general cognitive impairment) is the operative variable. REE's (B) arm is cleaner than this manipulation and should not claim its effect size.",
+    "The societal-scale result is correlational (donation volume around a one-hour clock change) and cannot isolate sleep from the other disruptions a Daylight Saving transition imposes.",
+    "Helping/donating is an approach-side prosocial act; MECH-028's readouts are harm recurrence and avoidance cost, which are suppression-side. A manipulation that reduces helping need not increase harm."
+  ],
+  "tags": [
+    "mech-028",
+    "mode_transition",
+    "sleep",
+    "prosocial_behaviour",
+    "offline_consolidation",
+    "transition_clause"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep loss causally reduces the willingness to help other people, demonstrated at three scales: one night of total sleep deprivation reduced person-to-person helping and deactivated social-cognition brain networks on fMRI; within-subject nightly reductions in sleep predicted next-day decreases in helping; and the one-hour sleep loss imposed by the Daylight Saving transition was associated with reduced charitable donations across more than 3 million donations.",
+    "ree_translation": "MECH-028's transition clause holds that ethical behaviour depends on appropriate transitions BETWEEN modes, and the architecture doc explicitly names fatigue as a structurally relevant mode-shaping factor. Sleep is the biological transition into the offline-consolidation mode; blocking it is the closest available human analogue of REE's mode-locked (B) arm. That blocking it degrades other-regarding behaviour -- consistently, across three independent designs and scales -- is direct support for the transition clause as a contentful architectural assertion rather than a metaphor.",
+    "mapping_caveat": "Two substitutions, both material. First, the ethical readout here is prosocial helping, whereas MECH-028 measures harm recurrence and avoidance cost; these are different sides of the moral ledger and a deficit in one does not entail a deficit in the other. Second, total sleep deprivation is a far blunter intervention than REE's (B) arm, which locks mode switching while leaving everything else intact -- so this paper supports the DIRECTION of the transition clause and gives no usable estimate of its magnitude in a clean mode-lock.",
+    "source_context": "Healthy human adults; laboratory total sleep deprivation with fMRI, ecological within-subject sleep tracking, and a population-scale natural experiment on donation records."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: three replicating designs at three scales, strong venue, causal at the individual level. Mapping fidelity is the binding constraint -- helping is not harm avoidance -- and transfer risk is elevated because the manipulation confounds the mode transition with general cognitive degradation."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_028",
+  "entry_id": "2026-09-18_mech_028_sleep_context_extinction_borquez2017",
+  "timestamp_utc": "2026-09-18T01:52:08Z",
+  "claim_ids_tested": [
+    "MECH-028"
+  ],
+  "source": {
+    "title": "Post-Learning Sleep Transiently Boosts Context Specific Operant Extinction Memory",
+    "authors": [
+      "Marcos Borquez",
+      "Maria P. Contreras",
+      "Ennio Vivaldi",
+      "Jan Born",
+      "Marion Inostroza"
+    ],
+    "year": 2017,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2017.00074",
+    "pmid": "28491027",
+    "pmc": "PMC5405121",
+    "volume": "11",
+    "pages": "74"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.59,
+  "confidence_rationale": "The single cleanest animal analogue of MECH-028's joint structure -- it crosses a mode transition (sleep vs deprivation vs quiet wake) with a context change at test, which is precisely the (A)/(B)/(C) design logic. It is 'mixed' because the answer it returns is two-sided: the transition helped, but only within the extinction context and only transiently, and by 48 hours the deprived animals had caught up. Confidence moderated by small-animal N, a 3-hour retention window, and operant rather than harm-avoidance learning.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "At remote recall (48h) sleep-deprived animals matched the sleep groups in BOTH the extinction context and the novel context. The benefit of the mode transition was transient and time could substitute for it -- which is the direct animal precedent for MECH-028's stated degeneracy condition that learning may be re-acquired or consolidated fast enough for a reset to be behaviourally invisible.",
+    "The sleep benefit was CONTEXT-SPECIFIC: it strengthened extinction memory in the extinction context but did not carry it into a novel context. A mode transition can therefore consolidate learning without making it transferable, which severs the two clauses MECH-028 asserts jointly.",
+    "Operant (lever-press) extinction, not harm avoidance; a positive-reinforcement paradigm may consolidate differently from an aversive one."
+  ],
+  "tags": [
+    "mech-028",
+    "sleep",
+    "offline_consolidation",
+    "context_specificity",
+    "extinction",
+    "both_clauses"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats trained on an operant response in context A and extinguished in context B then underwent a 3-hour retention interval of sleep, sleep deprivation, or spontaneous wakefulness, and were tested at recent (immediate) or remote (48h) recall in both the extinction context and a novel context. Sleep enhanced extinction memory relative to both deprivation and wakefulness at recent recall, but only in the extinction context. At remote recall the sleep-deprived animals performed comparably to the sleep groups across both contexts, indicating that long-term generalisation of extinction occurs independently of immediate post-learning sleep.",
+    "ree_translation": "This design instantiates both of MECH-028's clauses at once: a mode transition (into sleep) is manipulated, and preservation across a context boundary is the readout. The result splits them. The transition did consolidate learning -- supporting the transition clause -- but the consolidated learning stayed bound to its original context, so the transition did not by itself produce preservation ACROSS a boundary. And the whole advantage dissolved by 48 hours, with deprived animals reaching the same place. For REE this is a warning that the two clauses are separable and that the (B)-vs-(A) contrast may be a timing effect rather than a capability effect.",
+    "mapping_caveat": "Operant appetitive extinction in rats is several steps from harm avoidance in V3, and sleep deprivation over 3 hours is a much weaker manipulation than REE's permanent mode lock. The 'catch-up by 48h' result depends on an interval REE has no clean analogue for -- V3 episodes and lives are not commensurable with rodent hours -- so the timing lesson transfers as a qualitative caution, not a quantitative prediction.",
+    "source_context": "Rats; operant lever-press acquisition in context A, extinction in context B, 3h retention manipulation, recall tested at ~immediate and 48h in extinction and novel contexts."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderate-good: well-designed factorial from an established sleep-memory laboratory (Born/Inostroza), but modest animal N and a short retention window. Mapping fidelity relatively high for an animal study because the DESIGN LOGIC -- transition crossed with context change -- matches MECH-028's arms unusually closely. Transfer risk elevated by the appetitive/aversive difference."
+  }
+}
