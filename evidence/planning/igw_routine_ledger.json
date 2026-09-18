@@ -6086,7 +6086,11 @@
       "task_claim_session_id": "igw-auto-igw-244-proposal-for-mech-049-20260918T220323Z",
       "task_claim_claimed_at": "2026-09-18T22:03:23Z",
       "assigned_at": "2026-09-18T22:01:23Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T22:17:40Z",
+      "completion_summary": "EVB-1409/EXP-0796 (MECH-049) marked blocked_substrate (REE_assembly 6b0a0b14b1e): no endogenous producer for the MECH-449 safety veto, harm score term at ~1e-06 of E3 variance; follow-on /implement-substrate build chipped",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "EVB-1409/EXP-0796 (MECH-049) marked blocked_substrate (REE_assembly 6b0a0b14b1e): no endogenous producer for the MECH-449 safety veto, harm score term at ~1e-06 of E3 variance; follow-on /implement-substrate build chipped"
     }
   ],
   "dispositions": [
@@ -8791,6 +8795,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-18T14:57:24Z",
       "re_eligible_after": "2026-09-20T14:57:24Z"
+    },
+    {
+      "stable_hash": "dcaa1a53c17c",
+      "igw_id_at_disposition": "IGW-20260918-244",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-049"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-049",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T22:17:42Z",
+      "re_eligible_after": "2026-09-20T22:17:42Z"
     }
   ]
 }
