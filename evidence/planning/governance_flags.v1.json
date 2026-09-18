@@ -4991,6 +4991,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0352",
+      "claim_ids": [
+        "SD-061",
+        "MECH-343",
+        "Q-056"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SD-061's declared temperature lever has NO live consumer at any config its design record names: differentiable_cem_temperature is read only at ree_core/hippocampal/module.py:2416 inside 'if use_differentiable_cem' (SD-055, default False, named in NEITHER sd_061_difficulty_gated_proposal_entropy.md's Config section NOR ree-v3 docs/substrate/SD-061-*.md NOR V3-EXQ-694's driver). So SD-061 what_would_answer criterion (2) and V3-EXQ-694's C2 -- both read as certifying that the regulator 'lifts differentiable_cem_temperature transiently' -- certified the candidate-COUNT half only; the temperature half has never been exercised. Separately, 2 of the detector's 4 DECLARED inputs never reach StuckStateDetector.update in an ecological loop (committed_action_class 0/100, choice_difficulty 0/100 -- and use_dacc=True does NOT populate _dacc_last_bundle), so stuck_score is a 2-axis mean pinned at exactly stuck_threshold and is_stuck never fires (duty 0.000, all arms), and MECH-343's MANDATORY 'report the SD-032b dACC choice_difficulty contribution separately' precondition is unsatisfiable by any driver. Measured on ree-v3 origin/main f21a8c50 by the V3-EXQ-1056 /queue-experiment Step 2.5a probe; full record + recommended substrate fix in REE_assembly/evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md (origin/master 2bd2b917a4). V3-EXQ-1056 was REFUSED, not queued; the EXQ id is free.",
+      "raised_by_session": "metaworker-science-20260918-sd061-mech343-q056",
+      "raised_at": "2026-09-18T21:06:01Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
