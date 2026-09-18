@@ -206,12 +206,12 @@ experiment driver.
 
 ## 6. Where the work is
 
-- **Driver + dry-run manifest + smoke logs:** committed and pushed on the umbrella branch
-  `claude/metaworker-science-20260918-exq1039a-absorption-rerun`, under `wip/`. The
-  canonical destination is
-  `ree-v3/experiments/v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated.py`;
-  it is deliberately NOT on `ree-v3/main`, because an unqueued driver on trunk is an
-  unowned artifact and the gate decision above may change it.
+- **Driver:** LANDED and pushed at its canonical path on `ree-v3/main`, commit
+  **`088157818e`** --
+  `ree-v3/experiments/v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated.py`.
+  It is **inert**: nothing runs an experiment script without an `experiment_queue.json`
+  entry, and there is none. `audit_unqueued_experiment_scripts` will flag it, and that flag
+  is CORRECT -- the queue step is genuinely owed, pending the decision below.
 - **`V3-EXQ-1039a` is reserved** (`task_claim.py` slot `ree-v3/experiment_queue.json/V3-EXQ-1039a`) and free in all three namespaces.
 - **Still owed once the decision lands:** apply it, re-smoke, write the queue entry (with the
   Step 2.4 / 2.5c / red-team lines), `validate_queue.py`, `ree_commit.py --push`, Step 8.6
