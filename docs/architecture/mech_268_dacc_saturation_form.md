@@ -51,18 +51,31 @@ were genuinely mis-specified.** But the finding that actually matters is a third
 neither branch of the question anticipated, and it is what the design constraint below is
 built from:
 
-> **f_sat is currently inert at BOTH of its live consumers, for two reasons that have nothing
-> to do with f_sat's functional form, and that no change to that form would repair.**
-> At the Shenhav EVC consumer the inertness is *structural and exact*: `candidate_effort` is
-> constant across candidates by construction, so the entire control-demand term -- the only
-> part of `mode_ev` that `pe` touches -- is a uniform shift, hence argmin-invariant.
-> At the SD-032a mode register the inertness is a *calibration* mismatch between `pe`'s
-> operating scale and the register's critical value.
+> **What the consumers resolve is f_sat's RANGE -- specifically its FLOOR -- and not its
+> granularity. Of the 7 reachable rungs, at most 2-3 produce distinct consumer outcomes; the
+> intermediate rungs are functionally identical.** So gradedness is not the property MECH-268
+> needs, and it is not a substrate ceiling either. The floor is.
 
-So gradedness is not a substrate ceiling, because **no live consumer can resolve any number of
-levels at present.** Adding rungs to a signal nothing reads changes nothing. And equally, the
-form is not vindicated: it is simply not the binding constraint, and "the form is right" must
-not be read as "MECH-268 is working."
+The two consumers fail this test differently, and the difference matters:
+
+- **Shenhav EVC -> E3 selection is inert *structurally and exactly*, in every regime.**
+  `candidate_effort` is constant across candidates by construction, so the entire
+  control-demand term -- the only part of `mode_ev` that `pe` touches -- is a uniform shift,
+  hence argmin-invariant. No functional form repairs this; the defect is the effort proxy.
+- **The SD-032a mode register DOES respond -- on a trained agent.** Here f_sat acts, and acts
+  on exactly the thing MECH-268 was registered for: releasing the mode register from
+  `internal_planning` without an explicit closure event. But it acts **only through its
+  floor**, and at the production default `strength=0.3` the floor sits *just above* what the
+  register requires -- so the mechanism is ~96% ineffective at its own stated purpose, for a
+  calibration reason with a concrete number (below).
+
+**A correction to this document's own first version, recorded rather than quietly edited.**
+As first landed (`588c844333`) it asserted f_sat was inert at *both* consumers. That was
+measured on an **untrained** agent and is **wrong for the mode register**: the trained
+replication (below) shows f_sat moving `argmax(operating_mode)` on 7/195 ticks at
+`strength=0.3` and 151/195 at `strength=0.5`. The structural argument -- that what decides is
+range against a critical value, not granularity -- survives intact and is now far better
+evidenced; the empirical "inert at both" phrasing does not, and is withdrawn.
 
 One genuine, biology-grounded defect *in the form itself* did surface, is independent of the
 in-flight referent fix, and is recorded in Line 2 below: **f_sat reads an unordered COUNT, and
@@ -151,47 +164,95 @@ Both are **absolute-threshold** reads of a scalar, not comparisons across candid
 matters is therefore whether f_sat can move `pe` **across a critical value of order 1.0**, and
 `f_sat <= 1` means it can only ever push `pe` **down**.
 
-Measured, same live agent, 160 ticks, sweeping all 7 reachable f_sat at strengths 0.3 / 0.5 /
-1.0 / 3.0 / 10.0 and recomputing the register's arithmetic exactly:
+**Training moves `pe` across the critical value, and that changes the answer.** Two
+measurements, same probe, same env, differing only in whether a P0 warmup ran:
 
-| quantity | measured |
+| quantity | UNTRAINED (160 ticks) | TRAINED, P0 budget 120 (195 ticks) |
+|---|---|---|
+| `pe_unsaturated` | min 0.271, p50 0.975, max 0.990 | min 1.621, **p50 3.584**, max 3.600 |
+| critical value for `pe` (`external_task_bias + drive`) | 1.0 (drive 0.0) | 1.0 (drive 0.0) |
+| `aic_salience` | 0.0 -- SD-032c not landed | 0.0 |
+| mode occupancy | `external_task` 160/160 | **`internal_planning` 188/195**, `external_task` 7 |
+| `argmax(operating_mode)` changes across the reachable set, `s=0.3` | 0/160 | **7/195** |
+| ... `s=0.5` | 0/160 | **151/195** |
+| ... `s=1.0` | 0/160 | **166/195** |
+
+Untrained, `pe` never reaches the critical value, so the register is already on the side f_sat
+would push it toward and attenuating further only widens the margin -- zero at every strength
+out to 10.0. **Trained, the picture inverts:** `pe` sits at ~3.6, the agent sits in
+`internal_planning` on 188 of 195 ticks -- the rumination-adjacent state MECH-268 exists to
+relieve -- and f_sat can release it.
+
+**What the register actually requires, and why the default misses it.** Bisecting the
+multiplier that flips `argmax(operating_mode)` off `internal_planning`, per tick, over the 167
+trained ticks where such a multiplier exists in (0, 1]:
+
+| statistic | required f_sat |
 |---|---|
-| `pe_unsaturated` | min 0.271, median 0.975, max 0.990 |
-| mode-register critical value for `pe` | `external_task_bias + drive` = **1.0** (drive measured 0.0) |
-| `aic_salience` (the other salience input) | 0.0 -- SD-032c not landed |
-| mode occupancy | `external_task` 160/160 |
-| ticks where `argmax(operating_mode)` changes across the reachable set | **0 / 160**, at every strength |
-| ticks where `mode_switch_trigger` changes | **0 / 160**, at every strength |
+| min | 0.0692 |
+| p25 / **median** / p75 | 0.2642 / **0.2747** / 0.2769 |
+| max | 0.6170 |
 
-`pe` never reaches the critical value, so the register is already on the side f_sat would push
-it toward; attenuating further only widens the margin. Note the sweep was extended to
-strength 10.0 (floor 0.0164) -- **the result is zero at every strength**, so this is a
-statement about the operating point, not about the floor.
+The requirement is **tightly clustered around 0.275**. Set that against the floor, which is
+the only part of f_sat's range the consumer can reach:
 
-The opposite regime is documented in the substrate itself. The `affinity_input_cap` comment
-(`salience_coordinator.py:276-288`, the 2026-08-12 MECH-266 occupancy fix) records
-`dacc_pe ~16-17` through eval on the V3-EXQ-464d/467d substrate -- "two orders of magnitude
-above the [0,1]-bounded engagement signal" -- with `operating_mode` collapsing to one-hot
-`internal_planning`. That is the rumination signature MECH-268 exists to prevent, observed;
-and the fix shipped for it was a **clamp** (`affinity_input_cap`), not saturation. At
-`pe ~16`, f_sat's floor of 0.357 yields 5.7 -- still 5.7x above the critical value. At s=0.5
-it yields 4.0. f_sat cannot act there either.
+| `dacc_saturation_strength` | floor `1/(1+s(W-G))` | internal_planning ticks the floor suffices for |
+|---|---|---|
+| **0.3 (production default)** | **0.3571** | **4.2%** |
+| 0.4 | 0.2941 | 4.2% |
+| **0.5** | **0.2500** | **90.4%** |
+| 0.7 | 0.1923 | 98.8% |
+| 1.0 | 0.1429 | 99.4% |
 
-So in both regimes for which numbers exist, what decides whether f_sat can do anything is the
-**ratio of `pe`'s operating scale to a critical value of order 1.0** -- a calibration property
-of `pe` and of `external_task_bias`/`switch_threshold`, not a property of f_sat's granularity.
-In neither regime would a finer or continuous f_sat change a single outcome. This is the same
-units-mismatch class already documented for `dacc_goal_readout_normalize` and for
-`affinity_input_cap`; it is not new to MECH-268, and MECH-268 should not be made to carry it.
+**The median requirement (0.2747) falls between the `s=0.3` floor (0.3571) and the `s=0.5`
+floor (0.2500).** That is the whole story: MECH-268's production default places its floor just
+*above* what the mode register needs, so the mechanism is ~96% ineffective at its own stated
+purpose, and a single knob change to 0.5 makes it ~90% effective. This is a **calibration**
+finding with a concrete target, not a form finding.
+
+### The granularity evidence -- this is the decisive table for the chip's question
+
+Counting how many of the 167 ticks each individual rung flips:
+
+| strength | rungs (ceiling -> floor) | ticks flipped by each rung |
+|---|---|---|
+| 0.3 | 1.0, 0.769, 0.625, 0.526, 0.455, 0.400, 0.357 | 0, 0, 0, **7, 7, 7, 7** |
+| 0.5 | 1.0, 0.667, 0.500, 0.400, 0.333, 0.286, 0.250 | 0, 0, **7, 7, 7, 7, 151** |
+| 1.0 | 1.0, 0.500, 0.333, 0.250, 0.200, 0.167, 0.143 | 0, **7, 7, 151, 165, 165, 166** |
+
+**Of 7 rungs, only 2-3 produce distinct consumer outcomes at any strength.** The intermediate
+rungs are functionally identical -- the consumer is a threshold crossing, so it resolves *which
+side of ~0.275 the rung lands on* and nothing else. Adding rungs between the ones that already
+exist would change no outcome; lowering the floor changes almost every outcome.
+
+This is the empirical form of the structural point: **the consumer's requirement is about where
+the range sits relative to a threshold; gradedness is about how finely the range is sampled.
+Only the first is binding, and it is now measured rather than argued.**
+
+The opposite calibration regime is documented in the substrate itself: the `affinity_input_cap`
+comment (`salience_coordinator.py:276-288`, the 2026-08-12 MECH-266 occupancy fix) records
+`dacc_pe ~16-17` on the V3-EXQ-464d/467d substrate, with `operating_mode` collapsing to one-hot
+`internal_planning`; at `pe ~16` even the `s=0.5` floor yields 4.0, still 4x above the critical
+value. So `pe`'s operating scale is not a fixed property of the substrate -- it is ~0.99
+untrained, ~3.6 after a 120-episode P0 warmup, and ~16-17 on another trained configuration --
+and **f_sat's fixed floor can only be correctly calibrated against one of those at a time.**
+That is the same units-mismatch class already documented for `dacc_goal_readout_normalize` and
+`affinity_input_cap`.
 
 ### What Line 1 settles
 
 A **multiplicative attenuator cannot own a threshold-relative property.** Consumer B needs
-`pe` to land on a particular side of an absolute critical value; f_sat has no knowledge of
-that value, and its floor is set by `(s, W, G)` alone. This is the structural reason the
-"gradedness" branch of the question does not resolve the situation: the consumer's requirement
-is about **where the range sits relative to a threshold**, and gradedness is about **how
-finely the range is sampled**. Those are different properties, and only the first is binding.
+`pe` to land on a particular side of an absolute critical value; f_sat has no knowledge of that
+value, and its floor is set by `(s, W, G)` alone. So whether MECH-268 works is decided by a
+coincidence between two independently-chosen numbers -- `dacc_saturation_strength` and
+`external_task_bias` -- that no part of the substrate reconciles. The trained measurement shows
+that coincidence currently failing by a factor of 1.3 (floor 0.3571 against a requirement of
+0.2747), which is close enough to look like it should work and far enough that it does not.
+
+This is the structural reason the "gradedness" branch of the question does not resolve the
+situation, and the rung table above is its measured form: the consumer's requirement is about
+**where the range sits relative to a threshold**; gradedness is about **how finely the range is
+sampled**. Only the first is binding.
 
 ## Line 2 -- biology
 
@@ -327,10 +388,17 @@ anything f_sat drives.
 
 Any future MECH-268 experiment must satisfy all four:
 
-1. **The DV must be `sat_factor` itself, or `pe`, and not a behavioural downstream** -- until
-   one of the two consumer defects in Line 1 is fixed. There is no behavioural DV that
-   `sat_factor` can move. A design that asserts one is unrunnable, and this is the common root
-   of all three refusals.
+1. **The DV may be `sat_factor`, `pe`, or the MODE REGISTER -- but never E3 selection.**
+   Consumer A is argmin-invariant structurally and in every regime, so any DV downstream of
+   candidate selection is unrunnable; that is the common root of all three refusals. The mode
+   register (`operating_mode` occupancy, `mode_switch_trigger` rate) **is** a valid DV on a
+   **trained** agent, and is the one that speaks to MECH-268's registered purpose. Two
+   preconditions, both measured above: the agent must be trained (untrained, `pe` sits below
+   the critical value and nothing moves), and `dacc_saturation_strength` must be **>= 0.5**
+   (at the 0.3 default the floor clears the requirement on only 4.2% of ticks, so a
+   default-strength arm is a near-guaranteed null for a calibration reason, not a scientific
+   one). A design using this DV should state both, and ideally sweep strength across the
+   0.3 / 0.5 boundary, since that boundary is the finding.
 2. **Any criterion on f_sat levels must live in `[1/(1+s*(W-G)), 1]` over at most `W-G+1`
    distinct values**, and must state `(s, W, G)` alongside, because both the rung set and the
    floor are functions of all three. A criterion phrased on the "interior of (0,1)" is
@@ -364,10 +432,12 @@ Any future MECH-268 experiment must satisfy all four:
    committing to an algebraic form. Make that explicit so a future session cannot read the
    reciprocal as load-bearing, and record the reachable-set facts (<= `W-G+1` values; floor
    `1/(1+s(W-G))`) next to it, since they are what three designs tripped over.
-2. **Add a scope line: MECH-268 is currently a claim about the SIGNAL, not about BEHAVIOUR.**
-   The evidence bar should say so. The 2026-09-16 governance narrowing already went most of
-   this way for V3-EXQ-729; Line 1 supplies the mechanism that makes it a permanent scope
-   statement rather than a per-run caveat.
+2. **Add a scope line, but a NARROWER one than this document first proposed: MECH-268 is a
+   claim about the signal and about the MODE REGISTER, never about candidate selection.**
+   (The first version of this document said "the SIGNAL, not BEHAVIOUR" -- withdrawn; the
+   trained measurement shows a real mode-register effect.) Consumer A's argmin-invariance is
+   structural and permanent until the effort proxy changes, so that half is a standing scope
+   statement rather than a per-run caveat; the mode-register half is live and testable now.
 3. **Record the count-vs-run defect as a known limitation with a named failure signature**
    (Line 2). It is real, it is biology-grounded, and it should not be rediscovered.
 4. **Two substrate_queue entries are owed -- against the CONSUMERS, not against f_sat:**
@@ -378,10 +448,15 @@ Any future MECH-268 experiment must satisfy all four:
      `agent.py:7536` comment) is a known build, and its blast radius is SD-032b as a whole, not
      MECH-268.
    - `dacc_pe`'s operating scale is uncalibrated against the mode register's critical value
-     (~`external_task_bias`), measured at both ~0.99 and ~16-17 in different configurations.
-     This is **complex (probe-gated)**: a spike is needed to establish what `pe`'s intended
-     operating range *is* before anyone picks a normalisation, and until then it is a
-     `puzzle (known rules)` -- the missing fact is a calibration target, not a reframing.
+     (~`external_task_bias`), measured at ~0.99 untrained, ~3.6 after a 120-episode P0 warmup,
+     and ~16-17 on the V3-EXQ-464d/467d configuration. Because f_sat's floor is a fixed
+     function of `(s, W, G)` while `pe`'s scale moves with training, the two can only be in
+     register at one operating point at a time. This is now **`puzzle (known rules)`, not
+     `complex (probe-gated)`** -- the trained measurement supplied the missing fact (the
+     requirement is ~0.275, the default floor is 0.357), so what remains is the known-rules
+     decision of whether to raise `dacc_saturation_strength` to >= 0.5, normalise `dacc_pe`,
+     or make the floor track `external_task_bias`. That decision is governance's; the spike it
+     was gated on has been run.
 
 None of the four is a change to f_sat.
 
@@ -411,9 +486,16 @@ is exhausted and concentrate mass at the ceiling. That would be the first ecolog
 gradedness evidence MECH-268 has -- which is exactly the bar the 2026-09-16 governance
 narrowing left open.
 
-**What it must not do is carry a behavioural DV.** Line 1 shows there is no behavioural
-quantity `sat_factor` can move today, so a behavioural arm would produce a fourth refusal for
-the fourth different-looking reason. If the design is written that way, refuse it again.
+**It may now ALSO carry a mode-register DV, which the first version of this document ruled
+out.** The trained measurement shows `argmax(operating_mode)` responding to f_sat (151/195 at
+`strength=0.5`), so a second DV -- `internal_planning` occupancy, or `mode_switch_trigger` rate
+-- is available and speaks directly to MECH-268's registered purpose. If it is used, the design
+must be trained and must run at `strength >= 0.5` (design constraint 1); a default-strength arm
+is a calibration null, not evidence.
+
+**What it must still not carry is an E3-SELECTION DV.** Consumer A is argmin-invariant
+structurally and in every regime, so a candidate-selection arm would produce a fourth refusal
+for a fourth different-looking reason. If the design is written that way, refuse it again.
 
 ## Work-graph routing
 
@@ -422,16 +504,18 @@ the fourth different-looking reason. If the design is written that way, refuse i
 | MECH-268 claim-text narrowing | `complicated (buildable)` | governance edit; content specified above |
 | count-vs-run defect in f_sat | `complicated (buildable)` | a run-length or volatility statistic is a known build; deliberately NOT proposed here (see the scope note below) |
 | `candidate_effort` proxy | `complicated (buildable)` | the intended refinement is already named in-tree |
-| `dacc_pe` calibration vs mode register | `complex (probe-gated)` -> `puzzle (known rules)` | needs a spike to fix the operating-range target; then a known fix |
+| `dacc_saturation_strength` default 0.3 vs the ~0.275 requirement | `puzzle (known rules)` | spike RUN: floor 0.3571 clears 4.2% of ticks, 0.5's floor clears 90.4%; the remaining call is which knob to move |
 | closure-cadence dose experiment | `complicated (buildable)` | re-scope as above and queue via `/queue-experiment` |
 | which dACC channel saturates (pe / surprise / commitment) | `mystery (known data)` | the lit-pull's own residual; Quilodran's transfer finding suggests the framing, not the data, is what is missing |
 
 **Scope note, stated because it is the specific error the last two days of red-team refusals
 have been preventing:** the count-vs-run defect is recorded above as a limitation and routed as
-buildable, but **this document does not recommend changing f_sat now.** A form change would be
-premature while both of f_sat's consumers are inert -- there would be no way to tell whether it
-helped. Fix the consumers first; then the form question becomes measurable, and the count-vs-run
-finding is waiting for whoever asks it.
+buildable, but **this document does not recommend changing f_sat now.** The trained measurement
+makes the reason sharper rather than weaker: the mode register responds to f_sat's **floor** and
+resolves only 2-3 of its 7 rungs, so a change to the *shape* of the decay between rungs has no
+consumer that could register it. Move the floor first -- `dacc_saturation_strength` to >= 0.5,
+or whichever calibration route governance picks -- and only then does the count-vs-run question
+become measurable. It is waiting for whoever asks it.
 
 ## Method
 
@@ -455,16 +539,19 @@ The three probe scripts are short and self-contained; they are not landed in `re
 above. Probes 1 and 2 build the agent exactly as `_build_agent` in
 `experiments/v3_exq_729_mech268_dacc_saturation_liveloop.py` does, adding only `dacc_weight`.
 
+**Probe 4 -- the trained replication (2026-09-18, same session).** Probe 2 re-run after
+`run_p0_warmup(budget=120, steps_per_episode=200)` on CPU, 195 eval ticks, plus a per-tick
+bisection for the f_sat that flips `argmax(operating_mode)`. **This probe falsified the
+untrained conclusion** and its numbers are the ones Consumer B now reports. Cost ~27 min
+warmup + ~1 min eval.
+
 **Limitations, stated rather than papered over.**
-(a) Probes 1 and 2 ran on an **untrained** agent. A P0-warmup (budget 120, V3-EXQ-729's value)
-replication of probe 2 was started and is **NOT reported here** -- it did not finish inside this
-session's budget. It is **owed**, and it is the one check that could qualify Consumer B's
-result, because `pe`'s operating scale is what training moves. Re-run:
-`/opt/local/bin/python3 scratch/ree_fsat_trained.py` per the reproduction note below. Consumer
-B's conclusion should be read as established for the untrained regime and *indicative* for the
-trained one -- with the caveat that the trained regime documented in-tree (`dacc_pe ~16-17`)
-sits even further from the critical value, i.e. training moved `pe` the wrong way for f_sat to
-act.
+(a) The trained probe is **one seed, one env, one warmup budget** (seed 11 train / 77 eval,
+`CausalGridWorldV2` 8x8, `EVAL_HAZARDS=8`). The 0.3-vs-0.5 boundary is sharp and the
+requirement distribution is tight (p25 0.2642, p75 0.2769), so the *direction* is not in doubt;
+the exact 4.2% / 90.4% figures are single-sample and should be replicated across seeds before
+anyone re-tunes `dacc_saturation_strength` on them. That replication is the natural content of
+the closure-cadence successor's non-degeneracy arm.
 (b) Consumer A's conclusion does **not** depend on training: it follows from
 `candidate_effort` being the rollout horizon, which is a structural property of the generator.
 (c) The `pe ~16-17` figure for the opposite calibration regime is quoted from the
