@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T12:21:50.827523Z",
+  "generated_at_utc": "2026-09-18T13:45:46.011117Z",
   "items": [
     {
       "acceptance_checks": [
@@ -4550,6 +4550,55 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1408",
+      "blocked_by": [
+        "MECH-054",
+        "MECH-095"
+      ],
+      "blocked_note": "Substrate gate (EXP-0829 readiness check, 2026-09-01): MECH-043's behavioral half is not constructible on the current substrate. (1) NO PRECISION->DV COUPLING: the claim requires 'misallocation of this channel produce a measurable shift in a hallucination-like DV'. The only hallucination-like DV substrate present is the MECH-095 TPJ agency comparator (misattribution of self-caused events to external agency, ree_core/comparator/tpj_comparator.py). TPJComparator.compare() is a pure function of (z_self_pred, z_self_obs, self.agency_threshold) -- verified by AST: no precision token (current_precision/_running_variance/precision_norm/dacc_precision_scale) appears anywhere in ree_core/comparator/, and agency_threshold is assigned only at construction (agent.py:893 <- config.tpj_agency_threshold), never at runtime. The DV is therefore INVARIANT to a gain sweep of the unsigned channel by construction; the only residual path (precision -> commit gate -> different committed actions -> different z_self trajectory) is a confound, not the 'attributable to THIS channel specifically' attribution the claim demands. The unsigned channel's three real consumers are the E3 commit gate, dACC affective-PE weighting (dacc.py:195), and the SD-020 harm surprise target (agent.py:11243) -- none is an attribution DV. (2) NO DISSOCIATION CONTROL: falsifier (iv) requires demonstrating functional dissociation from MECH-054's signed harm/benefit precision channels, but MECH-054 has ZERO implementation in ree_core (0 occurrences; pi_H/pi_B exist only as an 'Implementation Sketch' in docs/architecture/precision_control.md). There is no signed-channel substrate to dissociate from, so (iv) can be neither confirmed nor falsified. Preconditions (a)/(b)/(c) DO hold and were confirmed: the audited term is unsigned by construction (e3_selector.update_running_variance: prediction_error.pow(2).mean()), live-invoked from the real step loop (e3_selector.py:4151), and influences commitment + learning rate. Owed build routes to /implement-substrate; NO substrate_queue entry currently unblocks MECH-043 (0 entries), so this work is unowned. Queueing a gain sweep now would yield a DV that cannot move for the reason under test -- a null would be uninterpretable between falsifier (iii) and an instrument defect. ARC-109 is deferred to V4; ARC-108 is implemented but substrate_conditional. NOTE: sibling proposal LIT-0830 shares backlog_id EVB-1408 and is deliberately left 'proposed' -- the literature-grounding route is unaffected by this substrate gap.",
+      "claim_id": "MECH-043",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-043 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0793",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_043",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1391",
       "blocked_by": [
         "MECH-018",
@@ -5641,6 +5690,56 @@
       "suggested_experiment_type": "claim_probe_mech_039",
       "target_repo": "ree-v3",
       "why_now": [
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1407",
+      "blocked_by": [
+        "mode-governance-engagement",
+        "residue-field-kernel-resolution",
+        "commit-readiness-gate-no-behavioural-consumer"
+      ],
+      "blocked_note": "MECH-042 sub-claim (2) requires positive telemetry-over-behaviour lead time on >=2 pathology types, and the claim's own non-degeneracy precondition declares lead time UNDEFINED for a pathology that does not manifest behaviourally. Measured 2026-09-18: only 1 of the 4 claim-named control-plane pathologies manifests. precision collapse is LIVE (83/150 action divergences); the commit latch is INERT with the gate OFF and also with use_commit_readiness_gate=True + readiness pinned below floor (0 action divergences); mode lock is INERT even with the CORRECT mode names and confirmed engagement (visited mode set collapsed to {external_task}, yet every telemetry channel moved 0.0 and no action changed); residue kernel bandwidth is NEAR-INERT in BOTH directions (harm identical to control). So C1 cannot discriminate under any outcome. Sub-claim (1) is already LANDED as ree-v3 contract test test_mech042_telemetry_readonly_nonparticipation.py and needs no run. Full measurement, the repairs already worked out for the other three GFLAG-0335 blockers, and the SD-082 overlap disposition: evidence/planning/mech042_telemetry_lead_time_pathology_liveness_blocked_20260918.md",
+      "claim_id": "MECH-042",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-18T11:51:42Z",
+      "gated_by_session": "igw-245-proposal-for-mech-042",
+      "gating_reason": "Three of four injectable control-plane pathologies have no live consumer at the operating config, so the control plane cannot currently be perturbed in more than one way. This is NOT the conversion / F-dominance ceiling -- it is a separately-actionable control-plane fact. Supersedes GFLAG-0335's 'OWED: repair (1)-(4) and re-run Step 4.5': blockers (2),(3),(4) are repairable and their fixes are recorded, but blocker (1) is not repairable on this substrate and the >=2-pathology requirement it belongs to is unsatisfiable.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-042 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0790",
+      "proposal_type": "experimental",
+      "release_condition": "At least TWO of MECH-042's named control-plane pathologies demonstrably manifest behaviourally (harm rate or reward departs from control within the life). Any ONE of these supplies the second: (a) operating_mode gains a live consumer on the behavioural DV's path (SD-032a/MECH-266/MECH-261; chip chip-20260917-sd032a-operating-mode-no-consumer); (b) CommitReadiness readiness gains an effective behavioural consumer, i.e. pinning below commit_readiness_floor with the gate ON changes committed actions (currently UNOWNED -- first recorded 2026-09-18); (c) residue-field-kernel-resolution lands so a bandwidth perturbation is a real manipulation (owed via GFLAG-0337).",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_042",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -15987,193 +16086,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_041",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1407",
-      "blocked_by": [
-        "mode-governance-engagement",
-        "residue-field-kernel-resolution",
-        "commit-readiness-gate-no-behavioural-consumer"
-      ],
-      "blocked_note": "MECH-042 sub-claim (2) requires positive telemetry-over-behaviour lead time on >=2 pathology types, and the claim's own non-degeneracy precondition declares lead time UNDEFINED for a pathology that does not manifest behaviourally. Measured 2026-09-18: only 1 of the 4 claim-named control-plane pathologies manifests. precision collapse is LIVE (83/150 action divergences); the commit latch is INERT with the gate OFF and also with use_commit_readiness_gate=True + readiness pinned below floor (0 action divergences); mode lock is INERT even with the CORRECT mode names and confirmed engagement (visited mode set collapsed to {external_task}, yet every telemetry channel moved 0.0 and no action changed); residue kernel bandwidth is NEAR-INERT in BOTH directions (harm identical to control). So C1 cannot discriminate under any outcome. Sub-claim (1) is already LANDED as ree-v3 contract test test_mech042_telemetry_readonly_nonparticipation.py and needs no run. Full measurement, the repairs already worked out for the other three GFLAG-0335 blockers, and the SD-082 overlap disposition: evidence/planning/mech042_telemetry_lead_time_pathology_liveness_blocked_20260918.md",
-      "claim_id": "MECH-042",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-18T11:51:42Z",
-      "gated_by_session": "igw-245-proposal-for-mech-042",
-      "gating_reason": "Three of four injectable control-plane pathologies have no live consumer at the operating config, so the control plane cannot currently be perturbed in more than one way. This is NOT the conversion / F-dominance ceiling -- it is a separately-actionable control-plane fact. Supersedes GFLAG-0335's 'OWED: repair (1)-(4) and re-run Step 4.5': blockers (2),(3),(4) are repairable and their fixes are recorded, but blocker (1) is not repairable on this substrate and the >=2-pathology requirement it belongs to is unsatisfiable.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-042 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0790",
-      "proposal_type": "experimental",
-      "release_condition": "At least TWO of MECH-042's named control-plane pathologies demonstrably manifest behaviourally (harm rate or reward departs from control within the life). Any ONE of these supplies the second: (a) operating_mode gains a live consumer on the behavioural DV's path (SD-032a/MECH-266/MECH-261; chip chip-20260917-sd032a-operating-mode-no-consumer); (b) CommitReadiness readiness gains an effective behavioural consumer, i.e. pinning below commit_readiness_floor with the gate ON changes committed actions (currently UNOWNED -- first recorded 2026-09-18); (c) residue-field-kernel-resolution lands so a bandwidth perturbation is a real manipulation (owed via GFLAG-0337).",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_042",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1407",
-      "claim_id": "MECH-042",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-042.",
-      "priority": "medium",
-      "proposal_id": "LIT-0791",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_042",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1408",
-      "blocked_by": [
-        "MECH-054",
-        "MECH-095"
-      ],
-      "blocked_note": "Substrate gate (EXP-0829 readiness check, 2026-09-01): MECH-043's behavioral half is not constructible on the current substrate. (1) NO PRECISION->DV COUPLING: the claim requires 'misallocation of this channel produce a measurable shift in a hallucination-like DV'. The only hallucination-like DV substrate present is the MECH-095 TPJ agency comparator (misattribution of self-caused events to external agency, ree_core/comparator/tpj_comparator.py). TPJComparator.compare() is a pure function of (z_self_pred, z_self_obs, self.agency_threshold) -- verified by AST: no precision token (current_precision/_running_variance/precision_norm/dacc_precision_scale) appears anywhere in ree_core/comparator/, and agency_threshold is assigned only at construction (agent.py:893 <- config.tpj_agency_threshold), never at runtime. The DV is therefore INVARIANT to a gain sweep of the unsigned channel by construction; the only residual path (precision -> commit gate -> different committed actions -> different z_self trajectory) is a confound, not the 'attributable to THIS channel specifically' attribution the claim demands. The unsigned channel's three real consumers are the E3 commit gate, dACC affective-PE weighting (dacc.py:195), and the SD-020 harm surprise target (agent.py:11243) -- none is an attribution DV. (2) NO DISSOCIATION CONTROL: falsifier (iv) requires demonstrating functional dissociation from MECH-054's signed harm/benefit precision channels, but MECH-054 has ZERO implementation in ree_core (0 occurrences; pi_H/pi_B exist only as an 'Implementation Sketch' in docs/architecture/precision_control.md). There is no signed-channel substrate to dissociate from, so (iv) can be neither confirmed nor falsified. Preconditions (a)/(b)/(c) DO hold and were confirmed: the audited term is unsigned by construction (e3_selector.update_running_variance: prediction_error.pow(2).mean()), live-invoked from the real step loop (e3_selector.py:4151), and influences commitment + learning rate. Owed build routes to /implement-substrate; NO substrate_queue entry currently unblocks MECH-043 (0 entries), so this work is unowned. Queueing a gain sweep now would yield a DV that cannot move for the reason under test -- a null would be uninterpretable between falsifier (iii) and an instrument defect. ARC-109 is deferred to V4; ARC-108 is implemented but substrate_conditional. NOTE: sibling proposal LIT-0830 shares backlog_id EVB-1408 and is deliberately left 'proposed' -- the literature-grounding route is unaffected by this substrate gap.",
-      "claim_id": "MECH-043",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-043 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0793",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_043",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1408",
-      "claim_id": "MECH-043",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-043.",
-      "priority": "medium",
-      "proposal_id": "LIT-0794",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_043",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",

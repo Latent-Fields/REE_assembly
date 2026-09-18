@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_043",
+  "entry_id": "2026-09-18_mech_043_perceptual_disturbance_framework_horga2019",
+  "timestamp_utc": "2026-09-18T13:40:50Z",
+  "claim_ids_tested": ["MECH-043"],
+  "source": {
+    "title": "An integrative framework for perceptual disturbances in psychosis",
+    "authors": ["Guillermo Horga", "Anissa Abi-Dargham"],
+    "year": 2019,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/s41583-019-0234-1",
+    "pmid": "31712782",
+    "pmc": null,
+    "volume": "20",
+    "issue": "12",
+    "pages": "763-778"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "A high-quality integrative review in a top venue that assembles the anatomy (associative cortico-striatal loops), the physiology (elevated associative-striatal dopamine transmission, elevated baseline associative auditory cortex activity) and the computational framing (perceptual inference with over-weighted priors) into one framework linking dopamine to hallucination-like perceptual distortion. It supports MECH-043's overall architecture -- a neuromodulatory gain term acting on an inference balance, whose misallocation yields hallucination-like output -- and supplies the cortico-striatal loop anatomy REE would need to argue its E3 selector is the right homologue. Confidence is capped at 0.66 because it is a REVIEW rather than a primary test: it contributes no new measurement, it shares authorship (Horga, Abi-Dargham) and therefore much of its evidence base with the Cassidy 2018 entry already in this pull, and it does not address the signed-versus-unsigned distinction that is the discriminating content of MECH-043 against MECH-054 and ARC-108/109.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review frames perceptual disturbance as increased reliance on PRIOR expectations, and does not separate unsigned-PE precision from signed value coding. It therefore offers no leverage on MECH-043's falsifier (i) (signed/valence information entering the computation) or falsifier (iv) (non-dissociability from MECH-054's signed channels) -- the two falsifiers that actually discriminate MECH-043 from its neighbours.",
+    "The anatomy emphasised is associative cortico-striatal loops and associative auditory cortex. REE's precision term is a single scalar in the E3 selector with no loop structure and no modality-specific sensory cortex analogue, so the anatomical framework is aspirational rather than implemented."
+  ],
+  "tags": ["mech043", "dopamine", "hallucinations", "perceptual-inference", "cortico-striatal", "review", "supports"],
+  "mapping": {
+    "source_claim_statement": "Perceptual disturbances in psychosis, notably auditory verbal hallucinations, are associated with increased baseline activity in associative auditory cortex and increased dopamine transmission in the associative striatum, and with perceptual biases indicating increased reliance on prior expectations. The authors review theoretical models of perceptual inference and the supporting physiological evidence, together with the anatomy of associative cortico-striatal loops relevant to auditory perceptual inference, and outline a working framework bridging neurobiology and the phenomenology of perceptual disturbance via perceptual-inference models.",
+    "ree_translation": "This review supplies MECH-043's architectural context rather than a test of it. MECH-043 posits a neuromodulatory gain term acting on an inference balance, whose misallocation produces hallucination-like output; Horga and Abi-Dargham assemble the strongest available case that this is how hallucinations actually arise in humans, and that dopamine is the neuromodulator in question. For REE the specific contribution is anatomical: the associative cortico-striatal loop is the circuit REE would have to claim as the homologue of its E3 commitment gate if MECH-043's dopamine framing is to be more than an analogy, and this review is where that circuit is laid out. It is supporting scaffolding for the claim's plausibility and for experiment design, not evidence for the claim's discriminating content.",
+    "mapping_caveat": "Two limits, one of source type and one of content. As a review it contributes no new measurement and its evidence base overlaps substantially with the Cassidy et al. 2018 entry already in this pull -- Horga and Abi-Dargham are co-authors on that paper -- so this entry should NOT be counted as independent corroboration of it, and the two together are closer to one line of evidence than two. On content, the review frames the pathology as over-weighted priors and never separates unsigned-PE precision from signed value coding; it therefore says nothing about MECH-043's falsifiers (i) and (iv), which are the clauses that distinguish MECH-043 from MECH-054 and ARC-108/109. Finally, the anatomy is loop-structured and modality-specific while REE's precision term is a single scalar in the E3 selector, so the anatomical mapping is a target REE has not built rather than one it satisfies.",
+    "source_context": "Narrative integrative review. Human literature, predominantly auditory modality and schizophrenia-spectrum psychosis; synthesises molecular imaging, fMRI, psychophysics and computational modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good for a review -- authoritative authors, top venue, careful synthesis -- but a review supplies no new measurement and this one is not independent of the Cassidy 2018 entry in this same pull. Mapping fidelity moderate: the framework-level mapping to REE is sound, the anatomical mapping is aspirational, and the review is silent on the signed/unsigned distinction that carries MECH-043's discriminating weight. Transfer risk moderate for the same reason."
+  }
+}

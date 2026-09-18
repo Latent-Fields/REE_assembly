@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_043",
+  "entry_id": "2026-09-18_mech_043_cholinergic_dopaminergic_precision_dissociation_iglesias2021",
+  "timestamp_utc": "2026-09-18T13:40:50Z",
+  "claim_ids_tested": ["MECH-043"],
+  "source": {
+    "title": "Cholinergic and dopaminergic effects on prediction error and uncertainty responses during sensory associative learning",
+    "authors": [
+      "Sandra Iglesias",
+      "Lars Kasper",
+      "Samuel J. Harrison",
+      "Robert Manka",
+      "Christoph Mathys",
+      "Klaas Enno Stephan"
+    ],
+    "year": 2021,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2020.117590",
+    "pmid": "33285332",
+    "pmc": null,
+    "volume": "226",
+    "pages": "117590"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "A deliberately-designed, double-blind, placebo-controlled pharmacological replication attempt that FAILED to confirm a clean dopaminergic-versus-cholinergic division of labour over precision-weighted prediction errors -- and, more pointedly for MECH-043, found no drug effects at all on the precision-weighted PE quantity itself, only on its separated PE and precision components, and no behavioural drug effects whatsoever. This is high-quality disconfirming evidence for the specificity half of MECH-043 (falsifier iv: that the effect is fully explained by a shared precision-scale parameter with no functional dissociation demonstrable). Source quality is high: the authors are the group that generated the original positive finding, the design is the strongest available (two independent double-blind placebo-controlled pharmacological fMRI studies with both antagonists and agonists of both systems), and they report the negative result against their own hypothesis. Confidence is held at 0.72 rather than higher because the authors themselves flag pharmacological-fMRI confounds as a live alternative explanation for their null, so this weakens MECH-043's specificity claim without refuting it -- a null under acknowledged confounds is not a demonstrated absence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A direct pharmacological test found NO clean dopaminergic specificity for precision-weighted prediction errors: drug effects appeared only after splitting the precision-weighted PE into separate PE and precision components, and the pattern crossed neurotransmitter systems (galantamine, a cholinergic drug, enhanced responses in the putative DOPAMINERGIC midbrain; amisulpride, a dopaminergic drug, affected a putatively cholinergic brainstem region). This is MECH-043 falsifier (iv) realised in human data.",
+    "Task behaviour was not affected by ANY of the four drugs. If REE predicts that misallocating its dopamine-like precision channel shifts a behavioural DV, the closest human pharmacological analogue produced no behavioural effect at all -- which weakens the expected effect size for MECH-043's CONFIRMING sweep.",
+    "The authors explicitly abandon their own prior hypothesis of a clear-cut dichotomy between hierarchical inference levels and neurotransmitter systems, in favour of 'a more complex interaction'. A REE architecture that assigns precision to a single dopamine-like channel is simpler than the biology this paper reports."
+  ],
+  "tags": ["mech043", "dopamine", "acetylcholine", "precision-weighting", "prediction-error", "pharmacological-fmri", "null-result", "dissociation-failure", "weakens"],
+  "mapping": {
+    "source_claim_statement": "Following an earlier fMRI finding that low-level precision-weighted prediction errors about visual outcomes activated the midbrain while high-level precision-weighted PEs about cue-outcome associations activated the basal forebrain -- suggesting selective dopaminergic and cholinergic influences at different hierarchical levels -- the authors ran two double-blind placebo-controlled pharmacological fMRI studies (study 1 with antagonists, study 2 with the agonists levodopa and galantamine) to test that hypothesis directly. Pooled across pharmacological conditions the anatomical pattern replicated, but drug effects on brain activity emerged only when the precision-weighted PEs were split into their separate PE and precision components, and the resulting pattern crossed systems: biperiden enhanced low-level PE and attenuated high-level PE responses in a putative cholinergic brainstem region, amisulpride reduced high-level PE responses there, while galantamine enhanced low-level PE responses in the putative dopaminergic midbrain and amisulpride enhanced high-level precision activity there. Task behaviour was unaffected by any drug. The authors conclude their results do NOT support a clear-cut dichotomy between hierarchical inference levels and neurotransmitter systems.",
+    "ree_translation": "MECH-043 does not merely assert that REE's precision term exists and is unsigned -- that part is settled by code audit (INV-008). It asserts that this channel is DOPAMINE-LIKE specifically, and its falsifier (iv) states the claim is violated if the effect is fully explained by a shared/general precision-scale parameter also governing MECH-054's signed channels identically, with no functional dissociation demonstrable. This paper is the most direct human test of exactly that specificity, run by the group with the strongest prior stake in a positive result, and it comes back negative: no clean dopaminergic locus for precision-weighted PE, cross-system effects that invert the predicted assignment, and no behavioural consequence of any manipulation. For REE the implication is concrete rather than merely cautionary. If the biology does not cleanly separate a dopaminergic precision channel from a cholinergic one, then REE's design decision to route precision through one dopamine-like term is a SIMPLIFICATION that the literature does not underwrite, and MECH-043 should be read as a claim about REE's own architecture whose biological warrant is weaker than Haarsma et al. 2021 alone would suggest.",
+    "mapping_caveat": "This is a null result under confounds the authors themselves name, and a null is not an absence. Pharmacological fMRI is vulnerable to vascular effects on the BOLD signal that are independent of neural activity, to dose-response non-monotonicity, and to between-subject designs being underpowered for interaction effects -- the authors discuss these explicitly and outline improved future tests rather than declaring the hypothesis dead. So this entry weakens MECH-043's SPECIFICITY half; it does not touch the unsigned-computation half at all, and it does not weaken Haarsma et al.'s positive finding, which used a different paradigm, targeted cortical rather than subcortical loci, and did obtain behavioural and clinical effects. The honest reading is that human pharmacology supports 'dopamine modulates precision-weighting somewhere' considerably better than it supports 'precision-weighting is the dopaminergic channel, dissociable from others'. A REE experiment that isolates the precision channel from MECH-054's signed channels and from ARC-108/109 is therefore testing something the biology has not settled, which makes it more valuable, not less.",
+    "source_context": "Two between-subject double-blind placebo-controlled pharmacological fMRI studies in healthy human participants. Study 1: antagonists (biperiden, muscarinic cholinergic; amisulpride, dopaminergic). Study 2: agonists (levodopa, dopaminergic; galantamine, cholinergic). Task: sensory associative learning with volatility, analysed with a hierarchical Bayesian (HGF) model yielding low-level and high-level precision-weighted prediction errors. Modality: BOLD fMRI, human, visual associative learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: two independent double-blind placebo-controlled studies covering agonists and antagonists of both candidate systems, pre-specified hypothesis, negative result reported against the authors' own prior positive finding -- an unusually credible null. Docked from higher only because the authors flag pharmacological-fMRI confounds as a live alternative explanation. Mapping fidelity high: the paper's target quantity (precision-weighted PE, and specifically its attribution to a neuromodulatory system) is the literal content of MECH-043's falsifier (iv). Transfer risk moderate-low for the specificity conclusion, which is about attribution rather than about a species- or task-bound effect."
+  }
+}

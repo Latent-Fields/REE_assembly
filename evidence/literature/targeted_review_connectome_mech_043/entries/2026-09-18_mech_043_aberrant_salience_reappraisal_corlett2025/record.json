@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_043",
+  "entry_id": "2026-09-18_mech_043_aberrant_salience_reappraisal_corlett2025",
+  "timestamp_utc": "2026-09-18T13:40:50Z",
+  "claim_ids_tested": ["MECH-043"],
+  "source": {
+    "title": "20 Years of Aberrant Salience in Psychosis: What Have We Learned?",
+    "authors": ["Philip R. Corlett", "Kurt M. Fraser"],
+    "year": 2025,
+    "venue": "American Journal of Psychiatry",
+    "doi": "10.1176/appi.ajp.20240556",
+    "pmid": "40134268",
+    "pmc": "PMC12949980",
+    "volume": "182",
+    "issue": "9",
+    "pages": "819-829"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "A recent critical reappraisal that cuts both ways for MECH-043, which is why it is filed as mixed rather than as support. It SUPPORTS MECH-043's form: after twenty years of data, the authors judge Kapur's scalar aberrant-salience account to fit the evidence poorly, and argue that accounts casting dopamine in belief formation and belief updating under uncertainty fit better -- which is MECH-043's falsifier (ii) (collapse into a scalar reward objective) being rejected by the field in MECH-043's favour. It WEAKENS MECH-043's attribution: the authors find the specific predictions about the neural and behavioural loci of dopamine dysfunction 'lacking', drawing on the recent explosion of precise circuit-level tools, which is a caution against confidently naming any one computational quantity as the dopaminergic one. Source quality is high for a review (leading figures in computational psychiatry, top clinical venue, deliberately adversarial reading of a dominant theory), but it remains a review contributing no new measurement, and its unit of analysis is delusion and hallucination formation rather than precision-weighting per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors judge the specific predictions of the dominant dopamine-salience theory about the neural and behavioural LOCI of dopamine dysfunction to be lacking when tested against twenty years of subsequent data. MECH-043 names a locus (a precision channel in the E3 selector, feeding the commitment gate and dACC weighting); this review is a direct caution that locus-level claims about dopamine have a poor track record of surviving better measurement.",
+    "The reappraisal is grounded in circuit-level tools (precise measurement and manipulation of dopaminergic circuits) that show the dopamine system to be functionally heterogeneous. REE's single scalar precision term has no capacity to represent that heterogeneity, so MECH-043's analogy compresses a system the field now treats as multiple."
+  ],
+  "tags": ["mech043", "dopamine", "aberrant-salience", "belief-updating", "uncertainty", "psychosis", "review", "critical-reappraisal", "mixed"],
+  "mapping": {
+    "source_claim_statement": "Twenty years after Kapur's 'psychosis as a state of aberrant salience', the authors critically evaluate that theory against subsequent data and find its specific predictions regarding the neural and behavioural loci of dopamine dysfunction lacking, informed by recent advances from precise measurement and manipulation of dopaminergic circuits. They argue that contemporary theories developed since Kapur -- casting dopamine in belief formation, belief updating under uncertainty, and abductive inference to the best explanation -- form a more cogent account that better fits how patients with delusions and hallucinations behave and what is known about their dopamine system.",
+    "ree_translation": "MECH-043's falsifier (ii) states the claim is violated if precision weighting collapses into a scalar reward objective. This review is the field's own verdict on precisely that question, and it goes MECH-043's way: the scalar-salience framing is judged to have aged badly, and the successor accounts the authors endorse -- dopamine in belief updating under uncertainty -- are structurally the same kind of quantity as an inverse-variance precision weight, not a reward scalar. That is meaningful independent corroboration of MECH-043's FORM. The same review simultaneously undercuts MECH-043's CONFIDENCE about attribution: the authors' central negative finding is that locus-level predictions about where dopamine dysfunction sits have repeatedly failed against better circuit-level measurement. MECH-043 makes exactly such a locus-level claim about REE's precision channel, so the appropriate reading is that MECH-043 has the right shape of quantity and an under-warranted degree of specificity about which channel carries it.",
+    "mapping_caveat": "Three boundaries. (1) This is a review and contributes no new measurement; it is the field's judgement about an evidence base, and as such it can shift without any new datum. (2) Its unit of analysis is delusion and hallucination FORMATION in patients, not precision-weighting as a computational quantity -- the endorsement of belief-updating-under-uncertainty accounts is a family-level endorsement, not a specific vote for inverse-variance weighting of unsigned prediction error, and reading it as the latter would over-claim. (3) The circuit-level heterogeneity the authors invoke is an argument that the dopamine system does several computationally distinct things at once; REE represents it as a single scalar, so this review is better used as a constraint on how strongly MECH-043 may be stated than as evidence for or against its truth.",
+    "source_context": "Critical narrative review in a clinical psychiatry venue. Human clinical literature on delusions and hallucinations, read against rodent circuit-level dopamine neuroscience (optogenetic, photometric and pharmacological tools developed since 2003)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high for a review: leading computational-psychiatry authors, top clinical venue, and a deliberately adversarial reading of a theory the senior author has worked within, which is the most credible direction for a review to argue. Mapping fidelity is the limiting component at 0.66 because the review's unit of analysis is symptom formation rather than precision-weighting, so its support for MECH-043's form is family-level rather than specific. Transfer risk moderate: the caution about locus-level dopamine claims transfers cleanly to REE, but the positive endorsement transfers only loosely."
+  }
+}

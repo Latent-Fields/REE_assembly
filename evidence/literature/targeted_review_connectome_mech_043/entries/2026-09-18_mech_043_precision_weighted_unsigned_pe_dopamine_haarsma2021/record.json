@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_043",
+  "entry_id": "2026-09-18_mech_043_precision_weighted_unsigned_pe_dopamine_haarsma2021",
+  "timestamp_utc": "2026-09-18T13:40:50Z",
+  "claim_ids_tested": ["MECH-043"],
+  "source": {
+    "title": "Precision weighting of cortical unsigned prediction error signals benefits learning, is mediated by dopamine, and is impaired in psychosis",
+    "authors": [
+      "Joost Haarsma",
+      "Paul C. Fletcher",
+      "Juliet D. Griffin",
+      "Hisham J. Taverne",
+      "Hisham Ziauddeen",
+      "Tom J. Spencer",
+      "Claire Miller",
+      "Teresa Katthagen",
+      "Ian Goodyer",
+      "Kelly M. J. Diederen",
+      "Graham K. Murray"
+    ],
+    "year": 2021,
+    "venue": "Molecular Psychiatry",
+    "doi": "10.1038/s41380-020-0803-8",
+    "pmid": "32576965",
+    "pmc": "PMC8589669",
+    "volume": "26",
+    "issue": "9",
+    "pages": "5320-5333"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.86,
+  "confidence_rationale": "This is the closest direct test of MECH-043 in the human literature: it manipulates dopamine pharmacologically (bromocriptine agonist / sulpiride antagonist, n=59), measures the precision-weighting of UNSIGNED prediction errors specifically, replicates the fMRI effect across two independent samples (combined n=133), and shows the effect is degraded in first-episode psychosis. Source quality is high (large combined N, double manipulation, replication built in, top-tier venue). Mapping fidelity is high but not perfect: the paper localises precision-weighted unsigned PE to superior frontal cortex rather than to a commitment gate, and REE's precision term is an EMA of squared PE rather than an explicitly Bayesian outcome-precision estimate. Transfer risk is moderate-low because the computational quantity (precision on an unsigned surprise signal, modulated by a dopamine-like gain) is exactly the quantity MECH-043 names. Confidence held below 0.9 because the paper does not test a hallucination-like DV directly, which is the behavioural half of MECH-043's CONFIRMING condition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The precision-weighting effect was localised to superior frontal cortex, not to the midbrain/ventral striatum; a REE implementation that ties its dopamine-like precision channel to a striatal/selection locus rather than a frontal one is not licensed by this result.",
+    "In this study the authors failed to replicate their own earlier finding of precision-weighting of SIGNED prediction errors in midbrain and ventral striatum. If REE's signed channels (MECH-054, ARC-108/109) are expected to show precision-weighting on the same evidential basis, that expectation is not supported here.",
+    "Dopaminergic modulation PERTURBED the unsigned precision-weighting signal in both directions rather than producing a clean monotonic gain effect, so a REE sweep that assumes 'more dopamine-like gain -> more precision' may not match the biology."
+  ],
+  "tags": ["mech043", "dopamine", "precision-weighting", "unsigned-prediction-error", "psychosis", "pharmacological-fmri", "supports"],
+  "mapping": {
+    "source_claim_statement": "Cortical BOLD responses code unsigned prediction errors (surprise magnitude, without valence) scaled by the precision of the outcome distribution; this precision-weighting is present in superior frontal cortex, replicates across two independent samples (combined n = 133), is perturbed by dopamine receptor agonism (bromocriptine) and antagonism (sulpiride), is impaired in first-episode psychosis and at-risk mental state, and correlates with task performance and with schizotypy in healthy volunteers. Behavioural computational modelling indicated that precision weighting of prediction errors benefits learning in health and is impaired in psychosis. Notably, the authors did NOT replicate their own prior finding of precision-weighting of SIGNED prediction errors in midbrain and ventral striatum.",
+    "ree_translation": "MECH-043 asserts that REE's precision term -- current_precision = 1.0 / (running_variance + 1e-6) in ree_core/predictors/e3_selector.py, where running_variance is an EMA over SQUARED prediction error and therefore carries no valence information by construction -- is the functional analogue of a dopamine-modulated precision channel, and that it is specific to UNSIGNED error magnitude rather than to signed value. Haarsma et al. supply the biological existence proof for exactly that conjunction: a precision weight applied to an unsigned surprise signal, whose gain is under dopaminergic control, and whose disruption is clinically associated with psychosis. The paper further speaks to MECH-043's FALSIFIER (i) (that the computation incorporates signed/valence information): the dopamine-sensitive precision effect they find is on the unsigned channel, and the signed-PE precision effect did NOT survive replication -- which is the direction of dissociation MECH-043 needs against MECH-054 and ARC-108/109. It also bears on FALSIFIER (ii) (collapse into a scalar reward objective): the modelled quantity is an inverse-variance weight on surprise, not a reward scalar.",
+    "mapping_caveat": "Three boundaries. (1) The precision in this paper is an estimate of OUTCOME precision supplied by the task's generative structure (variable outcome-precision blocks) and inferred by a Bayesian learner, whereas REE's precision is a running EMA of its own squared prediction error -- a self-generated reliability estimate, not an estimate of an externally-set noise level. These coincide only when the agent's error variance tracks true environmental variance, which REE has not demonstrated. (2) The anatomical locus is superior frontal cortex; REE wires current_precision into the E3 commitment gate and the dACC affective-PE weighting, and this paper does not license a claim about which REE module is the correct homologue. (3) The study measures LEARNING benefit and a clinical psychosis contrast, not a hallucination-like dependent variable under a gain sweep; MECH-043's CONFIRMING condition asks for an ablation/sweep of the channel's gain producing a measured increase in hallucination-like output attributable to THIS channel, and this paper does not run that experiment. It supports the channel's existence and its dopamine dependence; it does not close the behavioural half.",
+    "source_context": "Two human studies. Dopamine study: n = 59 healthy volunteers, between-subject placebo / bromocriptine (D2 agonist) / sulpiride (D2 antagonist), fMRI during a probabilistic reward-learning task with block-wise variation in outcome precision. Psychosis study: n = 74 (20 first-episode psychosis, 30 healthy controls, 24 at-risk mental state). Schizotypy correlation in a further 86 healthy volunteers. Modality: BOLD fMRI plus behavioural computational modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: pharmacological double-manipulation, within-paper replication across independent samples, clinical contrast, top-tier venue; docked from 0.95 only because pharmacological fMRI effect sizes in this literature are known to be fragile and the paper contains an internal non-replication of its own prior signed-PE result. Mapping fidelity high because the paper's target quantity (precision weight on an unsigned PE, dopamine-gated) is the literal content of MECH-043, but docked for the outcome-precision vs self-estimated-variance difference. Transfer risk moderate: human-to-REE transfer of a computational quantity is safer than an anatomical one, but the frontal locus does not obviously map to REE's E3 selector."
+  }
+}
