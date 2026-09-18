@@ -4963,6 +4963,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0350",
+      "claim_ids": [
+        "SD-011",
+        "SD-019",
+        "SD-022"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SD-011's what_would_answer misstates the regime of its OWN four validated results, and applying its own clause (i) makes two of them vacuous. Clause (i) says a run with harm_history_len=0 is VACUOUS as an SD-011 test 'regardless of what its stream_corr reads'; the preamble then asserts the four validated results (EXQ-178b, EXQ-198, EXQ-323a, the D3-reversal resolution) were ALL obtained at harm_history_len=10. Measured this session against ree-v3 e1ff0927: v3_exq_178b(:158), v3_exq_198(:196) and v3_exq_323a(:326) all construct AffectiveHarmEncoder(harm_obs_a_dim=..., z_harm_a_dim=...) with NO harm_history_len argument, so all three take the default 0 (ree_core/latent/stack.py:208-209). Only v3_exq_472 sets 10, and it is scoring_excluded: diagnostic_probe. The rank-2 measurement (GFLAG-0348) explains why clause (i) was right: at harm_history_len=0 the encoder's only input is harm_obs_a, which on the default path carries two scalars broadcast over 25 dims each (causal_grid_world.py:3037-3038), so z_harm_a cannot be anything but a transform of the sensory stream. SECOND stale note, same lineage: SD-022's functional_restatement describes the legacy harm_obs_a as 'structurally identical to harm_obs with a slower time constant' -- that describes the PRE-2026-03-28 construction; ree-v3 2fbf5d62 (2026-03-28) replaced the 50-dim spatial EMA with the two-scalar broadcast, so the legacy path is now strictly poorer than that sentence says. NOT ADJUDICATED HERE -- no evidence_direction proposed for any run; listed for /governance. Full analysis, per-run sourcing-mode table and three candidate constructions: REE_assembly/evidence/planning/harm_obs_a_rank2_scoping_staged_20260918.md (origin/master b87c46b22c). Distinct from GFLAG-0348, which covers the rank-2 measurement itself on SD-086/SD-011; that flag should also have its claim_ids widened to SD-019/SD-020/SD-022/MECH-258 when governance adjudicates it.",
+      "raised_by_session": "metaworker-science-20260918-sd011-harm-obs-a-rank2-spike",
+      "raised_at": "2026-09-18T20:12:51Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
