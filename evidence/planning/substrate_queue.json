@@ -5659,21 +5659,23 @@
       "ready": false,
       "design_doc": "docs/architecture/sd_061_difficulty_gated_proposal_entropy.md",
       "depends_on_unresolved": [
-        "Q-056 3-arm falsifier (off/stuck-gated/always-high) not yet run"
+        "Q-056 3-arm falsifier (off/stuck-gated/always-high) not yet run -- and BLOCKED: do not queue it until decision (c) below is answered",
+        "(c) OPEN DESIGN DECISION, raised 2026-09-18: what the StuckStateDetector should do when declared axes are ABSENT (axis mask / minimum-present-axes requirement / threshold recalibration), and which axes ought to carry the firing. combine_mode='mean' averages over PRESENT axes only, so which axes arrive sets the attainable MAXIMUM of stuck_score, not just its value. This decides what 'stuck' MEANS and is therefore a scientific decision, not a build one."
       ],
       "unblocks_claims": [
         "MECH-343",
         "Q-056"
       ],
       "failure_record": null,
-      "implementation_hint": "IMPLEMENTED 2026-06-19. ree_core/cingulate/stuck_state_detector.py + ree_core/policy/difficulty_gated_proposal_entropy.py + agent wiring (_e3_tick proposal gain + select_action detector update + reset) + config no-op-default flags. OFF bit-identical; 8/8 contracts + preflight green. Next: claim-free substrate-readiness diagnostic (regulator OFF vs ON under induced stuck-state -> candidate_first_action_entropy rises under stuck + decays), then the Q-056 3-arm governance falsifier.",
+      "implementation_hint": "IMPLEMENTED 2026-06-19; AMENDED 2026-09-18 (a)+(b) per GFLAG-0352, ree-v3 6ba3eb96a1. ree_core/cingulate/stuck_state_detector.py + ree_core/policy/difficulty_gated_proposal_entropy.py + agent wiring + config no-op-default flags. OFF bit-identical; 17/17 contracts green. WHAT THE 2026-09-18 AMENDMENT CORRECTED, because it changes how the 2026-06-19 validation must be read: (a) the regulator's TEMPERATURE half had NO live consumer -- differentiable_cem_temperature is read at exactly one place (HippocampalModule's CEM refit) inside SD-055's 'if use_differentiable_cem', default False and named in NONE of this entry, the design doc's Config section, claims.yaml, or V3-EXQ-694's driver -- so SD-061's effective manipulation was CANDIDATE-COUNT WIDENING ALONE and V3-EXQ-694's C2 'regulator load-bearing' PASS certified the count half only. New knob dgpe_enable_differentiable_cem (default False -> bit-identical, 694 still reproduces) couples it; get_state() now reports sd061_temperature_lever_consumer_live and sd061_temperature_half_inert so a manifest says whether the half acted. MEASURED SCOPE, do not over-read: coupled, the lever moves action-OBJECT content by ~1.2e-5 and does NOT move candidate first-action-CLASS entropy -- the DV this entry's own 'Next' sentence, SD-061 what_would_answer criterion (3) and MECH-343 upstream leg (a) all name (contract C13b). (b) TWO of the four declared detector axes never arrive in an ecological loop: committed_action_class 0/100 ticks and choice_difficulty 0/100. choice_difficulty needs FOUR conditions (use_dacc, use_affective_harm_stream, an env emitting harm_obs_a, and a driver calling sense(obs_harm_a=...) -- act_with_split_obs drops it, so a driver on that interface can never populate the axis at any config); committed_action_class needs a commitment, which hits MECH-342/V3-EXQ-629. Consequence: stuck_score is a 2-axis mean pinned at exactly stuck_threshold and is_stuck NEVER FIRES (duty 0.000, every arm), so MECH-343's ecological non-vacuity precondition fails 0/3. New axis-PRESENCE diagnostics (sd061_n_present_*, sd061_n_axes_present_last) make a null attributable; update()'s arithmetic is unchanged. NEXT: answer decision (c) (see depends_on_unresolved), THEN the Q-056 3-arm governance falsifier. The claim-free readiness diagnostic already ran and PASSED (V3-EXQ-694, 2026-06-19) -- but see (a): it certified the count half only.",
       "priority": 5,
       "priority_note": "Q-056 buildability triage greenlit; off V3 green-board critical path.",
       "autopsy_ref": "evidence/planning/q054_q055_q056_buildability_triage_2026-06-19.md",
       "added_session": "q054-q055-q056-buildability-triage-20260619",
-      "last_seen_session": "q054-q055-q056-buildability-triage-20260619",
+      "last_seen_session": "metaworker-science-20260918-sd061-mech343-q056-substrate",
       "implementation_log": [
-        "2026-06-19: SD-061 substrate landed (ree-v3). MECH-343 stays candidate/substrate_conditional/v3_pending (PROMOTES NOTHING). Validation experiment pending."
+        "2026-06-19: SD-061 substrate landed (ree-v3). MECH-343 stays candidate/substrate_conditional/v3_pending (PROMOTES NOTHING). Validation experiment pending.",
+        "2026-09-18: AMENDED (a)+(b) per GFLAG-0352 (ree-v3 6ba3eb96a1). Coupled the temperature half to its SD-055 consumer behind dgpe_enable_differentiable_cem (default False, bit-identical); added temperature-inertness and axis-presence diagnostics to both modules' get_state(); recorded the four-condition chain the SD-032b choice_difficulty axis needs. Contracts C9-C16 added (17 pass). PROMOTES NOTHING -- MECH-343 stays candidate/substrate_conditional/v3_pending. Q-056 remains BLOCKED on decision (c). Record: evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md"
       ]
     },
     {

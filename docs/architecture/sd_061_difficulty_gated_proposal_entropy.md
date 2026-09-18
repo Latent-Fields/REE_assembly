@@ -140,3 +140,102 @@ MECH-343 (parent mechanism), ARC-018 (proposal locus), modulatory-bias-selection
 MECH-090 / MECH-342 (commitment predicates, untouched), SD-032b (dACC choice_difficulty),
 MECH-313 (state-independent sibling; distinct), Q-056 (the falsifier), MECH-094
 (simulation gate).
+
+---
+
+## 2026-09-18 amendment (GFLAG-0352): the temperature half had no live consumer
+
+**Two statements above were wrong in a way that misled the evidence record.** Both are
+corrected here rather than edited out, because the shape of the error is the reason for the
+diagnostics added alongside the fix. Measurement record:
+`REE_assembly/evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md`.
+Substrate change: ree-v3 `6ba3eb96a1`. **PROMOTES NOTHING** -- MECH-343 stays
+`candidate` / `substrate_conditional` / `v3_pending`.
+
+### (a) `differentiable_cem_temperature *= gain` reached nothing
+
+The data-flow block above ends with
+
+```
+    -> HippocampalModule.propose_trajectories(num_candidates += extra,
+         differentiable_cem_temperature *= gain  [transient, restored in finally])
+```
+
+The mutation happens. The **read** does not. `differentiable_cem_temperature` has exactly
+one consumer in `ree_core` -- `HippocampalModule`'s CEM refit -- and it sits inside SD-055's
+`if getattr(self.config, "use_differentiable_cem", False):`, default **False**.
+`use_differentiable_cem` appears in **none** of: the **Config** section above (which
+enumerates all 13 SD-061 knobs), the ree-v3 substrate record, SD-061's or MECH-343's
+`what_would_answer`, or V3-EXQ-694's driver.
+
+So at every configuration this document names, SD-061's effective manipulation was
+**candidate-COUNT widening alone**. V3-EXQ-694's C2 "regulator load-bearing" PASS therefore
+certified the count half only -- while SD-061's `what_would_answer` criterion (2) reads as
+certifying that the regulator "lifts `differentiable_cem_temperature` transiently".
+
+**Fix.** New knob `dgpe_enable_differentiable_cem` (default `False`; `REEConfig` +
+`from_dims`). True alongside the master flag -> `REEAgent.__init__` sets
+`hippocampal.use_differentiable_cem = True`. Default-off is bit-identical, so V3-EXQ-694
+still reproduces exactly.
+
+**Fix that matters more.** `DifficultyGatedProposalEntropy.get_state()` now reports
+`sd061_temperature_lever_consumer_live` and `sd061_temperature_half_inert`. A manifest
+carrying the regulator state now says whether the half acted, so the 694-class error cannot
+recur silently.
+
+**Measured scope of the coupled lever -- do not over-read the fix.** Isolating the
+temperature (count lever off, `dgpe_candidate_widen_max=0`): *uncoupled*, the proposed
+candidate set is **bit-identical** at `stuck_score` 1.0 vs 0.0 (max abs diff exactly 0.0);
+*coupled*, action-OBJECT content moves by ~1.2e-5 while the candidate **first-action-CLASS**
+distribution is **unchanged**. The class is a coarse argmax and a perturbation that small
+essentially never flips it. So the coupling makes the lever live; it does **not** make it
+able to move `candidate_first_action_entropy` -- the DV criterion (3) and MECH-343's
+upstream leg (a) both name. In the same measurement, the only thing that moved that DV was
+the COUNT lever, in **both** directions across successive proposals -- consistent with
+V3-EXQ-694's "count-widening is silent-to-adverse on entropy". Pinned by contract `C13b`.
+
+### (b) Two of the five declared detector inputs never arrive
+
+The data-flow block lists the detector inputs as
+`goal_proximity, score_margin, committed_action_class, dacc.choice_difficulty, goal_salience`.
+Measured over an ecological loop (`REEConfig.goal_stream` + `CausalGridWorldV2`, agent
+selecting its own actions): 100/100, 99/100, **0/100**, **0/100**, 100/100.
+
+`choice_difficulty` (the SD-032b axis) needs **four** conditions, not one --
+`REEAgent.select_action` writes `_dacc_last_bundle` only inside
+`if self.dacc is not None and z_harm_a is not None:`
+
+1. `use_dacc=True` -- constructs `agent.dacc`;
+2. `use_affective_harm_stream=True` -- constructs the `AffectiveHarmEncoder` producing `z_harm_a`;
+3. the environment must emit `harm_obs_a` (`CausalGridWorldV2` does);
+4. **the driver must forward it**: `agent.sense(..., obs_harm_a=...)`. `act_with_split_obs`
+   calls `sense(obs_body, obs_world)` with no harm channel, so a driver on that convenience
+   interface can **never** populate the axis, at any config. `experiments/_harness.py`,
+   `experiments/_lib/allon_training.py` and `_lib/baselines/*` forward it correctly.
+
+`use_dacc=True` was deliberately **not** made sufficient: forcing `use_affective_harm_stream`
+on would instantiate an `nn.Module` encoder, changing the parameter set and the RNG stream,
+which is not bit-identical. The requirement is recorded instead (user decision, 2026-09-18).
+
+`committed_action_class` needs a commitment to have occurred (a beta elevation), which runs
+into MECH-342's registered open failure (V3-EXQ-629, "no natural commit when score margins
+are flat") -- a connected failure MECH-343's own notes already cite.
+
+**Why it bites arithmetically.** The combine is a mean over **PRESENT** axes, so which axes
+arrive sets the *attainable maximum* of `stuck_score`. With the progress axis saturated at
+1.0 and the margin axis at 0.0, evidence is exactly `mean(1.0, 0.0) = 0.5` -- identical to
+the default `stuck_threshold`, approached from below by the EMA, so `is_stuck` **never
+fires** (measured duty cycle 0.000 in every arm). And `last_deficit_*` was 0.0 for both an
+absent axis and a present-but-zero one, so a null was unattributable between "not stuck" and
+"the axes that would have said so never arrived".
+
+**Fix (diagnostics only; `update()` arithmetic untouched).** `StuckStateDetector.get_state()`
+now reports `sd061_last_present_{progress,margin,diversity,difficulty}`, `sd061_n_present_*`
+and `sd061_n_axes_present_last`.
+
+### (c) Deliberately NOT decided here
+
+What the detector should do when axes are absent -- an axis mask, a minimum-present-axes
+requirement, or a threshold recalibration -- and which axes ought to carry the firing,
+determine what "stuck" **means**, and are therefore a scientific decision rather than a
+build one. Raised as a decision chip. **Do not queue Q-056 until (c) is answered.**
