@@ -19062,6 +19062,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1449",
+      "blocked_by": [
+        "sd068-staged-restoration-mode (substrate_queue.json, node_class 'complicated (buildable)', status_phase build_owed, ready=false, commissioned 2026-09-18 by user decision option B) -- consolidation_lesion_harness.py::run_staged_sweep (:1806) sweeps DAMAGE only and there is no staged-RESTORATION mode ('restor' occurs once in the 1,900-line harness, at :334, in unrelated prose), so MECH-170's predicted RECOVERY order cannot be measured at all.",
+        "mech170-recovery-vs-decline-order-discriminator (evidence/planning/mech170_staged_restoration_discriminator_staged_20260918.md, node_class 'puzzle (known rules)', USER DECISION OWED) -- MECH-170's predicted recovery sequence (precision, then slot-filling, then slot-formation) is the SAME downstream-first order as the harness's already-banked staged-DECLINE order (harness header :11-14, V3-EXQ-778a), so no pre-registerable criterion yet distinguishes MECH-170's prediction from the result already in hand. Sharper form: phase_integrity_at_sigma (:1029) gives each phase a FRESH agent by design (:1039-1042), so reading the same sigma grid in DESCENDING order reproduces the decline order BY ARITHMETIC. Three candidate discriminators (D1 hysteresis, D2 restoration rate, D3 selective dependency-blocking) are costed in the staged doc, which ends in the decision the user must make."
+      ],
+      "blocked_note": "EXP-0872 (MECH-170): blocked_substrate, recorded 2026-09-18 by science-20260918-sd071-carveout-and-run under user decision 2026-09-18T22:54Z (option B on chip-20260918-mech170-carveout-scope). CORRECTION TO THE RECORD: MECH-170 was bundled into GFLAG-0319 as if the SD-068 harness's unconditional EXPERIMENT_PURPOSE=diagnostic contract were its blocker. It is not, and it never was recorded as one here -- this row carried blocked_by: None and no blocked_note in BOTH proposal files until now. The 2026-09-18 carve-out (GFLAG-0319, resolved) does NOT reach MECH-170 and was deliberately not widened: MECH-170 fails both carve-out conditions structurally, being a behavioural mechanism_hypothesis whose depends_on includes MECH-120 and MECH-121 directly. The two blockers named in blocked_by are the real ones and neither is touched by any purpose carve-out: one is a BUILD (commissioned, not started here -- IGW auto-discovery stages it as its own consented chip), the other is a USER DECISION about what MECH-170's experiment should measure. Do NOT work chip chip-proposal-exp-0905-paced as a /queue-experiment item until the discriminator decision is taken -- a criterion pre-registered before then cannot distinguish MECH-170's prediction from the banked decline result. One claim depends on MECH-170: MECH-177.",
       "claim_id": "MECH-170",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -19084,7 +19089,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_170",
       "target_repo": "ree-v3",
       "why_now": [
