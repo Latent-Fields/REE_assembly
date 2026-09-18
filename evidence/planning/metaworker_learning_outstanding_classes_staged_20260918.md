@@ -117,3 +117,32 @@ held-out evidence (P1: latency-only, P3: one case). That is stated rather than p
 
 Options: (A) proceed with P3 fix + repair, P4 build (existing chip), P1 steps 1-2 only; hand back P2/P5/P6a;
 (B) constrain to the P3 data repair and P4 only; (C) hold everything.
+
+## Outcome addendum (2026-09-18, option A chosen by user in chat)
+
+**Built and landed:** P3 coordinator guard (ree-v3 `7f51dff`) + 16 chips restored done, 1 withdrawn; P4 fleet-health
+EXPECTED-STOPPED gate (REE_Working `7d4d64f85`); P1 paste-ready `--allow-discard` prefill in the wedge chip
+(hygiene_routine_tick.py, 2 tests, 753 pass). Hub restart to load the P3 guard is NOT done (consent-gated).
+
+**P1 step 1 -- R1 measurement (item 1 of chip-20260910-merge-refwedge-class), non-withdrawn refwedge chips:**
+| window | n | mean ahead at clear | median / mean duration (h) |
+|---|---|---|---|
+| pre-R1 08-15..08-27 | 27 | 26.0 | 0.8 / 3.0 |
+| post-R1 08-28..09-03 | 9 | 19.0 | 1.8 / 3.3 |
+| 09-04..09-18 | 11 (all DLAPTOP) | 16.7 | 4.1 / 5.8 |
+Rate: ~3.7 episodes per 1000 origin commits since 09-04 (2952 commits) against a predicted ~2.8 -- roughly
+unchanged per commit, absolute rate down (2.1/d -> 0.73/d). Cost: mean ahead-count down ~36% (26 -> 16.7), not
+"sharply"; duration UP because the post-09-04 population is entirely DLAPTOP, where clearing waits on a human.
+Verdict: R1 is not falsified on rate, is only partially supported on cost, and duration is not measurable
+across the population shift. Phase-2b cutover confound (same day) cannot be separated. Supports the finding
+that the residual is human-authorisation latency.
+
+**P1 step 2 -- scoped DOWN, honestly.** The approved plan was an unpinned AUDIT chip + pinned MOVE chip. A new
+chip family touches _KNOWN_HYGIENE_PREFIXES, _EPISODIC_STANDING_PREFIXES, the absence-done set,
+dispatch_candidate_order and pause_pressure registries plus the resolve/re-fire hysteresis -- the exact
+machinery whose flapping produced this class's history. Shipped instead: the toil half (paste-ready command).
+Deferred design if wanted: derive the audit ref post-hoc from the MOVE chip's generation ref inside
+`_record_episodic_finding` (no episodic registry entry), resolved by the healer on amending the MOVE chip.
+
+**Not done:** items 2 and 3 of chip-20260910-merge-refwedge-class (no-op-delete re-test; chip_archive proof-route
+design fork -> needs a decision chip), so that chip stays open.
