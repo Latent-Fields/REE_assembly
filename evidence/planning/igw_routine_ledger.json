@@ -5762,7 +5762,11 @@
       "task_claim_session_id": "igw-auto-igw-242-proposal-for-mech-028-20260918T004309Z",
       "task_claim_claimed_at": "2026-09-18T00:43:09Z",
       "assigned_at": "2026-09-18T00:41:06Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T00:52:54Z",
+      "completion_summary": "No experiment queued -- REE_assembly 9daa84dc94: EVB-1397/EXP-0765 proposed -> blocked_substrate for MECH-028. Two of the claim's own pre-registered non-degeneracy preconditions are unsatisfiable: mode transitions do not occur (lineage inert at production defaults; n_switches == n_episodes across 464/467/934/935; V3-EXQ-935a 2026-09-16 regime_shape_graded=0), and no MECH-261 write_gate consumer sits on a harm-learning write path (residue_field.accumulate and e2_harm_s are ungated). Routes to /implement-substrate; LIT-0766 twin left proposed.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "No experiment queued -- REE_assembly 9daa84dc94: EVB-1397/EXP-0765 proposed -> blocked_substrate for MECH-028. Two of the claim's own pre-registered non-degeneracy preconditions are unsatisfiable: mode transitions do not occur (lineage inert at production defaults; n_switches == n_episodes across 464/467/934/935; V3-EXQ-935a 2026-09-16 regime_shape_graded=0), and no MECH-261 write_gate consumer sits on a harm-learning write path (residue_field.accumulate and e2_harm_s are ungated). Routes to /implement-substrate; LIT-0766 twin left proposed."
     }
   ],
   "dispositions": [
@@ -8285,6 +8289,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-17T23:53:54Z",
       "re_eligible_after": "2026-09-19T23:53:54Z"
+    },
+    {
+      "stable_hash": "3c56cf026d39",
+      "igw_id_at_disposition": "IGW-20260918-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-028"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-028",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T00:52:56Z",
+      "re_eligible_after": "2026-09-20T00:52:56Z"
     }
   ]
 }
