@@ -308,3 +308,82 @@ git -C <repo> log --oneline -- <path> | grep '^[0-9a-f]* phase2b-registry:'
 # contains a coordinator_transport call site:
 grep -rl coordinator_transport REE_Working/scripts/ REE_assembly/scripts/
 ```
+
+---
+
+## 9. Addendum 2026-09-18: finding (1) has been acted on -- the counts have not
+
+Added by `chip-20260918-phase4-assembly-writer-routability`, after this report
+was landed. **Everything above is left exactly as measured.** This section
+records only what has CHANGED since, because one statement above is now false
+and a later reader reproducing section 8 will get a different answer than the
+body describes.
+
+### 9.1 What changed
+
+Section 5 finding (1) said: "`grep -rl coordinator_transport
+REE_assembly/scripts/` returns **zero files**. The coordinator client exists
+only in the umbrella repo." **That is no longer true.** As of `REE_assembly`
+`2a17374bc6` that directory contains:
+
+- `scripts/coordinator_transport.py` -- vendored BYTE-IDENTICAL from the
+  canonical `REE_Working/scripts/` copy, registered in
+  `scripts/audit_vendored_copies.py` `VENDOR_SETS` (set `coordinator_transport`)
+  so the existing drift audit and its direction rule now guard it. A cross-repo
+  `sys.path` import was rejected for the reason root CLAUDE.md step 7a gives for
+  `graceful_timeout.py`: it fails silently off the Mac, and here the silent
+  fallback IS the git path -- i.e. this report's own defect, except invisible,
+  because the flag would still read armed. Vendoring duplicates no state: the
+  config and bearer token live in `~/.ree_coordinator_client.json`, in `$HOME`,
+  outside any repo, so both copies read one config and one token.
+- `scripts/assembly_coordinator.py` -- the gated adapter REE_assembly writers
+  are meant to call. DP-10 holds by construction: `routing_armed()` is
+  `enabled() and in_scope(UMBRELLA_ROOT)`, with `UMBRELLA_ROOT` derived from
+  `__file__`, so a fixture clone outside the real tree computes a root that is
+  not `scope_root` and stays on the git path. Verified against this box's live
+  suppression-armed config. **No widening of the canonical `in_scope()` was
+  needed or made** -- widening it to accept containment under `scope_root` was
+  considered and rejected as a broadening of the arming condition, which is the
+  one thing DP-10 exists to prevent.
+
+The standing check this report's section 5 asked for is now
+`REE_Working/scripts/audit_routed_path_writers.py`, wired into
+`hygiene_routine_tick.py` (fleet cadence, not session-start: the defect is
+structural and changes only when a writer or a flag changes).
+
+### 9.2 What did NOT change -- do not read 9.1 as a compliance improvement
+
+**No writer was converted.** Re-running section 8's structural test today shows
+`generate_inter_governance_workset.py` and `igw_assignments_lib.py` still have
+no call site. Every per-file count in section 2 stands as measured, and every
+section-4 verdict stands. What changed is that the fix is now *possible* in this
+repo; none of it is *applied*.
+
+### 9.3 Correction carried forward from DP-12
+
+DP-12 named remote-side push restriction as "the only uniform lever". This
+report's own section 5 refutes that and the refutation should travel with it:
+all three non-compliant populations are STRUCTURAL, so branch protection would
+fix none of them. Section 7 confirms push is still unrestricted; that remains a
+user decision and is untouched.
+
+### 9.4 A blind spot in the new check, found while wiring it
+
+`audit_routed_path_writers.py` is **FILE-granular**, and section 3.4's finding
+is FUNCTION-granular. `chip_ledger.py` carries 20 `coordinator_transport`
+references elsewhere in the file, so the whole file scores as routing-capable
+and `cmd_archive`'s zero references are masked: the new check reports
+`TASK_CHIPS.json` as clean. **The daily git-side strip is still unrouted** --
+section 3.4 remains the live account of it, and the check will not re-raise it.
+Chipped separately as `chip-20260918-phase4-chip-archive-verb`; the rotation
+gap in section 3.3 is `chip-20260918-phase4-ws-rotation-verb`. The check states
+its other two blind spots (session-level `ree_commit.py` commits, and paths where
+no writer matched at all) in its own output.
+
+### 9.5 `/intent/replace` health, for whoever picks up section 10 step 4
+
+Probed 2026-09-18 with a deliberately invalid repo (no write performed): it
+returned a structured `400 not_routed`, not the 500 seen for five days during
+the DP-11 deploy gap. The endpoint and the `submit_intent_replace` transport
+wrapper are both live. `ree_commit.py` still has zero references to the intake,
+so section 10 step 4 remains UNBUILT.

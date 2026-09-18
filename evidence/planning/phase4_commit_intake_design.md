@@ -389,6 +389,24 @@ is substantially live, per the parent plan's PHASE-3 node.
   cmd_archive`) for which no matching verb exists. Section 10 step 8 must read
   that report's section 4 table, not the flags.
 
+  **UPDATE 2026-09-18 (`chip-20260918-phase4-assembly-writer-routability`),
+  and read it narrowly.** The STRUCTURAL blocker above is removed: `REE_assembly/
+  scripts/` now carries a byte-identical vendored `coordinator_transport.py`
+  plus the gated `assembly_coordinator.py` adapter (`REE_assembly`
+  `2a17374bc6`), so "no file in `REE_assembly/scripts/` imports
+  `coordinator_transport`" no longer holds. **No writer was converted, and every
+  per-file count and section-4 verdict in that report still stands** -- section
+  10 step 8 stays gated exactly as written. The standing check the report asked
+  for is `REE_Working/scripts/audit_routed_path_writers.py`, wired into
+  `hygiene_routine_tick.py`; note it is FILE-granular and therefore CANNOT see
+  the `cmd_archive` case, which is chipped separately
+  (`chip-20260918-phase4-chip-archive-verb`, with the rotation gap as
+  `chip-20260918-phase4-ws-rotation-verb`). Full detail, including the
+  vendor-vs-shared-path decision and the DP-10 argument, is in that report's new
+  section 9. Also verified that day: `/intent/replace` is healthy (a structured
+  `400 not_routed`, not the DP-11 deploy-gap 500), while `ree_commit.py` still
+  has zero references to the intake -- section 10 step 4 remains UNBUILT.
+
   **Scope note:** this DP is about files already in section 5's routing
   table. Whether the code plane should join that table is a separate and
   currently open question; section 5's last row excludes it on the grounds
