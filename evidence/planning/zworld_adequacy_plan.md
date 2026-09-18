@@ -71,8 +71,8 @@ closure_plan:
       owner_exq: V3-EXQ-1010
       unblocks_claims: ["INV-088", "MECH-457", "SD-015", "ARC-030", "MECH-117", "ARC-065"]
       depends_on: []
-      cross_plan_link: ["goal_pipeline:GAP-2", "ree_ai_design_critique:WS-1"]
-      last_updated: 2026-09-11
+      cross_plan_link: ["goal_pipeline:GAP-2", "ree_ai_design_critique"]
+      last_updated: 2026-09-18
       blocking_on: >
         The SD-106 build (substrate_queue.json, status pending_implementation,
         ready true, priority 1, node_class "complicated (buildable)"). Nothing

@@ -3918,6 +3918,14 @@
   subject: temporal.now_construction
   polarity: asserts
   status: provisional
+  epistemic_category: standard
+  evidence_quality_note: >
+    V3-EXQ-1050 (MECH-021, evidence, FAIL): non_contributory. C2 (past-window lift) was never
+    instrumented -- ARM_WIN10 summary_10 was indistinguishable from summary_1 (L2 ~1e-5 vs floor
+    1e-3) in all 3 seeds, so ARM_WIN1 and ARM_WIN10 produced bit-identical trajectories. C1 (future-
+    horizon depth lift) pooled +0.076 (>= 0.05 margin) but sign-consistent in only 2/3 seeds (seed 0
+    -0.174, its warm-up hazard-survival gate failed) and the curves are non-monotone. Neither the
+    FALSIFYING nor CONFIRMING branch was reached. pending re-run with the window made live.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -34670,6 +34678,7 @@
   subject: hippocampal_module.da_modulated_rbf_density
   polarity: asserts
   status: candidate
+  epistemic_category: standard
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -76060,6 +76069,7 @@
   subject: precision.waking_confidence_inflation
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: true
   live_status:
     reading: candidate
     as_of: 2026-07-24
@@ -86376,6 +86386,7 @@
   subject: architecture.cross_stream_shared_organisation
   polarity: asserts
   status: candidate
+  diagnostic_evidence_adjudicated: true
   live_status:
     reading: candidate
     as_of: 2026-07-22
@@ -93308,6 +93319,20 @@
   subject: goal.relational_role_not_stored_node_type
   polarity: asserts
   status: candidate
+  evidence_quality_note: >
+    V3-EXQ-1055 (evidence, PASS, 11 of 15 evaluation seeds green; tuning seeds disjoint): PARTIAL
+    support for half (i) only. Under an A-B-A destination reversal, GhostGoalBank.rank() reinstated
+    the older phase-A anchor group when the destination returned to D1 (mean AUC return-minus-stay
+    +0.477 against a 0.10 bar, positive in 11/11 green seeds; the STAY control sat at the ~0.5
+    recency null, and the probe wrote nothing to the anchor pool). Half (ii), the matched stored-
+    node-type comparison arm, was NOT tested: it needs the SD-097 node-schema commitment that was
+    declined 2026-09-17, so SD-098 stays open. Two limits carried with the result: (1) destination
+    privilege is not separated from sensory-context reinstatement, because the policy seeks the
+    active destination, so the finding is read-time recomputation, not the privileged-destination
+    term of the conjunction; (2) the consistency clause is pinned true whenever the RETURN arm
+    saturates, so the mean-contrast clause carries the criterion. Four non-green seeds (anchor-group
+    supply below floor) also showed positive contrasts. Governance 2026-09-18: no status or category
+    change.
   live_status:
     reading: candidate/substrate_conditional
     as_of: 2026-09-17

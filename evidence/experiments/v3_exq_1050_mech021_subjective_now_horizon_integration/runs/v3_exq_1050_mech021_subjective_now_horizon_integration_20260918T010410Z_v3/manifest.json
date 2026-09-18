@@ -23,7 +23,7 @@
     "MECH-021"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -463,5 +463,6 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "Governance 2026-09-18 applied confirmed failure_autopsy_V3-EXQ-1050_2026-09-18 (autopsy commit 2bd134910c4): non_contributory. C2 (past-window) never instrumented (theta summary_10 vs summary_1 L2 ~1e-5 vs floor 1e-3, arms bit-identical); C1 sign-inconsistent 2/3 seeds. Neither falsifying nor confirming branch reached; pending re-run with the window made live."
 }
