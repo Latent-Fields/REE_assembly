@@ -5837,7 +5837,11 @@
       "task_claim_session_id": "igw-auto-igw-243-literature-proposal-for-mech-034-20260918T035954Z",
       "task_claim_claimed_at": "2026-09-18T03:59:54Z",
       "assigned_at": "2026-09-18T03:57:55Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T04:12:14Z",
+      "completion_summary": "lit-pull MECH-034: 5 entries landed (REE_assembly origin/master 1446151c240), lit_conf 0 -> 0.774; Sharpe 2017 recorded as weakens",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-034: 5 entries landed (REE_assembly origin/master 1446151c240), lit_conf 0 -> 0.774; Sharpe 2017 recorded as weakens"
     }
   ],
   "dispositions": [
@@ -8402,6 +8406,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-18T03:06:40Z",
       "re_eligible_after": "2026-09-20T03:06:40Z"
+    },
+    {
+      "stable_hash": "ad9fdfa462ee",
+      "igw_id_at_disposition": "IGW-20260918-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-034"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-034",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T04:12:15Z",
+      "re_eligible_after": "2026-09-20T04:12:15Z"
     }
   ]
 }
