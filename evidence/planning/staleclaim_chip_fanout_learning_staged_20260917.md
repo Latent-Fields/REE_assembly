@@ -1,6 +1,13 @@
 # Stale-claim chip fan-out: one session's claim family produces N review chips -- STAGED (not shipped)
 
-**Status: AWAITING USER REVIEW.** No change has been made to `scripts/hygiene_routine_tick.py`.
+**Status: APPROVED (option A) AND SHIPPED 2026-09-18.** User chose option A on the decision
+chip. Landed `REE_Working` origin/master **d9d030a98** (verified on origin): `_stale_claim_siblings()`
+plus the advisory sibling cross-reference in `_stale_claim_prompt`. Prompt text only -- `chip_ref`,
+the mint cap and the `_hygiene_resolution` `(session_id, claimed_at)` join are untouched, so the
+grouped-ref leak risk in section 4.2 was never taken. 6 tests added to `StaleClaimFindingsTest`
+(including the H1 negative control and an ASCII-output guard); 728 pass in the file;
+`run_scripts_tests.sh --changed` green from the main checkout.
+The file lock noted below cleared at 2026-09-17T21:06 (their work landed as `394308564`).
 Author: `/metaworker-learning` session `learning-20260917-staleclaim-fanout`, 2026-09-17T20:07:05Z.
 Subject: `_stale_claim_findings` / `_stale_claim_chip_ref` / `_stale_claim_prompt` (mint side only).
 Decision chip: see section 7.
