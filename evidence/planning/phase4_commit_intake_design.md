@@ -374,6 +374,21 @@ is substantially live, per the parent plan's PHASE-3 node.
   the only route taken), and is the evidence that would justify -- or
   defer -- the remote-side lever.
 
+  **MEASURED 2026-09-18 -- see
+  [`phase4_routing_compliance_20260918.md`](phase4_routing_compliance_20260918.md).**
+  Five of the ten flipped files are clean since their route went live
+  (`TASK_CLAIMS.json`, `RECOMMENDATION_LOG.jsonl`, `igw_routine_ledger.json`,
+  `igw_assignments.json`, and `dispatch_campaigns.json` on a one-day window);
+  five are not. `experiment_proposals.v1.json` is **4.4% routed** -- 58 of 68
+  commits since its route went live came from writers with no coordinator call
+  site, on three boxes. The structural cause is narrower than DP-12 assumed and
+  is statically visible: **no file in `REE_assembly/scripts/` imports
+  `coordinator_transport`**, so every REE_assembly-side writer of a routed path
+  is un-routable regardless of flag state, and the two remaining offenders are
+  whole-file rewriters (`rotate_workspace_state.py`, `chip_ledger.py
+  cmd_archive`) for which no matching verb exists. Section 10 step 8 must read
+  that report's section 4 table, not the flags.
+
   **Scope note:** this DP is about files already in section 5's routing
   table. Whether the code plane should join that table is a separate and
   currently open question; section 5's last row excludes it on the grounds
