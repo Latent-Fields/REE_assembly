@@ -6036,7 +6036,11 @@
       "task_claim_session_id": "igw-auto-igw-247-literature-proposal-for-mech-043-20260918T133641Z",
       "task_claim_claimed_at": "2026-09-18T13:36:41Z",
       "assigned_at": "2026-09-18T13:34:32Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T13:51:48Z",
+      "completion_summary": "lit-pull MECH-043: 5 entries landed REE_assembly bf818dce826, lit_confidence 0 -> 0.772 (3 supports / 1 weakens / 1 mixed); experimental half chipped as chip-20260918-mech043-precision-sweep",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-043: 5 entries landed REE_assembly bf818dce826, lit_confidence 0 -> 0.772 (3 supports / 1 weakens / 1 mixed); experimental half chipped as chip-20260918-mech043-precision-sweep"
     }
   ],
   "dispositions": [
@@ -8713,6 +8717,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-18T13:36:23Z",
       "re_eligible_after": "2026-09-20T13:36:23Z"
+    },
+    {
+      "stable_hash": "57a3f8790be0",
+      "igw_id_at_disposition": "IGW-20260918-247",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-043"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-043",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T13:51:49Z",
+      "re_eligible_after": "2026-09-20T13:51:49Z"
     }
   ]
 }
