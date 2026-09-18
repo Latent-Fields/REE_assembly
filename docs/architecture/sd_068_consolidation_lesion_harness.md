@@ -552,8 +552,23 @@ The hold suppresses surfacing MECH-121 for **promotion** work. This harness is
 representation-level plumbing instrumentation on injected content, **not** MECH-121
 behavioural validation. Any run built on it:
 
-- MUST be `EXPERIMENT_PURPOSE="diagnostic"`;
-- MUST NOT tag MECH-121 as promotion evidence or change its status;
+- MUST be `EXPERIMENT_PURPOSE="diagnostic"` -- **with one narrow, enumerated
+  exception, granted by user decision 2026-09-18T19:47:16Z** (Orchestrator decision
+  lane `orchestrate-20260918-1840-cloud4`, GFLAG-0319): a run MAY be
+  `EXPERIMENT_PURPOSE="evidence"` if and only if BOTH of the following hold ---
+  (i) its `claim_ids` consist **solely** of INSTRUMENT-VALIDITY claims about this
+  harness's own readouts, and as of this amendment that means the enumerated set
+  **`{SD-071}`** and nothing else; and (ii) it tags **NEITHER MECH-120 NOR
+  MECH-121**. An instrument-validity claim asserts that a readout of this harness is
+  a content-contingent measurement (it clears the C1 null-slope ceiling); it asserts
+  nothing about sleep biology or about consolidation BEHAVIOUR, which is why such a
+  run cannot bear on MECH-121 even incidentally. **The exception is an enumeration,
+  not a category**: adding any claim id to it is a fresh governance decision, and
+  the presence of SD-071 here is NOT precedent for a claim that merely resembles it.
+  Every run outside this exception stays `EXPERIMENT_PURPOSE="diagnostic"`;
+- MUST NOT tag MECH-121 as promotion evidence or change its status -- this applies
+  to every run without exception, the carve-out above included (condition (ii) is
+  what makes that automatic rather than a further obligation);
 - treats the NREM leg as a substrate-plumbing-fidelity readout only.
 
 The staging diagnostic is a property of the pipeline WIRING (error-propagation
