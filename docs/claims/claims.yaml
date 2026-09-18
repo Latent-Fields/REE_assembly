@@ -19119,6 +19119,30 @@
   location: docs/architecture/vmPFC.md
   source:
     - evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md
+  implementation_note: |
+    2026-09-18: TEST INSTRUMENT (partial) landed in ree-v3, no evidence yet.
+    HippocampalConfig.terrain_prior_residue_channel_enabled (default True =
+    unchanged behaviour; False lesions the channel) gates the anticipatory
+    residue read into terrain_prior, leaving residue STORAGE
+    (ResidueField.accumulate) and the POST-HOC scorer
+    (E3.compute_residue_cost * rho_residue) intact -- the "stored but not
+    activated" arm this claim asserts. Contracts:
+    ree-v3/tests/contracts/test_mech131_terrain_prior_residue_channel.py (6/6).
+    Record: ree-v3/docs/substrate/MECH-131-terrain-prior-anticipatory-residue-channel-lesion.md
+
+    NOT YET A COMPLETE LESION, and no experiment is queued because of it. V3 has
+    TWO live pre-candidate-generation residue reads; this knob gates only the
+    terrain_prior one. The second -- HippocampalModule._score_trajectory ->
+    ResidueField.evaluate_trajectory, which drives the CEM elite argsort -- is
+    ungated and is the DOMINANT channel (pure residue at default weights;
+    measured spread 0.892 over 32 candidates with the first channel OFF). A
+    field-level gate cannot fix this: that read shares evaluate_trajectory with
+    the post-hoc path this claim requires to stay ON, so a second call-site knob
+    would be needed. Whether the lesion arm should be one channel or two changes
+    what the experiment measures, so it was raised as a decision rather than
+    chosen unilaterally (see the decision chip referenced from
+    chip-proposal-exp-0878-paced in TASK_CHIPS.json).
+    This claim still has NO what_would_answer and no completed run.
   notes: >
     Residue is stored as curvature over L-space (ARC-013). This claim specifies the
     additional requirement: at trajectory evaluation time, a vmPFC-analog must read the
