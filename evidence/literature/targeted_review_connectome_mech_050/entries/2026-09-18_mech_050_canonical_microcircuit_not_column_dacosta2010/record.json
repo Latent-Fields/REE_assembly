@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_050",
+  "entry_id": "2026-09-18_mech_050_canonical_microcircuit_not_column_dacosta2010",
+  "timestamp_utc": "2026-09-18T23:13:21Z",
+  "claim_ids_tested": ["MECH-050"],
+  "source": {
+    "title": "Whose Cortical Column Would that Be?",
+    "authors": ["Nuno Macarico da Costa", "Kevan A C Martin"],
+    "year": 2010,
+    "venue": "Frontiers in Neuroanatomy",
+    "doi": "10.3389/fnana.2010.00016",
+    "pmid": "20640245",
+    "pmc": "PMC2904586",
+    "volume": "4",
+    "pages": "16"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "The highest mapping fidelity in this pull: the paper makes precisely MECH-050's structural move, separating the functional architecture (vertical constancy of receptive-field properties) from any anatomical analog, and nominating the CANONICAL MICROCIRCUIT as what reconciles them. Unlike Horton & Adams it therefore speaks to both halves of the claim rather than only the negative one. Confidence capped at 0.8 by source quality: this is a historical and conceptual review in a Frontiers venue with no new data, and its positive proposal is programmatic rather than demonstrated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors' canonical microcircuit is explicitly FLEXIBLE -- it 'change[s] transiently the architecture of its network in order to perform the required computations'. That is in tension with MECH-050's bounded update regions and limited lateral spillover, which are static structural constraints: a motif whose effective connectivity is reconfigured per computation does not obviously deliver stable error attribution, because the locus of update moves with the task.",
+    "The paper's central negative observation -- that much of the anatomical data actively CHALLENGES the columnar functional architecture, and that no one has seen a column's anatomy -- also undermines any attempt to validate REE's functional locality by anatomical analogy: if the mapping from physiology to anatomy failed in biology, a REE substrate cannot be defended on the grounds that its modules resemble cortical ones.",
+    "Vertical constancy of receptive-field properties is reported for primates, ungulates and carnivores. The canonical-microcircuit reconciliation is therefore fitted to the taxa that DO show the functional architecture, and the paper does not establish that the same motif accounts for rodent salt-and-pepper organisation, which is the regime REE's design actually resembles."
+  ],
+  "tags": ["mech-050", "canonical_microcircuit", "cortical_column", "functional_locality", "neuroanatomy", "daisy_architecture"],
+  "mapping": {
+    "source_claim_statement": "The cortical column has been an invaluable explanatory concept, but no one has seen the anatomy of a column; all that is established is a remarkable constancy of receptive-field properties along trajectories perpendicular to the cortical surface in primates, ungulates and carnivores. There is no obvious morphological analog for this functional architecture and much anatomical data challenges it. The concept of a canonical circuit may be where structure and functional architecture are reconciled: the canonical microcircuit respects the known connectivity of neocortex and is flexible enough to transiently change its network architecture to perform the required computations.",
+    "ree_translation": "REE reads this as the closest external statement of MECH-050's own distinction. The paper separates (A) a functional motif that is real, connectivity-respecting and reusable from (B) an anatomical bundling that has no demonstrated morphological existence -- and then locates the computation in (A). That is exactly REE's licence to build representational microcircuits as modular recurrent substructures with sparse routing and bounded update, and to omit cylindrical geometry: the geometry was never the carrier of the vertical functional constancy in the first place.",
+    "mapping_caveat": "The correspondence is at the level of conceptual framing, not measurement -- this is a historical review with no new data, and its canonical-microcircuit proposal is offered as a promising reconciliation rather than a demonstrated one. Two specific boundaries. First, the authors' canonical circuit is deliberately dynamic (transiently reconfigurable to suit the computation), whereas MECH-050's locality is a set of STATIC structural bounds; a reconfigurable motif may satisfy the paper while failing MECH-050's attribution requirement, so agreement on 'motif not geometry' does not entail agreement on which motif. Second, the vertical functional constancy being reconciled is reported in primates, ungulates and carnivores, i.e. in the taxa that have maps -- the paper does not extend the account to the rodent salt-and-pepper regime that REE's architecture more nearly resembles.",
+    "source_context": "Historical and conceptual review of mammalian neocortical anatomy and physiology from the Institute of Neuroinformatics, Zurich; evidence base is combined electrophysiology and anatomy (bouton clusters, 'daisy' lateral connectivity) in cat and primate cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.9,
+    "transfer_risk": 0.3,
+    "notes": "Source quality is the limiting component: a no-new-data review in Frontiers in Neuroanatomy, weighted up from a bare venue score because Martin is a co-originator of the canonical-microcircuit framework and the paper is a primary statement of it rather than a secondary summary. Mapping fidelity is the highest in this pull -- the paper's structure IS the claim's structure -- discounted from 1.0 only by the static-versus-reconfigurable mismatch noted in the caveat. Transfer risk moderate and of the same kind as the other entries: a conclusion about what explains biological cortex, applied to what an artificial substrate may omit."
+  }
+}

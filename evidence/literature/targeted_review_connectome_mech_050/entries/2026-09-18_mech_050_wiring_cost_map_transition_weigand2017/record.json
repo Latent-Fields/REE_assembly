@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_050",
+  "entry_id": "2026-09-18_mech_050_wiring_cost_map_transition_weigand2017",
+  "timestamp_utc": "2026-09-18T23:13:21Z",
+  "claim_ids_tested": ["MECH-050"],
+  "source": {
+    "title": "Universal transition from unstructured to structured neural maps.",
+    "authors": ["Marvin Weigand", "Fabio Sartori", "Hermann Cuntz"],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1616163114",
+    "pmid": "28468802",
+    "pmc": "PMC5441809",
+    "volume": "114",
+    "issue": "20",
+    "pages": "E4057-E4064"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "The strongest entry in this pull, because it is the only one that supplies a MECHANISM for MECH-050's causal sub-claim rather than evidence of an absence. Minimising wiring cost for a FIXED connectivity reproduces the salt-and-pepper-to-pinwheel transition as a function of neuron number alone, with an Ising-like phase transition, validated against curated cross-species data. That is precisely MECH-050's assertion that columnar bundling is a metabolic and developmental optimisation rather than a computational primitive: same computation, different geometry, selected by embedding cost. Transfer risk is also the lowest here, because the argument is about spatially embedded wiring -- a constraint REE simply does not have.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model's own logic predicts that map structure emerges as INTERCONNECTIVITY rises with neuron number, which the authors link to a phase transition in an Ising-like model. Read forward, that predicts structured maps for LARGE networks, not small ones -- so a large REE representational layer sits on the structured side of the transition, and the paper gives no reason to expect the wiring-free analogue (reduction in effective interconnectivity cost) to keep it on the unstructured side. The metabolic reading of columns is supported while the inference 'REE is safe without them' is not.",
+    "Neuron locations are PREDICTED by multidimensional scaling from an assumed connectivity, not measured, and connectivity selectivity is imposed rather than learned. The result is therefore that wiring-cost minimisation is SUFFICIENT to generate the observed layouts, not that it is what actually drove their development -- a self-organisation account with suppressive long-range interactions (Kaschube et al. 2010, Science, doi:10.1126/science.1194869) fits the same comparative data.",
+    "The paper explains WHY geometry varies while holding the computation fixed; it therefore provides no evidence at all about MECH-050's positive half. If wiring cost is the only thing that differs between salt-and-pepper and pinwheel cortex, then locality per se is not being varied in these comparisons, and nothing here bears on whether bounded update regions support error attribution.",
+    "The curated biological dataset spans a wide range of mammalian species but is assembled from the literature rather than measured uniformly, so the neuron-number-versus-map-presence relationship inherits every methodological inconsistency of its sources."
+  ],
+  "tags": ["mech-050", "wiring_cost", "columnar_geometry", "orientation_preference", "pinwheels", "salt_and_pepper", "phase_transition", "optimal_wiring"],
+  "mapping": {
+    "source_claim_statement": "Predicting neuron locations by minimising wiring cost for any given connectivity reproduces a transition from an unstructured salt-and-pepper organisation to a pinwheel arrangement as the number of neurons increases, WITHOUT any change in the selectivity of the connections. Increasing neuron numbers likewise produces layers, retinotopy or ocular dominance columns for the connectivity corresponding to each arrangement. Neuron number drives overall interconnectivity, which the authors identify as the primary reason neural maps appear and link to a known phase transition in an Ising-like model. Curated literature data confirm that neural maps appear as visual-cortex neuron number increases across a wide range of mammals. This explains salt-and-pepper organisation in rodents and pinwheels in primates, carnivores and ungulates without assuming any difference in general visual cortex architecture or connectivity.",
+    "ree_translation": "REE reads this as the mechanistic backing for the second sentence of MECH-050 -- that columnar spatial bundling is a metabolic or developmental optimisation, not a computational primitive. The paper demonstrates the strong form of that: hold the connectivity (hence the computation) fixed, vary only the spatial embedding cost and the neuron count, and the geometry switches between salt-and-pepper and columnar of its own accord. Columns are then an artefact of minimising wire in a physically embedded brain. REE's substrate has no wire to minimise, so on this account the absence of columnar geometry is the EXPECTED consequence of removing a constraint, not the omission of a mechanism.",
+    "mapping_caveat": "Two boundaries, and the first inverts part of the naive reading. The model's driver is interconnectivity RISING with neuron number, which puts LARGE networks on the structured-map side of the transition; a large REE representational layer therefore sits on the side where maps appear, and the paper offers no account of what the wiring-free analogue of that transition looks like. So this entry supports 'columns are a wiring optimisation' much more strongly than it supports 'a substrate without wiring constraints needs nothing in their place'. Second, the locations are predicted by multidimensional scaling from an ASSUMED connectivity, so the finding is that wiring-cost minimisation SUFFICES to generate the layouts, not that it caused them developmentally -- Kaschube et al. (2010) fit the same comparative data with self-organisation under suppressive long-range interactions, and Meng et al.'s comment (doi:10.1126/science.1205737) disputes that in favour of simple brain-size scaling. The causal question is live. Finally, because the paper holds computation fixed BY CONSTRUCTION, it is silent on MECH-050's positive half.",
+    "source_context": "Computational model (multidimensional scaling minimising wiring cost over assumed connectivity, plus an Ising-like statistical-mechanics analogy), validated against a literature-curated dataset of visual-cortex neuron numbers and map presence across a wide range of mammalian species."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.25,
+    "notes": "Source quality high: PNAS, a principled and parsimonious model, tested against curated comparative data rather than a single species -- discounted because it is a model over assumed connectivity and the comparative dataset is literature-assembled. Mapping fidelity 0.85 against MECH-050's causal clause about metabolic and developmental optimisation, where the correspondence is close to exact; it would be zero against the claim's attribution clause. Transfer risk 0.25, the lowest in this pull, because the mechanism invoked is spatial wiring cost -- a constraint whose ABSENCE in REE is the point, which makes the transfer unusually clean in direction even though the large-network inversion noted in the caveat limits how far it can be pushed."
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_050",
+  "entry_id": "2026-09-18_mech_050_incompressible_orientation_columns_ho2020",
+  "timestamp_utc": "2026-09-18T23:13:21Z",
+  "claim_ids_tested": ["MECH-050"],
+  "source": {
+    "title": "Orientation Preference Maps in Microcebus murinus Reveal Size-Invariant Design Principles in Primate Visual Cortex.",
+    "authors": ["Chun Lum Andy Ho", "Robert Zimmermann", "Juan Daniel Florez Weidinger", "Mario Prsa", "Manuel Schottdorf", "Sam Merlin", "Tsuyoshi Okamoto", "Koji Ikezoe", "Fabien Pifferi", "Fabienne Aujard", "Alessandra Angelucci", "Fred Wolf", "Daniel Huber"],
+    "year": 2020,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2020.11.027",
+    "pmid": "33275889",
+    "pmc": "PMC9026768",
+    "volume": "31",
+    "issue": "4",
+    "pages": "733-741.e7"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.65,
+  "confidence_rationale": "The deliberate counterweight in this pull, and the reason MECH-050 should not be promoted on the strength of the four supporting entries alone. In the 60-gram mouse lemur -- a primate the size of a rodent -- orientation columns are PRESENT, only marginally smaller than macaque, and nearly incompressible; V1 expands to one fifth of the cortical surface to accommodate the maps. That is the opposite of what a pure wiring-cost optimisation predicts: under extreme size pressure the geometry is retained at conspicuous cost rather than discarded. Confidence 0.65 rather than higher because the weakening lands on MECH-050's causal framing (columns as metabolic optimisation) rather than on its engineering conclusion, and REE is under no analogous constraint.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Orientation column size in the mouse lemur was only marginally smaller than in macaque despite an enormous difference in brain size, which the authors read as near-incompressibility of the circuit element. If columnar geometry were merely a wiring-cost optimisation it should scale down or vanish under size pressure; instead it is conserved, implying a lower bound set by something other than wire -- a load-bearing role MECH-050 currently denies.",
+    "Mouse lemur V1 occupies roughly one fifth of the cortical surface, one of the largest V1-to-cortex ratios in primates. Paying that much cortex to keep orientation preference maps is a revealed preference against the 'columns are a cheap metabolic convenience' reading: the animal spends area rather than drop the geometry.",
+    "The authors conclude that primate-type visual cortical circuit organisation is CONSTRAINED BY a size limitation and raise the possibility that it arose by disruptive innovation rather than gradual change. A circuit organisation that cannot be scaled continuously is a poor candidate for 'contingent packaging', and a discontinuous evolutionary origin is more consistent with the map being a distinct computational strategy than with it being an optimisation of a shared one.",
+    "The pinwheel arrangement was well described by a common mathematical design of primate V1 organisation -- convergent with Kaschube et al. (2010) on canalised universality. Two independent lines now support a common design principle for map layout, which is in direct tension with treating the layout as biologically contingent.",
+    "Intrinsic signal imaging in a rare prosimian primate necessarily uses small n, and the study measures map STRUCTURE rather than any behavioural consequence -- so it cannot show that the retained geometry buys any computational capability, only that evolution declined to give it up."
+  ],
+  "tags": ["mech-050", "orientation_preference", "columnar_geometry", "mouse_lemur", "microcebus", "pinwheels", "counterevidence", "size_invariance"],
+  "mapping": {
+    "source_claim_statement": "Orientation preference maps are prominent in primate and carnivore V1 but absent in rodents, which are salt-and-pepper. Asking whether this reflects a lower size limit on orientation columns, the authors used chronic intrinsic signal imaging in the 60-gram mouse lemur, one of the smallest living primates. Mouse lemur V1 contains robust orientation columns arranged in a pinwheel-like fashion; column size was only marginally smaller than in macaque, suggesting these circuit elements are nearly incompressible. The pinwheel arrangement is well described by a common mathematical design of primate V1 circuit organisation. To accommodate the maps, mouse lemur V1 covers one fifth of the cortical surface -- one of the largest V1-to-cortex ratios in primates. Primate-type visual cortical circuit organisation is therefore constrained by a size limitation, raising the possibility that it emerged by disruptive innovation rather than gradual change.",
+    "ree_translation": "REE must read this as pressure on MECH-050's causal framing rather than as support for it. MECH-050 holds that columnar bundling is a metabolic or developmental optimisation -- which predicts that under severe size and energy pressure the geometry should be relaxed or abandoned, the rodent solution being available and cheap. This primate does the opposite: it keeps near-macaque-sized orientation columns and pays for them by devoting a fifth of its cortex to V1. Combined with the authors' conclusion that the organisation is size-CONSTRAINED and possibly discontinuous in origin, the natural reading is that the map is doing something the salt-and-pepper arrangement does not, which is the possibility MECH-050 rules out by assumption.",
+    "mapping_caveat": "The weakening is real but it is aimed at one clause, and its reach into REE's design decision is limited by the same asymmetry that limits the supporting entries. What is challenged is the claim that columnar geometry is a metabolic or developmental optimisation; what is NOT challenged is that a substrate with no wiring cost, no radial migration and no cortical-area budget can realise selective representations through functional locality alone. Rodents still do the computation without maps -- this paper does not dispute that, it asks why primates do not take the rodent route. So the entry should be recorded as evidence that MECH-050's STATED REASON for dismissing columns is probably wrong or at best unsettled, without being read as evidence that REE must implement columnar geometry. It also measures map structure only: no behavioural or performance consequence of retaining the maps was assessed, so 'evolution declined to give it up' is as far as the inference goes.",
+    "source_context": "Chronic intrinsic signal optical imaging of V1 in the grey mouse lemur (Microcebus murinus), a 60-gram nocturnal prosimian primate, with quantitative comparison of orientation column size and pinwheel layout against macaque and other primates, and measurement of V1-to-cortex surface area ratio."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: technically demanding chronic imaging in a rare primate, quantitative cross-species comparison, strong authorship (Wolf, Angelucci, Huber), published in Current Biology -- discounted for the small n inherent to primate imaging. Mapping fidelity 0.68: the result bears squarely on MECH-050's causal clause about metabolic optimisation but only obliquely on its engineering conclusion, and the paper is about primates declining the rodent solution rather than about whether the rodent solution works. Transfer risk 0.4, the highest in this pull, because the conclusion is explicitly primate-specific and size-constraint-driven, and REE is subject to neither the size constraint nor the developmental mechanism invoked."
+  }
+}

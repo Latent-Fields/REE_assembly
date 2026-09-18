@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_050",
+  "entry_id": "2026-09-18_mech_050_monocular_cells_without_od_columns_adams2006",
+  "timestamp_utc": "2026-09-18T23:13:21Z",
+  "claim_ids_tested": ["MECH-050"],
+  "source": {
+    "title": "Monocular cells without ocular dominance columns.",
+    "authors": ["Daniel L Adams", "Jonathan C Horton"],
+    "year": 2006,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00131.2006",
+    "pmid": "16855115",
+    "pmc": null,
+    "volume": "96",
+    "issue": "5",
+    "pages": "2253-2264"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The one piece of DIRECT empirical dissociation in this pull, and the reason it is here: in squirrel monkeys lacking ocular dominance columns, 20 percent of layer 4C cells were nonetheless monocular. A receptive-field property that the columnar account exists to explain is present with the geometry absent -- an existence proof rather than an argument from a null. Confidence held to 0.72 by mapping breadth, not by data quality: the dissociation is between ONE tuning property and ONE column type in n=3 column-lacking animals, whereas MECH-050 generalises over modular recurrent substructure, routing sparsity and bounded update.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is one-directional and narrow: it shows monocularity does not REQUIRE ocular dominance columns. It does not show that any computation is performed equally well without them, because no behavioural or performance measure was taken -- so it cannot distinguish 'geometry is irrelevant to the computation' from 'geometry is a cheap optimisation whose loss costs something this study did not measure'.",
+    "Only 20 percent of layer 4C cells were monocular in the column-lacking animals. The paper does not establish that this is the same proportion as in column-bearing conspecifics, so a quantitative degradation of monocularity in the absence of geometry remains live -- which, mapped onto REE, is the failure mode where reducing locality preserves the KIND of representation while degrading its degree.",
+    "In squirrel monkeys that DID have ocular dominance columns, the columns did not reorganise the functional architecture to resemble the macaque's -- cytochrome oxidase patches and columns were spatially uncorrelated and koniocellular input to patches was binocular. The presence of columnar geometry therefore predicts little about downstream functional organisation in either direction, which weakens geometry as an explanatory variable but equally weakens any inference from this species to REE's design regime.",
+    "n=9 animals total, of which 3 lacked columns and supplied the layer 4C recordings; single-unit sampling in three animals is thin support for a quantitative claim about proportions."
+  ],
+  "tags": ["mech-050", "ocular_dominance", "cortical_column", "squirrel_monkey", "functional_locality", "natural_experiment", "layer_4c"],
+  "mapping": {
+    "source_claim_statement": "In the squirrel monkey, ocular dominance columns are expressed variably -- present in some animals and absent in others -- which permits a within-species comparison. Single-cell recordings in nine squirrel monkeys showed that cells outside layer 4C responded to either eye whether columns were present or not, and that in three animals LACKING ocular dominance columns, 20 percent of layer 4C cells were nonetheless monocular. Ocular dominance columns are therefore not necessary for monocular cells to occur in striate cortex. Furthermore, when columns were present in squirrel monkey they did not transform the functional architecture to resemble the macaque's: cytochrome oxidase patches and ocular dominance columns had no spatial correlation and koniocellular input to the patches was binocular.",
+    "ree_translation": "REE reads this as the empirical complement to the two review entries in this pull. Where those argue that columnar geometry has no demonstrated function, this measures a case where the geometry is absent and the tuning property it was supposed to produce is present anyway. For MECH-050 that is the relevant shape of evidence: a selective response property can be realised by local circuitry without spatial bundling of like-tuned cells, which is the regime REE's representational microcircuits occupy -- functional locality and sparse routing delivering selectivity without cylindrical organisation.",
+    "mapping_caveat": "This is a narrow dissociation carrying a broad claim, and the gap should be stated plainly. What is dissociated is ONE receptive-field property (eye preference) from ONE column type (ocular dominance) in ONE cortical layer of ONE primate species, with n=3 animals in the critical condition. MECH-050 asserts something much larger -- that modular recurrent substructure, limited lateral spillover, sparse routing and bounded update regions support error attribution and corrigibility. No behavioural or performance measure was taken in this study at all, so it cannot speak to whether a computation is performed as WELL without the geometry; it establishes only that the tuning exists. That distinction is exactly the one MECH-050 needs and this paper cannot supply: 'present without columns' is not 'unimpaired without columns'.",
+    "source_context": "Single-unit recording in nine anaesthetised squirrel monkeys (Saimiri), targeting striate cortex inside and outside layer 4C, followed by post-mortem labelling of ocular dominance columns in layer 4C and cytochrome oxidase histochemistry; compared against macaque."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: a well-controlled natural experiment exploiting genuine within-species variability, with physiology and anatomy measured in the same animals, in a solid specialist journal -- discounted for small n in the critical condition. Mapping fidelity is the limiting component at 0.65, because the dissociation is between one tuning property and one column type while the claim generalises over a whole class of locality constraints, and because no performance measure was taken. Transfer risk 0.35, slightly above the reviews in this pull: an inference from anaesthetised primate V1 physiology to an artificial substrate's error-attribution behaviour crosses more than one boundary."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_050",
+  "entry_id": "2026-09-18_mech_050_column_structure_without_function_horton2005",
+  "timestamp_utc": "2026-09-18T23:13:21Z",
+  "claim_ids_tested": ["MECH-050"],
+  "source": {
+    "title": "The cortical column: a structure without a function.",
+    "authors": ["Jonathan C Horton", "Daniel L Adams"],
+    "year": 2005,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2005.1623",
+    "pmid": "15937015",
+    "pmc": "PMC1569491",
+    "volume": "360",
+    "issue": "1456",
+    "pages": "837-862"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Landmark 50-year review whose central thesis -- that the column has failed as a unifying principle of cortical function -- maps almost directly onto MECH-050's denial that columnar spatial bundling is a computational primitive. Confidence held at 0.8 rather than higher because the support is ASYMMETRIC: the paper dismantles the column's necessity but affirms no replacement primitive, so MECH-050's positive half (that functional locality is what supports attribution) receives no support here at all. Source quality is high but it is argument over a literature, not new measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own conclusion is deflationary rather than constructive: it ends by calling for painstaking area-by-area description of circuits, projections and response properties, which is the opposite of positing any single reusable microcircuit primitive -- so it equally undercuts a design that assumes ONE canonical functional-locality motif suffices across all of REE's representational layers.",
+    "Ocular dominance columns were found to vary between members of the same species and between portions of V1 in the same individual. If a substrate's error-attribution behaviour is sensitive to the presence of such structure, biology's own tolerance of that variability is evidence the structure is not carrying the computation -- but it is equally evidence that biology never tested the low-locality regime, so the absence of a deficit is not evidence that arbitrarily low locality is safe.",
+    "No visual faculty was identified whose presence correlates with ocular dominance columns; a null result of this shape cannot distinguish 'columns do nothing' from 'the right behavioural assay was never run'."
+  ],
+  "tags": ["mech-050", "cortical_column", "functional_locality", "ocular_dominance", "columnar_geometry", "mountcastle"],
+  "mapping": {
+    "source_claim_statement": "Fifty years after Mountcastle's discovery, the column has no demonstrated function: examples have proliferated until 'column' denotes any vertical cluster sharing a tuning property; ocular dominance columns are present in some species and absent in others, vary among conspecifics and even within one individual's V1, and no visual faculty has been found that requires them. The column is an attractive concept that has failed as a unifying principle for understanding cortical function.",
+    "ree_translation": "REE reads this as direct external support for treating the canonical microcircuit motif (laminar separation, local recurrence, lateral inhibition, top-down gain modulation) as the computationally relevant object, and columnar spatial geometry as biologically contingent packaging. It licenses REE's representational microcircuits to implement functional locality -- modular recurrent substructures, limited lateral spillover, sparse routing, bounded update regions -- without reproducing cylindrical anatomical bundling, and without treating that omission as an architectural deficit.",
+    "mapping_caveat": "The paper is silent on the half of MECH-050 that actually does REE's work. It argues that columns are not necessary for cortical function; it does not argue that bounded update regions or limited lateral spillover support error attribution or corrigibility, and the terms 'attribution' and 'corrigibility' have no counterpart anywhere in its evidence base. Reading it as support for the whole conjunction would be an over-claim: it removes an objection to MECH-050 rather than supplying its positive mechanism. It is also purely a claim about mammalian cortex, where the question is whether an EXISTING anatomical feature is functional; REE's question is whether an ABSENT feature is needed, and an argument that biology's columns are epiphenomenal does not by itself establish that a substrate with neither columns nor their developmental history behaves well.",
+    "source_context": "Review of ~50 years of mammalian cortical physiology and anatomy, principally cat and primate visual cortex (V1, V2) plus somatosensory cortex; evidence is single-unit recording, anatomical tract tracing and cytochrome oxidase histochemistry."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Source quality high on venue, authorship and breadth, discounted slightly because the contribution is synthesis and argument rather than new data. Mapping fidelity high for MECH-050's negative half and near-zero for its positive half; scored on the negative half, which is what the claim's 'without requiring anatomical columns' clause asserts. Transfer risk moderate: the inference runs from 'biology's columns appear non-functional' to 'an artificial substrate needs none', which is a shift from a sufficiency question to a necessity question."
+  }
+}
