@@ -1,0 +1,467 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1050_mech021_subjective_now_horizon_integration",
+  "run_id": "v3_exq_1050_mech021_subjective_now_horizon_integration_20260918T010410Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-18T01:04:10Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-021"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ARM_WIN1_s0::harm_pathway_discriminative",
+        "precondition": "harm_pathway_discriminative",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "Stage-H trained the harm landscape: harm_eval output RANGE over in-distribution z_world clears the 603n non-vacuity floor.",
+        "control": "infant_warmup Stage-H's own harm-discriminativeness measurement",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01682838797569275,
+        "threshold": 0.005,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s0::worldforward_action_spread",
+        "precondition": "worldforward_action_spread",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "e2.world_forward is action-discriminative: cross-action max pairwise L2 of z_world_1 (the ARC-065 GAP-A collapse check).",
+        "control": "the 5 discrete env actions from the live theta summary, in-band ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.10705985501408577,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s0::approach_recede_gap",
+        "precondition": "approach_recede_gap",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "THE statistic C1/C2 route on: |mean(m_30 | APPROACH) - mean(m_30 | RECEDE)|. _restraint compares exactly these two subset means, and they EXCLUDE the stay action and every blocked move -- so the 5-action range is a superset that can be green while this contrast is identically zero. A collapsed gap means the criterion is starved, not falsified.",
+        "control": "median over in-band ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.6385402679443359,
+        "threshold": 1e-05,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s0::arf_shallow_headroom",
+        "precondition": "arf_shallow_headroom",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "C1 needs room to show a lift: arf is bounded above by 1.0, so a shallow-depth fraction already at ceiling makes the >= ARF_MARGIN lift unreachable regardless of the substrate.",
+        "control": "arf at D_SHALLOW, this cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.4490881458966565,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s0::inband_tick_count",
+        "precondition": "inband_tick_count",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "Enough hazard-reachable-but-not-realised E3 ticks to estimate arf.",
+        "control": "E3 ticks with nearest-hazard distance in [2,6] and both classes non-empty",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1316.0,
+        "threshold": 40.0,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s0::rolled_out_zworld_bounded",
+        "precondition": "rolled_out_zworld_bounded",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "Numerical stability: rolled-out z_world norm stayed below the explosion ceiling.",
+        "control": "max over every rollout step of every in-band tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": 24.452632904052734,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s0::grid_model_match_rate",
+        "precondition": "grid_model_match_rate",
+        "arm": "ARM_WIN1_s0",
+        "kind": "readiness",
+        "description": "The driver's env movement model (which defines APPROACH/RECEDE) agrees with the env's actual post-step position.",
+        "control": "committed action, every env step",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::harm_pathway_discriminative",
+        "precondition": "harm_pathway_discriminative",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "Stage-H trained the harm landscape: harm_eval output RANGE over in-distribution z_world clears the 603n non-vacuity floor.",
+        "control": "infant_warmup Stage-H's own harm-discriminativeness measurement",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.04651916027069092,
+        "threshold": 0.005,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::worldforward_action_spread",
+        "precondition": "worldforward_action_spread",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "e2.world_forward is action-discriminative: cross-action max pairwise L2 of z_world_1 (the ARC-065 GAP-A collapse check).",
+        "control": "the 5 discrete env actions from the live theta summary, in-band ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.19072148948907852,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::approach_recede_gap",
+        "precondition": "approach_recede_gap",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "THE statistic C1/C2 route on: |mean(m_30 | APPROACH) - mean(m_30 | RECEDE)|. _restraint compares exactly these two subset means, and they EXCLUDE the stay action and every blocked move -- so the 5-action range is a superset that can be green while this contrast is identically zero. A collapsed gap means the criterion is starved, not falsified.",
+        "control": "median over in-band ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.319154739379883,
+        "threshold": 1e-05,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::arf_shallow_headroom",
+        "precondition": "arf_shallow_headroom",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "C1 needs room to show a lift: arf is bounded above by 1.0, so a shallow-depth fraction already at ceiling makes the >= ARF_MARGIN lift unreachable regardless of the substrate.",
+        "control": "arf at D_SHALLOW, this cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.42161716171617164,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::inband_tick_count",
+        "precondition": "inband_tick_count",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "Enough hazard-reachable-but-not-realised E3 ticks to estimate arf.",
+        "control": "E3 ticks with nearest-hazard distance in [2,6] and both classes non-empty",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1212.0,
+        "threshold": 40.0,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::rolled_out_zworld_bounded",
+        "precondition": "rolled_out_zworld_bounded",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "Numerical stability: rolled-out z_world norm stayed below the explosion ceiling.",
+        "control": "max over every rollout step of every in-band tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": 144.55032348632812,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s1::grid_model_match_rate",
+        "precondition": "grid_model_match_rate",
+        "arm": "ARM_WIN1_s1",
+        "kind": "readiness",
+        "description": "The driver's env movement model (which defines APPROACH/RECEDE) agrees with the env's actual post-step position.",
+        "control": "committed action, every env step",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::harm_pathway_discriminative",
+        "precondition": "harm_pathway_discriminative",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "Stage-H trained the harm landscape: harm_eval output RANGE over in-distribution z_world clears the 603n non-vacuity floor.",
+        "control": "infant_warmup Stage-H's own harm-discriminativeness measurement",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.06264251470565796,
+        "threshold": 0.005,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::worldforward_action_spread",
+        "precondition": "worldforward_action_spread",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "e2.world_forward is action-discriminative: cross-action max pairwise L2 of z_world_1 (the ARC-065 GAP-A collapse check).",
+        "control": "the 5 discrete env actions from the live theta summary, in-band ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5625283420085907,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::approach_recede_gap",
+        "precondition": "approach_recede_gap",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "THE statistic C1/C2 route on: |mean(m_30 | APPROACH) - mean(m_30 | RECEDE)|. _restraint compares exactly these two subset means, and they EXCLUDE the stay action and every blocked move -- so the 5-action range is a superset that can be green while this contrast is identically zero. A collapsed gap means the criterion is starved, not falsified.",
+        "control": "median over in-band ticks",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0859732627868652,
+        "threshold": 1e-05,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::arf_shallow_headroom",
+        "precondition": "arf_shallow_headroom",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "C1 needs room to show a lift: arf is bounded above by 1.0, so a shallow-depth fraction already at ceiling makes the >= ARF_MARGIN lift unreachable regardless of the substrate.",
+        "control": "arf at D_SHALLOW, this cell",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.5453955901426718,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::inband_tick_count",
+        "precondition": "inband_tick_count",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "Enough hazard-reachable-but-not-realised E3 ticks to estimate arf.",
+        "control": "E3 ticks with nearest-hazard distance in [2,6] and both classes non-empty",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1542.0,
+        "threshold": 40.0,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::rolled_out_zworld_bounded",
+        "precondition": "rolled_out_zworld_bounded",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "Numerical stability: rolled-out z_world norm stayed below the explosion ceiling.",
+        "control": "max over every rollout step of every in-band tick",
+        "direction": "upper",
+        "applies": true,
+        "measured": 97.41790771484375,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_WIN1_s2::grid_model_match_rate",
+        "precondition": "grid_model_match_rate",
+        "arm": "ARM_WIN1_s2",
+        "kind": "readiness",
+        "description": "The driver's env movement model (which defines APPROACH/RECEDE) agrees with the env's actual post-step position.",
+        "control": "committed action, every env step",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.95,
+        "met": true
+      }
+    ],
+    "unmeasured_criteria": [
+      "C2_past_window_theta_lift"
+    ],
+    "criteria_non_degenerate": {
+      "C1_future_horizon_depth_lift": true,
+      "C2_past_window_theta_lift": false,
+      "C3_realised_harm_falls": false
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1e789be60b46a830861d2a937139f5d42e2715ffc429a3ccd2f8ba6a39f8f765",
+  "substrate_commit": {
+    "commit": "fd367aeb7e5c17b0e094fabf5272d01982383464",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_resource_encoder": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.novelty_bonus_weight": 0.5,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.drive_floor": 0.9,
+    "goal.z_goal_enabled": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.use_cue_recall": true,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_noise_floor": true,
+    "use_structured_curiosity": true,
+    "use_instrumental_avoidance": true,
+    "use_pag_freeze_gate": true,
+    "use_sleep_loop": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_split_surprise": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_conjunction": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 31690.518004219,
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "arms": {
+      "ARM_WIN1": 1,
+      "ARM_WIN10": 10
+    },
+    "depths": [
+      1,
+      2,
+      5,
+      10,
+      20,
+      30
+    ],
+    "band": [
+      2,
+      6
+    ],
+    "budgets": {
+      "stage0": 8,
+      "stage0b": 4,
+      "p0": 25,
+      "hazard": 20,
+      "steps": 120,
+      "eval_eps": 20
+    },
+    "eval_hazards": 3,
+    "arf_margin": 0.05,
+    "min_seeds": 3,
+    "warmup_config_slice": {
+      "warmup": "infant_warmup/v1",
+      "stage0_budget": 8,
+      "stage0b_budget": 4,
+      "p0_budget": 25,
+      "hazard_budget": 20,
+      "steps_per_episode": 120,
+      "harm_pathway_lr": 0.001,
+      "seeding": {
+        "gain": 1.5,
+        "benefit_threshold": 0.02,
+        "drive_floor": 0.9
+      },
+      "agent": {
+        "world_dim": 32,
+        "self_dim": 32,
+        "drive_weight": 2.0,
+        "z_harm_a_dim": 16,
+        "cue_recall_gain": 0.2,
+        "novelty_bonus_weight": 0.5,
+        "use_noise_floor": true,
+        "use_structured_curiosity": true
+      },
+      "env_struct": {
+        "limb_damage_enabled": true,
+        "reef_enabled": true,
+        "reef_bipartite_layout": true,
+        "reef_bipartite_axis": "horizontal",
+        "reef_bipartite_agent_band_radius": 1,
+        "multi_resource_heterogeneity_enabled": true,
+        "n_resource_types": 3
+      },
+      "arm": "ARM_WIN10",
+      "theta_buffer_size": 10,
+      "eval_episodes": 20,
+      "eval_hazards": 3,
+      "depths": [
+        1,
+        2,
+        5,
+        10,
+        20,
+        30
+      ],
+      "d_full": 30,
+      "d_shallow": 1,
+      "band": [
+        2,
+        6
+      ],
+      "arf_margin": 0.05
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "z_goal_stream": {
+    "ticks_total": 40364,
+    "ticks_active": 40358,
+    "writer_calls": 1622,
+    "active_frac": 0.9998513526905163,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
