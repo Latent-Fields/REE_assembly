@@ -3259,3 +3259,7 @@ One line per hourly tick. ASCII only.
 2026-09-18T12:30:16Z GC sweep removed 1 orphan worktree(s), kept 14
 2026-09-18T12:31:47Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 258 items, 38 ready, 0 in flight)
 2026-09-18T12:30:16Z SPAWN IGW-20260918-246 skill=/lit-pull prio=40 uuid=f06cc961-4794-4bb1-a12e-34c3a5c5968b pid=73240 worktree=igw-246-literature-proposal-for-mech-042
+2026-09-18T13:36:23Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 258 items, 38 ready, 0 in flight)
+2026-09-18T13:36:23Z auto-defer IGW-20260918-246 hash=35e03f6ff87d for 48h (reaped -> completed_resumable)
+2026-09-18T13:36:23Z reaped TASK_CLAIMS igw-auto-igw-246-literature-proposal-for-mech-042-20260918T123204Z (ledger IGW-20260918-246 -> completed_resumable)
+2026-09-18T13:36:24Z GC keep igw-246-literature-proposal-for-mech-042 (ledger IGW-20260918-246 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
