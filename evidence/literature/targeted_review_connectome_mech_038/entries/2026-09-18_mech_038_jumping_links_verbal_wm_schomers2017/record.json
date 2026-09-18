@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_038",
+  "entry_id": "2026-09-18_mech_038_jumping_links_verbal_wm_schomers2017",
+  "timestamp_utc": "2026-09-18T08:29:33Z",
+  "claim_ids_tested": ["MECH-038"],
+  "source": {
+    "title": "Neurocomputational Consequences of Evolutionary Connectivity Changes in Perisylvian Language Cortex",
+    "authors": ["Malte R. Schomers", "Max Garagnani", "Friedemann Pulvermuller"],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2693-16.2017",
+    "pmid": "28193685",
+    "pmc": "PMC5354338",
+    "volume": "37",
+    "issue": "11",
+    "pages": "3045-3055"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the closest thing in the literature to MECH-038's own experiment design, run in silico. Two neuroanatomically structured networks differ ONLY in whether they carry the human-specific long-range 'jumping links' between non-adjacent perisylvian areas -- the arcuate-fasciculus analog -- with everything else matched. The human-connectivity network develops emergent verbal working memory for syllables and word forms; the monkey-connectivity one does not, and critically, MORE TRAINING does not rescue it. That is an ON-vs-LESION contrast on routing alone, which is exactly the manipulation MECH-038 specifies, and the result is on the claim's side. Source quality is high (J Neurosci, Pulvermuller's group, a well-established modelling line). Confidence is held below 0.85 because the readout is verbal working memory in a SINGLE agent, not symbolic coordination between two -- the paper evidences the routing half of MECH-038 and is silent on the emergence half.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model's emergent capacity is verbal working memory -- reverberant maintenance of a syllable or word form -- not referential or communicative use. A routing change that buys sequence maintenance need not buy coordination, and the paper cannot distinguish the two.",
+    "There is no second agent, no signalling affordance, and no joint-attention pressure; the 'language' outcome is measured entirely within one network, so MECH-038's non-degeneracy precondition (coordination pressure REAL and FELT in the lesioned baseline) has no analog here and is untested.",
+    "The lesioned (monkey-connectivity) network shows essentially NO emergence of the target capacity rather than degraded emergence. Read strictly onto MECH-038's criteria, that is the 'REQUIRED MODULE' pattern the claim lists as FALSIFYING its 'nudge, not module' framing -- an important tension, mitigated only by the fact that the model's readout is a capacity, not a behaviour that could partially succeed."
+  ],
+  "tags": ["mech-038", "arcuate_fasciculus", "dorsal_stream", "computational_model", "verbal_working_memory", "sequence_to_motor"],
+  "mapping": {
+    "source_claim_statement": "Neurobiologically constrained neural networks replicating primate versus human perisylvian connectivity differ in emergent function: only the network carrying the human-specific higher-order 'jumping links' between non-adjacent auditory and motor areas (the arcuate fasciculus expansion) develops verbal working memory for syllables and word forms. Increased training time alone does not produce this in the monkey-connectivity network; the structural feature -- heightened connectivity and reduced sensorimotor path length -- is what is required.",
+    "ree_translation": "MECH-038 posits that a fast sequence-to-motor channel (E1 sequence summaries / hippocampal rollouts routed directly into E2 affordances over signalling actions) is what nudges a system toward symbolic use. Schomers et al. implement precisely that channel as a connectivity manipulation, hold everything else fixed, and find it is load-bearing for the sequence-maintenance capacity that symbol use presupposes. For REE this is the strongest available prior that the ON/LESION contrast MECH-038 specifies will produce a non-null effect, and it is evidence that the effect comes from PATH LENGTH -- the fast-routing property the claim names -- rather than from extra capacity or extra training.",
+    "mapping_caveat": "The paper's dependent variable is verbal working memory, not emergent symbolic coordination. MECH-038's three readouts -- referential consistency, coordination success, time-to-first-consistent-use -- all require a second agent and a shared referent world state, none of which exist in this model. So the transfer is: dorsal routing buys the SUBSTRATE for sequence-to-motor symbol handling; whether that substrate converts into emergent coordination under joint-attention pressure is exactly what MECH-038's experiment would have to show, and this paper does not. The tension flagged in failure_signatures is real: an all-or-nothing result in the model does not straightforwardly support a 'nudge' reading.",
+    "source_context": "Neurocomputational simulation; spiking-rate neural-network models with area-level connectivity derived from macaque tract-tracing and human DTI; auditory-articulatory learning of syllable-like patterns; no behavioural or human data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity is unusually high for a lit entry -- the manipulation is the claim's manipulation -- but the readout gap (working memory vs coordination) and the model-to-REE-substrate gap (no multi-agent environment in ree_core) keep the aggregate at 0.78 rather than higher. Transfer risk is moderate rather than low: model-to-model transfer is not free when the two models share no architecture."
+  }
+}

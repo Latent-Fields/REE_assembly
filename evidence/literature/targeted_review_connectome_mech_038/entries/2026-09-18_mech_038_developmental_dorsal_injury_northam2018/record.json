@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_038",
+  "entry_id": "2026-09-18_mech_038_developmental_dorsal_injury_northam2018",
+  "timestamp_utc": "2026-09-18T08:29:33Z",
+  "claim_ids_tested": ["MECH-038"],
+  "source": {
+    "title": "Developmental conduction aphasia after neonatal stroke",
+    "authors": ["Gemma B. Northam", "Sophie Adler", "Kathrin C. J. Eschmann", "Wui K. Chong", "Frances M. Cowan", "Torsten Baldeweg"],
+    "year": 2018,
+    "venue": "Annals of Neurology",
+    "doi": "10.1002/ana.25218",
+    "pmid": "29572915",
+    "pmc": "PMC6681109",
+    "volume": "83",
+    "issue": "4",
+    "pages": "664-675"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This is the entry that speaks to MECH-038's actual assertion -- about EMERGENCE, not about an acquired system. Thirty individuals with neonatal stroke, imaged and tested at ages 7-18, developed language despite dorsal-stream injury sustained before any language existed. What did not develop normally was speech repetition, selectively (nonwords p = 0.021, sentences p < 0.0001), with additional deficits described as subtle and variable. Language emerged in the lesioned condition, degraded along the specific axis the dorsal channel serves. That is MECH-038's CONFIRMING pattern -- nudge, not module -- observed in humans over a developmental timescale. Confidence 0.76 rather than higher because the design is cross-sectional and observational, lesions are not randomly assigned, and the comparison is lesioned-versus-control rather than an ON/LESION contrast within a matched system.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Developing brains reorganise: the paper's own finding that right-hemisphere language reorganisation protects against repetition deficit means the 'LESION' condition is not a clean absence of the channel but an absence plus a compensatory rebuild. A REE LESION arm with no analogous plasticity is not the same manipulation.",
+    "Deficits beyond repetition were present but characterised as subtle and variable, so 'language emerged intact apart from repetition' overstates it -- the honest reading is 'language emerged, with a selective repetition deficit and a diffuse shadow of others'.",
+    "Neonatal stroke damages grey matter as well as tracts, and lesion extent varies across the 30 cases; the dorsal-stream attribution rests on tractography-defined injury classification rather than on a controlled disconnection."
+  ],
+  "tags": ["mech-038", "arcuate_fasciculus", "dorsal_stream", "developmental", "conduction_aphasia", "language_acquisition", "neonatal_stroke"],
+  "mapping": {
+    "source_claim_statement": "Thirty term-born individuals with confirmed neonatal stroke (21 left-sided), assessed at ages 7-18 against 40 matched controls with MRI, diffusion tractography and fMRI language lateralisation, showed that early dorsal language stream injury produces specific and long-lasting speech repetition impairment -- nonwords (p = 0.021) and sentences (p < 0.0001) -- despite the plasticity of the infant brain, with additional language deficits that were more subtle and variable; reorganisation of language to the contralateral hemisphere had a protective effect.",
+    "ree_translation": "MECH-038's confirming criterion is explicit: the ON arm must beat the LESION arm on rate and latency AND the LESION arm must still show SOME emergence -- otherwise the channel is a required module, not a nudge, and the claim is weakened as stated. Northam et al. is the human developmental instance of exactly that pattern. Language was acquired in individuals whose dorsal channel was damaged before any language existed, and what suffered was the sequence-to-motor function specifically. For REE this is the prior that predicts the LESION arm should coordinate -- worse, later, less consistently -- rather than fail outright, and it is the counterweight to the all-or-nothing result in the Schomers entry in this directory.",
+    "mapping_caveat": "The single largest caveat is plasticity, and it cuts against the mapping. These children's LESION condition includes a compensatory rebuild -- the paper shows right-hemisphere reorganisation is protective -- so what emerged did so with a substitute route, not with no route. A REE LESION arm that simply severs the fast path and offers no reorganisation is a STRICTER lesion than the one studied here, and could therefore show less emergence than this paper would predict without that meaning the channel is a required module. Secondly, human language acquisition rests on a scaffold of caregiver input, shared attention and cultural transmission that a two-agent CausalGridWorld does not supply; 'language emerged despite the lesion' in a child is not evidence that symbolic coordination will emerge despite an analogous lesion in an agent with none of that scaffold.",
+    "source_context": "Human, cross-sectional observational; N=30 neonatal stroke survivors aged 7-18 (21 left-hemisphere) vs 40 matched controls; structural MRI, diffusion tractography for stream-injury classification, fMRI for language lateralisation; standardised speech repetition and language batteries."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.4,
+    "notes": "Mapping fidelity is the highest in this directory -- the paper tests emergence under lesion, which is MECH-038's actual subject, rather than function under lesion in an acquired system. Transfer risk is correspondingly the highest (0.40): developmental human plasticity and the cultural scaffold of language acquisition have no analog in ree_core, so the direction transfers more safely than the magnitude. Source quality 0.80: Annals of Neurology, good N for a neonatal-stroke cohort, but observational and cross-sectional."
+  }
+}

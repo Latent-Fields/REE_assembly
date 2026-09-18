@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_038",
+  "entry_id": "2026-09-18_mech_038_dorsal_repetition_ventral_comprehension_kummerer2013",
+  "timestamp_utc": "2026-09-18T08:29:33Z",
+  "claim_ids_tested": ["MECH-038"],
+  "source": {
+    "title": "Damage to ventral and dorsal language pathways in acute aphasia",
+    "authors": ["Dorothee Kummerer", "Gesa Hartwigsen", "Philipp Kellmeyer", "Volkmar Glauche", "Irina Mader", "Stefan Kloppel", "Julia Suchan", "Hans-Otto Karnath", "Cornelius Weiller", "Dorothee Saur"],
+    "year": 2013,
+    "venue": "Brain",
+    "doi": "10.1093/brain/aws354",
+    "pmid": "23378217",
+    "pmc": "PMC3572927",
+    "volume": "136",
+    "issue": "Pt 2",
+    "pages": "619-629"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "A 100-patient voxelwise lesion-behaviour mapping study with probabilistic tractography, in acute stroke (before reorganisation confounds chronic data). It establishes the double dissociation MECH-038's architecture doc assumes but had not evidenced: dorsal (superior longitudinal / arcuate) lesion load correlates negatively with REPETITION, ventral (extreme capsule) lesion load with COMPREHENSION. That is the specific functional signature of a sequence-to-motor channel -- it carries form to articulation, not meaning -- and it is the evidence for the claim's 'neither dorsal nor ventral alone is sufficient' clause. Confidence held at 0.74: the study is correlational lesion-overlap rather than a controlled disconnection, and lesion extent in stroke is not randomly assigned with respect to the tracts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Lesion overlap is correlational and stroke lesions are vascular-territory shaped, not tract shaped; dorsal-tract overlap co-varies with damage to the temporoparietal grey matter it passes through, so the tract-specific attribution is an inference, not a measurement.",
+    "Repetition is a task with an experimenter-supplied target. It measures the sequence-to-motor channel in a copying regime, which is not the same as the SELF-GENERATED signal production MECH-038's ON arm routes -- the paper cannot say whether the same channel carries a self-initiated signal.",
+    "The dissociation is graded, not absolute: patients with dorsal damage retain some repetition and patients with ventral damage retain some comprehension, so neither pathway is shown to be exclusively responsible for its function."
+  ],
+  "tags": ["mech-038", "arcuate_fasciculus", "dorsal_stream", "ventral_stream", "repetition", "lesion_symptom_mapping", "aphasia"],
+  "mapping": {
+    "source_claim_statement": "In 100 acute aphasic stroke patients, voxelwise lesion-behaviour mapping combined with probabilistic fibre tracking showed that individual lesion overlap with the dorsal fibre tract (superior longitudinal / arcuate fasciculus, temporoparietal) correlated negatively with repetition performance, while lesion overlap with the ventral tract (extreme capsule, temporoprefrontal) correlated negatively with comprehension performance.",
+    "ree_translation": "MECH-038 asserts the AF analog is a fast SEQUENCE-TO-MOTOR channel, expressly not a meaning-grounding one, and that meaning grounding rides a separate ventral-style route. Kummerer et al. are the human lesion evidence for exactly that division of labour: take out the dorsal route and what breaks is the ability to reproduce a form; take out the ventral route and what breaks is understanding. For the REE build this is the constraint that the ON/LESION manipulation must be confined to the ROUTING of signal form, leaving the semantic-alignment path intact in both arms -- otherwise the experiment lesions meaning grounding and the result is uninterpretable.",
+    "mapping_caveat": "Two boundaries. First, repetition is imitation of a supplied target, whereas MECH-038's ON arm routes self-generated sequence summaries into signalling affordances; the paper evidences the channel's existence and its form-not-meaning character, not that it serves self-initiated symbol production. Second, this is adult damage to an already-acquired language system -- it is evidence about what the channel DOES once language exists, and only indirectly about whether the channel biases language toward EMERGING. The Northam entry in this directory is the one that addresses the acquisition case.",
+    "source_context": "Human acute stroke (within days of onset, before functional reorganisation); N=100 aphasic patients; structural MRI lesion mapping plus DTI-based probabilistic tractography in healthy controls to define tract masks; behavioural repetition and comprehension subtests."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: large N for a lesion study, acute timing is a genuine methodological strength, published in Brain. Mapping fidelity 0.70 -- the dorsal/ventral functional split transfers cleanly to the claim, the repetition-versus-self-generation gap does not. Transfer risk moderate: human-to-REE architectural transfer on a claim that is explicitly stated as a functional analog rather than an anatomical requirement, which lowers the risk somewhat."
+  }
+}

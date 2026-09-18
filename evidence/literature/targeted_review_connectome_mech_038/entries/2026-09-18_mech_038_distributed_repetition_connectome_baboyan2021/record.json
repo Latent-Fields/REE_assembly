@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_038",
+  "entry_id": "2026-09-18_mech_038_distributed_repetition_connectome_baboyan2021",
+  "timestamp_utc": "2026-09-18T08:29:33Z",
+  "claim_ids_tested": ["MECH-038"],
+  "source": {
+    "title": "Isolating the white matter circuitry of the dorsal language stream",
+    "authors": ["Vatche Baboyan", "Alexandra Basilakos", "Grigori Yourganov", "Chris Rorden", "Leonardo Bonilha", "Julius Fridriksson", "Gregory Hickok"],
+    "year": 2021,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.25647",
+    "pmid": "34469044",
+    "pmc": "PMC8559486",
+    "volume": "42",
+    "issue": "17",
+    "pages": "5689-5702"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the entry that pushes back, and it pushes back on the anatomy rather than the function. Connectome-based lesion-symptom mapping in 71 stroke aphasia cases (50 train / 21 held-out) finds that repetition deficit is predicted not by arcuate fasciculus damage but by a set of ten short- and long-range parietotemporal connections, the strongest being a short-range supramarginal connection approximating area Spt, together with long-range links from posterior supramarginal and superior temporal cortex to ventral and dorsal premotor cortex. The authors conclude repetition impairment is 'a parietotemporal disconnection syndrome ... as opposed to being purely a disconnection of the arcuate fasciculus'. Scored mixed: the sensory-to-motor FUNCTION MECH-038 names is confirmed and localised more precisely than before (Spt to premotor), while the single-fast-tract IMPLEMENTATION the name 'arcuate fasciculus' invites is contradicted. Confidence 0.66 -- good method with a held-out set, but the abstract reports no test-set accuracy and N=71 is modest for a ten-connection sparse model.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A REE implementation that routes E1 sequence summaries into E2 affordances over ONE dedicated fast channel would be the anatomical shape this paper rejects; the human dorsal stream's sensory-to-motor function is carried by a distributed set of short- and long-range connections hubbed on Spt, not by a single long tract.",
+    "Sparse partial least squares over a structural connectome with 50 training subjects can select a ten-connection set that is stable to the model and still not causal; connection-level lesion load co-varies strongly across neighbouring parietotemporal connections.",
+    "The abstract reports no held-out prediction accuracy for the 21 test subjects, so the generalisation claim -- the main methodological advantage over prior lesion mapping -- cannot be independently weighed from the abstract alone."
+  ],
+  "tags": ["mech-038", "arcuate_fasciculus", "dorsal_stream", "repetition", "connectome_lesion_symptom_mapping", "area_spt", "counterevidence"],
+  "mapping": {
+    "source_claim_statement": "Connectome-based lesion-symptom mapping with sparse partial least squares regression in 71 stroke-induced aphasia cases (50 training, 21 held-out test) identified ten short- and long-range parietotemporal connections associated with speech repetition deficit. The strongest predictor was a short-range supramarginal gyrus connection approximating area Spt, alongside long-range pathways linking posterior supramarginal and superior temporal regions to anterior ventral and dorsal premotor cortex. The authors characterise repetition impairment as a parietotemporal disconnection syndrome impacting Spt and its frontal white matter circuits, as opposed to purely a disconnection of the arcuate fasciculus.",
+    "ree_translation": "MECH-038 already hedges this: its architecture doc says the arcuate fasciculus is treated as a FUNCTIONAL ANALOG, not an anatomical requirement, and that language relies on distributed streams rather than a single tract. Baboyan et al. is the strongest current evidence that the hedge was necessary and correct. Read as function, the paper CONFIRMS the claim and sharpens it: there is a dorsal sensory-to-motor route for sequence form, and its hub is an auditory-motor interface area (Spt) projecting to premotor cortex -- which is a more precise specification of what the REE channel should connect than 'Broca to Wernicke' ever was. Read as anatomy, it warns against the obvious implementation. The REE build should route theta-packet sequence summaries into E2 signalling affordances via an interface stage with its own state, not as a single dedicated wire.",
+    "mapping_caveat": "The paper's target is speech repetition in chronic stroke aphasia -- an acquired system, a copying task, and a human articulatory apparatus with no counterpart in ree_core. Its usefulness to MECH-038 is architectural rather than evidential: it constrains how the ON arm's routing should be BUILT, and it does not bear on whether that routing nudges emergence, which is the claim's actual content. Treating this entry as evidence for or against the nudge would overread it; it is scored mixed because it splits along the function/anatomy seam, not because it splits along the claim's confirming/falsifying seam.",
+    "source_context": "Human chronic stroke aphasia; N=71 (50 training, 21 held-out); structural connectome derived from diffusion imaging with lesion-based connection-level damage estimates; sparse PLS regression against speech repetition scores."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.75: methodologically the most careful lesion study in this directory (connection-level rather than voxel-level, with a held-out set), discounted because the abstract gives no test-set accuracy and 50 training subjects is thin for sparse selection over a connectome. Mapping fidelity 0.60 -- it constrains the build rather than testing the claim. Transfer risk 0.40: an acquired-system repetition task in humans, mapped onto an emergence question in an agent with no articulators."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_038",
+  "entry_id": "2026-09-18_mech_038_af_predicts_word_learning_lopezbarroso2013",
+  "timestamp_utc": "2026-09-18T08:29:33Z",
+  "claim_ids_tested": ["MECH-038"],
+  "source": {
+    "title": "Word learning is mediated by the left arcuate fasciculus",
+    "authors": ["Diana Lopez-Barroso", "Marco Catani", "Pablo Ripolles", "Flavio Dell'Acqua", "Antoni Rodriguez-Fornells", "Ruth de Diego-Balaguer"],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences USA",
+    "doi": "10.1073/pnas.1301696110",
+    "pmid": "23884655",
+    "pmc": "PMC3740909",
+    "volume": "110",
+    "issue": "32",
+    "pages": "13168-13173"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The individual-differences complement to the lesion entries: rather than asking what breaks when the dorsal channel is damaged, it asks whether a BETTER channel learns new word forms FASTER -- which is MECH-038's actual readout axis (rate and latency, not capacity). In 21 healthy adults learning an artificial language from fluent speech, radial diffusivity of the LEFT LONG (direct frontotemporal) AF segment correlated with learning performance at r = -0.6, P < 0.005, while the anterior and posterior indirect segments and the entire right hemisphere showed no significant correlation. Functional connectivity between left temporal and frontal areas correlated at r = 0.42, P < 0.036. The anatomical specificity is the paper's strength. Confidence is held to 0.62 by the small sample (N=21), the correlational design, and a functional-connectivity result that is weak by any standard.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "N=21 with a brain-behaviour correlation of r = -0.6 sits in the range where DTI individual-difference effects have historically failed to replicate; the functional connectivity result (r = 0.42, P < 0.036) would not survive correction for multiple comparisons across the six segment-hemisphere combinations tested.",
+    "The design is correlational and cross-sectional: a stronger AF predicting faster word learning is compatible with the AF being a consequence of prior language experience rather than a cause of learning rate (Thiebaut de Schotten et al. 2014 show literacy acquisition itself restructures the AF).",
+    "The task is segmenting an artificial speech stream into word forms -- form learning with no referents and no communicative partner. Nothing in the paradigm requires a symbol to mean anything or to be used to coordinate with anyone."
+  ],
+  "tags": ["mech-038", "arcuate_fasciculus", "dorsal_stream", "word_learning", "individual_differences", "dti", "learning_rate"],
+  "mapping": {
+    "source_claim_statement": "In 21 right-handed healthy adults learning an artificial language from fluent synthesised speech during fMRI, word-learning performance correlated with radial diffusivity of the left long (direct frontotemporal) segment of the arcuate fasciculus (r = -0.6, P < 0.005); correlations with the left anterior and posterior segments and with all three right-hemisphere segments were not significant. Strength of functional connectivity between left temporal and frontal areas also correlated with performance (r = 0.42, P < 0.036).",
+    "ree_translation": "MECH-038 does not predict that the AF-like channel makes symbol use POSSIBLE -- it predicts the channel raises the RATE and lowers the LATENCY of getting to consistent use. That is a learning-speed claim, and this is the only entry in this directory that measures learning speed. It says: within a population all of whom can learn, a better direct frontotemporal route learns new sequence forms faster. The anatomical specificity -- long segment only, left only -- is what makes it useful rather than merely suggestive, because it isolates the direct fast path from the indirect relay segments, which is exactly the distinction MECH-038 draws between fast routing and the ordinary slow path.",
+    "mapping_caveat": "Two boundaries, one of them serious. The paradigm is form learning without meaning: participants extract trisyllabic word forms from a continuous stream and are then tested on recognising them against reordered nonwords. There is no referent and no partner, so the paper speaks to the sequence-extraction-and-retention half of MECH-038's channel and is entirely silent on referential consistency or coordination success, which are two of the claim's three readouts. The second boundary is causal direction: this is a correlation, and a companion literature (Thiebaut de Schotten et al. 2014, learning to read restructures the AF) establishes that the tract is plastic to language experience, so a better AF may be a RESULT of prior verbal learning rather than a cause of faster learning. For REE the manipulation is experimental and that ambiguity does not arise -- but it does mean this entry cannot carry causal weight on its own, and should be read as corroborating the lesion entries rather than as independent support.",
+    "source_context": "Human, healthy young adults (N=21, mean age 25.6, nine female); combined DTI spherical-deconvolution tractography of three AF segments bilaterally and task fMRI; artificial-language statistical word-segmentation paradigm with a word/nonword recognition test."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.65 despite PNAS: N=21 is small for brain-behaviour correlation, and the functional-connectivity result is weak. The segment- and hemisphere-specificity of the structural result is what keeps it above 0.5 -- a spurious correlation would not be expected to pick out the long segment and only the left. Mapping fidelity 0.68: the rate readout matches the claim better than any other entry here, the missing referent and missing partner do not."
+  }
+}
