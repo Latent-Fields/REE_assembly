@@ -5962,7 +5962,11 @@
       "task_claim_session_id": "igw-auto-igw-246-literature-proposal-for-mech-039-20260918T100323Z",
       "task_claim_claimed_at": "2026-09-18T10:03:23Z",
       "assigned_at": "2026-09-18T09:51:45Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T10:35:49Z",
+      "completion_summary": "lit-pull MECH-039: 5 entries landed REE_assembly 0cf5aabf380 (Munn 2021 / Ashourvan 2017 / Margulies 2016 supports; Vidaurre 2017 / Taylor 2022 mixed); schema audit 0 failing of 2701; index regen deferred to avoid a foreign-owned in-flight artifact",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-039: 5 entries landed REE_assembly 0cf5aabf380 (Munn 2021 / Ashourvan 2017 / Margulies 2016 supports; Vidaurre 2017 / Taylor 2022 mixed); schema audit 0 failing of 2701; index regen deferred to avoid a foreign-owned in-flight artifact"
     }
   ],
   "dispositions": [
@@ -8597,6 +8601,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-18T08:40:36Z",
       "re_eligible_after": "2026-09-20T08:40:36Z"
+    },
+    {
+      "stable_hash": "ac48735efd3c",
+      "igw_id_at_disposition": "IGW-20260918-246",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-039"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-039",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T10:35:50Z",
+      "re_eligible_after": "2026-09-20T10:35:50Z"
     }
   ]
 }
