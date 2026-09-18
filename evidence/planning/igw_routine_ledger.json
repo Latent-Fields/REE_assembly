@@ -5937,7 +5937,11 @@
       "task_claim_session_id": "igw-auto-igw-245-literature-proposal-for-mech-038-20260918T082557Z",
       "task_claim_claimed_at": "2026-09-18T08:25:57Z",
       "assigned_at": "2026-09-18T08:22:53Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-18T08:40:36Z",
+      "completion_summary": "lit-pull MECH-038: 5 entries in targeted_review_connectome_mech_038 on dorsal-stream (arcuate) routing and language emergence, landed REE_assembly origin/master c205a5c4cc9; index rebuild left to active INDEX.md owner lit-pull-am-b-20260918",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-038: 5 entries in targeted_review_connectome_mech_038 on dorsal-stream (arcuate) routing and language emergence, landed REE_assembly origin/master c205a5c4cc9; index rebuild left to active INDEX.md owner lit-pull-am-b-20260918"
     }
   ],
   "dispositions": [
@@ -8558,6 +8562,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-18T07:28:30Z",
       "re_eligible_after": "2026-09-20T07:28:30Z"
+    },
+    {
+      "stable_hash": "ad1a1f984cab",
+      "igw_id_at_disposition": "IGW-20260918-245",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-038"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-038",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-18T08:40:36Z",
+      "re_eligible_after": "2026-09-20T08:40:36Z"
     }
   ]
 }
