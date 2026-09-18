@@ -3281,3 +3281,5 @@ One line per hourly tick. ASCII only.
 2026-09-18T17:52:17Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 258 items, 38 ready, 0 in flight)
 2026-09-18T17:50:16Z no eligible item (skipped 258): IGW-20260918-001:skill /governance not allowed; IGW-20260918-002:skill /governance not allowed; IGW-20260918-003:skill /governance not allowed
 2026-09-18T18:53:41Z skip: paused (.igw_routine_pause present)
+2026-09-18T19:54:49Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 257 items, 37 ready, 0 in flight)
+2026-09-18T19:53:42Z no eligible item (skipped 257): IGW-20260918-001:skill /governance not allowed; IGW-20260918-002:skill /governance not allowed; IGW-20260918-003:skill /governance not allowed
