@@ -1,0 +1,248 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "sd098_ghost_goal_readtime_rerank",
+  "run_id": "sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-18T18:23:37Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "fb2503830df9491cb1b5225a2a52295a4c3117e1",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-098"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readtime_recomputation_reinstates_old_goal_anchors_supports_sd098_half_i",
+    "preconditions": [
+      {
+        "name": "phase_c_occupancy_achieved",
+        "description": "ENV-LEVEL manipulation check: fraction of phase-C ticks the agent spent inside the region its arm's phase C names. Independent of everything the bank computes, which the cue_return check was NOT (it is a similarity to the phase-A z_goal, i.e. hypothesis-aligned with the DV). Worst cell.",
+        "measured": 0.8958333333333335,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "measured in the environment, not in latent space",
+        "offending_cell": "seed=104",
+        "met": true
+      },
+      {
+        "name": "cue_return_diff_DIAGNOSTIC_NOT_GATING",
+        "description": "PAIRED: how much further the RETURN arm's cue moved back toward the phase-A reference than the STAY arm's. The UNPAIRED form does not discriminate (measured +0.095 vs +0.093) -- the cue drifts back in both arms. The paired form is a manipulation check the control fails by construction, so it cannot certify its own subject. Worst cell reported.",
+        "measured": 0.37599608674645424,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "STAY arm sits at ~0. RECORDED ONLY -- does not gate (see F3).",
+        "offending_cell": "seed=116",
+        "threshold_not_applicable": "diagnostic only; the gate is phase_c_occupancy_achieved",
+        "met": true
+      },
+      {
+        "name": "dv_headroom",
+        "description": "room above the STAY arm's AUC for the contrast to reach its bar; AUC is bounded by 1.0 so a saturated STAY arm makes C2 unreachable by construction. Worst cell reported.",
+        "measured": 0.4464285714285714,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "STAY arm -- the subtrahend in the C2 contrast",
+        "offending_cell": "seed=110",
+        "met": true
+      },
+      {
+        "name": "group_a_supply_worst_cell",
+        "description": "phase-A anchors in the common ranked set, worst replicate",
+        "measured": 3.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "group A must be populated for the A-vs-B AUC to exist",
+        "met": false
+      },
+      {
+        "name": "group_b_supply_worst_cell",
+        "description": "phase-B anchors in the common ranked set, worst replicate",
+        "measured": 14.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "group B must be populated for the A-vs-B AUC to exist",
+        "met": true
+      },
+      {
+        "name": "green_seed_supply",
+        "description": "seeds passing the per-seed readiness gate",
+        "measured": 11.0,
+        "threshold": 8.0,
+        "direction": "lower",
+        "control": "per-seed gate, evaluated independently per seed",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_reranking_occurs": false,
+      "C2_reversal_reinstates_group_a": true,
+      "C3_probe_performs_no_write": true
+    },
+    "scope_limit": "TWO limits. (1) Tests SD-098 half (i) only (re-classification with no write). Half (ii), the matched stored-node-type comparison arm, is NOT built (user decision 2026-09-17: do not build SD-097's typed topology). (2) Because the policy seeks the active destination, destination privilege is NOT separated from sensory-context reinstatement: a PASS shows goal-relevance is RECOMPUTED AT READ TIME from current state, but does not isolate the destination term. The separating condition (relocate without moving the agent) is measurably too weak to run (paired cue_return +0.003, 4/7). A PASS is PARTIAL support and does not close SD-098.",
+    "design_note": "A-B-A reversal. Group A is OLDER than group B, so a recency / cue-displacement account predicts A can only LOSE rank in both arms; SD-098 predicts A is reinstated when the destination returns to D1. The predictions are opposite, which the superseded forward-only design could not arrange."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "063710949034bace992c8245267518a165b36126dc46b1ff5586fd8fed87359d",
+  "substrate_commit": {
+    "commit": "fb2503830df9491cb1b5225a2a52295a4c3117e1",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_resource_proximity_head": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_event_segmenter": true,
+    "hippocampal.use_invalidation_trigger": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.anchor_set.use_sd039_anchor_payload": true,
+    "hippocampal.anchor_set.goal_cue_centering": true,
+    "hippocampal.use_mech292_ghost_bank": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 179.001639632,
+  "config": {
+    "phase_ticks": 90,
+    "boundary_every": 6,
+    "replicates": 8,
+    "force_benefit": 0.5,
+    "force_drive": 0.9,
+    "grid_size": 8,
+    "d1_resources": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "d2_resources": [
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "hazards": [
+      [
+        3,
+        3
+      ]
+    ],
+    "agent_start": [
+      4,
+      2
+    ],
+    "goal_cue_centering": true,
+    "ghost_bank_top_k": null,
+    "resource_respawn_on_consume": false,
+    "policy": "scripted_region_seeking_no_e3",
+    "epsilon_explore": 0.3,
+    "thresholds": {
+      "c2_mean_contrast_floor": 0.1,
+      "c2_consistency_fraction": 0.6666666666666666,
+      "min_green_seeds": 8,
+      "dv_headroom_floor": 0.1,
+      "phase_c_occupancy_floor": 0.6,
+      "cue_return_diff_floor_DIAGNOSTIC_ONLY": 0.1,
+      "min_group_a_anchors": 5,
+      "min_group_b_anchors": 5
+    }
+  },
+  "seeds": [
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 64800,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 240,
+    "goal_state_present": true
+  }
+}
