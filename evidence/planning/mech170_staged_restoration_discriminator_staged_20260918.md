@@ -1,4 +1,4 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to `claims.yaml`, and it does not itself commission any experiment.** The build it refers to is commissioned separately, as `substrate_queue.json` entry `sd068-staged-restoration-mode` (candidate, `ready: false`). This document exists to state the ONE scientific question that must be answered before a MECH-170 experiment is worth designing, and to end in the decision only the user can make.
+**Status: DECIDED 2026-09-19 -- D3 (selective dependency-blocking restoration). SUPERSEDED IN ITS COST RANKING: see section 6, added 2026-09-19, which records that D3 is NOT buildable as specified and that this document's own costing of it was wrong. Read section 6 before acting on section 4.** Nothing here has been written to `claims.yaml`. The build it refers to is commissioned separately, as `substrate_queue.json` entry `sd068-staged-restoration-mode` (candidate, `ready: false`). This document exists to state the ONE scientific question that must be answered before a MECH-170 experiment is worth designing, and to end in the decision only the user can make.
 
 # MECH-170 staged restoration: what would discriminate a RECOVERY order from the already-banked DECLINE order?
 
@@ -72,6 +72,10 @@ Also a legitimate answer. MECH-170 is a clinical-population prediction whose V3 
 
 **Which discriminator (D1, D2, D3, some combination, or N) is MECH-170's eventual experiment to rest on?**
 
+> **ANSWERED 2026-09-19T00:49:12Z by the user (real `AskUserQuestion` via the Orchestrator `orchestrate-20260918-1840-cloud4`): D3 -- SELECTIVE (DEPENDENCY-BLOCKING) RESTORATION.** The staged-restoration build must expose a per-phase restoration **mask**. Recorded on `substrate_queue.json` entry `sd068-staged-restoration-mode` (commit `04bbcd3a76`) together with the required instrumentation. D1 and D2 were not chosen and must not be substituted -- a different discriminator is a different measurement and needs a fresh user decision.
+
+> **But read section 6 first: this document's costing of D3 was WRONG, and D3 is not buildable as specified.**
+
 This must be answered before a MECH-170 run is designed, and it should be answered before the staged-restoration mode is built past its base sweep, because **the choice determines what the mode has to EXPOSE**:
 
 | Choice | What the build must additionally expose |
@@ -84,3 +88,52 @@ This must be answered before a MECH-170 run is designed, and it should be answer
 Until it is answered, a queueing session cannot pre-register a criterion that distinguishes MECH-170's prediction from the result already in hand -- which is precisely why `chip-proposal-exp-0905-paced` must not be worked as a `/queue-experiment` item yet.
 
 **What has been done under OPTION B, and what deliberately has not.** Commissioned: the substrate entry (`sd068-staged-restoration-mode`, candidate, `ready: false`) and this document; and proposal EXP-0872's `blocked_by` re-recorded as the two substrate blockers above. **Not done, on purpose:** no `/implement-substrate` was started -- IGW auto-discovery stages that build as its own consented chip -- and no discriminator was selected, because selecting one decides what gets measured.
+
+---
+
+## 6. CORRECTION, added 2026-09-19: D3 is not buildable as specified, and section 4's costing of it was wrong
+
+Recorded by the same session that wrote this document, while carrying out the instruction to record the D3 decision. **The error is mine and it is in the load-bearing direction**: the user chose D3 partly because section 4 called it the mildest build, and that is not true.
+
+### What section 4 claimed
+
+> *"D3 ... Needs a per-phase restoration mask and no new time axis, and it preserves the existing per-phase-independent measurement design, so it carries the least architectural tension with the SD-068 contract. **This session's assessment: best discriminating power per unit of build.**"*
+
+### What the source actually says (verified exhaustively 2026-09-19)
+
+`phase_integrity_at_sigma` (`consolidation_lesion_harness.py:1029`) builds **three entirely separate agents**:
+
+- `a_sws = build_pipeline_agent(seed=seed)` at `:1059`, RNG `_gen(seed*1009 + 1)`
+- `a_nrem = build_pipeline_agent(seed=seed)` at `:1066`, RNG `_gen(seed*1009 + 2)`
+- `a_rem = build_pipeline_agent(seed=seed)` at `:1073`, RNG `_gen(seed*1009 + 3)`
+
+Every `build_pipeline_agent` call site in the file (`:1059`, `:1066`, `:1073`, `:1107`, `:1145`) creates a fresh agent, and **no function anywhere in the harness runs more than one phase readout on a single agent** -- the three readouts are invoked exactly once each, at `:1061`, `:1068`, `:1075`. The docstring states the intent at `:1039-1042`: *"Each phase gets a FRESH agent so the phases are measured independently ... a serial pass would bake in the very error-compounding the non-vacuity contract must avoid."*
+
+### Why that breaks D3
+
+There is **zero cross-phase coupling**, and each phase's upstream prerequisite is **injected synthetically** rather than produced by the upstream phase. So D3's question -- *can a downstream phase recover without its upstream prerequisite?* -- **cannot be asked** by masking restoration across three independent agents: restoring the `sws` agent has no causal path to the `rem` agent's readout, and the mask matrix would be **all-zeros by construction**.
+
+That is the same measures-nothing shape as the descending-sigma trap named in section 3, and as the SD-071 C3 reparameterisation finding raised the same day (`GFLAG-0351`). Section 4's mildness claim confused *"the readouts stay per-phase"* (true) with *"the dependency question is answerable per-phase"* (false).
+
+### What D3 actually costs
+
+A **coupled serial pass on one shared agent**, in which each phase's operative substrate is the **product** of the upstream phase rather than an injection. That is:
+
+1. **strictly more than D1 needs** -- D1 couples one phase across two path directions; D3 couples three phases to each other; and
+2. **a loss of the injected-content design**, which is the mechanism that sidesteps the confirmed V3-EXQ-538a encoding-starvation ceiling (*"sleep cannot consolidate an unencoded representation"*) -- the ceiling this entire harness was built to escape.
+
+So **D3 was ranked cheapest and is in fact the most architecturally invasive of the three.** The ranking in section 4 should be read as withdrawn.
+
+### What was done about it, and what was not
+
+- Recorded on `substrate_queue.json` entry `sd068-staged-restoration-mode` (`04bbcd3a76`), which is what a builder reads. `node_class` reclassified `complicated (buildable)` -> **`complex (probe-gated)`** and `status_phase` `build_owed` -> `probe_gated`, because the residual is no longer a build but a reducible unknown; `ready` **stays `false`** so IGW does not stage a build against a false premise.
+- **No third decision chip was raised**, deliberately. Two have already been raised on this item (`chip-20260918-mech170-carveout-scope`, `chip-20260918-mech170-discriminator-choice`), and the metaworker two-stops rule says that at that point the right output is the finding, not another question.
+- **Nothing was re-designed and no discriminator was re-chosen.** D3 stands as the user's decision.
+
+### The open question this leaves, stated for whoever picks it up
+
+**Is cross-phase coupling acceptable for the restoration arm at all** -- given that it weakens the SD-068 non-vacuity contract and forfeits the injected-content protection against the 538a ceiling -- **and if it is not, does D3 survive in any form?** That question must be re-derived against the no-coupling fact before the build is worth starting. The honest summary is that the D1/D2/D3 comparison in section 4 is **stale**, not merely mis-ranked: all three options need re-costing against the architecture as it actually is.
+
+### One dependency note
+
+**MECH-177 depends on MECH-170** (verified against `claims.yaml`), so this build sits upstream of two claims. Section 1's correction block already records that the commissioning decision chip wrongly described MECH-170 as having no dependents.
