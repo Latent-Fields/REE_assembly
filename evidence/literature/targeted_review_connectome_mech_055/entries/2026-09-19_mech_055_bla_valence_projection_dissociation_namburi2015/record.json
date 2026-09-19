@@ -1,0 +1,66 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_055",
+  "entry_id": "2026-09-19_mech_055_bla_valence_projection_dissociation_namburi2015",
+  "timestamp_utc": "2026-09-19T02:30:23Z",
+  "claim_ids_tested": [
+    "MECH-055"
+  ],
+  "source": {
+    "title": "A circuit mechanism for differentiating positive and negative associations",
+    "authors": [
+      "Praneeth Namburi",
+      "Anna Beyeler",
+      "Suzuko Yorozu",
+      "Gwendolyn G. Calhoon",
+      "Sarah A. Halbert",
+      "Romy Wichmann",
+      "Stephanie S. Holden",
+      "Kim L. Mertens",
+      "Melodi Anahtar",
+      "Ada C. Felix-Ortiz",
+      "Ian R. Wickersham",
+      "Jesse M. Gray",
+      "Kay M. Tye"
+    ],
+    "year": 2015,
+    "venue": "Nature",
+    "doi": "10.1038/nature14366",
+    "pmid": "25925480",
+    "pmc": "PMC4418228",
+    "volume": "520",
+    "issue": "7549",
+    "pages": "675-678"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the clearest existence proof that positive and negative valence are carried by anatomically, physiologically and genetically distinguishable populations rather than by one signed scalar, and -- the part that matters for MECH-055 -- that the two are INDEPENDENTLY PERTURBABLE. BLA neurons projecting to nucleus accumbens versus to centromedial amygdala undergo OPPOSING synaptic plasticity after reward versus fear conditioning; photostimulating one supports positive reinforcement and the other negative reinforcement. That directly evidences MECH-055's NON-DEGENERACY PRECONDITION (b) in biology. Source quality is high (Nature, converging ex vivo synaptic physiology, in vivo optogenetics, rabies tracing and transcriptional profiling on the same populations -- four independent methods agreeing). Mapping fidelity is the limiting factor: REE's VALENCE vector slots are latent dimensions in a residue field, not projection-defined cell classes, and the paper's positive/negative axis is not REE's wanting/liking/harm-discriminative carve-up. Confidence held at 0.72 rather than higher because the paper's own photoinhibition result is partially adverse to MECH-055 (see failure_signatures): silencing the negative population both impaired fear AND enhanced reward conditioning, which is a single perturbation moving two measured channels in a fixed opponent relation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Photoinhibition of CeM projectors impaired fear conditioning AND enhanced reward conditioning -- one perturbation, two channels moving in a fixed, predictable opponent relation. That is structurally the pattern MECH-055 names in its FALSIFIER (i) ('any two axes move in a fixed, predictable ratio under manipulations designed to perturb only one'). If REE's valence components are opponent rather than orthogonal, a correctly-run MECH-055 test may fire falsifier (i) against an architecture that is nonetheless as separable as the mammalian amygdala.",
+    "Separability here is ANATOMICAL and defined by projection target; it is established by intervention, not by demonstrating independent variance during ordinary behaviour. The paper does not show that the two populations carry uncorrelated activity in a freely behaving animal. REE's VALENCE_COMPONENTS are slots in one shared residue field driven by shared upstream state, with no anatomical segregation to fall back on, so the biological precedent is weaker for REE than the headline suggests.",
+    "The dissociation tested is positive versus negative valence. It says nothing about MECH-055's actual COLLAPSE-RISK CHECK, which is whether VALENCE_HARM_DISCRIMINATIVE and the dACC-consumed harm forward-model PE carry independent variance -- two representations on the SAME (negative) side of the valence axis. This paper's design cannot address a within-negative-valence collapse."
+  ],
+  "tags": [
+    "mech055",
+    "affect-channel-separation",
+    "valence",
+    "basolateral-amygdala",
+    "optogenetics",
+    "independent-perturbability",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Distinct, intermingled populations of basolateral amygdala (BLA) projection neurons carry positive and negative associative valence. BLA neurons projecting to nucleus accumbens (NAc projectors) and BLA neurons projecting to centromedial amygdala (CeM projectors) undergo OPPOSING changes in synaptic strength following reward conditioning versus fear conditioning. Photostimulation of NAc projectors supports positive reinforcement; photostimulation of CeM projectors mediates negative reinforcement. Photoinhibition of CeM projectors impairs fear conditioning and enhances reward conditioning. The two populations are further distinguishable by their electrophysiological, morphological and genetic (transcriptional) profiles, giving a mechanistic account of how valence of opposite sign is represented within a single structure.",
+    "ree_translation": "MECH-055's NON-DEGENERACY PRECONDITION (b) requires VALENCE vector components to be 'independently computable and independently perturbable' with non-zero cross-candidate variance on at least two components simultaneously. Namburi et al. are the biological demonstration that this precondition is satisfiable in a real affective system: within one structure, valence of opposite sign is carried by populations that can be driven and silenced independently, with opposite behavioural consequences. Mapped onto REE, this supports the architectural decision in ree_core/residue/field.py to give valence several component slots rather than a single signed scalar -- specifically it supports the existence of a benefit-approach channel (VALENCE_WANTING/VALENCE_LIKING) separable from a harm-avoidance channel (VALENCE_HARM_DISCRIMINATIVE). It also supplies the methodological template MECH-055's test needs: the distinctness verdict comes from a manipulation that perturbs ONE channel's generator and reads BOTH channels' downstream roles, not from observing the two channels co-vary.",
+    "mapping_caveat": "Four boundaries. (1) Level mismatch: projection-defined cell classes in rodent BLA are not latent slots in a shared RBF residue field. REE's valence components are read out of one field driven by common upstream state; the biological separability rests on physical segregation REE does not have, so the precedent supports the DESIGN GOAL without evidencing that REE achieves it. (2) The paper's axis is positive versus negative valence; REE's axis 2 carries six components (wanting, liking, harm-discriminative, surprise, positive-surprise, negative-surprise) whose carve-up this paper does not validate. (3) Opponency versus orthogonality: the photoinhibition result shows the two populations are mutually antagonistic, not independent, and MECH-055's falsifier (i) is written against exactly fixed-ratio coupling -- so the paper simultaneously supports precondition (b) and warns that the CONFIRMING criterion as worded may be too strict for a biologically faithful architecture. (4) Rodent fear/reward conditioning to a grid-world agent's residue field is a long transfer, with no shared task structure.",
+    "source_context": "Mouse (C57BL/6, male). Methods: ex vivo whole-cell recording of AMPA/NMDA ratios in retrogradely-labelled BLA-to-NAc and BLA-to-CeM projectors after auditory fear conditioning or reward conditioning; in vivo optogenetic photostimulation and photoinhibition during real-time place preference/avoidance and during conditioning; rabies-based input mapping; transcriptional profiling of the two projector populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high: top-tier venue, four methodologically independent lines (synaptic physiology, optogenetic gain- and loss-of-function, circuit tracing, transcriptomics) converging on the same population distinction, and the result has been broadly corroborated in the subsequent amygdala-valence literature. Mapping fidelity is the weak component at 0.62 -- anatomically segregated projection classes are a structurally different way of keeping channels apart than REE's shared-field latent slots, and the positive/negative axis is not REE's six-component carve-up. Transfer risk 0.50: rodent conditioning to a latent affect vector in an artificial agent, with no shared task, no shared timescale, and a demonstrated opponent coupling that REE's falsifier (i) would read as collapse."
+  }
+}

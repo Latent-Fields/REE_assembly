@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_055",
+  "entry_id": "2026-09-19_mech_055_momentary_happiness_rpe_integrator_rutledge2014",
+  "timestamp_utc": "2026-09-19T02:30:23Z",
+  "claim_ids_tested": [
+    "MECH-055"
+  ],
+  "source": {
+    "title": "A computational and neural model of momentary subjective well-being",
+    "authors": [
+      "Robb B. Rutledge",
+      "Nikolina Skandali",
+      "Peter Dayan",
+      "Raymond J. Dolan"
+    ],
+    "year": 2014,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1407535111",
+    "pmid": "25092308",
+    "pmc": "PMC4143018",
+    "volume": "111",
+    "issue": "33",
+    "pages": "12252-12257"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.8,
+  "confidence_rationale": "This is the most decision-relevant entry in the pull because it cuts both ways and, in doing so, tells MECH-055 which statistic its test must use. SUPPORTING: momentary happiness is NOT explained by current earnings but by a leaky exponential integral over recent reward expectations and prediction errors -- so hedonic tone is a state variable with its own timescale and its own functional form, measurably distinct in TIMING from the momentary signed PE that drives it. That is exactly the 'measurably different variance/timing signature' MECH-055's CONFIRMING clause asks for. WEAKENING: in the fitted model, happiness has NO driver other than expectation and PE history. Mood is a deterministic linear filter of the signed PE stream, which means a perturbation of PE moves mood in a fixed, predictable way -- structurally MECH-055's own FALSIFIER (i). Source quality is very high (primary model fit, fMRI convergence on striatum, and a large-scale smartphone replication with n = 18,420). Mapping fidelity is moderate: REE's axis 1 is mu/kappa, a softmax-temperature and commitment-threshold regulator, not a reported subjective feeling, and the claim's own NAMING NOTE concedes the two constructs differ.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In the fitted model, momentary happiness is a leaky exponential integral of expectations and prediction errors with no independent driver. If REE's mu/kappa is likewise driven only by PE history, then REE is biologically orthodox and still fails MECH-055's independence requirement -- so a FALSIFIED verdict on axis-1-versus-axis-3 separation would indict the claim's wording, not the architecture.",
+    "The distinctness verdict is statistic-dependent, and MECH-055's FALSIFIER (ii) picks the wrong statistic. Under a leaky-integrator relationship, an instantaneous CORRELATION between the slow channel and the fast channel is low (supporting distinctness) while the slow channel is nonetheless fully determined by the fast one (refuting it). MECH-055's 'correlation ~1' test would therefore pass an architecture that is actually collapsed-with-a-lag. The test must compare against a filtered-PE baseline, not against raw PE.",
+    "The same computational quantities that explain happiness also explain task-dependent striatal BOLD. Shared neural substrate between a hedonic-tone channel and a prediction-error channel is the biological expectation here, not an anomaly -- so a REE finding that mu/kappa and the PE channel share upstream state is not by itself evidence of the channel collapse MECH-055 is hunting."
+  ],
+  "tags": [
+    "mech055",
+    "affect-channel-separation",
+    "hedonic-tone",
+    "mood",
+    "reward-prediction-error",
+    "timescale-separation",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Momentary subjective happiness, sampled repeatedly during a probabilistic reward task, is not explained by cumulative or current task earnings. It is explained by a computational model in which happiness at a given moment is a weighted sum of recent certain rewards, expected values of chosen gambles, and reward prediction errors arising from those expectations, each weighted by an exponentially decaying forgetting factor. The account was robust in a large-scale smartphone replication with 18,420 participants. Using fMRI, the same model terms that predicted happiness also accounted for task-dependent striatal activity, linking the subjective report to a neural signal.",
+    "ree_translation": "MECH-055 asserts that REE's axis 1 (hedonic-stability, the mu/kappa overlays acting as softmax-temperature and commitment-threshold modulators) stays distinct from axis 3 (signed precision-weighted prediction error). Rutledge et al. characterise the biological version of precisely this relationship and find it to be one of DERIVED SLOW STATE rather than independence: subjective hedonic tone is a leaky exponential integral over the signed PE stream. For REE this is a design specification more than a verdict. It says the right test of axis-1/axis-3 distinctness is not 'are they uncorrelated' but 'does axis 1 carry variance that a best-fitting leaky filter of axis 3 cannot reproduce' -- i.e. fit the Rutledge-form filter from the PE channel to the mu/kappa trajectory and ask what residual survives. A REE architecture whose mu/kappa is fully reconstructable from filtered PE is collapsed in the sense MECH-055 cares about even though its instantaneous correlation with PE is near zero.",
+    "mapping_caveat": "Three boundaries, the first of them load-bearing. (1) CONSTRUCT MISMATCH: the paper's dependent variable is a self-reported subjective feeling ('how happy are you right now?'); REE's axis 1 is a control-plane regulator with no reportable content, and MECH-055's own NAMING NOTE states that REE 'hedonic tone' is not the affective-neuroscience construct. The transfer is therefore from a model of subjective mood dynamics to a model of policy-temperature dynamics, justified only by the shared formal role of a slowly-integrating scalar that biases action selection. (2) The task is a human monetary gambling task with sub-minute sampling; REE's mu/kappa moves on episode/curriculum timescales in a grid-world. The exponential-forgetting constant is not transferable, only the functional form. (3) The paper shows that a leaky-PE-integral model SUFFICES to explain happiness; it does not show that no independent mood driver exists. Absence of an extra term in a fitted model is weak evidence against separability, so the weakening direction of this entry should not be over-read.",
+    "source_context": "Humans. Primary fMRI/behavioural study: 26 participants performing a probabilistic reward (gambling) task with repeated momentary happiness ratings, scanned with BOLD fMRI. Replication: 18,420 participants via the Great Brain Experiment smartphone application. Modelling: linear model of momentary happiness with exponentially-decaying weights on certain rewards, expected values and reward prediction errors."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high: primary computational modelling with a neural convergence test and an unusually large independent replication (n = 18,420), in a top-tier venue, and the model has since been applied widely enough to be treated as a standard account of momentary mood. Mapping fidelity 0.66 reflects the construct mismatch between reported happiness and REE's mu/kappa control-plane regulator -- the shared object is the formal role of a slow leaky integrator biasing choice, not the affect itself. Transfer risk 0.35 rather than higher because what transfers is a functional form (leaky exponential integration of a PE stream) rather than an anatomical or pharmacological fact, and functional forms survive domain change comparatively well."
+  }
+}

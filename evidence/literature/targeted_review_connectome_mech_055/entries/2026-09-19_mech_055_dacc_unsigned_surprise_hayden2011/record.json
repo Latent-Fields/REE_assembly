@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_055",
+  "entry_id": "2026-09-19_mech_055_dacc_unsigned_surprise_hayden2011",
+  "timestamp_utc": "2026-09-19T02:30:23Z",
+  "claim_ids_tested": [
+    "MECH-055"
+  ],
+  "source": {
+    "title": "Surprise signals in anterior cingulate cortex: neuronal encoding of unsigned reward prediction errors driving adjustment in behavior",
+    "authors": [
+      "Benjamin Y. Hayden",
+      "Sarah R. Heilbronner",
+      "John M. Pearson",
+      "Michael L. Platt"
+    ],
+    "year": 2011,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4652-10.2011",
+    "pmid": "21411658",
+    "pmc": "PMC3070460",
+    "volume": "31",
+    "issue": "11",
+    "pages": "4178-4187"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.75,
+  "confidence_rationale": "MECH-055's axis 3 is a SIGNED precision-weighted prediction error, and the claim locates its harm half in a dACC-consumed harm forward-model PE. Hayden et al. recorded macaque dorsal anterior cingulate neurons during a probabilistic choice task and found responses enhanced by outcome SURPRISE irrespective of valence -- to both unexpectedly large and unexpectedly small rewards -- and explicitly state the pattern is inconsistent with dACC neurons tracking signed reward prediction errors the way dopamine neurons do. That directly challenges the anatomical warrant for REE's 'DACC-consumed harm PE' being a signed, harm-specific channel. It also relocates the collapse risk: if the biological dACC signal is unsigned surprise, then REE's live confusion may be between its dACC PE and VALENCE_SURPRISE (component 3, unsigned by construction) rather than the VALENCE_HARM_DISCRIMINATIVE pairing the claim currently names. Source quality is good for primate single-unit work but this is one lab, one task, one region, and the dACC signed/unsigned literature is genuinely contested. Confidence 0.75 rather than higher because the finding weakens REE's anatomical NAMING, which is softer than weakening the computational claim itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Macaque dACC neurons responded more strongly to surprising outcomes regardless of valence -- enhanced to both large and small rewards when unexpected. If dACC is an unsigned-surprise structure, REE's label 'DACC-consumed harm forward-model PE' asserts a signed, valence-specific role the primate electrophysiology does not support, and MECH-055's axis 3 loses its anatomical warrant even if the computational quantity is well-defined.",
+    "This relocates MECH-055's COLLAPSE-RISK CHECK. The claim asks whether VALENCE_HARM_DISCRIMINATIVE and the dACC harm PE are one scalar wearing two labels. If the dACC homologue is actually unsigned surprise, the more likely collapse in REE is between its dACC PE channel and VALENCE_SURPRISE (index 3 in ree_core/residue/field.py), which is unsigned by construction -- a pairing the claim does not currently test at all. A distinctness test that checks only the named pair can pass while the real redundancy sits in the untested one.",
+    "The authors also report that dACC responses do NOT signal conflict, and link dACC reward modulation instead to attention and motor-control adjustment. A REE architecture that routes a dACC-named signal into affect rather than into behavioural adjustment/control is not licensed by this result -- the signal's documented downstream role here is policy adjustment, not valenced affect."
+  ],
+  "tags": [
+    "mech055",
+    "affect-channel-separation",
+    "dacc",
+    "unsigned-prediction-error",
+    "surprise",
+    "signed-pe",
+    "collapse-risk",
+    "weakens"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a probabilistic choice task, macaque (Macaca mulatta) dorsal anterior cingulate cortex neurons showed responses to both large and small rewards that were ENHANCED when the outcome was surprising, regardless of outcome valence. Trial-to-trial variations in behavioural preference tracked outcome surprisingness. When outcome probabilities were hidden on some trials, neuronal responses to rewards were reduced, consistent with diminished surprise in the absence of clear expectations. The authors state these patterns are inconsistent with dACC neurons tracking SIGNED errors in reward prediction as dopamine neurons do, and also inconsistent with dACC signalling conflict; they instead link dACC reward modulation to attention and motor-control processes driving behavioural adjustment.",
+    "ree_translation": "MECH-055's axis 3 is 'signed PE precision from a genuine forward-model-based precision-weighted PE on BOTH harm and benefit sides', with the harm half consumed by a dACC-named module (the same module MECH-054's 2026-08-08 finding identifies as the only real half). Hayden et al. weaken the biological grounding of that naming: their dACC carries UNSIGNED surprise. For REE this is not fatal to the computational claim -- a signed harm PE may still be a well-defined and useful quantity -- but it removes the appeal to dACC homology as independent support for axis 3 being signed and harm-specific, and it makes a concrete new prediction about where REE's real channel redundancy lives. REE's residue field already carries VALENCE_SURPRISE (unsigned) alongside VALENCE_POSITIVE_SURPRISE and VALENCE_NEGATIVE_SURPRISE (signed, written only when use_mech307_split_surprise is on). If the dACC-named PE is functionally an unsigned surprise magnitude, the tightest redundancy in REE is dACC-PE against VALENCE_SURPRISE, not against VALENCE_HARM_DISCRIMINATIVE.",
+    "mapping_caveat": "Three boundaries. (1) The dACC signed-versus-unsigned question is contested rather than settled: other primate and human studies report signed value and outcome-valence coding in nearby cingulate territory, and 'dACC' is defined differently across labs, so a single well-executed study should shift the prior without closing it. (2) The task is a probabilistic reward-choice task with reward magnitude as the only outcome dimension -- there is NO harm or punishment condition, so strictly the paper shows dACC surprise coding is valence-insensitive across the reward magnitude axis, not across an appetitive/aversive axis. REE's harm channel concerns the latter, and this study cannot directly test it. (3) What this weakens is REE's anatomical naming and the inference from homology, not the internal coherence of a signed precision-weighted harm PE as a computational object. Recorded as 'weakens' because MECH-055's own wording leans on the dACC attribution; a reader treating it as weakening the computational claim would over-read it.",
+    "source_context": "Two adult male rhesus macaques (Macaca mulatta), extracellular single-unit recording in dorsal anterior cingulate cortex during a probabilistic gambling/choice task with explicit and hidden outcome probabilities; behavioural analysis of trial-to-trial preference change as a function of outcome surprisingness."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.84: careful primate single-unit work from a strong lab with a well-designed hidden-probability control that rules out the obvious alternative account, but it is one lab, two animals, one task, and it argues against a contested literature rather than settling it. Mapping fidelity 0.70 because the object compared (signed versus unsigned prediction error in a dACC-named module) is exactly the distinction MECH-055 relies on, docked because the study's outcome dimension is reward magnitude with no aversive arm, so the harm-side inference is an extrapolation. Transfer risk 0.40: macaque electrophysiology to a named module in an artificial agent, where the module's name is doing argumentative work that the biology may not support."
+  }
+}

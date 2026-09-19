@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_055",
+  "entry_id": "2026-09-19_mech_055_valence_general_workspace_metaanalysis_lindquist2016",
+  "timestamp_utc": "2026-09-19T02:30:23Z",
+  "claim_ids_tested": [
+    "MECH-055"
+  ],
+  "source": {
+    "title": "The Brain Basis of Positive and Negative Affect: Evidence from a Meta-Analysis of the Human Neuroimaging Literature",
+    "authors": [
+      "Kristen A. Lindquist",
+      "Ajay B. Satpute",
+      "Tor D. Wager",
+      "Jochen Weber",
+      "Lisa Feldman Barrett"
+    ],
+    "year": 2016,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhv001",
+    "pmid": "25631056",
+    "pmc": "PMC4830281",
+    "volume": "26",
+    "issue": "5",
+    "pages": "1910-1922"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "This meta-analysis (397 fMRI/PET studies, 914 contrasts, 6827 participants) tested three competing accounts of valence's brain basis and found little support for either the bipolarity hypothesis (one system monotonically tracking the valence dimension) or the BIVALENT hypothesis (positive and negative affect supported by INDEPENDENT brain systems). What it supported instead is an 'affective workspace' account: valence is flexibly implemented across instances by valence-GENERAL limbic and paralimbic regions. The bivalent hypothesis it rejects is the closest human-neuroimaging analogue of MECH-055's architectural premise that affect maintains dedicated separate channels, so this is the strongest available human evidence against the claim. Source quality is high -- large, pre-specified, hypothesis-competitive meta-analysis from methodologically serious groups. It is held to 0.70 because mapping fidelity is genuinely limited: univariate fMRI meta-analysis is close to blind to population-level separability that multivariate and cellular methods do detect (Namburi et al. in this same pull is the counterexample), so this is a weak-instrument null rather than a positive demonstration of collapse.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The bivalent hypothesis -- positive and negative affect supported by INDEPENDENT brain systems -- was specifically tested and specifically not supported across 397 studies. An architecture that hardwires distinct dedicated valence channels is asserting something the human neuroimaging record does not corroborate, so MECH-055 cannot claim biological-plausibility support for its premise from human data.",
+    "If valence is instead implemented by valence-GENERAL regions recruited flexibly per instance, then the correct null model for a MECH-055 distinctness test is not 'channels collapse' but 'channels are context-dependently constructed from shared machinery'. REE's test as worded has no way to distinguish a genuinely separate channel from a shared substrate that happens to be carrying separable information on the episodes sampled.",
+    "The paper also rejects the bipolarity hypothesis, so it does not offer REE the fallback of a single well-behaved signed valence scalar either. Both the collapsed-scalar reading and the dedicated-channels reading are unsupported by this dataset, which leaves MECH-055's framing -- distinct channels versus one collapsed scalar -- as a possibly false dichotomy inherited from the architecture rather than from the biology."
+  ],
+  "tags": [
+    "mech055",
+    "affect-channel-separation",
+    "valence",
+    "meta-analysis",
+    "affective-workspace",
+    "constructionism",
+    "weakens"
+  ],
+  "mapping": {
+    "source_claim_statement": "A meta-analysis of 397 fMRI and PET studies (914 experimental contrasts, 6827 participants) competitively tested three hypotheses about the brain basis of hedonic valence: bipolarity (positive and negative affect supported by a brain system that monotonically increases and/or decreases along a single valence dimension), bivalence (positive and negative affect supported by independent brain systems), and an affective workspace account (both supported by a flexible set of valence-general regions). The authors found little evidence for the bipolar or bivalent hypotheses. Findings instead supported the view that, at the level of brain activity measurable by fMRI, valence is flexibly implemented across instances by a set of valence-general limbic and paralimbic brain regions.",
+    "ree_translation": "MECH-055's architectural premise is that affect is carried by channels that stay distinct rather than collapsing into a single scalar -- in REE, a six-component VALENCE vector in ree_core/residue/field.py alongside a separate hedonic-stability regulator and a separate signed-PE channel. The bivalent hypothesis rejected here is the closest human-neuroimaging statement of that premise. Lindquist et al. therefore weaken the biological-plausibility argument for REE's design, and they supply a THIRD option that MECH-055's confirming/falsifying dichotomy does not currently contain: channels that are neither dedicated nor collapsed, but constructed per-instance from shared valence-general machinery. For REE this is the architecturally closest description of what a shared RBF residue field driven by common upstream state would actually produce, which makes it the most likely true state of REE's own valence vector and the hypothesis its test is least equipped to detect.",
+    "mapping_caveat": "This entry's weakening force must be kept narrow in two ways, and both matter. (1) INSTRUMENT LIMITS: univariate fMRI/PET meta-analysis has poor sensitivity to population-level codes. Multivariate pattern analyses recover valence information from regions where univariate contrasts show none, and the cellular-resolution work (Namburi et al. 2015, this same pull) demonstrates anatomically and genetically distinct valence populations that no fMRI meta-analysis could resolve. A null at this resolution is weak evidence of absence, and the paper's own framing is about what is 'measurable by fMRI'. (2) TARGET MISMATCH: this paper bears on whether REE's design is BRAIN-LIKE, not on whether MECH-055's internal falsifiers fire. MECH-055's actual test is a measurement of REE's own channels against each other; no human neuroimaging result can pass or fail that test. Recorded as 'weakens' because the claim is a mechanism_hypothesis whose warrant is partly biological homology, and that warrant is what this erodes.",
+    "source_context": "Human neuroimaging meta-analysis. 397 fMRI and PET studies, 914 experimental contrasts, 6827 participants; multi-level kernel density analysis with competitive testing of three pre-specified hypotheses. Note: published in the Cerebral Cortex 26(5) print issue (2016); first published online 28 January 2015."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.90: large, well-powered, hypothesis-competitive meta-analysis with pre-specified alternatives from groups with strong methodological track records -- much harder to dismiss than a single null study. Mapping fidelity 0.55 is deliberately the lowest in this pull: the object tested is the brain basis of human subjective valence, whereas MECH-055's test is an internal measurement on REE's own channels, so the paper speaks to the design's biological warrant rather than to the claim's falsifiers. Transfer risk 0.55 -- high, and driven mainly by the instrument: a univariate-fMRI null cannot rule out the separable population codes that cellular methods find, so treating this as evidence of collapse would over-read it."
+  }
+}

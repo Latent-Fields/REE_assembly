@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-19T01:11:14.360278Z`
+Generated: `2026-09-19T02:38:34.972668Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -124,6 +124,7 @@ Generated: `2026-09-19T01:11:14.360278Z`
 | `targeted_review_connectome_mech_049` | [`2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018`](targeted_review_connectome_mech_049/entries/2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018/record.json) | 5 | [`summary`](targeted_review_connectome_mech_049/entries/2026-09-18_mech_049_shielding_constraint_independence_alshiekh2018/summary.md) |
 | `targeted_review_connectome_mech_050` | [`2026-09-18_mech_050_wiring_cost_map_transition_weigand2017`](targeted_review_connectome_mech_050/entries/2026-09-18_mech_050_wiring_cost_map_transition_weigand2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_050/entries/2026-09-18_mech_050_wiring_cost_map_transition_weigand2017/summary.md) |
 | `targeted_review_connectome_mech_053` | [`2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017`](targeted_review_connectome_mech_053/entries/2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_053/entries/2026-08-17_mech_053_outcome_specific_conditioned_inhibition_laurent2017/summary.md) |
+| `targeted_review_connectome_mech_055` | [`2026-09-19_mech_055_valence_general_workspace_metaanalysis_lindquist2016`](targeted_review_connectome_mech_055/entries/2026-09-19_mech_055_valence_general_workspace_metaanalysis_lindquist2016/record.json) | 5 | [`summary`](targeted_review_connectome_mech_055/entries/2026-09-19_mech_055_valence_general_workspace_metaanalysis_lindquist2016/summary.md) |
 | `targeted_review_connectome_mech_056` | [`2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016`](targeted_review_connectome_mech_056/entries/2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016/record.json) | 9 | [`summary`](targeted_review_connectome_mech_056/entries/2026-04-04_mech_056_valenced_map_route_planning_wikenheiser2016/summary.md) |
 | `targeted_review_connectome_mech_057a` | [`2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012`](targeted_review_connectome_mech_057a/entries/2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012/record.json) | 2 | [`summary`](targeted_review_connectome_mech_057a/entries/2026-04-02_mech_057a_bg_beta_cue_utilization_leventhal2012/summary.md) |
 | `targeted_review_connectome_mech_057b` | [`2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015`](targeted_review_connectome_mech_057b/entries/2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015/record.json) | 4 | [`summary`](targeted_review_connectome_mech_057b/entries/2026-04-27_mech_057b_theta_seq_goals_wikenheiser_redish2015/summary.md) |
