@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-18T18:49:28.308292Z",
+  "generated_at_utc": "2026-09-19T00:05:33.584513Z",
   "items": [
     {
       "acceptance_checks": [
@@ -330,57 +330,6 @@
       "seed_policy": "matched_shared_seeds",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_321",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
-        "low_exp_conf",
-        "mandatory_decision_checkpoint"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts.",
-        "Package outputs as decision-grade comparison by `2026-08-05T20:39:45.146808Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
-      ],
-      "backlog_id": "EVB-0454",
-      "claim_id": "SD-076",
-      "decision_deadline_utc": "2026-08-05T20:39:45.146808Z",
-      "decision_required_outcomes": [
-        "retain_ree",
-        "hybridize",
-        "retire_ree_claim"
-      ],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "executed_by": "V3-EXQ-794/794a (original design, executed); superseded by GOV-FANOUT-1 cascade V3-EXQ-850/853/860/864/864a",
-      "gated_at_utc": "2026-08-02T11:59:00Z",
-      "gated_by_session": "determined-ritchie-55a3a6",
-      "gating_reason": "Literal suggested design (v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2) already ran (794/794a). SD-076's retain/hybridize/retire decision was deliberately left open this governance cycle per user instruction, pending the live H1/H2/H3 GOV-FANOUT-1 cascade -- not resolvable by re-running this superseded design.",
-      "min_shared_seeds": 2,
-      "objective": "Generate decision-grade discriminative evidence for SD-076 before governance deadline.",
-      "priority": "high",
-      "proposal_id": "EXP-0021",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_sd_076",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -2528,6 +2477,49 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1390",
+      "claim_id": "MECH-017",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-1048",
+      "executed_queue_id": "V3-EXQ-1048",
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-017 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0753",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_017",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1250",
       "claim_id": "EXT-005",
       "decision_deadline_utc": "",
@@ -2684,92 +2676,6 @@
         "active_conflict",
         "directional_conflict_alert",
         "insufficient_experimental_replication",
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1390",
-      "claim_id": "MECH-017",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "executed_by": "V3-EXQ-1048",
-      "executed_queue_id": "V3-EXQ-1048",
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-017 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0753",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_017",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
-        "insufficient_experimental_replication",
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1393",
-      "claim_id": "MECH-021",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "executed_by": "V3-EXQ-1050",
-      "executed_queue_id": "V3-EXQ-1050",
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-021 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0759",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_021",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "directional_conflict_alert",
         "low_exp_conf"
       ]
     },
@@ -4710,6 +4616,51 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1410",
+      "claim_id": "MECH-050",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-050 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0798",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_050",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1200",
       "blocked_by": [
         "ARC-053",
@@ -5753,17 +5704,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1409",
-      "blocked_at_utc": "2026-09-18T22:13:23Z",
       "blocked_by": [
         "MECH-449",
         "ARC-107",
         "MECH-439"
-      ],
-      "blocked_by_session": "igw-244-proposal-for-mech-049",
-      "blocked_evidence_run_ids": [
-        "v3_exq_936_mech439_f_variance_share_under_f_demotion_20260817T062038Z_v3",
-        "v3_exq_936a_mech439_f_variance_share_rollout_clamp_fix_20260829T071510Z_v3",
-        "v3_exq_603k_stageh_harm_pathway_readiness_20260609T181419Z_v3"
       ],
       "blocked_note": "Refused at /queue-experiment substrate-readiness (IGW-20260918-244). MECH-049 asserts that explicit temporal compartmentalisation keeps the ethical constraint from being smoothed into optimisation gradients -- i.e. it PRESERVES a non-optimisable constraint. On the current substrate that property has no endogenous carrier, so there is nothing for the phase manipulation to preserve or lose. (1) THE VETO HAS NO ENDOGENOUS PRODUCER. V3's one genuinely non-optimisable constraint path is the MECH-449/ARC-107 Go/No-Go `safety` No-Go axis in E3 (_go_nogo_eligibility_gate, ree_core/predictors/e3_selector.py:1885): it REMOVES a candidate from the eligible set (the within-eligible argmin can then never select it, orthogonal to F) and is explicitly EXEMPT from the fail-open guard. That is exactly the hard-boundary mechanism MECH-049 is about. But E3Config.use_go_nogo_constitution defaults False (ree_core/utils/config.py:1884), and the ONLY axis ree_core/agent.py computes endogenously is `perseveration` (agent.py:9537-9548, from the MECH-260 suppression vector). `safety` reaches the gate ONLY via agent.set_injected_go_nogo_signals(), and every producer of a safety vector in the tree is a hand-constructed synthetic bank -- `safety = torch.zeros(k); safety[u_index] = 0.9` (v3_exq_689g:188-192; also v3_exq_926/926a, and v3_exq_936 documents its own as a constructed selector-level bank). There is NO code path from the harm pathway (harm_eval / z_harm / z_harm_a / hazard proximity) to a per-candidate safety signal; ConditionedSafetyStore (SD-051/MECH-304) yields a SCALAR commitment-release safety_prediction, not a per-candidate veto vector. This is the proposal's own `synthetic_signals_only` why_now flag. The consequence is a DEGENERATE design, not merely a weak one: a hand-injected safety vector is exogenous and constant with respect to the clock, so its veto authority is identical whether E3 ticks every step or every 10 -- the DV is invariant to the IV BY CONSTRUCTION. (2) THE SOFT (SCORE-TERM) ROUTE IS DEGENERATE TOO. The only endogenously-wired harm path is the additive term lambda_eff*M(zeta) in E3's score J = F + lambda*M + rho*Phi_R - beta*B (score_trajectory, e3_selector.py:1428). Its measured cross-candidate selection authority is ~0: component_variance_fractions.harm_weighted = 7.6e-18 .. 3.5e-71 (V3-EXQ-936, 2026-08-17) and 1.8e-06 .. 1.2e-05 in the clamp-fixed rerun (V3-EXQ-936a, 2026-08-29), against f_variance_share ~1.0 and ~6.3e-06 respectively. A channel at ~1e-06 variance share cannot flip an argmin except in near-ties, so 'constraint independence' has no non-degenerate value in the CONTROL arm before the IV is applied. And in any case an additive weighted scalar IS the 'smoothed into optimisation gradients' condition the claim says compartmentalisation prevents -- it cannot serve as the preserved property. (3) SCOPE NOTE (not independently blocking): the IV covers at most 2 of the 5 compartments the claim names (proposal / self-impact prediction / harm evaluation / precision update / policy consolidation). The only temporal-compartmentalisation substrate is MultiRateClock (SD-006 phase 1 / ARC-023: e1=1, e2=3, e3=10 steps-per-tick, plus MECH-091 phase_reset), which separates sensorium / action-enact / planning-gate CADENCE only. There is no veto phase and no policy-consolidation phase in the clock; ree_core/heartbeat/clock.py's own docstring records that phase 2 (full HTA with separate threads) is deferred per spec section 3 / SD-006. NOT THE BLOCKER, recorded so it is not re-derived: the harm VALUATION pathway trains and is discriminative -- V3-EXQ-603k PASS (2026-06-09) measured harm_eval_range 0.133 against a 0.002 flat baseline with n_train_steps 6242, behind scaffold_train_harm_pathway=True + use_harm_stream=True + use_e2_harm_s_forward=True. NO COMMITMENT-FREE DIAGNOSTIC SUBSTITUTES. The only measurement-only DV available (harm's share of E3 score variance under separated vs collapsed clock rates) reads a channel already measured at 1e-06..1e-71 authority, so it would measure numerical noise -- and it is a fact about E3 scoring cadence, not about constraint independence. The veto-side version requires the synthetic injection, which is IV-invariant per (1). Node class: complicated (buildable) -> route to /implement-substrate, not another experiment.",
       "claim_id": "MECH-049",
@@ -5771,10 +5715,6 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
-      "gated_on": [
-        "MECH-449",
-        "ARC-107"
-      ],
       "gating_reason": "no_endogenous_safety_veto_producer_and_inert_harm_score_channel -- V3's only non-optimisable constraint (the MECH-449 safety No-Go) is default-off and fed only by hand-injected synthetic signals, and the endogenously-wired additive harm term carries ~1e-06 of E3 score variance, so the constraint-independence DV is degenerate in the control arm before the IV is applied",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-049 via targeted experiment runs.",
@@ -16145,92 +16085,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_041",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1410",
-      "claim_id": "MECH-050",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-050 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0798",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_050",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1410",
-      "claim_id": "MECH-050",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-050.",
-      "priority": "medium",
-      "proposal_id": "LIT-0799",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_050",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -32773,94 +32627,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1657",
-      "claim_id": "SD-071",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "executed_by": "V3-EXQ-1058",
-      "executed_queue_id": "V3-EXQ-1058",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for SD-071 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1178",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_sd_071",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1657",
-      "claim_id": "SD-071",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for SD-071.",
-      "priority": "medium",
-      "proposal_id": "LIT-1179",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_sd_071",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -35172,53 +34938,6 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
-      "backlog_id": "EVB-1746",
-      "claim_id": "SD-106",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for SD-106.",
-      "priority": "medium",
-      "proposal_id": "LIT-0132",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_sd_106",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
       "backlog_id": "EVB-1396",
       "claim_id": "MECH-027",
       "decision_deadline_utc": "",
@@ -36179,6 +35898,92 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1657",
+      "claim_id": "SD-071",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-1058",
+      "executed_queue_id": "V3-EXQ-1058",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for SD-071 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1178",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_sd_071",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1657",
+      "claim_id": "SD-071",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for SD-071.",
+      "priority": "medium",
+      "proposal_id": "LIT-1179",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_sd_071",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1660",
       "claim_id": "SD-074",
       "decision_deadline_utc": "",
@@ -36710,46 +36515,6 @@
       "seed_policy": "distinct_seeds",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_arc_060",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1721",
-      "blocked_by": [
-        "Q081-REACH-CHECK-PAIR-SPECIFIC"
-      ],
-      "blocked_note": "No confirmed-reach manipulation lever exists for Q-081's current measured pair (RV(z_world, z_goal) primary / RV(z_world, z_harm_a) fallback). V3-EXQ-865 (2026-08-01, reviewed, PASS/diagnostic, non_contributory) ran the generalised pre-flight reach probe (experiments/_lib/q081_pair_reach_check_stream.py) for both targets across 2 manipulation levers (iei_permute, jitter) x 5 seeds and found ZERO precursor-level reach for either z_goal or z_harm_a -- 4 and 8 non-degenerate cells respectively, all zero-reach. Combined with the retired (z_world, operating_mode) pair's own exhaustive null (V3-EXQ-824/824a/838/849), this is now 3 cross-stream targets x the only known landmark-manipulation lever family, all zero-reach. V3-EXQ-865's own manifest states explicitly: 'do NOT queue another config-lever probe on this lever family for Q-081 -- the next move (a direct write-path substrate build, or a different manipulation lever entirely) is a governance decision, out of scope for this probe.' Per /queue-experiment Step 2.5a discipline (a probe result routes to blocked_substrate exactly like a doc-vs-runtime contradiction), a new targeted-probe experiment cannot be legitimately queued on the same lever family. NOTE: V3-EXQ-865's finding does not yet appear to have been folded into claims.yaml Q-081's evidence_quality_note or given a governance disposition -- flagged for /governance, not actioned here (queue-experiment scope).",
-      "claim_id": "Q-081",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for Q-081 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0046",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_q_081",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
@@ -37441,6 +37206,44 @@
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1393",
+      "claim_id": "MECH-021",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-1050",
+      "executed_queue_id": "V3-EXQ-1050",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-021 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0759",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_021",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "low_exp_conf"
       ]
     },
     {
@@ -43092,6 +42895,97 @@
       "source": "manual",
       "status": "proposed",
       "target_repo": "ree-v3"
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts.",
+        "Package outputs as decision-grade comparison by `2026-08-05T20:39:45.146808Z`; explicitly score outcomes `retain_ree|hybridize|retire_ree_claim`."
+      ],
+      "backlog_id": "EVB-0454",
+      "claim_id": "SD-076",
+      "decision_deadline_utc": "2026-08-05T20:39:45.146808Z",
+      "decision_required_outcomes": [
+        "retain_ree",
+        "hybridize",
+        "retire_ree_claim"
+      ],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-794/794a (original design, executed); superseded by GOV-FANOUT-1 cascade V3-EXQ-850/853/860/864/864a",
+      "gated_at_utc": "2026-08-02T11:59:00Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Literal suggested design (v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2) already ran (794/794a). SD-076's retain/hybridize/retire decision was deliberately left open this governance cycle per user instruction, pending the live H1/H2/H3 GOV-FANOUT-1 cascade -- not resolvable by re-running this superseded design.",
+      "min_shared_seeds": 2,
+      "objective": "Generate decision-grade discriminative evidence for SD-076 before governance deadline.",
+      "priority": "high",
+      "proposal_id": "EXP-0021",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "gated",
+      "suggested_experiment_type": "claim_probe_sd_076",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "low_exp_conf",
+        "mandatory_decision_checkpoint"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1721",
+      "blocked_by": [
+        "Q081-REACH-CHECK-PAIR-SPECIFIC"
+      ],
+      "blocked_note": "No confirmed-reach manipulation lever exists for Q-081's current measured pair (RV(z_world, z_goal) primary / RV(z_world, z_harm_a) fallback). V3-EXQ-865 (2026-08-01, reviewed, PASS/diagnostic, non_contributory) ran the generalised pre-flight reach probe (experiments/_lib/q081_pair_reach_check_stream.py) for both targets across 2 manipulation levers (iei_permute, jitter) x 5 seeds and found ZERO precursor-level reach for either z_goal or z_harm_a -- 4 and 8 non-degenerate cells respectively, all zero-reach. Combined with the retired (z_world, operating_mode) pair's own exhaustive null (V3-EXQ-824/824a/838/849), this is now 3 cross-stream targets x the only known landmark-manipulation lever family, all zero-reach. V3-EXQ-865's own manifest states explicitly: 'do NOT queue another config-lever probe on this lever family for Q-081 -- the next move (a direct write-path substrate build, or a different manipulation lever entirely) is a governance decision, out of scope for this probe.' Per /queue-experiment Step 2.5a discipline (a probe result routes to blocked_substrate exactly like a doc-vs-runtime contradiction), a new targeted-probe experiment cannot be legitimately queued on the same lever family. NOTE: V3-EXQ-865's finding does not yet appear to have been folded into claims.yaml Q-081's evidence_quality_note or given a governance disposition -- flagged for /governance, not actioned here (queue-experiment scope).",
+      "claim_id": "Q-081",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for Q-081 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0046",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_q_081",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "low_exp_conf"
+      ]
     },
     {
       "acceptance_checks": [
