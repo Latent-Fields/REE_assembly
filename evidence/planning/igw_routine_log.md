@@ -3323,3 +3323,8 @@ One line per hourly tick. ASCII only.
 2026-09-19T17:36:05Z SPAWN IGW-20260919-242 skill=/lit-pull prio=40 uuid=058248b9-1f2d-4e92-af98-4b5f09caf903 pid=92782 worktree=igw-242-literature-proposal-for-mech-066
 2026-09-19T18:08:43Z auto-defer igw-242-literature-proposal-for-mech-066 hash=9f3054a3403d for 48h (complete)
 2026-09-19T18:10:02Z complete igw-242-literature-proposal-for-mech-066 spawned->completed outcome=USEFUL_LANDED: MECH-066 lit-pull landed: 5 entries (targeted_review_connectome_mech_066), lit 0
+2026-09-19T18:42:41Z GC removed worktree igw-242-literature-proposal-for-mech-066 (removed; branch deleted)
+2026-09-19T18:41:09Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T18:43:01Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 33 ready, 0 in flight)
+2026-09-19T18:41:09Z SPAWN IGW-20260919-243 skill=/queue-experiment prio=40 uuid=69abfad2-3e0e-4df4-8436-70a1ebea785d pid=25137 worktree=igw-243-proposal-for-mech-067
+2026-09-19T19:03:35Z auto-defer igw-243-proposal-for-mech-067 hash=05f60d3f04eb for 48h (complete)
