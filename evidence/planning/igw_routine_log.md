@@ -3320,3 +3320,6 @@ One line per hourly tick. ASCII only.
 2026-09-19T06:03:13Z SPAWN IGW-20260919-241 skill=/lit-pull prio=40 uuid=26b331a3-d34b-47b6-aca0-d0d177b166f0 pid=73617 worktree=igw-241-literature-proposal-for-mech-064
 2026-09-19T06:37:13Z auto-defer igw-241-literature-proposal-for-mech-064 hash=b53b5d725d45 for 48h (complete)
 2026-09-19T06:38:29Z complete igw-241-literature-proposal-for-mech-064 spawned->completed outcome=USEFUL_LANDED: MECH-064 lit-pull: 5 entries (4 supports, 1 mixed) landed REE_assembly 94286de2a
+2026-09-19T17:36:05Z SPAWN IGW-20260919-242 skill=/lit-pull prio=40 uuid=058248b9-1f2d-4e92-af98-4b5f09caf903 pid=92782 worktree=igw-242-literature-proposal-for-mech-066
+2026-09-19T18:08:43Z auto-defer igw-242-literature-proposal-for-mech-066 hash=9f3054a3403d for 48h (complete)
+2026-09-19T18:10:02Z complete igw-242-literature-proposal-for-mech-066 spawned->completed outcome=USEFUL_LANDED: MECH-066 lit-pull landed: 5 entries (targeted_review_connectome_mech_066), lit 0
