@@ -248,3 +248,136 @@ EXP-1403 and authorises exactly this run. Both are current text on the same entr
 autopsy surfaced this to governance and its Step 8 gate confirmed the routing with the user
 present; V3-EXQ-1043 has already run. Recorded here so a later reader does not re-litigate it,
 and it is governance's to clean up, not this design's.
+
+
+---
+
+# ADDENDUM 2026-09-19 -- OPTION C RATIFIED, DRIVER BUILT, ONE CONSTANT STILL OPEN
+
+**Status of this addendum: the driver is LANDED but NOT QUEUED.** Nothing runs it; no
+`experiment_queue.json` entry exists.
+
+## A1. What the user decided
+
+`chip-20260918-mech537-c4b-ceiling-anchor`, answered 2026-09-19T00:49:12Z via the
+Orchestrator's decision lane: **OPTION C -- measure the floor, then keep C4b ABSOLUTE above
+it.** With the condition, verbatim: *"the rule that maps floor -> ceiling must be fixed in the
+pre-registration BEFORE the run and must not be tunable after seeing data -- if your staged doc
+does not already fix that rule, that single number/rule is one more decision chip."*
+
+It did not. Section 1 of this file ended "Options put to the user are in the decision chip;
+none is adopted here", and the Option C text as put was a *reachability gate* with the ceiling
+retained at 0.50, not a map from floor to ceiling. So the map is genuinely unfixed and was
+raised as `chip-20260919-mech537-c4b-floor-to-ceiling-rule` (Rule 1 arithmetic midpoint
+`(F+I)/2` -- recommended, parameter-free; Rule 2 geometric `sqrt(F*I)`; Rule 3 keep 0.50 with F
+as a reachability gate only). **That is the one thing still open.**
+
+The driver implements Rule 1 in a single named function, `_c4b_ceiling`, so applying a
+different answer is a one-expression change plus a re-run of the self-test.
+
+## A2. The driver, as built
+
+`ree-v3/experiments/v3_exq_1043a_mech537_communication_subspace_permutation_null.py`
+(copied from the 1043 driver; `QUEUE_ID = "V3-EXQ-1043a"`, `SUPERSEDES = "V3-EXQ-1043"`,
+`EXPERIMENT_PURPOSE` still `"diagnostic"`).
+
+Six new instrument functions, all covered by `--self-test`:
+`_parsimonious_rank`, `_permute_within_groups`, `_permutation_p_value`, `_jacobian_std_gram`,
+`_jacobian_aligned_basis`, `_c4b_ceiling`.
+
+**Gates run:** `--self-test` 45/45 PASS; `validate_experiments.py --strict` OK (0 findings of
+any class); `--dry-run` smoke rc=0 end to end, exercising every new path.
+
+Two self-tests are worth naming because they pin the design to its authority rather than to a
+fixture: `_parsimonious_rank` is replayed over **V3-EXQ-1043's landed `rrr_heldout_r2_by_rank`**
+and must return the autopsy's stated **8**; and `SEED_MAJORITY` is pinned to differ from
+`x1002.SEED_MAJORITY`, which is the exact failure the autopsy named ("it is a fixed constant 2,
+inherited from x1002").
+
+## A3. The one design call this session made, and the road not taken
+
+**WHICH RANK THE SCORED CRITERIA READ.** The autopsy names C2 ("read it at the PARSIMONIOUS
+rank"). It does not mention C1/C3/C4/C5. But C4b splits each oracle decision coordinate **by
+the same subspace** C2 is computed on, and C5 asks whether **that subspace** is stable -- so
+scoring C2 at one rank and C4b/C5 at another would make the confirming conjunction a statement
+about two different subspaces. That is not a coherent alternative; it is a defect.
+
+**Call made:** the whole SCORED criteria set reads the parsimonious rank. The CV-selected-rank
+configuration -- V3-EXQ-1043's exact one -- is computed and recorded in full alongside it, so
+the 1043 comparison stays direct and a later autopsy can contest this against numbers rather
+than against an absence.
+
+**Road not taken, recorded:** score C2 at the parsimonious rank and leave C1/C3/C4/C5 at the
+CV-selected rank. Written into the driver at the point of the decision, not only here.
+
+Two consequences followed mechanically and are flagged so a reviewer checks them: the
+`randrank_control_supra_trivial` readiness assert now reads `ARM_RAND_P` (it exists to show
+C2's comparator can move, so it must report the arm C2 routes on), and the cross-seed stability
+diagnostic now compares the parsimonious-rank bases.
+
+## A4. INSTRUMENT RISK FOUND IN THE SMOKE -- must be settled before queueing
+
+The `--dry-run` smoke printed:
+
+```
+[c4b] seed=42 SCORED rank=1 ratio=4.4625 floor(F)=4.4526 isotropic(I)=4.3328 ceiling=nan
+```
+
+`F > I`, so `_c4b_ceiling`'s reachability guard fired and C4b was correctly scored UNREACHABLE
+rather than failed -- the guard working as designed. But it exposes a real structural question
+that the arithmetic in the two references makes plain:
+
+    measured ratio = (||b|| / ||a||) x (|J(u_out)| / |J(u_in)|)
+    I              = (||b_fitted|| / ||a_fitted||)          -- SAME decomposition as measured
+    F              = (||b_jac|| / ||a_jac||) x (|J(u_out_jac)| / |J(u_in_jac)|)
+
+`measured` and `I` share a decomposition, so that pair is clean and retention-matched -- which
+is exactly why `I` is a sound no-routing reference. **`F` is computed on a DIFFERENT
+decomposition**, so it mixes a sensitivity factor (which the Jacobian alignment minimises, the
+intended effect) with a geometry factor `||b_jac||/||a_jac||` (which it does not control). If
+the geometry factor dominates, `F` can exceed `I` and the anchor is unscoreable.
+
+At the dry run's rank 1 that is exactly what happens, and the three numbers collapsing to ~4.4
+within 3% of each other says the geometry factor dominated and the sensitivity factor was ~1.
+**Rank 1 is degenerate** (80 rows, ladder row-capped) and settles nothing about ranks 8-10,
+where 1043a actually scores.
+
+**This is not speculation to carry into a multi-hour run.** A mid-scale probe was written and
+run for exactly this: `probe_c4b_anchor_reachability.py` calls `_run_seed` directly at ~40%
+scale (zworld_p0 24 / p0 80 / p1 36 / bc 16+8, 5 permutations, 8 Jacobian states) and prints
+`r_pars`, measured, F, I, the ceiling and whether `F < I`, at both ranks.
+
+**Owed before queueing, in this order:**
+1. Run that probe to a realistic rank and read `F` against `I`.
+2. If `F < I` comfortably at rank 8-10, the anchor is reachable and Rules 1 and 2 are both
+   workable -- proceed on whichever the user picks.
+3. If `F >= I` at a realistic rank, **Rules 1 and 2 are BOTH unworkable** (each needs a
+   measured interval to sit inside) and the honest answer to
+   `chip-20260919-mech537-c4b-floor-to-ceiling-rule` is Rule 3 or a re-specified `F`. Say so
+   on that chip rather than shipping a criterion that cannot score.
+
+## A5. Cost, measured rather than assumed
+
+V3-EXQ-1043 was `elapsed_seconds` 7079 for 3 seeds (~2360 s/seed), warmup-dominated. 1043a adds
+per seed: 3 arms at the parsimonious rank, 2 decision-sensitivity probes with a third
+(Jacobian-aligned) reference each, one Jacobian Gram (~`n_live` x `N_JACOBIAN_STATES` forward
+passes, rank-independent so built once), and **`N_PERMUTATIONS` RRR refits plus decoder fits**
+-- which is the dominant new cost and scales linearly.
+
+At n=6 and `N_PERMUTATIONS = 200` expect roughly 3-5x the 1043 wall clock, i.e. ~10-12 hours.
+Section 2.5 pre-registers `N_PERMUTATIONS = 100` (min attainable p 1/101 = 0.0099, still well
+below alpha) as an acceptable fallback; choosing it on measured runtime grounds is inside the
+pre-registration, and which value is in force is recorded in the manifest's `pre_registered`
+block either way.
+
+## A6. State
+
+| item | state |
+|---|---|
+| driver | LANDED on `ree-v3` `main` (see commit trailer for shas), NOT queued |
+| self-test | 45/45 PASS |
+| `validate_experiments --strict` | OK, 0 findings |
+| `--dry-run` smoke | rc=0, every new path exercised |
+| queue entry | NOT written |
+| floor -> ceiling rule | OPEN -- `chip-20260919-mech537-c4b-floor-to-ceiling-rule` |
+| anchor reachability at a realistic rank | OPEN -- run `probe_c4b_anchor_reachability.py` |
