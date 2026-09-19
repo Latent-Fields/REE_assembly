@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_066",
+  "entry_id": "2026-09-19_mech_066_reality_threshold_dijkstra2023",
+  "timestamp_utc": "2026-09-19T17:43:35Z",
+  "claim_ids_tested": [
+    "MECH-066"
+  ],
+  "source": {
+    "title": "Subjective signal strength distinguishes reality from imagination",
+    "authors": [
+      "Nadine Dijkstra",
+      "Stephen M. Fleming"
+    ],
+    "year": 2023,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-023-37322-1",
+    "pmid": "36959279",
+    "pmc": "PMC10036541",
+    "volume": "14",
+    "issue": "1",
+    "pages": "1627"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The most directly discriminating paper in this pull, and it cuts both ways. It CONFIRMS MECH-066's permissive half about as strongly as evidence can: imagined and perceived signals are shown to be genuinely intermixed rather than tagged or segregated, so representational sharing is the reference system's actual design and not a tolerated compromise. It WEAKENS the restrictive half's mechanism clause: the separation that does exist is a threshold on the strength of that single intermixed signal, and it is therefore intrinsically fallible -- when internally generated signal is strong enough it becomes subjectively indistinguishable from reality. The design is also unusually strong evidence rather than a null result: one-trial-per-participant psychophysics specifically defeats the learning confound that makes conventional versions of this experiment uninformative, combined with computational modelling and neuroimaging. Held at 0.72 because the boundary probed is a PERCEPTUAL REALITY JUDGEMENT, which is a readout, not a durable write.",
+  "failure_signatures": [
+    "There is no source tag to protect. Because the signals are intermixed upstream of the judgement, a strong enough internally generated signal crosses the reality threshold and is treated as real -- so a strength-thresholded boundary has an unavoidable false-positive regime, and it is entered precisely when the pre-commit channel is most confident. This is the worst possible correlation for a write gate: it leaks hardest exactly when the simulation is most vivid.",
+    "The intention to imagine is NOT used to discount self-generated signals -- the paper tests this alternative and the data favour the strength account. An architecture that assumes 'I know I generated this, so I will route it correctly' is assuming a discriminator the reference system does not appear to use.",
+    "A consequence the authors state directly: when virtual or imagined signals are strong enough they become subjectively indistinguishable from reality. Any REE mechanism whose separation is implemented as a magnitude comparison rather than a typed channel inherits this failure mode, and it will not show up under weak-simulation test conditions."
+  ],
+  "evidence_direction_per_claim": {
+    "MECH-066": "mixed"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "mapping_fidelity 0.7 is high for a weakening entry because the paper addresses MECH-066's two halves separately and reaches a different verdict on each, which is more informative than a blanket direction. The discount is that the probed boundary is a perceptual reality judgement -- a readout -- rather than a durable write."
+  },
+  "summary_path": "summary.md",
+  "tags": [
+    "mech-066",
+    "reality_threshold",
+    "imagery_perception_overlap",
+    "shared_representation",
+    "commit_boundary",
+    "weakens_mechanism_clause",
+    "psychophysics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Because the neural mechanisms supporting imagery overlap with those supporting perception, how reality and imagination are kept apart is a foundational question. Combining one-trial-per-participant psychophysics with computational modelling and neuroimaging, imagined and perceived signals are shown to be intermixed, with judgments of reality determined by whether the intermixed signal is strong enough to cross a reality threshold. Consequently, when virtual or imagined signals are strong enough they become subjectively indistinguishable from reality. The alternative account -- that the intention to imagine is used to identify and discount self-generated signals -- is not supported.",
+    "ree_translation": "Split verdict on MECH-066's two halves, which is why this entry is MIXED rather than either direction alone. On the permissive half -- channels MAY share representations -- this is close to decisive support: the reference system does not merely tolerate sharing, it intermixes the two signals additively, with no source tag in the mixture. On the restrictive half, it weakens the mechanism clause without touching the requirement: the separation that exists is a magnitude threshold on the intermixed signal, so it is fallible by construction, and it fails hardest when the internally generated signal is strongest. For REE this is an argument that the write-boundary separation must be TYPED in code rather than inferred from signal magnitude or from any 'I know I generated this' intention signal -- which is the design REE already has, making this entry primarily a warning against a plausible simplification rather than a challenge to current implementation.",
+    "mapping_caveat": "The boundary probed is a perceptual reality JUDGEMENT -- a readout decision about whether a stimulus was present -- not a durable write to persistent state. The paper therefore speaks precisely to whether shared representations are separable at a decision boundary, and only by extension to whether they are separable at a write boundary. There is also an asymmetry of purpose: the human visual system is not trying to keep imagery out of a persistent store, so its threshold design may be optimal for ITS problem and simply inapplicable to REE's. Finally, the one-trial-per-participant design that makes the result credible also means each participant contributes a single datum, so the inference rests on between-subject modelling rather than within-subject replication.",
+    "source_context": "Healthy human adults; one-trial-per-participant visual detection psychophysics with imagery manipulation, plus computational modelling of the reality threshold and fMRI."
+  }
+}

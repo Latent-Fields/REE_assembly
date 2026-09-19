@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_066",
+  "entry_id": "2026-09-19_mech_066_reality_monitoring_simons2017",
+  "timestamp_utc": "2026-09-19T17:43:35Z",
+  "claim_ids_tested": [
+    "MECH-066"
+  ],
+  "source": {
+    "title": "Brain Mechanisms of Reality Monitoring",
+    "authors": [
+      "Jon S. Simons",
+      "Jane R. Garrison",
+      "Marcia K. Johnson"
+    ],
+    "year": 2017,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.03.012",
+    "pmid": "28462815",
+    "pmc": null,
+    "volume": "21",
+    "issue": "6",
+    "pages": "462-473"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Supplies the argument that converts MECH-066 from 'useful' to 'required': the reference system maintains a dedicated mechanism for discriminating internally generated from externally originating information, and when that mechanism degrades the failures are graded and clinically recognisable, from ordinary real-versus-imagined confusions up to hallucinations. A design claim that the separation MUST hold is best evidenced by what happens when it does not, and this review is the authoritative synthesis of that. Held at 0.66 because the discrimination reviewed is over SOURCE MEMORY -- retrospective attribution of an already-stored item -- whereas MECH-066 asserts separation PROSPECTIVELY, at the moment of the durable write. Those are different loci, and a system could fail at either; the review does not distinguish them.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the discrimination mechanism degrades, internally generated content is attributed to external origin -- i.e. the pre-commit channel's content is subsequently treated as post-commit evidence. This is the exact contamination MECH-066 forbids, observed as a failure mode of the reference system rather than as a design argument.",
+    "The failures are GRADED, not binary: the same mechanism produces benign real-versus-imagined confusions in healthy cognition and clinically significant misattribution at the pathological end. A REE write-boundary audit expecting a clean pass/fail signature may therefore be looking for the wrong shape -- partial contamination is the expected regime, not an artefact.",
+    "The discrimination is a SEPARATE mechanism with its own neural substrate, not a free property of having two channels. An architecture that instantiates a pre-commit and a post-commit channel and assumes their contents will stay distinguishable has not implemented the separation; it has only created the two things that need separating."
+  ],
+  "tags": [
+    "mech-066",
+    "reality_monitoring",
+    "source_memory",
+    "self_generated_vs_external",
+    "commit_boundary",
+    "hallucination",
+    "arc-015",
+    "mech-095"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reality monitoring processes are necessary for discriminating between internally generated information and information that originated in the outside world; they let us identify our own thoughts, feelings and imaginations and distinguish them from events actually experienced. Reality monitoring errors range from confusions between real and imagined experience that are byproducts of normal cognition, to symptoms of mental illness such as hallucinations. Recent work supports a neurocognitive characterization of these processes with identifiable operating principles and neural mechanisms, and differing routes to impairment in health and disease.",
+    "ree_translation": "The reference system treats 'was this internally generated or did it come from the world?' as a question requiring a dedicated mechanism with its own substrate -- not as something that falls out for free from having separate channels. That is MECH-066's restrictive half read as a requirement rather than a convenience: if the distinction were architecturally guaranteed by channel separation alone, no such mechanism would be needed and no such failure mode would exist. The graded character of the failures also tells REE what a contamination signature should look like: progressive degradation of attribution accuracy, not a discrete breach.",
+    "mapping_caveat": "The locus is wrong in a way that must not be glossed. Reality monitoring as reviewed here is largely RETROSPECTIVE source attribution -- deciding, about an item already in memory, where it came from. MECH-066 asserts a PROSPECTIVE constraint: the pre-commit channel must not write into the durable store in the first place. A system with perfect write-boundary enforcement could still fail retrospective source attribution (both channels wrote correctly, but the tag was lost), and a system with perfect source tags could still have a contaminated write locus. This review does not separate the two, so it evidences that the discrimination problem is real and mechanism-requiring without evidencing that the solution sits at the write boundary.",
+    "source_context": "Human; review synthesising functional neuroimaging, lesion and clinical work, with anterior medial prefrontal cortex and paracingulate morphology as recurring substrates; healthy participants and psychiatric populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "High source quality -- Trends in Cognitive Sciences review by the authors who defined the field's framework. mapping_fidelity 0.55 is the retrospective-versus-prospective locus mismatch, which is the dominant discount and the reason this entry sits below the Kaufman one despite arguably making the stronger modal argument."
+  }
+}

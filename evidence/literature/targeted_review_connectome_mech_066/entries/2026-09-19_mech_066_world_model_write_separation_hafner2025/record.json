@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_066",
+  "entry_id": "2026-09-19_mech_066_world_model_write_separation_hafner2025",
+  "timestamp_utc": "2026-09-19T17:43:35Z",
+  "claim_ids_tested": [
+    "MECH-066"
+  ],
+  "source": {
+    "title": "Mastering diverse control tasks through world models",
+    "authors": [
+      "Danijar Hafner",
+      "Jurgis Pasukonis",
+      "Jimmy Ba",
+      "Timothy Lillicrap"
+    ],
+    "year": 2025,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-025-08744-2",
+    "pmid": "40175544",
+    "pmc": "PMC12003158",
+    "volume": "640",
+    "issue": "8059",
+    "pages": "647-653"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "The highest-mapping-fidelity entry in this pull, because it is a same-kind-of-thing comparison: an artificial architecture whose pre-commit/post-commit write topology can be read directly off the training code rather than inferred across a species and a level of description. DreamerV3 instantiates MECH-066's permissive half exactly -- the imagined (pre-commit) and replayed-real (post-commit) channels share one latent representation -- and enforces the restrictive half at the WORLD-MODEL write boundary: the world model's parameters are optimised only on replayed real experience, and imagined trajectories never update them. It is MIXED rather than supports because the actor and critic are durably written PURELY from imagined rollouts, so the separation is enforced at one durable write boundary and deliberately not at another. Strong source: Nature, single configuration across over 150 tasks, first algorithm to obtain diamonds in Minecraft from scratch without human data -- a scale of validation no neuroscience entry here can match. Held at 0.78 only because a convergent engineering solution is weaker evidence about NECESSITY than a pathology is.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The separation is selective, not global, and the selection is principled: the WORLD MODEL -- the component that must stay veridical about the environment -- is written only from real experience, while the POLICY is written freely from imagination. MECH-066 as stated says 'durable write boundaries' without qualification, and the strongest working system in this class deliberately violates that at one of its two durable write loci. The claim may be over-general: what must be protected is the component whose job is to be truthful about the world, not every persistent store.",
+    "Because actor and critic learn purely from imagined rollouts over a 16-step horizon, all of their durable learning is mediated by the world model's accuracy. This relocates rather than removes the risk: model error becomes the sole contamination channel into policy, so a system can have perfect write-boundary hygiene on the model and still consolidate systematically wrong policy from clean-but-inaccurate simulation.",
+    "The information flow is one-way by construction, not by a runtime check. Nothing in the architecture detects a violation -- the separation is a property of which loss touches which parameters. An audit of MECH-066 compliance in REE should likewise be a static read of the write topology rather than a runtime statistic, which is a different instrument from the correlation-based evidence MECH-061 was confirmed on."
+  ],
+  "evidence_direction_per_claim": {
+    "MECH-066": "mixed"
+  },
+  "tags": [
+    "mech-066",
+    "world_model",
+    "dreamer",
+    "imagination_rollout",
+    "durable_write",
+    "write_locus_separation",
+    "model_based_rl",
+    "mech-060",
+    "mech-061"
+  ],
+  "mapping": {
+    "source_claim_statement": "DreamerV3 learns a model of the environment and improves its behaviour by imagining future scenarios, outperforming specialised methods across over 150 diverse tasks with a single configuration, and is the first algorithm to collect diamonds in Minecraft from scratch without human data or curricula. Architecturally, the world model parameters are optimised to minimise a prediction loss over batches of replayed real inputs, actions, rewards and continuation flags; the actor and critic learn behaviours purely from abstract trajectories of representations predicted by the world model, imagined over a horizon of 16 steps starting from representations of replayed inputs.",
+    "ree_translation": "A direct architectural precedent for MECH-066, with a boundary condition the claim does not currently state. The permissive half holds exactly: the imagined rollout and the replayed-real update operate over ONE shared latent state space, so pre-commit and post-commit channels share representations completely. The restrictive half holds at the world-model write locus: imagined trajectories never touch the world model's parameters, which are written only from real executed experience. This is the same topology REE already has -- E1 trains only on actual observations, residue accumulates only via post-commit harm. But DreamerV3 ALSO durably writes actor and critic parameters from purely imagined data, on purpose and to great effect. The refinement MECH-066 should absorb: the protected locus is the component whose function is to be veridical about the world, not every persistent store.",
+    "mapping_caveat": "Two limits. First, this is convergent engineering, not evidence of necessity: DreamerV3 demonstrates that the separated topology WORKS at scale, and offers no ablation isolating the separation itself -- no arm in which imagined rollouts are permitted to update the world model. Its support for MECH-066 is therefore existence-of-a-working-instance, categorically weaker than MECH-060's EVB-0043 contamination ablation, which manipulated the boundary directly. Second, the mapping of DreamerV3's 'world model' onto REE's E1 and of its actor-critic onto REE's policy is an analogy at the level of role, not of mechanism; REE's residue field has no DreamerV3 counterpart at all, and residue is precisely the store MECH-060 showed to be contamination-sensitive.",
+    "source_context": "Artificial agent; model-based reinforcement learning evaluated across more than 150 tasks spanning continuous and discrete control, proprioceptive and pixel inputs, and open-world Minecraft, under a single hyperparameter configuration."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.2,
+    "notes": "transfer_risk 0.2 is the lowest in this pull because there is no cross-species or cross-level transfer to make -- both REE and DreamerV3 are artificial agents with inspectable write topologies. The residual risk is role-analogy risk (does E1 play the world model's role?), not domain-transfer risk. mapping_fidelity 0.85 rather than higher because DreamerV3 has no residue-field analogue."
+  }
+}

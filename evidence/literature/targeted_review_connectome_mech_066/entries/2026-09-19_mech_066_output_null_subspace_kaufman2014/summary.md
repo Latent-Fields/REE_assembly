@@ -1,0 +1,27 @@
+# Cortical activity in the null space: permitting preparation without movement (Kaufman et al., 2014)
+
+## What the paper did
+
+Kaufman and colleagues recorded populations of neurons simultaneously in primary motor cortex (M1) and dorsal premotor cortex (PMd) in macaques performing a delayed-reach task, alongside muscle activity (EMG). The puzzle they set out to solve is an old embarrassment for motor physiology: during the instructed delay, the areas that drive movement are already vigorously active, and their activity is systematically tuned to the movement that is about to be made -- yet the arm does not move. Synapses do not reconfigure on millisecond timescales, so the descending pathway cannot simply be switched off and on. Something else must be stopping the preparation from becoming the act.
+
+Their answer is geometric rather than anatomical. By estimating the population-to-muscle readout empirically, they show that preparatory changes in population activity lie predominantly in the *null space* of that readout -- the subspace in which activity changes cancel out at the level of the output. Movement onset corresponds to activity entering the *output-potent* subspace. They then show the same decomposition largely accounts for why PMd's preparatory activity appears attenuated in M1: the null-space trick is applied again at the inter-areal boundary, not only at the muscle.
+
+## Why this is the right paper for MECH-066
+
+MECH-066 is the only claim in the commit-boundary family (MECH-060, MECH-061, INV-021) that makes an explicitly *permissive* assertion alongside its restrictive one: pre-commit and post-commit channels **may share representations** but **must stay separated at durable write boundaries**. Most of the neighbouring literature already pulled for MECH-060 and MECH-061 -- Wolpert's forward models, Glascher's dissociable prediction errors, Thura and Cisek on commitment -- speaks to the restrictive half. What was missing was evidence that the permissive half is not a concession or a compromise, but the biologically favoured design.
+
+That is what the null-space result supplies. The preparatory and the movement-driving computation are not in separate circuits. They are in one population, sharing its dimensions, and the system pays no representational cost for that sharing. What it does instead is enforce the separation *at the point where activity becomes irreversible* -- the readout to muscle. Preparation can be arbitrarily rich, arbitrarily overlapping with the eventual command, provided it stays in the subspace that cancels.
+
+For REE this identifies the enforcement locus precisely, and in a way that has a measurement consequence. MECH-061's confirming evidence at V1-minimal scale was `mean |pre_post_corr| = 0.044`, read as confirmation that the channels carry distinct information. Kaufman's result implies that a *low* correlation is not what MECH-066 requires and a *high* correlation would not falsify it: two channels can be maximally overlapping in representation and still perfectly separated at the write boundary, because separation is a property of the readout geometry. If we ever test MECH-066 directly rather than inheriting MECH-060/061's evidence, the instrument has to be a write-locus audit -- does pre-commit simulated error ever reach the persistent store? -- and not a representational-overlap statistic.
+
+## Limitations and the mapping caveat
+
+The honest gap is what is being written. The boundary Kaufman studies is the descending motor output: a transient commit whose consequence is a movement in the world. MECH-066 says *durable* write boundary, and in REE that means persistent state -- the residue field, E1's weights. The paper contains no plasticity evidence whatsoever. Reading it as support for MECH-066 requires assuming that a geometric gate demonstrated at a fast readout is the same kind of thing as a gate on persistence, and that assumption is doing real work. I have priced it at `transfer_risk` 0.3, which is most of the confidence held back.
+
+There is also an asymmetry worth naming rather than smoothing over. In motor cortex the readout is fixed by anatomy and the null-space confinement is a learned dynamical property the system has to discover and maintain. In REE the write boundaries are typed in code and enforced by construction -- `compute_prediction_loss` trains E1 only on actual observations, `update_residue` accumulates only post-commit harm. REE gets the separation for free. So this paper is evidence that the *function* MECH-066 names is load-bearing enough that a biological system builds a nontrivial dynamical mechanism to achieve it; it is not evidence that REE's particular implementation is the biological one.
+
+## Confidence
+
+0.82. High source quality -- Nature Neuroscience, simultaneous population recordings in two areas, with the proposed mechanism tested against the measured readout rather than inferred from tuning. High mapping fidelity, because the paper's central structural claim and MECH-066's are near-isomorphic. Held below 0.9 by the transient-versus-durable gap, which is a real hole and not a formality.
+
+The third failure signature is the one I would carry forward into design: the null-space trick is applied *recursively*, at the PMd-to-M1 boundary as well as at the muscle. An architecture that enforces write separation at one boundary and leaves an upstream inter-module write ungated has a leak path, and would look compliant to any audit that only checks the final locus.

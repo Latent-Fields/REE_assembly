@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_066",
+  "entry_id": "2026-09-19_mech_066_dopamine_plasticity_window_yagishita2014",
+  "timestamp_utc": "2026-09-19T17:43:35Z",
+  "claim_ids_tested": [
+    "MECH-066"
+  ],
+  "source": {
+    "title": "A critical time window for dopamine actions on the structural plasticity of dendritic spines",
+    "authors": [
+      "Sho Yagishita",
+      "Akiko Hayashi-Takagi",
+      "Graham C. R. Ellis-Davies",
+      "Hidetoshi Urakubo",
+      "Shin Ishii",
+      "Haruo Kasai"
+    ],
+    "year": 2014,
+    "venue": "Science",
+    "doi": "10.1126/science.1255514",
+    "pmid": "25258080",
+    "pmc": "PMC4225776",
+    "volume": "345",
+    "issue": "6204",
+    "pages": "1616-1620"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Supplies the one ingredient the Kaufman entry cannot: evidence that the biological separation is enforced at a DURABLE write, not only at a transient readout. Spine enlargement -- a structural, persistent change -- occurs only when the reinforcement signal arrives within 0.3-2 s of the glutamatergic input, and the molecular basis of that contingency detection is identified (PKA gated by high dendritic phosphodiesterase activity). Source quality is very high: Science, two-photon glutamate uncaging with independent optical control of the dopaminergic and glutamatergic inputs, so the contingency is manipulated rather than correlated. Confidence is held to 0.7 because the mechanism demonstrated is a TIMING gate, not a TYPED-CHANNEL gate: it shows the durable write requires a coincident commit-time signal, but it does not show that pre-commit simulated activity is specifically excluded -- a simulated input arriving inside the window would, on this mechanism, be written.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The gate is a COINCIDENCE detector, not a source-identity detector. Any glutamatergic input falling inside the 0.3-2 s window is eligible for durable potentiation regardless of whether it was self-generated simulation or real reafference. A REE architecture that gated durable writes on timing alone -- 'write what was active near the commit' -- would therefore admit pre-commit simulation that happened to be temporally adjacent to the commit, which is exactly the contamination MECH-060's CONT_RESIDUE arm produced.",
+    "Enforcement is LOCAL and biochemical: the window exists because thin distal dendrites have high phosphodiesterase activity restricting PKA activation. The separation is therefore a property of the compartment, re-implemented at every spine, not a single global boundary check. A global write-boundary guard has a different failure profile from a per-locus one -- it can be bypassed once, everywhere.",
+    "Without the coincident dopamine signal the glutamatergic input produces NO durable structural change even though it was fully represented and fully active. Representation and durable write are doubly dissociated: activity is neither sufficient for persistence nor blocked from occurring."
+  ],
+  "tags": [
+    "mech-066",
+    "durable_write",
+    "structural_plasticity",
+    "dopamine",
+    "eligibility_trace",
+    "three_factor_learning",
+    "commit_boundary",
+    "mech-060"
+  ],
+  "mapping": {
+    "source_claim_statement": "Optical stimulation of dopaminergic and glutamatergic inputs to striatal medium spiny neurons, delivered independently, shows that dopamine promotes dendritic spine enlargement only during a narrow time window of 0.3 to 2 seconds after the glutamatergic input. The temporal contingency is detected by rapid regulation of cAMP in thin distal dendrites, where protein kinase A is activated only within that window because of high phosphodiesterase activity.",
+    "ree_translation": "The reference system enforces its pre/post separation at a genuinely DURABLE write. Glutamatergic activity -- the representation -- is unrestricted and occurs whether or not it will be consolidated; the structural, persistent change is licensed only by conjunction with the commit-time reinforcement signal. This is MECH-066's restrictive half instantiated at the plasticity locus rather than the readout locus, and it is the direct biological analogue of REE's write-locus rule that residue accumulates only via post-commit harm while E1 trains only on actual observations. It also supplies the mechanism MECH-060's CONT_RESIDUE arm was ablating: remove the gate and the persistent store inflates (46x in EVB-0043) without the represented content having changed.",
+    "mapping_caveat": "The demonstrated gate is TEMPORAL, not TYPED. It licenses a durable write on coincidence with a reinforcement signal, and it has no way to ask where the eligible input came from -- a self-generated, pre-commit simulation arriving inside the 0.3-2 s window would be consolidated just as readily as real reafference. MECH-066 asserts a stronger, source-typed separation, and this paper does not test it. The preparation is also molecular and reductive -- single spines in mouse striatal slices under optical uncaging -- so the transfer to an architectural claim about error-channel routing spans several levels of description, and the identified mechanism (phosphodiesterase-restricted PKA) has no REE counterpart.",
+    "source_context": "Mouse striatum, medium spiny neurons; two-photon glutamate uncaging plus optogenetic stimulation of dopaminergic afferents, with spine-head volume as the durable-plasticity readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "mapping_fidelity 0.6 is the timing-versus-typing gap and is the dominant limitation: the paper establishes that durable writes are gated, which MECH-066 needs, but not that they are gated on channel identity, which is what MECH-066 actually asserts. transfer_risk 0.45 reflects the distance from single-spine biochemistry to an architectural routing claim."
+  }
+}

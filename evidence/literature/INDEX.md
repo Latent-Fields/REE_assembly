@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-19T16:07:52.129808Z`
+Generated: `2026-09-19T17:50:51.046196Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -134,6 +134,7 @@ Generated: `2026-09-19T16:07:52.129808Z`
 | `targeted_review_connectome_mech_058` | [`2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/record.json) | 4 | [`summary`](targeted_review_connectome_mech_058/entries/2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022/summary.md) |
 | `targeted_review_connectome_mech_060` | [`2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/record.json) | 4 | [`summary`](targeted_review_connectome_mech_060/entries/2026-02-15_mech060_connectome_vjepa2_dual_loss_channels_arxiv2025/summary.md) |
 | `targeted_review_connectome_mech_065` | [`2026-09-19_mech_065_unified_action_outcome_predictor_alexander2011`](targeted_review_connectome_mech_065/entries/2026-09-19_mech_065_unified_action_outcome_predictor_alexander2011/record.json) | 5 | [`summary`](targeted_review_connectome_mech_065/entries/2026-09-19_mech_065_unified_action_outcome_predictor_alexander2011/summary.md) |
+| `targeted_review_connectome_mech_066` | [`2026-09-19_mech_066_world_model_write_separation_hafner2025`](targeted_review_connectome_mech_066/entries/2026-09-19_mech_066_world_model_write_separation_hafner2025/record.json) | 5 | [`summary`](targeted_review_connectome_mech_066/entries/2026-09-19_mech_066_world_model_write_separation_hafner2025/summary.md) |
 | `targeted_review_connectome_mech_069` | [`2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019`](targeted_review_connectome_mech_069/entries/2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019/record.json) | 5 | [`summary`](targeted_review_connectome_mech_069/entries/2026-09-04_mech_069_specialized_dopamine_coding_engelhard2019/summary.md) |
 | `targeted_review_connectome_mech_070` | [`2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017`](targeted_review_connectome_mech_070/entries/2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017/record.json) | 3 | [`summary`](targeted_review_connectome_mech_070/entries/2026-04-13_mech_070_cerebellar_adaptive_prediction_popa2017/summary.md) |
 | `targeted_review_connectome_mech_071` | [`2026-03-29_mech_071_threat_imminence_gradient_mobbs2007`](targeted_review_connectome_mech_071/entries/2026-03-29_mech_071_threat_imminence_gradient_mobbs2007/record.json) | 4 | [`summary`](targeted_review_connectome_mech_071/entries/2026-03-29_mech_071_threat_imminence_gradient_mobbs2007/summary.md) |

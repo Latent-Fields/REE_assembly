@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_066",
+  "entry_id": "2026-09-19_mech_066_output_null_subspace_kaufman2014",
+  "timestamp_utc": "2026-09-19T17:43:35Z",
+  "claim_ids_tested": [
+    "MECH-066"
+  ],
+  "source": {
+    "title": "Cortical activity in the null space: permitting preparation without movement",
+    "authors": [
+      "Matthew T. Kaufman",
+      "Mark M. Churchland",
+      "Stephen I. Ryu",
+      "Krishna V. Shenoy"
+    ],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3643",
+    "pmid": "24487233",
+    "pmc": "PMC3955357",
+    "volume": "17",
+    "issue": "3",
+    "pages": "440-448"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the closest thing in the primate motor literature to a direct demonstration of MECH-066's exact two-part structure: the SAME neural population carries both the pre-commit (preparatory) and the commit-time (movement) computation -- representations are shared, not segregated into separate circuits -- while the boundary at which the computation is allowed to reach the irreversible output is enforced geometrically, by confining preparatory activity to a subspace that cancels at the readout. Source quality is high (Nature Neuroscience, simultaneous population recordings in two areas, with the mechanism tested rather than inferred). Held at 0.82 rather than higher because the enforced boundary here is the MUSCLE output -- a transient, within-trial commit -- whereas MECH-066 speaks of DURABLE write boundaries (persistent state: the residue field, E1's weights). The subspace mechanism is a fast routing gate, not a plasticity gate, so the architectural analogy is strong but the write-durability dimension is supplied by REE, not by this paper.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If preparatory activity is NOT confined to an output-null subspace, the preparation itself drives the effector -- the pre-commit computation becomes a commit. This is the concrete mechanism by which a shared representation without a separated output boundary produces premature, unintended action.",
+    "The separation is a property of the READOUT geometry, not of the representation: two channels can be maximally overlapping in population space and still be perfectly separated at the write boundary. A separation test that measures representational overlap (e.g. correlation between channel activations) can therefore report 'contaminated' on an architecture that is in fact correctly gated -- the wrong measurement locus.",
+    "Conversely, preparatory activity in dorsal premotor cortex is output-null with respect to primary motor cortex as well as to muscle -- i.e. the null-space trick is applied RECURSIVELY at each inter-area boundary. An architecture that enforces separation at only one boundary while leaving an upstream inter-module write ungated has an unguarded leak path."
+  ],
+  "tags": [
+    "mech-066",
+    "commit_boundary",
+    "output_null_subspace",
+    "motor_preparation",
+    "write_locus_separation",
+    "shared_representation",
+    "mech-060",
+    "mech-061"
+  ],
+  "mapping": {
+    "source_claim_statement": "During movement preparation, while the monkey holds still, changes in motor cortical population activity cancel out at the level of the population readouts that drive muscles: motor cortex can thereby prepare the movement without prematurely causing it. The same output-null / output-potent decomposition largely accounts for how preparatory activity is attenuated between dorsal premotor and primary motor cortex, suggesting selective use of output-null versus output-potent activity patterns as a general mechanism for controlling communication between circuits.",
+    "ree_translation": "Exactly MECH-066's permissive-plus-restrictive pair. The permissive half -- pre-commit and post-commit channels MAY share representations -- is what the null-space result licenses: the preparatory and the movement-driving computation live in one population, sharing its dimensions, and nothing about the architecture requires them to be separately instantiated. The restrictive half -- they MUST stay separated at the write boundary -- is what the output-null confinement implements: separation is imposed at the point where activity would become an irreversible effect, not at the point where it is represented. For REE this locates the correct enforcement site: the write locus (E1's observation-driven update, residue accumulation via post-commit harm), not the representation. It also predicts the enforcement must be re-applied at every inter-module boundary rather than once globally.",
+    "mapping_caveat": "The boundary this paper studies is the descending motor output -- a transient commit whose consequence is a movement, not a durable change to a persistent store. MECH-066's 'durable write boundary' means persistent state (residue field, learned weights), so the transfer requires assuming that a geometric gate demonstrated at a fast readout generalises to a plasticity/persistence gate. The paper offers no plasticity evidence at all. Additionally, output-null confinement in motor cortex is a learned/dynamical property of a system whose readout is fixed by anatomy; REE's write boundaries are explicitly typed in code, so REE gets the separation more cheaply and the paper is evidence that the FUNCTION is necessary, not that REE's particular implementation of it is the biological one.",
+    "source_context": "Rhesus macaque, simultaneous multi-electrode population recordings in primary motor and dorsal premotor cortex plus EMG, delayed-reach task with instructed-delay preparation."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "mapping_fidelity is high because MECH-066 is unusual among the commit-boundary claims in explicitly PERMITTING representational sharing, and this paper's whole point is that sharing is permissible precisely because the boundary is enforced downstream at the readout. transfer_risk 0.3 is carried almost entirely by the transient-versus-durable gap in what is being written."
+  }
+}
