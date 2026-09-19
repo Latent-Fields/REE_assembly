@@ -3299,3 +3299,7 @@ One line per hourly tick. ASCII only.
 2026-09-19T00:14:11Z GC keep igw-246-literature-proposal-for-mech-050 (ledger IGW-20260918-246 -> completed_resumable; 2 untracked artifact(s) e.g. pre_regen_snapshot.txt)
 2026-09-19T00:12:21Z SPAWN IGW-20260919-237 skill=/queue-experiment prio=40 uuid=8cbe3603-9c58-4067-ab92-56d9d88c4f09 pid=45462 worktree=igw-237-proposal-for-mech-050
 2026-09-19T00:47:16Z auto-defer igw-237-proposal-for-mech-050 hash=e7bd7b567a71 for 48h (complete)
+2026-09-19T00:48:27Z complete igw-237-proposal-for-mech-050 spawned->completed outcome=USEFUL_LANDED: marked EVB-1410/EXP-0798 blocked_substrate (MECH-050): MECH-045 buffer is a clos
+2026-09-19T01:20:28Z GC removed worktree igw-237-proposal-for-mech-050 (removed; branch deleted)
+2026-09-19T01:19:11Z GC sweep removed 1 orphan worktree(s), kept 16
+2026-09-19T01:21:06Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 251 items, 31 ready, 0 in flight)
