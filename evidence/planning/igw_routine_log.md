@@ -3317,3 +3317,6 @@ One line per hourly tick. ASCII only.
 2026-09-19T03:32:32Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 252 items, 31 ready, 0 in flight)
 2026-09-19T03:30:41Z SPAWN IGW-20260919-240 skill=/queue-experiment prio=40 uuid=0473d09e-1357-4848-bdf3-3276a7790df2 pid=60740 worktree=igw-240-proposal-for-mech-064
 2026-09-19T03:45:08Z auto-defer igw-240-proposal-for-mech-064 hash=c4d2b34c5b85 for 48h (complete)
+2026-09-19T06:03:13Z SPAWN IGW-20260919-241 skill=/lit-pull prio=40 uuid=26b331a3-d34b-47b6-aca0-d0d177b166f0 pid=73617 worktree=igw-241-literature-proposal-for-mech-064
+2026-09-19T06:37:13Z auto-defer igw-241-literature-proposal-for-mech-064 hash=b53b5d725d45 for 48h (complete)
+2026-09-19T06:38:29Z complete igw-241-literature-proposal-for-mech-064 spawned->completed outcome=USEFUL_LANDED: MECH-064 lit-pull: 5 entries (4 supports, 1 mixed) landed REE_assembly 94286de2a
