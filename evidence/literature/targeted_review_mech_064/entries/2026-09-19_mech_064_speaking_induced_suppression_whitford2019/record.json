@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_064",
+  "entry_id": "2026-09-19_mech_064_speaking_induced_suppression_whitford2019",
+  "timestamp_utc": "2026-09-19T06:13:04Z",
+  "claim_ids_tested": [
+    "MECH-064"
+  ],
+  "source": {
+    "title": "Speaking-Induced Suppression of the Auditory Cortex in Humans and Its Relevance to Schizophrenia",
+    "authors": [
+      "Thomas J Whitford"
+    ],
+    "year": 2019,
+    "venue": "Biological Psychiatry: Cognitive Neuroscience and Neuroimaging",
+    "doi": "10.1016/j.bpsc.2019.05.011",
+    "pmid": "31399393",
+    "pmc": null,
+    "volume": "4",
+    "issue": "9",
+    "pages": "791-804"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "The lowest confidence in this pull and deliberately so, but the entry earns its place because it is the only one that speaks to WHY MECH-064's design is the design a mind would have rather than merely one an engineer might choose. The biological mechanism is a precise structural match for the claim's third bullet: corollary discharge tags incoming sensory input by PROVENANCE -- an efference copy emitted by the motor system, arriving out-of-band -- and not by any property of the sensory content itself, which is exactly 'authority labels come from channel metadata, not text content'. The clinical failure mode is the match for the claim's stakes: when the tagging fails, content is misattributed across the self/world boundary and the result is first-rank symptoms, delusions of control and audible thoughts -- an identity store accepting writes it should have refused. Confidence is held at 0.55 by three real discounts: the review's central clinical inference is explicitly under-evidenced by its own author ('the empirical evidence for a relationship between SIS and the first-rank symptoms is currently limited, I predict that future studies ... will confirm its existence'), the direction of misattribution is the converse of the claim's (self-generated read as external, rather than external written into identity), and a 200-300 ms sensorimotor prediction mechanism is a long way from a persistent policy store.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The author states his own key inference is not yet established: 'While the empirical evidence for a relationship between SIS and the first-rank symptoms is currently limited, I predict that future studies with more sensitive experimental designs will confirm its existence.' The provenance-tagging mechanism is well evidenced; the step from tagging failure to identity-boundary symptoms is a stated prediction. Any use of this entry to argue that authority-labelling failure CAUSES identity corruption is borrowing an author's prediction as a result.",
+    "The direction of failure is the converse of MECH-064's threat model. Speaking-induced suppression failure means SELF-generated content is read as EXTERNAL; MECH-064 forbids EXTERNAL content writing into POL/ID/CAPS. These are two failure modes of one labelling mechanism, not the same failure, and the biology only directly evidences the direction the claim is not about. Whether a substrate that mislabels in one direction also mislabels in the other is an assumption, not a finding.",
+    "Scale and persistence mismatch, and it is large. Corollary discharge operates on a sensorimotor prediction at roughly the 100-300 ms latency of the N1 component. MECH-064 governs writes into stores that persist across episodes and constitute policy and identity. That the brain solves the fast case with out-of-band provenance tagging is suggestive for the slow case and evidence for nothing about it -- the same gap already recorded for the Papez-circuit work, where every nominated gate input turned out to be a slow process downstream of the fast gate.",
+    "A single-author narrative review, so selection of the evidence base is unchecked by a second reader, and the underlying Talk-Listen literature has a known replication spread in effect size across laboratories. The mechanism's existence in healthy participants is not in doubt; the magnitude of the patient-control difference and its symptom correlations are softer than a review's summary makes them feel."
+  ],
+  "tags": [
+    "mech-064",
+    "mech_064",
+    "corollary-discharge",
+    "efference-copy",
+    "provenance-tagging",
+    "source-monitoring",
+    "schizophrenia",
+    "first-rank-symptoms",
+    "self-world-boundary",
+    "biological-grounding",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Speaking-induced suppression (SIS) is the phenomenon that 'the sounds one generates by overt speech elicit a smaller neurophysiological response in the auditory cortex than comparable sounds that are externally generated', is well established in nonhuman animals and healthy humans (assessed by EEG/MEG in the Talk-Listen paradigm), and 'is believed to involve the action of corollary discharges'. A growing Talk-Listen literature reports subnormal SIS in patients with schizophrenia. The author argues this is theoretically significant because it offers a mechanistic account of the first-rank symptoms: 'the failure to suppress the neural consequences of self-generated movements ... provides a prima facie explanation for delusions of control', while 'the failure to suppress the neural consequences of self-generated inner speech provides a plausible explanation for certain classes of auditory-verbal hallucinations, such as audible thoughts'. He states the symptom-level evidence is currently limited and predicts confirmation.",
+    "ree_translation": "This is the entry that answers the question the four AI-security entries cannot: is MECH-064's design an engineering convenience or a constraint that any mind with a self/world boundary has to satisfy? The biology says the latter, and it says it with a mechanism that matches the claim's third bullet unusually precisely. Corollary discharge does not decide whether a sound is self-generated by examining the sound. It cannot -- the acoustic content of one's own voice and a recording of it are the same content, which is exactly the Talk-Listen design's point. Instead an efference copy is emitted by the motor system and arrives out-of-band, and the tag rides that separate channel. That is 'authority labels come from channel metadata, not text content' implemented in wetware, and it is the same reason MECH-064 refuses content-derived typing: the content genuinely does not carry the information. Second, the clinical failure mode supplies the claim's stakes in concrete form. When provenance tagging fails, misattribution follows across the self/world boundary and presents as delusions of control and audible thoughts -- phenomenologically, an identity and agency store accepting writes it should have refused. MECH-064 asserts that a control plane must forbid exteroceptive content from writing policy and identity; psychiatry describes what a system looks like once that has happened, and REE's own MECH-088 psychiatric-taxonomy thread is the place that correspondence should be developed rather than asserted here.",
+    "mapping_caveat": "Three boundaries, and none of them is decorative. First, the direction is converse: SIS failure means self-generated content is misread as external, whereas MECH-064 forbids external content writing into POL/ID/CAPS. These are two failure modes of one labelling mechanism, and the biology directly evidences the one the claim is not about; whether a substrate that mislabels one way also mislabels the other is an assumption. Second, the scale gap is severe -- corollary discharge is a sensorimotor prediction at roughly N1 latency, MECH-064 governs persistent stores that constitute policy and identity, and this pull's own Papez-circuit precedent is that fast-gate mechanisms do not transfer to slow processes just because the architecture rhymes. Third, the author is explicit that the symptom link is a prediction rather than a finding, so the clinical half of this mapping is the weaker half and must not be cited as established. What the entry legitimately supports is narrow and worth having: that out-of-band provenance tagging is the solution biology reached for the same problem, and that its failure has a recognisable pathology. It does not support any claim about REE's stores.",
+    "source_context": "Single-author narrative review in a peer-reviewed psychiatry journal; synthesises EEG/MEG Talk-Listen studies in healthy human participants and patients with schizophrenia, plus animal corollary-discharge work."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.60,
+    "notes": "Source quality 0.72: peer-reviewed journal with a strong reputation in this subfield and a well-established underlying phenomenon, discounted because it is a single-author narrative review (unchecked evidence selection) and because the patient-control effect size has a known spread across laboratories. Mapping fidelity 0.50 is the honest figure and the reason this entry sits lowest: the MECHANISM maps tightly onto the claim's third bullet, but the failure DIRECTION is converse to the claim's threat model and the clinical inference is the author's own stated prediction rather than a result. Transfer risk 0.60, by far the highest in this pull, and rightly: human electrophysiology at N1 latency to a persistent artificial policy store crosses both a species-to-substrate boundary and a fast-to-slow timescale boundary, the second being the one that has already burned the Papez-circuit thread."
+  }
+}

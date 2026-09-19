@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_064",
+  "entry_id": "2026-09-19_mech_064_learned_instruction_hierarchy_wallace2024",
+  "timestamp_utc": "2026-09-19T06:13:04Z",
+  "claim_ids_tested": [
+    "MECH-064"
+  ],
+  "source": {
+    "title": "The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions",
+    "authors": [
+      "Eric Wallace",
+      "Kai Xiao",
+      "Reimar Leike",
+      "Lilian Weng",
+      "Johannes Heidecke",
+      "Alex Beutel"
+    ],
+    "year": 2024,
+    "venue": "arXiv preprint (cs.CR); submitted 19 Apr 2024",
+    "doi": "10.48550/arXiv.2404.13208",
+    "arxiv_id": "2404.13208",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2404.13208"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Mixed, and the mixture is the point -- this is the entry that discriminates MECH-064's third bullet from its nearest rival. The paper independently diagnoses the claim's premise almost verbatim: the root vulnerability is that 'LLMs often consider system prompts ... to be the same priority as text from untrusted users and third parties', and the fix is to order authority by CHANNEL (system > user > tool output), which is precisely REE's 'authority labels come from channel metadata, not text content'. That half is strong support, from a source with unusual weight because the hierarchy shipped in production models. The other half weakens the claim's chosen enforcement mechanism: the authors implement the channel ordering by TRAINING the model to respect it, which yields a probabilistic disposition inside the generator rather than a runtime denial outside it. MECH-064 says runtime-enforced; this paper shows what the alternative looks like and, by reporting robustness as a degree that improves rather than a property that holds, supplies the argument for why REE should not take it. Confidence 0.66 reflects genuine evidential value on both sides against a real limitation: the paper reports no guarantee, offers no adversarial-adaptive evaluation, and is evaluated on GPT-3.5.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own result is stated as a degree, not a property: training 'drastically increases robustness' rather than establishing that lower-privileged instructions cannot take effect. A learned hierarchy is a prior inside the generator, and any prior can be outvoted by sufficient adversarial pressure. This is the concrete argument that MECH-064's 'runtime-enforced' qualifier is load-bearing rather than stylistic -- but it also means the claim cannot cite this paper's success as evidence for its own mechanism.",
+    "Authority ordering and authority ENFORCEMENT are separable, and conflating them is the trap this entry exists to mark. This paper gets the ordering right (by channel) and the enforcement wrong (in-model). A reader could take its reported success as evidence that channel-derived authority suffices, when what the paper actually demonstrates is that channel-derived authority plus a trained disposition is better than nothing. MECH-064's forbidden-path table would be satisfied by neither.",
+    "Evaluated on GPT-3.5 with no adaptive-attack evaluation. Later work (Zhan et al., NAACL Findings 2025) bypasses eight defences of comparable type at over 50 percent attack success, so the robustness figures here should be read as non-adaptive upper bounds. Any REE design that reasoned from this paper's numbers would be reasoning from a measurement the field has since shown to be optimistic.",
+    "The hierarchy grants tool output the LOWEST privilege, which matches MECH-064's 'TOOL_OUTPUT -> INS: default no'. But neither the paper nor the claim specifies the trusted elevation gate that would let a tool output legitimately raise its authority. In the paper that gap is a training-data question; in REE it is an unimplemented mechanism sitting inside the claim's own table as a named exception. The exception is where the attack surface would actually live."
+  ],
+  "tags": [
+    "mech-064",
+    "mech_064",
+    "prompt-injection",
+    "instruction-hierarchy",
+    "privilege-ordering",
+    "channel-derived-authority",
+    "training-based-defence",
+    "llm-agent-security",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "The authors argue that 'one of the primary vulnerabilities underlying these attacks is that LLMs often consider system prompts (e.g., text from an application developer) to be the same priority as text from untrusted users and third parties.' Their remedy is an explicit instruction hierarchy defining model behaviour when instructions of different privilege conflict -- developer system messages outrank user messages, which outrank content returned by tools and web search -- together with a synthetic data-generation method that teaches the model to selectively ignore lower-privileged instructions. Applied to GPT-3.5, the method 'drastically increases robustness -- even for attack types not seen during training -- while imposing minimal degradations on standard capabilities.'",
+    "ree_translation": "MECH-064 makes two separable assertions about authority: that its SOURCE is channel metadata rather than text content, and that its ENFORCEMENT is at runtime, outside the component that generates proposals. This paper is the cleanest available demonstration that the first assertion is right and the second is not free. On the source question it is strong independent corroboration reached from a different starting point: OpenAI diagnosed the same root cause the claim diagnoses -- that a system which treats all text as equally authoritative has no security boundary -- and fixed it by ordering privilege by channel, exactly REE's 'authority labels come from channel metadata, not text content'. The ordering they chose even matches REE's table row for row, including tool output at the bottom. On the enforcement question it is the instructive counter-case: they implement the ordering by training the model to respect it, so the hierarchy becomes a learned disposition inside the generator rather than a denial in the runtime around it. The reported outcome is that robustness improves markedly -- which is the right result for a prior and the wrong shape for a guarantee. For REE the entry therefore does double duty: it corroborates the claim's authority model and it supplies the empirical reason why the word 'runtime-enforced' is doing real work in the claim's first sentence.",
+    "mapping_caveat": "The temptation is to read this entry as straightforward support because its authority ordering matches the claim's, and that reading is wrong in a way worth marking. What the paper demonstrates is that channel-derived authority PLUS a trained disposition beats no defence; it does not demonstrate that channel-derived authority suffices, and it certainly does not demonstrate a hard write-path denial of the kind MECH-064 asserts. Its own success metric is a degree of robustness, not a property that holds. Two further limits. The evaluation is on GPT-3.5 and is non-adaptive, and the field has since bypassed eight defences of comparable type at over 50 percent success, so the numbers are optimistic upper bounds rather than baselines. And the mapping is a mapping from an LLM's conversational message roles to REE's typed signal channels -- these are structurally similar but not the same kind of thing, and REE's channels carry provenance in a substrate where no analogue of the 'system message' has yet been implemented.",
+    "source_context": "Industry research paper from OpenAI; method applied to and evaluated on GPT-3.5 with synthetic training data; the resulting hierarchy was subsequently deployed in production LLM APIs, which gives it practical weight beyond its benchmark numbers."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality 0.78: influential and practically consequential -- this hierarchy became the deployed convention for system/user/tool privilege across the industry -- but it is a preprint, evaluated on one older model, with no adaptive-attack evaluation, and its central metric is a robustness delta rather than a guarantee. Mapping fidelity 0.70, the interesting number: high on the claim's authority-SOURCE bullet, where the correspondence is nearly exact including the tool-output-lowest ordering, and deliberately low on the claim's ENFORCEMENT bullet, which the paper contradicts by construction. A single fidelity score cannot represent that split, so it is set to the average and the split is stated explicitly in the failure signatures. Transfer risk 0.40, the highest of the four AI-security entries in this pull: the mapping runs from conversational message roles to REE's typed signal channels, and REE has no implemented analogue of a privileged system channel for the hierarchy to be anchored in."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_064",
+  "entry_id": "2026-09-19_mech_064_capability_dataflow_separation_debenedetti2025",
+  "timestamp_utc": "2026-09-19T06:13:04Z",
+  "claim_ids_tested": [
+    "MECH-064"
+  ],
+  "source": {
+    "title": "Defeating Prompt Injections by Design",
+    "authors": [
+      "Edoardo Debenedetti",
+      "Ilia Shumailov",
+      "Tianqi Fan",
+      "Jamie Hayes",
+      "Nicholas Carlini",
+      "Daniel Fabian",
+      "Christoph Kern",
+      "Chongyang Shi",
+      "Andreas Terzis",
+      "Florian Tramer"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint (cs.CR); v1 24 Mar 2025, v2 24 Jun 2025",
+    "doi": "10.48550/arXiv.2503.18813",
+    "arxiv_id": "2503.18813",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2503.18813"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The strongest entry in this pull, because the paper is not an analogy for MECH-064 -- it is an independent re-derivation of the same design, built and measured. CaMeL's three load-bearing choices map one-to-one onto three of MECH-064's four bullets: control and data flow are extracted from the trusted query so untrusted content can never reach the program flow (REE: EXTERNAL -> OBS/INS only, never POL/ID/CAPS); capabilities travel as provenance metadata attached to values rather than as anything the content can assert (REE: authority labels come from channel metadata, not text content); and the policy check fires at the tool-call boundary, outside the LLM that generated the proposal (REE: verification runs outside proposal generation prior to commitment). Confidence is capped below 0.9 for three reasons: the security guarantee is relative to a policy the designer must still write correctly, the 77-vs-84 percent AgentDojo utility gap is a real and unquantified-for-REE capability cost, and CaMeL protects a stateless per-query program whereas MECH-064 governs writes into persistent policy and identity stores, which is a strictly harder problem the paper does not address.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "CaMeL's guarantee is conditional on the security policy being correct and complete. The interpreter provably enforces whatever policy it is given; it cannot tell you the policy admits an attack. MECH-064 inherits this exactly: a runtime that hard-denies EXTERNAL -> POL/ID/CAPS is only as good as the enumeration of what counts as POL, ID and CAPS, and REE has no audited such enumeration -- the allowed/forbidden path table in control_plane_signal_map.md is prose, not a checked artifact.",
+    "Utility cost is real and measured: 77 percent of AgentDojo tasks solved with provable security against 84 percent undefended. The seven-point gap is the price of forbidding untrusted data from influencing control flow. MECH-064 asserts the separation is necessary but nowhere prices it; if REE pays a comparable tax on task competence, that interacts directly with the conversion-ceiling work and should be measured rather than assumed negligible.",
+    "CaMeL secures a single query's derived program. It does not address persistence, and that is precisely where MECH-064 is pointed. A capability label protecting a value inside one interpreter run says nothing about whether a write that legitimately entered POL or ID last week was authorised, nor about slow accretion of injected content across many individually-policy-compliant sessions. Stored / cross-session injection is an open problem in this literature and an unaddressed hole in the claim.",
+    "The architecture requires the task to be expressible as a program the privileged LLM can write without reading the untrusted data. Tasks whose control flow genuinely depends on untrusted content cannot be expressed and are simply refused. MECH-064's E3-proposal-to-commit row is conditional rather than denied, which means REE is choosing the harder, less-provable side of this trade -- a verifier over proposals, not a structural impossibility. The paper's result does not transfer to that choice."
+  ],
+  "tags": [
+    "mech-064",
+    "mech_064",
+    "prompt-injection",
+    "capability-security",
+    "information-flow-control",
+    "control-data-flow-separation",
+    "authority-separation",
+    "llm-agent-security",
+    "typed-authority",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "LLM agents cannot be made robust to prompt injection by improving the model, because the attack exploits the model's inability to distinguish instructions from data. The authors instead place the LLM inside a system that makes the distinction structurally: a privileged LLM sees only the trusted user query and emits a program capturing the control and data flow; a quarantined LLM parses untrusted data but has no tool access and cannot emit control flow; a custom Python interpreter executes the program while propagating capability metadata alongside every value and enforcing security policies at each tool call. Because control and data flow are extracted from the trusted query before any untrusted data is read, 'the untrusted data retrieved by the LLM can never impact the program flow'. Evaluated on AgentDojo, CaMeL solves 77 percent of tasks with provable security, against 84 percent for an undefended agent.",
+    "ree_translation": "MECH-064 asserts that prompt-injection resistance requires runtime-enforced payload typing and write-path separation: external channels emit only OBS and INS; POL, ID and CAPS are trusted internal stores; authority labels derive from channel metadata rather than text content; and verification runs outside proposal generation before commitment. CaMeL is the closest thing in the literature to an existence proof for that architecture, arrived at independently. Its privileged/quarantined split is REE's EXTERNAL -> OBS/INS restriction: the quarantined LLM is allowed to turn external content into observations and nothing else, which is exactly a channel that cannot mint authority. Its capability propagation is REE's insistence that authority labels come from channel metadata -- a capability is attached to a value by where the value came from, and no string inside the value can forge one. Its interpreter-level policy check at the tool-call boundary is REE's verifier running outside proposal generation prior to commitment. The paper therefore does two things for the claim: it raises MECH-064 from a plausible design stance to one with a working implementation and a measured security/utility trade-off, and it supplies a concrete falsifiable shape for what a REE implementation would have to look like -- taint-carrying values, a policy evaluated at the store-write boundary, and a generator that never has write authority.",
+    "mapping_caveat": "Two boundaries, and the second is the one that matters. First, the obvious one: CaMeL is a software architecture around a language model, not a cognitive control plane, and REE's POL/ID/CAPS stores are persistent self-model state rather than an interpreter's variable bindings. Mapping across that gap is an argument by structural analogy, however tight the analogy looks. Second, and more importantly, CaMeL's provable-security claim is scoped to a single query's derived program -- it secures the transformation of one trusted request into one sequence of tool calls. MECH-064 governs writes into stores that persist across episodes and accumulate. Nothing in this paper licenses the inference that a per-episode capability discipline yields a durably uncorrupted policy or identity store; the cross-session and slow-accretion cases are untouched. Reading this entry as evidence that MECH-064 is solved would be a category error. It is evidence that the claim's static write-path separation is implementable and cheap-ish, which is the narrower thing the claim currently needs.",
+    "source_context": "Software-systems security paper with a released implementation (google-research/camel-prompt-injection) evaluated on the AgentDojo benchmark (97 tasks, 629 security test cases); LLM tool-use agents, no biological or clinical component."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high but not maximal: strong author group, released code, benchmark evaluation against an established harness -- discounted because it remains a preprint at the time of this pull and because 'provable security' is provable only relative to a supplied policy. Mapping fidelity is the highest in this pull and is what drives the aggregate: the paper's own design decisions are MECH-064's bullets, independently reached, so the translation needs little interpretive work. Transfer risk moderate rather than low: the domain is already artificial agents (no species or clinical inference), but the persistent-store question MECH-064 actually cares about is outside the paper's scope, and that scope gap is the dominant risk rather than any domain gap."
+  }
+}

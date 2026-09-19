@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_064",
+  "entry_id": "2026-09-19_mech_064_adaptive_attacks_break_defenses_zhan2025",
+  "timestamp_utc": "2026-09-19T06:13:04Z",
+  "claim_ids_tested": [
+    "MECH-064"
+  ],
+  "source": {
+    "title": "Adaptive Attacks Break Defenses Against Indirect Prompt Injection Attacks on LLM Agents",
+    "authors": [
+      "Qiusi Zhan",
+      "Richard Fang",
+      "Henil Shalin Panchal",
+      "Daniel Kang"
+    ],
+    "year": 2025,
+    "venue": "Findings of the Association for Computational Linguistics: NAACL 2025",
+    "doi": "10.48550/arXiv.2503.00061",
+    "arxiv_id": "2503.00061",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2503.00061"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Supports MECH-064 by elimination, which is a weaker logical route than the CaMeL entry's direct demonstration but an unusually clean instance of it. The authors break all eight defences they test at over 50 percent attack success using adaptive attacks, and -- the fact that makes this entry evidence for the claim rather than merely alarming -- every one of the eight belongs to a category MECH-064 explicitly rejects. Three are detection-based (fine-tuned DeBERTaV3 detector, LLM-based detector, perplexity filtering), four are input-level text manipulations (instructional prevention, data prompt isolation via delimiters, sandwich prevention, paraphrasing), and one is model-level adversarial finetuning. Not one is a runtime write-path denial or a provenance-carried capability. So the paper empirically retires the whole family of 'authority inferred from text content' defences that MECH-064's third bullet rules out a priori, while leaving the claim's own mechanism untested. Confidence 0.74: peer-reviewed, directly on-domain, decisive within its scope, capped because the result is a negative one about rivals and because a defence family surviving by not having been tested is a thin form of support.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's central methodological finding indicts REE's own evidentiary posture, not just the defences it breaks: defence robustness 'remains questionable due to insufficient testing against adaptive attacks'. MECH-064 currently has no adversarial evaluation at all -- its confidence rests on architectural argument. By this paper's standard that is not evidence of robustness, and a REE implementation of the claim should be treated as unevaluated until someone has actively optimised against it.",
+    "Delimiter and isolation defences fail (data prompt isolation, sandwich prevention). This matters more than it looks because delimiters are the cheap, tempting implementation of 'typed payloads': mark the untrusted region in the text and instruct the model to respect the marking. That is type separation IN the content stream, and it is broken. MECH-064's separation is only meaningful if enforced in a channel the content cannot address -- if a REE implementation ends up tagging payloads inside a serialised prompt, it has built one of the eight broken defences.",
+    "Adversarial finetuning is among the eight broken. This closes the loop with the instruction-hierarchy entry in this pull: training the model to respect authority, which is the other obvious route to MECH-064's authority ordering, is empirically in the broken set. The claim's insistence on runtime rather than learned enforcement is therefore supported by measurement, not only by argument.",
+    "The support this entry offers is by elimination and is therefore fragile in a specific way: capability-based and control-flow-separation defences are absent from the tested set, so they survive here by not having been examined rather than by resisting anything. Later work has broken structural defences in multi-agent settings. MECH-064 should not be credited with adversarial robustness on the strength of a paper that did not test its mechanism."
+  ],
+  "tags": [
+    "mech-064",
+    "mech_064",
+    "prompt-injection",
+    "indirect-prompt-injection",
+    "adaptive-attacks",
+    "defence-evaluation",
+    "content-inspection",
+    "delimiters",
+    "llm-agent-security",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Defences against indirect prompt injection on LLM agents are evaluated too weakly: 'Despite defenses designed for IPI attacks, their robustness remains questionable due to insufficient testing against adaptive attacks.' The authors evaluate eight defences spanning three categories -- detection-based (a fine-tuned DeBERTaV3 detector, an LLM-based detector, perplexity filtering), input-level (instructional prevention, data prompt isolation via delimiters around the tool response, sandwich prevention, paraphrasing) and model-level (adversarial finetuning) -- and 'bypass all of them using adaptive attacks, consistently achieving an attack success rate of over 50%.' They conclude that adaptive attack evaluation is necessary when designing defences.",
+    "ree_translation": "MECH-064's third bullet is a prohibition as much as a design: authority labels come from channel metadata, NOT text content. A prohibition is the kind of claim that is best supported by showing what happens to the alternative, and that is exactly what this paper does. Sort the eight broken defences by what they rely on and the pattern is total: three infer trustworthiness by inspecting content (detectors, perplexity), four manipulate the text stream to mark or neutralise untrusted regions (delimiters, sandwiching, instructional warnings, paraphrasing), and one trains the disposition into the model. Every one is a way of deriving authority from content or from a learned prior over content. All fail at over 50 percent attack success under adaptive pressure. What is NOT in the set is equally informative: no capability propagation, no control/data-flow extraction, no runtime denial at a store-write boundary -- that is, nothing resembling MECH-064's actual mechanism. The paper therefore empirically retires the family the claim rules out on principle, which is the strongest form of support a negative result can give. It also closes a loop inside this pull: adversarial finetuning being in the broken set means the learned-hierarchy route corroborated by Wallace et al. is measurably insufficient, so the claim's runtime qualifier now rests on measurement rather than architectural taste alone.",
+    "mapping_caveat": "The logical form of this support is elimination, and elimination is only as strong as the exhaustiveness of the alternatives considered -- so two cautions. First and most important: capability-based and control-flow-separation defences were not tested. MECH-064's mechanism survives this paper by absence, not by resistance, and absence must not be recorded as robustness. Subsequent work has broken structural separation defences in multi-agent settings, so there is no ground for believing the claim's family is immune. Second, the paper's methodological verdict cuts at REE too. Its point is that defences look strong until somebody optimises against them; MECH-064 has had no adversarial evaluation whatsoever, so by the paper's own standard the claim is unevaluated rather than robust. Reading this entry as 'the rival defences failed and ours would not' inverts the finding. The honest reading is narrower and still useful: the content-derived-authority route is closed, which raises the prior on the metadata-derived route without testing it.",
+    "source_context": "Peer-reviewed NLP security paper (NAACL 2025 Findings) with released code (uiuc-kang-lab/AdaptiveAttackAgent); LLM tool-use agents under indirect prompt injection via tool responses; no biological or clinical component."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality 0.82, the highest in this pull: the only peer-reviewed venue among the AI-security entries, released code, and a clean decisive result -- eight defences, one adaptive-attack methodology, over 50 percent success throughout. Mapping fidelity 0.70 rather than higher because the paper never mentions REE's mechanism; the mapping is an inference from the composition of the tested set (all content- or training-derived) to a conclusion about the untested complement (metadata-derived), which is sound as a prior-shifting argument but is not a direct measurement of anything MECH-064 asserts. Transfer risk 0.30: no species or clinical transfer, and the artificial-agent domain is shared, but the inference-by-elimination structure carries its own risk that the untested family fails for reasons this paper could not have surfaced."
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_064",
+  "entry_id": "2026-09-19_mech_064_structural_design_patterns_beurerkellner2025",
+  "timestamp_utc": "2026-09-19T06:13:04Z",
+  "claim_ids_tested": [
+    "MECH-064"
+  ],
+  "source": {
+    "title": "Design Patterns for Securing LLM Agents against Prompt Injections",
+    "authors": [
+      "Luca Beurer-Kellner",
+      "Beat Buesser",
+      "Ana-Maria Cretu",
+      "Edoardo Debenedetti",
+      "Daniel Dobos",
+      "Daniel Fabian",
+      "Marc Fischer",
+      "David Froelicher",
+      "Kathrin Grosse",
+      "Daniel Naeff",
+      "Ezinwanne Ozoani",
+      "Andrew Paverd",
+      "Florian Tramer",
+      "Vaclav Volhejn"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint (cs.CR); v1 10 Jun 2025, v3 27 Jun 2025",
+    "doi": "10.48550/arXiv.2506.08837",
+    "arxiv_id": "2506.08837",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2506.08837"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "A fourteen-author cross-institutional synthesis whose central thesis is MECH-064's central thesis: prompt-injection resistance is a property of system architecture, not of the model, because 'once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions'. That is close to a restatement of the claim's write-path denial. It also independently reaches the claim's verification bullet in its Plan-Then-Execute pattern, where the action plan is fixed before untrusted content is read. Confidence is held below the CaMeL entry for two reasons that pull in opposite directions from source quality: the paper is a design-pattern catalogue with case studies rather than a measurement, so it cannot quantify how much protection the separation actually buys; and its patterns all secure a task-scoped agent loop, whereas MECH-064's subject is a persistent control plane with policy and identity stores that outlive any task. The six patterns are also mutually exclusive alternatives with different utility costs, which means the paper supports the claim's principle while implying the claim has not yet chosen its mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is explicit that its patterns buy security by giving up generality: they work by 'constraining the actions of agents to explicitly prevent them from solving arbitrary tasks'. MECH-064 asserts write-path separation as a pure safety property with no stated competence cost. If the pattern literature is right, that is an incomplete claim -- the separation necessarily removes some reachable behaviours, and REE has not characterised which ones. This is a direct, testable tension rather than a caveat.",
+    "Six patterns, not one, and they are alternatives with materially different security/utility profiles. MECH-064 states a principle (authority separation) but does not commit to a mechanism, which means it is currently under-specified relative to this literature: an implementation could satisfy the claim's prose while choosing a pattern whose guarantees are much weaker than another's. The claim needs a mechanism commitment before it can be falsified.",
+    "The paper explicitly declines to claim heuristic defences are worthless while denying they suffice -- 'While these heuristic approaches provide some protection, they do not provide guarantees.' MECH-064's forbidden-path table reads as an absolute (hard deny at runtime API boundary). Absolutes are only as absolute as the boundary enumeration, and the paper's framing is the more honest one: what you get is a guarantee conditional on the constraint being correctly drawn, not an impossibility.",
+    "Every pattern presumes a designer who knows in advance which actions are consequential. In REE that is the question of which stores are POL, ID and CAPS -- and unlike a tool-calling agent, where the consequential actions are an enumerable API surface, a cognitive architecture's privileged writes may not be enumerable ahead of time. The pattern approach may simply not have a REE analogue at the granularity the claim assumes."
+  ],
+  "tags": [
+    "mech-064",
+    "mech_064",
+    "prompt-injection",
+    "design-patterns",
+    "system-level-security",
+    "authority-separation",
+    "plan-then-execute",
+    "dual-llm",
+    "llm-agent-security",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Prompt injection cannot be solved at the model level: 'Designing models inherently robust to attacks that elicit arbitrary outputs -- such as prompt injection -- is extremely challenging', and heuristic mitigations 'provide some protection [but] do not provide guarantees.' The authors instead argue that secure agent systems are achievable even with a vulnerable underlying model, via system-level design, under one governing principle: 'once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions.' They catalogue six patterns realising it -- the Action-Selector, Plan-Then-Execute, LLM Map-Reduce, Dual LLM, Code-Then-Execute and Context-Minimization patterns -- analyse their security/utility trade-offs, and note the patterns work by constraining agents so they cannot solve arbitrary tasks.",
+    "ree_translation": "MECH-064 claims that typed authority and control-store separation is what blocks exteroceptive content from writing policy and identity. This paper is the closest thing to an independent statement of that claim's governing principle from outside REE, and it is stated at the same level of generality: after untrusted input has been ingested, the system must make consequential action structurally impossible rather than merely unlikely. REE's allowed/forbidden path table is one instantiation -- EXTERNAL may reach OBS/INS and is hard-denied at POL/ID/CAPS. The paper's Plan-Then-Execute pattern is also an independent arrival at the claim's fourth bullet: fix the action plan before any untrusted content is read, so verification is structurally upstream of the content that would subvert it, which is REE's 'verification runs outside proposal generation prior to commitment'. Its Dual LLM pattern is REE's separation of a channel that may only produce observations from one that may commit. The most useful thing the paper gives the claim, though, is a demand: it shows the principle admits at least six inequivalent mechanisms with different costs, which means MECH-064 as currently written names a principle and not yet a mechanism, and cannot be falsified until it picks one.",
+    "mapping_caveat": "Three boundaries. First, this is a catalogue with case studies, not a measurement -- it establishes that architectural separation is the right family of answer and reasons about trade-offs, but it supplies no number for how much protection any pattern delivers, so it cannot be cited as evidence about the magnitude of MECH-064's effect. Second, and the sharpest disanalogy: every pattern assumes the designer can enumerate in advance which actions are consequential, because in a tool-calling agent that set is an API surface. REE's privileged writes are into persistent self-model stores whose boundaries are defined in prose, and it is genuinely unclear whether a cognitive architecture's consequential writes are enumerable at all at the granularity the patterns require. Third, all six patterns secure a task-scoped loop; the claim's stores outlive tasks. Treating this entry as support for the claim's principle is fair. Treating it as support for the claim's implementability in REE is not -- the enumeration problem is the unaddressed prerequisite.",
+    "source_context": "Cross-institutional position and design-pattern paper (authors from ETH Zurich, Google DeepMind, IBM, Microsoft, Invariant Labs and others) with illustrative case studies; LLM tool-use agents, no empirical benchmark of its own."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.80: unusually broad and senior authorship for a position paper, and the field has largely adopted its vocabulary, but it remains a preprint and -- more importantly for calibration -- it is synthesis rather than measurement, so it cannot be weighted as empirical evidence. Mapping fidelity 0.80: the governing principle is close to a restatement of MECH-064's forbidden-path rule and two named patterns land on two of the claim's bullets, docked because the paper's unit of protection is a task-scoped agent loop and the claim's unit is a persistent store. Transfer risk 0.35, slightly above the CaMeL entry: in addition to the same scope gap, this paper's whole method presumes an enumerable set of consequential actions, and whether REE's privileged writes are enumerable is an open question rather than a detail."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-19T06:11:37.459389Z`
+Generated: `2026-09-19T06:24:28.685875Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -337,6 +337,7 @@ Generated: `2026-09-19T06:11:37.459389Z`
 | `targeted_review_mech_061` | [`2026-04-04_mech_061_stop_signal_ifc_stn_aron2006`](targeted_review_mech_061/entries/2026-04-04_mech_061_stop_signal_ifc_stn_aron2006/record.json) | 8 | [`summary`](targeted_review_mech_061/entries/2026-04-04_mech_061_stop_signal_ifc_stn_aron2006/summary.md) |
 | `targeted_review_mech_062` | [`2026-02-15_mech062_pbwm_gating_neuralcomputation2006`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/record.json) | 2 | [`summary`](targeted_review_mech_062/entries/2026-02-15_mech062_pbwm_gating_neuralcomputation2006/summary.md) |
 | `targeted_review_mech_063` | [`2026-02-15_q017_lit-0032_completion`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/record.json) | 5 | [`summary`](targeted_review_mech_063/entries/2026-02-15_q017_lit-0032_completion/summary.md) |
+| `targeted_review_mech_064` | [`2026-09-19_mech_064_structural_design_patterns_beurerkellner2025`](targeted_review_mech_064/entries/2026-09-19_mech_064_structural_design_patterns_beurerkellner2025/record.json) | 5 | [`summary`](targeted_review_mech_064/entries/2026-09-19_mech_064_structural_design_patterns_beurerkellner2025/summary.md) |
 | `targeted_review_mech_074b` | [`2026-08-07_mech_074b_gist_detail_lesion_adolphs2001`](targeted_review_mech_074b/entries/2026-08-07_mech_074b_gist_detail_lesion_adolphs2001/record.json) | 4 | [`summary`](targeted_review_mech_074b/entries/2026-08-07_mech_074b_gist_detail_lesion_adolphs2001/summary.md) |
 | `targeted_review_mech_090_release_motor_cessation` | [`2026-06-02_mech_090_stn_decision_threshold_cavanagh2011`](targeted_review_mech_090_release_motor_cessation/entries/2026-06-02_mech_090_stn_decision_threshold_cavanagh2011/record.json) | 4 | [`summary`](targeted_review_mech_090_release_motor_cessation/entries/2026-06-02_mech_090_stn_decision_threshold_cavanagh2011/summary.md) |
 | `targeted_review_mech_098` | [`2026-04-16_mech_098_auditory_sis_whitford2019`](targeted_review_mech_098/entries/2026-04-16_mech_098_auditory_sis_whitford2019/record.json) | 4 | [`summary`](targeted_review_mech_098/entries/2026-04-16_mech_098_auditory_sis_whitford2019/summary.md) |
