@@ -375,3 +375,74 @@ Decision chip: **`chip-20260919-mech131-channel-authority`**.
 the harm-prediction DV with runtime optimizer-coverage assertion; the working readiness gate;
 the within-subject lesion-at-eval design; every `/queue-experiment` gate cleared; the ratified
 ordinal criteria; and measured costs at both scales.
+
+---
+
+# ADDENDUM 2026-09-19 (4) -- OPTION A: guard REFUSED, authority hypothesis NOT supported
+
+**User decision OPTION A (2026-09-19T09:25Z)** implemented: `support_preserving_ao_std_floor`
+as a declared `config_slice` axis with levels `[0.2 production, 0.05 lowered]`; mandatory
+`selected_action_entropy` guard that **self-routes** (no verdict about MECH-131) on collapse,
+with the refusal threshold pre-registered at **0.25445 nats** -- the midpoint of V3-EXQ-567's
+recorded 0.0124 (collapsed) and 0.4965 (healthy), stated as a midpoint because no already-written
+rule fixes it. Same estimator and units as `exq643_modulatory_authority_baseline`. Landed in
+`ree-v3/experiments/v3_exq_1061_mech131_anticipatory_residue_lesion.py`. **Nothing queued.**
+
+18 cells (2 floors x 3 seeds x 3 arms), 20 eps x 100 steps, **29m47s**.
+
+## Selected-action entropy (nats) -- the guard fired
+
+| floor | seed 11 | seed 23 | seed 37 |
+|---|---|---|---|
+| 0.20 (production) | 0.1169 | 0.0000 | 0.0000 |
+| 0.05 (lowered) | 0.0000 | 0.0000 | 0.0000 |
+
+Identical across all three arms at each (floor, seed): **39/40 or 40/40 probe states commit the
+same action.** Refusal floor 0.25445; healthy reference 0.4965.
+
+## Lesion effect / between-candidate noise
+
+| floor | seed 11 | seed 23 | seed 37 |
+|---|---|---|---|
+| 0.20 | +0.0032 | +0.0175 | -0.0630 |
+| 0.05 | +0.0012 | +0.0071 | -0.0566 |
+
+## What this shows
+
+1. **The monostrategy is NOT caused by lowering the floor -- it is already present at the
+   PRODUCTION floor 0.2.** So this is not the guard catching the risk the floor exists to
+   prevent; it is the policy being degenerate at this scale regardless of the floor. The guard
+   still refuses, correctly and as pre-registered.
+2. **The authority hypothesis is NOT supported.** Lowering the floor 4x -- from 1.55x the
+   terrain_prior proposal-mean magnitude (0.1288) to 0.39x it -- did not increase the lesion's
+   measurable influence; if anything it decreased slightly. "Sub-dominant to exploration noise"
+   was therefore not the binding explanation it appeared to be in addendum 3.
+3. **Why no candidate-set DV can work here.** E3 commits the same action at essentially every
+   probe state, so the committed action is not reading the candidate pool. While that holds, no
+   DV over the proposed candidate set can register a lesion of the proposal mechanism --
+   residue, harm prediction, or anything else. This **subsumes** the residue-manifold diagnosis
+   (addendum 2) and the ao_std-floor diagnosis (addendum 3) rather than competing with them.
+
+## Honest caveat, stated rather than papered over
+
+This may be an **undertrained-policy artifact**. 20 warmup episodes is ~1/30th of 042's 600, and
+V3-EXQ-567's healthy 0.4965 comes from a full-scale run. The policy may diversify with more
+warmup and the DV may become resolvable. That was **not** tested: 6 cells at 042 scale
+extrapolates to ~30 h. Distinguishing the two possibilities needs either that run, or a cheap
+**policy-diversity readiness gate** placed ahead of the DV and swept over warmup scale in
+~10-min increments to find where entropy clears.
+
+## Disposition
+
+Per the decision's own stop condition -- *"if it still does not, STOP and report ... the honest
+answer is your option C"* -- the recommended disposition is **option C**, refined by this probe:
+MECH-131's mechanism is **implemented and activated but has no measurable authority over
+committed selection at tested scale**, and the proximate blocker is a degenerate policy, not the
+residue representation and not the exploration floor. Decision chip
+**`chip-20260919-mech131-monostrategy-precondition`**.
+
+**Banked:** both knobs (contracts C1-C9); all three 042 trainers; the harm-prediction DV with
+runtime optimizer-coverage assertion; the working harm-calibration readiness gate; the
+monostrategy guard with a pre-registered, derivation-documented threshold; the floor axis; the
+within-subject lesion-at-eval design; every `/queue-experiment` gate cleared; ratified ordinal
+criteria; and measured costs at three scales (10 min / 16 min / 30 min per probe shape).
