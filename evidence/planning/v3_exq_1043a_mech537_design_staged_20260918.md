@@ -381,3 +381,98 @@ block either way.
 | queue entry | NOT written |
 | floor -> ceiling rule | OPEN -- `chip-20260919-mech537-c4b-floor-to-ceiling-rule` |
 | anchor reachability at a realistic rank | OPEN -- run `probe_c4b_anchor_reachability.py` |
+
+
+## A7. APPENDIX -- the anchor-reachability probe, preserved verbatim
+
+Deliberately NOT placed under `ree-v3/experiments/`: it is not an experiment, has no queue
+entry and no manifest, and a stray script there is exactly what
+`audit_unqueued_experiment_scripts` exists to flag. It is preserved here instead, because it
+was written in a metaworker worktree that will be garbage-collected.
+
+**To run it** (on an experiment worker, NOT `ree-cloud-4`, which is a dispatch box -- the run
+attempted there sat in the 80-episode P0 warmup for over 70 minutes at load 5.6):
+
+```bash
+# save the block below as probe_c4b_anchor_reachability.py somewhere OUTSIDE ree-v3/experiments/
+/home/ree/.venv/ree/bin/python3 probe_c4b_anchor_reachability.py 42     # linux worker
+/opt/local/bin/python3        probe_c4b_anchor_reachability.py 42       # Mac
+```
+
+Read the `REACHABLE (F < I)?` line at the **parsimonious** rank. That is the whole point of
+the probe; the CV-selected-rank block is printed alongside only for comparison.
+
+```python
+"""Mid-scale probe: is V3-EXQ-1043a's C4b anchor REACHABLE at a realistic rank?
+
+NOT an experiment and NOT queued. A throwaway instrument check, run before committing a
+multi-hour grid, for exactly the reason the driver's own INSENSITIVITY_NULL_MARGIN comment
+gives: a criterion that is unmeetable by construction is a guaranteed false negative.
+
+The --dry-run smoke is rank-1 degenerate (80 rows, ladder capped at 1), where the geometry
+factor ||b||/||a|| swamps everything and F, I and the measured ratio all collapse to ~4.4.
+That says nothing about rank 8-10, which is where 1043a actually scores. This runs ONE seed at
+intermediate scale to get a realistic parsimonious rank and read F against I there.
+
+Reads, per seed: parsimonious_rank, measured ratio, F (jacobian_aligned_floor_ratio),
+I (isotropic_reference_ratio), the resulting ceiling, and the C2 permutation numbers.
+"""
+import sys
+from pathlib import Path
+
+REPO = Path("/Users/dgolden/REE_Working/ree-v3")
+sys.path.insert(0, str(REPO))
+
+import experiments.v3_exq_1043a_mech537_communication_subspace_permutation_null as d  # noqa: E402
+import experiments.v3_exq_734_env_difficulty_competence_recovery_sweep as x734  # noqa: E402
+
+# ~30-40% of the full config: enough rows that the RRR ladder is not row-capped and the
+# parsimonious rank lands in a realistic range, without paying the full warmup.
+ZWORLD_P0, P0, P1, STEPS = 24, 80, 36, 200
+BC_EPS, BC_RAND, PASSES = 16, 8, 24
+SENS_STATES, SENS_DIRS = 16, 4
+N_PERMS, JAC_STATES = 5, 8
+SEED = int(sys.argv[1]) if len(sys.argv) > 1 else 42
+
+env_kwargs = x734._env_kwargs_for_rung(d.RUNG)
+action_dim = int(x734._make_env(SEED, env_kwargs).action_dim)
+cfg = d._config(False, ZWORLD_P0, P0, P1, STEPS, BC_EPS, BC_RAND, PASSES,
+                SENS_STATES, SENS_DIRS)
+
+row, _arms = d._run_seed(SEED, action_dim, env_kwargs, cfg, ZWORLD_P0, P0, P1, STEPS,
+                         BC_EPS, BC_RAND, PASSES, SENS_STATES, SENS_DIRS,
+                         N_PERMS, JAC_STATES, False)
+
+dp = row["sensitivity_decision_targeted_parsrank"]
+ds = row["sensitivity_decision_targeted"]
+print("")
+print("=" * 78)
+print("C4b ANCHOR REACHABILITY PROBE -- seed %d" % SEED)
+print("=" * 78)
+print("  rows                      %d" % row["rrr_n_rows"])
+print("  CV-selected rank          %d" % row["selected_rank"])
+print("  parsimonious rank         %d  (r2 %.6f vs ladder max %.6f)"
+      % (row["parsimonious_rank"], row["parsimonious_rank_heldout_r2"],
+         row["ladder_max_heldout_r2"]))
+print("  n live sender dims        %d" % row["n_sender_dims_live"])
+print("")
+for tag, blk, rk in (("SCORED (parsimonious)", dp, row["parsimonious_rank"]),
+                     ("CV-selected rank     ", ds, row["selected_rank"])):
+    print("  %s  rank=%d" % (tag, rk))
+    print("      measured ratio        %.4f" % blk["sensitivity_ratio"])
+    print("      F jacobian-aligned    %.4f" % blk["jacobian_aligned_floor_ratio"])
+    print("      I isotropic reference %.4f" % blk["isotropic_reference_ratio"])
+    print("      ceiling (F+I)/2       %.4f" % blk["c4b_ceiling"])
+    print("      REACHABLE (F < I)?    %s"
+          % ("YES" if blk["jacobian_aligned_floor_ratio"]
+             < blk["isotropic_reference_ratio"] else "NO -- anchor unscoreable"))
+    print("      would C4b PASS?       %s"
+          % ("yes" if blk["sensitivity_ratio"] <= blk["c4b_ceiling"] else "no"))
+    print("")
+pn = row["c2_permutation_null"]
+print("  C2 observed               %.4f" % pn["observed"])
+print("  C2 null mean / sd         %.4f / %.4f" % (pn["null_mean"], pn["null_sd"]))
+print("  C2 one-sided p            %.4f  (n=%d, min attainable %.4f)"
+      % (pn["p_value_one_sided"], pn["n_permutations"], pn["min_attainable_p"]))
+print("=" * 78)
+```
