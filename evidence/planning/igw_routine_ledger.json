@@ -6234,7 +6234,11 @@
       "task_claim_session_id": "igw-auto-igw-240-proposal-for-mech-561-20260919T044841Z",
       "task_claim_claimed_at": "2026-09-19T04:48:41Z",
       "assigned_at": "2026-09-19T04:44:22Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-19T05:22:03Z",
+      "completion_summary": "MECH-561: no experiment queued -- marked EXP-1404/EXP-0209 blocked_substrate on the interface-metric sequencing gate (REE_assembly de84360525d); release path V3-EXQ-1043a",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-561: no experiment queued -- marked EXP-1404/EXP-0209 blocked_substrate on the interface-metric sequencing gate (REE_assembly de84360525d); release path V3-EXQ-1043a"
     }
   ],
   "dispositions": [
@@ -9023,6 +9027,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T03:45:08Z",
       "re_eligible_after": "2026-09-21T03:45:08Z"
+    },
+    {
+      "stable_hash": "1b4a3bbf6e02",
+      "igw_id_at_disposition": "IGW-20260919-240",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-561"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-561",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-19T05:22:05Z",
+      "re_eligible_after": "2026-09-21T05:22:05Z"
     }
   ]
 }
