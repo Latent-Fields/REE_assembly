@@ -5681,6 +5681,38 @@
       ]
     },
     {
+      "sd_id": "sd061-resume-progress-ecology",
+      "title": "A resume-progress ecology for the SD-061 stuck-state detector: an environment (or warmup) in which goal progress genuinely RESUMES after a stall, so MECH-343's leg (c) decay is measurable at all and the is_stuck duty cycle lands strictly inside (0.05, 0.80) instead of at either pole.",
+      "status": "candidate",
+      "ready": false,
+      "ready_blocked_by": "Commissioned 2026-09-19 by user decision 1C; awaiting review of evidence/planning/sd061_real_trigger_commission_20260919.md. Also carries one UNSET pre-registration (the decay-magnitude threshold, s.4 item 1) which is a kind:decision chip, not a build-session choice.",
+      "design_doc": "evidence/planning/sd061_real_trigger_commission_20260919.md",
+      "severity": "degrading",
+      "severity_note": "Not a corrupting defect in shipped substrate -- SD-061 works as designed and is default-off. This is a MISSING CAPABILITY that blocks a registered falsifier (Q-056), which is why it is degrading rather than corrupting.",
+      "substrate_paths": [
+        "ree_core/environment/causal_grid_world.py::CausalGridWorldV2.step",
+        "experiments/_lib/allon_training.py::_train_all_on_agent"
+      ],
+      "depends_on_unresolved": [
+        "MECH-342 natural-commit failure (V3-EXQ-629, 'no natural commit when score margins are flat') gates the `diversity` axis -- measured 2026-09-18: ZERO beta rising edges, mech090_n_elevation_admitted 0. That axis is BUILD ITEM 2 and is gated on MECH-342, not on SD-061.",
+        "The decay-magnitude threshold is UNSET: MECH-343 says 'exceed threshold and then decay' and fixes no number. The proposal in the design doc is not a pre-registration."
+      ],
+      "unblocks_claims": [
+        "MECH-343",
+        "Q-056"
+      ],
+      "failure_record": null,
+      "implementation_hint": "COMMISSIONED, NOT BUILT. Read evidence/planning/sd061_real_trigger_commission_20260919.md first -- it carries the measurements and the ordering. THE ONE COST-RELEVANT INSTRUCTION: try a TRAINED-ENOUGH AGENT FIRST (a driver change -- SD-070 / zworld_p0_episodes via the _train_all_on_agent family), because the stall may be competence rather than blockage and that would dissolve this entry with no substrate work at all. Only if that fails, try a SOLVABLE blocked path (the current scheduled_action_block cancels moves on a schedule with no way through, so stall never ends); goal re-targeting is a distant third. WHY THIS EXISTS: _progress_deficit saturates at 1.0 and stays there, so with declared_axes=('progress',) the asymmetric EMA climbs to 1.0 and holds -- measured duty 0.980 with the peak on the LAST tick, i.e. G9 pole B. The other declarable set ('progress','margin') never fires at all (duty 0.000, G9 pole A). Neither is a usable trigger and MECH-343 requires peak-then-decay. ACCEPTANCE: (1) a demonstrated resume in the agent's own goal_proximity series on >= 2/3 seeds; (2) duty(is_stuck) strictly inside (0.05, 0.80) under declared_axes=('progress',) -- the interval is quoted from MECH-527's G9 precondition, not invented; (3) peak-then-decay on >= 2/3 seeds; (4) the goal-salience negative control still holds (SD-061 criterion 4). FREE RIDER: record mech090_n_elevation_admitted and beta rising edges in the same run -- that is how BUILD ITEM 2's MECH-342 dependency gets measured without opening a MECH-342 work item. Related: GFLAG-0352, and the MECH-343 DV re-scope flag raised 2026-09-19.",
+      "priority": 4,
+      "priority_note": "Below live science: this unblocks Q-056, which is itself parked by user decision 1C. Raise only if Q-056 becomes time-critical.",
+      "autopsy_ref": "evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md",
+      "added_session": "metaworker-science-20260918-sd061-mech343-q056-commission",
+      "last_seen_session": "metaworker-science-20260918-sd061-mech343-q056-commission",
+      "implementation_log": [
+        "2026-09-19: COMMISSIONED by user decision 1C on chip-20260919-q056-axis-choice-and-dv-reach-decision. Not built. Candidate entry only, ready=false, so the IGW routine stages it as its own consented chip."
+      ]
+    },
+    {
       "sd_id": "f_dominance_conversion_ceiling",
       "title": "F-dominance committed-selection variance monopoly (MECH-439): rebalance/bound the primary harm/goal score F so per-candidate diversity converts to committed-action diversity. The shared root behind behavioral_diversity_isolation:GAP-A's general conversion ceiling, arc_062:GAP-B, sd_037 axis-b, dACC c2, and OFC behavioural conversion. [2026-06-20: now ALSO owns the SD-034 closure de-commit (root C) as the COMMIT/RELEASE-DURATION FACE -- reclassified from open/orthogonal by failure_autopsy_V3-EXQ-460h; the selection-face levers do not shorten natural-commit latch occupancy, so a commit-entry-decisiveness lever is added below.]",
       "status": "mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING",
