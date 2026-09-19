@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_065",
+  "entry_id": "2026-09-19_mech_065_stn_conflict_decision_threshold_cavanagh2011",
+  "timestamp_utc": "2026-09-19T07:15:37Z",
+  "claim_ids_tested": ["MECH-065"],
+  "source": {
+    "title": "Subthalamic nucleus stimulation reverses mediofrontal influence over decision threshold",
+    "authors": ["James F. Cavanagh", "Thomas V. Wiecki", "Michael X. Cohen", "Christina M. Figueroa", "Johan Samanta", "Scott J. Sherman", "Michael J. Frank"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2925",
+    "pmid": "21946325",
+    "pmc": "PMC3394226",
+    "volume": "14",
+    "issue": "11",
+    "pages": "1462-1467"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the closest empirical analogue in the literature to MECH-065's core assertion, and it is causal rather than correlational. Trial-to-trial mediofrontal theta (4-8 Hz) scaled with the drift-diffusion decision THRESHOLD as a function of conflict -- a pre-commitment parameter estimated independently of the eventual choice -- and deep brain stimulation of the STN reversed that relationship, producing impulsive choice. Intracranial STN recordings showed increased 2.5-5 Hz activity on the same high-conflict decisions. That is exactly MECH-065's shape: a conflict signal raising the commitment threshold BEFORE execution lock-in, with a lesion/stimulation manipulation demonstrating the link is causal and not a downstream behavioural correlate. Deductions: the conflict here is value/response conflict, not reality-coherence or provenance conflict, and the threshold is a model-fitted latent rather than a directly-read channel -- both of which are the mapping risks MECH-065's own non-degeneracy precondition names.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a conflict-like signal is present but the pathway that converts it into threshold elevation is disabled (the STN-DBS condition), the agent does not merely lose the threshold increase -- it becomes actively IMPULSIVE, committing faster than baseline. A REE implementation that computes RC_conflict but leaves the lock-in-pressure coupling unwired may therefore be worse than one that never computed it.",
+    "The decision-threshold effect is recovered only by fitting a drift-diffusion model to the choice/RT distribution. A REE run that reads commitment threshold off final behaviour alone cannot distinguish a threshold shift from a drift-rate shift, and the two predict overlapping behavioural signatures."
+  ],
+  "tags": ["mech_065", "decision_threshold", "conflict", "subthalamic_nucleus", "hold_your_horses", "drift_diffusion", "mediofrontal_theta", "commitment", "pre_commit"],
+  "mapping": {
+    "source_claim_statement": "Mediofrontal cortex signals decision conflict via low-frequency (theta) activity and communicates this to the subthalamic nucleus, which raises the evidence-accumulation threshold and thereby delays commitment; disrupting the STN with deep brain stimulation reverses this mediofrontal-threshold coupling and yields impulsive choice.",
+    "ree_translation": "MECH-065 asserts that an RC_conflict signal dampens DA_A/DA_M lock-in pressure and raises the effective commitment threshold before execution lock-in. Cavanagh et al. demonstrate precisely this control topology in humans for a different conflict content: a cortical conflict signal modulates a subcortical brake that acts on the threshold parameter, not on the evidence itself, and it does so pre-commitment. For REE this licenses the architectural shape of MECH-065 -- a conflict lane that writes to the threshold rather than to the value estimate -- and supplies the measurement design the claim's own precondition demands: estimate the threshold as a separable latent parameter (DDM boundary) across a manipulation, and include a knock-out arm in which the conflict-to-threshold coupling is disabled, since the knock-out is what converts a correlation into a mechanism.",
+    "mapping_caveat": "The conflict manipulated here is response/value conflict between similarly-valued reinforcement options -- NOT reality-coherence, provenance, or authority-mismatch conflict. Cavanagh et al. therefore support the existence of a conflict-to-threshold control pathway in general; they say nothing about whether reality-coherence conflict constitutes a SEPARATE lane from value conflict, which is the specific and still-untested part of MECH-065. The Parkinson's DBS population also carries dopaminergic pathology and surgical selection effects, so the reversal is evidence about that circuit in a patient group, not about healthy baseline parameters. Finally, the decision threshold is an inferred DDM parameter, not an independently-readable channel -- REE has the option of instrumenting its threshold directly, which is a stronger design than the one this paper could run.",
+    "source_context": "Human, within-subject: EEG during a probabilistic reinforcement-learning decision task in Parkinson's disease patients on and off STN deep brain stimulation, plus intracranial recordings from the STN area; hierarchical Bayesian drift-diffusion modelling of choice and reaction time."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Nature Neuroscience, multimodal (scalp EEG + intracranial + causal DBS manipulation), widely replicated and now a canonical result. Source quality is high. Mapping fidelity is held at 0.70 because the CONTENT of the conflict is wrong for MECH-065 even though the CONTROL TOPOLOGY is right -- this paper evidences the mechanism-shape, not the reality-coherence lane specifically. Transfer risk is moderate: Parkinson's DBS patients, and a latent model parameter rather than a read channel."
+  }
+}

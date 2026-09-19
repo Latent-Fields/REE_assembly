@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_065",
+  "entry_id": "2026-09-19_mech_065_dynamic_threshold_stn_presma_frank2015",
+  "timestamp_utc": "2026-09-19T07:15:37Z",
+  "claim_ids_tested": ["MECH-065"],
+  "source": {
+    "title": "fMRI and EEG predictors of dynamic decision parameters during human reinforcement learning",
+    "authors": ["Michael J. Frank", "Chris Gagne", "Erika Nyhus", "Sean Masters", "Thomas V. Wiecki", "James F. Cavanagh", "David Badre"],
+    "year": 2015,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2036-14.2015",
+    "pmid": "25589744",
+    "pmc": "PMC4293405",
+    "volume": "35",
+    "issue": "2",
+    "pages": "485-494"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Directly evidences MECH-065's non-degeneracy precondition (b): that a commitment threshold can be measured as a live, trial-varying, pre-commit quantity attributable to an identified upstream signal, rather than inferred post hoc from behaviour. Simultaneous fMRI and EEG in healthy adults showed the drift-diffusion decision threshold is NOT fixed across trials but co-varies with STN BOLD and is further modulated by trial-by-trial decision conflict and dorsomedial frontal activity (pre-SMA BOLD, mediofrontal theta). This extends Cavanagh et al. (2011) from a clinical DBS population to healthy subjects and to a trial-resolved measurement. It remains correlational -- no causal manipulation -- and the conflict is again value conflict rather than reality-coherence conflict, which is why confidence sits below the Cavanagh entry despite the cleaner population.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Threshold modulation was observed specifically when choices differed SUBTLY in reward value. A manipulation that makes the conflicting alternatives grossly unequal may produce no measurable threshold change at all -- so a REE arm that sets an authority/provenance mismatch too coarsely risks a null that reflects manipulation strength rather than absence of the mechanism.",
+    "The threshold is identified only jointly with drift rate inside a fitted DDM. If a REE run reports a single scalar 'commitment threshold' without an accompanying drift-rate estimate, a genuine drift effect can masquerade as a threshold effect and satisfy the confirming signature spuriously."
+  ],
+  "tags": ["mech_065", "decision_threshold", "subthalamic_nucleus", "pre_sma", "drift_diffusion", "trial_by_trial", "conflict", "commitment", "pre_commit", "simultaneous_fmri_eeg"],
+  "mapping": {
+    "source_claim_statement": "The decision threshold in reward-based choice varies trial by trial rather than being fixed, and that variation is predicted by subthalamic nucleus activity, further modulated by trial-wise decision conflict and dorsomedial frontal cortex activity (pre-SMA BOLD, mediofrontal EEG theta) -- consistent with a pre-SMA-to-STN pathway that adjusts the threshold upward when options differ subtly in value.",
+    "ree_translation": "MECH-065's non-degeneracy precondition insists that commitment threshold and lock-in pressure must be 'separately measurable at the pre-commit stage, so a shift in them can be attributed to RC_conflict specifically rather than read off final behavioural outcome'. Frank et al. demonstrate that this measurement is achievable in a real system: the threshold is recovered as a trial-varying latent, and its variation is attributed to a specific identified upstream source (STN, modulated by pre-SMA and conflict). For REE this is the measurement template -- a MECH-065 experiment should log the threshold per decision, regress it against the RC_conflict channel trial-by-trial, and report the drift-rate estimate alongside it so a threshold effect cannot be confused with an accumulation-rate effect.",
+    "mapping_caveat": "Correlational throughout -- simultaneous fMRI/EEG with model-based regressors, no lesion, stimulation, or pharmacological manipulation, so the pre-SMA-to-STN-to-threshold direction is inferred from the model plus prior anatomy rather than demonstrated causally in this study. The conflict remains subtle-value conflict in a reinforcement-learning task; nothing here involves provenance, authority, or reality-coherence mismatch, so the mapping to MECH-065's specific lane is by analogy to control shape only. The threshold is also not read directly from neural activity but estimated from choice/RT via a DDM with neural regressors, meaning the 'independently readable channel' standard MECH-065 sets for RC_conflict is met on the signal side (STN BOLD, theta) but only approximately on the threshold side.",
+    "source_context": "Healthy human adults, simultaneous fMRI and EEG during a probabilistic reinforcement-learning task; hierarchical drift-diffusion modelling with trial-wise neural regressors."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.32,
+    "notes": "J Neurosci, simultaneous multimodal imaging in healthy subjects, model-based analysis done carefully. The distinctive contribution for MECH-065 is methodological rather than mechanistic -- it shows the pre-commit threshold is measurable trial-by-trial and attributable, which is the precondition the claim itself flags as unmet. Mapping fidelity held below the Cavanagh entry on conflict-content grounds and because this study is correlational."
+  }
+}

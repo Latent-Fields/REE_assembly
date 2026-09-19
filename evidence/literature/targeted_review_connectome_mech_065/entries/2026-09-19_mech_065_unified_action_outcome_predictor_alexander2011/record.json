@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_065",
+  "entry_id": "2026-09-19_mech_065_unified_action_outcome_predictor_alexander2011",
+  "timestamp_utc": "2026-09-19T07:15:37Z",
+  "claim_ids_tested": ["MECH-065"],
+  "source": {
+    "title": "Medial prefrontal cortex as an action-outcome predictor",
+    "authors": ["William H. Alexander", "Joshua W. Brown"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2921",
+    "pmid": "21926982",
+    "pmc": "PMC3183374",
+    "volume": "14",
+    "issue": "10",
+    "pages": "1338-1344"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.69,
+  "confidence_rationale": "This is the entry that argues against MECH-065's lane separability, and it deserves to be in the pull for that reason. Alexander and Brown's Prediction of Response Outcome model shows that a single learning rule -- learn the likely outcomes of an action, then evaluate actual against predicted -- simulates and reinterprets an unprecedented range of medial prefrontal effects that had previously been attributed to separate constructs, conflict monitoring among them. If conflict is not itself a primitive signal but a re-description of outcome-prediction discrepancy, then MECH-065's premise that reality-coherence conflict is a DISTINCT control-plane lane is under direct pressure: the parsimonious reading is one unified prediction-error machinery that RC-like effects fall out of. Confidence 0.69 rather than higher because the paper is a modelling argument for parsimony, not a disproof -- a model that accounts for effects is not thereby the mechanism producing them -- and because subsequent work (including Jahn et al. 2014, 2016 from the same group) found dissociable regions within the same cortex, which cuts the other way.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A REE experiment that finds RC_conflict correlating with a commitment-threshold shift has NOT thereby shown a distinct lane -- the same correlation is predicted by a single action-outcome prediction-error signal responding to the provenance manipulation. Without an arm that dissociates RC_conflict from generic prediction error at matched surprise, the confirming result is uninformative.",
+    "Several signals previously believed to be separate constructs in medial prefrontal cortex (conflict, error likelihood, volatility, error detection) were reproduced by one learning rule. A REE control plane that instantiates four named lanes may be describing one underlying computation four times, and would exhibit correlated lanes rather than independent ones."
+  ],
+  "tags": ["mech_065", "conflict_monitoring", "prediction_error", "medial_prefrontal", "pro_model", "parsimony", "lane_separability", "falsifier"],
+  "mapping": {
+    "source_claim_statement": "A simple model based on standard learning rules, in which medial prefrontal cortex learns to predict the likely outcomes of actions and signals discrepancies between predicted and actual outcomes, simulates and unifies an unprecedented range of medial prefrontal findings -- errors, conflict, error likelihood, volatility, reward -- that competing theories had treated as separate constructs, reinterpreting cognitive control as a consequence of evaluating probable and actual action outcomes.",
+    "ree_translation": "MECH-065 states its own falsifier as the claim being refuted if the manipulation's effect 'is better explained by existing signals (S1/S3) alone' -- that is, if reality-coherence conflict is not a distinct lane. Alexander and Brown supply the strongest general form of that alternative hypothesis: conflict was never a primitive to begin with, and a single action-outcome prediction-discrepancy signal reproduces the phenomena attributed to it. Read against REE, this says a provenance/authority mismatch would generate prediction error like any other violated expectation, and any downstream threshold effect would follow from that, with no separate RC lane needed. The operational consequence is a design requirement, not a demotion of the claim: a MECH-065 experiment must include an arm that holds generic prediction error / surprise MATCHED while varying provenance mismatch specifically. Absent that arm, a confirming result cannot discriminate MECH-065 from the unified account and should not be scored as support.",
+    "mapping_caveat": "This is an argument from modelling parsimony, and parsimony is not proof -- a model that reproduces a set of effects is not thereby the mechanism generating them, and the PRO model's scope claim was contested when it appeared. The same group's later empirical work (Jahn et al., NeuroImage 2014; J Neurosci 2016) found prediction and evaluation signals in DISTINCT regions of anterior cingulate, and cognitive effects dissociable from pain within medial prefrontal cortex, which argues for more internal structure than a single undifferentiated signal and therefore partly undercuts the anti-lane reading taken here. The paper is also about medial prefrontal cortex in humans and monkeys; whether a biological argument for signal parsimony should constrain an engineered control plane, where separating lanes may be justified on legibility or safety grounds independent of biological factorisation, is a question this entry cannot settle.",
+    "source_context": "Computational modelling paper: simulations of a response-outcome prediction learning model compared against a broad prior literature of human neuroimaging and monkey single-unit findings in medial prefrontal / anterior cingulate cortex; no new empirical data collected."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.40,
+    "notes": "Nature Neuroscience and a genuinely influential reframing, but a modelling-and-reinterpretation paper rather than a decisive experiment, and one whose strong parsimony claim has been qualified by later work from its own authors. Mapping fidelity 0.66 -- the alternative hypothesis it supplies maps cleanly onto MECH-065's stated falsifier, which is what makes the entry useful, but the neuroscience-to-engineered-control-plane transfer is genuinely uncertain in both directions. Scored as weakens on the lane-separability premise specifically, not on the threshold mechanism, which this paper does not address."
+  }
+}

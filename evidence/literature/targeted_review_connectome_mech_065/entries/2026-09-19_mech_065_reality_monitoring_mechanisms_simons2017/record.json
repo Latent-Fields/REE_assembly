@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_065",
+  "entry_id": "2026-09-19_mech_065_reality_monitoring_mechanisms_simons2017",
+  "timestamp_utc": "2026-09-19T07:15:37Z",
+  "claim_ids_tested": ["MECH-065"],
+  "source": {
+    "title": "Brain Mechanisms of Reality Monitoring",
+    "authors": ["Jon S. Simons", "Jane R. Garrison", "Marcia K. Johnson"],
+    "year": 2017,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.03.012",
+    "pmid": "28462815",
+    "pmc": null,
+    "volume": "21",
+    "issue": "6",
+    "pages": "462-473"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Supports the part of MECH-065 that Cavanagh and Frank cannot reach -- that discriminating internally-generated from externally-originating information is a functionally distinguishable operation with its own neurocognitive signature, not merely a special case of generic conflict. Simons, Garrison and Johnson synthesise evidence that reality monitoring has identifiable frontal (notably anterior medial prefrontal, with individual anatomical variation in the paracingulate sulcus) correlates, that it fails in gradable degrees from ordinary real-versus-imagined confusions up to hallucinations, and that it is a rehabilitation target. That gradability is a genuine, independently-derived analogue of the graded RC_conflict channel MECH-065 needs. Held at 0.71 rather than higher because it is a narrative review, not new data, and because reality monitoring as studied is a retrospective SOURCE-MEMORY judgement, whereas MECH-065 needs a prospective, pre-commit signal -- a real temporal mismatch in the mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reality-monitoring competence varies substantially across neurotypical individuals and tracks anatomical variation (presence or absence of the paracingulate sulcus). A REE measurement that treats RC_conflict sensitivity as a fixed architectural constant rather than a parameter with a distribution may misattribute between-arm variance to the manipulation.",
+    "Reality-monitoring errors are continuous with normal cognition -- a nonzero rate of real-versus-imagined confusion is baseline, not pathology. A REE criterion that treats any authority-misattribution event as a failure will report failure on a correctly-functioning system."
+  ],
+  "tags": ["mech_065", "reality_monitoring", "source_monitoring", "anterior_prefrontal", "paracingulate_sulcus", "hallucinations", "internal_external_boundary", "lane_separability"],
+  "mapping": {
+    "source_claim_statement": "Reality monitoring -- discriminating internally generated information (thoughts, imaginings, intentions) from information that originated externally -- is a distinguishable set of cognitive operations with identifiable neural correlates in anterior medial prefrontal cortex and associated networks; it fails along a graded continuum from everyday real-versus-imagined confusions to clinically significant hallucinations, and individual anatomical variation (paracingulate sulcus morphology) predicts competence.",
+    "ree_translation": "MECH-065 claims a DISTINCT reality-coherence conflict lane, and the falsifying signature it sets is that any observed effect turns out to be 'better explained by existing signals (S1/S3) alone'. This review is the best available external argument that internal-versus-external provenance discrimination is not simply a relabelling of generic conflict or surprise: it has its own substrate, its own developmental and individual-difference profile, and its own selective breakdown pattern. It also supplies the shape the RC_conflict channel should take -- graded and continuous, with a nonzero baseline error rate, rather than a binary spoofed/verified flag. In REE terms, this argues for computing RC_conflict as a continuous provenance-attribution confidence, and for setting the confirming criterion on a SHIFT in that quantity, never on the absence of misattribution events.",
+    "mapping_caveat": "The temporal mismatch is the honest weakness. Reality monitoring as operationalised in this literature is largely a RETROSPECTIVE source-memory judgement -- was this remembered item seen or imagined? -- whereas MECH-065 requires a PROSPECTIVE, pre-commit signal that modulates a threshold before action. Whether the same machinery serves online provenance evaluation of an incoming instruction is an assumption, not a finding. This is also a narrative review rather than new data or a quantitative meta-analysis, so the strength of each cited effect has to be taken on the authors' summary. Finally, the review is about human episodic source attribution; REE's provenance/temporal/identity/policy carve of RC_conflict is a four-way engineering decomposition with no counterpart in this literature.",
+    "source_context": "Narrative review in Trends in Cognitive Sciences, synthesising human neuroimaging, lesion, individual-difference and clinical (schizophrenia, hallucination) studies of source and reality monitoring."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.38,
+    "notes": "Authoritative review by the group that did much of the underlying work, in a strong venue, but a review nonetheless -- no new data and no quantitative pooling. Mapping fidelity is limited chiefly by the retrospective-versus-prospective mismatch, which is a real gap and not a formality. Transfer risk moderate: human episodic memory paradigms to an agent's online instruction-provenance evaluation is a substantial leap."
+  }
+}

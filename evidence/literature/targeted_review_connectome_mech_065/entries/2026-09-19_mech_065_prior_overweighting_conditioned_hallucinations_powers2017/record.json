@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_065",
+  "entry_id": "2026-09-19_mech_065_prior_overweighting_conditioned_hallucinations_powers2017",
+  "timestamp_utc": "2026-09-19T07:15:37Z",
+  "claim_ids_tested": ["MECH-065"],
+  "source": {
+    "title": "Pavlovian conditioning-induced hallucinations result from overweighting of perceptual priors",
+    "authors": ["Albert R. Powers", "Christoph Mathys", "Philip R. Corlett"],
+    "year": 2017,
+    "venue": "Science",
+    "doi": "10.1126/science.aan3458",
+    "pmid": "28798131",
+    "pmc": "PMC5802347",
+    "volume": "357",
+    "issue": "6351",
+    "pages": "596-600"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the empirical backing MECH-065's ratio-based reframing has been missing. The claim's notes rest the ratio account on Sterzer et al. (2016), which is a theoretical review; Powers, Mathys and Corlett provide experimental and computational evidence for the same quantity. Using a Pavlovian task that induces conditioned hallucinations across four groups orthogonal in voice-hearing and treatment-seeking status, they fitted a hierarchical Gaussian filter that estimates prior weighting and sensory likelihood weighting as SEPARATE parameters, and showed the susceptibility difference localised to overweighting of priors relative to sensory evidence -- with a brain circuit mediating the effect. That the two precisions are separately identifiable is exactly what MECH-065's dissociation arm needs. Held at 0.74 because perceptual inference is not decision-commitment: the paper measures what the system PERCEIVES under a precision imbalance, not what threshold it requires before ACTING, and MECH-065's assertion is about the latter.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The clinically meaningful axis in this study was not simply 'more prior weighting'. Voice-hearing and treatment-seeking dissociated orthogonally, with different computational signatures -- so a REE arm that varies precision ratio along a single axis and expects a single monotone behavioural readout may find two different failure modes superimposed and read them as noise.",
+    "Prior overweighting is demonstrated for PERCEPTUAL inference under sensory ambiguity. If REE's authority signal arrives as an unambiguous discrete token rather than as noisy evidence, there is no likelihood precision to form a ratio with, and the ratio account degenerates to the magnitude account MECH-065's falsifier warns about."
+  ],
+  "tags": ["mech_065", "precision_ratio", "priors", "predictive_processing", "conditioned_hallucinations", "hierarchical_gaussian_filter", "computational_psychiatry", "authority_spoofing"],
+  "mapping": {
+    "source_claim_statement": "Conditioned hallucinations -- perceiving a tone that is not present because it has been Pavlovian-paired with a visual cue -- are induced more readily in people who hear voices, and computational modelling of perception localises the difference to overweighting of perceptual PRIORS relative to incoming sensory evidence, with an identified mediating brain circuit; voice-hearing and treatment-seeking status contributed dissociable computational signatures.",
+    "ree_translation": "MECH-065 now asserts, on Sterzer et al.'s theoretical argument, that the reality-coherence threshold should be implemented as ratio(E1_precision, authority_signal_precision) rather than as an absolute authority-signal magnitude. Powers et al. give that assertion an experimental footing and, more usefully, a fitting procedure: the hierarchical Gaussian filter estimates prior precision and likelihood precision as separately identifiable parameters, which is precisely the separability MECH-065's dissociation arm requires -- hold authority-signal strength fixed and vary internal precision, hold internal precision fixed and vary authority strength, and check that equal ratio movements produce equal threshold shifts. The paper also demonstrates that a precision imbalance produces a characteristic failure -- the system perceives what it expects rather than what is there -- which is the perceptual form of REE's authority-spoofing concern.",
+    "mapping_caveat": "The decisive gap is that this is PERCEPTUAL inference, not decision COMMITMENT. Powers et al. measure what the system reports perceiving under a precision imbalance; MECH-065 asserts something about the threshold of evidence required before the system LOCKS IN an action. Those are different stages, and a precision imbalance could in principle distort perception while leaving the commitment threshold untouched -- nothing here rules that out. Second, prior overweighting here operates over a learned Pavlovian association in a sensory task; REE's authority/provenance channel is not obviously a perceptual prior in the same sense. Third, the ratio account only has content when BOTH terms are genuinely uncertain: if REE's authority signal is delivered as a discrete unambiguous token, there is no likelihood precision to divide by and the ratio silently collapses to magnitude.",
+    "source_context": "Human, four groups crossed on voice-hearing and treatment-seeking status; Pavlovian conditioned-hallucination paradigm with functional neuroimaging and hierarchical Gaussian filter modelling of perceptual inference."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Science, an elegant orthogonal four-group design that separates the symptom from the help-seeking, computational modelling done by the people who built the HGF, and an imaging circuit to go with it -- source quality is high and the result has held up. Mapping fidelity is the constraint: perceptual inference is one stage upstream of the commitment threshold MECH-065 is actually about, and I have not inflated the number to disguise that. Transfer risk 0.42 for the same reason plus the clinical sample."
+  }
+}
