@@ -2556,3 +2556,8 @@ while preserving historical question IDs as legacy entries.
 - Updated claim registry/index:
   - `docs/claims/claims.yaml` (`Q-008`, `Q-009`, `Q-011` status set to `legacy`)
   - `docs/claims/claim_index.md` legacy summaries updated for `Q-008`, `Q-009`, `Q-011`
+
+
+## 2026-09-19: V3 completion research reference
+
+Saved the dated [completion research map](notes/2026-09-19_REE_v3_completion_research_map.md) and [edited decision memo](notes/2026-09-19_REE_v3_completion_decision_memo.md), with companion copies in ree-v3/docs/reference/. Preserves the full literature synthesis alongside the later concise memo. Classification: implementation note; no registered claim, queue, or evidence status changes. Public information architecture review: source references only; existing orientation, public counts, navigation, visualizations and reviewed evidence export are unaffected, so no generated refresh is required.
