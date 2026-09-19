@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "ARC-143"
+  ],
+  "source": {
+    "title": "Development sculpts dense neural circuits to enhance memory capacity",
+    "authors": [
+      "Tobias Ulmer",
+      "Flavio Donato"
+    ],
+    "year": 2026,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2026.07.008",
+    "pmid": "42608247",
+    "volume": "49",
+    "issue": "9",
+    "pages": "706-708"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.25,
+  "confidence_rationale": "Deliberately low. The citation verifies exactly and the content matches ARC-143's developmental-envelope thesis, but this is a three-page commentary on Vargas-Barroso et al. with no new data. ARC-143's note already required it to be recorded as such, and this entry records it as such: motivation, not independent support.",
+  "failure_signatures": [
+    "This is a secondary commentary on Vargas-Barroso et al., whose primary result is ALREADY the verified anchor of MECH-362. Counting it as a second independent source for the same finding would double-count one lineage -- which is precisely the error INV-107 exists to forbid.",
+    "The commentary concerns hippocampal CA3 recurrent connectivity only; ARC-143 generalises the developmental-envelope discipline to z_world, the E1/E2 interfaces, replay pathways, goal influence and E3 selection, none of which this source speaks to.",
+    "It describes a developmental trajectory that expands memory capacity; it does NOT establish that a larger developmental envelope is generally better, which ARC-143's own boundary statement is careful to disclaim."
+  ],
+  "tags": [
+    "arc-143",
+    "developmental_capacity_envelope",
+    "pruning",
+    "commentary",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "A commentary on Vargas-Barroso et al.: the hippocampal CA3 network develops from a dense network in which individual synapses exert strong influence into a sparse, structured architecture requiring convergent input for neuronal activation, passing through distinct computational regimes that collectively expand memory capacity.",
+    "ree_translation": "Secondary support for ARC-143's premise that a developing system's capacity envelope legitimately differs from the mature one, and that the trajectory between them is itself a design variable. It adds interpretive framing ('distinct computational regimes') to a result REE already holds.",
+    "mapping_caveat": "A commentary, not an independent measurement -- ARC-143's note required this to be verified before the source is cited as support rather than motivation, and the verification finding is that it should NOT be cited as independent support. The primary anchor (Vargas-Barroso et al.) is already verified at MECH-362, and this piece is about that same result. Per feedback_lit_exp_decoupled it raises no claim's confidence.",
+    "source_context": "Three-page Trends in Neurosciences commentary/spotlight on a primary paper; no new data."
+  },
+  "confidence_components": {
+    "source_quality": 0.35,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.6,
+    "notes": "Source quality is low BY KIND, not by defect -- a good commentary in a good journal is still not an independent measurement. Transfer risk is high: rodent CA3 development to an artificial capacity-schedule design that does not exist in ree_core."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_143",
+  "entry_id": "2026-09-19_arc_143_development_sculpts_dense_circuits_commentary_ulmer2026",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

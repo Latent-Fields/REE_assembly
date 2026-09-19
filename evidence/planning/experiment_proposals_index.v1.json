@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T01:12:14.470594Z",
+  "generated_at_utc": "2026-09-19T04:39:25.982631Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -1570,6 +1570,27 @@
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1413",
+      "claim_id": "MECH-055",
+      "dispatch_mode": "discriminative_pair",
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-055 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0802",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_055",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
       ]
     },
     {
@@ -3191,6 +3212,25 @@
       ]
     },
     {
+      "backlog_id": "EVB-1769",
+      "claim_id": "MECH-561",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-561 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0209",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_561",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
       "backlog_id": "EVB-0404",
       "claim_id": "SD-042",
       "dispatch_mode": "targeted_probe",
@@ -3370,6 +3410,25 @@
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_291",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1764",
+      "claim_id": "MECH-556",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for MECH-556 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0203",
+      "proposal_type": "experimental",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_556",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -3789,41 +3848,11 @@
       ]
     },
     {
-      "backlog_id": "EVB-1748",
-      "claim_id": "ARC-143",
-      "objective": "Improve literature grounding and confidence for ARC-143.",
-      "priority": "medium",
-      "proposal_id": "LIT-0135",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1749",
       "claim_id": "ARC-144",
       "objective": "Improve literature grounding and confidence for ARC-144.",
       "priority": "medium",
       "proposal_id": "LIT-0136",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1750",
-      "claim_id": "ARC-145",
-      "objective": "Improve literature grounding and confidence for ARC-145.",
-      "priority": "medium",
-      "proposal_id": "LIT-0139",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -5786,21 +5815,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1753",
-      "claim_id": "INV-107",
-      "objective": "Improve literature grounding and confidence for INV-107.",
-      "priority": "medium",
-      "proposal_id": "LIT-0189",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1754",
       "claim_id": "INV-108",
       "objective": "Improve literature grounding and confidence for INV-108.",
@@ -5998,38 +6012,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1413",
-      "claim_id": "MECH-055",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-055 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0802",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_055",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1413",
-      "claim_id": "MECH-055",
-      "objective": "Improve literature grounding and confidence for MECH-055.",
-      "priority": "medium",
-      "proposal_id": "LIT-0803",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1414",
       "claim_id": "MECH-064",
       "dispatch_mode": "targeted_probe",
@@ -6044,12 +6026,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "gated_at_utc": "2026-09-19T03:38:12Z",
-      "gated_by_session": "igw-240-proposal-for-mech-064",
-      "gating_reason": "MECH-064 (typed authority / control-store separation blocks direct exteroceptive writes into policy and identity stores) has NO substrate in V3 for any clause of its allowed/forbidden path table, so a claim_probe_mech_064 run would be vacuous. Measured by session igw-240-proposal-for-mech-064 (2026-09-19) against ree-v3 HEAD. (1) NO TYPED EXTERNAL CHANNEL. The agent's entire external input surface is REEAgent.act(observation: torch.Tensor) / act_with_split_obs(obs_body, obs_world) (ree_core/agent.py:10706, 10746), fed only by ree_core/environment/causal_grid_world.py. That is exactly ONE external channel; it is an untyped float tensor carrying no channel metadata, no authority label and no payload-type tag. The claim's central mechanism -- 'authority labels come from channel metadata, not text content' and 'hard deny at runtime API boundary' -- has no surface to attach to. There is no INS (instruction/request) channel and no tool-output or language channel at all, consistent with the language cluster being substrate-blocked (MECH-011 / ARC-009 / ARC-010). (2) NO EXTERNALLY ADDRESSABLE POL/ID/CAPS STORE. The nearest analogs are internal-only and written through internal gated paths: rule_state / state_code in the lateral-PFC and OFC analogs (write_gate('sd_033a') / write_gate('sd_033b')); the MECH-273 Phase E self-model posterior (ree_core/sleep/self_model_aggregator.py), whose master flag use_mech273_self_model defaults False (ree_core/utils/config.py:6911); and capability crystallization (crystallize_at_phase3, default False), which is ARMED by experiment config and fired by a phase-transition callback, never by an observation. (3) THEREFORE EVERY DENY HOLDS BY CONSTRUCTION, NOT BY ENFORCEMENT. No experiment can ATTEMPT any forbidden row (EXTERNAL -> POL/ID/CAPS, TOOL_OUTPUT -> INS, unverified privileged commit), because the path does not exist to be blocked. A PASS would show only that the substrate has no typed-authority layer to violate -- not that typed-authority separation blocks the writes. That is the vacuous-result pattern, not a verdict. (4) THE ONE V3-EXPRESSIBLE CLAUSE BELONGS IN A CONTRACT TEST, NOT THE QUEUE. 'E1/E2 -> POL/ID/CAPS: no' is a deterministic structural invariant with no seed- or arm-differentiated signal, and ree-v3 already asserts write-path separation that way: tests/contracts/test_sleep_phase_e_self_model_aggregator.py, tests/contracts/test_mech_319_simulation_mode_rule_gate.py, tests/contracts/test_mech203_harm_salience_writepath.py. A queued probe would duplicate those while emitting a non-contributory manifest. (5) NO LIVE GATING VARIANCE TO MEASURE AGAINST. The SD-033 write_gate lineage a runtime separation probe would have to instrument is itself inert at production defaults (mode-governance lineage SD-032a / MECH-266 / MECH-261). SCOPE OF THIS BLOCK: experimental lane only. The literature twin LIT-0805 on the same backlog id (EVB-1414) is deliberately NOT blocked and stays 'proposed' -- why_now carries missing_literature_evidence, and the prompt-injection / typed-authority separation literature is reviewable on the current substrate via /lit-pull.",
-      "release_condition": "Runnable only once V3/V4 exposes a TYPED EXTERNAL INPUT API, which requires BOTH: (a) more than one external channel, each carrying a channel-level authority / payload-type tag (OBS/INS vs POL/ID/CAPS) set from channel METADATA and not derivable from payload content -- an instruction-bearing (INS) channel is the minimum, which makes this CO-BLOCKED on the language cluster (MECH-011 / ARC-009 / ARC-010); AND (b) at least one policy, identity or capability store addressable through that API, so a forbidden write can actually be ATTEMPTED and observed to be DENIED rather than merely being unreachable. Until both hold, route the V3-expressible fragment ('E1/E2 must not write POL/ID/CAPS outside the gated paths') to a ree-v3 contract test alongside the three named above, and pursue grounding through the literature lane LIT-0805. Re-offer EXP-0804 only after (a) and (b) are both satisfied; re-verify at that point that the deny paths are enforced rather than absent before queuing.",
-      "blocked_note": "No typed external channel and no externally addressable POL/ID/CAPS store in V3 -- every MECH-064 deny path holds by construction, so a probe would be vacuous."
+      ]
     },
     {
       "backlog_id": "EVB-1414",
@@ -10599,73 +10576,11 @@
       ]
     },
     {
-      "backlog_id": "EVB-1761",
-      "claim_id": "MECH-553",
-      "objective": "Improve literature grounding and confidence for MECH-553.",
-      "priority": "medium",
-      "proposal_id": "LIT-0200",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1762",
       "claim_id": "MECH-554",
       "objective": "Improve literature grounding and confidence for MECH-554.",
       "priority": "medium",
       "proposal_id": "LIT-0201",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1763",
-      "claim_id": "MECH-555",
-      "objective": "Improve literature grounding and confidence for MECH-555.",
-      "priority": "medium",
-      "proposal_id": "LIT-0202",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1764",
-      "claim_id": "MECH-556",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-556 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0203",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_556",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1764",
-      "claim_id": "MECH-556",
-      "objective": "Improve literature grounding and confidence for MECH-556.",
-      "priority": "medium",
-      "proposal_id": "LIT-0204",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -10691,88 +10606,11 @@
       ]
     },
     {
-      "backlog_id": "EVB-1766",
-      "claim_id": "MECH-558",
-      "objective": "Improve literature grounding and confidence for MECH-558.",
-      "priority": "medium",
-      "proposal_id": "LIT-0206",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1767",
       "claim_id": "MECH-559",
       "objective": "Improve literature grounding and confidence for MECH-559.",
       "priority": "medium",
       "proposal_id": "LIT-0207",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1768",
-      "claim_id": "MECH-560",
-      "objective": "Improve literature grounding and confidence for MECH-560.",
-      "priority": "medium",
-      "proposal_id": "LIT-0208",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1769",
-      "claim_id": "MECH-561",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for MECH-561 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0209",
-      "proposal_type": "experimental",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_561",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1769",
-      "claim_id": "MECH-561",
-      "objective": "Improve literature grounding and confidence for MECH-561.",
-      "priority": "medium",
-      "proposal_id": "LIT-0211",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1770",
-      "claim_id": "MECH-562",
-      "objective": "Improve literature grounding and confidence for MECH-562.",
-      "priority": "medium",
-      "proposal_id": "LIT-0215",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -12376,19 +12214,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-0662",
-      "claim_id": "MECH-482",
-      "objective": "Improve literature grounding and confidence for MECH-482.",
-      "priority": "medium",
-      "proposal_id": "LIT-1250",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_literature_evidence"
-      ]
-    },
-    {
       "backlog_id": "EVB-1363",
       "claim_id": "INV-086",
       "objective": "Improve literature grounding and confidence for INV-086.",
@@ -12398,7 +12223,19 @@
       "status": "proposed",
       "target_repo": "REE_assembly",
       "why_now": [
-        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0662",
+      "claim_id": "MECH-482",
+      "objective": "Improve literature grounding and confidence for MECH-482.",
+      "priority": "medium",
+      "proposal_id": "LIT-1250",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
         "missing_literature_evidence"
       ]
     },
@@ -17819,9 +17656,9 @@
       ]
     }
   ],
-  "n_executed": 248,
-  "n_proposed_exp": 173,
-  "n_proposed_lit": 471,
+  "n_executed": 249,
+  "n_proposed_exp": 171,
+  "n_proposed_lit": 460,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }

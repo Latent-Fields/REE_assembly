@@ -1,0 +1,50 @@
+{
+  "claim_ids_tested": [
+    "MECH-555"
+  ],
+  "source": {
+    "title": "Retinotopic coding organizes the interaction between internally and externally oriented brain networks",
+    "authors": [
+      "Adam Steel",
+      "Peter A. Angeli",
+      "Caroline E. Robertson"
+    ],
+    "year": 2026,
+    "venue": "eLife (reviewed preprint v2)",
+    "doi": "10.7554/eLife.110234",
+    "pmid": "39386717",
+    "pmc": "PMC11463438"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Citation verified exact, including the 2026-09-08 revision date, and the reported result matches the claim note almost word for word. Held near 0.5 by preprint status (not a version of record), by the small-N densely-sampled design, and because retinotopy is one specific sensory coordinate while MECH-555 is a general claim about relational indexing.",
+  "failure_signatures": [
+    "Coupling organised by shared visual-field preference is correlational resting-state structure; no manipulation permutes the frame while holding content fixed, which is exactly the discriminator MECH-555 requires.",
+    "The interactions are bivalent (negative-amplitude DN voxels anticorrelate with matched dATN voxels, positive-amplitude ones correlate), so 'shared frame implies coupling' is too simple a reading of this result."
+  ],
+  "tags": [
+    "mech-555",
+    "reference_frames",
+    "retinotopy",
+    "default_network",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using densely sampled 7T fMRI with individualised parcellations and voxel-wise population-receptive- field mapping, spontaneous coupling between the Default Network and the dorsal attention network is shaped by the latent visual-field preferences of individual voxels, even though the two networks are uncorrelated at the whole-network level. Retinotopic coding is intrinsic to the DN and persists during elevated top-down drive.",
+    "ree_translation": "An existence proof that two systems which are globally distinct can nonetheless have their interaction organised by a shared indexing coordinate -- the biological motivation for treating reference frame as a separable interface factor alongside content and communication subspace.",
+    "mapping_caveat": "Adopted verbatim from MECH-555's own caution: retinotopy is NOT to be copied into REE, no universal coordinate vocabulary is prescribed, and a shared indexing relation across several consumers must not be read as evidence for one global workspace or one shared object. This is a reviewed preprint, not a version of record, and per feedback_lit_exp_decoupled it raises no claim's confidence.",
+    "source_context": "Human 7T fMRI, resting state plus independent retinotopic mapping; dense sampling of few individuals."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Dense-sampling 7T with individualised network definitions is methodologically strong per subject and weak in population generality. Preprint status is the other discount."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-19_mech_555_retinotopic_frame_mediated_network_coupling_steel2026",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

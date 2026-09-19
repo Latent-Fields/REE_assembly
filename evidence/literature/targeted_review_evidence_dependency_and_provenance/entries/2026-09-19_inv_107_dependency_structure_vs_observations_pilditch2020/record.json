@@ -1,0 +1,53 @@
+{
+  "claim_ids_tested": [
+    "INV-107"
+  ],
+  "source": {
+    "title": "Dependencies in evidential reports: The case for informational advantages",
+    "authors": [
+      "Toby D. Pilditch",
+      "Ulrike Hahn",
+      "Norman Fenton",
+      "David Lagnado"
+    ],
+    "year": 2020,
+    "venue": "Cognition",
+    "doi": "10.1016/j.cognition.2020.104343",
+    "pmid": "32599310",
+    "volume": "204",
+    "pages": "104343"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The load-bearing anchor of this pass and it holds. A formal proof, not an empirical effect, so it does not decay with replication risk; mapping fidelity is high because INV-107's negative-only form was derived directly from this paper's structure/observations distinction. Discounted from higher only because the claim is an architectural requirement for REE and no formal result can establish that.",
+  "failure_signatures": [
+    "A scoring set for any successor experiment built only from redundant-dependence cases makes 'discount everything dependent' the winning strategy and will report a false winner; over-discounting must be scored as failure alongside under-discounting.",
+    "The informational advantage arises specifically when observations across a dependency structure are PARTIAL or CONTRADICTING; an implementation that collapses dependent evidence unconditionally destroys exactly this information.",
+    "The paper's empirical limb shows lay reasoners endorse the assumptions underpinning these structures yet fail to apply them, so human intuition is not a safe oracle for calibrating a dependency-aware combiner."
+  ],
+  "tags": [
+    "inv-107",
+    "evidence_dependency",
+    "provenance",
+    "double_counting",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "Treating dependence between experts, group members or items of evidence as a form of redundancy conflates the STRUCTURE of a dependency network with the OBSERVATIONS across it. By mathematical proof and worked examples, there are cases where a structural dependency yields an INFORMATIONAL ADVANTAGE over independence -- specifically when observations are partial or contradicting. Lay reasoners endorse the underpinning assumptions but fail to appreciate the consequences for probability judgment.",
+    "ree_translation": "This is why INV-107 is binding in its negative form only. 'A hypothesis must not cite its own descendants as independent witnesses' is sound; the natural positive reading -- 'descendants should be collapsed to one vote' -- is provably wrong, because dependency structure carries information that collapsing destroys. Dependency must be REPRESENTED and conditioned on, not discounted.",
+    "mapping_caveat": "A normative/formal result about probability judgment, not a claim about any architecture. It establishes that over-discounting is a real error, which constrains the FORM of INV-107; it says nothing about whether REE needs the invariant or can satisfy it. Per feedback_lit_exp_decoupled it raises no claim's confidence.",
+    "source_context": "Mathematical proof plus worked Bayesian-network examples, with a human-reasoner empirical limb."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Weighted toward mapping_fidelity because INV-107 is an architectural requirement rather than an empirical claim, and this paper's content is what fixes the requirement's form. Transfer risk is genuinely low for the formal limb and higher for the human-reasoner limb, which is not relied on."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_evidence_dependency_and_provenance",
+  "entry_id": "2026-09-19_inv_107_dependency_structure_vs_observations_pilditch2020",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

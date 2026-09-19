@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "MECH-556"
+  ],
+  "source": {
+    "title": "Hippocampal stimulation timed to memory reactivation shapes human sleep oscillatory dynamics and consolidation",
+    "authors": [
+      "Prince Okyere",
+      "Junheng Li",
+      "Tobias Raufeisen",
+      "Ketevan Alania",
+      "Daniella Louise Jones",
+      "Melanie Steiner",
+      "Esra Neufeld",
+      "Niels Kuster",
+      "Nir Grossman",
+      "Derk-Jan Dijk",
+      "Roi Cohen Kadosh",
+      "Ullrich Bartsch",
+      "Valeria Jaramillo",
+      "Ines R. Violante"
+    ],
+    "year": 2026,
+    "venue": "bioRxiv",
+    "doi": "10.64898/2026.09.02.748628",
+    "pmid": null
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "Citation verified exact (title, all authors, 2026-09-07 posting, DOI) and the described result matches MECH-556's note precisely. Held at 0.45 purely by evidential status: an unreviewed single preprint of a first-of-its-kind method, with no replication.",
+  "failure_signatures": [
+    "First-in-human non-invasive deep hippocampal stimulation, single unreplicated preprint; the effect size and the spatial specificity of temporal-interference targeting are exactly what independent replication would be expected to challenge.",
+    "The comparison is concurrent-with-reactivation versus prior-to-reactivation stimulation, which establishes that timing matters but does not isolate WHICH receiver property (plasticity, replay content, evaluation) the timing is gating."
+  ],
+  "tags": [
+    "mech-556",
+    "temporal_gating",
+    "memory_consolidation",
+    "sleep",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "Temporal-interference stimulation of the left hippocampal head during sleep, delivered concurrently with induced memory reactivation rather than before it, reduced associative memory forgetting and enhanced fast spindle amplitude, with the behavioural benefit mediated by a distributed, left-lateralised set of spindle and coupling features.",
+    "ree_translation": "Causal evidence that the functional consequence of engaging an interface depends on WHEN it is engaged relative to the receiver's phase, at matched stimulation -- the biological motivation for treating temporal-gate adequacy as a separable interface factor and for the mistimed-interface false negative.",
+    "mapping_caveat": "Adopted from MECH-556's own note: this is evidence that engagement TIMING changes the consequence of engagement. It is NOT evidence that sleep performs latent translation, nor that any hippocampo-cortical bridge of the kind REE posits exists. Single unreviewed preprint; per feedback_lit_exp_decoupled it raises no claim's confidence.",
+    "source_context": "Human sleep study; non-invasive temporal-interference stimulation targeting the left hippocampal head; targeted memory reactivation; concurrent vs mistimed (prior) stimulation arms."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.55,
+    "notes": "Mapping fidelity is the strongest component here -- the manipulation IS a timing manipulation at matched engagement, which is unusually close to what MECH-556 asserts. Source quality is the weak one: unreviewed preprint, novel method, no replication."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mutual_legibility_communication_subspaces",
+  "entry_id": "2026-09-19_mech_556_reactivation_timed_hippocampal_stimulation_okyere2026",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

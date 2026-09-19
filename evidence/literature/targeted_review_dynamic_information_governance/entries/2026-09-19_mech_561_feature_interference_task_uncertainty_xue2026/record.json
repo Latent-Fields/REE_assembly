@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "MECH-561"
+  ],
+  "source": {
+    "title": "Feature interference underlies a neuronal basis for the behavioral cost of task uncertainty",
+    "authors": [
+      "Chengcheng Xue",
+      "Sarah K. Markman",
+      "Rui Chen",
+      "Lily E. Kramer",
+      "Marlene R. Cohen"
+    ],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02430-w",
+    "pmid": "42722796"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Strong source (Nature Neuroscience; converging monkey electrophysiology, human psychophysics, ANN modelling and causal manipulation) and it is almost certainly the previously unattributable anchor. Held at 0.5 because it supports only the SEGREGATION half of MECH-561's motivation and says nothing whatever about phase, which is the claim's actual content.",
+  "failure_signatures": [
+    "The paper localises the cost of task uncertainty to stronger representation of irrelevant features plus entangled representations of different features -- a segregation failure. It offers no evidence that the segregating coordinate is oscillatory phase, so it cannot be cited as support for phase-as-address.",
+    "An artificial neural network trained for the same tasks did NOT show the uncertainty cost, which is a direct warning that a REE substrate may not reproduce this effect at all without the capacity pressure that produces it in biology."
+  ],
+  "tags": [
+    "mech-561",
+    "feature_interference",
+    "task_uncertainty",
+    "segregation",
+    "anchor_identification"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans and monkeys -- unlike an artificial network trained on the same two perceptual tasks -- make less accurate decisions when the task is uncertain. Behavioural, physiological and causal experiments attribute the cost to feature interference: under uncertainty, representations of irrelevant features become STRONGER and representations of different features become ENTANGLED.",
+    "ree_translation": "This is the previously unattributable 'recent feature-interference work' and 'task-uncertainty result' that sections 4 and 6 of the phase-as-address thought rest on. It supports that thought's reframing of interference as a loss of segregation between relevant and irrelevant causal channels rather than a failure to delete irrelevant content.",
+    "mapping_caveat": "Identification is by content and date, not by an explicit citation in the source document, which carries no bibliography at all -- see summary.md for the identification argument and its residual uncertainty. The paper is silent on phase; it supports the framing of MECH-561's section-6 motivation, not MECH-561's addressing-coordinate content, and it raises no claim's confidence.",
+    "source_context": "Monkey electrophysiology plus human psychophysics plus artificial neural network modelling, across two distinct perceptual tasks with manipulated task certainty; includes causal experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high. Mapping fidelity low on purpose: the claim is about phase as an addressing coordinate and this paper never mentions phase. It is scored as support for the motivating reframing only."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dynamic_information_governance",
+  "entry_id": "2026-09-19_mech_561_feature_interference_task_uncertainty_xue2026",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

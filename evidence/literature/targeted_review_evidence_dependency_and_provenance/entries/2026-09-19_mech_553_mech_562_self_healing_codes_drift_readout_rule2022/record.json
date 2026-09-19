@@ -1,0 +1,59 @@
+{
+  "claim_ids_tested": [
+    "MECH-553",
+    "MECH-562"
+  ],
+  "source": {
+    "title": "Self-healing codes: How stable neural populations can track continually reconfiguring neural representations",
+    "authors": [
+      "Michael E. Rule",
+      "Timothy O'Leary"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.2106692119",
+    "pmid": "35145024",
+    "pmc": "PMC8851551",
+    "volume": "119",
+    "issue": "7",
+    "pages": "e2106692119"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-553": "weakens",
+    "MECH-562": "supports"
+  },
+  "confidence": 0.66,
+  "confidence_rationale": "Every specific assertion in MECH-562's note was checked against the full text and all of them hold verbatim, including the authors' own ansatz disclaimer. The paper is a clean, well-specified simulation in a strong venue; it is a model rather than a measurement, which is the main discount, and its role differs by claim (rival to MECH-553, subject of MECH-562).",
+  "failure_signatures": [
+    "A stable readout can track a continually reconfiguring code using only Hebbian learning plus single-cell homeostasis, with NO external error signal and NO explicit lineage or pairing representation -- so any REE rescue attributed to correctly paired replay must first beat this rival at matched information.",
+    "The authors themselves label the coupling of learning rate to homeostatic error an 'ansatz' and a 'prediction that will need to be experimentally confirmed', so the mechanism is not physiologically established and must not be cited as if it were.",
+    "The compensation demonstrated is for GRADUAL drift and for abrupt resampling of a few units at a time (plasticity run each time 5 of 100 features changed); it is not a demonstration that receiver-local adaptation handles wholesale representational change."
+  ],
+  "tags": [
+    "mech-553",
+    "mech-562",
+    "representational_drift",
+    "self_healing",
+    "lineage_free_rival",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a simulated population of 100 encoding units whose tunings drift as a discrete-time Ornstein-Uhlenbeck process (or are abruptly resampled one unit at a time, with plasticity run each time 5 of the 100 features changed), interactions between Hebbian learning and single-cell homeostasis let a readout neuron track the evolving code without external error feedback, by exploiting redundancy in the distributed code. Recurrent feedback of partially stabilised readouts further corrects residual inconsistency.",
+    "ree_translation": "For MECH-562 this IS the claim's subject: receiver-local self-healing as the standing rival to every cross-system interface-repair result, producing the same observable (downstream performance restored despite upstream change) with no episodic pair identity, cross-system label or offline replay. For MECH-553 it is the named competitor: if lineage-free estimation matches explicit genealogy at matched information, compressed causal genealogy earns no keep.",
+    "mapping_caveat": "A simulation study, not a physiological measurement, and the authors say so. It demonstrates that receiver-local adaptation is SUFFICIENT for a readout to track drift in a redundant code; it does not show that biological circuits do this, nor that a lineage-free estimator can recover DEPENDENCY STRUCTURE between two items -- which is the thing MECH-553 actually claims and this paper never attempts. Per feedback_lit_exp_decoupled it raises no claim's confidence.",
+    "source_context": "Computational model; 100 encoding units; OU drift and abrupt per-feature resampling; Hebbian plus single-cell homeostatic plasticity; no external error signal."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "PNAS, clearly specified and reproducible; the discount is that it is a model of a mechanism the authors explicitly flag as unconfirmed. Mapping fidelity is high for MECH-562 (the claim is stated about exactly this rule) and lower for MECH-553 (the rival is real but this paper does not test dependency estimation)."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_evidence_dependency_and_provenance",
+  "entry_id": "2026-09-19_mech_553_mech_562_self_healing_codes_drift_readout_rule2022",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

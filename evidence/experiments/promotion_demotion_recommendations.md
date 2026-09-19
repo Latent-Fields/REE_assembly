@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-19T01:12:14.470594Z`
+Generated: `2026-09-19T04:39:25.982631Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -79,6 +79,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-035` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-037` | `provisional` | Demotion review: provisional -> candidate | `demote_to_candidate` | `pending_user` |
 | `MECH-050` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
+| `MECH-055` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-072` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-074d` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-075` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -186,6 +187,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-524` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-527` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-546` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-561` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -286,7 +288,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-041
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.291, conflict_ratio=1, exp_entries=2, lit_entries=2; directions supports=2, weakens=2, mixed=0, unknown=0, conflict_ratio=1
+- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.29, conflict_ratio=1, exp_entries=2, lit_entries=2; directions supports=2, weakens=2, mixed=0, unknown=0, conflict_ratio=1
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1180,7 +1182,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-087
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.67, conflict_ratio=0.667, exp_entries=1, lit_entries=4; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.669, conflict_ratio=0.667, exp_entries=1, lit_entries=4; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1403,7 +1405,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-025b
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.221, conflict_ratio=0.667, exp_entries=1, lit_entries=4; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.22, conflict_ratio=0.667, exp_entries=1, lit_entries=4; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1471,6 +1473,21 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `pending_user`
 
+### MECH-055
+- Current status: `candidate`
+- Decision needed: Conflict resolution before promotion
+- Why this decision is needed: epistemic_category=standard, exp_conf=0, conflict_ratio=1, exp_entries=0, lit_entries=5; directions supports=2, weakens=2, mixed=1, unknown=0, conflict_ratio=1
+- Recommendation: `hold_candidate_resolve_conflict`
+- Options (pros/cons):
+  - Keep candidate and run conflict-resolution experiments (most balanced)
+  - Promote despite conflict (speed, high lock-in risk)
+  - Demote to legacy (conservative, may discard useful partial mechanism)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### MECH-072
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
@@ -1492,7 +1509,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-074d
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.382, conflict_ratio=0.8, exp_entries=4, lit_entries=4; directions supports=2, weakens=3, mixed=3, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0.381, conflict_ratio=0.8, exp_entries=4, lit_entries=4; directions supports=2, weakens=3, mixed=3, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1511,7 +1528,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-075
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.373, conflict_ratio=0.889, exp_entries=4, lit_entries=10; directions supports=4, weakens=5, mixed=5, unknown=0, conflict_ratio=0.889
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.372, conflict_ratio=0.889, exp_entries=4, lit_entries=10; directions supports=4, weakens=5, mixed=5, unknown=0, conflict_ratio=0.889
 - Evidence quality note: EXQ-192a FAIL 1/4 x2 runs (2026-04-03): Hippocampal-VTA novelty loop probe FAIL. Run 1 (T04:39): criteria_met=1/4. Run 2 (T10:25): criteria_met=1/4. mean_novelty_signal_on = 6.4e-05 (threshold C4 > 1e-04: FAIL). cell_gap=0, hazard_gap=0 across both conditions -- NOVELTY_LOOP_ON identical to NOVELTY_LOOP_OFF. Root cause: novelty_gain=2.0 but novelty signal itself is below detection threshold; CEM n…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1788,7 +1805,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-144
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.28, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.279, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1807,7 +1824,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-150
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.506, conflict_ratio=0.4, exp_entries=2, lit_entries=3; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.505, conflict_ratio=0.4, exp_entries=2, lit_entries=3; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1826,7 +1843,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-152
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.241, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.24, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2512,7 +2529,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-329
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.196, conflict_ratio=0.4, exp_entries=1, lit_entries=5; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.195, conflict_ratio=0.4, exp_entries=1, lit_entries=5; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)
@@ -3138,7 +3155,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-466
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.207, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.206, conflict_ratio=0.667, exp_entries=1, lit_entries=2; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
 - Evidence quality note: [2026-07-29 governance, V3-EXQ-831 weakens; failure_autopsy_2026-07-28-sweep, confirmed]: first experimental test of MECH-466 (waking-only scope). Event-locked coordination does not exceed clock-locked coordination (delta=-0.091 vs a 0.171 floor), with all four non-degeneracy preconditions clearing cleanly across 3/3 valid seeds. Clean, self-consistent weakens on the waking-only version of the cla…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -3345,6 +3362,21 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-09-11T16:54:10.562820Z`
 - Last selected option: Accept as recommended
 - Last rationale: Governance cycle gov-20260911-1612: user accepted all 10 pending_user hold recommendations as recommended. No claim status moves; the conflict gate stands.
+
+### MECH-561
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim has implementation_phase=v3 but no V3 experimental runs yet. No promotion or demotion should be applied until V3 experiments complete.; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
 
 ### Q-022
 - Current status: `open`
@@ -3931,7 +3963,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-024
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.683, conflict_ratio=0.5, exp_entries=1, lit_entries=5; directions supports=3, weakens=1, mixed=2, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.682, conflict_ratio=0.5, exp_entries=1, lit_entries=5; directions supports=3, weakens=1, mixed=2, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -4443,6 +4475,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `INV-047` | `candidate` | 1 |
 | `INV-091` | `candidate` | 1 |
 | `MECH-012` | `candidate` | 1 |
+| `MECH-055` | `candidate` | 1 |
 | `MECH-440` | `candidate` | 1 |
 | `MECH-445` | `candidate` | 1 |
 | `MECH-546` | `candidate` | 1 |
@@ -4541,4 +4574,4 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `ARC-007` | `provisional` | 0.312 |
 | `ARC-030` | `candidate` | 0.308 |
 
-WARNING: 106 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+WARNING: 107 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.

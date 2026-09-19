@@ -1,0 +1,55 @@
+{
+  "claim_ids_tested": [
+    "MECH-558"
+  ],
+  "source": {
+    "title": "Active Inference, Curiosity and Insight",
+    "authors": [
+      "Karl J. Friston",
+      "Marco Lin",
+      "Christopher D. Frith",
+      "Giovanni Pezzulo",
+      "J. Allan Hobson",
+      "Sasha Ondobaka"
+    ],
+    "year": 2017,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco_a_00999",
+    "pmid": "28777724",
+    "volume": "29",
+    "issue": "10",
+    "pages": "2633-2683"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "unknown",
+  "confidence": 0.3,
+  "confidence_rationale": "Direction is deliberately 'unknown' rather than 'supports': this entry verifies a NOVELTY-BOUNDING citation, not an evidential one. The paper is real, canonical and says what it was cited as saying, but it bears on a DEFERRED and unregistered claim, and it neither supports nor weakens MECH-558's actual content (independence-aware convergence over heterogeneous evaluators).",
+  "failure_signatures": [
+    "Bayesian model reduction already provides a general formal account of insight as structure learning, so any REE 'aha' claim that asserts novelty for the general form is pre-empted and must be scoped to what REE adds beyond it.",
+    "The paper offers no account of evidential double-counting or of dependency between evaluators, so it cannot be read as bearing on MECH-558's independence correction either way."
+  ],
+  "tags": [
+    "mech-558",
+    "insight",
+    "bayesian_model_reduction",
+    "novelty_preemption",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "A formal account of curiosity and insight in active (Bayesian) inference: minimising expected variational free energy drives active sampling of novel contingencies, and moving from epistemic learning to structure learning yields abductive processes in which Bayesian model reduction -- associated with sleep -- 'has all the hallmarks of aha moments'.",
+    "ree_translation": "The reason the cross-model-restructuring insight claim drafted from the 2026-09-09 aha thought was DEFERRED rather than registered: its general form is pre-empted here. The one clause REE did not already own -- self-confirmation as the representational-grain form of evidential double-counting -- is held as a sentence in MECH-558's notes, which is why this entry is tagged to MECH-558.",
+    "mapping_caveat": "This entry is tagged to MECH-558 because MECH-558's notes are where the deferred clause is held, NOT because the paper evidences MECH-558. It is a novelty bound on an unregistered claim. Reading it as support or as a weakener for independence-aware convergence would be a mis-tag; direction is recorded as 'unknown' for exactly this reason.",
+    "source_context": "Theoretical paper with simulations of abstract rule learning and approximate Bayesian inference."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.2,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (canonical, heavily cited). Mapping fidelity deliberately very low: the paper does not address the claim it is tagged to, and the aggregate is held down to reflect that rather than averaged up by the venue."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_evidence_dependency_and_provenance",
+  "entry_id": "2026-09-19_mech_558_active_inference_curiosity_insight_friston2017",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}

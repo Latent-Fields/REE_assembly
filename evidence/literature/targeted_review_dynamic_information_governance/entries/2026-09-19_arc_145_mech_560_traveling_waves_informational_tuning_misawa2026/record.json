@@ -1,0 +1,65 @@
+{
+  "claim_ids_tested": [
+    "ARC-145",
+    "MECH-560",
+    "MECH-561"
+  ],
+  "source": {
+    "title": "Awake cortex stabilizes traveling waves for global and reliable information routing",
+    "authors": [
+      "Kosuke Misawa",
+      "Kazuki Chinen",
+      "Ayaka Kawabata",
+      "Taro Kaiju",
+      "Takafumi Suzuki",
+      "Yutaka Komura"
+    ],
+    "year": 2026,
+    "venue": "iScience",
+    "doi": "10.1016/j.isci.2026.116728",
+    "pmid": "42472099",
+    "pmc": "PMC13380430",
+    "volume": "29",
+    "issue": "8",
+    "pages": "116728"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-145": "supports",
+    "MECH-560": "supports",
+    "MECH-561": "supports"
+  },
+  "confidence": 0.55,
+  "confidence_rationale": "The citation is verified exact (iScience 29(8):116728, PMID 42472099) and the paper does say what ARC-145/MECH-560 say it says -- including the supplementary result the claim notes lean on hardest, which the abstract does not mention. Held below 0.6 by species and by measure-mapping distance: this is rat cortex under isoflurane, and 'informational tuning' is a transfer-entropy-over-wave-direction construct, not RF(t)/TI(t).",
+  "failure_signatures": [
+    "Overall transfer-entropy magnitude was significantly HIGHER under anaesthesia than during wakefulness (Fig. S7A), so any REE result that infers degraded routing from reduced total inter-engine transfer has the sign of the biological analogue backwards.",
+    "The paper's selectivity result is a property of directed information flow between electrode pairs, not of any behavioural competence measure; it does not by itself license MECH-560's behavioural half (that integrated behaviour degrades in proportion to lost selectivity at matched traffic).",
+    "Traveling waves are measured here only for visual-evoked responses to LED stimulation of one eye; there is no task, so 'routing state grants causal privilege' (ARC-145 property 3) is not tested against any decision."
+  ],
+  "tags": [
+    "arc-145",
+    "mech-560",
+    "mech-561",
+    "traveling_waves",
+    "information_routing",
+    "anchor_verification"
+  ],
+  "mapping": {
+    "source_claim_statement": "In rat cortex, visual-evoked traveling waves are more stable when awake than under isoflurane; hierarchical clustering reveals widespread waves with a rich repertoire of motifs only in the awake state; transfer entropy is more sharply tuned to the direction of wave propagation when awake; and overall transfer-entropy magnitude is significantly higher under anaesthesia, so the awake selectivity gain cannot be attributed to greater transfer.",
+    "ree_translation": "This is a biological existence proof of the dissociation shape MECH-560 asserts for REE: organisation of directed influence (selectivity, stability, motif repertoire) moving independently of -- and here in the opposite direction from -- the total amount transferred. It is motivation and a methodological template for RF(t)/TI(t), not evidence about any REE engine.",
+    "mapping_caveat": "Rat sensory cortex under anaesthesia is not an REE inter-engine interface, and per feedback_lit_exp_decoupled a paper that resembles REE raises no claim's confidence. The 'informational tuning' measure must not be treated as equivalent to RF(t) or TI(t) without an explicit methodological mapping -- MECH-560's notes already require this and this entry does not supply it. Anaesthesia is also not a model of any REE failure mode.",
+    "source_context": "116-channel ultra-thin sheet ECoG covering nearly the whole right hemisphere; n = 45 sessions from 10 head-fixed rats; awake vs isoflurane-anaesthetised; LED flash to the left eye; transfer entropy normalised by pairwise mutual information."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Novel high-density preparation and a clean pre-registered-looking contrast, single lab, no replication. Mapping fidelity is the binding constraint for MECH-561 (the paper says nothing about phase as an addressing coordinate for a communication subspace) and is more generous for MECH-560."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_dynamic_information_governance",
+  "entry_id": "2026-09-19_arc_145_mech_560_traveling_waves_informational_tuning_misawa2026",
+  "timestamp_utc": "2026-09-19T04:31:52Z",
+  "summary_path": "summary.md"
+}
