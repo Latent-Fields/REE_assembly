@@ -119,22 +119,52 @@ Summed across-sleep frozen-battery MSE delta (positive = sleep IMPROVED the head
 degradation is 3e-4 to 2e-3 against a converged battery error of ~5e-6 -- sleep
 moves the head 60x to 400x its own converged error level, in the wrong direction.
 
-### 3c. Why -- and it is already written down
+### 3c. Why -- CORRECTED 2026-09-19 after the V3-EXQ-1063 red-team
 
-V3-EXQ-1060's module docstring states the mechanism verbatim:
+V3-EXQ-1060's module docstring states a mechanism verbatim, and this section
+originally repeated it approvingly:
 
 > "compute_e2_world_loss minimises the SD-056 InfoNCE CONTRASTIVE loss, while the
 > 701b frozen-probe DV is per-element MSE RECONSTRUCTION error. InfoNCE is
 > insensitive to a global scale/shift of the prediction, so it can improve while
 > frozen-battery MSE does not move."
 
-1060 measured that gap on an UNCONVERGED head, where both fall together
-(MSE rel improvement 0.2504, InfoNCE rel improvement 0.0023 -- already a 100x
-divergence in favour of MSE, which is what an untrained head gives you for free).
-Once the head is MSE-converged there is no shared descent direction left: optimising
-InfoNCE necessarily moves an MSE-optimal head OFF the MSE optimum. The sign flip is
-the predicted consequence of a mismatch the corpus had already named but never
-measured past convergence.
+**The second sentence is FALSE for this implementation, and the correction matters
+because it removes one of the two explanations this section leant on.**
+`world_forward_contrastive_loss` builds its logits from SQUARED L2 DISTANCES,
+`-||pred_j - target_i||^2 / tau` at `tau=0.1` (`ree_core/predictors/e2_fast.py:359`,
+`:396-403`), not from a dot product or a cosine. A global SCALE on the prediction
+changes every distance; a global SHIFT `c` leaves a cross term `2c.(pred_j -
+target_i)` that varies with `j` and does not cancel in the softmax. Raised to
+/governance rather than fixed in place, since a landed artifact asserts it.
+
+**Two explanations survive, and sec 3b's measurement does not separate them.**
+
+- **(E1) OBJECTIVE MISMATCH.** The sleep trainer descends InfoNCE; the DV is MSE;
+  past convergence they share no descent direction, so optimising one moves the
+  other off its optimum.
+- **(E2) STEP SIZE vs RESIDUAL.** `cross_module_consolidation.py:155-162` builds a
+  FRESH Adam per cycle, so its first steps are bias-corrected to ~`lr*sign(g)` and 8
+  steps move each weight by at most `8 * CMC_LR = 0.008` **regardless of gradient
+  magnitude**. V3-EXQ-1060's landed `min_world_head_max_abs_delta_on` is 0.007899 --
+  **98.7% of that bound**, i.e. set by the optimiser, not by the loss. A converged
+  head whose residual battery MSE is ~5e-6 is therefore perturbed by far more than
+  its own residual, and its MSE must rise whatever objective drove it.
+
+E1 and E2 predict the SAME sign for sec 3b, so **that measurement does not establish
+E1**, and this file no longer claims it does. V3-EXQ-1063 records the numbers
+(`adam_step_bound_8x_lr`, `min_identity_predictor_mse`,
+`min_converged_battery_mse_after_p0`) that let a reader rule E2 out before
+attributing to E1.
+
+**A third fact, new and bearing directly on option C.** On a K-way contrastive
+readout the chance value is `ln(K)`. V3-EXQ-1060's LANDED `infonce_pre_on` is
+**4.15921 against ln(64) = 4.15888 -- ABOVE chance** -- and its entire measured
+InfoNCE movement, 0.00942, is **0.23% of ln(K)** while MSE moved 25% over the same
+cycle. So the InfoNCE readout is pinned at its chance ceiling, and re-pointing leg
+B's DV onto it (option C) would re-point it onto a statistic that currently carries
+no signal. V3-EXQ-1063 measures this per cell and marks its InfoNCE findings
+unciteable when pinned.
 
 ## 4. Why this is a STOP and not a judgement call
 
