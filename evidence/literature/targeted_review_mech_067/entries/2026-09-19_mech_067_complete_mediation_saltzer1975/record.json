@@ -1,0 +1,44 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_067",
+  "entry_id": "2026-09-19_mech_067_complete_mediation_saltzer1975",
+  "timestamp_utc": "2026-09-19T19:55:28Z",
+  "claim_ids_tested": ["MECH-067"],
+  "source": {
+    "title": "The Protection of Information in Computer Systems",
+    "authors": ["Jerome H. Saltzer", "Michael D. Schroeder"],
+    "year": 1975,
+    "venue": "Proceedings of the IEEE",
+    "doi": "10.1109/PROC.1975.9939",
+    "pmid": null,
+    "pmc": null,
+    "arxiv_id": null,
+    "url": "https://www.cs.virginia.edu/~evans/cs551/saltzer/",
+    "volume": "63",
+    "issue": "9",
+    "pages": "1278-1308"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Canonical source for the two principles MECH-067 is re-deriving: COMPLETE MEDIATION (every access to every object must be checked for authority, with no bypass path) and FAIL-SAFE DEFAULTS (base access decisions on permission rather than exclusion, so the default is deny). The mapping is near-exact and the provenance value is real -- MECH-067 should be registered as an application of a fifty-year-old protection principle to an agent's internal write loci, not as a novel mechanism hypothesis. But confidence is capped at 0.5 on purpose: this is a normative design principle, not an empirical finding. It says what to build if you want an enforceable policy; it cannot establish that REE's existing local gates are currently insufficient, which is the empirical content of MECH-067 and the thing only the audit spike can settle.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Any protection mechanism with a bypass path provides no guarantee: complete mediation requires that every access to every object be checked, and a design that checks 'most' accesses has the security properties of one that checks none.",
+    "A fail-open default (deny-listing what is forbidden rather than allow-listing what is permitted) fails in the unsafe direction, because an omission from the list silently grants rather than silently refuses -- and omissions are the expected steady state of a hand-maintained list.",
+    "Protection mechanisms that are psychologically unacceptable or that impose overhead on routine work get bypassed or disabled by their users, so a correct-but-costly gate is not durably a gate."
+  ],
+  "tags": ["mech-067", "complete-mediation", "fail-safe-defaults", "reference-monitor", "design-principle", "provenance"],
+  "mapping": {
+    "source_claim_statement": "Protection mechanisms should be designed according to eight principles, of which two are directly at issue: COMPLETE MEDIATION -- every access to every object must be checked for authority, and the design must supply no mechanism for bypassing the check; and FAIL-SAFE DEFAULTS -- access decisions should be based on permission rather than exclusion, so that a design or implementation mistake results in refused access rather than granted access.",
+    "ree_translation": "MECH-067's 'default-deny (phase, store, actor) matrix' is fail-safe defaults plus complete mediation, restated for an agent's internal stores. The typed store classes the claim proposes (POL / ID / CAPS / residue / attribution ledger / scratch) are the 'objects'; the phase is a dimension Saltzer and Schroeder did not need because an OS has no sleep cycle, but it is the same kind of coordinate. The claim's contention that per-site gates are not enough is the complete-mediation principle's negative half: a check that a caller may or may not route through is by definition not complete mediation, because the design supplies a bypass.",
+    "mapping_caveat": "A normative principle is not evidence. This paper tells REE what a sound write-protection design looks like; it cannot tell REE whether the current local gates in ree_core are leaking, and MECH-067's 'required' is an empirical assertion about THIS substrate, not a restatement of good practice. There is a live risk of confirmation-by-authority here: citing Saltzer and Schroeder makes the matrix sound obligatory without any measurement having been taken, which is precisely the move MECH-067's own SUBSTRATE note guards against ('the audit is the spike that decides whether the build is owed'). Note also that the same paper supplies principles that cut the OTHER way -- ECONOMY OF MECHANISM and PSYCHOLOGICAL ACCEPTABILITY both argue against adding a policy object nobody has yet shown to be necessary.",
+    "source_context": "Foundational computer-security tutorial and survey; Multics-era operating systems; no empirical study, no measurements."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.45,
+    "notes": "source_quality high as a canonical, still-taught reference, but the class is 'design principle' not 'result', which is why the aggregate (0.5) sits well BELOW the component mean rather than near it -- for a claim asserting empirical necessity, a normative source can only supply framing. transfer_risk 0.45: the principles were derived for adversarial multi-user OS protection, and their cost-justification does not automatically hold for an accidental-leak setting inside a single research substrate."
+  }
+}

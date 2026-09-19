@@ -1,0 +1,43 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_067",
+  "entry_id": "2026-09-19_mech_067_missing_check_bugs_lu2019",
+  "timestamp_utc": "2026-09-19T19:55:28Z",
+  "claim_ids_tested": ["MECH-067"],
+  "source": {
+    "title": "Detecting Missing-Check Bugs via Semantic- and Context-Aware Criticalness and Constraints Inferences",
+    "authors": ["Kangjie Lu", "Aditya Pakki", "Qiushi Wu"],
+    "year": 2019,
+    "venue": "Proceedings of the 28th USENIX Security Symposium (USENIX Security '19)",
+    "doi": null,
+    "pmid": null,
+    "pmc": null,
+    "arxiv_id": null,
+    "url": "https://www.usenix.org/conference/usenixsecurity19/presentation/lu",
+    "pages": "1769-1786"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly evidences the half of MECH-067 that its own SUBSTRATE note calls the decisive spike: an automated, machine-checkable audit run over a codebase whose per-site gates are maintained by thousands of reviewers still found 278 previously-unknown missing checks, 151 of them accepted as real by the maintainers, with a mean latent period of 1,675 days. That is a measured rate at which conscientious local gating leaves holes, and it is the observation MECH-067 predicts an REE audit will reproduce. Held at 0.72 by a 65% false-positive rate (the audit is a screen, not a proof), by the fact that Linux's scale is far beyond ree_core's, and because finding missing checks argues for AUDITING, not specifically for a default-deny matrix.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In a codebase where the local check idiom is explicitly mandated and universally known (Linux requires every alloc-like return be tested for NULL), an automated cross-check still found 39 call sites across kzalloc/kmalloc/kcalloc/kmemdup with the check simply absent -- convention plus review does not close the class.",
+    "Missing checks are not caught by use: the mean interval between introducing patch and detection was 1,675 days (~4 years 7 months), with 27 of 278 latent more than 10 years and 6 more than 13 years. A gate that is absent produces no error, so absence is not self-reporting.",
+    "Missing-check bugs were the root cause of 59.5% of the recent security vulnerabilities the authors sampled, i.e. the dominant single cause rather than a tail case.",
+    "The automated audit itself has a 65% false-positive rate (804 reported cases, 278 confirmed, 36 man-hours of adjudication by three researchers) -- an audit instrument returns candidates requiring human adjudication, not a verdict."
+  ],
+  "tags": ["mech-067", "missing-check", "static-analysis", "audit-spike", "write-locus", "permission-bypass"],
+  "mapping": {
+    "source_claim_statement": "Missing security checks are a common, high-impact class of semantic bug in OS kernels; an inter-procedural, semantic- and context-aware static analysis that infers which variables are critical by cross-checking how peer code paths guard them can find them at scale -- 278 new bugs in Linux, 151 patches accepted.",
+    "ree_translation": "This is the AUDIT half of MECH-067 done in another substrate, and it supplies the base rate the claim implicitly assumes. CRIX's method is also directly transferable in form: it infers what SHOULD be checked by comparing peer call sites that do check against ones that do not. The REE analogue is an instrument wrapping ResidueField.accumulate, discharge_domain, BetaGate.elevate/release and AnchorSet writes, recording (phase, store, actor) per write and flagging any tuple with no counterpart in MECH-060's update-locus table. CRIX's result says such an instrument, run over ree_core, is more likely than not to return non-empty.",
+    "mapping_caveat": "Two strains. (1) The paper argues for machine-checkable AUDITING; MECH-067 asserts a machine-checkable MATRIX. Those are different artefacts -- CRIX is a detector bolted on after the fact and it did not propose replacing Linux's per-site idiom with a central policy object. Treating this as support for the matrix specifically is an extrapolation the paper does not make. (2) Scale is doing work in the base rate: Linux is ~20M lines with thousands of contributors, ree_core is small and single-authored. A leak rate measured on the former is a weak prior for the latter, and an REE audit returning ZERO violations -- MECH-067's own FALSIFYING condition -- would not contradict this paper at all.",
+    "source_context": "Static analysis of the Linux kernel; 64-minute whole-kernel run at relative-frequency threshold 0.15, 308K security checks from 1,028K conditional statements, 804 reported cases, 278 confirmed, 195 of them in driver code."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "source_quality high: top-tier venue, results externally validated by maintainer acceptance of 151 patches rather than by self-report. mapping_fidelity moderate -- the audit instrument maps almost one-to-one onto MECH-067's proposed spike, but the paper's conclusion supports auditing rather than the matrix, and MECH-067's operative word is 'matrix'. transfer_risk moderate: the Linux-to-ree_core scale gap means the measured leak rate is not a usable prior for REE, only a demonstration that the failure mode survives conscientious review."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_067",
+  "entry_id": "2026-09-19_mech_067_difc_reference_monitor_krohn2007",
+  "timestamp_utc": "2026-09-19T19:55:28Z",
+  "claim_ids_tested": ["MECH-067"],
+  "source": {
+    "title": "Information flow control for standard OS abstractions",
+    "authors": [
+      "Maxwell Krohn",
+      "Alexander Yip",
+      "Micah Brodsky",
+      "Natan Cliffer",
+      "M. Frans Kaashoek",
+      "Eddie Kohler",
+      "Robert Morris"
+    ],
+    "year": 2007,
+    "venue": "Proceedings of the 21st ACM SIGOPS Symposium on Operating Systems Principles (SOSP '07) / ACM SIGOPS Operating Systems Review",
+    "doi": "10.1145/1294261.1294293",
+    "pmid": null,
+    "pmc": null,
+    "arxiv_id": null,
+    "url": "https://pdos.csail.mit.edu/papers/flume-sosp07.pdf",
+    "volume": "41",
+    "issue": "6",
+    "pages": "321-334"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "SOSP paper with a working system and a directly measured instance of the exact failure MECH-067 posits: in MoinMoin (91,000 LOC, 349 modules) the read-ACL gate is implemented at 41 sites across 22 modules and the write-ACL gate at 19 sites across 12 modules, and at least five ACL-bypass vulnerabilities followed. Replacing that scattered per-site enforcement with a single mediating default-deny label mechanism collapsed the trusted surface to ~1,000 lines. That is MECH-067's CONFIRMING clause instantiated, with counts rather than intuition. Marked down from higher because the domain assumes an ADVERSARY, which REE's leak does not have, and because a demonstration that centralisation helped ONE system is not proof it is required in every system.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A write permission enforced at N call sites scattered across M modules is omitted at one of them and the omission is invisible until exploited -- measured at 41 read-check sites / 22 modules and 19 write-check sites / 12 modules in a single 91k-LOC application, with at least five resulting ACL-bypass vulnerabilities.",
+    "Plug-in or extension code loaded into the same process inherits the host's write authority and can violate the host's own access policy, because the policy is expressed as host-code call sites rather than as a mediated property of the store.",
+    "Coarse-granularity mediation leaves a residual hole: once Flume authorises a file open it does not interpose on subsequent reads/writes, so the matrix is only as tight as the granularity at which the chokepoint sits."
+  ],
+  "tags": ["mech-067", "information-flow-control", "reference-monitor", "default-deny", "write-locus", "complete-mediation"],
+  "mapping": {
+    "source_claim_statement": "Application-level access-control checks scattered across a large codebase are unreliable because any one of them can be omitted; enforcing the policy instead as decentralized information-flow labels at a single user-level reference monitor confines the whole application, so that only bugs in a small isolated trusted module can produce a security violation.",
+    "ree_translation": "This is the systems-engineering form of MECH-067. REE's 'per-site local gates' -- MECH-094's hypothesis_tag refusal inside ResidueField.accumulate, the sleep pass's 'named module only' contract, the closure operator's bounded attenuation -- are structurally Moin's 60 ACL call sites: correct individually, unverifiable collectively, and silently incomplete the moment a new write path is added that does not route through one of them. Flume's labels-plus-reference-monitor is structurally the proposed (phase, store, actor) default-deny matrix: authority becomes a property of the store and the actor's label rather than a check the caller remembered to write.",
+    "mapping_caveat": "Three boundaries. (1) Flume defends against an ADVERSARY -- malicious plug-ins, remote exploits -- whereas MECH-067's leak is accidental: a rollout writing to residue because nobody thought about that path. Adversarial settings justify complete mediation at a cost that accidental settings may not. (2) Flume's stores are OS objects with a natural chokepoint (the system call); REE's stores are tensors and Python attributes with no equivalent narrow waist, so the matrix may not be implementable at comparable cost, and the paper's own coarse-granularity file-I/O residue shows what happens when the chokepoint sits at the wrong grain. (3) The paper shows centralised mediation WORKED for one application; it does not test the counterfactual MECH-067's FALSIFYING clause asks about -- whether the local gates, if audited, would have turned out to be sufficient after all.",
+    "source_context": "Systems security; user-level reference monitor on Linux; evaluated by porting the MoinMoin wiki (91k LOC Python) with ~1,000 lines of new trusted C++ and ~1,000 lines of Moin modified, at 30-40% throughput cost."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "source_quality high: SOSP, working artefact, concrete counts rather than assertion. mapping_fidelity high because the structural analogy is unusually tight -- scattered enforcement sites in a modular codebase is precisely REE's current position. transfer_risk moderate rather than low: the adversary assumption and the absence of a syscall-like chokepoint in ree_core are real disanalogies, and for an architectural claim mapping_fidelity is weighted above source_quality."
+  }
+}

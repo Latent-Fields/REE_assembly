@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_067",
+  "entry_id": "2026-09-19_mech_067_hallucination_reality_monitoring_zmigrod2016",
+  "timestamp_utc": "2026-09-19T19:55:28Z",
+  "claim_ids_tested": ["MECH-067"],
+  "source": {
+    "title": "The neural mechanisms of hallucinations: A quantitative meta-analysis of neuroimaging studies",
+    "authors": ["Lena Zmigrod", "James R. Garrison", "Jessica Carr", "Jon S. Simons"],
+    "year": 2016,
+    "venue": "Neuroscience and Biobehavioral Reviews",
+    "doi": "10.1016/j.neubiorev.2016.05.037",
+    "pmid": "27473935",
+    "pmc": null,
+    "arxiv_id": null,
+    "volume": "69",
+    "pages": "113-123"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "The biological analogue, and the weakest entry in this directory by design. Its value is one specific finding: across hallucinations in DIFFERENT sensory modalities, an activation-likelihood-estimation meta-analysis implicates the paracingulate region of medial prefrontal cortex in common, alongside the modality-specific sensory cortices. A shared, modality-independent provenance-checking locus is what a (phase, store, actor) matrix looks like in wetware -- one mechanism spanning store classes, rather than a separate gate bolted onto each store. Its failure produces exactly the corruption MECH-067 predicts: internally generated content credited as externally sourced. Capped at 0.45 because the mapping is genuinely loose -- reality monitoring is a RETRIEVAL-time attribution judgement, not a WRITE-time gate, and ALE meta-analysis over heterogeneous paradigms yields convergence, not mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the provenance-checking mechanism fails, self-generated content is credited as externally perceived -- the corruption is in the attribution, not in the content, so the store looks internally consistent while being wrong about where its contents came from.",
+    "The failure is store-agnostic: the same paracingulate mPFC involvement appears for auditory-verbal and visual hallucinations alike, so a gate protecting one store class does not protect another and the vulnerability is in the shared check rather than in any one modality's pathway.",
+    "Medial temporal lobe involvement implicates memory intrusions in the hallucinatory experience, i.e. durable-store content re-entering the perceptual stream without its provenance tag -- the biological form of pre-commit rollout content reaching a durable store and being read back as experience."
+  ],
+  "tags": ["mech-067", "reality-monitoring", "source-monitoring", "paracingulate", "provenance", "biological-analogue"],
+  "mapping": {
+    "source_claim_statement": "An activation-likelihood-estimation meta-analysis of functional neuroimaging studies of auditory-verbal and visual hallucinations finds modality-specific sensory cortex activation (auditory cortex, Wernicke's and Broca's areas for auditory-verbal; visual cortex for visual) together with cross-modality involvement of medial temporal lobe, insula and the paracingulate region of medial prefrontal cortex, consistent with hallucinations arising from misattribution of self-generated information as externally perceived.",
+    "ree_translation": "This is the wetware form of MECH-067's premise that provenance must be checked by a mechanism rather than emerge from per-store discipline. The brain does not appear to protect auditory memory and visual memory with separate, independently-evolved gates; the same paracingulate region is implicated across modalities, which is structurally a single check spanning store classes -- REE's 'one matrix over typed stores' rather than 'one gate per store'. And its failure mode is precisely MECH-067's predicted corruption: not wrong content, but content with the wrong provenance, self-generated material credited to the outside world. In REE's vocabulary, hypothesis-tagged rollout content reaching residue and being read back as committed experience.",
+    "mapping_caveat": "The loosest mapping in this directory, and three strains are load-bearing. (1) TIMING: reality monitoring as studied here is a retrieval-time or experience-time ATTRIBUTION judgement -- deciding, about content already present, where it came from. MECH-067 proposes a write-time GATE that prevents the content arriving mislabelled at all. Those are different architectures, and the brain's choice of the former is arguably evidence AGAINST the necessity of the latter. (2) A convergent activation locus is not a permission matrix: ALE tells you which voxels recur across studies, not that the region implements a default-deny policy, and a shared locus is equally consistent with a shared heuristic monitor. (3) Reverse inference: co-activation of paracingulate cortex during hallucination does not establish that its normal function is provenance checking, though the convergence with the independent source-monitoring literature (Simons, Garrison & Johnson 2017, TiCS 21:462-473) makes that reading more than speculative.",
+    "source_context": "Human functional neuroimaging; activation likelihood estimation meta-analysis across studies of auditory-verbal and visual hallucinations, predominantly in schizophrenia-spectrum samples."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.6,
+    "notes": "source_quality 0.75: quantitative meta-analysis in a strong review journal, but ALE over heterogeneous paradigms and small patient samples inherits every limitation of its inputs. mapping_fidelity is the binding constraint at 0.45 -- retrieval-time attribution is not write-time mediation, and for an architectural claim mapping_fidelity is weighted heaviest, which is why the aggregate sits at 0.45 rather than near the component mean. transfer_risk 0.6, the highest in this directory: clinical human neuroimaging to a tensor-based agent substrate is a long way, and the entry earns its place as biological grounding for the claim's SHAPE, not as evidence for its truth."
+  }
+}

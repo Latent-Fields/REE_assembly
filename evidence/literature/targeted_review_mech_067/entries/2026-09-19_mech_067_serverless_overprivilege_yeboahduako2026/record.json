@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_067",
+  "entry_id": "2026-09-19_mech_067_serverless_overprivilege_yeboahduako2026",
+  "timestamp_utc": "2026-09-19T19:55:28Z",
+  "claim_ids_tested": [
+    "MECH-067"
+  ],
+  "source": {
+    "title": "Permissions on the Loose: Measuring Overprivilege in Real-World Serverless Applications",
+    "authors": [
+      "Elvis Yeboah-Duako",
+      "Pubali Datta"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint",
+    "doi": null,
+    "pmid": null,
+    "pmc": null,
+    "arxiv_id": "2607.02875",
+    "url": "https://arxiv.org/abs/2607.02875"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "The sharpest available counterweight to MECH-067's 'required' clause. AWS IAM already IS a machine-checkable, declarative, default-deny (actor, action, resource) permission matrix -- exactly the artefact MECH-067 proposes -- and across 789 real applications 47.7% are overprivileged with a mean 99.65% reduction available, while 88.6% collapse the actor dimension to a single global policy. Having the matrix did not produce correct least privilege; it relocated the failure from a forgotten call site to a permissively authored policy, and wildcard use made it 274x worse. This does not refute MECH-067, but it does falsify the stronger reading that the matrix is sufficient, and it means the comparator arm must measure the matrix AS AUTHORED, not the matrix as idealised. Held at 0.6: preprint, and PrivLess's inferred 'needed' permission set is itself a static-analysis estimate, so the overprivilege ratio is an upper bound.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A machine-checkable default-deny permission matrix authored permissively is operationally inert: 47.7% of 789 real AWS Lambda applications (1,293 functions) carried excess permissions with a mean privilege-reduction potential of 99.65%.",
+    "A single wildcard entry collapses the matrix: applications using wildcard-defined permissions showed an average overprivilege ratio 274x higher than those without (99.02% privilege-reduction potential with wildcards vs 61.78% without), so one coarse row defeats the default-deny property of every other row.",
+    "Policy scope defaults toward the loosest available grain: global-only IAM policies -- one policy for the whole application rather than per function -- dominate at 88.6% of the 789 applications analysed, so the matrix's actor dimension is in practice collapsed.",
+    "18.8% of applications held unnecessary privilege-escalation capability, i.e. the matrix granted authority to REWRITE the matrix -- a self-referential hole with no per-site-gate analogue."
+  ],
+  "tags": [
+    "mech-067",
+    "iam",
+    "least-privilege",
+    "policy-misconfiguration",
+    "default-deny",
+    "counterweight"
+  ],
+  "mapping": {
+    "source_claim_statement": "Role-based access control solutions such as IAM exhibit pervasive misconfiguration; a static analysis (PrivLess) that derives each serverless function's actual resource interactions from source code and reconciles them against declared policy shows overprivilege is systemic -- 47.7% of 789 AWS Lambda applications, 99.65% mean reduction potential, 274x worse with wildcards, 18.8% holding unneeded privilege-escalation capability.",
+    "ree_translation": "AWS IAM is the closest deployed analogue of what MECH-067 proposes: a declarative, machine-checkable, default-deny matrix over (principal, action, resource) -- structurally REE's (actor, write, store), with the phase dimension absent. If the matrix were sufficient to enforce write-locus discipline, IAM deployments would show least privilege. They do not. The failure simply moves: instead of a forgotten gate at a call site, you get a correctly-mediated write authorised by a row nobody tightened. For REE this bears directly on the comparator arm -- a matrix-enforced arm must be evaluated on the matrix as it would actually be written (probably permissive at first, probably with a wildcard for the sleep pass), not on an idealised tight one, or the arm measures the design intent rather than the artefact.",
+    "mapping_caveat": "This weakens the SUFFICIENCY of a matrix, not its NECESSITY, and MECH-067 only asserts necessity -- so read as a refutation it would be attacking a claim that was not made. Its real force is on the comparator design and on what a PASS would license. Three further boundaries: (1) IAM's overprivilege is driven by operators granting breadth for convenience across organisational boundaries, a pressure largely absent in a single-authored research substrate; (2) PrivLess infers the 'needed' permission set statically from source, so reflection, dynamic resource names and runtime-constructed ARNs will be missed and the 47.7% is an upper bound; (3) it is a 2026 preprint with no peer review yet, and its dataset is curated open-source Lambda applications, which may over-represent demo-quality policies relative to production ones.",
+    "source_context": "Cloud security measurement; static analysis (PrivLess, CodeQL-based) over a curated dataset of 789 open-source AWS Lambda applications comprising 1,293 functions, drawn from 3,363 candidate applications across providers."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "source_quality held at 0.6: unrefereed preprint, and the ground truth for 'needed permissions' is itself inferred rather than observed, so the central statistic is an estimate with a known bias direction (over-reports overprivilege). mapping_fidelity 0.7 -- IAM really is the artefact MECH-067 describes, minus the phase dimension, which is a substantive omission since phase is where REE's hardest cases (sleep writes, pre-commit rollout) live. transfer_risk 0.4: the organisational pressures that produce IAM sprawl do not obviously exist in ree_core, which cuts against reading the 47.7% as a forecast for REE."
+  }
+}
