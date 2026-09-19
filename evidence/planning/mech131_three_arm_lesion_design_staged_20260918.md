@@ -446,3 +446,96 @@ runtime optimizer-coverage assertion; the working harm-calibration readiness gat
 monostrategy guard with a pre-registered, derivation-documented threshold; the floor axis; the
 within-subject lesion-at-eval design; every `/queue-experiment` gate cleared; ratified ordinal
 criteria; and measured costs at three scales (10 min / 16 min / 30 min per probe shape).
+
+---
+
+# FINAL ADDENDUM 2026-09-19 (5) -- DISPOSITION: registered, compute stopped
+
+**User decision OPTION C (2026-09-19T21:39:15Z, real `AskUserQuestion` via Orchestrator
+`orchestrate-20260919-2125`)** on `chip-20260919-mech131-monostrategy-precondition`: register the
+finding and stop spending compute. **No experiment was ever queued for MECH-131 by this line of
+work**, by decision at each of four stops. This addendum closes the series.
+
+## The disposition, as recorded
+
+> MECH-131's mechanism is **IMPLEMENTED and ACTIVATED** -- contracts C1-C9 prove both
+> anticipatory channels are live and that the post-hoc path stays intact under lesion -- but it
+> has **NO MEASURABLE AUTHORITY OVER COMMITTED SELECTION** at tested scale. The proximate blocker
+> is a **degenerate policy**: E3 commits the same action at 39-40 of 40 probe states, at BOTH the
+> production and the lowered exploration floor. It is **not** the residue representation and
+> **not** the exploration floor. The **undertrained-policy caveat is stated as untested**: 20
+> warmup episodes against V3-EXQ-042's 600, with the healthy entropy reference (0.4965 nats)
+> coming from a full-scale run; settling it would cost ~30 h at 6 cells and was not spent.
+
+This is a **citable partial answer** to MECH-131, not a null. The claim asserts that residue must
+be activated as an anticipatory pre-candidate-generation bias; V3 does activate it, on two
+independent channels, and the activation is contract-pinned. What the probes could not establish
+is that the activation *reaches committed behaviour* at any scale we were willing to pay for.
+
+## The four stops, in order -- each a user decision, none a failure
+
+| # | Stop | What was measured | Outcome |
+|---|---|---|---|
+| 1 | Lesion completeness (addendum 1, chip `...lesion-completeness`) | CH1-only lesion leaves CEM score spread at 0.892, unchanged -- the pre-flight's single knob was not a lesion | OPTION C: build the second knob. Landed. |
+| 2 | Evidential bar (chip `...evidential-bar`) | MECH-131 has no `what_would_answer`; EXP-0847 sets `require_pre_registered_thresholds: false` | DIAGNOSTIC, ordinal criteria, >= 3 seeds |
+| 3 | Untrained substrate (chip `...untrained-substrate`) | Residue DV effect/noise 0.01 untrained, 0.035 warmed -- 042 says "if terrain_prior is random, proposals are uninformed" | OPTION A: 042's warmup + readiness gate |
+| 3b | 042's gate inverts (chip `...readiness-gate-inverts`) | 042's own +0.3926 gap was `hippo_mean_residue == 0.0` under the pre-2026-05-17 collapsing CEM, retired as degenerate | OPTION B: harm-prediction DV |
+| 4 | Channel authority (chip `...channel-authority`) | `ao_std_floor` 0.2 is 1.55x the 0.1288 proposal-mean magnitude | OPTION A: floor as an axis + entropy guard |
+| 5 | Monostrategy precondition (chip `...monostrategy-precondition`) | Entropy 0.0-0.117 nats at BOTH floors; lowering the floor 4x did NOT raise effect/noise | **OPTION C: register, stop** |
+
+Two of these stops corrected an earlier diagnosis of my own: the `ao_std`-floor explanation
+(addendum 3) was superseded by the monostrategy finding (addendum 4), and 042's readiness gate --
+which stop 3 adopted on instruction -- turned out to rest on a retired degenerate regime. Both
+corrections came from measurement, not review.
+
+## What was banked (all landed on origin, all default-preserving)
+
+- **Two lesion knobs**, `ree-v3` `origin/main`: `HippocampalConfig.terrain_prior_residue_channel_enabled`
+  (CH1, the `terrain_prior` residue channel) and `score_trajectory_residue_terrain_enabled`
+  (CH2, `_score_trajectory`'s residue terrain score, gating BOTH its z_world and pre-SD-005
+  z_self reads). **Both default `True` = bit-identical to the pre-instrument substrate**; the
+  lesion is opt-in. Zeroing is out-of-place and preserves `terrain_input_dim`.
+- **9 contracts**, `tests/contracts/test_mech131_terrain_prior_residue_channel.py`: C1/C7
+  `from_dims` reachability (the MECH-307 swallowed-kwarg shape), C2/C9 default bit-identity,
+  C3 CH1 liveness, C4 storage untouched, C5 post-hoc scorer untouched, C6 CH1-alone scope pin,
+  C8 the COMPLETE two-channel lesion with storage and post-hoc both pinned live. Plus both flags
+  registered in `tests/test_flag_inertness.PROBED`.
+- **Substrate record**: `ree-v3/docs/substrate/MECH-131-terrain-prior-anticipatory-residue-channel-lesion.md`
+  with the SCOPE table, indexed in `ree-v3/CLAUDE.md`.
+- **The driver**, `experiments/v3_exq_1061_mech131_anticipatory_residue_lesion.py` -- unqueued and
+  carrying its own status banner. Reusable parts: all three of 042's trainers (terrain BC,
+  `harm_eval` BCE, `world_forward` MSE) with a **runtime optimizer-coverage assertion**; the
+  harm-prediction DV; the harm-calibration readiness gate ("beats a constant baseline", gap > 0);
+  the **monostrategy guard** with its pre-registered 0.25445-nat threshold; the `ao_std_floor`
+  config_slice axis; and the within-subject lesion-at-eval design.
+- **Cleared `/queue-experiment` gates, with evidence**: 2.5/2.5a substrate (built + probed),
+  2.5b re-derive brake (0 across 523 autopsy artifacts), 2.5c substrate-path overlap (all four
+  open `corrupting` entries measured inert at this config, with the specific defaulted flags
+  named and asserted at runtime), 2.4 GOV-REUSE-1 (not recoverable), 2.6 ethics (`allow`).
+- **Measured costs**, for whoever sizes the next attempt: ~10 min (3 cells, 12 probe states),
+  ~16 min (harm DV), ~30 min (18 cells, 40 probe states); 042-scale extrapolations ~15.7 h at
+  3 cells and ~30 h at 6.
+
+## The precondition any future MECH-131 falsifier must clear first
+
+**Establish policy diversity BEFORE measuring any candidate-set DV**: selected-action entropy
+>= **0.25445 nats** (the pre-registered threshold, the midpoint of V3-EXQ-567's recorded 0.0124
+collapsed / 0.4965 healthy, same estimator and units as
+`experiments/_lib/baselines/exq643_modulatory_authority_baseline.py`). Until that clears, E3's
+committed action does not vary with the candidate pool, and **no** DV over proposed candidates can
+register a lesion of the proposal mechanism -- which is why the residue-manifold (addendum 2) and
+`ao_std`-floor (addendum 3) diagnoses are subsumed rather than competing.
+
+The cheapest unspent route to closing the untested caveat, if it is ever wanted: sweep warmup
+scale (20 / 60 / 180 episodes, one floor, one seed) against that entropy gate alone, ~30 min, to
+find whether and where diversity appears. Declined here as part of OPTION C.
+
+## Registry action
+
+Raised as a **`governance_flag.py` entry against MECH-131** (`stale_note`) carrying this
+disposition and the precondition, so `/governance` can attach it to the claim and author
+MECH-131's missing `what_would_answer`. **`claims.yaml` was deliberately NOT edited by this
+session** -- the only claims.yaml change in this whole line of work is the factual
+`implementation_note` added on 2026-09-18 recording the instrument, which remains accurate.
+Work chip `chip-proposal-exp-0878-paced` resolved **`withdrawn`**: no experiment landed via it,
+by decision.
