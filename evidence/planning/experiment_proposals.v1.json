@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T06:11:37.459389Z",
+  "generated_at_utc": "2026-09-19T07:22:25.628848Z",
   "items": [
     {
       "acceptance_checks": [
@@ -5787,6 +5787,51 @@
       "seed_policy": "distinct_seeds",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_049",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1414",
+      "blocked_note": "No typed external channel and no externally addressable POL/ID/CAPS store in V3 -- every MECH-064 deny path holds by construction, so a probe would be vacuous.",
+      "claim_id": "MECH-064",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-19T03:38:12Z",
+      "gated_by_session": "igw-240-proposal-for-mech-064",
+      "gating_reason": "MECH-064 (typed authority / control-store separation blocks direct exteroceptive writes into policy and identity stores) has NO substrate in V3 for any clause of its allowed/forbidden path table, so a claim_probe_mech_064 run would be vacuous. Measured by session igw-240-proposal-for-mech-064 (2026-09-19) against ree-v3 HEAD. (1) NO TYPED EXTERNAL CHANNEL. The agent's entire external input surface is REEAgent.act(observation: torch.Tensor) / act_with_split_obs(obs_body, obs_world) (ree_core/agent.py:10706, 10746), fed only by ree_core/environment/causal_grid_world.py. That is exactly ONE external channel; it is an untyped float tensor carrying no channel metadata, no authority label and no payload-type tag. The claim's central mechanism -- 'authority labels come from channel metadata, not text content' and 'hard deny at runtime API boundary' -- has no surface to attach to. There is no INS (instruction/request) channel and no tool-output or language channel at all, consistent with the language cluster being substrate-blocked (MECH-011 / ARC-009 / ARC-010). (2) NO EXTERNALLY ADDRESSABLE POL/ID/CAPS STORE. The nearest analogs are internal-only and written through internal gated paths: rule_state / state_code in the lateral-PFC and OFC analogs (write_gate('sd_033a') / write_gate('sd_033b')); the MECH-273 Phase E self-model posterior (ree_core/sleep/self_model_aggregator.py), whose master flag use_mech273_self_model defaults False (ree_core/utils/config.py:6911); and capability crystallization (crystallize_at_phase3, default False), which is ARMED by experiment config and fired by a phase-transition callback, never by an observation. (3) THEREFORE EVERY DENY HOLDS BY CONSTRUCTION, NOT BY ENFORCEMENT. No experiment can ATTEMPT any forbidden row (EXTERNAL -> POL/ID/CAPS, TOOL_OUTPUT -> INS, unverified privileged commit), because the path does not exist to be blocked. A PASS would show only that the substrate has no typed-authority layer to violate -- not that typed-authority separation blocks the writes. That is the vacuous-result pattern, not a verdict. (4) THE ONE V3-EXPRESSIBLE CLAUSE BELONGS IN A CONTRACT TEST, NOT THE QUEUE. 'E1/E2 -> POL/ID/CAPS: no' is a deterministic structural invariant with no seed- or arm-differentiated signal, and ree-v3 already asserts write-path separation that way: tests/contracts/test_sleep_phase_e_self_model_aggregator.py, tests/contracts/test_mech_319_simulation_mode_rule_gate.py, tests/contracts/test_mech203_harm_salience_writepath.py. A queued probe would duplicate those while emitting a non-contributory manifest. (5) NO LIVE GATING VARIANCE TO MEASURE AGAINST. The SD-033 write_gate lineage a runtime separation probe would have to instrument is itself inert at production defaults (mode-governance lineage SD-032a / MECH-266 / MECH-261). SCOPE OF THIS BLOCK: experimental lane only. The literature twin LIT-0805 on the same backlog id (EVB-1414) is deliberately NOT blocked and stays 'proposed' -- why_now carries missing_literature_evidence, and the prompt-injection / typed-authority separation literature is reviewable on the current substrate via /lit-pull.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-064 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0804",
+      "proposal_type": "experimental",
+      "release_condition": "Runnable only once V3/V4 exposes a TYPED EXTERNAL INPUT API, which requires BOTH: (a) more than one external channel, each carrying a channel-level authority / payload-type tag (OBS/INS vs POL/ID/CAPS) set from channel METADATA and not derivable from payload content -- an instruction-bearing (INS) channel is the minimum, which makes this CO-BLOCKED on the language cluster (MECH-011 / ARC-009 / ARC-010); AND (b) at least one policy, identity or capability store addressable through that API, so a forbidden write can actually be ATTEMPTED and observed to be DENIED rather than merely being unreachable. Until both hold, route the V3-expressible fragment ('E1/E2 must not write POL/ID/CAPS outside the gated paths') to a ree-v3 contract test alongside the three named above, and pursue grounding through the literature lane LIT-0805. Re-offer EXP-0804 only after (a) and (b) are both satisfied; re-verify at that point that the deny paths are enforced rather than absent before queuing.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_064",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -15980,97 +16025,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_052",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1414",
-      "blocked_note": "No typed external channel and no externally addressable POL/ID/CAPS store in V3 -- every MECH-064 deny path holds by construction, so a probe would be vacuous.",
-      "claim_id": "MECH-064",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-19T03:38:12Z",
-      "gated_by_session": "igw-240-proposal-for-mech-064",
-      "gating_reason": "MECH-064 (typed authority / control-store separation blocks direct exteroceptive writes into policy and identity stores) has NO substrate in V3 for any clause of its allowed/forbidden path table, so a claim_probe_mech_064 run would be vacuous. Measured by session igw-240-proposal-for-mech-064 (2026-09-19) against ree-v3 HEAD. (1) NO TYPED EXTERNAL CHANNEL. The agent's entire external input surface is REEAgent.act(observation: torch.Tensor) / act_with_split_obs(obs_body, obs_world) (ree_core/agent.py:10706, 10746), fed only by ree_core/environment/causal_grid_world.py. That is exactly ONE external channel; it is an untyped float tensor carrying no channel metadata, no authority label and no payload-type tag. The claim's central mechanism -- 'authority labels come from channel metadata, not text content' and 'hard deny at runtime API boundary' -- has no surface to attach to. There is no INS (instruction/request) channel and no tool-output or language channel at all, consistent with the language cluster being substrate-blocked (MECH-011 / ARC-009 / ARC-010). (2) NO EXTERNALLY ADDRESSABLE POL/ID/CAPS STORE. The nearest analogs are internal-only and written through internal gated paths: rule_state / state_code in the lateral-PFC and OFC analogs (write_gate('sd_033a') / write_gate('sd_033b')); the MECH-273 Phase E self-model posterior (ree_core/sleep/self_model_aggregator.py), whose master flag use_mech273_self_model defaults False (ree_core/utils/config.py:6911); and capability crystallization (crystallize_at_phase3, default False), which is ARMED by experiment config and fired by a phase-transition callback, never by an observation. (3) THEREFORE EVERY DENY HOLDS BY CONSTRUCTION, NOT BY ENFORCEMENT. No experiment can ATTEMPT any forbidden row (EXTERNAL -> POL/ID/CAPS, TOOL_OUTPUT -> INS, unverified privileged commit), because the path does not exist to be blocked. A PASS would show only that the substrate has no typed-authority layer to violate -- not that typed-authority separation blocks the writes. That is the vacuous-result pattern, not a verdict. (4) THE ONE V3-EXPRESSIBLE CLAUSE BELONGS IN A CONTRACT TEST, NOT THE QUEUE. 'E1/E2 -> POL/ID/CAPS: no' is a deterministic structural invariant with no seed- or arm-differentiated signal, and ree-v3 already asserts write-path separation that way: tests/contracts/test_sleep_phase_e_self_model_aggregator.py, tests/contracts/test_mech_319_simulation_mode_rule_gate.py, tests/contracts/test_mech203_harm_salience_writepath.py. A queued probe would duplicate those while emitting a non-contributory manifest. (5) NO LIVE GATING VARIANCE TO MEASURE AGAINST. The SD-033 write_gate lineage a runtime separation probe would have to instrument is itself inert at production defaults (mode-governance lineage SD-032a / MECH-266 / MECH-261). SCOPE OF THIS BLOCK: experimental lane only. The literature twin LIT-0805 on the same backlog id (EVB-1414) is deliberately NOT blocked and stays 'proposed' -- why_now carries missing_literature_evidence, and the prompt-injection / typed-authority separation literature is reviewable on the current substrate via /lit-pull.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-064 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0804",
-      "proposal_type": "experimental",
-      "release_condition": "Runnable only once V3/V4 exposes a TYPED EXTERNAL INPUT API, which requires BOTH: (a) more than one external channel, each carrying a channel-level authority / payload-type tag (OBS/INS vs POL/ID/CAPS) set from channel METADATA and not derivable from payload content -- an instruction-bearing (INS) channel is the minimum, which makes this CO-BLOCKED on the language cluster (MECH-011 / ARC-009 / ARC-010); AND (b) at least one policy, identity or capability store addressable through that API, so a forbidden write can actually be ATTEMPTED and observed to be DENIED rather than merely being unreachable. Until both hold, route the V3-expressible fragment ('E1/E2 must not write POL/ID/CAPS outside the gated paths') to a ree-v3 contract test alongside the three named above, and pursue grounding through the literature lane LIT-0805. Re-offer EXP-0804 only after (a) and (b) are both satisfied; re-verify at that point that the deny paths are enforced rather than absent before queuing.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_064",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1414",
-      "claim_id": "MECH-064",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-064.",
-      "priority": "medium",
-      "proposal_id": "LIT-0805",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_064",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -32148,6 +32102,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1666",
+      "blocked_by": [
+        "SD-086"
+      ],
+      "blocked_note": "REFUSED AT DESIGN 2026-09-19 by the /queue-experiment Step 4.5 red-team pass (model: fable), verdict BLOCKING, confirmed independently by the authoring session. The option-C design (linear decode from the 16-d z_harm_a vs from ||z_harm_a||, joint hazard+resource target, user-pinned OPTION M 2026-09-19T07:06Z) PASSES ON AN UNTRAINED ENCODER: measured over 3 seeds at real budget, untrained vector_r2 0.983-0.9995 / mean margin +0.577 / both criteria PASS, trained 0.999-1.0000 / +0.552 / both PASS. Root cause: the scored decode targets hazard_at_agent and resource_at_agent ARE two coordinates of the encoder's own input (causal_grid_world.py ~3037-3038) and AffectiveHarmEncoder is near-linear over a tiny input range, so vector_r2 is pinned at ~1, the margin collapses to 1 - norm_r2, and both pre-registered criteria are decided by the norm alone -- the manipulation never reaches the DV. Second defect, same root: the headroom precondition min(1 - norm_r2) > 0.10 IMPLIES C2 mean margin > 0.10, so C2 cannot fail on any scored run. NOT a substrate gap -- the substrate (P0h affective-encoder training, ree-v3 78397036) is built and working; this is a DESIGN/operationalisation refusal, recorded with blocked_by SD-086 because the claim's own readout question needs re-specifying before any run can test it. Refused driver kept bannered and unqueued at ree-v3 59f7bd87e3. Full diagnosis + the constraints a sound successor must meet: REE_assembly/evidence/planning/sd086_optc_refused_at_design_staged_20260919.md",
       "claim_id": "SD-086",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -32177,11 +32135,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_by": [
-        "SD-086"
-      ],
-      "blocked_note": "REFUSED AT DESIGN 2026-09-19 by the /queue-experiment Step 4.5 red-team pass (model: fable), verdict BLOCKING, confirmed independently by the authoring session. The option-C design (linear decode from the 16-d z_harm_a vs from ||z_harm_a||, joint hazard+resource target, user-pinned OPTION M 2026-09-19T07:06Z) PASSES ON AN UNTRAINED ENCODER: measured over 3 seeds at real budget, untrained vector_r2 0.983-0.9995 / mean margin +0.577 / both criteria PASS, trained 0.999-1.0000 / +0.552 / both PASS. Root cause: the scored decode targets hazard_at_agent and resource_at_agent ARE two coordinates of the encoder's own input (causal_grid_world.py ~3037-3038) and AffectiveHarmEncoder is near-linear over a tiny input range, so vector_r2 is pinned at ~1, the margin collapses to 1 - norm_r2, and both pre-registered criteria are decided by the norm alone -- the manipulation never reaches the DV. Second defect, same root: the headroom precondition min(1 - norm_r2) > 0.10 IMPLIES C2 mean margin > 0.10, so C2 cannot fail on any scored run. NOT a substrate gap -- the substrate (P0h affective-encoder training, ree-v3 78397036) is built and working; this is a DESIGN/operationalisation refusal, recorded with blocked_by SD-086 because the claim's own readout question needs re-specifying before any run can test it. Refused driver kept bannered and unqueued at ree-v3 59f7bd87e3. Full diagnosis + the constraints a sound successor must meet: REE_assembly/evidence/planning/sd086_optc_refused_at_design_staged_20260919.md"
+      ]
     },
     {
       "acceptance_checks": [
