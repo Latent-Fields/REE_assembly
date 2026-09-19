@@ -1,0 +1,63 @@
+{
+  "claim_ids_tested": [
+    "MECH-453",
+    "MECH-090"
+  ],
+  "source": {
+    "title": "The Functional Role of Striatal Cholinergic Interneurons in Reinforcement Learning From Computational Perspective.",
+    "authors": [
+      "Kim T",
+      "Capps RA",
+      "Hamade KC",
+      "Barnett WH",
+      "Todorov DI",
+      "Latash EM",
+      "Markin SN",
+      "Rybak IA",
+      "Molkov YI"
+    ],
+    "year": 2019,
+    "venue": "Frontiers in Neural Circuits",
+    "doi": "10.3389/fncir.2019.00010",
+    "pmid": "30846930",
+    "pmc": "PMC6393383",
+    "volume": "13",
+    "pages": "10"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "The entry that carries the TAN window from neurobiology into a LEARNING RULE, which is the level MECH-453 actually operates at and the level Cragg 2006 does not reach. Kim et al. model the TAN pause explicitly as 'a time window to gate phasic dopamine release', integrate it into a reward-based motor-adaptation model, and show reward information is delivered for reinforcement learning IN A TIMELY MANNER because of the gate. They also model the reciprocal direction -- dopamine variations modulate pause DURATION -- and reproduce degraded adaptation under striatal dopamine deficiency. Confidence 0.66 because it is a model rather than a measurement: it demonstrates the window is SUFFICIENT to produce timely credit assignment, not that the brain's learning depends on it.",
+  "failure_signatures": [
+    "The pause duration is itself modulated by dopamine in this model, so the window is not an independent gate but part of a closed loop. MECH-453 and the staged plasticity.striatal_da_ach_windowed_write both read the window as an exogenous permission; if it is endogenously set by the same signal it gates, a REE implementation with a fixed-width window is modelling something the biology does not do, and the loop's stability becomes a design question nobody has asked.",
+    "This is a model whose target behaviour is REWARD-BASED MOTOR ADAPTATION, a continuous-control task. MECH-453's target is discrete selector-component credit under ARC-108 learned gating. Sufficiency in one does not transfer to the other, and the model's timing constants are fitted to motor adaptation.",
+    "The model demonstrates the window is SUFFICIENT for timely credit delivery. Nothing in it rules out an alternative eligibility-trace mechanism achieving the same timeliness without a cholinergic gate -- so it cannot, on its own, license the 'not continuously update every recently-active component' NEGATIVE half of MECH-453."
+  ],
+  "tags": [
+    "mech_453",
+    "mech_090",
+    "tan_pause",
+    "reinforcement_learning",
+    "plasticity_window",
+    "credit_assignment",
+    "gated_plasticity",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "The TAN pause is likely a time window that gates phasic dopamine release, and dopamine variations reciprocally modulate TAN pause duration. Integrated into a model of reward-based motor adaptation, this gating delivers reward information for reinforcement learning in a timely manner; striatal dopamine deficiency degrades TAN-dopamine interaction and produces poor motor-adaptation performance.",
+    "ree_translation": "MECH-453 needs more than the existence of a cholinergic window -- it needs the window to be doing work in a LEARNING RULE. Kim et al. supply exactly that: the pause is modelled as the gate through which phasic dopamine reaches the learning process, and removing or degrading it degrades adaptation. For REE this grounds the shape of plasticity.striatal_da_ach_windowed_write and connects the window to MECH-090's broader commitment-gated-output framing: a gate on WHEN credit is delivered is the temporal sibling of a gate on WHETHER output propagates.",
+    "mapping_caveat": "The most consequential caveat is structural, not methodological. In this model the window is not exogenous: dopamine sets the pause duration that gates dopamine. MECH-453 and the staged windowed-write candidate both treat the window as a permission handed down from elsewhere. If REE implements a fixed-width window it is implementing something simpler than the biology, and the closed loop's stability becomes an unexamined design question. Separately, a model showing SUFFICIENCY for timely credit does not establish NECESSITY -- an eligibility trace could do the same job without a cholinergic gate, so this cannot license MECH-453's negative limb.",
+    "source_context": "Computational model of TAN-dopamine interaction integrated into a previously published reward-based motor-adaptation model; parameters constrained by rodent striatal electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Frontiers in Neural Circuits modelling study; source quality moderate -- the model is well-constrained but the venue and the absence of new measurement cap it. Mapping fidelity good because the model operates at the learning-rule level MECH-453 needs. Transfer risk 0.45: motor adaptation to discrete selector credit, plus the fitted-timescale problem."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gated_plasticity_biology",
+  "entry_id": "2026-09-19_mech_453_tan_pause_time_window_model_kim2019",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

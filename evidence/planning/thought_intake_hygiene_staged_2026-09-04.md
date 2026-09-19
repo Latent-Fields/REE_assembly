@@ -555,3 +555,77 @@ Counted from the per-candidate rows of Batch A (the rollup table's "36" is incon
 When a pull lands, re-run the registration for that cluster via `/thought-ingestion` Step 6 from the intake's own candidate section (each intake carries the full proposal: type, subject, depends_on, phase). Registration is "as a cluster, one pass" for the plasticity pair, citing MECH-083 / INV-056 / INV-074 rather than duplicating them, and reconciled with ARC-093 / MECH-398..400 / Q-072.
 
 **Out of this pass's scope, unchanged:** Batch B's `register` candidates (lifespan_brain_epochs 4, loss_dampening 2, music_prediction 4, prelinguistic 3, sleep_timing 3) are deferred by their own files' guardrails to a future V4 developmental/social session and were not part of the 2026-09-16 decision; Batch C's two residue_care_marker candidates (mood-regulation return-to-baseline; caregiver-bond residue discharge) are genuinely unregistered with no gate named and no deferral reason beyond a since-closed claim conflict -- a candidate for a separate small `/thought-ingestion` pass. Batch D's two `needs-user` items (ARC-020 scope; ARC-137 / MECH-533 V3 phase) still await `/governance` ratification.
+
+---
+
+## Section 5 addendum -- gate status 2026-09-19 (lit-pull pass, chip `chip-20260916-intake-hygiene-litpull-gates`)
+
+Both literature gates named above have been run. **BOTH GATES MET.** Landed in REE_assembly as
+10 entries across two new review directories; the gates are discharged on evidence, not on the
+existence of a proposal (the test stated at the head of Section 5).
+
+| cluster | gate | verdict 2026-09-19 | review directory |
+|---|---|---|---|
+| `2026-05-21_gated_plasticity` (7 candidates) | (a) HuD/ELAVL4 adult reuse + (b) ACh-DA phase gating | **GATE MET** | `evidence/literature/targeted_review_gated_plasticity_biology` (5 entries) |
+| `2026-05-04_smoothened_da_ach` (4 candidates) | inherits the plasticity gate; iScience source banked | **GATE MET** | same directory -- Uribe-Cano & Kottmann 2026 (PMID 42058902) is entry 5 |
+| `2026-04-16_language_lateralisation` (1 candidate: `affect.bilateral_right_biased_coupling`) | dorsal/ventral streams + arcuate lateralisation + RH affective prosody | **GATE MET** | `evidence/literature/targeted_review_language_lateralisation_dorsal_ventral` (5 entries) |
+
+**Neighbour reviews cited, not duplicated,** as instructed: `targeted_review_plasticity_neuromodulation_v4`
+(the five 2026-06-17 cortical ACh/NE gating entries serving ARC-093 / MECH-398..400 / Q-072) and
+`targeted_review_social_signal_legibility` (Filippi 2016, ARC-048). No entry in either new directory
+repeats a paper from those.
+
+**What the pulls actually settle** -- worth reading before the registration pass, because two findings
+cut against how the candidates are currently worded:
+
+1. *Plasticity.* The adult-reuse limb holds, but with the polarity the intake did not assume:
+   Bolognani et al. 2006 (PMID 17185008) show that running a developmental plasticity operator
+   (HuD/ELAVL4) **unrestricted** in adult forebrain **impairs** acquisition and retention, and the
+   authors' own conclusion is that such regulation "may have to be restricted temporally and
+   spatially". So `plasticity.developmental_reuse_stricter_permissions` is a correctness condition,
+   not an optimisation. Two wording issues for registration: (i) Vanevski & Xu 2015 (PMID 25692578)
+   show the biological gate is **de-repression** (default blocked, signal unblocks), while
+   `typed_gated_event_controller` and `depth_ladder_eight_rungs` are phrased as **admission** -- these
+   fail differently and the candidates should state which they mean; (ii) HuD *rises with learning*
+   yet *impairs learning when raised*, i.e. a non-monotonic gain, which a binary permission gate
+   cannot express.
+2. *ACh-DA window.* MECH-453's window is real and causal -- Cragg 2006 (PMID 16443285) for the
+   presynaptic mechanism, Kim et al. 2019 (PMID 30846930) for the window operating inside a learning
+   rule, Uribe-Cano & Kottmann 2026 (PMID 42058902) for causal manipulation with a behavioural
+   readout. Two caveats that belong in the claim text: the window is **not exogenous** (dopamine sets
+   the pause duration that gates dopamine), so a fixed-width window models something the biology does
+   not do; and Smo ablation **promotes** motor learning, so the wild-type coordination is not tuned to
+   maximise learning rate -- a design that treats the window as a learning-rate knob optimises a
+   quantity the biology declines to optimise.
+3. *Lateralisation.* ARC-146's two-route architecture is well grounded: Hickok & Poeppel 2007
+   (PMID 17431404) give a strongly left-dominant dorsal stream and a largely bilateral ventral one,
+   and Sihvonen et al. 2022 (PMID 34661326) localise affective-prosody loss specifically to the
+   **right ventral** stream (right IFOF), so the affect route is right-biased *and* ventral, exactly
+   as ARC-146 asserts. Catani et al. 2007 (PMID 17939998) is the counterweight: arcuate lateralisation
+   is a population **parameter** (extreme-left in >half, symmetric in 17.5%) and the *more symmetric*
+   individuals are better at semantic verbal recall -- so "as lateralised as possible" is not the
+   design target. Two further notes: the Sihvonen authors read their route as carrying
+   **rhythmic-melodic acoustic** structure (affect may be a downstream reading), and their
+   right frontoinsular/striatal lesion locus overlaps salience-network territory (SD-032a) -- it is
+   genuinely open whether the affect route belongs to the language architecture at all.
+4. *Language vs ToM.* ARC-123 and MECH-486 gain their first evidence: Shain et al. 2023
+   (PMID 36585774, n=151, individual-subject localisers) find no ToM reasoning in the language
+   network after linguistic confounds are removed, and Paunov et al. 2022 (PMID 37216061) show a
+   double dissociation over naturalistic stimuli. Both caveats matter: the evidence is for
+   *separateness*, not for ARC-123's "partially **homologous**" clause; and MECH-486's interference
+   consequent (that merging degrades **both** at matched capacity) is untestable by neuroimaging and
+   remains a substrate experiment for REE itself.
+
+**Registration is NOT performed by this pass** -- per the chip and the intake's own "one governance
+pass" instruction, that is `/thought-ingestion` Step 6 work and is routed forward as a separate chip
+(`chip-20260919-intake-hygiene-registration`). The plasticity pair registers as ONE cluster pass
+citing MECH-083 / INV-056 / INV-074 / ARC-093 rather than duplicating them; the lateralisation MECH
+registers alone.
+
+**Literature confidence after the pulls** (before -> after; `--` = no prior entry):
+MECH-083 `-- -> 0.862` (4), MECH-453 `-- -> 0.805` (3), ARC-146 `-- -> 0.833` (3),
+ARC-123 `-- -> 0.777` (2), MECH-486 `-- -> 0.777` (2), INV-056 `0.612 -> 0.785` (3),
+INV-074 `0.891 -> 0.914` (5), ARC-009 `0.816 -> 0.874` (5), ARC-010 `0.738 -> 0.868` (4),
+MECH-090 `0.684 -> 0.718` (20). MECH-061 was named as an anchor but is **unchanged at 0.816** --
+no paper in either pull evidences commit-boundary error reclassification, and tagging it would have
+inflated its posterior for nothing.

@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-083",
+    "MECH-453"
+  ],
+  "source": {
+    "title": "The GPCR Smoothened on cholinergic interneurons modulates dopamine-associated acetylcholine dynamics, learning, and effort management.",
+    "authors": [
+      "Uribe-Cano S",
+      "Kottmann AH"
+    ],
+    "year": 2026,
+    "venue": "iScience",
+    "doi": "10.1016/j.isci.2026.115324",
+    "pmid": "42058902",
+    "pmc": "PMC13122704",
+    "volume": "29",
+    "issue": "5",
+    "pages": "115324"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "The source paper behind the 2026-05-04 raw thought, now banked. It is the strongest CAUSAL entry in the (b) half: cholinergic-neuron-specific Smoothened activity BIDIRECTIONALLY modulates ACh inhibition following dopaminergic or cholinergic activity, altering 'the temporal organization of ACh and its coupling to DA' in dorsolateral striatum -- and the behavioural consequence is a change in motor LEARNING and in effort/ time adjustments to obtain reward. So the window's temporal structure is causally manipulable and learning follows it. Direction is mixed rather than supports because the direction of the behavioural effect is the awkward one: Smo ABLATION PROMOTES motor learning. Confidence 0.70 -- strong design, recent, but a single-laboratory 2026 paper with no replication yet.",
+  "failure_signatures": [
+    "Smo ablation from cholinergic neurons PROMOTES motor learning. If disrupting the modulator that organises ACh-DA timing makes learning BETTER, then the wild-type window is not simply 'the setting that maximises learning' -- it is trading learning rate against something else (plausibly effort management, which the same manipulation also alters). A REE implementation that tunes the window to maximise learning would be optimising a variable the biology deliberately does not maximise.",
+    "The effects are described as altering the TEMPORAL ORGANIZATION of ACh and its COUPLING to DA, not as opening or closing a discrete window. This is a continuous-timing result, and the staged candidate plasticity.striatal_da_ach_windowed_write is discrete. The intake's e3.da_ach_coordination_layer candidate is the better fit to what this paper actually measures.",
+    "Effects are in dorsolateral striatum and assayed with motor learning and effort tasks -- a habit/procedural-learning locus. INV-056's selective neoteny explicitly predicts procedural and motor substrates can FULLY HARDEN, so evidence drawn from this locus does not straightforwardly generalise to the social/goal/epistemic substrates the intake cluster mostly concerns."
+  ],
+  "tags": [
+    "mech_083",
+    "mech_453",
+    "mech_061",
+    "smoothened",
+    "cholinergic_interneuron",
+    "acetylcholine",
+    "dopamine",
+    "gated_plasticity",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cholinergic-neuron-specific Smoothened activity bidirectionally modulates acetylcholine inhibition following dopaminergic or cholinergic neuron activity. These effects alter the temporal organisation of acetylcholine and its coupling to dopamine in the dorsolateral striatum. Behaviourally, Smoothened ablation from cholinergic neurons promotes motor learning and alters adjustments in the effort or time required to obtain reward. Smoothened is thus a modulator of striatal dopamine-acetylcholine coordination, striatal learning and effort management.",
+    "ree_translation": "The 2026-05-04 intake stages e3.da_ach_coordination_layer -- a layer whose job is to coordinate the timing of two modulatory signals rather than to carry content. Uribe-Cano & Kottmann is the causal demonstration that such a layer exists and is separable: a single receptor on cholinergic interneurons can be manipulated to change the temporal organisation of ACh and its coupling to DA, WITHOUT being the source of either signal. That separability is the architectural point. It also strengthens MECH-453 causally where Cragg 2006 was correlational and Kim 2019 was simulated: change the coordination and learning changes.",
+    "mapping_caveat": "The behavioural direction is the honest difficulty. Ablating the modulator IMPROVES motor learning while altering effort management, which means the wild-type coordination is not tuned to maximise learning -- it is trading learning against something else. Any REE design that treats the window as a learning-rate knob to be optimised is therefore optimising a quantity the biology declines to optimise. Separately, this is dorsolateral striatum and motor/effort tasks: a procedural locus, which INV-056 explicitly predicts should be ALLOWED to harden -- so generalising from here to the social/goal/epistemic substrates the cluster concerns is a step the paper does not support.",
+    "source_context": "Mouse, cholinergic-neuron-specific conditional Smoothened manipulation; fibre-photometry ACh/DA dynamics in dorsolateral striatum plus motor-learning and effort/progressive-ratio-style behavioural assays."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "iScience 2026, conditional genetic manipulation with photometry and behaviour -- good causal design, but single-laboratory and too recent for replication, so source quality is held at 0.72. Mapping fidelity moderate: it evidences a coordination LAYER cleanly and a discrete WINDOW only by inference. Transfer risk 0.45 given the procedural-locus mismatch with the cluster's substrate targets."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gated_plasticity_biology",
+  "entry_id": "2026-09-19_mech_083_smoothened_ach_da_coordination_uribecano2026",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

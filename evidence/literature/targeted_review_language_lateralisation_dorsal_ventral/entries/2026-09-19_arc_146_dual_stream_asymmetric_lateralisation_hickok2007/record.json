@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "ARC-146",
+    "ARC-009"
+  ],
+  "source": {
+    "title": "The cortical organization of speech processing.",
+    "authors": [
+      "Hickok G",
+      "Poeppel D"
+    ],
+    "year": 2007,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2113",
+    "pmid": "17431404",
+    "pmc": null,
+    "volume": "8",
+    "issue": "5",
+    "pages": "393-402"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The canonical dual-stream statement, and it grounds ARC-146's core architectural assertion almost clause for clause. Hickok & Poeppel's model has a VENTRAL stream processing speech for comprehension that is LARGELY BILATERALLY ORGANISED, and a DORSAL stream mapping acoustic speech to frontal articulatory networks that is STRONGLY LEFT-HEMISPHERE DOMINANT. Two streams, differently lateralised, with different jobs -- which is precisely the separation ARC-146 requires and the reason the intake would not let the affect-coupling MECH be registered on an undifferentiated 'language is left-lateralised' picture. Confidence 0.82, the highest in this review: near-ceiling source, and the mapping is structural rather than inferential.",
+  "failure_signatures": [
+    "Hickok & Poeppel's ventral stream is bilateral for COMPREHENSION -- extracting meaning from the acoustic signal -- not for AFFECT. ARC-146 asserts a ventral interface that binds AFFECT to symbol. Bilateral comprehension and right-biased affective coupling are different bilateralities, and this paper supports only the first; the affective limb rests on the aprosodia evidence, not on this entry.",
+    "The authors note there are 'important computational differences between the left- and right-hemisphere systems' within the bilateral ventral stream. So ventral bilaterality is not symmetry, and a REE implementation that models the ventral route as one undifferentiated bilateral pathway would be simplifying past the paper's own qualification.",
+    "The model is about SPEECH processing specifically -- acoustic-to-meaning and acoustic-to-articulation. ARC-146's 'structured symbolic routing' is a broader claim than speech, and the dual-stream anatomy does not automatically extend to symbolic routing in general."
+  ],
+  "tags": [
+    "arc_146",
+    "arc_009",
+    "dual_stream",
+    "dorsal_ventral",
+    "lateralisation",
+    "language",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "A dual-stream model of speech processing in which a ventral stream processes speech signals for comprehension and a dorsal stream maps acoustic speech signals to frontal-lobe articulatory networks. The ventral stream is largely bilaterally organised -- although there are important computational differences between the left- and right-hemisphere systems -- and the dorsal stream is strongly left-hemisphere dominant.",
+    "ree_translation": "ARC-146 commits REE to treating dorsal high-fidelity structured symbolic routing as architecturally distinct from the affective-coupling system, with a ventral interface binding affect to symbol -- and therefore forbids implementing affect as a property of the symbolic route. Hickok & Poeppel supply the anatomical warrant for the first half: two streams really are separate systems with different jobs and different lateralisation profiles, so a single 'language pathway' is the wrong primitive. The asymmetry in their lateralisation is what makes the separation architecturally consequential rather than merely descriptive -- a route that is strongly left-dominant and a route that is largely bilateral cannot be two aspects of one mechanism.",
+    "mapping_caveat": "The ventral stream's bilaterality here is for COMPREHENSION, not for affect. ARC-146's ventral interface is an affect-to-symbol binder, which is a different function that happens to share a route name. This entry grounds the two-route architecture and the lateralisation asymmetry; the affective content of the ventral route comes from the aprosodia entry, and the two should not be silently merged. Note also the authors' own qualification that the bilateral ventral stream has computationally DIFFERENT left and right systems -- bilateral is not symmetric.",
+    "source_context": "Review integrating human functional imaging, lesion and neuropsychological evidence on speech perception and production."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.28,
+    "notes": "Nature Reviews Neuroscience, the field's standard reference for dual-stream speech architecture -- source quality near ceiling. Mapping fidelity high because ARC-146 is itself an architectural claim about route separation and that is what the paper establishes. Transfer risk low for the architecture, higher for the affect limb, which is carried by a different entry."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_language_lateralisation_dorsal_ventral",
+  "entry_id": "2026-09-19_arc_146_dual_stream_asymmetric_lateralisation_hickok2007",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

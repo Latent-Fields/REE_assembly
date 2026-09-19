@@ -1,0 +1,62 @@
+{
+  "claim_ids_tested": [
+    "ARC-146",
+    "ARC-010"
+  ],
+  "source": {
+    "title": "Right ventral stream damage underlies both poststroke aprosodia and amusia.",
+    "authors": [
+      "Sihvonen AJ",
+      "Sammler D",
+      "Ripolles P",
+      "Leo V",
+      "Rodriguez-Fornells A",
+      "Soinila S",
+      "Sarkamo T"
+    ],
+    "year": 2022,
+    "venue": "European Journal of Neurology",
+    "doi": "10.1111/ene.15148",
+    "pmid": "34661326",
+    "pmc": null,
+    "volume": "29",
+    "issue": "3",
+    "pages": "873-882"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The entry that carries the AFFECT half, and it lands more precisely than the intake hoped. Sihvonen et al. do lesion-symptom mapping and tractography in 39 stroke patients and find affective-prosody deficit localised not merely to the right hemisphere but to the RIGHT VENTRAL AUDITORY STREAM -- with reduced fractional anisotropy and tract volume of the right inferior fronto-occipital fasciculus the strongest predictor, over time. So the affective route is (i) right-biased and (ii) VENTRAL, which is exactly ARC-146's 'a ventral interface binds affect to symbol' rather than a generic right-hemisphere story. The co-occurrence with amusia strengthens the reading that the route carries rhythmic-melodic acoustic structure generally, not language-specific affect. Confidence 0.78: real patients, two timepoints, multimodal -- but n=39 and a single cohort.",
+  "failure_signatures": [
+    "Aprosodia and amusia were strongly correlated and shared a lesion pattern, which the authors read as a COMMON ORIGIN in rhythmic-melodic acoustic integration. That is a weaker claim than 'an affective coupling system': the right ventral stream may be carrying suprasegmental ACOUSTIC structure, with affect a downstream interpretation. If so, ARC-146's affective-coupling route is really an acoustic-prosodic route and the affect binding happens elsewhere.",
+    "The lesion patterns for aprosodia were in right frontoinsular and striatal areas, which overlaps the salience-network territory (SD-032a, MECH-259) rather than being cleanly a language-system finding. A REE implementation must decide whether the affect route is part of the language architecture at all or is the salience system read through an auditory channel.",
+    "Both deficits were assessed by forced-choice perception tasks (which meaning / which emotion / same-or-different). Perception deficits do not establish that the same route PRODUCES affective prosody, so ARC-146's binding interface is evidenced on the input side only."
+  ],
+  "tags": [
+    "arc_146",
+    "arc_010",
+    "aprosodia",
+    "right_hemisphere",
+    "ventral_stream",
+    "affective_prosody",
+    "lateralisation",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 39 stroke patients tested at subacute and 3-month stages, aprosodia and amusia were behaviourally strongly correlated and associated with similar lesion patterns in right frontoinsular and striatal areas. Reduced fractional anisotropy and lower tract volume of the right inferior fronto-occipital fasciculus were the strongest predictors of both disorders over time. The authors conclude both arise from damage and disconnection of the right ventral auditory stream integrating rhythmic-melodic acoustic information in prosody and music.",
+    "ree_translation": "The staged candidate affect.bilateral_right_biased_coupling asserts that affective coupling is carried by a bilateral, right-biased system distinct from the left-dominant symbolic route, and ARC-146 places the binding at a VENTRAL interface. Sihvonen et al. evidence both halves in one finding: the affective-prosody deficit is right-lateralised AND ventral-stream, tracked by a specific ventral tract. Combined with Hickok & Poeppel's strongly-left-dominant dorsal stream, this gives REE a two-route picture with opposite lateralisation biases -- which is the strongest form of the architectural separation the intake was gating on.",
+    "mapping_caveat": "The authors' own interpretation is about RHYTHMIC-MELODIC ACOUSTIC INTEGRATION, which is why aprosodia and amusia co-occur. That is a route for suprasegmental acoustic structure; affect may be a downstream reading of it rather than its content. If REE registers an 'affective coupling' route on this evidence it is naming the function optimistically. There is also a locus complication worth flagging to governance: right frontoinsular and striatal damage overlaps salience-network territory (SD-032a), so the affect route may not belong to the language architecture at all. Finally, all assays are PERCEPTUAL, so the binding is evidenced on the input side only.",
+    "source_context": "Human stroke cohort (n=39, right or left hemisphere), tested subacutely and at 3 months; machine-learning lesion-symptom mapping plus deterministic tractography on structural MRI."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.32,
+    "notes": "Human lesion cohort with two timepoints and converging lesion-symptom mapping plus tractography -- strong design for a clinical study, capped by n=39 and single-cohort status. Mapping fidelity high: it independently confirms BOTH the right bias and the ventral locus the claim needs. Transfer risk low -- this is human data on the exact function at issue."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_language_lateralisation_dorsal_ventral",
+  "entry_id": "2026-09-19_arc_146_right_ventral_stream_aprosodia_sihvonen2021",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

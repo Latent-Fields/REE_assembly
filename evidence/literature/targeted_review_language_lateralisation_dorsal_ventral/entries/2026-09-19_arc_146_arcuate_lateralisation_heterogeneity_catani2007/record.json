@@ -1,0 +1,62 @@
+{
+  "claim_ids_tested": [
+    "ARC-146",
+    "ARC-009"
+  ],
+  "source": {
+    "title": "Symmetries in human brain language pathways correlate with verbal recall.",
+    "authors": [
+      "Catani M",
+      "Allin MPG",
+      "Husain M",
+      "Pugliese L",
+      "Mesulam MM",
+      "Murray RM",
+      "Jones DK"
+    ],
+    "year": 2007,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0702116104",
+    "pmid": "17939998",
+    "pmc": "PMC2040413",
+    "volume": "104",
+    "issue": "43",
+    "pages": "17163-8"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "The entry that stops this review becoming a rubber stamp for strict lateralisation. Catani et al. dissect the direct Broca-Wernicke connection (arcuate) with diffusion tensor MRI in a normal population and find lateralisation is HETEROGENEOUS -- extreme leftward in more than half of subjects but bilaterally symmetrical in 17.5% -- and, paradoxically, that the MORE SYMMETRIC individuals are BETTER at remembering words via semantic association. Direction mixed: it supports ARC-146's dorsal/ventral distinction (the arcuate is the dorsal route and it IS the lateralised one) while weakening any reading in which strong left-lateralisation is the optimal or canonical configuration. Confidence 0.70: PNAS, in vivo tractography, but 2007-era DTI in a modest normal sample and a correlational cognitive measure.",
+  "failure_signatures": [
+    "Bilateral symmetry of the dorsal route was associated with BETTER semantic verbal recall. If REE hard-codes a strongly lateralised symbolic route because 'that is how brains do it', it is hard-coding the configuration associated with worse performance on the one cognitive measure this study took -- and the population variation implies lateralisation degree is a PARAMETER, not a constant.",
+    "Only 17.5% of subjects were bilaterally symmetric and more than half were extremely leftward: the distribution is wide and possibly multimodal. ARC-146 is written as an architectural commitment (a fact about the design) rather than as a parameter with a distribution, and the biology here is the latter.",
+    "The cognitive advantage is specific to semantic-association word recall, which is arguably a VENTRAL-stream-flavoured task. A symmetric DORSAL route correlating with better ventral-flavoured performance is not straightforwardly interpretable, and could reflect a third variable (overall white-matter integrity, sex -- the authors note females were more likely to be symmetric)."
+  ],
+  "tags": [
+    "arc_146",
+    "arc_009",
+    "arcuate_fasciculus",
+    "lateralisation",
+    "dorsal_stream",
+    "individual_differences",
+    "counterweight",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Diffusion tensor MRI virtual dissection of language pathways in a normal population showed interhemispheric differences in direct connections between Broca's and Wernicke's territories, with extreme leftward lateralisation in more than half of subjects and bilaterally symmetrical distribution in only 17.5%. Individuals with more symmetric patterns of connections were better overall at remembering words using semantic association, and preliminary analysis suggested females are more likely to have a symmetrical pattern. Bilateral representation, not extreme lateralisation, might ultimately be advantageous for specific cognitive functions.",
+    "ree_translation": "ARC-146 separates a dorsal structured-symbolic route from an affective-coupling system. Catani et al. confirm that the dorsal route (the direct Broca-Wernicke arcuate connection) is indeed the lateralised one, which supports the separation. But they also show its lateralisation is a population PARAMETER with wide variance rather than an architectural constant, and that the extreme-left configuration is not the high-performing one on semantic recall. For REE this converts 'how lateralised should the symbolic route be' from a fact to be copied into a design variable to be chosen -- and suggests the answer is not 'as lateralised as possible'.",
+    "mapping_caveat": "The cognitive advantage found is for semantic-association word recall, which is a ventral-flavoured function, while the anatomical measure is the dorsal arcuate. That cross-stream relationship is not straightforwardly interpretable and could reflect general white-matter integrity or the sex difference the authors themselves flag. The imaging is also 2007-era deterministic DTI, which is known to under-recover crossing fibres and can therefore exaggerate apparent right-hemisphere absence. Read this as evidence that lateralisation is variable and not obviously optimised, not as a quantitative target.",
+    "source_context": "Healthy adult human population; in vivo diffusion tensor MRI virtual dissection of perisylvian language pathways with cognitive testing."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.38,
+    "notes": "PNAS with in vivo tractography and a cognitive correlate; source quality good but capped by 2007 DTI methodology and a modest normal sample. Mapping fidelity moderate -- it speaks to the dorsal route's lateralisation, which ARC-146 assumes rather than asserts quantitatively. Transfer risk moderate; the cross-stream cognitive correlation is the weak joint."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_language_lateralisation_dorsal_ventral",
+  "entry_id": "2026-09-19_arc_146_arcuate_lateralisation_heterogeneity_catani2007",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

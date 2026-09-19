@@ -1,0 +1,61 @@
+{
+  "claim_ids_tested": [
+    "ARC-123",
+    "MECH-486",
+    "ARC-010"
+  ],
+  "source": {
+    "title": "No evidence of theory of mind reasoning in the human language network.",
+    "authors": [
+      "Shain C",
+      "Paunov A",
+      "Chen X",
+      "Lipkin B",
+      "Fedorenko E"
+    ],
+    "year": 2023,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhac505",
+    "pmid": "36585774",
+    "pmc": "PMC10183748",
+    "volume": "33",
+    "issue": "10",
+    "pages": "6299-6319"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Directly evidences ARC-123 (language and ToM/fast-empathy are developmentally SEPARATE specialist systems, not one merged social-linguistic system) with unusual methodological care and a large sample. 151 participants, individual-participant functional localisation -- the technique that exists precisely because group averaging manufactures spurious overlap between neighbouring networks. The authors find core language regions DO respond more to false-belief vignettes, then show that difference is largely a LINGUISTIC CONFOUND and vanishes in a nonverbal ToM task. That self-correcting structure is what makes the entry strong: the naive positive result is reported and then dismantled. Confidence 0.79, capped only because it is a null result and because REE's 'fast empathy' is broader than experimental ToM.",
+  "failure_signatures": [
+    "The result is a NULL (no ToM reasoning in the language network). ARC-123 asserts partially-HOMOLOGOUS but separate systems; a null on overlap evidences separateness but says nothing about homology, which is the half of ARC-123 that would actually constrain REE's implementation (shared core, distinct routing).",
+    "Responses to social processing WERE found in the language network's PERIPHERY -- right-hemisphere homotopes of core language areas and bilateral angular gyri -- though not selectively ToM-related. A REE design reading this as 'fully separate systems' would miss that the periphery is shared, which is where ARC-123's 'partially-homologous' language and MECH-486's interference claim actually live.",
+    "ToM here is false-belief reasoning, an explicit, effortful, verbally-framed capacity. ARC-123 and MECH-486 concern FAST EMPATHY -- graded, affective, resonant. A dissociation between language and explicit ToM does not establish one between language and fast empathy, and could even be the easier case."
+  ],
+  "tags": [
+    "arc_123",
+    "mech_486",
+    "arc_010",
+    "language_network",
+    "theory_of_mind",
+    "dissociation",
+    "individual_localisation",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 151 participants using individual-participant functional localisation, all core language regions responded more strongly to false-belief vignettes than to control vignettes, but these differences were largely due to linguistic confounds and no such effects appeared in a nonverbal theory-of-mind task. The authors conclude against cognitive and neural overlap between language processing and theory of mind. Exploratory analyses found responses to social processing in the 'periphery' of the language network -- right-hemisphere homotopes of core language areas and bilateral angular gyri -- but these were not selectively ToM-related.",
+    "ree_translation": "ARC-123 commits REE to implementing language and theory-of-mind/fast-empathy as developmentally separate specialist systems over a shared self/world/action core, with distinct routing, input histories, representational pressures and gating -- explicitly NOT as one merged social-linguistic system that later differentiates. Shain et al. is the cleanest available neural evidence for the separation, and its methodological structure matters: the merged-system prediction (language regions engage during mentalising) is initially CONFIRMED and then shown to be a linguistic artefact. For REE that is the difference between an architecture chosen and an architecture assumed.",
+    "mapping_caveat": "Two limits, in opposite directions. The finding is a null on OVERLAP, and ARC-123's more interesting half is 'partially HOMOLOGOUS' -- shared core, distinct routing -- which a null cannot evidence. And the peripheral social responses the authors report (right-hemisphere homotopes, angular gyri) are precisely where partial homology and MECH-486's representational interference would be expected to live, so reading this as 'fully separate' overshoots. Most importantly, ToM here is explicit false-belief reasoning; ARC-123 and MECH-486 are about FAST, graded, affective empathy. That substitution is the entry's largest single risk.",
+    "source_context": "Human fMRI, n=151, individual-participant functional localisers for the language network; verbal false-belief vignettes and a nonverbal ToM task."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.32,
+    "notes": "Large sample, individual-subject localisation (the method that avoids the group-averaging artefact this literature is plagued by), and a self-dismantling analysis structure -- high source quality. Mapping fidelity discounted for the explicit-ToM-versus-fast-empathy substitution. Transfer risk low: human fMRI on the architectural question itself."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_language_lateralisation_dorsal_ventral",
+  "entry_id": "2026-09-19_arc_123_language_tom_no_overlap_shain2023",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-09-19T00:58:12.182764Z`
+Generated: `2026-09-19T01:12:14.470594Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -71,7 +71,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-074d` | directional, source_disagreement, mixed_evidence | 2 | 3 | 0.8 | `v3_exq_894c_mech074d_bla_entropy_weight_sweep_20260810T212602Z_v3` | 8 |
 | `MECH-075` | directional, source_disagreement, mixed_evidence | 4 | 5 | 0.889 | `2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021` | 14 |
 | `MECH-089` | directional, mixed_evidence | 13 | 2 | 0.267 | `2026-04-28_theta_abstraction_gamma_synchrony_replay_carr2012` | 19 |
-| `MECH-090` | directional, mixed_evidence | 16 | 7 | 0.609 | `2026-06-20_crdl_deliberation_commitment_urgency_thura2022` | 35 |
+| `MECH-090` | directional, mixed_evidence | 17 | 7 | 0.583 | `2026-09-19_mech_453_tan_pause_time_window_model_kim2019` | 36 |
 | `MECH-094` | directional, mixed_evidence | 25 | 2 | 0.148 | `2026-09-17_mech_023_replay_not_simple_experience_gupta2010` | 30 |
 | `MECH-095` | directional, source_disagreement, mixed_evidence | 20 | 5 | 0.4 | `v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3` | 32 |
 | `MECH-098` | directional, source_disagreement, mixed_evidence | 12 | 8 | 0.8 | `v3_exq_529_mech098_reafference_selectivity_20260506T091032Z_v3` | 27 |
@@ -1410,13 +1410,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-090
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=16, weakens=7, conflict_ratio=0.609, exp_conf=0.676, lit_conf=0.684, overall_confidence_legacy=0.68
+- Evidence breakdown: supports=17, weakens=7, conflict_ratio=0.583, exp_conf=0.676, lit_conf=0.718, overall_confidence_legacy=0.697
 - Recent entries:
-  - `2026-06-20T18:41:17Z` `literature` `targeted_review_commit_release_duration_latch` direction=`mixed` confidence=0.6
   - `2026-06-22T22:17:56Z` `experimental` `v3_exq_460l_job2_control_plane_ramp_habenula_falsifier` direction=`non_contributory` confidence=0
   - `2026-08-02T10:43:33Z` `experimental` `v3_exq_855_mech090_commit_latch_persistence_diagnostic` direction=`non_contributory` confidence=0
   - `2026-08-02T17:41:41Z` `experimental` `v3_exq_871a_mech090_commit_latch_persistence_diagnostic` direction=`non_contributory` confidence=0
   - `2026-09-01T21:20:42Z` `experimental` `v3_exq_871b_mech090_e3_reselection_shortcircuit_retest` direction=`supports` confidence=0.75
+  - `2026-09-19T01:03:00Z` `literature` `targeted_review_gated_plasticity_biology` direction=`supports` confidence=0.66
 - Recurring failure signatures:
   - `beta_as_idle_not_commitment` (1)
   - `sensorimotor_beta_desynchronizes_during_action` (1)
@@ -2535,7 +2535,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-009
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.233, lit_conf=0.762, overall_confidence_legacy=0.63
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.232, lit_conf=0.762, overall_confidence_legacy=0.63
 - Recent entries:
   - `2026-03-20T16:51:49Z` `experimental` `claim_probe_mech_100` direction=`supports` confidence=0.55
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_sd_009` direction=`supports` confidence=0.7

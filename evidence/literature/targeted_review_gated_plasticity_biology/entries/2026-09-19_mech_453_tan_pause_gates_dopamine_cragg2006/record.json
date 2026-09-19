@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "MECH-453",
+    "MECH-083"
+  ],
+  "source": {
+    "title": "Meaningful silences: how dopamine listens to the ACh pause.",
+    "authors": [
+      "Cragg SJ"
+    ],
+    "year": 2006,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2006.01.003",
+    "pmid": "16443285",
+    "pmc": null,
+    "volume": "29",
+    "issue": "3",
+    "pages": "125-31"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "The anchor entry for the (b) half of the gate. Cragg's review establishes the exact mechanism MECH-453 asserts: striatal ACh acts PRESYNAPTICALLY to determine how dopaminergic-neuron activity is transduced into actual dopamine RELEASE, and TAN pauses are temporally coincident with reward-related DAN activity. The consequence -- that a TAN pause enhances the contrast/salience of the DA signal, so the same DAN burst means something different inside versus outside the pause -- is precisely 'the window, not the signal, decides what gets written'. Confidence 0.77: a well-cited TiNS review by a leading authority, but a review, and the REE reading (credit assignment admitted only within the window) is one step past what it argues.",
+  "failure_signatures": [
+    "Cragg describes TAN-DAN interactions as FUNCTIONALLY COOPERATIVE and contrast-ENHANCING -- the pause sharpens a signal that is transmitted either way. MECH-453 is stated more strongly, as ADMISSION: updates are admitted only within the window. If the biology is graded contrast enhancement rather than gating, MECH-453 is over-specified and its falsifier should test the strong version explicitly rather than assume it.",
+    "The review's mechanism is presynaptic control of DA RELEASE, which is upstream of the plasticity rule. REE's MECH-453 places the window on the CREDIT ASSIGNMENT (which selector components get updated). A presynaptic release gate and a plasticity-admission gate are different levels; conflating them would let REE claim biological grounding for a rule the biology places one stage later.",
+    "Reward-related TAN and DAN activities are described as temporally coincident but DIFFERENTLY VARIANT with reward probability. A REE implementation that treats the window as a simple coincidence detector would miss that the two signals carry partly independent information."
+  ],
+  "tags": [
+    "mech_453",
+    "mech_083",
+    "tan_pause",
+    "acetylcholine",
+    "dopamine",
+    "plasticity_window",
+    "gated_plasticity",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Striatal acetylcholine acts presynaptically to polarise powerfully how opposing dopaminergic-neuron activities are transduced into dopamine release. Reward-related activities of tonically active neurons and dopaminergic neurons are temporally coincident but differently variant with reward probability, so reward-related dopamine signals could be governed by concomitant TAN activity. TAN pauses might powerfully enhance the contrast, or salience, of dopamine signals offered by reward-related bursts, and even by reward-omission-related pauses; TAN-DAN interactions are functionally cooperative.",
+    "ree_translation": "MECH-453 asserts that dopamine should not continuously update every recently-active selector component, and that a striatal TAN pause opens a narrow plasticity window within which three-factor learned-gating updates (ARC-108) are admitted. Cragg's review supplies the biological warrant for the window's existence and for its causal direction: the cholinergic state is not a passive correlate of the dopamine signal, it determines what that signal becomes. The REE reading is that the eligibility of a credit-assignment update is a function of the WINDOW STATE and not only of the reward-prediction-error magnitude -- which is what distinguishes MECH-453 from an ordinary three-factor rule.",
+    "mapping_caveat": "Two levels are being crossed and the crossing should be explicit. Cragg's mechanism is presynaptic control of dopamine RELEASE; MECH-453 places its window on CREDIT ASSIGNMENT, one stage further downstream. And Cragg's language is contrast ENHANCEMENT and functional cooperation, which is graded, whereas MECH-453 is written as admission, which is categorical. The review grounds the window's reality; it does not establish that outside-window updates are suppressed to zero, and MECH-453's falsifier should not assume that it does.",
+    "source_context": "Review of rodent striatal electrophysiology and voltammetry on presynaptic nicotinic control of dopamine release and reward-related TAN/DAN activity."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Trends in Neurosciences review by Stephanie Cragg, the canonical reference for presynaptic cholinergic control of striatal dopamine release; source quality high for a review. Mapping fidelity good but discounted for the release-versus-credit level shift. Transfer risk moderate -- rodent striatal pharmacology to an REE selector-credit rule."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gated_plasticity_biology",
+  "entry_id": "2026-09-19_mech_453_tan_pause_gates_dopamine_cragg2006",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

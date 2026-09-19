@@ -1,0 +1,67 @@
+{
+  "claim_ids_tested": [
+    "INV-056",
+    "INV-074",
+    "MECH-083"
+  ],
+  "source": {
+    "title": "Associative and spatial learning and memory deficits in transgenic mice overexpressing the RNA-binding protein HuD.",
+    "authors": [
+      "Bolognani F",
+      "Qiu S",
+      "Tanner DC",
+      "Paik J",
+      "Perrone-Bizzozero NI",
+      "Weeber EJ"
+    ],
+    "year": 2006,
+    "venue": "Neurobiology of Learning and Memory",
+    "doi": "10.1016/j.nlm.2006.11.004",
+    "pmid": "17185008",
+    "pmc": null,
+    "volume": "87",
+    "issue": "4",
+    "pages": "635-43"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "INV-056": "supports",
+    "INV-074": "supports",
+    "MECH-083": "mixed"
+  },
+  "confidence": 0.74,
+  "confidence_rationale": "This is the load-bearing entry for the (a) half of the gate, and it cuts in a direction the intake did not assume. HuD/ELAVL4 is a developmental plasticity operator -- mRNA stabilisation during brain development, nerve regeneration and synaptic plasticity. Bolognani et al. overexpressed it CONSTITUTIVELY in adult forebrain neurons and found IMPAIRED acquisition and retention of cued and contextual fear and impaired Morris water-maze performance, with no motor-sensory confound. Their own conclusion is the point: post-transcriptional stabilisation 'may have to be RESTRICTED TEMPORALLY AND SPATIALLY for proper acquisition and storage of memories'. That is direct biological support for the staged candidate plasticity.developmental_reuse_stricter_permissions and for INV-056's selective-neoteny framing, and it is evidence AGAINST any naive 'reuse the developmental operator in the adult' reading. Held at 0.74: two transgenic lines, behavioural endpoints, constitutive rather than conditional overexpression -- so it cannot separate 'wrong permissions' from 'wrong dose'.",
+  "failure_signatures": [
+    "Overexpression is constitutive and lifelong in this model, so the deficit could be developmental mis-wiring rather than an adult-reuse permission failure. A conditional/inducible adult-onset experiment is what would actually isolate the claim; until one exists, 'developmental reuse needs stricter permissions' and 'this transgene broke the brain during development' are not distinguished.",
+    "The manipulation is a gain of function only. Nothing here shows that adult reuse UNDER appropriate gating is beneficial -- so the staged candidate's positive limb (that the operator IS reused in the adult, just under stricter permission) draws no support from this paper, only its restrictive limb.",
+    "The paper reports HuD is itself increased after learning. A substrate that both rises with learning AND impairs learning when raised constitutively implies a non-monotonic dose-response, which none of the staged candidates currently model -- they are written as permissions (binary gates), not as gains."
+  ],
+  "tags": [
+    "inv_056",
+    "inv_074",
+    "mech_083",
+    "hud",
+    "elavl4",
+    "developmental_reuse",
+    "gated_plasticity",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "HuD is a neuron-specific RNA-binding protein that stabilises short-lived mRNAs during brain development, nerve regeneration and synaptic plasticity. Transgenic mice overexpressing HuD in forebrain neurons showed impaired acquisition and retention of cued and contextual fear conditioning and impaired hidden-platform learning in the Morris water maze, with no motor-sensory abnormalities. The authors conclude that post-transcriptional regulation by stabilisation of specific mRNAs may have to be restricted temporally and spatially for proper acquisition and storage of memories.",
+    "ree_translation": "The 2026-05-21 gated_plasticity intake stages a candidate plasticity.developmental_reuse_stricter_permissions: that operators reused from development in the adult substrate must carry TIGHTER gating than they did developmentally. Bolognani et al. is the biology that grounds the mechanism shape. A genuine developmental plasticity operator, run in adult forebrain without temporal or spatial restriction, does not merely fail to help -- it degrades both acquisition and retention. For REE this says the gate is not an optimisation: an ungated reuse path is a regression, and the permission structure is the load-bearing part of the design rather than a safety afterthought. It also grounds INV-056's selective neoteny by showing that 'retain elevated plasticity' cannot mean 'retain the developmental operator unconditionally'.",
+    "mapping_caveat": "Constitutive transgenic overexpression is a blunt instrument and the strongest alternative explanation -- developmental mis-wiring rather than an adult-permission failure -- is not excluded by this design. It is also a gain-of-function study only, so it supports the RESTRICTIVE half of the staged candidate and says nothing about whether gated adult reuse is beneficial. REE should read this as evidence that the permission structure is necessary, not as evidence that the reuse itself is warranted.",
+    "source_context": "Transgenic mouse (two independent alphaCaMKII-promoter lines); contextual and cued fear conditioning plus Morris water maze; forebrain-restricted overexpression."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "Solid behavioural neuroscience with two independent transgenic lines and a motor-sensory control, in a respectable specialist journal. Mapping fidelity good: the paper's own conclusion is almost a restatement of the staged candidate. Transfer risk moderate -- mouse molecular plasticity to an REE permission gate is an architectural analogy, and the constitutive-versus-conditional confound is real."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gated_plasticity_biology",
+  "entry_id": "2026-09-19_inv_056_hud_unrestricted_adult_reuse_bolognani2006",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

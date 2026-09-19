@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "MECH-083",
+    "INV-056"
+  ],
+  "source": {
+    "title": "HuD interacts with Bdnf mRNA and is essential for activity-induced BDNF synthesis in dendrites.",
+    "authors": [
+      "Vanevski F",
+      "Xu B"
+    ],
+    "year": 2015,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0117264",
+    "pmid": "25692578",
+    "pmc": "PMC4332865",
+    "volume": "10",
+    "issue": "2",
+    "pages": "e0117264"
+  },
+  "evidence_class": "neuroscience_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.69,
+  "confidence_rationale": "Supplies the MECHANISM SHAPE the staged candidate plasticity.signal_as_proposal_not_update asks for, in the adult brain and at the right grain. The default state of the long-3'UTR Bdnf mRNA in dendrites is BASAL REPRESSION; activity-dependent signalling, via PKC phosphorylation of HuD at specific threonine residues (149/165), RELIEVES that repression and permits local translation. So the plasticity signal does not itself write -- it removes a standing block on a write that is already staged and waiting. That is the proposal/commit separation, implemented in molecular biology. Held at 0.69: PLoS ONE, in-vitro/ex-vivo dendritic translation assays, and the claim REE draws is architectural rather than the paper's own.",
+  "failure_signatures": [
+    "The gate here is a DERE-PRESSION (removing a standing block), not an ADMISSION (opening a window). The staged candidate plasticity.typed_gated_event_controller is written in admission terms. These are behaviourally different when the gating signal fails: a failed de-repression leaves the write blocked (safe-by-default), a failed admission gate can leave it permanently open. The candidate should state which it is before registration.",
+    "The specificity is at the level of an individual mRNA's 3'UTR, i.e. per-TARGET, not per-EVENT. The staged depth-ladder and typed-event candidates assume a controller that types the EVENT and then permits a class of writes. Vanevski & Xu's biology types the TARGET and lets any sufficient activity through. Mapping one onto the other is a genuine architectural choice, not a transcription.",
+    "PKC-mediated phosphorylation of HuD is one of several convergent routes to dendritic BDNF; the paper does not show it is necessary in vivo for learning, so the gate's exclusivity is unestablished."
+  ],
+  "tags": [
+    "mech_083",
+    "inv_056",
+    "hud",
+    "elavl4",
+    "bdnf",
+    "activity_dependent_gating",
+    "gated_plasticity",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neuronal ELAV-family RNA-binding proteins associate in vivo with Bdnf mRNA isoforms in the adult brain in an activity-dependent manner. HuD interacts directly with the long Bdnf 3' untranslated region and co-localises with Bdnf mRNA in hippocampal dendrites. Activation of protein kinase C increases dendritic translation of mRNAs carrying the long Bdnf 3'UTR, and this depends on HuD and on its phosphorylation at threonine 149 and/or 165. Activity-dependent signalling can therefore relieve basal repression of Bdnf mRNA translation in dendrites.",
+    "ree_translation": "The staged candidate plasticity.signal_as_proposal_not_update holds that a plasticity signal should PROPOSE a write rather than perform one, with a separate gate deciding whether the proposal commits. Vanevski & Xu show the adult brain implementing exactly this separation at the molecular level: the transcript is already positioned in the dendrite, already bound, and already repressed -- the write is staged. The activity-dependent signal's job is not to deliver content but to release the standing repression so the staged write executes locally. REE's translation is that the residue/signal path and the commit path are separable in biology, which is what the candidate asserts architecturally.",
+    "mapping_caveat": "The direction of the gate is the caveat and it matters. This is DE-REPRESSION: the default is blocked and the signal unblocks. Several of the staged candidates (typed_gated_event_controller, depth_ladder_eight_rungs) are written in ADMISSION terms, where a controller opens a window. Those fail differently -- de-repression fails safe, admission can fail open. Additionally the biology's specificity is per-TARGET (this mRNA's 3'UTR) while the candidates assume per-EVENT typing. Neither gap is fatal, but registering the candidates without resolving them would import an ambiguity the biology does not have.",
+    "source_context": "Rat and mouse hippocampal neurons; in vivo RNA-protein association plus dendritic translation assays with PKC activation and phospho-mutant HuD."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "PLoS ONE with converging in vivo association and mechanistic phospho-mutant work; source quality moderate rather than high. Mapping fidelity is the entry's strength -- the staged/repressed/released structure is unusually close to the candidate's own wording. Transfer risk moderate: molecular gating to an architectural commit gate."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_gated_plasticity_biology",
+  "entry_id": "2026-09-19_mech_083_hud_activity_gated_dendritic_write_vanevski2015",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

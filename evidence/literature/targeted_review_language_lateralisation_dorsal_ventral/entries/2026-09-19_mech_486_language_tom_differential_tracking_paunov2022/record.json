@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "MECH-486",
+    "ARC-123"
+  ],
+  "source": {
+    "title": "Differential Tracking of Linguistic vs. Mental State Content in Naturalistic Stimuli by Language and Theory of Mind (ToM) Brain Networks.",
+    "authors": [
+      "Paunov AM",
+      "Blank IA",
+      "Jouravlev O",
+      "Mineroff Z",
+      "Gallee J",
+      "Fedorenko E"
+    ],
+    "year": 2022,
+    "venue": "Neurobiology of Language",
+    "doi": "10.1162/nol_a_00071",
+    "pmid": "37216061",
+    "pmc": "PMC10158571",
+    "volume": "3",
+    "issue": "3",
+    "pages": "413-440"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The positive complement to Shain et al.'s null, and that pairing is why both are here. Paunov et al. use a 2x2 design over NATURALISTIC stimuli -- stories with mental-state content, silent films with mental-state content but no language, expository text with language but no mental-state content -- and show a DOUBLE DISSOCIATION: the ToM network tracks mental-state content whether it arrives linguistically or not, while the language network tracks linguistic stimuli even when they are devoid of mental-state content. A double dissociation evidences separate MECHANISMS, not merely absence of overlap, which is what MECH-486's 'conflicting representational pressures' framing needs. Confidence 0.72: n=43, inter-subject-correlation methodology, and the interference claim itself remains untested.",
+  "failure_signatures": [
+    "The dissociation is in what each network TRACKS, not in whether combining them would degrade either. MECH-486 claims forcing discrete/reportable/sequential and graded/affective/resonant representations into one workspace measurably degrades BOTH at matched capacity. Nothing here tests capacity or degradation -- separate tracking in a brain that HAS both networks is compatible with a merged system performing fine.",
+    "The language network tracked the -ToM stimulus only 'reliably', and the ToM network tracked the +linguistic/-ToM stimulus 'weakly' rather than not at all. The dissociation is graded, so the systems are separable but not disjoint, and MECH-486's 'forcing them into one workspace' premise may be describing a difference of degree.",
+    "Naturalistic stimuli differ on many uncontrolled dimensions at once (modality, narrative structure, social content), so inter-subject correlation differences between networks may partly reflect stimulus properties other than the intended 2x2 factors."
+  ],
+  "tags": [
+    "mech_486",
+    "arc_123",
+    "language_network",
+    "theory_of_mind",
+    "double_dissociation",
+    "naturalistic_fmri",
+    "intake_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "With 43 participants and individual-subject functional localisation combined with naturalistic inter-subject correlation, the theory-of-mind network robustly tracked stimuli rich in mental-state information regardless of whether mental states were conveyed linguistically (stories, dialogues) or non-linguistically (silent animations, live-action films), while tracking a linguistic stimulus without mental state content only weakly. The language network tracked linguistic stimuli more strongly than non-linguistic stimuli and more strongly than the ToM network did, and showed reliable tracking even for the linguistic condition devoid of mental-state content. Language and ToM dissociate robustly in their neural substrates.",
+    "ree_translation": "MECH-486 asserts representational INTERFERENCE: discrete, reportable, sequential language representations and graded, affective, resonant empathy representations exert conflicting representational pressures. That claim presupposes the two content types are genuinely different kinds of thing, tracked by different machinery. Paunov et al. establish exactly that with a double dissociation over naturalistic input -- and critically, the ToM network's indifference to MODALITY (it tracks mental states from silent film as readily as from dialogue) shows the mental-state representation is not parasitic on the linguistic one. For REE that is the precondition MECH-486 needs before its interference claim can even be well-posed.",
+    "mapping_caveat": "The gap between this evidence and MECH-486 is the whole interference claim. A double dissociation shows the two systems track different things IN A BRAIN THAT HAS BOTH. MECH-486 is a claim about what happens when they are FORCED TO SHARE ONE WORKSPACE AT MATCHED CAPACITY -- a counterfactual no neuroimaging study can address, and one that REE can test directly in substrate. This entry therefore grounds MECH-486's PREMISE and leaves its consequent entirely open, which is the right division of labour but must not be blurred at registration.",
+    "source_context": "Human fMRI, n=43; individual-subject language and ToM localisers with naturalistic stories, dialogues, silent animations, live-action films and expository text; inter-subject correlation analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Well-designed naturalistic study with individual localisers and a genuine 2x2; source quality good, capped by n=43 and a specialist venue. Mapping fidelity moderate because it evidences MECH-486's premise rather than MECH-486 -- the interference consequent is untouched. Transfer risk moderate."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_language_lateralisation_dorsal_ventral",
+  "entry_id": "2026-09-19_mech_486_language_tom_differential_tracking_paunov2022",
+  "timestamp_utc": "2026-09-19T01:03:00Z",
+  "summary_path": "summary.md"
+}

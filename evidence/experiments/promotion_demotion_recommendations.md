@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-19T00:58:12.182764Z`
+Generated: `2026-09-19T01:12:14.470594Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -3856,7 +3856,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-009
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.233, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.232, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: [2026-08-08 governance, V3-EXQ-897, confirmed failure_autopsy_V3-EXQ-897_2026-08-08]: well-controlled ablation (2 arms x 3 seeds) of an additional event-type CE head layered on the SD-070 anti-collapse recipe (held constant in both arms). Positive control and encoder-trained preconditions both met. Primary DV (held-out frozen-probe decodability margin) clears the floor in BOTH arms (mean ON 0.065,…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -4478,9 +4478,9 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `Q-074` | `candidate` | 0.667 |
 | `Q-082` | `candidate` | 0.667 |
 | `SD-031` | `candidate` | 0.667 |
-| `MECH-090` | `active` | 0.609 |
 | `SD-007` | `implemented` | 0.609 |
 | `MECH-099` | `candidate` | 0.6 |
+| `MECH-090` | `active` | 0.583 |
 | `MECH-128` | `candidate` | 0.571 |
 | `MECH-295` | `candidate` | 0.571 |
 | `ARC-019` | `provisional` | 0.5 |
