@@ -6135,7 +6135,11 @@
       "task_claim_session_id": "igw-auto-igw-237-proposal-for-mech-050-20260919T001433Z",
       "task_claim_claimed_at": "2026-09-19T00:14:33Z",
       "assigned_at": "2026-09-19T00:12:21Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-19T00:47:03Z",
+      "completion_summary": "marked EVB-1410/EXP-0798 blocked_substrate (MECH-050): MECH-045 buffer is a closed-form rule so its DVs are analytically entailed, not measured; red-team BLOCKING confirmed; REE_assembly ea6aa0aa60",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-1410/EXP-0798 blocked_substrate (MECH-050): MECH-045 buffer is a closed-form rule so its DVs are analytically entailed, not measured; red-team BLOCKING confirmed; REE_assembly ea6aa0aa60"
     }
   ],
   "dispositions": [
@@ -8868,6 +8872,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T00:14:05Z",
       "re_eligible_after": "2026-09-21T00:14:05Z"
+    },
+    {
+      "stable_hash": "e7bd7b567a71",
+      "igw_id_at_disposition": "IGW-20260919-237",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-050"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-050",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-19T00:47:16Z",
+      "re_eligible_after": "2026-09-21T00:47:16Z"
     }
   ]
 }
