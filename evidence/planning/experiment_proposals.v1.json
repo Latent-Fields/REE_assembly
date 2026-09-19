@@ -16086,16 +16086,24 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1416",
+      "blocked_by": [
+        "MECH-067"
+      ],
+      "blocked_note": "No representation-isolation comparator arm and no coupling measure/store-class vocabulary in ree_core; the shared write-audit spike (V3-EXQ-1052) was refused 2026-09-17 and has never run.",
       "claim_id": "MECH-066",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-19T16:42:20Z",
+      "gated_by_session": "igw-242-proposal-for-mech-066",
+      "gating_reason": "2026-09-19 (IGW-20260919-242, session igw-242-proposal-for-mech-066, /queue-experiment Step 2.5 substrate readiness). MECH-066's DISTINGUISHING clause is bounded coupling -- shared representations are ALLOWED, only durable writes must separate. Testing that clause needs a representation-ISOLATION comparator arm (pre-commit and post-commit channels on separate encoders), and V3 has exactly one shared E1/E2 latent stack with no isolation knob anywhere in ree_core (grep 2026-09-19: no separate_encoder / isolated_encoder / channel_isolation). Without that arm any run collapses onto MECH-060's write-separation content, which MECH-066 was authored to REFINE rather than repeat. Second, independent gap: no typed store-class or actor vocabulary exists (ree_core declares exactly three Enums -- SleepPhase, ControlDemandType, ChunkState, none a write-authority concept), so 'durable authority store' has no machine-readable definition and 'bounded' has no coupling measure -- the P4 falsifier backlog's own rank-19 verdict (p4_falsifier_backlog_20260916.md: 'the bounded coupling clause needs a coupling measure the audit does not yet record'). Third, the shared write-audit spike that backlog orders MECH-066 to ride (tranche 1, INV-024/MECH-067) has never run: V3-EXQ-1052 (v3_exq_1052_mech066_mech067_write_locus_audit_spike.py) was designed and REFUSED at /queue-experiment Step 4.5 on 2026-09-17 with six source-verified defects and committed UNQUEUED under a DO-NOT-QUEUE header (ree-v3 b93374e). Those six defects are mostly repairable, but repairing them serves MECH-067's falsifier, not MECH-066's -- MECH-066 carries no what_would_answer at all and would ride along with no comparator, so a 0-violation census would bank an instrument artefact as a 'weakens' demotion signal against a claim with zero prior V3 manifests. Node: complicated (buildable) -- the missing pieces are builds (/implement-substrate), not facts. No script drafted, no EXQ id consumed. The literature twin LIT-0811 is NOT blocked by this and remains a live route (why_now cites missing_literature_evidence).",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-066 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0810",
       "proposal_type": "experimental",
+      "release_condition": "Re-open when BOTH land: (a) MECH-067's (phase, store, actor) default-deny permission matrix is built in ree_core with a typed store-class vocabulary (POL / ID / CAPS / residue / attribution ledger / scratch) -- currently substrate_conditional -- so 'durable authority store' and the read-only-reuse coupling measure both become machine-readable; AND (b) the write-locus audit spike actually runs with coverage (V3-EXQ-1052's six verified defects repaired: AnchorSet._anchors -> _active/_all, the second unobserved agent.reset() sleep cycle controlled, use_sleep_aggregation_cluster + use_cross_module_consolidation enabled (both are live settable knobs -- agent.py:2991, config.py:7347), all four ResidueField writers wrapped, C2's corruption-ratio floor re-derived from a pilot ceiling). Only then does MECH-066 have a comparator arm distinct from MECH-060.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -16108,7 +16116,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_066",
       "target_repo": "ree-v3",
       "why_now": [
