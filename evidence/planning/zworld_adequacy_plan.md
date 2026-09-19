@@ -4,7 +4,7 @@ closure_plan:
   title: "observation -> z_world encoding adequacy (the V3 binding-constraint interface)"
   generation: v3
   registered: 2026-09-11
-  last_updated: 2026-09-11
+  last_updated: 2026-09-18
   scope_claims: [INV-088, MECH-457, SD-015, ARC-030, MECH-117, ARC-065]
   sibling_plans: [goal_pipeline, conversion_ceiling_campaign, ree_ai_design_critique]
   related_threads:
