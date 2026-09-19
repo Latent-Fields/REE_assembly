@@ -149,3 +149,65 @@ Recommendation stated for the record: **`diagnostic`, with ordinal criteria and 
 misleading *weakens* verdict off an arbitrary threshold, and its output is exactly the
 material needed to author the `what_would_answer` that a later governance-grade run would
 pre-register against. The cost is that it does not itself move MECH-131's status.
+
+---
+
+# ADDENDUM 2026-09-19 -- the bar was ratified, then the DV failed a measurement
+
+**User decision (2026-09-19T00:49Z) settled the open question above:** DIAGNOSTIC,
+ORDINAL criteria, >= 3 seeds. Suppression = `ARM_1` `residue_avoidance` strictly lower
+than `ARM_3` per seed, effect sizes reported with no invented floor; gradedness reported
+as rho with its sign, no magnitude floor; the run does not move MECH-131's status.
+
+The driver was authored against that: `ree-v3/experiments/v3_exq_1061_mech131_anticipatory_residue_lesion.py`
+(`V3-EXQ-1061`, id arbitrated to this session after 1059 and 1060 were taken by siblings).
+Its dry-run passes end to end on the hub -- 9/9 cells, all four preconditions met, C1 and
+C2 met, gradedness computed.
+
+**It was NOT queued, because the DV cannot detect its own manipulation.** Measured on the
+hub 2026-09-19:
+
+| charge steps | pool mean residue | between-candidate SD | intact vs complete-lesion effect |
+|---|---|---|---|
+| 60  | 31.405 | 0.056 (**0.18%**) | 0.0005 (**0.0017%**) |
+| 200 | 99.477 | 0.181 (**0.18%**) | 0.0018 (**0.0018%**) |
+
+The lesion effect is ~**100x smaller than the between-candidate noise**, and the ratio is
+scale-invariant -- accumulating more residue does not help. All 32 candidates land in
+essentially the same residue region, so residue-based selection has nothing to exploit.
+C1's per-seed ordinal test would therefore be resolving differences two orders of magnitude
+below candidate-level variance. It would "pass" or "fail" on noise. With no floor (correctly,
+per the ratified decision), nothing in the criterion would catch that -- which is exactly why
+this had to be measured before queuing rather than after.
+
+**Root cause is the codebase's own documented expectation, not a new finding.**
+V3-EXQ-042 (hippocampal terrain training) states it directly: *"if terrain_prior is random,
+proposals are uninformed (equivalent to random candidates)"*. Residue avoidance is a LEARNED
+competence in this architecture. This driver runs an **untrained** agent, so lesioning the
+anticipatory channel removes a capability the substrate never acquired -- the null it would
+return means "an untrained generate-rollout loop cannot express residue avoidance", not
+"MECH-131 is false". Tellingly, V3-EXQ-042's own eval metric is this design's DV1 almost
+verbatim: `hippo_quality_gap = mean_residue_random - mean_residue_hippo`.
+
+## What the fix would be (NOT applied -- it changes what gets measured)
+
+Train the generator before lesioning, following V3-EXQ-042's existing protocol rather than
+inventing one: terrain_prior via E3 behavioural cloning,
+`MSE(terrain_prior_ao_mean, selected_trajectory_ao_sequence.detach())`, with its
+`hippo_quality_gap` (hippocampal vs random proposal residue) as the readiness gate that
+confirms the generator actually acquired avoidance before any arm is lesioned. 12 existing
+drivers train `terrain_prior`, so this is adoption of precedent, not novel design.
+
+This was not applied unilaterally because it changes what gets measured -- trained vs
+untrained substrate -- adds a training phase with its own episode counts and phasing
+hazards, and multiplies runtime across 9 cells. The user's 2026-09-19 instruction was
+explicit that any further un-pre-registered choice of that kind is another decision.
+
+Raised as decision chip **`chip-20260918-mech131-untrained-substrate`**.
+
+**What is already banked and needs no redoing:** both lesion knobs (ree-v3, contract-pinned,
+C1-C9 green); every `/queue-experiment` gate cleared with evidence (2.5/2.5a substrate,
+2.5b brake 0/523, 2.5c all four open corrupting entries measured inert, 2.4 not recoverable,
+2.6 allow); the ratified criteria; and the driver itself, whose measurement/manifest/readout
+machinery is verified working and would be reused unchanged -- only a warmup phase and a
+readiness gate would be added ahead of it.
