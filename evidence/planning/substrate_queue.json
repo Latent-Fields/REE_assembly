@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build-optb",
-  "last_updated_utc": "2026-09-18T23:20:00Z",
+  "last_seen_session": "metaworker-science-20260919-sd011-harm-target-arms-EF",
+  "last_updated_utc": "2026-09-19T01:05:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -10180,7 +10180,7 @@
       "sd_id": "sd_zharm_a_warmup_optimizer_group",
       "title": "Adopt an affective-harm-encoder training path in the _train_all_on_agent driver family: the P0/P1 warmup has no optimizer group covering latent_stack.affective_harm_encoder, so z_harm_a is a frozen random projection. Sibling of sd_zworld_warmup_optimizer_group, same file, same shape, other stream.",
       "node_class": "complicated (buildable)",
-      "status": "p0h_stage_BUILT_default_OFF_2026_09_18__contracts_GREEN__NO_DRIVER_OPTS_IN_YET__BOTH_architecture_specified_targets_MEASURED_and_NEITHER_clears_the_constant_mean_baseline__sd011_structurally_flat__sd020_scale_crushed_250x_by_precision_norm_at_P0__respecification_RAISED_as_decision_chip__no_experiment_queued",
+      "status": "p0h_stage_BUILT_default_OFF__two_arm_respecification_diagnostic_RAN_2026_09_19__ARM_E_precision_decoupled_at_P0_CLEARS_3_of_3_seeds_mean_lift_plus_0.913__ARM_F_per_tick_harm_exposure_does_NOT_clear__root_cause_CONFIRMED_as_ARC016_scale_floor_not_signal_content__SD020_claim_amendment_RAISED_as_decision_chip__SD011_target_quantity_needs_NO_respecification__no_experiment_queued",
       "status_phase": "validation_pending",
       "ready": false,
       "severity": "degrading",
@@ -10227,7 +10227,7 @@
       "implementation_hint": "The fix has the same two parts as its z_world sibling and the architecture already supplies both, so this was an ADOPTION, not a new recipe. (a) A gradient path reaching latent_stack.affective_harm_encoder: an opt-in P0 stage owning its own optimizer group. (b) A supervision target: agent.compute_harm_accum_loss, the SD-011 'second source' aux loss, which ree_core/predictors/e2_harm_a.py's own 'Phased training required' block already names as the missing P0 stage ('P0: AffectiveHarmEncoder warmup ... accumulated-harm / harm-surprise supervision per SD-020'). SD-020's precision-weighted PE target is the SAME loss under the caller's existing REEConfig.harm_surprise_pe_enabled, not a rival recipe. Requires LatentStackConfig.harm_history_len > 0 on the agent AND a matching harm_history_len on the env, or the aux head does not exist and the loss short-circuits to zero -- the stage refuses loudly on each of those rather than reporting a clean run.",
       "priority": 2,
       "added_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build",
-      "last_seen_session": "metaworker-science-20260918-sd086-affective-encoder-trainer-build-optb",
+      "last_seen_session": "metaworker-science-20260919-sd011-harm-target-arms-EF",
       "source_chip": "chip-20260918-sd086-affective-encoder-trainer-build",
       "implementation_status": "BUILT_DEFAULT_OFF",
       "implemented_utc": "2026-09-18T20:05:00Z",
@@ -10241,11 +10241,11 @@
       ],
       "validation_experiment": null,
       "open_decision": {
-        "chip_ref": "chip-20260918-sd011-sd020-harm-target-respecification",
-        "question": "Both architecture-specified supervision targets for the affective harm encoder fail the constant-mean baseline at P0, for two different reasons. Which re-specification does SD-011 take?",
-        "supersedes": "chip-20260918-zharm-a-training-signal-degenerate-target (answered OPTION B; this is its owed follow-up, raised because the PE target did not clear)",
-        "raised_by": "metaworker-science-20260918-sd086-affective-encoder-trainer-build-optb",
-        "why_not_decided_here": "It changes what a downstream experiment would measure, and both candidate targets are architecture-specified -- choosing a third, or re-scoping SD-020's ARC-016 coupling, is a claim-level call under the consent rule."
+        "chip_ref": "chip-20260919-sd020-precision-coupling-runtime-property",
+        "question": "Arm E clears. Amend SD-020 so the ARC-016 precision coupling is a RUNTIME property rather than a training-time one, and adopt a P0 floor on precision_norm (>= ~0.02)?",
+        "supersedes": "chip-20260918-sd011-sd020-harm-target-respecification (answered OPTION H; this is its owed follow-up, raised because E carried)",
+        "raised_by": "metaworker-science-20260919-sd011-harm-target-arms-EF",
+        "why_not_decided_here": "Amending claim text is a governance action and the user explicitly reserved it this cycle."
       },
       "landing_status": "PENDING at write time; see the session's WORKSPACE_STATE entry for the ree-v3 sha on origin/main.",
       "optionb_remeasure_2026_09_18": {
@@ -10298,6 +10298,106 @@
         "methodological_finding": "A SCALE-CRUSHED TARGET IS INVISIBLE TO A WEIGHT-DELTA CHECK, because Adam is scale-invariant. The PE arm moved the encoder MORE than the SD-011 arm (max_abs_delta 1.0-1.2e-01 vs 6.7-8.7e-02) while regressing a ~1e-06 target: Adam divides by sqrt(v), so a gradient 250x too small still takes full-size steps -- toward numerical noise. Every 'did the encoder train?' check built on weight movement alone passes that arm; the constant-mean lift readout does not. This generalises beyond z_harm_a and is why the lift half of p0h_readiness_met is load-bearing.",
         "landed": "ree-v3 7e093f27cc (instrument + contracts 19->22) and b3cf3d4d10 (docs/substrate record + CLAUDE.md index), both on origin/main.",
         "raised_for_decision": "chip-20260918-sd011-sd020-harm-target-respecification"
+      },
+      "optionh_two_arm_diagnostic_2026_09_19": {
+        "decision": "USER DECISION 2026-09-19T00:49:12Z (Orchestrator decision lane, real AskUserQuestion) on chip-20260918-sd011-sd020-harm-target-respecification: OPTION H -- run E and F as ONE short two-arm diagnostic and let the measurement choose. No queue entry, no env change, default-off, contracts via remote_pytest.sh.",
+        "arms": {
+          "E": "p0_precision_norm -- pin SD-020's ARC-016 factor min(current_precision/500, 3.0) for the P0h stage ONLY (solve for E3's running variance, restore on exit; safe only because the warmup never drives the agent, and the restore is contract-pinned by C3l).",
+          "F": "target_source='harm_exposure' -- regress the PER-TICK scalar the env already emits at harm_obs[-1] instead of SD-011's cumulative episode mean. No env change, no new channel."
+        },
+        "results_4_arms_3_seeds": {
+          "B1_sd011_baseline": {
+            "precision_norm": 0.004,
+            "holdout_target_CV": "0.008 .. 0.013",
+            "lift": [
+              -2896.784,
+              -377.176,
+              -51.178
+            ],
+            "mean_lift": -1108.379,
+            "readiness": "0/3"
+          },
+          "B2_sd020_baseline": {
+            "precision_norm": 0.004,
+            "holdout_target_CV": "0.505 .. 0.928",
+            "lift": [
+              -0.278,
+              0.164,
+              -0.107
+            ],
+            "mean_lift": -0.074,
+            "readiness": "1/3"
+          },
+          "E_sd020_decoupled": {
+            "precision_norm": 1.0,
+            "holdout_target_CV": "0.505 .. 0.928",
+            "lift": [
+              0.99,
+              0.973,
+              0.777
+            ],
+            "mean_lift": 0.913,
+            "readiness": "3/3",
+            "CLEARS": true
+          },
+          "F_sd011_harm_exposure": {
+            "precision_norm": 0.004,
+            "holdout_target_CV": "0.558 .. 0.850",
+            "lift": [
+              -3.121,
+              -1.559,
+              -1.364
+            ],
+            "mean_lift": -2.015,
+            "readiness": "0/3",
+            "CLEARS": false
+          }
+        },
+        "baselines_reproduce": "B1 and B2 reproduce the 2026-09-18 option-B numbers EXACTLY, which is what licenses reading E and F against them.",
+        "why_E_is_single_cause": "E and B2 have IDENTICAL holdout target CVs (0.505/0.928/0.640) -- as they must, because pinning precision_norm is a pure rescale and a rescale cannot change a coefficient of variation. The target's information content is therefore PROVABLY unchanged between the two arms; only absolute scale differs (target mean 5.7e-07 -> 1.4e-04, 250x), and the lift moves from -0.074 to +0.913. The phase-ordering hypothesis is confirmed rather than inferred.",
+        "pin_sweep": {
+          "note": "3 seeds per pin; holdout target CV constant at 0.691 throughout, so every difference is SCALE, not information.",
+          "pins": [
+            0.004,
+            0.02,
+            0.04,
+            0.1,
+            0.4,
+            1.0,
+            3.0
+          ],
+          "target_mean": [
+            "1.29e-06",
+            "6.43e-06",
+            "1.29e-05",
+            "3.22e-05",
+            "1.29e-04",
+            "3.22e-04",
+            "9.65e-04"
+          ],
+          "mean_lift": [
+            -0.074,
+            0.958,
+            0.95,
+            0.93,
+            0.916,
+            0.913,
+            0.912
+          ],
+          "readiness": [
+            "1/3",
+            "3/3",
+            "3/3",
+            "3/3",
+            "3/3",
+            "3/3",
+            "3/3"
+          ],
+          "reading": "A CLIFF between 0.004 and 0.02 (one 5x rescale) then a flat plateau (~+0.92) over two further orders of magnitude. That is the signature of a numerical FLOOR, not a tuned optimum: at target magnitude ~1e-06 the gradients are comparable to Adam's eps (1e-8) and the update direction is dominated by epsilon rather than by the loss. CONSEQUENCE FOR THE REPAIR: it does NOT need precision_norm = 1.0; any pin at or above ~0.02 clears, and the plateau's mild downward slope says larger is not better."
+        },
+        "arm_F_reading": "F's target has far better dispersion than SD-011's as specified (CV 0.558-0.850 vs 0.008-0.013) and improves the lift enormously (-2.0 vs -1108), yet still cannot beat its own mean. Likely structural rather than a tuning miss: the encoder's input harm_obs_a is an EMA of the harm field, so asking it to predict the INSTANTANEOUS scalar is asking a low-pass-filtered input to recover what the filter removed. THIS IS THE GOOD OUTCOME FOR SD-011's CLAIM TEXT: because F did not carry, the claim-level cost option F would have incurred -- changing what z_harm_a MEANS, collapsing the accumulated-vs-instantaneous distinction from z_harm_s and re-opening the EXQ-241 D3 redundancy the second source was built to fix -- is NOT incurred. SD-011's target quantity does not need re-specifying.",
+        "claim_implication_NOT_applied": "SD-020 as written couples the affective-PE target to precision at ALL times. The measurement says that coupling is right as a RUNTIME property and wrong as a TRAINING-TIME one, because P0 necessarily runs before the agent has any precision to couple to. Amending SD-020 is a claim-level change and was NOT made by this session (user instruction). Raised as chip-20260919-sd020-precision-coupling-runtime-property.",
+        "landed": "ree-v3 d5e8a7d3d9 (both arms as default-off levers, contracts 22->26) and 26b996a3fd (write-up + index), both on origin/main."
       }
     },
     {
