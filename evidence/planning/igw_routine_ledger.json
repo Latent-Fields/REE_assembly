@@ -6259,7 +6259,11 @@
       "task_claim_session_id": "igw-auto-igw-241-literature-proposal-for-mech-064-20260919T060519Z",
       "task_claim_claimed_at": "2026-09-19T06:05:19Z",
       "assigned_at": "2026-09-19T06:03:13Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-19T06:37:12Z",
+      "completion_summary": "MECH-064 lit-pull: 5 entries (4 supports, 1 mixed) landed REE_assembly 94286de2a93 on origin/master; literature_confidence 0 -> 0.853, quadrant plausible_unproven. No experiment queued -- twin EXP-0804 already blocked_substrate and ree_core has no typed-authority substrate. Chipped chip-20260919-mech064-principle-not-mechanism (claim names a principle, not a mechanism).",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-064 lit-pull: 5 entries (4 supports, 1 mixed) landed REE_assembly 94286de2a93 on origin/master; literature_confidence 0 -> 0.853, quadrant plausible_unproven. No experiment queued -- twin EXP-0804 already blocked_substrate and ree_core has no typed-authority substrate. Chipped chip-20260919-mech064-principle-not-mechanism (claim names a principle, not a mechanism)."
     }
   ],
   "dispositions": [
@@ -9062,6 +9066,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T05:22:05Z",
       "re_eligible_after": "2026-09-21T05:22:05Z"
+    },
+    {
+      "stable_hash": "b53b5d725d45",
+      "igw_id_at_disposition": "IGW-20260919-241",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-064"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-064",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-19T06:37:13Z",
+      "re_eligible_after": "2026-09-21T06:37:13Z"
     }
   ]
 }
