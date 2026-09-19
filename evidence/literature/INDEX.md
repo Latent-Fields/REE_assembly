@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-19T00:05:33.584513Z`
+Generated: `2026-09-19T00:58:12.182764Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -486,6 +486,7 @@ Generated: `2026-09-19T00:05:33.584513Z`
 | `targeted_review_rl_diversity_monostrategy_curriculum` | [`2026-05-16_rl_diversity_paired_dennis2020`](targeted_review_rl_diversity_monostrategy_curriculum/entries/2026-05-16_rl_diversity_paired_dennis2020/record.json) | 6 | [`summary`](targeted_review_rl_diversity_monostrategy_curriculum/entries/2026-05-16_rl_diversity_paired_dennis2020/summary.md) |
 | `targeted_review_rule_apprehension_vocabulary_mapping` | [`2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986`](targeted_review_rule_apprehension_vocabulary_mapping/entries/2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986/record.json) | 12 | [`summary`](targeted_review_rule_apprehension_vocabulary_mapping/entries/2026-05-10_vocab_mapping_supervisory_attention_norman_shallice1986/summary.md) |
 | `targeted_review_rule_level_credit_assignment` | [`2026-06-04_arc_063_frontopolar_reward_trend_kovach2012`](targeted_review_rule_level_credit_assignment/entries/2026-06-04_arc_063_frontopolar_reward_trend_kovach2012/record.json) | 3 | [`summary`](targeted_review_rule_level_credit_assignment/entries/2026-06-04_arc_063_frontopolar_reward_trend_kovach2012/summary.md) |
+| `targeted_review_salience_gain_normalisation` | [`2026-09-19_sd_032a_heterogeneous_input_normalisation_ohshiro2011`](targeted_review_salience_gain_normalisation/entries/2026-09-19_sd_032a_heterogeneous_input_normalisation_ohshiro2011/record.json) | 6 | [`summary`](targeted_review_salience_gain_normalisation/entries/2026-09-19_sd_032a_heterogeneous_input_normalisation_ohshiro2011/summary.md) |
 | `targeted_review_sd003_successor_comparator` | [`2026-04-18_sd003successor_tickle_cancellation_blakemore1998`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/record.json) | 4 | [`summary`](targeted_review_sd003_successor_comparator/entries/2026-04-18_sd003successor_tickle_cancellation_blakemore1998/summary.md) |
 | `targeted_review_sd003_successor_evaluator` | [`2026-04-18_mech_102_model_based_striatal_pe_daw2011`](targeted_review_sd003_successor_evaluator/entries/2026-04-18_mech_102_model_based_striatal_pe_daw2011/record.json) | 5 | [`summary`](targeted_review_sd003_successor_evaluator/entries/2026-04-18_mech_102_model_based_striatal_pe_daw2011/summary.md) |
 | `targeted_review_sd_003` | [`2026-04-27_sd_003_prereq_corollary_discharge_crapse2008`](targeted_review_sd_003/entries/2026-04-27_sd_003_prereq_corollary_discharge_crapse2008/record.json) | 10 | [`summary`](targeted_review_sd_003/entries/2026-04-27_sd_003_prereq_corollary_discharge_crapse2008/summary.md) |

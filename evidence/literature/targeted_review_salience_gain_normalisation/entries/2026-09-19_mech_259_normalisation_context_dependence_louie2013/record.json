@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "MECH-259",
+    "SD-032a"
+  ],
+  "source": {
+    "title": "Normalization is a general neural mechanism for context-dependent decision making.",
+    "authors": [
+      "Louie K",
+      "Khaw MW",
+      "Glimcher PW"
+    ],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1217854110",
+    "pmid": "23530203",
+    "pmc": "PMC3625302",
+    "volume": "110",
+    "issue": "15",
+    "pages": "6139-44"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The load-bearing counterweight of this review, and the reason the verdict is not a simple 'normalise it'. Louie, Khaw & Glimcher show that choice models using normalisation generate significant and classically IRRATIONAL choice phenomena driven by either the value or the NUMBER of alternative options, and confirm the predicted context-dependence behaviourally in both monkeys and humans. Direction is 'mixed', not 'weakens': it is strong evidence that normalisation is the real biological mechanism (supporting SD-032a's framing) and equally strong evidence that adopting it in a DISCRETE CHOICE stage imports choice-set dependence -- the specific failure mode a four-mode gate would inherit. Confidence 0.72: excellent study, but the mapping from consumer/saccadic choice to REE operating-mode selection is an architectural overlay.",
+  "failure_signatures": [
+    "Normalisation-based choice models produce violations of rationality driven by the NUMBER of alternatives as well as their values. SD-032a's mode set is fixed at four today, but MECH-261's notes explicitly anticipate adding a fifth mode (parallel_goal_deliberation, V4, when SD-033e is implemented). Under a normalising operator, adding that fifth mode would change the relative probabilities of the existing four even with their inputs unchanged -- a silent regression across every mode-occupancy result in the corpus.",
+    "The predicted and observed context effects are largest when option values are similar -- exactly the regime MECH-266's asymmetric hysteresis is designed to stabilise. A normalising operator and a Schmitt-trigger hysteresis may therefore be fighting each other: one amplifies sensitivity to the competing set near indifference, the other suppresses switching near indifference.",
+    "If REE adopts divisive normalisation and then observes context-dependent mode occupancy, that observation would be a CONFIRMED PREDICTION of the operator rather than a substrate pathology -- meaning the change would make a class of future occupancy anomalies uninterpretable unless the operator is registered as their cause in advance."
+  ],
+  "tags": [
+    "mech_259",
+    "sd_032a",
+    "divisive_normalisation",
+    "context_dependent_choice",
+    "iia_violation",
+    "counterweight",
+    "mode_governance_engagement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Choice models using normalization generate significant and classically irrational choice phenomena driven by either the value or the number of alternative options. In value-guided choice experiments, both monkey and human choosers show novel context-dependent behaviour consistent with normalization. The neural mechanism of value coding therefore critically influences stochastic choice behaviour.",
+    "ree_translation": "SD-032a's coordinator converts affinity logits into a soft probability vector over four operating modes via a softmax -- a stochastic discrete choice. Louie, Khaw & Glimcher's result is that when the quantities entering such a choice are divisively normalised, the resulting choice probabilities become dependent on the composition of the alternative set, not only on the option's own value. Ported to REE: replacing the per-signal box clamp with a pooled normalising operator would make the probability of external_task depend on the magnitudes arguing for internal_planning and offline_consolidation, in a way the current independent clamp does not. That is a genuine cost to set against the gain-preservation argument, and it is the reason this review does not return a one-line recommendation.",
+    "mapping_caveat": "The experiments are value-guided choices among external options (saccade targets, consumer goods) by monkeys and humans. REE's 'choice' is an internal operating-mode assignment with no reward and no subject. The formal shape transfers -- a softmax over normalised quantities -- but 'irrational' is a normative verdict about a chooser and has no direct REE analogue; the REE-relevant statement is the weaker, structural one that choice-set composition leaks into the outcome. Do not import the rationality framing, only the structural dependence.",
+    "source_context": "Computational modelling plus value-guided choice experiments in macaques and humans; context manipulated by varying both the values and the number of alternatives."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "PNAS, converging model-plus-behaviour across two species; source quality high. Mapping fidelity moderate: the softmax-over-normalised-quantities shape is shared, the normative rationality framing is not. Transfer risk the highest in this review because the inference REE would draw is about a mechanism it has not yet adopted."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_salience_gain_normalisation",
+  "entry_id": "2026-09-19_mech_259_normalisation_context_dependence_louie2013",
+  "timestamp_utc": "2026-09-19T00:53:05Z",
+  "summary_path": "summary.md"
+}

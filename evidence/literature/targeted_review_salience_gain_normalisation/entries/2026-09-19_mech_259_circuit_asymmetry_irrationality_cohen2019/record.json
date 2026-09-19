@@ -1,0 +1,63 @@
+{
+  "claim_ids_tested": [
+    "MECH-259",
+    "SD-032a"
+  ],
+  "source": {
+    "title": "Bounded rationality in C. elegans is explained by circuit-specific normalization in chemosensory pathways.",
+    "authors": [
+      "Cohen D",
+      "Teichman G",
+      "Volovich M",
+      "Zeevi Y",
+      "Elbaum L",
+      "Madar A",
+      "Louie K",
+      "Levy DJ",
+      "Rechavi O"
+    ],
+    "year": 2019,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-019-11715-7",
+    "pmid": "31409788",
+    "pmc": "PMC6692327",
+    "volume": "10",
+    "issue": "1",
+    "pages": "3692"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.63,
+  "confidence_rationale": "Included because it isolates the variable REE actually controls. Cohen et al. find that C. elegans mostly chooses rationally, and that violations of Independence of Irrelevant Alternatives appear specifically when the olfactory sensory CIRCUIT IS ASYMMETRIC -- genetically manipulating AWC asymmetry can make the worm irrational -- with a normalisation-based gain-control model explaining how. SD-032a's affinity_weights are asymmetric BY CONSTRUCTION (each signal has a different per-mode weight map), so this is the single most transferable warning in the review. Confidence 0.63 -- lower than the primate work -- because a 302-neuron chemotaxis assay is a long way from a mode coordinator and the mapping is by structural analogy.",
+  "failure_signatures": [
+    "Normalisation over an asymmetric input circuit produced IIA violations where the symmetric circuit did not. SD-032a's affinity_weights map each signal to modes with DIFFERENT weights -- structurally asymmetric -- so the condition Cohen et al. identify as the trigger for irrational context-dependence is already satisfied in REE's coordinator before any normalisation is added.",
+    "The finding implies the relevant design question is not 'clamp or normalise' but 'is the pool symmetric', which the mode-governance-engagement queue entry's title does not ask. A normalising operator over an asymmetric weight map may be strictly worse than a clamp over the same map.",
+    "Because most C. elegans choices WERE rational, the paper also shows normalisation-driven context effects are conditional rather than obligatory -- so an REE build could not infer from a clean occupancy result that the operator is safe; the pathology appears only in specific circuit configurations."
+  ],
+  "tags": [
+    "mech_259",
+    "sd_032a",
+    "divisive_normalisation",
+    "iia_violation",
+    "circuit_asymmetry",
+    "counterweight",
+    "mode_governance_engagement"
+  ],
+  "mapping": {
+    "source_claim_statement": "In most cases C. elegans make rational decisions, but violations of Independence of Irrelevant Alternatives arise when the circuit of olfactory sensory neurons is asymmetric; genetic manipulation of the asymmetry between the AWC neurons can make the worm irrational. A context-dependent normalization-based model of value coding and gain control explains how particular neuronal constraints on information coding give rise to irrationality.",
+    "ree_translation": "The conditional matters more than the headline. Normalisation-driven context dependence is not an inevitable cost of the operator: it is triggered by ASYMMETRY in the input circuit. SD-032a's affinity_weights is a per-signal map onto per-mode weights, and those weights differ by construction -- dacc_pe does not argue equally for all four modes. REE's coordinator therefore already occupies the configuration Cohen et al. identify as the one where normalisation turns pathological. This reframes the substrate question: the governance decision is not only which bounding operator to use, but whether the affinity weight map's asymmetry is compatible with a pooled operator at all.",
+    "mapping_caveat": "The transfer is by structural analogy across an enormous gap: a 302-neuron nematode running an olfactory chemotaxis assay versus a four-mode operating-state coordinator in a simulated agent. 'Asymmetric sensory circuit' and 'asymmetric affinity weight map' are alike in shape, not in substance, and the paper offers no quantitative threshold for how much asymmetry is too much. Use it as a hazard flag that names a variable worth measuring, not as a prediction about REE's numbers.",
+    "source_context": "C. elegans olfactory chemotaxis choice assays across multiple choice sets and genetic manipulations of AWC neuronal asymmetry; normalisation model fitted to the behavioural data."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Nature Communications, genetic manipulation plus behaviour plus model -- strong study design, so source quality is high. Mapping fidelity and transfer risk are the worst in this review by a clear margin: invertebrate chemotaxis to an operating-mode gate is analogy, not transfer. Kept in because the variable it isolates (input-pool asymmetry) is one REE directly controls and currently does not consider."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_salience_gain_normalisation",
+  "entry_id": "2026-09-19_mech_259_circuit_asymmetry_irrationality_cohen2019",
+  "timestamp_utc": "2026-09-19T00:53:05Z",
+  "summary_path": "summary.md"
+}

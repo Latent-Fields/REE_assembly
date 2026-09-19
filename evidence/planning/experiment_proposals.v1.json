@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T00:05:33.584513Z",
+  "generated_at_utc": "2026-09-19T00:58:12.182764Z",
   "items": [
     {
       "acceptance_checks": [
@@ -4626,10 +4626,6 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
-      "gated_by": [
-        "contextmemory-write-path-addressing-degeneracy"
-      ],
-      "gated_on": "learned_functional_locality_substrate",
       "gating_reason": "The only V3 structure with bounded update regions (MECH-045 object-file buffer) is a non-trainable closed-form rule, so its DVs are analytically entailed, not measured; the only LEARNED sparse-routing structure (ContextMemory write-address selection) is under an open corrupting defect.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-050 with matched seeds and pre-registered thresholds.",

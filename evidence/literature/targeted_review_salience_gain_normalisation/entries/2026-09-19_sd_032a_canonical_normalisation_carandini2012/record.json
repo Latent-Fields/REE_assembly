@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "SD-032a",
+    "MECH-259"
+  ],
+  "source": {
+    "title": "Normalization as a canonical neural computation.",
+    "authors": [
+      "Carandini M",
+      "Heeger DJ"
+    ],
+    "year": 2012,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3136",
+    "pmid": "22108672",
+    "pmc": "PMC3273486",
+    "volume": "13",
+    "issue": "1",
+    "pages": "51-62"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical, heavily-cited Nature Reviews Neuroscience review (source_quality very high). It establishes the divisive form -- response = driving input divided by a saturation constant plus the pooled activity of a normalisation pool -- as a computation the brain re-uses across retina, V1, olfactory bulb, attention, multisensory integration and value coding. For the question actually at issue (how to bound an unbounded affinity input before it enters the SalienceCoordinator's mode logits) it supports the saturating/ divisive family and gives no biological analogue whatsoever for a hard box clamp. Held below 0.8 because the review is about the FORM of the operation, not about whether that form is the right one for an aggregate control-plane variable feeding a discrete gate; that is precisely the gap the mapping_caveat records.",
+  "failure_signatures": [
+    "The review's normalisation pool is always a pool of UNITS OF THE SAME KIND (orientation channels, odour channels, value-coded targets). REE's affinity_weights pool is a set of heterogeneous named signals (dacc_pe, foraging_value, external_task_drive) with different units and different dynamic ranges. If normalisation's benefit depends on pool homogeneity, transplanting it to REE's heterogeneous input set may not deliver the benefit the review documents.",
+    "Normalisation as reviewed is a DIVISIVE operation applied to a population response, not an input-side transform applied before a weighted sum. SD-032a's affinity_input_cap is applied per-signal BEFORE the per-mode weight. A literal reading of the review would put the normalisation at the logit/output stage, not the input stage -- a different substrate change from the one the substrate_queue entry is titled for.",
+    "The review documents normalisation with a semi-saturation constant sigma that is itself adaptive. A fixed saturating operator with a fixed sigma discards the adaptation the biology shows and may reintroduce the same range problem at a different operating point."
+  ],
+  "tags": [
+    "sd_032a",
+    "mech_259",
+    "divisive_normalisation",
+    "gain_control",
+    "canonical_computation",
+    "affinity_input_cap",
+    "mode_governance_engagement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Normalization -- in which a neuron's response is divided by a common factor that typically includes the summed activity of a pool of neurons -- is a canonical neural computation, repeated across brain regions, modalities and species. It was developed to explain primary visual cortex responses and is now thought to operate throughout the visual system, in other sensory modalities, and in the representation of odours, the modulatory effects of visual attention, the encoding of value and the integration of multisensory information.",
+    "ree_translation": "SD-032a's SalienceCoordinator currently bounds an unbounded affinity input (dacc_pe, and foraging_value derived from it) with a hard symmetric box clamp: value = max(-cap, min(cap, value)) in tick(), applied before the per-mode affinity weight. The substrate_queue entry mode-governance-engagement proposes replacing this with a saturating/normalising bounding operator. Carandini & Heeger establish that the brain's own answer to exactly this problem -- an input whose dynamic range would otherwise swamp the units it competes with -- is divisive normalisation, not truncation. The REE translation is that the bounding operator should be smooth and saturating (x / (sigma + |x|) or a pool-divided form) rather than a clip, because a clip destroys all gradient information above the cap while normalisation compresses it monotonically.",
+    "mapping_caveat": "This is the central transfer risk of the whole review and must not be papered over: every system Carandini & Heeger survey is a POPULATION of like-coded units in a sensory or value map. REE's affinity input is a scalar control-plane signal entering a four-way softmax over operating modes. The review licenses 'saturating beats truncating' as a general principle of biological gain control; it does NOT adjudicate whether a DISCRETE MODE GATE over an AGGREGATE salience vector should be normalised, and nothing in it speaks to a four-mode softmax. Treat it as evidence about the operator family, not as a licence to import the pooled-divisive form wholesale.",
+    "source_context": "Review. Spans invertebrate and mammalian systems, retina to cortex; single-unit electrophysiology, fMRI and computational modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Source quality near-ceiling (the field's anchor review). Mapping fidelity is the binding constraint: the review's subject is population gain control in coding circuits, REE's subject is an input-side bound on one control-plane scalar. Transfer risk moderate-high for the same reason -- the sensory-to-control-plane hop is exactly the STOP this pull was warned about."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_salience_gain_normalisation",
+  "entry_id": "2026-09-19_sd_032a_canonical_normalisation_carandini2012",
+  "timestamp_utc": "2026-09-19T00:53:05Z",
+  "summary_path": "summary.md"
+}

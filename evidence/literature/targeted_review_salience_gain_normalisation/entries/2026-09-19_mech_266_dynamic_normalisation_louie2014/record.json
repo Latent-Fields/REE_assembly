@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-266",
+    "MECH-259"
+  ],
+  "source": {
+    "title": "Dynamic divisive normalization predicts time-varying value coding in decision-related circuits.",
+    "authors": [
+      "Louie K",
+      "LoFaro T",
+      "Webb R",
+      "Glimcher PW"
+    ],
+    "year": 2014,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2851-14.2014",
+    "pmid": "25429145",
+    "pmc": "PMC4244470",
+    "volume": "34",
+    "issue": "48",
+    "pages": "16046-57"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The only entry in this review that speaks to MECH-266's asymmetric hysteresis rather than to bounding per se. A differential-equation formulation of normalisation 'naturally incorporates a time-weighted average of past activity, implementing an intrinsic reference-dependence in value coding', and the predicted dynamics are then observed in macaque LIP saccade neurons. Reference-dependence on recent history is the computational substrate hysteresis needs. Confidence held to 0.68 because reference-dependence is NOT the same as a two-threshold Schmitt trigger -- it is a smooth leaky-integrator effect -- so this supports the FUNCTION MECH-266 wants while leaving its specific enter/exit-threshold FORM unvalidated, which is the same indirection already flagged on the Cools 2008 entry in targeted_review_connectome_mech_266.",
+  "failure_signatures": [
+    "Dynamic normalisation produces reference-dependence as a SMOOTH leaky average of past activity, not as a discrete pair of enter/exit thresholds. If this is the real biological mechanism, MECH-266's Schmitt-trigger formulation is over-specified: the same behavioural hysteresis would arise from a time-constant on the normalisation pool with a SINGLE threshold, which is a strictly simpler substrate change than a second exit-threshold dict.",
+    "The model predicts value coding during initial transients and DELAYED ONSET of contextual information. In SD-032a this predicts that mode affinity immediately after a switch would be computed on stale context -- a transient the current stateless per-tick softmax cannot express and which no REE experiment currently instruments.",
+    "The paper's dynamics are fitted to phasic-sustained firing patterns on a sub-second timescale. REE's tick is not calibrated to that timescale, so the time constant has no principled value to inherit and would become a free parameter -- adding a fitted knob to a coordinator whose occupancy behaviour is already the thing under investigation."
+  ],
+  "tags": [
+    "mech_266",
+    "mech_259",
+    "divisive_normalisation",
+    "dynamics",
+    "reference_dependence",
+    "hysteresis",
+    "mode_governance_engagement"
+  ],
+  "mapping": {
+    "source_claim_statement": "A simple differential equation model of normalization explains the characteristic phasic-sustained pattern of cortical decision activity and predicts specific normalization dynamics: value coding during initial transients, time-varying value modulation, and delayed onset of contextual information. These predicted dynamics are observed in saccade-related neurons in monkey lateral intraparietal cortex. Such models naturally incorporate a time-weighted average of past activity, implementing an intrinsic reference-dependence in value coding.",
+    "ree_translation": "MECH-266 proposes asymmetric mode hysteresis: entering an operating mode uses a different threshold on the aggregate salience vector than exiting it. Hysteresis of any kind requires the gate to depend on its own recent history. Louie et al. show that a dynamic formulation of divisive normalisation supplies exactly that dependence for free -- the normalisation pool is a time-weighted average of past activity, so the current response is referenced against where the system has recently been. For REE this means the bounding-operator decision and the hysteresis decision are not independent: a dynamic normalising operator would deliver some of MECH-266's intended behaviour without a second threshold dict.",
+    "mapping_caveat": "Reference-dependence via a leaky average is not a Schmitt trigger. The paper gives MECH-266's FUNCTION a mechanism and simultaneously undercuts its specific FORM: a single threshold on a history-referenced quantity reproduces hysteretic switching without the enter/exit asymmetry MECH-266 asserts. Treating this as support for MECH-266 as written would over-read it. It is support for the claim that mode transitions should be history-dependent, and a live alternative to how MECH-266 proposes to get there. The sub-second fitted timescale also has no REE analogue.",
+    "source_context": "Differential-equation model of normalisation dynamics, validated against macaque LIP single-unit recordings in a saccadic decision task."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "J Neurosci model-plus-electrophysiology; source quality solid. Mapping fidelity is the lowest of the supporting entries because the paper supports the function (history-dependence) while arguing against the form (two thresholds) MECH-266 specifies. Transfer risk 0.45: the timescale is sub-second and REE's tick has no principled mapping onto it."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_salience_gain_normalisation",
+  "entry_id": "2026-09-19_mech_266_dynamic_normalisation_louie2014",
+  "timestamp_utc": "2026-09-19T00:53:05Z",
+  "summary_path": "summary.md"
+}

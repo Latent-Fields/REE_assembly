@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "MECH-259",
+    "SD-032a"
+  ],
+  "source": {
+    "title": "Reward value-based gain control: divisive normalization in parietal cortex.",
+    "authors": [
+      "Louie K",
+      "Grattan LE",
+      "Glimcher PW"
+    ],
+    "year": 2011,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1237-11.2011",
+    "pmid": "21775606",
+    "pmc": "PMC3285508",
+    "volume": "31",
+    "issue": "29",
+    "pages": "10627-39"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Direct single-unit evidence that divisive normalisation -- not truncation, not a linear code -- describes how value signals are bounded in a DECISION circuit (macaque LIP), which is one step closer to REE's control plane than the sensory literature. The authors show the relative value representation incorporates target values outside the response field and is present in baseline firing as well as stimulus-driven activity, and that divisive normalisation 'precisely describes' the modulation. Held at 0.76 rather than higher because LIP saccadic value coding is still a value MAP over competing targets, whereas REE's affinity input is a scalar entering a mode softmax -- and because the same group's later work (Louie 2013, this review) shows the behavioural cost of the very mechanism this paper documents.",
+  "failure_signatures": [
+    "The normalisation Louie et al. measure is over the set of AVAILABLE TARGETS in a choice -- a pool that changes trial to trial. REE's mode set is fixed at four. A normalisation whose pool never changes size provides none of the adaptive-range benefit that motivates it in LIP, so the argument for importing it is weaker in REE than the paper's own setting.",
+    "The paper's normalisation is measured on FIRING RATES, which are non-negative. REE's affinity input is signed and the current clamp is symmetric about zero at [-cap, +cap]. Divisive normalisation of a signed quantity is not the operation this paper validates, and a naive port would need a sign-preserving form (e.g. x / (sigma + |x|)) whose properties the paper does not test.",
+    "Louie et al. explicitly frame the mechanism as providing 'a possible mechanistic basis for behavioral context-dependent violations of rationality'. The paper therefore documents a cost alongside the benefit: it is evidence FOR normalisation as the biological mechanism and simultaneously evidence that normalisation imports choice-set dependence."
+  ],
+  "tags": [
+    "mech_259",
+    "sd_032a",
+    "divisive_normalisation",
+    "value_gain_control",
+    "lip",
+    "relative_value",
+    "mode_governance_engagement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neurons in monkey lateral intraparietal cortex encode a relative form of saccadic value that is explicitly dependent on the values of the other available alternatives. This relative representation incorporates target values outside the response field and is observed in both stimulus-driven activity and baseline firing rates, and the context-dependent modulation is precisely described by divisive normalization. The authors conclude that this standard form of sensory gain control may be a general mechanism of cortical computation, and that normalization in decision circuits effectively implements an adaptive gain control for value coding.",
+    "ree_translation": "MECH-259 states that when the precision-weighted salience of any input to the SD-032a coordinator exceeds a threshold, the coordinator fires a whole-system mode switch. That mechanism presupposes that the salience input carries usable magnitude information across its whole range -- a threshold on a quantity that has already been truncated at the cap can only ever see 'at cap' or 'below cap'. Louie et al. supply the decision-circuit evidence that the brain solves the same range problem with adaptive divisive gain control, keeping the signal informative rather than discarding its top end. This supports replacing the box clamp with a saturating operator specifically because MECH-259's threshold test needs graded input.",
+    "mapping_caveat": "Two boundaries. First, LIP's normalisation pool is the set of available saccade targets, which is exactly the thing being chosen; REE normalises an INPUT to a gate whose output set (four modes) is fixed and is not the pool. Second, firing rates are non-negative and REE's affinity input is signed -- the sign-preserving saturating form REE would need is not the operation validated here. Treating this paper as direct validation of a particular REE operator would over-claim; it validates the principle that decision circuits use adaptive gain control rather than truncation.",
+    "source_context": "Macaque single-unit electrophysiology in area LIP during a saccadic value task with manipulated reward magnitudes for in-field and out-of-field targets."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (J Neurosci, primate single-unit, the canonical demonstration of normalisation in a decision circuit). Mapping fidelity better than the sensory literature because the setting is value/decision rather than early sensory, but still a value map rather than a mode gate. Transfer risk moderate: monkey-to-REE is the usual architectural overlay, and the signed-vs-rate mismatch is real."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_salience_gain_normalisation",
+  "entry_id": "2026-09-19_mech_259_value_gain_control_louie2011",
+  "timestamp_utc": "2026-09-19T00:53:05Z",
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "SD-032a",
+    "MECH-259"
+  ],
+  "source": {
+    "title": "A normalization model of multisensory integration.",
+    "authors": [
+      "Ohshiro T",
+      "Angelaki DE",
+      "DeAngelis GC"
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2815",
+    "pmid": "21552274",
+    "pmc": "PMC3102778",
+    "volume": "14",
+    "issue": "6",
+    "pages": "775-82"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "This is the entry that answers the specific structural objection to the rest of the review -- that normalisation is only ever demonstrated over a HOMOGENEOUS pool. Ohshiro et al. model normalisation acting at the stage where inputs of DIFFERENT MODALITIES converge, which is structurally what SD-032a's affinity_weights does with dacc_pe, foraging_value and external_task_drive. It reproduces inverse effectiveness and the spatial principle, and explains why the combination rule CHANGES with cue reliability -- the closest biological analogue to a precision-weighted aggregate. Held at 0.71 because it is a model paper (its critical cross-modal-suppression prediction was confirmed later, Ohshiro 2017) and because 'different modalities' is still not 'different units with unbounded range'.",
+  "failure_signatures": [
+    "Inverse effectiveness means normalisation makes WEAK inputs combine super-additively and STRONG inputs combine sub-additively. Imported to SD-032a, this predicts that a normalising bounding operator would AMPLIFY the relative influence of small affinity signals, not merely bound large ones -- a behavioural change to mode occupancy that the substrate_queue entry's title does not mention and that no current REE experiment measures.",
+    "The model's normalisation pool includes units driven by the non-preferred modality, producing cross-modal SUPPRESSION: a non-preferred input that activates the neuron on its own suppresses the response to a preferred input from another modality. In SD-032a this maps to a large dacc_pe suppressing the mode-affinity contribution of external_task_drive even where the two argue for different modes. That coupling does not exist under the current independent per-signal clamp and would be a new mechanism, not a bounded version of the old one.",
+    "The paper's normalisation weights are tuned so that reliability determines the combination rule. REE has no reliability/precision estimate attached to dacc_pe or foraging_value at the affinity-input stage, so a port would have to invent one or fix it -- and a fixed-reliability normalisation loses the property that makes the model explanatory."
+  ],
+  "tags": [
+    "sd_032a",
+    "mech_259",
+    "divisive_normalisation",
+    "multisensory_integration",
+    "heterogeneous_inputs",
+    "inverse_effectiveness",
+    "mode_governance_engagement"
+  ],
+  "mapping": {
+    "source_claim_statement": "Divisive normalization, acting at the stage of multisensory integration, accounts for many of the empirical principles of multisensory integration shown by single neurons -- including the principle of inverse effectiveness and the spatial principle -- and also accounts for the observation that the mathematical rule by which multisensory neurons combine their inputs changes with cue reliability. The model makes a strong testable prediction of cross-modal suppression.",
+    "ree_translation": "SD-032a's SalienceCoordinator is structurally a convergence stage: heterogeneous named signals with different provenance and different natural ranges are combined into per-mode affinity logits. Ohshiro et al. show that when the brain faces the same structural problem -- combining inputs that are not commensurable and whose relative reliability varies -- normalisation at the convergence stage is what reproduces the observed integration behaviour. This is the entry that carries the clip-versus-normalise argument past the objection that normalisation only applies to like-coded pools: it does not.",
+    "mapping_caveat": "The model's power comes from a reliability-weighted pool, and REE has no reliability estimate at the affinity-input stage. Strip that out and what remains is a bounded sum, which is much weaker than what the paper demonstrates. Worse for a naive port: the model's signature prediction is cross-modal SUPPRESSION between inputs, which would introduce coupling between REE's affinity signals that the current independent per-signal clamp does not have. Adopting this model faithfully is a NEW mechanism in SD-032a, not a safer bound on the existing one -- and that distinction is the whole governance question.",
+    "source_context": "Computational model fitted to single-neuron multisensory data (superior colliculus and cortical multisensory areas); the cross-modal suppression prediction was later confirmed in macaque MSTd (Ohshiro, Angelaki & DeAngelis 2017, Neuron, PMID 28728025)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Nature Neuroscience model paper with a subsequently-confirmed diagnostic prediction, so source quality is high for a modelling study. Mapping fidelity is the best in this review on the structural question (heterogeneous convergence) and the worst on the mechanism question (reliability weighting REE does not have). Transfer risk kept at 0.40 because the model's cross-modal suppression would be a genuinely new coupling in SD-032a."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_salience_gain_normalisation",
+  "entry_id": "2026-09-19_sd_032a_heterogeneous_input_normalisation_ohshiro2011",
+  "timestamp_utc": "2026-09-19T00:53:05Z",
+  "summary_path": "summary.md"
+}
