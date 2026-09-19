@@ -211,3 +211,78 @@ C1-C9 green); every `/queue-experiment` gate cleared with evidence (2.5/2.5a sub
 2.6 allow); the ratified criteria; and the driver itself, whose measurement/manifest/readout
 machinery is verified working and would be reused unchanged -- only a warmup phase and a
 readiness gate would be added ahead of it.
+
+---
+
+# ADDENDUM 2026-09-19 (2) -- OPTION A implemented; the ratified readiness gate CANNOT clear
+
+**User decision OPTION A (2026-09-19T02:32Z)** was implemented in full: V3-EXQ-042's
+terrain_prior warmup (E3 behavioural cloning,
+`MSE(terrain_prior_ao_mean, selected_trajectory_ao_sequence.detach())`, `Adam(lr=5e-4)`,
+600 episodes x 200 steps -- 042's own numbers) plus 042's `hippo_quality_gap` as a
+readiness gate. Landed in `ree-v3/experiments/v3_exq_1061_mech131_anticipatory_residue_lesion.py`.
+
+**V3-EXQ-1061 edited in place, not lettered.** The EXQ versioning policy's letters
+supersede a *queued* entry or a *recorded run*; 1061 has neither -- authored, landed
+unqueued, never executed. No evidence to supersede and no `runner_status` collision.
+
+**Design point the decision settled implicitly:** "the gate must clear *before any arm is
+lesioned*" fixes this as **train one intact agent per seed, then read all three arms off it
+by toggling the two live read gates at evaluation**. Weights identical across arms, so the
+arms differ only by the lesion -- a within-subject lesion, and a third of the compute. Only
+possible because both knobs are read live off `HippocampalConfig` rather than cached.
+
+## Measured (hub, 2026-09-19): the gate does not clear, and cannot
+
+20 episodes x 100 steps x 3 seeds, 9m36s wall (~10.4 steps/s, so 042's full 600x200x3 is
+**~9.6 hours**):
+
+| seed | hippo_mean_residue | random_mean_residue | hippo_quality_gap (needs > 0) |
+|---|---|---|---|
+| 11 | 9.888 | 6.943 | **-2.946** |
+| 23 | 12.029 | 7.674 | **-4.355** |
+| 37 | 16.968 | 7.735 | **-9.232** |
+
+`effect_over_noise` rose from ~0.01 (untrained) to **0.035** -- the right direction, but
+parity needs ~1.0, so ~30x short.
+
+**The gap is strongly NEGATIVE, not merely short.** Undertraining would put it near zero.
+The cause is in 042's own recorded manifest
+(`v3_exq_042_hippocampal_terrain_training_20260319T090529Z.json`):
+
+```
+hippo_mean_residue = 0.0      random_mean_residue = 0.392646      gap = +0.392646
+```
+
+**042's positive gap was entirely "hippocampal proposals evaluate to exactly zero
+residue".** 042 ran 2026-03-19, two months before the **2026-05-17** support-preserving-CEM
+defaults (`use_support_preserving_cem`, `support_preserving_stratified_elites`,
+`support_preserving_ao_std_floor = 0.2`), whose own comment states the floor exists *"so the
+sampling distribution cannot collapse to a point"*. That collapse is what put 042's proposals
+off the residue support, and it was **deliberately retired as degenerate** -- CLAUDE.md
+records it as the monostrategy that left SD-029 / ARC-062 Rung 2 / goal_pipeline /
+self_attribution `non_contributory`.
+
+On today's non-collapsing CEM, proposals stay on the visited manifold where residue actually
+lives, while `generate_candidates_random` flings the state off that manifold into
+never-visited (hence zero-residue) space. **The gap inverts for a structural reason and no
+amount of warmup fixes it: 042's metric measures "did the proposals leave the residue
+support", which the current substrate is specifically built not to do.**
+
+Per the user's instruction -- *"if it still does not, stop and report the numbers rather than
+queueing"* -- nothing was queued. Decision chip
+**`chip-20260919-mech131-readiness-gate-inverts`**.
+
+## What this implies for the DV itself, stated because it is the deeper issue
+
+The same manifold argument applies to DV1. Residue is an RBF field over *visited* states, so
+"low residue" and "off the visited manifold" are nearly the same measurement. A residue-
+avoidance DV computed over rollout candidates will therefore always be partly a proxy for
+novelty rather than for harm avoidance. That is not a coding defect; it is a property of
+using a visitation-seeded residue field as the DV, and it is worth a governance-level look
+before more compute goes into this claim.
+
+**Banked and needing no redoing:** both lesion knobs (contract-pinned C1-C9); the warmup and
+readiness-gate implementation; the within-subject lesion-at-eval design; every
+`/queue-experiment` gate cleared with evidence; the ratified criteria; the full-scale cost
+measurement (~9.6 h).
