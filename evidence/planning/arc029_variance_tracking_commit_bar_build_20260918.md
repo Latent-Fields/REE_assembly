@@ -5,7 +5,10 @@
 - **Chip:** `chip-20260918-arc029-variance-tracking-threshold`
 - **Authority:** user decision 2026-09-18, option (D), answering `chip-20260918-arc029-p1-lever-operating-point`
 - **Box:** `ree-cloud-4`, torch 2.12.0+cpu, python 3.10.12
-- **Landed:** `ree-v3` -- see "Landing" below.
+- **Landed:** `ree-v3` on `origin/main`, verified after fetch:
+  `6a24a811` (wip) -> `6bac3753` (the bar) -> `9862ed61` (red-team fixes) ->
+  `3bb81276` (flag-registry entry). This record: `REE_assembly 663aa08c3b` on
+  `origin/master`. Governance flag for the stale artefacts: `GFLAG-0354`.
 
 ## 1. What was built
 
@@ -320,7 +323,26 @@ each changes what a re-queued experiment would measure:
 
 ## 7. Landing and tests
 
-- 19 contract tests in `ree-v3/tests/contracts/test_commit_threshold_variance_tracking.py`, all passing.
+- 26 contract tests in `ree-v3/tests/contracts/test_commit_threshold_variance_tracking.py`, all passing.
+- **A FULL suite ran** (`tests/ coordinator/ dispatch/` + the three single-file roots) at the
+  pre-red-team state: **6374 passed, 42 skipped, 3 failed** in 1:14:42. All three failures were
+  accounted for: `test_flag_registry_is_current` was MINE (a new flag must be probed or
+  recorded -- fixed in `3bb81276`); `test_wi1_substrate_split_index_integrity` and
+  `test_sd_097_possibility_topology` were **not** mine -- both were reproduced on a pristine
+  worktree at this session's base commit or explained by it, and both pass after rebasing onto
+  current `origin/main`.
+- **The post-red-team full suite was started and deliberately KILLED at 36%**, and this is
+  stated rather than glossed: `ree-cloud-4` has 2 vCPUs and was carrying load average 6.9 with
+  two sibling metaworker sessions running their own CPU-bound jobs, so the run projected to
+  many hours and was starving them. Replaced with a **targeted blast-radius run of the
+  red-team fixes: 156 passed** across the new contract file, `closure_commit_entry_trajectory`
+  (the other `get_commitment_state` consumer), `from_dims_flag_reachability`,
+  `config_slice_declaration_lint`, `mech027_precision_scaled_commit_temperature`,
+  `sd063_conditional_uncertainty_head`, `sd034_decommit_magnitude`, the two E3 contract files,
+  and the two previously-failing tests. `tests/test_flag_inertness.py` ran separately: 66
+  passed.
+- **So the honest gate is: full suite green-modulo-three-explained at the pre-red-team state,
+  plus a targeted 156 + 66 at the landing state** -- not a full suite at the landing state.
 - `remote_pytest.sh` returned **exit 4 (routing condition, not a red)**: the hub was already
   running a suite, and `ree-worker-2/3/4` refused this host's ssh credentials (a credential
   fault on `ree-cloud-4`, not a fleet outage). Per the wrapper's own guidance, the suite was
