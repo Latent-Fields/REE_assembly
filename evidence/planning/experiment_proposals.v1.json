@@ -4617,16 +4617,26 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1410",
+      "blocked_by": [
+        "contextmemory-write-path-addressing-degeneracy"
+      ],
+      "blocked_note": "REFUSED at /queue-experiment Step 4.5 (adversarial red-team, fable 5.1, cross-model): BLOCKING, verified against source before disposition. A full discriminative pair was authored and smoke-tested green against the MECH-045 token-instance object-file buffer (ree_core/entities/object_file_buffer.py), which is the closest thing V3 has to MECH-050's subject: bounded per-token update regions plus a hard motion gate, carrying NO columnar geometry. It is nevertheless NOT a valid testbed for this claim, for a reason no scene redesign repairs. THE BUFFER IS A NON-TRAINABLE CLOSED-FORM DATA-ASSOCIATION RULE (its own docstring line 27: 'no nn.Module, no parameters, no gradient flow'), so every DV is analytically ENTAILED by the scene constants rather than measured. Verified arithmetic: with the locality gate intact (obf_continuity_radius=2.0) each of the 4 observations has EXACTLY ONE in-gate candidate (target-obs distances 1.41 to its own token vs 5.10/5.10/7.07 to every other), so the greedy match at object_file_buffer.py:211-219 is a forced bijection in which the appearance term never enters -- reid_frac=1.000 and misbind_frac=0.000 deterministically (2000-trial confirmer on the real buffer: per-trial sd 0.000). The ablated arm (radius 1e9, w_motion 0) is at chance BY CONSTRUCTION because the twin's appearance is bit-identical (2000-trial: reid 0.495, misbind 0.249). So a PASS would restate the association rule's arithmetic -- 'a hard gate admitting one candidate assigns that candidate; a zero-information matcher is at chance' -- not measure a substrate property. Intermediate ambiguity does not rescue it: appearance-only matching measured 0.978 correct at d_cos 0.02, 0.565 at 0.00125, 0.502 at 0 (400 draws/level), so any separation the design could resolve is already one where appearance alone settles identity and the locality manipulation cannot move the DV. THE SUBSTRATE MECH-050 ACTUALLY NAMES -- functional locality in LEARNED representational microcircuits (modular recurrent substructures, limited lateral spillover, sparse routing constraints) -- has exactly one V3 instance, the learned ContextMemory write-address selection in ree_core/predictors/e1_deep.py, and that path carries an OPEN corrupting substrate_queue entry (contextmemory-write-path-addressing-degeneracy, status implemented_pending_validation, substrate_paths ree_core/predictors/e1_deep.py::ContextMemory.write), which is a Step 2.5c hard stop. Feeding the buffer real learned z_world features instead of constructed appearances WOULD be contingent, but it would measure z_world differentiation (the known observation->z_world binding constraint), not locality -- a claim-tagging error, not a MECH-050 test. No experiment queued; EXQ id V3-EXQ-1059 released unused. MECH-050 remains 0 experimental entries / lit-only (lit_conf 0.802, plausible_unproven).",
       "claim_id": "MECH-050",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "gated_by": [
+        "contextmemory-write-path-addressing-degeneracy"
+      ],
+      "gated_on": "learned_functional_locality_substrate",
+      "gating_reason": "The only V3 structure with bounded update regions (MECH-045 object-file buffer) is a non-trainable closed-form rule, so its DVs are analytically entailed, not measured; the only LEARNED sparse-routing structure (ContextMemory write-address selection) is under an open corrupting defect.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-050 with matched seeds and pre-registered thresholds.",
       "priority": "medium",
       "proposal_id": "EXP-0798",
       "proposal_type": "experimental",
+      "release_condition": "EITHER contextmemory-write-path-addressing-degeneracy reaches validated (freeing e1_deep.py::ContextMemory.write for a learned sparse-routing locality probe), OR V3 gains a learned representational substrate with an ablatable locality/lateral-spillover constraint whose attribution behaviour is contingent rather than closed-form. Re-open via /implement-substrate, not another /queue-experiment iteration.",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -4639,7 +4649,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_050",
       "target_repo": "ree-v3",
       "why_now": [
