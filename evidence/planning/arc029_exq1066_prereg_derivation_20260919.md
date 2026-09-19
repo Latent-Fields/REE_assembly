@@ -199,3 +199,148 @@ above is what makes that outcome unlikely rather than a lottery.
   V3-EXQ-460i fragmentation failure, occupancy too SHORT); the measured failure is the opposite,
   saturation at 100% committed. GFLAG-0354 carries this; ARC-029's P1 text and 063a section 8
   both route there and both are stale on this point.
+
+---
+
+# ADDENDUM 2026-09-19T23:10Z -- MEASURED ON `ree-cloud-4`, AND THE RUN IS **NOT QUEUED**
+
+The pre-registration above is sound as an exercise in reading the build record's
+surface. **It does not survive contact with a real agent in the ARC-029 lineage's own
+environment**, and the reason is not any of the four parameters the dispatch brief
+scoped. Everything below was measured in this session, not argued.
+
+Interpreter `/home/ree/.venv/ree/bin/python3`, torch 2.12.0+cpu, python 3.10.12,
+`ree-v3` at `origin/main` 2be3c89a + this session's own `2adcad2063`.
+Driver: `ree-v3/experiments/v3_exq_1066_arc029_commitment_mode_harm_variance_bar.py`
+(committed, **NOT queued**, `V3-EXQ-1066` reservation closed `--not-landed`).
+
+## M1. The lever is REACHABLE and its sentinels work (Step 2.5a probe, PASS)
+
+`from_dims(use_variance_tracking_commit_threshold=True, commit_threshold_quantile=0.50,
+commit_threshold_quantile_window=200)` arrives at all three wiring sites;
+`config.e3.precision_ema_alpha` and `config.heartbeat.e3_steps_per_tick` are
+sub-config fields (NOT `from_dims` parameters) and take effect
+(`agent.clock.e3_steps_per_tick == 3`); the unset-sentinel `ValueError` fires when the
+lever is armed without q/W. The commit window is built (`maxlen 200`) and is never
+cleared by `agent.reset()`, so it persists for the life of the selector.
+
+**One wiring fact that is not written down anywhere and silently zeroes the
+instrument:** `last_score_diagnostics` is populated only under
+`if self.e3_score_decomp_enabled:` (`e3_selector.py:4098`), which is an
+INSTANCE attribute defaulting to `False` (`:639`), not a config field. Without
+`agent.e3.e3_score_decomp_enabled = True` the dict is never written, and a driver
+reading `committed` from it measures **0 selections out of ~120** and reports
+occupancy 0.0 with no error. Measured directly.
+
+## M2. THE BLOCKER -- episodes are 4-9 ENV STEPS at this lineage's env parameters
+
+`CausalGridWorldV2` at V3-EXQ-125a's own kwargs (`size=12, hazard_harm=0.05,
+proximity_harm_scale=0.15, proximity_benefit_scale=0.03, hazard_field_decay=0.5`),
+25 episodes per row, random policy, `done_cause` recorded:
+
+| `num_hazards` | mean episode length | min | max | mean reward/step | terminal cause |
+|---|---|---|---|---|---|
+| 3 (P1's LOW density) | **9.4** | 6 | 17 | -0.121 | `health_depleted` |
+| 5 (the train density) | **6.2** | 4 | 11 | -0.178 | `health_depleted` |
+| 7 (P1's HIGH density) | **4.4** | 3 | 7 | -0.261 | `health_depleted` |
+| 8 (125a's own density) | 4.6 | 2 | 12 | -0.288 | `health_depleted` |
+
+A TRAINED agent (P0a 20 + P0b/P1 60 episodes x 120 steps, SD-070 z_world warmup on,
+`rv` 5.0e-01 -> 9.0e-03) does not escape it: measured 5 to 22 env steps per episode,
+**4.9 to 7.3 SELECT CALLS per episode**.
+
+### M2a. Consequence one: the bar NEVER TAKES FORCE, and saturation is reproduced
+
+On the trained agent, across q in {0.25, 0.50, 0.75, 0.90} and sweep amplitudes
+{0.0, 0.02, 0.10}, in **every** cell:
+
+    bar_in_force = 0.000    committed_step_fraction = 1.0000    n_committed_runs = 1
+
+The window never filled, so `_variance_tracking_commit_bar()` returned `None` on every
+tick and the ABSOLUTE 0.40 bar stayed in force against `rv ~ 0.008`. **That is the
+V3-EXQ-063a saturation defect, reproduced exactly, with the new lever armed.** It is
+not a defect in the lever: W=200 is counted in SELECT CALLS, and at ~5-7 select calls
+per episode the window needs **~30-40 EPISODES** to fill.
+
+### M2b. Consequence two: the window is not a WITHIN-RUN distribution
+
+Filling W=200 spans ~35 episode boundaries. The estimator's stated premise is that
+"rv drifts ~5x WITHIN a single run" and that one linear term in log-space describes
+that drift (`config.py:1241-1249`; build record sec 2). Pooled across ~35 resets it is
+describing a between-episode ensemble instead. Every occupancy number on the build
+record's (q, W) surface was measured on a 1200-tick CONTINUOUS synthetic stream, which
+is a different object.
+
+### M2c. Consequence three: P1's two halves are at the edge of arithmetic feasibility
+
+P1 wants, within a single run, `committed_step_fraction` in [0.15, 0.85] AND mean
+committed-run length >= 3. With E select calls per run, at least one committed run of
+>= 3 requires `f * E >= 3`, i.e. `E >= 3/f`:
+
+| f | required E | measured E (trained) |
+|---|---|---|
+| 0.85 | 3.5 | 4.9 - 7.3 |
+| 0.50 | 6.0 | 4.9 - 7.3 |
+| 0.15 | 20.0 | 4.9 - 7.3 |
+
+So P1 is jointly satisfiable only in the UPPER part of its own occupancy band, with
+roughly ONE committed run per episode -- i.e. "the episode is mostly committed, with
+uncommitted ticks at its edges". That is an episode-phase contrast, not the within-run
+two-operating-mode structure the claim asserts, and V3-EXQ-460i's finding is exactly
+why P1's run-length half was made load-bearing.
+
+## M3. Two further facts the pre-registration assumed and that do not hold
+
+- **`e3_steps_per_tick` does NOT set the effective select cadence.** Configured at 3,
+  the MEASURED env-steps-per-select is **1.0 to 3.6** across cells. MECH-091
+  `phase_reset` forces an E3 tick on salient events and this env delivers a negative
+  reward on essentially every step. So D1's run-length lever is not the lever the build
+  record characterised, and NEITHER named run-length lever (`precision_ema_alpha`,
+  `e3_steps_per_tick`) is usable as described.
+- **P3's premise is inverted here.** ARC-029 P3 worries the harm DV sits too LOW.
+  Measured mean reward/step is **-0.12 to -0.29**, i.e. 2-5x ABOVE 063a's -0.055 and
+  20-100x above the build record's recalibrated 0.0025-0.0068. The env is lethal
+  enough that the agent dies in 4-9 steps -- which is precisely what destroys P1.
+
+## M4. The BIND, stated plainly
+
+**P1 and P3 pull in opposite directions through the same parameter.** Softening the env
+(fewer hazards / lower `hazard_harm` / lower `proximity_harm_scale` / more starting
+health) lengthens episodes until a within-run two-mode structure exists -- and pushes
+the harm DV back toward the floor P3 exists to keep it off (EXQ-227's ~100x cut).
+Keeping the lineage env keeps the DV off the floor -- and leaves episodes too short for
+the window to fill or for P1 to be met as a within-run property.
+
+No value of q, `commit_threshold_quantile_window`, `precision_ema_alpha`,
+`e3_steps_per_tick`, `sweep_amplitude`, or either of the G1/G2 floors resolves it. It
+is an ENVIRONMENT question -- the lever the build record's sec 6 explicitly declined to
+pull ("Both are therefore set at re-queue time, by the `/queue-experiment` unit, under
+the user's eye") and whose recorded recommendation (do NOT raise env harm; re-express
+C1 relatively) points the OPPOSITE way from what P1 now needs.
+
+Shrinking W is not a third way out: W=50 is the smallest measured cell and still needs
+~10 episodes, and below the rv EMA time constant (~1/alpha ~ 20 select calls) the bar
+tracks rv almost instantaneously and committed runs degenerate towards a single tick --
+the estimator's own documented failure mode (`config.py` window-width comment), which
+fails P1's run-length half by construction.
+
+## M5. Disposition
+
+**NOT QUEUED. NO live `V3-EXQ-1066`.** The reservation claim was closed `--not-landed`
+and the id is free. `EXP-1394` is left at `status: proposed`; the refusal is recorded
+machine-readably as a governance flag (`evidence_discrepancy`, ARC-029) rather than as
+prose only. The driver is committed for the successor to start from, carrying a
+DO-NOT-QUEUE banner.
+
+The choice is the user's and is raised as a `kind: decision` chip. **Recommendation:
+do NOT spend a 5-seed evidence run on any of the three options. Spend one cheap
+`diagnostic` run first** -- sweep the env harm parameters and measure, per setting,
+(episode length, select calls per episode, |mean harm/step| and its SEM, and occupancy
++ committed-run-length histogram with the bar CONFIRMED in force at q in
+{0.25, 0.50, 0.75}) -- and report the region, if any, where P1 and P3 are jointly
+satisfiable. That is the measurement the build record sec 6a already says is owed
+("the rv residual dispersion on a REAL trained agent, on which the whole
+alternating-arm design's viability rests"). Its NEGATIVE outcome is already a
+pre-registered disposition of the claim, so it cannot be wasted: ARC-029's own P1 says
+"If P1 still fails with those armed, ARC-029 converts to `substrate_conditional` on
+commitment-occupancy sustainment and this falsifier is not readable."
