@@ -116,6 +116,48 @@ DIFFERENT states carrying only 5 distinct action classes between them
 called is STATE-identity discrimination. Well-formed, but not the one the helper was designed
 for, and the amendment wording should say which task leg B means.
 
+## 3a. C1/C2 reachability on InfoNCE, verified from 1063's recorded numbers
+
+Asked for by the Orchestrator's correction of 2026-09-19T22:30Z. Answer: **not
+determinable from V3-EXQ-1063 -- and moot, because section 1 blocks the ladder upstream of
+either criterion.**
+
+**First, a units correction the correction itself needs.** The figure **0.2079 is NOT what
+C2 requires.** It is `0.05 * ln(64)` -- the READABILITY floor V3-EXQ-1063 pre-registered
+(`INFONCE_HEADROOM_FLOOR_FRAC = 0.05`), which asks whether the readout can carry a sign test
+*at all*. C2's 20%-of-highest-arm term is `0.20 * (highest arm's DV)` =
+`0.20 * 3.171e-3` = **6.343e-4**, expressed in DV units. Two different quantities. The
+correction's *conclusion* -- that InfoNCE may lack dynamic range -- is right, but it is right
+for the readability reason, not the C2 reason, and the two must not be merged because only
+one of them is measured.
+
+| question | determinable from 1063? | number |
+|---|---|---|
+| Is the readout READABLE (headroom vs 5% of ln K)? | **yes** | 0.02152 vs 0.20794 -- **fails by 9.66x**, at the shipped `tau=0.1` |
+| Is **C1** (monotone across 4 intake arms) reachable? | **no** | 1063 ran NO ladder, so it holds no arm-to-arm effect size |
+| Is **C2**'s 20%-of-highest-arm term reachable? | yes, in principle | 6.343e-4, against a DV of 3.171e-3 |
+| Is **C2**'s `2 x SD(arm-to-arm DELTA)` term reachable? | **no** | 1063 has ONE arm per (base, lever) cell, so it contains **zero** arm-to-arm differences |
+
+The only related quantity 1063 records is the cross-seed SD of a per-arm **LEVEL**:
+2.458e-3, which is **77.5% of the DV's own mean**. If the arm-to-arm *difference* SD were as
+large as that level SD, C2's margin would be 4.916e-3 = **1.55x the entire DV** and C2 would
+be unreachable. If seed effects largely cancel in the difference -- plausible, since all four
+arms of a seed share one base and one battery -- it could be far smaller. **1063 cannot
+distinguish those, and no amendment is needed to C2's rule: it self-computes from the
+four-arm run's own data.**
+
+**The MSE alternative is noisier, not less noisy.** D3 (unconverged base, MSE) is 2/3 positive
+with mean 2.966e-3 and cross-seed SD 3.579e-3 -- `SD/|mean| = 1.21`, i.e. its cross-seed
+scatter EXCEEDS its own mean, against 0.775 for InfoNCE on the converged base.
+
+**And a readout with more range already is recorded** -- it is the same InfoNCE at a
+re-specified temperature (section 3): headroom 21.6-23.9% of ln K at `tau = 1e-3` against
+0.5-0.8% at the shipped `tau = 0.1`.
+
+**None of which unblocks anything**, because section 1's P1 failure is upstream of every one
+of these: it gates the intake manipulation, so no choice of leg-B readout gives the ladder an
+independent variable.
+
 ## 4. What this leaves open for the user
 
 1. **P1.** Spend ~3 hours re-measuring the ladder's P1 phase under 798a's exact P0 to find out
