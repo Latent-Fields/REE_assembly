@@ -5245,6 +5245,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0371",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "EXP-1394 / V3-EXQ-063b REFUSED at /queue-experiment Step 4 (operating point), NOT queued. Measured on a trained agent (ree-cloud-4): at the ARC-029 lineage's own env kwargs (125a's) episodes terminate on health_depleted in 4-9 env steps = 4.9-7.3 SELECT CALLS, so the 200-select-call commit-gate window never fills, the variance-tracking bar reports bar_in_force 0.000 in every cell, and committed_step_fraction is 1.0000 with ONE committed run -- V3-EXQ-063a's saturation defect reproduced with the new lever armed. Filling the window would pool rv across ~35 episode boundaries, so it would not be the within-run distribution the estimator is specified against; and P1's f*E>=3 holds only in the upper part of its own [0.15,0.85] band with ~one committed run per episode. Also measured: e3_steps_per_tick does NOT set the effective select cadence (1.0-3.6 env steps per select at a configured 3; MECH-091 phase_reset dominates), so neither named run-length lever behaves as arc029_variance_tracking_commit_bar_build_20260918.md characterises; and mean reward/step is -0.12 to -0.29, 20-100x ABOVE the recalibrated band P3 worries about. THE BIND: P1 and P3 pull opposite ways through the env harm parameters and no q / commit_threshold_quantile_window / precision_ema_alpha / e3_steps_per_tick / sweep_amplitude / G1 / G2 value resolves it. EXP-1394 left at status proposed (this is not a substrate gap, so blocked_substrate would misclassify it). Evidence: REE_assembly c1f576c709 (evidence/planning/arc029_exq1066_prereg_derivation_20260919.md addendum); driver ree-v3 9bbe1b0dab, committed with a DO-NOT-QUEUE banner, id V3-EXQ-1066 released. Raised as decision chip chip-20260919-arc029-p1p3-env-operating-point by session metaworker-science-20260919-arc029-p1p3-retest (campaign science-20260919-arc029-p1p3-retest).",
+      "raised_by_session": "metaworker-science-20260919-arc029-p1p3-retest",
+      "raised_at": "2026-09-19T23:08:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
