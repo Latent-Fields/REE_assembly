@@ -3297,3 +3297,4 @@ One line per hourly tick. ASCII only.
 2026-09-19T00:14:05Z auto-defer IGW-20260918-246 hash=0956acc0c2a7 for 48h (reaped -> completed_resumable)
 2026-09-19T00:14:05Z reaped TASK_CLAIMS igw-auto-igw-246-literature-proposal-for-mech-050-20260918T230815Z (ledger IGW-20260918-246 -> completed_resumable)
 2026-09-19T00:14:11Z GC keep igw-246-literature-proposal-for-mech-050 (ledger IGW-20260918-246 -> completed_resumable; 2 untracked artifact(s) e.g. pre_regen_snapshot.txt)
+2026-09-19T00:12:21Z SPAWN IGW-20260919-237 skill=/queue-experiment prio=40 uuid=8cbe3603-9c58-4067-ab92-56d9d88c4f09 pid=45462 worktree=igw-237-proposal-for-mech-050
