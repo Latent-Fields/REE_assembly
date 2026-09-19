@@ -243,7 +243,7 @@ Novelty was checked by `grep` over the whole of `REE_assembly`. **Every paper be
 
 **Already cited by the audit, re-verified here, still absent from `evidence/literature/**`:** Goff & Roediger 1998 (9519694), Sharman, Garry & Beuke 2004 (15209367), Pezdek & Eddy 2001 (11531226), Mammarella et al. 2010 (20488556), Dudek & Polczyk 2024/2025 (38324581 / 40748997).
 
-**Already in the corpus:** Johnson, Hashtroudi & Lindsay 1993 (8346328) — 4 entries. Garry et al. 1996 is present as a corpus entry under `targeted_review_source_sensitive_permeability`, but **its `record.json` carries `"pmid": null`** although PMID 24213869 exists. Reported, not corrected: that entry belongs to `MECH-544`'s review and is outside this tranche's claimed resources.
+**Already in the corpus:** Johnson, Hashtroudi & Lindsay 1993 (8346328) — **2 entries** (`targeted_review_autobiographical_store/.../2026-06-13_mech_365_source_monitoring_johnson1993`, whose `record.json` does not carry the PMID, and `targeted_review_source_sensitive_permeability/.../2026-09-08_mech_544_source_monitoring_content_and_source_dissociate_johnson1993`, which does). Three files mention the PMID across those two entry directories; only one `record.json` does. Garry et al. 1996 is present as a corpus entry under `targeted_review_source_sensitive_permeability`, but **its `record.json` carries `"pmid": null`** although PMID 24213869 exists. Reported, not corrected: that entry belongs to `MECH-544`'s review and is outside this tranche's claimed resources.
 
 ---
 
