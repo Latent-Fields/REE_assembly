@@ -6334,7 +6334,11 @@
       "task_claim_session_id": "igw-auto-igw-242-literature-proposal-for-mech-066-20260919T173822Z",
       "task_claim_claimed_at": "2026-09-19T17:38:22Z",
       "assigned_at": "2026-09-19T17:36:05Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-19T18:08:43Z",
+      "completion_summary": "MECH-066 lit-pull landed: 5 entries (targeted_review_connectome_mech_066), lit 0 -> 5, lit_confidence 0.868; raised GFLAG-0361 contesting the claim's scope (DreamerV3 durably trains actor/critic purely on imagination); self-found and repaired a 2-run claim_evidence drop caused by regenerating on the wedged checkout. REE_assembly origin/master 1e98ae94e8, f9ca62067e, 3849de1f04.",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-066 lit-pull landed: 5 entries (targeted_review_connectome_mech_066), lit 0 -> 5, lit_confidence 0.868; raised GFLAG-0361 contesting the claim's scope (DreamerV3 durably trains actor/critic purely on imagination); self-found and repaired a 2-run claim_evidence drop caused by regenerating on the wedged checkout. REE_assembly origin/master 1e98ae94e8, f9ca62067e, 3849de1f04."
     }
   ],
   "dispositions": [
@@ -9179,6 +9183,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T16:47:59Z",
       "re_eligible_after": "2026-09-21T16:47:59Z"
+    },
+    {
+      "stable_hash": "9f3054a3403d",
+      "igw_id_at_disposition": "IGW-20260919-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-066"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-066",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-19T18:08:43Z",
+      "re_eligible_after": "2026-09-21T18:08:43Z"
     }
   ]
 }
