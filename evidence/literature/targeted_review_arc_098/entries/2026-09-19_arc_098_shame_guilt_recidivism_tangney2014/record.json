@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_098",
+  "entry_id": "2026-09-19_arc_098_shame_guilt_recidivism_tangney2014",
+  "timestamp_utc": "2026-09-19T06:04:39Z",
+  "claim_ids_tested": [
+    "ARC-098"
+  ],
+  "source": {
+    "title": "Two faces of shame: the roles of shame and guilt in predicting recidivism",
+    "authors": [
+      "June P. Tangney",
+      "Jeffrey Stuewig",
+      "Andres G. Martinez"
+    ],
+    "year": 2014,
+    "venue": "Psychological Science",
+    "doi": "10.1177/0956797613508790",
+    "pmid": "24395738",
+    "pmc": "PMC4105017",
+    "volume": "25",
+    "issue": "3",
+    "pages": "799-805"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Methodologically the strongest empirical entry in this pull -- prospective longitudinal design, 476 inmates assessed at baseline, one-year post-release follow-up, official arrest records rather than self-reported reoffending -- and it tests the exact contrast ARC-098 turns on: global self-condemnation versus behaviour-specific responsibility. Direction is mixed rather than supports because the paper's own headline is that shame has two faces: its indirect path through blame externalization is criminogenic, but its direct path, with externalization controlled, actually predicted LESS reoffending. That second finding is a real qualification of any blanket prohibition on self-condemnation and I have not discounted it. Confidence held at moderate by the human-to-artificial-agent transfer, which is substantial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The criminogenic path is mediated, not direct: shame proneness predicted higher recidivism THROUGH blame externalization. Applied to REE, the failure mode is specific and mechanical -- a global negative self-assessment triggers defensive attribution outward, and it is the defensive attribution that destroys the evidence trail and blocks correction. An architecture that produced global self-condemnation but somehow suppressed defensive externalization would not obviously inherit this failure.",
+    "Shame's direct effect ran the other way: with externalization of blame statistically controlled, shame proneness predicted LOWER reoffending. ARC-098 as written ('avoid global self-condemnation') is therefore stronger than this evidence supports -- the defensible target is the externalization cascade, not the global self-evaluation per se.",
+    "Guilt proneness, the behaviour-specific counterpart, negatively predicted reoffending. This supports the constructive half of ARC-098: an architecture that attributes a dangerous self-state to a specific act or configuration, rather than to the whole self, is the one that preserves the capacity to seek correction.",
+    "Both constructs were measured as dispositional proneness at baseline, so the design cannot show that a single episode of acute shame produces defensive concealment -- which is the temporally local event an autonomy-suspension surface would actually trigger."
+  ],
+  "tags": [
+    "arc-098",
+    "arc_098",
+    "safety",
+    "shame",
+    "guilt",
+    "self-condemnation",
+    "blame-externalization",
+    "containment-not-shame",
+    "longitudinal",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a prospective study of 476 jail inmates followed for one year after release, guilt proneness (behaviour-specific negative self-evaluation, 'I did a bad thing') predicted lower recidivism, whereas shame proneness (global negative self-evaluation, 'I am a bad person') had two opposing effects: an indirect criminogenic effect operating through externalization of blame, and, once externalization was controlled, a direct effect associated with reduced reoffending.",
+    "ree_translation": "ARC-098 commits REE to a containment surface that may suspend autonomy on dangerous-self-state detection but must preserve evidence, seek correction, and avoid global self-condemnation. Tangney et al. is the closest empirical test available of the third conjunct, and it supplies a mechanism rather than just a correlation: global self-condemnation is criminogenic specifically because it recruits defensive externalization of blame, and defensive externalization is exactly the behaviour that destroys an evidence trail and refuses correction. That is the same causal shape ARC-098 asserts, arrived at independently in a human population with hard outcome data. The behaviour-specific alternative (guilt) predicting better outcomes supports the paired design prescription: attribute the dangerous state to a specific act or configuration so the corrective channel stays open. The paper also usefully sharpens the claim -- the thing to engineer against is the externalization cascade, and 'avoid global self-condemnation' is best read as the design heuristic that most reliably prevents it, not as an independently established prohibition.",
+    "mapping_caveat": "This is the largest transfer gap in the pull and it should not be glossed. Shame and guilt here are dispositional traits in incarcerated humans, measured by self-report instruments (TOSCA-SD) and validated against arrest records; REE has no shame, no self-concept in the relevant sense, and no social audience for whom concealment would be adaptive. The reason the mapping is worth making at all is structural rather than phenomenological: the claim is that a system whose error signal attaches to the whole self rather than to a specific act will preferentially adopt strategies that protect the self-assessment, and that these strategies are precisely concealment and blame-shifting. That structure could hold in an artificial agent -- a globally scoped negative value on the self-model creates an incentive to suppress the evidence generating it -- but this paper cannot establish that it does, and nothing in REE currently implements the self-model on which it would depend (ARC-098 is substrate_conditional on the unbuilt V5 self-model for exactly this reason). Treat this as motivating evidence for a design commitment, not as confirmation of a mechanism in REE. Note also that the direct/indirect decomposition rests on a mediation model in observational data, so the causal reading of the two paths is model-dependent.",
+    "source_context": "Prospective longitudinal study of 476 jail inmates in the United States, assessed on shame proneness, guilt proneness and blame externalization shortly after intake, with recidivism measured at one year post-release via official arrest records (446 with records accessed) and follow-up interviews (332 completed)."
+  },
+  "confidence_components": {
+    "source_quality": 0.87,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.48,
+    "notes": "Source quality high: prospective design, real-world outcome measure rather than self-reported reoffending, adequate N, published in Psychological Science. Mapping fidelity moderate -- the causal STRUCTURE (global self-attribution -> defensive externalization -> correction fails) transfers cleanly and is what ARC-098 asserts, but the constructs are human moral emotions and the claim is about an artificial self-model that does not yet exist. Transfer risk is the highest component in this pull and is the main reason confidence sits at 0.66 despite strong methodology; weighted heavily here because ARC-098 is an architectural_commitment whose truth conditions live in a substrate not yet built."
+  }
+}

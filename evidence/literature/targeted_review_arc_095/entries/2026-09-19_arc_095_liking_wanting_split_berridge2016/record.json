@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_095",
+  "entry_id": "2026-09-19_arc_095_liking_wanting_split_berridge2016",
+  "timestamp_utc": "2026-09-19T06:04:39Z",
+  "claim_ids_tested": [
+    "ARC-095"
+  ],
+  "source": {
+    "title": "Liking, wanting, and the incentive-sensitization theory of addiction",
+    "authors": [
+      "Kent C. Berridge",
+      "Terry E. Robinson"
+    ],
+    "year": 2016,
+    "venue": "American Psychologist",
+    "doi": "10.1037/amp0000059",
+    "pmid": "27977239",
+    "pmc": "PMC5171207",
+    "volume": "71",
+    "issue": "8",
+    "pages": "670-679"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "This is the cleanest available worked precedent for the exact operation ARC-095 insists must remain permitted. A single, apparently primitive handle -- 'reward' -- turned out to require splitting into two doubly-dissociable components with different neurochemistry, different time courses and different pathology. The dissociation itself is among the better-replicated findings in affective neuroscience (rodent taste reactivity, dopamine manipulations, human incentive work), which is why confidence sits high despite this being a review rather than a primary report. Docked for the review format and because the paper argues the split, it does not independently test whether ARC-095's specific eleven handles are the right carve.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A REE register that had frozen 'reward' as a single primitive handle would have been unable to represent incentive-sensitization at all: the pathology is precisely a growing divergence between wanting and liking, so a schema with one handle for both cannot express the failure mode, let alone detect it.",
+    "The split was not predictable from the folk concept -- it was forced by dissociation evidence accumulated over roughly two decades. This is the concrete cost of freezing: the corrective evidence arrives long after the ontology has to be committed, so the only safe design posture is to keep the rename/split/merge operation available.",
+    "The same argument cuts at ARC-095's own list: 'liking' and 'wanting' appear there as separate handles, which is correct by current evidence, but 'suffering', 'threat' and 'frustration' are exactly the kind of coarse folk groupings that the liking/wanting history suggests may themselves fracture under substrate evidence."
+  ],
+  "tags": [
+    "arc-095",
+    "arc_095",
+    "affect",
+    "liking-wanting",
+    "incentive-salience",
+    "dopamine",
+    "taxonomy-split",
+    "ontology-openness",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reward is not a unitary process. Incentive salience ('wanting', mesolimbic dopamine-dependent, sensitizable, persistent) is dissociable from hedonic impact ('liking', mediated by a fragile and anatomically restricted set of opioid/endocannabinoid hedonic hotspots). In addiction, repeated drug exposure sensitizes wanting while liking does not increase and may decline, producing compulsive pursuit of a reward the agent no longer enjoys.",
+    "ree_translation": "ARC-095 demands that the motivational-affective register permit later split, merge and rename. Berridge and Robinson document the canonical instance of that operation being forced by evidence: the field's single 'reward' handle had to become two, and the two behave so differently (one sensitizes, one does not; one is dopaminergic, one is not) that keeping them merged makes an entire class of pathology inexpressible. For REE this is the strongest concrete argument in the pull -- not that a fixed taxonomy is philosophically objectionable, but that a specific, well-motivated, seemingly primitive handle already turned out to be two, and the discovery took twenty years. Any freeze applied to REE's register at V5 design time carries the same expected cost. The paper also supplies an implementation-level warning: the split matters because the two components have different dynamics, so the split/merge permission ARC-095 reserves must extend to the machinery that updates each handle, not merely to its label.",
+    "mapping_caveat": "The strongest caveat is that the liking/wanting dissociation is established primarily in rodents (taste reactivity, targeted dopamine and opioid manipulations); the human evidence is more indirect and the translation of 'wanting' to human craving remains contested, as does the incentive-sensitization account of addiction as a whole. More importantly for the mapping: this paper demonstrates that ONE historical taxonomy needed splitting, which supports keeping the operation available but does not establish how often it is needed, when a register is mature enough to close, or that REE's particular handles will fracture the same way. Using a single vivid precedent to justify permanent extensibility is an availability argument unless paired with a cost account of what openness itself costs -- which this paper does not provide and ARC-095 does not yet supply.",
+    "source_context": "Invited theoretical review in American Psychologist synthesising rodent taste-reactivity and dopamine-manipulation studies, human incentive and craving work, and clinical addiction data under the incentive-sensitization framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.28,
+    "notes": "Mapping fidelity is unusually high for an architectural claim because the paper instantiates the precise operation the claim reserves (a forced split of a register handle), rather than merely bearing on it thematically -- so it is weighted heavily. Source quality strong but capped below a primary report: this is a review, and incentive-sensitization is a contested framework even though the underlying dissociation is not. Transfer risk moderate-low: rodent-to-human is the paper's own weak seam, but the architectural lesson (handles fracture under evidence) transfers independently of whether incentive-sensitization is the right theory of addiction."
+  }
+}

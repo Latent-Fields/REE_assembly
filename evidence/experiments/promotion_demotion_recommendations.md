@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-19T04:39:25.982631Z`
+Generated: `2026-09-19T06:11:37.459389Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -43,8 +43,10 @@ Use this as the human-in-the-loop review queue.
 | `ARC-092` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-093` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-094` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
+| `ARC-095` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-096` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-097` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
+| `ARC-098` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `ARC-106` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-112` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-113` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -831,6 +833,20 @@ Use this as the human-in-the-loop review queue.
   - Which V5 substrate milestone unblocks this claim?
 - Decision status: `applied`
 
+### ARC-095
+- Current status: `candidate`
+- Decision needed: Held by V5 architectural commitment (no V3-substrate decision required)
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v5: it is deferred to V5 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V5 substrate work is scheduled.; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `held_v4_by_architectural_commitment`
+- Options (pros/cons):
+  - Keep held under the V5 architectural commitment (correct path).
+  - Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.
+  - Mark legacy/superseded if the commitment is withdrawn.
+- Discussion scope with Codex:
+  - Is this claim genuinely V5-scoped, or has a V3 substrate since made it tractable?
+  - Which V5 substrate milestone unblocks this claim?
+- Decision status: `applied`
+
 ### ARC-096
 - Current status: `candidate`
 - Decision needed: Held by V5 architectural commitment (no V3-substrate decision required)
@@ -864,6 +880,20 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-07-01T01:23:09.425711Z`
 - Last selected option: Keep held under the V5 architectural commitment (correct path).
 - Last rationale: 2026-07-01 governance: implementation_phase=v5 AND v3_pending -> deliberately V5-deferred by architectural commitment, NOT awaiting V3 substrate. Reclassified off hold_pending_v3_substrate to held_v4_by_architectural_commitment (indexer v5 branch fix, extends the 2026-04-27 v4 misclassification fix). No status change; promotion/demotion stays suppressed.
+
+### ARC-098
+- Current status: `candidate`
+- Decision needed: Held by V5 architectural commitment (no V3-substrate decision required)
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v5: it is deferred to V5 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V5 substrate work is scheduled.; directions supports=1, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `held_v4_by_architectural_commitment`
+- Options (pros/cons):
+  - Keep held under the V5 architectural commitment (correct path).
+  - Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.
+  - Mark legacy/superseded if the commitment is withdrawn.
+- Discussion scope with Codex:
+  - Is this claim genuinely V5-scoped, or has a V3 substrate since made it tractable?
+  - Which V5 substrate milestone unblocks this claim?
+- Decision status: `applied`
 
 ### ARC-106
 - Current status: `candidate`
@@ -1201,7 +1231,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-088
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.173, conflict_ratio=0.5, exp_entries=1, lit_entries=6; directions supports=3, weakens=1, mixed=3, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.172, conflict_ratio=0.5, exp_entries=1, lit_entries=6; directions supports=3, weakens=1, mixed=3, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1220,7 +1250,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-091
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.319, conflict_ratio=1, exp_entries=3, lit_entries=5; directions supports=3, weakens=3, mixed=2, unknown=0, conflict_ratio=1
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.318, conflict_ratio=1, exp_entries=3, lit_entries=5; directions supports=3, weakens=3, mixed=2, unknown=0, conflict_ratio=1
 - Evidence quality note: [2026-07-29 governance, V3-EXQ-827 non_contributory + V3-EXQ-827a non_contributory + V3-EXQ-828 weakens; failure_autopsy_batch-822a-826-817a-827_2026-07-26 + failure_autopsy_2026-07-28-sweep, both confirmed]: three runs of the ablation-series falsifier. 827 (2026-07-26) failed its own pre-registered non-degeneracy guard: _force_lockstep() collapsed e1/e2/e3 tick rates to 1, confounding tick-count/…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

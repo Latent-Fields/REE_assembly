@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-19T04:39:25.982631Z`
+Generated: `2026-09-19T06:11:37.459389Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -61,6 +61,8 @@ Generated: `2026-09-19T04:39:25.982631Z`
 | `targeted_review_arc_084` | [`2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b`](targeted_review_arc_084/entries/2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b/record.json) | 4 | [`summary`](targeted_review_arc_084/entries/2026-09-17_arc_084_synergy_redundancy_between_networks_luppi2024b/summary.md) |
 | `targeted_review_arc_089` | [`2026-09-18_arc_089_physical_reservoir_computing_nakajima2020`](targeted_review_arc_089/entries/2026-09-18_arc_089_physical_reservoir_computing_nakajima2020/record.json) | 3 | [`summary`](targeted_review_arc_089/entries/2026-09-18_arc_089_physical_reservoir_computing_nakajima2020/summary.md) |
 | `targeted_review_arc_092_imagination_learning_constraint` | [`2026-08-28_arc_092_rem_creativity_priming_cai2009`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/record.json) | 2 | [`summary`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/summary.md) |
+| `targeted_review_arc_095` | [`2026-09-19_arc_095_liking_wanting_split_berridge2016`](targeted_review_arc_095/entries/2026-09-19_arc_095_liking_wanting_split_berridge2016/record.json) | 3 | [`summary`](targeted_review_arc_095/entries/2026-09-19_arc_095_liking_wanting_split_berridge2016/summary.md) |
+| `targeted_review_arc_098` | [`2026-09-19_arc_098_shame_guilt_recidivism_tangney2014`](targeted_review_arc_098/entries/2026-09-19_arc_098_shame_guilt_recidivism_tangney2014/record.json) | 2 | [`summary`](targeted_review_arc_098/entries/2026-09-19_arc_098_shame_guilt_recidivism_tangney2014/summary.md) |
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_113` | [`2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/record.json) | 5 | [`summary`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/summary.md) |
 | `targeted_review_arc_120` | [`2026-09-02_arc_120_uncertainty_arbitration_daw2005`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/record.json) | 5 | [`summary`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/summary.md) |

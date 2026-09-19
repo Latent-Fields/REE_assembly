@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-19T04:39:25.982631Z",
+  "generated_at_utc": "2026-09-19T06:11:37.459389Z",
   "items": [
     {
       "acceptance_checks": [
@@ -7633,11 +7633,15 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-19T05:14:54Z",
+      "gated_by_session": "igw-240-mech561-proposal-triage",
+      "gating_reason": "ADJUDICATED DO NOT QUEUE (IGW-20260919-240, /queue-experiment substrate-readiness call, 2026-09-19). The block is the SEQUENCING GATE this proposal's own acceptance_checks[0] carries verbatim -- 'a single waking interface metric has demonstrated range and stability at one locus first (2026-09-07 sequencing rule); do NOT queue on the cheapness of the diagnostic' -- and that gate is measurably UNMET. THE ONE LOCUS IS MECH-537 / V3-EXQ-1043, and it returned FAIL / routing_signature_incomplete_undetermined (v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3.json, hypothesis_verdict 'MECH-537 UNDETERMINED ... no verdict is claimed'). Three measured facts from that manifest make the MECH-561 design unrunnable as specified, and none of them is a power problem a seed count fixes. (1) RANK COLLAPSE: the cross-validated rank ladder selected rank 32 = dy on 3 of 3 seeds with rrr_rank_at_ladder_ceiling true (held-out R^2 0.9971-0.9982 off a flat asymptote). At rank = dy the RRR constraint is INACTIVE and the fit is unconstrained OLS, so no low-rank communication subspace is identified at FULL row count. MECH-561's primary DV is the principal angle BETWEEN two such bases; between two rank-32-of-32 bases in a 146-live-dimension sender that statistic measures the OLS solution's sampling variability, not an addressing structure. (2) THE ORIENTATION CONTRAST IS NOT SEPARABLE FROM INSTRUMENT NOISE: C2, the only rank-matched contrast in 1043 and the only one licensing an orientation reading, came in at 0.03196 against a 0.05 floor with 0 of 3 seeds clearing while staying positive on every seed ([0.03724, 0.04949, 0.00916]). A phase-conditioned reading of the same instrument inherits that unresolved noise floor. (3) THE PER-BIN ROW BUDGET FAILS PRECONDITION (c): 1043 fit on 4423-5038 rows per seed under a grouped-by-episode 5-fold CV with 146 live sender dims. MECH-561 fits one RRR PER PHASE BIN, so B bins leave ~4400/B rows per fit (~550 at B=8). MECH-561's own claims.yaml non-degeneracy precondition (c) requires 'enough rows per phase bin to fit a rank-selected RRR without the bin count itself driving the principal angles'; splitting a row budget that already asymptotes at rank = dy strictly worsens the conditioning of the very estimator whose between-bin angle is the DV, and the bin-count sweep would then be measuring its own variance. ALREADY IN FLIGHT, AND IT IS THE RELEASE PATH: V3-EXQ-1043a (status=claimed, estimated_minutes 660, supersedes V3-EXQ-1043) is the instrument repair authorised by the CONFIRMED failure_autopsy_V3-EXQ-1043_2026-09-17. Its R1 replaces the hand-set C2 floor with a WITHIN-RUN permutation null (200 permutations, within-episode-group shuffle), and its R2 reads the contrast at the PARSIMONIOUS rank instead of the ladder ceiling. Those two changes produce exactly the two missing ingredients MECH-561 depends on -- a calibrated surrogate null and a non-degenerate rank -- so queuing MECH-561 now would both duplicate that measurement and consume it before it exists. NOT A SUBSTRATE-ABSENCE BLOCK: the levers and the instrument both exist and are on origin/main (experiments/_lib/interface_probe.py; ree_core/heartbeat/clock.py _e3_phase_step with MECH-091's salient-event reset). The claim's 2026-09-15 disposition ('testable now ... OBSERVATIONALLY') is not contradicted -- it is sequenced. Recorded as blocked_substrate because that is the status the IGW proposal lane and the retest lane both honour as a durable manually-adjudicated STOP; the operative blocker is instrument readiness. No experiment was queued and no script was written. Companion family note: MECH-547 is merge-adjacent and the shared experiment must run the receiver-state and phase permutations together, so it is gated by the same instrument result.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-561 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0209",
       "proposal_type": "experimental",
+      "release_condition": "Release when V3-EXQ-1043a has ADJUDICATED the instrument at the MECH-537 locus, and only then. Concretely, all three: (a) 1043a's C2 clears its within-run permutation null (one-sided p < 0.05) on its re-specified 4-of-6 seed majority -- i.e. the orientation contrast is demonstrably distinguishable from the instrument's own noise, which is the 'range' half of the sequencing gate; (b) 1043a's PARSIMONIOUS rank (smallest rank whose grouped-CV held-out R^2 is within 1e-3 of the ladder maximum) comes in STRICTLY BELOW dy=32, so a low-rank communication subspace is actually identified and a principal angle between two of them is a statement about orientation rather than about OLS sampling noise; (c) a bin-count feasibility check on 1043a's realised per-seed rrr_n_rows shows the smallest sweep bin still supports a rank-selected fit -- report rows/bin against the 146 live sender dims and the grouped 5-fold structure, per MECH-561 non-degeneracy precondition (c). If 1043a returns UNDETERMINED again, or its parsimonious rank is still dy, the correct next step is a further instrument repair at the MECH-537 locus, NOT a phase-conditioned run -- re-block this proposal rather than queuing on the cheapness of the diagnostic. If 1043a PASSES, hand back to /queue-experiment against EXP-1404's design as written (arms: static / phase-conditioned at matched complexity / phase-permuted / receiver-state-permuted / random temporal labels / global scalar gain rival / MECH-466 event-relative rival; phi = _e3_phase_step primary, BreathOscillator only with breath_period > 0; sender rawfield25, trained z_world inadmissible per V3-EXQ-1010; no causal lesion, no ree_core change), reusing 1043a's validated permutation null and parsimonious-rank selector rather than re-deriving them. This status is never auto-cleared -- a session must clear it deliberately once (a)-(c) hold.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -7659,11 +7663,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "gated_at_utc": "2026-09-19T05:14:54Z",
-      "gated_by_session": "igw-240-mech561-proposal-triage",
-      "gating_reason": "ADJUDICATED DO NOT QUEUE (IGW-20260919-240, /queue-experiment substrate-readiness call, 2026-09-19). The block is the SEQUENCING GATE this proposal's own acceptance_checks[0] carries verbatim -- 'a single waking interface metric has demonstrated range and stability at one locus first (2026-09-07 sequencing rule); do NOT queue on the cheapness of the diagnostic' -- and that gate is measurably UNMET. THE ONE LOCUS IS MECH-537 / V3-EXQ-1043, and it returned FAIL / routing_signature_incomplete_undetermined (v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3.json, hypothesis_verdict 'MECH-537 UNDETERMINED ... no verdict is claimed'). Three measured facts from that manifest make the MECH-561 design unrunnable as specified, and none of them is a power problem a seed count fixes. (1) RANK COLLAPSE: the cross-validated rank ladder selected rank 32 = dy on 3 of 3 seeds with rrr_rank_at_ladder_ceiling true (held-out R^2 0.9971-0.9982 off a flat asymptote). At rank = dy the RRR constraint is INACTIVE and the fit is unconstrained OLS, so no low-rank communication subspace is identified at FULL row count. MECH-561's primary DV is the principal angle BETWEEN two such bases; between two rank-32-of-32 bases in a 146-live-dimension sender that statistic measures the OLS solution's sampling variability, not an addressing structure. (2) THE ORIENTATION CONTRAST IS NOT SEPARABLE FROM INSTRUMENT NOISE: C2, the only rank-matched contrast in 1043 and the only one licensing an orientation reading, came in at 0.03196 against a 0.05 floor with 0 of 3 seeds clearing while staying positive on every seed ([0.03724, 0.04949, 0.00916]). A phase-conditioned reading of the same instrument inherits that unresolved noise floor. (3) THE PER-BIN ROW BUDGET FAILS PRECONDITION (c): 1043 fit on 4423-5038 rows per seed under a grouped-by-episode 5-fold CV with 146 live sender dims. MECH-561 fits one RRR PER PHASE BIN, so B bins leave ~4400/B rows per fit (~550 at B=8). MECH-561's own claims.yaml non-degeneracy precondition (c) requires 'enough rows per phase bin to fit a rank-selected RRR without the bin count itself driving the principal angles'; splitting a row budget that already asymptotes at rank = dy strictly worsens the conditioning of the very estimator whose between-bin angle is the DV, and the bin-count sweep would then be measuring its own variance. ALREADY IN FLIGHT, AND IT IS THE RELEASE PATH: V3-EXQ-1043a (status=claimed, estimated_minutes 660, supersedes V3-EXQ-1043) is the instrument repair authorised by the CONFIRMED failure_autopsy_V3-EXQ-1043_2026-09-17. Its R1 replaces the hand-set C2 floor with a WITHIN-RUN permutation null (200 permutations, within-episode-group shuffle), and its R2 reads the contrast at the PARSIMONIOUS rank instead of the ladder ceiling. Those two changes produce exactly the two missing ingredients MECH-561 depends on -- a calibrated surrogate null and a non-degenerate rank -- so queuing MECH-561 now would both duplicate that measurement and consume it before it exists. NOT A SUBSTRATE-ABSENCE BLOCK: the levers and the instrument both exist and are on origin/main (experiments/_lib/interface_probe.py; ree_core/heartbeat/clock.py _e3_phase_step with MECH-091's salient-event reset). The claim's 2026-09-15 disposition ('testable now ... OBSERVATIONALLY') is not contradicted -- it is sequenced. Recorded as blocked_substrate because that is the status the IGW proposal lane and the retest lane both honour as a durable manually-adjudicated STOP; the operative blocker is instrument readiness. No experiment was queued and no script was written. Companion family note: MECH-547 is merge-adjacent and the shared experiment must run the receiver-state and phase permutations together, so it is gated by the same instrument result.",
-      "release_condition": "Release when V3-EXQ-1043a has ADJUDICATED the instrument at the MECH-537 locus, and only then. Concretely, all three: (a) 1043a's C2 clears its within-run permutation null (one-sided p < 0.05) on its re-specified 4-of-6 seed majority -- i.e. the orientation contrast is demonstrably distinguishable from the instrument's own noise, which is the 'range' half of the sequencing gate; (b) 1043a's PARSIMONIOUS rank (smallest rank whose grouped-CV held-out R^2 is within 1e-3 of the ladder maximum) comes in STRICTLY BELOW dy=32, so a low-rank communication subspace is actually identified and a principal angle between two of them is a statement about orientation rather than about OLS sampling noise; (c) a bin-count feasibility check on 1043a's realised per-seed rrr_n_rows shows the smallest sweep bin still supports a rank-selected fit -- report rows/bin against the 146 live sender dims and the grouped 5-fold structure, per MECH-561 non-degeneracy precondition (c). If 1043a returns UNDETERMINED again, or its parsimonious rank is still dy, the correct next step is a further instrument repair at the MECH-537 locus, NOT a phase-conditioned run -- re-block this proposal rather than queuing on the cheapness of the diagnostic. If 1043a PASSES, hand back to /queue-experiment against EXP-1404's design as written (arms: static / phase-conditioned at matched complexity / phase-permuted / receiver-state-permuted / random temporal labels / global scalar gain rival / MECH-466 event-relative rival; phi = _e3_phase_step primary, BreathOscillator only with breath_period > 0; sender rawfield25, trained z_world inadmissible per V3-EXQ-1010; no causal lesion, no ree_core change), reusing 1043a's validated permutation null and parsimonious-rank selector rather than re-deriving them. This status is never auto-cleared -- a session must clear it deliberately once (a)-(c) hold."
+      ]
     },
     {
       "acceptance_checks": [
@@ -8166,102 +8166,6 @@
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1215",
-      "claim_id": "ARC-095",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-095.",
-      "priority": "medium",
-      "proposal_id": "LIT-0494",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_095",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1216",
-      "claim_id": "ARC-098",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-098.",
-      "priority": "medium",
-      "proposal_id": "LIT-0495",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_098",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
         "synthetic_signals_only"
       ]
     },
@@ -42129,7 +42033,9 @@
       "design": "Instrument: ree-v3/experiments/_lib/interface_probe.py (communication_subspace RRR with cross-validated rank, principal_angles, CaptureRecord.phase). Phase coordinates: _e3_phase_step with MECH-091 salient-event reset (primary; event-driven, passes Q-081's filter); BreathOscillator phase with breath_period > 0 (secondary; default OFF); EXCLUDE the raw multi-rate tick index (deterministic in the configured rates). Source: rawfield25 or a post-SD-106 encoder -- trained z_world inadmissible (V3-EXQ-1010 H-F). Arms: static subspace; phase-conditioned subspace at matched complexity; phase-permuted; receiver-state-permuted (MECH-547's control, run alongside); random temporal labels; global scalar gain rival; MECH-466 event-relative index rival. Bin-count sweep over phase bins. Surrogate null validated on an injected-real and an artefactual statistic before use. No causal lesion (that ladder stays substrate_conditional); no ree_core change.",
       "dispatch_mode": "targeted_probe",
       "estimated_minutes": 180,
+      "gated_at_utc": "2026-09-19T05:14:54Z",
       "gated_by_session": "igw-240-mech561-proposal-triage",
+      "gating_reason": "ADJUDICATED DO NOT QUEUE (IGW-20260919-240, /queue-experiment substrate-readiness call, 2026-09-19). The block is the SEQUENCING GATE this proposal's own acceptance_checks[0] carries verbatim -- 'a single waking interface metric has demonstrated range and stability at one locus first (2026-09-07 sequencing rule); do NOT queue on the cheapness of the diagnostic' -- and that gate is measurably UNMET. THE ONE LOCUS IS MECH-537 / V3-EXQ-1043, and it returned FAIL / routing_signature_incomplete_undetermined (v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3.json, hypothesis_verdict 'MECH-537 UNDETERMINED ... no verdict is claimed'). Three measured facts from that manifest make the MECH-561 design unrunnable as specified, and none of them is a power problem a seed count fixes. (1) RANK COLLAPSE: the cross-validated rank ladder selected rank 32 = dy on 3 of 3 seeds with rrr_rank_at_ladder_ceiling true (held-out R^2 0.9971-0.9982 off a flat asymptote). At rank = dy the RRR constraint is INACTIVE and the fit is unconstrained OLS, so no low-rank communication subspace is identified at FULL row count. MECH-561's primary DV is the principal angle BETWEEN two such bases; between two rank-32-of-32 bases in a 146-live-dimension sender that statistic measures the OLS solution's sampling variability, not an addressing structure. (2) THE ORIENTATION CONTRAST IS NOT SEPARABLE FROM INSTRUMENT NOISE: C2, the only rank-matched contrast in 1043 and the only one licensing an orientation reading, came in at 0.03196 against a 0.05 floor with 0 of 3 seeds clearing while staying positive on every seed ([0.03724, 0.04949, 0.00916]). A phase-conditioned reading of the same instrument inherits that unresolved noise floor. (3) THE PER-BIN ROW BUDGET FAILS PRECONDITION (c): 1043 fit on 4423-5038 rows per seed under a grouped-by-episode 5-fold CV with 146 live sender dims. MECH-561 fits one RRR PER PHASE BIN, so B bins leave ~4400/B rows per fit (~550 at B=8). MECH-561's own claims.yaml non-degeneracy precondition (c) requires 'enough rows per phase bin to fit a rank-selected RRR without the bin count itself driving the principal angles'; splitting a row budget that already asymptotes at rank = dy strictly worsens the conditioning of the very estimator whose between-bin angle is the DV, and the bin-count sweep would then be measuring its own variance. ALREADY IN FLIGHT, AND IT IS THE RELEASE PATH: V3-EXQ-1043a (status=claimed, estimated_minutes 660, supersedes V3-EXQ-1043) is the instrument repair authorised by the CONFIRMED failure_autopsy_V3-EXQ-1043_2026-09-17. Its R1 replaces the hand-set C2 floor with a WITHIN-RUN permutation null (200 permutations, within-episode-group shuffle), and its R2 reads the contrast at the PARSIMONIOUS rank instead of the ladder ceiling. Those two changes produce exactly the two missing ingredients MECH-561 depends on -- a calibrated surrogate null and a non-degenerate rank -- so queuing MECH-561 now would both duplicate that measurement and consume it before it exists. NOT A SUBSTRATE-ABSENCE BLOCK: the levers and the instrument both exist and are on origin/main (experiments/_lib/interface_probe.py; ree_core/heartbeat/clock.py _e3_phase_step with MECH-091's salient-event reset). The claim's 2026-09-15 disposition ('testable now ... OBSERVATIONALLY') is not contradicted -- it is sequenced. Recorded as blocked_substrate because that is the status the IGW proposal lane and the retest lane both honour as a durable manually-adjudicated STOP; the operative blocker is instrument readiness. No experiment was queued and no script was written. Companion family note: MECH-547 is merge-adjacent and the shared experiment must run the receiver-state and phase permutations together, so it is gated by the same instrument result.",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion-20260915 wave 6 (Family G), user-approved. MECH-561 epistemic_category -> standard (already implementation_phase v3). Hand-off is /queue-experiment. Merge-adjacency with MECH-547 recorded on both claims.",
       "objective": "Test MECH-561 (phase-conditioned communication subspace; temporal substitutes for geometric separability) per its what_would_answer, digested and applied 2026-09-15 -- OBSERVATIONAL diagnostic over recorded trajectories: do principal angles between phase-conditioned communication subspaces exceed a constrained-realisation surrogate null, does a phase-conditioned model beat a static subspace on held-out receiver prediction at matched complexity, and does the phase permutation destroy the gain independently of a receiver-state permutation?",
@@ -42149,12 +42055,10 @@
         "INV-105",
         "ARC-145"
       ],
+      "release_condition": "Release when V3-EXQ-1043a has ADJUDICATED the instrument at the MECH-537 locus, and only then. Concretely, all three: (a) 1043a's C2 clears its within-run permutation null (one-sided p < 0.05) on its re-specified 4-of-6 seed majority -- i.e. the orientation contrast is demonstrably distinguishable from the instrument's own noise, which is the 'range' half of the sequencing gate; (b) 1043a's PARSIMONIOUS rank (smallest rank whose grouped-CV held-out R^2 is within 1e-3 of the ladder maximum) comes in STRICTLY BELOW dy=32, so a low-rank communication subspace is actually identified and a principal angle between two of them is a statement about orientation rather than about OLS sampling noise; (c) a bin-count feasibility check on 1043a's realised per-seed rrr_n_rows shows the smallest sweep bin still supports a rank-selected fit -- report rows/bin against the 146 live sender dims and the grouped 5-fold structure, per MECH-561 non-degeneracy precondition (c). If 1043a returns UNDETERMINED again, or its parsimonious rank is still dy, the correct next step is a further instrument repair at the MECH-537 locus, NOT a phase-conditioned run -- re-block this proposal rather than queuing on the cheapness of the diagnostic. If 1043a PASSES, hand back to /queue-experiment against EXP-1404's design as written (arms: static / phase-conditioned at matched complexity / phase-permuted / receiver-state-permuted / random temporal labels / global scalar gain rival / MECH-466 event-relative rival; phi = _e3_phase_step primary, BreathOscillator only with breath_period > 0; sender rawfield25, trained z_world inadmissible per V3-EXQ-1010; no causal lesion, no ree_core change), reusing 1043a's validated permutation null and parsimonious-rank selector rather than re-deriving them. This status is never auto-cleared -- a session must clear it deliberately once (a)-(c) hold.",
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3",
-      "gated_at_utc": "2026-09-19T05:14:54Z",
-      "gating_reason": "ADJUDICATED DO NOT QUEUE (IGW-20260919-240, /queue-experiment substrate-readiness call, 2026-09-19). The block is the SEQUENCING GATE this proposal's own acceptance_checks[0] carries verbatim -- 'a single waking interface metric has demonstrated range and stability at one locus first (2026-09-07 sequencing rule); do NOT queue on the cheapness of the diagnostic' -- and that gate is measurably UNMET. THE ONE LOCUS IS MECH-537 / V3-EXQ-1043, and it returned FAIL / routing_signature_incomplete_undetermined (v3_exq_1043_mech537_communication_subspace_routing_20260916T111630Z_v3.json, hypothesis_verdict 'MECH-537 UNDETERMINED ... no verdict is claimed'). Three measured facts from that manifest make the MECH-561 design unrunnable as specified, and none of them is a power problem a seed count fixes. (1) RANK COLLAPSE: the cross-validated rank ladder selected rank 32 = dy on 3 of 3 seeds with rrr_rank_at_ladder_ceiling true (held-out R^2 0.9971-0.9982 off a flat asymptote). At rank = dy the RRR constraint is INACTIVE and the fit is unconstrained OLS, so no low-rank communication subspace is identified at FULL row count. MECH-561's primary DV is the principal angle BETWEEN two such bases; between two rank-32-of-32 bases in a 146-live-dimension sender that statistic measures the OLS solution's sampling variability, not an addressing structure. (2) THE ORIENTATION CONTRAST IS NOT SEPARABLE FROM INSTRUMENT NOISE: C2, the only rank-matched contrast in 1043 and the only one licensing an orientation reading, came in at 0.03196 against a 0.05 floor with 0 of 3 seeds clearing while staying positive on every seed ([0.03724, 0.04949, 0.00916]). A phase-conditioned reading of the same instrument inherits that unresolved noise floor. (3) THE PER-BIN ROW BUDGET FAILS PRECONDITION (c): 1043 fit on 4423-5038 rows per seed under a grouped-by-episode 5-fold CV with 146 live sender dims. MECH-561 fits one RRR PER PHASE BIN, so B bins leave ~4400/B rows per fit (~550 at B=8). MECH-561's own claims.yaml non-degeneracy precondition (c) requires 'enough rows per phase bin to fit a rank-selected RRR without the bin count itself driving the principal angles'; splitting a row budget that already asymptotes at rank = dy strictly worsens the conditioning of the very estimator whose between-bin angle is the DV, and the bin-count sweep would then be measuring its own variance. ALREADY IN FLIGHT, AND IT IS THE RELEASE PATH: V3-EXQ-1043a (status=claimed, estimated_minutes 660, supersedes V3-EXQ-1043) is the instrument repair authorised by the CONFIRMED failure_autopsy_V3-EXQ-1043_2026-09-17. Its R1 replaces the hand-set C2 floor with a WITHIN-RUN permutation null (200 permutations, within-episode-group shuffle), and its R2 reads the contrast at the PARSIMONIOUS rank instead of the ladder ceiling. Those two changes produce exactly the two missing ingredients MECH-561 depends on -- a calibrated surrogate null and a non-degenerate rank -- so queuing MECH-561 now would both duplicate that measurement and consume it before it exists. NOT A SUBSTRATE-ABSENCE BLOCK: the levers and the instrument both exist and are on origin/main (experiments/_lib/interface_probe.py; ree_core/heartbeat/clock.py _e3_phase_step with MECH-091's salient-event reset). The claim's 2026-09-15 disposition ('testable now ... OBSERVATIONALLY') is not contradicted -- it is sequenced. Recorded as blocked_substrate because that is the status the IGW proposal lane and the retest lane both honour as a durable manually-adjudicated STOP; the operative blocker is instrument readiness. No experiment was queued and no script was written. Companion family note: MECH-547 is merge-adjacent and the shared experiment must run the receiver-state and phase permutations together, so it is gated by the same instrument result.",
-      "release_condition": "Release when V3-EXQ-1043a has ADJUDICATED the instrument at the MECH-537 locus, and only then. Concretely, all three: (a) 1043a's C2 clears its within-run permutation null (one-sided p < 0.05) on its re-specified 4-of-6 seed majority -- i.e. the orientation contrast is demonstrably distinguishable from the instrument's own noise, which is the 'range' half of the sequencing gate; (b) 1043a's PARSIMONIOUS rank (smallest rank whose grouped-CV held-out R^2 is within 1e-3 of the ladder maximum) comes in STRICTLY BELOW dy=32, so a low-rank communication subspace is actually identified and a principal angle between two of them is a statement about orientation rather than about OLS sampling noise; (c) a bin-count feasibility check on 1043a's realised per-seed rrr_n_rows shows the smallest sweep bin still supports a rank-selected fit -- report rows/bin against the 146 live sender dims and the grouped 5-fold structure, per MECH-561 non-degeneracy precondition (c). If 1043a returns UNDETERMINED again, or its parsimonious rank is still dy, the correct next step is a further instrument repair at the MECH-537 locus, NOT a phase-conditioned run -- re-block this proposal rather than queuing on the cheapness of the diagnostic. If 1043a PASSES, hand back to /queue-experiment against EXP-1404's design as written (arms: static / phase-conditioned at matched complexity / phase-permuted / receiver-state-permuted / random temporal labels / global scalar gain rival / MECH-466 event-relative rival; phi = _e3_phase_step primary, BreathOscillator only with breath_period > 0; sender rawfield25, trained z_world inadmissible per V3-EXQ-1010; no causal lesion, no ree_core change), reusing 1043a's validated permutation null and parsimonious-rank selector rather than re-deriving them. This status is never auto-cleared -- a session must clear it deliberately once (a)-(c) hold."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [

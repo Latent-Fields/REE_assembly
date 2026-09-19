@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_095",
+  "entry_id": "2026-09-19_arc_095_discrete_emotion_localization_lindquist2012",
+  "timestamp_utc": "2026-09-19T06:04:39Z",
+  "claim_ids_tested": [
+    "ARC-095"
+  ],
+  "source": {
+    "title": "The brain basis of emotion: a meta-analytic review",
+    "authors": [
+      "Kristen A. Lindquist",
+      "Tor D. Wager",
+      "Hedy Kober",
+      "Eliza Bliss-Moreau",
+      "Lisa Feldman Barrett"
+    ],
+    "year": 2012,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/S0140525X11000446",
+    "pmid": "22617651",
+    "pmc": "PMC4329228",
+    "volume": "35",
+    "issue": "3",
+    "pages": "121-143"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High source quality: a large, heavily peer-commented BBS meta-analysis that is the canonical statement of the anti-locationist case, and its central negative finding (no consistent, specific region-to-emotion-category mapping) has held up. Confidence is held below source quality because the mapping to ARC-095 is by structural analogy rather than direct test: the paper is about whether biological emotion categories localise, whereas ARC-095 is a design commitment about whether an engineered register of motivational-affective handles may later be split, merged or renamed. The paper supplies the strongest available reason for that commitment -- the one natural system we can inspect did not implement a frozen discrete taxonomy -- without ever addressing engineered registers.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE freezes its eleven motivational-affective stream handles into a final ontology, it commits the locationist error in software: a fixed set of category labels each assumed to have a dedicated, specific mechanism, which is the hypothesis this meta-analysis found no consistent support for across the human neuroimaging corpus.",
+    "The constructionist alternative the paper argues for -- emotion categories as recurring configurations of domain-general ingredients -- implies that the RIGHT number of handles is a function of how the substrate happens to carve, and is therefore not knowable in advance of building the substrate. A taxonomy fixed at design time will be wrong in a direction no experiment inside the frozen scheme can detect.",
+    "The paper does not license the opposite extreme either: it found consistent and specific network-level (not region-level) organisation, so 'no fixed taxonomy' must not be read as 'no structure'. An arbitrarily reconfigurable register with no stable handles would be equally unsupported."
+  ],
+  "tags": [
+    "arc-095",
+    "arc_095",
+    "affect",
+    "emotion-taxonomy",
+    "constructionism",
+    "locationism",
+    "meta-analysis",
+    "ontology-openness",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across the human neuroimaging literature, discrete emotion categories (anger, fear, disgust, sadness, happiness) cannot be consistently and specifically localised to distinct brain regions; the data fit better with a psychological-constructionist account in which emotion categories emerge from combinations of domain-general networks (core affect, conceptualisation, executive attention, language) than with a locationist account positing dedicated mechanisms per category.",
+    "ree_translation": "ARC-095 commits REE to treating its motivational-affective stream taxonomy (liking, wanting, suffering, threat, relief, frustration, curiosity, attachment/proximity, fatigue/cost, agency, prediction-error) as an open, extensible register of handles rather than a final ontology. Lindquist et al. supply the empirical warrant for the 'must not be frozen' half of that commitment: the only affect-generating system available for inspection does not implement the folk taxonomy as a set of dedicated mechanisms. If REE were to hardcode its eleven handles as the terminal ontology and wire each to a dedicated pathway, it would be building in exactly the locationist assumption that two decades of imaging failed to confirm. The constructionist reading also motivates the split/merge permission specifically: if handles are recurring configurations rather than primitives, the boundaries between them are the kind of thing that moves as the substrate matures.",
+    "mapping_caveat": "This is an inference from biology to a design commitment, and it is not tight. REE's handles are control-theoretic and functional -- they are names for signals the architecture routes -- not empirical hypotheses about which brain region lights up. A functional register could in principle be legitimately frozen even if the biological categories it is named after are constructed, because the engineering question (does this handle earn its keep as a routing distinction?) is not the neuroscience question (is this category a natural kind?). The paper is also entirely about human neuroimaging with its known limits: BOLD spatial resolution cannot rule out intermingled category-specific populations within a voxel, and several of the BBS peer commentaries pressed exactly that point. Finally, ARC-095's list is not the classic basic-emotion list the meta-analysis tested -- it mixes appetitive (liking/wanting), aversive (suffering/threat), and metacognitive (agency, prediction-error) handles -- so the correspondence between what was measured and what REE registers is loose.",
+    "source_context": "Meta-analysis of the human functional-neuroimaging literature on emotion (PET and fMRI), evaluating locationist versus psychological-constructionist models of the five most-studied discrete emotion categories."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (BBS target article with open peer commentary, large corpus, replicated negative finding). Mapping fidelity is the binding constraint and is weighted heavily here because ARC-095 is an architectural_commitment: the paper bears on the claim's rationale, not on its truth conditions, since a design commitment has no neuroimaging truth condition. Transfer risk moderate -- biology-to-architecture inference plus the specific gap between the basic-emotion list tested and REE's mixed register."
+  }
+}

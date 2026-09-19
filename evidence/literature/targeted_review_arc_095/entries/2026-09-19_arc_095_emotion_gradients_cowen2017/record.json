@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_095",
+  "entry_id": "2026-09-19_arc_095_emotion_gradients_cowen2017",
+  "timestamp_utc": "2026-09-19T06:04:39Z",
+  "claim_ids_tested": [
+    "ARC-095"
+  ],
+  "source": {
+    "title": "Self-report captures 27 distinct categories of emotion bridged by continuous gradients",
+    "authors": [
+      "Alan S. Cowen",
+      "Dacher Keltner"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1702247114",
+    "pmid": "28874542",
+    "pmc": "PMC5617253",
+    "volume": "114",
+    "issue": "38",
+    "pages": "E7900-E7909"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Genuinely two-directional for ARC-095, which is why the direction is mixed and the confidence is the lowest in this pull. It supports the claim's core by finding that emotion space is bridged by continuous gradients rather than partitioned by discrete boundaries -- a register of handles carving that space is a convenience, not a discovery of joints. But it cuts against the claim too: the paper delivers a specific, reproducible enumeration (27) recovered by a data-driven method, which is an existence proof that an affect taxonomy CAN be empirically settled rather than held open indefinitely. Confidence further limited by method scope -- one elicitation modality (short videos), self-report only, and a category count that subsequent work has treated as method-dependent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The count is the problem for ARC-095's list as written: 27 categories emerged from a single elicitation modality, against REE's eleven handles. If the human self-report space needs more than twice as many labels, an eleven-handle register is either operating at a deliberately coarser grain -- which ARC-095 should state -- or is already under-resolved at design time.",
+    "The 'continuous gradients' finding weakens any implementation in which handles are mutually exclusive categorical channels. If states between handles are occupied rather than empty, a register that forces a winner-take-all assignment will systematically misrepresent the in-between states, and no amount of later splitting fixes a categorical-assignment architecture.",
+    "Cuts against the claim: a data-driven method recovered a stable structure from 2,185 stimuli, which is evidence that affect taxonomies are empirically tractable. 'Never freeze' is therefore too strong as stated -- the defensible version is 'do not freeze BEFORE the substrate has generated the evidence', which is a weaker and time-indexed commitment."
+  ],
+  "tags": [
+    "arc-095",
+    "arc_095",
+    "affect",
+    "emotion-taxonomy",
+    "gradients",
+    "dimensional-vs-categorical",
+    "self-report",
+    "ontology-openness",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Self-reported emotional responses to 2,185 short evocative videos are captured by 27 distinct varieties of reported emotional experience, and the boundaries between these categories are fuzzy: states are distributed along smooth continuous gradients rather than clustering into discretely separated groups, and a small number of affective dimensions (valence, arousal and similar) are insufficient to capture the structure.",
+    "ree_translation": "ARC-095 says the motivational-affective register is an open, extensible set of handles. Cowen and Keltner speak to both halves and disagree with each. On extensibility they support it strongly: 27 categories in one modality against REE's eleven handles suggests the register as currently listed is coarse, and the gradient finding implies that wherever REE draws a handle boundary it is drawing a line through continuous territory rather than at a joint -- so the boundary is a modelling choice that later evidence can legitimately move. On openness-in-principle they push back: the study shows an affect taxonomy is the kind of thing a sufficiently large data-driven study can pin down, which means 'must not be frozen into a final ontology' is doing more work than the evidence licenses. The reading I take for REE is the time-indexed one: hold the register open until the V5 social substrate has actually produced affect data to carve, then let the carve be empirical rather than stipulated -- which is what ARC-095's dependence on SD-011 and its substrate_conditional status already imply.",
+    "mapping_caveat": "The transfer here is the weakest in the pull and should be treated with real suspicion. This is human self-report about emotional reactions to video clips: it measures the structure of the emotion LEXICON and of reportable conscious experience, not the structure of the underlying motivational control signals that REE's handles are meant to name. Those need not agree, and there are good reasons to expect they do not -- REE's register includes handles like fatigue/cost, agency and prediction-error that are control-theoretic quantities with no obvious self-report counterpart, and excludes much of what the 27-category space is made of (admiration, nostalgia, aesthetic appreciation). The 27 figure is also method-dependent: it reflects the stimulus set, the response format and the dimensionality-reduction choices, and later work using different modalities recovers different counts. Reading a target number of REE handles off this paper would be a mistake.",
+    "source_context": "Large-scale human self-report study: 853 participants rated 2,185 emotionally evocative short videos using free response, category judgements and affective-dimension scales; structure recovered by statistical modelling of the reported-experience space."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good -- PNAS, large stimulus set, data-driven rather than confirmatory -- but capped by single-modality self-report and by the known method-dependence of the category count. Mapping fidelity is low and dominates the aggregate: the paper measures reportable experience structure, whereas ARC-095's handles are control signals, and three of REE's eleven have no self-report analogue at all. Transfer risk high for the same reason. Confidence deliberately set near the 0.5-0.79 band floor to mark this as moderate-support-with-caveats rather than strong evidence."
+  }
+}

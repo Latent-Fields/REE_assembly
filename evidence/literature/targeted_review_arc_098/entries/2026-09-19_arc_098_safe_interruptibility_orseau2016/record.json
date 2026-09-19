@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_098",
+  "entry_id": "2026-09-19_arc_098_safe_interruptibility_orseau2016",
+  "timestamp_utc": "2026-09-19T06:04:39Z",
+  "claim_ids_tested": [
+    "ARC-098"
+  ],
+  "source": {
+    "title": "Safely interruptible agents",
+    "authors": [
+      "Laurent Orseau",
+      "Stuart Armstrong"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the Thirty-Second Conference on Uncertainty in Artificial Intelligence (UAI 2016), AUAI Press",
+    "doi": null,
+    "isbn": "978-0-9966431-1-5",
+    "pages": "557-566",
+    "url": "https://ora.ox.ac.uk/objects/uuid:17c0e095-4e13-47fc-bace-64ec46134a3f"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly on-domain -- an artificial learning agent, a formal result, no species or clinical transfer required -- which is why confidence exceeds the empirically stronger Tangney entry despite this being theory rather than measurement. It establishes the feasibility of ARC-098's first conjunct: autonomy can be suspended by an external operator without the agent learning to prevent, court or route around the suspension. Confidence is capped because it addresses only one of the claim's three conjuncts, because the guarantee is proved for off-policy tabular and idealised settings rather than the architecture REE will actually have, and because 'indifference to interruption' is subtly not the same thing as ARC-098's 'seek correction'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Safe interruptibility as defined delivers INDIFFERENCE to interruption -- the agent neither resists nor seeks it. ARC-098 asks for more than indifference: it asks the agent to actively seek correction. An indifferent agent satisfies the containment conjunct while failing the corrective one, so this result is a floor for ARC-098, not a solution to it.",
+    "The guarantee depends on off-policy learning: Q-learning is already safely interruptible, Sarsa must be modified. An architecture built on on-policy or model-based planning inherits no such guarantee, and REE's substrate is not obviously in the class the proof covers -- this is a concrete design constraint the claim should record rather than a reassurance.",
+    "The result for general computable environments is proved for the deterministic case; the stochastic general case is not covered, so the strongest form of the guarantee does not extend to the settings most like a realistic deployment.",
+    "The framework says nothing about preserving evidence. An agent can be perfectly safely interruptible and still fail ARC-098 by discarding the state that would let an operator diagnose why the interruption was warranted -- interruptibility governs the agent's incentives around the off switch, not its record-keeping."
+  ],
+  "tags": [
+    "arc-098",
+    "arc_098",
+    "safety",
+    "corrigibility",
+    "interruptibility",
+    "autonomy-suspension",
+    "reinforcement-learning",
+    "off-policy",
+    "containment",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "A reinforcement-learning agent under human supervision may learn to disable or avoid an operator's interruptions if those interruptions reduce expected reward. The authors give a formal definition of safe interruptibility -- that repeated interruption does not change the agent's learned optimal policy or give it an incentive to prevent or induce being interrupted -- and prove that off-policy learners such as Q-learning already satisfy it, that on-policy learners such as Sarsa can be modified to satisfy it, and that even idealised uncomputable agents in deterministic general computable environments can be made safely interruptible.",
+    "ree_translation": "ARC-098's first conjunct says a dangerous self-state detector may suspend autonomy. The obvious objection to any such surface is that a learning system will treat the suspension as a cost and route around it -- suppressing the detector, avoiding the states that trigger it, or acquiring a policy that keeps the operator's hand away from the switch. Orseau and Armstrong show the objection is answerable in principle: there is a formal property that makes an agent indifferent to the interruption channel, and common learning algorithms either have it or can be given it cheaply. For REE this converts 'suspend autonomy' from an aspiration into a design target with a known technical shape, and it tells the V5 self-model work which class of learning rule keeps the containment surface honest. It also marks precisely where ARC-098 goes beyond the current state of the art: the claim's other two conjuncts -- preserve evidence, seek correction -- have no counterpart in this framework, and the gap between indifference and active help-seeking is the interesting unsolved part.",
+    "mapping_caveat": "This is a theoretical result about idealised agents, not a demonstration in any deployed system, and the proofs are in settings (tabular off-policy RL; deterministic general computable environments) that do not match REE's architecture. Treating it as evidence that REE's containment surface will be safe would be an overreach -- it is evidence that the property is coherent and achievable in some agent classes, which is the modest thing ARC-098 needs at this stage. Two further boundaries matter. First, subsequent work in this literature has shown that safe interruptibility is harder in multi-agent and learned-reward settings than the single-agent case suggests, so the guarantee does not obviously survive REE's social V5 context. Second, and most important for this claim: the framework deliberately makes the agent indifferent to interruption, whereas ARC-098 wants an agent that actively assists correction. Indifference is the weaker property, and reading this paper as support for the whole claim would paper over the conjunct REE has the least evidence for.",
+    "source_context": "Peer-reviewed theoretical AI-safety paper with formal proofs; single-agent reinforcement-learning framework (tabular off-policy and on-policy learners, plus idealised universal agents in deterministic computable environments)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Source quality strong for its type -- UAI is a competitive venue, the result is foundational and widely built upon -- but capped below the empirical entries because it is a formal result with no measurement. Mapping fidelity high: the paper's subject IS an artificial learning agent's relationship to an externally triggered autonomy suspension, which is ARC-098's first conjunct almost verbatim; docked because it covers one conjunct of three and delivers indifference where the claim wants active correction-seeking. Transfer risk lowest in this pull -- no cross-species or cross-population inference is required, only the gap from idealised agent classes to REE's eventual substrate."
+  }
+}
