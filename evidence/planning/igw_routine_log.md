@@ -3311,3 +3311,7 @@ One line per hourly tick. ASCII only.
 2026-09-19T02:26:50Z GC keep igw-239-proposal-for-mech-055 (ledger IGW-20260919-239 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-09-19T02:24:19Z SPAWN IGW-20260919-240 skill=/lit-pull prio=40 uuid=9f60b710-95b7-417f-b88f-b8afb8c8c0ec pid=26772 worktree=igw-240-literature-proposal-for-mech-055
 2026-09-19T02:44:46Z auto-defer igw-240-literature-proposal-for-mech-055 hash=72c7820a2ae6 for 48h (complete)
+2026-09-19T02:45:47Z complete igw-240-literature-proposal-for-mech-055 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-055: 5 entries landed REE_assembly b345016be9 (claim had zero prio
+2026-09-19T03:32:12Z GC removed worktree igw-240-literature-proposal-for-mech-055 (removed; branch deleted)
+2026-09-19T03:30:41Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T03:32:32Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 252 items, 31 ready, 0 in flight)
