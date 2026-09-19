@@ -32170,14 +32170,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_sd_086",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "SD-086"
+      ],
+      "blocked_note": "REFUSED AT DESIGN 2026-09-19 by the /queue-experiment Step 4.5 red-team pass (model: fable), verdict BLOCKING, confirmed independently by the authoring session. The option-C design (linear decode from the 16-d z_harm_a vs from ||z_harm_a||, joint hazard+resource target, user-pinned OPTION M 2026-09-19T07:06Z) PASSES ON AN UNTRAINED ENCODER: measured over 3 seeds at real budget, untrained vector_r2 0.983-0.9995 / mean margin +0.577 / both criteria PASS, trained 0.999-1.0000 / +0.552 / both PASS. Root cause: the scored decode targets hazard_at_agent and resource_at_agent ARE two coordinates of the encoder's own input (causal_grid_world.py ~3037-3038) and AffectiveHarmEncoder is near-linear over a tiny input range, so vector_r2 is pinned at ~1, the margin collapses to 1 - norm_r2, and both pre-registered criteria are decided by the norm alone -- the manipulation never reaches the DV. Second defect, same root: the headroom precondition min(1 - norm_r2) > 0.10 IMPLIES C2 mean margin > 0.10, so C2 cannot fail on any scored run. NOT a substrate gap -- the substrate (P0h affective-encoder training, ree-v3 78397036) is built and working; this is a DESIGN/operationalisation refusal, recorded with blocked_by SD-086 because the claim's own readout question needs re-specifying before any run can test it. Refused driver kept bannered and unqueued at ree-v3 59f7bd87e3. Full diagnosis + the constraints a sound successor must meet: REE_assembly/evidence/planning/sd086_optc_refused_at_design_staged_20260919.md"
     },
     {
       "acceptance_checks": [
