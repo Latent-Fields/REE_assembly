@@ -1,0 +1,557 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1060_inv063_e2_world_forward_sleep_trainer",
+  "run_id": "v3_exq_1060_inv063_e2_world_forward_sleep_trainer_20260919T012511Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-19T01:25:11Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "8d21a59de474a10f4024d650c34983de61d26b05",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-423"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "e2_world_forward_sleep_trainer_live",
+    "criteria": [
+      {
+        "name": "C1_cross_module_consolidation_metrics_merged",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "comparator": ">="
+      },
+      {
+        "name": "C2_e2_world_touched_under_interleaved_schedule",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 8.0,
+        "threshold": 1.0,
+        "comparator": ">="
+      },
+      {
+        "name": "C3_world_head_delta_positive_on",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.007899012416601181,
+        "threshold": 0.0,
+        "comparator": ">"
+      },
+      {
+        "name": "C4_off_arm_world_head_bit_identical_negative_control",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.0,
+        "comparator": "<="
+      },
+      {
+        "name": "C5_e2_world_metric_key_present_on_absent_off",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "comparator": ">="
+      },
+      {
+        "name": "C6_action_conditioning_weight_moves_on",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.00653424859046936,
+        "threshold": 0.0,
+        "comparator": ">"
+      }
+    ],
+    "combination_rule": "PASS iff ALL of C1..C6 pass (plain AND, no OR/any() branching). The frozen-battery efficacy readouts are UNGATED and route no verdict.",
+    "criteria_non_degenerate": {
+      "C1_cross_module_consolidation_metrics_merged": true,
+      "C2_e2_world_touched_under_interleaved_schedule": true,
+      "C3_world_head_delta_positive_on": true,
+      "C4_off_arm_world_head_bit_identical_negative_control": true,
+      "C5_e2_world_metric_key_present_on_absent_off": true,
+      "C6_action_conditioning_weight_moves_on": true
+    },
+    "preconditions": [
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:world_replay_pairs_populated",
+        "measured": 179.0,
+        "threshold": 17.0,
+        "direction": "lower",
+        "control": "real waking rollout via _e1_tick, not synthetic buffers",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:world_loss_non_sentinel",
+        "measured": 2.7829830646514893,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffers the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:world_grad_nonzero",
+        "measured": 0.11266697943210602,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "backward() from the realised world loss onto the two world heads",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:world_param_scoping_one_directional",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the e2_world set must contain NO non-world e2 parameter (the build's actual guarantee; the e2 list is a SUPERSET, so literal disjointness is false by construction)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:action_buffer_non_vacuous",
+        "measured": 0.9944444444444445,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "agent.e1_action_buffer_stats(), the substrate's own non-vacuity detector for this failure mode",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:frozen_battery_populated",
+        "measured": 64.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "held-out env (seed+9973) + fixed action policy, pure read",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:42:sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:world_replay_pairs_populated",
+        "measured": 179.0,
+        "threshold": 17.0,
+        "direction": "lower",
+        "control": "real waking rollout via _e1_tick, not synthetic buffers",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:world_loss_non_sentinel",
+        "measured": 2.7314727306365967,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffers the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:world_grad_nonzero",
+        "measured": 0.08908751606941223,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "backward() from the realised world loss onto the two world heads",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:world_param_scoping_one_directional",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the e2_world set must contain NO non-world e2 parameter (the build's actual guarantee; the e2 list is a SUPERSET, so literal disjointness is false by construction)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:action_buffer_non_vacuous",
+        "measured": 0.9944444444444445,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "agent.e1_action_buffer_stats(), the substrate's own non-vacuity detector for this failure mode",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:frozen_battery_populated",
+        "measured": 64.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "held-out env (seed+9973) + fixed action policy, pure read",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:123:sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:world_replay_pairs_populated",
+        "measured": 179.0,
+        "threshold": 17.0,
+        "direction": "lower",
+        "control": "real waking rollout via _e1_tick, not synthetic buffers",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:world_loss_non_sentinel",
+        "measured": 2.769914388656616,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffers the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:world_grad_nonzero",
+        "measured": 0.07839647680521011,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "backward() from the realised world loss onto the two world heads",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:world_param_scoping_one_directional",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the e2_world set must contain NO non-world e2 parameter (the build's actual guarantee; the e2 list is a SUPERSET, so literal disjointness is false by construction)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:action_buffer_non_vacuous",
+        "measured": 0.9944444444444445,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "agent.e1_action_buffer_stats(), the substrate's own non-vacuity detector for this failure mode",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:frozen_battery_populated",
+        "measured": 64.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "held-out env (seed+9973) + fixed action policy, pure read",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_ON:456:sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:world_replay_pairs_populated",
+        "measured": 179.0,
+        "threshold": 17.0,
+        "direction": "lower",
+        "control": "real waking rollout via _e1_tick, not synthetic buffers",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:world_loss_non_sentinel",
+        "measured": 2.7829830646514893,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffers the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:world_grad_nonzero",
+        "measured": 0.11266697943210602,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "backward() from the realised world loss onto the two world heads",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:world_param_scoping_one_directional",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the e2_world set must contain NO non-world e2 parameter (the build's actual guarantee; the e2 list is a SUPERSET, so literal disjointness is false by construction)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:action_buffer_non_vacuous",
+        "measured": 0.9944444444444445,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "agent.e1_action_buffer_stats(), the substrate's own non-vacuity detector for this failure mode",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:frozen_battery_populated",
+        "measured": 64.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "held-out env (seed+9973) + fixed action policy, pure read",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:42:sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:world_replay_pairs_populated",
+        "measured": 179.0,
+        "threshold": 17.0,
+        "direction": "lower",
+        "control": "real waking rollout via _e1_tick, not synthetic buffers",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:world_loss_non_sentinel",
+        "measured": 2.7314727306365967,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffers the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:world_grad_nonzero",
+        "measured": 0.08908751606941223,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "backward() from the realised world loss onto the two world heads",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:world_param_scoping_one_directional",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the e2_world set must contain NO non-world e2 parameter (the build's actual guarantee; the e2 list is a SUPERSET, so literal disjointness is false by construction)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:action_buffer_non_vacuous",
+        "measured": 0.9944444444444445,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "agent.e1_action_buffer_stats(), the substrate's own non-vacuity detector for this failure mode",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:frozen_battery_populated",
+        "measured": 64.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "held-out env (seed+9973) + fixed action policy, pure read",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:123:sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:world_replay_pairs_populated",
+        "measured": 179.0,
+        "threshold": 17.0,
+        "direction": "lower",
+        "control": "real waking rollout via _e1_tick, not synthetic buffers",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:world_loss_non_sentinel",
+        "measured": 2.769914388656616,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "probed on the same real buffers the sleep cycle draws from",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:world_grad_nonzero",
+        "measured": 0.07839647680521011,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "backward() from the realised world loss onto the two world heads",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:world_param_scoping_one_directional",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the e2_world set must contain NO non-world e2 parameter (the build's actual guarantee; the e2 list is a SUPERSET, so literal disjointness is false by construction)",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:action_buffer_non_vacuous",
+        "measured": 0.9944444444444445,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "agent.e1_action_buffer_stats(), the substrate's own non-vacuity detector for this failure mode",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:frozen_battery_populated",
+        "measured": 64.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "held-out env (seed+9973) + fixed action policy, pure read",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ARM_WORLD_FORWARD_OFF:456:sleep_cycle_fired",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "post_sleep_z_goal_retention is merged unconditionally at the end of _run_cycle",
+        "met": true
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f573d268d2d3127205d65eb27199cc0caa574b3d178c9afd941e7b358374fa18",
+  "substrate_commit": {
+    "commit": "8d21a59de474a10f4024d650c34983de61d26b05",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_aggregation_cluster": true,
+    "use_sleep_loop": true,
+    "use_mech285_sampler": true,
+    "use_mech272_routing": true,
+    "use_mech272_routing_consumer": true,
+    "use_mech275_aggregator": true,
+    "use_mech273_self_model": true,
+    "use_cross_module_consolidation": true,
+    "cross_module_consolidation_steps": 8,
+    "use_sleep_world_forward_consolidation": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 22.51033043861389,
+  "config": {
+    "arms": [
+      "ARM_WORLD_FORWARD_ON",
+      "ARM_WORLD_FORWARD_OFF"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "waking_episodes": 3,
+    "steps_per_episode": 60,
+    "grid_size": 5,
+    "num_hazards": 1,
+    "num_resources": 1,
+    "self_dim": 16,
+    "world_dim": 16,
+    "cmc_steps": 8,
+    "cmc_lr": 0.001,
+    "cmc_batch": 16,
+    "cmc_schedule": "interleaved",
+    "world_buffer_floor": 17.0,
+    "battery_size": 64,
+    "lever": "use_sleep_world_forward_consolidation"
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
