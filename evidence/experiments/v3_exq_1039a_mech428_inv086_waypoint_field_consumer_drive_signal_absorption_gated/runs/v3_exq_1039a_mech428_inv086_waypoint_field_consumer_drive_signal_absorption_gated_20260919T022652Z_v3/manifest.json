@@ -1,0 +1,418 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated",
+  "run_id": "v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated_20260919T022652Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-19T02:26:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "fa56b35e9a24e3ba573f3646f6c36a6e81db12ba",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-086",
+    "MECH-428"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "INV-086": "non_contributory",
+    "MECH-428": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "greedy_oracle_clears_floor",
+        "kind": "readiness",
+        "description": "greedy_oracle (env ground truth, never reads the field) visits/ep clears ORACLE_FLOOR on every seed at this budget/geometry -- the positive control that the env/geometry is navigable, same statistic C1 routes on.",
+        "control": "greedy_oracle waypoints_visited_per_ep, worst seed",
+        "measured": 10.8,
+        "threshold": 4.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "zworld_encoder_trained_majority_cells",
+        "kind": "readiness",
+        "description": "Fraction of (seed, treatment-arm) cells whose SD-070 P0a warmup measurably moved the world encoder (assert_world_encoder_trained, strict=False).",
+        "control": "latent_stack pre/post-warmup weight-delta audit",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "achievable_span_clears_floor",
+        "kind": "readiness",
+        "description": "(oracle - random) visits/ep span clears MIN_ACHIEVABLE_SPAN -- below this, LIFT_MARGIN_FRAC (a fraction OF the span) would be a near-zero, trivially-cleared bar rather than a meaningful one.",
+        "control": "greedy_oracle_mean - random_walk_mean, this run's own anchors",
+        "measured": 11.1,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "lpfc_bias_head_last_linear_weight_norm_delta_nonzero",
+        "kind": "readiness",
+        "description": "Absolute post-minus-pre weight-norm delta of the lateral-PFC bias head's LAST LINEAR layer, as a FLOAT, in the WORST treatment cell. V3-EXQ-1039's C0d tested a boolean on a majority of cells and passed at 0.667 while the head's output stayed at chance; this reports the number instead. An unmeasurable cell (absent head) scores 0.0 and fails.",
+        "control": "allon_training absorption block, lpfc_bias_head norm delta, P1 phase",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "offending_cell": "sparse_rl@seed42",
+        "met": false
+      },
+      {
+        "name": "candidate_summary_nondegenerate_computed",
+        "kind": "readiness",
+        "description": "Fraction of P1 ticks whose CONSUMED candidate summaries were degenerate (post-centering norm <= floor x pre-centering norm), COMPUTED by the shared absorption/conversion build from the summaries the head actually read -- not LateralPFCAnalog's own candidate_summary_degenerate field, which is only computed when rule_readout_consumer is on and k >= 2 and is therefore vacuous on this recipe (the half of V3-EXQ-1039's C0d that passed on an __init__ value). WORST cell. Unmeasurable scores 1.0 and fails.",
+        "control": "allon_training conversion block, candidate_summary_degenerate_frac, P1",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "offending_cell": "sparse_rl@seed42",
+        "computed_by_shared_build_in_every_cell": true,
+        "met": true
+      },
+      {
+        "name": "shaped_vs_sparse_return_separation",
+        "kind": "readiness",
+        "description": "shaped_rl's P1 mean episode return exceeds sparse_rl's by at least RETURN_SEPARATION_SD standard deviations of sparse_rl's OWN per-episode return distribution (or shaped_rl's, whichever is larger -- see RETURN_SD_EPS), on EVERY seed (worst seed reported), reported capped at RETURN_SEPARATION_CAP. Self-calibrating to this run's own noise scale. ABSORPTION half, item 1: a shaped-vs-sparse pair must be shown to have received materially different returns before any flat null between them is admissible. Applies to this PAIR only -- demo_warmstart trains on the same unshaped env as sparse_rl by construction, so its absorption evidence is A3.",
+        "control": "allon_training absorption block, p1_ep_return mean/sd, both arms",
+        "measured": 0.952139,
+        "threshold": 1.0,
+        "direction": "lower",
+        "offending_cell": "shaped_vs_sparse@seed44",
+        "per_seed": [
+          {
+            "seed": 42,
+            "sparse_p1_return_mean": 0.048888888888888905,
+            "shaped_p1_return_mean": 18.348888888888894,
+            "sparse_p1_return_sd": 0.09573626323794678,
+            "shaped_p1_return_sd": 6.919445135822258,
+            "separation_denominator": 6.919445135822258,
+            "both_arms_deterministic": false,
+            "separation_sd": 2.6447207313286056,
+            "separation_capped": false
+          },
+          {
+            "seed": 43,
+            "sparse_p1_return_mean": 0.017777777777777778,
+            "shaped_p1_return_mean": 3.851111111111111,
+            "sparse_p1_return_sd": 0.06425258797689315,
+            "shaped_p1_return_sd": 3.594756812805267,
+            "separation_denominator": 3.594756812805267,
+            "both_arms_deterministic": false,
+            "separation_sd": 1.0663679166496625,
+            "separation_capped": false
+          },
+          {
+            "seed": 44,
+            "sparse_p1_return_mean": 0.026666666666666665,
+            "shaped_p1_return_mean": 3.1266666666666656,
+            "sparse_p1_return_sd": 0.06798692684790376,
+            "shaped_p1_return_sd": 3.2558255481521123,
+            "separation_denominator": 3.2558255481521123,
+            "both_arms_deterministic": false,
+            "separation_sd": 0.9521394663665089,
+            "separation_capped": false
+          }
+        ],
+        "met": false
+      },
+      {
+        "name": "adv_surviving_frac_clears_floor",
+        "kind": "readiness",
+        "description": "Fraction of sampled REINFORCE outcome-buffer terms clearing abs(adv) >= ADV_MIN_THRESHOLD (0.005) on the lateral-PFC head, in the WORST cell of the arms whose MANIPULATION IS THE TRAINING SIGNAL (A2_GATED_ARMS = shaped_rl). ~0 there means the dense signal produced no usable gradient at all whatever its reward was -- the absorption failure V3-EXQ-1039 could not see. A cell that drew no REINFORCE term reports None and is scored 0.0 (fails). sparse_rl and demo_warmstart are recorded under `ungated_arms_surviving_frac` and deliberately NOT gated: see A2_GATED_ARMS.",
+        "control": "allon_training absorption block, lpfc_adv_surviving_frac, P1 phase",
+        "measured": 0.998958,
+        "threshold": 0.05,
+        "direction": "lower",
+        "offending_cell": "shaped_rl@seed42",
+        "gated_arms": [
+          "shaped_rl"
+        ],
+        "ungated_arms_surviving_frac": {
+          "sparse_rl@seed42": 0.9777777777777777,
+          "sparse_rl@seed43": 0.8666666666666667,
+          "sparse_rl@seed44": 0.8777777777777778,
+          "demo_warmstart@seed42": 0.9888888888888889,
+          "demo_warmstart@seed43": 0.7111111111111111,
+          "demo_warmstart@seed44": 0.9222222222222223
+        },
+        "scope_amendment": "user-ratified 2026-09-18 (option B); the autopsy's own wording was 'in every treatment cell'",
+        "met": true
+      },
+      {
+        "name": "demo_warmstart_ce_below_chance",
+        "kind": "readiness",
+        "description": "demo_warmstart's phase-A cross-entropy, averaged over the final DEMO_CE_WINDOW_FRAC of its updates, as a RATIO to chance (ln(mean n_candidates) measured in that same loop), on the WORST seed. V3-EXQ-1039 measured exactly 1.0 x chance (3.465736 = ln(32)), the signature of an exactly-zero gradient. A seed with no measurable CE scores 1.0 (fails).",
+        "control": "demo_warmstart phase-A CE trace vs ln(mean candidate-set size)",
+        "measured": 1.000069,
+        "threshold": 0.9,
+        "direction": "upper",
+        "offending_cell": "demo_warmstart@seed43",
+        "per_seed": [
+          {
+            "seed": 42,
+            "ce_window_mean": 3.465735912322998,
+            "chance_reference_ln_k": 3.4657359027997265,
+            "ce_over_chance": 1.0000000027478353,
+            "n_ce_updates": 232
+          },
+          {
+            "seed": 43,
+            "ce_window_mean": 3.465975761413574,
+            "chance_reference_ln_k": 3.4657359027997265,
+            "ce_over_chance": 1.0000692085665426,
+            "n_ce_updates": 14
+          },
+          {
+            "seed": 44,
+            "ce_window_mean": 3.46572482585907,
+            "chance_reference_ln_k": 3.4657359027997265,
+            "ce_over_chance": 0.9999968038705292,
+            "n_ce_updates": 22
+          }
+        ],
+        "met": false
+      },
+      {
+        "name": "first_action_diversity_majority_ticks",
+        "kind": "readiness",
+        "description": "Fraction of P1 E3 ticks offering >= FIRST_ACTION_CLASS_FLOOR (3, RATIFIED at the Step 8 user gate 2026-09-16T13:06:22Z over MECH-341's stricter 4.5) distinct first-action classes, in the WORST treatment cell; must be a strict MAJORITY. CONVERSION-CAPABILITY half: under proposer-pool collapse a fully absorbed manipulation still yields identical eval behaviour, so absorption alone would pass the same vacuous null behind a clean gate. A cell with no recorded ticks scores 0.0 (fails). P0 is recorded separately and is legitimately empty -- the shared build's conversion block is P1-gated at source.",
+        "control": "_FirstActionClassTap over allon_training._distinct_first_action_classes",
+        "measured": 0.004938,
+        "threshold": 0.5,
+        "direction": "lower",
+        "comparator": ">",
+        "offending_cell": "sparse_rl@seed43",
+        "met": false
+      },
+      {
+        "name": "bias_ablation_changes_committed_action",
+        "kind": "readiness",
+        "description": "Number of seeds on which zeroing the lateral-PFC bias head changes at least one committed action in a paired, RNG-matched eval rollout -- in the WORST treatment arm. RATIFIED at the Step 8 user gate. Asserts only that two action sequences DIFFER within one process on one machine, never an exact committed action (torch.multinomial is not portable across machine classes). An unmeasurable cell counts as NOT differing.",
+        "control": "paired trained-vs-zeroed-head eval rollout, identical RNG and env seed",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "offending_cell": "shaped_rl",
+        "per_arm": {
+          "sparse_rl": {
+            "n_seeds_differing": 1,
+            "n_seeds_measurable": 3,
+            "per_seed": [
+              {
+                "seed": 42,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              },
+              {
+                "seed": 43,
+                "measurable": true,
+                "differs": true,
+                "n_differing": 3,
+                "n_compared": 400
+              },
+              {
+                "seed": 44,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              }
+            ]
+          },
+          "shaped_rl": {
+            "n_seeds_differing": 0,
+            "n_seeds_measurable": 3,
+            "per_seed": [
+              {
+                "seed": 42,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              },
+              {
+                "seed": 43,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              },
+              {
+                "seed": 44,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              }
+            ]
+          },
+          "demo_warmstart": {
+            "n_seeds_differing": 1,
+            "n_seeds_measurable": 3,
+            "per_seed": [
+              {
+                "seed": 42,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              },
+              {
+                "seed": 43,
+                "measurable": true,
+                "differs": true,
+                "n_differing": 3,
+                "n_compared": 400
+              },
+              {
+                "seed": 44,
+                "measurable": true,
+                "differs": false,
+                "n_differing": 0,
+                "n_compared": 400
+              }
+            ]
+          }
+        },
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8dfb3356b00caa4cef813ba32cf826accc021d72a20a3e43a87708d694313204",
+  "substrate_commit": {
+    "commit": "fa56b35e9a24e3ba573f3646f6c36a6e81db12ba",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 11453.862222214,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "budget": {
+      "zworld_p0_episodes": 20,
+      "p0_warmup_episodes": 25,
+      "rl_episodes": 90,
+      "n_demo_episodes": 25,
+      "eval_episodes": 10,
+      "steps_per_episode": 80,
+      "ablation_eval_episodes": 5
+    },
+    "shaping_coef": 1.0,
+    "lift_margin_frac": 0.2,
+    "min_achievable_span": 2.0,
+    "oracle_floor": 4.0,
+    "baseline_blocked_frac": 0.35,
+    "min_distinct_cells": 8.0,
+    "return_separation_sd": 1.0,
+    "return_separation_cap": 1000.0,
+    "return_sd_eps": 1e-06,
+    "adv_surviving_frac_floor": 0.05,
+    "demo_ce_chance_frac": 0.9,
+    "demo_ce_window_frac": 0.1,
+    "first_action_class_floor": 3,
+    "first_action_majority_frac": 0.5,
+    "ablation_min_seeds": 2,
+    "head_delta_floor": 1e-09,
+    "summary_degenerate_frac_ceiling": 0.5,
+    "lateral_pfc_capture_head_diagnostics": true,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "z_goal_stream": {
+    "ticks_total": 101634,
+    "ticks_active": 0,
+    "writer_calls": 81234,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 9,
+    "goal_state_present": true
+  }
+}
