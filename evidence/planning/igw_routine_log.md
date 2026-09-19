@@ -3329,3 +3329,43 @@ One line per hourly tick. ASCII only.
 2026-09-19T18:41:09Z SPAWN IGW-20260919-243 skill=/queue-experiment prio=40 uuid=69abfad2-3e0e-4df4-8436-70a1ebea785d pid=25137 worktree=igw-243-proposal-for-mech-067
 2026-09-19T19:03:35Z auto-defer igw-243-proposal-for-mech-067 hash=05f60d3f04eb for 48h (complete)
 2026-09-19T20:18:43Z auto-defer igw-243-literature-proposal-for-mech-067 hash=7628d44552b9 for 48h (complete)
+2026-09-19T03:46:17Z complete igw-240-proposal-for-mech-064 spawned->completed outcome=USEFUL_LANDED: MECH-064 NOT queued (substrate-readiness call): marked EVB-1414/EXP-0804 blocked
+2026-09-19T04:47:24Z GC removed worktree igw-240-proposal-for-mech-064 (removed; branch deleted)
+2026-09-19T04:44:22Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T04:48:04Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T04:44:22Z SPAWN IGW-20260919-240 skill=/queue-experiment prio=40 uuid=2596d2d1-72b6-4e60-812d-aea972a919d5 pid=35775 worktree=igw-240-proposal-for-mech-561
+2026-09-19T05:22:05Z auto-defer igw-240-proposal-for-mech-561 hash=1b4a3bbf6e02 for 48h (complete)
+2026-09-19T05:23:44Z complete igw-240-proposal-for-mech-561 spawned->completed outcome=USEFUL_LANDED: MECH-561: no experiment queued -- marked EXP-1404/EXP-0209 blocked_substrate on
+2026-09-19T06:04:41Z GC removed worktree igw-240-proposal-for-mech-561 (removed; branch deleted)
+2026-09-19T06:03:13Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T06:05:00Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T07:10:12Z GC removed worktree igw-241-literature-proposal-for-mech-064 (removed; branch deleted)
+2026-09-19T07:08:31Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T07:10:30Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T07:08:31Z SPAWN IGW-20260919-242 skill=/lit-pull prio=40 uuid=e0e350a5-358f-40e8-a096-1fa238cc8c89 pid=9180 worktree=igw-242-literature-proposal-for-mech-065
+2026-09-19T07:31:28Z auto-defer igw-242-literature-proposal-for-mech-065 hash=855456439df7 for 48h (complete)
+2026-09-19T07:32:54Z complete igw-242-literature-proposal-for-mech-065 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-065: 5 entries (4 supports / 1 weakens) landed at REE_assembly ori
+2026-09-19T08:16:55Z GC removed worktree igw-242-literature-proposal-for-mech-065 (removed; branch deleted)
+2026-09-19T08:14:47Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T08:17:17Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T08:14:47Z no eligible item (skipped 254): IGW-20260919-001:skill /governance not allowed; IGW-20260919-002:skill /governance not allowed; IGW-20260919-003:skill /governance not allowed
+2026-09-19T09:21:45Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T09:19:10Z no eligible item (skipped 254): IGW-20260919-001:skill /governance not allowed; IGW-20260919-002:skill /governance not allowed; IGW-20260919-003:skill /governance not allowed
+2026-09-19T10:25:13Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T10:23:48Z no eligible item (skipped 254): IGW-20260919-001:skill /governance not allowed; IGW-20260919-002:skill /governance not allowed; IGW-20260919-003:skill /governance not allowed
+2026-09-19T14:26:21Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T14:24:35Z no eligible item (skipped 254): IGW-20260919-001:skill /governance not allowed; IGW-20260919-002:skill /governance not allowed; IGW-20260919-003:skill /governance not allowed
+2026-09-19T15:29:20Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
+2026-09-19T15:27:33Z no eligible item (skipped 254): IGW-20260919-001:skill /governance not allowed; IGW-20260919-002:skill /governance not allowed; IGW-20260919-003:skill /governance not allowed
+2026-09-19T16:32:25Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 33 ready, 0 in flight)
+2026-09-19T16:30:31Z SPAWN IGW-20260919-242 skill=/queue-experiment prio=40 uuid=645df0c8-375b-4c3b-ad2d-583a313b729f pid=61642 worktree=igw-242-proposal-for-mech-066
+2026-09-19T16:47:59Z auto-defer igw-242-proposal-for-mech-066 hash=cbeb7e3af745 for 48h (complete)
+2026-09-19T16:48:59Z complete igw-242-proposal-for-mech-066 spawned->completed outcome=USEFUL_LANDED: marked EXP-0810/EVB-1416 (MECH-066) blocked_substrate: no representation-isolati
+2026-09-19T17:37:40Z GC removed worktree igw-242-proposal-for-mech-066 (removed; branch deleted)
+2026-09-19T17:36:05Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T17:38:02Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 33 ready, 0 in flight)
+2026-09-19T19:04:48Z complete igw-243-proposal-for-mech-067 spawned->completed outcome=USEFUL_LANDED: MECH-067 audit spike REFUSED at /queue-experiment Step 2.5c; marked EVB-1417/EXP
+2026-09-19T19:48:00Z GC removed worktree igw-243-proposal-for-mech-067 (removed; branch deleted)
+2026-09-19T19:46:16Z GC sweep removed 1 orphan worktree(s), kept 17
+2026-09-19T19:48:21Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 33 ready, 0 in flight)
+2026-09-19T19:46:16Z SPAWN IGW-20260919-243 skill=/lit-pull prio=40 uuid=84b63ea2-ae02-4909-938d-b361e2b3a925 pid=72218 worktree=igw-243-literature-proposal-for-mech-067
