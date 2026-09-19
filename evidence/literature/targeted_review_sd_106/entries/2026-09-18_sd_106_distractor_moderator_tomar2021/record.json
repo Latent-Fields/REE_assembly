@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_106",
+  "entry_id": "2026-09-18_sd_106_distractor_moderator_tomar2021",
+  "timestamp_utc": "2026-09-18T23:59:31Z",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "source": {
+    "title": "Learning Representations for Pixel-based Control: What Matters and Why?",
+    "authors": [
+      "Manan Tomar",
+      "Utkarsh Aggarwal Mishra",
+      "Amy Zhang",
+      "Matthew E. Taylor"
+    ],
+    "year": 2021,
+    "venue": "arXiv preprint (cs.LG); also Transactions on Machine Learning Research",
+    "arxiv_id": "2111.07775",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2111.07775"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Included as the deliberate counterweight, and it is the entry that converts this pull from an opinion into a test. Its central finding is a MODERATOR stated almost in SD-106's own terms: 'Pixel reconstruction is a sound technique in the absence of clutter in the pixels, but suffer massively when distractors are added.' It simultaneously undercuts the obvious successors -- the bisimulation metric is reported to HURT (DBC without its metric beats DBC with it), contrastive losses add nothing over a supervised loss, and augmentation gains are an artefact of how benchmarks store data. Confidence is capped at 0.6 by source quality: this is a preprint-first critical re-evaluation rather than a peer-reviewed primary result, and its claims are exactly the kind that are contested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own thesis is that these comparisons are benchmark-dependent -- 'finer categorization of benchmarks on the basis of characteristics like density of reward, planning horizon of the problem, presence of task-irrelevant components, etc., is crucial in evaluating algorithms'. That warning applies to REE reading the paper as much as to the methods it evaluates: SD-106's rung has not been characterised on ANY of those three axes, so no result here can be claimed to transfer until it is.",
+    "It contradicts the positive proposals of both ML entries in this pull: DBC's bisimulation metric is reported to degrade performance relative to ablating it, and TIA is reported to fail dramatically with distractors. A successor objective for SD-106 chosen by copying either paper's method would be selecting against this evidence.",
+    "Preprint-first and critical-re-evaluation in genre, with negative results that have not been independently replicated in this corpus. Its simple reward-plus-transition-prediction baseline is a claim about what suffices on the benchmarks tested, not a validated recipe."
+  ],
+  "tags": [
+    "sd-106",
+    "moderator",
+    "distractors",
+    "reconstruction",
+    "benchmark_critique",
+    "reward_prediction",
+    "zworld_encoder"
+  ],
+  "mapping": {
+    "source_claim_statement": "Evaluating representation-learning methods for pixel-based control under background distractors, the authors find that a simple baseline using only reward prediction and latent transition prediction -- 'no metric-based learning, no data augmentations, no world-model learning, and no contrastive learning' -- matches or beats more elaborate methods; that 'pixel reconstruction is a sound technique in the absence of clutter in the pixels, but suffer massively when distractors are added'; that adding DBC's bisimulation metric degrades performance relative to omitting it; that contrastive losses add nothing when a supervised loss is available; and that most of the benefit of crop augmentation 'is an artifact of how the benchmark environments save data'.",
+    "ree_translation": "This is the entry that tells REE the question is not 'generic or task-conditioned?' in the abstract but 'how much of this observation stream's variance is task-irrelevant?'. On the first half it supplies the counterweight the rest of the pull needs: where clutter is absent, reconstruction is a sound technique, and SD-106's design is not condemned by any general principle. On the second half it supplies the warning that the two obvious successor objectives in this pull have both been reported to underperform a much simpler reward-plus-transition-prediction target. Taken with the ManyWorld dose-response in Fu et al. and the default-setting result in Zhang et al., the literature's actual recommendation to REE is to MEASURE the moderator before changing the objective -- which is precisely what the subspace-overlap probe already offered as the autopsy's second fan-out axis would do, at encoder-plane cost and with no consumer-rung run.",
+    "mapping_caveat": "A preprint-genre critical re-evaluation whose negative findings are, by construction, contested; it should not be treated as settling the standing of DBC or TIA, only as establishing that their advantages are not robust across benchmark characteristics. Its own positive baseline is reward-plus-transition prediction, which again presupposes a reward signal at representation-training time that SD-106's P0 warmup under a RandomPolicy may not have. The distractors studied are literal image backgrounds on pixel benchmarks; REE's observation stream is not pixels, so 'clutter' must be re-operationalised for REE (as, e.g., the fraction of observation variance lying outside the oracle-action-relevant subspace) before the moderator can be read off at all.",
+    "source_context": "Deep RL from pixels; DeepMind Control Suite variants with and without background distractors, evaluating reconstruction-based, metric-based, contrastive and augmentation-based representation methods against a minimal baseline."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is the limiting component and is set well below the other ML entries: preprint-first, critical-re-evaluation genre, reporting negative results about other groups' methods that this pull has not independently verified. Mapping fidelity is nonetheless good -- the moderator it names (presence of task-irrelevant components) is directly the quantity SD-106's open (a)/(b) discrimination turns on, and it is stated as a design axis rather than as a single benchmark result. Transfer risk moderate: the finding is about when a class of objectives wins rather than about a specific architecture, which travels better than a performance number, but 'clutter' still has to be redefined for a non-pixel observation stream."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_106",
+  "entry_id": "2026-09-18_sd_106_behaviourally_conditioned_v1_poort2015",
+  "timestamp_utc": "2026-09-18T23:59:31Z",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "source": {
+    "title": "Learning Enhances Sensory and Multiple Non-sensory Representations in Primary Visual Cortex",
+    "authors": [
+      "Jasper Poort",
+      "Adil G Khan",
+      "Marius Pachitariu",
+      "Abdellatif Nemri",
+      "Ivana Orsolic",
+      "Julija Krupic",
+      "Marius Bauza",
+      "Maneesh Sahani",
+      "Georg B Keller",
+      "Thomas D Mrsic-Flogel",
+      "Sonja B Hofer"
+    ],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.05.037",
+    "pmid": "26051421",
+    "pmc": "PMC4503798",
+    "volume": "86",
+    "issue": "6",
+    "pages": "1478-1490"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.66,
+  "confidence_rationale": "The biological leg of the argument, and the one the V3-EXQ-1041 autopsy flagged as a corpus gap distinct from the DiCarlo untangling entries already held. Two-photon imaging of the SAME layer 2/3 V1 neurons across days shows that population representations become increasingly discriminable specifically for stimuli that acquired BEHAVIOURAL RELEVANCE -- that is, biology conditions its sensory compression on the task rather than on generic stimulus variance. Confidence held to 0.66 by the largest transfer gap in this pull: this is an observation about how a biological sensory area CHANGES under learning, not a controlled comparison of two training objectives, so it establishes that task-conditioning happens in the reference system without establishing that a generic objective would have failed there.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is an observational, within-animal longitudinal design, not a manipulation of the coding objective. It shows that V1 representations of task-relevant stimuli become more discriminable with learning; it does NOT show that a generic variance-preserving code would have been insufficient for the discrimination, because no such control condition exists. The inference REE wants -- generic is worse than task-conditioned -- is one step beyond what was measured.",
+    "The changes reported are not purely a sharpening of stimulus selectivity: the paper explicitly reports non-sensory task-related signals (anticipation, behavioural choice, reward-preferring subsets) entering V1. A REE encoder that acquired reward- and choice-correlated components would be a substantially different object from a cleaner task-relevant compression, and the paper gives no basis for separating the two contributions to improved discriminability.",
+    "Mouse V1 under a virtual-corridor discrimination task is a learned, reward-shaped, recurrently-modulated system with top-down input; SD-106's encoder is a feedforward bottleneck trained offline on a P0 warmup buffer under a RandomPolicy. The biological system has access to the behavioural signal throughout, which is precisely the resource SD-106's training stage may lack, so 'biology conditions on task' does not entail 'REE can condition on task at this rung'."
+  ],
+  "tags": [
+    "sd-106",
+    "task_relevant_compression",
+    "behavioural_relevance",
+    "visual_cortex",
+    "perceptual_learning",
+    "biological_reference",
+    "zworld_encoder"
+  ],
+  "mapping": {
+    "source_claim_statement": "Imaging layer 2/3 populations in mouse V1 across learning of a virtual-corridor visual discrimination in which one of two patterns was rewarded, improvements in behavioural performance were closely associated with increasingly distinguishable population-level representations of TASK-RELEVANT stimuli, arising from stabilisation of existing and recruitment of new stimulus-selective neurons, alongside the emergence of non-sensory task-related signals. The authors conclude that learning 'engages diverse mechanisms that modify sensory and non-sensory representations in V1 to adjust its processing to task requirements and the behavioral relevance of visual stimuli'.",
+    "ree_translation": "SD-106 imports a formal analogy to sensory-hierarchy compression but implements it with a TASK-AGNOSTIC criterion: scale-normalised variance preservation with its own linear decoder. This paper is direct evidence that the biological reference does not work that way at the level SD-106 is copying. What improves in V1 with learning is not generic reconstructability of the visual input but the discriminability of the stimuli that MATTER, and it improves because behavioural relevance reshaped which directions the population encodes. Read against V3-EXQ-1041, this supports reading (b) -- the retained variance need not be the decision-relevant variance -- and it identifies the divergence the autopsy already called load-bearing as a real property of the reference system rather than a modelling convenience.",
+    "mapping_caveat": "This is the weakest-mapping entry in the pull and is included for the biological leg rather than for decisive force. The study observes learning-induced change in a recurrent, top-down-modulated cortical area with continuous access to reward and choice signals; it runs no comparison between a generic and a task-conditioned coding objective, so it cannot show that generic preservation would have failed. Species and modality transfer (mouse V1, two-photon calcium imaging of a two-pattern discrimination) to an artificial observation-to-latent encoder is substantial. And the improved discriminability is partly attributable to non-sensory anticipatory and choice signals, which REE would not want to import wholesale into a world-state latent.",
+    "source_context": "Mouse primary visual cortex, chronic two-photon calcium imaging of the same layer 2/3 neurons across days of learning; virtual-corridor two-pattern visual discrimination with reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality is the strongest component: Neuron, chronic within-neuron longitudinal imaging across learning, large population recordings, a design that controls for the usual cross-sectional confounds. Mapping fidelity is deliberately low -- the paper measures learning-induced representational change, whereas SD-106's question is a comparison between two training objectives, and no such comparison is available here. Transfer risk is correspondingly the highest in this pull (mouse sensory cortex with reward and top-down access, versus an offline feedforward bottleneck under a RandomPolicy); it is recorded at 0.55 rather than higher only because the claim being transferred is directional and coarse -- that the reference system conditions compression on behaviour -- rather than quantitative."
+  }
+}

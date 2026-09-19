@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_106",
+  "entry_id": "2026-09-18_sd_106_capacity_allocation_distractors_fu2021",
+  "timestamp_utc": "2026-09-18T23:59:31Z",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "source": {
+    "title": "Learning Task Informed Abstractions",
+    "authors": [
+      "Xiang Fu",
+      "Ge Yang",
+      "Pulkit Agrawal",
+      "Tommi Jaakkola"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML 2021), PMLR 139",
+    "arxiv_id": "2106.15612",
+    "doi": null,
+    "url": "https://proceedings.mlr.press/v139/fu21b.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.75,
+  "confidence_rationale": "This entry carries the CAPACITY-ALLOCATION mechanism rather than the objective-choice argument, and that is the mechanism SD-106's numbers actually require. The paper states the failure in the exact terms of a bounded code -- 'excess model capacity is devoted to representing background information when learning from complex visual inputs. The background conveys no information about the task' -- and shows that explicitly partitioning reward-correlated from reward-uncorrelated features recovers the lost performance. That is a closer match to SD-106's signature (near-ceiling generic compression, deficient consumer agreement) than any argument about whether information is retained at all. Held at 0.75 by the same unmeasured moderator that limits the Zhang entry, and by the fact that TIA still uses reconstruction -- it re-partitions it rather than abandoning it.",
+  "failure_signatures": [
+    "TIA does NOT show that reconstruction should be dropped; it keeps cooperative reconstruction and adds an adversarially dissociated distractor model. So the paper is evidence against UNPARTITIONED generic reconstruction, not against reconstruction as such -- a successor to SD-106 that simply deletes the variance-preservation term would not be the change this paper supports.",
+    "The method requires a reward signal to define which features are task-relevant (the distractor model is adversarially dissociated FROM THE REWARD). Where no such signal is available at the stage the encoder is trained -- SD-106's objective runs in a P0 warmup under a RandomPolicy -- the mechanism cannot be applied as specified.",
+    "Tomar et al. (2021, this same pull) report that TIA and other reconstruction-based methods 'fail dramatically with distractors' relative to a simple reward-plus-transition-prediction baseline, so TIA's own positive result is contested by a later like-for-like comparison. The capacity-allocation DIAGNOSIS is what this entry is relied on for; the TIA remedy is not."
+  ],
+  "tags": [
+    "sd-106",
+    "capacity_allocation",
+    "task_relevant_compression",
+    "distractors",
+    "world_model",
+    "reconstruction",
+    "zworld_encoder"
+  ],
+  "mapping": {
+    "source_claim_statement": "Model-based RL methods 'struggle when operating from complex visual scenes due to their inability to prioritize task-relevant features', because 'excess model capacity is devoted to representing background information ... The background conveys no information about the task'. TIA introduces a Task Informed MDP realised by two models trained via cooperative reconstruction, one of which is adversarially dissociated from the reward signal, and reports substantial gains over Dreamer, DBC and DeepMDP on DeepMind Control with natural-video distractors, on a ManyWorld environment where the gap widens as distractors increase, and on several Atari games.",
+    "ree_translation": "REE reads this as the allocation account of the SD-106 shortfall, and it is the account that fits the measured numbers. The objection is not that a generic reconstruction objective discards decision-relevant content outright -- SD-106 demonstrably retains a great deal, reaching 0.951-0.980 of the achievable PCA-32 ceiling -- but that a FIXED 32-dimensional budget optimised against total variance will spend its dimensions in variance order, and decision-relevant directions are not guaranteed to be high-variance directions. The ManyWorld result, where TIA's margin over Dreamer widens monotonically as distractors are added, is the dose-response form of that claim and supplies REE a design of the same shape: vary the task-irrelevant variance fraction and watch the consumer-rung gap track it.",
+    "mapping_caveat": "The 'background' in this paper is literal image background, and the capacity being misspent is a convolutional world model's, whereas SD-106's budget is 32 latent dimensions over a non-image observation stream. The mechanism transfers as an argument about bounded codes and variance-ordered allocation, but the magnitude does not: whether REE's observation stream even CONTAINS a substantial task-irrelevant high-variance component is exactly what has not been measured. Note also that this paper's remedy presupposes a reward signal at encoder-training time, which SD-106's P0 warmup under a RandomPolicy may not provide, and that TIA's own empirical standing has been contested by later comparisons even though its diagnosis has not.",
+    "source_context": "Model-based deep RL from pixels; DeepMind Control Suite with natural-video distractors, a synthetic ManyWorld distractor benchmark, and six Atari games. Simulation only, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high: ICML main-conference paper with a stated formalism (TiMDP), an ablation-bearing architecture and results across three benchmark families. Mapping fidelity is the best in the ML half of this pull because the paper's failure mechanism is stated in terms of BUDGET rather than of information content, which is the form SD-106's evidence actually takes -- discounted because the budget in question is a world model's rather than a fixed-width latent's. Transfer risk matches the Zhang entry and for the same reason: the effect is demonstrated by injecting task-irrelevant variance at a chosen magnitude, and REE's own magnitude on that axis is unmeasured."
+  },
+  "summary_path": "summary.md"
+}

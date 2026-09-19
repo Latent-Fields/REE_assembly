@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_106",
+  "entry_id": "2026-09-18_sd_106_mi_objective_sufficiency_rakelly2021",
+  "timestamp_utc": "2026-09-18T23:59:31Z",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "source": {
+    "title": "Which Mutual-Information Representation Learning Objectives are Sufficient for Control?",
+    "authors": [
+      "Kate Rakelly",
+      "Abhishek Gupta",
+      "Carlos Florensa",
+      "Sergey Levine"
+    ],
+    "year": 2021,
+    "venue": "Advances in Neural Information Processing Systems 34 (NeurIPS 2021)",
+    "arxiv_id": "2106.07278",
+    "doi": null,
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2021/hash/dd45045f8c68db9f54e70c67048d32e8-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The single most on-point formal treatment of SD-106's objective choice, and it splits rather than settles. It proves that a GENERIC predictive objective (forward information) IS sufficient to represent optimal Q-functions for any reward function -- which defends genericity per se and is the reason this entry is not a bare 'weakens' -- while stating in the same breath that such a representation 'lacks a notion of task-relevance as it must be equally predictive of all predictable elements in the state'. That second half is exactly SD-106's regime. Confidence is held to 0.72 by two real gaps: the paper analyses mutual-information objectives, and reconstruction/FVU is NOT among the objectives it proves on (it is raised only as a conjecture about the ELBO in discussion); and its sufficiency notion is information-theoretic, i.e. capacity-unbounded, whereas SD-106's whole difficulty is a 32-dimensional bound.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's sufficiency results are capacity-unbounded: they ask whether a representation RETAINS the information needed to represent the optimal policy, not whether a FIXED-WIDTH code spends its dimensions on the right directions. SD-106 is near its own PCA-32 ceiling (0.951-0.980), so its deficit cannot be an information-retention failure of the kind these propositions rule on -- it is an allocation failure the propositions are silent about.",
+    "Reconstruction is not analysed. Transferring the J_fwd task-relevance remark to SD-106's FVU-with-linear-decoder objective is an argument by family resemblance, not an instance of the paper's theorem. If anything reconstruction is WEAKER than J_fwd here: it is predictive of the observation rather than of the dynamics, so a direction can be reconstructible and dynamically inert.",
+    "The result cuts against an over-quick 'generic objectives are simply wrong' reading: J_fwd is proved SUFFICIENT and two of the more task-shaped objectives (state-only transition information, inverse information) are proved INSUFFICIENT. Task-conditioning is therefore not automatically an improvement -- an inverse-model or reward-only successor to SD-106 could be strictly worse on this paper's own analysis."
+  ],
+  "tags": [
+    "sd-106",
+    "information_bottleneck",
+    "mutual_information",
+    "sufficiency",
+    "task_relevance",
+    "representation_learning",
+    "zworld_encoder"
+  ],
+  "mapping": {
+    "source_claim_statement": "Formalising sufficiency of a state representation for learning and representing the optimal policy, the paper proves that forward information (J_fwd) is sufficient for all reward functions, while state-only transition information (J_state) and inverse information (J_inv) are not -- 'given mild and common assumptions on the structure of the MDP'. It then notes: 'Of the objectives studied in our analysis, only J_fwd is sufficient to represent optimal Q-functions for any reward function. Note however that the representation obtained by this objective lacks a notion of task-relevance as it must be equally predictive of all predictable elements in the state.'",
+    "ree_translation": "REE reads the second sentence as the formal name for SD-106's measured situation. SD-106 optimises a task-agnostic scale-normalised reconstruction term and, per V3-EXQ-1041, achieves 0.951-0.980 of the achievable PCA-32 ceiling -- it is being 'equally predictive of all predictable elements' close to optimally. The objective therefore has no lever by which to prefer decision-relevant directions, and under a 32-dimensional bound the retained directions are ordered by variance rather than by consumer relevance. That is a precise candidate mechanism for the consumer-rung shortfall (0.719 oracle-action agreement against a 0.85 bar) that does NOT require the encoder to be under-trained or the mechanism to be defective. The paper equally warns REE off the naive fix: two of the more obviously task-shaped objectives it studies are the ones proved insufficient.",
+    "mapping_caveat": "Two boundaries, both load-bearing. (1) Sufficiency here is information-theoretic and capacity-unbounded; SD-106's deficit is an allocation problem inside a fixed 32-dim code, which no proposition in this paper addresses. The transfer is from the paper's informal task-relevance REMARK, not from its theorems. (2) Reconstruction/FVU is not one of the analysed objectives -- the paper only conjectures in discussion that the ELBO alone cannot sufficiently control representation content -- so applying the J_fwd remark to SD-106's objective is an argument from the same family, not a derivation. Additionally the analysis is over MDPs with a reward function, whereas SD-106's consumer rung is measured as agreement with an oracle ACTION, which is a related but not identical target.",
+    "source_context": "Theoretical analysis with proofs over MDP structure, corroborated on a simulated game environment with visual observations; machine-learning representation-learning literature, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Source quality high: a NeurIPS paper whose central contributions are proofs, with explicit counterexamples and stated assumptions, from a group central to this literature. Mapping fidelity is the limiting component and is deliberately below 0.7: the sentence REE leans on is an acknowledged limitation in the paper's discussion rather than one of its results, and the objective SD-106 actually ships is not among those proved on. Transfer risk moderate rather than high because the structural correspondence is unusually tight -- a bounded latent trained by a task-agnostic predictive objective, read by a downstream control consumer, is the paper's own setting."
+  }
+}

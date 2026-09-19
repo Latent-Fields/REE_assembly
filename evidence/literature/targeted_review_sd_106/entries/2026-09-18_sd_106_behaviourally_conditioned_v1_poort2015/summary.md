@@ -1,0 +1,25 @@
+# Learning Enhances Sensory and Multiple Non-sensory Representations in Primary Visual Cortex (Poort et al., Neuron 2015)
+
+## What the paper did
+
+Poort and colleagues imaged layer 2/3 populations in mouse primary visual cortex with chronic two-photon calcium imaging, following **the same neurons across days** while the animals learned to discriminate two visual patterns in a virtual corridor, one of which was rewarded. The longitudinal within-neuron design is what gives the study its force: the changes reported are changes in identified cells over learning, not differences between separately-sampled populations.
+
+The result is that improvements in behavioural performance were closely associated with increasingly distinguishable population-level representations of the **task-relevant** stimuli, arising both from stabilisation of existing stimulus-selective neurons and from recruitment of new ones. Alongside this, non-sensory task-related signals appeared in V1 -- anticipatory activity and signals reflecting behavioural choice, concentrated in reward-preferring subsets. The authors conclude that learning "engages diverse mechanisms that modify sensory and non-sensory representations in V1 to adjust its processing to task requirements and the behavioral relevance of visual stimuli."
+
+## Why this is the entry the corpus was missing
+
+The V3-EXQ-1041 autopsy identified DiCarlo-style ventral-stream untangling as SD-106's closest biological reference, and recorded that the corpus already holds untangling entries (`targeted_review_sd_015`, `targeted_review_perceptual_manifold_adaptors`) but **nothing** on the generic-versus-task-relevant question itself. This paper fills that specific gap from a different direction than untangling does: it shows the reference system *reorganising* its sensory code under behavioural pressure, within an animal, on a timescale you can watch.
+
+That matters because SD-106 imports the formal analogy to sensory-hierarchy compression while implementing it with a task-agnostic criterion. What improves in V1 with learning is not the generic reconstructability of the visual input. It is the discriminability of the stimuli that *matter*, and it improves because behavioural relevance reshaped which directions the population encodes. Read against the autopsy, this is biological support for reading **(b) which-directions** -- the retained variance need not be the decision-relevant variance -- and it establishes that the divergence the autopsy already called "load-bearing by default" is a real property of the reference system rather than a modelling convenience.
+
+## The inferential gap, stated plainly
+
+This is the weakest-mapping entry in the pull and I want to be exact about why. The study is **observational and longitudinal, not a manipulation of the coding objective**. It shows that representations of task-relevant stimuli become more discriminable with learning. It does not show that a generic variance-preserving code would have been *insufficient* for the discrimination, because no such control condition exists anywhere in the design. The step REE wants -- generic is worse than task-conditioned -- is one inference beyond what was measured.
+
+Two more boundaries. The improvement is not purely a sharpening of stimulus selectivity: non-sensory anticipatory and choice signals enter V1 as well, and the paper gives no basis for separating their contribution to improved discriminability from the sensory contribution. An encoder that acquired reward- and choice-correlated components would be a substantially different object from a clean task-relevant compression, and REE would probably not want those components in a *world-state* latent at all.
+
+And the systems are far apart in the resource that matters most here. Mouse V1 is recurrent, top-down modulated, and has access to the behavioural signal continuously throughout learning. SD-106's encoder is a feedforward bottleneck trained offline on a P0 warmup buffer under a RandomPolicy. "Biology conditions its compression on task" does not entail "REE can condition on task at this rung" -- if anything it sharpens the design problem, because the signal biology uses may be the one REE's training stage does not yet have.
+
+## Confidence
+
+0.66. Source quality is the strongest component at 0.9 -- Neuron, chronic within-neuron imaging across learning, large populations, a design that controls the usual cross-sectional confounds. Mapping fidelity is deliberately low at 0.55: the paper measures learning-induced representational change, while SD-106's question is a comparison between two training objectives, and no such comparison is available here. Transfer risk is the highest in this pull at 0.55 (mouse sensory cortex with reward and top-down access, versus an offline feedforward bottleneck under a RandomPolicy), recorded there rather than higher only because what is being transferred is directional and coarse -- that the reference system conditions compression on behaviour -- rather than quantitative.

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_106",
+  "entry_id": "2026-09-18_sd_106_task_relevant_vs_reconstruction_zhang2021",
+  "timestamp_utc": "2026-09-18T23:59:31Z",
+  "claim_ids_tested": [
+    "SD-106"
+  ],
+  "source": {
+    "title": "Learning Invariant Representations for Reinforcement Learning without Reconstruction",
+    "authors": [
+      "Amy Zhang",
+      "Rowan Thomas McAllister",
+      "Roberto Calandra",
+      "Yarin Gal",
+      "Sergey Levine"
+    ],
+    "year": 2021,
+    "venue": "International Conference on Learning Representations (ICLR 2021)",
+    "arxiv_id": "2006.10742",
+    "doi": null,
+    "url": "https://openreview.net/forum?id=-2FCwDKRREu"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.78,
+  "confidence_rationale": "The clearest direct statement in the corpus that a reconstruction objective is structurally incapable of the selection SD-106 needs: 'such methods are task-agnostic: the models represent all dynamic elements they observe in the world, whether they are relevant to the task or not.' The paper then builds the alternative (bisimulation-metric encoders keeping only behaviourally relevant structure) and shows it dominates reconstruction baselines precisely when task-irrelevant variance is present. Weakening rather than decisive because the paper's own default-setting result runs the other way -- a reconstruction-based method (SLAC) is generally best when there are no distractors -- which is the moderator SD-106 has not yet measured, and because the demonstration is on visual MuJoCo and driving, not on a low-dimensional gridworld-like observation stream.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In the DEFAULT (distractor-free) setting the reconstruction-based baseline SLAC generally performs BEST, and DBC's advantage appears only once simple or natural-video distractors are added. So the paper does not license 'reconstruction is the wrong objective' unconditionally -- it licenses 'reconstruction is the wrong objective WHERE task-irrelevant variance is large'. SD-106's P0a rollout buffer has never been characterised on that axis, so the paper's own precondition for its result is unverified for REE.",
+    "Bisimulation metrics require a reward signal (or an equivalent behavioural target) to define behavioural similarity. SD-106's consumer rung is oracle-action agreement, which could supply such a target, but the P0 warmup stage in which SD-106's objective operates runs under a RandomPolicy -- there may be no informative reward-like signal available at the point in the curriculum where the encoder is trained, which would make a direct bisimulation transplant inapplicable rather than merely harder.",
+    "Later work (including the Tomar et al. entry in this same pull, and Understanding and Addressing the Pitfalls of Bisimulation-based Methods, NeurIPS 2023) reports that the bisimulation loss itself can DEGRADE performance and that DBC without its metric can beat DBC with it. The negative half of this paper's argument (reconstruction is task-agnostic) has held up considerably better than its positive proposal, so REE should not read a DBC-shaped successor as validated."
+  ],
+  "tags": [
+    "sd-106",
+    "bisimulation",
+    "task_relevant_compression",
+    "reconstruction",
+    "distractors",
+    "representation_learning",
+    "zworld_encoder"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reconstruction-based representation learning for control is task-agnostic -- 'the models represent all dynamic elements they observe in the world, whether they are relevant to the task or not'. The authors propose instead training encoders so that latent distances equal bisimulation distances, yielding 'a more compressed representation from a lossy encoder, which only retains state information relevant to our task', and demonstrate invariance to moving distractors and natural-video backgrounds on visual MuJoCo while achieving state-of-the-art performance, plus 46.8% better final performance than the next best baseline on a CARLA driving task.",
+    "ree_translation": "This is the ML-empirical form of the reading V3-EXQ-1041 labelled (b) which-directions. SD-106 is exactly a lossy encoder trained by a task-agnostic criterion, and the paper's diagnosis says what such an encoder will do with a bounded budget: represent whatever varies, in proportion to how much it varies. REE's measured signature is consistent with that -- the SD-106 code sits at 0.951-0.980 of the PCA-32 ceiling (it has compressed generically about as well as a 32-dim linear code can) while the consumer rung reads 0.719 against a 0.85 bar. The paper's constructive half suggests the successor lever is to condition the compression on the behavioural target rather than to raise capacity or training budget, and its CARLA result shows the size of effect available when the switch is made in a genuinely cluttered domain.",
+    "mapping_caveat": "The demonstrated effect is conditional on a moderator REE has not measured. This paper's own default-setting result has a reconstruction method winning; the advantage of task-relevant compression appears only once substantial task-irrelevant variance is introduced, and it is introduced ARTIFICIALLY here (replaced backgrounds, natural videos) at a magnitude chosen to make the point. SD-106's observation stream is not a natural-image stream and its task-irrelevant variance fraction is unknown, so the direction of this evidence transfers but its magnitude does not. Further, bisimulation needs a reward or behavioural signal that may not exist at the P0-warmup point where SD-106's objective runs, and the positive proposal has been contested by subsequent work in a way the negative diagnosis has not.",
+    "source_context": "Deep RL from pixels; modified DeepMind Control Suite visual MuJoCo tasks with moving distractors and natural-video backgrounds, plus a first-person CARLA highway driving task. Simulation only, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high: a heavily-cited ICLR paper with released code, theoretical grounding in bisimulation metrics, and results across two distinct domains. Mapping fidelity good but not excellent -- the structural analogy (bounded lossy encoder, task-agnostic objective, downstream control consumer) is tight, while the observation modality and the source of task-irrelevant variance are quite different from REE's. Transfer risk is set at 0.42 rather than lower specifically because the paper's result is moderator-dependent and REE sits on the unmeasured side of that moderator; this is the entry's main weakness and it is the same weakness the Tomar entry elaborates."
+  }
+}
