@@ -286,3 +286,92 @@ before more compute goes into this claim.
 readiness-gate implementation; the within-subject lesion-at-eval design; every
 `/queue-experiment` gate cleared with evidence; the ratified criteria; the full-scale cost
 measurement (~9.6 h).
+
+---
+
+# ADDENDUM 2026-09-19 (3) -- OPTION B: requirement (1) satisfied, requirement (2) failed
+
+**User decision OPTION B (2026-09-19T04:48Z)** implemented: DV re-operationalised onto a
+harm-prediction readout; residue kept purely as the STORED quantity the two lesion knobs gate.
+Landed in `ree-v3/experiments/v3_exq_1061_mech131_anticipatory_residue_lesion.py`. **Nothing
+queued.**
+
+## (1) Readout choice and liveness -- ESTABLISHED by measurement
+
+Uses **`E3.harm_eval(z_world)`** (`harm_eval_head`), **not** `harm_eval_z_harm`. The
+`z_harm_a` frozen-random-projection and `harm_obs_a` rank-2 hazards the decision flagged belong
+to the **affective** stream (SD-086 / `zharm_a_p0_warmup`, ree-v3 `e10d6c5c`), which this driver
+never touches -- checked, not assumed.
+
+`harm_eval` is a random sigmoid head at init, so 042's BCE training (balanced harm/non-harm
+`z_world` batches labelled by `info["transition_type"]`, every 8 steps, `Adam(lr=1e-3)` over
+`main_params`) is mirrored here. **Optimizer coverage is asserted at runtime** -- the driver
+refuses unless every `harm_eval_head` parameter is in the stepped optimizer, which is the
+MECH-307 failure shape applied to a training path.
+
+Measured at only 20 warmup episodes, ~250 BCE steps/seed:
+
+| seed | mean harm_eval on harm states | on non-harm states | gap (needs > 0) |
+|---|---|---|---|
+| 11 | 0.6996 | 0.2531 | **+0.4466** |
+| 23 | 0.6507 | 0.3360 | **+0.3147** |
+| 37 | 0.6775 | 0.2982 | **+0.3793** |
+
+A constant predictor scores exactly 0.0 whatever constant it emits, so this is literally
+"beats a constant baseline". **The new readiness gate clears** -- and it replaces 042's
+inverted `hippo_quality_gap` using an already-written rule (042's own calibration-gap
+criterion), so no further decision was needed for the gate's form. 042's gap is still computed
+and reported as the diagnostic that explains why the residue DV was abandoned (it stayed at
+about -5.5).
+
+## (2) Lesion effect vs between-candidate noise -- FAILS
+
+With **all three** of 042's training components verified live -- terrain BC, harm_eval BCE, and
+`world_forward` MSE at `wf_loss = 1.1e-4` over 496 steps:
+
+| seed | ARM_1 intact | ARM_3 complete lesion | effect | between-candidate SD | effect/noise |
+|---|---|---|---|---|---|
+| 11 | 0.201039 | 0.201175 | +0.000137 | 0.008404 | **+0.0163** |
+| 23 | 0.311395 | 0.311587 | +0.000192 | 0.013480 | **+0.0142** |
+| 37 | 0.716806 | 0.716446 | -0.000360 | 0.005168 | **-0.0696** |
+
+C1 clears 2/3 seeds and seed 37's effect is **negative**. The lesion moves the DV by ~1.5% of
+the noise it must exceed. For context: the residue DV measured 0.035, and adding
+`world_forward` training moved the harm DV from 0.0025 to 0.013 -- real progress, nowhere near
+the ~1.0 a resolvable DV needs.
+
+**`world_forward` was genuinely a binding constraint, just not the only one.** Before it was
+trained, a 59% shift in the proposal mean under the CH1 lesion (`ao_mean` absmean
+0.128819 -> 0.052828) produced candidate action objects (SD 0.011096 vs 0.011101), decoded
+actions (0.044267 vs 0.044271) and world states (0.060645 vs 0.060672) identical to 4+ decimal
+places -- with a world-state range of 42.5 against a mean magnitude of 1.97, the signature of
+wild action-independent dynamics.
+
+## Root cause: the channel lacks AUTHORITY, and the reason is load-bearing
+
+    support_preserving_ao_std_floor = 0.2
+    terrain_prior proposal-mean magnitude = 0.1288
+    -> the mandated CEM exploration noise is 1.55x the entire anticipatory signal
+
+That floor landed **2026-05-17** specifically "so the sampling distribution cannot collapse to
+a point" -- it is the fix for the monostrategy that left SD-029 / ARC-062 Rung 2 /
+goal_pipeline / self_attribution `non_contributory`. So it is not a bug to remove casually.
+
+**On this substrate, at default CEM exploration settings, the anticipatory residue channels do
+not have enough authority over the proposed candidate set for a lesion to be detectable through
+any candidate-set DV.** That is a statement about the substrate's wiring and about MECH-131's
+*testability*, not about the claim being false.
+
+## Smallest design -- measured, per the decision's request
+
+The readiness gate clears at **20 warmup episodes**, and 20 eps x 100 steps x 3 seeds runs in
+**~10 min wall** with all three trainers live. 042's 600 x 200 (~15.7 h extrapolated) is
+therefore **~30x more warmup than this design needs**. Size warmup off the gate, not off 042's
+constant. This is the one piece of good news in this addendum: whatever comes next is cheap.
+
+Decision chip: **`chip-20260919-mech131-channel-authority`**.
+
+**Banked:** both knobs (contracts C1-C9); all three 042 trainers implemented and verified live;
+the harm-prediction DV with runtime optimizer-coverage assertion; the working readiness gate;
+the within-subject lesion-at-eval design; every `/queue-experiment` gate cleared; the ratified
+ordinal criteria; and measured costs at both scales.
