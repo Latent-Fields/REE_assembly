@@ -5033,6 +5033,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0355",
+      "claim_ids": [
+        "INV-063"
+      ],
+      "flag_type": "stale_note",
+      "summary": "INV-063's what_would_answer labels leg B 'Leg B (E1 world-model updating)', but the operational DV named in that same sentence is an E2 measurement, so the label should read E2. Evidence: E1DeepPredictor has NO world_forward head at all -- every occurrence of 'world_forward' in ree_core/predictors/e1_deep.py (lines 622, 1380, 1516, 1520) is a comment referring to E2's -- and the 'V3-EXQ-701b/701c frozen-probe instrument' the same sentence names computes agent.e2.world_forward by construction (v3_exq_701b.py:547 _frozen_probe_pe; v3_exq_701c.py:554). The 'E1' wording is prose inherited from the claim description's four-function taxonomy and is the ambiguity that made this leg look un-unblockable; the substrate_queue entry e2-world-forward-sleep-trainer, the V3-EXQ-1026 driver and the confirmed V3-EXQ-1026 autopsy all correctly name E2. Correcting the label (or making the E1/E2 relation explicit) stops the ambiguity being re-derived. SECOND, SEPARATE STALENESS on the same path: substrate_queue.json entry e2-world-forward-sleep-trainer still reads status 'pending_implementation' / status_phase 'build_owed' although the build landed 2026-09-17 as ree-v3 4610133, with chip-20260915-e2-world-forward-sleep-trainer resolved done naming that sha; its validation is now queued as V3-EXQ-1060 (ree-v3 a4bf7ade01).",
+      "raised_by_session": "metaworker-science-20260918-inv063-e2worldforward-liveness",
+      "raised_at": "2026-09-19T01:19:22Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
