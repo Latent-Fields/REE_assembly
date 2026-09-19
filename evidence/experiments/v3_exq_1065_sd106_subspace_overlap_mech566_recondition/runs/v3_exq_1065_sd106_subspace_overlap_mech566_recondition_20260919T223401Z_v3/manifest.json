@@ -1,0 +1,441 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1065_sd106_subspace_overlap_mech566_recondition",
+  "run_id": "v3_exq_1065_sd106_subspace_overlap_mech566_recondition_20260919T223401Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-19T22:34:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "821fa31baaf8957aee62522e2920b6709d45279f",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-106",
+    "MECH-566"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "SD-106": "unknown",
+    "MECH-566": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "recoverability_indeterminate__mech566_conditioning_falsified",
+    "half_a_class": "INDETERMINATE",
+    "half_b_class": "FALSIFY",
+    "preconditions": [
+      {
+        "name": "instrument_rawfield_control_supra_floor",
+        "description": "The raw 25-dim resource field decoded at the consumer's width must clear RAW_FIELD_CONTROL_FLOOR, else the dataset/labels are blind.",
+        "measured": 0.9735369086265564,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "rawfield_ceiling arm, worst seed (x1002's imported positive control)",
+        "offending_cell": "rawfield_ceiling|seed44",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "anchor_pca32_reaches_parity_bar_on_majority",
+        "description": "PCA-32 at the consumer rung must clear SD106_PARITY_BAR on a seed majority: the anchor locates the band MECH-566's CONFIRM reading points toward.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "ws250_pca__mlp128; V3-EXQ-1023a measured 0.8771 / 0.8578 / 0.8702",
+        "offending_cell": "seed43",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_bypass_trained_off_zero",
+        "description": "SD-106's zero-initialised bypass must have moved: ||W_skip|| > 0 on the worst seed.",
+        "measured": 6.078213691711426,
+        "threshold": 1e-08,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "SD-106 arm's world_encoder_skip weight norm after P0a, worst seed",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_encoder_trained_in_p0a",
+        "description": "The SD-106 z_world path must have CHANGED during P0a (V3-EXQ-783 signature).",
+        "measured": 4.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "latent_stack_weight_delta n_world_encoder_changed, worst seed",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_latent_not_collapsed",
+        "description": "Participation ratio of the SD-106 code on the P0a buffer >= SD-070's floor.",
+        "measured": 16.288314327787987,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "V3-EXQ-1041 measured 17.7 at epochs=40",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "p0a_buffer_captured_exactly",
+        "description": "The captured buffer must have EXACTLY the trainer's row count, else the probe's split is not the trainer's split (x1041 capture_n_delta gate).",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "abs(len(sink) - trainer.n_buffered), worst probe cell",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "recondition_transforms_invertible",
+        "description": "OLS holdout R^2 of world_obs from the transformed code equals that from the raw code within INVARIANCE_TOL for every member -- the Half B instrument.",
+        "measured": 1.0515435189262234e-09,
+        "threshold": 0.0001,
+        "direction": "upper",
+        "control": "worst |R^2(raw) - R^2(transformed)| over every SD-106 consumer cell",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_p0a_n_steps_supra_shipped",
+        "description": "P0a optimiser steps on every SD-106 cell must clear P0A_STEP_FLOOR, proving the epochs=40 knob reached the trainer (x1023a's gate).",
+        "measured": 1160.0,
+        "threshold": 1000.0,
+        "direction": "lower",
+        "control": "V3-EXQ-1041: 1320/1320/1160 at epochs=40; 396/396/348 at epochs=12",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd106_consumer_diag_reproduces_1023a",
+        "description": "The in-run sd106_sense_diag__mlp128 cell (P0a-ONLY warmup) must reproduce V3-EXQ-1023a's consumer-rung agreement on every seed to within REPRO_TOL: MECH-566's registered 0.05 lift is denominated against THAT baseline (0.7273 mean), and a P0a-only baseline that drifts from it is a different instrument (red-team F5). Unmet -> P0b/P1 DO shape sense-time z_world; re-queue with the full warmup.",
+        "measured": 0.0,
+        "threshold": 0.05,
+        "direction": "upper",
+        "control": "V3-EXQ-1023a zworld_sd106__mlp128: 0.7542 / 0.7356 / 0.6921 (seeds 42/43/44)",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "scoped_out": [],
+    "criteria": [
+      {
+        "name": "P1_sd106_pc_recoverability_score_on_seed_majority",
+        "load_bearing": true,
+        "claim_id": "SD-106",
+        "passed": false,
+        "measured": 0.8351767199390387,
+        "threshold_high": 0.9,
+        "threshold_low": 0.75,
+        "comparator_high": ">=",
+        "comparator_low": "<=",
+        "direction": "interval",
+        "class": "INDETERMINATE",
+        "per_seed_class": [
+          "INDETERMINATE",
+          "INDETERMINATE",
+          "INDETERMINATE"
+        ],
+        "threshold_note": "rec = unweighted mean over the 32 train-split PC directions of the 0-clipped holdout R^2 of each PC score from the SD-106 code; ceiling 1.0 exact (PCA-32 coordinates). rec >= threshold_high -> HIGH, <= threshold_low -> LOW, between -> indeterminate. 'passed' means DETERMINATE (either band on a seed majority), not 'good'. Premise: parity_ratio >= 0.95 on the same buffer; non-degeneracy: the untrained encoder reads <= 0.75 on a seed majority."
+      },
+      {
+        "name": "M1_mech566_recondition_lift_on_seed_majority",
+        "load_bearing": true,
+        "claim_id": "MECH-566",
+        "passed": true,
+        "measured": -0.000422060489654541,
+        "threshold": 0.05,
+        "threshold_falsify": 0.02,
+        "class": "FALSIFY",
+        "per_seed_class": [
+          "FALSIFY",
+          "FALSIFY",
+          "FALSIFY"
+        ],
+        "threshold_note": "ZCA lift over diag at mlp128 (the claim's own unsupervised member; LDA is label-supervised and recorded only): >= 0.05 on a seed majority -> CONFIRM (supports); in (-0.05, 0.02) -> FALSIFY (weakens); <= -0.05 -> HARMFUL (indeterminate for the falsifier); else PARTIAL (mixed -- the claim's own grey zone, an acceptable terminal reading). 'passed' means DETERMINATE."
+      },
+      {
+        "name": "C_transforms_nontrivial",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 13.445334630102357,
+        "threshold": 1.0,
+        "comparator": ">",
+        "threshold_note": "the whitening matrices must not be the identity (condition number > 1)."
+      },
+      {
+        "name": "C_p1_can_read_low",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.5212699009596796,
+        "threshold": 0.75,
+        "direction": "upper",
+        "threshold_note": "the untrained encoder's rec must be <= P1_LOW_CEIL on a seed majority (worst seed reported): the statistic can read LOW for a code that carries nothing. Gates P1's non-degeneracy, not the verdict."
+      },
+      {
+        "name": "C_manipulation_reaches_decoder",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 3,
+        "threshold": 3,
+        "threshold_note": "on every seed, a whitened member's consumer-rung decoder fits to a different final CE than the diag member's -- the transform reached the decoder's input. Gates M1's non-degeneracy, not the verdict."
+      }
+    ],
+    "combination_rule": "P1 (SD-106) and M1 (MECH-566) are INDEPENDENT load-bearing criteria on separate claims; outcome PASS iff the gate is green AND both are determinate. The label concatenates the two readings. Neither criterion's verdict, direction or non-degeneracy depends on the other's: a Half-A premise miss or degeneracy leaves MECH-566's direction intact, and vice versa (red-team F3).",
+    "criteria_non_degenerate": {
+      "P1_sd106_pc_recoverability_score_on_seed_majority": true,
+      "M1_mech566_recondition_lift_on_seed_majority": true,
+      "C_transforms_nontrivial": true,
+      "C_p1_can_read_low": true,
+      "C_manipulation_reaches_decoder": true
+    },
+    "gate_reason": "",
+    "anchor_reachability": [
+      {
+        "anchor_name": "anchor_pca32_reaches_parity_bar_on_majority",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-1010 ws250_pca at mlp128, seeds 42/43/44 (0.8836 / 0.8578 / 0.8702); V3-EXQ-1023a reproduced 0.8771 / 0.8578 / 0.8702",
+        "threshold": 0.6666666666666666,
+        "margin_cells": 0,
+        "required_score": 0.6666666666666666,
+        "reachable": true,
+        "n_reference_cells": 3,
+        "n_reference_scored_true": 3,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "anchor_name": "instrument_rawfield_control_supra_floor",
+        "guard": "assert_anchor_reachable",
+        "reference_source": "V3-EXQ-1010 rawfield_ceiling 0.9735-0.9832",
+        "threshold": 1.0,
+        "margin_cells": 0,
+        "required_score": 1.0,
+        "reachable": true,
+        "n_reference_cells": 3,
+        "n_reference_scored_true": 3,
+        "reference_score": 1.0,
+        "per_cell_scored": [
+          true,
+          true,
+          true
+        ]
+      }
+    ],
+    "pre_registered_reading_table": {
+      "HIGH_parity_LOW_score": "which_directions_confirmed_directly -> /failure-autopsy -> SD-106 objective-choice decision (user-held)",
+      "HIGH_parity_HIGH_score": "retained_directions_are_pca32 -> RE-OPENS the 1023a elimination; Half B becomes the load-bearing reading (MECH-566 / MECH-567 territory); autopsy the pair",
+      "HIGH_parity_between": "recoverability_indeterminate -> recorded, no routing",
+      "parity_below_floor": "probe_premise_parity_unmet -> reproduction failure vs V3-EXQ-1041 (Half A only; Half B unaffected)",
+      "untrained_reads_above_low": "probe_cannot_read_low -> P1 degenerate, SD-106 unknown; decision-cell readouts carry the question",
+      "M1_CONFIRM": "MECH-566 supports -> the fix is a fixed reconditioning stage, cheap",
+      "M1_FALSIFY": "MECH-566 weakens -> conditioning exonerated; route to MECH-567 (target-carrying head) / content explanation",
+      "M1_PARTIAL": "MECH-566 mixed -- the claim's own grey zone; an acceptable terminal reading (V3-EXQ-1008 measured 5 of 6 OFF-code lifts in it)",
+      "M1_HARMFUL": "whitening hurt the consumer -> amplification or harmful conditioning; read consumer_input_column_rms before believing either; MECH-566 unknown"
+    },
+    "posthoc_disclosure": "All framing of V3-EXQ-1023a's OUTCOME in this driver is post-hoc; only P1 and M1 are pre-registered here.",
+    "null_reading": "A P1 LOW confirms which-directions directly; a P1 HIGH re-opens it. An M1 FALSIFY exonerates conditioning on THIS code; it says nothing about a differently-trained code. Route to /failure-autopsy."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4174b21d919069f1a53c4be03266f79a6d1d0e658b5a9b8995fba446bd5ca66d",
+  "substrate_commit": {
+    "commit": "821fa31baaf8957aee62522e2920b6709d45279f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "latent.use_resource_field_head": true,
+    "latent.use_world_encoder_skip": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e2.e2_action_contrastive_multistep_enabled": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_vs_rollout_gating": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_dacc": true,
+    "use_lateral_pfc_analog": true,
+    "lateral_pfc_train_rule_bias_head": true,
+    "use_candidate_rule_field": true,
+    "crf_persist_rules_across_episode_reset": true,
+    "crf_mature_pool_dynamics": true,
+    "crf_context_from_e2_world_forward": true,
+    "crf_availability_maintenance": true,
+    "crf_maintenance_couple_to_theta": true,
+    "use_ofc_analog": true,
+    "ofc_harm_dim": 32,
+    "use_ofc_devaluation_head": true,
+    "ofc_train_devaluation_head": true,
+    "use_gated_policy": true,
+    "use_noise_floor": true,
+    "use_e3_score_diversity": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 183.116855211,
+  "config": {
+    "rung": {
+      "rung_id": "D3_hazard_free",
+      "role": "derisk_decisive",
+      "overrides": {
+        "hazard_food_attraction": 0.0,
+        "proximity_harm_scale": 0.0,
+        "reef_bipartite_layout": false,
+        "reef_enabled": false,
+        "n_reef_patches": 0,
+        "num_hazards": 0
+      }
+    },
+    "level_id": "W3_survival_zeroed",
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": false,
+      "n_reef_patches": 0,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.0,
+      "reef_bipartite_layout": false,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "zworld_p0_episodes": 60,
+    "warmup_phases": "p0a_only",
+    "steps_per_episode": 200,
+    "bc_episodes": 40,
+    "bc_random_episodes": 20,
+    "bc_train_frac": 0.7,
+    "adapter_passes": 60,
+    "adapter_batch": 256,
+    "adapter_lr": 0.001,
+    "sd106_p0a_epochs": 40,
+    "off_probe_p0a_epochs": 12,
+    "sd106_p0a_step_floor": 1000,
+    "sd106_preservation_weight": 200.0,
+    "sd106_use_world_encoder_skip": true,
+    "sd106_parity_bar": 0.85,
+    "projection_dim": 32,
+    "rungs": [
+      "linear",
+      "mlp128"
+    ],
+    "members": [
+      "diag",
+      "zca",
+      "lda"
+    ],
+    "feature_sources": [
+      "sd106_sense",
+      "sd106_path"
+    ],
+    "parity_high_floor": 0.95,
+    "p1_high_floor": 0.9,
+    "p1_low_ceil": 0.75,
+    "pc_tail_start": 10,
+    "mech566_harmful_lift": 0.05,
+    "m1_routes_on_member": "zca",
+    "overlap_high_floor": 0.8,
+    "overlap_low_ceil": 0.6,
+    "zca_ridge_frac": 0.001,
+    "mech566_confirm_lift": 0.05,
+    "mech566_falsify_lift": 0.02,
+    "invariance_tol": 0.0001,
+    "repro_tol": 0.05,
+    "converged_linear": {
+      "l2": 1e-06,
+      "lbfgs_steps": 6,
+      "max_iter": 100
+    },
+    "raw_field_control_floor": 0.6,
+    "seed_majority": 2,
+    "arms": [
+      "probe_sd106",
+      "probe_off",
+      "rawfield_ceiling",
+      "ws250_pca__linear",
+      "ws250_pca__mlp128",
+      "sd106_sense_diag__linear",
+      "sd106_sense_diag__mlp128",
+      "sd106_sense_zca__linear",
+      "sd106_sense_zca__mlp128",
+      "sd106_sense_lda__linear",
+      "sd106_sense_lda__mlp128",
+      "sd106_path_diag__linear",
+      "sd106_path_diag__mlp128",
+      "sd106_path_zca__linear",
+      "sd106_path_zca__mlp128",
+      "sd106_path_lda__linear",
+      "sd106_path_lda__mlp128"
+    ],
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
