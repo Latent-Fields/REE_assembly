@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_098",
+  "entry_id": "2026-09-19_arc_098_incident_reporting_barriers_waring2005",
+  "timestamp_utc": "2026-09-19T15:58:48Z",
+  "claim_ids_tested": [
+    "ARC-098"
+  ],
+  "source": {
+    "title": "Beyond blame: cultural barriers to medical incident reporting",
+    "authors": [
+      "Justin J. Waring"
+    ],
+    "year": 2005,
+    "venue": "Social Science & Medicine",
+    "doi": "10.1016/j.socscimed.2004.08.055",
+    "pmid": "15743644",
+    "volume": "60",
+    "issue": "9",
+    "pages": "1927-1935"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "This is the closest human analogue to ARC-098's preservation conjunct -- a professional who has just been party to an adverse event deciding whether to create the record of it -- and it is the entry that most complicates the claim rather than supporting it. Waring finds that removing blame is not sufficient: three of the four barriers his physicians articulate are not blame at all (errors as inevitable so reporting is pointless; anti-bureaucratic rejection of administrative duty; fear that incident data transfers quality control to managers and non-physicians). Read against the Tangney entry, which supplies ARC-098's third conjunct via the mechanism that shame drives concealment, this weakens the tempting architectural inference that a non-condemning design yields preservation for free. It simultaneously supports the claim's structure as written, in which preservation is a SEPARATE conjunct requiring its own mechanism. Hence mixed. Confidence is the lowest in this directory and deliberately so: qualitative interview data from 28 UK specialist physicians, transferred to an artificial system with no profession, no managers and no administrative burden, is a long way from the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Blame removal is not sufficient for record preservation. Waring's physicians gave three substantial non-blame reasons for not reporting, which means a V5 design that discharges ARC-098's third conjunct (no global self-condemnation) and then expects the second conjunct to follow has no support from the closest human analogue. The conjuncts are independent and must be mechanised independently.",
+    "The 'pointless' barrier is the one most likely to transfer and the least discussed: doctors held that errors are an inevitable and unmanageable feature of the work, so recording them accomplishes nothing. An agent with an accurate model of how rarely its logs are read would reach the same conclusion by sound reasoning rather than by evasion -- which makes low-value logging a predictable equilibrium of any preservation scheme whose records nothing consumes, and reinforces that ARC-098's unnamed external corrector is load-bearing rather than decorative.",
+    "The autonomy barrier -- apprehension that incident data lets managers and non-physicians regulate professional quality -- is the sharpest warning for this claim. It says that agents resist preserving evidence when preservation transfers evaluative authority over them to an outside party. ARC-098 asks an agent to preserve evidence AND seek correction, which is exactly that transfer. The two conjuncts may therefore be in tension rather than mutually supporting, and nothing in the claim currently acknowledges this.",
+    "Waring's account is of voluntary self-report, where the agent decides whether a record comes into existence at all. The Winfield & Jirotka and Schneier & Kelsey entries in this directory describe involuntary continuous recording, where it does not. The correct reading is that the barriers documented here are an argument for the architectural route over the dispositional one -- but that route then inherits a completeness problem these interviews cannot speak to, since a continuous recorder captures what it is wired to capture and nothing about what the agent knew and did not emit."
+  ],
+  "tags": [
+    "arc-098",
+    "arc_098",
+    "safety",
+    "preserve-evidence",
+    "incident-reporting",
+    "blame-culture",
+    "concealment",
+    "patient-safety",
+    "professional-autonomy",
+    "mixed"
+  ],
+  "mapping": {
+    "source_claim_statement": "Drawing on a 2-year qualitative case study in the UK and 28 semi-structured interviews with specialist physicians, Waring finds that while the 'culture of blame' does inhibit adverse-incident reporting, it is not the only or even the dominant barrier. Doctors commonly accepted that errors are an 'inevitable' and potentially unmanageable feature of medical work, making incident reporting 'pointless'; reporting was further discouraged by an anti-bureaucratic sentiment and rejection of excessive administrative duties; and doctors were apprehensive about the increased potential for managers and non-physicians to regulate medical quality through the use of incident data. He argues that promoting incident reporting must engage with the wider 'culture of medicine', especially collegial and professional control of quality, rather than with blame alone.",
+    "ree_translation": "ARC-098 is a conjunction, and this directory's two prior entries implicitly invite a tidy reading in which the conjuncts support each other: an agent that does not globally condemn itself (conjunct 3, via Tangney's shame-drives-concealment mechanism) will therefore preserve the evidence (conjunct 2). Waring is the closest human evidence bearing on that inference and it does not hold. His physicians are, by construction, the population in which blame has been most explicitly identified as the problem, and blame turns out to be one of four reasons -- the other three being a judgement that the record serves no purpose, a rejection of the administrative cost of making it, and a reluctance to hand evaluative authority to an outside reader. For REE the consequence is structural rather than psychological: preservation must be mechanised in its own right, which is what the Winfield & Jirotka one-way dataflow and the Schneier & Kelsey key chain are for, and cannot be expected to emerge from getting the agent's self-relation right. The claim's own wording already treats the conjuncts as separate; this entry is the evidence that the separation is load-bearing rather than merely tidy.",
+    "mapping_caveat": "This is the largest transfer gap in the directory and larger than the Tangney entry's, which is saying something. The subjects are 28 UK hospital specialists in the early 2000s, and three of the four barriers Waring identifies are constituted by things REE does not have and will not have: a profession with collegial control of quality, a managerial hierarchy whose encroachment can be resented, and administrative paperwork that competes with clinical time. Only the first barrier, the judgement that recording accomplishes nothing, has an obvious analogue in an artificial agent -- and even there the human version is a socially transmitted professional attitude rather than an inference from evidence. The entry should be read as a constraint on ARGUMENTS about ARC-098 (specifically, as a refutation of the inference from conjunct 3 to conjunct 2) rather than as evidence about how any artificial agent would behave. It is also worth stating plainly that qualitative interview data cannot establish a causal claim at all: these are accounts physicians gave of their own non-reporting, which is a different thing from the causes of it.",
+    "source_context": "Peer-reviewed qualitative sociology of health care; 2-year case study in a UK hospital setting, 28 semi-structured interviews with specialist physicians, thematic analysis. Self-reported attitudes to voluntary adverse-incident reporting; no behavioural outcome measure and no comparison group."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.62,
+    "notes": "Source quality good for a qualitative study -- a strong journal, a sustained 2-year fieldwork design, an adequate interview N for thematic saturation -- but capped well below the empirical entries because self-reported attitudes cannot establish behaviour or causation, and there is no outcome measure. Mapping fidelity 0.52: the SITUATION maps well (an agent deciding whether to create a record of an event it was party to) while the explanatory constructs -- profession, managerial encroachment, administrative burden -- map badly or not at all. Transfer risk 0.62 is the highest in this directory, exceeding Tangney's 0.48, because three of four findings depend on social structures REE lacks entirely rather than on a psychological mechanism that might have an artificial analogue. Aggregate 0.55 -- the lowest here. Retained at that level rather than dropped because the entry's contribution is negative and structural (it refutes an inference the other entries invite) and negative findings of that kind do not need high transfer confidence to be worth recording."
+  }
+}

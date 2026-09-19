@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_098",
+  "entry_id": "2026-09-19_arc_098_forward_secure_audit_logs_schneier1999",
+  "timestamp_utc": "2026-09-19T15:58:48Z",
+  "claim_ids_tested": [
+    "ARC-098"
+  ],
+  "source": {
+    "title": "Secure audit logs to support computer forensics",
+    "authors": [
+      "Bruce Schneier",
+      "John Kelsey"
+    ],
+    "year": 1999,
+    "venue": "ACM Transactions on Information and System Security",
+    "doi": "10.1145/317087.317089",
+    "volume": "2",
+    "issue": "2",
+    "pages": "159-176"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the canonical construction for the exact adversary ARC-098's preservation conjunct faces: an attacker who controls the logging machine itself and wants to rewrite the record of what happened before it took control. Schneier and Kelsey show that hash-chaining entries and evolving the authentication key through a one-way function after every entry makes all PRE-compromise entries unforgeable, unmodifiable and undeletable-without-detection, even by an adversary holding the machine's current secrets. Translated to this claim: a system that enters a dangerous self-state cannot retroactively sanitise the record of its own approach to that state. Confidence sits below the Winfield entry despite being a real result with real guarantees, because the guarantee is narrower than ARC-098 needs in two documented ways -- the tail of the log remains truncatable, and verification requires a trusted external party -- and because the mapping is by structural analogy from computer security to a cognitive self-model rather than a statement about agents at all.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Forward security protects the PAST, not the present. Entries written before the compromise are sealed; from the moment of compromise onward the adversary holds the current key and can write whatever it likes, and those entries verify correctly. For ARC-098 this draws a sharp and useful line: the record of the agent's approach to a dangerous self-state is defensible, the record produced by an agent already in that state is not. Any design that treats the whole log as equally trustworthy has misread the guarantee.",
+    "The scheme does not defend against the truncation attack -- deleting a contiguous run of tail-end entries. Ma and Tsudik's analysis (eprint 2008/185) shows that entries still residing on the logging machine are vulnerable because no single authentication tag covers the whole file, and detection requires synchronisation with the trusted server. So the most recent evidence, which is exactly the evidence about the episode under investigation, is the least protected part of the log.",
+    "Verification is server-assisted: the verifier cannot check the log alone and must consult a trusted server holding the initial key. This yields the delayed-detection weakness (modifications go unnoticed until the log is uploaded) and a single point of failure. ARC-098 inherits the requirement rather than escaping it -- the preservation conjunct implicitly presupposes an external party that the claim does not currently name, which is the same unnamed investigator the Winfield entry surfaces from a different direction.",
+    "This literature secures a log against an adversary who wants to alter what was written. It has nothing to say about an agent that never writes the entry in the first place, or that writes a technically-true but uninformative one. Cryptographic integrity guarantees the record is faithful to what was emitted, never that what was emitted is faithful to what happened -- so ARC-098's preservation conjunct needs a completeness argument alongside the integrity one, and this paper supplies only the latter."
+  ],
+  "tags": [
+    "arc-098",
+    "arc_098",
+    "safety",
+    "preserve-evidence",
+    "audit-log",
+    "tamper-evident",
+    "forward-security",
+    "hash-chain",
+    "computer-forensics",
+    "accountability",
+    "supports"
+  ],
+  "mapping": {
+    "source_claim_statement": "An audit log kept on a machine that may itself be compromised can be made forward-secure. A logging machine establishes a shared secret with a trusted remote server; after each entry the current key is evolved through a one-way function and the old key erased, entries are linked in a hash chain, and each entry carries a MAC computed under the key current at the time of writing. An attacker who subsequently gains complete control of the machine, including all its current secrets, therefore cannot read, modify or delete any entry written before the break-in without the alteration being detectable, because the keys that authenticated those entries no longer exist anywhere on the machine.",
+    "ree_translation": "ARC-098's second conjunct has an adversary problem that its first and third do not. Preserve evidence -- against whom? The answer is uncomfortable: against the system itself, in the state the evidence is about. The Winfield & Jirotka entry in this directory gives the architectural answer (a one-way dataflow into a passive recorder) and then asserts in a single sentence that the recorder 'will of course also need to be secure and tamper-proof'. Schneier and Kelsey are what that sentence resolves to. Their construction is built for precisely the case where the custodian of the log and the thing to be investigated are the same machine, and it establishes that the problem is tractable: the evidence trail leading up to a compromise survives the compromise, by cryptographic construction rather than by anyone's continued good behaviour. For a V5 self-model this means the record of the agent's approach to a dangerous self-state can be made unrewritable by the agent that arrives in it -- which is the strongest form of 'preserve evidence' that is actually achievable, and is meaningfully stronger than a record the agent merely declines to alter.",
+    "mapping_caveat": "The transfer here is structural analogy, and the source domain is not agents at all. This is a computer-security paper about hosts, keys and attackers; it makes no claim about cognitive systems, self-states, or anything an agent might be said to want. The analogy holds only if one accepts the substitution of 'agent entering a dangerous self-state' for 'attacker compromising the logging host', and that substitution is doing real work that the paper cannot license -- a compromised host has an adversary's goals, whereas ARC-098's premise (read alongside its third conjunct, and alongside the Tangney entry) is that a well-designed agent should have no such goal. The honest reading is that this paper establishes an upper bound on what preservation can guarantee under the worst case, not a description of the expected case. Two further boundaries, both documented in the follow-up literature rather than conceded in the original: the scheme is vulnerable to truncation of the log's tail, and verification depends on a trusted external server. Both bear directly on ARC-098 -- the first because the tail is where the incriminating entries are, the second because it makes the claim's unnamed external corrector a structural requirement rather than a nicety.",
+    "source_context": "Peer-reviewed cryptography paper (ACM TISSEC); formal scheme with security argument, no empirical study. Threat model is an attacker who gains complete control of an untrusted logging machine at an arbitrary time; the analysis of its two documented weaknesses (truncation attack, delayed detection) is drawn from Ma & Tsudik, A New Approach to Secure Logging, IACR ePrint 2008/185."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is the highest in this directory: ACM TISSEC, a foundational and heavily built-upon result, and the scheme's limits are themselves well characterised in the subsequent literature, which is the mark of a paper that has been properly worked over rather than merely cited. Mapping fidelity is the constraint -- the paper's subject is a logging host under attack, not an agent, and ARC-098's reading requires substituting a self-state for an adversary, a substitution the paper neither makes nor supports. Transfer risk correspondingly high at 0.45 (near the Tangney entry's 0.48, for a different reason: not species transfer but domain transfer from security engineering to cognitive architecture). Aggregate 0.68 sits below Winfield despite far stronger source quality, because architectural_commitment claims weight mapping_fidelity and this entry's fidelity is its weakest component."
+  }
+}
