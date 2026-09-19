@@ -6309,7 +6309,11 @@
       "task_claim_session_id": "igw-auto-igw-242-proposal-for-mech-066-20260919T163247Z",
       "task_claim_claimed_at": "2026-09-19T16:32:47Z",
       "assigned_at": "2026-09-19T16:30:31Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-19T16:47:57Z",
+      "completion_summary": "marked EXP-0810/EVB-1416 (MECH-066) blocked_substrate: no representation-isolation comparator arm, no coupling measure; shared write-audit spike V3-EXQ-1052 refused 2026-09-17 and never ran (REE_assembly de56e9be3c)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EXP-0810/EVB-1416 (MECH-066) blocked_substrate: no representation-isolation comparator arm, no coupling measure; shared write-audit spike V3-EXQ-1052 refused 2026-09-17 and never ran (REE_assembly de56e9be3c)"
     }
   ],
   "dispositions": [
@@ -9140,6 +9144,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T07:31:28Z",
       "re_eligible_after": "2026-09-21T07:31:28Z"
+    },
+    {
+      "stable_hash": "cbeb7e3af745",
+      "igw_id_at_disposition": "IGW-20260919-242",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-066"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-066",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-19T16:47:59Z",
+      "re_eligible_after": "2026-09-21T16:47:59Z"
     }
   ]
 }
