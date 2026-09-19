@@ -1,6 +1,13 @@
 # INV-063 leg B: the across-sleep frozen-battery DV is not readable as an IMPROVEMENT
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or any other registry).**
+**Status: REVIEWED AND ANSWERED 2026-09-19T09:25:51Z -- the user chose OPTION B (sec 5).
+Nothing in this file has been written to claims.yaml or to any other registry, and that
+remains true.** The DV-direction diagnostic is queued as **V3-EXQ-1063**
+(`ree-v3` `61ff871548`, reconciled into the coordinator DB and confirmed surviving the
+`phase3-queue` snapshot `335bf7f6`). The four-arm falsifier runs ONLY if it comes back
+green, and that go/no-go returns to the user with the numbers; **options C and D below
+stay open for that later decision.** Sec 3c has since been CORRECTED -- read it before
+citing sec 3b's mechanism.
 
 - Raised by: headless science chip `chip-proposal-exp-0736-paced`, campaign
   `science-20260919-inv063-four-arm-intake-ladder`, session
