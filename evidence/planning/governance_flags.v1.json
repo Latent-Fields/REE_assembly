@@ -5179,6 +5179,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0366",
+      "claim_ids": [
+        "MECH-018"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "USER DECISION 2026-09-19 (Orchestrator campaign lane, real AskUserQuestion) on GFLAG-0356 (MECH-018 readout (iii) COMPRESSION): NARROW readout (iii) to what the landed substrate can express (ree-v3 5953f80 gradient step + 65c1f72 record + 7f0a9c0 flag registry; parts (1)+(2) of EXP-0755's release_condition), rather than commissioning a centre-merge operation. Governance to apply the narrowing to MECH-018's text and flip EXP-0755 from blocked_substrate; the Orchestrator then dispatches chip-proposal-exp-0798-paced with the narrowed readout stated.",
+      "raised_by_session": "orchestrate-20260919-2125",
+      "raised_at": "2026-09-19T22:15:59Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
