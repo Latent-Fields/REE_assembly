@@ -6359,7 +6359,11 @@
       "task_claim_session_id": "igw-auto-igw-243-proposal-for-mech-067-20260919T184321Z",
       "task_claim_claimed_at": "2026-09-19T18:43:21Z",
       "assigned_at": "2026-09-19T18:41:09Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-19T19:03:33Z",
+      "completion_summary": "MECH-067 audit spike REFUSED at /queue-experiment Step 2.5c; marked EVB-1417/EXP-0812 blocked_substrate (origin a689baa83e3 + 3f63c0c61fd) -- substrate IS ready (runtime probe confirmed), but load-bearing C1 is bound to the open CORRUPTING ContextMemory.write defect",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-067 audit spike REFUSED at /queue-experiment Step 2.5c; marked EVB-1417/EXP-0812 blocked_substrate (origin a689baa83e3 + 3f63c0c61fd) -- substrate IS ready (runtime probe confirmed), but load-bearing C1 is bound to the open CORRUPTING ContextMemory.write defect"
     }
   ],
   "dispositions": [
@@ -9218,6 +9222,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T18:08:43Z",
       "re_eligible_after": "2026-09-21T18:08:43Z"
+    },
+    {
+      "stable_hash": "05f60d3f04eb",
+      "igw_id_at_disposition": "IGW-20260919-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-067"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-067",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-19T19:03:35Z",
+      "re_eligible_after": "2026-09-21T19:03:35Z"
     }
   ]
 }
