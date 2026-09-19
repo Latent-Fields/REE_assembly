@@ -5020,6 +5020,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0354",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "flag_type": "stale_note",
+      "summary": "ARC-029's what_would_answer and the V3-EXQ-063a autopsy (2026-09-14) section 8 both carry calibration guidance that is now MEASURED stale, in BOTH directions. (a) ARC-029's worked MECH-108 amplitudes (a > 0.18 at rv ~0.33) assume a pre-training rv; a trained world-forward model puts rv at ~1e-6..1.6e-5, where that sweep is inert -- and on the new variance-tracking bar (ree-v3, landed 2026-09-18) a > 0.18 is stale the OTHER way, driving occupancy to ~0, with the workable band measured at a ~ 0.02-0.10. (b) 063a section 8's P1 bullet routes to arming use_natural_commit_latch_hold, which fixes the OPPOSITE failure (V3-EXQ-460i fragmentation, occupancy too SHORT) rather than the measured saturation, and its P3 bullet calls the harm operating point 'already met' on 063a's ~-0.055 harm/step, whereas the recalibrated pre-flight env measures 0.0025-0.0068, under the 0.01 floor. Two of 063a's three P-bullets were written against operating points that no longer hold, so a future session routing off that autopsy will re-derive an inapplicable remedy. Full measurement and the argued disposition of 063a's 'no new substrate is needed': REE_assembly/evidence/planning/arc029_variance_tracking_commit_bar_build_20260918.md (663aa08c3b on origin/master); prior finding 67520bc08d; GFLAG-0346.",
+      "raised_by_session": "metaworker-science-20260918-arc029-variance-tracking-threshold",
+      "raised_at": "2026-09-19T01:02:26Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
