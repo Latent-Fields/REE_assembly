@@ -5231,6 +5231,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0370",
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-1067 (SD-032a/MECH-266 squash-vs-clamp cap sweep) REFUSED at /queue-experiment Step 4.5 with a BLOCKING red-team verdict, verified against source: the affinity bounding operator is applied to EVERY affinity_weights signal (salience_coordinator.py:616-636) including the [0,1]-bounded external_task_drive (agent.py:2760-2765, w=3.0), and at sigma=cap the squash returns 0.500x AT the cap / 0.667x at half-cap -- so swapping clamp->squash changes the external_task logit by -0.96..-1.50 while the dacc_pe degeneracy fix under test changes its logit by only -0.034..-0.173 (8x-28x confound, away from external_task). Both PASS and the pre-registered NULL become unattributable, destroying exactly the third-failure attribution the campaign was dispatched to secure. This also falsifies the inference recorded in substrate_queue mode-governance-engagement implementation_log.squash_sigma_decision_2026_09_19.why_sigma_equals_cap ('every SUB-cap signal passes through precisely as the legacy box clamp passes it') -- slope 1 at the ORIGIN is true, identity over [0,cap] is not; that sentence is the stated licence for this sweep. Script authored and committed BLOCKED (not queued); V3-EXQ-1067 reserved but unconsumed. Options + recommendation (A: gain-matched clamp control arm) staged at REE_assembly/evidence/planning/sd032a_squash_vs_clamp_sweep_blocked_staged_20260919.md; decision chip chip-20260919-sd032a-squash-confounded-gain-cut.",
+      "raised_by_session": "metaworker-science-20260919-sd032a-squash-clamp-cap-sweep",
+      "raised_at": "2026-09-19T22:52:05Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
