@@ -5140,6 +5140,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0363",
+      "claim_ids": [
+        "MECH-131"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-131 DISPOSITION (user decision OPTION C, 2026-09-19T21:39:15Z): the mechanism is IMPLEMENTED and ACTIVATED -- ree-v3 contracts C1-C9 in tests/contracts/test_mech131_terrain_prior_residue_channel.py prove BOTH anticipatory residue channels are live (terrain_prior_residue_channel_enabled = CH1, score_trajectory_residue_terrain_enabled = CH2, both default True so the lesion is opt-in) and that residue STORAGE and the POST-HOC scorer stay intact under the complete lesion -- but it has NO MEASURABLE AUTHORITY OVER COMMITTED SELECTION at tested scale, because E3 commits the same action at 39-40 of 40 probe states at BOTH the production (0.2) and lowered (0.05) CEM exploration floors; the proximate blocker is therefore a DEGENERATE POLICY, not the residue representation and not the exploration floor, and the undertrained-policy caveat (20 warmup episodes vs V3-EXQ-042's 600; the healthy entropy reference 0.4965 nats is from a full-scale run) is recorded as UNTESTED at ~30h to settle. PRECONDITION for authoring MECH-131's missing what_would_answer and for any future falsifier: policy diversity MUST be established FIRST -- selected-action entropy >= 0.25445 nats (the midpoint of V3-EXQ-567's recorded 0.0124 collapsed / 0.4965 healthy, same estimator and units as experiments/_lib/baselines/exq643_modulatory_authority_baseline.py) -- because until that clears, no DV computed over the proposed candidate set can register a lesion of the proposal mechanism, which subsumes the earlier residue-manifold and ao_std-floor diagnoses; full evidence, all four decision stops, what was banked and the measured costs are in REE_assembly/evidence/planning/mech131_three_arm_lesion_design_staged_20260918.md (final addendum 5). No experiment was queued for MECH-131 by this work, by decision; claims.yaml was deliberately not edited beyond the factual implementation_note added 2026-09-18, which remains accurate.",
+      "raised_by_session": "metaworker-science-20260918-mech131-vmpfc-analog",
+      "raised_at": "2026-09-19T21:41:48Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
