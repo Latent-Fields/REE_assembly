@@ -196,6 +196,8 @@ Stated in the synthetic setting: any confidence readout that is itself noisy and
 
 ### P3-R5 — exposure-without-internal-generation arm (from Sharman 2004)
 
+> **Superseded 2026-09-19 — do not build from this paragraph.** The inference in its last sentence ("if REE's replay effect is reproduced by re-exposure, the result is fluency and not genealogy") was falsified by the C7 tranche, [`provenance_internally_generated_repetition_tranche.md`](provenance_internally_generated_repetition_tranche.md) §6.2: observation inflation (Lindner et al. 2010, PMID 20689054) shows a non-self-generated arm can produce the effect through simulation, so "not self-generated" does not imply "fluency". By user decision of 2026-09-19 (Option A), `P3-R5` is restated as **three arms — self-generation / simulation-without-self / re-exposure-only — crossed with low vs high elaboration**, in [`provenance_p3_replay_amplification_design.md`](provenance_p3_replay_amplification_design.md) §3a, which is now the operative statement. The original text is kept below unaltered, as the record of what was recommended on 2026-09-10.
+
 P3-R1 already stratifies replay by kind (content rehearsal / relational linking / prediction-generated). Add a fourth level that is **not internal generation at all**: re-exposure to the trace without running the generative process. Sharman 2004 found paraphrasing as effective as imagining, and no effect beyond one exposure — so if REE's replay effect is reproduced by re-exposure, the result is fluency and not genealogy, whatever the ancestry condition says.
 
 ### P3-R6 — predeclare the Goff & Roediger outcome as a known result
