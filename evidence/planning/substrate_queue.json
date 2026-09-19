@@ -5659,8 +5659,9 @@
       "ready": false,
       "design_doc": "docs/architecture/sd_061_difficulty_gated_proposal_entropy.md",
       "depends_on_unresolved": [
-        "Q-056 3-arm falsifier (off/stuck-gated/always-high) not yet run -- and BLOCKED: do not queue it until decision (c) below is answered",
-        "(c) OPEN DESIGN DECISION, raised 2026-09-18: what the StuckStateDetector should do when declared axes are ABSENT (axis mask / minimum-present-axes requirement / threshold recalibration), and which axes ought to carry the firing. combine_mode='mean' averages over PRESENT axes only, so which axes arrive sets the attainable MAXIMUM of stuck_score, not just its value. This decides what 'stuck' MEANS and is therefore a scientific decision, not a build one."
+        "Q-056 3-arm falsifier (off/stuck-gated/always-high) not yet run -- BLOCKED on the decision named below; do not queue it until that is answered",
+        "(c) ANSWERED 2026-09-19 (user, option 1 -- AXIS MASK) and BUILT in ree-v3 f372ce4207: a run declares its axis set, the combination is over the DECLARED set, and a declared axis that is not wired REFUSES rather than silently rescaling. Threshold recalibration was REJECTED. declared_axes=None keeps the legacy behaviour bit-identical.",
+        "OPEN: WHICH AXES Q-056 DECLARES, plus whether its leg (a) is worth running given the temperature lever's measured reach. Measured on the baseline loop: declared ('progress','margin') never fires (duty 0.000, G9 pole A); declared ('progress',) fires on 98% of ticks, peaks on the LAST tick and never decays (G9 pole B). MECH-343 needs a peak that exceeds threshold AND THEN DECAYS, so neither declarable set is a usable trigger yet. Separately, the now-coupled temperature lever moves action-object content by ~1.2e-5 and does NOT move candidate first-action-CLASS entropy -- the DV leg (a) names. Both change what Q-056 measures, so both are the user's call."
       ],
       "unblocks_claims": [
         "MECH-343",
@@ -5672,10 +5673,11 @@
       "priority_note": "Q-056 buildability triage greenlit; off V3 green-board critical path.",
       "autopsy_ref": "evidence/planning/q054_q055_q056_buildability_triage_2026-06-19.md",
       "added_session": "q054-q055-q056-buildability-triage-20260619",
-      "last_seen_session": "metaworker-science-20260918-sd061-mech343-q056-substrate",
+      "last_seen_session": "metaworker-science-20260918-sd061-mech343-q056-axismask",
       "implementation_log": [
         "2026-06-19: SD-061 substrate landed (ree-v3). MECH-343 stays candidate/substrate_conditional/v3_pending (PROMOTES NOTHING). Validation experiment pending.",
-        "2026-09-18: AMENDED (a)+(b) per GFLAG-0352 (ree-v3 6ba3eb96a1). Coupled the temperature half to its SD-055 consumer behind dgpe_enable_differentiable_cem (default False, bit-identical); added temperature-inertness and axis-presence diagnostics to both modules' get_state(); recorded the four-condition chain the SD-032b choice_difficulty axis needs. Contracts C9-C16 added (17 pass). PROMOTES NOTHING -- MECH-343 stays candidate/substrate_conditional/v3_pending. Q-056 remains BLOCKED on decision (c). Record: evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md"
+        "2026-09-18: AMENDED (a)+(b) per GFLAG-0352 (ree-v3 6ba3eb96a1). Coupled the temperature half to its SD-055 consumer behind dgpe_enable_differentiable_cem (default False, bit-identical); added temperature-inertness and axis-presence diagnostics to both modules' get_state(); recorded the four-condition chain the SD-032b choice_difficulty axis needs. Contracts C9-C16 added (17 pass). PROMOTES NOTHING -- MECH-343 stays candidate/substrate_conditional/v3_pending. Q-056 remains BLOCKED on decision (c). Record: evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md",
+        "2026-09-19: (c) ANSWERED by the user (option 1, AXIS MASK) and BUILT -- ree-v3 f372ce4207. StuckStateDetectorConfig.declared_axes (default None -> legacy mean-over-present, bit-identical) + declared_axis_grace_ticks (8), REEConfig.stuck_declared_axes, new StuckStateAxisUnavailable carrying the four-condition chain the 'difficulty' axis needs, and sd061_declared_axes / sd061_n_undetermined_ticks / sd061_axes_ever_seen diagnostics. Grace window added after the ecological probe caught that score_margin is absent on the FIRST tick only, which had made 'margin' undeclarable; inside the window a missing axis is UNDETERMINED with NO partial combination, so the anti-rescale guarantee holds absolutely. Contracts C17-C26 (28 pass). PROMOTES NOTHING. Q-056 still NOT queued -- see the OPEN item above."
       ]
     },
     {

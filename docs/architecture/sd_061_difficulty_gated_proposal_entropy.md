@@ -239,3 +239,60 @@ What the detector should do when axes are absent -- an axis mask, a minimum-pres
 requirement, or a threshold recalibration -- and which axes ought to carry the firing,
 determine what "stuck" **means**, and are therefore a scientific decision rather than a
 build one. Raised as a decision chip. **Do not queue Q-056 until (c) is answered.**
+
+---
+
+## 2026-09-19 amendment (c): the declared axis mask
+
+**User decision, 2026-09-19 (option 1 of the (c) chip).** ree-v3 `f372ce4207`.
+**PROMOTES NOTHING**; Q-056 is still not queued.
+
+### What was decided, and what was rejected
+
+A run **declares** which detector axes are in scope. The combination is taken over
+exactly the declared set -- an undeclared axis is ignored even when its input
+arrives, so the denominator is fixed by the declaration and cannot drift with
+instrumentation. A declared axis that is not wired **refuses** the run
+(`StuckStateAxisUnavailable`) rather than silently rescaling.
+
+**Threshold recalibration was considered and REJECTED.** Scaling the threshold by
+the present-axis count would let `is_stuck` fire again without making the trigger
+attributable, and would redefine "stuck" as a function of instrumentation rather
+than of the agent's state.
+
+`declared_axes=None` (the default) is the legacy mean-over-present behaviour,
+bit-identical, so nothing already recorded changes meaning.
+
+### The grace window
+
+`declared_axis_grace_ticks` (8) exists because "absent" has two causes. The first
+implementation refused on any tick with a `None` input, and the ecological probe
+caught the flaw immediately: `score_margin` is `None` on the **first tick only**
+(until `e3.last_scores` exists), which made `margin` undeclarable by any driver.
+So an axis unseen *inside* the window is UNDETERMINED -- no advance, and **no
+partial combination is formed**, so the anti-rescale guarantee holds absolutely;
+still unseen *after* it is NOT WIRED and refuses; and an axis seen earlier that
+goes missing refuses at once. The knob can only change *when* a mis-wired run is
+told, never a measured quantity (contract `C26`).
+
+### Measured, on the loop the 2026-09-18 baseline used
+
+| `declared_axes` | stuck_score range | duty(`is_stuck`) | note |
+|---|---|---|---|
+| `None` (legacy) | 0.0000 - 0.5000 | 0.000 | baseline reproduced exactly |
+| `("progress",)` | 0.0000 - 1.0000 | 0.980 | peak at the LAST tick; no decay |
+| `("progress","margin")` | 0.0000 - 0.5000 | 0.000 | = the axes that arrive |
+| `("progress","difficulty")` | -- | -- | REFUSED after 9 ticks |
+
+**Neither declarable axis set gives a usable trigger, and for opposite reasons.**
+`("progress","margin")` never fires (G9 pole A). `("progress",)` fires on 98% of
+ticks, peaks on the last tick and never decays (G9 pole B). MECH-343 requires a
+peak that exceeds threshold **and then decays**, and a pinned-high score turns
+every arm contrast into a DOSE contrast rather than a TIMING one.
+
+So the mask delivers what the decision asked for -- a declared, attributable
+trigger with no silent rescale -- but it does **not** by itself make Q-056
+non-vacuous. **Which axes Q-056 declares is a live scientific choice, deliberately
+not taken here**, and is raised as a decision chip together with the separate
+finding that the now-coupled temperature lever does not move the registered
+first-action-class DV.
