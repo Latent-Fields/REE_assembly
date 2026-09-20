@@ -1,8 +1,8 @@
 {
   "schema_version": "failure_autopsy/v1",
-  "generated_utc": "2026-09-20T11:23:09Z",
+  "generated_utc": "2026-09-20T11:40:25Z",
   "scope": "cluster",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
   "dry_run_check_note": "check_dry_run_citations.py run 2026-09-20 over all 11 cited run_ids (1039, 1039a, 1043, 1043a, 1057, 1057a, 1060, 1063, 1065, 1069, 1070): 0 dry, 11 clean. validate_experiments --checks dry_run_unreachable_criterion: silent on all nine drivers; reduction blocks read by hand.",
@@ -136,7 +136,25 @@
         ],
         "what_changed": "routing queue-experiment -> implement-substrate (gated on SD-082's existing open items); substrate amend withdrawn; measurement adequate -> partial; failure-location MECHANISM -> MIXED. Dispositions (non_contributory / standard, both claims peripheral) unchanged.",
         "cheap_confirmers_run": "10/10 recomputes matched incl. brake (MECH-428=1, INV-086=0); flag-unset confirmed via exhaustive dataclass walk; saturation-at-init confirmed (shared weight_norm_pre, P0 and P1 deltas 0.0)"
-      }
+      },
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "Confirm: gated on SD-082 (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: Confirm: gated on SD-082 (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6).",
+      "pre_routing_fires": [
+        {
+          "check": "C2",
+          "names": [
+            "SD-092",
+            "SD-094",
+            "waypoint-proximity-field-observable",
+            "SD-ZWORLD-SENSE-PATH-PARITY"
+          ],
+          "disposition": "DISMISSED with reasons -- all four list INV-086 / MECH-428 in unblocks_claims and none is this run's blocker. SD-094 (waypoint-arrival detection) is implemented_validated and SD-092 (cross-level subgoal credit) concerns MECH-428's OWN retest (V3-EXQ-884a), which this run is not. waypoint-proximity-field-observable is the SD-WAYPOINT-FIELD build V3-EXQ-1004 validated; the environment layer reads adequate here (oracle 11.6 vs random 0.5). SD-ZWORLD-SENSE-PATH-PARITY belongs to the sibling H2 (representation) leg, V3-EXQ-1030/1030a, not to this H1 (drive) leg. The entry that does gate this leg is SD-082, already named, with action none because its open items already carry the debt."
+        }
+      ]
     },
     {
       "run_id": "v3_exq_1043a_mech537_communication_subspace_permutation_null_20260919T030056Z_v3",
@@ -250,7 +268,13 @@
         ],
         "what_changed": "routing governance-note-only + refuse-1043b -> queue-experiment (in-place 1043b with a many-draw random-subspace reference); debt class mystery -> puzzle; biological divergence withdrawn; ledger blocks added. Direction/category unchanged.",
         "cheap_confirmers_run": "14 recomputes; brake recipe verbatim = 0; per-seed table reproduced cell by cell"
-      }
+      },
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "In-place 1043b (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: In-place 1043b (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6)."
     },
     {
       "run_id": "v3_exq_1070_arc029_env_operating_point_feasibility_20260920T042654Z_v3",
@@ -369,7 +393,13 @@
         ],
         "what_changed": "rescued P1 reading withdrawn; routing queue-experiment -> governance-note-only (successor exists); successor requirements rewritten against 1070a. Direction/category unchanged.",
         "cheap_confirmers_run": "15 recomputes incl. brake 0 and granularity 4/unclear=4"
-      }
+      },
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "Confirm note-only (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: Confirm note-only (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6)."
     },
     {
       "claim_ids": [
@@ -442,6 +472,12 @@
         }
       },
       "per_claim_note": "No claim-layer or scoring change is owed. Both runs already index as scoring_excluded: degenerate (non_degenerate false short-circuits before direction is read, build_experiment_indexes.py:3777-3783), and 'inconclusive' is inside the indexer's direction enum. Do NOT copy annotations into the run-pack manifest: the flat overlay that supplies non_degenerate:false fires only while the pack is un-annotated (:1770).",
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "One last letter, 1057b (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: One last letter, 1057b (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6).",
       "learning_extracted": [
         "Blocked sequential passes over conflicting windows interfere; they do not add. Whole-then-recent cancels to the untrained control on early probes; recent-then-whole keeps and extends the early gain and loses the late one.",
         "WITHDRAWN (first draft): 'fresh Adam per consolidate() call makes passes overwrite'. The same call accumulates 18 times per cell in wake training. Test a proposed mechanism against other uses of the same code path in the same run.",
@@ -543,6 +579,12 @@
         }
       },
       "per_claim_note": "No claim-layer or scoring change is owed. Both runs already index as scoring_excluded: degenerate (non_degenerate false short-circuits before direction is read, build_experiment_indexes.py:3777-3783), and 'inconclusive' is inside the indexer's direction enum. Do NOT copy annotations into the run-pack manifest: the flat overlay that supplies non_degenerate:false fires only while the pack is un-annotated (:1770).",
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "One last letter, 1057b (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: One last letter, 1057b (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6).",
       "learning_extracted": [
         "Blocked sequential passes over conflicting windows interfere; they do not add. Whole-then-recent cancels to the untrained control on early probes; recent-then-whole keeps and extends the early gain and loses the late one.",
         "WITHDRAWN (first draft): 'fresh Adam per consolidate() call makes passes overwrite'. The same call accumulates 18 times per cell in wake training. Test a proposed mechanism against other uses of the same code path in the same run.",
@@ -650,5 +692,9 @@
       "F6 '1057 quote fabricated' -- the string is verbatim at v3_exq_1057_*.py:282; the red-team searched the queue note only. Source now cited."
     ],
     "what_changed": "recoverable-hours headline withdrawn; helper recommendation re-scoped to the existing primitive with abort-and-record; 5/5 -> 4/5; 1070 timing corrected."
+  },
+  "step8_gate": {
+    "held": "2026-09-20, interactive",
+    "user_selected": "Keep, narrowed (Recommended)"
   }
 }

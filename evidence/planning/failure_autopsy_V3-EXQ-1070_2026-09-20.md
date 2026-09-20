@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-1070 (ARC-029 env operating-point feasibility)
 
-Status: awaiting_human_confirmation (Step 8 gate pending)
+Status: confirmed (Step 8 gate held 2026-09-20, user present; red-team opus cross-model CONTESTED, revisions applied)
 Target: `v3_exq_1070_arc029_env_operating_point_feasibility_20260920T042654Z_v3` -- diagnostic, FAIL, `substrate_not_ready_requeue`, indexer `precondition_unmet`. ree-cloud-2, 3h31m, 5 rungs x 3 quantiles x 2 seeds.
 A live session (`metaworker-science-20260920-arc029-1070a`, opened 09:34Z) is already repairing this as V3-EXQ-1070a. This autopsy reads that session's claims only; it touches none of its files.
 

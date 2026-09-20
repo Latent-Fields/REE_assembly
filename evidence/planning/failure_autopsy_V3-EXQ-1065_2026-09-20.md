@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-1065 (SD-106 PC-recoverability probe + MECH-566 reconditioning falsifier)
 
-Status: awaiting_human_confirmation (Step 8 gate pending)
+Status: confirmed (Step 8 gate held 2026-09-20, user present; red-team opus cross-model CONTESTED, revisions applied)
 Target: `v3_exq_1065_sd106_subspace_overlap_mech566_recondition_20260919T223401Z_v3` -- diagnostic, run-level FAIL, self-route `recoverability_indeterminate__mech566_conditioning_falsified`, direction mixed (SD-106 unknown, MECH-566 weakens). ree-cloud-2, 183 s, seeds 42/43/44.
 
 ## 1. Facts (verified cell-by-cell by the red-team pass)

@@ -1,8 +1,8 @@
 {
   "schema_version": "failure_autopsy/v1",
-  "generated_utc": "2026-09-20T11:23:09Z",
+  "generated_utc": "2026-09-20T11:40:29Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
   "dry_run_check_note": "check_dry_run_citations.py run 2026-09-20 over all 11 cited run_ids (1039, 1039a, 1043, 1043a, 1057, 1057a, 1060, 1063, 1065, 1069, 1070): 0 dry, 11 clean. validate_experiments --checks dry_run_unreachable_criterion: silent on all nine drivers; reduction blocks read by hand.",
@@ -144,7 +144,13 @@
         "cleared": "the primary attack -- M1 degenerate by construction (linear map absorbable by the MLP's first layer) -- did NOT hold: consumer unconverged, whitening moved train agreement +0.077 and CE -38..-44%",
         "what_changed": "weakens KEPT but narrowed; routing governance-note-only -> queue-experiment (MECH-567, reported not spawned); 'content' -> 'content or warp, cells favour warp'; ledger note added; GFLAG-0312 explicitly declined.",
         "cheap_confirmers_run": "all load-bearing numbers recomputed from cells and matched; brake 0"
-      }
+      },
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "weakens, narrowed (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: weakens, narrowed (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6)."
     }
   ]
 }

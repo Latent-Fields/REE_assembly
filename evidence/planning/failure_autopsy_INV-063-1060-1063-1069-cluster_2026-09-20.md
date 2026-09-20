@@ -1,6 +1,6 @@
 # Diagnostic autopsy (cluster) -- V3-EXQ-1060, 1063, 1069 (INV-063 leg-B lineage: three diagnostic PASSes)
 
-Status: awaiting_human_confirmation (Step 8 gate pending)
+Status: confirmed (Step 8 gate held 2026-09-20, user present; red-team opus cross-model CONTESTED, revisions applied)
 All three are `experiment_purpose: diagnostic` PASSes and so require adjudication whatever their flags (trigger 2). Indexer flags: 1060 none; 1063 `vacuous_pass`; 1069 `precondition_unmet` + dead z_goal stream. Together they feed one decision: the four-arm intake ladder V3-EXQ-1071, under design today by a live session (claims read only; nothing of that session's touched). Predecessor: V3-EXQ-1026 autopsy 2026-09-14 (read in full) and the two 798a autopsies.
 
 Dry-run gate: check_dry_run_citations.py run 2026-09-20 over all 11 cited run_ids (1039, 1039a, 1043, 1043a, 1057, 1057a, 1060, 1063, 1065, 1069, 1070): 0 dry, 11 clean. validate_experiments --checks dry_run_unreachable_criterion: silent on all nine drivers; reduction blocks read by hand.

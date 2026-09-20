@@ -1,6 +1,6 @@
 # Failure autopsy (cluster) -- V3-EXQ-1057 + V3-EXQ-1057a (MECH-017, additive-budget replay arm)
 
-Status: awaiting_human_confirmation (Step 8 gate pending)
+Status: confirmed (Step 8 gate held 2026-09-20, user present; red-team opus cross-model CONTESTED, revisions applied)
 Targets: `v3_exq_1057_..._20260918T211119Z_v3` (ree-cloud-2, 8.6 min) and `v3_exq_1057a_..._pass_order_20260918T234946Z_v3` (ree-worker-3, 14 min). Both `experiment_purpose: evidence`, FAIL, `substrate_not_ready_requeue`, `non_degenerate: false`, manifest direction `inconclusive` (a diagnosis-pending value). Routed here by the "evidence FAIL flagged degenerate" net. Predecessor: V3-EXQ-1048 autopsy 2026-09-17 (mixed; read in full), which named this successor question.
 
 ## 1. Facts (verified cell-by-cell by the red-team pass)

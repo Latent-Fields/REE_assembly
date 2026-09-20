@@ -1,8 +1,8 @@
 {
   "schema_version": "failure_autopsy/v1",
-  "generated_utc": "2026-09-20T11:23:09Z",
+  "generated_utc": "2026-09-20T11:40:29Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
   "dry_run_check_note": "check_dry_run_citations.py run 2026-09-20 over all 11 cited run_ids (1039, 1039a, 1043, 1043a, 1057, 1057a, 1060, 1063, 1065, 1069, 1070): 0 dry, 11 clean. validate_experiments --checks dry_run_unreachable_criterion: silent on all nine drivers; reduction blocks read by hand.",
@@ -124,7 +124,13 @@
         ],
         "what_changed": "rescued P1 reading withdrawn; routing queue-experiment -> governance-note-only (successor exists); successor requirements rewritten against 1070a. Direction/category unchanged.",
         "cheap_confirmers_run": "15 recomputes incl. brake 0 and granularity 4/unclear=4"
-      }
+      },
+      "step8_gate": {
+        "held": "2026-09-20, interactive (AskUserQuestion), user present",
+        "user_selected": "Confirm note-only (Recommended)",
+        "red_team_verdict_presented": "CONTESTED (opus, cross-model); revisions applied before the gate"
+      },
+      "routing_note": "Confirmed by user 2026-09-20: Confirm note-only (Recommended). Follow-on is REPORTED here for /governance to chip after its own Step 2b; this session spawns nothing (CLAUDE.md Session Land step 6)."
     }
   ]
 }

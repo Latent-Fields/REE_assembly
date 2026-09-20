@@ -5626,13 +5626,15 @@
      ],
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
+      "resolving_runs": [
+       "V3-EXQ-1065"
+      ],
       "evidence_direction": "pending",
       "resolved_utc": null,
       "control_passed": true,
       "non_degenerate": true,
       "met_elimination_bar": false,
-      "basis": "SURVIVING leg after V3-EXQ-1023a. Observed 0.727289 sits 0.0083 from this leg's pre-registered null of 0.719 against a 0.087 separation, and its two rivals on that block are falsified. Deliberately left ALIVE rather than confirmed: a point-prediction match plus elimination of rivals is not positive confirmation, and the elimination bar for a CONFIRMED state is not met by this run. The already-chipped lit-pull (chip-20260916-sd106-compression-litpull) on generic vs task-relevant compression is what failure_autopsy_V3-EXQ-1041_2026-09-16 commissioned to ground exactly this reading.",
+      "basis": "SURVIVING leg after V3-EXQ-1023a. Observed 0.727289 sits 0.0083 from this leg's pre-registered null of 0.719 against a 0.087 separation, and its two rivals on that block are falsified. Deliberately left ALIVE rather than confirmed: a point-prediction match plus elimination of rivals is not positive confirmation, and the elimination bar for a CONFIRMED state is not met by this run. The already-chipped lit-pull (chip-20260916-sd106-compression-litpull) on generic vs task-relevant compression is what failure_autopsy_V3-EXQ-1041_2026-09-16 commissioned to ground exactly this reading. | 2026-09-20: V3-EXQ-1065 Half A probed this leg on the encoder plane (opening no leg): PC-recoverability 0.835, INDETERMINATE on 3/3 seeds, pre-registered as 'recorded, no routing'; the statistic's HIGH band has no reachability evidence. State unchanged (failure_autopsy_V3-EXQ-1065_2026-09-20.json).",
       "adjudicating_runs": [
        "V3-EXQ-1023a"
       ]
@@ -6484,7 +6486,8 @@
      "resolution": {
       "state": "alive",
       "resolving_runs": [
-       "V3-EXQ-1039"
+       "V3-EXQ-1039",
+       "V3-EXQ-1039a"
       ],
       "evidence_direction": "pending",
       "epistemic_category": null,
@@ -6493,7 +6496,7 @@
       "non_degenerate": true,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "V3-EXQ-1039 ran to completion and met the leg's declared null (visits/ep flat across sparse_rl / shaped_rl / demo_warmstart; C1 lift cleared on 0 of 3 seeds under both dense arms), but did NOT discriminate the leg. Both treatment manipulations are measurably inert: shaped_rl reproduced its own sparse_rl control bit-identically on every recorded channel in all three seeds while carrying a per-episode training return two-plus orders of magnitude larger under a random-policy proxy (250-500x across RNG draws; 253x/491x/254x per seed, cross-seed mean 301x, driver's own anchor RNG), and demo_warmstart's final supervised CE sat at exactly ln(32) -- chance over num_candidates=32 -- after 232 applied optimizer steps on seed 42. A null between two arms that produced identical behaviour is a property of the instrument, not of reward density. Per the Step 9b state-mapping table, a non-discriminating run leaves the leg ALIVE with resolving_runs and basis recorded and the elimination bar unmet. control_passed is true on its own terms (the positive control greedy_oracle cleared ORACLE_FLOOR at 10.8-12.0 vs 4.0, and the R1 premise that sparse_rl stays blocked held at 0.2 vs a 4.385 bound) and non_degenerate reproduces the manifest's own flag faithfully -- but that flag is derived SOLELY from R2 eval mobility (`criteria_non_degenerate = {'C1': bool(r2['met'])}`) and therefore certifies nothing about C1's validity here; it is recorded as the manifest states it and qualified in this basis rather than silently overridden. The repaired re-run V3-EXQ-1039a is the adjudicating run to await."
+      "basis": "STILL ALIVE, unadjudicated. V3-EXQ-1039 returned a vacuous null (shaped_rl bit-identical to sparse_rl). Its absorption-gated repair V3-EXQ-1039a refused at readiness (5 of 10 gates red) and measured why: seed 42 -- the lPFC bias head was trained on the hard-clamp path (rule_readout_consumer off) and sat on its rail with exactly-zero gradient; seeds 43/44 -- the proposer pool collapsed to a median of 2 first-action classes in every arm, which also starved the demo CE update stream; all seeds -- bias-head ablation changed 0-3 of 400 actions, matching SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert even with the consumer on. A readiness refusal narrows nothing. The leg is gated on SD-082's open authority items (1029, 1046), not on another letter (failure_autopsy_V3-EXQ-1039a_2026-09-20.json, confirmed 2026-09-20)."
      }
     },
     {
@@ -6529,7 +6532,7 @@
     "live_gate": "Both legs have now returned a completed first run and NEITHER discriminated. H2 (V3-EXQ-1030) had its load-bearing criterion suppressed by a mis-specified readiness precondition, repair queued as V3-EXQ-1030a. H1 (V3-EXQ-1039) met its declared null through a manipulation the consumer provably did not absorb, repair owed as V3-EXQ-1039a.",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "2 of 2 legs queued and run; 0 of 2 resolved -- both first runs returned instrument defects rather than discriminations",
+    "distance_phrase": "2 of 2 legs run, H1 twice; 0 of 2 resolved -- every run so far returned an instrument defect or a readiness refusal; H1 is now gated on SD-082's read-out authority",
     "observation_bottleneck": "H1 is gated on an OBSERVATION bottleneck of its own, parallel to the one the 1030 draft recorded for H2: there is NO validated readout that can certify a training-signal manipulation was ABSORBED by the consumer's reward-contingent parameters. `_train_all_on_agent` records no per-arm return, no advantage magnitude, no non-skipped-advantage fraction and no bias-output spread, and the one readiness gate that exists (C0d, weight-norm delta > 1e-9 plus a candidate-summary degeneracy flag) passed on this run while the manipulation was inert. Until such a readout exists, a flat-across-training-signals null on this consumer is uninterpretable in either direction. This is Dimension-4 content, not a leg."
    },
    "discovery_growth_events": [],
@@ -7713,7 +7716,7 @@
     "live_gate": "C2 (D_randrank - D_comm at matched rank) clearing its floor against a within-run reference distribution, read at a rank where the low-rank premise holds",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "one diagnostic run completed and undetermined; three rivals pre-registered, none yet adjudicated",
+    "distance_phrase": "two diagnostic runs completed, neither adjudicating (1043 underpowered; 1043a refused at readiness); three rivals alive; the missing instrument is a many-draw random-subspace reference (V3-EXQ-1043b)",
     "observation_bottleneck": "The CV-selected rank sits at the receiver dimension, where the RRR fit is unconstrained OLS, so the low-rank channel the biology posits is not instantiated at the evaluation point."
    },
    "hypotheses": [
@@ -7727,14 +7730,19 @@
      "pre_registration_source": "failure_autopsy_V3-EXQ-1043_2026-09-17.json",
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
+      "resolving_runs": [
+       "V3-EXQ-1043a"
+      ],
       "evidence_direction": "pending",
       "control_passed": false,
       "non_degenerate": null,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "Pre-registered at fan-out; the adjudicating run (V3-EXQ-1043a) has not been queued yet."
-     }
+      "basis": "ALIVE. V3-EXQ-1043a refused at readiness (randrank margin over the trivial predictor under 0.05 on 5/6 seeds), so nothing is adjudicated. The pre-registered statistic was still recordable: 95% CI on the C2 mean [0.0051, 0.0948] at the parsimonious rank ([0.0154, 0.0535] at rank 32) -- excludes 0, includes 0.05, so this leg's declared null (CI excludes 0.05) is NOT met. Adjudicating run is now V3-EXQ-1043b (many-draw random-subspace reference) (failure_autopsy_V3-EXQ-1043a_2026-09-20.json)."
+     },
+     "adjudicating_runs": [
+      "V3-EXQ-1043b"
+     ]
     },
     {
      "hid": "H2-no-orientation",
@@ -7746,14 +7754,19 @@
      "pre_registration_source": "failure_autopsy_V3-EXQ-1043_2026-09-17.json",
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
+      "resolving_runs": [
+       "V3-EXQ-1043a"
+      ],
       "evidence_direction": "pending",
       "control_passed": false,
       "non_degenerate": null,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "Pre-registered at fan-out; the adjudicating run (V3-EXQ-1043a) has not been queued yet."
-     }
+      "basis": "ALIVE. The permutation null this leg named ran: p = 1.0 on 6/6 seeds, i.e. all 200 shuffled refits decode WORSE than the real subspace. That statistic is P(D_comm_perm <= D_comm): it shows the fitted sender->receiver map is real and does not test orientation against a random same-rank subspace (randrank was ONE draw per seed). Uninformative for this leg. Adjudicating run is now V3-EXQ-1043b (failure_autopsy_V3-EXQ-1043a_2026-09-20.json)."
+     },
+     "adjudicating_runs": [
+      "V3-EXQ-1043b"
+     ]
     },
     {
      "hid": "H3-no-low-rank-bottleneck",
@@ -7765,16 +7778,207 @@
      "pre_registration_source": "failure_autopsy_V3-EXQ-1043_2026-09-17.json",
      "resolution": {
       "state": "alive",
+      "resolving_runs": [
+       "V3-EXQ-1043a"
+      ],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "ALIVE. Declared null ('C2 is flat in rank') NOT met: C2 mean 0.0345 at rank 32 vs 0.0500 at the parsimonious rank (8-11 of 146 live sender dims, held-out R2 0.996). Readiness red, so not an elimination (failure_autopsy_V3-EXQ-1043a_2026-09-20.json)."
+     },
+     "adjudicating_runs": [
+      "V3-EXQ-1043b"
+     ]
+    }
+   ]
+  },
+  {
+   "qid": "mech017_recency_cost_locus",
+   "title": "Is the late-probe (recency) cost of offline replay intrinsic to training on remote traces, or what is left when a fixed gradient budget is spent away from the recent window?",
+   "short_title": "MECH-017 recency-cost locus",
+   "claims": [
+    "MECH-017"
+   ],
+   "registered_utc": "2026-09-20T11:43:49Z",
+   "fanout_sources": [
+    "failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 3,
+   "initial_frozen_count_at_registration": 3,
+   "growth_restriction": "",
+   "hypotheses": [
+    {
+     "hid": "H-intrinsic",
+     "label": "Recency cost is intrinsic to replay",
+     "desc": "Training on remote traces costs late-probe accuracy at any budget.",
+     "axis": "process",
+     "basis": "Live: V3-EXQ-1048 measured the cost at a matched budget (A worse than B on late probes 5/5); no additive arm has yet held both retention gates.",
+     "pre_registered_utc": "2026-09-20T11:43:49Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.json",
+     "adjudicating_runs": [
+      "V3-EXQ-1057b"
+     ],
+     "resolution": {
+      "state": "alive",
       "resolving_runs": [],
       "evidence_direction": "pending",
       "control_passed": false,
       "non_degenerate": null,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "Pre-registered at fan-out; the adjudicating run (V3-EXQ-1043a) has not been queued yet."
+      "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+     }
+    },
+    {
+     "hid": "H-reallocation",
+     "label": "Recency cost is a budget-reallocation artefact",
+     "desc": "With A's budget plus B's, the late-probe deficit disappears.",
+     "axis": "process",
+     "basis": "Live: the two additive constructions tried (V3-EXQ-1057, 1057a) were blocked sequential passes and both refused at readiness, so this was never read.",
+     "pre_registered_utc": "2026-09-20T11:43:49Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.json",
+     "adjudicating_runs": [
+      "V3-EXQ-1057b"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+     }
+    },
+    {
+     "hid": "H-schedule",
+     "label": "Cost and benefit are schedule artefacts of blocked passes",
+     "desc": "On a blocked schedule the displacement is set by pass order, not by budget.",
+     "axis": "instrumentation",
+     "basis": "Live, NOT established: whole-then-recent cancels to the no-training control on early probes (5/5); recent-then-whole is the best early arm of five and loses the late benefit. Both runs had a red readiness gate, so this is a reading of instrument behaviour, not an adjudication.",
+     "pre_registered_utc": "2026-09-20T11:43:49Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.json",
+     "adjudicating_runs": [
+      "V3-EXQ-1057b"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
      }
     }
-   ]
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Does the recency cost survive an additive budget delivered on an interleaved schedule?",
+    "live_gate": "both retention gates (replay gain retained AND recency benefit retained) green on a seed majority for an additive arm, then C4",
+    "decidable": false,
+    "decision_log_ref": null,
+    "distance_phrase": "two additive-budget runs, both refused at readiness on opposite retention gates; one last letter (final-pass dose ladder, then an interleaved arm) pre-registered",
+    "observation_bottleneck": "No additive arm built so far combines its parents: blocked sequential passes over conflicting windows interfere. Until an arm holds both retention gates, C4 cannot be read in either direction."
+   }
+  },
+  {
+   "qid": "inv063_legb_sleep_worsens_converged_dv",
+   "title": "Why does a sleep cycle with the world-forward trainer on make INV-063 leg B's frozen-battery readout WORSE on a converged base?",
+   "short_title": "INV-063 leg-B sign inversion",
+   "claims": [
+    "INV-063"
+   ],
+   "registered_utc": "2026-09-20T11:43:49Z",
+   "fanout_sources": [
+    "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 3,
+   "initial_frozen_count_at_registration": 3,
+   "growth_restriction": "",
+   "hypotheses": [
+    {
+     "hid": "H-objective-mismatch",
+     "label": "Trainer objective and DV disagree",
+     "desc": "The sleep trainer descends InfoNCE while leg B reads MSE; the two move in opposite directions.",
+     "axis": "representation",
+     "basis": "Live and best supported: V3-EXQ-1063 converged arms -- InfoNCE improved 3/3 while MSE worsened 3/3; GFLAG-0382 -- every readable tau gives a negative across-sleep delta.",
+     "pre_registered_utc": "2026-09-20T11:43:49Z",
+     "pre_registration_source": "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json",
+     "adjudicating_runs": [
+      "(probe: MSE objective in the sleep pass, 798a regime)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+     }
+    },
+    {
+     "hid": "H-step-scale",
+     "label": "Fixed-scale sleep step perturbs a well-fit model",
+     "desc": "A fresh Adam per cycle gives a gradient-magnitude-blind step (~lr per step for the most-moved weights).",
+     "axis": "process",
+     "basis": "Live: world-head max|delta| 0.00798-0.00807 ~ 8 x lr in V3-EXQ-1060/1063; not separated from objective mismatch by either run.",
+     "pre_registered_utc": "2026-09-20T11:43:49Z",
+     "pre_registration_source": "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json",
+     "adjudicating_runs": [
+      "(probe: consolidation lr ladder / SGD, 798a regime)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+     }
+    },
+    {
+     "hid": "H-dv-headroom",
+     "label": "The DV has little headroom on a converged base",
+     "desc": "The converged model is near the copy-the-input reference, leaving ~1e-5 of error to win.",
+     "axis": "instrumentation",
+     "basis": "Live: V3-EXQ-1063 model/identity MSE ratio 1.07 / 0.77 / 1.01 -- near the reference, not bounded by it (seed 123 beats it by 23%). Measured at alpha_world 0.3, not the ladder regime.",
+     "pre_registered_utc": "2026-09-20T11:43:49Z",
+     "pre_registration_source": "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json",
+     "adjudicating_runs": [
+      "(probe: battery with headroom, 798a regime)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+     }
+    }
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Can any readout show an across-sleep IMPROVEMENT in the world-forward model in the regime leg B is read in?",
+    "live_gate": "a positive across-sleep delta on a readable, non-degenerate readout, on a converged base in 798a's configuration, on a seed majority",
+    "decidable": false,
+    "decision_log_ref": null,
+    "distance_phrase": "three diagnostic PASSes adjudicated (wired; direction negative; ladder gradeable at 2/3); three rivals pre-registered; probes not yet queued; the tau-bind decision is with the user",
+    "observation_bottleneck": "Neither registered readout currently shows sleep improving the world-forward model: MSE worsens on a converged base, and InfoNCE is readable only at taus where its across-sleep delta is negative (GFLAG-0382)."
+   }
   }
  ]
 }

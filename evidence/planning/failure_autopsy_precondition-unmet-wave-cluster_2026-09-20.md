@@ -1,6 +1,6 @@
 # Failure autopsy (cross-claim cluster) -- the 2026-09-18..20 `substrate_not_ready_requeue` wave
 
-Status: awaiting_human_confirmation (Step 8 gate pending)
+Status: confirmed (Step 8 gate held 2026-09-20, user present; red-team opus cross-model CONTESTED, revisions applied)
 Members: V3-EXQ-1039a (INV-086, MECH-428), V3-EXQ-1043a (MECH-537), V3-EXQ-1070 (ARC-029), V3-EXQ-1057 and 1057a (MECH-017). Same shape already autopsied 2026-09-18: V3-EXQ-1050 (MECH-021). Every per-run disposition here is a COPY of the single or claim-cluster artifact of this date. This artifact adds only the cross-claim reading; no claim moves on it.
 
 Dry-run gate: check_dry_run_citations.py run 2026-09-20 over all 11 cited run_ids (1039, 1039a, 1043, 1043a, 1057, 1057a, 1060, 1063, 1065, 1069, 1070): 0 dry, 11 clean. validate_experiments --checks dry_run_unreachable_criterion: silent on all nine drivers; reduction blocks read by hand.
@@ -91,6 +91,9 @@ Compute without claim evidence: 18.2 h. Recoverable-hours claim: WITHDRAWN as a 
 - **gated_on**: ["SD-082 open failure_record items V3-EXQ-1029 and V3-EXQ-1046 (read-out authority at selection)", "proposer-pool first-action diversity at seed 43 (SD-061 regulator is implemented_pending_validation, ready false)"]
 - **if_a_successor_is_ever_built**: ["A3 needs a minimum-update floor (it reported a 1-sample chance ratio as a zero-gradient signature)", "record f_eligibility_envelope_size: modulatory_shortlist_size is a dead sentinel (0.0 in all nine cells) under use_f_eligibility_demotion, which writes a different key (e3_selector.py:4378 vs :4390)", "the driver's --probe mode is hard-wired to seeds=[42], the one seed that passes B1 -- it needs a seed list before it can pre-screen anything", "promote lpfc_bias_saturated_frac to a gate (the 2026-09-18 option C, re-asked with this run as evidence)"]
 - **in_flight_check**: no 1039b script, queue entry or claim (2026-09-20). Checked by CHANGE as well as by name after red-team: the recommended change (consumer ON) has already run as V3-EXQ-1029 and V3-EXQ-1046.
+
+### Step 7b pre-routing fires
+- C2: DISMISSED with reasons -- all four list INV-086 / MECH-428 in unblocks_claims and none is this run's blocker. SD-094 (waypoint-arrival detection) is implemented_validated and SD-092 (cross-level subgoal credit) concerns MECH-428's OWN retest (V3-EXQ-884a), which this run is not. waypoint-proximity-field-observable is the SD-WAYPOINT-FIELD build V3-EXQ-1004 validated; the environment layer reads adequate here (oracle 11.6 vs random 0.5). SD-ZWORLD-SENSE-PATH-PARITY belongs to the sibling H2 (representation) leg, V3-EXQ-1030/1030a, not to this H1 (drive) leg. The entry that does gate this leg is SD-082, already named, with action none because its open items already carry the debt.
 
 ### Step 7c red-team
 - **model**: opus (claude-opus-5[1m]); drafting session was fable -- cross-model pass

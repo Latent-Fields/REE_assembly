@@ -1,6 +1,6 @@
 # Failure autopsy -- V3-EXQ-1043a (MECH-537 communication subspace, permutation-null repair)
 
-Status: awaiting_human_confirmation (Step 8 gate pending)
+Status: confirmed (Step 8 gate held 2026-09-20, user present; red-team opus cross-model CONTESTED, revisions applied)
 Target: `v3_exq_1043a_mech537_communication_subspace_permutation_null_20260919T030056Z_v3` -- diagnostic, FAIL, `substrate_not_ready_requeue`, indexer `precondition_unmet`. ree-cloud-2, 11.13 h, seeds 42-47. Instrument repair of V3-EXQ-1043 (autopsy 2026-09-17, read in full).
 
 ## 1. Facts (verified cell-by-cell by the red-team pass)
