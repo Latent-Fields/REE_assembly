@@ -12,6 +12,20 @@
     "verdict": "RED"
    }
   ],
+  "MECH-204": [
+   {
+    "chip_ref": "chip-20260918-exq541d-mech204-f1-guard-validation",
+    "producer_paths": [
+     "ree_core/neuromodulation/serotonin.py"
+    ],
+    "reason": "Option A falsifier unfirable: recalibration target is a lagged function of rv, and the only waking drift source (SD-076 asymmetric-EMA) measured insufficient at both doses (V3-EXQ-794a FAIL). Needs a new drift-source build (chip-20260920-mech204-new-waking-drift-source); GFLAG-0391.",
+    "recorded_by": "orchestrate-20260920-1121",
+    "recorded_utc": "2026-09-20T12:52:40Z",
+    "ree_v3_sha": "9700362aa5db69bba69216750b1f8389ea257f01",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "SD-024": [
    {
     "chip_ref": "chip-20260915-sd024-standing-density-redesign",
