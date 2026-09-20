@@ -5451,9 +5451,9 @@
       "summary": "Confirmed failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20: (1) V3-EXQ-1060's manifest stamps evidence_direction supports for MECH-423 on a wiring/liveness check that tests no MECH-423 contrast -> non_contributory (flat copy); (2) e2-world-forward-sleep-trainer substrate entry: resolve the 1026 failure_record as LIVENESS only, status implemented_pending_validation, append V3-EXQ-1063's efficacy failure record (converged-base MSE worse 3/3); (3) two tooling defects found in passing: ree_core record_transition has NO caller so the e2 self-forward consolidation module is never stepped (updates_e2 = 0 in all 12 cells of 1063), and the indexer's _compute_adjudication recomputes applies:false preconditions as gating (false precondition_unmet on V3-EXQ-1069). Weigh GFLAG-0364/0367/0382 together.",
       "raised_by_session": "failure-autopsy-20260920-1022",
       "raised_at": "2026-09-20T11:45:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-20T12:20:41Z",
+      "resolution_note": "governance-20260920 (user: apply all): (1) V3-EXQ-1060 manifest supports -> non_contributory on flat AND pack (b5ddbfca65), MECH-423 note appended (108b156192); (2) e2-world-forward-sleep-trainer -> implemented_pending_validation, 1026 record resolved as liveness, 1063 efficacy record appended (7367541ca1); INV-063 gains pending_retest_after_substrate + diagnostic_evidence_adjudicated. (3) the two tooling defects (record_transition has no caller; _compute_adjudication treats applies:false preconditions as gating) are CHIPPED by this cycle's Step 8, not governance work."
     },
     {
       "flag_id": "GFLAG-0387",
