@@ -5427,6 +5427,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0385",
+      "claim_ids": [
+        "MECH-204"
+      ],
+      "flag_type": "stale_note",
+      "summary": "substrate_queue entry sd_waking_confidence_inflation_headroom carries a FACTUALLY WRONG validation_experiment note that has now misdirected planning twice. It reads 'V3-EXQ-794a (not yet queued)'. V3-EXQ-794a RAN on 2026-07-24 and FAILED: manifest evidence/experiments/v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3.json, outcome FAIL, evidence_direction inconclusive, interpretation.label 'drift_source_insufficient_dv_still_tautological', supersedes v3_exq_794. Its preconditions ALL passed -- the repaired scale-relative/softplus rv floor works, inflation_lowers_rv 0.0014-0.0057 across arms, dose_levels_separated -- but the load-bearing C1 'inflation_creates_absolute_overconfidence' FAILED at BOTH the LO (0.6) and HI (0.8) asymmetry levels, as did C2 'broadcast_corrects_under_drift'. V3-EXQ-794's pre-registered route for precisely that outcome is explicit: 'if C1 fails at BOTH levels the route is NOT sweep higher: it is that the asymmetric-EMA form is the wrong drift source and a different SD-076 mechanism is owed.' CONSEQUENCES: (1) the entry's ready:False is correct but its stated reason is not -- the validation is not pending, it is DONE and NEGATIVE; (2) SD-076 as built cannot serve as the waking drift source MECH-204's what_would_answer (a) requires, so MECH-204 Option A remains unfalsifiable and the owed work is an /implement-substrate BUILD of a different drift-source mechanism, not another experiment; (3) this stale note caused a user decision on 2026-09-20 to sequence 'queue 794a first, then 541d on the validated drift source', which is not executable. Requested: correct validation_experiment to name the 2026-07-24 run and its FAIL, and record the owed different-mechanism build. Related: GFLAG-0379, GFLAG-0384, GFLAG-0377.",
+      "raised_by_session": "metaworker-science-20260920-mech204-541d-cd",
+      "raised_at": "2026-09-20T11:45:23Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
