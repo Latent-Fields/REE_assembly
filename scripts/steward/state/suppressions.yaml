@@ -548,3 +548,45 @@ suppressions:
     added: "2026-09-17"
     added_by: "steward-d006-gflag0307-suppression-20260917"
     review_after: "2026-12-17"
+  - finding_id: "D-006:GFLAG-0359"
+    reason: >-
+      GFLAG-0359 and GFLAG-0367 share claim INV-063 / evidence_discrepancy / 2026-09-19
+      but are INDEPENDENT findings from one session: 0359 records the /queue-experiment
+      Step 2.5a refusal of EXP-0687 (converged-base sleep makes held-out world-forward MSE
+      worse 9/9); 0367 declares itself a SUPPLEMENT TO GFLAG-0364 (the InfoNCE tau chance-
+      pinning measurement), not to 0359. Neither restates the other; both stay open for
+      governance to weigh with 0364/0382.
+    added: "2026-09-20"
+    added_by: "governance-20260920-steward"
+    review_after: "2026-12-20"
+  - finding_id: "D-006:GFLAG-0361"
+    reason: >-
+      GFLAG-0361 and GFLAG-0362 share claim MECH-066 / contested_disposition / 2026-09-19
+      but make DIFFERENT findings: 0361 contests the claim's SCOPE wording against the
+      IGW-242 literature pull (DreamerV3); 0362 contests the blocked_substrate DISPOSITION
+      of EXP-0810 / EVB-1416 in light of that pull. 0362 cites 0361 as its premise;
+      resolving one does not resolve the other.
+    added: "2026-09-20"
+    added_by: "governance-20260920-steward"
+    review_after: "2026-12-20"
+  - finding_id: "D-006:GFLAG-0377"
+    reason: >-
+      GFLAG-0377 and GFLAG-0384 share claim MECH-204 / evidence_discrepancy / 2026-09-20
+      but are not one flag: 0377 is the second red-team refusal of V3-EXQ-541d
+      (structural, Option A falsifier); 0384 declares itself a CORRECTION TO GFLAG-0379
+      (the DEMOTE recommendation's regime), a different flag from a different session.
+      Independent raises.
+    added: "2026-09-20"
+    added_by: "governance-20260920-steward"
+    review_after: "2026-12-20"
+  - finding_id: "D-006:GFLAG-0374"
+    reason: >-
+      Residual of the SD-036 / 2026-09-20 group after adjudication: GFLAG-0374 and
+      GFLAG-0378 were annotated superseded by GFLAG-0380 (the V3-EXQ-1068 refusal chain,
+      governance-20260920). The two members left open are INDEPENDENT: 0380 is the current
+      1068 refusal state, 0375 is an instrument defect in the LANDED V3-EXQ-854 driver
+      (env.step tuple mis-unpack). If the canonical subject of this group changes on the
+      next run, re-read rather than assuming this entry still matches.
+    added: "2026-09-20"
+    added_by: "governance-20260920-steward"
+    review_after: "2026-12-20"
