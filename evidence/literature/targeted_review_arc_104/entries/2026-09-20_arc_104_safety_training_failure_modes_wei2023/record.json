@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_104",
+  "entry_id": "2026-09-20_arc_104_safety_training_failure_modes_wei2023",
+  "timestamp_utc": "2026-09-20T11:48:28Z",
+  "claim_ids_tested": [
+    "ARC-104"
+  ],
+  "source": {
+    "title": "Jailbroken: How Does LLM Safety Training Fail?",
+    "authors": [
+      "Alexander Wei",
+      "Nika Haghtalab",
+      "Jacob Steinhardt"
+    ],
+    "year": 2023,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 36",
+    "doi": null,
+    "arxiv_id": "2307.02483",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2307.02483"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong, widely replicated empirical demonstration at a top venue (source_quality 0.85), but the mapping to ARC-104 is architectural-by-analogy rather than direct: the paper's 'harm signal' is itself a trained linguistic disposition, whereas ARC-104 presupposes a NON-linguistic embodied harm substrate that this system simply does not have (mapping_fidelity 0.70). Aggregate weighted toward mapping_fidelity because ARC-104 is an architectural_commitment, per the skill's calibration guide; held below 0.8 because the paper evidences the FAILURE MODE the guard is meant to exclude rather than the guard itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When safety is instilled as a trained objective competing with capability rather than as a structurally separate veto, adversarial linguistic input reliably finds an override path: the authors' new attacks succeed on every prompt in a collection of unsafe requests drawn from the models' own red-teaming evaluation sets.",
+    "'Mismatched generalization' names a failure in which safety training does not cover a domain the model's capabilities do reach, so a purely linguistic reframing moves the request outside the guard's coverage without weakening the capability.",
+    "The authors explicitly argue against the view that scaling alone resolves these failures, implying the override path is architectural rather than a capacity deficit."
+  ],
+  "tags": [
+    "arc-104",
+    "inv-007",
+    "jailbreak",
+    "safety-training",
+    "competing-objectives",
+    "language-override"
+  ],
+  "mapping": {
+    "source_claim_statement": "Safety training of large language models fails through two identified mechanisms -- 'competing objectives', where a model's capability and safety goals conflict, and 'mismatched generalization', where safety training fails to generalize to a domain for which capabilities exist -- and attacks built from these failure modes defeat GPT-4 and Claude v1.3 despite extensive red-teaming.",
+    "ree_translation": "This is the empirical case for ARC-104's necessity, stated in the negative. In a system where the harm constraint is a LEARNED PREFERENCE expressed in the same medium as the input (language), the constraint is one objective among others and is therefore defeasible by language. ARC-104 forbids exactly this topology: it requires the harm/ethics substrate to hold VETO authority over language-mediated updates rather than to compete with them. 'Competing objectives' is the precise name for what ARC-104 says must not be the architecture.",
+    "mapping_caveat": "The transfer is at the level of system topology, not substrate. These models have no embodied or interoceptive harm channel at all -- their 'harm signal' is a linguistic disposition trained by RLHF -- so the paper cannot show what happens when a genuinely non-linguistic harm substrate is present, which is the configuration ARC-104 actually specifies. It evidences that the guard is NECESSARY; it says nothing about whether the guard is SUFFICIENT or realisable. Additionally the attacks target specific 2023-era models, so the particular exploits are dated even where the failure taxonomy is not.",
+    "source_context": "Adversarial red-teaming of production aligned LLMs (GPT-4, Claude v1.3); text-only, no embodied channel."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "transfer_risk is moderate rather than low because the inference runs from an all-linguistic system to an architecture defined by the presence of a non-linguistic harm substrate -- the very difference ARC-104 turns on."
+  }
+}

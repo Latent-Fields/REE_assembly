@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_104",
+  "entry_id": "2026-09-20_arc_104_spinal_placebo_inhibition_eippert2009",
+  "timestamp_utc": "2026-09-20T11:48:28Z",
+  "claim_ids_tested": [
+    "ARC-104"
+  ],
+  "source": {
+    "title": "Direct evidence for spinal cord involvement in placebo analgesia",
+    "authors": [
+      "Falk Eippert",
+      "Jürgen Finsterbusch",
+      "Ulrike Bingel",
+      "Christian Büchel"
+    ],
+    "year": 2009,
+    "venue": "Science",
+    "doi": "10.1126/science.1180142",
+    "pmid": "19833962",
+    "pmc": null,
+    "volume": "326",
+    "issue": "5951",
+    "pages": "404"
+  },
+  "evidence_class": "human_fmri",
+  "evidence_direction": "weakens",
+  "confidence": 0.62,
+  "confidence_rationale": "A landmark Science result from a leading group (source_quality 0.85), and the most direct available counterexample to ARC-104's absolutism: psychological manipulation reaching the FIRST nociceptive relay is, on its face, the path the claim says must not exist. Confidence is held to 0.62 by two independent discounts: mapping_fidelity 0.60, because the induction was a placebo cream rather than pure verbal assertion (so this may be the experiential, not symbolic, route), and a provenance discount -- the full text was not retrievable (science.org returned HTTP 403) and the PubMed record carries only the short Science brevia abstract, so sample size, the exact induction protocol, and the effect statistics are UNVERIFIED by this session and are not asserted anywhere in this entry.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pain-related activity in the spinal cord was strongly reduced under placebo, with subjects reporting less pain and showing reduced activity in the ipsilateral dorsal horn -- expectation reaching the earliest stage of central nociceptive processing.",
+    "The authors present this as direct evidence that psychological factors can act on the earliest stages of pain processing in the central nervous system, which is incompatible with any architecture asserting that a top-down expectancy signal has no path to the primary harm representation.",
+    "Contradicts Martini et al. (2015) in this same pull, which reports the early nociceptive component (N1) to be unaffected by placebo and locates the effect intracortically."
+  ],
+  "tags": [
+    "arc-104",
+    "inv-007",
+    "placebo-analgesia",
+    "spinal-fmri",
+    "dorsal-horn",
+    "descending-modulation",
+    "counterexample",
+    "contested"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using functional MRI of the human cervical spinal cord to test whether placebo analgesia reduces nociceptive processing at the spinal level, the authors found that subjects given a placebo analgesic cream and painful heat on the arm reported less pain and showed reduced activity in the ipsilateral dorsal horn -- 'direct evidence for spinal inhibition as one mechanism of placebo analgesia'.",
+    "ree_translation": "This is the entry that argues AGAINST ARC-104 as currently worded. ARC-104 asserts there must be NO path by which symbolic content suppresses a harm signal; biology, on this result, has built exactly such a path and routes it all the way down to the first synapse of the nociceptive system via descending modulation. For REE the implication is not that the guard is wrong but that its absolutism is biologically unprecedented: the natural design permits a top-down write to the harm channel, and constrains it by making that write a specific, identifiable, bounded circuit rather than an arbitrary overwrite. That is a materially different design commitment from 'no path'.",
+    "mapping_caveat": "The decisive unknown is whether the induction was symbolic or experiential. Placebo-cream paradigms in this literature standardly combine verbal instruction with a conditioning procedure, and Spisak et al. (2026) in this pull show those routes have partially distinct neural correlates with S1 effects appearing only under conditioning -- so if conditioning was present here, this result may not bear on the purely LINGUISTIC path ARC-104 guards at all. That question could not be settled: the full text was paywalled to this session (HTTP 403) and the abstract does not specify the protocol. The entry is therefore scored as a counterexample of uncertain reach, and no methodological detail beyond the abstract is asserted. It is also contradicted by Martini et al. (2015).",
+    "source_context": "Human cervical spinal cord fMRI; healthy subjects, experimental heat pain on the arm, placebo analgesic cream."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "mapping_fidelity carries the unresolved symbolic-vs-experiential ambiguity; transfer_risk is the highest in the pull because a descending-modulation finding in the nociceptive system generalises poorly to a designed harm-veto. Full-text methods unverified -- see rationale."
+  }
+}

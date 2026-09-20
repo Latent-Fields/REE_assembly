@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_104",
+  "entry_id": "2026-09-20_arc_104_shallow_safety_alignment_qi2025",
+  "timestamp_utc": "2026-09-20T11:48:28Z",
+  "claim_ids_tested": [
+    "ARC-104"
+  ],
+  "source": {
+    "title": "Safety Alignment Should Be Made More Than Just a Few Tokens Deep",
+    "authors": [
+      "Xiangyu Qi",
+      "Ashwinee Panda",
+      "Kaifeng Lyu",
+      "Xiao Ma",
+      "Subhrajit Roy",
+      "Ahmad Beirami",
+      "Prateek Mittal",
+      "Peter Henderson"
+    ],
+    "year": 2025,
+    "venue": "International Conference on Learning Representations (ICLR) 2025 (Oral; Outstanding Paper Award)",
+    "doi": null,
+    "arxiv_id": "2406.05946",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2406.05946"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Award-winning paper at a top venue with a consolidating explanation that subsumes several independently-reported vulnerabilities (source_quality 0.85). Mapping is good but one step removed from ARC-104: the paper diagnoses the guard as SHALLOW, whereas ARC-104's concern is that the guard is not architecturally SEPARATE (mapping_fidelity 0.72). Depth and separation are related but distinct properties, so this is corroborating rather than direct evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Safety alignment 'can take shortcuts, wherein the alignment adapts a model's generative distribution primarily over only its very first few output tokens' -- so the harm guard is a thin prefix behaviour rather than a persistent constraint over the whole update.",
+    "Shallow alignment provides a single consolidated explanation for adversarial suffix attacks, prefilling attacks, decoding parameter attacks, and fine-tuning attacks -- four distinct language-mediated update paths that all defeat the same shallow guard.",
+    "Benign fine-tuning -- an update with no adversarial intent at all -- is sufficient to jailbreak an aligned model, showing the guard does not survive ordinary language-mediated updating."
+  ],
+  "tags": [
+    "arc-104",
+    "inv-007",
+    "shallow-alignment",
+    "fine-tuning-attack",
+    "prefilling",
+    "language-mediated-update"
+  ],
+  "mapping": {
+    "source_claim_statement": "Current LLM safety alignment is 'shallow': it adapts the model's generative distribution primarily over the first few output tokens. This single issue explains susceptibility to adversarial suffix, prefilling, decoding-parameter and fine-tuning attacks; deepening alignment beyond the first few tokens measurably improves robustness, and a regularized fine-tuning objective constraining updates on initial tokens makes alignment more persistent against fine-tuning attacks.",
+    "ree_translation": "ARC-104 is specifically about the language-mediated UPDATE path -- it guards the point at which linguistic input revises the system's state. This paper is the best available characterisation of what goes wrong at exactly that point: the harm guard does not survive updating, and it fails under BENIGN updates, not merely adversarial ones. That last detail matters for REE, because it means ARC-104 cannot be discharged by filtering hostile input; the veto has to be structural, holding across ordinary language-conditioned revision. The paper's own remedy -- constraining which parts of the model an update may move -- is a weak architectural analogue of the veto ARC-104 specifies.",
+    "mapping_caveat": "The paper's frame is DEPTH (how many tokens the alignment covers), not AUTHORITY (whether a separate substrate can veto). A guard could be made arbitrarily deep and still be language-writable, so deepening is not the same remedy ARC-104 prescribes; conversely ARC-104's veto is not a claim about token depth. Treat this as corroboration that the update path is the vulnerable surface, not as evidence about the veto mechanism. As with the other two ML entries, there is no non-linguistic harm substrate in these systems.",
+    "source_context": "Empirical study of open and aligned LLMs under fine-tuning, prefilling, decoding-parameter and suffix attacks; text-only."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "The benign-fine-tuning result raises mapping_fidelity above what a purely adversarial paper would earn, because ARC-104 guards ordinary language-mediated updates, not just attacks."
+  }
+}

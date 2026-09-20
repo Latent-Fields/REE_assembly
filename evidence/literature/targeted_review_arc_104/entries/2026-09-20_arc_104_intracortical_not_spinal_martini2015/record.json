@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_104",
+  "entry_id": "2026-09-20_arc_104_intracortical_not_spinal_martini2015",
+  "timestamp_utc": "2026-09-20T11:48:28Z",
+  "claim_ids_tested": [
+    "ARC-104"
+  ],
+  "source": {
+    "title": "Intracortical modulation, and not spinal inhibition, mediates placebo analgesia",
+    "authors": [
+      "Matteo Martini",
+      "Michael C. Lee",
+      "Elia Valentini",
+      "Gian Domenico Iannetti"
+    ],
+    "year": 2015,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.12807",
+    "pmid": "25523008",
+    "pmc": null,
+    "volume": "41",
+    "issue": "4",
+    "pages": "498-504"
+  },
+  "evidence_class": "electrophysiology_scalp_eeg",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "The component-level dissociation is exactly the shape ARC-104 asserts -- early nociceptive arrival preserved, late evaluative stage modulated (mapping_fidelity 0.75). But source_quality is held to 0.72: a two-group design with modest N in a mid-tier journal, reporting a NULL on the early component, and standing in direct contradiction to Eippert et al. (2009) in this same pull. An unresolved controversy caps the aggregate well below the component average; 0.65 reflects that this is one side of a live dispute, not a settled finding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Placebo significantly reduced the amplitude of the late P2 component of the laser-evoked potential while leaving the early N1 component -- which reflects arrival of nociceptive input at primary somatosensory cortex -- unaffected, N1 varying only with stimulus energy.",
+    "The authors conclude that 'the selective suppression of late LEPs indicates that placebo analgesia is mediated by direct intracortical modulation rather than inhibition of the nociceptive input at spinal level'.",
+    "This directly contradicts Eippert et al. (2009), who reported strongly reduced pain-related spinal cord activity under placebo; the locus of placebo action is therefore contested rather than established."
+  ],
+  "tags": [
+    "arc-104",
+    "inv-007",
+    "laser-evoked-potentials",
+    "placebo-analgesia",
+    "n1-p2-dissociation",
+    "nociception",
+    "contested"
+  ],
+  "mapping": {
+    "source_claim_statement": "In two groups of healthy volunteers -- one conditioned for placebo analgesia, one unconditioned control -- receiving laser stimuli at three suprathreshold energies, placebo significantly reduced the late P2 LEP component while the early N1 component, reflecting nociceptive input arrival at S1, was unaffected and varied only with stimulus energy. The authors infer intracortical modulation rather than spinal inhibition.",
+    "ree_translation": "If this result stands, it is a neural instantiation of ARC-104's architecture at millisecond resolution: the harm signal ARRIVES INTACT and is only subsequently re-weighted at the evaluative stage. That is precisely 'symbolic/linguistic input may CONDITION priors, but the harm substrate retains veto authority' -- the veto is realised as the integrity of the early afferent signal, which the expectation manipulation cannot touch. For REE it suggests the guard's implementable form: protect the harm channel's primary registration, and permit language to act only downstream of it.",
+    "mapping_caveat": "Three limits, and they are serious. (1) The supportive part of the result is a NULL on N1, which in a modest-N design is weak evidence of preservation rather than proof of it. (2) The placebo was induced by CONDITIONING, not by verbal suggestion, so strictly this speaks to the experiential route and not to the symbolic route ARC-104 guards -- Spisak et al. (2026) in this same pull indicate those routes differ. (3) It is contradicted by Eippert et al. (2009), also in this pull. Do not cite this entry as settling the locus question; it is one side of an open dispute and is scored accordingly.",
+    "source_context": "Human scalp EEG laser-evoked potentials; healthy volunteers, experimental laser pain on the hand, two-group conditioned-vs-control design."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Aggregate deliberately set below the mean of the components: the direct contradiction with Eippert et al. (2009) is a property of the evidence base, not of either paper's internal quality, and must be priced into the confidence rather than hidden in the caveat."
+  }
+}

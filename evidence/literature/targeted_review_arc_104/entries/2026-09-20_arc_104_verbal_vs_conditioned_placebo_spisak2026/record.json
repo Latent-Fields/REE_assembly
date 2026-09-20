@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_104",
+  "entry_id": "2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026",
+  "timestamp_utc": "2026-09-20T11:48:28Z",
+  "claim_ids_tested": [
+    "ARC-104"
+  ],
+  "source": {
+    "title": "Meta-analytic evidence for distinct neural correlates of conditioned versus verbally induced placebo analgesia",
+    "authors": [
+      "Tamas Spisak",
+      "Helena Hartmann",
+      "Matthias Zunhammer",
+      "Balint Kincses",
+      "Katja Wiech",
+      "Tor D. Wager",
+      "Ulrike Bingel"
+    ],
+    "year": 2026,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-026-74743-0",
+    "pmid": "42469238",
+    "pmc": "PMC13379574",
+    "volume": "17",
+    "issue": "1",
+    "pages": "6538"
+  },
+  "evidence_class": "meta_analysis_neuroimaging",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Methodologically the strongest source in the pull -- individual participant data across 16 within-participant neuroimaging studies (n = 409), from the two groups that define this field (source_quality 0.90). Direction is 'mixed' because the result cuts both ways against ARC-104's wording: it SUPPORTS the 'conditions priors' half (verbal-only analgesia spared S1) while COMPLICATING the absolute 'NO path' half (verbal-only still reduced reported pain and deactivated insula/putamen). mapping_fidelity 0.70 -- expectation-modulation of pain is an analogue of, not an instance of, a linguistic override of a harm veto.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Verbal instruction alone did produce significant analgesia (9.2 VAS points, Hedges g = 0.367) and joint deactivations with the conditioned arm in putamen, insula and cingulate isthmus -- so purely symbolic input is NOT inert with respect to the harm signal, which is a counterexample to the strictest reading of 'no path'.",
+    "Conversely, significant decreases in S1 and mid-posterior insula appeared ONLY in the conditioning-plus-instruction arm, not in the instruction-only arm -- the primary sensory-nociceptive representation was spared by language alone.",
+    "Conditioning produced significantly stronger analgesia than instruction alone (12.2 vs 9.2 VAS points; g = 0.744 vs 0.367; p = 0.006), indicating that first-hand experience, not symbolic assertion, is what generates strong priors over the harm channel."
+  ],
+  "tags": [
+    "arc-104",
+    "inv-007",
+    "placebo-analgesia",
+    "verbal-suggestion",
+    "conditioning",
+    "predictive-coding",
+    "nociception"
+  ],
+  "mapping": {
+    "source_claim_statement": "In an individual-participant-data meta-analysis of 16 within-participant placebo neuroimaging studies (n = 409), verbal suggestion alone and suggestion combined with conditioning both activated dorsolateral prefrontal and inferior parietal cortices and decreased insula, putamen and primary sensory activity, but only the combined condition produced significant decreases in S1 and mid-posterior insula, and produced significantly larger analgesia. The authors conclude 'the two strategies rely on partially distinct mechanisms in the brain', and frame instructions in predictive-coding terms as acting as 'a reference point ... against which sensory input is evaluated'.",
+    "ree_translation": "This is the closest biological analogue available to ARC-104's exact distinction, because the meta-analysis separates the PURELY SYMBOLIC route (instruction) from the EXPERIENTIAL route (conditioning) and asks how deep each reaches into the nociceptive hierarchy. The answer maps remarkably well onto ARC-104's two halves: symbolic input reaches evaluative and expectancy machinery (dlPFC, inferior parietal) and CONDITIONS the prior against which harm is judged, but does not by itself significantly suppress the primary sensory-nociceptive representation, which is what first-hand experience does. The authors' own predictive-coding gloss -- instruction as a reference point for evaluating sensory input -- is very nearly a restatement of trust_and_deception.md's 'informative but not authoritative'.",
+    "mapping_caveat": "Two boundaries. First, this is pain PERCEPTION modulated by expectation in healthy humans, not an agent's harm-veto being overridden by an interlocutor's assertion -- the functional roles differ even where the layering is analogous, and REE's harm substrate is not a nociceptive pathway. Second, and more important for governance: the finding is a NULL in the instruction-only arm (no significant S1/mid-posterior-insula decrease) on a smaller subset (5 studies, n = 147) than the combined arm (11 studies, n = 268), so absence of a detected effect is partly a power statement and must not be read as demonstrated absence of a path. Biology here licenses a GRADED guard, not the absolute prohibition ARC-104 currently asserts.",
+    "source_context": "IPD meta-analysis of human placebo-analgesia neuroimaging; healthy participants, experimental pain, within-participant designs."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "transfer_risk is the highest of the biological entries because the inference runs from expectation-modulated nociception in humans to a designed harm-veto in an artificial agent; the layered dissociation transfers, the substrate does not."
+  }
+}

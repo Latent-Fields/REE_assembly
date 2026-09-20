@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_104",
+  "entry_id": "2026-09-20_arc_104_refusal_single_direction_arditi2024",
+  "timestamp_utc": "2026-09-20T11:48:28Z",
+  "claim_ids_tested": [
+    "ARC-104"
+  ],
+  "source": {
+    "title": "Refusal in Language Models Is Mediated by a Single Direction",
+    "authors": [
+      "Andy Arditi",
+      "Oscar Obeso",
+      "Aaquib Syed",
+      "Daniel Paleka",
+      "Nina Panickssery",
+      "Wes Gurnee",
+      "Neel Nanda"
+    ],
+    "year": 2024,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 37",
+    "doi": null,
+    "arxiv_id": "2406.11717",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2406.11717"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "The highest-fidelity entry in this pull. It is a causal, mechanistic result (not correlational) replicated across 13 models up to 72B (source_quality 0.88), and it identifies precisely the object ARC-104 prohibits: a WRITE PATH from the language stream to the harm/refusal signal (mapping_fidelity 0.82). Held at 0.80 rather than higher because the refusal direction is a proxy for a harm signal, not a harm signal in ARC-104's embodied sense.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Refusal is mediated by a one-dimensional subspace across 13 open-source chat models up to 72B: erasing that single direction from the residual stream prevents refusal of harmful instructions, and adding it elicits refusal on harmless ones.",
+    "Because the refusal-mediating direction lives in the same residual stream that carries the linguistic content, it is addressable by a rank-one weight edit -- a structurally trivial override path.",
+    "The authors mechanistically show that adversarial suffixes -- pure linguistic input, no weight access -- work by suppressing propagation of the refusal-mediating direction, i.e. language alone can attenuate the harm signal in situ."
+  ],
+  "tags": [
+    "arc-104",
+    "inv-007",
+    "refusal-direction",
+    "mechanistic-interpretability",
+    "activation-ablation",
+    "language-override"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 13 open-source chat models up to 72B parameters, refusal of harmful instructions is mediated by a single direction in the residual stream; erasing the direction disables refusal while adding it induces refusal on harmless instructions, and adversarial suffixes jailbreak by suppressing propagation of that same direction. The authors conclude their findings 'underscore the brittleness of current safety fine-tuning methods'.",
+    "ree_translation": "This is the clearest available mechanistic picture of the architecture ARC-104 forbids. The harm signal is REPRESENTATIONALLY CO-LOCATED with the linguistic content -- same residual stream, same vector space -- and is therefore writable, and in fact suppressible, by linguistic input alone. ARC-104 demands the opposite: the harm/ethics substrate must retain veto authority, which requires it to be addressable only through a channel that language cannot write. The adversarial-suffix result is the load-bearing part for REE: it shows the override does not require privileged access, only text.",
+    "mapping_caveat": "'Refusal' is a behavioural disposition learned over language, not an embodied nociceptive or harm-sensing signal, so the identity ARC-104 cares about -- a harm SUBSTRATE with veto authority -- is not what was ablated here. The result shows that where the harm proxy shares a representational medium with language it is language-writable; it does NOT establish that a separately-substantiated harm channel would resist such a write, which is the untested half of ARC-104. One-dimensionality may also be an artefact of how refusal is trained (a narrow behavioural target) rather than a general property of safety signals.",
+    "source_context": "White-box mechanistic interpretability and causal intervention on 13 open-weight chat LLMs; text-only."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.3,
+    "notes": "mapping_fidelity is the highest in this pull because the paper's object of study -- a language-accessible write path to the harm signal -- is literally the path ARC-104 prohibits, rather than an analogue of it."
+  }
+}
