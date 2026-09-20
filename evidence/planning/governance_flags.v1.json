@@ -5576,6 +5576,25 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0396",
+      "claim_ids": [
+        "ARC-031",
+        "ARC-085",
+        "ARC-092",
+        "MECH-325",
+        "MECH-359",
+        "MECH-095",
+        "MECH-278"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "V3-NECESSITY BACKLOG IS UNADJUDICATED AND UNSURFACED. check_claim_phase_consistency.py (run 2026-09-20 on 1168 claims, 422 V3 build-commitment seeds) reports 35 ROOT leaks (a V3 build commitment depends DIRECTLY on a v4+ claim), 36 cascade candidates, and 7 CONFLICTS where the needed v4+ claim is phase_locked so it cannot be auto-reclassified -- the 7 claim ids on this flag (needed by e.g. MECH-205/208 -> ARC-031, MECH-487 -> ARC-085, MECH-525/526 -> ARC-092). Each is one of two things and only a human can say which: (a) the dependency is real, so the v4+ item is strictly V3-necessary and V3 cannot close without it; or (b) the depends_on edge is too coarse and should be severed or the claim split. governance.sh runs this check --warn only (line 234, output scrolls past; the /governance skill never walks it, the morning digest never shows it), so the backlog has accumulated silently. Ask: walk the 7 conflicts + 35 roots once, by cluster; then promote the check to --strict as governance.sh's own comment intends. Full report: rerun the script from REE_assembly/.",
+      "raised_by_session": "digest-decisions-forms-20260920",
+      "raised_at": "2026-09-20T16:24:31Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
