@@ -5323,6 +5323,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0377",
+      "claim_ids": [
+        "MECH-204"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-541d refused a SECOND time (red-team BLOCKING, 2026-09-20); still nothing queued and the id is free. The base was changed to realised PE as the user directed and the anchor re-measured (1/realized-PE-variance = 259.9-264.3, so the chip's ~255 transfers), but the refusal is structural and belongs to MECH-204's Option A falsifier, not to any base: the chip asks whether the F1 TARGET climbs away from 1/realized-PE-variance, while the IGW-20260915-243 measurement it cites shows the target climbing TOWARD 255 and records rv as the quantity moving away (0.0039 -> 0.0121). Target and rv were conflated, so the falsifier names a direction its variable cannot move in -- measured targets climb monotonically (2.12->5.58 OFF, 3.16->7.45 ON) two orders of magnitude below the anchor, so the gap can only shrink. SUBSTANTIVE FINDING FOR GOVERNANCE: expressed on rv the falsifier is firable and appears ALREADY SATISFIED -- the WRITEBACK moves rv away from realized PE in 9/9 (guard OFF) and 8/9 (guard ON) cycles, rv sitting 18-82x above it -- which per the chip's own pre-registration routes MECH-204 Option A to DEMOTE rather than retune. Governance should see this whether or not a further experiment is queued. Full record with measurements and options A-D: REE_assembly evidence/planning/exq541d_redteam_blocking_refusal_staged_20260919.md section 6. Decision chip chip-20260920-exq541d-falsifier-misspecified.",
+      "raised_by_session": "metaworker-science-20260919-mech204-541d-guard-validation",
+      "raised_at": "2026-09-20T01:25:07Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
