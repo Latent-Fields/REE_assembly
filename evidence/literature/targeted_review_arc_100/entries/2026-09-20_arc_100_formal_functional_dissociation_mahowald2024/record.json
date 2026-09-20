@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_100",
+  "entry_id": "2026-09-20_arc_100_formal_functional_dissociation_mahowald2024",
+  "timestamp_utc": "2026-09-20T06:06:00Z",
+  "claim_ids_tested": [
+    "ARC-100"
+  ],
+  "source": {
+    "title": "Dissociating language and thought in large language models",
+    "authors": [
+      "Kyle Mahowald",
+      "Anna A. Ivanova",
+      "Idan A. Blank",
+      "Nancy Kanwisher",
+      "Joshua B. Tenenbaum",
+      "Evelina Fedorenko"
+    ],
+    "year": 2024,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2024.01.011",
+    "pmid": "38508911",
+    "arxiv_id": "2301.06627",
+    "volume": "28",
+    "issue": "6",
+    "pages": "517-540"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "ARC-100 is a NEGATIVE architectural commitment: no imported transformer block, no LLM as cognitive authority, grammar and LLMs are a mine for primitive cuts only. The strongest possible support for a prohibition of that shape is a principled, neuroscience-grounded reason why the thing being prohibited would not have worked anyway. Mahowald et al. supply exactly that with the formal/functional competence dissociation: LLMs are surprisingly good at formal linguistic competence (rules and patterns) and spotty at functional competence (using language in the world), and the authors ground the distinction in human neuroscience showing the two rely on different neural mechanisms. That is ARC-100's mine-not-import discipline argued from the other end -- the grammatical structure IS there to be mined, and it is precisely NOT the cognitive substrate. Source quality is high: a Trends in Cognitive Sciences feature review from a strong author list spanning computational linguistics and cognitive neuroscience, already heavily cited. Held below 0.85 because it is a review rather than a primary result, and because it addresses 'LLMs are not a complete mind' rather than ARC-100's sharper operational criterion about what makes a mined cut GROUNDED.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Formal linguistic competence in LLMs is high while functional competence is spotty and typically requires fine-tuning or coupling with external modules -- so an imported LLM would supply REE with linguistic form while contributing nothing to the perception/attention/action/memory/rule-availability/coordination substrate that ARC-100 requires a mined cut to change.",
+    "The two competences rely on different neural mechanisms in humans, so a design that treats a language model as a cognitive authority commits a category error that has an identifiable neural signature -- the failure is structural, not a matter of scale.",
+    "Because formal competence is genuinely high, an imported LLM would produce outputs that PASS surface inspection while the functional substrate underneath remains absent -- the most dangerous failure mode for any REE component whose grounding is assessed by reading its output."
+  ],
+  "tags": [
+    "arc-100",
+    "large_language_models",
+    "formal_functional_competence",
+    "symbol_grounding",
+    "mine_not_import",
+    "language_and_thought"
+  ],
+  "mapping": {
+    "source_claim_statement": "LLMs can be evaluated using a distinction between formal linguistic competence -- knowledge of linguistic rules and patterns -- and functional linguistic competence -- understanding and using language in the world. The distinction is grounded in human neuroscience showing that formal and functional competence rely on different neural mechanisms. LLMs are surprisingly good at formal competence, while their performance on functional competence tasks remains spotty and often requires specialized fine-tuning and/or coupling with external modules.",
+    "ree_translation": "ARC-100 prohibits importing transformer architecture or treating an LLM as a cognitive authority, while permitting -- indeed mandating -- that grammar and LLMs be MINED for candidate pre-linguistic primitive cuts. The strongest defence of a prohibition is a principled account of why the prohibited move would fail, and Mahowald et al. give one that happens to license the permitted move at the same time. Formal competence is real and high: that is exactly the assertion that grammar is, as GRAM-1 puts it, a fossil record of recurrent cognitive relations worth mining. Functional competence is separate, mechanistically distinct in humans, and not delivered by the model: that is exactly the assertion that the mined structure is not the cognitive substrate and must not be imported as one. ARC-100's two halves -- the negative prohibition and the positive mining method -- fall out of a single dissociation, argued from cognitive neuroscience rather than from REE's own design preferences.",
+    "mapping_caveat": "Two boundaries. First, this paper argues that LLMs are not a complete cognitive system; it does NOT argue that importing transformer components into a larger architecture is a mistake. Those are different propositions, and the paper's own remedy -- 'coupling with external modules' -- is in fact the hybrid strategy that ARC-100's blanket prohibition forecloses. Read strictly, Mahowald et al. support 'no LLM as authority' strongly and 'no imported transformer block' hardly at all; the second half of ARC-100's prohibition gets no support here and mild counter-pressure. Second, the paper does not speak to ARC-100's operational grounding criterion -- that a mined cut counts as grounded only if it changes perception, attention, action, memory, rule-availability or coordination. That criterion is about causal use inside a substrate and needs the amnesic-probing entry in this directory to address it; this paper establishes only that form and function are separable in principle.",
+    "source_context": "Feature review in a cognitive-science venue, synthesising LLM benchmark behaviour with human neuroimaging evidence on the language network (Fedorenko's localiser-based dissociation of language from reasoning, social cognition and world knowledge). No new data."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.22,
+    "notes": "Source quality high for a review -- TiCS feature review, author list spanning computational linguistics and cognitive neuroscience, rapidly and widely cited, and the underlying human neuroimaging dissociation is primary work from the same group rather than borrowed. Mapping fidelity good but not excellent: the paper supports the 'LLM is not an authority' half of ARC-100 cleanly and the 'no imported transformer block' half not at all. Transfer risk low because the claim being evidenced is itself a claim about LLMs, so no cross-domain transfer is required for that half; the residual risk is in the human-neuroscience leg of the dissociation."
+  }
+}

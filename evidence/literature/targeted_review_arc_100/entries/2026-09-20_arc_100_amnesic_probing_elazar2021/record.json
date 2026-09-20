@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_100",
+  "entry_id": "2026-09-20_arc_100_amnesic_probing_elazar2021",
+  "timestamp_utc": "2026-09-20T06:06:00Z",
+  "claim_ids_tested": [
+    "ARC-100"
+  ],
+  "source": {
+    "title": "Amnesic Probing: Behavioral Explanation with Amnesic Counterfactuals",
+    "authors": [
+      "Yanai Elazar",
+      "Shauli Ravfogel",
+      "Alon Jacovi",
+      "Yoav Goldberg"
+    ],
+    "year": 2021,
+    "venue": "Transactions of the Association for Computational Linguistics",
+    "doi": "10.1162/tacl_a_00359",
+    "arxiv_id": "2006.00995",
+    "volume": "9",
+    "pages": "160-175",
+    "url": "https://aclanthology.org/2021.tacl-1.10/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the highest-confidence entry in the pull because it is the one whose finding maps almost one-to-one onto ARC-100's operational criterion rather than onto its rhetoric. ARC-100 says a mined cut is grounded ONLY IF it changes perception, attention, action, memory, rule-availability or coordination -- i.e. that finding a primitive in a representation is not the same as the primitive doing work. Elazar et al. demonstrate exactly that dissociation empirically in BERT: conventional probing performance is not correlated with task importance, and establishing that a property (part-of-speech, for instance) is decodable tells you nothing about whether the model uses it. They then supply the causal-intervention method -- remove the property from the representation, measure the behavioural delta -- which is the method ARC-100's criterion implicitly demands. Source quality is high (TACL, widely adopted, code released, and the method has since been refined rather than overturned). Held at 0.82 rather than higher because the substrate is a transformer language model, not REE, and because the paper is a methodological critique whose positive method has known technical limitations in the linear-removal step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Conventional probing performance is NOT correlated with task importance -- a linguistic property can be decodable with high accuracy from a representation and play no causal role in the model's behaviour. Any REE grammar-to-substrate mapping row marked 'grounded' on the strength of a decodability result is therefore unjustified by exactly this failure.",
+    "The converse error is also live: a property can be causally important while being hard to decode, so a low probe score is not evidence that a mined cut is absent. A mining table scored by probes alone will make errors in both directions.",
+    "The paper's own causal method removes properties by linear projection, which cannot guarantee the property is fully removed or that nothing else was removed with it -- so even the corrected method yields a bounded, not a clean, grounding verdict."
+  ],
+  "tags": [
+    "arc-100",
+    "probing",
+    "causal_intervention",
+    "grounding_criterion",
+    "representation_analysis",
+    "mine_not_import"
+  ],
+  "mapping": {
+    "source_claim_statement": "Probing results do not license behavioural conclusions: one cannot infer from the fact that a property is decodable from a neural representation that the model uses that property. The authors introduce Amnesic Probing, which assesses a property's utility for a task by measuring the effect of a causal intervention that removes the property from the representation. Applied to BERT, conventional probing performance is found not to be correlated with task importance, and the authors call for increased scrutiny of claims drawing behavioural or causal conclusions from probing results.",
+    "ree_translation": "ARC-100's operational content -- the part that can actually be violated by a piece of work rather than by a piece of architecture -- is the grounding criterion: a mined cut counts as grounded ONLY IF it changes perception, attention, action, memory, rule-availability or coordination. GRAM-2's mapping table makes this concrete, with its 'grounded-or-merely-named' column, and it is precisely the column that is easy to fill in dishonestly. Elazar et al. show that the tempting cheap evidence for that column is invalid: decodability is not use. They then supply the method the criterion needs -- ablate the property, measure the behavioural consequence -- and the shape of that method is exactly the shape of ARC-100's disjunctive criterion, which is itself a list of behavioural consequences. This is the closest thing available to an external methodological warrant for how a GRAM-2 row should be scored, and it converts 'grounded-or-merely-named' from a judgement call into a measurement with a published protocol.",
+    "mapping_caveat": "The substrate is a pretrained transformer language model and the properties probed are linguistic annotations (part-of-speech, dependency labels and similar); REE's substrate is a different object entirely, and the mined cuts GRAM-2 contemplates (noun to object token, verb to action affordance, aspect to event closure) are not properties one decodes from a frozen representation but architectural commitments about what a module computes. So the transfer is methodological rather than empirical: ARC-100 inherits the DISCIPLINE (require a causal intervention, distrust decodability) rather than any specific finding. A second caveat, which should be stated because it is the honest one: the paper's removal method is linear projection, and subsequent work has shown this neither guarantees complete removal of the target property nor guarantees that nothing else is removed alongside it. So even the corrected method gives a bounded verdict, and a GRAM-2 row scored by ablation is 'grounded, to the precision of the ablation' rather than simply grounded.",
+    "source_context": "Analysis of pretrained BERT representations on English linguistic-annotation tasks; properties removed by iterative nullspace projection; behavioural effect measured on masked language modelling. Simulation only, no human data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.84,
+    "transfer_risk": 0.3,
+    "notes": "The only entry in this pull where source quality and mapping fidelity are both above 0.80. TACL, widely adopted, code released, and the method has been refined by later work rather than overturned -- which is the right kind of afterlife. Mapping fidelity is high because ARC-100's grounding criterion and this paper's central thesis are the same proposition stated in two vocabularies. Transfer risk 0.30 reflects that what transfers is a method and a caution, not a result: REE would be applying the discipline to a different substrate and to cuts that are architectural rather than decodable."
+  }
+}

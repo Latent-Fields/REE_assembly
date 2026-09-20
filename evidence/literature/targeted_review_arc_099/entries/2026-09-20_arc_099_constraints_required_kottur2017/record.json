@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_099",
+  "entry_id": "2026-09-20_arc_099_constraints_required_kottur2017",
+  "timestamp_utc": "2026-09-20T06:06:00Z",
+  "claim_ids_tested": [
+    "ARC-099"
+  ],
+  "source": {
+    "title": "Natural Language Does Not Emerge 'Naturally' in Multi-Agent Dialog",
+    "authors": [
+      "Satwik Kottur",
+      "Jose M. F. Moura",
+      "Stefan Lee",
+      "Dhruv Batra"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing (EMNLP 2017), Association for Computational Linguistics",
+    "doi": "10.18653/v1/D17-1321",
+    "arxiv_id": "1706.08502",
+    "pages": "2962-2967",
+    "url": "https://aclanthology.org/D17-1321/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the closest thing in the emergent-communication literature to a direct test of ARC-099's core structural assertion -- that bootstrap is CONDITIONAL, not automatic. Kottur et al. run a Task & Talk reference game and report a sequence of negative results: agents reliably solve the task (near-perfect reward) while the protocol they invent is neither interpretable nor compositional. Compositionality only appears once the authors progressively RESTRICT how the agents may communicate. That is precisely the shape ARC-099 asserts -- satisfying the coordination-pressure condition alone buys you a working code, not a language. Source quality is high (EMNLP 2017 short paper, heavily cited, code released twice). Confidence is held below 0.85 because the enabling conditions Kottur manipulates (vocabulary size, listener memory) are only two of ARC-099's fourteen, and the paper argues necessity by construction rather than by a systematic ablation over an enumerated inventory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Task success is not evidence of language: agents reached near-perfect task reward while the emergent protocol remained non-compositional and uninterpretable. Any REE LANG-4 probe that scores only coordination benefit will therefore report success on a protocol that has bootstrapped nothing.",
+    "Without a vocabulary bottleneck, agents exploit the channel capacity to transmit a near-one-hot encoding of the whole input -- a lookup table, not a symbol system. Unconstrained channel width silently defeats the compositionality the probe is meant to detect.",
+    "Giving the listener memory across rounds lets the pair offload structure into recurrent state rather than into the message, so dialogue history can substitute for -- and mask the absence of -- compositional signalling."
+  ],
+  "tags": [
+    "arc-099",
+    "emergent_communication",
+    "compositionality",
+    "enabling_conditions",
+    "referential_game",
+    "language_bootstrap"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a Task & Talk reference game between two cooperative agents trained end-to-end, most agent-invented languages are effective (near-perfect task reward) but decidedly not interpretable or compositional; natural language does not emerge 'naturally'. Invented languages can be coaxed toward human-like compositional structure by increasing restrictions on how the two agents may communicate.",
+    "ree_translation": "ARC-099 asserts that language bootstraps only when a specific pre-linguistic inventory is JOINTLY satisfied -- that the enabling conditions are individually necessary and that a V6 signalling probe run before they are satisfied is vacuous. Kottur et al. supply the strongest available demonstration of the negative half of that contract inside an artificial multi-agent substrate of the kind REE would build: supply coordination pressure, partial observability and a signalling channel, and what you get is a functioning private code, not a language. The compositional property ARC-099's downstream nodes (LANG-4, LANG-5) depend on appeared only when the experimenters added constraints. For REE this is a warning about the V6-entry gate itself: the gate must be checked BEFORE the probe, because the probe's own success metric cannot distinguish a bootstrapped signal system from a lookup table.",
+    "mapping_caveat": "Two boundaries. First, the conditions Kottur manipulates are channel-level (vocabulary size, listener memory) and map onto only the 'low-cost signalling channel' item of ARC-099's fourteen-item inventory plus, arguably, 'episodic memory'; the paper says nothing about object tokens, self-attribution, other-attribution, joint attention, repair, or partner variation, so it cannot test the JOINTNESS that is ARC-099's actual assertion. Second, and cutting the other way, the direction of the finding is mildly awkward for ARC-099: Kottur's fix was to ADD restrictions, i.e. to remove capacity, whereas ARC-099's inventory is a list of capacities that must be PRESENT. The paper supports 'conditions matter and bootstrap is not automatic'; it does not support ARC-099's particular list, and a naive reading could licence the opposite engineering move.",
+    "source_context": "Simulated cooperative multi-agent dialog; two neural agents (Q-bot / A-bot) trained with reinforcement learning on a synthetic Task & Talk reference game over attribute-valued objects; no embodiment, no population, no human participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high: a well-known, reproduced negative result with released code. Mapping fidelity is the binding constraint -- the paper tests the CONDITIONALITY of bootstrap, which is ARC-099's structural form, but over a far smaller condition set than the claim enumerates. Transfer risk is low for once: the source substrate is itself an artificial multi-agent system, so the usual animal-to-machine transfer penalty does not apply."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_099",
+  "entry_id": "2026-09-20_arc_099_repair_universals_dingemanse2015",
+  "timestamp_utc": "2026-09-20T06:06:00Z",
+  "claim_ids_tested": [
+    "ARC-099"
+  ],
+  "source": {
+    "title": "Universal Principles in the Repair of Communication Problems",
+    "authors": [
+      "Mark Dingemanse",
+      "Sean G. Roberts",
+      "Julija Baranova",
+      "Joe Blythe",
+      "Paul Drew",
+      "Simeon Floyd",
+      "Rosa S. Gisladottir",
+      "Kobin H. Kendrick",
+      "Stephen C. Levinson",
+      "Elizabeth Manrique",
+      "Giovanni Rossi",
+      "N. J. Enfield"
+    ],
+    "year": 2015,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0136100",
+    "pmid": "26375483",
+    "pmc": "PMC4573759",
+    "volume": "10",
+    "issue": "9",
+    "pages": "e0136100"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "ARC-099 lists 'repair' as one of fourteen enabling conditions, and repair is the least obvious item on that list -- it is easy to read as a refinement that a mature language acquires rather than a precondition a bootstrap requires. This paper is the strongest available evidence that repair is neither optional nor culturally contingent: across 12 languages from 8 unrelated families, other-initiated repair occurs about once every 1.4 minutes of conversation, and the same three functionally distinct repair-initiator types appear in the same kinds of contexts in all of them. A system that frequent and that structurally invariant across unrelated lineages is infrastructure, not ornament. Source quality is high -- a large cross-linguistic corpus study, open access, from the Max Planck conversational-interaction group. Confidence is capped at 0.71 by mapping fidelity rather than by quality: the corpus is of MATURE human languages in use, so the paper establishes that repair is universal in the endpoint, not that it was a precondition of the bootstrap. That is a real inferential gap and ARC-099 asserts the precondition reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Repair is frequent enough (about once per 1.4 minutes) that a signalling channel with no repair affordance is not a degraded language but a different and much weaker object -- yet no V6 node currently specifies what a repair initiator would BE in REE's channel, so the condition is listed but not operationalisable.",
+    "The three repair-initiator types are functionally distinct (open request, restricted request, restricted offer) and the paper shows senders respond differently to each. A REE channel carrying a single undifferentiated 'I did not understand' signal would satisfy the letter of the repair condition while omitting the functional distinction that makes repair work.",
+    "The evidence is from mature languages in use, so it cannot exclude the alternative that repair CO-EVOLVES with the signal system rather than preceding it -- in which case ARC-099's gate would wrongly block a probe on a condition that the probe itself was supposed to produce."
+  ],
+  "tags": [
+    "arc-099",
+    "repair",
+    "conversation_analysis",
+    "cross_linguistic_universal",
+    "enabling_conditions",
+    "other_initiated_repair"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a sample of 12 languages from 8 language families with varied typological profiles, a system of other-initiated repair -- by which the recipient of an unclear message signals trouble and the sender repairs the original message -- is used on average about once every 1.4 minutes in every language. Unrelated languages share the same three functionally distinct types of repair initiator and deploy them in the same kinds of contexts, contrary to assumptions of radical cultural variation.",
+    "ree_translation": "Repair is the fourteenth and least self-evident item on ARC-099's enabling-condition inventory. One could reasonably suspect it of being a late refinement rather than a bootstrap precondition -- something a language acquires once it has enough structure to be misunderstood. Dingemanse et al. make that reading hard to sustain. A mechanism that fires once every 1.4 minutes, in the same three functional flavours, across eight unrelated language families, is load-bearing infrastructure of the interaction system rather than a stylistic overlay. For ARC-099 this converts 'repair' from a plausible-sounding list item into one with independent cross-linguistic warrant, and it supplies something the claim currently lacks entirely: a specification of what satisfying the condition would MEAN. Not merely 'the channel supports correction', but three functionally distinct initiator types -- open ('huh?'), restricted ('who?'), and restricted offer ('did you mean X?') -- to which senders respond differently.",
+    "mapping_caveat": "The inferential gap is the direction of time, and it is not small. This is a corpus study of MATURE languages in ongoing use. It establishes that repair is universal in the endpoint; ARC-099 asserts that repair is a PRECONDITION of the bootstrap. Those are different claims and this paper cannot distinguish them from the alternative that repair co-evolves with, or emerges from, an already-functioning signal system. If that alternative is right, ARC-099's gate would block a V6 probe on a capacity the probe was meant to generate -- a false negative at the gate, which is the more expensive failure direction for a contract whose purpose is to prevent vacuous probes. A second, lesser caveat: the corpus is human spoken conversation with full prosody, gaze and turn-taking machinery; REE's low-cost signalling channel has none of these, and it is genuinely unclear whether the three-way initiator typology survives a channel that thin.",
+    "source_context": "Corpus study of naturally occurring informal conversation in 12 languages (8 unrelated families, varied typological profiles), coded for other-initiated repair sequences using conversation-analytic methods; human adult speakers."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.42,
+    "notes": "Source quality is high: a genuinely impressive cross-linguistic corpus effort, open access, from the group that defined the field, and the headline numbers have held up. Mapping fidelity and transfer risk are both constrained by the same thing -- the endpoint-versus-precondition gap, compounded by the move from rich human multimodal conversation to a minimal artificial channel. Transfer risk at 0.42 is the highest in this pull and is honest: this is the one entry here whose substrate is furthest from REE's."
+  }
+}

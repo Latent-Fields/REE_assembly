@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_099",
+  "entry_id": "2026-09-20_arc_099_missing_constraints_galke2022",
+  "timestamp_utc": "2026-09-20T06:06:00Z",
+  "claim_ids_tested": [
+    "ARC-099"
+  ],
+  "source": {
+    "title": "Emergent Communication for Understanding Human Language Evolution: What's Missing?",
+    "authors": [
+      "Lukas Galke",
+      "Yoav Ram",
+      "Limor Raviv"
+    ],
+    "year": 2022,
+    "venue": "Emergent Communication (EmeCom) Workshop at the 10th International Conference on Learning Representations (ICLR 2022)",
+    "arxiv_id": "2204.10590",
+    "url": "https://arxiv.org/abs/2204.10590",
+    "doi": null
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the most directly on-point source found for ARC-099 and it cuts both ways, which is why the direction is mixed rather than supports. It endorses ARC-099's central premise -- that specific cognitive and communicative constraints are what make linguistic structure emerge, and that their absence explains failure -- and it does so from the language-evolution side rather than the ML-benchmark side. But it also reports that two of the three phenomena it examines (generalization, and the group-size effect whereby larger groups produce more systematic languages) do NOT replicate with neural agents, and it names two constraints as load-bearing in humans that ARC-099's fourteen-item inventory does not contain: memory constraints, and alternation between speaker and listener roles. For a claim whose whole content is the completeness and jointness of an enumerated list, a credible argument that the list is missing two items is a direct partial weakening. Confidence is capped at 0.66 because this is a four-page workshop position paper, not a primary experimental result -- its empirical weight is borrowed from the literature it reviews, chiefly Raviv's own group-size work.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The group-size effect -- larger populations producing more systematic, more compositional languages -- is robust in human experiments but does NOT fully replicate in neural-agent simulations. ARC-099 lists 'partner variation' as an enabling condition; this paper says that in artificial agents partner variation demonstrably fails to deliver the structure it delivers in humans, so satisfying that condition in a V6 ecology may buy nothing.",
+    "Generalization of emergent compositional codes to unseen meanings does not fully replicate in neural agents either, so a LANG-4 probe that certifies compositionality on the training distribution can certify a protocol that will not generalize.",
+    "Two constraints the authors identify as load-bearing in humans are absent from ARC-099's inventory: bounded memory, and alternation between speaker and listener roles. A V6 ecology with a fixed sender and a fixed receiver omits role alternation by construction -- which is precisely the design of every referential-game substrate REE would be tempted to reuse."
+  ],
+  "tags": [
+    "arc-099",
+    "emergent_communication",
+    "language_evolution",
+    "enabling_conditions",
+    "group_size_effect",
+    "role_alternation",
+    "memory_constraints"
+  ],
+  "mapping": {
+    "source_claim_statement": "Emergent communication protocols among humans and artificial neural-network agents do not share the same properties. Of three phenomena concerning the emergence and benefits of compositionality -- ease-of-learning, generalization, and group size effects -- the latter two are not fully replicated with neural agents. One possible reason is that key cognitive and communicative constraints of humans are not integrated into the simulations: specifically, memory constraints and the alternation between the roles of speaker and listener, which in humans underlie the emergence of linguistic structure.",
+    "ree_translation": "ARC-099's content is an enumerated inventory asserted to be jointly necessary for bootstrap. Galke, Ram and Raviv attack exactly that kind of inventory from the language-evolution side and reach a two-part verdict REE should take seriously. The supporting part: they agree that structure emerges from specific constraints and that absent constraints explain absent structure -- the methodological premise of the whole V6-entry gate. The weakening part is twofold. (i) They name two constraints as load-bearing in humans that ARC-099 does not list at all -- bounded memory, and speaker/listener role alternation. Role alternation is the sharper of the two for REE, because it is a property of the ECOLOGY's interaction protocol rather than of any agent's substrate, and no item in the current inventory implies it. (ii) They report that partner variation -- ARC-099 lists it -- produces the group-size systematicity effect in humans but fails to reproduce it in neural agents, which means a V6 ecology could satisfy that condition on paper and still get nothing. For ARC-099 as a machine-checkable V6-entry contract, both findings say the contract is currently under-specified.",
+    "mapping_caveat": "This is a short workshop position paper, not a primary experiment: its empirical claims are assertions about a literature (primarily Raviv and colleagues' human group-size studies and the Lewis-game simulation literature) rather than new measurements, and 'not fully replicated' is doing quiet work -- the paper does not quantify the gap. Two further caveats on the mapping. First, the paper's target is whether emergent-communication simulations are valid MODELS OF HUMAN LANGUAGE EVOLUTION; ARC-099's target is whether a signalling probe in REE would be non-vacuous. Those questions are adjacent but not identical, and REE does not owe human-likeness -- an emergent REE protocol that fails to reproduce human group-size effects is a scientific problem for Galke et al. and possibly not one for REE. Second, treating 'memory constraints' as a missing condition sits awkwardly with ARC-099's existing 'episodic memory' item, which asserts memory must be PRESENT while this paper asserts it must be BOUNDED; that is a genuine unreconciled tension in the inventory, not a duplicate.",
+    "source_context": "Position/review paper spanning human language-evolution experiments (group-size and systematicity studies with human participants) and deep-learning emergent-communication simulations (Lewis/referential games with neural agents). No new data."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Unusual profile: mapping fidelity is the HIGHEST of any source in this pull -- the paper is literally about which enabling conditions an artificial multi-agent simulation must carry for emergent structure to be meaningful, which is ARC-099's question almost verbatim -- while source quality is the lowest, because it is a non-archival four-page workshop position paper whose empirical weight is borrowed. The aggregate is pulled below the mean of the components by that borrowing: a claim this consequential for the inventory deserves to be re-checked against Raviv's primary group-size papers before any V6 gate is rewritten on its authority."
+  }
+}

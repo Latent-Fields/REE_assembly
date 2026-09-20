@@ -1,0 +1,78 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_100",
+  "entry_id": "2026-09-20_arc_100_llm_affordance_grounding_ichter2023",
+  "timestamp_utc": "2026-09-20T06:06:00Z",
+  "claim_ids_tested": [
+    "ARC-100"
+  ],
+  "source": {
+    "title": "Do As I Can, Not As I Say: Grounding Language in Robotic Affordances",
+    "authors": [
+      "Brian Ichter",
+      "Anthony Brohan",
+      "Yevgen Chebotar",
+      "Chelsea Finn",
+      "Karol Hausman",
+      "Alexander Herzog",
+      "Daniel Ho",
+      "Julian Ibarz",
+      "Alex Irpan",
+      "Eric Jang",
+      "Ryan Julian",
+      "Dmitry Kalashnikov",
+      "Sergey Levine",
+      "Yao Lu",
+      "Carolina Parada",
+      "Kanishka Rao",
+      "Pierre Sermanet",
+      "Alexander Toshev",
+      "Vincent Vanhoucke",
+      "Fei Xia",
+      "Ted Xiao",
+      "Peng Xu",
+      "Mengyuan Yan",
+      "Noah Brown",
+      "Michael Ahn",
+      "Andy Zeng"
+    ],
+    "year": 2023,
+    "venue": "Proceedings of the 6th Conference on Robot Learning (CoRL 2022), Proceedings of Machine Learning Research",
+    "arxiv_id": "2204.01691",
+    "volume": "205",
+    "pages": "287-318",
+    "url": "https://proceedings.mlr.press/v205/ichter23a.html",
+    "doi": null
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Scored mixed, and deliberately included as the counter-pressure entry in this directory. It STRONGLY supports ARC-100's grounding criterion with the cleanest quantitative datum found in this pull: on 101 real-world instructions, plan success is 84% with affordance grounding and 67% for the language-model-only ablation -- 17 percentage points bought by making the linguistic proposal answer to what the embodiment can actually do. That is 'a cut is grounded only if it changes action' measured. But the system that produces the datum is itself a counterexample to the other half of ARC-100: it IMPORTS a large language model wholesale, as the source of task decomposition, and the 67% floor shows the imported model was contributing substantial real structure on its own. ARC-100 forbids that import outright. Source quality is high for the empirical result (CoRL, real robots, 101 tasks, explicit ablations); confidence is held to 0.68 because the domain -- natural-language instruction following for a robot with a pre-trained skill library -- is a considerable distance from REE's V6 problem of mining pre-linguistic primitive cuts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A language model selecting actions on linguistic plausibility alone reached only 67% plan success against 84% when constrained by a learned affordance value function -- linguistic plausibility and executable appropriateness come apart measurably, which is ARC-100's grounding criterion demonstrated rather than asserted.",
+    "The gap between plan success and execution success (84% vs 74% in the mock kitchen; 81% vs 60% in the real kitchen) shows that even a grounded plan degrades substantially at execution -- so 'changes action' is necessary but not sufficient for a mined cut to be USEFUL, a distinction ARC-100's criterion does not currently make.",
+    "Counter-pressure on ARC-100's absolute prohibition: the imported LLM was not inert. It carried enough real task structure to reach 67% alone, so a blanket no-import rule has a measurable opportunity cost that ARC-100 currently does not acknowledge or bound."
+  ],
+  "tags": [
+    "arc-100",
+    "grounding",
+    "affordances",
+    "large_language_models",
+    "embodied_agents",
+    "mine_not_import",
+    "counter_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Large language models encode substantial semantic knowledge about the world but lack real-world experience, which makes it difficult to use them for decision making within a given embodiment. The authors provide real-world grounding via pretrained low-level skills and their learned value functions, constraining the language model to propose natural-language actions that are both feasible and contextually appropriate. On 101 real-world instructions from 7 instruction families, the combined system achieves 84% plan success and 74% execution success in a mock kitchen (81% / 60% in a real kitchen), against 67% plan success for a language-model-scoring-only baseline without the value function.",
+    "ree_translation": "This entry earns its place by cutting both ways, and it is here because a directory containing only confirming sources for a prohibition would be a poor governance record. On ARC-100's GROUNDING CRITERION -- a mined cut counts as grounded only if it changes perception, attention, action, memory, rule-availability or coordination -- this is the cleanest quantitative support available: linguistic plausibility and executable appropriateness measurably come apart, and 17 percentage points of plan success is what it costs to ignore the difference. The criterion is not a philosophical stipulation; it is a number. On ARC-100's PROHIBITION, however, the same system is a counterexample. It imports a large language model wholesale as the source of task decomposition, which ARC-100 forbids, and the 67% language-only floor shows the import was carrying real structure rather than being a decorative front end. The honest reading is that ARC-100's positive method is well-evidenced and its absolute prohibition has an unacknowledged cost.",
+    "mapping_caveat": "Domain distance is the main limit and it is substantial. This is natural-language instruction following for a robot equipped with a library of pretrained skills and their value functions; the language is human-supplied English instructions, and the grounding is a value function over an existing skill set. REE's V6 problem is the reverse and harder one: mining candidate PRE-linguistic primitive cuts and asking whether they change a substrate that is still being built. Nothing here bears on whether grammatical categories identify real cognitive joints. A second, sharper caveat about the counter-pressure: ARC-100's prohibition is aimed at treating an LLM as a COGNITIVE AUTHORITY inside REE's own value and decision path, whereas SayCan uses the LLM as an external proposer whose suggestions are vetoed by a learned affordance function -- arguably closer to 'mining under veto' than to 'import as authority'. That reading softens the counterexample considerably, but it does not dissolve it, because ARC-100's text prohibits the imported transformer block as such and not only the authority relation.",
+    "source_context": "Real-world robotic manipulation and navigation in mock and real office kitchens; mobile manipulator with a library of pretrained visuomotor skills and learned value functions; PaLM-class language model as task proposer; 101 instructions across 7 families; ablations against language-model-only baselines."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.48,
+    "notes": "Source quality high for the empirical result -- CoRL, real hardware, 101 tasks, and the ablations that make the entry useful are reported rather than inferred. Mapping fidelity is the lowest in this pull at 0.55 and transfer risk the highest at 0.48, both for the same reason: instruction-following with a pretrained skill library is a long way from mining pre-linguistic primitive cuts for a substrate under construction. The 17-point ablation is the part that travels; almost nothing else does. Confidence 0.68 sits above the fidelity component because the single datum it contributes is unusually clean and directly addresses the criterion REE has otherwise been asserting without measurement."
+  }
+}

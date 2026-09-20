@@ -1,0 +1,27 @@
+# Natural Language Does Not Emerge 'Naturally' in Multi-Agent Dialog (Kottur et al., EMNLP 2017)
+
+## What the paper did
+
+Kottur, Moura, Lee and Batra built a deliberately minimal cooperative game they call *Task & Talk*. One agent (the A-bot) can see an object described by a small set of attribute-value pairs; the other (the Q-bot) is given a task -- report two of the object's attributes -- but cannot see the object. The two exchange symbols from a fixed vocabulary over a small number of rounds, and both are rewarded only if the Q-bot's final answer is correct. Everything is learned end-to-end with reinforcement learning; nothing about the protocol is supervised. This is about as clean an instantiation of "partial observability plus coordination pressure plus a cheap signalling channel" as the literature offers.
+
+The paper is structured, unusually and honestly, as a sequence of negative results culminating in one positive one. The agents learn the task. They learn it well -- near-perfect reward. And then the authors look at what the agents actually said to each other, and find that the invented protocol is not compositional and not interpretable: the symbols do not decompose into reusable parts that recombine, and in the unconstrained setting the sender simply encodes the entire input into a near-one-hot token, which the receiver decodes. A lookup table dressed as a dialogue. The positive result comes last: by *restricting* the agents -- shrinking the vocabulary below what a lookup table would need, and removing the listener's memory across rounds -- the invented languages become progressively more human-like and compositional.
+
+## Why this is the right paper for ARC-099
+
+ARC-099 is an enabling-condition *contract*. Its assertion is structural rather than mechanistic: that language bootstraps only when a specific pre-linguistic inventory is jointly satisfied, and that a signalling probe run before the inventory is satisfied is vacuous. The hard part of defending a claim like that is finding evidence for the negative -- evidence that supplying *some* of the conditions gets you something that looks like success but is not.
+
+That is exactly what Kottur et al. deliver, and they deliver it inside an artificial multi-agent substrate rather than in a human population, which matters for transfer: REE would be building the simulated case, not the human one. Supply coordination pressure, information asymmetry and a channel, and you get a functioning private code. You do not get language. The compositional property that ARC-099's downstream nodes LANG-4 and LANG-5 depend on -- signals that repeat usefully and can be minted into rules -- did not arise until the experimenters intervened.
+
+There is a sharper operational lesson buried in this for the V6-entry gate. The agents' *own success metric was blind to the distinction*. Near-perfect task reward, no language. If a future LANG-4 joint-attention coordination game scores only "did signalling improve coordination", it will report a pass on a protocol that has bootstrapped nothing at all. The gate has to be checked before the probe runs, which is precisely what ARC-099 exists to make machine-checkable.
+
+## Limitations, and one that cuts against the claim
+
+Two boundaries, and I want to be honest that the second is uncomfortable.
+
+The first is scope. The conditions Kottur manipulates are channel-level: vocabulary size and listener memory. Against ARC-099's fourteen-item inventory that is roughly one item ("a low-cost signalling channel") and arguably a second ("episodic memory"). The paper says nothing whatsoever about object tokens, self-attribution, other-attribution, joint attention, repair, or partner variation. So it supports the *form* of ARC-099's assertion -- bootstrap is conditional -- without testing the *content*, which is the jointness of that particular list. ARC-099 asserts a conjunction; this paper tests two conjuncts.
+
+The second is direction, and it is the interesting one. Kottur's fix was to *add restrictions* -- to remove capacity from the channel and memory from the listener. ARC-099's inventory, by contrast, is a list of capacities that must be *present*. A careless reader could take this paper as licence for the opposite engineering move: that the way to get language in V6 is to starve the channel rather than to satisfy the substrate inventory. I do not think those are actually in tension -- a bottleneck is what makes a *grounded* inventory get used rather than bypassed, and Galke et al. (the sibling entry in this directory) argue explicitly that memory constraints belong on the enabling list -- but ARC-099 as currently worded does not say this, and the gap is real. If anything, this paper suggests the inventory is missing a "capacity is bounded" condition alongside its thirteen presence conditions.
+
+## Confidence
+
+0.78, `supports`. Source quality is high: EMNLP 2017, two independent public implementations, a result that has held up and been built on. Transfer risk is unusually low because the source substrate is itself a simulated multi-agent system, so the animal-to-machine penalty that discounts most of REE's neuroscience pulls does not apply here. Mapping fidelity is what holds the number down: this is strong evidence for the conditional shape of ARC-099 and weak evidence for its specific inventory. It answers "is bootstrap automatic?" (no) rather than "is this the right list?" (unaddressed).
