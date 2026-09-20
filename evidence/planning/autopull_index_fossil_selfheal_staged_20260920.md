@@ -1,6 +1,6 @@
 # Auto-pull index-fossil self-heal -- root cause, predicate, held-out replay
 
-**Status: AWAITING USER REVIEW** (helper + tests landed INERT; wiring is decision chip `chip-20260920-autopull-fossil-reconcile-wiring-decision`)
+**Status: WIRED 2026-09-20** -- user chose A + C and YES to the overlap-aware pre-gate (section 8); built by `chip-20260920-autopull-fossil-reconcile-wiring-build` (umbrella `60bb65421`). Sections 5 ("Nothing calls it") and 10 are HISTORICAL. Build record, pre-gate held-out replay and activation steps: `autopull_pregate_heldout_replay_20260920.md`. (Was: AWAITING USER REVIEW; helper + tests landed INERT; decision chip `chip-20260920-autopull-fossil-reconcile-wiring-decision`.)
 
 - Staged: 2026-09-20 by `ml-autopull-fossil-selfheal-20260920` (`/metaworker-learning`)
 - Work chip: `chip-20260920-ml-autopull-index-fossil-selfheal`

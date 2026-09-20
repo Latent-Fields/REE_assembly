@@ -8010,6 +8010,233 @@ def ensure_mobile_tmux_session():
         print(f"[serve] mobile: tmux ensure skipped ({e})", flush=True)
 
 
+# -- pre-pull fossil reconcile (auto-pull) -----------------------------------
+# The umbrella repo's scripts/ff_fossil_reconcile.py, reached by SHELL-OUT only.
+# serve.py is REE_assembly and must not import umbrella modules (the same
+# cross-repo rule that makes graceful_timeout/machine_identity vendored copies),
+# and the call is gated on the file existing, so a box that has REE_assembly
+# without the umbrella checkout behaves exactly as it did before 2026-09-20.
+# Design + held-out replay:
+# evidence/planning/autopull_index_fossil_selfheal_staged_20260920.md
+_FF_FOSSIL_HELPER_ENV = "REE_FF_FOSSIL_HELPER"     # tests only
+_FF_FOSSIL_TIMEOUT_S = 120
+
+
+def _ff_fossil_helper_path():
+    override = os.environ.get(_FF_FOSSIL_HELPER_ENV)
+    if override:
+        return Path(override)
+    return SERVE_DIR.parent / "scripts" / "ff_fossil_reconcile.py"
+
+
+def _ff_fossil_reconcile(repo, branch):
+    """Run the fossil-reconcile helper on `repo`; return its verdict dict.
+
+    FAILS CLOSED to None: helper file absent, spawn failure, timeout, a
+    non-JSON last line, or a verdict that cannot be independently confirmed.
+    None means "behave exactly as before". A RECONCILED verdict is returned
+    only when git itself then agrees the checkout is no longer behind -- two
+    independent signals, because the caller clears `stuck_since` on it.
+    """
+    helper = _ff_fossil_helper_path()
+    try:
+        if not helper.is_file():
+            return None
+        r = subprocess.run(
+            [sys.executable, str(helper), "--repo", str(repo),
+             "--branch", branch, "--json"],
+            capture_output=True, text=True, timeout=_FF_FOSSIL_TIMEOUT_S,
+        )
+        last = (r.stdout or "").strip().splitlines()[-1]
+        verdict = json.loads(last)
+        if not isinstance(verdict, dict) or not isinstance(verdict.get("verdict"), str):
+            return None
+        if verdict["verdict"] == "RECONCILED":
+            left = subprocess.run(
+                ["git", "-C", str(repo), "rev-list", "--count",
+                 f"HEAD..origin/{branch}"],
+                capture_output=True, text=True, timeout=30,
+            )
+            if left.returncode != 0 or left.stdout.strip() != "0":
+                return None
+        return verdict
+    except Exception:
+        # Includes subprocess.TimeoutExpired: graceful_timeout SIGTERMs the
+        # helper first. The helper never writes a working-tree file, so the
+        # worst residue of a kill is a staged index entry equal to origin's
+        # own blob -- and the caller simply prints its usual line.
+        return None
+
+
+def _pull_repo(repo, stuck_since):
+    """One repo's pull cycle. A bare `return` means: on to the next repo.
+
+    Extracted from the loop body so the caller can fault-isolate each
+    repo individually -- see the try/except in main()._auto_pull's loop.
+
+    Module-level (hoisted out of main()._auto_pull 2026-09-20, body
+    otherwise unchanged) so tests/test_autopull_fossil_reconcile.py can
+    reach it; `stuck_since` is the caller-owned {repo name: monotonic
+    first-skip time} dict documented there.
+    """
+    if not (repo / ".git").is_dir():
+        return
+    result = subprocess.run(
+        ["git", "-C", str(repo), "pull", "--ff-only"],
+        capture_output=True, text=True, timeout=30,
+    )
+    if result.returncode == 0:
+        stuck_since.pop(repo.name, None)
+        if "Already up to date" not in result.stdout:
+            print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
+        return
+    # --ff-only failed. TWO distinct causes, which need different
+    # remedies and used to print the same (often wrong) message:
+    #
+    #   A. NOT diverged (0 ahead), but a dirty working-tree file
+    #      overlaps an incoming change, so the merge would clobber
+    #      it. Retrying can NEVER clear this -- the dirty tree also
+    #      skips the rebase below. It clears only when a session
+    #      commits those paths. This is the common case here: the
+    #      evidence/ derived artifacts are rewritten on origin by
+    #      the phase3 writers AND held dirty by governance sessions.
+    #   B. Genuinely diverged -- local un-pushed commits (e.g.
+    #      igw-ledger automation on this Mac). Auto-heal by rebasing
+    #      onto origin, but ONLY when the tree is clean. Never
+    #      autostash: an autostash cycle here can transiently revert
+    #      another session's uncommitted evidence/ or claims edits
+    #      (see CLAUDE.md High-Contention Files).
+    #
+    # A dirty tree alone never blocks a fast-forward -- only a dirty
+    # tree whose paths COLLIDE with the incoming diff does.
+    branch = subprocess.run(
+        ["git", "-C", str(repo), "symbolic-ref", "--short", "HEAD"],
+        capture_output=True, text=True, timeout=30,
+    ).stdout.strip() or "HEAD"
+    counts = subprocess.run(
+        ["git", "-C", str(repo), "rev-list", "--left-right", "--count",
+         f"origin/{branch}...HEAD"],
+        capture_output=True, text=True, timeout=30,
+    ).stdout.split()
+    behind, ahead = (counts + ["?", "?"])[:2]
+    dirty = subprocess.run(
+        ["git", "-C", str(repo), "status", "--porcelain"],
+        capture_output=True, text=True, timeout=30,
+    ).stdout.strip()
+
+    first = stuck_since.setdefault(repo.name, time.monotonic())
+    mins = int((time.monotonic() - first) / 60)
+    stale = f"; stale {mins}m" if mins >= 10 else ""
+
+    if dirty:
+        # PRE-PULL FOSSIL RECONCILE (2026-09-20, user decision A+C on
+        # chip-20260920-autopull-fossil-reconcile-wiring-decision). Cause A
+        # above has one self-inflicted sub-case that retrying CAN clear:
+        # the blocking path's working-tree bytes already EQUAL the incoming
+        # tip (igw_routine_tick.py lands igw_routine_log.md with
+        # `ree_commit.py --to-remote-tip`, which pushes without moving the
+        # local ref or index, and git refuses a fast-forward over a
+        # modified path WITHOUT comparing content). The umbrella helper
+        # proves that per path by hash equality and, only if EVERY
+        # overlapping path is proven, runs git's own `merge --ff-only`.
+        # Only a positively verified RECONCILED changes anything here;
+        # every other outcome -- helper absent (a box without the
+        # umbrella), timeout, crash, UNPROVEN, NOT_APPLICABLE -- falls
+        # through to exactly the line this branch always printed.
+        fossil = None
+        if ahead == "0" and branch != "HEAD":
+            fossil = _ff_fossil_reconcile(repo, branch)
+        if fossil is not None and fossil.get("verdict") == "RECONCILED":
+            stuck_since.pop(repo.name, None)
+            names = ", ".join(fossil.get("fossils") or []) or "?"
+            print(f"[serve] git pull {repo.name}: fast-forwarded {behind} "
+                  f"commit(s) over index fossil(s) [{names}] -- working tree "
+                  f"already equalled origin/{branch}; no file was written "
+                  f"for them.", flush=True)
+            return
+        # git's own stderr names the exact blocking paths -- the one
+        # piece of information that makes this actionable. It was
+        # captured and discarded before.
+        blockers = [ln.strip() for ln in result.stderr.splitlines()
+                    if ln.startswith("\t")]
+        detail = (f" blocked by: {', '.join(blockers[:6])}"
+                  + (f" (+{len(blockers) - 6} more)" if len(blockers) > 6 else "")
+                  ) if blockers else ""
+        kind = ("diverged + local changes"
+                if ahead not in ("0", "?")
+                else f"behind {behind}, NOT diverged -- uncommitted paths block ff")
+        # The helper's per-path naming is the discriminator the pullers
+        # never had: UNPROVEN = genuinely dirty, needs a session/human.
+        # Appended ONLY when the helper actually said so; otherwise the
+        # line is byte-identical to before.
+        if fossil is not None and fossil.get("verdict") == "UNPROVEN":
+            unproven = [u.get("path", "?") for u in (fossil.get("unproven") or [])
+                        if isinstance(u, dict)]
+            if unproven:
+                detail += (f" fossil-check: NOT a fossil (genuinely dirty): "
+                           f"{', '.join(unproven[:6])}")
+            if fossil.get("fossils"):
+                detail += (f"; provable fossil(s) left alone (partial proof "
+                           f"is not proof): {', '.join(fossil['fossils'][:6])}")
+        print(f"[serve] git pull {repo.name}: {kind}; skipping{stale}.{detail}",
+              flush=True)
+        return
+    # NOT PORTED HERE, deliberately (chip-20260907-servepy-autopull-
+    # abort-no-recovery, decided 2026-09-08): ree-v3's
+    # experiment_runner.py gained a derive-only rebase-conflict
+    # RECOVERY (495381aaf2) after a 2026-09-07 REE_assembly wedge --
+    # both the Mac and the hub regenerate
+    # evidence/planning/inter_governance_workset.{md,v1.json} on
+    # every igw_routine_tick.py tick and commit them with an
+    # identical subject line, so a replay against a newer hub regen
+    # on origin conflicts every time. That commit's own message
+    # explains, and this session re-verified, why _pull_repo is NOT
+    # the same hazard: this function returns at the `if dirty:`
+    # branch above BEFORE ever reaching the rebase below, and
+    # REE_assembly's working tree is essentially always dirty
+    # (governance sessions plus the phase3 writers) -- confirmed by
+    # the incident's own reflog, where every abort followed a `pull
+    # --rebase --autostash` start, an option this function never
+    # passes. So the branch below is reachable only on a rare clean-
+    # tree cycle, not the routine path. Porting the recovery would
+    # also mean VENDORING it (serve.py is REE_assembly, the helper
+    # is ree-v3 -- cross-repo import is rejected here on purpose,
+    # see CLAUDE.md step 7a on vendored copies), a real third-copy
+    # maintenance cost for a latent rather than active hazard. The
+    # Phase-4 CAS cutover (igw_workset_suppress_git_write, not yet
+    # armed as of 2026-09-08) removes the second writer for these
+    # two paths structurally once flipped, which is the same
+    # eventual fix 495381aaf2 relies on. If this instance is ever
+    # found to actually fire in production, re-open the chip rather
+    # than re-deriving this analysis from scratch.
+    rebase = subprocess.run(
+        ["git", "-C", str(repo), "pull", "--rebase"],
+        capture_output=True, text=True, timeout=60,
+    )
+    if rebase.returncode == 0:
+        stuck_since.pop(repo.name, None)
+        print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
+    else:
+        # Name the conflicting paths BEFORE aborting -- `rebase
+        # --abort` restores the pre-rebase state and clears the UU
+        # (unmerged) markers this depends on, so it must run first
+        # or the detail is gone. (The same ordering mistake made
+        # ree-v3's recovery helper silently inert before 495381aaf2;
+        # here it only costs a diagnosable log line, not a fix.)
+        unmerged = subprocess.run(
+            ["git", "-C", str(repo), "diff", "--name-only",
+             "--diff-filter=U"],
+            capture_output=True, text=True, timeout=30,
+        ).stdout.split()
+        detail = (f" conflicting: {', '.join(unmerged[:6])}"
+                  + (f" (+{len(unmerged) - 6} more)" if len(unmerged) > 6 else "")
+                  ) if unmerged else ""
+        subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
+                       capture_output=True, text=True, timeout=30)
+        print(f"[serve] git pull {repo.name}: diverged ({ahead} ahead/{behind} behind), "
+              f"rebase conflict -- manual merge needed{stale}.{detail}", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description="REE Claims Explorer Server")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT,
@@ -8089,131 +8316,6 @@ def main():
         # cannot: an 8-hour stall and a one-cycle blip looked identical before.
         stuck_since = {}
 
-        def _pull_repo(repo):
-            """One repo's pull cycle. A bare `return` means: on to the next repo.
-
-            Extracted from the loop body so the caller can fault-isolate each
-            repo individually -- see the try/except in the while loop below.
-            """
-            if not (repo / ".git").is_dir():
-                return
-            result = subprocess.run(
-                ["git", "-C", str(repo), "pull", "--ff-only"],
-                capture_output=True, text=True, timeout=30,
-            )
-            if result.returncode == 0:
-                stuck_since.pop(repo.name, None)
-                if "Already up to date" not in result.stdout:
-                    print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
-                return
-            # --ff-only failed. TWO distinct causes, which need different
-            # remedies and used to print the same (often wrong) message:
-            #
-            #   A. NOT diverged (0 ahead), but a dirty working-tree file
-            #      overlaps an incoming change, so the merge would clobber
-            #      it. Retrying can NEVER clear this -- the dirty tree also
-            #      skips the rebase below. It clears only when a session
-            #      commits those paths. This is the common case here: the
-            #      evidence/ derived artifacts are rewritten on origin by
-            #      the phase3 writers AND held dirty by governance sessions.
-            #   B. Genuinely diverged -- local un-pushed commits (e.g.
-            #      igw-ledger automation on this Mac). Auto-heal by rebasing
-            #      onto origin, but ONLY when the tree is clean. Never
-            #      autostash: an autostash cycle here can transiently revert
-            #      another session's uncommitted evidence/ or claims edits
-            #      (see CLAUDE.md High-Contention Files).
-            #
-            # A dirty tree alone never blocks a fast-forward -- only a dirty
-            # tree whose paths COLLIDE with the incoming diff does.
-            branch = subprocess.run(
-                ["git", "-C", str(repo), "symbolic-ref", "--short", "HEAD"],
-                capture_output=True, text=True, timeout=30,
-            ).stdout.strip() or "HEAD"
-            counts = subprocess.run(
-                ["git", "-C", str(repo), "rev-list", "--left-right", "--count",
-                 f"origin/{branch}...HEAD"],
-                capture_output=True, text=True, timeout=30,
-            ).stdout.split()
-            behind, ahead = (counts + ["?", "?"])[:2]
-            dirty = subprocess.run(
-                ["git", "-C", str(repo), "status", "--porcelain"],
-                capture_output=True, text=True, timeout=30,
-            ).stdout.strip()
-
-            first = stuck_since.setdefault(repo.name, time.monotonic())
-            mins = int((time.monotonic() - first) / 60)
-            stale = f"; stale {mins}m" if mins >= 10 else ""
-
-            if dirty:
-                # git's own stderr names the exact blocking paths -- the one
-                # piece of information that makes this actionable. It was
-                # captured and discarded before.
-                blockers = [ln.strip() for ln in result.stderr.splitlines()
-                            if ln.startswith("\t")]
-                detail = (f" blocked by: {', '.join(blockers[:6])}"
-                          + (f" (+{len(blockers) - 6} more)" if len(blockers) > 6 else "")
-                          ) if blockers else ""
-                kind = ("diverged + local changes"
-                        if ahead not in ("0", "?")
-                        else f"behind {behind}, NOT diverged -- uncommitted paths block ff")
-                print(f"[serve] git pull {repo.name}: {kind}; skipping{stale}.{detail}",
-                      flush=True)
-                return
-            # NOT PORTED HERE, deliberately (chip-20260907-servepy-autopull-
-            # abort-no-recovery, decided 2026-09-08): ree-v3's
-            # experiment_runner.py gained a derive-only rebase-conflict
-            # RECOVERY (495381aaf2) after a 2026-09-07 REE_assembly wedge --
-            # both the Mac and the hub regenerate
-            # evidence/planning/inter_governance_workset.{md,v1.json} on
-            # every igw_routine_tick.py tick and commit them with an
-            # identical subject line, so a replay against a newer hub regen
-            # on origin conflicts every time. That commit's own message
-            # explains, and this session re-verified, why _pull_repo is NOT
-            # the same hazard: this function returns at the `if dirty:`
-            # branch above BEFORE ever reaching the rebase below, and
-            # REE_assembly's working tree is essentially always dirty
-            # (governance sessions plus the phase3 writers) -- confirmed by
-            # the incident's own reflog, where every abort followed a `pull
-            # --rebase --autostash` start, an option this function never
-            # passes. So the branch below is reachable only on a rare clean-
-            # tree cycle, not the routine path. Porting the recovery would
-            # also mean VENDORING it (serve.py is REE_assembly, the helper
-            # is ree-v3 -- cross-repo import is rejected here on purpose,
-            # see CLAUDE.md step 7a on vendored copies), a real third-copy
-            # maintenance cost for a latent rather than active hazard. The
-            # Phase-4 CAS cutover (igw_workset_suppress_git_write, not yet
-            # armed as of 2026-09-08) removes the second writer for these
-            # two paths structurally once flipped, which is the same
-            # eventual fix 495381aaf2 relies on. If this instance is ever
-            # found to actually fire in production, re-open the chip rather
-            # than re-deriving this analysis from scratch.
-            rebase = subprocess.run(
-                ["git", "-C", str(repo), "pull", "--rebase"],
-                capture_output=True, text=True, timeout=60,
-            )
-            if rebase.returncode == 0:
-                stuck_since.pop(repo.name, None)
-                print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
-            else:
-                # Name the conflicting paths BEFORE aborting -- `rebase
-                # --abort` restores the pre-rebase state and clears the UU
-                # (unmerged) markers this depends on, so it must run first
-                # or the detail is gone. (The same ordering mistake made
-                # ree-v3's recovery helper silently inert before 495381aaf2;
-                # here it only costs a diagnosable log line, not a fix.)
-                unmerged = subprocess.run(
-                    ["git", "-C", str(repo), "diff", "--name-only",
-                     "--diff-filter=U"],
-                    capture_output=True, text=True, timeout=30,
-                ).stdout.split()
-                detail = (f" conflicting: {', '.join(unmerged[:6])}"
-                          + (f" (+{len(unmerged) - 6} more)" if len(unmerged) > 6 else "")
-                          ) if unmerged else ""
-                subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
-                               capture_output=True, text=True, timeout=30)
-                print(f"[serve] git pull {repo.name}: diverged ({ahead} ahead/{behind} behind), "
-                      f"rebase conflict -- manual merge needed{stale}.{detail}", flush=True)
-
         # EVERY cycle is fault-isolated, per repo. This loop previously had NO
         # exception handling at all, so a single TimeoutExpired from any of the
         # git calls above -- unattended, every 5 minutes, against the two repos
@@ -8229,7 +8331,7 @@ def main():
                       f"{type(exc).__name__}: {exc} -- continuing.", flush=True)
             for repo in repos:
                 try:
-                    _pull_repo(repo)
+                    _pull_repo(repo, stuck_since)
                 except subprocess.TimeoutExpired as exc:
                     # Kept AHEAD of the generic handler because this is the one
                     # failure that used to damage the repo rather than just the
