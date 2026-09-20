@@ -12441,6 +12441,16 @@
     cites (failure_autopsy_V3-EXQ-785_2026-07-19 sections 2a/8).
     Status held at candidate this cycle -- recorded as supporting evidence, not promoted.
   what_would_answer: |
+    [PRECONDITION REWRITTEN 2026-09-20, GFLAG-0392] The precondition below is
+    SUPERSEDED: the 2026-08-16 GFLAG-0037 split lifted the SD-006 phase 2
+    deferral as mis-scoped. The mechanism under test runs on the PHASE-1
+    clock -- phase_reset() is built (ree_core/heartbeat/clock.py) and all
+    three salient-event triggers are wired (ree-v3 6293b2395248, 2026-08-17);
+    V3-EXQ-944b PASS/supports 2026-08-25 (5 of 6 seeds);
+    commitment_closure:GAP-7 done 2026-09-01. A future run must NOT self-route
+    substrate_not_ready on SD-006 phase 2; true async concurrency is V4 and is
+    not this claim's precondition. The CONFIRMING / FALSIFYING signatures
+    below stand, read against the phase-1 clock. Original text retained:
     SUBSTRATE PRECONDITION: requires SD-006 phase 2 (async multi-rate loop
     execution) to be built -- without an actual oscillatory/cycle-boundary
     clock, there is no mechanism under test. Both EXQ-133 runs (2026-03-28,
@@ -31022,6 +31032,8 @@
       verdict: inconclusive/measurement_test_design_defect
   implementation_phase: v3
   evidence_quality_note: |
+    [governance-20260920 cycle 2, GFLAG-0391 + GFLAG-0379] OPTION A (REM precision recalibration) EXPERIMENTAL QUESTION CLOSED on the evidence in hand. USER DECISION 2026-09-20 (real AskUserQuestion via orchestrate-20260920-1121, on chip-20260920-exq541d-driftsource-insufficient): stop spending experiment budget on it. (1) The cold-start defect is PROVEN and FIXED by the landed F1 guard: precision_init is a VARIANCE (0.5), so the cold-start sentinel 1/(0.5+1e-6) = 1.999996 was being anchored as the persistent zero-point by the pre-waking reset's zero-tick sleep cycle (GFLAG-0379 as corrected by GFLAG-0384). (2) Option A is NOT FALSIFIABLE on the current substrate: its recalibration target is a lagged function of rv, and the only waking drift source (SD-076 asymmetric-EMA) was measured insufficient at both doses by V3-EXQ-794a (FAIL 2026-07-24). On the realised-PE base the WRITEBACK moved rv AWAY from realised PE variance on 9/9 (guard off) and 8/9 (guard on) cycles. Status stays candidate; no demotion below candidate; do NOT queue a 541-lineage successor. Re-opening is gated on a different waking drift-source build (chip-20260920-mech204-new-waking-drift-source, HOLD to 2026-09-25, design needs user consent). Record: evidence/planning/exq541d_redteam_blocking_refusal_staged_20260919.md sec 7-8.
+
     Substrate IMPLEMENTED 2026-05-08: SleepLoopManager WRITEBACK consumer
     (compute_recalibration_target + e3.recalibrate_precision_to); F1 cross-cycle
     persistent zero-point EMA. Config use_rem_precision_recalibration default False;
@@ -32042,8 +32054,10 @@
       from: "decision:INV-063@2026-09-08T15:30:04.464955Z"
       as_of: 2026-09-08
       verdict: hold_candidate_resolve_conflict/applied
-  epistemic_category: standard
+  epistemic_category: substrate_conditional
   evidence_quality_note: |
+    [governance-20260920 cycle 2, GFLAG-0390] epistemic_category standard -> substrate_conditional. USER DECISION 2026-09-20 (real AskUserQuestion via orchestrate-20260920-1121, on chip-20260920-inv063-lega-dv-circularity): convert via this claim's own escape hatch. Basis, four independently measured failed preconditions: leg-B 701b MSE degrades across sleep 9/9 cells (V3-EXQ-1063); InfoNCE tau has no readable AND correct-direction window (GFLAG-0382, inv063_legb_tau_bind_20260920); P1 holds on 2/3 seeds only (V3-EXQ-1069); all three registered C1 leg-A DVs are transforms of the same MEL scalar that P1's manipulation check gates on (GFLAG-0389, evidence/planning/inv063_legA_dv_circularity_20260920.md) -- so leg A as registered cannot discriminate and must be RE-REGISTERED with a DV independent of e3_prediction_error before any re-queue. Status stays candidate; not a falsification; no experiment budget until the upstream substrate (a sleep-side world-forward objective that improves the waking readout, plus an independent leg-A DV) exists. V3-EXQ-1071 driver (ree-v3 origin/main 9700362aa5) stays UNQUEUED and reusable.
+
     [governance-20260920] V3-EXQ-1063 (diagnostic, PASS on validity; indexer vacuous_pass genuine, on C4): non_contributory for INV-063, by design. CITEABLE: on a converged base at alpha_world 0.3, three sleep cycles with the world-forward trainer on made frozen-battery MSE worse on 3/3 seeds while the trained objective (InfoNCE) moved the other way -- the objective-mismatch signature. The base sits near the copy-the-input reference (ratio 1.07 / 0.77 / 1.01; seed 123 is 23% BETTER, so it is a reference, not a bound). UNCITEABLE: D2/D4 (InfoNCE at 99.5% of chance at tau 0.1) and C4's attribution premise. Read with inv063_legb_tau_bind_20260920 / GFLAG-0382: on 798a's configuration every READABLE tau (<= 0.01) gives a NEGATIVE across-sleep delta and every positive delta (tau >= 0.03) is unreadable. Neither readout currently shows sleep improving the world-forward model where leg B needs it. failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.
 
     [governance-20260920] V3-EXQ-1069 (diagnostic, PASS, inv063_p1_intake_ladder_gradeable): non_contributory for INV-063, by design. On 798a's configuration with P0 shared per seed, the SD-MEL-PRODUCER ladder grades waking MEL: monotone 3/3, relative spread 0.394 / 0.241 / 1.691 (floor 0.25), P1 met on 2/3 = exactly the requirement; robust to the episode-truncation control. Both indexer flags cleared as artefacts. Power: on the matched machine class (798a-linux 2/3, this run 2/3) the per-seed pass rate is 4/6, at which a 3-seed gate needing 2 voids about 1 time in 4; part of the 798a linux/darwin difference is a documented cross-machine-class divergence, which seeds on one box do not hedge. failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.
@@ -49669,7 +49683,9 @@
     The falsifier below is gated on THAT, not on SD-006.
     Cluster GFLAG-0076/0086, sub-decision D4, user-approved.
 
-    Falsifiable: after SD-006 implementation, a factorial experiment {waking-only
+    Falsifiable (gate corrected 2026-09-20, GFLAG-0392: after substrate_queue
+    `mech092-replay-consumer-missing` lands -- NOT after SD-006, per the
+    2026-09-01 govapply note above): a factorial experiment {waking-only
     CEM} x {quiescent-mode distinct-params} x {environment with multiple
     route-lengths} should show that distinct params produce better viability map
     coverage for long trajectories specifically, while short-trajectory performance
