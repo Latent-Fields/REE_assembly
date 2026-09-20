@@ -344,3 +344,74 @@ alternating-arm design's viability rests"). Its NEGATIVE outcome is already a
 pre-registered disposition of the claim, so it cannot be wasted: ARC-029's own P1 says
 "If P1 still fails with those armed, ARC-029 converts to `substrate_conditional` on
 commitment-occupancy sustainment and this falsifier is not readable."
+
+---
+
+# ADDENDUM 2 -- 2026-09-20T00:55Z: OPTION C CHOSEN AND QUEUED
+
+User decision 2026-09-19T23:52:40Z (real `AskUserQuestion` via the Orchestrator
+`orchestrate-20260919-2125`) on `chip-20260919-arc029-p1p3-env-operating-point`:
+**OPTION C -- one cheap diagnostic first, no evidence run.**
+
+**QUEUED: `V3-EXQ-1070`** -- `ree-v3 d0c644f3e2` on `origin/main`, RECONCILED into the
+coordinator DB (verified credential-free by snapshot survival: the entry is still present
+after the `phase3-queue: snapshot 2026-09-20` re-materialisation `0b7efa6e`). Driver:
+`ree-v3/experiments/v3_exq_1070_arc029_env_operating_point_feasibility.py`.
+
+`EXP-1394` is deliberately left at `status: proposed`. This diagnostic does NOT execute
+it; the evidence design it names is still the blocked one.
+
+## Design, and the two facts that shaped it
+
+A cross-product over the four env knobs the decision named would be ~16x the cells for no
+extra information, because they all act on the SAME conserved quantity. Two measurements
+made that concrete:
+
+1. **`agent_health` is HARD-CODED to 1.0** (`causal_grid_world.py:1774, :2083, :2216`) and
+   is drained by `abs(harm_signal)` per harm step (`:2642`). **There is no starting-health
+   constructor parameter**, so "lengthen episodes without shrinking the DV" -- the one
+   option that could have dissolved the bind -- is not reachable with existing levers.
+2. **The bind is therefore an identity, not a tendency.** Measured over a 6x range of
+   episode length (random policy, 30 episodes/rung): `episode_length x |mean reward/step|`
+   = 1.02 / 1.10 / 1.09 / 1.25 / 1.27 / 1.42.
+
+So the grid is a one-dimensional **lethality ladder**, pre-measured so it spans rather than
+clusters: L0 (the V3-EXQ-125a lineage point, 6.2-step episodes) -> L1 (10.8) -> L2 (22.5)
+-> L3 (29.5) -> L5_extreme (1 hazard; tests whether the ~30-step plateau is structural).
+5 rungs x q in {0.25, 0.50, 0.75} x 2 seeds = 30 cells.
+
+## What the red-team pass changed -- CONTESTED, six findings, all fixed
+
+Run in the foreground on Fable (this session runs on Opus), one pass, not iterated to
+CLEAR. Every finding was verified against source or against the driver's own dry-run
+manifest before being acted on; none was dismissed.
+
+| | finding | how it was confirmed | fix |
+|---|---|---|---|
+| F1 | the committed-run histogram walked the FLAT cross-episode sequence, so P1's run-length half was BLIND to episode length -- the very quantity the ladder manipulates and the verdict text blames | the driver's own dry-run manifest: `n_episodes 2`, `n_select_calls 14`, histogram `{'14': 1}` -- ONE run across both episodes | runs cut at episode boundaries; both views reported (now **7.0** per-episode vs **21.0** flat) |
+| F2 | `|mean| >= 10 x SEM` is SCALE-INVARIANT, so it could certify a soft rung at a harm rate where C1's untouched 0.002 bar is a 25% relative effect -- the EXQ-227 floor regime P3 exists to exclude | arithmetic: scaling every harm parameter by k scales mean and SD alike | second conjunct `|mean| >= 0.002/0.20 = 0.01`, DERIVED from C1's own floor and the build record's own "excludes relative effects >= 20%"; plus an autocorrelation-corrected SEM (measured lag-1 rho **0.573**, which moves SNR 5.99 -> **3.12**); plus a fixed ENV-STEP denominator, since stopping on select calls alone handed the softer rungs up to 3.6x more samples |
+| F3 | the harm DV was the NET signal, which carries BENEFIT (`:2410`), and the ladder drives `proximity_harm_scale` BELOW the fixed `proximity_benefit_scale` at soft rungs -- so a near-zero net there is CANCELLATION, not "harm on the floor" | source | P3 routes on `env.total_harm` deltas; net and benefit reported beside it |
+| F4 | training was budgeted in EPISODES while `_train_all_on_agent` breaks on `done`, so training depth scaled ~5x along exactly the manipulated dimension -- corrupting both the rv-dispersion deliverable and the worst-cell readiness gate | dry run: 20 vs 15 ticks at identical episode budgets | per-rung episode counts derived from the pre-measured lengths to equalise TICKS (realised **1710-1740**, spread **1.02**), recorded, and gated by a new `training_tick_budget_equalised` precondition |
+| F5 | D4's stated inference rule was foreclosed by this run's own warm budget: L0 will NOT reproduce the predecessor's saturation, because that was a 12-episode warm cap against a 200-select window | arithmetic: 200 / ~7 selects-per-episode ~ 29 episodes < the 250 cap | docstring corrected. **If L0 shows the bar in force, that is itself the finding** -- the predecessor's saturation was a warm-budget artifact, not an env property |
+| F6 | the three q cells share one agent in a fixed order and `agent.reset()` does not clear residue | `agent.py:3586` | q order counterbalanced by seed; order recorded per cell |
+
+Not re-spawned: the verdict was CONTESTED, not BLOCKING.
+
+## Pre-registered disposition -- RECORDED BY THE RUN, NOT APPLIED
+
+- **No jointly-feasible rung** -> ARC-029 converts to `substrate_conditional` on
+  commitment-occupancy sustainment, per ARC-029's OWN P1 text.
+- **A region found** -> the pre-registered V3-EXQ-063b design
+  (`experiments/v3_exq_1066_arc029_commitment_mode_harm_variance_bar.py`) is re-queued at
+  that setting, with C1 re-expressed if needed.
+
+Both are user decisions. The run writes neither into `claims.yaml`; it emits the numbers
+and the routing text. `manifest["disposition_rule_preregistered"]["applied_by_this_run"]`
+is `False` by construction.
+
+## Estimate caveat, stated rather than buried
+
+`estimated_minutes: 330` is a central estimate from per-step cost measured on `ree-cloud-4`
+(~214 ms/step eval, ~396 ms/step train-mode). Under sibling-session contention it may reach
+5-6h, which is above the ~2-3h the option-C framing assumed. Two seeds were retained
+because the feasibility predicate requires BOTH seeds -- at n=2 a "majority" is not a thing.
