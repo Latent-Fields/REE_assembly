@@ -5534,6 +5534,21 @@
       "status": "resolved",
       "resolved_at": "2026-09-20T14:19:31Z",
       "resolution_note": "APPLIED governance-20260920-cycle: MECH-091 what_would_answer precondition rewritten to the phase-1 clock and MECH-291 falsifier gate repointed at mech092-replay-consumer-missing (REE_assembly 44a0665b4f). The five ANSWERED pending_decisions rows (MECH-074d/316/317/314a/091) were closed with pending_decisions.py applied, each citing the earlier commit/cycle that had already carried it out. MECH-291's second residue ('Blocked on SD-006 for the quiescent path') was not found by grep in the claim block and is left as-is."
+    },
+    {
+      "flag_id": "GFLAG-0393",
+      "claim_ids": [
+        "INV-086",
+        "MECH-428",
+        "MECH-537"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "GOV-APPLY-1 rows for failure_autopsy_V3-EXQ-1039a_2026-09-20 (INV-086, MECH-428) and failure_autopsy_V3-EXQ-1043a_2026-09-20 (MECH-537) did NOT clear on the next regen, contrary to the governance-20260920 cycle-1 prediction. Measured at regen REE_assembly 5a7ff3b514 (2026-09-20T14:11Z): the evidence_quality_notes ARE applied (108b156192; each note names 1039a / 1043a), but live_status.evidence.from still reads failure_autopsy_V3-EXQ-1039_2026-09-16 for INV-086/MECH-428 and failure_autopsy_V3-EXQ-1044_2026-09-17 for MECH-537, so apply_live_status.py is not re-pointing provenance at the newer confirmed autopsy. Same family as GFLAG-0310 / GFLAG-0349 (SHP-4 projection ordering): all 12 current unapplied_disposition rows are NOTE-ONLY with content already applied and clear only via that stamp, so the ACTIONABLE count is a projection defect, not owed claims work. Fix belongs in the projection, not in claims.yaml.",
+      "raised_by_session": "governance-20260920-cycle",
+      "raised_at": "2026-09-20T14:20:11Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
