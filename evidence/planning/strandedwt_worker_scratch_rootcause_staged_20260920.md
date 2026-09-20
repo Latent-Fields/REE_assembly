@@ -1,6 +1,7 @@
 # chip-strandedwt class: worker scratch has no declared home -- root-cause pass
 
-**Status: AWAITING USER REVIEW**
+**Status: DECIDED 2026-09-20T10:16Z (user: build option B, the attested `.scratch/` design) -- BUILT, REE_Working `b5baac013` on origin/master.**
+Build note: the GOV-HELDOUT-1 re-check against the final wording caught one over-claim in section 4 -- row 5 (nested worktree under the scratch dir) would still have chipped under the staged text, because a ree-v3 checkout (~2730 files) exceeds the fail-closed 500-entry walk cap; contract rule 6a therefore also tells the worker to `git worktree remove` a nested throwaway worktree before attesting. The `_scratch/` blind spot (2g) was NOT built. The body below is unchanged from the staged version.
 
 - Written: 2026-09-20T10:04:13Z, `/metaworker-learning`, session `ml-strandedwt-scratch-contract-20260920`
 - Work chip: `chip-20260920-ml-strandedwt-worker-scratch-contract-rootcause`
