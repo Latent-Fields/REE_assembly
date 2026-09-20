@@ -5284,6 +5284,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0374",
+      "claim_ids": [
+        "SD-036"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-1068 (SD-036 observable #3 shared regime matrix) was AUTHORED, smoke-PASSED and REFUSED AT THE RED-TEAM GATE; it is NOT queued and NO queue entry exists. The driver is on ree-v3 origin/main at experiments/v3_exq_1068_sd036_observable3_regime_matrix.py carrying a DO-NOT-QUEUE banner. BLOCKING FINDING (red-team model fable, verified against source by the authoring session): z_beta cannot satisfy the load-bearing criterion under any outcome, for a reason unrelated to SD-036. z_beta is zero-initialised (stack.py:1278) and blends 0.3*encode + 0.7*prev (stack.py:1540, :1594), so its trajectory RISES from zero to a plateau; a higher gaba_tone lowers the pole, which reaches plateau FASTER and therefore RAISES mean/peak. Its sustain ratio is thus monotone INCREASING in tone by construction -- measured Spearman rho = +1.000 on both the readiness tape and the trained eval in the driver's own dry run, and +0.6/+0.2/-0.1 in landed V3-EXQ-854. The readiness gate as ratified by the user (D0=A) tests SPREAD ONLY with no sign condition, and z_beta's spread is 1.56e-2 against a 1e-3 floor, so z_beta is admitted as SCOREABLE and then fails the monotonicity bar with mathematical certainty, carrying the load-bearing criterion down and recording SD-036: weakens at non_degenerate: true. That would be a FALSE FALSIFICATION of SD-036's sole architectural commitment -- precisely the failure mode the D0 decision was taken to prevent. The obvious repair (adding a SIGN condition to the readiness gate) changes which streams are scoreable and therefore whether SD-036 can be falsified at all, so under the campaign consent rule it is a user decision and was NOT made by the authoring session. A decision chip carries the question.",
+      "raised_by_session": "metaworker-science-20260919-sd036-observable3-regime-matrix",
+      "raised_at": "2026-09-20T00:57:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
