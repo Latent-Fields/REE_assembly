@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-20T11:53:46.279616Z",
+  "generated_at_utc": "2026-09-20T14:04:36.212334Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -878,24 +878,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-0049",
-      "claim_id": "ARC-029",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-147",
-      "executed_queue_id": "V3-EXQ-147",
-      "objective": "Run a discriminative support-vs-ablation pair for ARC-029 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0231",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_arc_029",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert"
-      ]
-    },
-    {
       "backlog_id": "EVB-0014",
       "claim_id": "ARC-058",
       "dispatch_mode": "discriminative_pair",
@@ -1445,6 +1427,23 @@
       ]
     },
     {
+      "backlog_id": "EVB-0049",
+      "claim_id": "ARC-029",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-147",
+      "executed_queue_id": "V3-EXQ-147",
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-029 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0231",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_arc_029",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict"
+      ]
+    },
+    {
       "backlog_id": "EVB-0064",
       "claim_id": "SD-013",
       "dispatch_mode": "discriminative_pair",
@@ -1708,6 +1707,7 @@
       "why_now": [
         "active_conflict",
         "directional_conflict_alert",
+        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -12461,24 +12461,6 @@
     {
       "backlog_id": "EVB-1657",
       "claim_id": "SD-071",
-      "dispatch_mode": "targeted_probe",
-      "executed_by": "V3-EXQ-1058",
-      "executed_queue_id": "V3-EXQ-1058",
-      "objective": "Reduce uncertainty for SD-071 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1178",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_sd_071",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1657",
-      "claim_id": "SD-071",
       "objective": "Improve literature grounding and confidence for SD-071.",
       "priority": "medium",
       "proposal_id": "LIT-1179",
@@ -12486,7 +12468,7 @@
       "status": "proposed",
       "target_repo": "REE_assembly",
       "why_now": [
-        "insufficient_experimental_replication",
+        "insufficient_literature_grounding",
         "missing_literature_evidence"
       ]
     },
@@ -15225,6 +15207,24 @@
       "target_repo": "ree-v3"
     },
     {
+      "backlog_id": "EVB-1657",
+      "claim_id": "SD-071",
+      "dispatch_mode": "targeted_probe",
+      "executed_by": "V3-EXQ-1058",
+      "executed_queue_id": "V3-EXQ-1058",
+      "objective": "Reduce uncertainty for SD-071 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1178",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_sd_071",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "missing_literature_evidence"
+      ]
+    },
+    {
       "backlog_id": "EVB-1729",
       "claim_id": "MECH-537",
       "dispatch_mode": "targeted_probe",
@@ -17531,8 +17531,8 @@
       ]
     }
   ],
-  "n_executed": 249,
-  "n_proposed_exp": 166,
+  "n_executed": 250,
+  "n_proposed_exp": 165,
   "n_proposed_lit": 451,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"

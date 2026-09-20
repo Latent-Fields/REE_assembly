@@ -17,7 +17,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -36,7 +37,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -161,7 +163,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -180,7 +183,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -200,7 +204,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -217,7 +222,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -234,7 +240,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -252,7 +259,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -283,7 +291,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -302,7 +311,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -323,7 +333,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -340,7 +351,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
@@ -361,7 +373,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]

@@ -1,6 +1,6 @@
 # Architecture Gap Register
 
-Generated: `2026-09-20T11:53:46.279616Z`
+Generated: `2026-09-20T14:04:36.212334Z`
 Evidence scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This register highlights claims under structural pressure and flags where the evidence pattern suggests a **consider new structure** decision.
@@ -25,18 +25,18 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0016` | `MECH-102` | `active` | 0.952 | 0.222 | 0.336 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0017` | `ARC-032` | `candidate` | 0.923 | 0.143 | 0.412 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0018` | `MECH-098` | `candidate` | 0.917 | 0 | 0.441 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0019` | `MECH-440` | `candidate` | 0.889 | 0.727 | 0.062 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0020` | `MECH-074d` | `candidate` | 0.857 | 0.5 | 0.186 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0021` | `MECH-457` | `candidate` | 0.85 | 0.273 | 0.211 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0019` | `MECH-440` | `candidate` | 0.889 | 0.727 | 0.063 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0020` | `MECH-074d` | `candidate` | 0.857 | 0.5 | 0.187 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0021` | `MECH-457` | `candidate` | 0.85 | 0.273 | 0.212 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0022` | `MECH-295` | `candidate` | 0.833 | 0.167 | 0.419 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0023` | `MECH-321` | `candidate` | 0.824 | 0.286 | 0.305 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0024` | `ARC-110` | `candidate` | 0.8 | 0.6 | 0.469 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0025` | `MECH-111` | `candidate` | 0.8 | 0 | 0.526 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0026` | `MECH-472` | `candidate` | 0.8 | 0.25 | 0.571 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0026` | `MECH-472` | `candidate` | 0.8 | 0.25 | 0.572 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0027` | `Q-002` | `active` | 0.8 | 0 | 0.426 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0028` | `Q-003` | `active` | 0.8 | 0 | 0.598 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0029` | `Q-086` | `candidate` | 0.8 | 0.25 | 0.506 | 0 | no | no | `mandatory_decision_checkpoint` |
-| `AGR-0030` | `SD-076` | `candidate` | 0.8 | 0.625 | 0.124 | 0 | no | no | `mandatory_decision_checkpoint` |
+| `AGR-0030` | `SD-076` | `candidate` | 0.8 | 0.625 | 0.125 | 0 | no | no | `mandatory_decision_checkpoint` |
 | `AGR-0031` | `ARC-024` | `provisional` | 0.783 | 0 | 0.145 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0032` | `MECH-073` | `provisional` | 0.75 | 0.625 | 0.012 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0033` | `SD-015` | `candidate` | 0.737 | 0.231 | 0.33 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -50,13 +50,13 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0041` | `INV-087` | `candidate` | 0.667 | 0.75 | -0.032 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0042` | `MECH-019` | `candidate` | 0.667 | 0.6 | 0.705 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0043` | `MECH-025b` | `candidate` | 0.667 | 0.5 | 0.513 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0044` | `MECH-037` | `provisional` | 0.667 | 0.6 | 0.698 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0044` | `MECH-037` | `candidate` | 0.667 | 0.6 | 0.698 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0045` | `MECH-130` | `candidate` | 0.667 | 0.6 | 0.675 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0046` | `MECH-143` | `candidate` | 0.667 | 0.8 | 0.105 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0047` | `MECH-445` | `candidate` | 0.667 | 0.5 | 0.335 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0048` | `Q-055` | `open` | 0.667 | 0.5 | 0.657 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0049` | `Q-082` | `candidate` | 0.667 | 0.75 | 0.691 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0050` | `SD-031` | `candidate` | 0.667 | 0.667 | -0.253 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0050` | `SD-031` | `candidate` | 0.667 | 0.667 | -0.252 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0051` | `SD-078` | `candidate_substrate_landed` | 0.667 | 0.5 | 0.087 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0052` | `MECH-090` | `active` | 0.606 | 0.55 | -0.066 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0053` | `MECH-035` | `candidate` | 0.5 | 0.5 | 0.74 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -65,7 +65,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0056` | `MECH-070` | `retiring` | 0.4 | 0.75 | 0.543 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0057` | `SD-024` | `candidate` | 0.4 | 0.6 | -0.039 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0058` | `SD-082` | `candidate_substrate_landed` | 0.4 | 0.5 | 0.377 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0059` | `Q-020` | `candidate` | 0.333 | 0.833 | 0.375 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0059` | `Q-020` | `candidate` | 0.333 | 0.833 | 0.376 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0060` | `SD-050` | `provisional` | 0.333 | 0.75 | -0.128 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0061` | `ARC-008` | `provisional` | 0 | 0.667 | 0.806 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0062` | `ARC-044` | `candidate` | 0 | 0.75 | 0.833 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -97,10 +97,10 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0088` | `MECH-357` | `candidate` | 0 | 0.667 | 0.178 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0089` | `MECH-391` | `candidate` | 0 | 0.5 | 0.815 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0090` | `MECH-439` | `candidate` | 0 | 0.714 | 0.173 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0091` | `MECH-477` | `candidate` | 0 | 0.5 | 0.084 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0091` | `MECH-477` | `candidate` | 0 | 0.5 | 0.085 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0092` | `MECH-500` | `candidate` | 0 | 1 | 0.675 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0093` | `MECH-520` | `candidate` | 0 | 0.75 | 0.797 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0094` | `MECH-535` | `candidate` | 0 | 0.636 | 0.3 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0094` | `MECH-535` | `candidate` | 0 | 0.636 | 0.301 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0095` | `MECH-548` | `candidate` | 0 | 0.667 | 0.702 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0096` | `MECH-E2-DUAL-FUNCTION` | `unknown` | 0 | 0.6 | 0.775 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0097` | `Q-025` | `open` | 0 | 0.5 | 0.593 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -114,7 +114,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0105` | `Q-069` | `candidate` | 0 | 0.667 | 0.706 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0106` | `Q-077` | `candidate` | 0 | 0.75 | 0.778 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0107` | `Q-079` | `resolved` | 0 | 1 | 0.824 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0108` | `Q-080` | `open` | 0 | 1 | 0.483 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0108` | `Q-080` | `open` | 0 | 1 | 0.484 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0109` | `Q-083` | `candidate` | 0 | 0.667 | 0.794 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0110` | `Q-085` | `candidate` | 0 | 0.5 | 0.409 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0111` | `Q-087` | `resolved` | 0 | 0.5 | 0.738 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
@@ -125,7 +125,7 @@ This register highlights claims under structural pressure and flags where the ev
 | `AGR-0116` | `SD-079` | `provisional` | 0 | 1 | -0.123 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0117` | `SD-092` | `candidate` | 0 | 0.5 | 0.68 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 | `AGR-0118` | `SD-099` | `candidate` | 0 | 0.5 | 0.774 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
-| `AGR-0119` | `SD-106` | `implemented` | 0 | 1 | 0.408 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
+| `AGR-0119` | `SD-106` | `implemented` | 0 | 1 | 0.409 | 0 | no | no | `monitor_and_collect_targeted_evidence` |
 
 ## Consider New Structure Queue
 

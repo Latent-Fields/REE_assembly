@@ -822,11 +822,11 @@
     "MECH-037": {
       "actor": "dgolden",
       "decision_needed": "MECH-037: demote provisional -> candidate? The pipeline recommends demote_to_candidate (epistemic_category standard, exp_entries 0, lit_entries 5, directions supports 2 / weakens 1 / mixed 2, conflict_ratio 0.667 -- a literature-only conflict, which per the 2026-09-03 EXT-003 ruling is non-gating). Alternative: hold as provisional. No experimental evidence exists either way.",
-      "decision_status": "proposed",
-      "rationale": "None",
+      "decision_status": "applied",
+      "rationale": "Answered at the governance-20260920 walk (AskUserQuestion); applied in claims.yaml 108b156192.",
       "recommendation": "demote_to_candidate (pipeline); governance session left it undecided for lack of context on why it was promoted",
-      "selected_option": "None",
-      "timestamp_utc": "2026-09-18T19:04:25Z"
+      "selected_option": "Demote to candidate",
+      "timestamp_utc": "2026-09-20T12:17:20Z"
     },
     "MECH-040": {
       "actor": "user",
@@ -846,6 +846,15 @@
       "selected_option": "Keep provisional + record support",
       "timestamp_utc": "2026-07-15T13:44:33.349339Z"
     },
+    "MECH-050": {
+      "actor": "dgolden",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920: user accepted the hold_candidate_resolve_conflict recommendation as recommended (lit-only conflict, no experimental entries; GFLAG-0123 shape). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments",
+      "timestamp_utc": "2026-09-20T12:17:03.116022Z"
+    },
     "MECH-053": {
       "actor": "user",
       "decision_needed": "Promotion review: candidate -> provisional",
@@ -863,6 +872,15 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "promote_to_provisional",
       "timestamp_utc": "2026-02-15T20:51:27.090007Z"
+    },
+    "MECH-055": {
+      "actor": "dgolden",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920: user accepted the hold_candidate_resolve_conflict recommendation as recommended (lit-only conflict, no experimental entries; GFLAG-0123 shape). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments",
+      "timestamp_utc": "2026-09-20T12:17:03.324767Z"
     },
     "MECH-056": {
       "actor": "user",
@@ -954,6 +972,15 @@
       "selected_option": "promote_to_provisional",
       "timestamp_utc": "2026-02-15T20:51:27.090007Z"
     },
+    "MECH-065": {
+      "actor": "dgolden",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920: user accepted the hold_candidate_resolve_conflict recommendation as recommended (lit-only conflict, no experimental entries; GFLAG-0123 shape). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments",
+      "timestamp_utc": "2026-09-20T12:17:03.676535Z"
+    },
     "MECH-069": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -1018,13 +1045,13 @@
       "timestamp_utc": "2026-08-08T08:30:48.470619Z"
     },
     "MECH-074d": {
-      "actor": "governance-cycle-2026-08-16-cranky-driscoll-126a36",
-      "decision_needed": "Conflict resolution before promotion (re-flagged at the new candidate status)",
-      "decision_status": "applied",
-      "rationale": "HOLD RECORDED so this stops re-flagging pending_user every cycle. The 2026-08-16T11:57Z demote_to_candidate WAS applied -- claims.yaml now reads status candidate -- and the pending_user re-flag is purely mechanical: the recommendation CHANGED at the new status (promote/demote review -> hold_candidate_resolve_conflict), which the generator reports as 'Prior decision exists but recommendation changed; needs fresh review'. It is not an unapplied decision. Substance of the hold: conflict_ratio 0.80 on 4 exp entries with 0 pass_runs (supports 2 / weakens 3 / mixed 3), and the 894a/894b/894c successors already closed dilution -> trainability-alone -> loss-term balance in turn, so the diagnosis narrowed rather than revealing an instrument artifact. What the claim now waits on is its SUBSTRATE retest (pending_retest_after_substrate stays true), not another governance look -- so a further demotion this cycle would be acting on the same evidence twice. No claims.yaml change; status stays candidate.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
-      "timestamp_utc": "2026-08-16T19:17:23.744792Z"
+      "actor": "user",
+      "decision_needed": "Demotion review: provisional -> candidate (conflict_ratio 0.667)",
+      "decision_status": "approved",
+      "rationale": "as candidate it should attract more scrutiny and possible upddates to allow for promotion of full working set",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "Demote to candidate (apply the recommendation)",
+      "timestamp_utc": "2026-09-20T12:37:49Z"
     },
     "MECH-075": {
       "actor": "user",
@@ -1072,13 +1099,13 @@
       "timestamp_utc": "2026-03-16T18:20:19.361144Z"
     },
     "MECH-091": {
-      "actor": "user (governance cycle 2026-08-22, session bold-chaum-7e245c)",
-      "decision_needed": "Adjudicate V3-EXQ-944 FAIL per confirmed autopsy",
-      "decision_status": "applied",
-      "rationale": "V3-EXQ-944 non_contributory STANDS; epistemic_category unset -> standard; status stays candidate. Instrument/test-design result: readiness precondition P3 read 0.914 on seed 42 because the RATE_MATCHED control degenerated into NO_RESET (treatment-induced runaway), while all four acceptance criteria PASSED and were non-degenerate. Routing: /queue-experiment successor with three named guard fixes.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Accept the autopsy as written",
-      "timestamp_utc": "2026-08-22T13:47:10.703646Z"
+      "actor": "user",
+      "decision_needed": "Orphan V3 claim: owning node commitment_closure:GAP-7 is deferred",
+      "decision_status": "approved",
+      "rationale": "None",
+      "recommendation": "decide_blocker_generation_then_route",
+      "selected_option": "DECIDE the generation of SD-006 phase 2 first; then either queue it + un-defer, or keep deferred and correct claims.yaml implementation_phase v3 -> v4",
+      "timestamp_utc": "2026-09-20T13:18:11Z"
     },
     "MECH-092": {
       "actor": "governance",
@@ -1243,13 +1270,13 @@
       "timestamp_utc": "2026-06-10T16:18:22Z"
     },
     "MECH-122": {
-      "actor": "governance-cycle-2026-08-16",
+      "actor": "user",
       "decision_needed": "Demotion review: provisional -> candidate",
-      "decision_status": "discussing",
-      "rationale": "HELD deliberately: demotion rests entirely on unadjudicated evidence. Both exp entries are weakens and both are 861-lineage -- 861a already autopsied as weakens/measurement_test_design_defect (operationalization gap, explicitly not evidence against the biology), and 861d has NO confirmed autopsy, carries the DEAD z_goal writer defect (writer_calls 0 over 38346 ticks) and FAILED its own C2_consumer_not_env_causes_variation control. Route 861c/861d cluster to /failure-autopsy; re-run this look next cycle.",
+      "decision_status": "withdrawn",
+      "rationale": "User instruction 2026-09-20 (recorded by Claude session on the user's say-so): the pipeline no longer recommends demote_to_candidate for MECH-122 -- conflict_ratio fell 0.667 -> 0.4 (supports 4 / weakens 1), and the original hold reason (no confirmed autopsy for V3-EXQ-861d) was resolved by failure_autopsy_861c-861d-mech180-cluster_2026-08-16 (confirmed). Claim stays provisional.",
       "recommendation": "demote_to_candidate",
-      "selected_option": "Hold and run conflict-resolution suite first",
-      "timestamp_utc": "2026-08-16T11:57:16.019903Z"
+      "selected_option": "Dismissed: question no longer applies",
+      "timestamp_utc": "2026-09-20T13:43:22Z"
     },
     "MECH-123": {
       "actor": "governance",
@@ -1864,13 +1891,13 @@
       "timestamp_utc": "2026-05-16T19:08:31Z"
     },
     "MECH-314a": {
-      "actor": "orphan-v3-claims-adjudicate-6f88bd",
+      "actor": "user",
       "decision_needed": "Orphan V3 claim: owning node behavioral_diversity_isolation:GAP-G is deferred",
-      "decision_status": "proposed",
-      "rationale": "Sharpest case of the four. claims.yaml MECH-314a is PROVISIONAL with v3_pending FALSE explicitly lifted 2026-06-08 after V3-EXQ-604c PASS; substrate landed 2026-05-10; EIGHT experiment manifests tag the claim (vs zero for the other three in this batch). MECHANISM: a two-gate hold whose gates cleared without propagating back -- the node's resume_condition says its falsifier 'is not queued', but V3-EXQ-590b RAN 2026-06-11, was autopsied 2026-06-12 and the claim promoted 2026-06-14, while last_updated is still 2026-05-25. Its 2026-08-13 live-block carries next=routing=queue-experiment, directly contradicting `deferred`. NOT `done`: gate 2 (GAP-B) is still `partial`, so `blocked` is the honest status. DETECTOR REFINEMENT: D-002 graded this weak (0.45) on v3_pending FALSE, but here false means the V3 gate was LIFTED after a PASS -- more V3-committed, not less; manifest count is the better signal.",
+      "decision_status": "approved",
+      "rationale": "None",
       "recommendation": "undefer_owning_node",
       "selected_option": "Un-defer the node (-> blocked, depends_on GAP-B which is partial); NO claims.yaml change",
-      "timestamp_utc": "2026-08-15T06:38:09.000000Z"
+      "timestamp_utc": "2026-09-20T13:17:08Z"
     },
     "MECH-314b": {
       "actor": "user",
@@ -1891,22 +1918,22 @@
       "timestamp_utc": "2026-05-16T19:08:31Z"
     },
     "MECH-316": {
-      "actor": "governance-cycle-2026-08-16",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "RE-AFFIRM of the 2026-08-15 joint adjudication by orphan-v3-claims-adjudicate-6f88bd (MECH-316/317 were split out of GAP-I together on 2026-06-23, share one owning node, one substrate_queue shape candidate_v3_pending/ready False, and one absorption-memo verdict 'still-open, separately scoped'; no artefact distinguishes them). That adjudication un-deferred the NODE to blocked_pending_substrate and explicitly required NO claims.yaml change; the mechanical recommendation now agrees with it. 0 evidence manifests each -- consistent with either reading, discriminates nothing. Recorded applied so this stops re-flagging pending_user each cycle.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-08-16T11:57:28.897709Z"
+      "actor": "user",
+      "decision_needed": "Orphan V3 claim: owning node arc_062_rule_apprehension:GAP-I-absorption is deferred",
+      "decision_status": "approved",
+      "rationale": "None",
+      "recommendation": "undefer_owning_node",
+      "selected_option": "needs to be part of v3 if needed to complete v3",
+      "timestamp_utc": "2026-09-20T12:40:30Z"
     },
     "MECH-317": {
-      "actor": "governance-cycle-2026-08-16",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "RE-AFFIRM of the 2026-08-15 joint adjudication by orphan-v3-claims-adjudicate-6f88bd (MECH-316/317 were split out of GAP-I together on 2026-06-23, share one owning node, one substrate_queue shape candidate_v3_pending/ready False, and one absorption-memo verdict 'still-open, separately scoped'; no artefact distinguishes them). That adjudication un-deferred the NODE to blocked_pending_substrate and explicitly required NO claims.yaml change; the mechanical recommendation now agrees with it. 0 evidence manifests each -- consistent with either reading, discriminates nothing. Recorded applied so this stops re-flagging pending_user each cycle.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-08-16T11:57:28.937162Z"
+      "actor": "user",
+      "decision_needed": "Orphan V3 claim: owning node arc_062_rule_apprehension:GAP-I-absorption is deferred",
+      "decision_status": "approved",
+      "rationale": "None",
+      "recommendation": "undefer_owning_node",
+      "selected_option": "If the mechanism is required for V3 closure then it should be undeferred. If it is a v4 mechanism then it should be relabelled. THis needs perhaps an investigation as it seems like this is becoming v3",
+      "timestamp_utc": "2026-09-20T13:16:20Z"
     },
     "MECH-318": {
       "actor": "user",
@@ -2420,6 +2447,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Accept as recommended",
       "timestamp_utc": "2026-09-11T16:54:10.562820Z"
+    },
+    "MECH-561": {
+      "actor": "dgolden",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920: user accepted the hold_pending_v3_substrate recommendation. No claim status moves; the V3-pending gate stands. HOLD RECORDED so this stops re-flagging pending_user every cycle.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation",
+      "timestamp_utc": "2026-09-20T12:17:03.975416Z"
     },
     "Q-006": {
       "actor": "user",
@@ -3123,6 +3159,15 @@
       "selected_option": "Accept as recommended",
       "timestamp_utc": "2026-09-11T16:54:09.556632Z"
     },
+    "SD-071": {
+      "actor": "dgolden",
+      "decision_needed": "Promotion: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920: V3-EXQ-1058 (evidence PASS 8/8, claim_ids exactly [SD-071], driver skim clean) discharges SD-071's own pre-registered remaining promotion condition (one non-diagnostic run). User approved. claims.yaml 108b156192.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote to provisional",
+      "timestamp_utc": "2026-09-20T12:17:02.529572Z"
+    },
     "SD-076": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -3187,7 +3232,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-19T00:05:33.584513Z",
+  "generated_at_utc": "2026-09-20T14:04:36.212334Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
