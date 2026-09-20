@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-20.1 -->
+<!-- EXPLORER_VERSION: 2026-09-20.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -5617,8 +5617,17 @@ END CONFLICT RESOLUTION`;
       governanceLoadedAt = new Date().toISOString();
       governanceLoading = false;
       updateGovConflictBadge();
+      // Re-render only when the governance payload actually changed (see the
+      // refreshData note): this runs on the same timer, and an unconditional
+      // renderGovernance() reset the Governance tab every cycle.
+      const govSig = cheapSignature(JSON.stringify([governanceAgenda, governanceBacklog, governanceProposals, governanceError]));
+      const govChanged = govSig !== lastGovernanceSignature;
+      lastGovernanceSignature = govSig;
+      if (!govChanged || userIsEditing()) return;
+      const sx = window.scrollX, sy = window.scrollY;
       if (currentView === 'governance') renderGovernance();
       if (currentView === 'map') renderMap();
+      window.scrollTo(sx, sy);
     }
 
     function updateGovConflictBadge() {
@@ -8761,7 +8770,26 @@ END CONFLICT RESOLUTION`;
       const queueEl = document.getElementById('expSectionQueue');
       const completedEl = document.getElementById('expSectionCompleted');
       const noteEl = document.getElementById('expRefreshNote');
-      if (runnerEl) runnerEl.innerHTML = html;
+      // AUTO-REFRESH MUST NOT YANK THE PAGE (fixed 2026-09-20). Two defects made this
+      // tab "jump and reset" every tick: (1) the scroll position restored at the end
+      // was the one captured at the TOP of this function, several awaited fetches
+      // (seconds) earlier, so any scrolling done meanwhile was undone; (2) Queue and
+      // Completed -- by far the largest DOM on the page -- were rebuilt wholesale
+      // every tick even when byte-identical, collapsing state and forcing a full
+      // relayout. Now the scroll is captured immediately before the swap, and the two
+      // big sections are swapped only when their generated HTML actually changed.
+      // Runner and Running stay always-swapped on purpose: they are small and live,
+      // and the runner's start/stop listeners are re-attached by id after every swap
+      // -- skipping that swap would stack duplicate click handlers on Start/Stop.
+      const yBeforeSwap = window.scrollY;
+      const swappedSections = [];
+      const swapIfChanged = (el, newHtml) => {
+        if (!el) return false;
+        if (el.__lastGeneratedHtml === newHtml) return false;
+        el.__lastGeneratedHtml = newHtml;
+        return true;
+      };
+      if (runnerEl) { runnerEl.innerHTML = html; swappedSections.push(runnerEl); }
       // Snapshot which live-readout boxes were scrolled near the bottom BEFORE we
       // replace the DOM, so the auto-scroll below follows the newest line without
       // yanking a user who has scrolled up to read older output. Keyed by
@@ -8773,7 +8801,7 @@ END CONFLICT RESOLUTION`;
           expOutputAtBottom[el.dataset.expKey] = nearBottom;
         });
       }
-      if (runningEl) runningEl.innerHTML = runningHtml;
+      if (runningEl) { runningEl.innerHTML = runningHtml; swappedSections.push(runningEl); }
       // After the swap, pin each readout to the newest line when it was already at
       // the bottom (or is a newly-appeared card with no prior scroll state).
       if (runningEl) {
@@ -8784,7 +8812,7 @@ END CONFLICT RESOLUTION`;
           }
         });
       }
-      if (queueEl) queueEl.innerHTML = queueHtml;
+      if (swapIfChanged(queueEl, queueHtml)) { queueEl.innerHTML = queueHtml; swappedSections.push(queueEl); }
       // Snapshot any open Completed-card detail panels (keyed by script+queue_id)
       // BEFORE the innerHTML swap so the 10s auto-refresh doesn't collapse a
       // panel the user is mid-read. Restored (content + scroll) after the swap.
@@ -8805,8 +8833,9 @@ END CONFLICT RESOLUTION`;
           }
         });
       }
-      if (completedEl) completedEl.innerHTML = completedHtml;
-      if (completedEl) {
+      const completedChanged = swapIfChanged(completedEl, completedHtml);
+      if (completedChanged) { completedEl.innerHTML = completedHtml; swappedSections.push(completedEl); }
+      if (completedChanged) {
         completedEl.querySelectorAll('.exp-detail-btn').forEach(btn => {
           const key = `${btn.dataset.detailScript}||${btn.dataset.detailQid}`;
           const saved = openDetailPanels[key];
@@ -8826,16 +8855,15 @@ END CONFLICT RESOLUTION`;
       // periodic auto-refresh (cards are rebuilt each tick).
       applyExpFilter();
 
-      let restoreY = scrollY;
-      try {
-        const saved = sessionStorage.getItem(EXP_SCROLL_STORAGE_KEY);
-        if (saved != null && !Number.isNaN(Number(saved))) restoreY = Number(saved);
-      } catch (_) {}
-      window.scrollTo(0, restoreY);
+      // Restore the position held the instant before the swap -- and only if the swap
+      // actually moved it. Never the function-entry value (see the note above).
+      if (Math.abs(window.scrollY - yBeforeSwap) > 1) window.scrollTo(window.scrollX, yBeforeSwap);
 
-      const expRoot = els.expContent;
+      // Wire ONLY the sections rebuilt this tick: an unswapped section keeps its
+      // existing nodes and listeners, and wiring it again would double-fire clicks.
+      const inSwapped = sel => swappedSections.flatMap(sec => Array.from(sec.querySelectorAll(sel)));
       // Wire discuss buttons
-      expRoot.querySelectorAll('.exp-discuss-btn').forEach(btn => {
+      inSwapped('.exp-discuss-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
           const dirName = btn.dataset.dir;
           btn.disabled = true;
@@ -8889,7 +8917,7 @@ END CONFLICT RESOLUTION`;
       // Wire Completed-card "Details" expanders — lazy-load the manifest detail
       // panel on first open, then just toggle visibility (no auto-refresh churn:
       // the panel content is fetched once and kept until the section re-renders).
-      expRoot.querySelectorAll('.exp-detail-btn').forEach(btn => {
+      inSwapped('.exp-detail-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
           const box = btn.parentElement.parentElement.querySelector('.exp-detail-box');
           if (!box) return;
@@ -9543,9 +9571,40 @@ END CONFLICT RESOLUTION`;
       return conflicts;
     }
 
+    // PERIODIC REFRESH MUST NOT DISTURB THE PAGE (fixed 2026-09-20). This runs on a
+    // REFRESH_MS timer and used to end in an unconditional setView(previousView), which
+    // tears down and rebuilds whatever view is showing: scroll position lost, open
+    // cards collapsed, half-typed form answers wiped, every cycle, on every view. Two
+    // compounding bugs: (1) `previousView` was captured BEFORE ~10 sequential fetches,
+    // so a tab clicked while a refresh was in flight got yanked back to the old tab
+    // when it finished; (2) the rebuild ran even when nothing had changed, which is
+    // nearly always -- claims.yaml changes a few times a day, the timer fires 1440.
+    // Now: an unchanged payload re-renders NOTHING; a changed one re-renders only the
+    // claim-driven views, against the LIVE currentView, with scroll restored, and
+    // never while the user is typing in the page.
+    const SELF_CONTAINED_VIEWS = new Set(['paper', 'arch', 'docs', 'experiments', 'contributors']);
+    let lastClaimsSignature = null;
+    let lastGovernanceSignature = null;
+
+    function cheapSignature(text) {
+      let h = 5381;
+      for (let i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) | 0;
+      return text.length + ':' + h;
+    }
+
+    function userIsEditing() {
+      const a = document.activeElement;
+      if (!a || a === document.body) return false;
+      if (a.closest && a.closest('#cornerDock')) return false;
+      return a.tagName === 'TEXTAREA' || a.tagName === 'SELECT' || a.isContentEditable
+        || (a.tagName === 'INPUT' && !/^(button|submit|checkbox|radio)$/i.test(a.type || ''));
+    }
+
     async function refreshData() {
+      const isFirstLoad = !window._paperAutoOpenDone;
+      // Typing anywhere in the page: skip this tick entirely; the next one catches up.
+      if (!isFirstLoad && userIsEditing()) return;
       const filterState = readFilterState();
-      const previousView = currentView;
       const previousSelection = selectedId;
 
       // PRIMARY PATH: one compact server-rendered summary (~0.49 MB) instead of
@@ -9568,9 +9627,19 @@ END CONFLICT RESOLUTION`;
       try {
         const sumResp = await fetch('/api/claims/summary', { cache: 'no-store' });
         if (sumResp.ok) {
-          const sum = await sumResp.json();
+          const sumText = await sumResp.text();
+          const sig = cheapSignature(sumText);
+          if (!isFirstLoad && sig === lastClaimsSignature) {
+            // Nothing changed: touch no DOM. Badges and the timestamp still update.
+            await refreshGovernanceData();
+            await refreshPendingReviewBadge();
+            updateRefreshStatus();
+            return;
+          }
+          const sum = JSON.parse(sumText);
           if (sum && Array.isArray(sum.claims) && sum.claims.length) {
             parsed = sum.claims;
+            lastClaimsSignature = sig;
           }
         }
       } catch (e) {
@@ -9693,7 +9762,8 @@ END CONFLICT RESOLUTION`;
       renderTable();
       // Morning paper: auto-open once per day on first page load (dismiss = click any
       // other tab; the localStorage date-guard stops it reopening again that day).
-      let _paperInitialView = previousView || 'experiments';
+      // LIVE view, read now -- not a value captured before the fetches above.
+      let _paperInitialView = currentView || 'experiments';
       try {
         const PAPER_SEEN_KEY = 'ree_explorer.paper_seen_date.v1';
         const _todayUTC = new Date().toISOString().slice(0, 10);
@@ -9703,8 +9773,18 @@ END CONFLICT RESOLUTION`;
         }
       } catch (_) {}
       window._paperAutoOpenDone = true;
-      setView(_paperInitialView);
-      renderMap();
+      if (isFirstLoad) {
+        setView(_paperInitialView);
+        renderMap();
+      } else if (!SELF_CONTAINED_VIEWS.has(currentView)) {
+        // Claims changed under a claim-driven view: rebuild it in place, keep scroll.
+        const sx = window.scrollX, sy = window.scrollY;
+        setView(currentView);
+        renderMap();
+        window.scrollTo(sx, sy);
+      }
+      // Self-contained views (paper, experiments, docs, arch, contributors) do not
+      // read claims data and own their refresh; rebuilding them here is pure churn.
 
       if (previousSelection && claimMap.has(previousSelection)) {
         selectClaim(previousSelection);
