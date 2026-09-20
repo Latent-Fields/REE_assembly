@@ -5414,6 +5414,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0384",
+      "claim_ids": [
+        "MECH-204"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "CORRECTION TO GFLAG-0379 -- read this before acting on that flag's DEMOTE recommendation for MECH-204 Option A. GFLAG-0379 reported that the sleep WRITEBACK moves E3 running variance AWAY from the realised prediction-error variance in 9/9 (guard OFF) and 8/9 (guard ON) cycles with rv 18-82x above realised PE, and concluded Option A 'appears already falsified -> DEMOTE'. That measurement is SOUND but its REGIME WAS NOT STATED, and stating it changes the disposition. It was taken where episodes ended by death in 6-15 waking ticks, so rv never converged between sleep cycles and sat 18-82x above realised PE as a sawtooth artefact. Re-measured in a survivable regime where rv DOES converge (episodes 200 ticks, rv/realised-PE = 1.0), the guard-ON de-calibration is essentially ZERO: mean relative displacement -0.001 measured, +0.0001 analytic, against +1.55 to +2.01 for guard OFF. MECHANISM, which is the load-bearing part and is analytic rather than empirical: with the guard ON the recalibration target is serotonin._persistent_zero_point, an EMA of current_precision = 1/rv, i.e. A LAGGED FUNCTION OF rv ITSELF. Recalibrating rv toward a lagged function of rv is near-idempotent, so it CANNOT de-calibrate a converged rv. An adversarial sweep over eight rv trajectories (stationary, 10x and 100x monotonic decay, 5x step collapse and rise, alternating, 20x spike, sawtooth) gives a guard-ON mean relative displacement in [-0.15, +0.062] -- never approaching a 0.25 firing bar. CONSEQUENCE FOR THE DISPOSITION: the de-calibration GFLAG-0379 recorded is attributable to (a) the precision_init cold-start sentinel, which the landed F1 guard removes, and (b) rv being far from its own lagged mean, i.e. non-convergence -- NOT to Option A being wrong in principle. The evidence therefore supports the guard FIXING the identified defect, and does NOT support demoting Option A on its own. Option A remains untested against a genuine waking drift source (SD-076), which is the only substrate mechanism that can make rv diverge from realised PE while the guard is on; that test is what is still owed. Full derivation and measurements: REE_assembly evidence/planning/exq541d_redteam_blocking_refusal_staged_20260919.md section 7. Related: GFLAG-0379, GFLAG-0377, GFLAG-0369.",
+      "raised_by_session": "metaworker-science-20260920-mech204-541d-cd",
+      "raised_at": "2026-09-20T11:31:32Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
