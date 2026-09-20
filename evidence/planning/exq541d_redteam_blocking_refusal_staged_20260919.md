@@ -479,3 +479,101 @@ Four passes on this item; the skill permits one pass plus one re-spawn when a
 BLOCKING finding changes the causal chain. That budget is now spent, so this
 session stopped rather than iterating to a clean verdict -- which is the
 condition the "do not iterate to CLEAR" rule exists to prevent.
+
+---
+
+# 8. (2026-09-20) The B-then-A decision is not executable: V3-EXQ-794a already ran, and FAILED
+
+User decision (orchestrate-20260920-1121): **(B)** queue V3-EXQ-794a to validate
+the SD-076 headroom repair, **then (A)** 541d with SD-076 re-armed on the
+validated drift source, **(D)** in parallel. The decision explicitly required a
+STOP-CHECK of the existing `v3_exq_794a_*.py` before writing anything. That
+STOP-CHECK is what found the premise false.
+
+## 8a. V3-EXQ-794a is not unqueued -- it ran 2026-07-24 and FAILED
+
+`REE_assembly/evidence/experiments/v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3.json`
+
+| field | value |
+|---|---|
+| `outcome` / `result` | **FAIL** |
+| `evidence_direction` | `inconclusive` |
+| `interpretation.label` | **`drift_source_insufficient_dv_still_tautological`** |
+| `supersedes` | `v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2` |
+| `claim_ids` | `MECH-204`, `SD-076` |
+
+So **(B) cannot be performed**: the id is burned (a terminal row exists, so a
+re-queue would be refused), and the question it was to answer is already
+answered. And **(A)'s stated precondition -- "after 794a validates it" -- can
+never be met by 794a**, which has already returned the opposite.
+
+## 8b. What 794a actually established -- the repair works, the DRIFT SOURCE does not
+
+Every precondition passed, in all six arms. The repaired scale-relative /
+softplus rv floor is NOT the problem:
+
+- `rv_live` 0.4815-0.4956 across arms
+- `f1_recalib_engaged` 0.0059-0.0137
+- `inflation_lowers_rv` 0.0014-0.0057 (SD-076 genuinely moves rv, and downward)
+- `dose_levels_separated` 1.27e-4 / 2.86e-4 (no 794-style clamping)
+- `broadcast_moves_rv`, `zero_point_populated` all met
+
+What failed is the science:
+
+| criterion | load-bearing | passed |
+|---|---|---|
+| `C1_inflation_creates_absolute_overconfidence` | **yes** | **False** |
+| `C2_broadcast_corrects_under_drift` | **yes** | **False** |
+| `C3_interaction_correction_larger_under_drift` | no | False |
+| `C4_off_off_reproduces_774_ceiling` | no | True |
+| `C5_asymmetry_dose_response_monotone` | no | True |
+
+C1 failed at **both** the LO (0.6) and HI (0.8) asymmetry levels. V3-EXQ-794's
+docstring pre-registered the route for exactly that outcome:
+
+> "if C1 fails at BOTH levels the route is NOT 'sweep higher': it is that the
+> **asymmetric-EMA form is the wrong drift source and a different SD-076
+> mechanism is owed**."
+
+## 8c. Consequence for MECH-204 Option A
+
+Chaining this with section 7d gives a complete and, I think, final picture of
+why this item has resisted four red-team passes:
+
+1. Option A's recalibration target is an EMA of `1/rv` -- a lagged function of
+   rv itself -- so it **cannot de-calibrate a converged rv** (7d).
+2. The only thing that can make rv diverge from realised PE while the guard is
+   on is a waking drift source.
+3. The substrate's only drift source, SD-076, is **measured insufficient at
+   both dose levels** (8b), and its own pre-registered route says the
+   asymmetric-EMA *form* is wrong.
+
+Therefore **MECH-204 Option A is not falsifiable on the current substrate at
+all**, and the owed work is an `/implement-substrate` BUILD of a different
+drift-source mechanism -- not another experiment. Queueing any 541d variant
+before that build would reproduce the same unfirable falsifier.
+
+## 8d. Root cause of the stale premise
+
+`substrate_queue.json` entry `sd_waking_confidence_inflation_headroom` still
+reads `validation_experiment: "V3-EXQ-794a (not yet queued)"` (with
+`ready: False`). The `ready: False` is right; the stated reason is not -- the
+validation is not pending, it is **done and negative**. That note is what
+produced a user decision to sequence work that cannot be executed. Raised as
+**GFLAG-0385** (`stale_note`); the registry was not hand-edited.
+
+## 8e. What is owed now (the user's call)
+
+- **(A) `/implement-substrate` a different waking drift-source mechanism**, per
+  794's pre-registered route, then re-test Option A against it. The
+  substantive path, and the only one that makes the falsifier firable.
+- **(B) Re-scope 541d as an explicit instrument-confirmation** of the
+  cold-start guard, labelled as unable to falsify. Cheap, honest, low value --
+  contracts C1-C8 already cover it.
+- **(C) Close MECH-204 Option A on the evidence in hand**: the cold-start
+  defect is proven and fixed by the landed guard (GFLAG-0379 + GFLAG-0384),
+  and the residual question is un-askable until a drift source exists. Route to
+  `/governance` and stop spending experiment budget.
+
+**Recommendation: (C) now, (A) when substrate budget allows.** (B) buys nothing
+the contract suite does not already assert.
