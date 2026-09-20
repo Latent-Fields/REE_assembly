@@ -23,6 +23,7 @@ lane). Only the third needs a Claude session. The design separates them:
 |---|---|---|
 | Judgment (curate, ask, route answers) | one ever-growing conversation | a bounded session, started on demand from a generated prompt |
 | Liveness (lease, trigger) | that conversation's 30-min `/loop` | a zero-token gate on each worker box, live only inside a user-granted **authorisation window** |
+| Dispatch of approved work | a `claude -p` Dispatcher cycle, ~117k tokens before anything launches | a scripted lane launcher built from scripts that already exist (section 4d); the Dispatcher session kept only for what needs judgment |
 | State | conversation memory + a per-session scratchpad | durable records the start prompt is generated from |
 
 Recommended build order: **start-row first** (section 8, option C), keepalive second. The start
@@ -186,7 +187,7 @@ The runaway (~513 ticks/day, ~117k-token floor each, a weekly budget in under tw
 three ingredients: a trigger with no human grant behind it, a candidate list that was never
 empty (`hygiene_tick` regenerates continuously), and no expiry. The keepalive must have none:
 
-1. **Authorisation window -- a human grant with an expiry.** A new record (section 4d) written
+1. **Authorisation window -- a human grant with an expiry.** A new record (section 4e) written
    only by an attended session on the user's explicit instruction: `granted_by`, `granted_at`,
    `expires_at`, `boxes`, `max_cycles_per_box`, the user's words in `note`. Clamped (proposed:
    16h; both evidence runs were ~14h). **Silence still stops the fleet** -- the property
@@ -201,8 +202,8 @@ empty (`hygiene_tick` regenerates continuously), and no expiry. The keepalive mu
    `AskUserQuestion`).
 3. **Never while paused**, never while a cycle is already running on the box, never past
    `max_cycles_per_box`, never when `dispatch_usage_cooldown.py` says the box's account is cold.
-4. **Zero tokens when it declines.** The gate is shell + python; it starts
-   `ree-metaworker.service` or does nothing. It is not a Claude session and not the Dispatcher.
+4. **Zero tokens when it declines -- and zero dispatch tokens when it acts** (section 4d). The
+   gate is shell + python. It is not a Claude session and not the Dispatcher.
 
 **What it cannot do:** read the plan allowance. `get_usage` is in-app only, so Step 0a's
 85/95% bands stay with attended sessions. Consequences, stated rather than hidden: a window
@@ -216,7 +217,7 @@ cross 85%. The per-box reactive cooldown remains the only in-window brake on exh
 |---|---|---|---|
 | K1 | Mac launchd, ssh out (the existing tick helper, scheduled) | yes -- every path exists | stops with the lid (measured 2026-09-20); that is one of the two lapses it is meant to fix |
 | K2 | Hub timer, ssh to workers | **no** -- no key on the hub (measured) | needs a new credential on the box that is meant to be dedicated to the coordination plane; widens the hub's blast radius |
-| **K3** | **A systemd timer ON each worker box, running a local gate (recommended)** | yes -- boxes have the coordinator client, the lease check, the pause check and the timer infrastructure | a box the scaler has powered off cannot wake itself (no worse than K1, where the ssh also fails); needs the window readable from the box (4d) |
+| **K3** | **A systemd timer ON each worker box, running a local gate (recommended)** | yes -- boxes have the coordinator client, the lease check, the pause check and the timer infrastructure | a box the scaler has powered off cannot wake itself (no worse than K1, where the ssh also fails); needs the window readable from the box (4e) |
 
 Recommendation: **K3**, with the lease itself carrying the window so no renewal is needed at
 all. `ree-metaworker-keepalive.timer` (every 20 min) -> `scripts/metaworker_keepalive_gate.py`:
@@ -229,7 +230,7 @@ usage cooldown active?                yes -> exit 0
 ree-metaworker.service active?        yes -> exit 0
 live lane entry admits this box?      no -> exit 0
 cycles_this_window < max_cycles?      no -> exit 0, log CAP-REACHED once
-otherwise                             systemctl start --no-block ree-metaworker.service; count it
+otherwise                             launch the next approved lane entry (section 4d); count it
 ```
 
 Always exit 0; every decline is one log line. It must reconcile with, not add to, the existing
@@ -242,7 +243,70 @@ starts a cycle.
 An explicit `dispatcher_control.py stop` still wins over an open window, so an attended session
 (or the user) can end a window early with the existing verb.
 
-### 4d. Window record and lease authority
+### 4d. Dispatch itself should get cheaper, not just the Orchestrator (user direction, 2026-09-20 mid-session)
+
+Added on the user's instruction while this was being staged: "the way things are dispatched
+should end up some way that is better and more efficient than current methods ... it may use
+some or all of older retired or current methods."
+
+The gate in 4c, as first drafted, ends by starting `ree-metaworker.service` -- a `claude -p`
+Dispatcher cycle that pays a **~117k-token fleet-state floor before it launches anything**
+(`metaworker-orchestrate/SKILL.md:333`; the resident form of this cost was measured at ~59M
+tokens/day). Since 2026-09-16 that floor buys almost nothing on the lane path: a campaign entry
+is ALREADY curated, bundled, targeted at a box, given a model and a brief, pre-flighted (science
+lane) and approved by the user. The judgment was paid for once, in the attended session. What
+remains is mechanical, and **every mechanical step already exists as a tested script**:
+
+| Dispatch-cycle step | Already a script |
+|---|---|
+| is the plane paused | `coordination_plane.py`; re-checked inside `dispatch_remote_launch.py` |
+| may this box run | `dispatcher_control.py check` |
+| budget / runaway brake | `dispatch_budget_gate.py` |
+| account exhausted | `dispatch_usage_cooldown.py` |
+| in-flight cap (`REE_DISPATCH_MAX_INFLIGHT`) | `count_inflight_workers.py` |
+| candidate order, lane first | `dispatch_candidate_order.py` (campaign mode) |
+| duplicate / invalidator triage | `dispatch_triage.py` |
+| compose the brief | `dispatch_campaigns.py brief` (+ the HEADLESS WORKER CONTRACT, today inline in `metaworker-dispatch/SKILL.md` ~:1485 -- to be lifted into one file both paths read) |
+| claim members, worktree, hooks, launch detached, record box + worktree + session uuid | `chip_ledger.py claim`, `dispatch_remote_launch.py --campaign-id ... --box local` |
+| was the launch dead on arrival | `check_worker_launch.py` |
+
+So the recommended end state is a **scripted lane launcher**, `scripts/dispatch_lane_launch.py`:
+the box-side gate, on a pass, runs that chain and launches the WORKER directly. No Dispatcher
+session sits between an approved entry and the worker that does it.
+
+How it uses older, retired and current methods together:
+
+- **Retired, reused:** the resident timer cadence (retired 2026-08-23/25). It was dangerous
+  because each tick was a 117k-token session with a never-empty candidate list and no human
+  grant. A tick that costs zero tokens, fires only inside a window, and launches only
+  user-approved entries keeps the one thing the timer was good at -- nothing sits idle for 4.5h
+  waiting for someone to type `systemctl start` (2026-08-27).
+- **Current, kept as is:** the lease and its fail-closed evaluation, the campaign/science lanes
+  and their approval step, the budget gate, the cooldown, the in-flight cap, the pause, the
+  launch shape, `worker_message.py` for routing answers back.
+- **Current, demoted:** the `claude -p` Dispatcher cycle. It stays available for what still needs
+  judgment -- urgent chips outside the lane, and triage of an uncurated ledger -- run attended
+  or by explicit trigger, not as the path every approved entry must pass through.
+- **Older, kept:** Step 1d supervised subagents from the Mac session remain the cheapest path
+  when the work fits on the Mac.
+
+Rough size of the saving, from the two evidence runs: a 30-minute trigger on two boxes for 14h is
+up to ~56 Dispatcher cycles, ~6.5M tokens of floor per run, before any worker does anything.
+The scripted path spends none of it. Per launched entry the saving is one 117k floor plus the
+minutes the cycle takes to derive state it then discards.
+
+What this must NOT lose, and how: the Dispatcher's per-cycle STOP-CHECK reading is replaced by
+the worker's own STOP-CHECK (every chip carries one) plus `dispatch_triage.py`; the DOA
+classification stays via `check_worker_launch.py`; a launcher refusal of any kind leaves the
+entry open and adds to the needs-you count rather than retrying in a loop. H5 (2026-08-23)
+becomes this script's first regression test: no window -> no launch; empty lane -> no launch;
+cap reached -> no launch.
+
+Held-out note: no historical case exercises a scripted lane launch, so this rests on the
+inventory above, not on history. It should ship behind the window with `max_cycles_per_box`
+low for the first runs, and the Dispatcher cycle remains the fallback if it misbehaves.
+
+### 4e. Window record and lease authority
 
 Add `dispatcher_control.py window grant|revoke|status`, stored beside the leases in
 `dispatcher_control.json` under `"windows"` (same fail-closed evaluation: missing, malformed or
@@ -369,9 +433,9 @@ it would not be for a smaller edit.
 
 | | Option | Builds | Rough size | Risk |
 |---|---|---|---|---|
-| A | **Full** | everything in sections 3-7 | 4-5 sessions; `integration/` not needed (umbrella `scripts/` + REE_assembly page + box-side unit; the only ree-v3 touch is the coordinator window dual-write, which can follow) | highest: reverses the 2026-08-27 decision and the never-land rule in one step |
-| B | **Keepalive-script-first** | window record + K3 gate + tests + timer-story reconciliation; Orchestrator stays long-lived meanwhile | 2-3 sessions | fixes the lapses, not the context cost; ships the riskier half first and alone |
-| **C** | **Start-row-first (recommended)** | `session_start` kind, generator, endpoint, panel, `last_raised_at`, `orchestrator_tick.py` + tests, the bounds and hand-off rewrite for ATTENDED cycles. No window, no box-side timer: leases stay session-held and lapse when a bounded session lands | 2-3 sessions | low: nothing unattended is added. Removes the measured context cost immediately. Leaves overnight continuity unsolved until the keepalive is approved separately, with real start-row experience behind that decision |
+| A | **Full** | everything in sections 3-7, including the scripted lane launcher (4d) | 4-5 sessions; `integration/` not needed (umbrella `scripts/` + REE_assembly page + box-side unit; the only ree-v3 touch is the coordinator window dual-write, which can follow) | highest: reverses the 2026-08-27 decision and the never-land rule in one step |
+| B | **Keepalive-script-first** | window record + K3 gate + scripted lane launcher (4d) + tests + timer-story reconciliation; Orchestrator stays long-lived meanwhile | 3 sessions | fixes the lapses and the ~117k-per-cycle dispatch floor, not the Orchestrator's context cost; ships the riskier half first and alone |
+| **C** | **Start-row-first (recommended)** | `session_start` kind, generator, endpoint, panel, `last_raised_at`, `orchestrator_tick.py` + tests, the bounds and hand-off rewrite for ATTENDED cycles. No window, no box-side timer: leases stay session-held and lapse when a bounded session lands | 2-3 sessions | low: nothing unattended is added. Removes the measured context cost immediately. Leaves overnight continuity AND the dispatch-floor saving (4d) unsolved until the keepalive is approved separately, with real start-row experience behind that decision |
 | D | **Hold** | nothing; keep this doc | 0 | the next long run repeats section 1a (~7.5M rebuild tokens per five days at current use) |
 
 Under C the skill's "never `/session-land`" rule is relaxed only as far as: a bounded session
