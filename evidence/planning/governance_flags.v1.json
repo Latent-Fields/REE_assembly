@@ -5468,6 +5468,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0388",
+      "claim_ids": [
+        "ARC-104"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "ARC-104's absolute wording ('there must be NO path by which symbolic/linguistic content overwrites or suppresses a harm signal') is not supported by the first literature pull for this claim (REE_assembly a4a0fa3c2d, 6 entries, evidence/literature/targeted_review_arc_104): Spisak et al. 2026 Nat Commun (IPD meta-analysis, n=409) found verbal suggestion ALONE still produced significant analgesia and insula/putamen deactivation while sparing S1 -- only conditioning reduced S1 -- and Eippert et al. 2009 Science reports placebo reducing spinal dorsal-horn nociceptive activity outright, so biology implements a graded, bounded top-down path to the harm signal rather than the absence of one. Governance should consider whether ARC-104 should be reworded from an absolute prohibition to a LAYERED guard (symbolic input may condition the evaluative prior but must not write the primary harm registration), which the same evidence supports well; note the supportive half rests partly on a null in a smaller subset (5 studies, n=147) and so is a power-limited finding, and note the same rewording question applies to sibling claim ARC-103 and to the parent invariant INV-007.",
+      "raised_by_session": "vigilant-colden-ac4766",
+      "raised_at": "2026-09-20T11:58:06Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
