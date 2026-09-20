@@ -331,3 +331,151 @@ unlucky: the chip pre-registered a falsifier on the wrong variable, and both
 the orchestrator pre-flight and the first rebuild inherited that error without
 checking it against the IGW-243 numbers the chip itself cites. The chip should
 be re-specified before any third attempt.
+
+---
+
+# 7. THIRD/FOURTH REFUSAL (2026-09-20): the falsifier cannot fire without a drift source -- and that yields the actual answer
+
+Session `metaworker-science-20260920-mech204-541d-cd`, executing the user's
+2026-09-20T09:29:55Z decision (option C with D in parallel).
+
+## 7a. What was delivered
+
+- **D (done).** `GFLAG-0379` (contested_disposition, MECH-204) carrying the rv
+  evidence, the proven cold-start mechanism (`precision_init` is a VARIANCE 0.5
+  -> sentinel precision 1.999996; the pre-loop `agent.reset()` fires a
+  zero-waking-tick cycle that anchors on it), and the wrong-variable finding.
+  `claims.yaml` untouched.
+- **B (done, by measurement).** Survivable regime selected. See 7b.
+- **A (built, refused).** Falsifier re-expressed on rv; four red-team passes.
+
+## 7b. Option B: the regime, chosen by measurement
+
+Env-only survivability screen, 12 episodes x 12 seeds, 200-step cap:
+
+| candidate | params changed | mean | median | frac >= 100 | terminal cause |
+|---|---|---|---|---|---|
+| BASE (794 point) | 0 | 11.9 | 12.5 | 0.000 | health_depleted |
+| lower `hazard_harm` 0.01 | 1 | 11.9 | 12.5 | 0.000 | health_depleted |
+| P0 warmup, 10 episodes | 0 | 12.5 | 9.5 | 0.000 | health_depleted |
+| fewer hazards (1) | 1 | 17.5 | 12.0 | 0.000 | health_depleted |
+| `proximity_harm_scale` 0.03 | 1 | 29.8 | 32.5 | 0.000 | health_depleted |
+| prox 0.02 + contam 0.02 | 2 | 74.1 | 76.5 | 0.000 | health_depleted |
+| prox 0.015 + contam 0.015 | 2 | 98.8 | 98.0 | 0.417 | health_depleted |
+| **prox 0.01 + contam 0.01** | **2** | **149.2** | **148.5** | **1.000** | **health_depleted** |
+| prox 0.005 + contam 0.005 | 2 | 200.0 | 200.0 | 1.000 | STEP CAP (immortal) |
+
+**Selection rule, stated before the choice:** among candidates clearing the bar
+(>= 100 ticks in >= 2/3 of episodes), take the one that (1) changes the fewest
+env parameters from the IGW-243/794 operating point; (2) on a tie, perturbs the
+measured realised-PE variance least; (3) on a further tie, preserves the
+qualitative regime -- episodes must still end by `health_depleted`, so harm
+remains a live constraint rather than being removed. Tie-break: prefer an env
+parameter over a training-schedule change, since a schedule change alters the
+agent's competence and therefore what regime is being measured.
+
+**All three candidates the decision named were eliminated by measurement**, and
+one instructively: lowering `hazard_harm` gives BYTE-IDENTICAL episode lengths,
+because contact harm is not the binding constraint. The two real killers are the
+continuous `hazard_approach` proximity drain (~0.10 health/tick at the 794
+setting) and **`contaminated_harm`, which defaults to 0.4 PER CONTACT** and is
+overridden by neither 794 nor any 541d build. That second killer was invisible
+until measured, which is why it was not among the named candidates.
+
+Only one candidate clears while still terminating by health depletion, so the
+choice was forced and no decision chip was owed. Qualification: the table is a
+RANDOM-POLICY screen; under the real driver the agent at prox 0.01 survives to
+the 200-step cap. Rule (3) still discriminates correctly -- at 0.01 a random
+policy still dies, so survival is EARNED; at 0.005 it is free.
+
+**The regime achieved its purpose**, which was the point of B: rv now CONVERGES.
+Measured `rv / realised-PE-variance = 1.0` in both arms (final rv 0.003807,
+realised PE 0.003864, anchor 258.78 -- the chip's "~255" reproduced a third
+time), against **18-82x** in the pre-survivable regime.
+
+## 7c. Option A, and why it was refused twice more
+
+Third pass (BLOCKING), both findings verified arithmetically:
+
+- The falsifier scored as a COUNT of cycles moving rv away was NOISE. In a
+  converged regime rv ~= R and the guard-ON target ~= 1/R, so the sign compares
+  two ~1e-5 quantities; the smoke measured an ON away-fraction of exactly 0.5.
+  **Fixed:** scored on MAGNITUDE instead -- OFF +1.547 vs ON -0.00104 in the
+  smoke, a ~1500x separation.
+- The old F2 ("is ON less de-calibrating than OFF?") COULD NOT FAIL: `rv_before`
+  is identical in both arms, the sentinel in OFF's target is the only
+  difference, and it is strictly de-calibrating. Verified: OFF relative
+  displacement +2.029 / +0.980 / +0.319 / +0.101 / +0.009 at cycles
+  1/2/5/10/19, against ON +0.0000 throughout. It restated the cold-start
+  contract. **Fixed:** inverted into a POSITIVE CONTROL on the OFF arm.
+
+Fourth pass (BLOCKING), on the revised criteria -- and this one is structural:
+
+> **With the guard ON the recalibration target is an EMA of
+> `current_precision = 1/rv` -- a LAGGED FUNCTION OF rv ITSELF. Recalibrating rv
+> toward a lagged function of rv is near-idempotent, so it cannot de-calibrate a
+> converged rv.**
+
+Adversarial sweep over eight rv trajectories (stationary; 10x and 100x monotonic
+decay; 5x step collapse; 5x step rise; alternating x3; 20x single spike;
+sawtooth) gives guard-ON mean relative displacement in **[-0.15, +0.062]** --
+never approaching the 0.25 firing bar. The `..._demote` branch is UNREACHABLE;
+the run could only ever confirm.
+
+(The same pass also flagged the OFF positive control as marginal at 19 cycles.
+Re-derived independently: 19-cycle mean **2.013**, against a 0.25 bar -- ample
+margin. That finding does not reproduce and is recorded as not-confirmed.)
+
+**Root cause of this build's defect, owned plainly:** this driver dropped SD-076
+(`use_waking_confidence_inflation`) to avoid depending on the unvalidated
+`sd_waking_confidence_inflation_headroom` repair. That was a mistake. SD-076 is
+the only substrate mechanism that makes rv diverge from realised PE while the
+guard is on, and the user's own base-selection criterion had required the
+precision be "realised AND ABLE TO DRIFT". Removing the drift source removed
+exactly the property that criterion protected.
+
+## 7d. THE RESULT -- what the four passes together establish
+
+This is worth more than the queued run would have been:
+
+> **MECH-204 Option A's recalibration can only de-calibrate rv when its target
+> is CONTAMINATED or STALE** -- i.e. (a) the `precision_init` cold-start
+> sentinel, which the landed F1 guard removes, or (b) rv far from its own lagged
+> mean, i.e. a non-converged rv (short episodes) or an active drift source.
+> **It is not de-calibrating in principle.**
+
+Consequence for the disposition, and a correction I owe:
+
+- The 9/9 and 18-82x figures in **GFLAG-0379** were measured in regime (b) --
+  6-15-tick episodes where rv never converged. That flag's DEMOTE
+  recommendation is **overstated**, and is corrected by **GFLAG-0384**.
+- The evidence supports the guard FIXING the identified defect. It does not
+  support demoting Option A.
+- What remains genuinely untested is Option A against a real waking drift
+  source. That is the owed experiment.
+
+## 7e. The decision now owed
+
+- **(A) Re-arm SD-076** at the repaired floor (`relative_frac` 0.2, `soft` mode)
+  and re-run. This RESTORES compliance with the user's own "able to drift"
+  criterion and makes the falsifier firable. Cost: reintroduces the dependency
+  on `sd_waking_confidence_inflation_headroom`, which is `implemented` with
+  ready FALSE and its own validation (V3-EXQ-794a) not yet queued -- a
+  dependency the user has not yet been asked to accept.
+- **(B) Queue V3-EXQ-794a first** (the headroom repair's own validation), then
+  541d on top of a validated drift source. Slower, no borrowed risk.
+- **(C) Accept a confirm-only instrument validation.** Honest if labelled as
+  such, but it cannot falsify and duplicates contracts C1-C8.
+- **(D) Treat 7d as the answer** and route MECH-204 Option A to governance on
+  GFLAG-0379 + GFLAG-0384 without a further run.
+
+**Recommendation: (B) then (A)**, with (D) proceeding in parallel since the
+corrected disposition should reach governance either way. (A) alone is
+defensible if the dependency is acceptable to the user.
+
+## 7f. Red-team budget
+
+Four passes on this item; the skill permits one pass plus one re-spawn when a
+BLOCKING finding changes the causal chain. That budget is now spent, so this
+session stopped rather than iterating to a clean verdict -- which is the
+condition the "do not iterate to CLEAR" rule exists to prevent.
