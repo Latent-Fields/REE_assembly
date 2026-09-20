@@ -1,0 +1,260 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1069_inv063_p1_gate_798a_p0",
+  "run_id": "v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-20T08:20:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "9486c44614123b625564d6cf31c1257ea98a783d",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "inv063_p1_intake_ladder_gradeable",
+    "criteria": [
+      {
+        "name": "C1_p1_met_per_seed",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 2.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "seeds_required": 2,
+        "n_seeds": 3,
+        "mono_tol": 0.02,
+        "spread_floor": 0.25,
+        "spread_statistic": "(mel[HIGH] - mel[NONE]) / mel[NONE]",
+        "rule": "per seed: monotone (MONO_TOL slack vs the floor arm) AND spread >= 0.25; then >= 2/3 of seeds. 798a:1015-1017 verbatim.",
+        "per_seed_p1_met": [
+          true,
+          false,
+          true
+        ],
+        "per_seed_spread": [
+          0.3938785160517025,
+          0.24097844738755034,
+          1.6914104275702093
+        ]
+      },
+      {
+        "name": "D1_monotone_component",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "routes_verdict": false
+      },
+      {
+        "name": "D2_spread_component",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 2.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "routes_verdict": false
+      }
+    ],
+    "combination_rule": "PASS iff BOTH C1 and C2 pass (plain AND). Both are INV-063's P1 as registered -- C1 monotone with 798a's MONO_TOL=0.02 slack, C2 the V3-EXQ-701c relative spread > 0.25 -- each on >= 2/3 seeds. Neither threshold is new and neither was weakened. Readiness R2 and P4 GATE (unmet -> substrate_not_ready_requeue, no P1 verdict); 798a's R1 is RECORDED and SCOPED OUT because it certifies the frozen-probe battery, which this run's DV never reads.",
+    "criteria_non_degenerate": {
+      "C1_p1_met_per_seed": true,
+      "D1_monotone_component": true,
+      "D2_spread_component": true
+    },
+    "preconditions": [
+      {
+        "name": "R2_p0_converged",
+        "kind": "readiness",
+        "description": "per-seed frozen-probe PE drop across P0, 798a R2",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "recon-only P0 on the STABLE no-shift env, 798a's own form",
+        "met": true
+      },
+      {
+        "name": "P4_agent_config_is_798a",
+        "kind": "readiness",
+        "description": "alpha_world / self_dim / world_dim read back off the LIVE agent; alpha_world's shipped default 0.3 is the documented SD-008 root cause for degraded z_world fidelity and MEL is a world-prediction quantity",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "asserted from the constructed agent, not from the builder",
+        "met": true
+      },
+      {
+        "name": "p0_weights_restored_into_every_cell",
+        "kind": "readiness",
+        "description": "each cell's agent state_dict equals the shared P0 snapshot bit-for-bit; a silent no-op would make every arm read an UNTRAINED model and the comparison vacuous",
+        "measured": 12.0,
+        "threshold": 12.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "torch.equal against the snapshot, per tensor, per cell",
+        "met": true
+      },
+      {
+        "name": "mel_window_populated",
+        "kind": "readiness",
+        "description": "every cell produced a finite MEL over a non-empty window",
+        "measured": 900.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "798a's fixed-step measurement budget",
+        "met": true
+      },
+      {
+        "name": "R1_frozen_probe_responds_to_shock_RECORDED_NOT_GATING",
+        "kind": "diagnostic",
+        "description": "798a's R1. SCOPED OUT of this run's gate: it certifies the frozen-probe BATTERY, and this run's DV is MEL (e3_prediction_error), which never reads the battery. Recorded because 798a FAILED it at 0.223.",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "SHOCK_DRIFT vs STABLE_DRIFT on the frozen model",
+        "met": true,
+        "applies": false,
+        "scoped_out_reason": "not meaningful for a MEL DV; asserting it would gate on an instrument this run does not use"
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8ab9b31c3e3a214ceab922d08805794eb13d5d15b3e10713d60e7ac66bb2ef62",
+  "substrate_commit": {
+    "commit": "9486c44614123b625564d6cf31c1257ea98a783d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 23649.42193865776,
+  "config": {
+    "arms": [
+      {
+        "arm_id": "ARM_0_NONE",
+        "interval": 0,
+        "depth": 0
+      },
+      {
+        "arm_id": "ARM_1_LOW",
+        "interval": 60,
+        "depth": 2
+      },
+      {
+        "arm_id": "ARM_2_MED",
+        "interval": 25,
+        "depth": 2
+      },
+      {
+        "arm_id": "ARM_3_HIGH",
+        "interval": 10,
+        "depth": 2
+      }
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "p0_steps": 5400,
+    "conv_episodes": 60,
+    "steps_per_episode": 90,
+    "meas_steps": 900,
+    "probe_steps": 100,
+    "probe_battery_size": 64,
+    "episodes_per_run": 70,
+    "e2_lr": 0.001,
+    "contrastive_batch_k": 8,
+    "max_grad_norm": 1.0,
+    "transition_buffer_max": 256,
+    "env_base": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "use_proxy_fields": true
+    },
+    "stable_drift": {
+      "env_drift_interval": 999,
+      "env_drift_prob": 0.0
+    },
+    "shock_drift": {
+      "env_drift_interval": 1,
+      "env_drift_prob": 0.8
+    },
+    "min_rel_mel_spread": 0.25,
+    "mono_tol": 0.02,
+    "seed_pass_frac": 0.6666666666666666,
+    "min_rel_conv_drop": 0.1,
+    "min_rel_pe_response": 0.25,
+    "p0_shared_per_seed": true,
+    "sleep": "NONE -- no sleep flag set, run_sleep_cycle never called"
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 16800,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
