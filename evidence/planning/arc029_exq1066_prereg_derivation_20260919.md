@@ -415,3 +415,123 @@ is `False` by construction.
 (~214 ms/step eval, ~396 ms/step train-mode). Under sibling-session contention it may reach
 5-6h, which is above the ~2-3h the option-C framing assumed. Two seeds were retained
 because the feasibility predicate requires BOTH seeds -- at n=2 a "majority" is not a thing.
+
+---
+
+# ADDENDUM 3 -- 2026-09-20T10:45Z: V3-EXQ-1070 RAN, GATED OUT, AND IS SUPERSEDED BY 1070a
+
+`V3-EXQ-1070` ran on the fleet (2026-09-20T04:26Z, 211 min) and **correctly refused to
+report a feasibility region**: outcome FAIL, label `substrate_not_ready_requeue`, on
+exactly ONE of four readiness preconditions. Manifest:
+`REE_assembly/evidence/experiments/v3_exq_1070_arc029_env_operating_point_feasibility_20260920T042654Z_v3.json`.
+Superseded by **`V3-EXQ-1070a`** (`ree-v3 a7c8c97f2b` on `origin/main`, RECONCILED into
+the coordinator DB). Supersession flag: **GFLAG-0381**. 1070 has NOT been autopsied by
+this session; it will surface in `pending_review` as a FAIL.
+
+## What 1070 SETTLED -- carried forward, not re-derived
+
+| | measured |
+|---|---|
+| `variance_tracking_bar_in_force_somewhere` | **1.000** |
+| `commit_gate_window_filled_in_some_cell` | **30 of 30 cells** |
+| `training_collapsed_running_variance` (worst cell) | **1.27 decades** vs a 0.5 floor |
+| committed-run length, per-episode vs flat | **4.4-8.1** vs **17.8-31.3** |
+| health-budget product, per rung | **1.159 / 1.159 / 1.209 / 1.259 / 1.203** |
+| rv residual dispersion, L0 -> L5 | **0.0112 -> 0.0206 -> 0.0291 -> 0.0376 -> 0.0672** |
+| `window_span_episodes` | **15-39** at every rung |
+
+Three of those are worth stating as findings rather than as gate readings:
+
+1. **The bar engages everywhere.** Addendum 1's `bar_in_force = 0.000` / occupancy
+   1.0000 measurement was a **WARM-BUDGET artifact**, not a property of the
+   environment. The 12-episode warm cap in that probe never filled a 200-select-call
+   window; 1070's 250-episode cap fills it in ~29. The `f6b6f67783`-era reading that
+   "P1 is unsatisfiable at the lineage env" does not survive this, and Addendum 1
+   should be read with that correction.
+2. **The episode-boundary repair was load-bearing.** Flat cross-episode run lengths
+   overstate by 3-4x. Without it P1's run-length half would have passed everywhere
+   trivially and the whole run would have been vacuous.
+3. **The bar is a CROSS-EPISODE quantile everywhere** (`window_span_episodes` 15-39).
+   The estimator is specified against a within-run drift. This is reported, not gated,
+   and it is a property of the substrate rather than of any run -- it belongs in
+   whatever decision eventually follows the feasibility result.
+
+## The one defect, its root cause, and why the two cheap fixes do not work
+
+`training_tick_budget_equalised` measured **3.96** against its 2.0 ceiling.
+
+1070 sized each rung's EPISODE budget from `LADDER_EP_LEN`, a table of episode lengths
+pre-measured under a **RANDOM policy**. Those do not transfer to training-time
+behaviour, and the error is systematic in the direction that matters:
+
+| rung | realised/predicted episode length | mean total train ticks |
+|---|---|---|
+| L0 | 0.82 / 1.22 | 1294 |
+| L1 | 1.57 / 1.20 | 1736 |
+| L2 | **0.68 / 0.36** | 685 |
+| L3 | **0.44 / 0.44** | 614 |
+| L5 | **0.35 / 0.70** | 668 |
+
+Realised ticks also varied up to **2x BETWEEN SEEDS at one rung** (L5: 461 vs 876) --
+which no feed-forward prediction can touch, because it is fixed before the seed runs.
+
+**Both cheap repairs were checked against 1070's own numbers and rejected**, recorded
+here so they are not re-proposed:
+- *Re-derive the table from 1070's realised lengths* -> spread **~2.0**, exactly at the
+  ceiling with no margin, and still blind to the seed variance.
+- *Gate on the per-rung MEAN instead of the per-cell spread* -> **2.83**, still over,
+  and it relaxes the precondition, which the repair brief forbids.
+
+## The rule 1070a uses instead
+
+Per **(rung, seed)**, a **TWO-STAGE PILOT** of the identical trainer on a throwaway
+agent at the same seed: stage A measures P0 ticks/episode; stage B carries that agent
+through a **full-length P0** and then measures P1 ticks/episode **at the point the real
+P1 actually starts**. The real agent is then trained in **exactly one**
+`_train_all_on_agent` call sized from those measurements.
+
+One call, not a chunked tick cap: `_train_all_on_agent` constructs its optimizers
+internally, so chunking would reset Adam's moment estimates **more often at the
+short-episode rungs** -- re-introducing a training-dynamics difference along the
+manipulated dimension in the act of removing a tick-count one.
+
+The zworld P0a phase stays budgeted from the random-policy table **on purpose**:
+`run_zworld_p0` rolls out under `RandomPolicy`, so that table is the right predictor for
+that phase and the wrong one for the others. Conflating them is what 1070 got wrong.
+
+## Second red-team pass -- CONTESTED, six findings, all fixed
+
+The load-bearing one, and the reason this iteration is not just a constant change: the
+drop rule (`budget_infeasible`) can **only ever remove a SHORT-episode rung**, because
+the budget is `ceil(target/length)`. That is the ladder's **minimum** and, at L0, the
+**lineage control**. On 1070's own rung means, dropping L0 moves D1's episode-length
+range from **3.32 to 1.94** -- below D1's own floor. Ungated, a BUDGET failure would
+therefore have been reported as "the ladder did not sweep" while
+`interpretation.label` still named a feasibility region. A drop is now **gated**
+(`all_rungs_tick_budgetable`) and routes to `substrate_not_ready_requeue`;
+regression-tested by replaying 1070's own rows with L0 marked infeasible.
+
+Also fixed: the pilot's own rung-correlated error (the two-stage design); the pilot env
+using an offset seed (`CausalGridWorldV2` seeds a per-instance generator, so the offset
+bought nothing and cost the seed half of "closed-loop"); pilot RNG state bleeding into
+the real training call (the pilot now runs BEFORE the real agent is constructed); and
+the progress denominator on the capped path.
+
+**DECLARED NOT FIXED, because it is structural.** Equal TICKS equalises the e2
+contrastive steps and the `running_variance` EMA, which are per tick. It does **not**
+equalise the lateral-PFC and OFC REINFORCE heads, which step once per P1 EPISODE and so
+vary **~5x inversely with episode length** (~178 updates at L0 against ~33 at L5 on
+1070's realised lengths). Since `ticks = episodes x length`, no budget can equalise both
+while episode length varies by rung. This is not introduced by the repair (1070 had a
+6.3x spread on the same axis) and it is not silently papered over. It is a live caveat:
+those heads feed E3 scoring, so a rung difference in P1 feasibility could in principle
+be mediated by policy-head dose. **Read 1070a's deliverable as "is there a region", not
+as "which rung is best".**
+
+## What is deliberately NOT carried forward
+
+1070's cells did populate a would-be feasibility table. It is **not** reproduced here
+and **not** used as an expectation for 1070a. Its gate failed, so by the design's own
+rule those numbers are not licensed -- and they were produced under exactly the unequal
+training budgets this iteration exists to remove, which is the single thing most likely
+to move which rung looks feasible.
