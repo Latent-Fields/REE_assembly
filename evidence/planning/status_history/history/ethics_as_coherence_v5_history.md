@@ -6,33 +6,41 @@ Source plan: `evidence/planning/ethics_as_coherence_v5_plan.md`
 
 ## `ethics_as_coherence_v5:ETH-1`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-2`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-3`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-4`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-5`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-6`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-7`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `ethics_as_coherence_v5:ETH-8`
 
-- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-09-11T16:54Z` [decision] `decision:ARC-054@2026-09-11T16:54:08.598899Z` -> [`evidence/decisions/decision_log.v1.jsonl#L482`](../../../../evidence/decisions/decision_log.v1.jsonl#L482) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-054@2026-09-18T19:04:17.348743Z` -> [`evidence/decisions/decision_log.v1.jsonl#L503`](../../../../evidence/decisions/decision_log.v1.jsonl#L503) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 

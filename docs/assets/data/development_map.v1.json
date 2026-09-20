@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-18T18:50:34Z",
+  "generated_at": "2026-09-20T11:55:37Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -270,6 +270,17 @@
         "is_hero": false
       },
       {
+        "id": "inv063_legb_sleep_worsens_converged_dv",
+        "title": "INV-063 leg-B sign inversion",
+        "claims": [
+          "INV-063"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "inv088_diversity_readout",
         "title": "INV-088 diversity readout",
         "claims": [
@@ -290,6 +301,17 @@
         "surviving": 1,
         "initial": 5,
         "convergence": "refining",
+        "is_hero": false
+      },
+      {
+        "id": "mech017_recency_cost_locus",
+        "title": "MECH-017 recency-cost locus",
+        "claims": [
+          "MECH-017"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
         "is_hero": false
       },
       {
@@ -745,7 +767,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "146 / 185",
+      "value": "148 / 188",
       "detail": "modules recorded as built"
     },
     {
@@ -755,7 +777,7 @@
     },
     {
       "label": "Narrow",
-      "value": "126 / 179",
+      "value": "132 / 185",
       "detail": "rival explanations still standing"
     },
     {
@@ -1575,6 +1597,25 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-065",
+              "title": "Reality-coherence conflict lane modulates loop precision and commitment thresholds before execution lock-in.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "ARC-005",
+                "ARC-007",
+                "ARC-018",
+                "MECH-037",
+                "MECH-054",
+                "MECH-062"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-047",
               "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
               "status": "candidate",
@@ -1636,23 +1677,6 @@
                 "ARC-013"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-138",
-              "title": "Commit token must include a cancel-window-open flag supported by a top-down suppressive pathway from dFMC/pre-SMA to premotor cortex that can veto the transition before execution lock-in.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "mechanism_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 4,
-              "depends_on": [
-                "MECH-061",
-                "MECH-062",
-                "ARC-003",
-                "Q-015"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1662,13 +1686,13 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 253,
+      "total": 250,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 24,
-          "more_count": 14,
+          "count": 23,
+          "more_count": 13,
           "nodes": [
             {
               "id": "SD-005",
@@ -1913,8 +1937,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 224,
-          "more_count": 214,
+          "count": 222,
+          "more_count": 212,
           "nodes": [
             {
               "id": "INV-049",
@@ -2092,13 +2116,13 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 292,
+      "total": 295,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 54,
-          "more_count": 44,
+          "count": 55,
+          "more_count": 45,
           "nodes": [
             {
               "id": "SD-012",
@@ -2445,8 +2469,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 222,
-          "more_count": 212,
+          "count": 224,
+          "more_count": 214,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2870,10 +2894,12 @@
     "planned": 939
   },
   "archive": {
-    "snapshot_count": 111,
-    "latest": "2026-09-16",
+    "snapshot_count": 113,
+    "latest": "2026-09-20",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-09-20",
+      "2026-09-19",
       "2026-09-16",
       "2026-09-15",
       "2026-09-14",
@@ -2881,9 +2907,7 @@
       "2026-09-12",
       "2026-09-11",
       "2026-09-08",
-      "2026-09-07",
-      "2026-09-06",
-      "2026-09-05"
+      "2026-09-07"
     ]
   }
 }

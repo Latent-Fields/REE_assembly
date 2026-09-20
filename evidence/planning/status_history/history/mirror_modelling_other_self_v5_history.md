@@ -6,29 +6,36 @@ Source plan: `evidence/planning/mirror_modelling_other_self_v5_plan.md`
 
 ## `mirror_modelling_other_self_v5:MIRROR-1`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `mirror_modelling_other_self_v5:MIRROR-2`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `mirror_modelling_other_self_v5:MIRROR-3`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `mirror_modelling_other_self_v5:MIRROR-4`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `mirror_modelling_other_self_v5:MIRROR-5`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `mirror_modelling_other_self_v5:MIRROR-6`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 
 ## `mirror_modelling_other_self_v5:MIRROR-7`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
 

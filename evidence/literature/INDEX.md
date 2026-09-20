@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-20T06:13:13.640174Z`
+Generated: `2026-09-20T11:53:46.279616Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -63,8 +63,9 @@ Generated: `2026-09-20T06:13:13.640174Z`
 | `targeted_review_arc_092_imagination_learning_constraint` | [`2026-08-28_arc_092_rem_creativity_priming_cai2009`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/record.json) | 2 | [`summary`](targeted_review_arc_092_imagination_learning_constraint/entries/2026-08-28_arc_092_rem_creativity_priming_cai2009/summary.md) |
 | `targeted_review_arc_095` | [`2026-09-19_arc_095_liking_wanting_split_berridge2016`](targeted_review_arc_095/entries/2026-09-19_arc_095_liking_wanting_split_berridge2016/record.json) | 3 | [`summary`](targeted_review_arc_095/entries/2026-09-19_arc_095_liking_wanting_split_berridge2016/summary.md) |
 | `targeted_review_arc_098` | [`2026-09-19_arc_098_incident_reporting_barriers_waring2005`](targeted_review_arc_098/entries/2026-09-19_arc_098_incident_reporting_barriers_waring2005/record.json) | 5 | [`summary`](targeted_review_arc_098/entries/2026-09-19_arc_098_incident_reporting_barriers_waring2005/summary.md) |
-| `targeted_review_arc_099` | [`2026-09-20_arc_099_repair_universals_dingemanse2015`](targeted_review_arc_099/entries/2026-09-20_arc_099_repair_universals_dingemanse2015/record.json) | 3 | [`summary`](targeted_review_arc_099/entries/2026-09-20_arc_099_repair_universals_dingemanse2015/summary.md) |
+| `targeted_review_arc_099` | [`2026-09-20_arc_099_population_size_neural_null_rita2022`](targeted_review_arc_099/entries/2026-09-20_arc_099_population_size_neural_null_rita2022/record.json) | 8 | [`summary`](targeted_review_arc_099/entries/2026-09-20_arc_099_population_size_neural_null_rita2022/summary.md) |
 | `targeted_review_arc_100` | [`2026-09-20_arc_100_llm_affordance_grounding_ichter2023`](targeted_review_arc_100/entries/2026-09-20_arc_100_llm_affordance_grounding_ichter2023/record.json) | 3 | [`summary`](targeted_review_arc_100/entries/2026-09-20_arc_100_llm_affordance_grounding_ichter2023/summary.md) |
+| `targeted_review_arc_104` | [`2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026`](targeted_review_arc_104/entries/2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026/record.json) | 6 | [`summary`](targeted_review_arc_104/entries/2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026/summary.md) |
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_113` | [`2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/record.json) | 5 | [`summary`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/summary.md) |
 | `targeted_review_arc_120` | [`2026-09-02_arc_120_uncertainty_arbitration_daw2005`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/record.json) | 5 | [`summary`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/summary.md) |

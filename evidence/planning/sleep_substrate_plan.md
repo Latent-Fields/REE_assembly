@@ -11,10 +11,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -28,10 +28,10 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -59,10 +59,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -77,10 +77,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -97,10 +97,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -114,10 +114,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -132,10 +132,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -182,10 +182,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -201,10 +201,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
@@ -219,10 +219,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-14"
-        from: "failure_autopsy_V3-EXQ-861i_2026-09-14"
+        as_of: "2026-09-20"
+        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
         verdict: "non_contributory/standard"
-        next: "routing=none -- diagnostic closed; no further action owed. Case-closing confirmation for the 861e/861f/861g/861h/861i commit-attribution portfolio; residual open items (861f substrate_queue moot-marking + qid distance_phrase update, corpus-wide diagnostic_evidence_adjudicated gap, standing pending_retest on both claims) are noted above for governance, not routed as follow-on work from this target."
+        next: "routing=governance-note-only"
         brake: "fired"
         needs_review: false
       join:
