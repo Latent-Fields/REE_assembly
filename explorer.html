@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-09-06.1 -->
+<!-- EXPLORER_VERSION: 2026-09-20.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -716,6 +716,56 @@
     /* Rendered-markdown tables (Morning Paper + Docs viewer). Scoped so the
        claims-list <table> is untouched. .md-table-wrap gives wide tables their
        own horizontal scroll so they never push the page wider. */
+    /* Morning paper: live answer forms for "Decisions waiting on you" */
+    .dec-panel { margin: 8px 0 28px; }
+    .dec-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 1px 3px var(--shadow); margin: 14px 0; overflow: hidden;
+    }
+    .dec-card > summary {
+      cursor: pointer; padding: 12px 16px; list-style: none; display: flex;
+      gap: 10px; align-items: baseline; flex-wrap: wrap;
+    }
+    .dec-card > summary::-webkit-details-marker { display: none; }
+    .dec-card > summary .dec-id { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .dec-card > summary .dec-q { flex: 1 1 320px; }
+    .dec-chip {
+      font-size: 11.5px; padding: 1px 8px; border-radius: 999px; white-space: nowrap;
+      border: 1px solid var(--border); color: var(--muted);
+    }
+    .dec-chip.settled { background: var(--warning-bg); color: var(--warning); border-color: transparent; }
+    .dec-body { padding: 4px 16px 16px; border-top: 1px solid var(--border); }
+    .dec-body dl { margin: 10px 0; display: grid; grid-template-columns: minmax(110px, 150px) 1fr; gap: 6px 14px; }
+    .dec-body dt { color: var(--muted); font-size: 12.5px; padding-top: 2px; }
+    .dec-body dd { margin: 0; overflow-wrap: anywhere; }
+    .dec-settled {
+      background: var(--warning-bg); color: var(--warning); border-radius: 8px;
+      padding: 9px 12px; margin: 12px 0 4px; font-size: 13.5px;
+    }
+    .dec-form { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
+    .dec-form fieldset { border: 0; padding: 0; margin: 0 0 10px; }
+    .dec-form legend { font-weight: 600; padding: 0; margin-bottom: 6px; }
+    .dec-form label.dec-opt { display: flex; gap: 8px; align-items: flex-start; padding: 4px 0; cursor: pointer; }
+    .dec-form label.dec-opt input { margin-top: 4px; }
+    .dec-form textarea, .dec-form input[type=text], .dec-form select {
+      width: 100%; box-sizing: border-box; font: inherit; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px;
+    }
+    .dec-form .dec-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
+    .dec-form .dec-row select { width: auto; }
+    .dec-form button {
+      font: inherit; padding: 7px 16px; border-radius: 6px; cursor: pointer;
+      border: 1px solid var(--accent); background: var(--accent); color: var(--card);
+    }
+    .dec-form button.dec-secondary { background: transparent; color: var(--accent); }
+    .dec-form button:disabled { opacity: 0.55; cursor: progress; }
+    .dec-msg { font-size: 13px; margin-top: 8px; white-space: pre-wrap; }
+    .dec-msg.err { color: var(--error); }
+    .dec-msg.ok { color: var(--success); }
+    .dec-field-label { display: block; font-size: 12.5px; color: var(--muted); margin: 10px 0 4px; }
+    .dec-answered { font-size: 13.5px; }
+    @media (max-width: 560px) { .dec-body dl { grid-template-columns: 1fr; gap: 2px; } .dec-body dt { padding-top: 8px; } }
+
     #paperDoc .md-table-wrap, .docs-wrap .md-table-wrap {
       overflow-x: auto;
       margin: 12px 0;
@@ -7615,11 +7665,18 @@ END CONFLICT RESOLUTION`;
       const host = document.getElementById('paperDoc');
       if (!host) return;
       host.innerHTML = '<div style="opacity:0.6;padding:24px 0;">Loading the morning paper&hellip;</div>';
-      fetch('morning_agenda.md?_=' + Date.now(), { cache: 'no-store' })
-        .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-        .then(text => {
+      const mdReq = fetch('morning_agenda.md?_=' + Date.now(), { cache: 'no-store' })
+        .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); });
+      // The decisions panel is LIVE (read from decision_log via serve.py), not the
+      // snapshot baked into the markdown at digest time: a question answered at 09:00
+      // must not still be asking at 09:05. A failed fetch degrades to the markdown.
+      const decReq = fetch('/api/decisions/pending?_=' + Date.now(), { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null).catch(() => null);
+      Promise.all([mdReq, decReq])
+        .then(([text, dec]) => {
           try { host.innerHTML = renderMarkdown(text); }
-          catch (e) { host.textContent = text; }
+          catch (e) { host.textContent = text; return; }
+          if (dec && dec.status === 'ok') mountDecisionPanel(host, dec);
         })
         .catch(err => {
           host.innerHTML = '<div style="opacity:0.7;padding:24px 0;">No morning paper found yet ('
@@ -7627,6 +7684,161 @@ END CONFLICT RESOLUTION`;
             + '<code>/morning-digest</code> (scheduled task <code>ree-morning-digest</code>) into '
             + '<code>morning_agenda.md</code> at the REE_assembly root.</div>';
         });
+    }
+
+    // Swap the digest's static "Decisions waiting on you" markdown for live forms.
+    // The digest writes TWO headings for it (the skill's "Decisions Waiting on You (N)"
+    // plus pending_decisions.py's own), so remove from the first matching h2 up to the
+    // next h2 that is NOT part of the section.
+    function mountDecisionPanel(host, dec) {
+      const isDecH2 = el => el.tagName === 'H2' && /^decisions waiting on you/i.test(el.textContent.trim());
+      const kids = Array.from(host.children);
+      const first = kids.find(isDecH2);
+      const panel = document.createElement('section');
+      panel.className = 'dec-panel';
+      panel.id = 'paperDecisions';
+      if (first) {
+        let el = first.nextElementSibling;
+        while (el && !(el.tagName === 'H2' && !isDecH2(el))) {
+          const next = el.nextElementSibling; el.remove(); el = next;
+        }
+        first.replaceWith(panel);
+      } else if ((dec.pending || []).length || (dec.answered || []).length) {
+        const h1 = host.querySelector('h1');
+        if (h1 && h1.nextSibling) host.insertBefore(panel, h1.nextSibling); else host.prepend(panel);
+      } else {
+        return;
+      }
+      renderDecisionPanel(panel, dec);
+    }
+
+    function decKey(row) { return row.decision_id || ('claim:' + row.claim_id); }
+
+    function renderDecisionPanel(panel, dec) {
+      const rows = dec.pending || [];
+      const answered = dec.answered || [];
+      const settled = rows.filter(r => r._x && r._x.settled_note).length;
+      let html = '<h2>Decisions waiting on you (' + rows.length + ')</h2>';
+      if (!rows.length) {
+        html += '<p style="color:var(--muted)">Nothing is waiting on you.</p>';
+      } else {
+        html += '<p style="color:var(--muted)">Oldest first. None of these blocks a session. '
+          + 'Open one to see what it is about and answer it in place'
+          + (settled ? ' &mdash; <strong>' + settled + '</strong> look already settled in the repo and probably just need dismissing' : '')
+          + '.</p>';
+        html += rows.map((row, i) => decisionCardHtml(row, i)).join('');
+      }
+      if (answered.length) {
+        html += '<h3>Answered &mdash; awaiting application (' + answered.length + ')</h3>'
+          + '<p style="color:var(--muted)" class="dec-answered">Recorded, not yet carried out. The next '
+          + '<code>/governance</code> cycle (or the resumed asking session) applies each one.</p><ul class="dec-answered">'
+          + answered.map(r => '<li><strong>' + escapeHtml(r.claim_id || '(no claim)') + '</strong> &rarr; '
+              + escapeHtml(r.selected_option || '') + (r.rationale ? ' <em>(' + escapeHtml(r.rationale) + ')</em>' : '')
+              + '</li>').join('') + '</ul>';
+      }
+      panel.innerHTML = html;
+      panel.querySelectorAll('form.dec-form').forEach(form => wireDecisionForm(form, panel));
+    }
+
+    function decisionCardHtml(row, i) {
+      const x = row._x || {};
+      const name = 'decopt_' + i;
+      // Values are escaped FIRST, then `code` spans are restored -- never the reverse.
+      const tick = t => escapeHtml(String(t)).replace(/`([^`]+)`/g, '<code>$1</code>');
+      const dd = (label, value, raw) => value
+        ? '<dt>' + label + '</dt><dd>' + (raw ? value : tick(value)) + '</dd>' : '';
+      const claimMeta = [x.claim_status ? 'status <code>' + escapeHtml(x.claim_status) + '</code>' : '',
+                         escapeHtml(x.claim_type || '')].filter(Boolean).join(', ');
+      const claimHtml = x.claim_title
+        ? escapeHtml(x.claim_title) + (claimMeta ? ' <span style="color:var(--muted)">(' + claimMeta + ')</span>' : '')
+        : (row.claim_id ? '<em>' + escapeHtml(row.claim_id) + ' not found in claims.yaml &mdash; renamed or retired?</em>' : '');
+      const reads = [x.source_file, x.claim_location].filter(Boolean).map(v => {
+        const file = v.split('#')[0];
+        return '<a href="' + encodeURI(file) + '" target="_blank" rel="noopener"><code>' + escapeHtml(v) + '</code></a>';
+      }).join(' &middot; ');
+      const opts = (x.options || []).map((o, j) =>
+        '<label class="dec-opt"><input type="radio" name="' + name + '" value="' + escapeHtml(o) + '"'
+        + '><span>' + escapeHtml(o) + (j === 0 && row.selected_option === o
+            ? ' <span class="dec-chip">' + escapeHtml(row.decision_status === 'discussing' ? 'your interim answer' : 'proposed') + '</span>' : '')
+        + '</span></label>').join('');
+      return '<details class="dec-card"' + (i === 0 ? ' open' : '') + '>'
+        + '<summary><span class="dec-id">' + escapeHtml(row.claim_id || '(no claim)') + '</span>'
+        + '<span class="dec-q">' + escapeHtml(row.decision_needed || '(question not recorded)') + '</span>'
+        + (x.settled_note ? '<span class="dec-chip settled">likely already settled</span>' : '')
+        + '<span class="dec-chip">waiting ' + escapeHtml(x.age_label || '?') + '</span></summary>'
+        + '<div class="dec-body">'
+        + (x.settled_note ? '<div class="dec-settled"><strong>Likely already settled.</strong> ' + tick(x.settled_note) + '</div>' : '')
+        + '<dl>'
+        + dd('The claim', claimHtml, true)
+        + dd('Claim detail', x.claim_restatement)
+        + dd('Evidence now', x.evidence_line)
+        + dd('What this kind of decision means', x.kind_gloss)
+        + dd('Recommendation', row.recommendation)
+        + dd(x.on_record_label || 'On record', row.selected_option)
+        + dd('Reasoning on record', row.rationale)
+        + dd('Context', x.context_text)
+        + dd('What answering does', x.consequence)
+        + dd('Read more', reads, true)
+        + dd('Asked by', (row.actor || '(unrecorded)') + (row.session_id ? ' / session ' + row.session_id : ''))
+        + '</dl>'
+        + '<form class="dec-form" data-decision-id="' + escapeHtml(row.decision_id || '') + '" data-claim-id="' + escapeHtml(row.claim_id || '') + '" data-optname="' + name + '">'
+        + (opts ? '<fieldset><legend>Your answer</legend>' + opts + '</fieldset>' : '')
+        + '<label class="dec-field-label">' + (opts ? 'Or answer in your own words (overrides the choice above)' : 'Your answer') + '</label>'
+        + '<textarea name="custom" rows="2" placeholder="e.g. Hold until V3-EXQ-xxx lands, then re-look"></textarea>'
+        + '<label class="dec-field-label">Why (one line &mdash; optional, but it is what a later session reads)</label>'
+        + '<input type="text" name="rationale" autocomplete="off">'
+        + '<div class="dec-row"><button type="submit">Record answer</button>'
+        + '<label style="font-size:13px;color:var(--muted)">as <select name="status">'
+        + '<option value="approved">approved (decided &mdash; carry it out)</option>'
+        + '<option value="rejected">rejected (decided &mdash; do not do this)</option>'
+        + '<option value="withdrawn">withdrawn (question no longer applies)</option></select></label>'
+        + (x.settled_note ? '<button type="button" class="dec-secondary" data-dismiss="1">Dismiss as already settled</button>' : '')
+        + '</div><div class="dec-msg" role="status"></div></form>'
+        + '</div></details>';
+    }
+
+    function wireDecisionForm(form, panel) {
+      const msg = form.querySelector('.dec-msg');
+      const say = (text, cls) => { msg.textContent = text; msg.className = 'dec-msg ' + (cls || ''); };
+      const submit = (payload) => {
+        const buttons = form.querySelectorAll('button');
+        buttons.forEach(b => { b.disabled = true; });
+        say('Recording (commit + push, can take ~20s)...');
+        fetch('/api/decisions/resolve', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
+        }).then(r => r.json().then(j => ({ ok: r.ok, j })))
+          .then(({ ok, j }) => {
+            if (!ok || j.status !== 'ok') throw new Error(j.message || 'resolve failed');
+            say('Recorded.', 'ok');
+            return fetch('/api/decisions/pending?_=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+          })
+          .then(dec => { if (dec && dec.status === 'ok') renderDecisionPanel(panel, dec); })
+          .catch(err => {
+            buttons.forEach(b => { b.disabled = false; });
+            say('Not recorded: ' + String((err && err.message) || err), 'err');
+          });
+      };
+      const base = () => ({ decision_id: form.dataset.decisionId || '', claim_id: form.dataset.claimId || '' });
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const picked = form.querySelector('input[name="' + form.dataset.optname + '"]:checked');
+        const answer = (form.elements.custom.value || '').trim() || (picked ? picked.value : '');
+        if (!answer) { say('Pick an option or type an answer first.', 'err'); return; }
+        submit(Object.assign(base(), {
+          selected_option: answer, rationale: (form.elements.rationale.value || '').trim(),
+          status: form.elements.status.value,
+        }));
+      });
+      const dismiss = form.querySelector('[data-dismiss]');
+      if (dismiss) dismiss.addEventListener('click', () => {
+        const note = form.closest('.dec-body').querySelector('.dec-settled');
+        submit(Object.assign(base(), {
+          selected_option: 'Dismissed: already settled in the repo',
+          rationale: (form.elements.rationale.value || '').trim()
+            || (note ? note.textContent.replace(/^Likely already settled\.\s*/, '') : ''),
+          status: 'withdrawn',
+        }));
+      });
     }
 
     // ── Experiment Runner dashboard ──────────────────────────────────────────

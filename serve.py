@@ -7174,6 +7174,64 @@ def _build_timeline_events() -> dict:
 
 # ── HTTP handler ─────────────────────────────────────────────────────────────
 
+# -- Decisions waiting on the user (morning paper answer forms) ---------------
+# The digest's "Decisions waiting on you" section used to be static markdown with a
+# copy-paste shell command per question. These two helpers let the Paper view render
+# a FORM per question instead. Both go through scripts/pending_decisions.py -- the
+# read imports it (so its mtime-memoised evidence cache survives between requests),
+# the write shells out to its `resolve` verb so the append + ree_commit.py
+# commit/push path is exactly the CLI's, not a second implementation of it.
+
+def read_pending_decisions() -> dict:
+    try:
+        if str(_SCRIPTS_DIR) not in sys.path:
+            sys.path.insert(0, str(_SCRIPTS_DIR))
+        import pending_decisions as _pd  # noqa: WPS433
+        rows = _pd.load_rows()
+        return {
+            "status": "ok",
+            "pending": _pd.enrich(_pd.pending(rows)),
+            "answered": _pd.awaiting_application(rows),
+            "statuses": list(_pd.TERMINAL_STATUSES),
+        }
+    except Exception as exc:  # noqa: BLE001 -- the paper must still render
+        return {"status": "error", "message": str(exc), "pending": [], "answered": []}
+
+
+def resolve_pending_decision(payload: dict) -> tuple:
+    """Record the user's answer. Returns (http_status, result_dict)."""
+    decision_id = str(payload.get("decision_id") or "").strip()
+    claim_id = str(payload.get("claim_id") or "").strip()
+    selected = " ".join(str(payload.get("selected_option") or "").split())
+    rationale = " ".join(str(payload.get("rationale") or "").split())
+    status = str(payload.get("status") or "approved").strip()
+    if not (decision_id or claim_id):
+        return 400, {"status": "error", "message": "need decision_id or claim_id"}
+    if not selected:
+        return 400, {"status": "error", "message": "an answer is required"}
+    if status not in ("approved", "rejected", "withdrawn"):
+        return 400, {"status": "error", "message": f"bad status: {status}"}
+    # argv list, never a shell string: the answer is free text from a browser.
+    cmd = [sys.executable, str(_SCRIPTS_DIR / "pending_decisions.py"), "resolve",
+           "--selected-option", selected, "--status", status, "--via", "explorer"]
+    cmd += ["--decision-id", decision_id] if decision_id else ["--claim-id", claim_id]
+    if rationale:
+        cmd += ["--rationale", rationale]
+    try:
+        proc = subprocess.run(cmd, cwd=str(UMBRELLA_DIR), capture_output=True,
+                              text=True, timeout=180)
+    except subprocess.TimeoutExpired:
+        return 504, {"status": "error",
+                     "message": "resolve timed out after 180s -- check "
+                                "decision_log.v1.jsonl before retrying (the row may "
+                                "already be written)"}
+    out = ((proc.stdout or "") + (proc.stderr or "")).strip()
+    if proc.returncode != 0:
+        return 409, {"status": "error", "message": out[-1500:] or "resolve failed",
+                     "returncode": proc.returncode}
+    return 200, {"status": "ok", "message": out[-1500:]}
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
 
     # BaseHTTPRequestHandler only sets self.path inside parse_request(). A malformed
@@ -7418,6 +7476,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 {"chip_ref": ref, "prompt": prompt}, default=str
             ).encode()
             self._json_response(body, status=200 if prompt else 404)
+            return
+        if path == "/api/decisions/pending":
+            body = json.dumps(read_pending_decisions(), default=str).encode()
+            self._json_response(body)
             return
         if path == "/api/workset/assignments":
             try:
@@ -7780,6 +7842,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 }
             else:
                 result = {"status": "error", "message": "missing dir_name"}
+        elif path == "/api/decisions/resolve":
+            length = int(self.headers.get("Content-Length", 0))
+            try:
+                payload = json.loads(self.rfile.read(length) or b"{}")
+            except Exception as exc:
+                body = json.dumps({"status": "error", "message": f"bad json: {exc}"}).encode()
+                self._json_response(body, status=400)
+                return
+            code, result = resolve_pending_decision(payload)
+            self._json_response(json.dumps(result).encode(), status=code)
+            return
         elif path in ("/api/workset/assign", "/api/workset/release"):
             length = int(self.headers.get("Content-Length", 0))
             try:
