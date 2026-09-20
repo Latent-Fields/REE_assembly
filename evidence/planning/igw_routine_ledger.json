@@ -6409,7 +6409,11 @@
       "task_claim_session_id": "igw-auto-igw-244-literature-proposal-for-mech-078-20260920T104505Z",
       "task_claim_claimed_at": "2026-09-20T10:45:05Z",
       "assigned_at": "2026-09-20T10:40:08Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-09-20T11:56:10Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-09-20T11:56:13Z"
     }
   ],
   "dispositions": [
@@ -9296,6 +9300,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-19T20:18:43Z",
       "re_eligible_after": "2026-09-21T20:18:43Z"
+    },
+    {
+      "stable_hash": "b77dbd15db69",
+      "igw_id_at_disposition": "IGW-20260920-244",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-078"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-078",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-20T11:56:10Z",
+      "re_eligible_after": "2026-09-22T11:56:10Z"
     }
   ]
 }
