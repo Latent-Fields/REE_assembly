@@ -1,4 +1,31 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: RESOLVED 2026-09-20. The user answered OPTION A on 2026-09-19T23:52:40Z and
+V3-EXQ-1067 is now QUEUED (ree-v3 b7f406b8cf, reconciled into the coordinator DB).
+Nothing in this file has been written to claims.yaml or substrate_queue.json.**
+
+> **RESOLUTION.** The decision chip `chip-20260919-sd032a-squash-confounded-gain-cut`
+> was answered OPTION A: add the gain-matched clamp control arm
+> (`w'(cap) = 3.0*(cap/(cap+1))/min(1,cap)`), keep occupancy load-bearing exactly as
+> ratified, keep the continuous margin as no-threshold telemetry, and fix the two
+> lower-severity pairing defects. That is implemented and queued as **V3-EXQ-1067**.
+>
+> A SECOND red-team pass on the revised three-arm design returned **CONTESTED** with
+> four further findings, all reproduced against source and fixed before queueing.
+> One of them is an **inherited** defect that still stands against V3-EXQ-934 and is
+> the part of this file most worth governance attention:
+>
+> **V3-EXQ-934's `external_task_drive_engages` precondition cannot detect a dead
+> drive.** Measured on the real coordinator with the `external_task_drive` signal at
+> EXACTLY 0.0, the external_task margin still reads 0.3287-0.4950 across the swept
+> caps -- 6.6x to 9.9x its own 0.05 floor -- because the margin is floored by
+> `external_task_bias = 1.0`, not by the drive. The precondition therefore passes
+> through the very failure its own description names (a `goal_state` drop hard-gating
+> engagement to 0.0 -- the V3-EXQ-464d signature). V3-EXQ-1067 adds
+> `external_task_drive_signal_nonzero` alongside it; **934 carries the margin
+> precondition alone**, so any 934 reading that leaned on it being "drive-ready" is
+> weaker than it appears.
+>
+> The section below is the original refusal record, kept verbatim. GFLAG-0370 covers
+> both the original blocking finding and the `why_sigma_equals_cap` error.
 
 # V3-EXQ-1067 (SD-032a / MECH-266) squash-vs-clamp cap sweep -- REFUSED at /queue-experiment Step 4.5
 
