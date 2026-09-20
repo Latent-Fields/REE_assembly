@@ -184,3 +184,150 @@ contract that already has eight passing tests.
   states "V3-EXQ-541d (queued 2026-09-18)". **That sentence is still FALSE** and
   should be corrected -- it was written in anticipation. The STOP-CHECK was run
   against the live tree, not the doc.
+
+---
+
+# 6. SECOND REFUSAL (2026-09-20): the realised-PE rebuild is ALSO blocked, and the falsifier itself is the reason
+
+- Session: `metaworker-science-20260919-mech204-541d-guard-validation` (resumed)
+- User decision acted on: 2026-09-19T23:52:40Z -- "CHANGE THE BASE TO A DRIVER
+  WITH REALISED PE", choosing between the IGW-20260915-243 base and the
+  `v3_exq_sd068` multi-REM driver "by which one lets the pre-registered
+  falsifier actually FIRE".
+- Outcome: base selected, anchor re-measured, driver rebuilt, smoke green --
+  then **red-team BLOCKING again**. Nothing queued. `V3-EXQ-541d` still free.
+
+## 6a. The base choice was made, and sd068 was correctly rejected
+
+`v3_exq_sd068_*` was rejected on the user's own criterion. It never touches the
+F1 / `_persistent_zero_point` / `mech204` path (grep: zero hits across all eight
+drivers), bypasses `SleepLoopManager` so no `mech204_*` WRITEBACK metrics exist,
+reaches REM only via an unscored `drive_liveness_pass` wrapped in a bare
+`except Exception`, and its precision target is **clamp-pinned** --
+V3-EXQ-778c recorded `target_clamped` 1.0 with `calibration_error` fixed at the
+constant 998.5009992509989, "degenerate at both rails". A clamp-pinned
+precision is precisely not "realised and able to drift".
+
+The IGW-243 base is the canonical **StepHarness** loop (K=1 sleep, F1 recal
+step 0.25), matching V3-EXQ-794's substrate operating point.
+
+## 6b. The anchor re-measurement the user required -- DONE, and it transfers
+
+| quantity | measured on the realised base |
+|---|---|
+| realized PE variance | 0.003848 (probe) / 0.00380 (smoke) |
+| **anchor = 1/realized-PE-variance** | **259.9 / 263.1 / 264.3** |
+| C0 target, guard OFF | 1.999996000008 -- the `precision_init` sentinel, exactly |
+| C0 capture, guard ON | none (`_persistent_zero_point` stays `None`) |
+
+The chip's "~255 in the IGW-20260915-243 setting" **transfers**. 541c's 2.148
+does not, and is used nowhere in the rebuilt driver. The design's own text
+fixes the re-derivation rule (`1/realized-PE-variance`), so no decision chip was
+owed on that axis.
+
+## 6c. G1 -- the pre-registered FALSIFIER cannot fire on ANY base
+
+The falsifier asks whether `|target - anchor|` **grows** monotonically over the
+first ~10 cycles with the guard ON. Measured, every arm:
+
+```
+OFF targets: 2.12 2.31 2.56 2.83 3.17 3.91 4.47 4.98 5.58   (monotone INCREASING)
+ON  targets: 3.16 3.29 3.55 3.88 4.30 5.26 6.00 6.66 7.45   (monotone INCREASING)
+anchor = 259.9 -- every target is two orders of magnitude BELOW it
+```
+
+The target is an EMA of `p_k = 1/rv_k`; rv falls as the world model learns, so
+the target RISES toward the anchor and `gap = anchor - target` **shrinks by
+construction**. For the gap to grow, rv would have to RISE across cycles, which
+requires realized PE > rv (~0.15, about 40x the measured 0.0038) for nine
+consecutive cycles.
+
+**This is a defect in the chip's falsifier TEXT, not in the base.** The chip
+says the TARGET climbs away from `1/realized-PE-variance`, but the IGW-243
+measurement it was written from says the target climbs `2.0 -> 27 -> 49 -> 69
+-> 88`, which is climbing **toward** 255. What IGW-243 recorded as moving AWAY
+is **rv**: *"recalibration pushes rv AWAY from calibration (0.0039 -> 0.0121)"*.
+Target and rv were conflated when the falsifier was written.
+
+Consequence: **the user's base-selection criterion cannot be satisfied by any
+base**, because the quantity it names cannot move in the direction it names.
+
+## 6d. G2 -- and the rebuilt driver's own rationale for E2 was WRONG
+
+The rebuilt driver argued that a realised base breaks 541c's closed form
+because "precision feeds selection feeds prediction error feeds precision".
+**Measured: false.** Per-episode realized PE is **bit-identical** between the
+two guard arms at every episode:
+
+```
+guard_off ep_mean_pe: [0.003832, 0.003786, 0.003852, 0.003862, 0.00386, 0.003958, ...]
+guard_on  ep_mean_pe: [0.003832, 0.003786, 0.003852, 0.003862, 0.00386, 0.003958, ...]
+anchor: 259.904 in BOTH arms
+```
+
+The guard changes rv; rv never reaches an action; the trajectories never
+diverge. What actually makes `p_j` arm-dependent is the WRITEBACK's rv change
+surviving into the next REM entry, decaying as `0.95^n` in ticks-per-episode.
+At n~10 the carry-over is ~0.60 and the departure reads 4-10x; at n~200 it is
+3.5e-5 and reads 1.00. **E2's verdict is a function of episode length.**
+
+## 6e. G3 -- the run is not in the regime it declares
+
+The driver specifies 30 episodes x 200 steps = 6000 waking ticks per cell.
+Measured at grid 12: episodes end **by death in 6-15 ticks**
+(`agent_health <= 0`), so the true figure is ~300. The readiness precondition
+`min_waking_ticks_at_post_c0_rem_entry` read 7 and was interpreted as
+"producer live -- MET"; it was in fact reporting the episode length. A red flag
+was read as a green one. V3-EXQ-794 at this same nominal operating point
+recorded `rv_final ~0.0054` (rv tracking PE), which needs ~60-100 ticks per
+episode -- so either 794's agents survived and these do not, or the operating
+points differ on an axis neither script records. Neither script records
+episode length.
+
+## 6f. THE UNSCORED RESULT THAT MATTERS
+
+On essentially every cycle of BOTH arms the WRITEBACK moves rv **away** from
+the realized PE variance:
+
+| arm | cycles with `rv_after > rv_before` | rv range | realized PE | ratio |
+|---|---|---|---|---|
+| guard OFF | 9/9 | 0.0913 - 0.3165 | 0.003848 | 24-82x above |
+| guard ON | 8/9 | 0.0688 - 0.3165 | 0.003848 | 18-82x above |
+
+This is IGW-243's finding reproduced and generalised. It is the **substance**
+of the falsifier, expressed on rv -- the quantity IGW-243 actually measured --
+rather than on the target. Re-expressed that way the falsifier is both firable
+**and appears already SATISFIED**, which per the chip's own pre-registration
+would route MECH-204 Option A to **DEMOTE, not retune**.
+
+Changing the falsifier is a user decision. This session did not make it.
+
+## 6g. Options (the user's call)
+
+- **(A) Re-express the falsifier on rv** -- "does the WRITEBACK move rv away
+  from the realized PE variance?" -- and re-run. Firable, matches what IGW-243
+  measured, and the probe suggests it fires immediately. This is the smallest
+  change that makes the chip's own scientific question answerable.
+- **(B) Fix the survival regime first** (P0 warmup / easier env / lower
+  `hazard_harm`) so episodes last ~100+ ticks, then re-run. Needed regardless
+  if any criterion is to be independent of episode length, and needed before
+  this driver can honestly claim V3-EXQ-794's operating point.
+- **(C) Both** -- (B) then (A). Recommended: (B) is a precondition for any
+  clean reading of (A), and neither is meaningful alone.
+- **(D) Stop and route MECH-204 Option A to governance on the rv evidence
+  already in hand**, without a further run.
+
+**Recommendation: (C), with (D) raised in parallel** -- the rv result is
+already strong enough that governance should see it whether or not a further
+experiment is queued.
+
+## 6h. Two stops on one item -- the premise, not the design, is what failed
+
+Per the dispatch brief's "two stops means stop": this is the second BLOCKING
+refusal on `chip-20260918-exq541d-mech204-f1-guard-validation`. The first was
+about the BASE; this one is about the FALSIFIER, which no base can satisfy.
+That pattern says the item's premises are stale rather than its design being
+unlucky: the chip pre-registered a falsifier on the wrong variable, and both
+the orchestrator pre-flight and the first rebuild inherited that error without
+checking it against the IGW-243 numbers the chip itself cites. The chip should
+be re-specified before any third attempt.
