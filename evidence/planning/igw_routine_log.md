@@ -3398,3 +3398,8 @@ One line per hourly tick. ASCII only.
 2026-09-20T09:34:52Z no eligible item (skipped 255): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-003:skill /governance not allowed
 2026-09-20T10:44:27Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 256 items, 34 ready, 0 in flight)
 2026-09-20T10:40:08Z SPAWN IGW-20260920-244 skill=/lit-pull prio=40 uuid=15f8535c-eeaa-43ec-9a97-11b6f5faa524 pid=5322 worktree=igw-244-literature-proposal-for-mech-078
+2026-09-20T11:56:09Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 256 items, 34 ready, 0 in flight)
+2026-09-20T11:56:10Z auto-defer IGW-20260920-244 hash=b77dbd15db69 for 48h (reaped -> completed_resumable)
+2026-09-20T11:56:10Z reaped TASK_CLAIMS igw-auto-igw-244-literature-proposal-for-mech-078-20260920T104505Z (ledger IGW-20260920-244 -> completed_resumable)
+2026-09-20T11:56:13Z GC removed worktree igw-244-literature-proposal-for-mech-078 post-reap (ledger IGW-20260920-244 -> completed_resumable; removed; branch deleted)
+2026-09-20T11:51:44Z no eligible item (skipped 256): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-003:skill /governance not allowed
