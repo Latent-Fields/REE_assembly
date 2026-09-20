@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-18T19:03:46Z",
+  "last_review_utc": "2026-09-20T12:15:51Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1324,7 +1324,17 @@
     "v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched",
     "v3_exq_1023a_sd106_preservation_parity_epochs40",
     "v3_exq_1050_mech021_subjective_now_horizon_integration",
-    "sd098_ghost_goal_readtime_rerank"
+    "sd098_ghost_goal_readtime_rerank",
+    "v3_exq_1057_mech017_reality_consolidation_replay_additive_budget",
+    "v3_exq_1057a_mech017_reality_consolidation_replay_additive_budget_pass_order",
+    "v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated",
+    "v3_exq_1043a_mech537_communication_subspace_permutation_null",
+    "v3_exq_1065_sd106_subspace_overlap_mech566_recondition",
+    "v3_exq_1070_arc029_env_operating_point_feasibility",
+    "v3_exq_1058_sd071_consolidation_readout_instrument_validity",
+    "v3_exq_1060_inv063_e2_world_forward_sleep_trainer",
+    "v3_exq_1063_inv063_legb_dv_direction",
+    "v3_exq_1069_inv063_p1_gate_798a_p0"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4311,7 +4321,17 @@
     "v3_exq_1048_mech017_reality_consolidation_replay_vs_budget_matched_20260917T102244Z_v3",
     "v3_exq_1023a_sd106_preservation_parity_epochs40_20260917T144824Z_v3",
     "v3_exq_1050_mech021_subjective_now_horizon_integration_20260918T010410Z_v3",
-    "sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3"
+    "sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3",
+    "v3_exq_1057_mech017_reality_consolidation_replay_additive_budget_20260918T211119Z_v3",
+    "v3_exq_1057a_mech017_reality_consolidation_replay_additive_budget_pass_order_20260918T234946Z_v3",
+    "v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated_20260919T022652Z_v3",
+    "v3_exq_1043a_mech537_communication_subspace_permutation_null_20260919T030056Z_v3",
+    "v3_exq_1065_sd106_subspace_overlap_mech566_recondition_20260919T223401Z_v3",
+    "v3_exq_1070_arc029_env_operating_point_feasibility_20260920T042654Z_v3",
+    "v3_exq_1058_sd071_consolidation_readout_instrument_validity_20260918T213443Z_v3",
+    "v3_exq_1060_inv063_e2_world_forward_sleep_trainer_20260919T012511Z_v3",
+    "v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3",
+    "v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7091,6 +7111,11 @@
       "utc": "2026-09-18T19:03:46Z",
       "session": "governance-20260918",
       "note": "governance 2026-09-18 (cycle governance-20260918, Mac DLAPTOP, user present, Sonnet 5), ONE WAVE. TWO pending. V3-EXQ-1050 (MECH-021, FAIL, evidence): applied confirmed failure_autopsy_V3-EXQ-1050_2026-09-18 (user-confirmed same day): non_contributory + epistemic_category standard; direction written to flat AND pack manifests; MECH-021 status stays provisional; 1050a re-run chipped. V3-EXQ-1055 (SD-098, PASS, evidence): accepted as supports, PARTIAL (half (i) only; half (ii) needs the declined SD-097 schema; context-reinstatement confound and pinned consistency clause noted in SD-098 evidence_quality_note); no status change. Driver skim (mandatory evidence-PASS skim): nothing found that voids the result -- C2 bar attainable both ways (STAY control at the ~0.5 recency null, headroom ~0.45), 4 excluded seeds also positive, tuning seeds disjoint, C3 no-write structural. Agenda: 7 hold_candidate_resolve_conflict re-flags accepted as holds (ARC-054, ARC-083, MECH-017/018/019/035/152); MECH-037 demote_to_candidate left as a pending decision."
+    },
+    {
+      "utc": "2026-09-20T12:15:51Z",
+      "session": "governance-20260920",
+      "note": "governance 2026-09-20 (cycle governance-20260920, Mac DLAPTOP, user present, Fable 5.1), ONE WAVE. TEN pending -> 0. NINE applied from the 2026-09-20 confirmed autopsy sweep (REE_assembly 45cdcfa1212; all dry_run_checked true), user chose 'Apply all': 1057+1057a (MECH-017) non_contributory, instrument finding; 1039a (INV-086, MECH-428) non_contributory; 1043a (MECH-537) non_contributory; 1070 (ARC-029) non_contributory; 1060 (MECH-423) manifest supports CORRECTED to non_contributory (liveness check only); 1063 + 1069 (INV-063) non_contributory by design, INV-063 gains pending_retest_after_substrate + diagnostic_evidence_adjudicated; 1065 mixed (MECH-566 weakens narrowly, SD-106 unknown). Directions + evidence_direction_note written to flat AND pack for all nine; claims layer in 108b156192. V3-EXQ-1058 (SD-071, evidence PASS 8/8): accepted as supports; SD-071 PROMOTED candidate -> provisional (its own pre-registered remaining condition -- one non-diagnostic run -- is met). Driver skim (mandatory evidence-PASS skim) on 1058: nothing found -- plain AND of C1/C2/C3; 0.25 ceiling attainable both ways (pre-rebuild sws readout read 1.0 in 778c; measured 0.144/0.150 with CI95 high 0.165); C3 spread passes 8/8; carve-out conditions asserted in code (claim_ids exactly [SD-071]). Agenda: MECH-037 DEMOTED provisional -> candidate (closes dec-20260918T190425-MECH-037); holds accepted for MECH-050/055/065 (lit-only conflict) and MECH-561 (V3 substrate)."
     }
   ]
 }
