@@ -5454,6 +5454,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0387",
+      "claim_ids": [
+        "MECH-566",
+        "SD-106"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Confirmed failure_autopsy_V3-EXQ-1065_2026-09-20 (user gate 2026-09-20): MECH-566 weakens, NARROWED -- only the ZCA member of its registered family was falsified, against an already per-component-standardised baseline (the other member IS the baseline, unmeasured); whitening raised train agreement +0.077 with zero held-out lift. MECH-566 still reads NO EXPERIMENTAL EVIDENCE and lacks diagnostic_evidence_adjudicated. The run's pre-registered M1_FALSIFY route is MECH-567 (target-carrying head): no chip/queue entry carries it -- governance to decide whether it is blocked by the zworld_actor_adequacy_locus rotation. Review SD-106 depends_on MECH-566 (GOV-EDGE-1). GFLAG-0312's re-pose was explicitly DECLINED by this sweep and remains unauthored.",
+      "raised_by_session": "failure-autopsy-20260920-1022",
+      "raised_at": "2026-09-20T11:46:36Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
