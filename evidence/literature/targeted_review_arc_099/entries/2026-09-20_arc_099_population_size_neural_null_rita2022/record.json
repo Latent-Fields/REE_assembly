@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "On the role of population heterogeneity in emergent communication",
+    "authors": [
+      "Mathieu Rita",
+      "Florian Strub",
+      "Jean-Bastien Grill",
+      "Olivier Pietquin",
+      "Emmanuel Dupoux"
+    ],
+    "year": 2022,
+    "venue": "10th International Conference on Learning Representations (ICLR 2022)",
+    "arxiv_id": "2204.12982",
+    "url": "https://arxiv.org/abs/2204.12982"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.77,
+  "confidence_rationale": "This is the paper that converts Galke et al. 2022's unquantified 'does not fully replicate' into a measurement, which was the third question this pull was chartered to answer. The failure IS measured, not asserted: increasing population size in a homogeneous Lewis reconstruction game produced Spearman correlations with population size of -0.44 (speaker synchronisation), -0.15 (compositionality), -0.52 (negative entropy) and -0.14 (generalisation) over six seeds -- not merely a null but mildly negative on two metrics. The authors state the conclusion as a contribution in their own words: 'we empirically show that the community size is not a structuring factor in language emergence by or in itself in the classic homogeneous Lewis setting.' Direction is mixed rather than weakens because the same paper repairs the failure: distributing agent learning speeds heterogeneously recovers the group-size effect. So the honest reading is not 'the condition does not transfer' but 'the condition transfers only when a further property, absent from ARC-099's inventory and from the standard simulation design, is supplied'. Confidence 0.77: a conference paper with six seeds, one game family and populations up to about twenty, but directly on ARC-099's question and unusually explicit about the homogeneity assumptions it breaks.",
+  "failure_signatures": [
+    "In the standard homogeneous population-based Lewis game, increasing the number of agents does not improve compositionality (Spearman rho = -0.15), generalisation (-0.14), speaker synchronisation (-0.44) or language stability -- entropy and generalisation actively deteriorate. A V6 ecology that instantiates ARC-099's partner-variation condition by simply adding more identically-configured agents should be expected to get this result, which is the 'satisfiable but inert' failure mode measured rather than asserted.",
+    "The paper enumerates four homogeneity assumptions baked into the standard design, and one of them is fatal for the mapping: 'agents cannot be differentiated, i.e., agents have no information about the identity of their partners'. Partner variation with anonymous, interchangeable partners is not the human condition at all -- a V6 gate that certifies partner variation without requiring partner IDENTIFIABILITY certifies something the human experiments never tested.",
+    "Speakers and listeners are separate populations by construction (N speakers plus N listeners, paired at random), so no agent ever occupies both roles. Role alternation is absent from the design rather than shown to be unnecessary -- exactly the omission Galke et al. 2022 flagged, here visible in the method section of the paper that measures the null.",
+    "What fixed the null was speaker/listener RELATIVE learning speed, not absolute capacity: 'emergent language properties are only altered by the relative difference of learning speeds between speaker and listener, and not by their absolute values.' This is an enabling condition no version of ARC-099's inventory contains, it is a property of the learning dynamics rather than of any capability, and it would be invisible to any capability-checklist gate.",
+    "The prior neural literature the authors survey is mitigated rather than uniformly null -- Tieleman et al. 2019 report a small but consistent regularisation effect and Cogswell et al. 2019 a slight compositionality gain, while Graesser et al. 2019 find no correlation. Citing 'the group-size effect fails to replicate in neural agents' as a settled fact over-states a literature that is mixed and under-powered."
+  ],
+  "tags": [
+    "arc-099",
+    "emergent_communication",
+    "population_size",
+    "group_size_effect",
+    "partner_variation",
+    "lewis_game",
+    "heterogeneity",
+    "enabling_conditions",
+    "negative_result"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a population-based Lewis reconstruction game with neural agents, increasing population size alone does not improve speaker synchronisation, compositionality, entropy or generalisation, reproducing the mismatch between sociolinguistic observation and neural simulation. The mismatch is largely resolved by introducing heterogeneity in agents' training speed: with heterogeneous populations, larger communities do develop more stable and structured languages. Language properties are controlled by the RELATIVE learning speed of speaker and listener, not by absolute values.",
+    "ree_translation": "ARC-099's value is as a machine-checkable V6-entry gate, and the sharpest objection raised against it so far is that one of its listed items may be satisfiable-but-inert. This paper is the measurement behind that objection. In a setting deliberately built to mirror Raviv et al. 2019 -- the authors say so explicitly, 'we adopt a setting close to Raviv et al. (2019a)'s when computationally modeling human population' -- the social condition that carries the human effect produces nothing at all in artificial agents. A V6 ecology could satisfy partner variation by construction and get a mildly NEGATIVE trend. But the repair is the more useful half for REE. What was missing was not a capability of any agent; it was a property of the population's learning dynamics. That is a category of enabling condition ARC-099 does not currently contain any instance of: every one of its fourteen items is a capability or an ecology feature that can be checked by inspection, and none is a statement about the relative rates at which the agents in the ecology learn. If Rita et al. are right, a gate that certifies all fourteen items and says nothing about learning-dynamic asymmetry will pass an ecology that cannot bootstrap.",
+    "mapping_caveat": "Three boundaries on the transfer. (1) This is one game family (Lewis reconstruction over 4 attributes x 4 values, vocabulary 20, message length 10), one architecture family (single-layer LSTM speaker and listener), six seeds, and populations up to roughly twenty per role -- so 'population size does not help' is established for that regime, not in general. (2) The diagnosis is specific to how these simulations model a population, and the authors are candid that the homogeneity assumptions they break are artefacts of simulation convenience rather than principled commitments; REE's V6 ecology need not inherit them, which means the null may not apply to a differently-constructed ecology at all. (3) The metric for compositionality is topographic similarity, which Chaabouni et al. 2022 report does not correlate with generalisation in larger and more complex settings -- so a null ON THAT METRIC is weaker evidence than it first appears.",
+    "source_context": "Neural-agent simulation. Population-based Lewis reconstruction game, N speakers and N listeners paired uniformly at random, LSTM agents (hidden size 128) trained with Adam and a policy-gradient speaker objective, EGG toolkit, six seeds per configuration. Metrics: speaker synchronisation, negative entropy, topographic similarity, test-set generalisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Source quality 0.72: a peer-reviewed ICLR conference paper with public code and six seeds per point, which is respectable for the subfield, but a single game family with small populations and no human comparison run in-house. Mapping fidelity 0.80 and high on purpose: this paper is explicitly an attempt to reproduce Raviv et al.'s human group-size condition in artificial agents, which is structurally identical to what a V6 ecology would be doing, so the inference REE needs is short. Transfer risk 0.35, the lowest in this directory, because nothing has to cross a species or modality boundary -- the risk is only that REE's ecology differs from a Lewis game in ways that matter, which is real but bounded."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_099",
+  "entry_id": "2026-09-20_arc_099_population_size_neural_null_rita2022",
+  "timestamp_utc": "2026-09-20T10:48:52Z",
+  "claim_ids_tested": [
+    "ARC-099"
+  ],
+  "summary_path": "summary.md"
+}

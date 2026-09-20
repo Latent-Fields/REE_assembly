@@ -1,0 +1,41 @@
+# Learning and communication pressures in neural networks: Lessons from emergent communication (Galke & Raviv, Language Development Research, 2024)
+
+## Why this entry exists
+
+The `2026-09-20_arc_099_missing_constraints_galke2022` entry recorded a four-page non-archival workshop paper at confidence 0.66, with source quality 0.62 -- the lowest component in that pull -- on the grounds that its empirical weight was entirely borrowed. It turns out the same authors published the archival version two years later, peer-reviewed, at four times the length, with the three mismatches worked through and their resolutions named. That is the first thing this pull found, and it partly repairs the objection the earlier entry raised against itself.
+
+## What the paper says
+
+The organising move is to treat emergent machine-to-machine communication as a testbed for discovering which pressures neural agents are and are not exposed to when they learn to communicate without any human language to start from. Three mismatches between neural agents and humans are reviewed, and in each case the authors argue the gap was closed by adding a theoretically-motivated inductive bias rather than by scaling or architecture.
+
+On group size, the review is careful in a way the workshop paper was not. It cites Raviv et al. for the human effect and Lupyan & Dale for the typological correlate; it reports that Chaabouni et al. (2022) argued for scaling population size but "have not found a consistent advantage of population size in generalization and ease-of-learning", and that Rita et al. (2022) "found that language properties are not enhanced by population size alone". It then names the repairs: population heterogeneity via differing learning rates, and sender-receiver ties.
+
+On memory, it says plainly that "human language learning is governed by cognitive constraints such as a limited memory capacity" while "neural networks have virtually no memory constraints because they are commonly heavily over-parametrized". The one route it discusses -- reducing the number of model parameters toward the theoretical minimum, as explored by Resnick et al. (2020) -- it does not report as successful, noting that over-parametrisation "is, in fact, a critical ingredient for the success of deep neural networks."
+
+On role alternation, it makes the human observation crisply: "in naturalistic settings with proficient language users, every person capable of producing a language is also capable of understanding it", against a field in which "most emergent communication simulations keep senders and receivers distinct (i.e., agents that produce never comprehend, and vice versa)". And it reports that introducing a production/comprehension link "has led to an increase in the desirable properties of emergent languages."
+
+## What this does to ARC-099
+
+**It splits the two proposed additions apart, and they should not be treated alike.**
+
+Role alternation now has something behind it: an artificial-agent result in which coupling sender and receiver recovers the group-size effect. Bounded memory does not. The review's own account is that neural agents have essentially no memory constraint, that the obvious way to impose one is not workable, and that no study is cited in which memory was constrained and emergent structure improved as a result. That is not a small gap for a condition proposed as an addition to a machine-checkable contract: there is currently no known way to implement it in this class of agent, so an inventory item asserting it would be unfalsifiable by the very probes the inventory exists to authorise.
+
+Read alongside the Raviv et al. 2019 Cognition entry in this directory, the bounded-memory proposal also looks mis-specified rather than merely unevidenced. That paper locates compressibility pressure in "participants' limited memory capacity", but says explicitly that such limitations "can stem from different sources" -- and then demonstrates that the communicative source (converging with many partners) suffices without the transmission source. The functional requirement is that an agent cannot individuate its way out of the problem. That is a property of the ecology-and-agent pair, and it is measurable. "Bounded memory", as a substrate flag, is not the right shape for it.
+
+**It also supplies the warning that the checklist form itself is the weak point.** In all three of the reviewed mismatches, the missing ingredient was identified after the failure, and in none of them would it have been visible in advance from an inventory of capabilities. Rita et al.'s missing ingredient was relative learning speed. Michel et al.'s was a property of how agents are paired. Neither is a capability. ARC-099's fourteen items are all capabilities or inspectable ecology features, and the pattern in this review is that the things which actually decided the outcome were not of that type.
+
+## A discrepancy this pull could not resolve
+
+The review describes Michel et al. (2023) as introducing "sender-receiver ties via gradient blocking, such that a sender and a receiver together form a single agent and each receiver is only optimized for its corresponding sender", and says this "led to a recovery of the group size effect". Read that way it is direct support for a role-alternation condition: the fix was to stop treating producing and comprehending as separate agents.
+
+Michel et al.'s own published abstract describes the same work differently: "partitioning the agents into sender-receiver pairs and limiting co-adaptation across pairs", framed throughout as a fix for receivers co-adapting to the senders they happen to meet. On that reading the operative mechanism is a restriction on *which pairs interact* -- which, if anything, reduces partner mixing, and would be evidence for a rather different condition than role alternation.
+
+These are not the same claim, and which one is right materially changes what ARC-099 should absorb. The full paper is on OpenReview behind a browser-verification wall and was not read for this entry. It is recorded here as an open question rather than resolved in either direction, because resolving it by preferring the gloss would be precisely the failure this pull was commissioned to correct.
+
+## Limitations
+
+Still a review, still no new data. Every effect size has to be read off the primaries -- and for the group-size null those numbers are in the Rita 2022 entry in this directory, not here. "Not fully replicated" remains unquantified in this version too. And the target mismatch recorded in the 2022 entry has not gone away: Galke and Raviv want to know whether emergent-communication simulations are valid models of human language evolution, while ARC-099 wants to know whether a V6 signalling probe would be non-vacuous. Those questions travel together for a long way and then separate, and the point at which they separate -- whether REE owes human-likeness at all -- is a question about REE's commitments that no paper can settle.
+
+## Confidence
+
+0.70, `mixed`. Source quality 0.70, mapping fidelity 0.82, transfer risk 0.40. A modest upgrade on the 0.66 recorded for the workshop version, earned by peer review and specificity rather than by new evidence. The transfer-risk number carries the Michel et al. discrepancy: a review's gloss on a primary result is exactly the kind of link this pull exists to check, and one link in the chain is still unchecked.

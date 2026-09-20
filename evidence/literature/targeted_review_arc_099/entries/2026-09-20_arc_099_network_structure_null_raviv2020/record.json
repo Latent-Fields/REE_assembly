@@ -1,0 +1,56 @@
+{
+  "source": {
+    "title": "The Role of Social Network Structure in the Emergence of Linguistic Structure",
+    "authors": [
+      "Limor Raviv",
+      "Antje Meyer",
+      "Shiri Lev-Ari"
+    ],
+    "year": 2020,
+    "venue": "Cognitive Science",
+    "doi": "10.1111/cogs.12876",
+    "pmid": "32808326",
+    "volume": "44",
+    "issue": "8",
+    "pages": "e12876"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "A well-powered null from the same lab, same paradigm, same year-ish, with community size held constant at eight and network topology manipulated across three conditions (fully connected, small-world, scale-free; 21 groups, 168 adults, 7 groups per cell). It is the cleanest available test of whether the SHAPE of partner variation matters, as opposed to the amount, and the answer was no on every measure. That is directly decision-relevant for ARC-099 in a way most positive results are not: it tells the V6-entry gate what it does NOT need to specify. Direction mixed because the null cuts both ways -- it relieves the contract of an interaction-protocol parameter (good) while simultaneously showing that a strong theoretical prediction about interaction structure failed to materialise in exactly the paradigm Galke et al. 2022 rely on when they argue that a different interaction-protocol property (role alternation) is load-bearing (cautionary). Confidence held at 0.66 rather than higher because seven groups per condition is modest power for a null, and the authors themselves report that variance differed across conditions even where means did not.",
+  "failure_signatures": [
+    "A strong, theoretically motivated prediction about interaction structure -- that sparsely connected communities develop more systematic languages than tightly knit ones -- produced no effect on linguistic structure, communicative success, stability or convergence. Theoretical confidence that an interaction-protocol property is load-bearing is not evidence that it is; this is the one time that exact expectation was tested in this paradigm and it failed.",
+    "If network topology does not matter but community size does (Raviv et al. 2019), then 'how partners vary' is the wrong axis and 'how much distinct input an agent receives' is the right one. A V6-entry gate that specifies an interaction graph is specifying a parameter this experiment found inert.",
+    "Small-world networks showed the greatest variation in convergence, stabilisation and emerging structure despite equal means, which the authors read as differential susceptibility to drift. A single-run V6 probe on a small-world-ish ecology could therefore land anywhere and be over-interpreted in either direction.",
+    "Seven groups per condition is modest power for a null. The finding that topology does not matter should be read as 'no detectable effect at this scale', not as a demonstrated absence -- and ARC-099 must not cite it as licensing silence about interaction structure."
+  ],
+  "tags": [
+    "arc-099",
+    "social_network_structure",
+    "null_result",
+    "partner_variation",
+    "language_evolution",
+    "enabling_conditions",
+    "microsociety_experiment"
+  ],
+  "mapping": {
+    "source_claim_statement": "168 adults in 21 eight-person microsocieties created artificial languages under three different social network topologies -- fully connected, small-world, and scale-free. Contrary to theoretical and computational predictions, network structure had no effect on linguistic structure, communicative success, stability or convergence; all conditions became similarly more systematic over time. Small-world networks showed the greatest between-group variation, suggesting network structure may modulate susceptibility to drift rather than the direction of change.",
+    "ree_translation": "ARC-099 lists partner variation as an enabling condition without specifying its structure, and the Galke et al. 2022 entry in this directory argues the inventory is under-specified about the ecology's INTERACTION PROTOCOL. This paper is the one direct experimental test of an interaction-protocol property in the relevant paradigm, and it is a null. For a V6-entry contract that is genuinely useful news: it says the gate does not need to specify a communication graph, because at constant community size the graph did not change what emerged. It also supplies a cautionary case for how the inventory should be amended. The prediction that topology matters was not a casual guess -- it came from computational models of language change and had been asserted repeatedly in the typological literature -- and it did not survive contact with the experiment. Role alternation, which Galke et al. want added, is a property of the same kind and has an even thinner evidential base: no experiment in this line manipulates it at all.",
+    "mapping_caveat": "This is a null, and nulls carry their own transfer risk. Seven groups per condition detects only fairly large effects, so 'network structure does not matter' should be read as 'no effect detectable at this scale in this task'. The task also constrains generality: a 23-scene meaning space over 16 rounds may simply not be long enough for topology-driven divergence to accumulate, which is a mechanism the authors themselves gesture at when they report elevated variance in small-world groups. Finally, this speaks only to topology among a fixed set of participants who all interact throughout; it says nothing about the different question of whether an agent must ever occupy both sides of an exchange.",
+    "source_context": "168 Dutch-speaking adults (mean age 24.6), 21 groups of eight members, seven groups per network condition, ~4.5-5.25 hours per group. Same typed-artificial-language group communication paradigm as Raviv et al. 2019, with community size held constant and connectivity/homogeneity manipulated. Open access."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.64,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good but below the 2019 Proc B entry: same lab, same paradigm, open access and peer reviewed, but seven groups per cell is modest for a null and the paper is honest that it cannot distinguish 'no effect' from 'no effect yet'. Mapping fidelity 0.64: it bears on ARC-099's partner-variation item only obliquely, by ruling out one refinement of it. Transfer risk 0.45 reflects the standard hazard of importing a null -- the absence of a topology effect in a 16-round human experiment is weak grounds for expecting its absence in an artificial ecology run for very different durations."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_099",
+  "entry_id": "2026-09-20_arc_099_network_structure_null_raviv2020",
+  "timestamp_utc": "2026-09-20T10:48:52Z",
+  "claim_ids_tested": [
+    "ARC-099"
+  ],
+  "summary_path": "summary.md"
+}

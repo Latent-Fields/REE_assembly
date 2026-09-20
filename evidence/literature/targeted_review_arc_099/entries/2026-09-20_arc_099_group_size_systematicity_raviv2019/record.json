@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "Larger communities create more systematic languages",
+    "authors": [
+      "Limor Raviv",
+      "Antje Meyer",
+      "Shiri Lev-Ari"
+    ],
+    "year": 2019,
+    "venue": "Proceedings of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rspb.2019.1262",
+    "pmid": "31311478",
+    "volume": "286",
+    "issue": "1907",
+    "pages": "20191262"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the primary experiment the Galke et al. 2022 workshop paper borrows its empirical weight from, and reading it directly settles the first of the three questions this pull was chartered to answer: the human group-size effect IS real, IS causal (community size was manipulated with network structure, second-language learners and total interaction volume held constant), and IS reported with full mixed-effects statistics on openly archived data. That earns high source quality. Direction is mixed rather than supports because the paper's own mediation analysis relocates the causal variable. When input variability and shared history are entered together, only input variability survives (beta = 0.011, p = 0.012; shared history beta = -0.008, p = 0.17). Group size is an INSTRUMENT for input variability, not the mechanism. ARC-099 lists 'partner variation' as an enabling condition; this paper says the condition that actually does the work is variability in the linguistic input, which partner variation only sometimes delivers. Confidence held at 0.78 rather than higher because the mapping from a 16-round human microsociety to a V6 REE ecology is an analogy, not an identity.",
+  "failure_signatures": [
+    "Partner variation and speaker/listener role alternation were both PRESENT IN BOTH CONDITIONS of this experiment (participants exchanged partners every round and alternated producer/guesser roles within every round), so this study cannot license either as an enabling condition -- it holds them constant. A V6 gate that cites this paper as evidence for its partner-variation item is citing a constant, not a manipulation.",
+    "The mediation result says input variability, not number of partners, is the operative variable. An ecology could satisfy 'partner variation' with a roster of behaviourally identical partners, produce no input variability, and get none of the structure the condition was listed to deliver -- the 'satisfiable but inert' failure mode, arriving through a different door than the one Galke et al. named.",
+    "Community size had NO significant effect on communicative success (p = 0.078 over time; p = 0.083 at final round) or on convergence (p = 0.18). A V6 probe that scores an emergent protocol on task success or on lexical agreement would have detected nothing here, and would have declared the two conditions equivalent while their grammars diverged.",
+    "The structure difference at the end of the experiment is beta = 0.11 in raw meaning/string correlation units (s.e. = 0.04, p = 0.006) -- a real but modest separation that took 144 participants in 24 groups over ~5 hours each to resolve. Any V6-entry gate expecting a large, quickly-visible systematicity signal from a small ecology is expecting more than the human result provides.",
+    "Some small groups never developed systematic grammars at all and stayed holistic for the whole experiment, while larger groups were tightly clustered (variance beta = -0.015, p = 0.0002). The group-size effect is as much a REDUCTION IN VARIANCE as a shift in mean, which means a single-run V6 probe at small ecology size can land anywhere and tell you nothing."
+  ],
+  "tags": [
+    "arc-099",
+    "group_size_effect",
+    "language_evolution",
+    "compositionality",
+    "partner_variation",
+    "input_variability",
+    "enabling_conditions",
+    "microsociety_experiment"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a laboratory group-communication paradigm, fully connected microsocieties of eight participants developed significantly more systematic (more compositional) artificial languages than microsocieties of four, and did so faster and with far less between-group variance, while reaching equivalent communicative success and convergence. The effect was mediated by input variability rather than by shared interaction history.",
+    "ree_translation": "This is the load-bearing primary evidence under ARC-099's social enabling conditions -- 'coordination pressure' and 'partner variation' -- and it both strengthens and re-aims them. It strengthens them because the effect survives the confound-stripping that cross-linguistic typology cannot do: network structure, second-language learners, geography and total interaction volume were all held constant, leaving community size as the only manipulated variable. It re-aims them because the paper's own analysis identifies input variability as the mediator. Translated into a V6-entry contract, the checkable precondition is not 'the ecology contains more than one partner' but 'the ecology delivers variability in the signals an agent receives for the same referent, at a rate the agent cannot memorise away'. That is a measurable property of an ecology, and it is not what ARC-099 currently says. Two further items the current inventory does list get concrete operational content here: 'coordination pressure' appears as a shared points goal with feedback, and the expanding meaning space (8 scenes growing to 23 over six rounds) is an explicit pressure for generalisation that has no counterpart in the fourteen-item list at all.",
+    "mapping_caveat": "Three boundaries. (1) These are adults with fully-formed language faculties inventing a NEW signalling system, not a pre-linguistic bootstrap; every participant already had the capacities ARC-099 enumerates, so the experiment tests what social conditions elicit structure from agents that already satisfy the inventory, NOT whether the inventory is complete. It is therefore evidence about the ecology items and silent on the substrate items. (2) Group sizes were 4 and 8 -- two points. Nothing here establishes monotonicity, a threshold, or behaviour at the size a V6 ecology would plausibly run. (3) The authors' claim that results 'should scale to real-world populations since the meaning space and speakers' life span scale up proportionally' is an argument, not a measurement, and it is exactly the scaling assumption a V6 ecology would be relying on.",
+    "source_context": "144 Dutch-speaking adults (mean age 24.9), 12 groups of four and 12 groups of eight, each group ~4.5-5.25 hours across 16 rounds. Typed artificial labels for visual scenes varying in shape, angle of motion and fill pattern; alternating producer/guesser roles; partners exchanged each round; meaning space expanded from 8 to 23 scenes. Mixed-effects regression with Kenward-Roger p-values; data and scripts at https://osf.io/y7d6m/."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high: a peer-reviewed Proc R Soc B experiment with 144 participants in 24 independent microsocieties, maximal justified random-effects structure, conservative Kenward-Roger p-values, openly archived data and scripts, and a preregistration-free but fully reported analysis plan including three distinct model families per measure. Mapping fidelity moderate: the paper is about what social conditions elicit structure from agents that ALREADY have language, which speaks directly to ARC-099's ecology items and not at all to its substrate items. Transfer risk elevated (0.42) because the inference REE needs -- that a property which separates 4-person from 8-person human microsocieties will separate two configurations of an artificial V6 ecology -- is precisely the inference that the neural-agent literature (see the Rita 2022 entry in this directory) found does not go through by default."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_099",
+  "entry_id": "2026-09-20_arc_099_group_size_systematicity_raviv2019",
+  "timestamp_utc": "2026-09-20T10:48:52Z",
+  "claim_ids_tested": [
+    "ARC-099"
+  ],
+  "summary_path": "summary.md"
+}
