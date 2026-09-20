@@ -3392,3 +3392,5 @@ One line per hourly tick. ASCII only.
 2026-09-20T06:15:44Z no eligible item (skipped 255): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-003:skill /governance not allowed
 2026-09-20T07:27:46Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 33 ready, 0 in flight)
 2026-09-20T07:24:54Z no eligible item (skipped 255): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-003:skill /governance not allowed
+2026-09-20T08:32:01Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 255 items, 33 ready, 0 in flight)
+2026-09-20T08:29:33Z no eligible item (skipped 255): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-003:skill /governance not allowed
