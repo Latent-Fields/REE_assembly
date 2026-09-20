@@ -1,0 +1,438 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1057b_mech017_additive_budget_dose_ladder",
+  "run_id": "v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-20T15:49:55Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "995ba25207cdb02563f369bf11f3177e0318ee81",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-017"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "final_pass_dose_response_opposite_sign_across_orders_last_writer_signature",
+    "criteria": [
+      {
+        "name": "C1_dose_response_detected",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 4.0,
+        "threshold": 1.0,
+        "comparator": ">=",
+        "detail": "Number of the FOUR ladder legs (2 orders x {early, late} probe stratum) that are NON-FLAT in k. A leg is non-flat iff, at ANY rung k in [3, 6, 12, 24], the per-seed relative contrast (mse[k] - mse[k=0]) / |mse[k=0]| exceeds FLAT_BAND=0.1 in magnitude WITH A CONSISTENT SIGN on at least 4 of 5 seeds. TWO deliberate choices: (a) EVERY RUNG, not just the endpoint -- red-team F4 (CONFIRMED): an endpoint-only test certifies 'flat' on a step-then-recover curve whose interior moved, and the autopsy's null is 'flat in k' of a CURVE, not of its two ends. The endpoint contrast is still reported as leg_*_mean_rel_delta / leg_*_endpoint_nonflat. (b) the sign-consistent count is max(n_up, n_down), NOT the count of |rel_delta| > band -- symmetric seed noise must not read as a dose response. PASS = the autopsy's 'both curves flat in k' null is REJECTED: the step count of the FINAL consolidation pass moves held-out E1 fidelity. FAIL = the null HOLDS, which is informative and not a shrug -- it falsifies the last-writer reading that the V3-EXQ-1057/1057a pass-order swing suggests, and says the displacement is a property of the whole four-point schedule rather than of its last writer. CONSTANT PROVENANCE: FLAT_BAND is LATE_TOL, reused unchanged from V3-EXQ-1048 C2 -> 1057 C4 -> 1057a C4; SIGN_CONSISTENCY_REQUIRED is unchanged from all three. Nothing was invented. Legs non-flat: ['D1_early', 'D1_late', 'D2_early', 'D2_late'].",
+        "nonflat_legs": [
+          "D1_early",
+          "D1_late",
+          "D2_early",
+          "D2_late"
+        ],
+        "per_leg": {
+          "D1_early": {
+            "nonflat": true,
+            "n_seeds_sign_consistent": 5.0,
+            "mean_rel_delta": 1.3769588611814731
+          },
+          "D1_late": {
+            "nonflat": true,
+            "n_seeds_sign_consistent": 5.0,
+            "mean_rel_delta": -0.3141292596217214
+          },
+          "D2_early": {
+            "nonflat": true,
+            "n_seeds_sign_consistent": 5.0,
+            "mean_rel_delta": -0.493343001297171
+          },
+          "D2_late": {
+            "nonflat": true,
+            "n_seeds_sign_consistent": 5.0,
+            "mean_rel_delta": 0.4470232551959693
+          }
+        }
+      },
+      {
+        "name": "C2_shape_monotonicity_REPORTED_ONLY",
+        "load_bearing": false,
+        "passed": true,
+        "measured": -0.004999999999999977,
+        "threshold_not_applicable": "SHAPE is the scientific payload of this run and is deliberately NOT gated. Mean per-seed Spearman rho of the DV against k, and k_half (the smallest k at which the mean curve has covered >= 50% of its total k_lo -> k_hi change), distinguish 'gradual trade-off' from 'a step early' -- the question the autopsy says the intermediate points exist to answer. No floor is set because no prior distribution exists to set one from: only k=24 has ever been measured, and only as a whole-life dose. Inventing a monotonicity threshold here would be an unpre-registered constant. Same disposition V3-EXQ-1057a took for its late-probe skill measurement (its red-team F4): MEASURE now, let a successor set a floor once there is a distribution. `passed` is True by construction and carries no information -- read the per-leg rho and k_half values.",
+        "detail": "per-leg mean Spearman rho and k_half are in readout and ladder_legs."
+      },
+      {
+        "name": "C3_retention_dose_response_REPORTED_ONLY",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.0,
+        "threshold_not_applicable": "The two retention gates of V3-EXQ-1048/1057/1057a are KEPT -- computed in their original form (replay gain vs ARM_B on early probes; recency benefit vs ARM_A on late probes; same seed-majority constant) and evaluated at EVERY ladder point, so the record is a retention DOSE-RESPONSE rather than a single pass/fail. They do NOT gate, and must not: (a) V3-EXQ-1057 measured the whole-then-recent order at 0/5 on replay-gain retention, and ARM_D1_K24 reproduces that order exactly, so an AND'd whole-run gate would be a pre-registered guaranteed failure that self-routes before a single ladder point is reported; (b) at k=0 the gates are structurally not meaningful -- there is no full additive dose at the final point to retain anything with; (c) retention LOSS at high k is the PHENOMENON this ladder measures, so gating on it would gate away the dependent variable. This is the disposition CLAUDE.md's multi-arm precondition rule mandates (scope the gate, never lower the threshold) and the EXACT precedent V3-EXQ-1057a set in this same lineage for ARM_D1. `measured` is reported for shape only.",
+        "detail": "retention_curves_reported_never_gating carries both curves, per order, per k."
+      },
+      {
+        "name": "C_REF1_replay_beats_budget_matched_on_early_probes",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 5.0,
+        "threshold": 4.0,
+        "comparator": ">=",
+        "detail": "DETERMINISTIC RE-DERIVATION of V3-EXQ-1048 C1 (A vs B at matched budget), NOT load-bearing and NOT independent replication: all 15 A/B/C cells of V3-EXQ-1057 came back BIT-IDENTICAL to V3-EXQ-1048's on this machine_class. Carried because it is free, it pins the harness against drift, and ARM_B is the comparator the replay-gain retention curve is defined against."
+      },
+      {
+        "name": "C_REF2_no_cost_on_late_probes",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 1.0,
+        "threshold": 4.0,
+        "comparator": ">=",
+        "detail": "RE-DERIVATION of V3-EXQ-1048 C2, NOT load-bearing: seeds with e1_holdout_mse_late(A) <= (1+0.1)*e1_holdout_mse_late(B). It FAILED on 1048 and 1057; it is the matched-budget deficit the whole additive-budget line exists to explain, and ARM_A is the comparator the recency-benefit retention curve is defined against."
+      },
+      {
+        "name": "C_REF3_early_effect_size_clears_floor",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.45457215182861466,
+        "threshold": 0.05,
+        "comparator": ">",
+        "detail": "RE-DERIVATION of V3-EXQ-1048 C3, NOT load-bearing: mean over seeds of (early_B - early_A)/early_B."
+      }
+    ],
+    "combination_rule": "PASS iff the single LOAD-BEARING criterion C1_dose_response_detected passes (plain all() over the load_bearing subset). C1 is itself a DISJUNCTION over the four ladder legs -- n_nonflat_legs >= 1 -- and that shape is FORCED by the autopsy's own null, which is the conjunction 'both curves flat in k' asserted for both orders; the negation of a conjunction is a disjunction. It was not chosen for sensitivity, and every leg's count, sign and effect size is reported individually in `interpretation.criteria[0].per_leg` and in `ladder_legs`, so no reader has to trust the OR. Each leg's own test is a SIGN-CONSISTENT seed majority (max(n_up, n_down) >= SIGN_CONSISTENCY_REQUIRED), not a count of |rel_delta| > band, so symmetric seed noise cannot make a leg fire, and each leg's test ranges over EVERY rung rather than the endpoints alone (red-team F4). C2 (shape/monotonicity) and C3 (retention dose-response) are load_bearing:false and carry threshold_not_applicable with their reasons: C2 because no prior distribution exists from which to set a monotonicity floor, C3 because the two retention gates are kept as REPORTED curves and must never gate (gating them would be a pre-registered guaranteed failure at k=k_hi in the D1 order, would be structurally meaningless at k=0, and would gate away the dependent variable -- the precedent V3-EXQ-1057a set for ARM_D1). C_REF1/2/3 are non-load-bearing re-derivations of V3-EXQ-1048's matched-budget legs, carried to pin the harness and to supply the comparator arms the retention curves are defined against. Every non-degeneracy assertion -- the pre-registered ladder dose, the dose reaching the DV, window separation, probe-set identity, probe-target variance, forgetting in the control, and the rest -- is a PRECONDITION, so any of them failing routes to substrate_not_ready_requeue instead of to a MECH-017 verdict.",
+    "criteria_non_degenerate": {
+      "C1_dose_response_detected": true,
+      "C2_shape_monotonicity_REPORTED_ONLY": true,
+      "C3_retention_dose_response_REPORTED_ONLY": true,
+      "C_REF1_replay_beats_budget_matched_on_early_probes": true,
+      "C_REF2_no_cost_on_late_probes": true,
+      "C_REF3_early_effect_size_clears_floor": true
+    },
+    "preconditions": [
+      {
+        "name": "forgetting_present_in_control",
+        "measured": 2.4750167490267976,
+        "threshold": 1.1,
+        "direction": "lower",
+        "control": "MEAN over seeds, ARM_C only (no extra training): the WITHIN-STRATUM ratio (EARLY-probe E1 MSE at end of life) / (same probe set, same arm, measured immediately after capture, before the late block). Same probe tensors on both sides, so intrinsic regime difficulty cancels. `met` is the same central-tendency comparison the measured value reports. Below the floor the model has not forgotten the early states, so there is nothing for replay to counter and every ladder point ties. Read off an arm no criterion of this run uses.",
+        "worst_seed": 456,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "ladder_budget_is_pre_registered_dose",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "NEW for the ladder. WORST CELL (not the mean) over every ladder cell of |realized consolidation E1 gradient steps - ((n_points-1)*2*CMC_STEPS + CMC_STEPS + k)|, read off CrossModuleConsolidator's own updates_e1 counter rather than from the config. updates_e1 and NOT n_updates: n_updates counts one update PER MODULE per step (e1 AND e2), so it is 2x the pre-registered STEP count -- the first smoke of this script reported 56 against an expected 28 on exactly that confusion. updates_e1 equals the step count exactly and is the module the load-bearing DV reads. The dose IS the abscissa of every curve in this run, so a mis-dosed cell makes the x-axis wrong and is an INSTRUMENT failure, not evidence about MECH-017. Counterpart of V3-EXQ-1057a's additive_budget_is_a_plus_b, generalized across the ladder. ARM_A/ARM_B/ARM_C are excluded by construction: they are not ladder arms and carry no dose.",
+        "offending_cell": "ARM_D1_K00/seed42",
+        "reference_budget_a": 192.0,
+        "reference_budget_b": 192.0,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "flat_band_exceeds_in_run_probe_noise",
+        "measured": 0.0011157166130230326,
+        "threshold": 0.1,
+        "direction": "upper",
+        "control": "NEW, added after this run's red-team (F5/F6). WORST CELL over every cell of the relative spread between TWO draws of the held-out E1 MSE on the SAME weights and the SAME probes -- i.e. the probe-time LSTM dropout noise (LIMIT 3), measured IN-RUN at full scale rather than quoted from V3-EXQ-1057a's toy-scale 0.81%. If that noise is not comfortably below FLAT_BAND then 'flat' and 'non-flat' are not distinguishable and the whole ladder is unreadable -- an INSTRUMENT failure, not evidence about MECH-017. Recorded evidence says this clears with ~12x headroom, so it is reachable, not a trap.",
+        "offending_cell": "ARM_D1_K24/seed2026",
+        "mean_over_cells": 0.0003746553669955215,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "dose_reaches_dv",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "NEW for the ladder. WORSE of the two orders of the number of seeds on which the k=0 and k=24 cells produced DIFFERENT early-probe E1 MSE. A bit-identical endpoint pair is a DEAD MANIPULATION and would otherwise be scored as a clean 'flat in k' null. Same form and same threshold as manipulation_reaches_dv, re-pointed at the ladder endpoints. LIMIT, per this run's red-team F5 (CONFIRMED): the two cells consume DIFFERENT amounts of global RNG, so with probe-time dropout live their masks differ and this gate passes whatever the weights did. It therefore catches only the BIT-IDENTICAL shape, and is NOT by itself the verdict-aliasing guard an earlier draft claimed. The real coverage is split: ladder_budget_is_pre_registered_dose catches 'the steps were never taken', and flat_band_exceeds_in_run_probe_noise bounds 'the weight change is below the DV's resolution'. The residual -- a real but sub-band effect -- reads as a flat null, which is the CONSERVATIVE direction and is stated in the null branch's own reading.",
+        "per_order": {
+          "D1": 5.0,
+          "D2": 5.0
+        },
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_window_separation",
+        "measured": 0.7333333333333334,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "min over seeds of (ARM_A early-regime replay share - ARM_B early-regime replay share). This is the WINDOW manipulation itself: if the two windows do not separate, the whole-buffer and recent-window passes are the same pass and the ladder doses nothing. Caught exactly this state in the first smoke of V3-EXQ-1057.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "manipulation_reaches_dv",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "seeds where ARM_A and ARM_B produced DIFFERENT early-probe E1 MSE. Unchanged from 1057a; retained because the ladder's two passes ARE A's pass and B's pass, so a dead A-vs-B contrast is a dead ladder.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e1_has_skill_over_persistence_compared_arms",
+        "measured": 0.10544178957951644,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "WORST SEED of max(ARM_A skill, ARM_B skill), where skill = 1 - (E1 early-probe MSE / do-nothing persistence-baseline MSE on the same windows). Ranges over the two reference arms the ladder is read against -- NOT the ARM_C reference, whose sub-persistence skill is the phenomenon under study. A seed where NEITHER reference arm beats a do-nothing predictor makes that seed's whole column noise about noise.",
+        "offending_seed": 123,
+        "min_skill_over_compared_arms": -0.6628623043876001,
+        "min_skill_arm_c_reference_only": -1.2010145304698976,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "gradient_budget_matched",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "control": "|extra gradient steps ARM_A - ARM_B|. The DESIGN INVARIANT that makes the A-vs-B reference contrast a replay result rather than a compute result. Deliberately still compares A against B ONLY: the ladder arms are budget-UNMATCHED on purpose -- that IS the manipulation -- and are covered by ladder_budget_is_pre_registered_dose instead.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "replay_covers_early_regime",
+        "measured": 0.7333333333333334,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of the mean early-regime share of the buffer slice visible at the LATE-block consolidation points. compute_prediction_loss draws start_idx ~ Uniform[0, buf_len-1), so this share IS the per-draw probability of an early-regime trace. ARM_B comparator = 0.0000.",
+        "arm_b_share": 0.0,
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "consolidation_updated_e1",
+        "measured": 96.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of CrossModuleConsolidator's own updates_e1 counter -- the pass must actually move the module the DV reads.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "consolidation_updated_e2",
+        "measured": 96.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_A, min over seeds of updates_e2 (E2 SELF-forward; secondary).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "early_late_state_divergence",
+        "measured": 0.8780487804878049,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "min over ALL cells of the Jaccard DISTANCE between early-regime and late-regime occupied grid cells. If old and recent states coincide there is nothing for replay to add (sleep_substrate:GAP-2).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_set_identical_across_arms",
+        "measured": 5.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "sha256 over each cell's concatenated probe [z_self, z_world] tensors; ALL arms of a seed must agree EXACTLY, which is what makes the probe set FIXED rather than arm-dependent. With 13 arms this is a strictly stronger assertion than 1057a's 5-arm form.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_target_variance",
+        "measured": 0.006881691515445709,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "min over all cells/strata of the variance of the held-out E1 target tensor -- a frozen target would make the MSE trivially satisfiable, and a pinned DV is the other way a 'flat in k' null could be vacuous.",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sd016_writepath_mode_off",
+        "measured": 65.0,
+        "threshold": 65.0,
+        "direction": "lower",
+        "control": "runtime read of E1Config.sd016_writepath_mode in every cell. 'off' means the open CORRUPTING defect contextmemory-write-path-addressing-degeneracy (e1_deep.py::ContextMemory.write) is never called on this run's path.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ee75618071a7f05435c3c55c7089d5f3f8b37815d873fa5f63527b5de7ca0821",
+  "substrate_commit": {
+    "commit": "995ba25207cdb02563f369bf11f3177e0318ee81",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 2366.648877620697,
+  "config": {
+    "arms": [
+      "ARM_A_OFFLINE_REPLAY",
+      "ARM_B_BUDGET_MATCHED_RECENT",
+      "ARM_C_NO_EXTRA_TRAINING",
+      "ARM_D1_K00",
+      "ARM_D1_K03",
+      "ARM_D1_K06",
+      "ARM_D1_K12",
+      "ARM_D1_K24",
+      "ARM_D2_K00",
+      "ARM_D2_K03",
+      "ARM_D2_K06",
+      "ARM_D2_K12",
+      "ARM_D2_K24"
+    ],
+    "reference_arms": [
+      "ARM_A_OFFLINE_REPLAY",
+      "ARM_B_BUDGET_MATCHED_RECENT",
+      "ARM_C_NO_EXTRA_TRAINING"
+    ],
+    "ladder_arms": [
+      "ARM_D1_K00",
+      "ARM_D1_K03",
+      "ARM_D1_K06",
+      "ARM_D1_K12",
+      "ARM_D1_K24",
+      "ARM_D2_K00",
+      "ARM_D2_K03",
+      "ARM_D2_K06",
+      "ARM_D2_K12",
+      "ARM_D2_K24"
+    ],
+    "k_ladder": [
+      0,
+      3,
+      6,
+      12,
+      24
+    ],
+    "k_ladder_full_scale": [
+      0,
+      3,
+      6,
+      12,
+      24
+    ],
+    "orders": [
+      "whole_then_recent",
+      "recent_then_whole"
+    ],
+    "dosed_pass_by_order": {
+      "whole_then_recent": "recent_window",
+      "recent_then_whole": "whole_buffer"
+    },
+    "dose_scope": "final consolidation point only; the first (n_points - 1) points run both passes at cmc_steps",
+    "seeds": [
+      42,
+      123,
+      456,
+      2026,
+      45
+    ],
+    "grid_size": 9,
+    "num_hazards": 1,
+    "num_resources": 1,
+    "self_dim": 16,
+    "world_dim": 16,
+    "alpha_world": 0.9,
+    "alpha_self": 0.9,
+    "episode_steps": 30,
+    "warmup_episodes": 6,
+    "early_episodes": 6,
+    "late_episodes": 6,
+    "probe_episodes": 4,
+    "train_episodes": 18,
+    "consolidate_every": 3,
+    "recent_window": 90,
+    "cmc_steps": 24,
+    "wake_steps": 24,
+    "cmc_lr": 0.0002,
+    "cmc_batch": 16,
+    "early_start": [
+      2,
+      2
+    ],
+    "late_start": [
+      6,
+      6
+    ],
+    "hazards": [
+      [
+        4,
+        4
+      ]
+    ],
+    "resources": [
+      [
+        4,
+        2
+      ]
+    ],
+    "registered_thresholds": {
+      "flat_band": 0.1,
+      "sign_consistency_required": 4,
+      "late_tol": 0.1,
+      "min_window_separation": 0.2,
+      "persistence_skill_floor": 0.0,
+      "wake_lr": 0.001,
+      "cmc_lr": 0.0002,
+      "min_rel_gain_early": 0.05,
+      "forgetting_floor": 1.1,
+      "replay_early_share_floor": 0.2,
+      "updates_floor": 1.0,
+      "state_divergence_floor": 0.2,
+      "probe_target_var_floor": 0.0001
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    2026,
+    45
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 65,
+    "goal_state_present": false
+  }
+}

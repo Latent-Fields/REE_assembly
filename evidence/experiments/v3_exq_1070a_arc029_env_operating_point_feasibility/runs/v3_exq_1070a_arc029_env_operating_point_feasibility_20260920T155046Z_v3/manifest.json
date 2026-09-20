@@ -1,0 +1,225 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1070a_arc029_env_operating_point_feasibility",
+  "run_id": "v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-20T15:50:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "995ba25207cdb02563f369bf11f3177e0318ee81",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-029"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "variance_tracking_bar_in_force_somewhere",
+        "description": "BEST cell's fraction of measured SELECT CALLS with a non-None variance_tracking_commit_bar. This is the SAME statistic the P1_FEASIBLE criterion routes on. If the bar engages NOWHERE on the whole ladder, the instrument never ran and no env verdict is licensed -- that is substrate_not_ready, not infeasibility.",
+        "measured": 1.0,
+        "threshold": 0.95,
+        "direction": "lower",
+        "control": "the softest rungs are the positive control: their episodes are longest, so if the window cannot fill there it cannot fill anywhere",
+        "best_cell": "L0_lineage_control_q0.25_seed0",
+        "met": true
+      },
+      {
+        "name": "commit_gate_window_filled_in_some_cell",
+        "description": "cells whose warm prefix reached the full 200-select-call window. Separates 'the bar cannot engage' from 'the warm-up was too short' -- the conflation that made the predecessor probe unreadable.",
+        "measured": 30,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "warm-up runs to WARM_EPISODE_CAP=200 episodes or a full window",
+        "met": true
+      },
+      {
+        "name": "training_collapsed_running_variance",
+        "description": "worst cell's log10 collapse of running_variance across training. The whole premise is a TRAINED world-forward model; an untrained one sits at precision_init and the window goes degenerate (V3-EXQ-925a).",
+        "measured": 1.280299887921951,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "rv at agent construction vs rv after P0+P1",
+        "offending_cell": "L2_q0.25_seed0",
+        "met": true
+      },
+      {
+        "name": "training_tick_budget_equalised",
+        "description": "max/min REALISED total training ticks across rungs. Episode counts are derived per rung to equalise ticks, because `_train_all_on_agent` breaks on `done` and a fixed episode budget would hand the short-episode rungs ~5x less training along exactly the manipulated dimension -- corrupting both the rv-dispersion deliverable and the worst-cell readiness gate below. UPPER bound: a LARGE ratio is the failure.",
+        "measured": 2.278592375366569,
+        "threshold": 2.0,
+        "direction": "upper",
+        "control": "realised n_p0_ticks + n_p1_ticks per (rung, seed)",
+        "met": false
+      },
+      {
+        "name": "all_rungs_tick_budgetable",
+        "description": "rungs whose tick budget could NOT be met within MAX_TRAIN_EPISODES_PER_PHASE and were therefore dropped. GATED, and that is the point: the drop can only ever remove a SHORT-episode rung (the budget is ceil(target/length), so only a small length overruns the cap), which is the ladder's MINIMUM and also the lineage control. On 1070's own measured rung means, dropping L0 moves D1's episode-length range from 3.32 to 1.94 -- i.e. a budget failure would present as 'the ladder did not sweep'. Gating here keeps that mis-attribution impossible: a drop routes to substrate_not_ready_requeue, which is what it is.",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "control": "per-(rung, seed) pilot budget vs MAX_TRAIN_EPISODES_PER_PHASE",
+        "offending_cell": null,
+        "met": true
+      },
+      {
+        "name": "driver_never_writes_running_variance",
+        "description": "the V3-EXQ-063a defect, as a source-level assert.",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "control": "AST walk over this file's assignment targets",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "D1_ladder_swept_episode_length": true,
+      "D2_bar_confirmed_in_force": true,
+      "D3_joint_feasible_region_found": false
+    },
+    "routes_to": "NO env verdict is licensed; failed precondition(s): training_tick_budget_equalised. Do NOT read any of this as ARC-029 infeasibility."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "dbe01fb7157bad87f99107d95d8d6172622c833985721d97302f8622477b3b2f",
+  "substrate_commit": {
+    "commit": "995ba25207cdb02563f369bf11f3177e0318ee81",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.use_variance_tracking_commit_threshold": true,
+    "e3.goal_weight": 1.0
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 18010.145198422,
+  "config": {
+    "base_env": {
+      "size": 12,
+      "num_resources": 5,
+      "proximity_benefit_scale": 0.03,
+      "proximity_approach_threshold": 0.15,
+      "hazard_field_decay": 0.5,
+      "use_proxy_fields": true
+    },
+    "train_drift": {
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1
+    },
+    "eval_drift": {
+      "env_drift_interval": 50,
+      "env_drift_prob": 0.0
+    },
+    "ladder": [
+      [
+        "L0_lineage_control",
+        5,
+        0.05,
+        0.15
+      ],
+      [
+        "L1",
+        4,
+        0.04,
+        0.1
+      ],
+      [
+        "L2",
+        3,
+        0.03,
+        0.06
+      ],
+      [
+        "L3",
+        3,
+        0.02,
+        0.035
+      ],
+      [
+        "L5_extreme",
+        1,
+        0.005,
+        0.005
+      ]
+    ],
+    "q_ladder": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "commit_threshold_quantile_window": 200,
+    "e3_steps_per_tick": 3,
+    "precision_ema_alpha": 0.05,
+    "steps_per_episode": 120,
+    "target_p0_ticks": 400,
+    "target_p1_ticks": 900,
+    "target_zworld_p0_ticks": 400,
+    "ladder_episode_lengths_premeasured_randompolicy": {
+      "L0_lineage_control": 6.2,
+      "L1": 10.8,
+      "L2": 22.5,
+      "L3": 29.5,
+      "L5_extreme": 40.0
+    },
+    "pilot_episodes_per_phase": 14,
+    "max_train_episodes_per_phase": 400,
+    "train_tick_spread_ceiling": 2.0,
+    "episodes_per_run": 820,
+    "warm_episode_cap": 250,
+    "meas_env_step_target": 900,
+    "meas_select_min": 250,
+    "meas_episode_cap": 250,
+    "p3_abs_harm_floor": 0.01,
+    "c1_abs_floor": 0.002,
+    "p1_occupancy_band": [
+      0.15,
+      0.85
+    ],
+    "p1_runlen_floor": 3.0,
+    "bar_in_force_floor": 0.95,
+    "p3_snr_floor": 10.0
+  },
+  "seeds": [
+    0,
+    42
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 6061938,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3412,
+    "goal_state_present": false
+  }
+}
