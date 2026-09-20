@@ -5294,9 +5294,9 @@
       "summary": "V3-EXQ-1068 (SD-036 observable #3 shared regime matrix) was AUTHORED, smoke-PASSED and REFUSED AT THE RED-TEAM GATE; it is NOT queued and NO queue entry exists. The driver is on ree-v3 origin/main at experiments/v3_exq_1068_sd036_observable3_regime_matrix.py carrying a DO-NOT-QUEUE banner. BLOCKING FINDING (red-team model fable, verified against source by the authoring session): z_beta cannot satisfy the load-bearing criterion under any outcome, for a reason unrelated to SD-036. z_beta is zero-initialised (stack.py:1278) and blends 0.3*encode + 0.7*prev (stack.py:1540, :1594), so its trajectory RISES from zero to a plateau; a higher gaba_tone lowers the pole, which reaches plateau FASTER and therefore RAISES mean/peak. Its sustain ratio is thus monotone INCREASING in tone by construction -- measured Spearman rho = +1.000 on both the readiness tape and the trained eval in the driver's own dry run, and +0.6/+0.2/-0.1 in landed V3-EXQ-854. The readiness gate as ratified by the user (D0=A) tests SPREAD ONLY with no sign condition, and z_beta's spread is 1.56e-2 against a 1e-3 floor, so z_beta is admitted as SCOREABLE and then fails the monotonicity bar with mathematical certainty, carrying the load-bearing criterion down and recording SD-036: weakens at non_degenerate: true. That would be a FALSE FALSIFICATION of SD-036's sole architectural commitment -- precisely the failure mode the D0 decision was taken to prevent. The obvious repair (adding a SIGN condition to the readiness gate) changes which streams are scoreable and therefore whether SD-036 can be falsified at all, so under the campaign consent rule it is a user decision and was NOT made by the authoring session. A decision chip carries the question.",
       "raised_by_session": "metaworker-science-20260919-sd036-observable3-regime-matrix",
       "raised_at": "2026-09-20T00:57:09Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-20T12:22:13Z",
+      "resolution_note": "Steward D-006 adjudication (governance-20260920): first link of the V3-EXQ-1068 red-team refusal chain 0374 -> 0378 -> 0380. Its blocking finding (z_beta sign inversion) was addressed by the user's OPTION B amendment, as GFLAG-0378 itself reports (rho -1.00 on 3/3). Current state is GFLAG-0380 (third refusal). Superseded by GFLAG-0380. GFLAG-0375 (V3-EXQ-854 env.step unpack defect) is an INDEPENDENT finding and stays open."
     },
     {
       "flag_id": "GFLAG-0375",
