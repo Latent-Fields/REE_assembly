@@ -1,0 +1,654 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-20T11:23:09Z",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py run 2026-09-20 over all 11 cited run_ids (1039, 1039a, 1043, 1043a, 1057, 1057a, 1060, 1063, 1065, 1069, 1070): 0 dry, 11 clean. validate_experiments --checks dry_run_unreachable_criterion: silent on all nine drivers; reduction blocks read by hand.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1039a_mech428_inv086_waypoint_field_consumer_drive_signal_absorption_gated_20260919T022652Z_v3",
+      "queue_id": "V3-EXQ-1039a",
+      "claim_ids": [
+        "INV-086",
+        "MECH-428"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "CONFIRMED that no verdict is licensed; cause REFINED into three routes, per seed. (1) Seed 42: the treatment recipe trains the lPFC bias head on the HARD-CLAMP path (lateral_pfc_train_rule_bias_head=True, lateral_pfc_rule_readout_consumer absent from an exhaustive enabled_default_off_flags walk); the clamp sat on its rail on every recorded P1 tick in all three arms (|bias| mean == max == bias_scale), weight-norm delta exactly 0.0 -> C0d. (2) Seeds 43/44: the clamp is NOT saturated and the head DID move; A3 fails there because the demo CE update is skipped whenever no candidate's first action matches the oracle (14 and 22 matched vs 186 and 178 defaulted), so A3's statistic is the mean of 1 and 2 updates. That starvation is DOWNSTREAM of the seed-43 proposer-pool collapse (B1) -- one cause, not two. (3) B2 (ablation changes 0-3 of 400 actions) has a clamp-independent explanation already on record: lPFC bias / raw E3 score range is 0.004-0.03 here, the regime V3-EXQ-1029 adjudicated argmin-inert with the read-out consumer ON (0 of 1694 argmin, 0 of 13857 sampled actions).",
+      "failed_criterion": "readiness -- 5 of 10 conjunctive preconditions (C0d, A1, A3, B1, B2); verdict criterion C1 never reached",
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM + MEASURES); not chargeable to REE, INV-086 or MECH-428"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- not exercised. The run gated out before R1/R2/C1; it is the claim-free instrument-repair leg for H1 of waypoint_field_consumer_reach, not either claim's own falsifier.",
+        "biological_reference": "partial -- lateral-PFC rule representation biasing action selection (Badre 2009 hierarchy) and reward shaping as potential-based guidance (Ng 1999); MECH-428 has 3 lit rows, INV-086 has NONE in claim_evidence.v1.json (its grounding dir targeted_review_proxy_progress_goal_maintenance carries no INV-086-tagged entry).",
+        "prerequisites": "immature -- proposer pool collapses to a median of 2 distinct first-action classes at seed 43 in ALL THREE arms during the scored run (B1 frac_ge_floor 0.005 vs 1.0 at seed 42, 0.865 at seed 44): seed-dependent and arm-independent, i.e. upstream of the manipulation (ARC-065/MECH-314 candidate compression; SD-061 regulator is implemented_pending_validation and was not on).",
+        "implementation": "partial -- inert by DEFECT on two routes. (a) neutralising guard or default: hard clamp on its rail at seed 42 in all arms (saturated_frac 1.0; P0 and P1 weight-norm deltas both exactly 0.0, so the P1 weights are the init weights). (b) no consumer authority: bias / raw-score-range 0.004-0.03, the V3-EXQ-1029 argmin-inert regime.",
+        "environment": "adequate -- greedy oracle 11.6 vs random walk 0.5 waypoints/ep, achievable span 11.1 (floor 2.0).",
+        "measurement": "partial, not adequate. The paired gate localised the failure to seeds and code paths, which 1039's boolean could not. But A3 cannot discriminate where the pool collapses (n=1, n=2 update windows at seeds 43/44); B2 cannot separate 'no authority' from 'learned nothing differentiated'; modulatory_shortlist_size is constant at a dead sentinel where the design needs it to vary; A1's miss (0.952 vs 1.0 SD) is threshold noise.",
+        "integration": "coupled but inert -- by DEFECT. Missing links: neutralising default (seed 42) AND no consumer authority at selection (all seeds; SD-082's open question).",
+        "scale": "unknown -- the 90-episode budget was deliberately held (autopsy-1039 item 5: reconsider only after items 1-4)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "lateral PFC rule/context representation biasing basal-ganglia action selection; shaping as dense proxy progress signal",
+        "dependencies": [
+          "diverse candidate proposals (premotor/BG)",
+          "reward-contingent plasticity at the PFC->selection synapse",
+          "goal maintenance (MECH-116)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified at this layer",
+        "lit_status": "partial (MECH-428: 3 literature rows; INV-086: 0 literature rows, 4 exp:simulation rows all non_contributory)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "INV-086": "standard",
+        "MECH-428": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Both claims are PERIPHERAL to this run (not exercised -- same reading as the 1004/1030/1039 autopsies). MECH-428's own retest is V3-EXQ-884a, which this run is not.",
+      "recommended_epistemic_category_note": "Instrument/recipe defect (precondition_unmet, measurement of absorption now adequate). No epistemic suppression asserted on either claim.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-086": "non_contributory",
+        "MECH-428": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds 43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes 0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.",
+      "per_claim_recommendation": {
+        "INV-086": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "direction and category already match the stored values; append the evidence_quality_note and re-point live_status.evidence.from -> stamp this artifact"
+        },
+        "MECH-428": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate",
+          "change": "direction and category already match the stored values; pending_retest_after_substrate stays true (the 884a retest is still owed and this run is not it); append the note -> stamp this artifact"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "WITHDRAWN after red-team: the first draft proposed an SD-082 amend. SD-082 already carries this debt as two OPEN failure_record items -- V3-EXQ-1029 (consumer ON: 0/1694 argmin, 0/13857 sampled actions) and V3-EXQ-1046 (consequence-trained read-out rule-invariant, 0/7) -- and a 12th item restating them at 400 actions per seed would be duplicated debt. USER DECISION 2026-09-18T18:50:48Z (Option A) deliberately emptied SD-082's substrate_paths and found NO live corruption precisely because rule_readout_consumer defaults False and the all-ON recipe does not set it; this autopsy does not re-open that. Owed bookkeeping only: sd-allon-training-signal-absorption-telemetry still reads pending_implementation although it landed (ree-v3 996dec30) and this run consumed it. A cross-flag config guard (train_rule_bias_head without rule_readout_consumer) would be a small ree_core BUILD, reported for governance to weigh, not recommended here as an amend."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py: INV-086 3 targets (all alignment=other/not exercised), MECH-428 4 targets (other=3, unclear=1). No target reads weakened -> instrument debt, not granularity debt."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 1,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-884_2026-08-03"
+        ],
+        "refused_requeue": false,
+        "note": "Literal count MECH-428 = 1 (884), INV-086 = 0. This target declares both claims peripheral (per-claim category standard) so it does not add a hit. The brake does not fire -- but a blind same-question letter is REFUSED ON THE MERITS: see routing_detail."
+      },
+      "debt_class": "complex (probe-gated) / puzzle (known rules) at the SD-082 layer: no run has yet trained the read-out in a regime where its output reaches selection. Until that exists the H1 drive question cannot be asked through this consumer.",
+      "learning_extracted": [
+        "The paired absorption + conversion gate converted 1039's vacuous PASS into an honest refusal and localised the cause per seed. It also showed its own limit: a gate whose statistic is a window over UPDATES needs an update-count floor.",
+        "Check a recommended change against the corpus by WHAT IT CHANGES, not by the successor's name. 'Enable the read-out consumer' had already been run twice under SD-082.",
+        "Two of the five red gates share one upstream cause (pool collapse -> update starvation). Count causes, not gates.",
+        "Red-team F1 measured the clamp saturation in the SMOKE before queueing (saturated_frac 1.000 in all three arms); gating it was declined 2026-09-18. The full run reproduced it at seed 42.",
+        "A telemetry key read from the wrong selector branch is constant at its initialiser and looks like a measurement. Verify a new readout varies in the smoke."
+      ],
+      "routing": "implement-substrate",
+      "routing_detail": {
+        "refused": "V3-EXQ-1039b in any form that keeps this consumer as the conversion surface. Enabling rule_readout_consumer is expected to clear C0d (822b: head trains once the driver is fixed) and is NOT expected to clear B2 (1029, 1046) or A3 at seeds 43/44 (pool starvation).",
+        "gated_on": [
+          "SD-082 open failure_record items V3-EXQ-1029 and V3-EXQ-1046 (read-out authority at selection)",
+          "proposer-pool first-action diversity at seed 43 (SD-061 regulator is implemented_pending_validation, ready false)"
+        ],
+        "if_a_successor_is_ever_built": [
+          "A3 needs a minimum-update floor (it reported a 1-sample chance ratio as a zero-gradient signature)",
+          "record f_eligibility_envelope_size: modulatory_shortlist_size is a dead sentinel (0.0 in all nine cells) under use_f_eligibility_demotion, which writes a different key (e3_selector.py:4378 vs :4390)",
+          "the driver's --probe mode is hard-wired to seeds=[42], the one seed that passes B1 -- it needs a seed list before it can pre-screen anything",
+          "promote lpfc_bias_saturated_frac to a gate (the 2026-09-18 option C, re-asked with this run as evidence)"
+        ],
+        "in_flight_check": "no 1039b script, queue entry or claim (2026-09-20). Checked by CHANGE as well as by name after red-team: the recommended change (consumer ON) has already run as V3-EXQ-1029 and V3-EXQ-1046."
+      },
+      "fanout_recommendation": null,
+      "red_team": {
+        "model": "opus (claude-opus-5[1m]); drafting session was fable -- cross-model pass",
+        "verdict": "CONTESTED",
+        "disposition_survived": true,
+        "accepted": [
+          "F1 A3's offending cell is seed 43 where the clamp is NOT saturated; cause is update starvation from the pool collapse",
+          "F2 the recommended fix already ran as V3-EXQ-1029 / 1046 (B2-equivalent open and negative)",
+          "F3 --probe is hard-wired to seed 42",
+          "F4 modulatory_shortlist_size is a dead sentinel; authority-share explains B2 without the clamp",
+          "F5 the SD-082 amend contradicted the 2026-09-18 Option A decision -> WITHDRAWN",
+          "F6 'zero evidence rows of any kind' corrected to zero LITERATURE rows"
+        ],
+        "what_changed": "routing queue-experiment -> implement-substrate (gated on SD-082's existing open items); substrate amend withdrawn; measurement adequate -> partial; failure-location MECHANISM -> MIXED. Dispositions (non_contributory / standard, both claims peripheral) unchanged.",
+        "cheap_confirmers_run": "10/10 recomputes matched incl. brake (MECH-428=1, INV-086=0); flag-unset confirmed via exhaustive dataclass walk; saturation-at-init confirmed (shared weight_norm_pre, P0 and P1 deltas 0.0)"
+      }
+    },
+    {
+      "run_id": "v3_exq_1043a_mech537_communication_subspace_permutation_null_20260919T030056Z_v3",
+      "queue_id": "V3-EXQ-1043a",
+      "claim_ids": [
+        "MECH-537"
+      ],
+      "bears_on": [
+        "MECH-547",
+        "MECH-555",
+        "SD-080",
+        "SD-106"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "CONFIRMED that no scientific leg is adjudicated (readiness gate red: randrank margin over the trivial predictor 0.0085-0.054 against a 0.05 floor, 5 of 6 seeds under). The gate is a MARGIN gate: the random-rank arm is above the trivial predictor on 6/6 seeds, just not by 0.05. The first draft's stronger reading ('no low-rank bottleneck; refuse 1043b') is WITHDRAWN after red-team: a rank 8-11 projection of 146 live sender dimensions reproduces the receiver to R2 0.996, the complement carries the action (0.92-0.95) and the communication subspace does not (0.50-0.60) -- which is MECH-537's registered routing phenotype, met on C1, C3, C4a (6/6 each) and C5 (0.643 vs chance 0.066). What is unresolved is ORIENTATION versus a random same-rank subspace (C2) and the in-run C4b ceiling (2/6).",
+      "failed_criterion": "readiness (randrank_control_supra_trivial 0.0085 vs 0.05, worst seed 45; 5/6 under the floor, 6/6 above zero). Recorded, unadjudicated: C2 contrast positive 5/6, mean 0.04998, 95% CI [0.0051, 0.0948]; permutation clause 0/6; C4b 2/6.",
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES; not chargeable to REE and not to MECH-537"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the registered phenotype is largely present and one discriminating contrast (orientation vs random rank-r) was not measurable with the instrument built. NOT a weakening.",
+        "biological_reference": "clear -- Semedo 2019 V1->V2, Binish 2026 PFC->M1, Gonzalez 2026; 12 entries.",
+        "prerequisites": "present (6 of 7 readiness gates green: source adequacy 0.921, elevation 0.353, RRR R2 0.997, encoder trained, not collapsed, held-out steps 1965).",
+        "implementation": "partial -- the probe is complete and faithful to the 1043 autopsy's four required changes; the encoder carries the declared SD-106 limitation.",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- DOMINANT. The orientation contrast is read against ONE random draw per seed. The permutation clause answers a different question (is the fitted map real? yes, 200/200 on every seed) and its non-zero null mean is the normal signature of a fit that found structure, not a defect. The in-run C4b ceiling rule was flagged pre-queue (M2) as weak. The anchor-reachability guard passed at rank 32 for a gate read at rank 8-11.",
+        "integration": "coupled (the SCORED rank is not at the ladder ceiling; the CV-argmax rank is, 6/6 -- rrr_rank_at_ladder_ceiling true)",
+        "scale": "adequate at n=6 for what it measured; the legacy 1043 predicate recomputed on these numbers still fails (2/6, mean 0.04998 vs floor 0.05), so n was not the problem."
+      },
+      "biological_reference": {
+        "closest_mechanism": "inter-areal communication subspace (Semedo et al. 2019)",
+        "dependencies": [
+          "a receiver that reads a strict subset of sender variance",
+          "a sender with private (non-communicated) dimensions"
+        ],
+        "is_formal_import": true,
+        "divergence": "none established. (First draft asserted 'no selective reader at this interface'; withdrawn -- the receiver has participation ratio ~4-6 against 146 live sender dims.)",
+        "lit_status": "present (targeted_review_mutual_legibility_communication_subspaces, 12 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect: the orientation question lacks its reference distribution. No suppression asserted on MECH-537; nothing needs building.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1043a (diagnostic, FAIL, substrate_not_ready_requeue; instrument repair of V3-EXQ-1043, n=6, 11.1h): non_contributory for MECH-537. One readiness gate red: at the parsimonious rank (8-11 of 146 live dims) the random-rank arm clears the previous-action predictor on 6/6 seeds but by less than the 0.05 floor on 5/6. Unadjudicated but recorded: the claim's routing phenotype is largely present (C1, C3, C4a 6/6; C5 premise 0.643 vs chance 0.066); the orientation contrast is positive on 5/6 seeds, mean 0.050, 95% CI [0.005, 0.095] -- excludes 0, includes the 0.05 floor, so H1-small-but-real's declared null is NOT met. The permutation clause (p = 1.0, 6/6) means all 200 shuffled refits decode WORSE than the real subspace: it shows the sender->receiver map is real; it does not test orientation against a random same-rank subspace, because that reference (many random draws; randrank is ONE draw per seed) was never built. failure_autopsy_V3-EXQ-1043a_2026-09-20.",
+      "per_claim_recommendation": {
+        "MECH-537": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "category already standard; replace the 1043-era evidence_quality_note lead, resolve the standing 'DO NOT queue' vs EXP-1403 contradiction in notes (owed since the 1043 autopsy), and fix GFLAG-0310's mis-pointed provenance -> stamp this artifact"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py MECH-537: 1 target (1043, alignment unclear). No weakened target."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-537 literal count 0. Instrument defect owing no build -> does not count."
+      },
+      "debt_class": "complex (probe-gated) / puzzle (known rules) -- one missing instrument (a many-draw random-subspace reference), cheaper than what already ran.",
+      "learning_extracted": [
+        "A refit-based permutation null answers 'is the fitted structure real?'. 'Is its ORIENTATION special?' needs a reference over random subspaces of the same rank. Decide which question a null answers before reading its p.",
+        "p = 1.0 is not 'no information': here it is the most extreme attainable value, in the direction opposite to the confirming signature (200 of 200 shuffled fits decode worse).",
+        "The pre-queue red-team (H2) named the rank-32-anchor vs rank-8-11-gate mismatch and the late firing, and the run was queued with the fix owed.",
+        "A reachability guard must be evaluated at the operating point of the gate it covers.",
+        "WITHDRAWN (first draft): 'a permutation null is only valid if centred at 0' and the between-episode-structure mechanism -- the driver's own M3 diagnostic (between-episode subspace decodes 0.60, shuffled fit 0.40) refutes the mechanism."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "successor": "V3-EXQ-1043b, same question, same interface: replace the single randrank draw AND the permutation clause with a reference distribution over B random rank-r subspaces (decoder fits only, no RRR refits -- strictly cheaper than 1043a's 200 refits per seed); report the C2 CI as the pre-registered H1 statistic; re-specify the randrank readiness gate so it certifies the comparator can MOVE rather than that one draw clears 0.05.",
+        "early_abort_caution": "do NOT abort on the first seed: this margin has cross-seed sd 0.0186 on mean 0.0260 (failure_autopsy_V3-EXQ-999 learnings 6-7: a first-seed abort turns a high-variance gate into a coin flip). Evaluate over the seed set; record cells even when refusing.",
+        "user_decision": "whether to spend it. The first draft refused 1043b; the red-team showed that refusal rested on a premise the cells contest.",
+        "in_flight_check": "no 1043b script, queue entry or claim (2026-09-20)"
+      },
+      "fanout_recommendation": null,
+      "hypothesis_space_ledger_pending": {
+        "qid": "mech537_communication_subspace_orientation",
+        "mode": "B (resolve; all three stay alive -- readiness red, elimination bar not met)",
+        "H1-small-but-real": "alive. resolving_runs += V3-EXQ-1043a. Pre-registered statistic (CI on the C2 mean): [0.0051, 0.0948] at the parsimonious rank, [0.0154, 0.0535] at rank 32 -- excludes 0, includes 0.05, declared null NOT met.",
+        "H2-no-orientation": "alive. resolving_runs += V3-EXQ-1043a. The permutation null it named ran and returned p = 1.0 on 6/6, but that statistic tests fit-existence (P(D_comm_perm <= D_comm)), not orientation vs random; uninformative for this leg.",
+        "H3-no-low-rank-bottleneck": "alive. resolving_runs += V3-EXQ-1043a. Declared null ('C2 flat in rank') NOT met: C2 mean 0.0345 at rank 32 vs 0.0500 at the parsimonious rank."
+      },
+      "red_team": {
+        "model": "opus (claude-opus-5[1m]); drafting session was fable -- cross-model pass",
+        "verdict": "CONTESTED",
+        "disposition_survived": true,
+        "accepted": [
+          "F1 p=1.0 is reachable-and-extreme, not an artefact (significance needed D_comm < 0.33-0.37; floor 0.25)",
+          "F2 proposed null mechanism refuted by the M3 diagnostic",
+          "F3 H1's pre-registered CI never computed; ledger blocks missing",
+          "F4 'no low-rank bottleneck' unsupported; registered phenotype largely met",
+          "F5 'neither arm above trivial' false (randrank above on 6/6); 'not rank-censored' needs the scored-rank qualifier",
+          "F6 146 live dims, not ~230"
+        ],
+        "what_changed": "routing governance-note-only + refuse-1043b -> queue-experiment (in-place 1043b with a many-draw random-subspace reference); debt class mystery -> puzzle; biological divergence withdrawn; ledger blocks added. Direction/category unchanged.",
+        "cheap_confirmers_run": "14 recomputes; brake recipe verbatim = 0; per-seed table reproduced cell by cell"
+      }
+    },
+    {
+      "run_id": "v3_exq_1070_arc029_env_operating_point_feasibility_20260920T042654Z_v3",
+      "queue_id": "V3-EXQ-1070",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "CONFIRMED. training_tick_budget_equalised is genuinely unmet (realised P0+P1 ticks 461..1825, spread 3.96 vs ceiling 2.0); no env verdict is licensed and D3 (3 of 5 rungs) must not be cited. The first draft RESCUED a P1 reading; that rescue is WITHDRAWN after red-team. The occupancy half of P1 cannot fail at q in {0.25, 0.5, 0.75}: the detrended quantile bar fires ~q of the time by design (e3_selector.py:915-919) and tests/contracts/test_commit_threshold_variance_tracking.py pins |frac - q| < 0.10 and mean run >= 3.0. And ARC-029's P1 is specified for the ALTERNATING arm on >= 4/5 seeds; this run asserts breath_period == 0 (MECH-108 off) with 2 seeds, so P1 as written was not measured. What the run does add over the contract: the bar took force end-to-end on a TRAINED agent (window filled 30/30), and the run-length floor survived at q=0.25 on the shortest-episode rung (3.86 vs 3.0), the cell the driver predicted would fail -- with the caveat that the window spanned 15-39 EPISODES in every cell, i.e. a cross-episode quantile, not the within-run one the estimator's drift premise describes.",
+      "failed_criterion": "readiness (training_tick_budget_equalised 3.96 vs ceiling 2.0). D1, D2 passed; D3/D4 reported, not gating.",
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (the training-budget instrument). Not chargeable to REE or ARC-029."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected) -- this run is upstream of ARC-029's falsifier; it asks only whether an env operating point exists where P1 and P3 are jointly satisfiable.",
+        "biological_reference": "clear -- BG go/no-go commitment vs exploration modes (Humphries 2012; Schmidt 2013/2017 pause-cancel; Leventhal 2012 beta-stabilised state); 6 lit entries.",
+        "prerequisites": "present -- variance-tracking commit bar built 2026-09-18; rv collapse 1.27-1.88 decades in every (rung, seed).",
+        "implementation": "complete for the lever under test (bar_in_force_fraction 1.0 on 30/30 cells, window filled 30/30).",
+        "environment": "partial -- agent_health is hard-coded 1.0 with no constructor kwarg, so episode_length x |harm/step| is a conserved product; the ladder moves along it but cannot leave it. That is the open question, not a defect of this run.",
+        "measurement": "under-instrumented -- DOMINANT. Episode counts came from a random-policy pre-measurement (L5's 40.0 extrapolated) while _train_all_on_agent ends each episode on done. TRAINING-phase episode length vs the proxy: L1 -3%..+57%, L2 1.46x-2.78x shorter, L3 1.50x-2.79x, L5 1.43x-2.88x -> depth varied 4x along the manipulated dimension. Training and measurement are INTERLEAVED per (rung, seed); the spread first exceeded 2.0 at block 5 of 10, after 12 of 30 cells. P3 depends on policy competence and is confounded with depth.",
+        "integration": "coupled",
+        "scale": "unknown -- n=2 seeds, by design for a cheap diagnostic"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia commitment (go) vs deliberative (no-go/pause) operating modes with distinct risk profiles",
+        "dependencies": [
+          "a stable commit threshold relative to the agent's own variance statistics",
+          "episodes long enough to contain both modes"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present (targeted_review_arc_029, 6 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement / test-design defect (tick budget by proxy). The pre-registered 'no joint region -> substrate_conditional' disposition is NOT triggered and must not be applied from this run.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1070 (diagnostic, FAIL, substrate_not_ready_requeue): non_contributory for ARC-029. Readiness gate training_tick_budget_equalised unmet: realised training ticks 461..1825 across rung x seed (spread 3.96, ceiling 2.0), because per-rung episode counts were derived from a random-policy episode-length pre-measurement and the training agent's episodes ran 1.4x-2.9x shorter on L2/L3/L5 (L1 -3%..+57%). The joint-feasibility deliverable (3/5 rungs) is confounded with training depth and NOT citeable; the substrate_conditional disposition is NOT triggered. P1 is NOT discharged: the static quantile bar meets the occupancy band by construction, and P1 as registered (alternating arm, >= 4/5 seeds) was not run. Narrow residual: the variance-tracking bar took force on a trained agent in 30/30 cells (as a cross-episode quantile). Successor V3-EXQ-1070a was committed and claimed before this autopsy. failure_autopsy_V3-EXQ-1070_2026-09-20.",
+      "per_claim_recommendation": {
+        "ARC-029": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "category already standard; ARC-029 carries no diagnostic_evidence_adjudicated field, so write the note above and -> set diagnostic_evidence_adjudicated true"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py ARC-029: 4 targets, alignment unclear=4, none weakened -> measurement debt."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "ARC-029 literal count 0; instrument defect owing no build -> does not count."
+      },
+      "debt_class": "complicated (buildable) -- the repair is a named driver change with no open question (budget by realised ticks).",
+      "learning_extracted": [
+        "A verification statistic must be able to take the failing value. The red-team's 'realised 1710-1740, spread 1.02' (arc029_exq1066_prereg_derivation_20260919.md:394) reproduces EXACTLY as (ceil(400/L)+ceil(900/L)+ceil(400/L))*L over the pre-measured lengths: a design-time ceil() residue, bounded near 1 whatever training does, and denominated on a different phase set (it includes zworld P0a) from the precondition it was cited for.",
+        "A random-policy pre-measurement is not a proxy for a training agent's episode length: up to 2.9x off, sign changing along the ladder.",
+        "Before citing 'X held on N of N cells', ask whether X can fail. Occupancy ~ q is what a quantile bar is, and the substrate already pins it as a contract.",
+        "Read the claim's precondition text before crediting a run with discharging it: P1 names the alternating arm; this run switched it off.",
+        "Check the successor's actual design before writing requirements for it. 1070a existed, and had already rejected two of the first draft's four with reasons."
+      ],
+      "routing": "governance-note-only",
+      "pre_routing_fires": [
+        {
+          "check": "C1",
+          "names": [
+            "v3_exq_1066_arc029_commitment_mode_harm_variance_bar",
+            "v3_exq_125a_arc029_committed_mode_redesign",
+            "v3_exq_227_arc029_discrepancy_diagnostic"
+          ],
+          "disposition": "DISMISSED with reasons -- none is a substitute for 1070a. v3_exq_1066 is the P1-P3 EVIDENCE design that was refused at /queue-experiment Step 4 (bar never took force at the lineage env); it is the run the pre-registered 'region_found' disposition re-queues AFTER a feasible operating point is known, i.e. downstream of 1070a. v3_exq_125a reuses the rv-forcing ablation vehicle the 063a autopsy found confounded (do not queue as-is). v3_exq_227 is the 2026-04 discrepancy diagnostic, a different question. Also on disk, untracked and owned by the live 1070a session: v3_exq_1049_arc029_threshold_side_commitment_harm.py."
+        }
+      ],
+      "routing_detail": {
+        "successor_exists": "V3-EXQ-1070a: ree-v3 a7c8c97 committed 2026-09-20T10:45:18Z, claimed by ree-cloud-2 10:50:35Z. It uses a two-stage per-(rung, seed) pilot and ONE trainer call.",
+        "first_draft_items_withdrawn": [
+          "'loop until the tick target is met' -- 1070a rejects chunked training with a mechanism: _train_all_on_agent constructs its optimisers internally, so every chunk boundary resets Adam moments, MORE often at short-episode rungs, re-introducing a rung-correlated confound",
+          "'carry P1 = 30/30 forward as a prediction' -- 1070a refuses by design: a red gate licenses none of 1070's numbers"
+        ],
+        "live_gaps_in_1070a": [
+          "training_tick_budget_equalised is still evaluated only in analyse(), after every cell has run",
+          "the zworld P0a phase still budgets from LADDER_EP_LEN including L5's EXTRAPOLATED 40.0"
+        ],
+        "pass_to_1070a_session": "1070a's queue note quotes the L0 health-budget product as 1.159; the 1070 manifest reads 1.1812"
+      },
+      "fanout_recommendation": null,
+      "red_team": {
+        "model": "opus (claude-opus-5[1m]); drafting session was fable -- cross-model pass",
+        "verdict": "CONTESTED",
+        "disposition_survived": true,
+        "accepted": [
+          "F1 occupancy half of P1 satisfied by construction (contract-pinned)",
+          "F2 P1 as registered (alternating arm, >=4/5 seeds) not measured",
+          "F3 two of four successor requirements contradict the committed 1070a",
+          "F4 the '1710-1740' figure IS sourced and is a ceil() identity",
+          "F5 divergence figures were measurement-phase, not training-phase",
+          "F6 cross-episode window caveat omitted",
+          "F7 L0 contrast re-imported a warm-budget artefact"
+        ],
+        "what_changed": "rescued P1 reading withdrawn; routing queue-experiment -> governance-note-only (successor exists); successor requirements rewritten against 1070a. Direction/category unchanged.",
+        "cheap_confirmers_run": "15 recomputes incl. brake 0 and granularity 4/unclear=4"
+      }
+    },
+    {
+      "claim_ids": [
+        "MECH-017"
+      ],
+      "experiment_purpose": "evidence",
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue",
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (the additive-budget ARM construction). Not chargeable to REE or to MECH-017."
+      },
+      "biological_reference": {
+        "closest_mechanism": "complementary learning systems: hippocampal replay INTERLEAVES old and new experience into neocortex (McClelland 1995; Kumaran 2016)",
+        "dependencies": [
+          "interleaving of remote and recent traces within one consolidation episode",
+          "slow cortical learning rate"
+        ],
+        "is_formal_import": true,
+        "divergence": "LOAD-BEARING: 'additive budget' was built as two BLOCKED sequential passes. The reference system's answer to interference between remote and recent traces is INTERLEAVING within a consolidation episode (McClelland 1995; Kumaran 2016). The arm tests the schedule biology avoids, and it shows the interference biology avoids it for.",
+        "lit_status": "present (targeted_review_mech_017, 5 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (arm construction). No suppression asserted; MECH-017's standing reading is still V3-EXQ-1048's (mixed).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py MECH-017: 1 target (1048, free-text alignment 'mixed'). The 1048 autopsy recorded the two-claims-in-one-id observation and the user chose record-not-route; two instrument refusals do not change that."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-017 literal count 0. Instrument defect owing no build -> neither run counts."
+      },
+      "debt_class": "complex (probe-gated) / puzzle (known rules) -- two live hypotheses about the recency cost (intrinsic vs budget reallocation) and no arm yet built that can separate them.",
+      "routing": "queue-experiment",
+      "run_id": "v3_exq_1057_mech017_reality_consolidation_replay_additive_budget_20260918T211119Z_v3",
+      "queue_id": "V3-EXQ-1057",
+      "self_route_adjudication": "CONFIRMED. additive_arm_retains_replay_gain 0/5. D (whole buffer THEN recent window) is worse than BOTH parents on early probes on 5/5 seeds (D/B 1.11-1.28, D/A 2.02-2.33) and lands at the NO-TRAINING control (D/C early 0.997; forgetting ratio 2.73 vs C's 2.48), while staying within 5-11% of B on late probes. Two passes that each help, run back to back, cancel on the early window: destructive interference, not a collapse onto B. Ungated, C4 would have passed 4/5 and stamped 'supports' off an arm that had lost replay.",
+      "failed_criterion": "readiness (additive_arm_retains_replay_gain 0 of 5 vs 4); C4 never evaluated",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- not exercised (gated out before C1-C4).",
+        "biological_reference": "partial -- see biological_reference.divergence",
+        "prerequisites": "present (14/15 gates green; forgetting present 2.49x, replay covers early regime 0.73, consolidator updated E1/E2 96 steps each).",
+        "implementation": "complete -- the consolidator does what it is asked; A/B/C cells are bit-identical to V3-EXQ-1048's on the same box.",
+        "environment": "adequate",
+        "measurement": "misleading -- DOMINANT: the manipulated arm is not the construct. Two BLOCKED sequential passes over conflicting data windows do not combine on this harness; order determines which way the arm is displaced. The first draft attributed this to CrossModuleConsolidator building a fresh Adam per call; WITHDRAWN -- wake training in the same run is 18 fresh-Adam calls of the same function at 5x the lr and accumulates, as do ARM_A's four. The blocked SCHEDULE is implicated, not the optimiser.",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-1057 (evidence-purpose, FAIL, substrate_not_ready_requeue, non_degenerate false; already scoring_excluded): does not bear on MECH-017. The additive arm (whole-buffer pass then recent-window pass) failed its retention gate 0/5: on early probes it fell to the no-training control, worse than both parents (destructive interference between blocked passes over conflicting windows). Instrument finding. failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.",
+      "per_claim_recommendation": {
+        "MECH-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "STANDS"
+        }
+      },
+      "per_claim_note": "No claim-layer or scoring change is owed. Both runs already index as scoring_excluded: degenerate (non_degenerate false short-circuits before direction is read, build_experiment_indexes.py:3777-3783), and 'inconclusive' is inside the indexer's direction enum. Do NOT copy annotations into the run-pack manifest: the flat overlay that supplies non_degenerate:false fires only while the pack is un-annotated (:1770).",
+      "learning_extracted": [
+        "Blocked sequential passes over conflicting windows interfere; they do not add. Whole-then-recent cancels to the untrained control on early probes; recent-then-whole keeps and extends the early gain and loses the late one.",
+        "WITHDRAWN (first draft): 'fresh Adam per consolidate() call makes passes overwrite'. The same call accumulates 18 times per cell in wake training. Test a proposed mechanism against other uses of the same code path in the same run.",
+        "Compare a manipulated arm with the CONTROL as well as with its parents: D1 ~= C was the most informative number in the cluster and no gate reads it.",
+        "'Within noise' needs the run's own noise band (0.8% here, declared). 7-26% is heterogeneity of a real effect.",
+        "Both retention gates earned their keep: ungated, 1057 stamps supports and 1057a weakens from one instrument.",
+        "1048 vs 1057 on one box are bit-identical on A/B/C; 1057 vs 1057a on two boxes of the same machine_class string differ by up to 3.2% in a cell."
+      ],
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-intrinsic: the recency cost is intrinsic to training on remote traces, at any budget",
+          "H-reallocation: the recency cost is what is left when a fixed budget is spent away from the recent window",
+          "H-schedule: on a blocked schedule the displacement is set by pass ORDER, so 'cost' and 'benefit' are schedule artefacts (open -- NOT established; the first draft stated it as the structural property)"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "all three",
+            "axis": "measurement",
+            "sketch": "FIRST: dose ladder on the final pass -- after a fixed whole-buffer pass run k in {0, 3, 6, 12, 24} recent-window steps (and the mirror), tracing early and late MSE against k, with C as a plotted reference. It can explain why the additive budget buys early retention only. Null: both curves flat in k."
+          },
+          {
+            "hypothesis": "H-reallocation vs H-intrinsic",
+            "axis": "algorithm",
+            "sketch": "interleaved arm D3: alternate single whole-buffer and recent-window steps inside ONE optimisation (needs either a driver-built mixture buffer or a consolidate() that accepts a per-step window; specify which before queueing -- the sketch is under-specified as it stands). Both retention gates kept."
+          }
+        ],
+        "note": "GOV-FANOUT-1. Two letters have now circled one construction. If the interleaved arm ALSO fails both retention gates, stop: the additive-budget question is not answerable at this dose on this consolidator and the honest record is V3-EXQ-1048's mixed reading."
+      }
+    },
+    {
+      "claim_ids": [
+        "MECH-017"
+      ],
+      "experiment_purpose": "evidence",
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue",
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (the additive-budget ARM construction). Not chargeable to REE or to MECH-017."
+      },
+      "biological_reference": {
+        "closest_mechanism": "complementary learning systems: hippocampal replay INTERLEAVES old and new experience into neocortex (McClelland 1995; Kumaran 2016)",
+        "dependencies": [
+          "interleaving of remote and recent traces within one consolidation episode",
+          "slow cortical learning rate"
+        ],
+        "is_formal_import": true,
+        "divergence": "LOAD-BEARING: 'additive budget' was built as two BLOCKED sequential passes. The reference system's answer to interference between remote and recent traces is INTERLEAVING within a consolidation episode (McClelland 1995; Kumaran 2016). The arm tests the schedule biology avoids, and it shows the interference biology avoids it for.",
+        "lit_status": "present (targeted_review_mech_017, 5 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (arm construction). No suppression asserted; MECH-017's standing reading is still V3-EXQ-1048's (mixed).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "granularity_debt_cluster.py MECH-017: 1 target (1048, free-text alignment 'mixed'). The 1048 autopsy recorded the two-claims-in-one-id observation and the user chose record-not-route; two instrument refusals do not change that."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-017 literal count 0. Instrument defect owing no build -> neither run counts."
+      },
+      "debt_class": "complex (probe-gated) / puzzle (known rules) -- two live hypotheses about the recency cost (intrinsic vs budget reallocation) and no arm yet built that can separate them.",
+      "routing": "queue-experiment",
+      "run_id": "v3_exq_1057a_mech017_reality_consolidation_replay_additive_budget_pass_order_20260918T234946Z_v3",
+      "queue_id": "V3-EXQ-1057a",
+      "self_route_adjudication": "CONFIRMED. With order reversed, D2 (recent THEN whole) retained replay's early gain 5/5 and is the BEST early arm of all five (7.48e-5 vs A 8.03e-5; forgetting ratio 1.17 vs A 1.25), but is worse than A on late probes on 3/5 seeds (D2/A 1.26, 1.15, 0.91, 0.84, 1.12) -> additive_arm_retains_recency_benefit_d2 2/5. These gaps are 9-32x the run's declared 0.8% noise band, so they are real and seed-heterogeneous, not noise: D2 is partially additive -- A's early benefit and more, none of B's late benefit. (First-draft wording 'D2 IS A within seed noise' WITHDRAWN.)",
+      "failed_criterion": "readiness (additive_arm_retains_recency_benefit_d2 2 of 5 vs 4); C4 never evaluated (it would have read 1/5)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- not exercised.",
+        "biological_reference": "partial -- see biological_reference.divergence",
+        "prerequisites": "present (17/18 gates green).",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading -- DOMINANT: the manipulated arm is not the construct. Two BLOCKED sequential passes over conflicting data windows do not combine on this harness; order determines which way the arm is displaced. The first draft attributed this to CrossModuleConsolidator building a fresh Adam per call; WITHDRAWN -- wake training in the same run is 18 fresh-Adam calls of the same function at 5x the lr and accumulates, as do ARM_A's four. The blocked SCHEDULE is implicated, not the optimiser.",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-1057a (evidence-purpose, FAIL, substrate_not_ready_requeue, non_degenerate false; already scoring_excluded): does not bear on MECH-017. Reversed order (recent then whole): replay's early gain retained 5/5 and exceeded (best early arm of five), recency benefit retained 2/5. Partially additive -- early only. With 1057: order decides which way a blocked two-pass arm is displaced; neither order delivers both parents' benefits. The intrinsic-vs-reallocation question stays OPEN. failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.",
+      "per_claim_recommendation": {
+        "MECH-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "STANDS"
+        }
+      },
+      "per_claim_note": "No claim-layer or scoring change is owed. Both runs already index as scoring_excluded: degenerate (non_degenerate false short-circuits before direction is read, build_experiment_indexes.py:3777-3783), and 'inconclusive' is inside the indexer's direction enum. Do NOT copy annotations into the run-pack manifest: the flat overlay that supplies non_degenerate:false fires only while the pack is un-annotated (:1770).",
+      "learning_extracted": [
+        "Blocked sequential passes over conflicting windows interfere; they do not add. Whole-then-recent cancels to the untrained control on early probes; recent-then-whole keeps and extends the early gain and loses the late one.",
+        "WITHDRAWN (first draft): 'fresh Adam per consolidate() call makes passes overwrite'. The same call accumulates 18 times per cell in wake training. Test a proposed mechanism against other uses of the same code path in the same run.",
+        "Compare a manipulated arm with the CONTROL as well as with its parents: D1 ~= C was the most informative number in the cluster and no gate reads it.",
+        "'Within noise' needs the run's own noise band (0.8% here, declared). 7-26% is heterogeneity of a real effect.",
+        "Both retention gates earned their keep: ungated, 1057 stamps supports and 1057a weakens from one instrument.",
+        "1048 vs 1057 on one box are bit-identical on A/B/C; 1057 vs 1057a on two boxes of the same machine_class string differ by up to 3.2% in a cell."
+      ],
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-intrinsic: the recency cost is intrinsic to training on remote traces, at any budget",
+          "H-reallocation: the recency cost is what is left when a fixed budget is spent away from the recent window",
+          "H-schedule: on a blocked schedule the displacement is set by pass ORDER, so 'cost' and 'benefit' are schedule artefacts (open -- NOT established; the first draft stated it as the structural property)"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "all three",
+            "axis": "measurement",
+            "sketch": "FIRST: dose ladder on the final pass -- after a fixed whole-buffer pass run k in {0, 3, 6, 12, 24} recent-window steps (and the mirror), tracing early and late MSE against k, with C as a plotted reference. It can explain why the additive budget buys early retention only. Null: both curves flat in k."
+          },
+          {
+            "hypothesis": "H-reallocation vs H-intrinsic",
+            "axis": "algorithm",
+            "sketch": "interleaved arm D3: alternate single whole-buffer and recent-window steps inside ONE optimisation (needs either a driver-built mixture buffer or a consolidate() that accepts a per-step window; specify which before queueing -- the sketch is under-specified as it stands). Both retention gates kept."
+          }
+        ],
+        "note": "GOV-FANOUT-1. Two letters have now circled one construction. If the interleaved arm ALSO fails both retention gates, stop: the additive-budget question is not answerable at this dose on this consolidator and the honest record is V3-EXQ-1048's mixed reading."
+      }
+    }
+  ],
+  "cluster_note": "Per-run dispositions here are COPIES of the single / claim-cluster artifacts of the same date and must stay identical to them. This artifact adds only the cross-claim process reading.",
+  "bears_on": [
+    "experiment_infrastructure:readiness_gate_late_evaluation"
+  ],
+  "cluster_pattern": {
+    "shape": "five consecutive runs across five unrelated claims (INV-086/MECH-428, MECH-537, ARC-029, MECH-017 x2) self-route substrate_not_ready_requeue on exactly one or a few readiness preconditions; every other gate green; zero claim evidence produced. A sixth same-shape run (V3-EXQ-1050, MECH-021) was autopsied 2026-09-18.",
+    "is_independent_bugs": false,
+    "structural_property": "The gates are GOOD -- each blocked a verdict that would have been wrong. What recurs is foreknowledge and placement: (1) in 4 of 5 runs the pre-queue red-team had NAMED the mechanism that then fired (1039a: measured in the smoke; 1070; 1057; 1057a), and in the fifth (1043a) it named the late evaluation itself; each was queued with the finding owed, declared as a risk, recorded-not-gated, or marked fixed on a statistic that could not fail. (2) the abort primitive exists (_metrics.p0_readiness_gate / P0NotReady, ~35 drivers, documented in /queue-experiment) and is called ONCE, after the seed loop, in 1043a / 1057 / 1057a; 1039a and 1070 do not use it.",
+    "evidence_table": [
+      {
+        "run": "V3-EXQ-1043a",
+        "hours": 11.13,
+        "gate": "randrank_control_supra_trivial",
+        "pre_queue": "red-team H2: 'fires only after all 6 seeds ... early-abort after seed 1 is OWED'",
+        "decided_at": "seed 42 (first of 6): 0.020 vs 0.05"
+      },
+      {
+        "run": "V3-EXQ-1070",
+        "hours": 3.52,
+        "gate": "training_tick_budget_equalised",
+        "pre_queue": "red-team F4 'FIXED ... realised 1710-1740, spread 1.02' (arc029_exq1066_prereg_derivation_20260919.md:394) -- a design-time ceil() identity that cannot exceed ~1.02 whatever training does",
+        "decided_at": "block 5 of 10 (training and measurement are interleaved per rung x seed), after 12 of 30 cells"
+      },
+      {
+        "run": "V3-EXQ-1039a",
+        "hours": 3.18,
+        "gate": "C0d / A3 (clamp saturation)",
+        "pre_queue": "red-team F1 named the zero-gradient route; gating it (option C) declined 2026-09-18",
+        "decided_at": "seed 42 (first of 3) training: delta 0.0, saturated_frac 1.0"
+      },
+      {
+        "run": "V3-EXQ-1057",
+        "hours": 0.14,
+        "gate": "additive_arm_retains_replay_gain",
+        "pre_queue": "driver docstring F2 (v3_exq_1057_*.py:282, verbatim): 'DECLARED RISK: this gate may well fire at full scale'; queue note: 'the F2 gate FIRES at --dry-run scale ... the gate may or may not clear'",
+        "decided_at": "n/a (9 min)"
+      },
+      {
+        "run": "V3-EXQ-1057a",
+        "hours": 0.24,
+        "gate": "additive_arm_retains_recency_benefit_d2",
+        "pre_queue": "red-team G1 predicted D2 collapses onto A",
+        "decided_at": "n/a (14 min)"
+      }
+    ],
+    "compute_without_claim_evidence_hours": 18.2,
+    "recoverable_with_first-failing-seed_abort_hours": "WITHDRAWN as a headline. ~13 h is recoverable for the GATE VERDICT only, and not losslessly: a seed-42 abort of 1039a loses the seed-43 pool-collapse finding; a block-5 abort of 1070 loses the L2/L3/L5 depth coverage; and 1043a (9.2 of the 13 h) is a high-variance margin (sd 0.0186 on mean 0.0260) -- the regime failure_autopsy_V3-EXQ-999 learnings 6-7 (confirmed) ruled AGAINST first-seed abort.",
+    "readings": [
+      "process_property_not_substrate",
+      "NOT test_design_ceiling",
+      "NOT substrate_enrichment"
+    ],
+    "planning_decision_forced": "whether /queue-experiment should treat a red-team finding against a READINESS gate as blocking unless dispositioned with a statistic that can take the failing value. Standing-rule change; needs its own GOV-HELDOUT-1 check; recommended here, not made."
+  },
+  "recommended_infrastructure": [
+    "extend the EXISTING experiments/_metrics.p0_readiness_gate with an incremental form and call it INSIDE the seed/phase loop; on refusal, ABORT-AND-RECORD what ran (V3-EXQ-999 learning 6). Do not build a second gate module.",
+    "scope early refusal to gates whose per-cell statistic has low cross-seed dispersion or is a phase-complete quantity; evaluate high-variance margins over the seed set (V3-EXQ-999 learning 7).",
+    "/queue-experiment Step 4.5: a finding against a readiness gate may be dispositioned FIXED only with a statistic that can take the failing value (1070's could not).",
+    "anchor-reachability guards evaluated at the gate's operating point."
+  ],
+  "routing_note": "No claim moves on this artifact. Follow-on (the helper, the skill rule) is reported here for /governance to chip after ratification; this session spawns nothing (CLAUDE.md Session Land step 6, autopsy-own-routing rule).",
+  "red_team": {
+    "model": "opus (claude-opus-5[1m]); drafting session was fable -- cross-model pass",
+    "verdict": "CONTESTED",
+    "disposition_survived": true,
+    "accepted": [
+      "F1 first-seed abort is NOT lossless (1039a seed 43, 1070 depth coverage)",
+      "F2 confirmed V3-EXQ-999 autopsy already ruled against first-seed abort for high-variance gates",
+      "F3 the abort primitive already exists; the gap is the call site",
+      "F4 1070 decided at block 5 of 10, not 'before measurement'",
+      "F5 '5 of 5' is 4 of 5"
+    ],
+    "rejected": [
+      "F6 '1057 quote fabricated' -- the string is verbatim at v3_exq_1057_*.py:282; the red-team searched the queue note only. Source now cited."
+    ],
+    "what_changed": "recoverable-hours headline withdrawn; helper recommendation re-scoped to the existing primitive with abort-and-record; 5/5 -> 4/5; 1070 timing corrected."
+  }
+}
