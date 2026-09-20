@@ -3405,3 +3405,9 @@ One line per hourly tick. ASCII only.
 2026-09-20T11:51:44Z no eligible item (skipped 256): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-003:skill /governance not allowed
 2026-09-20T13:00:46Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 254 items, 32 ready, 0 in flight)
 2026-09-20T12:58:33Z SPAWN IGW-20260920-241 skill=/queue-experiment prio=40 uuid=a1931881-15ea-4ae9-9799-73fe0c739aef pid=81604 worktree=igw-241-proposal-for-mech-078
+2026-09-20T14:08:56Z skip: paused (.igw_routine_pause present)
+2026-09-20T15:11:58Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 253 items, 30 ready, 0 in flight)
+2026-09-20T15:12:16Z auto-defer IGW-20260920-241 hash=f60ab188fe47 for 48h (reaped -> completed_resumable)
+2026-09-20T15:12:16Z reaped TASK_CLAIMS igw-auto-igw-241-proposal-for-mech-078-20260920T130120Z (ledger IGW-20260920-241 -> completed_resumable)
+2026-09-20T15:12:20Z GC removed worktree igw-241-proposal-for-mech-078 post-reap (ledger IGW-20260920-241 -> completed_resumable; removed; branch deleted)
+2026-09-20T15:09:00Z no eligible item (skipped 253): IGW-20260920-001:skill /governance not allowed; IGW-20260920-002:skill /governance not allowed; IGW-20260920-223:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
