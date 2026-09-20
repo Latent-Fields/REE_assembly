@@ -3641,6 +3641,10 @@
     declared -- no trainer exists in ree_core; and precision_error_corr, absent from driver and manifest entirely), so
     the CONFIRMING conjunction was never fully evaluable; and the run calls the consolidator directly rather than
     inside a sleep cycle (declared). Status stays `candidate`.
+
+    [governance-20260920] V3-EXQ-1057 (evidence-purpose, FAIL, substrate_not_ready_requeue, non_degenerate false; already scoring_excluded): does not bear on MECH-017. The additive arm (whole-buffer pass then recent-window pass) failed its retention gate 0/5: on early probes it fell to the no-training control, worse than both parents (destructive interference between blocked passes over conflicting windows). Instrument finding. failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.
+
+    [governance-20260920] V3-EXQ-1057a (evidence-purpose, FAIL, substrate_not_ready_requeue, non_degenerate false; already scoring_excluded): does not bear on MECH-017. Reversed order (recent then whole): replay's early gain retained 5/5 and exceeded (best early arm of five), recency benefit retained 2/5. Partially additive -- early only. With 1057: order decides which way a blocked two-pass arm is displaced; neither order delivers both parents' benefits. The intrinsic-vs-reallocation question stays OPEN. failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.
   source:
     - docs/processed/legacy_tree/architecture/sleep/reality_consolidation.md
 - id: MECH-018
@@ -5556,7 +5560,9 @@
   claim_type: mechanism_hypothesis
   subject: provenance.papez_like_reality_filtering
   polarity: asserts
-  status: provisional
+  status: candidate
+  evidence_quality_note: |
+    [governance-20260920] DEMOTED provisional -> candidate, user-approved 2026-09-20 (pending decision dec-20260918T190425-MECH-037). Basis: no experimental evidence and no V3 substrate built against it; literature base is 5 entries at conflict_ratio 0.667 (2 supports / 1 weakens / 2 mixed). Not a falsification; history kept. Re-promotion is gated on the what_would_answer precondition (separately instrumented trace/ordering signal that varies across conditions).
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -13935,6 +13941,7 @@
       as_of: 2026-09-14
       verdict: non_contributory/standard
   epistemic_category: standard
+  diagnostic_evidence_adjudicated: true
   implementation_phase: v3
   evidence_quality_note: |
     EXQ-125 FAIL (2026-03-29): committed mode discriminative pair FAIL. Adding weakening
@@ -14016,6 +14023,8 @@
     the mechanical conflict_ratio demote threshold will not fire on its own. Redesign route per
     what_would_answer P1-P3 with existing levers (MECH-108 effective_threshold sweep;
     use_natural_commit_latch_hold) -> /queue-experiment; proposal EXP-1394 stays proposed.
+
+    [governance-20260920] V3-EXQ-1070 (diagnostic, FAIL, substrate_not_ready_requeue): non_contributory for ARC-029. Readiness gate training_tick_budget_equalised unmet: realised training ticks 461..1825 across rung x seed (spread 3.96, ceiling 2.0), because per-rung episode counts were derived from a random-policy episode-length pre-measurement and the training agent's episodes ran 1.4x-2.9x shorter on L2/L3/L5 (L1 -3%..+57%). The joint-feasibility deliverable (3/5 rungs) is confounded with training depth and NOT citeable; the substrate_conditional disposition is NOT triggered. P1 is NOT discharged: the static quantile bar meets the occupancy band by construction, and P1 as registered (alternating arm, >= 4/5 seeds) was not run. Narrow residual: the variance-tracking bar took force on a trained agent in 30/30 cells (as a cross-episode quantile). Successor V3-EXQ-1070a was committed and claimed before this autopsy. failure_autopsy_V3-EXQ-1070_2026-09-20.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
@@ -32034,6 +32043,12 @@
       as_of: 2026-09-08
       verdict: hold_candidate_resolve_conflict/applied
   epistemic_category: standard
+  evidence_quality_note: |
+    [governance-20260920] V3-EXQ-1063 (diagnostic, PASS on validity; indexer vacuous_pass genuine, on C4): non_contributory for INV-063, by design. CITEABLE: on a converged base at alpha_world 0.3, three sleep cycles with the world-forward trainer on made frozen-battery MSE worse on 3/3 seeds while the trained objective (InfoNCE) moved the other way -- the objective-mismatch signature. The base sits near the copy-the-input reference (ratio 1.07 / 0.77 / 1.01; seed 123 is 23% BETTER, so it is a reference, not a bound). UNCITEABLE: D2/D4 (InfoNCE at 99.5% of chance at tau 0.1) and C4's attribution premise. Read with inv063_legb_tau_bind_20260920 / GFLAG-0382: on 798a's configuration every READABLE tau (<= 0.01) gives a NEGATIVE across-sleep delta and every positive delta (tau >= 0.03) is unreadable. Neither readout currently shows sleep improving the world-forward model where leg B needs it. failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.
+
+    [governance-20260920] V3-EXQ-1069 (diagnostic, PASS, inv063_p1_intake_ladder_gradeable): non_contributory for INV-063, by design. On 798a's configuration with P0 shared per seed, the SD-MEL-PRODUCER ladder grades waking MEL: monotone 3/3, relative spread 0.394 / 0.241 / 1.691 (floor 0.25), P1 met on 2/3 = exactly the requirement; robust to the episode-truncation control. Both indexer flags cleared as artefacts. Power: on the matched machine class (798a-linux 2/3, this run 2/3) the per-seed pass rate is 4/6, at which a 3-seed gate needing 2 voids about 1 time in 4; part of the 798a linux/darwin difference is a documented cross-machine-class divergence, which seeds on one box do not hedge. failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.
+  pending_retest_after_substrate: true
+  diagnostic_evidence_adjudicated: true
   subject: sleep.entropy_intake
   description: >
     A minimum level of environmental entropy intake during waking is required to sustain
@@ -76985,7 +77000,7 @@
   claim_type: design_decision
   subject: sleep.first_order_phase_readouts
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
     reading: candidate
     as_of: 2026-07-18
@@ -77036,6 +77051,8 @@
     -- the honest mapping, since the remaining condition is an ordinary non-diagnostic
     run, NOT a substrate block, and substrate_conditional would wrongly suppress this
     claim from the promotion queue and the inter-governance workset.
+
+    [governance-20260920] V3-EXQ-1058 (evidence-purpose, PASS 8/8 seeds, claim_ids exactly [SD-071] under the user-granted 2026-09-18 carve-out): SUPPORTS. nrem null_slope_ratio 0.1445 CI95 [0.1438, 0.1451]; sws 0.1495 CI95 [0.1344, 0.1646]; ceiling (0.25) outside CI95 on both legs; C3 sws ladder spread passes 8/8. Governance driver skim 2026-09-20: nothing found (plain AND of C1/C2/C3; ceiling attainable in both directions -- the pre-rebuild sws readout read 1.0 in 778c). This discharges the claim's own REMAINING CONDITION FOR PROMOTION (one non-diagnostic run tagging it). PROMOTED candidate -> provisional, user-approved 2026-09-20. Scope unchanged: instrument validity of the nrem and sws readouts only; says nothing about consolidation behaviour, staging order, MECH-120 or MECH-121; the rem leg stays owned by the 778d/e/f portfolio.
   origin: >
     Child B of the SD-068 claim-synthesis decomposition, approved at the interactive gate
     2026-07-18 (session gracious-bassi-721580). Full derivation, discrimination gate and
@@ -79363,6 +79380,8 @@
     question; does NOT extend to E2.world_forward (untrained by this or any sleep-time pathway --
     see bears_on) and does not add new evidence for MECH-423's super-additivity hypothesis itself
     (that remains V3-EXQ-680e's evidence).
+
+    [governance-20260920] V3-EXQ-1060 (diagnostic, PASS, e2_world_forward_sleep_trainer_live): non_contributory for MECH-423 -- the manifest's 'supports' is NOT warranted: the run is a wiring/liveness check of the 2026-09-17 lever use_sleep_world_forward_consolidation and tests no super-additivity contrast (sibling test-bed validations 798a and 1063 stamp non_contributory). What it establishes: through a real sleep cycle the lever moves E2's world heads (min max|delta| 0.0079, 8 updates) and the OFF arm is bit-identical. What it does not: that the movement is learning -- 0.0079 is 98.7% of the 8 x lr fresh-Adam step bound. Discharges the open failure_record on substrate_queue e2-world-forward-sleep-trainer as a LIVENESS showing only. failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.
 - id: MECH-424
   title: "Language prediction as a corrective / instantiating predictive stream: when language is modelled as an externalisation of internal cognition, predicting language inside the integrated substrate can INSTANTIATE cognitive structures not gained sensorimotorically, and can CORRECT or DEGRADE existing structures as a function of the language's quality. The bidirectional clause (good language repairs structure; bad language corrupts it) is the discriminating edge over language-as-scaffold."
   claim_type: mechanism_hypothesis
@@ -79617,6 +79636,8 @@
     candidate, epistemic_category stays standard, diagnostic_evidence_adjudicated stays true,
     MECH-428's pending_retest_after_substrate stays true (the V3-EXQ-884a retest remains owed and
     this run is not it).
+
+    [governance-20260920] V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds 43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes 0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
 
 - id: MECH-426
   title: progress_velocity_maintenance
@@ -79977,6 +79998,8 @@
     candidate, epistemic_category stays standard, diagnostic_evidence_adjudicated stays true,
     MECH-428's pending_retest_after_substrate stays true (the V3-EXQ-884a retest remains owed and
     this run is not it).
+
+    [governance-20260920] V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds 43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes 0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
   pending_retest_after_substrate: true
   what_would_answer: >
     In a regime where DIRECT superordinate-goal seeding is sparse (unscaffolded z_goal
@@ -101290,6 +101313,8 @@
     not as pressure on the claim. NOTE (GFLAG-0310): this claim's live_status.evidence.from
     currently projects to failure_autopsy_V3-EXQ-1044_2026-09-17, which names MECH-537 only in
     bears_on; the adjudicating artifact is this one.
+
+    [governance-20260920] V3-EXQ-1043a (diagnostic, FAIL, substrate_not_ready_requeue; instrument repair of V3-EXQ-1043, n=6, 11.1h): non_contributory for MECH-537. One readiness gate red: at the parsimonious rank (8-11 of 146 live dims) the random-rank arm clears the previous-action predictor on 6/6 seeds but by less than the 0.05 floor on 5/6. Unadjudicated but recorded: the claim's routing phenotype is largely present (C1, C3, C4a 6/6; C5 premise 0.643 vs chance 0.066); the orientation contrast is positive on 5/6 seeds, mean 0.050, 95% CI [0.005, 0.095] -- excludes 0, includes the 0.05 floor, so H1-small-but-real's declared null is NOT met. The permutation clause (p = 1.0, 6/6) means all 200 shuffled refits decode WORSE than the real subspace: it shows the sender->receiver map is real; it does not test orientation against a random same-rank subspace, because that reference (many random draws; randrank is ONE draw per seed) was never built. failure_autopsy_V3-EXQ-1043a_2026-09-20. SUPERSEDES the V3-EXQ-1043-era lead of this note as the current reading.
   live_status:
     reading: candidate
     as_of: 2026-09-17
@@ -102846,6 +102871,8 @@
     `zworld_actor_adequacy_locus` -- no registered leg of that question names a TRANSFER
     FAILURE between a well-trained objective and its consumer, which is what this run
     measured. Status stays implemented; not promoted, not demoted.
+
+    [governance-20260920] V3-EXQ-1065 (diagnostic; run-level FAIL by combination rule only; all readiness green). MECH-566: WEAKENS, narrowly -- the ZCA member of its registered family, applied to the frozen SD-106@epochs40 code, gave no held-out lift on 3/3 seeds (-0.0042 / -0.0078 / +0.0107; confirm bar 0.05) against an already per-component-standardised baseline; the family's other member (per-component standardisation) IS that baseline and is unmeasured here and lineage-wide; LDA (supervised, outside the registered family) was also null and is the only member sharing V3-EXQ-1008's ridge convention. The transform was not inert: it raised TRAIN agreement by +0.069 / +0.076 / +0.086 and cut final CE 38-44%, none of which transferred -- reconditioning accelerates the consumer's fit and buys no generalisation on this code. Registered supporting readout (b) fired: a converged linear probe trails PCA-32 by 0.231 (claim named ~0.14) -> the deficit is in the code, not the consumer's optimisation; per the falsifier's own wording what remains is 'content OR nonlinear warp', and a nonlinear reader recovers 6-13x more from the SD-106 code than from PCA-32, which points at warp. SD-106: UNKNOWN -- PC-recoverability 0.835 mid-band 3/3; the statistic's HIGH band has no reachability evidence. Pre-registered M1_FALSIFY route: MECH-567 (target-carrying head). failure_autopsy_V3-EXQ-1065_2026-09-20.
   validation_experiment: 'V3-EXQ-1023 -- re-runs ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py
     UNCHANGED against an SD-106-ON warmup. ACCEPTANCE TARGET (pre-set by governance gov-20260911, not
     invented at build time): the observation->z_world latent reaches PCA-32 parity -- >= 0.85 held-out
@@ -105959,6 +105986,7 @@
   polarity: asserts
   status: candidate
   epistemic_category: standard
+  diagnostic_evidence_adjudicated: true
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -106008,7 +106036,8 @@
     normalisation vs encoder objective), with a different falsifier. The CDQ-010 mine''s finding is that
     CDQ-007 and CDQ-010 do NOT share a mechanism and must not be registered once; what they share is a
     diagnostic habit, namely that a lever-exhaustion conclusion should be preceded by a check for an invariance
-    between lever and DV.'
+    between lever and DV.
+    [governance-20260920] V3-EXQ-1065 (diagnostic; run-level FAIL by combination rule only; all readiness green). MECH-566: WEAKENS, narrowly -- the ZCA member of its registered family, applied to the frozen SD-106@epochs40 code, gave no held-out lift on 3/3 seeds (-0.0042 / -0.0078 / +0.0107; confirm bar 0.05) against an already per-component-standardised baseline; the family''s other member (per-component standardisation) IS that baseline and is unmeasured here and lineage-wide; LDA (supervised, outside the registered family) was also null and is the only member sharing V3-EXQ-1008''s ridge convention. The transform was not inert: it raised TRAIN agreement by +0.069 / +0.076 / +0.086 and cut final CE 38-44%, none of which transferred -- reconditioning accelerates the consumer''s fit and buys no generalisation on this code. Registered supporting readout (b) fired: a converged linear probe trails PCA-32 by 0.231 (claim named ~0.14) -> the deficit is in the code, not the consumer''s optimisation; per the falsifier''s own wording what remains is ''content OR nonlinear warp'', and a nonlinear reader recovers 6-13x more from the SD-106 code than from PCA-32, which points at warp. SD-106: UNKNOWN -- PC-recoverability 0.835 mid-band 3/3; the statistic''s HIGH band has no reachability evidence. Pre-registered M1_FALSIFY route: MECH-567 (target-carrying head). failure_autopsy_V3-EXQ-1065_2026-09-20.'
   notes: 'Registered by the CDQ-010 Mine+Register pass of the Convergence Demand Pipeline (plan of record
     evidence/planning/convergence_demand_pipeline_plan.md section 5 steps 2-3), session cdq010-transfer-mechanism-20260917,
     chip-20260917-cdq010-transfer-mechanism-intake. Mined from REE_convergence/sources/muzero/consumer_trained_encoder.md
