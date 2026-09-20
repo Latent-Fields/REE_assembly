@@ -866,6 +866,47 @@ def _run_json_script(script: Path, args: list[str], timeout: float) -> dict:
         ) from exc
 
 
+# ---------------------------------------------------------------------------
+# /api/session_start -- the start prompt for a bounded, on-demand role session
+# (2026-09-20; design: evidence/planning/
+# bounded_orchestrator_session_start_design_staged_20260920.md sec 3).
+#
+# serve.py must not import umbrella modules, so this SHELLS OUT to
+# scripts/session_start_prompt.py --json, which composes the standing
+# kind:session_start row's policy text with a live-state block generated from
+# durable records. Nothing about the state is stored anywhere, so a session
+# that died without landing still leaves a current prompt. The generator makes
+# several coordinator reads (~5-10 s), so the result is memoised briefly;
+# ?fresh=1 bypasses it (the panel's Copy button does, so what is copied is
+# never older than the click).
+# ---------------------------------------------------------------------------
+_SESSION_START_ROLES = ("orchestrator",)
+_SESSION_START_TTL_S = 60.0
+_session_start_cache: dict = {}
+_session_start_lock = threading.Lock()
+
+
+def read_session_start(role: str, fresh: bool = False, timeout: float = 60.0) -> dict:
+    if role not in _SESSION_START_ROLES:
+        return {"error": "unknown role %r" % role, "roles": list(_SESSION_START_ROLES)}
+    now = time.time()
+    with _session_start_lock:
+        hit = _session_start_cache.get(role)
+        if hit and not fresh and now - hit[0] < _SESSION_START_TTL_S:
+            return hit[1]
+    try:
+        payload = _run_json_script(
+            _SCRIPTS_DIR / "session_start_prompt.py", ["--role", role, "--json"],
+            timeout=timeout)
+    except Exception as exc:  # noqa: BLE001
+        return {"role": role, "error": str(exc),
+                "hint": "run scripts/session_start_prompt.py --role %s in a "
+                        "terminal; pull REE_Working if the script is missing" % role}
+    with _session_start_lock:
+        _session_start_cache[role] = (now, payload)
+    return payload
+
+
 def _stale_claims_summary(timeout: float = 20.0) -> dict:
     try:
         data = _run_json_script(
@@ -7476,6 +7517,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 {"chip_ref": ref, "prompt": prompt}, default=str
             ).encode()
             self._json_response(body, status=200 if prompt else 404)
+            return
+        if path == "/api/session_start":
+            from urllib.parse import parse_qs  # noqa: WPS433
+            _qs = parse_qs(urlparse(self.path).query)
+            payload = read_session_start(
+                (_qs.get("role", ["orchestrator"])[0] or "orchestrator").strip(),
+                fresh=_qs.get("fresh", ["0"])[0] in ("1", "true", "yes"))
+            body = json.dumps(payload, default=str).encode()
+            self._json_response(body, status=502 if "error" in payload else 200)
             return
         if path == "/api/decisions/pending":
             body = json.dumps(read_pending_decisions(), default=str).encode()
