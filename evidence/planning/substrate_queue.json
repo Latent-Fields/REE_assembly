@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "metaworker-science-20260919-sd020-p0-precision-floor",
-  "last_updated_utc": "2026-09-20T12:18:10Z",
+  "last_seen_session": "codex-20260920-unwritten-edge-discovery",
+  "last_updated_utc": "2026-09-21T04:35:11Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -3764,7 +3764,7 @@
     {
       "added_session": "governance-cycle-2026-05-10T1224Z",
       "depends_on_unresolved": [
-        "multi-rule-context substrate",
+        "mech318-within-episode-rule-switch-instrument",
         "ARC-062 Phase 3"
       ],
       "design_doc": "docs/architecture/mech_318_absorption_check.md",
@@ -3788,7 +3788,12 @@
       "title": "Rule-state abstraction substrate (Wang 2018 + Duan 2016 RL^2). ARC-064 child.",
       "unblocks_claims": [
         "MECH-318"
-      ]
+      ],
+      "unwritten_edge_gate_repoint": {
+        "as_of": "2026-09-21T04:35:11Z",
+        "source": "UEP-034",
+        "note": "Only the previously unowned environment-event prerequisite is repointed. Existing empirical competence and ARC-062 phase gates are unchanged; GAP-C stale wording is separately routed via GFLAG-0397. Registration never authorizes a build."
+      }
     },
     {
       "added_session": "governance-cycle-2026-05-10T1224Z",
@@ -10554,6 +10559,31 @@
       ],
       "d3_feasibility_finding_2026_09_19": "READ THIS BEFORE BUILDING ANYTHING. D3 IS NOT BUILDABLE AS SPECIFIED, and the cost ranking that led to it being chosen was WRONG. The staged doc (mech170_staged_restoration_discriminator_staged_20260918.md, commit 06219f056d) costed D3 as the MILDEST option because it 'preserves the existing per-phase-independent measurement design'. That claim does not survive contact with the source, verified exhaustively 2026-09-19 by the session that wrote it: || PROOF. phase_integrity_at_sigma (consolidation_lesion_harness.py:1029) builds THREE SEPARATE AGENTS -- a_sws at :1059, a_nrem at :1066, a_rem at :1073 -- each from its own build_pipeline_agent(seed=seed) call on its own RNG stream (_gen(seed*1009+1 / +2 / +3)). Every build_pipeline_agent call site in the file (:1059, :1066, :1073, :1107, :1145) creates a fresh agent, and NO function anywhere in the harness runs more than one phase readout on a single agent (the three readouts are invoked once each, at :1061, :1068, :1075). The docstring states the intent at :1039-1042: 'Each phase gets a FRESH agent so the phases are measured independently ... a serial pass would bake in the very error-compounding the non-vacuity contract must avoid.' || CONSEQUENCE. There is ZERO cross-phase coupling. Each phase's upstream prerequisite is INJECTED synthetically, not produced by the upstream phase. So masking restoration per phase across three independent agents cannot answer 'can a downstream phase recover without its upstream prerequisite' -- restoring the sws agent has no causal path to the rem agent's readout, and the mask matrix would be all-zeros BY CONSTRUCTION. That is the same measures-nothing shape as the descending-sigma trap already named in implementation_hint, and as the SD-071 C3 reparameterisation finding (GFLAG-0351). || WHAT D3 THEREFORE ACTUALLY COSTS. It needs a COUPLED serial pass on ONE shared agent in which each phase's operative substrate is the PRODUCT of the upstream phase rather than an injection. That is strictly MORE than D1 needs (D1 couples one phase across two path directions; D3 couples three phases to each other), and it additionally gives up the injected-content design -- which is the mechanism that sidesteps the confirmed V3-EXQ-538a encoding-starvation ceiling ('sleep cannot consolidate an unencoded representation'), the ceiling this whole harness exists to escape. So D3 was ranked cheapest and is in fact the most architecturally invasive of the three. || WHY NO THIRD DECISION CHIP WAS RAISED. Two decision chips have already been raised on this one item (chip-20260918-mech170-carveout-scope, chip-20260918-mech170-discriminator-choice). Per the metaworker two-stops rule, a third question is not the right output -- the FINDING is: the D1/D2/D3 cost comparison the decision rested on is STALE and must be re-derived against the no-coupling fact before any build is worth starting. Recorded here, in the staged doc, and reported to the user. ready STAYS false.",
       "dependent_claims_note_2026_09_19": "MECH-177 depends on MECH-170 (verified against claims.yaml), so this entry sits upstream of two claims, not one. Recorded because the decision chip that produced the commission described MECH-170 as having no dependents, which was wrong and made declining the build look cheaper than it was."
+    },
+    {
+      "sd_id": "mech318-within-episode-rule-switch-instrument",
+      "title": "Within-episode rule-switch event and switch-aligned adaptation-time instrument for the existing MECH-318 falsifier",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/unwritten_edge_discovery_plan.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-318"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "codex-20260920-unwritten-edge-discovery",
+      "added_utc": "2026-09-21T04:35:11Z",
+      "last_seen_session": "codex-20260920-unwritten-edge-discovery",
+      "source_memo": "UEP-034; prospective unwritten-edge pilot, protocol 5c486824fe; D3 + manual D5",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorization. Scientific use remains gated by arc_062_rule_apprehension:GAP-B competence and current SD-082 validation; this environment instrument does not clear either gate or authorize a frozen-encoder portfolio.",
+      "implementation_hint": "The MECH-318 what_would_answer requires adaptation timing at within-episode rule-switch points. Existing v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate.py explicitly changes reef_bipartite_axis across episodes, calls env.reset()/agent.reset(), and defers within-step switching. The free-text multi-rule-context substrate dependency names no event/measurement provider. Register an environment event + switch-aligned DV contract, NOT a dedicated meta-RL module or a cross-episode persistence change. No implementation choice or numeric scientific success criterion is selected here. Scope is MECH-318 only; this does not unblock the full ARC-064 / MECH-316 / MECH-317 cluster.",
+      "acceptance_falsifier": "A provider trace must contain a real rule transition during a continuous episode with no agent reset at that transition; log transition time for evaluation without giving the agent a privileged task-ID cue; permit computable adaptation latency for intact versus recurrent-state-ablated arms and a no-switch control. The absence diagnosis is falsified by an already registered/live provider meeting this same contract. A build and its scientific retest need separate authorization.",
+      "phase_verdict": "V3-NATIVE",
+      "forward_version_check": "Inspected V4/V5 nodes and belief-state, option, memory and plasticity plans; related internal architecture does not supply this environment event/DV. W5 cross-episode continuity remains a separate V4 question. No stopgap architecture selected; any later fossilisation or pull-forward scope choice goes to the user.",
+      "pending_retest_after_substrate": true
     }
   ],
   "schema_version": "substrate_queue/v2",

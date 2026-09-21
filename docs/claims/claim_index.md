@@ -16,6 +16,10 @@ The claim graph has two edge layers (GOV-EDGE-1, 2026-09-04). `depends_on` is a 
 
 ---
 
+## Governance process pilot
+
+- [GOV-UNWRITTEN-1](../../evidence/planning/unwritten_edge_discovery_plan.md) Unwritten-prerequisite boundary audit: first prospective pilot found 1 new node in 39 nominations; no skill shipped.
+
 ## Invariants (INV)
 
 - [INV-001](../invariants.md#inv-001) No explicit ethics module or moral scoring layer.

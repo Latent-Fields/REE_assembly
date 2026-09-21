@@ -1,0 +1,319 @@
+{
+  "schema_version": "cross_field_translation/v1",
+  "generated_utc": "2026-09-21T04:34:50Z",
+  "status": "awaiting_human_confirmation",
+  "status_scope": "Scientific analogy/routing draft retained under cross-field Step 7. No architectural routing is finalised or requested for this completed registration-only chip; UEP-034 derives independently from the existing REE falsifier and code, not from accepting an analogy.",
+  "blocked_item": {
+    "id": "unwritten-edge-pilot-20260920",
+    "failure_category": [
+      "measurement",
+      "gating",
+      "representational"
+    ],
+    "current_framing": "High-leverage gates may omit necessary partners.",
+    "failure_signature": "Mostly historical/completed references; one actual task-event/measurement mismatch."
+  },
+  "translations": [
+    {
+      "field": "reinforcement_learning",
+      "analogue": "Temporal abstraction and separation of fast adaptation from across-task training",
+      "canonical_failure_mode": "A test measures at a different boundary/timescale than the claimed adaptation.",
+      "known_fixes": [
+        "Separate initiation, continuation and termination",
+        "Separate task distribution, carried state and evaluation timing"
+      ],
+      "known_fix_limitations": [
+        "Options/RL2 are particular constructions",
+        "RL2 does not supply within-episode task switches"
+      ],
+      "grounding": "grounded",
+      "source": {
+        "id": "S5",
+        "title": "RL2: Fast Reinforcement Learning via Slow Reinforcement Learning",
+        "authors": [
+          "Yan Duan et al."
+        ],
+        "year": 2016,
+        "venue": "arXiv:1611.02779",
+        "doi_or_url": "https://arxiv.org/pdf/1611.02779",
+        "read": "Abstract and sections 2.2-2.3"
+      },
+      "additional_sources": [
+        "S1"
+      ],
+      "ree_mapping": "Commitment GAP-4 and ARC-062 GAP-B/GAP-I",
+      "mapping_caveat": "No reward objective, option library or cross-episode-state architecture is imported."
+    },
+    {
+      "field": "cognitive_neuroscience",
+      "analogue": "Gated access and behaviourally consequential variability",
+      "canonical_failure_mode": "A signal exists but the relevant pathway or operating regime cannot affect behaviour.",
+      "known_fixes": [
+        "Test target-pathway influence",
+        "Separate content availability from access/gating"
+      ],
+      "known_fix_limitations": [
+        "Reference circuits are not universal obligations",
+        "Null effects under zero input do not establish absent components"
+      ],
+      "grounding": "grounded",
+      "source": {
+        "id": "S3",
+        "title": "Behavioral Variability through Stochastic Choice and Its Gating by Anterior Cingulate Cortex",
+        "authors": [
+          "Dougal Tervo et al."
+        ],
+        "year": 2014,
+        "venue": "Cell",
+        "doi_or_url": "https://cenl.ucsd.edu/labspace/JclubLabMeetings/Lindsey-Tervo-%20Behavioral%20Variability-cell-2014.pdf",
+        "read": "Abstract and LC-to-ACC experiments, Figure 6"
+      },
+      "additional_sources": [
+        "S4"
+      ],
+      "ree_mapping": "Noise/curiosity, broadcast override and workspace consumer boundaries",
+      "mapping_caveat": "Functional roles only; no biological equivalence or new circuit import."
+    },
+    {
+      "field": "measurement_and_probe_evaluation",
+      "analogue": "Probe selectivity and causal-use controls",
+      "canonical_failure_mode": "Readout fit can reflect probe capacity rather than representation structure or agent use.",
+      "known_fixes": [
+        "Control-label tasks",
+        "Held-out readout evaluation"
+      ],
+      "known_fix_limitations": [
+        "Decodability does not demonstrate native causal use"
+      ],
+      "grounding": "grounded",
+      "source": {
+        "id": "S2",
+        "title": "Designing and Interpreting Probes with Control Tasks",
+        "authors": [
+          "John Hewitt",
+          "Percy Liang"
+        ],
+        "year": 2019,
+        "venue": "EMNLP-IJCNLP",
+        "doi_or_url": "https://aclanthology.org/D19-1275.pdf",
+        "read": "Abstract and selectivity/control-task discussion"
+      },
+      "ree_mapping": "J-lens and content-shuffle audit",
+      "mapping_caveat": "A missing causal-use result is a measurement gap, not automatically a new substrate node."
+    }
+  ],
+  "obligate_partners": [
+    {
+      "node": "arc_062_rule_apprehension:GAP-B",
+      "partner": "Task/context representation with a consequential policy reader",
+      "ree_status": "PRESENT",
+      "ree_provider": "CandidateRuleField; SD-033a/SD-082 compute_bias; E3 score-bias path",
+      "grounding": "grounded",
+      "source_id": "S5",
+      "falsifiable_consequence": "If rule content is irrelevant, matched content permutations leave bias/ranking unchanged.",
+      "mapping_caveat": "RL2 is a particular recurrent RL construction, not a requirement to add its reward objective or a new recurrent module.",
+      "content_shuffle_check": "Permute rule-state content across matched contexts, preserve norm/gating and measure bias deltas and committed-class changes; held by GAP-B competence gate."
+    },
+    {
+      "node": "behavioral_diversity_isolation:GAP-C",
+      "partner": "Variability source plus a pathway that can change actual choices",
+      "ree_status": "PRESENT",
+      "ree_provider": "MECH-313 NoiseFloor / MECH-260 StructuredCuriosity; MECH-440/441 injection-site build",
+      "grounding": "grounded",
+      "source_id": "S3",
+      "falsifiable_consequence": "A noise manipulation with no selection effect cannot demonstrate behavioural variability.",
+      "mapping_caveat": "LC-ACC experiments motivate checking functional influence; they do not validate additive noise, two independent knobs, or homology of REE modules.",
+      "content_shuffle_check": "Hold amplitude/seed envelope fixed and permute state-conditioned curiosity content; record pre/post-score contributions and committed entropy. Unconditional noise is tested by controlled replacement, not a meaningless content shuffle."
+    },
+    {
+      "node": "global_workspace_jlens:A",
+      "partner": "Workspace content, access pathways and task-dependent readers",
+      "ree_status": "PRESENT",
+      "ree_provider": "Latent stack and registered loop/selection consumers; existing 723/723a readouts",
+      "grounding": "grounded",
+      "source_id": "S4",
+      "falsifiable_consequence": "Destroying task-relevant content should alter at least a downstream content-sensitive readout under non-degenerate exposure.",
+      "mapping_caveat": "GNW model roles are inspiration, not proof of consciousness or a demand for a literal cortical network.",
+      "content_shuffle_check": "Shuffle latent samples within nuisance-matched groups; distinguish probe accuracy loss from actual consumer/choice loss."
+    },
+    {
+      "node": "global_workspace_jlens:A",
+      "partner": "Readout controls separating learned probe behaviour from representation content",
+      "ree_status": "PRESENT",
+      "ree_provider": "v3_exq_723a_jlens_discriminative_compactness_diagnostic.py fit/evaluation and concentration gates",
+      "grounding": "grounded",
+      "source_id": "S2",
+      "falsifiable_consequence": "A random/control-label task that predicts equally well undercuts interpretation of the probe.",
+      "mapping_caveat": "Selectivity controls do not establish causal use by the agent; this audit registers no claim that all desired controls have passed.",
+      "content_shuffle_check": "Compare genuine versus shuffled content and control labels on held-out observations; native-consumer intervention remains separate."
+    },
+    {
+      "node": "sd_037_axis_b:P1b",
+      "partner": "Broadcast target gates and nonzero input for amplification",
+      "ree_status": "PRESENT",
+      "ree_provider": "BroadcastOverrideRegulator plus BLA/CeA/PAG/dACC consumers; SD-037 assembly-frontier validation",
+      "grounding": "grounded",
+      "source_id": "S4",
+      "falsifiable_consequence": "Multiplying a zero baseline cannot demonstrate override amplification; expose a nonzero consumer response first.",
+      "mapping_caveat": "The workspace simulation does not license REE threshold values or prove the biological mapping.",
+      "content_shuffle_check": "Time-shuffle override at matched amplitude while measuring gated consumer deltas; do not interpret silence below threshold as missing code."
+    },
+    {
+      "node": "commitment_closure:GAP-4",
+      "partner": "Initiation, persistent policy execution and termination signal",
+      "ree_status": "PRESENT",
+      "ree_provider": "BetaGate; ARC-071 persistent handle/reselection; GateDVRecorder",
+      "grounding": "grounded",
+      "source_id": "S1",
+      "falsifiable_consequence": "Without persistent identity and observable termination, a claimed commitment-duration effect can be an argmax segmentation artefact.",
+      "mapping_caveat": "Options formalism supplies a reference functional decomposition, not an import of an option library or reward semantics.",
+      "content_shuffle_check": "Permute commitment content while preserving gate timing; measure program identity, termination events and action-class DV, not raw segment length alone."
+    },
+    {
+      "node": "behavioral_diversity_isolation:GAP-B",
+      "partner": "Scored alternatives and a consequential reader of the diversity signal",
+      "ree_status": "PRESENT",
+      "ree_provider": "MECH-341 apply_entropy_bonus -> E3 scores / modulatory accumulator / LCG terms",
+      "grounding": "grounded",
+      "source_id": "S1",
+      "falsifiable_consequence": "An allegedly unused score bonus must leave scored alternatives invariant; the traced code contradicts that absence claim.",
+      "mapping_caveat": "A temporal-policy reference does not establish the correct entropy objective; only the producer-reader boundary transfers.",
+      "content_shuffle_check": "Permute candidate-specific bonus content holding magnitude fixed; inspect score/rank and eventual committed-choice effects."
+    },
+    {
+      "node": "arc_062_rule_apprehension:GAP-I",
+      "partner": "Task variation, adaptation state and an evaluation sensitive to the required timescale",
+      "ree_status": "PRESENT",
+      "ree_provider": "606b across-episode task variation; SD-033a recurrent rule state; trained context discriminator",
+      "grounding": "grounded",
+      "source_id": "S5",
+      "falsifiable_consequence": "An evaluation varying tasks only across resets cannot adjudicate a within-episode switching signature.",
+      "mapping_caveat": "RL2 holds one sampled MDP fixed within a trial and carries state across episodes. It does NOT itself require within-episode switching; that obligation is MECH-318 own falsifier.",
+      "content_shuffle_check": "Shuffle rule-state content after the prescribed switch while preserving state magnitude and event timing, once both instrument and independent competence gates are ready."
+    },
+    {
+      "node": "arc_062_rule_apprehension:GAP-I",
+      "partner": "Within-episode switch event and switch-aligned adaptation-time measurement",
+      "ree_status": "UNWRITTEN",
+      "ree_provider": "UEP-034 -> mech318-within-episode-rule-switch-instrument (registration only)",
+      "grounding": "grounded",
+      "source_id": "S5",
+      "falsifiable_consequence": "A trace must contain an actual in-episode rule transition, no agent reset at the transition and a computable adaptation latency; existing 606b cannot supply that trace.",
+      "mapping_caveat": "Necessity is grounded in the REE falsifier and code, not inferred as universal biology from RL2. No task-ID oracle, cross-episode persistence change or dedicated meta-RL module is selected.",
+      "content_shuffle_check": "As above; a no-switch control plus recurrent-state ablation must make the DV capable of differing. No experiment queued."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning",
+      "authors": [
+        "Richard Sutton",
+        "Doina Precup",
+        "Satinder Singh"
+      ],
+      "year": 1999,
+      "venue": "Artificial Intelligence",
+      "doi_or_url": "https://people.cs.umass.edu/~barto/courses/cs687/Sutton-Precup-Singh-AIJ99.pdf",
+      "read": "Abstract and section 2, options definition"
+    },
+    {
+      "id": "S2",
+      "title": "Designing and Interpreting Probes with Control Tasks",
+      "authors": [
+        "John Hewitt",
+        "Percy Liang"
+      ],
+      "year": 2019,
+      "venue": "EMNLP-IJCNLP",
+      "doi_or_url": "https://aclanthology.org/D19-1275.pdf",
+      "read": "Abstract and selectivity/control-task discussion"
+    },
+    {
+      "id": "S3",
+      "title": "Behavioral Variability through Stochastic Choice and Its Gating by Anterior Cingulate Cortex",
+      "authors": [
+        "Dougal Tervo et al."
+      ],
+      "year": 2014,
+      "venue": "Cell",
+      "doi_or_url": "https://cenl.ucsd.edu/labspace/JclubLabMeetings/Lindsey-Tervo-%20Behavioral%20Variability-cell-2014.pdf",
+      "read": "Abstract and LC-to-ACC experiments, Figure 6"
+    },
+    {
+      "id": "S4",
+      "title": "A neuronal model of a global workspace in effortful cognitive tasks",
+      "authors": [
+        "Stanislas Dehaene",
+        "Michel Kerszberg",
+        "Jean-Pierre Changeux"
+      ],
+      "year": 1998,
+      "venue": "PNAS",
+      "doi_or_url": "https://www.unicog.org/publications/Dehaene_NeuronalWorkspaceSimulation_PNAS1998.pdf",
+      "read": "Abstract, workspace premises/gating and network architecture"
+    },
+    {
+      "id": "S5",
+      "title": "RL2: Fast Reinforcement Learning via Slow Reinforcement Learning",
+      "authors": [
+        "Yan Duan et al."
+      ],
+      "year": 2016,
+      "venue": "arXiv:1611.02779",
+      "doi_or_url": "https://arxiv.org/pdf/1611.02779",
+      "read": "Abstract and sections 2.2-2.3"
+    }
+  ],
+  "candidate_unblockers": [
+    {
+      "candidate": "Register UEP-034 without selecting architecture",
+      "type": "measurement",
+      "cost": "Registration only; build cost not assessed",
+      "risk": "Overclaiming ARC-064 or cross-episode memory scope",
+      "why_it_may_help": "Names the event missing from MECH-318 own falsifier",
+      "guard_result": "inspiration_only",
+      "guard_reason_if_blocked": "Any architectural choice still requires the user; parent chip separately authorizes mechanical gap registration."
+    },
+    {
+      "candidate": "Do not add another frozen-encoder portfolio",
+      "type": "do_not_act_yet",
+      "cost": "None",
+      "risk": "GOV-FROZEN-1 fan-out",
+      "why_it_may_help": "Avoids adding machinery to a question already routed for re-pose",
+      "guard_result": "inspiration_only",
+      "guard_reason_if_blocked": "GFLAG-0312 / GFLAG-0329; no fifth portfolio."
+    }
+  ],
+  "recommended_minimal_test": "When separately authorized and existing competence gates clear, emit a genuine within-episode rule-switch trace without agent reset and compare switch-aligned adaptation with recurrent state intact versus ablated. A no-switch control and eval-only event labels guard non-degeneracy and oracle leakage. No EXQ is created here.",
+  "guards": {
+    "ethics_reward_collapse": false,
+    "fake_competence": false,
+    "dev_sequence_bypass": false,
+    "oracle_introduced": false,
+    "residue_obscured": false,
+    "lit_exp_blended": false,
+    "biology_divergence_load_bearing": false,
+    "illusory_conflict_resolution": false,
+    "aggregate_translation_drift": "insufficient_history"
+  },
+  "guard_scope": "No import enacted. Unbuilt-instrument registration cannot count as conflict resolution or new empirical support; pending_retest_after_substrate remains a future validation obligation. All registered claims retain their status.",
+  "confidence_separation": {
+    "lit_conf": "Qualitative source-grounded analogy only; no registry confidence update.",
+    "exp_conf": "No new REE experiment; unchanged."
+  },
+  "routing": "no-action",
+  "recommended_evidence_quality_note": "",
+  "forward_version": {
+    "search_scope": [
+      "V4/V5 closure-plan inventory",
+      "inference_belief_state_v4_plan.md INF-1..7",
+      "object_reasoning_abstraction_v4_plan.md OBJ-ABS-5 / SD-042",
+      "memory_lifecycle_v4_plan.md",
+      "plasticity_neuromodulation_v4_plan.md",
+      "assembly_vs_closure_plan.md"
+    ],
+    "finding": "Future belief/option/memory/plasticity nodes concern internal architecture. None inspected provides the needed in-episode environment transition and switch-aligned DV. No claim to exhaustively prove absence outside the audited tree.",
+    "UEP_034": "V3-NATIVE external measurement requirement. No V3-only internal substitute chosen, therefore no fossilisation scope choice is made. W5 cross-episode continuity remains separately V4 scoped."
+  }
+}

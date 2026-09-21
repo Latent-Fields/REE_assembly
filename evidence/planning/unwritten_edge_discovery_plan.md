@@ -145,7 +145,7 @@ name the retirement condition. Never silently make an architecture scope decisio
 Each surviving finding has exactly ONE terminal registration: substrate entry
 with `sd_id`, `unblocks_claims` and
 `proposed_REGISTRATION_ONLY_not_a_build_authorisation`; OR a governance flag raised
-through `REE_assembly/scripts/governance_flag.py`; OR a candidate claim with a real
+through `/Users/dgolden/REE_Working/scripts/governance_flag.py`; OR a candidate claim with a real
 falsifier. Existing registrations are linked, not re-created. Do not confuse a
 surviving stale-note flag with a U hit. No experiment is queued; no substrate is
 built. Register the process itself as a candidate governance claim whether the
@@ -160,4 +160,111 @@ every nomination and its adjudication, including candidates that create no node.
 
 ## Pilot results
 
-Pending. This section will be completed after the protocol above is committed.
+
+Completed 2026-09-21 (pilot extraction 2026-09-20). The protocol above was committed and pushed as `5c486824fe8711bd07b54ab3bde23f36bfbb7b19` before running the detectors. No threshold or sample was changed after inspection. All 189 hashed inputs were byte-identical at the next-day continuation. Implementation fixes before final extraction qualified local future-plan node IDs, accepted null dependency lists, joined substrate/closure completion as well as claim status, and kept underscore-prefixed completion states for review. These repair extraction; they do not decide outcomes.
+
+**Decision: DO NOT SHIP `/unwritten-edges`.** There are 39 distinct nominations, one verified new prerequisite (2.56%), two stale-note findings, and 36 rejected missing-node propositions. The 95% Wilson interval is 0.45%-13.18%, descriptive only. Yield is 1/8 selected nodes (1/7 audited); the pre-registered 50% precision, three-new-node minimum and two-source-node breadth all fail. Even excluding every obvious syntactic false positive cannot rescue the failed U>=3/breadth conditions. No skill or mirror was created and no GOV-HELDOUT-1 skill test is claimed. This is a negative result about this detector-and-ranking recipe, not evidence that all unwritten prerequisites have been found.
+
+### Ranked sample and pre-check
+
+| Rank | Node | Downstream nodes | Downstream claims | Live front | WWA routes | Decision |
+|---|---|---:|---:|---:|---:|---|
+| 1 | arc_062_rule_apprehension:GAP-B | 12 | 475 | 0 | 28 | Audit independent boundary only |
+| 2 | behavioral_diversity_isolation:GAP-C | 3 | 175 | 0 | 22 | Audit independent boundary only |
+| 3 | global_workspace_jlens:A | 3 | 70 | 0 | 9 | Audit independent boundary only |
+| 4 | sd_037_axis_b:P1b | 3 | 13 | 0 | 13 | Audit independent boundary only |
+| 5 | commitment_closure:GAP-4 | 2 | 419 | 0 | 34 | Audit independent boundary only |
+| 6 | behavioral_diversity_isolation:GAP-B | 2 | 261 | 0 | 47 | Audit independent boundary only |
+| 7 | behavioral_diversity_isolation:GAP-I | 2 | 213 | 0 | 76 | STOP: existing GFLAG-0297 / 0312 / 0329 re-pose |
+| 8 | arc_062_rule_apprehension:GAP-I | 2 | 105 | 0 | 8 | Audit independent boundary only |
+
+All eight remain in the sample. SD-037's `assembling` state is respected as construction, not failure; MECH-268's separately re-posed discriminator was not expanded. No fifth `zworld_actor_adequacy_locus` portfolio was opened. The graph snapshot has 119 V3 nodes (64 done, 34 remaining, 11 assembling, 10 deferred), 45 eligible unfinished nodes, and 420 nodes across generations. These live counts replace the older numbers in the chip. Fan-out includes completed descendants exactly as preregistered; it measures registered reach, not remaining unblockable work. Claims reach excludes the seed claims.
+
+The current front did not appear in the top eight under literal, explicit-DAG ranking. Shared observation-interface roots are often prose/cross-plan relationships rather than explicit prerequisites. This is a material limitation: a leverage rank derived only from explicit edges can miss the very boundary debt sought. Do not silently add inferred edges to improve the pilot. A future revised rank needs a new prospective comparison and user-authorized rerun, not a skill presented as validated now.
+
+### Detector measurement and controls
+
+Global calibration: 1,168 claims, 188 substrate entries; D3 found **85 claims / 97 phrase hits**, D4 found **56** non-exact-complete entries with explicit empty dependencies, and D1 found **10** unread local names with zero parse errors. The chip's 86/57 were earlier observations, not acceptance targets. Substrate status normalization classified 90 exact-complete, 36 completion-prefix-needs-review, 58 unknown and four not-complete; the large unknown bucket is retained honestly because statuses are free prose. Nothing assumes an enum.
+
+| Detector | Distinct pilot nominations | New nodes | Interpretation |
+|---|---:|---:|---|
+| D1 | 1 | 0 | Dead alias, live score consumer |
+| D2 | 26 | 0 | Mostly history/completed validation prerequisites; two stale notes |
+| D3 | 3 | 1 | One absent instrument, one subthreshold consumer, one retracted error |
+| D4 | 15 | 0 | Existing owners and implementation/validation conflation |
+| D5 | 3 | 1 | Same new node as D3; J-lens and GateDVRecorder already exist |
+| D6 | 0 | 0 | 789 ID mentions screened for relations, no new absent sink/cycle |
+
+Rows overlap; do not sum this table for N. D2 retained 212 raw occurrences, D4 19 selected-node occurrences, D3 three. D1 links one of the global ten hits to a selected falsifier. The JSON contains every raw hit and its many-to-one mapping. D6 mentions are relation-screening candidates, not 789 missing-node nominations: a citation is not a deferral edge. Its complete grouped screen and common-gate report are preserved. No supports layer or other edge schema was added.
+
+**Positive control, excluded from U/N:** D1 found `_do_replay` assignments to `replay_trajs` at agent.py:10858/10865 with no local read; D3 independently recovered MECH-092 without a seeded search. The existing `mech092-replay-consumer-missing` registration prevents a second discovery. Scope remains MECH-092's benefit half and MECH-205; MECH-121/209 still require balanced replay scheduling and conversion competence. This case is motivating, never held-out.
+
+### Surviving prerequisite and output routes
+
+UEP-034 registers `mech318-within-episode-rule-switch-instrument`, with `unblocks_claims: [MECH-318]`, `ready: false` and the exact registration-only status. MECH-318's falsifier requires adaptation timing at an in-episode rule switch. Driver 606b explicitly alternates environments between episodes, resets the agent at each boundary, and defers within-step switching. CausalGridWorld's reef-axis setting is established in initialization. Existing ARC-064/MECH-316/317/318 entries cite the words `multi-rule-context substrate` but do not register an environment event/measurement provider. This is a missing node at the registry-to-code boundary, not evidence for a new recurrent architecture. The existing MECH-318 queue gate is repointed from that prose placeholder to the new ID; no sibling gates are broadened.
+
+Acceptance is operational: an emitted trace contains a real rule change during a continuous episode, preserves agent state at that event, records event time for evaluation without supplying a privileged task-ID cue, and permits an adaptation-time contrast against recurrent-state ablation and no-switch controls. The absence claim is falsified by an existing registered/provider path meeting that contract. Scientific success/failure thresholds belong to a separately authorized experiment. ARC-062 GAP-B competence and SD-082 validation remain independent gates; registering the instrument clears neither. `pending_retest_after_substrate` is an obligation, not new support.
+
+Forward verdict: **V3-NATIVE**, required by an existing V3 falsifier. The V4/V5 inventory and belief-state, option, memory and plasticity plans contain related internal architecture but no provider for the required environment event and DV. Cross-episode hidden-state continuity (W5) remains a separate V4 question. No V3 internal substitute is selected and no retirement/scope trade-off is silently decided. An actual architecture choice still goes to the user. The rejected `v4_loop_segregation` nomination is labelled V4-PULL-FORWARD provenance because that provider already landed; it does not authorize a new pull-forward.
+
+UEP-018 and UEP-029 survive only as governance stale-note flags: MECH-318 still calls ARC-062 GAP-C open despite its done status; behavioral-diversity GAP-C still calls its done GAP-C-build child owed. Terminal flags are GFLAG-0397 (UEP-018) and GFLAG-0398 (UEP-029), neither a U hit. The registration process itself is recorded as **GOV-UNWRITTEN-1**, a candidate governance claim with this negative measurement and a prospective reopening falsifier. No experiment, build, claim promotion or third graph edge type was created.
+
+### Grounded partners and rejected-edge ledger
+
+The companion [partner audit](cross_field_unwritten_edges_2026-09-20.md) chains the existing `/cross-field` method over five inspected primary sources in three fields. Every partner has a PRESENT / REGISTERED-NOT-BUILT / UNWRITTEN disposition, a grounding label, transfer limitation, falsifiable consequence and content-shuffle question. RL2 does **not** require within-episode task switches: this obligation comes from MECH-318 itself. Analogue literature strength never updates REE experimental confidence. The cross-field document retains scientific translations as a draft with no architecture routing; completion of this chip does not depend on adopting them.
+
+The [rejected-edge ledger](unwritten_edge_rejected_ledger.json) contains all 38 rejected missing-node propositions, including the two routed stale notes. Each names an interface, observed evidence, existing owner, and a reopening test. Reject by proposition, never by claim ID. After landing, UEP-034 is REGISTERED-NOT-BUILT on a repeat run, not another discovery.
+
+### Every nomination and adjudication
+
+The machine-readable [pilot](unwritten_edge_pilot_20260920.json) preserves complete source hashes, rankings, pre-check, raw extraction, hit map, forward verdicts and reopening conditions. This compact table is the human audit trail.
+
+| Nomination | Proposed missing function | Adjudication |
+|---|---|---|
+| UEP-001 | Infant hazard-protection / curriculum exit readiness | Existing curriculum exit fix is mentioned historically; no absent provider established. |
+| UEP-002 | Rule discriminator substrate | Phase 1 implementation is present; evidence gate remains. Free-text status is not an enum indicating missing machinery. |
+| UEP-003 | Commitment entry / output gating | Substrate landed; validation and the right commitment-boundary DV remain distinct obligations. |
+| UEP-004 | Asymmetric mode hysteresis | Existing mechanism and sibling comparison, not an unregistered prerequisite. |
+| UEP-005 | Ecological gradedness measurement | Existing mechanism; its discriminator is already under GFLAG-0299 re-pose. No replacement machinery enumerated. |
+| UEP-006 | Context anchor sets | The gate inventories existing anchor sets; completion is not a missing prerequisite. |
+| UEP-007 | Ghost-goal / rumination guard | Absorbed mechanism and existing guard are contextual references. |
+| UEP-008 | Drive bridge into selection | Known drive bridge and precedent, not an unowned build. |
+| UEP-009 | Completed mechanism conjunction | Completed constituents still owe an integration measurement; no new constituent found. |
+| UEP-010 | Phase-2 selector amendment | Amendment validated in 648a; not an absent component. |
+| UEP-011 | Entropy bonus consumption in E3 scoring | The unused mech341_bonus_tensor is only an alias: mech341_bonus changes scores, the modulatory accumulator and LCG terms. Completed implementation can still need armed validation. |
+| UEP-012 | Selection state machine and ecological exposure | State machine is implemented; non-degenerate ecological exposure remains an empirical precondition. |
+| UEP-013 | Implemented SD-018 amendment | Implemented, pending validation; implementation and validation must not be conflated. |
+| UEP-014 | Limb-damage state | Historical confound in arousal tests, not a missing state channel. |
+| UEP-015 | Agency-comparator baseline readiness | C0 readiness is a measurement precondition on existing substrate. |
+| UEP-016 | Salience operating-mode transition | The switch/event machinery exists; its mention does not assert absence. |
+| UEP-017 | Nonzero bias exposure | Built code still needs bias_fraction above zero; this is non-vacuity, not a new build. |
+| UEP-018 | Rule-state input wiring | Existing wiring is present and ARC-062 GAP-C is done, but MECH-318 what_would_answer still calls GAP-C open. Survives as stale-note flag only. |
+| UEP-019 | Closure operator integration | Existing closure operator; an integration check is not another operator build. |
+| UEP-020 | Factorial arousal component | The factorial component exists; empirical factorial separation can remain open. |
+| UEP-021 | Broadcast override consumers | Consumers exist but their base signals are below input thresholds. The phrase no consumer output is not no consumer. |
+| UEP-022 | Differentiable CEM default-off control | The note names a deliberate default-off safety gate, not absent machinery. |
+| UEP-023 | Context baseline / overflow control | Existing baseline and historical overflow diagnosis are being cited. |
+| UEP-024 | Registered observation-interface substrate | Implemented pending validation. Frozen root forbids adding another portfolio from this reference. |
+| UEP-025 | Candidate-selection gradient path | Registered partial implementation has residual empirical limits. Empty dependency list does not erase the owner. |
+| UEP-026 | Horizon-depth substrate | The old build route is later acknowledged implemented with negative validation. MECH-267 references describe this same interface. |
+| UEP-027 | Probe warmup | Implemented and validated; a legitimate terminal task can have no dependencies. |
+| UEP-028 | Persistent program handle during reselection | Implemented owner exists. The duplicate mech090 handle-fix entry is superseded; the live handle must be armed and its identity measured. |
+| UEP-029 | Noise injection-site implementation | Child build is done while the parent resume_condition still calls it owed. Survives as stale-note flag, not an unwritten node. |
+| UEP-030 | CRF availability maintenance | READY and validated; empty dependency list is expected after completion. |
+| UEP-031 | Escape-affordance bridge | Registered and built; old phase prerequisite remains in historical prose. |
+| UEP-032 | Commitment-boundary DV recorder | GateDVRecorder has landed; committed identity and boundary diagnostics are available. The prompt predated this reconciliation. |
+| UEP-033 | J-lens discriminative concentration instrument | Readout fitting, evaluation, concentration and gates already exist. Upstream observation competence remains the gate. |
+| UEP-034 | Within-episode rule-switch event and adaptation-time instrument | NEW: current driver alternates environments at episode boundaries and resets the agent; it cannot emit the within-episode switch event needed by MECH-318. The multi-rule-context prerequisite has only prose, no provider ID. |
+| UEP-035 | Modulatory score-to-choice conversion | ARC-065 / GAP-A local lift and the authority build are registered. Their completion does not establish general conversion competence. Merge these mentions, do not invent another encoder remedy. |
+| UEP-036 | Claim-evidence indexer repair | The matching phrase explicitly retracts a nonexistent indexer defect. Negated historical text is a false positive. |
+| UEP-037 | Scaffolded ecological calibration | Scaffold is implemented; residual ecological calibration does not imply an unregistered build. |
+| UEP-038 | Contested-mode occupancy probe | Probe already queued and registered. This audit queues nothing. |
+| UEP-039 | Segregated selection loops | Future-labelled provider already exists; withdrawn validation is not absence. No new pull-forward decision made. |
+
+### Reproduction and limits
+
+`unwritten_edge_pilot_detectors.py` is an evidence-local, read-only extraction helper, not an installed workflow. Run it with `--base /Users/dgolden/REE_Working --output <scratch.json>` for ranking only. Then perform the manual re-pose check and repeat with one `--allowed-node <id>` for each permitted node. The original snapshot and source hashes in the pilot JSON are the reproducibility reference: later registry updates change counts. Do not run this helper unattended as a standing discovery rule.
+
+The D1 AST scan is a cheap local-name screen, not interprocedural liveness analysis; side effects, aliases, attribute consumers and dynamic dispatch need human tracing. D2 preserves historical gate prose, which dominates false positives; exact-ID joining misses aliases such as bare Phase 3 GAP-C (found manually here). D4 empty lists are not evidence of an absent prerequisite. D5 and partner necessity are manual, bounded by the inspected drivers/tree. No assertion of complete recall is possible from one high-leverage sample. No future build budget or architecture was estimated.
+
+Validation: strict claim validation and the derived claims JSON rebuild are required at landing; complete raw-hit mapping and artifact consistency are checked. Only the pilot's new governance claim, one nomination and its direct queue gate are changed. The public-information impact review covers update-docs, nav assignment and site/export generators: internal evidence/source routes and one candidate registry row change, with no new public navigation or scientific status claim. No public-explorer export is published; that remains owned by its existing redaction-review publication process at its next reviewed refresh. Existing inter-governance workset edits are foreign and excluded from the commit.
