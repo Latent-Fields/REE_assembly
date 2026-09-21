@@ -5595,6 +5595,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0397",
+      "claim_ids": [
+        "MECH-318"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-318 what_would_answer still says ARC-062 Phase 3 GAP-C is open, but arc_062_rule_apprehension_plan.md marks that wiring node done; GAP-B remains in-progress, so correcting this stale clause must not clear the independent competence gate. Reconcile the current clause through governance; unwritten-edge pilot UEP-018 records the source comparison and separately registers the missing within-episode switch instrument without authorizing a build.",
+      "raised_by_session": "codex-20260920-unwritten-edge-discovery",
+      "raised_at": "2026-09-21T04:33:00Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
