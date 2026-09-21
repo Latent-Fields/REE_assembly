@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-20T14:06:09Z
+Generated: 2026-09-21T01:14:13Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -179,13 +179,14 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (3)
+## Plans WITHOUT closure_plan frontmatter (4)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 - `evidence/planning/claude_code_update_integration_plan.md`
 - `evidence/planning/context_budget_restructure_plan.md`
 - `evidence/planning/igw_governance_flag_coordinator_migration_plan.md`
+- `evidence/planning/unwritten_edge_discovery_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 
