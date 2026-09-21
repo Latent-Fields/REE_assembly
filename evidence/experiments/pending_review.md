@@ -1,10 +1,45 @@
 # Pending Experiment Review
 
-Generated: `2026-09-20T14:05:14Z`  
+Generated: `2026-09-21T04:20:46Z`  
 Last review: `2026-09-20T12:15:51Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **3** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3` | 2026-09-20T15:50 | ARC-029 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3` | 2026-09-20T15:49 | MECH-017 |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+
+## Diagnostic -- autopsy required (no confirmed adjudication)
+
+Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
+
+| Run ID | Status | Self-route label |
+|--------|--------|-------------------|
+| `v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3` | PASS | final_pass_dose_response_opposite_sign_across_orders_last_writer_signature |
+| `v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3` | FAIL | substrate_not_ready_requeue |
+
+## Needs diagnosis (ERROR manifests -> /diagnose-errors)
+
+These are durable ERROR-class result manifests on disk -- most commonly a runner-synthesized record for a crash-before-manifest (a script that exited non-zero before writing any manifest; incident V3-EXQ-654e). They are scoring-neutral (no claim tags) so they never weight claim confidence, but each is a real code crash that needs `/diagnose-errors` and a re-queue under a NEW letter. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs`.
+
+| Outcome | Manifest stem | Queue ID | Machine | Summary |
+|---------|---------------|----------|---------|---------|
+| ERROR | `v3_v3_exq_1066_runner_error_20260920T150823Z_v3` | V3-EXQ-1066 | ree-cloud-3 | Non-zero exit code 1; no runner sentinel (stdout-derived 'PASS' not trusted on c |
 
 ---
 
