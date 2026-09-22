@@ -146,3 +146,45 @@ Deferred design if wanted: derive the audit ref post-hoc from the MOVE chip's ge
 
 **Not done:** items 2 and 3 of chip-20260910-merge-refwedge-class (no-op-delete re-test; chip_archive proof-route
 design fork -> needs a decision chip), so that chip stays open.
+
+## P5 counter-example addendum (2026-09-22, sweet-robinson-b3e2c1)
+
+**The P5 classification above stands; its IMPACT rating does not.** "True positives ... not a detector
+defect" is correct and is not being reopened. What this addendum records is a measured case where a
+daemondrift finding was not benign observability drift but the **delivery gap suppressing an approved fix
+for another class in this same document**.
+
+**The case.** On 2026-09-22, `chip-daemondrift-ree-cloud-1-ree-coordinator-g3` ("ree-coordinator on
+ree-cloud-1, 1.0d stale") was the only standing signal that `ree-v3 0ddac64f` (2026-09-19T10:25:21Z,
+*"shadow-sync never ingests the mirror working tree; hoist the done guard in upsert_task_claim"*) had never
+been loaded. That commit is the **root-cause** fix for the P3 statusregress class adjudicated above -- the
+one that stops the generator, as distinct from the restore and the `upsert_chip` guard (`7f51dff`), both of
+which were live. Measured: `ree-coordinator` PID 3667893, `ActiveEnterTimestamp` 2026-09-18T18:52:04Z,
+`NRestarts=0`, ~3.47 d elapsed; `git log --since=<that> -- coordinator/` as user `ree` returns exactly
+`0ddac64f`; hub `db.py` mtime 2026-09-19T10:27:38Z. So P3 shipped, was user-approved, and was **half-live on
+the fleet for three days**, and the only artifact saying so was a daemondrift chip triaged as routine.
+
+**What this does and does not ask for.** It does **not** re-propose auto-restart (disproven by held-out
+check) or auto-redeploy (rejected 2026-08-26); both stay closed, and the restart remained human-gated in
+this case too. The ask is narrower and is about **triage order, not automation**: when a daemondrift chip
+names a daemon, it is cheap to ask *what is inert* (`git log --since=<ActiveEnterTimestamp> -- <svc dir>`),
+and the answer occasionally promotes a routine hygiene chip into a blocker on already-approved work.
+
+**GOV-HELDOUT-1 is OWED, not done.** This is one case, recorded as evidence; no rule was changed. A future
+pass acting on it must find >=3 non-degenerate cases where the old and new triage give different answers,
+per CLAUDE.md "Held-out check before shipping a standing-rule change" -- and if it cannot, the finding is
+that this is scoped to its own incident.
+
+**Correction to this document's own P1/P3 record.** An earlier pass of this session reported `7f51dff` as
+unloaded. That was **wrong**. The hub `ree-v3` ref at the coordinator's process start *was* `7f51dff`
+(pulled 18:41:11Z, 11 min prior), so `f2b70bbe91`, `bedef6b` and `7f51dff` were all loaded. The error came
+from running `git` on `/home/ree/REE_Working/ree-v3` **as root**, which returns `dubious ownership` and a
+false "not an ancestor". **Always `sudo -u ree`** when auditing what the hub has.
+
+**Disposition.** Restart user-authorised 2026-09-22 and routed to the live `/metaworker-orchestrate`
+session (chip `chip-20260918-decision-hub-restart-id-collision`, whose own premise was stale and was
+amended; claimed 06:11:06Z), sequenced to wait behind an active claim on `coordinator/db.py` by
+`brave-solomon-95d478`. That session's heartbeat-trim fix is behaviourally inert on this hub, so the
+restart's entire observable payload is `0ddac64f`. The chip's VERIFY LIVE probe was deliberately not run by
+anyone: it writes real rows to the live coordination plane, and since the guard code is demonstrably
+loaded, an exit-0 result would now indicate a genuine defect rather than an argument for a restart.
