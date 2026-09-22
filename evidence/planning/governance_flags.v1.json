@@ -5623,6 +5623,33 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0399",
+      "claim_ids": [
+        "SD-016",
+        "MECH-461",
+        "Q-055",
+        "SD-051",
+        "SD-065",
+        "SD-067",
+        "SD-080",
+        "SD-099",
+        "SD-023",
+        "Q-001",
+        "INV-025",
+        "ARC-068",
+        "ARC-014",
+        "MECH-276",
+        "SD-031"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Falsifier-runnability audit (REE_assembly 02caebd047, evidence/planning/falsifier_completion_and_runnability_audit_20260921.md): decisive runs exist for these 15 claims but are tagged only to a sibling claim or never adjudicated, so each reads exp=0 / v3_pending / blocked while its own falsifier has already fired -- SD-016 leg A (V3-EXQ-898/907/908 claim_ids=[]), MECH-461 (781 = its pre-registered falsifying pattern, tagged MECH-457), Q-055 (691 tagged SD-017/MECH-120), SD-051/SD-065 (519b/759/763 tagged MECH-304), SD-067 (939a tagged MECH-303), SD-080 (809 tagged SD-004), SD-099 (via MECH-489), SD-023 (418h/418k tagged SD-016), Q-001 (658 tagged MECH-045), INV-025 (818 tagged ARC-016), ARC-068 (all runs tagged MECH-320), ARC-014 (880 PASS, genuine_exp 0), MECH-276 (703a claim_ids=[]), SD-031 (1013 PASS while self_attribution:GAP-6 reads blocked). Governance to decide evidence edges or re-adjudication; do not back-tag manifests by hand (GFLAG-0247/0258 shape).",
+      "raised_by_session": "falsifier-runnability-audit-resume-20260922",
+      "raised_at": "2026-09-22T04:17:39Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
