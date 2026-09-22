@@ -7942,17 +7942,22 @@
           "pre_registered_utc": "2026-09-20T11:43:49Z",
           "pre_registration_source": "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json",
           "adjudicating_runs": [
-            "(probe: consolidation lr ladder / SGD, 798a regime)"
+            "(probe: consolidation lr ladder / SGD, 798a regime)",
+            "V3-EXQ-1073"
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-1073"
+            ],
+            "evidence_direction": "non_contributory",
+            "control_passed": true,
+            "non_degenerate": false,
             "met_elimination_bar": false,
             "resolved_utc": null,
-            "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+            "basis": "V3-EXQ-1073 (3 seeds): displacement pinned at the 8*lr Adam bound on 12/12 baseline cells; scaling the e2_world step to ~0.45 / ~0.05 reduces the post-sleep worsening from 9.7-62x to 3.8-16x / 0.13-1.31x monotonically on 3/3 seeds. Supports the leg directionally; NOT confirmed because no setting reached a non-negative delta and the converged base clears the trivial predictor on 1/3 seeds (G8), so the protection contrast is non-degenerate=False. Stays alive.",
+            "epistemic_category": "standard",
+            "self_route_label": "confidently_wrong_condition_unposeable_on_this_head"
           }
         },
         {
@@ -7964,17 +7969,22 @@
           "pre_registered_utc": "2026-09-20T11:43:49Z",
           "pre_registration_source": "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json",
           "adjudicating_runs": [
-            "(probe: battery with headroom, 798a regime)"
+            "(probe: battery with headroom, 798a regime)",
+            "V3-EXQ-1073"
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-1073"
+            ],
+            "evidence_direction": "non_contributory",
+            "control_passed": true,
+            "non_degenerate": false,
             "met_elimination_bar": false,
             "resolved_utc": null,
-            "basis": "Pre-registered at fan-out; adjudicating run not yet queued."
+            "basis": "V3-EXQ-1073 re-measures the converged head at skill -0.071/+0.227/-0.007 vs the identity predictor and finds the inverted-rule battery EASIER than the original (G9 0.745/0.677/0.674): the head barely reads the action (SD-PP-B5). Supports the leg; not the elimination bar (no alternative readout with headroom was run). Stays alive.",
+            "epistemic_category": "standard",
+            "self_route_label": "confidently_wrong_condition_unposeable_on_this_head"
           }
         }
       ],
@@ -7984,8 +7994,114 @@
         "live_gate": "a positive across-sleep delta on a readable, non-degenerate readout, on a converged base in 798a's configuration, on a seed majority",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "three diagnostic PASSes adjudicated (wired; direction negative; ladder gradeable at 2/3); three rivals pre-registered; probes not yet queued; the tau-bind decision is with the user",
+        "distance_phrase": "three diagnostic PASSes adjudicated (wired; direction negative; ladder gradeable at 2/3); three rivals pre-registered; probes not yet queued; the tau-bind decision is with the user; V3-EXQ-1073 (2026-09-22): the step-scale leg is live and monotone but no scale reached a non-negative delta on a readable base; the head is action-blind (SD-PP-B5)",
         "observation_bottleneck": "Neither registered readout currently shows sleep improving the world-forward model: MSE worsens on a converged base, and InfoNCE is readable only at taus where its across-sleep delta is negative (GFLAG-0382)."
+      }
+    },
+    {
+      "qid": "precision_provenance_consolidation_gain",
+      "title": "Does behaviourally grounded epistemic provenance (historical model precision, evidence precision, current model precision), used only to scale sleep-time consolidation gain, improve consolidation beyond a generic gain reduction without self-sealing confidently wrong beliefs?",
+      "short_title": "precision provenance vs generic gain",
+      "claims": [
+        "MECH-572"
+      ],
+      "registered_utc": "2026-09-22T19:01:15Z",
+      "fanout_sources": [
+        "precision_provenance_consolidation_gain_design_20260922.md",
+        "failure_autopsy_V3-EXQ-1073_2026-09-22.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "growth_restriction": "",
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-provenance-beyond-generic",
+          "label": "Provenance adds information beyond generic gain reduction (R1)",
+          "desc": "ARM C beats the matched-total-budget global reduction on protection AND correction, and beats the current-residual scheduler on the noisy channel.",
+          "axis": "learning-signal",
+          "basis": "Pre-registered as the primary hypothesis of the 2026-09-22 intake.",
+          "pre_registered_utc": "2026-09-22T15:17:48Z",
+          "pre_registration_source": "precision_provenance_consolidation_gain_design_20260922.md (REE_assembly d272c24d76, section 12)",
+          "adjudicating_runs": [
+            "V3-EXQ-1073"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1073"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "confidently_wrong_condition_unposeable_on_this_head",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-22T18:28:56Z",
+            "basis": "V3-EXQ-1073: P6 protection leg passes 2/3 but D-global ran 6-17x hotter than C in those conditions (budget skew recorded); P5 (C vs current-residual scheduler, noisy channel) fails (+0.03 +/- 0.33); P6 correction leg unposeable (B5). Not eliminated (non-degenerate=False under G8/G9), not supported. Alive."
+          }
+        },
+        {
+          "hid": "H-generic-gain-sufficient",
+          "label": "MECH-572 is a gain-scheduling defect; a residual- or globally-scaled step suffices (R2)",
+          "desc": "A current-residual gain scheduler with no provenance protects a converged head as well as the provenance rule.",
+          "axis": "process",
+          "basis": "Pre-registered as the simpler rival (preregistration section 12, R2).",
+          "pre_registered_utc": "2026-09-22T15:17:48Z",
+          "pre_registration_source": "precision_provenance_consolidation_gain_design_20260922.md (REE_assembly d272c24d76, section 12)",
+          "adjudicating_runs": [
+            "V3-EXQ-1073"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1073"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "confidently_wrong_condition_unposeable_on_this_head",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-22T18:28:56Z",
+            "basis": "V3-EXQ-1073: D-residual (current residual only) matches ARM C on protection (cond 1 ret 0.13/1.01/0.20 vs 0.47/1.31/0.82; cond 4 0.22/0.26/0.65 vs -0.01/0.19/1.06) at 0.68-1.9x C's budget. Consistent with R2 on the readable cells, but the converged base fails MECH-573 readability on 2/3 seeds, so not confirmed. Alive; preferred on parsimony until a use case shows provenance value."
+          }
+        },
+        {
+          "hid": "H-self-sealing",
+          "label": "Historical precision protects a confidently wrong belief (R3)",
+          "desc": "High historical precision reduces corrective updating of a reliably contradicted prediction.",
+          "axis": "process",
+          "basis": "Pre-registered as the anti-self-sealing falsifier (intake F3).",
+          "pre_registered_utc": "2026-09-22T15:17:48Z",
+          "pre_registration_source": "precision_provenance_consolidation_gain_design_20260922.md (REE_assembly d272c24d76, section 12)",
+          "adjudicating_runs": [
+            "V3-EXQ-1073"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1073"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "confidently_wrong_condition_unposeable_on_this_head",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-09-22T18:28:56Z",
+            "basis": "V3-EXQ-1073: unposeable -- the head does not read the action (inverted-rule battery MSE 0.67-0.74x the original; early surprise fraction 0.033), so no reliable contradiction existed and r_i ~1 everywhere (P7 null). Observation bottleneck SD-PP-B5. Alive."
+          }
+        }
+      ],
+      "decision": {
+        "decision_question": "Can an episode's stored epistemic provenance change how strongly offline replay should alter an existing world model, beyond what the current residual already says?",
+        "live_gate": "on a base above the trivial predictor (MECH-573) with a head that reads its action (SD-PP-B5): ARM C beats a current-residual scheduler on the noisy channel AND reopens a reliably contradicted belief at least as well as baseline, on a seed majority",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one preregistered diagnostic adjudicated: substrate built and validated (SD-PP-1..4), mechanism live and monotone, but the confidently-wrong leg is unposeable and the converged base is unreadable on 2/3 seeds; all three legs alive",
+        "observation_bottleneck": "The world-forward head sits at copy-the-input and barely reads the action (SD-PP-B5), and no default-on behavioural consumer of it exists (SD-PP-B1); both must land before the question can move."
       }
     }
   ]

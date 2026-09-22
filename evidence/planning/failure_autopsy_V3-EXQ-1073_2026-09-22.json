@@ -1,0 +1,147 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-22T18:39:38Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "session": "compassionate-pike-fe9174",
+  "preregistration": "evidence/planning/precision_provenance_consolidation_gain_design_20260922.md",
+  "targets": [
+    {
+      "run_id": "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3",
+      "queue_id": "V3-EXQ-1073",
+      "claim_ids": [
+        "MECH-572"
+      ],
+      "bears_on": [
+        "inv063_legb_sleep_worsens_converged_dv",
+        "SD-PP-B5-z-world-per-step-displacement-range",
+        "SD-PP-B1-world-forward-behavioural-consumer"
+      ],
+      "self_route_label": "confidently_wrong_condition_unposeable_on_this_head",
+      "outcome": "PASS",
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "none -- validity G1-G7 all pass; the load-bearing contrasts P4/P6-correction/P7 are non-degenerate=False by the pre-registered G4b/G9 markers (condition 3 unposeable) and P2/P5/P6-protection by G8 (MECH-573 readability, skill > 0 on 1/3 seeds)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-572's mechanism reproduced: displacement pinned at 0.0079-0.0081 (= 8*lr) on 24/24 baseline cells; displacement is LINEAR in the step scale (G1, 5/5 rungs) and reducing the scale reduces the across-sleep worsening (gain 1.0 -> ret 9.7-62x; ~0.45 -> 3.8-16x; ~0.05 -> 0.13-1.31x on 3/3 seeds; retention is NON-monotone above scale 0.5). At the run's own gains no non-negative delta was reached on a readable base, so CONFIRMING is not met; the ladder reached ret -0.044 at scale 0.02 on seed 42 (unreadable seed), so P-FAIL is not triggered either.",
+        "biological_reference": "partial -- confidence-weighted updating (Meyniel & Dehaene 2017), CA1 mismatch scaled by prediction strength (Chen 2015), sleep as a separate gain regime (Swift 2018, Feher 2026) all support the CLASS; the run could not test the load-bearing half (reopening a confident belief) because the head never held a belief the environment could contradict.",
+        "prerequisites": "missing -- (B5) the world-forward head sits at copy-the-input (skill -0.071/+0.227/-0.007 vs identity predictor) and barely reads the action: inverted-rule battery MSE 0.67-0.74x the original-rule MSE on 3/3 seeds, so an action-map inversion is not a contradiction; (B1) no default-on behavioural consumer of e2.world_forward, so no organism-level endpoint exists.",
+        "implementation": "complete -- SD-PP-1..4 all live and exercised: A/B bitwise neutral 24/24 cells (P1 exact zero), consumer live (G1b), gain rule factor-by-factor as pre-registered (K 0.525/0.588/0.570 under noise vs ~1.0 elsewhere; m tracks the stored innovation; r_max up to 1.83 on isolated rows but P7 null). On the underfit base the rule AMPLIFIES to 1.22-1.87x (displacement up to 0.0154, 1.9x the Adam bound) as designed.",
+        "environment": "too sparse -- CausalGridWorldV2 5x5 with a one-cell move produces identity_predictor_mse ~1e-5, so the encoder compresses all world dynamics into a z displacement the head cannot use; the environment cannot supply a reliable contradiction to a head that ignores the action.",
+        "measurement": "adequate on interpretation.criteria[] (all pre-registered readouts recorded, markers flagged the unreadable contrasts) BUT the flat readout.p3..p7 and the evidence_direction_note counts in the landed manifest are shifted by one (driver positional binding after P2b insertion; red-team C1) -- governance must read criteria[]. Driver fixed 2026-09-22 (bind by name).",
+        "integration": "coupled but inert BY DESIGN on two links, both pre-registered: (i) the reopen factor had no contradiction to interpret (surprise median 0.5-1.0; C vs C-nohist P7 delta 0.10 +/- 0.26, non-degenerate=False); (ii) no E3 consumer of e2.world_forward, so no behavioural readout.",
+        "scale": "likely insufficient on the REPRESENTATION axis (B5), adequate on training budget (P0 3600 steps, conv_rel_drop 0.998)."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- prerequisite/substrate (the world-forward head is copy-the-input and action-blind, MECH-573 / SD-PP-B5: 4 of 6 degenerate contrasts charge to G8) + environment (one-cell moves give no usable contradiction) + a measurement defect in the flat readout (C1). Not chargeable to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "confidence-weighted belief updating (rIFG/IPS, Meyniel & Dehaene 2017) with CA1 prediction-strength-scaled mismatch and LC-gated sleep plasticity",
+        "dependencies": [
+          "a world model that actually predicts the consequences of action (so a contradiction can exist)",
+          "a behavioural consumer of that model",
+          "sensory reliability estimation"
+        ],
+        "is_formal_import": true,
+        "divergence": "the Kalman-form K_i is a formal import; the biology it stands in for (precision-weighted PE) is supported, but the run shows the term is only load-bearing where evidence reliability actually varies (cond 4), and there its retention advantage over a current-residual scheduler was not shown",
+        "lit_status": "present -- intake thought_intake_2026-09-22 carries 15 references; targeted_review_inv_063 entries dated 2026-09-22"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Diagnostic, non_contributory by design (preregistration section 14); no MECH-572 verdict. READABLE yield: (1) P1 A/B storage neutrality bitwise 24/24 cells (SD-PP-3 validated); (2) P3 3/3: the provenance rule learns at least as well as baseline on the underfit base (gains 1.22-1.87); (3) mechanism descriptives: displacement pinned at 8*lr on every baseline cell and linear in the step scale, and the worsening falls from 9.7-62x to 0.13-1.31x when the e2_world step is scaled to ~0.05 (by C, C-nohist or the current-residual scheduler alike) -- consistent with MECH-572's mechanism; (4) the gain rule acted factor-by-factor as pre-registered (K 0.525/0.588/0.570 under noise). UNREADABLE, must NOT be cited either way: P2/P5/P6 (converged base fails MECH-573 readability on 2/3 seeds: skill -0.071/+0.227/-0.007) and P4/P6-correction/P7 (condition 3 unposeable: the head barely reads the action, inverted-rule battery pre-sleep MSE 0.76/0.90/0.88x the original, cond-3 waking pe 0.67-0.74x the converged residual, early surprise fraction 0.033) -- register SD-PP-B5, now measured on 3 seeds. So the intake's causal question (does provenance add information beyond a residual-scheduled gain; does it self-seal) is UNANSWERED at this operating point; matrix rows R1/R2/R3/R7 are NOT reached; the run lands on the instrument route (R6-shaped for condition 3) with the Result-4 cap. NOTE for governance: the landed manifest's flat readout.p3..p7 and the counts in its evidence_direction_note are shifted by one (driver bug, fixed at source this session); interpretation.criteria[] is authoritative (P3 True 3/3, P4 False 0/3, P6 True 2/3, P7 False 1/3). Do NOT promote MECH-572; do NOT register the intake's candidate claims from this run.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[governance] V3-EXQ-1073 (diagnostic, PASS on validity G1-G7, label confidently_wrong_condition_unposeable_on_this_head): non_contributory for MECH-572, by design. CITEABLE: on 3/3 seeds the fresh-Adam displacement is pinned at the 8*lr bound (0.0079-0.0081) and post-sleep frozen-battery MSE rises 9.7-62x on a converged base; scaling the e2_world step to ~0.05 (provenance-conditioned or current-residual-scheduled) holds the rise to 0.13-1.31x and a uniform 0.34-0.52 scale to 3.8-16x; displacement is linear in the scale while retention is non-monotone above scale 0.5. Consistent with MECH-572's mechanism. NOT citeable as CONFIRMING: at the run's gains no non-negative delta on a base above the trivial predictor (skill -0.071/+0.227/-0.007; 1/3 readable); the seed-42 ladder reached ret -0.044 at scale 0.02, so a readable-seed step-scale ladder (MECH-572's own lever, or SD-PP-B8 persistent optimiser state) is the cheap next test and P-FAIL is NOT triggered. The provenance-vs-generic-gain question is UNANSWERED here (P2/P5/P6/P7 non-degenerate), and the anti-self-sealing test is unposeable: the head barely reads the action (inverted-rule battery MSE 0.76-0.90x the original; SD-PP-B5). Storage of provenance is bitwise neutral (P1) and the rule still learns on an underfit base (P3 3/3). CAUTION: this manifest's flat readout.p3..p7 and its evidence_direction_note counts are shifted by one (driver bug, fixed 2026-09-22); read interpretation.criteria[]. Organism-level ceiling by construction (SD-PP-B1). failure_autopsy_V3-EXQ-1073_2026-09-22.",
+      "per_claim_recommendation": {
+        "MECH-572": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-572 already carries epistemic_category standard (unchanged); non_contributory diagnostic adjudicated -- mechanism reproduced on 3/3 seeds, CONFIRMING not reached at the run's gains, P-FAIL not triggered (a readable seed exists and the ladder reached a non-negative delta) -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B5-z-world-per-step-displacement-range",
+        "implementation_hint": "Measured on 3 seeds by V3-EXQ-1073: the converged world-forward head's pre-sleep MSE on an INVERTED-action-map battery is 0.760/0.901/0.881x its MSE on the original rule, cond-3 waking pe is 0.745/0.677/0.674x the converged residual, and the early post-inversion surprise fraction is 0.033 -- the head barely reads the action. RETRACT this row's title claim that 'a rule inversion produces PE ~4x the converged residual' (an estimate from the register, now measured at <1x). Any falsifier requiring a reliable contradiction of a confident world-model prediction (the intake's F3 anti-self-sealing test, MECH-574's novel-target arm) is unposeable until the head reads its action; MECH-572's own CONFIRMING does NOT require one and stays reachable via a readable-seed step-scale ladder. Candidate remedies: train world_forward on a z_world with larger per-step displacement (SD-018 amend / SD-009), or an action-sensitivity readiness gate before any contradiction-based experiment.",
+        "unblocks_claims": [
+          "MECH-572",
+          "MECH-573",
+          "MECH-574",
+          "INV-063"
+        ],
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/predictors/e2_fast.py::world_forward",
+          "ree_core/latent/stack.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3",
+          "experiment_type": "v3_exq_1073_mech572_precision_provenance_gain",
+          "metric": "G9 cond-3 waking pe / converged residual = 0.745/0.677/0.674 (needs > 2.0); inverted-rule battery pre-sleep MSE / original = 0.760/0.901/0.881 (a contradiction needs > 1); G4b early surprise fraction 0.033 (needs >= 0.5); skill vs identity -0.071/+0.227/-0.007",
+          "target": "cond3 pe/residual > 2.0 and early surprise fraction >= 0.5 on >= 2/3 seeds; head skill vs identity > 0 on >= 2/3 seeds",
+          "resolved": "open"
+        },
+        "ready_now_user_decision": true,
+        "route_to": "/implement-substrate (user decision 2026-09-22T19:01:15Z)",
+        "priority_suggested": 1
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "route_to": "implement-substrate (user-escalated B5)",
+        "upstream_substrate": "SD-PP-B5-z-world-per-step-displacement-range",
+        "note": "0 prior counting hits for MECH-572; this target is category standard with an instrument/prerequisite marker and does not count."
+      },
+      "learning_extracted": [
+        "MECH-572's phenotype and mechanism reproduce on 3 seeds: displacement is set by the optimiser (0.0079-0.0081 = 8*lr on 24/24 baseline cells), is linear in the step scale, and reducing the scale reduces the across-sleep worsening (retention non-monotone above scale 0.5; the ladder reached a non-negative delta at scale 0.02 on seed 42).",
+        "Storing epistemic provenance is bitwise neutral (P1, 24/24 cells): the SD-PP-3 carrier can ride in any experiment without perturbing it.",
+        "The provenance rule still learns on an underfit base (P3 3/3, gains 1.22-1.87) -- it does not freeze learning.",
+        "The intake's causal question is UNANSWERED at this operating point: every contrast that could separate provenance from a generic gain (P2/P5/P6) or test self-sealing (P4/P7) is unreadable, for two measured reasons -- the converged head fails MECH-573 readability on 2/3 seeds, and the head barely reads the action so condition 3 poses no contradiction (SD-PP-B5, now on 3 seeds).",
+        "The reopen factor and the evidence-precision term both acted as pre-registered (r_max 1.83; K 0.53-0.59 under noise) but had no readable consequence here; they are testable only where a contradiction exists and the base is readable.",
+        "The pre-freeze channel probe caught three warm-up/statistic gate failures before the run; calibration window + estimator state are now substrate.",
+        "A recording DEFECT, not a gap: the flat readout.p3..p7 and the evidence_direction_note counts were bound by position after P2b was inserted and are shifted by one in the landed manifest; interpretation.criteria[] is authoritative and the label is unaffected. Driver fixed at source; no re-run needed for THIS adjudication, but any consumer of readout.pN on this manifest must be re-pointed.",
+        "MECH-572's CONFIRMING clause is cheaper to reach than the intake's question: one readable seed (123, skill +0.227) and a six-rung step-scale ladder with existing code (or SD-PP-B8 persistent optimiser state)."
+      ],
+      "routing": "governance",
+      "routing_note": "No re-queue of V3-EXQ-1073 at the same granularity (its question is unposeable on this head). Governance: (1) amend SD-PP-B5 with this failure record and retract its '~4x PE' title estimate; (2) apply the MECH-572 per-claim recommendation (diagnostic_evidence_adjudicated true; pending_retest_after_substrate true) -- P-FAIL NOT triggered; (3) mark SD-PP-1..4 substrate rows validated (A/B neutrality, consumer liveness, gain linearity all measured on 3 seeds) -- this run IS their /implement-substrate Step 8 validation; (4) resolve GFLAG-0413; (5) the intake's candidate claims stay NOT registered; (6) chip a NEW-number /queue-experiment for MECH-572's own CONFIRMING: a step-scale ladder (0.02-1.0) on the readable seed(s) with skill > 0 asserted from output, optionally crossed with SD-PP-B8 persistent optimiser state -- different question (does a residual-scaled step make the delta non-negative), not a re-pose of 1073; (7) the organism-level follow-up on B1 is governance's chip; (8) note the manifest flat-readout shift for any consumer of readout.pN. An autopsy does not chip its own routing. USER DECISION AT THE GATE (real AskUserQuestion, 2026-09-22T19:01:15Z): routing CONFIRMED and SD-PP-B5 ESCALATED to /implement-substrate NOW (chip spawned by this session on the user's instruction; substrate_queue row set ready:true citing this decision) -- the intake's hardest test waits on it.",
+      "fanout_recommendation": null,
+      "red_team": {
+        "model": "opus (cross-model; session on fable)",
+        "verdict": "CONTESTED",
+        "artifact": "redteam_autopsy_1073.md (scratch, reproduced in the .md)",
+        "dispositions": {
+          "C1_manifest_flag_shift": "ACCEPTED. Driver bound p3..p7 by index after P2b was inserted; the landed manifest's readout.p3..p7 and the evidence_direction_note counts are shifted by one (published p4=1 / 'P4 3/3' vs true P4 False 0/3; P3 True 3/3 published as 0). interpretation.criteria[] and the label are unaffected. Driver fixed this session (bind by name). Measurement row downgraded to 'adequate on criteria[]; flat readout corrupted'. Governance MUST read criteria[], not readout.pN, for this run; no re-run needed.",
+          "C2_wrong_statistic": "ACCEPTED. 0.745/0.677/0.674 is G9 (cond-3 waking pe / converged residual). The battery ratio r1_mse_pre/r0_mse_pre is 0.760/0.901/0.881 (<1 on 3/3 seeds). Both now stated with their correct meaning.",
+          "C3_forbidden_contrasts": "ACCEPTED. P5/P7 are non-degenerate=False and are no longer cited in either direction; P3 (the one pre-registered readable contrast) passed 3/3 and is now cited. The provenance-vs-generic question is recorded as UNANSWERED at this operating point, not answered negatively; the R2/R7 matrix rows are explicitly NOT reached.",
+          "C4_routing_over_blocks": "ACCEPTED in part. MECH-572's CONFIRMING clause needs a small step on a readable base, not a contradiction: seed 123 is readable (skill +0.227) and the seed-42 ladder reached ret -0.044 at scale 0.02. Routing now names the cheap next experiment (a readable-seed step-scale ladder, new EXQ number, MECH-572's own lever; also SD-PP-B8 persistent optimiser state) and engages MECH-572's P-FAIL clause explicitly: NOT triggered, because a readable seed exists and a non-negative delta was reached on the ladder.",
+          "a_p2_trivial": "ACCEPTED: any sub-unity scale passes the relative P2 leg (D-global too); P2 is not cited as evidence for C.",
+          "d_failure_location": "ACCEPTED: 4/6 degenerate contrasts are charged to G8 (MECH-573 readability of the head, a substrate prerequisite); net classification MIXED (prerequisite/substrate + environment), ree false.",
+          "e_already_true_tail": "ACCEPTED: MECH-572 already carries epistemic_category standard; the change tail is diagnostic_evidence_adjudicated: true (currently False) and pending_retest_after_substrate (absent).",
+          "f_prose_absolutes": "ACCEPTED: 'monotonic' now refers to displacement (linear) with retention non-monotone above scale 0.5; 'no non-negative delta' qualified to 'at the run's own gains on a readable base'; K under noise corrected to the run values 0.525/0.588/0.570 (0.44 was the pre-run seed-42 probe).",
+          "severity_b5": "KEPT degrading (already on the row); the amend now RETRACTS B5's title claim that a rule inversion produces PE ~4x the residual (measured 0.67-0.74x waking-pe/residual; battery 0.76-0.90x). Not raised to corrupting: the head's action-blindness does not make other runs' evidence look valid when it is not -- the driver flag shift (C1) is the corrupting item and it is fixed at source.",
+          "C7_pre_routing": "DISMISSED: conv_rel_drop is bit-identical across arms within a seed by construction of the cached-head pairing; it is a base property, not a discrimination criterion."
+        }
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-09-22T19:01:15Z",
+  "user_decision": {
+    "utc": "2026-09-22T19:01:15Z",
+    "gate": "Step 8",
+    "selected": "Confirm, but escalate B5 to a build now",
+    "recommended_option": "Confirm routing as proposed",
+    "matched_recommendation": false
+  }
+}

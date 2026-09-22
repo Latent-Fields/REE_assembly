@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "mech005-science-20260922-exq-1073",
-  "last_updated_utc": "2026-09-22T16:33:33Z",
+  "last_updated_utc": "2026-09-22T19:01:39Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -12242,18 +12242,27 @@
     },
     {
       "node_class": "complex (probe-gated) -> mystery (known data)",
-      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
-      "ready": false,
-      "registration_is_not_build_authorisation": true,
-      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
-      "priority": "medium",
+      "status": "ready_build_authorised_by_user_2026_09_22",
+      "ready": true,
+      "registration_is_not_build_authorisation": false,
+      "owner_route": "/implement-substrate (user decision at the V3-EXQ-1073 autopsy gate, 2026-09-22T19:01:39Z)",
+      "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
       "last_seen_session": "compassionate-pike-fe9174",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3",
+          "experiment_type": "v3_exq_1073_mech572_precision_provenance_gain",
+          "metric": "G9 cond-3 waking pe / converged residual = 0.745/0.677/0.674 (needs > 2.0); inverted-rule battery pre-sleep MSE / original = 0.760/0.901/0.881 (a contradiction needs > 1); G4b early surprise fraction 0.033 (needs >= 0.5); skill vs identity -0.071/+0.227/-0.007",
+          "target": "cond-3 pe/residual > 2.0 and early surprise fraction >= 0.5 on >= 2/3 seeds; head skill vs identity > 0 on >= 2/3 seeds",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1073_2026-09-22.json"
+        }
+      ],
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/precision_provenance_substrate_spec.md",
       "sd_id": "SD-PP-B5-z-world-per-step-displacement-range",
@@ -12265,18 +12274,19 @@
         "INV-063"
       ],
       "source_audit": "evidence/planning/precision_provenance_substrate_necessities_20260922.md",
-      "implementation_hint": "Data already landed (evidence/experiments/v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3.json, identity_predictor_mse per cell). Reframe, do not gather: the question is whether the world head should be trained on a z_world with more per-step displacement (SD-018 amend resource-field supervision, SD-009 event-contrastive) rather than fixed downstream. This is the v3 binding constraint (observation -> z_world -> E1/E2) again. V3-EXQ-1073 carries a non-degeneracy gate on measured PE separation because of this row.",
+      "implementation_hint": "Data already landed (evidence/experiments/v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3.json, identity_predictor_mse per cell). Reframe, do not gather: the question is whether the world head should be trained on a z_world with more per-step displacement (SD-018 amend resource-field supervision, SD-009 event-contrastive) rather than fixed downstream. This is the v3 binding constraint (observation -> z_world -> E1/E2) again. V3-EXQ-1073 carries a non-degeneracy gate on measured PE separation because of this row. || AUTOPSY 2026-09-22: candidate remedies -- train world_forward on a z_world with larger per-step displacement (SD-018 amend / SD-009 event-contrastive), and/or add an action-sensitivity readiness gate (inverted-action battery MSE must exceed the original-rule MSE) before any contradiction-based consolidation experiment; MECH-572's own CONFIRMING does NOT need this and stays reachable via a readable-seed step-scale ladder.",
       "falsifier_requirement_satisfied": "Any falsifier on this head that compares 'converged' to 'contradicted' needs the two to be separable above the residual.",
       "event_or_manipulation_produced": "n/a (representation property)",
       "dv_or_instrument_exposed": "identity_predictor_mse and skill score already instrumented (V3-EXQ-1063).",
       "ready_blocked_by": "/governance: MECH-573's skill>0 readability gate is an owed falsifier edit; this row is its substrate-side twin.",
-      "authority": "REGISTRATION ONLY by the science session compassionate-pike-fe9174 while tracing the information-loss boundary for the precision-provenance experiment (thought_intake_2026-09-22). The user's build authorisation covered the producers (SD-PP-1..4) only; this row is minted so the necessity is tracked in a machine-readable worklist rather than prose (queue-experiment Step 2.5 STOP-GATE route 2b rationale). Not a build authorisation; /governance adjudicates.",
+      "authority": "REGISTRATION ONLY by the science session compassionate-pike-fe9174 while tracing the information-loss boundary for the precision-provenance experiment (thought_intake_2026-09-22). The user's build authorisation covered the producers (SD-PP-1..4) only; this row is minted so the necessity is tracked in a machine-readable worklist rather than prose (queue-experiment Step 2.5 STOP-GATE route 2b rationale). Not a build authorisation; /governance adjudicates. || USER DECISION 2026-09-22T19:01:39Z (real AskUserQuestion at failure_autopsy_V3-EXQ-1073 Step 8): 'Confirm, but escalate B5 to a build now' -- build authorised; chip spawned by session compassionate-pike-fe9174.",
       "why_no_existing_owner": "MECH-573 registers the READOUT-side consequence; nothing registers the encoder-range cause as a substrate item.",
       "severity": "degrading",
       "substrate_paths": [
         "ree_core/predictors/e2_fast.py::world_forward",
         "ree_core/latent/stack.py"
-      ]
+      ],
+      "title_correction_2026_09_22": "RETRACTED from the title: 'a rule inversion produces PE ~4x the converged residual' was a register-time estimate; V3-EXQ-1073 measured cond-3 waking pe / converged residual 0.745/0.677/0.674 and inverted-rule battery pre-sleep MSE 0.760/0.901/0.881x the original on seeds 42/123/456 -- the head barely reads the action."
     },
     {
       "node_class": "complicated (buildable)",
