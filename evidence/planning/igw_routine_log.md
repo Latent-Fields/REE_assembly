@@ -3491,3 +3491,4 @@ One line per hourly tick. ASCII only.
 2026-09-22T18:22:06Z skip: paused (.igw_routine_pause present)
 2026-09-22T19:22:09Z skip: paused (.igw_routine_pause present)
 2026-09-22T20:26:24Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 262 items, 29 ready, 0 in flight)
+2026-09-22T20:22:11Z STAGE IGW-20260922-228 skill=/implement-substrate prio=25 worktree=igw-228-substrate-ready-sd-pp-b5-z-world (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
