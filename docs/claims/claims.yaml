@@ -11378,53 +11378,52 @@
 - id: ARC-023
   title: "Three BG-like loops operate at characteristic thalamic heartbeat rates."
   claim_type: architectural_commitment
-  epistemic_category: substrate_conditional
+  epistemic_category: standard
   subject: basal_ganglia.three_loop_thalamic_heartbeat
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/substrate_conditional
-    as_of: 2026-09-17
+    reading: candidate
+    as_of: 2026-09-22
     needs_review: false
     evidence:
       from: failure_autopsy_V3-EXQ-942_2026-08-21
       as_of: 2026-08-21
       verdict: non_contributory/standard
   what_would_answer: >
-    NON-DEGENERACY PRECONDITION: SD-006 phase 2 (true asynchronous multi-rate
-    execution) must be active, not the phase-1 time-multiplexed substrate. EXQ-131's
-    own diagnosis (2026-03-30 review) is explicit that synchronous/time-multiplexed
-    polling produces an "E3 output freeze artifact" -- stale E3 state under
-    synchronous polling drives var_harm_eval_on to near-zero (1.05e-7), statistically
-    indistinguishable from the ablated condition (0.00276), regardless of whether the
-    three loops are genuinely rate-separated. A test run on phase-1-only substrate is
-    therefore uninformative by construction, not merely under-powered, and cannot be
-    read as evidence either for or against this claim.
+    NON-DEGENERACY PRECONDITION: the phase-1 time-multiplexed SD-006 substrate must be
+    active and the three loops must be configured with DISTINCT periods (if E1/E2/E3
+    are configured at the same period the test is vacuous). SD-006 is status
+    `implemented` and MECH-089 / MECH-090 are `active`, so this precondition is
+    satisfiable in V3 today. Any readout taken from E3 state that is STALE between
+    ticks is inadmissible: EXQ-131's 2026-03-30 diagnosis established that
+    synchronous/time-multiplexed polling produces an "E3 output freeze artifact"
+    (var_harm_eval_on 1.05e-7 vs ablated 0.00276, statistically indistinguishable)
+    regardless of whether the loops are genuinely rate-separated, so var_harm_eval-style
+    discriminative-pair metrics must NOT be used here.
 
-    CONFIRMING signature: with SD-006 phase 2 active, E1/E2/E3 show measurably
-    distinct and stable update-rate signatures (effective update frequency, or
-    latency-drift-under-load) that persist without collapsing into lockstep when
-    processing latency is varied. If EXQ-131's var_harm_eval-style discriminative-pair
-    metric remains diagnostic once E3 state updates are genuinely asynchronous rather
-    than time-multiplexed-stale, reuse it directly. If the phase-2 substrate changes
-    how E3 state is exposed between ticks, the metric should be replaced with a direct
-    measurement of realized inter-loop update-rate ratios (E1:E2:E3 tick-count ratios
-    under load, measured empirically) plus a rate-drift measure under injected latency
-    perturbation.
+    CONFIRMING signature: the REALIZED update-rate ratios differ measurably across the
+    three loops on the phase-1 clock -- empirical E1:E2:E3 tick-count (or
+    effective-update-count) ratios over a fixed wall-clock or step budget, matching the
+    configured period ratios within tolerance, with E3 slowest. This is a direct count
+    of realized updates, not an inference from a downstream behavioural readout.
 
-    FALSIFYING signature: even with SD-006 phase 2 active, the three loops show no
-    measurable rate distinction under nominal conditions, or the loops drift into
-    lockstep (or an undifferentiated rate) once processing latency is varied -- i.e.
-    rate separation exists only as configured periods and collapses under any real
-    asynchronous load. In that case "characteristic thalamic heartbeat rates" is
-    architecturally decorative (a naming/period-configuration choice) rather than a
-    functionally necessary coherence mechanism, and the claim should be demoted or
-    reframed as a design choice rather than an architectural commitment.
-    evidence:
-      from: "decision:ARC-023@2026-03-16T18:20:19.361127Z"
-      as_of: 2026-03-16
-      verdict: hold_pending_v3_substrate/applied
-  implementation_phase: v4  # 2026-08-16 governance (GFLAG-0037 split): stays gated on SD-006 phase 2 true concurrency, routed to V4
+    FALSIFYING signature: the realized tick-count ratios are undifferentiated (all three
+    loops effectively update at the same rate) despite distinct configured periods --
+    i.e. "characteristic heartbeat rates" is a period-configuration label that the
+    substrate does not actually realize. In that case the commitment is architecturally
+    decorative and should be demoted or reframed as a design choice.
+
+    SCOPE (2026-09-22 split): the LOAD-BEARING half of the original falsifier -- whether
+    rate separation SURVIVES real asynchronous load, or collapses into lockstep under
+    injected latency perturbation -- is NOT tested here. It requires SD-006 phase 2 true
+    asynchronous execution and is registered separately as ARC-148 (implementation_phase
+    v4), which no v3 claim depends on. A confirming result here licenses "the loops run
+    at characteristic rates on the phase-1 clock", NOT "rate separation is robust under
+    asynchronous load".
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: ARC-028
   evidence_quality_note: |
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
     SD-006 is not yet implemented beyond time-multiplexed phase 1. Full asynchronous
@@ -11438,6 +11437,30 @@
     is a structural prerequisite. Does not weaken ARC-023.
 
     [2026-08-16 governance, GFLAG-0037 SPLIT decision, cycle cranky-driscoll-126a36] implementation_phase CORRECTED v3 -> v4. This claim stays honestly gated on SD-006 phase 2 TRUE CONCURRENCY, which this cycle routed to V4: its non-degeneracy precondition is specifically that rate separation survive REAL asynchronous load, and no phase-1 time-multiplexed test can supply that -- unlike MECH-091, which was un-parked to V3 in the same decision because its mechanism is already built, wired and measurably firing. Recorded so this claim stops being counted as V3 work it cannot possibly complete. It carries ZERO experimental entries and has since registration, which is consistent with the block rather than evidence against the claim. This decision also resolves a live three-way inconsistency the brief surfaced: docs/architecture/v3_v4_transition_boundary.md:57 lists SD-006 as a SATISFIED V3 prerequisite with no phase-2 caveat at all (as does claims.yaml MECH-030), roadmap.md:4386 lists phase 2 under Open Questions as undecided and not yet designed (now stale -- the recommended HTA option is built), and commitment_closure_plan.md lines 409/647/666 say deferred-V4 but only CONDITIONALLY and about the GAP rather than phase 2. They cannot all be right; the phase-2-true-concurrency-is-V4 reading is the one adopted here. Full reasoning: evidence/planning/sd006_phase2_generation_brief.md.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GFLAG-0395 SPLIT, user-approved]
+    implementation_phase CORRECTED v4 -> v3, and the claim SPLIT. The 2026-08-16 GFLAG-0037
+    relabel was right about the FALSIFIER and wrong about the COMMITMENT, and it moved both:
+    this claim's title proposition ("three BG-like loops operate at characteristic rates") is
+    satisfied on the phase-1 clock -- SD-006 is `implemented`, MECH-089 and MECH-090 are
+    `active` -- while only its registered non-degeneracy precondition demanded SD-006 phase 2
+    true concurrency. scripts/check_claim_phase_consistency.py reported the consequence as a
+    ROOT LEAK with THIRTEEN V3 build commitments depending directly on it (ARC-028, ARC-076,
+    MECH-089, MECH-090, MECH-091, MECH-092, MECH-093, MECH-105 and 5 more), which by
+    docs/architecture/claim_phase_provenance.md section 1 is a contradiction rather than a
+    deferral: a v4 label on a claim thirteen V3 builds require is a bookkeeping error.
+    RESOLUTION (a): ARC-023 returns to v3 with a phase-1-satisfiable falsifier (realized
+    E1:E2:E3 tick-count ratios, explicitly barring the stale-E3 var_harm_eval readout that made
+    EXQ-131 uninformative), and the true-concurrency half becomes ARC-148 (v4), which no v3
+    claim depends on. epistemic_category substrate_conditional -> standard: that category
+    recorded the SD-006 phase-2 wait, which now lives on ARC-148. The three-way inconsistency
+    the 2026-08-16 decision surfaced (v3_v4_transition_boundary.md:57, roadmap.md:4386,
+    commitment_closure_plan.md 409/647/666) is UNCHANGED by this split and still owed --
+    what changes is only which half of ARC-023 each of those documents is talking about.
+    ALSO PRESERVED FROM THE PRE-SPLIT TEXT, which had a stray decision-evidence stub folded
+    into the what_would_answer scalar by an indentation accident and would otherwise have been
+    lost with it: `decision:ARC-023@2026-03-16T18:20:19.361127Z`, as_of 2026-03-16, verdict
+    hold_pending_v3_substrate/applied.
   claim_level: mixed
   functional_restatement: >
     Three loops operate at distinct update rates: E1 continuous/frame-rate, E2
@@ -11461,6 +11484,77 @@
     Completion events are high-salience updates within the continuous stream, not the
     exclusive trigger. V1/V2 substrates use synchronous single-timestep updates and
     cannot test this claim (SD-006 required for V3).
+- id: ARC-148
+  title: "Three-loop rate separation survives real asynchronous load (SD-006 phase 2)."
+  claim_type: architectural_commitment
+  epistemic_category: substrate_conditional
+  subject: basal_ganglia.three_loop_rate_separation_under_async_load
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-22
+    needs_review: false
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: SD-006 phase 2 (true asynchronous multi-rate execution)
+    must be ACTIVE, not the phase-1 time-multiplexed substrate. A test run on phase-1-only
+    substrate is uninformative BY CONSTRUCTION, not merely under-powered, and cannot be read
+    as evidence either for or against this claim: EXQ-131's 2026-03-30 diagnosis established
+    that synchronous polling produces an "E3 output freeze artifact" -- stale E3 state drives
+    var_harm_eval_on to 1.05e-7, statistically indistinguishable from the ablated condition
+    (0.00276), regardless of whether the three loops are genuinely rate-separated.
+
+    CONFIRMING signature: with SD-006 phase 2 active, E1/E2/E3 show measurably distinct and
+    STABLE update-rate signatures (effective update frequency, or latency-drift-under-load)
+    that persist without collapsing into lockstep when processing latency is varied. If
+    EXQ-131's var_harm_eval-style discriminative-pair metric is still diagnostic once E3 state
+    updates are genuinely asynchronous rather than time-multiplexed-stale, reuse it directly;
+    if the phase-2 substrate changes how E3 state is exposed between ticks, replace it with
+    realized inter-loop update-rate ratios under load plus a rate-drift measure under injected
+    latency perturbation.
+
+    FALSIFYING signature: even with SD-006 phase 2 active, the three loops show no measurable
+    rate distinction under nominal conditions, or drift into lockstep (or an undifferentiated
+    rate) once processing latency is varied -- i.e. rate separation exists only as configured
+    periods and collapses under any real asynchronous load. In that case the thalamic-clock
+    coherence mechanism is architecturally decorative rather than functionally necessary.
+  implementation_phase: v4
+  phase_locked: true
+  phase_provenance: assigned
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- REGISTERED BY THE GFLAG-0395 SPLIT OF
+    ARC-023, user-approved] This claim carries the half of ARC-023's original falsifier that
+    genuinely requires SD-006 phase 2 true concurrency. It is registered separately, and
+    phase_locked, precisely so that NO v3 claim depends on it: ARC-023's thirteen V3 dependents
+    lean on the multi-rate COMMITMENT (satisfied on the phase-1 clock -- SD-006 `implemented`,
+    MECH-089/090 `active`), not on robustness under asynchronous load. Before this split the
+    two propositions shared one claim, so a v4 label honest about the load test made thirteen
+    V3 build commitments depend on a v4 claim -- the ROOT LEAK
+    scripts/check_claim_phase_consistency.py reports and GFLAG-0395 names.
+    CARRIED FORWARD from ARC-023's pre-split record, unchanged: EXQ-131 FAIL/mixed (2026-03-29)
+    then reclassified INCONCLUSIVE (2026-03-30 review) -- var_harm_eval_on 1.05e-7 vs ablated
+    0.00276, an E3 output-freeze artifact of the time-multiplexed substrate, which does NOT
+    weaken the claim; the re-run (T215546Z) returned identical metrics and is one result, not
+    two. ZERO experimental entries, consistent with the block rather than evidence against.
+    Design context for phase 2 (the recommended HTA option is built but not adopted):
+    evidence/planning/sd006_phase2_generation_brief.md.
+  claim_level: mixed
+  functional_restatement: >
+    Rate separation between E1, E2 and E3 must be a realized dynamical property that holds
+    under variable processing latency, not merely a set of configured periods. An update-rate
+    management mechanism (biologically, thalamic pacemaking; not required for the ANN
+    implementation) prevents loop drift under indeterminate processing latency.
+  depends_on:
+    - ARC-023
+    - SD-006
+  location: docs/architecture/control_plane_heartbeat.md#arc-148
+  source:
+    - docs/architecture/control_plane_heartbeat.md
+  notes: >
+    Split out of ARC-023 on 2026-09-22 (GFLAG-0395). ARC-023 keeps "the loops run at
+    characteristic rates", testable on the phase-1 time-multiplexed clock; this claim keeps
+    "and that separation survives real asynchronous load", which needs SD-006 phase 2. V1/V2
+    substrates use synchronous single-timestep updates and cannot test either.
 - id: MECH-089
   title: "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging)."
   claim_type: mechanism_hypothesis
@@ -17230,7 +17324,7 @@
       verdict: supports/PASS
   implementation_phase: v3
   phase_provenance: derived
-  phase_derived_from: ARC-036
+  phase_derived_from: MECH-208
   depends_on:
     - MECH-030
     - MECH-120
@@ -17296,6 +17390,20 @@
     (governance 2026-04-09-c): 5 supports, 1 opposing, conf=0.774. V4 consolidation
     experiments still required to test the full option-contraction loop.
 
+    [2026-09-22 governance, cycle governance-20260922 -- STALE DERIVED PHASE PROVENANCE REPAIRED,
+    user-approved] phase_derived_from CORRECTED ARC-036 -> MECH-208. implementation_phase stays v3
+    and phase_provenance stays `derived`: the phase itself was never wrong, only its recorded
+    justification. scripts/check_claim_phase_consistency.py reported this as its single
+    stale_derived_provenance row -- "ARC-036: no prerequisite edge to MECH-124" -- meaning the
+    dependency that originally licensed the derivation has since been removed from ARC-036, whose
+    depends_on now reads ARC-007 / SD-011 / SD-012 / INV-029. The checker's two offered remedies are
+    to restore the dependency or to revert the phase; NEITHER is right here, because a THIRD v3
+    claim still carries the edge: MECH-208 (v3, candidate -- valence-asymmetric replay causally
+    drives approach/avoidance bias) depends_on MECH-124, so the v3 derivation remains true on the
+    live graph and only its parent pointer was stale. Re-pointing preserves the phase on a real
+    edge rather than restoring a severed one or demoting a claim that is already `provisional` with
+    banked evidence. (MECH-367 and MECH-392 also depend on MECH-124 but are both v4, so neither
+    could license a v3 derivation; Q-061 is unphased.)
 - id: MECH-125
   title: "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space."
   claim_type: mechanism_hypothesis
@@ -29705,7 +29813,6 @@
     - MECH-121
     - INV-049
     - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupAC-20260901): SD-003 superseded 2026-04-18; this claim consumes the attribution OUTPUT (causal_sig / attribution capability), which the successor comparator still produces, so the repoint is like-for-like. MECH-256 is the GENERAL stream-agnostic comparator that replaced SD-003's general claim; SD-029 (the narrower V3 instantiation on z_harm_s) deliberately NOT added -- add it only if a specific-stream dependency is actually meant.
-    - ARC-031
   location: docs/architecture/sleep/offline_phases.md#mech-205
   source:
     - conversation_2026-04-06_surprise_gated_replay
@@ -29726,6 +29833,19 @@
     confirms P1/P2/P3 across all 3 seeds. Second independent replication of surprise-write
     infrastructure. Promoted to stable (governance 2026-04-09-c): 2 independent seed-sets
     PASS, 8 lit supports, 0 conflict, conf=0.893.
+
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved] depends_on ARC-031 SEVERED. scripts/check_claim_phase_consistency.py reported
+    ARC-031 (implementation_phase v4, phase_locked true) as a CONFLICT needed by this v3 claim and
+    by MECH-208. Adjudication: the edge was too coarse. ARC-031 asserts that HippocampalModule
+    navigates z_self TRAJECTORY space -- deliberation sequences, so the agent can plan its own
+    deliberation -- whereas this claim's surprise-gated generative replay operates over z_world
+    episodes. The decisive evidence that the dependency was never load-bearing is this claim's own
+    status: MECH-205 is `stable`, which it could not honestly be if it rested on unbuilt V4 work.
+    ARC-031 keeps its v4 label and its lock; nothing about it is demoted by this edit, and the
+    metacognitive capability it names remains genuine V4 work. If a future readout here really does
+    require replay over deliberation sequences rather than world episodes, re-add the edge and
+    reopen the phase question rather than treating this severance as settled.
   notes: >
     MECH-092 establishes that quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent
     replay, and MECH-121 specifies the full NREM consolidation pipeline. Neither specifies
@@ -30021,9 +30141,16 @@
   implementation_phase: v3
   depends_on:
     - MECH-205
-    - ARC-031
     - MECH-186
     - MECH-124
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved] depends_on ARC-031 SEVERED, for the same reason recorded on MECH-205 (which this
+    claim also depends on): ARC-031 is v4 + phase_locked and asserts z_self deliberation-sequence
+    navigation, while valence-asymmetric replay weighting operates over z_world harm/reward paths.
+    The harm-salience weighting this claim measures needs replay to exist and to be valence-tagged,
+    not for the agent to plan its own deliberation. MECH-205's `stable` status under the same edge
+    is the corroborating evidence. ARC-031 keeps its v4 label and its lock.
   location: docs/architecture/sleep/offline_phases.md#mech-208
   source:
     - evidence/literature/targeted_review_mech_205/entries/2026-04-07_mech_205_valence_asymmetric_replay_mcfadyen2023/record.json
@@ -62501,7 +62628,7 @@
   depends_on:
     - ARC-016    # dynamic precision -- the V3 PFC influence mechanism MECH-326 extends
     - MECH-025   # action_doing_mode_probe -- PFC-to-hippocampal routing baseline
-    - MECH-325   # hippocampal cue-indexed library -- must exist before it can be gated
+    - ARC-007   # narrowed from MECH-325 2026-09-22 (governance-20260922): the store of hippocampal paths this gate retrieves FROM, without MECH-325's V4 content-addressable cue-indexed addressing scheme
     - SD-016     # cue_action_proj -- the V3 structural stub with severed gradient
   coupled_with:
     - ARC-072  # the architectural gap cluster naming the requirement  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
@@ -62564,6 +62691,34 @@
       that gradient flows from task reward through the combination
       to cue_action_proj. This restores the topological requirement
       without full library architecture.
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved after a REVISED recommendation] depends_on MECH-325 NARROWED to ARC-007.
+    scripts/check_claim_phase_consistency.py reported MECH-325 (v4, phase_locked true) as a CONFLICT
+    needed by this v3 claim -- and this claim's own v3 label is well-founded (phase_provenance
+    derived, phase_derived_from SD-055, itself v3), so the leak was genuine. MECH-325 KEEPS its v4
+    label and its lock. The structural argument for moving it instead -- you cannot gate retrieval
+    from a library that does not exist -- is real and was the first recommendation, and the
+    SEVERED EDGE'S OWN INLINE COMMENT ASSERTED EXACTLY THAT, verbatim: "MECH-325   # hippocampal
+    cue-indexed library -- must exist before". That is recorded here rather than discarded, because
+    it is what distinguishes this narrowing from the other three edges this cycle severed --
+    MECH-516's read "DISTINGUISHED-FROM", MECH-487's read "candidate eventual host (V4/V5)", and
+    MECH-525/526's read "parent principle", none of which asserted a prerequisite. This one did, so
+    the re-add condition below is a live expectation rather than a formality. Even so,
+    reclassifying it would have been mechanically clean (every MECH-325 dependency is v3 or
+    unphased; ARC-072 is v3, and the ARC-072 edge its lock mentions runs the other way). It was NOT
+    taken, because MECH-325's own notes describe it as "the target architecture for the hippocampal
+    module BEYOND V3 ... V4 candidate designs ... All candidates require the diversity-bootstrapping
+    phase", and its lock records that an earlier reclassification of it was REVERTED on 2026-08-10
+    (chip-20260810-phase-consistency-reconciliation) when the ARC-072 -> MECH-325 edge that had
+    driven it was reversed. Overriding a self-described intrinsic-V4 scope twice is not a
+    bookkeeping correction. WHAT THE NARROWED EDGE BUYS: ARC-007 ("Hippocampal systems store and
+    replay paths through residue-field terrain", status provisional, unphased) supplies the store of
+    retrievable paths this gate steers, which is all this claim's falsifier needs. What MECH-325
+    additionally contributes -- content-addressable CUE-INDEXED addressing, so that PFC context/goal
+    cues pattern-complete to trajectory templates -- is the V4 half, and remains this claim's
+    eventual target. If a falsifier here is ever written that tests the ADDRESSING scheme rather
+    than the top-down bias, re-add the MECH-325 edge and reopen the phase question.
   notes: >
     MECH-326 is the routing mechanism that gives MECH-325 its
     cue-differentiation property. Without MECH-326, MECH-325 is
@@ -71430,10 +71585,34 @@
   version_relevance: v3_v4
   registered_utc: "2026-08-28"
   depends_on:
-    - ARC-092   # parent principle -- this is the schema-integration LICIT category's own no-compounding refinement
     - MECH-272  # state-gated probe-channel routing -- the mechanism that feeds sleep-phase schema restructuring
     - MECH-273  # sleep-half self-model aggregation -- the other schema-integration site this constrains
     - MECH-094  # hypothesis_tag write-gate -- supplies the waking-vs-imagined provenance distinction this claim requires at the INPUT side of schema integration, not only the output side
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved after a REVISED recommendation] depends_on ARC-092 SEVERED.
+    scripts/check_claim_phase_consistency.py reported ARC-092 (v4, phase_locked true) as a CONFLICT
+    needed by this v3 claim and by its sibling. ARC-092 KEEPS its v4 label and its lock, for two
+    reasons that only surfaced on reading the lock itself. (1) The lock is an INTRINSIC-scope lock,
+    not a consequence of who depends on it: "intrinsic V4 scope: needs the not-yet-built ARC-085
+    event-token store", set 2026-08-10 per chip-20260810-phase-consistency-reconciliation. (2)
+    Reclassifying ARC-092 to v3 would have created a NEW leak, because ARC-092 itself depends_on
+    MECH-365, which is v4. The 2026-08-10 pass faced the same question for four other dependents
+    (INV-093, MECH-471, MECH-472, MECH-474), judged ARC-092 "motivational/analogous context, not a
+    build prerequisite" for each -- confirmed by all four being independently testable on V3
+    substrate without it -- and severed every one; none of the four still carries the edge. This
+    claim and its sibling arrived after that pass and were never adjudicated, so the precedent is
+    live but the case was genuinely new. NO REPLACEMENT EDGE IS NEEDED: MECH-094 ("the system
+    maintains a functional distinction between simulation-mode content and real-experience
+    content", status stable, unphased) is already in this claim's depends_on and is the V3-level
+    write gate the licit/illicit constraint actually rides on. ARC-092 remains the MOTIVATING
+    PRINCIPLE for this claim and is recorded as such here rather than as a prerequisite edge; if a
+    future falsifier here genuinely requires the general cross-imagination constraint rather than
+    this channel's instance of it, re-add the edge and reopen the phase question.
+    SCOPE FOR THIS CLAIM: what is tested here is schema integration during offline /
+    imagination-adjacent consolidation being constrained to licit recombination -- a property of the
+    MECH-272 probe-channel routing and MECH-273 sleep-half aggregation paths this claim already
+    depends on, measurable without the general principle being registered as V3.
   location: evidence/planning/autobiographical_memory_v4_plan.md
   source:
     - evidence/literature/targeted_review_arc_092_imagination_learning_constraint/
@@ -71492,11 +71671,35 @@
   version_relevance: v3_v4
   registered_utc: "2026-08-28"
   depends_on:
-    - ARC-092   # parent principle -- this is the counterfactual-exploration LICIT category's own knowledge-vs-prior distinction
     - MECH-094  # write gate -- the mechanism that must hold for imagined E3 rollout content to stay off the world-model-update path
     - MECH-439  # E3 selection conversion ceiling -- the mechanism this claim's "priors for future waking testing" output actually feeds
   related_claims:
     - MECH-487  # sibling claim on a DIFFERENT axis: MECH-487 asks whether a REJECTED candidate's identity should persist past the tick; MECH-526 asks what a candidate's imagined-outcome SCORE may be used for regardless of retention
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved after a REVISED recommendation] depends_on ARC-092 SEVERED.
+    scripts/check_claim_phase_consistency.py reported ARC-092 (v4, phase_locked true) as a CONFLICT
+    needed by this v3 claim and by its sibling. ARC-092 KEEPS its v4 label and its lock, for two
+    reasons that only surfaced on reading the lock itself. (1) The lock is an INTRINSIC-scope lock,
+    not a consequence of who depends on it: "intrinsic V4 scope: needs the not-yet-built ARC-085
+    event-token store", set 2026-08-10 per chip-20260810-phase-consistency-reconciliation. (2)
+    Reclassifying ARC-092 to v3 would have created a NEW leak, because ARC-092 itself depends_on
+    MECH-365, which is v4. The 2026-08-10 pass faced the same question for four other dependents
+    (INV-093, MECH-471, MECH-472, MECH-474), judged ARC-092 "motivational/analogous context, not a
+    build prerequisite" for each -- confirmed by all four being independently testable on V3
+    substrate without it -- and severed every one; none of the four still carries the edge. This
+    claim and its sibling arrived after that pass and were never adjudicated, so the precedent is
+    live but the case was genuinely new. NO REPLACEMENT EDGE IS NEEDED: MECH-094 ("the system
+    maintains a functional distinction between simulation-mode content and real-experience
+    content", status stable, unphased) is already in this claim's depends_on and is the V3-level
+    write gate the licit/illicit constraint actually rides on. ARC-092 remains the MOTIVATING
+    PRINCIPLE for this claim and is recorded as such here rather than as a prerequisite edge; if a
+    future falsifier here genuinely requires the general cross-imagination constraint rather than
+    this channel's instance of it, re-add the edge and reopen the phase question.
+    SCOPE FOR THIS CLAIM: what is tested here is that outputs of counterfactual exploration are
+    licit only as priors for future waking evaluation -- a property of the E3 candidate-scoring
+    path, measurable against MECH-094's write gate and MECH-439's selection ceiling, both of which
+    this claim already depends on, without the general principle being registered as V3.
   location: evidence/planning/autobiographical_memory_v4_plan.md
   source:
     - evidence/literature/targeted_review_arc_092_imagination_learning_constraint/
@@ -89678,13 +89881,29 @@
     - MECH-322  # bounded/audited/provisional-until-corroborated carve-out template to follow
     - SD-033e   # frontopolar counterfactual value -- the mechanism this extends from transient to persistent
     - MECH-264  # cfv_now transient scalar overwritten each tick -- exactly what this adds identity+persistence to
-    - ARC-085   # autobiographical event tokens -- candidate eventual host (V4/V5); needs a rejected-siblings field
     - MECH-439  # E3 selection conversion ceiling -- shared non-degeneracy precondition (no differentiated candidates -> nothing to retain)
     - MECH-482  # epistemic_deficit / model-uncertainty -- candidate gate on the trust bound (MBPO analogue)
     - INV-033   # second-order epistemic access -- the metacognitive typing that keeps retained-content != real
   coupled_with:
     - INV-012  # responsibility-through-commitment; INV-012 leg 3 consumes this retention  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
     - MECH-485  # threshold-gated predicted-harm triage whose leg 3 supplies retention's admission  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved] depends_on ARC-085 SEVERED. check_claim_phase_consistency.py reported ARC-085
+    (v4, phase_locked true) as a CONFLICT needed by this v3 claim. THE SEVERED EDGE'S OWN INLINE
+    COMMENT IS THE EVIDENCE: it read "ARC-085  # autobiographical event tokens -- candidate eventual
+    host (V4/V5); needs a rejected-siblings field". That is an aspirational HOST pointer, authored in
+    full knowledge that ARC-085 is V4/V5 -- not a prerequisite. What this retention buffer actually
+    requires is provenance-tagged event retention, which ARC-007 supplies through the chain this
+    claim already carries; what ARC-085 additionally asserts is UNIFICATION (retrospective replay and
+    prospective simulation drawing on ONE self-tagged store rather than two), and this buffer is
+    indifferent to whether the store is unified. ARC-085's own non-degeneracy precondition confirms
+    the asymmetry: it needs a genuine corruption/ablation manipulation on the shared store plus
+    independently measurable ARC-007 and ARC-018 fidelity, none of which this claim's falsifier
+    touches. RELATIONSHIP PRESERVED, NOT DISCARDED: ARC-085 remains the candidate eventual host for
+    this buffer's contents, and if the buffer is ever implemented ON the unified event-token store
+    rather than beside it, the edge should be re-added and the phase question reopened. ARC-085 keeps
+    its v4 label and its lock.
   location: evidence/literature/targeted_review_uncommitted_candidate_retention/
   source:
     - evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
@@ -94155,7 +94374,6 @@
   version_relevance: v3_v4
   registered_utc: 2026-08-26
   depends_on:
-    - MECH-359  # DISTINGUISHED-FROM: the signal must carry per-candidate range
     - MECH-463  # DISTINGUISHED-FROM: a global scalar amplifies the incumbent
     - MECH-464  # the live counter to MECH-463's uniform-scalar reading; contests one instance
     - MECH-439  # F-dominance -- the ceiling this reading reinterprets
@@ -94169,6 +94387,21 @@
     - MECH-436  # V3-EXQ-514u tagged this claim and supplies the partial interface confirmation
   coupled_with:
     - MECH-517  # same-wave sibling; deferred pending this claim's and MECH-518's results  [moved from depends_on 2026-09-04, GOV-EDGE-1: mutual pair]
+  evidence_quality_note: |
+    [2026-09-22 governance, cycle governance-20260922 -- V3-NECESSITY PHASE-LEAK RESOLUTION (b),
+    user-approved] depends_on MECH-359 SEVERED. check_claim_phase_consistency.py reported MECH-359
+    (v4, phase_locked true) as a CONFLICT needed by this v3 claim, and MECH-359's lock is deliberate
+    and self-documented: its own what_would_answer opens with a hard gate stating that the V4
+    per-candidate multi-channel affect substrate "must actually be BUILT first; it does not exist in
+    V3 and this claim is explicitly DO-NOT-BUILD-IN-V3". The defect was therefore on this side of the
+    edge. THE SEVERED EDGE'S OWN INLINE COMMENT CONFIRMS IT WAS NEVER A PREREQUISITE: it read
+    "MECH-359  # DISTINGUISHED-FROM: the signal must carry per-candidate range" -- a CONTRAST
+    relation, recorded in the same idiom as the sibling MECH-463 entry, not a build dependency. The
+    argmax-collapse finding this claim makes (per-object drive-conditioned wanting[k] computed over
+    all stored objects and then destroyed by the reduction) is demonstrable on the existing scalar
+    channel; it does not require per-candidate affect RANGE to exist first. The contrast MECH-359
+    supplies is preserved here in prose rather than as an edge, and this claim keeps its eleven other
+    dependencies unchanged. MECH-359 keeps its v4 label and its DO-NOT-BUILD-IN-V3 lock.
   location: docs/architecture/selection_relevant_representation.md#mech-516
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: (P1) LIVE SITE -- use_incentive_token_bank=True (DEFAULT-OFF,

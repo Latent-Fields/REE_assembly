@@ -15,7 +15,7 @@ nav_order: 3
 
 The three cortico-striatal-like learning loops of REE (E1/sensorium, E2/action-enacting, E3/planning-gates) do not update their control planes only at completion events. Each loop has a characteristic *heartbeat* — a periodic update rate driven by thalamic pacemaking — that maintains coherence under indeterminate processing latency. Completion events are high-salience signals *within* this continuous stream, not the exclusive trigger for control plane updates.
 
-This document covers the heartbeat cluster (ARC-023, MECH-089–093) and the respiratory oscillator cluster (MECH-107–110), registered 2026-03-21.
+This document covers the heartbeat cluster (ARC-023, ARC-148, MECH-089–093) and the respiratory oscillator cluster (MECH-107–110), registered 2026-03-21.
 
 **Three-oscillator control-plane hierarchy (slow to fast):**
 
@@ -64,6 +64,35 @@ The REE architecture requires three distinct periodic update channels, one per l
 **Why this is required:** Processing latency for E1, E2, and E3 is indeterminate (variable computation time). Without a thalamic clock, the loops would drift out of phase, producing stale harm estimates mid-plan and inconsistent action selection signals. The heartbeat is the coherence mechanism for a system with asynchronous internal processing.
 
 **Architectural implication:** V2 and V1 substrates use synchronous single-timestep updates (everything updates on the same discrete step). This means the heartbeat architecture cannot be properly tested until V3 implements asynchronous multi-rate loop execution (SD-006).
+
+**Scope note (2026-09-22 split, GFLAG-0395):** this claim was split. ARC-023 keeps the **multi-rate commitment** — that the three loops run at characteristic rates — which is testable on the SD-006 **phase-1** time-multiplexed clock (SD-006 is `implemented`; MECH-089 and MECH-090 are `active`), by counting realized E1:E2:E3 update ratios. The load-bearing other half — that rate separation **survives real asynchronous load** rather than existing only as configured periods — needs SD-006 **phase 2** true asynchronous execution and is registered separately as [ARC-148](#arc-148). The split exists because the two propositions sit at different phases: holding them in one claim made thirteen V3 build commitments depend on a v4 claim. A confirming ARC-023 result licenses "the loops run at characteristic rates on the phase-1 clock", **not** "rate separation is robust under asynchronous load".
+
+**Readout constraint:** do not use var_harm_eval-style discriminative-pair metrics for ARC-023. EXQ-131's 2026-03-30 diagnosis established that synchronous polling produces an "E3 output freeze artifact" (var_harm_eval_on 1.05e-7 vs ablated 0.00276, statistically indistinguishable) regardless of whether the loops are genuinely rate-separated, so any readout taken from stale-between-ticks E3 state is inadmissible here.
+
+---
+
+<a id="arc-148"></a>
+## Rate separation survives real asynchronous load (ARC-148)
+
+**Claim Type:** architectural_commitment
+**Subject:** basal_ganglia.three_loop_rate_separation_under_async_load
+**Claim Level:** mixed
+**Status:** candidate
+**Claim ID:** ARC-148
+
+Split out of ARC-023 on 2026-09-22 (GFLAG-0395). This claim carries the half of ARC-023's original falsifier that genuinely requires **SD-006 phase 2** true asynchronous multi-rate execution, and it is `phase_locked` at v4 precisely so that no v3 claim depends on it.
+
+**What it asserts:** rate separation between E1, E2 and E3 is a realized dynamical property that holds under variable processing latency — not merely a set of configured periods. The thalamic-clock coherence mechanism is what prevents loop drift when processing latency is indeterminate.
+
+**Non-degeneracy precondition:** SD-006 phase 2 must be ACTIVE. A test run on phase-1-only substrate is uninformative *by construction*, not merely under-powered, for the E3-output-freeze reason given above — it cannot be read as evidence either for or against.
+
+**Confirming:** with phase 2 active, the three loops show measurably distinct and *stable* update-rate signatures that persist without collapsing into lockstep when processing latency is varied.
+
+**Falsifying:** even with phase 2 active, no measurable rate distinction under nominal conditions, or drift into lockstep once latency is varied — in which case the thalamic-clock coherence mechanism is architecturally decorative rather than functionally necessary.
+
+**Depends on:** ARC-023, SD-006
+
+Design context for phase 2 (the recommended HTA option is built but not adopted): `evidence/planning/sd006_phase2_generation_brief.md`.
 
 ---
 
