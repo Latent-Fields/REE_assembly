@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_102",
+  "entry_id": "2026-09-22_arc_102_language_thought_dissociation_fedorenko2016",
+  "timestamp_utc": "2026-09-22T06:56:38Z",
+  "claim_ids_tested": [
+    "ARC-102"
+  ],
+  "source": {
+    "title": "Language and thought are not the same thing: evidence from neuroimaging and neurological patients",
+    "authors": [
+      "Evelina Fedorenko",
+      "Rosemary Varley"
+    ],
+    "year": 2016,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1111/nyas.13046",
+    "pmid": "27096882",
+    "volume": "1369",
+    "issue": "1",
+    "pages": "132-153"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "weakens",
+  "confidence": 0.76,
+  "confidence_rationale": "The strongest negative evidence in this set. The lesion logic is the right one for a dependency claim -- remove the putative cause and see whether the effect survives -- and it converges with an independent fMRI dissociation in neurotypical adults. Source quality 0.85 despite being a review synthesis rather than primary data, because the underlying patient and imaging results are multiple and well established. Mapping fidelity 0.75: it targets ARC-102's causal clause precisely, though REE's 'language layer' is an architectural component that need not be the human language network.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Severe and global aphasia spares arithmetic, formal logic and theory-of-mind reasoning -- the direct negative result against 'symbolic abstraction is the consequent reasoning capacity of the language layer'.",
+    "The human language network shows no response to arithmetic, working-memory encoding, cognitive control or music, so the anatomical prediction implied by a language-consequent symbolic level fails in the one system where it can be measured.",
+    "If REE's 'language layer' is defined broadly enough to include arithmetic notation and so escape this evidence, ARC-102's causal clause becomes difficult to falsify and should be re-scoped rather than defended."
+  ],
+  "tags": [
+    "arc-102",
+    "language_thought_dissociation",
+    "global_aphasia",
+    "symbolic_reasoning",
+    "dependency_direction",
+    "negative_evidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Individuals with global aphasia, who have near-total loss of language comprehension and production, nonetheless perform arithmetic, solve logic problems, reason about other people's mental states, store information in working memory, inhibit prepotent responses, appreciate music and navigate their environments. In neurotypical adults, fMRI shows the language network responds strongly to sentence comprehension but not to arithmetic, working-memory encoding, cognitive control or music listening. Many aspects of thought engage distinct brain regions from, and do not depend on, language.",
+    "ree_translation": "This targets ARC-102's causal clause directly. ARC-102 asserts that symbolic-scale abstraction -- recombination over named, grounded primitives -- IS the consequent reasoning capacity of the language layer. In humans the decisive test of that dependency is to remove the language layer, and when it is removed by lesion, symbolic recombination in arithmetic and formal logic survives. On the human evidence the upper level is dissociable from the language system rather than consequent on it.",
+    "mapping_caveat": "Two escape routes REE should not take silently. (1) Global aphasics ACQUIRED their symbolic competence while language was intact, so these data bear on ongoing runtime dependence, not on developmental origin. ARC-102 could be re-read as a claim about bootstrapping order rather than architecture -- but that is a substantive narrowing and must be registered as one, not assumed. (2) REE's 'language layer' denotes an architectural component with named grounded primitives, which need not correspond to the human left-lateralised language network; if it is defined broadly enough to encompass arithmetic notation then this evidence does not bite, at the cost of making the claim hard to falsify.",
+    "source_context": "Review synthesis of human fMRI studies in neurotypical adults and behavioural testing of patients with severe and global aphasia following left-hemisphere damage."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.25,
+    "notes": "Converging lesion and imaging evidence in the same species as the claim's inspiration. Transfer risk is low for the human dependency question and moderate only for the human-to-REE architectural mapping."
+  }
+}

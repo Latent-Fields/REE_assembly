@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_101",
+  "entry_id": "2026-09-22_arc_101_compositionality_not_from_pressure_chaabouni2020",
+  "timestamp_utc": "2026-09-22T06:56:38Z",
+  "claim_ids_tested": [
+    "ARC-101"
+  ],
+  "source": {
+    "title": "Compositionality and Generalization In Emergent Languages",
+    "authors": [
+      "Rahma Chaabouni",
+      "Eugene Kharitonov",
+      "Diane Bouchacourt",
+      "Emmanuel Dupoux",
+      "Marco Baroni"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL 2020)",
+    "doi": "10.18653/v1/2020.acl-main.407",
+    "arxiv_id": "2004.09124",
+    "pmid": null,
+    "pages": "4427-4442"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Careful, well-powered simulation study at a top venue with explicit disentanglement-derived compositionality metrics, so source quality is high (0.80). Direction is mixed rather than supports because the result cuts both ways: it supports ARC-101's negative half (grammar is not the engine) while naming a sixth enabling condition -- transmission to new learners -- that ARC-101's five-condition list omits. Mapping fidelity 0.65: the simulated ecology satisfies at most two of ARC-101's five conditions.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Compositional structure did not arise from generalisation or task pressure alone. If ARC-101's five enabling conditions are read as SUFFICIENT for structured proto-language, this is a counterexample from the closest available simulation regime.",
+    "Emergent protocols generalised to novel composite inputs WITHOUT compositional structure, so downstream REE work must not treat 'the agents generalise to novel combinations' as evidence that a proto-grammar has formed.",
+    "Compositionality was favoured only by transmission to fresh learners of differing architecture, implying a population-turnover condition that ARC-101's enabling-condition list does not currently contain."
+  ],
+  "tags": [
+    "arc-101",
+    "emergent_communication",
+    "compositionality",
+    "multi_agent",
+    "cultural_transmission",
+    "falsifier_candidate"
+  ],
+  "mapping": {
+    "source_claim_statement": "In deep multi-agent referential games, a sufficiently large input space is enough for the emergent language to refer to novel composite concepts; measured compositionality is uncorrelated with generalisation ability; but compositional languages are easier for fresh learners of a different architecture to acquire, so compositionality is favoured by transmission rather than produced by generalisation pressure.",
+    "ree_translation": "Cuts both ways for ARC-101. It supports the negative half -- grammar is not the engine -- twice over: agents generalise to novel combinations without compositional structure, and compositional structure does not fall out of task pressure. But it weakens the positive half by identifying a condition ARC-101's list omits. On this evidence, coordination pressure alone does not deliver structure; population turnover and transmission to new learners is what selects for it. If REE wants the V5 social ecology to be the engine, that ecology plausibly needs learner turnover as a first-class component.",
+    "mapping_caveat": "These are Lewis-style referential games over synthetic attribute-value inputs with no perceptual grounding, no partial observability of a physical world, and no repair channel -- satisfying at most two of ARC-101's five enabling conditions. A null result about compositionality in an impoverished ecology is weak evidence about a rich one, and this entry must NOT be read as showing that the V5 ecology would also fail. The positive finding (transmission selects for structure) transfers more safely than the negative one.",
+    "source_context": "Deep multi-agent simulation; GRU and feed-forward sender/receiver agents in referential games; synthetic attribute-value input spaces of varying size; compositionality measured with metrics adapted from representation-learning disentanglement theory."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Strong methodology, but the simulated ecology is far thinner than the one ARC-101 posits, so the negative results transfer less safely than the positive one. Mixed direction is doing real work here and should not be collapsed to supports."
+  }
+}

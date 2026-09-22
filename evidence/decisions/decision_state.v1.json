@@ -594,14 +594,23 @@
       "selected_option": "Keep candidate; hold recorded",
       "timestamp_utc": "2026-09-03T20:44:11.976886Z"
     },
-    "GOV-UNWRITTEN-1": {
-      "actor": "digest-decisions-forms-20260920",
-      "decision_needed": "Unwritten-prerequisite discovery: the first pre-registered pilot of an /unwritten-edges skill FAILED its shipping bar (1 verified new prerequisite in 39 nominations, 2.6%; needed >=50% and >=3 new nodes). Do you want (a) a revised second pilot, (b) the one recipe that worked folded into experiment design instead, or (c) to accept the negative result and stop?",
+    "GOV-PHASE-LEAK-BACKLOG": {
+      "actor": "dgolden",
+      "decision_needed": "29 V3-necessity phase leaks remain unadjudicated: claims labelled V4/V5/V6 that a V3 build commitment depends on DIRECTLY. Each one is either (a) a real dependency -- so the V4+ item is strictly V3-necessary and V3 cannot close without it -- or (b) a depends_on edge that is too coarse and should be severed or the claim split. Only a human can say which. Should the next governance cycle walk the remaining 29 by cluster, and if so how many per cycle?",
       "decision_status": "proposed",
       "rationale": "None",
-      "recommendation": "Option (b) now; (a) only if (b) keeps finding gaps. The single genuine hit (MECH-318 needs a within-episode rule-switch event + adaptation-time instrument, registered as mech318-within-episode-rule-switch-instrument) came from tracing a claim's FALSIFIER to what its experiment must be able to emit and measure -- the other detectors (stale-gate prose, 'not yet built' phrases, empty dependency lists) produced 36 false positives. That trace is cheap and belongs where experiments are designed.",
+      "recommendation": "Walk them in batches of roughly 5-8 clusters per governance cycle (about what fits inside one cycle's context floor alongside the normal walk), largest-fan-out first. The 2026-09-22 cycle cleared 6 clusters in one wave at that pace. Do NOT promote check_claim_phase_consistency.py to --strict until the backlog reaches zero: governance.sh's own inline comment intends that promotion, but flipping it early would fail the pipeline on every run against a pre-existing backlog.",
       "selected_option": "None",
-      "timestamp_utc": "2026-09-21T04:41:47Z"
+      "timestamp_utc": "2026-09-22T06:39:35Z"
+    },
+    "GOV-UNWRITTEN-1": {
+      "actor": "user",
+      "decision_needed": "Unwritten-prerequisite discovery: the first pre-registered pilot of an /unwritten-edges skill FAILED its shipping bar (1 verified new prerequisite in 39 nominations, 2.6%; needed >=50% and >=3 new nodes). Do you want (a) a revised second pilot, (b) the one recipe that worked folded into experiment design instead, or (c) to accept the negative result and stop?",
+      "decision_status": "approved",
+      "rationale": "To ensure we aren't missing something obvious",
+      "recommendation": "Option (b) now; (a) only if (b) keeps finding gaps. The single genuine hit (MECH-318 needs a within-episode rule-switch event + adaptation-time instrument, registered as mech318-within-episode-rule-switch-instrument) came from tracing a claim's FALSIFIER to what its experiment must be able to emit and measure -- the other detectors (stale-gate prose, 'not yet built' phrases, empty dependency lists) produced 36 false positives. That trace is cheap and belongs where experiments are designed.",
+      "selected_option": "Both (b) now and (a) later",
+      "timestamp_utc": "2026-09-22T06:30:53Z"
     },
     "INV-040": {
       "actor": "governance-20260908-0703 (user)",
@@ -3241,7 +3250,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-22T05:09:59.731820Z",
+  "generated_at_utc": "2026-09-22T06:59:33.574121Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

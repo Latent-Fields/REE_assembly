@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_102",
+  "entry_id": "2026-09-22_arc_102_cognitive_map_abstraction_behrens2018",
+  "timestamp_utc": "2026-09-22T06:56:38Z",
+  "claim_ids_tested": [
+    "ARC-102"
+  ],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior",
+    "authors": [
+      "Timothy E. J. Behrens",
+      "Timothy H. Muller",
+      "James C. R. Whittington",
+      "Shirley Mark",
+      "Alon B. Baram",
+      "Kimberly L. Stachenfeld",
+      "Zeb Kurth-Nelson"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002",
+    "pmid": "30359611",
+    "volume": "100",
+    "issue": "2",
+    "pages": "490-509"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Authoritative synthesis in a top venue with a concrete mechanistic account, so source quality is high (0.85). But it is a review rather than primary data, and its unifying thesis runs rhetorically opposite to ARC-102's categorical split -- it supplies the lower level convincingly while offering nothing that establishes a second level as categorically distinct. Mapping to REE's theta-packaging and type-encoder is by analogy only, which caps mapping fidelity at 0.65.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's own unifying thesis -- that one relational-map mechanism spans spatial and non-spatial, concrete and abstract domains -- is a live competitor to ARC-102's categorical two-level split, and on this evidence it is the more parsimonious reading.",
+    "No result here distinguishes 'symbolic abstraction is a categorically different level' from 'the same relational-map machinery applied to discrete, named inputs', which is the distinction ARC-102 needs."
+  ],
+  "tags": [
+    "arc-102",
+    "cognitive_map",
+    "substrate_abstraction",
+    "hippocampal_entorhinal",
+    "relational_generalisation"
+  ],
+  "mapping": {
+    "source_claim_statement": "A cognitive map encoding relationships between entities in the world supports flexible behaviour. The map-like codes characterised in spatial navigation -- place and grid codes in the hippocampal-entorhinal system -- are instances of a general mechanism for learning and reusing abstract, generalisable relational structure, and artificial systems built on the same principles develop the same map-like representations seen biologically.",
+    "ree_translation": "This is the literature warrant for ARC-102's LOWER level. Relational abstraction of the kind ARC-102 calls substrate-level -- cognitive-map traversal, computed-over, sub-symbolic -- is a documented neural mechanism with a mechanistic account, not a placeholder term. That matters because ARC-102's two-level distinction is only a real distinction if the lower level names something with its own independent characterisation. This paper supplies that characterisation.",
+    "mapping_caveat": "This is a review, not new data, and it argues for a UNIFYING account of abstraction -- rhetorically the opposite of ARC-102, which argues for a categorical split. It establishes the lower level while offering no evidence that a second, symbolic level is categorically distinct rather than the same machinery applied to discrete inputs. Nothing here touches theta-packaging or a type-encoder specifically; the mapping onto REE's V4 substrate is by analogy and should not be read as confirmation of those mechanisms.",
+    "source_context": "Review synthesis of rodent and human hippocampal-entorhinal electrophysiology, human fMRI, and computational models of relational generalisation and structure learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "High-quality synthesis, but it supports only one arm of a two-arm claim, and does so while advancing a unifying thesis that competes with the claim's central split."
+  }
+}

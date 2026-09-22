@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-09-22T06:11:50.536027Z`
+Generated: `2026-09-22T06:59:33.574121Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -35,6 +35,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `ARC-076` | directional, mixed_evidence | 1 | 1 | 1 | `2026-09-14_arc_076_rank_order_trait_consistency_lifespan_roberts2000` | 3 |
 | `ARC-079` | directional, mixed_evidence | 2 | 1 | 0.667 | `2026-09-15_disengage_arc_079_serotonin_active_persistence_lottem2018` | 4 |
 | `ARC-083` | directional, mixed_evidence | 2 | 4 | 0.667 | `2026-09-17_arc_083_social_evaluation_replication_null_lucca2025` | 8 |
+| `ARC-102` | directional, mixed_evidence | 1 | 1 | 1 | `2026-09-22_arc_102_symbols_mental_programs_dehaene2022` | 3 |
 | `ARC-104` | directional, mixed_evidence | 4 | 1 | 0.4 | `2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026` | 6 |
 | `ARC-121` | directional, mixed_evidence | 6 | 2 | 0.5 | `2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007` | 9 |
 | `ARC-142` | directional, mixed_evidence | 10 | 1 | 0.182 | `2026-09-08_mech_546_compositionality_not_required_for_generalization_chaabouni2020` | 13 |
@@ -45,7 +46,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `INV-040` | directional, mixed_evidence | 2 | 1 | 0.667 | `2026-09-07_inv_040_threat_imminence_vmpfc_pag_shift_mobbs2007` | 4 |
 | `INV-047` | directional, mixed_evidence | 1 | 1 | 1 | `2026-07-20_inv_047_multiple_orderings_young2015` | 4 |
 | `INV-054` | directional, source_disagreement | 6 | 1 | 0.286 | `2026-05-05_inv_054_sudden_gains_tang1999` | 7 |
-| `INV-063` | directional, mixed_evidence | 3 | 1 | 0.5 | `2026-09-08_inv_063_sleep_memory_benefit_robustness_cordi2020` | 5 |
+| `INV-063` | directional, mixed_evidence | 7 | 1 | 0.25 | `2026-09-22_inv_063_system_consolidation_gist_abstraction_born2012` | 9 |
 | `INV-087` | directional, mixed_evidence | 2 | 1 | 0.667 | `2026-08-07_inv087_episodic_shaping_terminal_potential_grzes2017` | 5 |
 | `INV-088` | directional, source_disagreement, mixed_evidence | 3 | 1 | 0.5 | `2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025` | 7 |
 | `INV-089` | directional | 4 | 1 | 0.4 | `2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016` | 5 |
@@ -278,8 +279,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `2026-04-05T00:00:00Z` `literature` `targeted_review_arc_029` direction=`supports` confidence=0.65
   - `2026-06-02T17:25:31Z` `experimental` `v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate` direction=`non_contributory` confidence=0
   - `2026-06-02T22:17:05Z` `experimental` `v3_exq_630_arc029_acrosstick_nav_competence_ecological` direction=`non_contributory` confidence=0
-  - `2026-09-20T04:26:54Z` `experimental` `v3_exq_1070_arc029_env_operating_point_feasibility` direction=`non_contributory` confidence=0
-  - `2026-09-20T15:50:46Z` `experimental` `v3_exq_1070a_arc029_env_operating_point_feasibility` direction=`weakens` confidence=0.75
+  - `2026-09-20T04:26:54Z` `experimental` `v3_exq_1070_arc029_env_operating_point_feasibility` direction=`superseded` confidence=0.55
+  - `2026-09-20T15:50:46Z` `experimental` `v3_exq_1070a_arc029_env_operating_point_feasibility` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `OFC lesion patients still make decisions and incur outcomes -- they do not become unable to operate. The deficit is specifically in regret-learning and regret anticipation, not in general decision capacity. This means the committed/uncommitted distinction is specifically about the evaluative and learning circuit, not about execution capacity. ARC-029's claim about distinct harm outcomes would need to specify whether it is about the execution or the evaluation channel.` (1)
   - `The paper is a clinical case series with small N -- a typical limitation for lesion studies. The specific OFC lesion locations vary across patients. The generalisation from OFC lesion patients to a computational architecture requires strong assumptions about modularity.` (1)
@@ -695,6 +696,24 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### ARC-102
+- Conflict types: directional, mixed_evidence
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0, lit_conf=0.607, overall_confidence_legacy=0.607
+- Recent entries:
+  - `2026-09-22T06:56:38Z` `literature` `targeted_review_arc_102` direction=`supports` confidence=0.7
+  - `2026-09-22T06:56:38Z` `literature` `targeted_review_arc_102` direction=`weakens` confidence=0.76
+  - `2026-09-22T06:56:38Z` `literature` `targeted_review_arc_102` direction=`mixed` confidence=0.68
+- Recurring failure signatures:
+  - `The paper's own unifying thesis -- that one relational-map mechanism spans spatial and non-spatial, concrete and abstract domains -- is a live competitor to ARC-102's categorical two-level split, and on this evidence it is the more parsimonious reading.` (1)
+  - `No result here distinguishes 'symbolic abstraction is a categorically different level' from 'the same relational-map machinery applied to discrete, named inputs', which is the distinction ARC-102 needs.` (1)
+  - `Severe and global aphasia spares arithmetic, formal logic and theory-of-mind reasoning -- the direct negative result against 'symbolic abstraction is the consequent reasoning capacity of the language layer'.` (1)
+  - `The human language network shows no response to arithmetic, working-memory encoding, cognitive control or music, so the anatomical prediction implied by a language-consequent symbolic level fails in the one system where it can be measured.` (1)
+  - `If REE's 'language layer' is defined broadly enough to include arithmetic notation and so escape this evidence, ARC-102's causal clause becomes difficult to falsify and should be re-scoped rather than defended.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### ARC-104
 - Conflict types: directional, mixed_evidence
 - Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0, lit_conf=0.773, overall_confidence_legacy=0.773
@@ -896,13 +915,13 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-063
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0, lit_conf=0.683, overall_confidence_legacy=0.683
+- Evidence breakdown: supports=7, weakens=1, conflict_ratio=0.25, exp_conf=0, lit_conf=0.759, overall_confidence_legacy=0.759
 - Recent entries:
-  - `2026-09-08T00:55:08Z` `literature` `targeted_review_inv_063` direction=`supports` confidence=0.62
-  - `2026-09-08T00:55:08Z` `literature` `targeted_review_inv_063` direction=`supports` confidence=0.42
-  - `2026-09-08T00:55:08Z` `literature` `targeted_review_inv_063` direction=`weakens` confidence=0.7
-  - `2026-09-19T10:29:29Z` `experimental` `v3_exq_1063_inv063_legb_dv_direction` direction=`non_contributory` confidence=0
   - `2026-09-20T08:20:03Z` `experimental` `v3_exq_1069_inv063_p1_gate_798a_p0` direction=`non_contributory` confidence=0
+  - `2026-09-22T06:58:46Z` `literature` `targeted_review_inv_063` direction=`supports` confidence=0.74
+  - `2026-09-22T06:58:46Z` `literature` `targeted_review_inv_063` direction=`supports` confidence=0.71
+  - `2026-09-22T06:58:46Z` `literature` `targeted_review_inv_063` direction=`supports` confidence=0.58
+  - `2026-09-22T06:58:46Z` `literature` `targeted_review_inv_063` direction=`supports` confidence=0.66
 - Recurring failure signatures:
   - `The authors' central negative result is that the CA1 novelty response was NOT spatially restricted to the regions that underwent change: CA1 'broadcasts the presence of novelty, rather than signaling what is novel'. That is INV-063's pre-registered F3 outcome observed in biology -- an undifferentiated 'more input, more offline engagement' rather than the four function-specific thresholds the claim asserts. If the mammalian system that INV-063 is modelled on does not itself resolve novelty into what-is-novel at the replay-eligible stage, the claim's specific content is under threat independently of anything the substrate does.` (1)
   - `The novelty modulation appeared in CA1 but NOT in CA3 one synapse upstream, so where in a processing hierarchy the intake signal is read determines whether it is visible at all. Mapped to REE, an intake ladder read at the wrong stage of the E1 pathway could produce a flat DV (the F1 outcome) for purely instrumental reasons, and a null in leg B would not by itself distinguish 'no starvation effect' from 'measured one synapse too early'.` (1)
@@ -1174,7 +1193,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-025b
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.214, lit_conf=0.78, overall_confidence_legacy=0.638
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.213, lit_conf=0.78, overall_confidence_legacy=0.638
 - Recent entries:
   - `2026-04-28T16:54:48Z` `literature` `targeted_review_connectome_mech_025` direction=`mixed` confidence=0.55
   - `2026-04-28T16:54:48Z` `literature` `targeted_review_connectome_mech_025` direction=`mixed` confidence=0.62

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_101",
+  "entry_id": "2026-09-22_arc_101_gesture_joint_attention_predicts_language_salo2018",
+  "timestamp_utc": "2026-09-22T06:56:38Z",
+  "claim_ids_tested": [
+    "ARC-101"
+  ],
+  "source": {
+    "title": "Exploring Infant Gesture and Joint Attention as Related Constructs and as Predictors of Later Language",
+    "authors": [
+      "Virginia C. Salo",
+      "Meredith L. Rowe",
+      "Betty Reeb-Sutherland"
+    ],
+    "year": 2018,
+    "venue": "Infancy",
+    "doi": "10.1111/infa.12229",
+    "pmid": "29725273",
+    "volume": "23",
+    "issue": "3",
+    "pages": "432-452"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Longitudinal design with a well-specified 12-to-24-month prediction and standard instruments (ESCS, Mullen), but N=53 and purely observational, so a common social-motivation or caregiver-input confound is not excluded. Mapping fidelity held at 0.60: the outcome is a standardised language score, whereas ARC-101 asserts the emergence of a communication SYSTEM. Prediction is genuinely weaker evidence than bootstrapping, and the confidence reflects that rather than the study's internal quality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Unique predictive variance in an observational longitudinal design cannot exclude a common cause -- general social motivation, caregiver input quality, or maturation rate -- driving both the 12-month proto-communication measures and the 24-month language score.",
+    "The outcome measured is standardised vocabulary and language level, not the formation of a novel communication system, so a positive result is compatible with proto-communication being a correlated marker of readiness rather than the constructive engine."
+  ],
+  "tags": [
+    "arc-101",
+    "joint_attention",
+    "infant_gesture",
+    "grounded_proto_communication",
+    "developmental_ontogeny"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 53 infants, gesture use and joint attention measured at 12 months load on a partly shared underlying construct -- responding to joint attention being closest to gesture -- yet each uniquely predicts expressive and receptive language ability at 24 months on the Mullen Scales of Early Learning.",
+    "ree_translation": "This is the developmental shape ARC-101 predicts: grounded pre-linguistic communicative acts (gesture) and shared attention are not merely antecedent to language, they carry independent predictive variance into it. If proto-language partially bootstraps from grounded proto-communication, human ontogeny should show exactly this -- the proto-communicative channel doing work that the shared-attention channel does not, and vice versa.",
+    "mapping_caveat": "Prediction is not bootstrapping, and this is the central weakness of the entry. An observational design cannot exclude a common third cause -- social motivation, caregiver input, maturation rate -- producing both the 12-month measures and the 24-month outcome with no constructive role for the ecology at all. N is small (53), and the outcome is a standardised language score rather than the emergence of a system. Read this as consistency evidence, not as mechanism.",
+    "source_context": "Typically-developing human infants; parent-infant free-play gesture coding plus Early Social-Communication Scales at 12 months; Mullen Scales of Early Learning expressive and receptive language at 24 months."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Modest N and observational design cap source quality. Transfer risk is elevated because a human ontogenetic correlation is being read as evidence about an architectural bootstrap in an artificial agent population."
+  }
+}

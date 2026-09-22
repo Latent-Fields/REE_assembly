@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_102",
+  "entry_id": "2026-09-22_arc_102_symbols_mental_programs_dehaene2022",
+  "timestamp_utc": "2026-09-22T06:56:38Z",
+  "claim_ids_tested": [
+    "ARC-102"
+  ],
+  "source": {
+    "title": "Symbols and mental programs: a hypothesis about human singularity",
+    "authors": [
+      "Stanislas Dehaene",
+      "Fosca Al Roumi",
+      "Yair Lakretz",
+      "Samuel Planton",
+      "Mathias Sable-Meyer"
+    ],
+    "year": 2022,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2022.06.010",
+    "pmid": "35933289",
+    "volume": "26",
+    "issue": "9",
+    "pages": "751-766"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Strong synthesis with an unusually clean discriminating comparison (human vs non-human primate shape and sequence perception, with minimum-description-length symbolic models fitting humans and non-symbolic models fitting primates). That comparison is the best available evidence that the symbolic level is a LEVEL rather than a gradient, which is ARC-102's core assertion. Direction is mixed because the same paper locates these languages of thought BESIDE natural language rather than downstream of it, contradicting ARC-102's causal attribution of the symbolic level to the language layer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If symbolic recombination is domain-specific and independent of natural language, REE's V6 dependency ordering -- language layer first, symbolic reasoning as its consequence -- is the wrong direction, and the symbolic level would have to be buildable without the language layer.",
+    "The hypothesis posits MULTIPLE domain-specific languages of thought (geometry, number, music, sequence). ARC-102 posits one symbolic level; if the multiplicity is real, 'the symbolic level' is a category error and the claim needs re-scoping per domain."
+  ],
+  "tags": [
+    "arc-102",
+    "language_of_thought",
+    "symbolic_abstraction",
+    "recursive_composition",
+    "comparative_primate",
+    "dependency_direction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans possess multiple internal languages of thought, akin to computer languages, each discretising a domain (geometry, number, music, sequences) using a small set of symbols and recursively composing them into mental programs encoding nested repetition with variation. Minimum description length in these languages captures human behaviour and brain activity across shape and sequence perception tasks, whereas non-human primate data are captured by simpler non-symbolic models; humans show a geometric regularity effect that primates lack.",
+    "ree_translation": "Direct support for ARC-102's upper level and for the levels being categorically distinct rather than continuous. Recombination over a small set of discrete, grounded primitives is exactly what ARC-102 calls symbolic-scale abstraction, and the human/primate model-class dissociation is the cleanest available demonstration that this is a difference in kind: the same tasks are fit by symbolic models in one species and non-symbolic models in the other.",
+    "mapping_caveat": "The paper explicitly posits these languages of thought as MULTIPLE and domain-specific, and pointedly does not derive them from natural language. ARC-102 asserts the symbolic level is 'the consequent reasoning capacity of the language layer'; Dehaene et al. would place it alongside, not downstream of, the language faculty. This entry therefore supports the two-level distinction while directly weakening ARC-102's causal attribution of the upper level to the V6 language layer -- the two halves of the claim receive opposite verdicts from the same source.",
+    "source_context": "Opinion and synthesis piece drawing on human psychophysics, fMRI and MEG of shape and sequence perception, and comparative work with baboons and macaques."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Opinion-format synthesis rather than a single primary study, but the comparative dissociation it rests on is specific and replicated across shape and sequence paradigms. Mapping fidelity is high for the level distinction and poor for the dependency direction, which is why the direction is mixed rather than split by confidence."
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_101",
+  "entry_id": "2026-09-22_arc_101_universal_repair_dingemanse2015",
+  "timestamp_utc": "2026-09-22T06:56:38Z",
+  "claim_ids_tested": [
+    "ARC-101"
+  ],
+  "source": {
+    "title": "Universal Principles in the Repair of Communication Problems",
+    "authors": [
+      "Mark Dingemanse",
+      "Sean G. Roberts",
+      "Julija Baranova",
+      "Joe Blythe",
+      "Paul Drew",
+      "Simeon Floyd",
+      "Rosa S. Gisladottir",
+      "Kobin H. Kendrick",
+      "Stephen C. Levinson",
+      "Elizabeth Manrique",
+      "Giovanni Rossi",
+      "N. J. Enfield"
+    ],
+    "year": 2015,
+    "venue": "PLoS ONE",
+    "doi": "10.1371/journal.pone.0136100",
+    "pmid": "26375483",
+    "volume": "10",
+    "issue": "9",
+    "pages": "e0136100"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Large collaborative cross-linguistic corpus study covering 12 languages from 8 unrelated families with a concrete quantitative result (repair roughly once per 1.4 minutes; the same three repair-initiator types recurring). Source quality is high (0.85). Mapping fidelity is held at 0.70 because the study establishes repair as invariant across mature grammars, whereas ARC-101 needs it as a precondition for acquiring one -- a synchronic result standing in for a developmental claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The design is synchronic and cross-sectional: a feature universal to mature languages is equally consistent with repair being a CONSEQUENCE of having language as with it being a precondition for bootstrapping one.",
+    "All 12 corpora are of adult speakers of fully-formed languages, so the paper cannot show repair operating in a system that has no language yet -- the only regime in which ARC-101's bootstrap claim is actually at stake."
+  ],
+  "tags": [
+    "arc-101",
+    "conversational_repair",
+    "cross_linguistic",
+    "enabling_condition",
+    "language_universals"
+  ],
+  "mapping": {
+    "source_claim_statement": "Other-initiated repair -- a recipient signalling trouble and the speaker then fixing the utterance -- occurs in all 12 languages sampled from 8 unrelated language families, at a rate of approximately once every 1.4 minutes of conversation, using the same three functionally distinct types of repair initiator in comparable sequential contexts, and typically completing in no longer than the utterance being repaired.",
+    "ree_translation": "ARC-101 lists repair as one of five enabling conditions for the bootstrap. This paper is the empirical warrant for treating repair as infrastructure rather than as a decorative pragmatic add-on: it is universal, high-frequency, cheap, and structurally uniform across unrelated grammars. Uniformity under grammatical variation is the signature of a mechanism that is independent of any particular grammar, which is what ARC-101 requires if repair is to be part of the engine rather than part of the turbocharger.",
+    "mapping_caveat": "Universality across existing languages shows that repair is INVARIANT under grammatical variation; it does not show that repair is PRIOR to language, nor that it can drive a bootstrap in a system with no language. The step from 'present in every mature language' to 'part of the machinery that builds language' is an evolutionary and developmental argument this paper does not test. Recording a supports direction here is a judgement that the invariance is informative, not that the developmental claim has been demonstrated.",
+    "source_context": "Naturalistic recorded conversation, adult speakers, 12 spoken languages across 8 language families; conversation-analytic coding of repair sequences."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Weighted toward source quality: the cross-family sampling is what makes the invariance claim credible. Transfer risk is the synchronic-to-developmental inference, not domain distance."
+  }
+}

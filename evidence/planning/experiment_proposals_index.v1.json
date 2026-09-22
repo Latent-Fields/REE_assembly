@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-22T06:11:50.536027Z",
+  "generated_at_utc": "2026-09-22T06:59:33.574121Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -861,24 +861,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-0049",
-      "claim_id": "ARC-029",
-      "dispatch_mode": "discriminative_pair",
-      "executed_by": "V3-EXQ-147",
-      "executed_queue_id": "V3-EXQ-147",
-      "objective": "Run a discriminative support-vs-ablation pair for ARC-029 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0231",
-      "proposal_type": "experimental",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_arc_029",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert"
-      ]
-    },
-    {
       "backlog_id": "EVB-0014",
       "claim_id": "ARC-058",
       "dispatch_mode": "discriminative_pair",
@@ -1421,6 +1403,23 @@
       "proposal_type": "experimental",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_mech_089",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict"
+      ]
+    },
+    {
+      "backlog_id": "EVB-0049",
+      "claim_id": "ARC-029",
+      "dispatch_mode": "discriminative_pair",
+      "executed_by": "V3-EXQ-147",
+      "executed_queue_id": "V3-EXQ-147",
+      "objective": "Run a discriminative support-vs-ablation pair for ARC-029 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0231",
+      "proposal_type": "experimental",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_arc_029",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
@@ -3517,36 +3516,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-1219",
-      "claim_id": "ARC-101",
-      "objective": "Improve literature grounding and confidence for ARC-101.",
-      "priority": "medium",
-      "proposal_id": "LIT-0498",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-1220",
-      "claim_id": "ARC-102",
-      "objective": "Improve literature grounding and confidence for ARC-102.",
-      "priority": "medium",
-      "proposal_id": "LIT-0499",
-      "proposal_type": "literature_review",
-      "status": "proposed",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
       "backlog_id": "EVB-1221",
       "claim_id": "ARC-103",
       "objective": "Improve literature grounding and confidence for ARC-103.",
@@ -3852,6 +3821,21 @@
       "objective": "Improve literature grounding and confidence for ARC-147.",
       "priority": "medium",
       "proposal_id": "LIT-0240",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1793",
+      "claim_id": "ARC-148",
+      "objective": "Improve literature grounding and confidence for ARC-148.",
+      "priority": "medium",
+      "proposal_id": "LIT-0277",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -12851,6 +12835,21 @@
       ]
     },
     {
+      "backlog_id": "EVB-0155",
+      "claim_id": "ARC-023",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for ARC-023 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0548",
+      "proposal_type": "experimental",
+      "status": "gated",
+      "suggested_experiment_type": "claim_probe_arc_023",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "low_exp_conf"
+      ]
+    },
+    {
       "backlog_id": "EVB-1247",
       "claim_id": "EXT-002",
       "dispatch_mode": "targeted_probe",
@@ -17070,21 +17069,6 @@
       ]
     },
     {
-      "backlog_id": "EVB-0155",
-      "claim_id": "ARC-023",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for ARC-023 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0548",
-      "proposal_type": "experimental",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_arc_023",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "low_exp_conf"
-      ]
-    },
-    {
       "backlog_id": "EVB-0137",
       "claim_id": "INV-045",
       "dispatch_mode": "targeted_probe",
@@ -17548,7 +17532,7 @@
   ],
   "n_executed": 250,
   "n_proposed_exp": 165,
-  "n_proposed_lit": 452,
+  "n_proposed_lit": 451,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }
