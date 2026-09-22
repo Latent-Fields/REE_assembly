@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-18_affordance_valuation_bridge_sensory_to_commitment.md
+Claims registered: ARC-149, MECH-575, MECH-576, MECH-577
+
 # From world model to commitment: an affordance-and-valuation bridge for sensory-to-motor propagation
 
 **Date:** 2026-09-18  
-**Status:** raw thought; design-generative, not a claim registration or instruction to modify V3  
+**Status:** processed 2026-09-22 -- ingested to the intake above (ARC-149, MECH-575, MECH-576, MECH-577, all `candidate` / `substrate_conditional`). The original note stands: design-generative, NOT an instruction to modify V3.  
 **Parents / related:**
 - `2026-08-12_affordance_indexed_temporally_displaced_present.md`
 - `2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md`
