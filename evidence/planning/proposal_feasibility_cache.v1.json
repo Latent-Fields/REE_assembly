@@ -42,6 +42,21 @@
     "verdict": "RED"
    }
   ],
+  "INV-092": [
+   {
+    "chip_ref": "chip-proposal-exp-0758-paced",
+    "producer_paths": [
+     "ree_core/cingulate/aic_analog.py",
+     "ree_core/cingulate/salience_coordinator.py"
+    ],
+    "reason": "Completion axis has no denominator: V3-EXQ-874b manifest (evidence/experiments/v3_exq_874b_...json) shows n_consumption_events of 1,0,3 / 0,2,1 / 0,1,0 across seeds x arms -- pooled near-zero against the pre-registered floor of 15, so no suppression setting can be shown to MAXIMISE completion. No evidence-attenuation/suppression-strength dial and no other-agent channel exist anywhere in ree_core (zero grep hits).",
+    "recorded_by": "preflight-batchB-20260922",
+    "recorded_utc": "2026-09-22T12:49:32Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-019": [
    {
     "chip_ref": "chip-proposal-exp-0800-paced",
