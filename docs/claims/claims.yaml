@@ -6123,6 +6123,7 @@
   source:
     - docs/thoughts/2026-02-11_habenula_signed_pe.md
 - id: MECH-055
+  diagnostic_evidence_adjudicated: true
   title: "Affective channel separation keeps hedonic tone, valence, and signed PE distinct."
   claim_type: mechanism_hypothesis
   subject: affect.channel_separation
@@ -7957,6 +7958,29 @@
     - docs/architecture/sleep.md
     - docs/thoughts/2026-02-18_selection_compression__symmetry_ and_meta_invariant_consolidation.md
 - id: INV-024
+  evidence_quality_note: |
+    V3-EXQ-1072 (2026-09-22) PASS. READ THE TWO HALVES SEPARATELY -- the manifest emits
+    evidence_asymmetry_per_half with a governance_note forbidding averaging, and that note binds.
+    OFFLINE half: WEAK evidence for the claim. ResidueField.integrate builds its optimizer over
+    self.neural_field.parameters() only, rbf_field is a disjoint submodule, and targets are computed
+    under torch.no_grad(), so no-erasure holds BY CONSTRUCTION. The PASS confirms the current
+    implementation honours the isolation; it does NOT show isolation is architecturally necessary.
+    Treat it as a contract regression-guard. A FAIL here would have been very strong evidence.
+    ONLINE half: genuinely discriminating, and this is the half that carries the weight. Measured
+    clean (lineage_less_after_first_commit = 0 across 5 cells / 5 seeds, 1452 durable writes after
+    first commit, worst-cell scored over green-arm cells only). Instrument positive control passed
+    (the authority-store hash ledger flags a 1e-6 perturbation and a boolean-mask flip on a clone),
+    so a bit-identical reading is not certifying its own subject.
+    SCORED AGAINST THE AMENDED FALSIFIER, not the one in force when the run was designed: the
+    what_would_answer online predicate was amended in this same governance cycle per GFLAG-0412
+    (user-ratified) and GFLAG-0410 B1/B2. Under the SUPERSEDED E3-handle predicate this run would
+    have FAILED (lineage_less_after_first_commit = 2 on seed 42); the whole-run measure C2b also
+    reads 0.0, i.e. FAIL, and is retained non-gating so the pre-commit warm-up gap stays legible
+    (19 lineage-less writes of 1481 total, all before the first possible commit at tick 5).
+    STANDING CAVEAT: closure_entry_ticks_total = 0. INV-024's second lineage disjunct is
+    structurally dead at current defaults (needs config.goal.z_goal_enabled, default False), so the
+    online predicate is single-disjunct in practice and CLOSURE_ON/CLOSURE_OFF test the same thing.
+    Governance cycle gov-20260922-1756; driver skim logged, no defect found.
   title: "Offline consolidation and online commitment must remain isolated at responsibility-bearing write loci."
   claim_type: invariant
   invariant_type: emergent
@@ -7980,7 +8004,7 @@
   location: docs/invariants.md#inv-024
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: the offline pathway must be LIVE, i.e. a sleep cycle must change SOME representational parameter (e2_harm_s weight delta > 0 from the WRITEBACK offline_gradient_pass, and/or E1/E2 deltas from cross-module consolidation), and the residue field must hold active centres before the cycle. An isolation result on an inert sleep pass (nothing changes, so nothing leaks) is vacuous and must not score. The lineage half needs commitment events to occur (n_committed > 0) and residue writes to occur in waking (num_harm_events rising).
-    CONFIRMING: isolation holds at the responsibility-bearing write loci while representational context is shared. Instrument = a write audit + hash ledger around one full sleep cycle with the whole aggregation cluster ON (use_sleep_aggregation_cluster) plus use_cross_module_consolidation ON: (i) OFFLINE half -- the hashes of the authority stores (ResidueField rbf_field weights / centres / active_mask, BetaGate latch state, E3 committed_trajectory and closure state, the harm-replay attribution buffer) are BIT-IDENTICAL before and after the cycle while e2_harm_s / E1 / E2 weights CHANGE (the cycle is live and touches only representation); (ii) ONLINE half -- every durable attribution write (ResidueField.accumulate with hypothesis_tag False) is preceded by a commit event on the same trajectory (E3 committed_trajectory set, or a closure commit intent), so the fraction of accumulate calls without commit lineage is 0 across >=3 seeds and the full flag matrix.
+    CONFIRMING: isolation holds at the responsibility-bearing write loci while representational context is shared. Instrument = a write audit + hash ledger around one full sleep cycle with the whole aggregation cluster ON (use_sleep_aggregation_cluster) plus use_cross_module_consolidation ON: (i) OFFLINE half -- the hashes of the authority stores (ResidueField rbf_field weights / centres / active_mask, BetaGate latch state, E3 committed_trajectory and closure state, the harm-replay attribution buffer) are BIT-IDENTICAL before and after the cycle while e2_harm_s / E1 / E2 weights CHANGE (the cycle is live and touches only representation); (ii) ONLINE half -- every durable attribution write (ResidueField.accumulate with hypothesis_tag False) is preceded by a commit event on the same trajectory (AMENDED 2026-09-22, GFLAG-0412, user-ratified: the SD-084 PERSISTENT committed-program handle held under an ELEVATED BETA GATE -- _persistent_committed_trajectory is not None AND beta_gate.is_elevated. This SUPERSEDES 'E3 committed_trajectory set', which measures 'did E3 tick this step' rather than 'was the agent committed': that transient handle is set only inside E3.select_action and torn down as the last statement of post_action_update, while E3 runs on an e3_tick cadence of 10 or the step after a phase_reset. MEASURED over 400 steps, the superseded predicate gives 2/1/1 false lineage-less writes on seeds 42/43/45 at ticks where the persistent handle AND the beta latch were both set; the amended predicate gives ZERO on all three. The conjunction and the disjunction are identical at this operating point, so AND/OR is not load-bearing; the conjunction is registered as the stricter reading. The second disjunct 'a closure commit intent' is STRUCTURALLY DEAD at current defaults (GFLAG-0410 B1): _closure_committed_trajectory arms only under goal_state.is_active(), which requires config.goal.z_goal_enabled, default False -- it must NOT be read as a live alternative, and closure_entry_ticks is emitted as the standing witness), so the fraction of accumulate calls without commit lineage is 0 AFTER THE FIRST COMMIT ENTRY, across >=3 seeds and the full flag matrix. The after-first-commit window is part of the registered criterion, not a driver convenience (GFLAG-0410 B2): E3 commits iff running_variance < 0.40, rv starts at precision_init 0.5 and decays 0.95/tick, so 0.5*0.95^4 = 0.4073 > 0.40 and NO commit is possible before tick 5 in any cell, while update_residue writes durable residue on every harm tick with no commit check -- a whole-run fraction would therefore be decided by early random-walk geometry rather than by write-locus isolation. The whole-run fraction is RECORDED alongside (non-gating) so the warm-up gap stays legible. C2 carries its own vacuity guard: durable_writes_after_first_commit must exceed zero.
     FALSIFYING: a sleep cycle MUTATES an authority store (residue weights or centres change, the commit latch flips, an anchor is activated / deactivated by replay) -- an offline authority write; or waking residue writes occur with no commit lineage (attribution from a non-committed action, e.g. a rollout's world_delta reaching accumulate with hypothesis_tag False). Either is a direct violation; one confirmed instance refutes the invariant AS IMPLEMENTED and routes to MECH-067 (the enforcement mechanism), not to a re-run.
     SUBSTRATE: ree_core/sleep/phase_manager.py (_run_cycle, SleepPhase.WRITEBACK, offline_gradient_pass on e2_harm_s only), ree_core/sleep/cross_module_consolidation.py (contract: 'named module only; no residue / memory writes' -- this test checks that contract, it does not assume it), ree_core/residue/field.py (accumulate + MECH-094), ree_core/heartbeat/beta_gate.py, ree_core/governance/closure_operator.py. All built; the audit is driver-side. ARC-020's typed authority boundaries are NOT built as a type -- the invariant's observable here is the hash, which does not need them; pending_substrate_reconfirmation on ARC-020 / SD-026 landing stays a separate governance step.
     Disposition 2026-09-16: testable now; cheap (one cycle per seed per flag configuration, no training beyond the warm-up). complicated (buildable). Pair it with MECH-067's audit spike -- they are one instrument read two ways.
@@ -103396,6 +103420,7 @@
     substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
 
 - id: MECH-572
+  pending_retest_after_substrate: true
   title: |-
     across_sleep_readout_sign_governed_by_consolidation_step_to_residual_ratio. A consolidation pass
     measurably improves a frozen held-out readout only when the parameter displacement the pass imposes
@@ -103415,7 +103440,7 @@
   polarity: asserts
   status: candidate
   epistemic_category: standard
-  diagnostic_evidence_adjudicated: false
+  diagnostic_evidence_adjudicated: true
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural

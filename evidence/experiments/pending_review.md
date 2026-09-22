@@ -1,28 +1,9 @@
 # Pending Experiment Review
 
-Generated: `2026-09-22T18:26:25Z`  
-Last review: `2026-09-22T06:32:00Z`  
-Pending: **3** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3` | 2026-09-22T17:52 | MECH-055 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1072_inv024_offline_online_isolation_audit_20260922T152522Z_v3` | 2026-09-22T15:25 | INV-024 |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3` | FAIL | substrate_not_ready_requeue |
+Generated: `2026-09-22T19:24:12Z`  
+Last review: `2026-09-22T19:23:17Z`  
+Scanned: 2974 claim_evidence entries considered (3000 already reviewed), 4854 manifest file(s) on disk.  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

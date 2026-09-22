@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "mech005-science-20260922-exq-1073",
-  "last_updated_utc": "2026-09-22T19:01:39Z",
+  "last_updated_utc": "2026-09-22T19:22:05Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -1322,10 +1322,10 @@
         {
           "date_utc": "2026-06-01",
           "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
-          "metric_notes": "Plan §3.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to §5.2 (shorten interval / lift prob) or §5.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc §10 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
+          "metric_notes": "Plan \u00a73.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to \u00a75.2 (shorten interval / lift prob) or \u00a75.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc \u00a710 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
           "metric_value": "C1 curriculum_firing PASS 3/3 (external_hazard_event_count 10/45/6); C2 z_harm_a_nonzero PASS 3/3 (zero_fraction=0.0); C3 sustained_window FAIL 1/3 (seed 42=0 runs, seed 7=1 run, seed 19=0 runs; threshold z>=0.4 for run_len>=10). Pooled z_harm_a_norm p70=0.43, p80=0.44, p90=0.44; upper tail clears BLA arousal_threshold_on=0.4 but does not sustain. Affective stream confirmed wired (post-625 stream-off fix).",
           "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
-          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan §5.2 / §5.4.",
+          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan \u00a75.2 / \u00a75.4.",
           "run_role": "post_build",
           "run_role_basis": "R3 run > entry.implemented_utc"
         }
@@ -1366,9 +1366,9 @@
         {
           "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
           "date_utc": "2026-06-01",
-          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in §5: harm magnitude lift (§5.1) -> sustained-window lengthening via env_drift_interval/prob (§5.2) -> stochasticity for dACC PE (§5.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (§5.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
+          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in \u00a75: harm magnitude lift (\u00a75.1) -> sustained-window lengthening via env_drift_interval/prob (\u00a75.2) -> stochasticity for dACC PE (\u00a75.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (\u00a75.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
           "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
-          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md §3. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
+          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md \u00a73. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
         }
       ],
       "implementation_status": "implemented",
@@ -1379,7 +1379,7 @@
       "metric_trajectory": {
         "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
         "direction": "higher_is_better",
-        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan §3.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
+        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan \u00a73.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
         "observations": [
           {
             "date_utc": "2026-04-25",
@@ -12217,11 +12217,19 @@
       "priority": "low",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
-      "last_seen_session": "compassionate-pike-fe9174",
+      "last_seen_session": "gov-20260922-1756",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3",
+          "experiment_type": "v3_exq_1062_mech055_affect_channel_separation_diagnostic",
+          "metric": "ONSET gap, not a dose gap. world_rule_shift is schedulable only by modulo interval/depth set at env construction, and its counter deliberately survives reset() (causal_grid_world.py:984-985, 1879-1885), so a driver that needs a TRAINED-THEN-SHIFTED regime has no kwarg to start the shift after training. V3-EXQ-1062 consequently trained its harm-forward model under ~810 accumulated permutations (P0 30 eps + P1 60 eps x <=90 steps at interval 10): harm_a_forward_r2 was statistically indistinguishable between arms (0.932-0.954 shift vs 0.940-0.977 stationary), mean dACC harm-PE FELL 3.3%, and harm exposure rose to ~4.28x the reference. The lever reached the world/E3 side (E3 running precision fell 3.2x-6.5x) but not the harm-forward side.",
+          "target": "A supported way to enable world_rule_shift at a phase boundary (post-training onset) rather than from env construction. Workaround available to drivers today without a substrate change: set env.world_rule_shift_enabled / _interval / _depth directly after the training loop. Separately, no prior run has ever measured whether this lever moves the dACC harm-PE channel -- the pe_load_elevated_vs_stationary precondition's control cites V3-EXQ-861e's MEL-gradient DV, a different channel.",
+          "resolved": "open"
+        }
+      ],
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/precision_provenance_substrate_spec.md",
       "sd_id": "SD-PP-B4-one-shot-world-rule-shift-lever",
@@ -12229,7 +12237,8 @@
       "unblocks_claims": [
         "MECH-572",
         "MECH-318",
-        "ARC-064"
+        "ARC-064",
+        "MECH-055"
       ],
       "source_audit": "evidence/planning/precision_provenance_substrate_necessities_20260922.md",
       "implementation_hint": "causal_grid_world.py _maybe_shift_world_rule (~2116-2143) supports interval/depth only. Add world_rule_shift_at_step / world_rule_permutation kwargs (or a public apply_action_permutation(perm) method) so drivers stop poking a private attribute. Shares the MECH-318 / UEP-034 shape: rule-context events the falsifiers cite with no registered provider.",
@@ -12238,7 +12247,11 @@
       "dv_or_instrument_exposed": "n/a",
       "ready_blocked_by": "none technical; registration only",
       "authority": "REGISTRATION ONLY by the science session compassionate-pike-fe9174 while tracing the information-loss boundary for the precision-provenance experiment (thought_intake_2026-09-22). The user's build authorisation covered the producers (SD-PP-1..4) only; this row is minted so the necessity is tracked in a machine-readable worklist rather than prose (queue-experiment Step 2.5 STOP-GATE route 2b rationale). Not a build authorisation; /governance adjudicates.",
-      "why_no_existing_owner": "No env-level provider; MECH-318's own runnability trace found the same absence for in-episode switches."
+      "why_no_existing_owner": "No env-level provider; MECH-318's own runnability trace found the same absence for in-episode switches.",
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/environment/causal_grid_world.py::_maybe_shift_world_rule"
+      ]
     },
     {
       "node_class": "complex (probe-gated) -> mystery (known data)",
@@ -12249,7 +12262,7 @@
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
-      "last_seen_session": "compassionate-pike-fe9174",
+      "last_seen_session": "gov-20260922-1756",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
@@ -12274,7 +12287,7 @@
         "INV-063"
       ],
       "source_audit": "evidence/planning/precision_provenance_substrate_necessities_20260922.md",
-      "implementation_hint": "Data already landed (evidence/experiments/v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3.json, identity_predictor_mse per cell). Reframe, do not gather: the question is whether the world head should be trained on a z_world with more per-step displacement (SD-018 amend resource-field supervision, SD-009 event-contrastive) rather than fixed downstream. This is the v3 binding constraint (observation -> z_world -> E1/E2) again. V3-EXQ-1073 carries a non-degeneracy gate on measured PE separation because of this row. || AUTOPSY 2026-09-22: candidate remedies -- train world_forward on a z_world with larger per-step displacement (SD-018 amend / SD-009 event-contrastive), and/or add an action-sensitivity readiness gate (inverted-action battery MSE must exceed the original-rule MSE) before any contradiction-based consolidation experiment; MECH-572's own CONFIRMING does NOT need this and stays reachable via a readable-seed step-scale ladder.",
+      "implementation_hint": "Measured on 3 seeds by V3-EXQ-1073: the converged world-forward head's pre-sleep MSE on an INVERTED-action-map battery is 0.760/0.901/0.881x its MSE on the original rule, cond-3 waking pe is 0.745/0.677/0.674x the converged residual, and the early post-inversion surprise fraction is 0.033 -- the head barely reads the action. RETRACT this row's title claim that 'a rule inversion produces PE ~4x the converged residual' (an estimate from the register, now measured at <1x). Any falsifier requiring a reliable contradiction of a confident world-model prediction (the intake's F3 anti-self-sealing test, MECH-574's novel-target arm) is unposeable until the head reads its action; MECH-572's own CONFIRMING does NOT require one and stays reachable via a readable-seed step-scale ladder. Candidate remedies: train world_forward on a z_world with larger per-step displacement (SD-018 amend / SD-009), or an action-sensitivity readiness gate before any contradiction-based experiment.",
       "falsifier_requirement_satisfied": "Any falsifier on this head that compares 'converged' to 'contradicted' needs the two to be separable above the residual.",
       "event_or_manipulation_produced": "n/a (representation property)",
       "dv_or_instrument_exposed": "identity_predictor_mse and skill score already instrumented (V3-EXQ-1063).",
@@ -12392,7 +12405,7 @@
       "priority": "medium",
       "added_session": "mech005-science-20260922-exq-1073",
       "added_utc": "2026-09-22T15:26:14Z",
-      "last_seen_session": "mech005-science-20260922-exq-1073",
+      "last_seen_session": "gov-20260922-1756",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
@@ -12412,11 +12425,12 @@
       "ready_blocked_by": "/governance: this row is a measurement, not a ratified build. It also reopens MECH-005's 2026-09-16 disposition ('testable now ... complicated (buildable)'), which was made before this measurement existed.",
       "authority": "REGISTRATION ONLY by the science session mech005-science-20260922-exq-1073 under the user's 2026-09-22 ruling on campaign science-20260922-mech005-path-authority: option B, route to substrate first, queue NOTHING. That ruling went AGAINST both the session's and the Orchestrator's recommendation (both favoured narrowing to MECH-005's criterion (1) and running); the user chose to fix the instrument before spending a run. No EXQ id was consumed. Not a build authorisation; /governance adjudicates.",
       "why_no_existing_owner": "MECH-093 owns the ||z_beta|| -> e3_steps path and is SUPPORTED by V3-EXQ-505, but 505 verified the clock's interpolation ARITHMETIC against an injected synthetic z_beta and so could not observe the endogenous signal's dynamic range. No existing substrate_queue row names that range. The 2026-09-11 refusal recorded the frozen e3_steps as finding F5 but diagnosed it as clamp saturation and left it as a note for a successor rather than registering it.",
-      "severity": "corrupting",
+      "severity": "degrading",
       "substrate_paths": [
         "ree_core/heartbeat/clock.py::update_e3_rate_from_beta",
         "ree_core/regulators/phasic_surprise_burst.py"
-      ]
+      ],
+      "severity_note": "GOVERNANCE DISPOSITION 2026-09-22 (GFLAG-0418/0419, user-approved, cycle gov-20260922-1756): severity downgraded corrupting -> degrading while this row's status remains proposed_REGISTRATION_ONLY_not_a_build_authorisation. WHY: /queue-experiment Step 2.5c reads severity and deliberately never reads status (check_substrate_path_overlap.py:173-176 defaults an unrecognised status to OPEN, the safe direction for a corrupting gate), and this row's substrate_paths name modules that 1275 of 1504 v3_exq drivers (85%) import -- so a row that is explicitly NOT a build authorisation was blocking the whole corpus prospectively. degrading keeps it NAMED as a known limitation in every queue note rather than silencing it. Independently defensible on measurement: the corrupting condition is configuration-specific -- committed_tick_frac pinned at 1.000 is a property of the ABSOLUTE bar and measurably does not obtain under use_variance_tracking_commit_threshold (V3-EXQ-1070a: 30-89 committed runs per L1 cell, committed_step_fraction 0.2585-0.7317, n_latched_ticks 102-339 -- the latch releases and is instrumented). RESTORE corrupting if these rows are ratified as builds."
     },
     {
       "node_class": "complicated (buildable)",
@@ -12427,7 +12441,7 @@
       "priority": "medium",
       "added_session": "mech005-science-20260922-exq-1073",
       "added_utc": "2026-09-22T15:26:14Z",
-      "last_seen_session": "mech005-science-20260922-exq-1073",
+      "last_seen_session": "gov-20260922-1756",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
@@ -12447,12 +12461,13 @@
       "ready_blocked_by": "/governance: half (2) is a control-plane design question (why the latch never releases), not a commissioned build. Half (1) is buildable on demand but closes nothing on its own.",
       "authority": "REGISTRATION ONLY by the science session mech005-science-20260922-exq-1073 under the user's 2026-09-22 ruling on campaign science-20260922-mech005-path-authority: option B, route to substrate first, queue NOTHING. No EXQ id was consumed. Not a build authorisation; /governance adjudicates.",
       "why_no_existing_owner": "The missing counter was named as driver-side instrumentation by the 2026-09-21 falsifier audit and by preflight-batchA-20260922, both of which classed it as 'experiment-driver instrumentation, not a missing core-substrate producer' and so registered nothing. That classification was right about the counter and wrong about the consequence: the 2026-09-22 measurement shows the events are starved, which no driver can instrument around. No existing row names the starvation. MECH-005's own degeneracy clause anticipates n_committed == 0; the realised failure is the opposite ceiling, which that clause does not cover.",
-      "severity": "corrupting",
+      "severity": "degrading",
       "substrate_paths": [
         "ree_core/heartbeat/beta_gate.py::release",
         "ree_core/heartbeat/beta_gate.py::should_admit_elevation",
         "ree_core/agent.py::select_action"
-      ]
+      ],
+      "severity_note": "GOVERNANCE DISPOSITION 2026-09-22 (GFLAG-0418/0419, user-approved, cycle gov-20260922-1756): severity downgraded corrupting -> degrading while this row's status remains proposed_REGISTRATION_ONLY_not_a_build_authorisation. WHY: /queue-experiment Step 2.5c reads severity and deliberately never reads status (check_substrate_path_overlap.py:173-176 defaults an unrecognised status to OPEN, the safe direction for a corrupting gate), and this row's substrate_paths name modules that 1275 of 1504 v3_exq drivers (85%) import -- so a row that is explicitly NOT a build authorisation was blocking the whole corpus prospectively. degrading keeps it NAMED as a known limitation in every queue note rather than silencing it. Independently defensible on measurement: the corrupting condition is configuration-specific -- committed_tick_frac pinned at 1.000 is a property of the ABSOLUTE bar and measurably does not obtain under use_variance_tracking_commit_threshold (V3-EXQ-1070a: 30-89 committed runs per L1 cell, committed_step_fraction 0.2585-0.7317, n_latched_ticks 102-339 -- the latch releases and is instrumented). RESTORE corrupting if these rows are ratified as builds."
     }
   ],
   "schema_version": "substrate_queue/v2",
