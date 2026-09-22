@@ -57,6 +57,21 @@
     "verdict": "RED"
    }
   ],
+  "INV-093": [
+   {
+    "chip_ref": "chip-proposal-exp-0760-paced",
+    "producer_paths": [
+     "ree_core/policy/policy_chunking.py",
+     "ree_core/utils/config.py"
+    ],
+    "reason": "Competence-acquisition floor unmet: V3-EXQ-890 (evidence/experiments/v3_exq_890_...json) is a 16-seed acquisition-reliability probe whose own split-group discrimination criterion is the binding gate for EXP-0717 release condition (b); a refinement-strength sweep would score non-degradation against a substrate that has not reliably acquired competence. use_policy_chunking defaults False (config.py:5555); no other-agent channel exists anywhere in ree_core (zero grep hits, single-agent V3).",
+    "recorded_by": "preflight-batchB-20260922",
+    "recorded_utc": "2026-09-22T12:49:35Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-019": [
    {
     "chip_ref": "chip-proposal-exp-0800-paced",
