@@ -116,6 +116,21 @@
     "verdict": "RED"
    }
   ],
+  "MECH-034": [
+   {
+    "chip_ref": "chip-proposal-exp-0815-paced",
+    "producer_paths": [
+     "ree_core/hippocampal/staleness_accumulator.py",
+     "ree_core/agent.py"
+    ],
+    "reason": "Feasibility surface (staleness_accumulator) has zero z_world references, keyed on (scale,segment_id) not z_world; Manipulation M unwired, sole call site passes pe_dict=None (ree_core/agent.py:5639). Two write surfaces live in different coordinate spaces.",
+    "recorded_by": "preflight-batchC-20260922",
+    "recorded_utc": "2026-09-22T12:52:56Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-105": [
    {
     "chip_ref": "chip-proposal-exp-0860-paced",
