@@ -6439,6 +6439,33 @@
       "outcome": "NO_OP",
       "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
       "worktree_gc_at": "2026-09-20T15:12:20Z"
+    },
+    {
+      "igw_id": "IGW-20260922-216",
+      "stable_hash": "ad3d9743deff",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "MECH-572",
+        "MECH-016",
+        "ARC-055",
+        "MECH-043"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: SD-PP-1",
+      "worktree": ".claude/worktrees/igw-216-substrate-ready-sd-pp-1",
+      "branch": "claude/igw-216-substrate-ready-sd-pp-1",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260922-216",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-216-substrate-ready-sd-pp-1 && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-216-substrate-ready-sd-pp-1-20260922T160959Z",
+      "task_claim_claimed_at": "2026-09-22T16:09:59Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-09-22T16:06:07Z",
+      "staged_at": "2026-09-22T16:06:07Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
