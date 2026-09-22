@@ -5911,6 +5911,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0414",
+      "claim_ids": [
+        "INV-069"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "INV-069's registered what_would_answer names a non-degeneracy precondition that cannot be satisfied in V3: 'z_self must reach behaviour (use_self_viability_weighting ON, DR-10)'. Measured against live ree-v3: DR-10 is INERT in V3 -- e3_selector.py:1771-1773 requires the flag AND a driver-supplied per-candidate self_viability cost AND self_viability_weight != 0 (default 0.0); nothing auto-populates that cost (the sole setter is the driver-facing set_injected_self_viability(), agent.py:4145/4158); config.py:2058-2061 and docs/architecture/dr10_z_self_in_e3_viability.md:101 both call the z_self-derived auto-source a 'documented ecological follow-on (NOT v1)'; and that doc's line 16 reads 'Generation: v4 (off the V3 critical path; promotes nothing in V3; excluded from the V3 closure %)'. The only native v3 alternative, use_gated_policy (z_self is a default discriminator stream whose per-candidate score_bias composes before E3.select), was piloted as a substitute channel and is ALSO degenerate at the default operating point: candidate features collapse to bit-identical across all 32 candidates (pairwise dist 0.000000e+00), so the gated bias is EXACTLY constant across candidates and therefore rank-invariant -- 0/73 ticks showed any ranking change even between the gating extremes w=0 and w=1. This reproduces the V3-EXQ-614e autopsy root cause (2026-06-07, 'proposer first-step z_world collapses to cross-candidate spread ~0'). Applying that autopsy's documented remedy (candidate_summary_source=e2_world_forward + use_modulatory_selection_authority) restores reachability (structural 73/73 under normalize_score_bias_to_e3_range) but realised movement under a 0.5x||z_self|| perturbation was only 1/73 ticks, because z_self reaches the bias solely through a scalar gating weight that moved by 8e-5 (max 3.8e-4). CAVEAT on that last figure: GatedPolicy's discriminator requires a dedicated optimizer (V3-EXQ-543b/543e, LR 5e-4) which the pilot did not run, so the realised number characterises an UNTRAINED discriminator and is not itself a verdict. ACTION REQUESTED: amend INV-069's what_would_answer -- its behavioural leg is not measurable in V3 as written through either channel; the coherence leg IS fully runnable and non-degenerate (per_stream_vs['z_self'] sits off its 1.0 ceiling at mean 0.959/0.965, sd ~0.008, and dips 0.9648 -> 0.846 then recovers to 0.893 under perturbation, which is the WWA's own arm-(a) confirming signature). No experiment was queued; V3-EXQ-1078 left free.",
+      "raised_by_session": "inv069-science-20260922-exq-1078",
+      "raised_at": "2026-09-22T15:29:23Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
