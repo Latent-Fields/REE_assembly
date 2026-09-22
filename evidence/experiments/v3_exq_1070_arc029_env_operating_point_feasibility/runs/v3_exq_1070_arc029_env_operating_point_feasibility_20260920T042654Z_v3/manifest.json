@@ -23,7 +23,7 @@
     "ARC-029"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -237,5 +237,5 @@
     "n_agents": 3309,
     "goal_state_present": false
   },
-  "evidence_direction_note": "[governance-20260920] evidence_direction non_contributory ratified by the user at the 2026-09-20 /governance walk from confirmed failure_autopsy_V3-EXQ-1070_2026-09-20 (claims-layer apply: REE_assembly 108b156192). Prior stamped direction was 'unknown'."
+  "evidence_direction_note": "SUPERSEDED by V3-EXQ-1070a (run_id v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3, ree-v3 a7c8c97f2b). Applied by governance cycle governance-20260922 per GFLAG-0381, user-approved. 1070 failed the SAME readiness precondition (training_tick_budget_equalised 3.96 vs a 2.0 ceiling) because it sized each rung's EPISODE budget from a RANDOM-POLICY episode-length table; 1070a replaces that with a per-(rung, seed) two-stage pilot of the identical trainer plus one real training call. PRESERVED FOR THE RECORD, since supersession makes the run inactive to scoring rather than wrong: 1070's other three preconditions PASSED -- bar_in_force 1.000 with the commit window filled in 30/30 cells (which establishes that the earlier predecessor's bar_in_force 0.000 / occupancy 1.0000 was a WARM-BUDGET artifact and NOT an env property), rv collapse 1.27 decades at the worst cell, the episode-boundary run-length fix (4.4-8.1 per-episode vs 17.8-31.3 flat), health-budget conservation 1.159-1.259 on a trained agent, and the owed rv residual dispersion rising monotonically 0.0112 -> 0.0672 across the ladder."
 }

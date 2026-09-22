@@ -23,7 +23,7 @@
     "ARC-029"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -221,5 +221,6 @@
     "writer_defect": null,
     "n_agents": 3412,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "RATIFIED by governance cycle governance-20260922 (user-approved Step 2b walk) from the CONFIRMED failure_autopsy_V3-EXQ-1070a_2026-09-22 (dry_run_checked true), landed REE_assembly cc026000309. non_contributory for ARC-029 WITHOUT QUALIFICATION -- the run's own routes_to (substrate_not_ready_requeue) is correct and the autopsy rescues nothing from it. All four scored criteria D1-D4 passed and 5 of 6 preconditions are green, but outcome = all(preconditions) AND ladder_non_degenerate, and training_tick_budget_equalised still exceeds its 2.0 ceiling by 13.93% (2331/1023). Nothing is citeable: P1 is feasible in 30/30 cells but carries no information (bar contract-pinned to fire at ~q; window spans 15-39 EPISODES; this is the STATIC arm while ARC-029's P1 is specified for the ALTERNATING arm), so harm_snr >= 10 is the sole binding discriminator and the 3-of-5 feasible-rung identity is confounded with unequal training. The manifest previously read evidence_direction 'unknown', which left the disposition inert to build_experiment_indexes.py."
 }

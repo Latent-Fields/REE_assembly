@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-20T12:15:51Z",
+  "last_review_utc": "2026-09-22T06:32:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1334,7 +1334,9 @@
     "v3_exq_1058_sd071_consolidation_readout_instrument_validity",
     "v3_exq_1060_inv063_e2_world_forward_sleep_trainer",
     "v3_exq_1063_inv063_legb_dv_direction",
-    "v3_exq_1069_inv063_p1_gate_798a_p0"
+    "v3_exq_1069_inv063_p1_gate_798a_p0",
+    "v3_exq_1070a_arc029_env_operating_point_feasibility",
+    "v3_exq_1057b_mech017_additive_budget_dose_ladder"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4331,7 +4333,9 @@
     "v3_exq_1058_sd071_consolidation_readout_instrument_validity_20260918T213443Z_v3",
     "v3_exq_1060_inv063_e2_world_forward_sleep_trainer_20260919T012511Z_v3",
     "v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3",
-    "v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3"
+    "v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3",
+    "v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3",
+    "v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7116,6 +7120,11 @@
       "utc": "2026-09-20T12:15:51Z",
       "session": "governance-20260920",
       "note": "governance 2026-09-20 (cycle governance-20260920, Mac DLAPTOP, user present, Fable 5.1), ONE WAVE. TEN pending -> 0. NINE applied from the 2026-09-20 confirmed autopsy sweep (REE_assembly 45cdcfa1212; all dry_run_checked true), user chose 'Apply all': 1057+1057a (MECH-017) non_contributory, instrument finding; 1039a (INV-086, MECH-428) non_contributory; 1043a (MECH-537) non_contributory; 1070 (ARC-029) non_contributory; 1060 (MECH-423) manifest supports CORRECTED to non_contributory (liveness check only); 1063 + 1069 (INV-063) non_contributory by design, INV-063 gains pending_retest_after_substrate + diagnostic_evidence_adjudicated; 1065 mixed (MECH-566 weakens narrowly, SD-106 unknown). Directions + evidence_direction_note written to flat AND pack for all nine; claims layer in 108b156192. V3-EXQ-1058 (SD-071, evidence PASS 8/8): accepted as supports; SD-071 PROMOTED candidate -> provisional (its own pre-registered remaining condition -- one non-diagnostic run -- is met). Driver skim (mandatory evidence-PASS skim) on 1058: nothing found -- plain AND of C1/C2/C3; 0.25 ceiling attainable both ways (pre-rebuild sws readout read 1.0 in 778c; measured 0.144/0.150 with CI95 high 0.165); C3 spread passes 8/8; carve-out conditions asserted in code (claim_ids exactly [SD-071]). Agenda: MECH-037 DEMOTED provisional -> candidate (closes dec-20260918T190425-MECH-037); holds accepted for MECH-050/055/065 (lit-only conflict) and MECH-561 (V3 substrate)."
+    },
+    {
+      "utc": "2026-09-22T06:32:00Z",
+      "session": "governance-20260922",
+      "note": "governance 2026-09-22 (cycle governance-20260922, Mac DLAPTOP, user present, Opus 5), ONE WAVE. THREE pending -> 1 (the ERROR stays). Step 1.5 pre-flight: needs-autopsy set EMPTY -- both indexed items already carried CONFIRMED autopsies landed at REE_assembly cc026000309 (05:47Z the same morning), so the cycle completed in one pass. V3-EXQ-1070a (ARC-029, diagnostic FAIL, self-route substrate_not_ready_requeue, indexer flag precondition_unmet): applied confirmed failure_autopsy_V3-EXQ-1070a_2026-09-22 (dry_run_checked true) verbatim -- non_contributory WITHOUT qualification, routing governance-note-only, no substrate entry. Manifest read evidence_direction 'unknown'; non_contributory + evidence_direction_note written to flat AND pack (the claims.yaml edit alone would have been inert to build_experiment_indexes.py). No storable claim field moved (status candidate, epistemic_category standard, diagnostic_evidence_adjudicated true all already set from the 1070 autopsy); what moved is the note plus the citation refresh off failure_autopsy_V3-EXQ-063a_2026-09-14. V3-EXQ-1057b (MECH-017, diagnostic PASS): applied confirmed failure_autopsy_V3-EXQ-1057b_2026-09-22 -- non_contributory by design; manifest already read non_contributory so no direction write was owed. STORABLE MOVE: diagnostic_evidence_adjudicated set true (the field was absent). The portfolio's declared null ('both curves flat in k') is REJECTED -- 4/4 legs non-flat, 5/5 seed sign consistency -- so H-schedule is favoured in its strongest form while H-reallocation vs H-intrinsic stays NOT SEPARATED. Three autopsy qualifications carried into the note: the EARLY legs were near-forced while the LATE legs were the genuine tests; the 2x2 within-order sign inversion is computed nowhere by _classify and is unextracted evidence on the very separation recorded as not made; D2_late is marginal at 4/5 seeds. Also recorded: the run's declared substrate limit 1 is factually wrong (compute_e2_world_loss exists and is wired behind a default-off flag whose trainer commit pre-dates the run's own substrate commit), and the autopsy's first-draft substrate `create` was REVERSED by an executed confirmer. GFLAG-0381 applied: V3-EXQ-1070's manifest non_contributory -> superseded (flat AND pack), with its three PASSING preconditions preserved verbatim in the note so supersession does not erase them. DRIVER SKIM: not owed this cycle -- the mandatory Step 2b skim is for claim-tagged EVIDENCE-purpose PASSes, and both items are experiment_purpose diagnostic, handled by the stricter autopsy gate instead. NOT MARKED REVIEWED: V3-EXQ-1066 (runner ERROR manifest, ree-cloud-3, exit 1) -- routes to /diagnose-errors, held by an active claim (diagnose-exq-1066-20260922) and chip-20260921-diagnose-exq-1066. Dry-run check clean on every manifest read into the walk (0 dry cited, 2 clean)."
     }
   ]
 }

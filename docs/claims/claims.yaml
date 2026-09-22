@@ -3602,13 +3602,18 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-09-22
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1057b_2026-09-22
+      as_of: 2026-09-22
+      verdict: non_contributory/standard
   depends_on:
     - ARC-011
     - ARC-007
   location: docs/architecture/sleep/reality_consolidation.md#mech-017
   epistemic_category: standard
+  diagnostic_evidence_adjudicated: true
   evidence_quality_note: |
     [2026-09-17 governance, cycle governance-20260917] FIRST experimental evidence, applied from the CONFIRMED
     failure_autopsy_V3-EXQ-1048_2026-09-17 (ratified REE_assembly eeeb0550ed5, user-approved at this cycle's Step 2b
@@ -3633,6 +3638,40 @@
     [governance-20260920] V3-EXQ-1057 (evidence-purpose, FAIL, substrate_not_ready_requeue, non_degenerate false; already scoring_excluded): does not bear on MECH-017. The additive arm (whole-buffer pass then recent-window pass) failed its retention gate 0/5: on early probes it fell to the no-training control, worse than both parents (destructive interference between blocked passes over conflicting windows). Instrument finding. failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.
 
     [governance-20260920] V3-EXQ-1057a (evidence-purpose, FAIL, substrate_not_ready_requeue, non_degenerate false; already scoring_excluded): does not bear on MECH-017. Reversed order (recent then whole): replay's early gain retained 5/5 and exceeded (best early arm of five), recency benefit retained 2/5. Partially additive -- early only. With 1057: order decides which way a blocked two-pass arm is displaced; neither order delivers both parents' benefits. The intrinsic-vs-reallocation question stays OPEN. failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20.
+
+    [governance-20260922] V3-EXQ-1057b (diagnostic, PASS, final_pass_dose_response_opposite_sign_across_orders_last_writer_signature):
+    non_contributory for MECH-017, BY DESIGN AND CORRECTLY SO. Applied from the CONFIRMED
+    failure_autopsy_V3-EXQ-1057b_2026-09-22 (dry_run_checked true), user-approved at this cycle's Step 2b walk.
+    STORABLE MOVE: diagnostic_evidence_adjudicated set true (MECH-017 carried no such field at all);
+    epistemic_category was already standard and status stays candidate. WHAT IT SETTLES: this is fan-out probe 1 of
+    the GOV-FANOUT-1 portfolio registered by failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20, whose declared null
+    was "both curves flat in k". THAT NULL IS REJECTED -- all 4 legs (2 orders x {early, late}) are non-flat against
+    FLAT_BAND=0.10 with per-leg sign consistency of 5 of 5 seeds; mean relative delta k=0->k=24 of D1_early +1.3770,
+    D1_late -0.3141, D2_early -0.4933, D2_late +0.4470. H-schedule is favoured in its STRONGEST form; H-reallocation
+    and H-intrinsic are recorded NOT SEPARATED, because order is perfectly confounded with which window is dosed and
+    no arm breaks that confound. THREE QUALIFICATIONS THE MANIFEST DOES NOT MAKE. (1) C1's two halves differ in
+    strength: the EARLY legs were close to forced (at k=0 the dosed pass is skipped, so each order's reference rung
+    sits in its MIRROR's last-writer state and the final pass carries ~102%/77% of the between-order early gap), while
+    the LATE legs were genuine tests -- under an equal-four-point null they would read -0.069 and +0.102, both inside
+    the band, and they came in at -0.3141 and +0.4470. (2) The four legs form a clean 2x2 sign flip -- each order ALSO
+    inverts between its own early and late strata -- yet _classify compares D1 against D2 WITHIN a stratum only, so the
+    within-order inversion is computed nowhere. That trade-off is the zero-sum structure a reallocation account
+    predicts, and it is UNEXTRACTED EVIDENCE bearing on the very separation the run records as not made. (3) D2_late is
+    the marginal leg (sign-consistent on 4 of 5 seeds at the endpoint; non-flat only at rungs 12 and 24). A SECOND
+    REASON FOR non_contributory, not stated in the manifest: the run does not satisfy MECH-017's non-degeneracy
+    precondition (iii) as it stood at run time -- the E1 half is met, the E2-world half is not, because the
+    world-forward lever was left off and OFF is structural absence of the module key. SEPARATELY, the run's declared
+    substrate limit 1 is FACTUALLY INCORRECT: Agent.compute_e2_world_loss exists (ree_core/agent.py:12515) and is wired
+    at ree_core/sleep/phase_manager.py:766-778 behind default-off use_sleep_world_forward_consolidation, so MECH-017's
+    co-primary world_forward readout is buildable-on-demand, not structurally unavailable -- trainer commit 4610133
+    (2026-09-17T20:53:57Z) is an ANCESTOR of the run's own substrate commit 995ba252 (2026-09-20T15:11:58Z). Leaving
+    the lever off in THIS run was still correct (enabling it would have broken the bit-identical reproduction of the
+    1048/1057/1057a cells), but the declaration was stale when it was made. NO SUBSTRATE WORK IS OWED: the autopsy's
+    first-draft `create` for a per-step data-window argument to consolidate() was REVERSED after a CONTESTED red-team
+    and an EXECUTED confirmer -- consolidate() builds its per-module optimisers ONCE per call, so a stateful closure
+    that alternates its window per call interleaves whole-buffer and recent-window steps INSIDE one call with Adam
+    momentum intact (confirmed: 6 alternating steps, ONE Adam optimiser, updates_e1 = 6).
+    failure_autopsy_V3-EXQ-1057b_2026-09-22.
   source:
     - docs/processed/legacy_tree/architecture/sleep/reality_consolidation.md
 - id: MECH-018
@@ -13450,11 +13489,11 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-09-16
+    as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-063a_2026-09-14
-      as_of: 2026-09-14
+      from: failure_autopsy_V3-EXQ-1070a_2026-09-22
+      as_of: 2026-09-22
       verdict: non_contributory/standard
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true
@@ -13541,6 +13580,31 @@
     use_natural_commit_latch_hold) -> /queue-experiment; proposal EXP-1394 stays proposed.
 
     [governance-20260920] V3-EXQ-1070 (diagnostic, FAIL, substrate_not_ready_requeue): non_contributory for ARC-029. Readiness gate training_tick_budget_equalised unmet: realised training ticks 461..1825 across rung x seed (spread 3.96, ceiling 2.0), because per-rung episode counts were derived from a random-policy episode-length pre-measurement and the training agent's episodes ran 1.4x-2.9x shorter on L2/L3/L5 (L1 -3%..+57%). The joint-feasibility deliverable (3/5 rungs) is confounded with training depth and NOT citeable; the substrate_conditional disposition is NOT triggered. P1 is NOT discharged: the static quantile bar meets the occupancy band by construction, and P1 as registered (alternating arm, >= 4/5 seeds) was not run. Narrow residual: the variance-tracking bar took force on a trained agent in 30/30 cells (as a cross-episode quantile). Successor V3-EXQ-1070a was committed and claimed before this autopsy. failure_autopsy_V3-EXQ-1070_2026-09-20.
+
+    [governance-20260922] V3-EXQ-1070a (diagnostic, FAIL, substrate_not_ready_requeue): non_contributory for ARC-029,
+    WITHOUT QUALIFICATION -- the run's own routes_to is correct and the autopsy rescues nothing from it. Applied from
+    the CONFIRMED failure_autopsy_V3-EXQ-1070a_2026-09-22 (dry_run_checked true), user-approved at this cycle's Step 2b
+    walk. NO STORABLE FIELD MOVES: status stays candidate, epistemic_category stays standard and
+    diagnostic_evidence_adjudicated stays true (both applied from the V3-EXQ-1070 autopsy); what this entry records is
+    the note plus the citation refresh, live_status.evidence.from moving off failure_autopsy_V3-EXQ-063a_2026-09-14.
+    WHAT THE RUN FIXED: the per-(rung, seed) two-stage pilot cut the realised training-tick spread from 3.9588 to
+    2.2786 and carried all 30 cells to completion where the predecessor decided at block 5 of 10. WHY IT STILL FAILS:
+    the 2.0 ceiling is exceeded by 13.93% (2331/1023, max L5_extreme seed 42, min L0_lineage_control seed 42), and
+    outcome = all(preconditions) AND ladder_non_degenerate, so the single red precondition carries it even though all
+    four scored criteria D1-D4 passed and 5 of 6 preconditions are green. WHY NOTHING IS CITEABLE: P1 is feasible in
+    30/30 cells but carries no information -- the detrended quantile bar is contract-pinned to fire at ~q, the window
+    it is estimated over spans 15-39 EPISODES in every cell (38.8 at L0), which GFLAG-0371 pre-rejected in terms, and
+    this is the STATIC arm (breath_period=0, MECH-108 OFF) while ARC-029's P1 is specified for the ALTERNATING arm.
+    harm_snr >= 10 is therefore the sole binding discriminator and the feasible-rung identity (3 of 5 rungs; 22 of 30
+    cells) is confounded with unequal training and MUST NOT be cited. An earlier draft of the autopsy offered a narrow
+    residual at L0/L1 and WITHDREW it: P3 at the lineage env was never in dispute, so the residual was the predecessor
+    autopsy's withdrawn P1 rescue in new clothes. ON THE GATE ITSELF: it is sound and its per-cell denominator is
+    deliberate; only its one-line description ("across rungs") is compressed against what it computes. The residual
+    confound is better read as EPISODE LENGTH than as training depth (episode length predicts low harm_snr across all
+    5 rungs, tick count across 4); at n=3 informative rungs the "higher-tick seed is worse" pattern is p = 0.125 and is
+    not leaned on. ON V3-EXQ-1066: it is NOT awaiting a re-queue -- it RAN and ERRORed 2026-09-20T15:08:23Z on
+    ree-cloud-3, its diagnosis is owned by an active claim, and chip-20260921-diagnose-exq-1066 is claimed by a live
+    session. failure_autopsy_V3-EXQ-1070a_2026-09-22.
   status_note: |
     Promoted candidate -> provisional 2026-03-23.
     Evidence: conf=0.774, 1 support (EXQ-063 PASS 5/5), 0 weakens, conflict_ratio=0.
