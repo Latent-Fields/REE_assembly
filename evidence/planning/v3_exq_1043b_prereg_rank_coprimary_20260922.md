@@ -8,6 +8,15 @@ and BEFORE anything was queued. Chip `chip-20260922-exq1043b-prereg-rank-coprima
 `failure_autopsy_V3-EXQ-1043a_2026-09-20.json` (`routing_detail.successor`), ratified by
 `/governance` cycle governance-20260920.
 
+> **AMENDED 2026-09-22T20:40Z, BEFORE ANY CELL RAN -- see Amendment 1 at the end.** The
+> Step 4.5 adversarial red-team (cross-model, fable) returned CONTESTED and demonstrated by
+> execution that TWO claims in this document as first written were WRONG: the characterisation
+> of Simes in section 4, and the quotation of H2's declared null in section 1(a). Both are
+> corrected in place below and the corrections are itemised in Amendment 1. This is permitted
+> by this document's own section 12, whose violation 3 is scoped to changes made *after any
+> 1043b cell has run* -- nothing had run, and no result had been seen. **Correcting a
+> demonstrated error before the run is the opposite of the move section 12 forbids.**
+
 **Why this document exists, stated plainly.** The 1043 lineage has been autopsied twice, and the
 second autopsy's own red-team record shows the failure mode is *re-anchoring a threshold after
 seeing the numbers that fail it*. Option E adds a statistic that was computed during a probe
@@ -31,21 +40,40 @@ original absolute-difference CI as the **DECLARED PRIMARY**, reported whatever i
 The charge option E must answer is that the rank statistic was chosen after seeing that the
 absolute-difference statistic would disappoint. Three facts, in descending order of strength:
 
-**(a) The rank statistic is the falsifier the hypothesis registry ALREADY registered, on
-2026-09-17, three days before the smoke ran.** `hypothesis_space_registry.v1.json`, qid
-`mech537_communication_subspace_orientation`, hypothesis **H2-no-orientation**:
+**(a) The HYPOTHESIS the rank statistic tests was registered on 2026-09-17, three days before
+the smoke ran -- though its registered METHOD was not this one, and the distinction matters.**
+`hypothesis_space_registry.v1.json`, qid `mech537_communication_subspace_orientation`,
+hypothesis **H2-no-orientation**, both fields quoted in full and verbatim:
 
 > *label*: "the fitted communication subspace is not meaningfully different from **a random
 > subspace of the same rank** at this interface; C2's positivity is noise and will not survive a
 > permutation null."
-> *Declared null*: "**the observed C2 sits inside the** [reference] **null**."
+>
+> *desc*: "Permutation null on the RRR fit itself (refit on shuffled sender-receiver pairing) to
+> give C2 a within-run reference distribution instead of a hand-set floor. **Declared null: the
+> observed C2 sits inside the permutation null.**"
 
-The per-seed percentile of `D_comm` within a B-draw random-rank-r reference distribution IS
-"where the observed value sits inside the distribution of random same-rank subspaces". It is not
-a new statistic. What 1043a built instead -- a refit permutation null on shuffled sender/receiver
-pairing -- answers a *different* question (is the fitted map real? yes, p = 1.0 on 6/6), and the
-1043a autopsy says so in those words. So the rank co-primary is the registered falsifier for H2
-being instrumented correctly for the first time, not a statistic introduced to rescue a result.
+**CORRECTED (red-team finding 6).** This document as first written quoted the declared null as
+"the observed C2 sits inside the [reference] null", substituting a bracketed word for
+"permutation". That substitution overstated the case and is withdrawn. The honest statement is
+a three-step one, and it is still a good defence -- just not the one-line one:
+
+1. H2's **hypothesis**, in its `label`, is about *a random subspace of the same rank*. That is
+   the thing the percentile measures, and it was registered on 2026-09-17.
+2. H2's **registered method**, in its `desc`, was a permutation null on shuffled pairing. 1043a
+   built exactly that method and ran it.
+3. The CONFIRMED 1043a autopsy then established that **the registered method does not test the
+   registered hypothesis**: the permutation null answers "is the fitted map real?" (p = 1.0 on
+   6/6 -- all 200 shuffled refits decoded WORSE than the real subspace) and never constructs a
+   random same-rank subspace at all. Its own words: "A refit-based permutation null answers 'is
+   the fitted structure real?'. 'Is its ORIENTATION special?' needs a reference over random
+   subspaces of the same rank."
+
+So the claim this document is entitled to make is: **the rank co-primary is the instrument H2's
+registered HYPOTHESIS requires, substituted for a registered METHOD that a confirmed autopsy had
+already ruled unable to test it.** That is a method change ratified by an autopsy, not a
+statistic introduced after seeing a disappointing number. The weaker, accurate version of the
+claim is the one that governs.
 
 **(b) The mechanism argument is stated in advance and is independent of the direction of the
 answer.** The declared primary is a cross-seed t-CI on an ABSOLUTE difference, and what binds it
@@ -146,12 +174,33 @@ under the null they are independent uniforms.
   `df = 2 * n_contributing`. **ALPHA = 0.05, one-sided** (low percentiles = effect). Discreteness
   at B = 1000 is 1e-3-grained, so the chi-square approximation is effectively exact and, where it
   errs, errs conservative.
-- **ROBUSTNESS combining rule, reported alongside and pre-registered as such: SIMES.** Reject if
-  `min_k ( n * p_(k) / k ) <= 0.05` over the order statistics. Simes is far less driven by a
-  single extreme seed than Fisher is.
-- **Pre-registered reading of a disagreement between them.** If Fisher fires and Simes does not,
-  the combined result rests on one or two seeds, and it is reported in those words -- not as a
-  clean positive.
+- **SECONDARY, reported alongside: SIMES.** Reject if `min_k ( n * p_(k) / k ) <= 0.05` over
+  the order statistics. A valid FWER-controlling test, reported as a per-seed-strength readout.
+- **ROBUSTNESS-AGAINST-ONE-SEED check: LEAVE-ONE-OUT FISHER.** Drop the smallest per-seed p (the
+  most influential seed under Fisher), re-run Fisher on the remaining `n-1`, and report whether
+  it still clears alpha. If the full-set Fisher fires and the leave-one-out does NOT, the
+  combined result rests on a single seed and is reported in those words -- **never as a clean
+  positive.** Recorded, not scored: it qualifies how the verdict reads, it does not gate it.
+
+> **CORRECTED (red-team finding 1), and this correction is load-bearing.** This document as
+> first written described Simes as "far less driven by a single extreme seed than Fisher", and
+> used a *Fisher-fires-Simes-does-not* disagreement as the test for "rests on one or two seeds".
+> **That is backwards at B = 1000, and the reversal is caused by the very resolution floor that
+> B = 1000 was chosen to lower.** Simes's `k = 1` order term is the BONFERRONI term `n * p_min`;
+> at B = 1000 the floor is `1/1001`, so a single seed at the floor gives `6/1001 = 0.006 <=
+> 0.05` and **Simes fires on that one seed alone**. Measured against the driver's own functions:
+>
+> | per-seed p | Fisher | Simes |
+> |---|---|---|
+> | `[0.001, 1.0 x5]` | 0.313 -- NOT significant | **0.006 -- SIGNIFICANT** |
+> | `[0.008, 0.5 x5]` | 0.166 -- not significant | **0.048 -- SIGNIFICANT** |
+> | `[0.009, 0.5 x5]` | 0.176 -- not significant | 0.054 -- not significant |
+>
+> So at this B, Simes is MORE single-seed-driven than Fisher, not less, and the original
+> predicate could never have fired on the case it was written for. Simes is retained and
+> reported (it is what this document named, and it is a valid test); its ROLE is corrected, and
+> the robustness job moves to the leave-one-out check, which tests the property directly.
+> Pinned by four self-test assertions in the driver so the claim cannot silently drift back.
 
 **Why Fisher and not a cross-seed average.** Fisher aggregates evidence; it does not average
 effect sizes. Averaging is precisely what the declared primary's t-CI does, and averaging a split
@@ -296,6 +345,16 @@ the run proceeds on the rest. This follows the V3-EXQ-785 rule (one arm's imposs
 must not vacate another arm's valid result). **Only if ZERO of six seeds pass does the run
 self-route `substrate_not_ready_requeue`.**
 
+> **IMPLEMENTATION NOTE (red-team finding 3), because the obvious encoding of that sentence is
+> wrong.** "Zero seeds pass" must be counted CONJUNCTIVELY, per seed: a seed passes only if it
+> meets clause 1 AND clause 2 *on that same seed*. The driver's first implementation reported
+> the BEST seed on each clause SEPARATELY, so a seed passing only the ratio plus a different
+> seed passing only the sd floor would turn both checks green while **no single seed was
+> non-degenerate** -- and the analysis would then silently fall back to all six. The operative
+> gate is now an explicit count of seeds meeting both clauses together
+> (`randrank_reference_nondegenerate_seed_count >= 1`); the two per-clause checks are retained
+> only because they name WHICH clause failed, which a bare count cannot.
+
 **SPLIT DECLARATION -- mandatory, mechanical, fixed now.** The design must be able to report the
 split as the finding rather than average it away. Declared rule:
 
@@ -321,9 +380,29 @@ disagreement IS the result and is reported as such.** The run's criteria do not 
 | CI includes 0.05 | not significant | `orientation_effect_not_established` |
 | CI excludes 0.05 from ABOVE (entirely below 0.05), excludes 0 | significant | `orientation_effect_present_but_below_floor` |
 | CI excludes 0.05 from above, excludes 0 | not significant | `orientation_effect_sub_floor_rank_null` |
-| CI includes 0 | any | `orientation_contrast_not_positive` |
+| CI includes 0 | **not significant** | `orientation_contrast_not_positive` |
+| CI includes 0 | **significant** | `orientation_contrast_not_positive_rank_significant_DISAGREEMENT` |
 
 Suffixes, appended mechanically: `_split` (section 7), `_conditional_on_competence` (section 5).
+
+> **CORRECTED (red-team finding 2), and this was the most consequential of the seven.** The last
+> row of this table originally read "CI includes 0 | **any** | `orientation_contrast_not_positive`"
+> -- i.e. a non-positive CI VETOED the rank co-primary and erased it from the label. That
+> contradicts this document's own governing principle, stated two paragraphs above it, that a
+> disagreement between the primaries IS the result. And it is not a theoretical concern: on the
+> smoke's own numbers the CI is `[+0.00172, +0.08061]`, so the veto is a **coin flip decided by
+> the one seed this document already calls NON-CONTRIBUTORY.** `ci_positive` is computed over
+> non-degenerate seeds with no competence scoping, so seed 45 enters it unconditionally;
+> shifting seed 45's C2 by **-0.005** moves the lower bound to `-0.00028` and flips the label
+> from the expected outcome to "contrast not positive", **silencing a Fisher p of ~2e-5**.
+> The competence exclusion is fully defused for the rank statistic (SET-ALL is the scored
+> basis), and was NOT defused here -- the incompetent seed could reach the headline through the
+> one door section 5's both-ways clause does not cover.
+>
+> **The fix removes the VETO, not the statistic.** The CI is NOT re-scoped to competent seeds --
+> that would be re-anchoring a pre-registered statistic, which is the move this whole document
+> exists to refuse. A non-positive CI with a significant rank co-primary now reports as an
+> explicit DISAGREEMENT, which is what it is.
 
 **Hypothesis-ledger consequences, declared in advance:**
 
@@ -455,3 +534,81 @@ Recorded so a later autopsy has a checklist rather than a judgement call:
   `REE_assembly` `dc39f672a0`.
 - Hypothesis ledger: `hypothesis_space_registry.v1.json`, qid
   `mech537_communication_subspace_orientation`.
+
+---
+
+## AMENDMENT 1 -- 2026-09-22T20:40Z, before any cell ran
+
+**Trigger.** `/queue-experiment` Step 4.5 adversarial design red-team, run cross-model (drafting
+session Opus 5; reviewer **fable**), on the driver plus this document, before the queue entry
+existed. **VERDICT: CONTESTED** -- no pre-registered criterion was non-discriminating under every
+outcome, so not BLOCKING, but seven findings, of which five changed the design or this document.
+
+**Standing of this amendment.** Section 12's violation 3 forbids changing B, the combining rule,
+alpha, the direction convention or the competence threshold **after any 1043b cell has run**. No
+cell had run, no result had been seen, and the queue entry did not yet exist. Two of the seven
+findings showed that statements in this document were *demonstrably false as written* -- verified
+by executing the driver's own functions, not by argument. Leaving them standing to preserve the
+letter of a pre-registration would have shipped a document that misdescribes its own instrument.
+Every correction below is recorded rather than silently applied, and each is a CORRECTION or a
+TIGHTENING; **none relaxes a threshold, and none was made in response to a result.**
+
+| # | Family | Status | Disposition |
+|---|---|---|---|
+| 1 | criterion cannot discriminate | **CONFIRMED** | Simes's role corrected (section 4); robustness job moved to a new leave-one-out Fisher. Pinned by 4 self-test assertions. |
+| 2 | verdict grid | **CONFIRMED** | The non-positive-CI veto removed; a disagreement now reports as `..._rank_significant_DISAGREEMENT` (section 8). |
+| 3 | gate certifies its own subject | **CONFIRMED** | Operative gate is now a CONJUNCTIVE per-seed count (section 7). |
+| 4 | verdict grid | **CONFIRMED** | `_c2_falsified` rescoped to the same seed set the confirming conjunct reads. |
+| 5 | verdict grid | **CONFIRMED, NOT FIXED** | Recorded as a stated limitation below. |
+| 6 | pre-registration provenance | **CONFIRMED** | Section 1(a) quotation corrected and the defence weakened to the accurate version. |
+| 7 | cosmetic | **CONFIRMED** | `primaries_agree` now compares existence against existence. |
+
+**Finding 5, CONFIRMED and deliberately NOT fixed -- recorded because it is the one a later
+autopsy should read first.** Neither primary can move `evidence_direction`. `_adjudicate`'s
+confirming branch requires C4 (C4b at or below the per-seed measured ceiling on >= 4 seeds), and
+on 1043a's landed numbers at the same scored rank that is **2 of 6**:
+
+| seed | 42 | 43 | 44 | 45 | 46 | 47 |
+|---|---|---|---|---|---|---|
+| measured | 1.1992 | 1.1633 | 1.1770 | 0.9451 | 0.9709 | 1.1523 |
+| ceiling | 1.1174 | 1.1008 | 1.0807 | 1.0907 | 1.1218 | 1.0285 |
+| | fail | fail | fail | **PASS** | **PASS** | fail |
+
+So this document's own most-likely outcome -- H2 decisively falsified by the rank co-primary --
+**coexists with `outcome: FAIL`, `evidence_direction: mixed`,
+`routing_signature_incomplete_undetermined`**, byte-identical to what V3-EXQ-1043 landed. A
+consumer reading only `evidence_direction` therefore sees **no movement across three runs of this
+lineage**, while `interpretation.primary_agreement` carries a decisive result.
+
+This is NOT repaired here, and the reason is the reason this whole document exists: C4 is part of
+MECH-537's registered CONFIRMING conjunction, and loosening it so that the rank co-primary could
+drive `evidence_direction` would be re-anchoring a pre-registered criterion to make a favoured
+statistic count. **It is recorded as a limitation instead, and the limitation is owed to
+governance:** the C4b ceiling rule carries its own unresolved weakness (1043a's red-team M2, the
+effective per-unit bar rising toward 1.0 as F approaches I, "OWED to governance / a successor
+autopsy"), and this is the second consequence of the same unresolved thing. **A reader adjudicating
+this run must read `interpretation.primary_agreement`, not `evidence_direction` alone.**
+
+**What did NOT change**, so the record is unambiguous: B = 1000; Fisher as the primary combining
+rule; alpha = 0.05; the direction convention (LOW percentile = effect present); the competence
+threshold (0.0) and its both-ways reporting requirement; the non-degeneracy thresholds (2.0 and
+0.005); the declared primary, its statistic and its declared null; and the requirement that the
+declared primary is reported whatever it says. The expected outcome in section 9 is unchanged.
+
+**Cleared by the red-team**, recorded because a clean finding is evidence too: `_project` uses an
+independent basis per draw with no shared fitted object across arms; `x1002._train_adapter` never
+reseeds on this path (the only `torch.manual_seed` in x1002 is in its own `run_experiment`, off
+this path); the percentile's direction and its `+1` floor; Fisher's `df = 2n` and its
+discreteness being conservative; `_c2_falsified` as a positive predicate rather than `not c2`;
+and the equivalence branch being unreachable (full 0.92-0.95 against comm 0.50-0.60).
+
+**One item the red-team did NOT raise, recorded by the drafting session rather than left
+implicit.** Draw 0 of the reference distribution reuses the `ws250_randrank_parsrank` arm's
+agreement, which was fitted inside `arm_cell` (a complete RNG reset), while draws 1..B-1 are
+fitted from the ambient RNG. This is deliberate -- it is what makes the comparability form of the
+declared primary 1043a's *literal* number rather than a re-drawn approximation -- and it is
+benign in the direction that matters: `D_comm` (refit 0) is ALSO a reset-RNG fit, so the two
+sides of the percentile comparison are matched on that axis, and 999 of the 1000 reference
+members are ambient. Since `_train_adapter` draws only its initialisation and shuffling from the
+RNG, a reset-RNG fit is a valid draw from the same decoder-noise distribution, not a
+systematically different one. Recorded so a later reader does not have to rediscover it.
