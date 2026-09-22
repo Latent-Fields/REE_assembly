@@ -1,0 +1,137 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-22T05:47:07Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3",
+      "queue_id": "V3-EXQ-1057b",
+      "claim_ids": [
+        "MECH-017"
+      ],
+      "failed_criterion": "none -- outcome PASS. C1_dose_response_detected (the sole load-bearing criterion) measured 4.0 of 4 legs non-flat against threshold 1.0. Adjudicated under trigger 2 (experiment_purpose: diagnostic), not because of a failure.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected, and correctly so) -- non_contributory for TWO reasons, the second corrected after red-team. (a) The manifest's own reason: a dose-curve SHAPE criterion neither raises nor lowers 'replay counters forgetting at no cost to recency'. (b) The run does not satisfy MECH-017's non-degeneracy precondition (iii) AS IT STOOD AT RUN TIME (claims.yaml 44a0665b4fc, 2026-09-20T14:18:50Z): 'the consolidation pass must actually UPDATE the world model (CrossModuleConsolidator metrics updates_<module> > 0 for the E1 and E2-world losses, not only e2_harm_s)'. The E1 half is met; the E2-WORLD half is not, because use_sleep_world_forward_consolidation was left off, and OFF is structural absence -- no module key, no closure, no updates counter (phase_manager.py:759-765). WITHDRAWN: the first draft cited the force_cycle clause instead. That clause was NOT in the claim at run time -- it was added by 02caebd047f on 2026-09-22T04:16:21Z, about 36 hours AFTER the run -- so the run cannot have deviated from it.",
+        "biological_reference": "clear -- sleep-dependent systems consolidation and the recency/remote trade-off; targeted_review_mech_017 present.",
+        "prerequisites": "present -- the consolidation pass under test is live and accumulates; probe_set_identical_across_arms hashes and asserts bit-identical latents across arms of a seed.",
+        "implementation": "complete for the lever under test, with ONE correction to the run's own declaration -- see integration.",
+        "environment": "adequate for the question asked (a dose-response on a consolidation schedule).",
+        "measurement": "adequate, and STRONGER than the first draft credited -- corrected after red-team. C1's EARLY legs were close to forced: at k=0 the dosed pass is skipped, so each order's reference rung sits in its MIRROR's last-writer state, and the final pass carries ~102%/77% of the between-order early gap. But the LATE legs were genuine tests -- under an equal-four-point null they would read -0.069 and +0.102, both INSIDE the 0.10 band, and they came in at -0.3141 and +0.4470. The first draft also said the driver 'nowhere states the converse'; that is FALSE and is withdrawn -- driver :550-563 predicts in advance that 'under the last-writer reading the two curves MUST move in OPPOSITE directions', and records that the reviewer reconstructed all four legs non-flat with exactly that pattern from 1057a's per-seed rows. The design is self-aware about its own easy half.",
+        "integration": "coupled but inert -- INERT BY DESIGN, and the run's stated reason for the inertness is factually wrong. The manifest declares the E2 world_forward readout 'NOT ATTEMPTED ... E2.world_forward has no trainer in ree_core, so a world_forward DV is identically 0.0 in every arm'. There IS a trainer: Agent.compute_e2_world_loss (ree_core/agent.py:12515, whose docstring is headed 'THE GAP THIS CLOSES'), wired into the sleep path at ree_core/sleep/phase_manager.py:766-778 behind the default-off lever use_sleep_world_forward_consolidation, and the cited substrate_queue entry e2-world-forward-sleep-trainer now reads implemented_pending_validation, not the pending_implementation the driver quotes. The run's DECISION to leave it off is right and is the stronger design (phase_manager.py:759-765 records that enabling it changes cross_module_replay_share and consumes global-RNG draws, which would break the bit-identical reproduction of the 1048/1057/1057a A/B/C cells this design reads as its prior). Implementation therefore stays 'complete'. What changes is the ROUTING: MECH-017 names held-out one-step E2 world_forward error as a CO-PRIMARY readout, and that readout is now buildable-on-demand rather than structurally unavailable.",
+        "scale": "adequate -- 13 arms x 5 seeds, sign consistency required on 4 of 5."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "Not a failure at all -- the run PASSED and delivered the discrimination it was fanned out to deliver. Recorded as MEASURES-partial only because C1's null was near-unreachable by design; nothing here is chargeable to REE or to MECH-017."
+      },
+      "biological_reference": {
+        "closest_mechanism": "sleep-dependent systems consolidation: hippocampal replay of remote traces vs protection of recent memory",
+        "dependencies": [
+          "a replay buffer spanning both remote and recent experience",
+          "an offline window in which consolidation runs without new encoding"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present (targeted_review_mech_017)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No epistemic suppression is asserted. The run is a diagnostic probe of a schedule property and is non_contributory to MECH-017's confidence BY DESIGN, not because of any ceiling or defect.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1057b (diagnostic, PASS, final_pass_dose_response_opposite_sign_across_orders_last_writer_signature): non_contributory for MECH-017, by design and correctly so. This run is fan-out probe 1 of the GOV-FANOUT-1 portfolio registered by failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20, whose declared null was 'both curves flat in k'. That null is REJECTED: all 4 legs (2 orders x {early, late}) are non-flat against FLAT_BAND=0.10 with per-leg sign consistency of 5 of 5 seeds (a leg-level maximum across rungs, not an endpoint-only count) -- mean relative delta k=0->k=24 of D1_early +1.3770, D1_late -0.3141, D2_early -0.4933, D2_late +0.4470. H-schedule is favoured in its strongest form; H-reallocation and H-intrinsic are recorded NOT SEPARATED, because order is perfectly confounded with which window is dosed and no arm breaks that confound. THREE QUALIFICATIONS THE MANIFEST DOES NOT MAKE. (1) C1's two halves differ in strength. The EARLY legs were close to forced -- at k=0 the dosed pass is skipped, so each order's reference rung sits in its MIRROR's last-writer state and the final pass carries ~102%/77% of the between-order early gap. The LATE legs were genuine tests: under an equal-four-point null they would read -0.069 and +0.102, both inside the 0.10 band, and they came in at -0.3141 and +0.4470. The driver is explicit about this in advance (:550-563: 'under the last-writer reading the two curves MUST move in OPPOSITE directions', with all four legs reconstructed non-flat from 1057a's rows before the run). (2) The four legs form a clean 2x2 sign flip -- each order ALSO inverts between its early and late strata, not only across orders -- yet _classify (driver lines 2375-2387) compares D1 against D2 within a stratum only, so the within-order inversion is computed nowhere. That within-order early/late trade-off is the zero-sum structure a reallocation account predicts, and it is unextracted evidence bearing on the very separation the run records as not made. (3) D2_late is the marginal leg: sign-consistent on 4 of 5 seeds at the endpoint (seed 456 at +0.0799, inside the band) and non-flat only at rungs 12 and 24. A SECOND REASON THE DIRECTION IS non_contributory, which the manifest does not state: the run does not satisfy MECH-017's non-degeneracy precondition (iii) AS IT STOOD AT RUN TIME -- 'the consolidation pass must actually UPDATE the world model (updates_<module> > 0 for the E1 and E2-world losses)'. The E1 half is met; the E2-world half is not, because the world-forward lever was left off and OFF is structural absence of the module key. SEPARATELY, the run's declared substrate limit 1 is factually incorrect: Agent.compute_e2_world_loss exists (ree_core/agent.py:12515) and is wired at ree_core/sleep/phase_manager.py:766-778 behind default-off use_sleep_world_forward_consolidation, so MECH-017's co-primary world_forward readout is buildable-on-demand, not structurally unavailable. This is dated, not inferred: the trainer commit 4610133 (2026-09-17T20:53:57Z) is an ANCESTOR of the run's own substrate commit 995ba252 (2026-09-20T15:11:58Z), and the substrate_queue entry had already flipped to implemented_pending_validation at 2026-09-20T12:19:24Z -- about 3.5 hours before the run and before the driver was written. Leaving the lever off in THIS run was still correct (enabling it would have broken the bit-identical reproduction of the 1048/1057/1057a cells), but the declaration was stale at the moment it was made. failure_autopsy_V3-EXQ-1057b_2026-09-22.",
+      "per_claim_recommendation": {
+        "MECH-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "epistemic_category already standard, so that is not a live move; MECH-017 carries NO diagnostic_evidence_adjudicated field at all -> set diagnostic_evidence_adjudicated true"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "REVERSED after the Step 7c red-team (CONTESTED, finding F1) and an EXECUTED confirmer. The first draft proposed `create` for a per-step data-window argument to consolidate(), on the premise that driver-side alternation would cold-start Adam every step. THAT PREMISE IS FALSE. consolidate() builds its per-module optimisers ONCE per call (cross_module_consolidation.py:158-162) and then calls the driver's own loss closure fresh on each of `steps` iterations (:164-183, driven by the interleaved loop at :185-195). A STATEFUL closure that alternates its window per call therefore interleaves whole-buffer and recent-window steps INSIDE ONE consolidate() call with Adam momentum intact. Confirmed by execution: 6 alternating steps, ONE Adam optimiser constructed, updates_e1 = 6. The fresh-Adam-per-CALL fact is real but irrelevant, because the interleaving never crosses a call boundary. No substrate work is owed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 0,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-017 ceiling count 0 under R1-R3 (5 targets tag the claim, none reads substrate_ceiling). This run is not a re-letter of the blocked construction -- it is the pre-registered fan-out probe the 1057/1057a cluster routed to, and it delivered."
+      },
+      "learning_extracted": [
+        "Ask whether a rejected null was reachable. C1's k=0 reference sits in the mirror order's last-writer state, a contrast already measured at ~13x FLAT_BAND before the run; rejecting 'flat in k' was therefore close to guaranteed. The reading survives, but 4/4 legs non-flat is a weaker surprise than the count suggests.",
+        "A 2x2 design carries two inversions and the classifier read only one. Each order inverts between its early and late strata as well as across orders; _classify compares within a stratum only, so the within-order trade-off -- the zero-sum signature a reallocation account predicts -- was measured and never computed.",
+        "A declared substrate limit is a claim about code and ages like one. 'E2.world_forward has no trainer in ree_core' was quoted faithfully from a substrate_queue entry that had since been implemented behind a default-off lever; the run's decision was still right, its stated reason was not.",
+        "Default-off is not absent, and the distinction changes routing: a co-primary readout behind a lever is complicated (buildable), not blocked.",
+        "Deviating from a claim's registered non-degeneracy precondition can be the stronger design. Routing through force_cycle would have exposed the buffer narrowing to every other reader in the cycle; isolating content and letting V3-EXQ-1026 own the wiring is a division of labour -- but it does mean this run can never discharge the confirming clause, which is a second, independent reason its direction is non_contributory."
+      ],
+      "routing": "queue-experiment",
+      "gate_decisions_2026_09_22": {
+        "h_schedule_ledger_state": "confirmed, met_elimination_bar=false (user, Step 8 gate 2026-09-22)",
+        "world_forward_routing": "Record as buildable and bind the SUCCESSOR to it; do NOT raise a separate governance flag (user, Step 8 gate 2026-09-22).",
+        "governance_flag_declined": "The stale substrate_queue text and the mis-declared limit are carried in this artifact's prose and in the claim's evidence_quality_note only."
+      },
+      "successor_requirements": [
+        "ENABLE use_sleep_world_forward_consolidation and report held-out one-step E2 world_forward error. It is NOT a build: the trainer (Agent.compute_e2_world_loss) and its wiring (phase_manager.py:766-778) were BOTH in the substrate this run executed against -- trainer commit 4610133 (2026-09-17T20:53:57Z) is an ancestor of the run's substrate commit 995ba252 (2026-09-20T15:11:58Z). Enabling it is also what satisfies run-time precondition (iii)'s E2-world half.",
+        "Build the interleaved arm D3 DRIVER-SIDE with a stateful per-step window closure -- no substrate change, one consolidate() call, Adam momentum preserved. This is the probe that separates H-reallocation from H-intrinsic, the two legs 1057b leaves alive.",
+        "Compute the WITHIN-ORDER early/late contrast as well as the across-order one. The four legs form an antisymmetric 2x2 and _classify (:2375-2387) reads columns only; the row contrast is the zero-sum trade a reallocation account predicts.",
+        "Note that MECH-017 acquired a force_cycle non-degeneracy precondition on 2026-09-22, AFTER this run. A successor intended to discharge the CONFIRMING clause must route through SleepLoopManager.force_cycle; a successor that is still probing content faces the same attribution objection 1057b's driver raises at :425-434, and should say which it is."
+      ],
+      "recommended_substrate_queue_entry_withdrawn_detail": "see recommended_substrate_queue_entry.note",
+      "withdrawn_during_drafting": [
+        {
+          "claim": "The interleaved arm D3 is blocked on substrate because consolidate() has no per-step window argument and driver-side alternation would cold-start Adam every step.",
+          "why_withdrawn": "REFUTED on the premise by red-team F1 and by an executed confirmer. consolidate() builds optimisers once per call (:158-162) and calls the driver's closure per step (:185-195), so a stateful closure interleaves windows within ONE call with momentum intact -- 6 alternating steps, 1 optimiser, updates_e1 = 6. The fresh-Adam-per-CALL fact is real but never crosses a call boundary here. Routing moves implement-substrate -> queue-experiment and the substrate entry from create -> none.",
+          "how_it_happened": "The mechanism was quoted from this run's own manifest, which repeats it -- but failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20 had ALREADY withdrawn exactly that account ('WITHDRAWN (first draft): fresh Adam per consolidate() call makes passes overwrite'), and listed the driver-built route. Reading the prior artifact's learning_extracted was not enough; the withdrawn mechanism was still propagated from the manifest."
+        },
+        {
+          "claim": "The driver 'nowhere states the converse' -- i.e. never acknowledges that the k=0 last-writer swap makes a non-flat result close to guaranteed.",
+          "why_withdrawn": "False. Driver :550-563 predicts the opposite-sign outcome in advance and records the reviewer's full-scale reconstruction of all four legs from 1057a's per-seed rows.",
+          "how_it_happened": "Read the docstring's THE PREDICTION section but not the red-team findings block below it."
+        },
+        {
+          "claim": "The run deviates from MECH-017's registered precondition that consolidation run through SleepLoopManager.force_cycle.",
+          "why_withdrawn": "ANACHRONISTIC. That clause entered claims.yaml at 02caebd047f, 2026-09-22T04:16:21Z -- about 36 hours AFTER the run. At run time (44a0665b4fc) MECH-017's what_would_answer did not mention force_cycle. The substance relocates to the contemporaneous precondition (iii), which the run does fail on its E2-world half.",
+          "how_it_happened": "Read the CURRENT claims.yaml and assumed it was the text in force at run time."
+        }
+      ],
+      "step7c_red_team": {
+        "model": "fable (cross-model -- this session drafted on Opus 5)",
+        "verdict": "CONTESTED",
+        "disposition_survived": true,
+        "what_survived": [
+          "direction non_contributory",
+          "epistemic_category standard",
+          "the 2x2 / uncomputed within-order inversion finding (b)",
+          "the D2_late marginality finding (c)",
+          "the world_forward mis-declaration finding (d), strengthened with dated ancestry"
+        ],
+        "what_changed": [
+          "F1 (MAJOR, ACCEPTED -- REVERSES THE ROUTING): D3 is buildable DRIVER-SIDE. consolidate() builds optimisers once per call (:158-162) and calls the driver's closure per step (:185-195), so a stateful closure interleaves windows inside ONE call with Adam momentum intact. Verified by execution here: 6 alternating steps, 1 optimiser, updates_e1 = 6. routing implement-substrate -> queue-experiment; substrate entry create -> none; pending_retest_after_substrate true -> false.",
+          "F2 (ACCEPTED): the 'driver nowhere states the converse' claim is FALSE -- driver :550-563 predicts the opposite-sign outcome in advance from 1057a's rows. And the null was reachable for the LATE legs (equal-four-point null: -0.069 / +0.102, in-band), so C1 was a real test on that half. This STRENGTHENS the H-schedule confirmed verdict rather than weakening it.",
+          "F3 (ACCEPTED): the force_cycle precondition is ANACHRONISTIC -- added 2026-09-22T04:16:21Z, ~36h after the run. Withdrawn and replaced by the contemporaneous run-time precondition (iii), whose E2-world half the run does fail.",
+          "Hygiene accepted: '5 of 5 seeds' is a leg-level maximum, not an endpoint count; Adam construction is :158-162 (not :155-162); the interleaved branch is :185-195 (:196-201 is the blocked branch)."
+        ],
+        "cheap_confirmers_run": [
+          "EXECUTED: stateful-closure interleave inside one consolidate() call -- 6 alternating windows, 1 Adam constructed, updates_e1 = 6",
+          "git merge-base --is-ancestor 4610133 995ba252 -> YES (world_forward trainer present in the run's own substrate)",
+          "claims.yaml at 44a0665b4fc (run time): force_cycle absent, world_forward present",
+          "substrate_queue status history: pending_implementation -> implemented_pending_validation at 2026-09-20T12:19:24Z, before the run",
+          "all four per-leg mean_rel_delta recomputed from the manifest at full precision"
+        ]
+      }
+    }
+  ],
+  "confirmed_utc": "2026-09-22T06:05:26Z"
+}

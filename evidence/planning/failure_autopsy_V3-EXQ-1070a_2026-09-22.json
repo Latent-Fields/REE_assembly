@@ -1,0 +1,159 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-22T05:47:07Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3",
+      "queue_id": "V3-EXQ-1070a",
+      "claim_ids": [
+        "ARC-029"
+      ],
+      "failed_criterion": "readiness precondition (training_tick_budget_equalised = 2.278592375366569 vs upper ceiling 2.0). All four scored criteria D1-D4 PASSED; 5 of 6 preconditions met.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (protected) -- and P1 AS REGISTERED was not measured. ARC-029's P1 is specified for the ALTERNATING arm; this run is the STATIC arm (breath_period=0, MECH-108 OFF, asserted driver :679). Its operational P1 is additionally contract-pinned (the detrended quantile bar fires ~q by design) and is obtained over a window spanning 15-39 episodes, which GFLAG-0371 pre-rejected as not the within-run distribution the estimator is specified against. So 'P1-feasible 30/30' speaks neither to ARC-029's P1 nor to a within-run reading of it.",
+        "biological_reference": "clear -- BG go/no-go commitment vs deliberative modes; targeted_review_arc_029 present.",
+        "prerequisites": "present -- variance-tracking commit bar in force 1.0 on 30/30 cells, window filled 30/30, rv collapse 1.28 decades worst cell.",
+        "implementation": "complete for the lever under test -- bar_in_force_fraction 1.0 in all 30 cells.",
+        "environment": "too sparse for a clean answer, though not disqualifying. The ladder swept episode length 5.61 -> 14.62 (2.84x, D1 green). Across that sweep the 200-select-call estimation window falls monotonically from 38.8 to 17.3 episodes of span while harm_snr falls 42.1 -> 9.6 through the P3 floor of 10, and its MINIMUM span in any of the 30 cells is 15 episodes. That is the M4 P1/P3 bind of arc029_exq1066_prereg_derivation_20260919.md, measured rather than argued: the direction that would put the estimation window inside fewer episodes is the direction that kills the harm DV.",
+        "measurement": "under-instrumented -- DOMINANT, and narrower than the first draft said. The two-stage pilot mispredicts P1 ticks/episode by 0.5629x-2.1499x (worst L5 seed 42: pilot 8.64 vs realised 18.58), leaving realised totals 1023-2331 and the equalisation gate red for the second run running. The gate itself is sound: the per-cell denominator is deliberate (driver :60-67) and the per-rung-mean alternative is a pre-registered forbidden relaxation. Only the precondition's one-line description ('across rungs') is compressed relative to what it computes.",
+        "integration": "coupled",
+        "scale": "likely insufficient -- 2 seeds, so every within-rung feasibility split rests on n=1 vs n=1."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES, with ENVIRONMENT partial. MECHANISM is established (the variance-tracking bar engaged in 30/30 cells and the window filled in 30/30), so a REE-failed read is not available: MEASURES is not_established because the equalisation instrument failed again, and ENVIRONMENT is partial because the ladder cannot shorten the estimation window without pushing harm_snr through the P3 floor. Not chargeable to REE or to ARC-029."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia committed (go) vs deliberative (no-go/pause) operating modes with distinct risk profiles",
+        "dependencies": [
+          "a commit threshold referenced to the agent's own variance statistics",
+          "episodes long enough to contain both modes"
+        ],
+        "is_formal_import": false,
+        "divergence": "none identified",
+        "lit_status": "present (targeted_review_arc_029)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement / test-design defect: training-budget equalisation by pilot proxy, failing for the second consecutive run in this lineage (3.9588 -> 2.2786 against a 2.0 ceiling). `standard` is correct and is NOT a placeholder. NOT substrate_ceiling: the substrate lever under test engaged in 30/30 cells, P1's gating statistics were met in every cell, and a joint region WAS found on the run's own operational reading -- so the pre-registered 'no joint region -> substrate_conditional' disposition is not triggered either. An earlier draft of this artifact argued for substrate_ceiling from a reading of the 15-39 episode estimation-window span; that argument was withdrawn before the gate (see withdrawn_during_drafting) and the category recommendation does not rest on it. The surviving estimator caveat is a validity note on the bar, which belongs in this note and in the claim's evidence_quality_note, not in the category field.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1070a (diagnostic, FAIL, substrate_not_ready_requeue): non_contributory for ARC-029, without qualification -- the run's own routes_to is correct and this autopsy rescues nothing from it. Successor to V3-EXQ-1070, which failed the SAME readiness precondition. The two-stage per-(rung,seed) pilot cut the realised training-tick spread from 3.9588 to 2.2786 and carried all 30 cells to completion where 1070 decided at block 5 of 10, but the 2.0 ceiling is still exceeded by 13.93% (2331/1023, max at L5_extreme seed 42, min at L0_lineage_control seed 42). All four scored criteria D1-D4 passed and 5 of 6 preconditions are green; the single red one carries the outcome, since outcome = all(preconditions) AND ladder_non_degenerate. WHY NOTHING IS CITEABLE FROM IT. P1 is feasible in 30/30 cells but carries no information: the detrended quantile bar is contract-pinned to fire at ~q, the window it is estimated over spans 15-39 EPISODES in every cell (38.8 at L0), which GFLAG-0371 pre-rejected in terms -- 'Filling the window would pool rv across ~35 episode boundaries, so it would not be the within-run distribution the estimator is specified against' -- and this run is the STATIC arm (breath_period=0, MECH-108 OFF, asserted at driver :679) while ARC-029's P1 is specified for the ALTERNATING arm. harm_snr >= 10 is therefore the sole binding discriminator, and the feasible-rung identity (3 of 5; 22 of 30 cells) is confounded by unequal training and must not be cited. An earlier draft of this autopsy offered a narrow residual at L0/L1 and WITHDREW it: P3 at the lineage env was never in dispute (GFLAG-0371 already records reward/step 20-100x above the band P3 worries about), so the residual was the predecessor autopsy's withdrawn P1 rescue in new clothes. ON THE GATE ITSELF: it is sound and its per-cell denominator is deliberate. The driver at :60-67 considered gating on per-rung means and rejected it because 1070's per-rung means were 2.83, still over the ceiling, and because 'It also relaxes the precondition, which the repair brief forbids'. Only the precondition's one-line description ('across rungs') is compressed against what it computes. Within-rung, realised ticks still vary up to 1.89x, and episode length -- the manipulated variable -- predicts low harm_snr across all 5 rungs while tick count predicts it across 4, so the residual confound is better read as episode length than as training depth; at n=3 informative rungs the 'higher-tick seed is worse' pattern is p = 0.125 and is not leaned on. ON V3-EXQ-1066: it is NOT awaiting a re-queue. It RAN and ERRORed 2026-09-20T15:08:23Z (ree-cloud-3), its diagnosis is owned by an active claim, and chip chip-20260921-diagnose-exq-1066 is claimed by a live session. Its Step-4 refusal (GFLAG-0371) is a multi-clause bind of which this run falsifies only the bar_in_force clause -- already recorded in the prereg addendum before 1070a ran -- and the driver could not run at L0/L1 as written in any case (WARM_EPISODE_CAP=30 against 39 episodes needed at L0; env hard-coded to the lineage kwargs; its P3 counts harm EVENTS, not SNR). failure_autopsy_V3-EXQ-1070a_2026-09-22.",
+      "per_claim_recommendation": {
+        "ARC-029": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate",
+          "change": "ARC-029 already carries epistemic_category standard AND diagnostic_evidence_adjudicated true (both applied from failure_autopsy_V3-EXQ-1070_2026-09-20), so neither is a live move; what is owed is the note above plus a citation refresh -- its live_status.evidence.from still points at failure_autopsy_V3-EXQ-063a_2026-09-14 -> stamp failure_autopsy_V3-EXQ-1070a_2026-09-22"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count": 0,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "ARC-029 ceiling count 0 under R1-R3 (6 targets tag the claim, none reads substrate_ceiling). This is an instrument defect owing no substrate build, so it does not count. NOTE FOR THE READER: the brake is not the only recurrence signal here -- this is the SECOND consecutive run in one lineage to fail the SAME named precondition after a targeted repair, which is a lettering-recurrence concern the ceiling brake is not designed to catch."
+      },
+      "learning_extracted": [
+        "A successor that repairs a gate can still fail it, and the second failure is the more informative one: the closed-loop per-(rung,seed) pilot cut the tick spread 3.9588 -> 2.2786 and still missed, because episode length under a still-learning policy is not stationary between the pilot and the run it budgets (mispredicted 0.5629x-2.1499x).",
+        "Before offering a residual from a red-gated run, check what the ORIGINAL refusal already granted. GFLAG-0371 had already measured P3 at the lineage env as 20-100x clear, so the L0/L1 residual this autopsy drafted was new only in the half (P1) that the same flag pre-rejected as a cross-episode pooling artefact.",
+        "Check which ARM the claim's precondition is specified for. ARC-029's P1 names the ALTERNATING arm; 1070a asserts breath_period == 0. A precondition measured on the wrong arm is not a weaker measurement of it, it is not a measurement of it.",
+        "A statistic that looks mismatched to its own description may be deliberate. The per-cell tick spread reads like a slip against a description saying 'across rungs', but the driver had already considered and forbidden the per-rung-mean version as a relaxation -- the description is compressed, the statistic is not wrong.",
+        "'Never scored a run' is not 'never ran'. Step 7b's C1 named v3_exq_1066 as an unused driver on disk; it had run and ERRORed 40 minutes before this run started, with a live chip and an active claim already on its diagnosis.",
+        "Separate the statistic a precondition GATES on from the window a statistic is ESTIMATED over -- the driver carries mean_committed_run_length and its _flat twin side by side (:874-881) precisely so those cannot be confused."
+      ],
+      "routing": "governance-note-only",
+      "step7b_disposition": {
+        "C1": {
+          "fired": true,
+          "named": [
+            "v3_exq_1066_arc029_commitment_mode_harm_variance_bar",
+            "v3_exq_125a_arc029_committed_mode_redesign",
+            "v3_exq_227_arc029_discrepancy_diagnostic"
+          ],
+          "disposition": "ACTED ON. The fire sent this artifact to the primary sources for all three drivers, and reading them OVERTURNED the first draft's recommended routing rather than confirming it.",
+          "per_driver": {
+            "v3_exq_1066_arc029_commitment_mode_harm_variance_bar": "NOT promoted, and the first draft of this artifact was WRONG about it -- corrected before the Step 8 gate. Two errors. (1) V3-EXQ-1066 is not 'refused and never queued': it RAN and CRASHED on 2026-09-20T15:08:23Z (ree-cloud-3, ERROR manifest v3_v3_exq_1066_runner_error_20260920T150823Z_v3.json), ~40 minutes before 1070a started, and its diagnosis is OWNED by an active claim (eloquent-jepsen-5f6242, 'V3-EXQ-1066 diagnose ERROR', opened 2026-09-21T04:49:02Z). This autopsy must not re-queue it or chip it. Step 7b's C1 says the driver 'has NEVER scored a run', which is true and misleading -- an ERROR is not a score. (2) The Step-4 refusal (GFLAG-0371) did NOT turn on 'the bar never took force'; it turned on the M4 P1/P3 BIND (arc029_exq1066_prereg_derivation_20260919.md M4-M5). 1070a addresses the P3 half at L0/L1 and does NOT resolve the P1 half, because the window is a cross-episode quantile everywhere. The refusal therefore STANDS.",
+            "v3_exq_125a_arc029_committed_mode_redesign": "DISMISSED -- reuses the rv-forcing ablation vehicle that failure_autopsy_V3-EXQ-063a_2026-09-14 found confounded; do not queue as-is (same dismissal as failure_autopsy_V3-EXQ-1070_2026-09-20 Step 7b).",
+            "v3_exq_227_arc029_discrepancy_diagnostic": "DISMISSED -- the 2026-04 discrepancy diagnostic, a different scientific question."
+          }
+        }
+      },
+      "routing_options": {
+        "recommended": "C",
+        "A_requeue_1066_WITHDRAWN": "WITHDRAWN before the gate. 1066 already ran and ERRORed and is under live diagnosis by another session; and the refusal it would have to clear is not falsified by this run. See step7b_disposition.",
+        "B_third_feasibility_letter": "V3-EXQ-1070b -- repair the pilot (the tick spread is a budgeting error, not a gate error) and add a mid-run abort so a 5-hour run cannot again discover a post-hoc spread statistic only at analyse() time. NOT recommended and not taken: it would deliver a clean feasible-rung boundary on an operational P1 that is contract-pinned, cross-episode, and measured on the static arm -- i.e. a clean answer to a question ARC-029 did not ask. Do NOT relax the ceiling or switch it to per-rung means; the driver forbids both (:60-67).",
+        "C_stop_sweeping_the_env_and_fix_the_construct": "RECOMMENDED. Two runs have now swept env harm parameters for ARC-029 and both died on the same readiness instrument, while the bar's estimation window stayed 15-39 episodes wide throughout. A third sweep of the same axis repairs the budgeting and leaves the estimator caveat exactly where it is. The next move is therefore a DECISION, not a run: either (i) make the commit threshold estimable over a window that sits inside a run -- which arc029_exq1066_prereg_derivation_20260919.md M4 argues is blocked below W ~ 50 by the rv EMA time constant (~20 select calls), so it is a substrate question, not a knob; or (ii) accept the cross-episode quantile as the intended reading of ARC-029's bar and say so in the claim record. That belongs to /governance, and it should be settled before any further ARC-029 env run is queued.",
+        "note_on_chipping": "Per CLAUDE.md, this autopsy does NOT spawn_task its own routing -- the recommendation is a proposal until /governance Step 2b ratifies it. The 1066 ERROR is already owned and must not be chipped here."
+      },
+      "withdrawn_during_drafting": [
+        {
+          "claim": "The Step-4 refusal of v3_exq_1066 ('the bar never took force at the lineage env') is empirically falsified by bar_in_force = 1.0.",
+          "why_withdrawn": "The refusal (GFLAG-0371) turned on the M4 P1/P3 BIND, not on that one statistic; and 1066 is not awaiting a re-queue -- it ran and ERRORed 2026-09-20T15:08:23Z with its diagnosis owned by an active claim. The first draft's recommended routing (re-queue 1066 at L0/L1) was built on this and is withdrawn with it.",
+          "found_by": "reading arc029_exq1066_prereg_derivation_20260919.md M4-M5 and the ERROR manifest, after Step 7b's C1 fire named the driver"
+        },
+        {
+          "claim": "ARC-029's P1, read as a within-run property, is not attainable anywhere on this ladder (min window span 15 episodes).",
+          "why_withdrawn": "Conflated two different things. The 15-39 episode span is the window over which the quantile BAR is estimated; P1's own gating statistics are episode-segmented and ARE met in every cell (occupancy 0.471-0.549; mean_committed_run_length 3.52-9.38 vs a floor of 3.0). The surviving, narrower finding is a validity caveat on the bar's estimator, not a demonstration that P1 is unreachable.",
+          "found_by": "reading the driver's own mean_committed_run_length vs mean_committed_run_length_flat split at :874-881 before the Step 8 gate"
+        },
+        {
+          "claim": "NARROW CITEABLE RESIDUAL: L0 and L1 are jointly feasible on both seeds despite a 1.27x-1.89x tick difference, so feasibility there is robust to the depth variation the gate flags.",
+          "why_withdrawn": "WITHDRAWN IN FULL after red-team F1 -- it is failure_autopsy_V3-EXQ-1070_2026-09-20's withdrawn P1 rescue in new clothes, which is the specific error this autopsy was told to guard against. Three independent reasons. (1) The P3 half was never in dispute: GFLAG-0371 already records mean reward/step at the lineage env as -0.12 to -0.29, '20-100x ABOVE the recalibrated band P3 worries about'. (2) The P1 half is contract-pinned (the detrended quantile bar fires ~q by design) AND is obtained only by filling a window that spans 38.8 episodes at L0 -- which GFLAG-0371 PRE-REJECTED in terms: 'Filling the window would pool rv across ~35 episode boundaries, so it would not be the within-run distribution the estimator is specified against'. (3) 1070a is the STATIC arm -- breath_period=0, MECH-108 OFF, asserted at driver :679 -- while ARC-029's P1 is specified for the ALTERNATING arm, so P1 as registered was not measured at all. The run's own routes_to is right without qualification: no env verdict is licensed.",
+          "found_by": "Step 7c red-team (fable, cross-model), F1; confirmed by reading GFLAG-0371's summary verbatim and the driver's breath_period assertion."
+        },
+        {
+          "claim": "The gate's construct and its statistic have come apart -- it says 'across rungs' but computes across cells, and wants two bounds.",
+          "why_withdrawn": "DOWNGRADED to a documentation nit after red-team F4. The per-cell spread is DELIBERATE, not a slip: the driver at :60-67 explicitly considers 'Gate on the per-rung MEAN instead of the per-cell spread, on the argument that only between-rung variation confounds the manipulation' and rejects it twice over -- 1070's per-rung means were 2.83, still over the ceiling, and 'It also relaxes the precondition, which the repair brief forbids.' The driver also names between-seed variance as the second error source it is targeting ('realised ticks vary up to 2x BETWEEN SEEDS at one rung'). So the statistic matches its intended construct; only the one-line precondition DESCRIPTION is compressed. Proposing per-rung means as the correct denominator re-proposes a pre-registered forbidden relaxation.",
+          "found_by": "Step 7c red-team (fable), F4; confirmed by reading driver :60-72."
+        }
+      ],
+      "gate_decisions_2026_09_22": {
+        "next_arc029_move": "Settle the construct first -- governance-note-only; no further ARC-029 env run is queued until /governance decides whether the cross-episode quantile is the intended reading of ARC-029's bar, or whether a within-run estimator is owed as substrate (user, Step 8 gate 2026-09-22).",
+        "substrate_ceiling_declined": "Explicitly considered and NOT stamped. The argument that supported it was withdrawn during drafting, and stamping it would move ARC-029 into _EPI_SUPPRESS_PROPOSAL and make it not-v3-testable.",
+        "third_letter_declined": "V3-EXQ-1070b was offered and not taken: repairing the equalisation instrument does not touch the estimator-window question, and two sweeps of this axis have now died on the same gate."
+      },
+      "open_question_for_governance": "Is ARC-029's commitment bar intended to be a WITHIN-RUN drift-tracking quantile, or a cross-episode one? V3-EXQ-1070a measures the bar in force in 30/30 cells with the window filled in 30/30, but that window spans 15-39 EPISODES at every point on the ladder, and the direction that would shorten it (softer env, longer episodes) drives harm_snr through the P3 floor of 10. arc029_exq1066_prereg_derivation_20260919.md M4 argues a narrower window is blocked below W ~ 50 by the rv EMA time constant (~20 select calls), so this is not a knob. Answering it decides whether the next ARC-029 step is an experiment or a substrate build.",
+      "step7c_red_team": {
+        "model": "fable (cross-model -- this session drafted on Opus 5)",
+        "verdict": "CONTESTED",
+        "disposition_survived": true,
+        "what_survived": [
+          "direction non_contributory",
+          "epistemic_category standard",
+          "failure_location MIXED / not chargeable to REE",
+          "routing governance-note-only"
+        ],
+        "what_changed": [
+          "F1 (MAJOR, ACCEPTED): the L0/L1 narrow residual is WITHDRAWN IN FULL -- it is the predecessor's withdrawn P1 rescue in new clothes. P3 was never contested (GFLAG-0371 records reward/step 20-100x clear) and the P1 half is contract-pinned plus obtained from a 38-39 episode cross-episode window that GFLAG-0371 pre-rejected verbatim. narrow_supports_flag true -> false.",
+          "F2 (MAJOR, ACCEPTED): the refusal of 1066 is a multi-clause bind of which this run falsifies only the bar_in_force clause, already recorded in the prereg addendum BEFORE 1070a ran; and 1066 ran, ERRORed, and has a live chip and active claim. (Option A had already been withdrawn on the same evidence during drafting, before the verdict arrived.)",
+          "F2(iv) (ACCEPTED): 1066 as written could not run at L0/L1 anyway -- WARM_EPISODE_CAP=30 vs 39 episodes needed at L0, env hard-coded to the lineage kwargs, and its P3 counts harm EVENTS not SNR.",
+          "F3 (MODERATE, ACCEPTED): the residual confound is better attributed to EPISODE LENGTH (predicts low harm_snr in 5/5 rungs) than to training depth (4/5, with L0 reversed). The p = 0.125 caveat was already in the draft.",
+          "F4 (MODERATE, ACCEPTED): the 'construct vs statistic mismatch' is DOWNGRADED to a documentation nit -- the per-cell denominator is deliberate and the per-rung-mean alternative is a pre-registered forbidden relaxation (driver :60-67).",
+          "Hygiene accepted: 1070a is the static arm (breath_period == 0, :679), so the predecessor's F2 'P1 as registered was not measured' applies here too."
+        ],
+        "cheap_confirmers_run": [
+          "GFLAG-0371 summary read verbatim from governance_flags.v1.json items[] -- confirms the cross-episode pre-rejection and the 20-100x P3 margin",
+          "driver :60-67 read -- confirms per-rung-mean gating was considered and forbidden",
+          "driver :679 read -- confirms breath_period == 0 assertion",
+          "tick spread and per-rung/per-seed feasibility recomputed independently from arm_results (2331/1023 = 2.278592375366569; per-rung means 1.5480)"
+        ]
+      }
+    }
+  ],
+  "confirmed_utc": "2026-09-22T06:05:26Z"
+}
