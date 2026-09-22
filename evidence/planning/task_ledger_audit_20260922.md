@@ -330,3 +330,104 @@ release condition or a completed record that already re-derives.
 3. **The ContextMemory corrupting STOP-GATE is releasable and nobody owns the release** -- one
    validation run clears five claims and four chips (2c/3b), and the chips' own stated reasons for
    staying blocked are out of date.
+
+---
+
+## 7. CORRECTIONS to sections 2b and 2c (appended 2026-09-22T19:30Z, same session)
+
+Both corrections were found after the first commit, by reading the entries' own
+`ready_blocked_by` / decision fields rather than their status tokens alone. **Sections 2b and 2c
+above should be read only with these.**
+
+### 7a. `ready: false` is not a permission flag (corrects 2b)
+
+Section 2b cited the residue entries as *"REGISTRATION_ONLY, ready=false"* as though both
+withheld authorisation. Only the first does.
+
+Per `substrate_queue.json`'s own `_schema_notes`, `ready` is a **completion / auto-staging** flag:
+`status_phase: closed` is defined as *"ready:true and no unresolved dependents"*, and the SD-105
+precedent records `ready: false` being set **deliberately** because *"igw_routine_tick.py
+auto-discovers new substrate_queue entries within minutes and would stage a build, and governance
+has not yet ratified"*. So `ready: false` is the normal state of anything unbuilt, and on these
+rows it is a brake against automatic staging -- not a thing a human is blocked by. Citing it
+alongside the status token double-counted one fact.
+
+**What actually withholds authorisation** is the status token
+`proposed_REGISTRATION_ONLY_not_a_build_authorisation` plus
+`owner_route: "/governance adjudication before any /implement-substrate or /queue-experiment
+commission"`. The rows were minted by an Orchestrator session, which is not `/governance`, so they
+explicitly do not ratify GFLAG-0337/0338/0344. **The sanctioned release path is a `/governance`
+cycle (Step 2b -> 4/6a), not a direct flag edit.** The worked precedent exists and is one day old:
+`SD-PP-B5-z-world-per-step-displacement-range` now reads
+`status: ready_build_authorised_by_user_2026_09_22`, `ready: true`.
+
+### 7b. The residue build has an INSTRUMENT prerequisite (corrects 2b)
+
+Section 2b framed the residue field as ready for a build authorisation. It is not, and all five
+entries say so in a field section 2b did not read. Their `ready_blocked_by`:
+
+> INSTRUMENT PREREQUISITE, not a follow-on. The existing residue readout is INERT in
+> `/implement-substrate` Step 3h's sense -- the 2026-09-18 control-plane liveness probe injected
+> `rbf_field.bandwidth = 8.0` and `= 0.02`, **opposite directions**, and got **84 action
+> divergences both times**. A readout returning the same number for opposite manipulations cannot
+> score this build. And the likely cause is now named: **MECH-572** finds `CrossModuleConsolidator`
+> builds a **fresh `torch.optim.Adam` every cycle**, so weight displacement is pinned at
+> `n_steps*lr = 0.008` regardless of gradient magnitude (measured 0.00798-0.00807 in 6/6 lever-on
+> cells across a ~1000x range of residual). **So NEAR-INERT may be a property of the INSTRUMENT
+> rather than of the residue field, and must be ruled out before anything here is classified inert
+> or scored.**
+
+**This couples campaign 3d to campaign 3a.** SD-PP-1..4 all name MECH-572 in `unblocks_claims` and
+all sit at `implemented_pending_validation`; `SD-PP-B8-consolidation-optimiser-state-persistence`
+is MECH-572's own named alternative lever (Adam second-moment persistence) and is still
+REGISTRATION_ONLY. **Validating the SD-PP set is the route to the residue question.** The residue
+build is not the next unit of effort; ruling out the instrument is.
+
+### 7c. The ContextMemory gate is NOT releasable, and that has been decided three times (corrects 2c)
+
+Section 2c said *"The build has landed. What is owed is a validation run, and nobody owns it."*
+That is **half right and materially misleading**, and it is the one claim in this audit that could
+have caused harm if acted on.
+
+- The **ADDRESSING half IS validated** -- V3-EXQ-943 (2026-08-20) and V3-EXQ-436g (2026-08-30):
+  16/16 occupied slots on 5/5 seeds, transfer confirmed by the `bias_occupancy_confirms_fix` P0
+  gate. 436f's `failure_record` is marked `resolved`.
+- The **CONTENT half is the open corrupting defect**, and is the entry's primary lever: the
+  `NO_WRITES` calibration arm (0 write calls) measures mean pairwise slot cosine **0.000** against
+  **0.9992** written -- the online write path alone collapses the bank to near-rank-1.
+
+Three standing decisions, all on the entry:
+
+| Field | Decision |
+|---|---|
+| `governance_2026_09_05` | GFLAG-0132 **user decision**: the 943/436g occupancy result does **NOT** close the corrupting 1-slot-bank defect. Status stays `implemented_pending_validation`; severity stays `corrupting`. **GFLAG-0044 and IGW-20260904-226/227 release only when the content half validates.** |
+| `decision_2026_09_06` | **User decision**: the content half **cannot be called** -- it is an evidence question whose frozen `live_gate` is *"instrument redesign, not another leg"*. |
+| `governance_2026_09_08` | **User-ratified**: severity **stays corrupting**. |
+
+The entry also carries an explicit standing warning: *"Do NOT commission another occupancy
+ablation (GFLAG-0132: the stale text here caused campaign C3 item 1 to draft a duplicate of 943)."*
+
+**So the correct reading of campaign 3b is:** the four chips are blocked, the block is real and
+user-ratified, and their own pre-flight REDs are nonetheless *stale in their reasoning* (they cite
+GFLAG-0044 as unresolved; it was resolved 2026-08-21, and the real gate is the content half, not
+the flag). **What is owed is the instrument redesign the entry already directs** -- a
+mutual-information statistic over the full contingency table, `PROBE_CLUSTERS >= 4`, the per-draw
+contingency table recorded, the FRESH-cluster (generalization) readout as load-bearing, and any
+held-out split sized as a fraction of realised class count. Not a validation run.
+
+**One live interim lever, already decided (2026-09-06) and worth propagating:** every driver whose
+DV reads ContextMemory occupancy, slot content, or any sleep/consolidation contrast on the bank
+**must** set `E1Config.contextmemory_write_selection='refractory'` with
+`contextmemory_write_refractory_k=2` (analytically-guaranteed k+1 occupancy floor, deterministic,
+consumes no RNG). `usage_balancing` is explicitly **not** the interim choice (99.9% a content-blind
+LRU period-16 cycle). The library default stays `argmin` -- corpus byte-identity is not traded for
+this. Enforcement is a WARN-only lint in `validate_experiments`.
+
+### 7d. What this says about the audit method
+
+Both errors have the same shape: **I read an entry's status token and treated it as the whole
+disposition, when the entry carried a `ready_blocked_by` / `decision_*` field that changed the
+verdict.** A status token says what phase a row is in; it does not say what is owed. Any future
+sweep over `substrate_queue.json` should read `ready_blocked_by`, `owner_route` and any
+`decision_*` / `governance_*` fields before classifying an entry as actionable -- otherwise it will
+recommend exactly the work a standing user decision has already refused.
