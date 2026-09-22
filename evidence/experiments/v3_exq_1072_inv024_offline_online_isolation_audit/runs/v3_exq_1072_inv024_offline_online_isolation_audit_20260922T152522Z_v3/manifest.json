@@ -1,0 +1,243 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1072_inv024_offline_online_isolation_audit",
+  "run_id": "v3_exq_1072_inv024_offline_online_isolation_audit_20260922T152522Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-22T15:25:22Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "4a32bdf2884ca5911718ecd553957615a15579a7",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-024"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "offline_online_write_locus_isolation_holds",
+    "preconditions": [
+      {
+        "name": "ASNAMED::hash_ledger_detects_mutation",
+        "precondition": "hash_ledger_detects_mutation",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "INSTRUMENT POSITIVE CONTROL: the authority-store hash ledger flags a 1e-6 float perturbation and a boolean-mask flip on a clone. Without this a bit-identical reading would certify its own subject",
+        "control": "clone of a representative authority tensor, perturbed by 1e-6",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ASNAMED::offline_pathway_live",
+        "precondition": "offline_pathway_live",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "WWA non-degeneracy: the sleep cycle changed SOME representational parameter (count of representational stores whose hash moved). An isolation result on an inert sleep pass is vacuous and must not score",
+        "control": "representational snapshot diffed across the forced cycle",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ASNAMED::residue_active_centers_pre_cycle",
+        "precondition": "residue_active_centers_pre_cycle",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "WWA non-degeneracy: the residue field holds active centres BEFORE the cycle, so there is authority state that could have been mutated",
+        "control": "rbf_field.active_mask sum immediately before the forced cycle",
+        "direction": "lower",
+        "applies": true,
+        "measured": 29.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ASNAMED::commitment_events_occurred",
+        "precondition": "commitment_events_occurred",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "WWA non-degeneracy: commitment events occurred in waking (n_committed>0), so the lineage predicate had something to be satisfied BY",
+        "control": "commit-entry ticks counted in the on_action hook",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ASNAMED::durable_writes_occurred",
+        "precondition": "durable_writes_occurred",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "WWA non-degeneracy: residue writes occurred in waking, so the online criterion has a non-zero denominator rather than a vacuous 0/0",
+        "control": "audited non-hypothesis accumulate calls during the waking phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 29.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ASNAMED::durable_writes_after_first_commit",
+        "precondition": "durable_writes_after_first_commit",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "C2 VACUITY GUARD: durable writes occurred at ticks AFTER the first commit entry, so the load-bearing criterion has a non-empty denominator. Without this C2 passes trivially on a run whose every write predates commitment",
+        "control": "audited non-hypothesis accumulate calls at ticks > first_commit_entry_tick",
+        "direction": "lower",
+        "applies": true,
+        "measured": 25.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ASNAMED::offline_integration_call_fired_and_trains",
+        "precondition": "offline_integration_call_fired_and_trains",
+        "arm": "ASNAMED",
+        "kind": "readiness",
+        "description": "THE PAIRING TRAP: use_sleep_residue_integration supplied the WRITEBACK integrate() CALL and use_offline_integration_gradient_step made it TRAIN. Guards a silently-inert offline pass reading as isolation",
+        "control": "mech018_residue_integration_fired * mech018_residue_trains from the cycle",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_offline_authority_stores_unmutated": true,
+      "C2_online_lineage_complete_after_first_commit": true,
+      "C2b_online_lineage_complete_whole_run": true
+    },
+    "criteria": [
+      {
+        "name": "C1_offline_authority_stores_unmutated",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.0,
+        "comparator": "<=",
+        "direction": "upper",
+        "measured_note": "worst cell: max mutated authority stores across all cells"
+      },
+      {
+        "name": "C2_online_lineage_complete_after_first_commit",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.0,
+        "comparator": "<=",
+        "direction": "upper",
+        "measured_note": "worst green-arm cell: durable writes lacking commit lineage at ticks AFTER the first commit entry, i.e. where commitment was POSSIBLE. This tests BYPASS rather than the E3 precision warm-up"
+      },
+      {
+        "name": "C2b_online_lineage_complete_whole_run",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0.06896551724137931,
+        "threshold": 0.0,
+        "comparator": "<=",
+        "direction": "upper",
+        "measured_note": "SECONDARY, NOT GATING (user decision 2026-09-22): the whole-run lineage-less fraction, retained so the pre-commit warm-up gap stays legible rather than being silently excluded. Expected non-zero whenever a harm event lands in a cell's first five ticks, which is E3 precision warm-up, not isolation"
+      }
+    ],
+    "combination_rule": "PASS = readiness gate green (any arm green; never ANDed whole-run) AND C1_offline_authority_stores_unmutated AND C2_online_lineage_complete_after_first_commit. C2b_online_lineage_complete_whole_run is RECORDED BUT NOT GATING (user decision 2026-09-22): it is expected to fail whenever a harm event lands before the first possible commit at tick 5, which is E3 precision warm-up rather than a write-locus breach. Both gating criteria are worst-cell over GREEN-ARM cells only, so a single violating cell fails the run -- INV-024's own 'one confirmed instance refutes the invariant AS IMPLEMENTED'.",
+    "dv_symmetry_note": "ASNAMED (single arm): the DV is a content hash of the authority stores plus a count of durable writes lacking a commit-entry snapshot. Its symmetry group is permutation of write ORDER within a tick; the manipulation (running one full sleep cycle) is NOT invariant under it -- a cycle that wrote an authority store would change the hash regardless of ordering, and the ledger's sensitivity to a 1e-6 perturbation is MEASURED in P0 rather than assumed. The DV is not a broadcast constant, a monotone rescaling, or a set-aggregate over interchangeable units. The online count is likewise not invariant: a write that acquires commit lineage leaves the numerator while staying in the denominator.",
+    "closure_disjunct_untestable": "INV-024's online predicate accepts lineage from an E3 commit OR a closure commit intent. The SECOND DISJUNCT IS STRUCTURALLY DEAD at these defaults: _closure_committed_trajectory is set only at agent.py:9720 under 'goal_state is not None and goal_state.is_active()', goal_state needs config.goal.z_goal_enabled (agent.py:3427), and from_dims defaults it False (config.py:7556). closure_entry_ticks is emitted (expected 0) as the standing witness. A two-arm design that enabled the closure plane was tried and dropped by user decision -- arming the latch also populates SD-024 benefit terrain and un-zeroes the SD-025 curiosity bonus, changing three things to test one. The untestability is registered as a substrate finding under GFLAG-0410. CONSEQUENCE: a lineage-less write here means 'not preceded by an E3 commit'; it does not rule out that a closure commit intent would have licensed it on another configuration.",
+    "scored_rows_note": "Criteria are scored over GREEN-ARM cells only; cells excluded by a red readiness gate are reported in per_cell_results but do not drive the verdict."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3e103a9e290ae0079991c47cf674cc9c014a64863c335a3a18f0ab8342345f45",
+  "substrate_commit": {
+    "commit": "4a32bdf2884ca5911718ecd553957615a15579a7",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "residue.use_offline_integration_gradient_step": true,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_sleep_aggregation_cluster": true,
+    "use_sleep_loop": true,
+    "use_mech285_sampler": true,
+    "use_mech272_routing": true,
+    "use_mech272_routing_consumer": true,
+    "use_mech275_aggregator": true,
+    "use_mech273_self_model": true,
+    "use_sleep_residue_integration": true,
+    "use_cross_module_consolidation": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 283.23364446200003,
+  "config": {
+    "arms": [
+      "ASNAMED"
+    ],
+    "waking_steps": 400,
+    "grid_size": 8,
+    "num_hazards": 2,
+    "num_resources": 3,
+    "max_episode_steps": 200,
+    "sleep_loop_episodes_K": 10000000,
+    "use_sleep_aggregation_cluster": true,
+    "use_cross_module_consolidation": true,
+    "use_sleep_residue_integration": true,
+    "use_offline_integration_gradient_step": true,
+    "closure_plane_enabled": false,
+    "closure_arm_dropped_by_user_decision": "2026-09-22 decision 2 SUPERSEDES the earlier option-C two-arm decision: the CLOSURE_ON arm could never arm the closure latch (measured closure_entry_ticks=0), and arming it needs z_goal_enabled, which also populates SD-024 benefit terrain and un-zeroes the SD-025 curiosity bonus. Registered as a substrate finding under GFLAG-0410.",
+    "max_authority_mutations": 0,
+    "max_lineage_less_after_commit": 0,
+    "max_lineage_less_fraction_secondary": 0.0
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46,
+    47
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 2000,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": false
+  }
+}
