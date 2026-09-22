@@ -1405,6 +1405,65 @@ def run_script(key: str) -> dict:
         return {"status": "error", "message": str(exc)}
 
 
+def _cas_submit_assignments(rel: str, message: str):
+    """PHASE-4 routing (chip-routedwriter-ree-assembly-igw-assignments-json):
+    try the CAS route (assembly_coordinator.py -> coordinator_transport's
+    /intent/replace) before the raw git add/commit/push fallback below.
+
+    Returns a dict {"status": "ok", "sha": <commit>} on a confirmed
+    coordinator-acknowledged, suppressed write, or None -- meaning "no
+    verdict, fall through to the existing git path unchanged" -- for every
+    other outcome (transport unavailable/unarmed, origin unreachable, a
+    'base_moved'/'not_routed'/etc verdict, or this box not yet suppressing
+    git writes for this path, i.e. soak mode: the coordinator may have
+    applied it too, but this caller must still git-write). Never raises --
+    every branch degrades to the caller's own git path, matching the
+    contract every other coordinator_transport/assembly_coordinator caller
+    in this codebase uses.
+
+    base_sha is a freshly-fetched origin/master sha (DP-1: a CAS base must be
+    reachable in the coordinator's own clone, which only ever sees PUSHED
+    commits) -- never a local HEAD read, which can sit ahead of origin after
+    a prior push failure. Mirrors igw_routine_tick.py's _assembly_origin_sha
+    / _cas_submit_or_degrade pattern; REE_assembly cannot import that module
+    directly (cross-repo import, rejected -- see assembly_coordinator.py's
+    own docstring), hence the small local re-derivation here.
+    """
+    try:
+        sys.path.insert(0, str(SERVE_DIR / "scripts"))
+        import assembly_coordinator as _ac  # noqa: WPS433
+    except Exception:
+        return None
+    if not (_ac.available() and _ac.routing_armed()):
+        return None
+    full = SERVE_DIR / rel
+    try:
+        fetch = subprocess.run(
+            ["git", "-C", str(SERVE_DIR), "fetch", "--quiet", "origin", "master"],
+            capture_output=True, timeout=30)
+        rp = subprocess.run(
+            ["git", "-C", str(SERVE_DIR), "rev-parse", "origin/master"],
+            capture_output=True, text=True, timeout=15)
+        base_sha = rp.stdout.strip() if rp.returncode == 0 else ""
+        if not base_sha or not full.exists():
+            return None
+        content = full.read_text(encoding="utf-8")
+        verdict = _ac.submit_replace(rel, base_sha, content, message,
+                                     session_id="serve_workset_ui")
+        if verdict is None or getattr(verdict, "verdict", None) != "applied":
+            return None
+        if not _ac.suppress_git_write(rel):
+            # Soak mode: coordinator applied it, but this box still owns the
+            # git write too -- fall through unchanged, same as before this fix.
+            return None
+        return {"status": "ok",
+                "message": "coordinator-acknowledged; local git write suppressed "
+                           "(the hub materializer lands it)",
+                "sha": verdict.get("commit")}
+    except Exception:
+        return None
+
+
 def _commit_and_push_assignments(message: str) -> dict:
     """Commit + push igw_assignments.json to origin/master immediately.
 
@@ -1416,10 +1475,17 @@ def _commit_and_push_assignments(message: str) -> dict:
     heartbeat's reset target ALREADY contains the assignment, so the reset
     preserves rather than wipes it.
 
+    Tries the CAS route first (_cas_submit_assignments) -- see that
+    function's docstring; this raw git path is now the DP-2 degrade route,
+    not the only route.
+
     Returns {"status": "ok"|"skipped"|"error", "message": ..., "sha": ...}.
     Best-effort; never raises.
     """
     rel = "evidence/planning/igw_assignments.json"
+    cas_result = _cas_submit_assignments(rel, message)
+    if cas_result is not None:
+        return cas_result
     out = {"status": "error", "message": "?", "sha": None}
     try:
         # Stage only the assignments file. NEVER `git add -A` or `git add .`
