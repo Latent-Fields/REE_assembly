@@ -1521,5 +1521,292 @@ class ContractTests(Base):
         self.assertNotIn("re-run with --full", self.run_main("--full")[1])
 
 
+# =========================================================================
+# THE 2026-09-22 REPAIR -- three detector defects that kept five rows
+# ACTIONABLE with NO remaining claims-side action (GFLAG-0349, re-verified
+# by governance cycle governance-20260922 row by row).
+#
+# The negative controls here carry the same weight as the positives, and
+# more: the failure mode of this repair is a detector that tolerates a
+# genuinely missing field. GFLAG-0349 and the script's own 2026-09-01 repair
+# note both forbid that widening, because a missing
+# `recommended_epistemic_category` is a real finding GOV-CAT-1 exists to
+# catch. Every "still fires" test below is pinning that boundary.
+# =========================================================================
+class FalseRecommendationSatisfiedByAbsenceTests(Base):
+    """Defects (2) and (3): a structured `recommended_*` key PRESENT on the
+    recommendation with value `false`/`null` was read as "the claim must
+    carry this key", so a row correctly asking for NO write could never
+    clear. The real shape is MECH-547/MECH-548 from
+    failure_autopsy_V3-EXQ-1044_2026-09-17 -- claim-free diagnostics
+    (`claim_ids: []`) whose scope_note says in terms "do NOT set
+    diagnostic_evidence_adjudicated (the run tagged no claim, so that flag
+    would assert something untrue)" -- and SD-024 from
+    failure_autopsy_V3-EXQ-900_2026-09-14 on the same flag."""
+
+    SLUG_A = "failure_autopsy_stamped_2026-09-17"
+
+    def _row(self, rec_extra, claim_extra=None, cites=None):
+        claim = {"id": CLAIM, "status": "candidate"}
+        claim.update(claim_extra or {})
+        claim["live_status"] = {"evidence": {"from": cites or self.SLUG_A}}
+        self.fx.write_claims([claim])
+        rec = {"change": "NOTE-ONLY, no direction and no flag. Record the "
+                         "instrument residuals -> stamp %s" % self.SLUG_A}
+        rec.update(rec_extra)
+        self.fx.autopsy(slug=self.SLUG_A, generated="2026-09-17T02:35:00Z",
+                        targets=[self.fx.target(
+                            run_id="run_1044_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: rec})])
+        return self.scan()
+
+    def test_false_diagnostic_flag_recommendation_is_satisfied_by_absence(self):
+        """THE FIX (MECH-547 / MECH-548 exactly). `recommended_diagnostic_
+        evidence_adjudicated: false` asks for the flag NOT to be written, so
+        an absent key is what it asks for. Fails on the pre-fix code, which
+        reported this row ACTIONABLE precisely because the key was correctly
+        absent."""
+        buckets = self._row({"recommended_diagnostic_evidence_adjudicated": False})
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_null_epistemic_category_recommendation_is_satisfied_by_absence(self):
+        """Same shape on the other gated field: `recommended_epistemic_
+        category: null` recommends no category at all."""
+        buckets = self._row({"recommended_epistemic_category": None})
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_blank_epistemic_category_recommendation_is_satisfied_by_absence(self):
+        """An empty string is the same non-recommendation as null."""
+        buckets = self._row({"recommended_epistemic_category": "   "})
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_true_diagnostic_flag_recommendation_still_fires_when_absent(self):
+        """NEGATIVE CONTROL, and the load-bearing one. A recommendation of
+        `true` is a demand for a write, and an absent key does NOT satisfy
+        it. This is the boundary GFLAG-0349 and the 2026-09-01 repair note
+        both insist on: the fix is false/null-specific, never a general
+        tolerance of missing fields."""
+        buckets = self._row({"recommended_diagnostic_evidence_adjudicated": True})
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+
+    def test_real_epistemic_category_recommendation_still_fires_when_absent(self):
+        """NEGATIVE CONTROL: a named category is a demand for a write. This
+        is GOV-CAT-1's lane and must keep firing."""
+        buckets = self._row({"recommended_epistemic_category": "standard"})
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+
+    def test_a_present_field_is_still_compared_against_a_false_recommendation(self):
+        """NEGATIVE CONTROL on the last-resort structured check: `false`
+        excuses ABSENCE, never a claim that carries the opposite value. With
+        no parseable prose target, the last-resort comparator runs, and a
+        claim holding `true` against a `false` recommendation is reported."""
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "diagnostic_evidence_adjudicated": True}])
+        self.fx.autopsy(slug=self.SLUG_A, generated="2026-09-17T02:35:00Z",
+                        targets=[self.fx.target(
+                            run_id="run_1044_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "NOTE-ONLY. Nothing storable moves.",
+                                "recommended_diagnostic_evidence_adjudicated": False}})])
+        buckets = self.scan()
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+
+
+class SelfStampOwnSlugTests(Base):
+    """Defect (1): `_STAMP_RE` (`stamp .*? (failure_autopsy_...)`) scans the
+    WHOLE prose and takes the FIRST slug after any occurrence of the word
+    "stamp". A row that narrates its own provenance move therefore demanded a
+    stamp of the artifact it was moving AWAY FROM.
+
+    The real shape is MECH-439 from failure_autopsy_V3-EXQ-1012a_2026-09-14:
+    "...What governance should apply is the drafted evidence_quality_note ...
+    and the citation stamp, so `live_status.evidence.from` moves off
+    failure_autopsy_V3-EXQ-571b_2026-09-01 -> stamp this artifact"."""
+
+    OLDER = "failure_autopsy_older_2026-08-13"
+    NEWER = "failure_autopsy_newer_2026-09-14"
+
+    def _self_stamp_row(self, cites):
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "live_status": {"evidence": {"from": cites}}}])
+        self.fx.autopsy(slug=self.NEWER, generated="2026-09-14T00:35:57Z",
+                        targets=[self.fx.target(
+                            run_id="run_newer_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "No claim-layer field moves. What governance "
+                                          "should apply is the drafted evidence_quality_note "
+                                          "and the citation stamp, so `live_status.evidence."
+                                          "from` moves off %s -> stamp this artifact"
+                                          % self.OLDER}})])
+        return self.scan()
+
+    def test_stamp_this_artifact_resolves_to_the_artifacts_own_slug(self):
+        """THE FIX. The operative stamp is the LAST arrow's, and it is a
+        self-reference -- so the target is this artifact, not the slug the
+        prose says provenance is moving OFF. Fails on the pre-fix code,
+        which demanded the older slug and could never be satisfied once the
+        correct newer stamp was applied."""
+        buckets = self._self_stamp_row(cites=self.NEWER)
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_the_narrated_earlier_slug_is_not_the_target(self):
+        """NEGATIVE CONTROL, the pre-fix behaviour inverted: a claim still
+        citing the OLD artifact has NOT had the stamp applied, so the row
+        must stay ACTIONABLE."""
+        buckets = self._self_stamp_row(cites=self.OLDER)
+        self.assertEqual(len(buckets["unapplied_disposition"]), 1)
+
+    def test_a_literal_trailing_stamp_slug_still_wins(self):
+        """NEGATIVE CONTROL: the ordinary "-> stamp <slug>" form is
+        untouched. `self.OLDER` appears earlier in the prose and must NOT be
+        picked up in preference to the slug the arrow names."""
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "live_status": {"evidence": {"from": self.NEWER}}}])
+        self.fx.autopsy(slug="failure_autopsy_third_2026-09-20",
+                        generated="2026-09-20T00:00:00Z",
+                        targets=[self.fx.target(
+                            run_id="run_third_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "live_status.evidence.from currently cites %s, "
+                                          "stamp the newer one -> stamp %s"
+                                          % (self.OLDER, self.NEWER)}})])
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_whole_string_self_stamp_without_an_arrow_target_still_resolves(self):
+        """NEGATIVE CONTROL on the fallback path (MECH-439's OTHER row, from
+        failure_autopsy_V3-EXQ-571b_2026-09-01): the self-reference sits in
+        mid-prose and the last arrow points at something else entirely, so
+        the tail-first scan finds no stamp and the whole-string fallback --
+        unchanged from 2026-09-01 -- must still resolve it to own_slug."""
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "live_status": {"evidence": {"from": self.NEWER}}}])
+        self.fx.autopsy(slug=self.NEWER, generated="2026-09-14T00:35:57Z",
+                        targets=[self.fx.target(
+                            run_id="run_newer_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "NOTE-ONLY. Nothing storable moves, so this row "
+                                          "must clear via the provenance stamp "
+                                          "(live_status.evidence.from -> this artifact) "
+                                          "rather than by a field match. The occupant "
+                                          "shifted f_weighted -> harm_weighted 4/4 seeds"}})])
+        buckets = self.scan()
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+
+class NewerStampRetiresOlderStampRowTests(Base):
+    """Defect (3): `live_status.evidence.from` holds ONE value, so once a
+    newer confirmed autopsy's slug is stamped there, an older stamp-only row
+    for the same claim can NEVER be satisfied. The real case is MECH-439's
+    failure_autopsy_V3-EXQ-571b_2026-09-01 row once
+    failure_autopsy_V3-EXQ-1012a_2026-09-14 was stamped.
+
+    The newer row here is deliberately left UNAPPLIED in the positive test,
+    because that is what isolates this route: the pre-existing cross-run
+    supersession cascade only fires when the LATEST disposition reflects, so
+    one un-certifiable newest row otherwise pins every older stamp row in
+    ACTIONABLE forever."""
+
+    OLDER = "failure_autopsy_older_2026-09-01"
+    NEWER = "failure_autopsy_newer_2026-09-14"
+    EARLIER = "failure_autopsy_earlier_2026-08-01"
+
+    def _build(self, cites, newer_claim_ids=(CLAIM,), older_rec_extra=None,
+               newer_change="unset -> substrate_ceiling"):
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "live_status": {"evidence": {"from": cites}}}])
+        older_rec = {"change": "NOTE-ONLY -> stamp %s" % self.OLDER}
+        older_rec.update(older_rec_extra or {})
+        self.fx.autopsy(slug=self.EARLIER, generated="2026-08-01T00:00:00Z",
+                        targets=[self.fx.target(
+                            run_id="run_earlier_v3", recommended=None,
+                            per_claim_recommendation=None)])
+        self.fx.autopsy(slug=self.OLDER, generated="2026-09-01T06:44:22Z",
+                        targets=[self.fx.target(
+                            run_id="run_older_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: older_rec})])
+        self.fx.autopsy(slug=self.NEWER, generated="2026-09-14T00:35:57Z",
+                        targets=[self.fx.target(
+                            run_id="run_newer_v3", claim_ids=newer_claim_ids,
+                            recommended=None,
+                            per_claim_recommendation={
+                                newer_claim_ids[0]: {"change": newer_change}})])
+        return self.scan()
+
+    def test_older_stamp_row_is_retired_when_a_newer_stamp_is_in_place(self):
+        """THE FIX. The older row's ONLY unmet requirement is its own stamp,
+        and the field now carries a strictly-newer confirmed artifact that
+        adjudicates the same claim -- so the row is moot, not owed. It moves
+        to the WARN bucket, which already means exactly that. The newer row
+        is unapplied and correctly STAYS ACTIONABLE."""
+        buckets = self._build(cites=self.NEWER)
+        actionable = buckets["unapplied_disposition"]
+        self.assertEqual([r["artifact"] for r in actionable], [self.NEWER])
+        retired = [r for r in buckets["superseded_disposition"]
+                   if r.get("retired_by_stamp")]
+        self.assertEqual(len(retired), 1)
+        self.assertEqual(retired[0]["artifact"], self.OLDER)
+        self.assertEqual(retired[0]["superseded_by"], self.NEWER)
+
+    def test_the_report_names_the_stamp_that_retired_it(self):
+        """A WARN row nobody can act on is noise unless it says WHY. The
+        report must name the newer stamp and the one-value constraint."""
+        self.fx.write_claims([{"id": CLAIM, "status": "candidate",
+                               "live_status": {"evidence": {"from": self.NEWER}}}])
+        self.fx.autopsy(slug=self.OLDER, generated="2026-09-01T06:44:22Z",
+                        targets=[self.fx.target(
+                            run_id="run_older_v3", recommended=None,
+                            per_claim_recommendation={
+                                CLAIM: {"change": "NOTE-ONLY -> stamp %s" % self.OLDER}})])
+        self.fx.autopsy(slug=self.NEWER, generated="2026-09-14T00:35:57Z",
+                        targets=[self.fx.target(
+                            run_id="run_newer_v3", recommended=None,
+                            per_claim_recommendation={
+                                CLAIM: {"change": "unset -> substrate_ceiling"}})])
+        rc, out = self.run_main("--strict")
+        self.assertEqual(rc, 1)  # the NEWER row is genuinely unapplied
+        self.assertIn("retired by the newer stamp now in live_status.evidence.from: %s"
+                      % self.NEWER, out)
+        self.assertIn("holds ONE value", out)
+
+    def test_not_retired_when_the_cited_artifact_is_older(self):
+        """NEGATIVE CONTROL: retirement needs a STRICTLY NEWER stamp. A claim
+        citing an EARLIER artifact has simply never had this row applied."""
+        buckets = self._build(cites=self.EARLIER)
+        self.assertIn(self.OLDER, [r["artifact"] for r in buckets["unapplied_disposition"]])
+
+    def test_not_retired_when_the_cited_artifact_does_not_name_the_claim(self):
+        """NEGATIVE CONTROL, and the tightest one: a later artifact that
+        happens to be stamped there but does NOT adjudicate this claim
+        cannot retire a real finding. This is the same join defect
+        GFLAG-0405 records in the live_status projection itself -- the
+        detector must not inherit it."""
+        buckets = self._build(cites=self.NEWER, newer_claim_ids=("OTHER-001",))
+        self.assertIn(self.OLDER, [r["artifact"] for r in buckets["unapplied_disposition"]])
+
+    def test_not_retired_when_the_cited_slug_is_not_a_confirmed_autopsy(self):
+        """NEGATIVE CONTROL: an unrecognised citation proves nothing."""
+        buckets = self._build(cites="failure_autopsy_not_in_the_corpus_2026-09-30")
+        self.assertIn(self.OLDER, [r["artifact"] for r in buckets["unapplied_disposition"]])
+
+    def test_not_retired_when_the_row_also_owes_a_field_write(self):
+        """NEGATIVE CONTROL: retirement applies only when the stamp is the
+        row's SOLE unmet requirement. A row that also asks for a field the
+        claim does not carry stays ACTIONABLE -- the field is still owed
+        whatever the citation says."""
+        buckets = self._build(
+            cites=self.NEWER,
+            older_rec_extra={"recommended_epistemic_category": "standard"})
+        self.assertIn(self.OLDER, [r["artifact"] for r in buckets["unapplied_disposition"]])
+
+    def test_not_retired_when_the_rows_own_stamp_is_the_one_in_place(self):
+        """NEGATIVE CONTROL: a row whose own stamp IS applied certifies
+        normally and never reaches the retirement route at all."""
+        buckets = self._build(cites=self.OLDER)
+        self.assertNotIn(self.OLDER, [r["artifact"] for r in buckets["unapplied_disposition"]])
+        self.assertEqual([r for r in buckets["superseded_disposition"]
+                          if r.get("retired_by_stamp")], [])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

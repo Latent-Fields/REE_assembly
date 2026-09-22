@@ -596,6 +596,87 @@ correctly via the new self-reference match) instead of the old blanket
 unresolved case. This audit edits nothing; all of the above are reports to
 apply or re-read in a /governance run.
 
+THE 2026-09-22 REPAIR -- five rows with no remaining claims-side action
+----------------------------------------------------------------------
+GOV-APPLY-1 reported five `unapplied_disposition` rows that governance cycle
+`governance-20260922` verified, row by row, to be fully applied: every drafted
+note written and every `live_status.evidence.from` stamp pointing at the newest
+artifact that actually adjudicates the claim (GFLAG-0349, resolved; the
+per-row verification is in its `resolution_note`). All five were DETECTOR
+defects. Three shapes, each fixed narrowly:
+
+(1) THE FIRST SLUG IN THE PROSE IS NOT THE STAMP TARGET. `_STAMP_RE` is
+    `\bstamp\b.*?(failure_autopsy_...)` over the WHOLE `change` string, so a
+    row narrating its own provenance move captured the slug it was moving
+    AWAY FROM. MECH-439's `failure_autopsy_V3-EXQ-1012a_2026-09-14` row reads
+    "...and the citation stamp, so `live_status.evidence.from` moves off
+    failure_autopsy_V3-EXQ-571b_2026-09-01 -> stamp this artifact": the word
+    "stamp" occurs first at "the citation stamp", so the regex captured 571b
+    and demanded a stamp of the OLDER artifact -- unsatisfiable the moment the
+    correct newer one was applied. Fix: resolve the tail after the FINAL "->"
+    first, which is where a disposition states its target everywhere else in
+    `_target_state`, and fall back to the unchanged whole-string scan only
+    when that tail names no stamp at all (MECH-439's OTHER row, from 571b,
+    still resolves that way -- its self-reference sits mid-prose and its last
+    arrow points at "f_weighted -> harm_weighted").
+
+(2) A KEY PRESENT WITH VALUE `false` IS NOT A DEMAND FOR A WRITE.
+    `_missing_structured_field` read any `recommended_*` key present on `rec`
+    as "the claim must carry this key". MECH-547 and MECH-548
+    (`failure_autopsy_V3-EXQ-1044_2026-09-17`) recommend
+    `recommended_diagnostic_evidence_adjudicated: false` AND carry a
+    `scope_note` saying in terms "do NOT set diagnostic_evidence_adjudicated
+    (the run tagged no claim, so that flag would assert something untrue)" --
+    both runs are claim-free diagnostics with `claim_ids: []`. The rows stayed
+    ACTIONABLE PRECISELY BECAUSE THE KEY WAS CORRECTLY ABSENT. Fix:
+    `_asks_for_a_write()` -- a `False`, `None` or blank recommendation is
+    SATISFIED BY ABSENCE. SD-024 (`failure_autopsy_V3-EXQ-900_2026-09-14`) is
+    the same shape on the same flag; its `epistemic_category` was genuinely
+    owed and was written at the 2026-09-18 cycle.
+
+    THIS IS NOT A GENERAL TOLERANCE OF MISSING FIELDS, and must never be
+    widened into one -- GFLAG-0349 says so explicitly and the 2026-09-01
+    repair note above says why: a missing `recommended_epistemic_category` is
+    a real finding that GOV-CAT-1 exists to catch. A key recommending a REAL
+    value (`true`, `standard`, ...) is gated on absence exactly as before, and
+    a claim that CARRIES the opposite value still goes to its comparator.
+
+(3) `live_status.evidence.from` HOLDS ONE VALUE, so an older stamp row becomes
+    permanently unsatisfiable once a newer stamp lands -- not ignored, moot.
+    MECH-439 is the live case: with 1012a stamped, the 571b row can never
+    clear. `_retired_by_newer_stamp()` moves such a row to
+    `superseded_disposition`, which already means exactly "moot, not owed --
+    re-read before citing the older artifact". FOUR conditions, all required:
+    the row's target is a CITATION and nothing else (so the stamp is provably
+    its sole unmet requirement); `_missing_structured_field` finds no separate
+    owed write; what claims.yaml cites is a confirmed slug generated STRICTLY
+    LATER; and that newer artifact NAMES THIS CLAIM. The last condition is the
+    tight one -- GFLAG-0405 records the live_status projection itself joining
+    on a theme token rather than a claim id, and this detector must not
+    inherit that defect.
+
+    The pre-existing cross-run supersession cascade covers this case ONLY when
+    the latest disposition itself certifies. On today's corpus it does, once
+    (1) is fixed -- so the 571b row is retired by that older route and this one
+    is not reached. It is not redundant: one un-certifiable newest row
+    otherwise pins every older stamp row for the same claim in ACTIONABLE
+    forever, which is the shape the INV-088/MECH-457 comment in `scan()`
+    already records, and it is the fix GFLAG-0349 names.
+
+Validation (GOV-HELDOUT-1), run 2026-09-22. The corpus A/B is the real check
+and it is what a count comparison would have missed: the FULL row set of every
+bucket was diffed old-vs-new over the live corpus, not the totals.
+`unapplied_disposition` 5 -> 0 (exactly the five named rows, no others);
+`superseded_disposition` 31 -> 32 (the 571b row, still reported);
+`unapplied_evidence_direction` (156), `superseded_citation` (51),
+`overridden_disposition` (1) and `unresolved_run_ids` (0) byte-identical.
+Non-degeneracy: of the 17 tests added, SEVEN give a DIFFERENT verdict under
+the old and new wording (six positives plus the inverted
+`test_the_narrated_earlier_slug_is_not_the_target`, which the old code
+certified and the new one correctly reports); the remaining ten are boundary
+pins that must hold either way. All 99 pre-existing tests pass against BOTH
+versions, so nothing previously certified was lost.
+
 Tests: scripts/test_check_unapplied_autopsy_recommendations.py
 """
 
@@ -1160,6 +1241,23 @@ def _target_state(change, recommended_direction, own_slug=None):
     See "THE 2026-09-01 REPAIR" (Shape A) in the module docstring for the
     self-stamp, set-field, and clause-narrowing additions.
     """
+    if isinstance(change, str):
+        # THE OPERATIVE STAMP IS THE LAST ARROW'S, NOT THE FIRST SLUG IN THE
+        # PROSE -- see "THE 2026-09-22 REPAIR" (defect 1) in the module
+        # docstring. `_STAMP_RE` is `\bstamp\b.*?(failure_autopsy_...)` over
+        # the WHOLE string, so a row that narrates its own provenance move
+        # ("...and the citation stamp, so `live_status.evidence.from` moves
+        # off failure_autopsy_V3-EXQ-571b_2026-09-01 -> stamp this artifact")
+        # captures the slug being moved AWAY FROM. Resolve the tail after the
+        # final "->" first -- that is where a disposition states its target
+        # everywhere else in this function -- and only fall back to the
+        # whole-string scan when the tail names no stamp at all.
+        tail_for_stamp = change.rsplit("->", 1)[-1] if "->" in change else change
+        tail_stamp = _STAMP_RE.search(tail_for_stamp)
+        if tail_stamp:
+            return "citation", tail_stamp.group(1).rstrip(".")
+        if own_slug and _SELF_STAMP_RE.search(tail_for_stamp):
+            return "citation", own_slug
     stamp = _STAMP_RE.search(change) if isinstance(change, str) else None
     if stamp:
         return "citation", stamp.group(1).rstrip(".")
@@ -1234,6 +1332,31 @@ _STRUCTURED_CLAIM_FIELD = {
 # `diagnostic_evidence_adjudicated` (a rare, deliberate flag).
 
 
+def _asks_for_a_write(recommended) -> bool:
+    """Does this structured `recommended_*` value ask for a claims.yaml WRITE?
+
+    A key PRESENT on `rec` is not by itself a demand -- see "THE 2026-09-22
+    REPAIR" (defect 2) in the module docstring. `recommended_diagnostic_
+    evidence_adjudicated: false` on a claim-free diagnostic means DO NOT set
+    the flag (the run tagged no claim, so the flag would assert something
+    untrue), and `recommended_epistemic_category: null` means no category is
+    recommended at all. Absence is what a `false`/`null` recommendation asks
+    for, so it SATISFIES it.
+
+    Deliberately narrow: this recognises `False`, `None` and a blank string
+    only. A key recommending a real value (`true`, `standard`, ...) is gated
+    on absence exactly as before -- widening it to tolerate missing fields
+    generally is what the 2026-09-01 repair note forbids, because a missing
+    `recommended_epistemic_category` is a real finding GOV-CAT-1 exists to
+    catch.
+    """
+    if recommended is None or recommended is False:
+        return False
+    if isinstance(recommended, str) and not recommended.strip():
+        return False
+    return True
+
+
 def _missing_structured_field(claim, rec) -> bool:
     """True when `rec` names a category/boolean field the claim does not
     carry AT ALL (the key is absent, not merely holding a different value).
@@ -1252,7 +1375,11 @@ def _missing_structured_field(claim, rec) -> bool:
     if not isinstance(rec, dict) or not isinstance(claim, dict):
         return False
     for rec_key, claim_field in _STRUCTURED_CLAIM_FIELD.items():
-        if rec_key in rec and claim_field not in claim:
+        if rec_key not in rec:
+            continue
+        if not _asks_for_a_write(rec[rec_key]):
+            continue  # False/None/"" recommends NOT writing -> satisfied by absence
+        if claim_field not in claim:
             return True
     return False
 
@@ -1280,6 +1407,17 @@ _STRUCTURED_REC_CHECKS = (
 )
 
 
+# rec-level structured key -> the claims.yaml field it names, for the
+# false/null-recommends-no-write skip in `_structured_fields_reflect`.
+# `recommended_evidence_direction` is deliberately absent: it names a
+# MANIFEST field, not a claims.yaml one, so there is no key to be absent.
+_STRUCTURED_REC_CLAIM_FIELD = {
+    "recommended_epistemic_category": "epistemic_category",
+    "pending_retest_after_substrate": "pending_retest_after_substrate",
+    "recommended_diagnostic_evidence_adjudicated": "diagnostic_evidence_adjudicated",
+}
+
+
 def _structured_fields_reflect(claim, rec, claim_id, run_id, resolver) -> bool:
     """Do the structured `rec` fields already hold, wherever each is
     checkable? Vacuously True when `rec` carries none of them."""
@@ -1288,7 +1426,18 @@ def _structured_fields_reflect(claim, rec, claim_id, run_id, resolver) -> bool:
     for key, check in _STRUCTURED_REC_CHECKS:
         if key not in rec:
             continue
-        if not check(claim, rec[key], claim_id, run_id, resolver):
+        value = rec[key]
+        if not _asks_for_a_write(value):
+            field = _STRUCTURED_REC_CLAIM_FIELD.get(key)
+            if field is None or field not in claim:
+                # A false/null recommendation asks for NO write, and an absent
+                # field is exactly what it asks for -- the same reading as
+                # `_asks_for_a_write` in the absence gate. A field the claim
+                # DOES carry still goes to its comparator below, so a claim
+                # holding `true` against a `false` recommendation is still
+                # reported.
+                continue
+        if not check(claim, value, claim_id, run_id, resolver):
             return False
     return True
 
@@ -1374,6 +1523,59 @@ def _matching_override(claim, slug, generated_utc):
             continue  # ratified BEFORE the autopsy -> not a supersession
         return entry
     return None
+
+
+def _retired_by_newer_stamp(claim, claim_id, entry, slug_generated, slug_claims):
+    """The NEWER artifact whose stamp makes this older stamp row unsatisfiable.
+
+    `live_status.evidence.from` holds ONE value. So once a later confirmed
+    autopsy's slug is stamped there, every EARLIER disposition whose only
+    remaining requirement is its own citation stamp can never be satisfied --
+    not because it was ignored, but because the field it asks for has moved
+    on. Left alone those rows sit in ACTIONABLE forever. See "THE 2026-09-22
+    REPAIR" (defect 3) in the module docstring.
+
+    Returns the cited newer slug, or None. FOUR conditions, all required, so
+    this can only ever retire a row that is genuinely moot:
+
+      1. the row's target state is a CITATION and nothing else -- the citation
+         branch of `_reflects` is the only check it runs, so the stamp is
+         provably its sole unmet requirement;
+      2. `_missing_structured_field` finds no separate owed write on the claim
+         (a row asking for a field AND a stamp is still ACTIONABLE);
+      3. what claims.yaml cites is a CONFIRMED autopsy slug generated STRICTLY
+         LATER than this row's own artifact; and
+      4. that newer artifact NAMES THIS CLAIM (in `per_claim_recommendation`
+         or `claim_ids`) -- so an unrelated artifact that merely happens to be
+         stamped there cannot retire a real finding.
+
+    WARN, never silence: the row still prints, under `superseded_disposition`,
+    which already means "moot, not owed -- re-read before citing the older
+    artifact". This is the same meaning, reached by the citation field rather
+    than by a later disposition disagreeing.
+    """
+    rec = entry.get("rec")
+    if not isinstance(claim, dict) or not isinstance(rec, dict):
+        return None
+    if _missing_structured_field(claim, rec):
+        return None
+    field_hint, target_state = _target_state(
+        entry["change"], rec.get("recommended_evidence_direction"),
+        own_slug=entry["slug"])
+    if field_hint != "citation" or not target_state:
+        return None
+    live = claim.get("live_status")
+    evidence = live.get("evidence") if isinstance(live, dict) else None
+    cited = str(evidence.get("from") or "").split("#")[0].strip() \
+        if isinstance(evidence, dict) else ""
+    if not cited or cited == target_state.strip():
+        return None  # nothing stamped, or the row's own stamp IS in place
+    cited_gen = slug_generated.get(cited)
+    if cited_gen is None or cited_gen <= entry["gen"]:
+        return None  # not a confirmed artifact, or not strictly newer
+    if claim_id not in slug_claims.get(cited, set()):
+        return None  # the cited artifact does not adjudicate this claim
+    return cited
 
 
 def _reflects(claim, change, recommended_direction, slug,
@@ -1563,6 +1765,23 @@ def scan(root: Path) -> dict:
     # only ever discards a strictly-superseded re-adjudication of the SAME
     # run, never a different run's target for the same claim.
     per_claim_entries = {}
+    # Confirmed-artifact index for `_retired_by_newer_stamp` below: when was
+    # each slug generated, and which claims does it adjudicate? Built over
+    # EVERY confirmed target (not the R2-filtered subset) because the question
+    # it answers is "is the slug claims.yaml cites a later confirmed
+    # adjudication of this claim", which does not depend on R2's
+    # latest-per-run_id choice.
+    slug_generated = {}
+    slug_claims = {}
+    for gen, slug, target in targets:
+        if gen > slug_generated.get(slug, ""):
+            slug_generated[slug] = gen
+        named = slug_claims.setdefault(slug, set())
+        pcr_all = target.get("per_claim_recommendation")
+        if isinstance(pcr_all, dict):
+            named.update(k for k in pcr_all if isinstance(k, str))
+        named.update(_claim_ids(target))
+
     for gen, slug, target in targets:
         run_id = target.get("run_id")
         # R2 -- only the latest adjudication of a run is authoritative
@@ -1650,6 +1869,25 @@ def scan(root: Path) -> dict:
                         "superseded_by_change": latest_entry["change"],
                     })
                     continue
+            # A NEWER stamp for the same claim retires an older stamp-only
+            # row: `live_status.evidence.from` holds one value, so the older
+            # citation can never be satisfied. Checked LAST, after the
+            # disposition cascade above, so a row that route can explain keeps
+            # its more informative "superseded by <disposition>" reading.
+            retired_by = _retired_by_newer_stamp(
+                claim, cid, entry, slug_generated, slug_claims)
+            if retired_by:
+                superseded_disposition.append({
+                    "claim_id": cid,
+                    "change": entry["change"],
+                    "artifact": entry["slug"],
+                    "generated_utc": entry["gen"],
+                    "run_id": entry["run_id"],
+                    "superseded_by": retired_by,
+                    "superseded_by_change": "",
+                    "retired_by_stamp": True,
+                })
+                continue
             unapplied.append({
                 "claim_id": cid,
                 "change": entry["change"],
@@ -1906,7 +2144,12 @@ def main() -> int:
                             key=lambda d: (d["generated_utc"], d["claim_id"])):
             print("  - %-12s %s" % (item["claim_id"], item["change"]))
             print("      from %s (%s)" % (item["artifact"], item["generated_utc"][:10]))
-            print("      superseded by %s" % item["superseded_by"])
+            if item.get("retired_by_stamp"):
+                print("      retired by the newer stamp now in live_status.evidence.from: %s"
+                      % item["superseded_by"])
+                print("      (that field holds ONE value, so this older stamp cannot be set)")
+            else:
+                print("      superseded by %s" % item["superseded_by"])
 
     if overridden:
         print("")
