@@ -5796,6 +5796,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0406",
+      "claim_ids": [
+        "ARC-023",
+        "SD-006"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "ARC-023's falsifier, rewritten 2026-09-22 in the GFLAG-0395 split, pre-registers a readout that SD-006's own falsifier-completion audit had classified R4 one day earlier (2026-09-21, resumed 2026-09-22). REFUSED at /queue-experiment; no script written, no queue entry added. ARC-023 CONFIRMING now reads 'realized E1:E2:E3 tick-count ratios ... matching the configured period ratios, E3 slowest'. Three source-verified defects make that untestable as written. (1) E2 IS DEAD: e2_tick is computed at ree_core/heartbeat/clock.py:143 and emitted at :174 and is READ NOWHERE in ree_core (verified by grep this session; independently re-checked on the live tree by the V3-EXQ-942 autopsy, 2026-08-21, status confirmed). SD-006's disposition states it directly -- 'e2_tick has no consumer anywhere in ree_core ... so one third of the asserted ladder cannot reach any loop'. Counting e2_tick counts a scheduler number, not a realized loop update. (2) E1 IS TAUTOLOGICAL: e1_steps_per_tick defaults to 1, so e1_tick = (step % 1 == 0) is always True and the E1 count is identically the step count. (3) E3 IS ALREADY MEASURED: V3-EXQ-942 (confirmed autopsy, non_contributory/standard) recorded 572/633/354 realized E3 ticks against 375/375/90 configured, and e1:e2 at exactly 3750:1250 -- i.e. the designed 1:3:10 is NOT the realized ratio, with the excess driven by MECH-091's ungated clock.phase_reset() on every harm_signal<0 step (agent.py:11062). SD-006's disposition concludes the available measurement 'sits at the scheduling boundary (tick counters) rather than at the representational boundary the claim asserts' and records 'No experiment queued.' CONSEQUENCE: the split correctly fixed ARC-023's PHASE problem (v4 -> v3, unblocking 13 V3 build commitments) but its replacement readout re-introduces a boundary defect a sibling claim's audit had already rejected. GOVERNANCE DECISION OWED: either re-write ARC-023's falsifier to the REPRESENTATIONAL boundary (per-loop state persistence under a rate-gated continuous update, which SD-006 notes does not exist -- 'No instrument records a rate-gated continuous-state update, because none exists', making it an /implement-substrate node not an experiment), or narrow ARC-023 to the E3-only realized-cadence proposition and mark it already-answered by V3-EXQ-942. Supporting probe run this session (scratch, not queued): at the default 1/3/10 clock, injected phase resets every 3 steps drive the realized E3 ratio to 0.333 -- exactly E2's -- so the loops DO collapse under hazard density, but the collapse is unobservable through a dead e2_tick. EXP-0548 remains status=gated; its original v3_exq_131 freeze-artifact reason is untouched and still correct.",
+      "raised_by_session": "elated-chandrasekhar-4a6e6a",
+      "raised_at": "2026-09-22T06:58:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
