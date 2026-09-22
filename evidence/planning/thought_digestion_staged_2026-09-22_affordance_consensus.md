@@ -1,6 +1,14 @@
 # STAGED (not applied): `/thought-digestion` drafts for ARC-149, MECH-575..579
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to `claims.yaml`.**
+**Status: APPLIED 2026-09-22 (user reviewed and approved all six as drafted, plus all six
+claim-text corrections). Landed REE_assembly `7ac15187e1`, verified on origin/master: exactly 6
+claims modified, 0 added, 0 removed, and each applied `what_would_answer` byte-identical to the
+text in this file. The registry is now authoritative; this file is the archival record of the
+drafts and of the six defects they corrected.**
+
+**Decisions taken:** apply everything as drafted; close the INV-108 scope gap with a narrow
+do-not-optimise binding inside MECH-578 rather than amending INV-108 (both were the recommended
+options; logged to the recommendation-agreement ledger, entries 510 and 511).
 
 - **Session:** `compassionate-pike-fe9174-digest` (Mac, umbrella worktree, interactive)
 - **Drafted:** 2026-09-22, two grouped agents (Group A = ARC-149/MECH-575/576/577; Group B = MECH-578/579)
