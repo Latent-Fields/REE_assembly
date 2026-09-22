@@ -44,6 +44,21 @@
     "verdict": "RED"
    }
   ],
+  "MECH-107": [
+   {
+    "chip_ref": "chip-proposal-exp-0862-paced",
+    "producer_paths": [
+     "ree_core/predictors/e3_selector.py",
+     "ree_core/utils/config.py"
+    ],
+    "reason": "committed_step_fraction floor-pinned at 1.0 at the trained operating point (measured running variance 4e-6..1.6e-5 vs 0.40 commit threshold, arc029_p1_lever_calibration_finding_20260918.md); moving it needs sweep amplitude > 0.99996. use_variance_tracking_commit_threshold defaults False (config.py:1250). V3-EXQ-1070a FAILed its precondition.",
+    "recorded_by": "preflight-20260922",
+    "recorded_utc": "2026-09-22T11:37:03Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-204": [
    {
     "chip_ref": "chip-20260918-exq541d-mech204-f1-guard-validation",
