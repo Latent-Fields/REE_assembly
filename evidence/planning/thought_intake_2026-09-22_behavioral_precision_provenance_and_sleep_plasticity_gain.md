@@ -377,3 +377,32 @@ These are candidate formulations only; they may ultimately refine MECH-572/MECH-
 3. Feed the literature links into the existing MECH-016 / ARC-055 / MECH-043 / MECH-572 evidence map rather than duplicating them where already present.
 4. The cheapest implementation probe is metadata-only: preserve a historical precision/evidence-precision field on selected waking traces, leave replay content and objective unchanged, and test whether a precision-conditioned gain removes overwrite without creating self-sealing high-confidence errors.
 5. Only after that should governance decide whether this is a refinement of existing precision/write-gating claims or deserves a new registered mechanism.
+
+## Routing update 2026-09-22 (session `compassionate-pike-fe9174`, user-commissioned)
+
+**Status change:** the intake's "cheapest implementation probe is metadata-only" recommendation was
+audited against live code and found to require new substrate on both precision legs (Result 6 of
+the user brief): no evidence-precision producer existed anywhere in `ree_core`, and no producer of
+the world-forward head's own precision. USER DECISION (recommendation ledger 520): build the
+producers first, then run. Delivered the same day:
+
+- **Spec:** `docs/architecture/precision_provenance_substrate_spec.md` (SD-PP-1..4).
+- **Substrate (ree-v3 `9a3907d93c` + `074b6a795c`):** `precision.observation_reliability` (SD-PP-1),
+  `precision.world_forward_epistemic_precision` (SD-PP-2), `hippocampal.replay_provenance_packet`
+  (SD-PP-3), `sleep.provenance_conditioned_consolidation_gain` (SD-PP-4). Default OFF, bit-identical.
+- **Necessities register:** `evidence/planning/precision_provenance_substrate_necessities_20260922.md`
+  and `substrate_queue.json` rows SD-PP-1..4 (implemented_pending_validation) and SD-PP-B1..B8
+  (registration only). Correction to this intake: the AnchorSet / StalenessAccumulator /
+  SleepReplaySampler path inspected above is NOT on the weight-consolidation path that produces the
+  MECH-572 phenotype; that pass draws `randperm` batches from the raw experience buffers (B2). The
+  packet therefore rides the buffer index.
+- **Preregistration + freeze record:** `evidence/planning/precision_provenance_consolidation_gain_design_20260922.md`.
+- **Experiment:** V3-EXQ-1073 queued (diagnostic; evidence ceiling mechanistic/local because no
+  default-on behavioural consumer of `e2.world_forward` exists, B1).
+- **Pre-freeze finding, already measured:** the confidently-wrong condition (intake experiment 2 /
+  falsifier F3) is UNPOSEABLE on the current world-forward head: it sits at copy-the-input (skill
+  -0.071, MECH-573) and barely reads the action, so an action-map inversion is not a contradiction
+  (B5). The hardest test in the intake cannot be run until the head reads its action.
+- **Governance:** GFLAG-0413 (MECH-572) records the refusal-and-build decision and the owed
+  adjudications. No claim registered from this intake; candidate formulations 1-3 above remain
+  NOT REGISTERED pending the run's autopsy.
