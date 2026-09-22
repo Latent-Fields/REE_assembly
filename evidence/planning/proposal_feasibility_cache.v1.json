@@ -256,6 +256,21 @@
     "verdict": "RED"
    }
   ],
+  "MECH-540": [
+   {
+    "chip_ref": null,
+    "producer_paths": [
+     "ree_core/sleep/phase_manager.py",
+     "experiments/_lib/interface_probe.py"
+    ],
+    "reason": "Sequencing precondition unmet: waking interface metric must show range/stability at MECH-537 locus before a sleep mutual-legibility assay; V3-EXQ-1043a (20260919) landed randrank_control_supra_trivial 0.0085 vs 0.05 floor, gate_green false, no successor queued. No dedicated interface-maintenance producer exists in ree_core; effect is measured on existing sleep pipeline via interface_probe.py.",
+    "recorded_by": "preflight-batchE-20260922",
+    "recorded_utc": "2026-09-22T15:16:39Z",
+    "ree_v3_sha": "c8c37a160a7d63bb4abde66469dd276fd4ad9e15",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-561": [
    {
     "chip_ref": null,
