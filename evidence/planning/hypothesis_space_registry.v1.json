@@ -5025,11 +5025,19 @@
       "synthesis": null,
       "decision": {
         "decision_question": "Which mechanism family (objective / operating point / task coupling / input distribution) gates content-conditioned write addressing -- and is a learned write-address policy the right frame at all?",
-        "live_gate": "Instrument redesign DISCHARGED for legs H1 and H4 (V3-EXQ-970a, V3-EXQ-972a, both 2026-09-07). New gate: the harness trains no encoder (H5). Before any further leg, decide whether this question is about a learned encoder -- in which case the harness needs a build -- or explicitly about a frozen projection.",
+        "live_gate": "H5 GATE DISCHARGED 2026-09-22 by USER RULING: this question IS about a LEARNED ENCODER, not a frozen projection. (Recorded via AskUserQuestion, RECOMMENDATION_LOG entry_id 541, session ledger-audit-20260922; audit context evidence/planning/task_ledger_audit_20260922.md sec 7c.) The harness therefore needs a build, commissioned as chip-20260922-ctxmem-learned-encoder-harness (task_c7904c66): a training path in which the write-address tagger's loss reaches latent_stack, rather than un-detaching the MECH-165 exploration buffer (detached by design). NEW GATE: that harness build. H2-operating-point and H3-task-pressure-required must be RE-MEASURED on it -- both are alive but were measured on the frozen-encoder harness, so their current readings are not load-bearing. Before re-running either, address the recorded observation_bottleneck (the C2 DV cannot resolve graded change at n=5-6). PRIOR GATE, now superseded: Instrument redesign DISCHARGED for legs H1 and H4 (V3-EXQ-970a, V3-EXQ-972a, both 2026-09-07). New gate: the harness trains no encoder (H5). Before any further leg, decide whether this question is about a learned encoder -- in which case the harness needs a build -- or explicitly about a frozen projection.",
         "decidable": false,
-        "decision_log_ref": null,
+        "decision_log_ref": "RECOMMENDATION_LOG entry_id 541 (2026-09-22); evidence/planning/task_ledger_audit_20260922.md sec 7c",
         "distance_phrase": "2 of 5 legs adjudicated (H1 split, H4 eliminated); H2 and H3 stay alive and are now FLAGGED as having been measured on a frozen-encoder harness; H5 (discovery) confirmed. The question's premise has moved: the portfolio was asking which objective makes addressing content-conditioned, while measuring a frozen random projection.",
-        "observation_bottleneck": "The C2 DV cannot resolve graded change at n=5-6 (near-binary; ties saturate paired tests and force exact p-grids whose floor can exceed the corrected alpha). H4's train-time cone measurement (separability 0.0281) is the one readout in the portfolio that did resolve."
+        "observation_bottleneck": "The C2 DV cannot resolve graded change at n=5-6 (near-binary; ties saturate paired tests and force exact p-grids whose floor can exceed the corrected alpha). H4's train-time cone measurement (separability 0.0281) is the one readout in the portfolio that did resolve.",
+        "user_ruling_2026_09_22": {
+          "question": "Is contextmemory_write_content_discrimination about a learned encoder, or explicitly about a frozen projection?",
+          "ruling": "learned encoder -- build the harness",
+          "recorded_by": "ledger-audit-20260922",
+          "recommendation_log_entry_id": 541,
+          "commissioned_chip": "chip-20260922-ctxmem-learned-encoder-harness",
+          "does_not_release": "This ruling does NOT release the contextmemory-write-path-addressing-degeneracy corrupting STOP-GATE. Severity stays corrupting per governance_2026_09_05 (GFLAG-0132), decision_2026_09_06 and governance_2026_09_08; the gate releases only when the content half validates."
+        }
       },
       "discovery_growth_events": [
         {
