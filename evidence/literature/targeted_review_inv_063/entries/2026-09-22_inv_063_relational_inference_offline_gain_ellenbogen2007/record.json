@@ -1,0 +1,59 @@
+{
+  "source": {
+    "title": "Human relational memory requires time and sleep",
+    "authors": [
+      "Jeffrey M Ellenbogen",
+      "Peter T Hu",
+      "Jessica D Payne",
+      "Debra Titone",
+      "Matthew P Walker"
+    ],
+    "year": 2007,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.0700094104",
+    "pmid": "17449637",
+    "pmc": null,
+    "volume": "104",
+    "issue": "18",
+    "pages": "7723-7728"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the closest thing in the human literature to a direct demonstration of the dissociation INV-063 leg B has run into: the measure defined over the TRAINED material is flat and uninformative while a HELD-OUT probe built from the same material moves with sleep. Premise-pair retention -- the trained items -- sat above 85% in every group with no group differences, i.e. at ceiling, which is a degenerate value in exactly the sense requirement (i) forbids; the inference pairs, never trained, separated cleanly (20-min 52%, 12-h and 24-h groups >75%, P < 0.001) and the most distant inference B>E carried the sleep-specific benefit (93% sleep vs 69% wake, P = 0.03). Held at 0.74 and not higher because the mapping is functional rather than mechanistic: this constrains WHAT KIND of readout should be expected to move across an offline period, which is precisely what CDQ-011 was sent to find, but it says nothing about REE's world_forward head and cannot license any particular statistic.",
+  "failure_signatures": [
+    "The trained-item measure was at CEILING (>85%, no group differences), not merely flat. A REE readout at its degenerate value fails requirement (i) and is uninterpretable in either direction, so this paper is as much a warning about readout selection as it is support: had Ellenbogen et al. reported only premise-pair retention, the honest conclusion would have been that sleep does nothing, which the inference probe shows to be false.",
+    "The sleep-specific benefit appeared ONLY on the most distant inference (B>E), not on the nearer ones (B>D, C>E), which improved with elapsed time in both sleep and wake groups. So 'offline time' and 'sleep' are separable here and most of the effect belongs to the former. A REE result showing an across-sleep gain on a held-out probe would need a matched no-sleep offline arm to claim the gain is attributable to the consolidation pass rather than to the passage of training steps -- a control INV-063's four-arm ladder does not currently carry.",
+    "Subjective confidence did not increase alongside inferential accuracy. The quantity that improved was not the quantity the system could report on, which is a direct caution against reading any single scalar as 'the model got better'."
+  ],
+  "tags": [
+    "inv-063",
+    "relational_memory",
+    "transitive_inference",
+    "held_out_probe",
+    "gist",
+    "offline_consolidation",
+    "readout_selection",
+    "cdq-011"
+  ],
+  "mapping": {
+    "source_claim_statement": "Fifty-six participants learned five premise pairs (A>B, B>C, C>D, D>E, E>F) containing an embedded hierarchy, then were tested after 20 minutes, 12 hours (sleep or wake) or 24 hours. Retention of the trained premise pairs was above 85% in all groups and did not differ between them. Relational inference on untrained pairs (B>D, C>E, B>E) was at chance after 20 minutes (52%) and above 75% after 12 and 24 hours (P < 0.001); for the most distant inference B>E, the sleep group outperformed the wake group (93% vs 69%, P = 0.03). Relational memory therefore develops over offline delays, with sleep specifically enhancing distant hierarchical binding.",
+    "ree_translation": "This is the biological form of INV-063 leg B's requirement pair, and it is the reason CDQ-011 insists on a mechanism rather than a third objective. The trained-material measure and the held-out probe came apart: one was pinned at its degenerate value, the other carried the whole effect, and only the latter answered the question. Translated to REE, it says that an across-sleep readout on agent.e2.world_forward should not be an absolute reproduction score over the replayed material but a probe of structure the consolidation pass was never directly trained on -- and that the probe's sensitivity should GROW with the inferential distance from the trained items, since that is where the sleep-specific component lived. It supplies the shape of the readout, not the readout.",
+    "mapping_caveat": "Two boundaries. (1) The transferred object is a functional dissociation in human declarative memory, mapped onto an artificial agent's latent forward model; there is no shared circuit and no shared representational format, so this can motivate a readout FAMILY and must not be cited as evidence that any specific REE statistic will move. (2) More sharply: the paper's own decomposition attributes most of the inference gain to elapsed offline TIME, with sleep adding a benefit only at the greatest relational distance. INV-063 leg B asks for an across-SLEEP delta. Citing this as support for a sleep-specific prediction, rather than for an offline-period prediction with a sleep-graded component, would over-read it in the direction the claim happens to want.",
+    "source_context": "Healthy adult humans (n=56); five-item transitive-inference hierarchy learned to criterion; between-subjects delay manipulation of 20 minutes, 12 hours spanning sleep, 12 hours spanning wake, and 24 hours; dependent measures were trained premise-pair retention and untrained inference-pair accuracy."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: PNAS, adequately powered for the contrast reported, a canonical and much-replicated paradigm. Mapping fidelity 0.7 -- unusually good for a cross-domain transfer because what is being transferred is a MEASUREMENT-DESIGN finding (trained measure saturates, held-out measure discriminates) rather than a biological mechanism, and that finding is substrate-independent in a way a circuit claim would not be. Transfer risk 0.45: moderate-to-high, driven by the time-versus-sleep decomposition noted in the caveat rather than by the species gap."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-22_inv_063_relational_inference_offline_gain_ellenbogen2007",
+  "timestamp_utc": "2026-09-22T06:58:46Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

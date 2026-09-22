@@ -1,0 +1,55 @@
+{
+  "source": {
+    "title": "System consolidation of memory during sleep",
+    "authors": [
+      "Jan Born",
+      "Ines Wilhelm"
+    ],
+    "year": 2012,
+    "venue": "Psychological Research",
+    "doi": "10.1007/s00426-011-0335-6",
+    "pmid": "21541757",
+    "pmc": "PMC3278619",
+    "volume": "76",
+    "issue": "2",
+    "pages": "192-203"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Ties the two threads CDQ-011 needs into one account: sleep-dependent system consolidation is SELECTIVE ('the consolidation process during sleep is selective inasmuch as it does not enhance every memory', with SWS preferentially consolidating memories relevant to future plans) and it is TRANSFORMATIVE rather than preservative ('produces qualitative changes in memory representations such that the extraction of explicit and conscious knowledge from implicitly learned materials is facilitated'). Both propositions bear directly on why a verbatim-reproduction readout over unselected material is the worst available probe of a consolidation pass. Held at 0.66 because it is a review synthesising the same laboratory's primary work rather than an independent result, so it corroborates the Wilhelm and Ellenbogen entries without adding independent evidential weight.",
+  "failure_signatures": [
+    "A review from the laboratory that produced much of the primary evidence it synthesises, including the Wilhelm 2011 entry in this same directory. Its support is therefore substantially correlated with that entry and the two should not be counted as independent confirmations when the claim's confidence is aggregated.",
+    "The transformation claim is stated for explicit/implicit declarative knowledge in humans. REE's world_forward head has no explicit/implicit distinction and no conscious readout, so the specific transformation described has no REE counterpart; only the weaker proposition -- that consolidation changes the representation's form rather than sharpening its fidelity -- survives the transfer, and that weaker proposition is what may be cited."
+  ],
+  "tags": [
+    "inv-063",
+    "system_consolidation",
+    "gist",
+    "schema_abstraction",
+    "selective_consolidation",
+    "sws",
+    "readout_selection",
+    "cdq-011"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sleep, and slow-wave sleep specifically, drives system consolidation in which newly encoded memories are reactivated and redistributed to long-term stores. The process is selective -- it does not enhance every memory, and SWS preferentially consolidates memories with relevance for future plans -- and it produces qualitative changes in memory representations, facilitating the extraction of explicit and conscious knowledge from implicitly learned material, i.e. abstraction of gist and rule rather than verbatim preservation.",
+    "ree_translation": "Supplies both halves of the readout prescription CDQ-011 is after, in one source. The selectivity half says the probe's SUPPORT matters: a held-out battery that does not overlap what was replayed measures the wrong population. The transformation half says the probe's FUNCTIONAL FORM matters: if consolidation changes representational form rather than improving reproduction fidelity, a per-element reconstruction error is measuring the quantity the process is least committed to preserving. Together they say a consolidation pass improves a frozen held-out readout when, and roughly only when, the readout is scored on the abstracted structure over the material the pass actually visited.",
+    "mapping_caveat": "This is a narrative review, not a result, and it is not independent of the Wilhelm 2011 entry already in this batch -- same senior author, overlapping primary evidence. It should be read as the theoretical frame that organises the other entries rather than as a fourth data point, and INV-063's aggregate literature confidence should not be allowed to treat it as one. The explicit/implicit transformation it centres on has no REE analogue at all.",
+    "source_context": "Review of human and rodent sleep-consolidation literature, centred on the active systems consolidation account and slow-wave sleep; Born laboratory."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.7: well-regarded review in a solid journal, widely cited, but a synthesis rather than primary evidence and not independent of Wilhelm 2011. Mapping fidelity 0.65 -- the selectivity and transformation propositions both map onto concrete features of REE's sleep trainer (replay-buffer support; discrimination objective), though the explicit/implicit framing does not. Transfer risk 0.45, comparable to the other behavioural entries."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-22_inv_063_system_consolidation_gist_abstraction_born2012",
+  "timestamp_utc": "2026-09-22T06:58:46Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

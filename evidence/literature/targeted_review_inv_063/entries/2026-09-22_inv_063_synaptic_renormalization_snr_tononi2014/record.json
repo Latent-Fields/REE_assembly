@@ -1,0 +1,55 @@
+{
+  "source": {
+    "title": "Sleep and the price of plasticity: from synaptic and cellular homeostasis to memory consolidation and integration",
+    "authors": [
+      "Giulio Tononi",
+      "Chiara Cirelli"
+    ],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.12.025",
+    "pmid": "24411729",
+    "pmc": "PMC3921176",
+    "volume": "81",
+    "issue": "1",
+    "pages": "12-34"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "The synaptic homeostasis hypothesis supplies the one account in this literature that predicts a consolidation pass making an ABSOLUTE-magnitude measure worse while a RELATIVE measure improves: waking learning is held to decrease signal-to-noise ratios, and sleep renormalizes net synaptic strength by activity-dependent down-selection, so the quantity restored is a ratio and the quantity reduced is a magnitude. That is the sign pattern INV-063 leg B actually measured -- frozen-battery MSE worse on 9/9 cells while the trained contrastive objective moved the other way. Held at 0.58, materially lower than the other three entries, because SHY is a contested framework rather than a settled result and because this review is the proponents' own statement of it; the directory's Cordi and Rasch 2020 entry and Frank's standing objection (Neural Plast 2013;2013:394946) are the counterweight.",
+  "failure_signatures": [
+    "SHY is actively contested. Frank (2013) argues its underlying cellular mechanisms are poorly defined and that no theory of sleep function is complete without them; net downscaling has not been observed universally across preparations. Registering a REE mechanism that DEPENDS on SHY being true would import that dispute. The REE-side claim must therefore be stated as a property of the measurement -- that a magnitude-sensitive readout and a ratio-sensitive readout can move in opposite directions under the same weight change -- which is a linear-algebra fact that holds whether or not SHY is the correct account of biological sleep.",
+    "The review describes down-selection as SELECTIVE rather than uniformly proportional. A selective process is not a global rescaling, so the cheapest REE falsifier -- absorbing the across-sleep MSE change with a single fitted scalar gain -- is NOT what SHY predicts; SHY predicts a structured, weight-specific change that a one-parameter recalibration would only partly absorb. Reporting partial absorption as a refutation of the mechanism would be a misreading, and the falsifier must pre-register what fraction counts."
+  ],
+  "tags": [
+    "inv-063",
+    "synaptic_homeostasis",
+    "shy",
+    "downscaling",
+    "signal_to_noise",
+    "renormalization",
+    "readout_selection",
+    "cdq-011"
+  ],
+  "mapping": {
+    "source_claim_statement": "The synaptic homeostasis hypothesis holds that waking experience produces a net increase in synaptic strength that is unsustainable in energy, space and signal-to-noise terms, and that sleep spontaneous activity renormalizes net synaptic strength through activity-dependent down-selection of synapses, restoring cellular homeostasis. Waking learning decreases signal-to-noise ratios; sleep restores them, and in doing so supports memory acquisition, consolidation and integration, including offline sampling of statistical regularities accumulated over a lifetime.",
+    "ree_translation": "This is the mechanistic warrant for treating INV-063 leg B's negative MSE delta as a property of the READOUT rather than as damage to the model. If a consolidation pass renormalizes magnitudes while improving relative separability, then a per-element reconstruction error -- which is a pure magnitude statistic -- is expected to worsen, while a statistic defined on relative arrangement is expected to improve, from the SAME weight change. REE's sleep objective is structurally of the second kind: compute_e2_world_loss optimises an InfoNCE whose logits are -||pred_j - target_i||^2/tau, a K-way discrimination that constrains only relative arrangement against the in-batch targets and places no lower bound on absolute error. Scoring it with absolute MSE is therefore reading a magnitude off a process that only ever controlled a ratio.",
+    "mapping_caveat": "The mapping is analogical and should be held as such. REE has no synapses, no energy budget and no sleep slow-wave homeostat, so nothing about biological downscaling transfers as a mechanism. What transfers is a much weaker and much safer proposition -- that magnitude-sensitive and ratio-sensitive readouts of the same system can move in opposite directions under one weight update -- and that proposition stands on the algebra of the REE objective itself, which is why the registered REE claim must be anchored there rather than here. SHY's contested status (see failure signatures) makes any stronger reliance on this paper an over-read.",
+    "source_context": "Comprehensive review of the synaptic homeostasis hypothesis spanning molecular, electrophysiological, ultrastructural and behavioural evidence across Drosophila, rodent and human preparations; written by the hypothesis's originators."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.75: Neuron, extremely highly cited and comprehensive, but a proponents' review of a contested framework rather than a primary result or an independent meta-analysis. Mapping fidelity 0.55 -- the magnitude-versus-ratio dissociation maps well, but the biological mechanism producing it does not map at all, and the REE claim it motivates has to be re-grounded in the objective's own algebra to be safe. Transfer risk 0.55, the highest in this batch: no synapses, no homeostat, and an active dispute in the source field."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-22_inv_063_synaptic_renormalization_snr_tononi2014",
+  "timestamp_utc": "2026-09-22T06:58:46Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}

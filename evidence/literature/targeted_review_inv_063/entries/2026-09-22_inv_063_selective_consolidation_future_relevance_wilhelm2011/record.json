@@ -1,0 +1,58 @@
+{
+  "source": {
+    "title": "Sleep selectively enhances memory expected to be of future relevance",
+    "authors": [
+      "Ines Wilhelm",
+      "Susanne Diekelmann",
+      "Ina Molzow",
+      "Amr Ayoub",
+      "Matthias Molle",
+      "Jan Born"
+    ],
+    "year": 2011,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3575-10.2011",
+    "pmid": "21289163",
+    "pmc": null,
+    "volume": "31",
+    "issue": "5",
+    "pages": "1563-1569"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "The single most directly useful result for CDQ-011, because it supplies a positive mechanism for a NULL rather than only describing one. Subjects were informed or not informed after learning that they would be retested; post-learning sleep improved delayed retrieval only in the informed group, and in the uninformed group retrieval after sleep did not differ from retrieval after wake. That is a measured demonstration that a consolidation period can produce a clean zero on material it did not select -- which is the most economical available account of INV-063 leg B's near-zero across-sleep deltas (-7.14e-05, -6.72e-04, -9.22e-04) without any appeal to the model having been damaged. Held at 0.71 because the selection signal in the experiment is an explicit verbal instruction with no REE analogue; what transfers is that selection gates the effect, not how selection is implemented.",
+  "failure_signatures": [
+    "The null in the uninformed condition is a genuine null, not a reversal -- sleep did not make uninformed material WORSE. INV-063 leg B's 701b measurement is a consistent NEGATIVE across-sleep delta (9/9 cells), which this paper does not predict. Selection-dilution can explain an effect of zero; on its own it cannot explain a reliably wrong sign, so anything registered off this paper must be paired with a separate account of the sign or it under-determines the observation.",
+    "Expectation of future relevance was manipulated by instruction, which recruits deliberate encoding and rehearsal strategies during the retention interval as well as any sleep-side selection. The paper's own design cannot fully separate 'sleep preferentially consolidated the tagged material' from 'subjects treated the tagged material differently while awake', and a REE translation that assumes a purely offline selection mechanism is assuming the cleaner of the two readings."
+  ],
+  "tags": [
+    "inv-063",
+    "selective_consolidation",
+    "memory_tagging",
+    "future_relevance",
+    "replay_selection",
+    "held_out_probe",
+    "cdq-011"
+  ],
+  "mapping": {
+    "source_claim_statement": "After learning declarative (paired associates), visuospatial (object location) and procedural (finger tapping) material, subjects were either informed or not informed that a retrieval test would follow. Post-learning sleep compared with wakefulness produced a strong improvement at delayed retrieval ONLY in subjects who had been informed about the retrieval test; in uninformed subjects, retrieval after a sleep retention interval did not differ from retrieval after a wake retention interval. Sleep-dependent consolidation is therefore selective, operating preferentially on memories flagged as relevant for the future.",
+    "ree_translation": "REE's sleep world-forward trainer draws its replay batch from _world_experience_buffer -- a SELECTED subset of experience -- while the frozen battery that reads leg B out is held-out and unselected. This paper says that is exactly the configuration in which a real consolidation benefit measures as nothing: the effect is confined to the selected material, so a probe averaged over unselected material is diluted toward zero by the non-overlap fraction. The operational consequence for INV-063 is that the held-out battery should be SPLIT by replay coverage and scored within stratum, rather than averaged -- a change to the readout's support, not a new objective.",
+    "mapping_caveat": "The selection signal here is an explicit instruction about future testing, a construct with no counterpart in REE, where selection is whatever the replay sampler happens to do. The transferred proposition is narrow and should be stated narrowly: that the overlap between the consolidated set and the probed set gates the measurable effect size. It is NOT evidence that REE's particular replay sampler selects anything useful, nor that stratifying the battery will reveal a positive delta -- that is the prediction to be tested, and this paper only makes it worth testing.",
+    "source_context": "Healthy adult humans; three memory tasks spanning declarative, visuospatial and procedural domains; post-learning informed/uninformed manipulation of expected future relevance crossed with sleep versus wake retention intervals; polysomnography with sleep-architecture correlations."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.8: J Neurosci, Born laboratory, three converging task domains and PSG, though the abstract does not report effect sizes and the design is between-groups on the critical factor. Mapping fidelity 0.7 -- the transferred object (overlap between consolidated and probed sets gates measured effect) is structural and maps cleanly onto the replay-buffer/held-out-battery asymmetry. Transfer risk 0.45, dominated by the instruction-versus-offline-selection confound rather than by the species gap."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_063",
+  "entry_id": "2026-09-22_inv_063_selective_consolidation_future_relevance_wilhelm2011",
+  "timestamp_utc": "2026-09-22T06:58:46Z",
+  "claim_ids_tested": [
+    "INV-063"
+  ],
+  "summary_path": "summary.md"
+}
