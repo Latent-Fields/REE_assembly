@@ -104588,3 +104588,99 @@
     rather than false. LITERATURE NOT VERIFIED AS REE EVIDENCE - the developmental reading is the source
     thought's own extension of Javadzadeh et al. 2026 and is NOT something that paper tested. DO NOT build in
     V3. DO NOT queue an experiment - routing flagged for /governance.
+- id: MECH-580
+  title: 'Within REE''s GLOBAL-SCALAR arousal routes (the three MECH-463 names), arousal alters WHICH
+    candidate is committed only by modulating commit-ELIGIBILITY BREADTH
+    -- the width of the basal-ganglia eligibility envelope, i.e. the size of the candidate set admitted
+    to the commit gate -- never by reordering candidate scores. High phasic arousal narrows the
+    admitted set toward the incumbent (exploit); low or tonic arousal widens it (explore). This
+    WHICH-SET face is dissociable from the WHETHER face (commit threshold / gate: MECH-465, MECH-106,
+    MECH-090) and the WHEN face (E3 cadence: MECH-093, MECH-005), and it is the ONE route by which a
+    global scalar can change the committed candidate without contradicting MECH-463''s
+    argmax-invariance: a scalar cannot reorder K scores, but it can truncate the admitted set and,
+    under a sampled commit pick, change the support the sample is drawn from. PRECONDITION that makes
+    this observable at all: candidate futures must be ACTION-DISCRIMINABLE under the world model
+    (ARC-002 strong form; SD-e1 rollout consistency) -- with near-identical candidate scores a breadth
+    change admits or excludes nothing that differs, so a null under non-discriminable candidates is
+    uninterpretable. The WHEN and WHETHER faces carry no such dependency, which is why the 2026-09-18
+    inertness of the commit-readiness gate and the 2026-09-22 endogenous z_beta dynamic-range defect
+    are instrument faults with their own repairs, not consequences of the world-model gap.'
+  claim_type: mechanism_hypothesis
+  subject: control_plane.arousal_commit_eligibility_breadth
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-22'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-22'
+  source_thought: docs/thoughts/2026-09-22_action_conditioned_world_model_and_arousal_gated_commitment.md
+  location: docs/architecture/commitment_control_faces.md#mech-580
+  depends_on:
+  - MECH-463
+  - MECH-465
+  - MECH-448
+  - ARC-107
+  - MECH-313
+  - MECH-093
+  - MECH-005
+  - MECH-106
+  - MECH-090
+  - ARC-002
+  - ARC-016
+  - ARC-044
+  source:
+  - docs/thoughts/2026-09-22_action_conditioned_world_model_and_arousal_gated_commitment.md
+  - evidence/planning/thought_intake_2026-09-22_action_conditioned_world_model_and_arousal_gated_commitment.md
+  notes: 'Registered 2026-09-22 by thought-ingestion session thought-ingest-acwm-arousal-commit-20260922
+    from the user''s prompt "an action conditioned world model is an owed capability of REE and a
+    genuinely dynamic precision control and arousal control that can alter selection for commitment".
+    Of that prompt''s three threads, the action-conditioned world model is ALREADY OWNED (ARC-002,
+    MECH-135, substrate_queue SD-e1-rollout-consistency-training, and the 2026-09-02 cross-plan
+    root-cause synthesis naming the observation->z_world->E1/E2 interface as the v3 binding
+    constraint), and dynamic precision is ALREADY OWNED (ARC-016 stable; MECH-104/106; INV-022 for
+    heterogeneity). This claim registers the one narrow piece the registry lacked: a WHICH route for
+    arousal that survives MECH-463. WHAT IT GENERALISES: Aston-Jones & Cohen 2005 adaptive-gain
+    (phasic LC = exploit / narrow, tonic LC = explore / broad) read onto the ARC-107 / MECH-448 BG
+    eligibility constitution rather than onto a score reweighting. WHAT IT IS DISTINCT FROM: MECH-463
+    (which it ACCEPTS -- argmax-invariance of scalar routes -- and does not re-litigate); MECH-313
+    (a state-INDEPENDENT stochastic noise floor, also LC-NE-tonic-anchored, vs the state-DEPENDENT
+    admitted-set breadth here; Q-045 asks whether such regulators collapse into one substrate, and
+    this claim adds a second candidate to that question); MECH-465 (WHETHER: does commitment fire; a
+    moving commit RATE under arousal is MECH-465''s result, a confound here); MECH-093 / MECH-005
+    (WHEN: E3 cadence); MECH-359 (scalar too weak to steer -- this claim agrees for score
+    reweighting and locates the scalar''s authority in breadth instead). SUBSTRATE TODAY (V3): the
+    envelope exists (e3_selector.py::_f_eligibility_envelope, f_eligibility_envelope_floor stock
+    0.30, f_eligibility_dn_sigma), the arousal scalars exist (urgency_applied from z_harm_a;
+    ||z_beta||), the sampled-commit levers exist (use_gap_scaled_commit_temperature,
+    use_precision_scaled_commit_temperature) -- ONLY the arousal->envelope COUPLING is unbuilt (a
+    three-site REEConfig knob per /implement-substrate). V3-TESTABILITY NOTE FOR /governance:
+    cheaply testable on existing V3 substrate once that coupling lands, on the GAP-A foraging
+    substrate where V3-EXQ-689d measured committed-class entropy 0.371 -> 0.938 under the envelope;
+    registered v4 by the ingestion default, routing decision deferred to /governance. DO NOT queue an
+    experiment and DO NOT build the coupling before that routing decision. Endogenous-arousal arm is
+    DEGENERATE until substrate_queue mech005-endogenous-arousal-dynamic-range is resolved (endogenous
+    ||z_beta|| spans 0.91% of its mean); exogenous arousal per MECH-463''s protocol is the runnable
+    arm. Digestion draft (what_would_answer, NOT applied) staged at
+    evidence/planning/thought_digestion_staged_2026-09-22_action_conditioned_world_model_and_arousal_gated_commitment.md.
+    LITERATURE (verified 2026-09-22, intake section 4): breadth mechanism SUPPORTED by Eldar, Cohen
+    & Niv 2013 Nat. Neurosci. 16:1146 (global gain sets attentional breadth) and Jepma & Nieuwenhuis
+    2011 J. Cogn. Neurosci. 23:1587 (pupil predicts explore-vs-exploit choice); the WHETHER/WHICH
+    separability by Thura & Cisek 2017 Neuron 95:1160 (BG control urgency of commitment, not target
+    choice), Hanks, Kiani & Shadlen 2014 eLife 3:e02260, and Murphy, Boonstra & Nieuwenhuis 2016
+    Nat. Commun. 7:13526 (gain -> urgency). TWO CAVEATS the literature imposes, recorded not resolved:
+    (i) arousal has a SECOND WHICH route in brains, drift-criterion bias suppression (de Gee et al.
+    2017 eLife 6:e23232; 2020 eLife 9:e54014), which is a per-candidate accumulation effect, not
+    breadth -- in REE that would enter through the per-candidate score_bias route MECH-463 treats
+    separately, which is why this claim is scoped to the global-scalar routes; (ii) LOCUS TENSION:
+    Thura & Cisek 2017 put BG authority on WHETHER, whereas this claim places breadth in the ARC-107
+    BG envelope; a literature-faithful build might put breadth upstream (cortical attentional
+    breadth) and leave the BG on WHETHER -- the falsifier reads admitted-set size and is
+    locus-agnostic. Steinemann, O''Connell & Kelly 2018 Nat. Commun. 9:3627: the faces are separable
+    in locus yet co-recruited by one control demand, so a test must measure the evidence path too.
+    The ordering clause (WHICH-SET presupposes an action-conditioned world model) is anchored ONLY
+    by the model-based-RL literature (Ha & Schmidhuber 2018; Hafner et al. 2019/2020; Lambert,
+    Pister & Calandra 2022), not by any decision-neuroscience result.'
