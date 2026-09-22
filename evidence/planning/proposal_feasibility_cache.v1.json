@@ -30,6 +30,18 @@
     "verdict": "RED"
    }
   ],
+  "ARC-120": [
+   {
+    "chip_ref": "chip-proposal-exp-0557-paced",
+    "producer_paths": [],
+    "reason": "Framing claim with zero ree-v3 substrate footprint (exp=0 entries); its own EXP-0286 proposal is status=blocked_substrate with an explicit DO NOT QUEUE release_condition (three independent gates: total verdict aliasing between 'one sequence' vs 'four gates', all four instance gates confirmed default-off/zero-weighted at runtime 2026-09-03, terminal rung behind the known conversion/F-dominance ceiling). Falsifier is a claims-registry/design-space AUDIT event, not a ree-v3 measurement -- unblocked only by /governance or /claim-synthesis running that audit, never by a producer-path code landing.",
+    "recorded_by": "preflight-batchA-20260922",
+    "recorded_utc": "2026-09-22T12:51:07Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "INV-063": [
    {
     "chip_ref": "chip-proposal-exp-0736-paced",
