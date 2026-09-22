@@ -191,9 +191,65 @@ steward_print_summary() {
   echo "========================================================================="
 }
 
+# ---------------------------------------------------------------------------
+# Audit tally (negative_instrument_audit_20260922.md sec 2.2, ranked item 2).
+# Every warn-only audit below used to be invoked as `... || true` with no exit
+# code captured anywhere, so a crashed audit (ImportError, a moved input, a
+# missing dependency) produced the exact same "Done." as a fully clean run --
+# laundering every OTHER audit's real clean verdict into an unverifiable one.
+# gov_audit_run wraps each such call: it keeps the EXACT same non-blocking
+# posture "|| true" had (these are WARN-ONLY audits by design -- a failing one
+# must not abort the cycle, matching Step 3m's STEWARD_RC pattern below, which
+# is the one place in this file that already captured an exit code and fed it
+# into a printed verdict; this ports that same shape to the rest), but now
+# COUNTS ran/clean/failed and NAMES every failure, so the tally printed near
+# "Done." says how many audits could actually be trusted instead of implying
+# all of them ran clean. A step whose input file is missing and is therefore
+# SKIPPED (e.g. the dangling-claim-refs lint below) must not call this -- "ran"
+# has to mean actually invoked, or the denominator itself would be laundered.
+# ---------------------------------------------------------------------------
+GOV_AUDITS_RUN=0
+GOV_AUDITS_CLEAN=0
+GOV_AUDITS_FAILED=0
+GOV_AUDITS_FAILED_LIST=""
+GOV_AUDIT_TALLY_PRINTED=0
+
+gov_audit_run() {
+  local label="$1" rc
+  shift
+  GOV_AUDITS_RUN=$((GOV_AUDITS_RUN + 1))
+  if "$@"; then
+    GOV_AUDITS_CLEAN=$((GOV_AUDITS_CLEAN + 1))
+  else
+    rc=$?
+    GOV_AUDITS_FAILED=$((GOV_AUDITS_FAILED + 1))
+    if [ -n "$GOV_AUDITS_FAILED_LIST" ]; then
+      GOV_AUDITS_FAILED_LIST="${GOV_AUDITS_FAILED_LIST}, ${label} (exit ${rc})"
+    else
+      GOV_AUDITS_FAILED_LIST="${label} (exit ${rc})"
+    fi
+    echo "AUDIT FAILED: ${label} exited ${rc} -- continuing (warn-only, non-blocking; see the tally near Done.)" >&2
+  fi
+}
+
+gov_audit_tally_print() {
+  [ "$GOV_AUDIT_TALLY_PRINTED" = "0" ] || return 0
+  GOV_AUDIT_TALLY_PRINTED=1
+  echo ""
+  echo "--- Audit tally (warn-only audits; blocking gates -- Step 0/4b/9c -- are separate) ---"
+  echo "  ${GOV_AUDITS_RUN} audit(s) ran: ${GOV_AUDITS_CLEAN} clean, ${GOV_AUDITS_FAILED} failed."
+  if [ "$GOV_AUDITS_FAILED" -gt 0 ]; then
+    echo "  FAILED: ${GOV_AUDITS_FAILED_LIST}"
+  fi
+}
+
 gov_on_exit() {
   local rc=$?
   gov_claim_close "$rc"
+  # Tally first so an early abort (Step 0 / 4b / 9c) still surfaces however many
+  # warn-only audits ran before the abort; guarded so the normal-completion
+  # in-body call near "Done." (below) is not printed twice.
+  gov_audit_tally_print
   # Printed AFTER the claim release so the escalation verdict is the final thing
   # on the screen, and so a failure in either cannot swallow the other.
   steward_print_summary
@@ -231,7 +287,7 @@ echo "--- Step 0b: Claim phase-consistency (warn-only: phase-label-follows-depen
 # candidates) per docs/architecture/claim_phase_provenance.md. Report-only; does
 # not edit claims.yaml. Promote to --strict (blocking) once the backlog is
 # adjudicated -- same trajectory validate_claims.py took. Never blocks today.
-"$PYTHON" scripts/check_claim_phase_consistency.py --warn || true
+gov_audit_run "check_claim_phase_consistency.py" "$PYTHON" scripts/check_claim_phase_consistency.py --warn
 
 if [ "$V2" -eq 1 ]; then
   echo "--- Step 1/7: Syncing V2 results from ree-v2/ ---"
@@ -267,7 +323,7 @@ echo "--- Step 3c-pre: Closure-plan frontmatter strict-YAML lint (warn-only) ---
 # .claude/skills/governance/SKILL.md Step 7 (Git sync), with
 # hygiene_routine_tick.py source 9 as the mechanical backstop. Do not "simplify"
 # either away on the grounds that this line already covers it -- it does not.
-"$PYTHON" scripts/check_plan_frontmatter.py || true
+gov_audit_run "check_plan_frontmatter.py" "$PYTHON" scripts/check_plan_frontmatter.py
 
 echo "--- Step 3c-quater: Closure-map dangling-link check (warn-only) ---"
 # Flags depends_on / cross_plan_link targets that are neither a node id nor a plan
@@ -277,7 +333,7 @@ echo "--- Step 3c-quater: Closure-map dangling-link check (warn-only) ---"
 # dangling ref (excluding the one exempt sleep_substrate:GAP-2 back-pointer); kept
 # warn-only here -- run `python scripts/check_closure_links.py` directly as a strict
 # gate. Promote to blocking once the closure frontmatter is stable.
-"$PYTHON" scripts/check_closure_links.py || true
+gov_audit_run "check_closure_links.py" "$PYTHON" scripts/check_closure_links.py
 
 echo "--- Step 3c-quinquies: Plan Status-table vs frontmatter sync (warn-only) ---"
 # Flags a plan whose markdown "Status table" row disagrees with its own YAML
@@ -289,7 +345,7 @@ echo "--- Step 3c-quinquies: Plan Status-table vs frontmatter sync (warn-only) -
 # primitive" and what a cold-start session reads first. Measured 2026-07-29: six
 # plans described completed work as outstanding, node record current in all six.
 # Reconcile the ROW, never the node. Warn-only (--exit-nonzero to gate).
-"$PYTHON" scripts/check_plan_status_table_sync.py --quiet-notes || true
+gov_audit_run "check_plan_status_table_sync.py" "$PYTHON" scripts/check_plan_status_table_sync.py --quiet-notes
 
 echo "--- Step 3c-sexies: Manifest degeneracy annotation vs its own arm data (warn-only) ---"
 # Cross-checks each manifest's arm-degeneracy ANNOTATION against the per-seed arm
@@ -306,7 +362,7 @@ echo "--- Step 3c-sexies: Manifest degeneracy annotation vs its own arm data (wa
 # direction mints a scored entry out of a vacuous run. Detection only: a finding
 # needs a /failure-autopsy adjudication of WHY the arms collapsed, never a
 # mass-set of the flag. Warn-only (--exit-nonzero to gate).
-"$PYTHON" scripts/check_manifest_degeneracy_consistency.py --quiet-notes || true
+gov_audit_run "check_manifest_degeneracy_consistency.py" "$PYTHON" scripts/check_manifest_degeneracy_consistency.py --quiet-notes
 
 echo "--- Step 3c-pre-heal: Self-heal status-plane drift (SHP-3; re-stamp in place, NO commit) ---"
 # status_history_plane:SHP-3. Closes the SHP-3 automation gap: check_closure_drift's
@@ -320,7 +376,7 @@ echo "--- Step 3c-pre-heal: Self-heal status-plane drift (SHP-3; re-stamp in pla
 # plan that still has un-collapsed blob nodes is SKIPPED (collapse-migration stays a
 # human step) and surfaced with its manual command. Exits 0 always (a hint, never a
 # gate). PROMOTES/DEMOTES NOTHING; edits only derived live:/join: blocks.
-"$PYTHON" scripts/heal_status_plane_drift.py || true
+gov_audit_run "heal_status_plane_drift.py" "$PYTHON" scripts/heal_status_plane_drift.py
 
 echo "--- Step 3c: Closure-plan drift check (warn-only) ---"
 "$PYTHON" scripts/check_closure_drift.py
@@ -338,13 +394,13 @@ echo "--- Step 3c-bis-6: Scientific Progress Dashboard rollup (Build/Prove/Narro
 # evidence/planning/hypothesis_space.v1.json (+ append-only time series) for the
 # /progress dashboard. Runs AFTER the closure snapshot so Dimension 2 embeds the
 # fresh closure %. Never a gate; exits 0. NO write-back to claims.yaml/closure/scorer.
-"$PYTHON" scripts/build_hypothesis_space.py || true
+gov_audit_run "build_hypothesis_space.py" "$PYTHON" scripts/build_hypothesis_space.py
 
 echo "--- Step 3c-bis-6b: Hypothesis-space integrity audit (anti-Goodhart, warn-only) ---"
 # Sibling of check_closure_drift.py. Flags un-backed surviving-count drops,
 # post-hoc enlargement of a frozen initial set, and confirmed nodes lacking a
 # passed control. Advisory, non-blocking; exits 0.
-"$PYTHON" scripts/check_hypothesis_space_integrity.py || true
+gov_audit_run "check_hypothesis_space_integrity.py" "$PYTHON" scripts/check_hypothesis_space_integrity.py
 
 echo "--- Step 3c-bis-2: Current-front routing doc (SHP-6; derives docs/CURRENT_FRONT.md) ---"
 # SHORT, LIVE-ONLY front doc the Session-Startup entry docs route to (fixes the
@@ -391,10 +447,10 @@ echo "--- Step 3c-bis-5: Claims live_status drift check (SHP-4; warn-only) ---"
 # `scripts/apply_live_status.py` under a TASK_CLAIMS claim on docs/claims/claims.yaml.
 # (Event-provenance drift is warn-only even in --strict -- it fluctuates as the fleet
 # produces evidence.) PROMOTES/DEMOTES NOTHING; edits no claims.yaml.
-"$PYTHON" scripts/claims_live_status_drift.py || true
+gov_audit_run "claims_live_status_drift.py" "$PYTHON" scripts/claims_live_status_drift.py
 
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
-"$PYTHON" scripts/validate_brain_region_map.py || true
+gov_audit_run "validate_brain_region_map.py" "$PYTHON" scripts/validate_brain_region_map.py
 
 echo "--- Step 3e: Substrate-ceiling mapping + exhaustion audit (warn-only) ---"
 # Reports the substrate_ceiling partition (mapped / parked / self-handled /
@@ -402,7 +458,7 @@ echo "--- Step 3e: Substrate-ceiling mapping + exhaustion audit (warn-only) ---"
 # (>=N confirmed ceiling autopsies with no richer-substrate win -> surface for
 # user-approved demotion at governance Step 6a-v). Read-only; never edits
 # claims.yaml. Warn-only here -- run with --strict for a blocking CI gate.
-"$PYTHON" scripts/check_substrate_ceiling_audit.py || true
+gov_audit_run "check_substrate_ceiling_audit.py" "$PYTHON" scripts/check_substrate_ceiling_audit.py
 
 echo "--- Step 3f: Diagnostic-chain recurrence audit (GOV-DIAG-1, warn-only) ---"
 # Diagnostic-side analog of the claim-keyed re-derive brake / GOV-CEIL-1. Counts
@@ -412,7 +468,7 @@ echo "--- Step 3f: Diagnostic-chain recurrence audit (GOV-DIAG-1, warn-only) ---
 # overlay (governance Step 6a-v-ter). Catches the claim_ids=[] chains that
 # accumulate ZERO on every claim-keyed counter. Read-only; promotes/demotes
 # nothing. Warn-only here -- run with --strict for a blocking CI gate.
-"$PYTHON" scripts/check_diagnostic_chain_recurrence.py || true
+gov_audit_run "check_diagnostic_chain_recurrence.py" "$PYTHON" scripts/check_diagnostic_chain_recurrence.py
 
 echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---"
 # The THIRD claim-keyed recurrence sibling and the standing-scan complement to the
@@ -432,7 +488,7 @@ echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---
 # existing claim_synthesis doc / suppressed epistemic_category). Read-only;
 # promotes/demotes nothing; response is a human decision at Step 6a-v-quater. Run
 # with --strict for a blocking CI gate.
-"$PYTHON" scripts/check_granularity_debt_recurrence.py || true
+gov_audit_run "check_granularity_debt_recurrence.py" "$PYTHON" scripts/check_granularity_debt_recurrence.py
 
 # GOV-CAT-1 -- the DATA-QUALITY sibling of the three recurrence scans above.
 # Those three ask what a set of verdicts MEANS; this one asks whether the verdict
@@ -462,7 +518,7 @@ echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---
 # out-of-enum value in a listed artifact still fires, and a new artifact is not
 # listed at all. Warn-only and deliberately NOT part of --strict (whose contract
 # is unchanged); --strict-validity is the opt-in gate.
-"$PYTHON" scripts/check_epistemic_category_completeness.py || true
+gov_audit_run "check_epistemic_category_completeness.py" "$PYTHON" scripts/check_epistemic_category_completeness.py
 
 echo "--- Step 3h: Unapplied confirmed-autopsy recommendations (GOV-APPLY-1, warn-only) ---"
 # The FIFTH sibling, and the one that closes the already-reviewed blind spot. The
@@ -485,7 +541,7 @@ echo "--- Step 3h: Unapplied confirmed-autopsy recommendations (GOV-APPLY-1, war
 # -- that alternative was measured at 338 mismatches, overwhelmingly NOT defects (an
 # affirming autopsy legitimately recommends a category the claim layer never mirrors).
 # Read-only; promotes/demotes nothing. --strict for a blocking CI gate.
-"$PYTHON" scripts/check_unapplied_autopsy_recommendations.py || true
+gov_audit_run "check_unapplied_autopsy_recommendations.py" "$PYTHON" scripts/check_unapplied_autopsy_recommendations.py
 
 echo "--- Step 3i: Dry-run adjudication leak (GOV-DRY-1, warn-only) ---"
 # The SIXTH sibling, and the only one that asks whether a verdict rests on evidence
@@ -521,7 +577,7 @@ echo "--- Step 3i: Dry-run adjudication leak (GOV-DRY-1, warn-only) ---"
 # already adjudicated (still printed, never hidden); future adjudications use the
 # in-band, hit-scoped `dry_run_citation_metabolized` marker. Read-only; every write
 # it recommends is governance's. --strict for a blocking CI gate.
-"$PYTHON" scripts/check_dry_run_adjudication_leak.py || true
+gov_audit_run "check_dry_run_adjudication_leak.py" "$PYTHON" scripts/check_dry_run_adjudication_leak.py
 
 echo "--- Step 3j: Skill-improvement recurrence audit (GOV-SKILL-1, warn-only) ---"
 # The SEVENTH sibling, and the first that audits the SKILLS themselves rather
@@ -549,7 +605,7 @@ echo "--- Step 3j: Skill-improvement recurrence audit (GOV-SKILL-1, warn-only) -
 # mtime changed since the last sweep) with cross-run accumulation, so
 # threshold counting stays correct across separate invocations. Read-only;
 # promotes/demotes nothing; --strict for a blocking CI gate.
-"$PYTHON" scripts/check_skill_improvement_recurrence.py || true
+gov_audit_run "check_skill_improvement_recurrence.py" "$PYTHON" scripts/check_skill_improvement_recurrence.py
 
 echo "--- Step 3k: Substrate-path overlap audit (GOV-SUBPATH-1, warn-only) ---"
 # The EIGHTH standing scan, and the backward half of the /queue-experiment Step 2.5c consumer
@@ -570,7 +626,7 @@ echo "--- Step 3k: Substrate-path overlap audit (GOV-SUBPATH-1, warn-only) ---"
 # and completed AFTER the entry's added_utc. Read-only; never edits a manifest or
 # substrate_queue.json. Warn-only, always exits 0 unless --strict -- a human decides whether to
 # re-review; this only surfaces the candidates.
-"$PYTHON" scripts/check_substrate_path_overlap.py || true
+gov_audit_run "check_substrate_path_overlap.py" "$PYTHON" scripts/check_substrate_path_overlap.py
 
 echo "--- Step 3l: Citation staleness scan (GFLAG-0010, warn-only) ---"
 # Confirmed incident: SD-087/SD-020/SD-086 cited config.py:2306,
@@ -585,7 +641,7 @@ echo "--- Step 3l: Citation staleness scan (GFLAG-0010, warn-only) ---"
 # what is mechanically checkable without understanding the cited code.
 # Warn-only, always exits 0 unless --exit-nonzero -- a human decides whether
 # a flagged citation needs fixing; this only surfaces the candidates.
-"$PYTHON" scripts/check_citation_staleness.py || true
+gov_audit_run "check_citation_staleness.py" "$PYTHON" scripts/check_citation_staleness.py
 
 echo "--- Step 3l-bis: Dangling claim-reference audit (warn-only) ---"
 # The TENTH standing scan, and the only one that reads the SESSION LOG rather
@@ -622,7 +678,7 @@ echo "--- Step 3l-bis: Dangling claim-reference audit (warn-only) ---"
 # lint that can wedge the regen is worse than no lint.
 DANGLING_REFS_LINT="../scripts/audit_dangling_claim_refs.py"
 if [ -f "$DANGLING_REFS_LINT" ]; then
-  "$PYTHON" "$DANGLING_REFS_LINT" --root .. || true
+  gov_audit_run "audit_dangling_claim_refs.py" "$PYTHON" "$DANGLING_REFS_LINT" --root ..
 else
   echo "NOTE: $DANGLING_REFS_LINT not found (umbrella repo not checked out beside" >&2
   echo "      REE_assembly) -- dangling claim-reference audit skipped." >&2
@@ -734,7 +790,7 @@ echo "--- Step 4a: Rebuilding epistemic overlay (posteriors + emergent_from alar
 # posteriors in claim_evidence.v1.json (Step 2) with the emergent_from edges in
 # claims.yaml -> docs/assets/data/epistemic_overlay.json. Promotes/demotes
 # nothing. Plan: evidence/planning/epistemic_overlay_plan.md.
-"$PYTHON" scripts/build_epistemic_overlay.py || true
+gov_audit_run "build_epistemic_overlay.py" "$PYTHON" scripts/build_epistemic_overlay.py
 
 echo "--- Step 4b: Backward traceability check (G2) ---"
 if ! "$PYTHON" scripts/check_backward_traceability.py; then
@@ -797,6 +853,8 @@ echo "--- Step 10: Refreshing the goblin tale's campaign stanza (from closure sn
 # (and the private canonical tale if present). Never writes an episode; never
 # names the soul. Depends on the Step 3c-bis closure snapshot.
 "$PYTHON" scripts/update_goblin_tale.py
+
+gov_audit_tally_print
 
 echo ""
 echo "Done. Check evidence/experiments/pending_review.md for experiments awaiting review."
