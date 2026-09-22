@@ -175,6 +175,16 @@ MECH-005, and the evidence entry must say so.
 
 ## Reproduction
 
+**The three pilot scripts below live in the session scratchpad and are NOT version
+controlled** -- they will be garbage-collected. That is deliberate (same convention as the
+2026-09-11 refusal's red-team probes), and nothing is lost by it: every number this
+document relies on is tabulated inline above, and the Method section fully specifies a
+rebuild (training config, seed, tick counts, arousal levels, and the two fixes applied).
+Two `substrate_queue.json` rows cite this document as their `design_doc`
+(`mech005-endogenous-arousal-dynamic-range`,
+`mech005-betagate-decommit-counter-and-commit-ceiling`), so treat the tables, not the
+paths, as the durable artifact.
+
 ```
 # P1 -- the DV is live, and e3_steps is a per-arm constant:
 /opt/local/bin/python3 /Users/dgolden/REE_Working/.scratch/pilot_mech005_margin_dv.py
