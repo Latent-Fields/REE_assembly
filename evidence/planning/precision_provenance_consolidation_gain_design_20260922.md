@@ -235,3 +235,93 @@ organism-level follow-up is a separate chip on B1.
 (to be appended after the smoke / liveness / non-degeneracy probes, before the full run; must
 list every constant with its final value, every gate's measured value, and any constant changed
 since section 5 with the probe statistic that motivated it)
+
+---
+
+## 15. Freeze record (appended 2026-09-22, session `compassionate-pike-fe9174`, BEFORE the full run)
+
+**Substrate:** SD-PP-1..4 landed on ree-v3 `main` (commit named in the queue entry); remote suite 6493 passed
++ the flag-registry fix; 45 new contract tests + 7 integration contracts green. Driver
+`experiments/v3_exq_1073_mech572_precision_provenance_gain.py`, validator `--strict` clean, red-team
+(Step 4.5) CONTESTED with 8 findings, all applied (below).
+
+**Probe artefacts (waking-channel statistics, seed 42, full P0 3600 + full 180-step calibration, one
+cycle; the run's own `--probe` mode reproduces them):**
+
+| cond | ev_var median | sigma_obs | kappa | pi_hist sd | surprise median | frac>10 | pe_mean | pi_cur | skill |
+|---|---|---|---|---|---|---|---|---|---|
+| converged clean | 3.53e-9 | 0.005 (floor) | 1.41e-4 | 1.84e5 | 0.68 | 0.006 | 4.53e-6 | 6.22e5 | -0.071 |
+| underfit | 1.16e-8 | 0.005 | 4.63e-4 | 7.2 | 1.02 | 0 | 7.61e-3 | 134 | -540 |
+| confidently wrong | 5.28e-9 | 0.005 | 2.11e-4 | 3.65e4 | 0.79 | 0.006 | 1.11e-5 | 1.84e5 | -0.071 |
+| noisy contradiction | 1.59e-6 | 0.119 | 1.08e-4 | 2.75e5 | 0.49 | 0.006 | 6.96e-6 | 7.11e5 | -0.071 |
+
+ARM C realised gain per condition (k / m / r means, step scale): converged 0.997 / 0.022 / 1.06 ->
+**0.038**; underfit 1.0 / 0.86 / 1.01 -> **1.78**; confidently wrong 0.999 / 0.031 / 1.02 -> **0.072**;
+noisy 0.440 / 0.015 / 1.12 -> **0.027**. The four regimes separate ~67x, and the Kalman term is the
+factor that discounts the noisy condition (k 0.44 vs ~1.0 elsewhere).
+
+Attainability ladder (global scale -> displacement -> retention_r0, seed 42): 0.02 -> 1.6e-4 -> 0.078;
+0.05 -> 4.0e-4 -> 0.47; 0.1 -> 8.0e-4 -> 1.80; 0.5 -> 4.0e-3 -> 22.1; 1.0 -> 8.0e-3 -> 19.8; 2.0 ->
+1.6e-2 -> 18.8. Displacement is exactly linear in the scale (G1 live); retention is NON-monotone above
+scale 0.5.
+
+**Gate outcomes at full budget (seed 42):** G3 leg 1 0.0022 (< 0.25) pass; G3 leg 2 sigma_obs equal at
+the floor pass; G3b 0.579 (<= 2.0) pass; G4 pass; G4b FAIL (early surprise frac 0.033 vs >= 0.5);
+G5 4628x pass; G8 FAIL (skill -0.071); G9 FAIL (pe ratio 0.74 vs > 2.0).
+
+**Pre-freeze amendments, each motivated by a probe statistic, none by a post-sleep DV of the full
+run** (the seed-42 probe did print cycle-1 retention values; no threshold or constant was changed in
+response to them, and the two changes below to P2 are motivated by the LANDED V3-EXQ-1063 numbers and
+the ladder, which reads a global-scale arm, not ARM C):
+
+1. **Calibration window (A1).** Every arm cell starts from the cached P0 head with NO estimator
+   history, so `pi_hist` began at exactly `1/v_init = 100` in every condition (probe). A 180-step clean
+   calibration window (env seed+2, never used by any condition) now runs once per base and its
+   estimator state (SD-PP-1/2 `get_state`) is restored identically into every arm. Effect: converged
+   `v_tot` 5.1e-6 vs underfit 7.9e-3 at P1 entry; G5 moved from 3.7x (cold) to 4628x.
+2. **G3 statistic (A2).** The original leg averaged `evidence_precision_z` (a 1/x quantity dominated by
+   cold-start frames: 0.66 ratio); it now uses the packet MEDIAN of `evidence_variance_z` (0.0022).
+   Threshold unchanged (0.25).
+3. **G3 leg 2 rescoped (A2'/F2).** The kappa-ratio leg (|log2| <= 1) tested kappa invariance between
+   two CLEAN regimes, and kappa is measured on motion (SD-PP-1 limitation; register B7). It is now the
+   non-routing marker G3b with threshold 2.0 (a 2x kappa shift moves K by ~1%), and the verdict-routing
+   leg 2 is the direct assertion the old leg meant: sigma_obs medians of cond 1 and cond 3 equal, AT the
+   floor. Measured: G3b 0.579 at full budget (3.795 at a 30-step calibration).
+4. **G4 split (A3).** G4 keeps the `pi_hist`-varies leg as verdict-routing; the surprise leg is now G4b,
+   non-routing, marking P4/P7 (and P6's correction leg) `non_degenerate=False` when unmet. Reason: the
+   converged head is near copy-the-input (skill -0.071, MECH-573) and barely reads the action, so
+   inverting the action map is not a contradiction (inverted-rule battery MSE 1.13e-5 vs original
+   1.49e-5). This is substrate necessity **B5**, measured; G9 fails for the same reason. Condition 3
+   and ARM C-nohist stay in the run so that the finding is recorded on three seeds.
+5. **P2 restated (F1).** The absolute ceiling `ret(C) < 0.10` was scaled against "MECH-572 rise ~100%";
+   the landed V3-EXQ-1063 seed-42 rise is ~480% over three cycles, and the ladder shows `ret < 0.10`
+   needs a budget below ~0.022 while ARM C's realised converged gain is 0.038. The load-bearing P2 leg
+   is now `ret(C) < ret(B) - margin` (protection relative to baseline); the absolute bar is reported as
+   the non-routing P2b ("MECH-572 rise within 10% of residual"). No gain constant changed.
+6. **ARM D-residual redesigned (batch 4).** As built, `residual_only` inherited the pooled global
+   budget `c_seed` (~0.48, dominated by the underfit condition's 1.78), so it could not reallocate
+   budget across conditions and was a weak rival. It now schedules from the CURRENT per-row residual:
+   `g_i = clip(G_MAX * sqrt(pe_cur_i / V_REF), G_MIN, G_MAX)`, no stored packet, no precision term
+   (i.e. C's magnitude factor with K = 1, r = 1 and the current rather than stored innovation). ARM
+   D-global is unchanged and is the matched-TOTAL-budget rival; its per-condition budget skew (Dg ~12x
+   C's gain in cond 1, ~7x in cond 3) is recorded in the manifest and P6 must be read against it.
+7. **Preconditions tightened (F3):** packets-per-buffer-entry >= 0.99; gain rows with provenance
+   >= 0.9. **Consumer-liveness marker (F4):** G1b, ARM C's realised step scale must differ from 1.0
+   (0.976 at seed 42). **Pairing (F5):** encoder-parameter hash asserted against the base build; action
+   buffer and post-cycle RNG hashes added to G2. **Budget ratios (F6)** recorded per condition.
+   **`--probe` mode (F7)** is the freeze artefact. **Docs (F8):** R3 requires P2 pass AND P4 fail;
+   R7 reachable only when R1/R2/R3 do not fire; `precision_source` is `"ema"` on every packet (SD-063
+   head off in every arm), so `pi_hist` is global and state-blind.
+
+**Frozen constants:** NOISE_GAIN 2.0, V_REF 1e-2, BETA 0.5, R_MAX 3.0, G_MIN 0.02, G_MAX 2.0,
+obs_ema_alpha 0.2, kappa_ema_alpha 0.05, sigma_floor 0.005, pe_ema_alpha 0.05, v_floor 1e-6, v_init 1e-2,
+source sd063_or_ema (resolves to ema), CALIB_STEPS 180, seeds (42, 123, 456), N_CYCLES 2, MARGIN 0.02,
+G3 0.25, G3b 2.0, G4b 0.5 / 3.0, G5 10, G9 2.0, LIVENESS_SCALES (0.02, 0.05, 0.1, 0.5, 1.0, 2.0).
+
+**Expected disposition, stated before the run:** P1 passes (by construction, that is its job); P3 is
+the one contrast expected both readable and informative; P2 (relative) likely passes; P2b likely fails;
+P4/P6-correction/P7 will be marked non-degenerate on every seed where G4b/G9 fail (B5); P2/P5/P6 are
+marked non-degenerate on seeds where the converged base fails MECH-573's skill > 0 (1063: seed 123
++0.227, seeds 42/456 negative). The citable yield is therefore: A/B neutrality, the factor-by-factor
+mechanism readout (k/m/r per condition), the attainability curve, P3, and a three-seed instrument
+record that condition 3 is unposeable on this head. Ceiling remains Result 4 (mechanistic/local).
