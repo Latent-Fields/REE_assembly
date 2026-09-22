@@ -1,6 +1,14 @@
 # ARC-029 -- alternating-arm occupancy + detrend-validity probe: pre-registration spec
 
-Status: **DRAFT SPEC -- not queued, not implemented.**
+Status: **WITHDRAWN 2026-09-22 -- the manipulation this spec is built on cannot fire.**
+See section 11. The MECH-108 sweep is structurally unreachable at rung L1, the
+user's disposition was to drop the oscillator and treat the variance-tracking bar
+alone as the manipulation, and that dissolves this probe rather than reshaping it
+(V3-EXQ-1070a already answers every question it posed). NO experiment was queued;
+EXQ id 1074 was reserved and released. Recorded as GFLAG-0421.
+Sections 1-10 are kept as the design record, NOT as a live plan.
+
+Original status: **DRAFT SPEC -- not queued, not implemented.**
 **REFUSED at `/queue-experiment` Step 2.5c on 2026-09-22 (GFLAG-0418).** Two open
 `severity: corrupting` substrate_queue rows (`mech005-betagate-decommit-counter-and-commit-ceiling`,
 `mech005-endogenous-arousal-dynamic-range`) overlap `ree_core/agent.py` and
@@ -439,3 +447,84 @@ pointer, not a superseding note. In summary:
 
 Found by arithmetic on 1070a's own recorded dispersion, before any compute was
 spent. Cell count 36 -> 45, budget 90 -> 120 minutes.
+
+---
+
+## 11. WITHDRAWN -- the oscillator cannot fire at L1 (2026-09-22, GFLAG-0421)
+
+Found at `/queue-experiment` Step 2.5d, before any driver was written.
+
+**Mechanism, at source.** `Clock.reset()` sets `_breath_phase_step = 0`
+(`ree-v3 ree_core/heartbeat/clock.py:231`, its own comment: *"MECH-108: reset
+breath cycle state across episodes"*). `REEAgent.reset()` calls it
+(`agent.py:3718`). Every driver in this family calls `agent.reset()` per episode.
+The sweep is active only while `_breath_phase_step >= breath_period -
+sweep_duration` (`clock.py:120`), and the counter advances once per env step
+(`clock.py:170`). **So the sweep fires only if an EPISODE is long enough to reach
+that phase.**
+
+**Measured at L1**, from 1070a's own `arm_results`: mean episode length
+**7.99-13.97 env steps** across the six cells (`min_episode_length` 5-6), against
+a sweep that at this spec's `breath_period=25 / sweep_duration=5` begins at phase
+step **20**. It is never reached. A run would have reported "alternating arm
+indistinguishable from static" -- a confident null on a manipulation that never
+happened.
+
+**This is not a parameter typo.** `breath_period` must be shorter than the
+episode, but L1 episodes are only **7.0-8.8 select calls** long while 1070a's
+`mean_committed_run_length` is already **4.56-6.62** -- a committed run fills most
+of an episode, leaving no room for a within-episode alternation between two
+regimes of >= 3 ticks. Shrinking `sweep_duration` far enough to fire turns the
+sweep into isolated de-committed SELECTIONS rather than the uncommitted WINDOWS
+ARC-029's text describes. **It is the section-5 P1/P3 bind of
+`failure_autopsy_V3-EXQ-1070a_2026-09-22`, reappearing in the ARM rather than the
+bar:** the env that keeps `harm_snr` above the P3 floor has episodes too short to
+host the oscillation.
+
+### 11.1 Disposition, and why this spec is withdrawn rather than repaired
+
+**User decision 2026-09-22: drop the oscillator; the variance-tracking bar alone
+is the manipulation.** ARC-029's `what_would_answer` permits it -- *"the
+variance-tracking quantile commitment bar, **or** a MECH-108 BreathOscillator
+sweep"*. That makes GFLAG-0416's open construct question load-bearing rather than
+incidental: **governance must rule on the "or"** before an ARC-029 successor is
+designed.
+
+With the oscillator gone, every question sections 1-5 pose is already answered by
+1070a -- Q1 is moot, Q3 is answered (P1 holds 6/6 at L1), Q2 is substantially
+answered (`|occupancy - q| <= 0.0658`, dispersion recorded), and R3 is not
+testable because bar-alone has no non-degenerate control (see 9.2). So the probe
+dissolves. **Nothing was queued.**
+
+### 11.2 What IS unmeasured -- the actual gap a successor should close
+
+1070a carries `mean_harm_per_step`, `harm_snr` and `sd_harm_per_step` but **no
+committed-vs-uncommitted split**: `harm_per_step_committed`,
+`harm_per_step_uncommitted`, `n_steps_committed` and `n_steps_uncommitted` are all
+absent from every cell.
+
+**ARC-029's C1 -- "committed windows carry lower harm per step than uncommitted
+windows in the stable env" -- has never been measured at an operating point where
+P1 and P3 both hold.** `v3_exq_1066_...py`'s `_Roll.harm_by_state` already
+computes it, so the successor is a short derivation. But it is an EVIDENCE run,
+and it is blocked on two things: the "or" ruling above, and the control-arm gap in
+**9.2** (under bar-alone the natural control is the static ABSOLUTE threshold,
+which is degenerate at a trained operating point -- occupancy 1.0000, the measured
+V3-EXQ-063a defect).
+
+### 11.3 Two instrument facts banked for that successor
+
+- **`e3_score_decomp_enabled` defaults `False`** (`e3_selector.py:639`) and gates
+  the entire `last_score_diagnostics` block (`:4099`). A driver that omits it
+  measures occupancy **0.0, silently**. Reproduced live in this session's probe:
+  **0 select calls recorded while the commit window filled to 200/200.** 1066 sets
+  it at `:481` and `:717`; any derivation must keep both.
+- **`commit_threshold_quantile` IS read live per bar computation**
+  (`e3_selector.py:985`). Confirmed by mutating it on a built agent: bars
+  1.809e-03 / 2.967e-03 / 4.498e-03, monotone in q, window fill unchanged at 200.
+  **One trained agent can serve every quantile** -- a 3x training saving for any
+  successor that sweeps q.
+- Also measured, and a warning for any ladder sized off 1070a's numbers: the
+  log-residual dispersion is **0.719 untrained** vs **0.0232-0.0318 trained**. Any
+  amplitude or threshold ladder calibrated in SD units needs a P0 readiness assert
+  on the TRAINED dispersion, or it lands in a different regime than designed.
