@@ -478,3 +478,92 @@ flag is off, no driver sets any of them, and the `occ_cos` DV still cannot
 discriminate at the powers those experiments were run at. SD-017 / ARC-045 /
 MECH-166 are unblocked only once the validation experiment above has run with
 a mechanism explicitly enabled AND (for `gumbel_learned`) actually trained.
+
+---
+
+## FOURTH piece: the live-encoder write tap, SD-CM-LIVETAP (2026-09-22)
+
+**This section supersedes one diagnosis above.** The "NOT proven" list attributes
+`gumbel_learned`'s failure to move off its near-uniform starting point to the
+same symmetry-breaking difficulty `compute_diversification_loss()` is documented
+as having. That analogy is now known to be incomplete, and in the more important
+respect wrong: the tagger was not merely hard to train, it was being asked to
+discriminate content in a representation **that could not change**.
+
+### The measurement
+
+V3-EXQ-972a (2026-09-07) measured, directly: **0 of 49 `latent_stack` parameters
+changed**, and the trained lineage hash-identical to `UNTRAINED_ENCODER` on 8 of
+8 comparisons. Registered as hypothesis `H5-frozen-encoder-harness`, `confirmed`,
+in the frozen portfolio `contextmemory_write_content_discrimination`.
+
+Three independent detach points produced it, all of them correct in isolation:
+
+1. `compute_write_addressing_loss` takes "a caller-supplied batch of
+   already-detached states" (its own docstring, and the convention every driver
+   follows);
+2. the agent-side SD-016 Part B2 write hook builds `obs_state` from
+   `new_latent.z_self.detach()` / `z_world.detach()`;
+3. V3-EXQ-971's H3 task-coupling requires the same ("`h3_state` MUST already be
+   detached by the caller").
+
+So **every** write-side objective -- the standalone auxiliary loss AND the
+read-path task gradient -- reached `write_addr_tagger` and stopped.
+
+### The consequence for the legs already measured
+
+`H2-operating-point` and `H3-task-pressure-required` are both still `alive` and
+are now flagged as having been measured on a frozen-encoder harness. Their
+readings do not mean what they appear to mean, and both are owed a re-measure.
+
+Note the structural point this settles: **H3 was never an alternative to fixing
+the encoder.** It is a different DRIVE SOURCE (task gradient rather than
+standalone auxiliary loss) that shared the identical defect. A live encoder is a
+shared precondition for both, not a rival to either.
+
+### What was built
+
+`SD-CM-LIVETAP` -- a bounded ring of the same written states, captured WITHOUT
+detach at the one site on the write path where the graph to `latent_stack` still
+exists, plus a general consumption surface so any loss can be routed through it.
+Default off; nothing added to `state_dict()` when off. Full record:
+`ree-v3/docs/substrate/SD-CM-LIVETAP-live-encoder-write-tap.md`.
+
+Measured after the build, same probe, real rollout: **OFF 0/49, ON 39/49.**
+
+**The MECH-165 exploration buffer was NOT touched**, and the locus
+`substrate_queue.json` records (`agent.py:5835-5836`, "experience buffers store
+z_self/z_world `.detach().clone()`") is **the wrong one for this defect** -- it
+describes `REEAgent._record_exploration_state`, a replay-diversity/telemetry
+store that is detached by design and is not on the write path. That entry needs
+correcting.
+
+### What is still open
+
+The open question is unchanged in substance and now askable for the first time:
+whether `contextmemory_write_addressing_loss_weight` at a realistic weight, over
+a realistic schedule, produces content-conditioned addressing -- **with the
+encoder allowed to move**. There is content to condition on: V3-EXQ-972a's
+held-out probe read excess 0.335 at 84.4% balanced accuracy, superseding
+V3-EXQ-972's "no structure" reading.
+
+Two constraints on whoever designs that experiment:
+
+1. **The C2 DV must be re-posed or properly powered first.** The portfolio's
+   `observation_bottleneck` records it as near-binary and unable to resolve
+   graded change at n=5-6; ties saturate paired tests and force exact p-grids
+   whose floor can exceed the corrected alpha. This is why V3-EXQ-969 and
+   V3-EXQ-971 both returned non-adjudicating. A 4-cell drive-source comparison
+   at n=5 makes it worse, not better. H4's train-time cone measurement
+   (separability 0.0281) is the one readout in the portfolio that did resolve.
+2. **Measure what the encoder pays.** A pairwise-diversity loss on a shared
+   encoder can be satisfied degenerately by inflating encoder output scale, at
+   the cost of `z_world`'s predictive content. Read E1/E2 prediction quality ON
+   vs OFF alongside the addressing DV.
+
+### Status unchanged
+
+Severity stays `corrupting`; status stays `implemented_pending_validation`.
+`governance_2026_09_05` (GFLAG-0132), `decision_2026_09_06` and
+`governance_2026_09_08` all stand. This build does not release the gate -- it
+removes the reason the question could not be asked.
