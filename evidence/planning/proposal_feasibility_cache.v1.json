@@ -59,6 +59,20 @@
     "verdict": "RED"
    }
   ],
+  "MECH-126": [
+   {
+    "chip_ref": "chip-proposal-exp-0874-paced",
+    "producer_paths": [
+     "ree_core/entities/object_file_buffer.py"
+    ],
+    "reason": "No producer for overmerge_rate/oversplit_rate anywhere in ree_core (grepped, zero matches); no merge/split operator in ree_core/entities/object_file_buffer.py (ObjectFileBuffer, strict 1:1 greedy match only). Matches MECH-531 R3 in falsifier_completion_and_runnability_audit_20260921.json: operator does not exist, build unrouted.",
+    "recorded_by": "preflight-20260922",
+    "recorded_utc": "2026-09-22T11:37:07Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-204": [
    {
     "chip_ref": "chip-20260918-exq541d-mech204-f1-guard-validation",
