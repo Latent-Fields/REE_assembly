@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "compassionate-pike-fe9174",
-  "last_updated_utc": "2026-09-22T15:15:31Z",
+  "last_seen_session": "mech005-science-20260922-exq-1073",
+  "last_updated_utc": "2026-09-22T15:26:14Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -12352,6 +12352,77 @@
       "ready_blocked_by": "V3-EXQ-1073 result first (decides whether generic gain correction suffices).",
       "authority": "REGISTRATION ONLY by the science session compassionate-pike-fe9174 while tracing the information-loss boundary for the precision-provenance experiment (thought_intake_2026-09-22). The user's build authorisation covered the producers (SD-PP-1..4) only; this row is minted so the necessity is tracked in a machine-readable worklist rather than prose (queue-experiment Step 2.5 STOP-GATE route 2b rationale). Not a build authorisation; /governance adjudicates.",
       "why_no_existing_owner": "MECH-572 names the lever in prose; no substrate row tracks it."
+    },
+    {
+      "node_class": "complex (probe-gated) -> mystery (known data)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "priority": "medium",
+      "added_session": "mech005-science-20260922-exq-1073",
+      "added_utc": "2026-09-22T15:26:14Z",
+      "last_seen_session": "mech005-science-20260922-exq-1073",
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "version_scope": "V3-native",
+      "failure_record": [],
+      "depends_on_unresolved": [],
+      "design_doc": "evidence/planning/mech005_successor_pilot_findings_20260922.md",
+      "sd_id": "mech005-endogenous-arousal-dynamic-range",
+      "title": "Endogenous ||z_beta|| spans only 0.91% of its mean, so no value of clock.beta_magnitude_scale can make e3_steps track it: a one-integer within-arm swing needs scale >= 10.43 while the clamp saturates at scale >= 1.425 -- the admissible intervals are DISJOINT BY 7.3x, which makes MECH-005's 'off the clamp so e3_steps varies with endogenous ||z_beta||' precondition unsatisfiable AS AN IDENTITY, not a tuning problem",
+      "unblocks_claims": [
+        "MECH-005"
+      ],
+      "source_audit": "evidence/planning/mech005_successor_pilot_findings_20260922.md (REE_assembly 897a1f6212, on origin/master) -- pre-design pilot for the MECH-005 successor, campaign science-20260922-mech005-path-authority.",
+      "implementation_hint": "MEASURED 2026-09-22 on a FULLY TRAINED agent (P0=12/P1=12/SD-070 zP0=8, alpha_world=0.9, harm + affective-harm streams on, seed 42) with the environment STEPPED and the selected action applied, over 1500 ticks across five arousal levels. Endogenous ||z_beta|| = 0.701772..0.708161, a spread of 0.006389 = 0.91% of its mean, despite taking 298-300 DISTINCT values per arm -- it varies only in the fourth decimal. ree_core/heartbeat/clock.py:200-222 computes t = clamp(||z_beta|| * beta_magnitude_scale, 0, 1) then e3_steps = int(20 - 15*t) (beta_rate_max_steps=20, beta_rate_min_steps=5), so the within-arm integer swing available is 15 * scale * 0.006389: 0.010 at scale 0.1, 0.096 at 1.0, 0.137 at the saturation edge. A one-integer swing needs scale >= 1/(15*0.006389) = 10.43; the clamp saturates at scale >= 1/0.701772 = 1.425. DISJOINT BY 7.3x. Confirmed empirically: e3_steps_n_distinct == 1 in ALL FIVE arms, including the three (0.1/0.5/1.0) where the clamp is INTERIOR rather than saturated. THIS CORRECTS THE 2026-09-11 REFUSAL'S DIAGNOSIS (evidence/planning/exq1026_mech005_nu_path_authority_refusal_20260911.md finding F5, which attributed the frozen e3_steps to clamp saturation): the cause is ||z_beta||'s dynamic range, and saturation is a separate, milder symptom that only appears above scale 1.425. THE BUILD IS NOT 'PICK BETTER AROUSAL LEVELS' -- no level exists. The substrate need is either (a) a PHASIC, wider-range arousal signal (SD-069 ree_core/regulators/phasic_surprise_burst.py is the existing candidate producer, already built and named in MECH-005's own SUBSTRATE list but never wired to the E3 rate), or (b) a different coupling from ||z_beta|| to e3_steps -- e.g. normalising by a running baseline so the modulation reads DEVIATION rather than absolute magnitude, which is what LC-NE adaptive gain (Aston-Jones & Cohen 2005) describes and what the claim is the REE reading of. Choosing between (a) and (b) is a design decision about what the nu-analog IS in V3, not a parameter fit, which is why this row is mystery (known data): the data is in hand, the reframe is owed.",
+      "falsifier_requirement_satisfied": "MECH-005's what_would_answer makes endogenous e3_steps variation a NAMED non-degeneracy precondition. Unsatisfiable, it dominates its own criterion: the manipulation becomes exogenous-equivalent, which is precisely what V3-EXQ-505 already did by injecting a synthetic z_beta into a bare MultiRateClock, so the 'endogenous z_beta' framing that would distinguish a successor is not earned.",
+      "event_or_manipulation_produced": "An arousal manipulation whose realised E3 cadence tracks the agent's own affective state within an arm, rather than being pinned to a per-arm constant by the scale.",
+      "dv_or_instrument_exposed": "e3_steps_per_tick (currently n_distinct == 1 per arm at every scale) and ||z_beta|| dynamic range. The margin DV this would feed is ALREADY HEALTHY and needs no build -- see the pilot table in the design_doc: 1332/1332 distinct values across five arms, mean 0.111-0.137, SD 0.110-0.126, CV 0.92-1.01, zero exact-zeros, none above 0.99, normaliser never degenerate. That table stands as reusable evidence for whoever revisits MECH-005 after this row lands.",
+      "ready_blocked_by": "/governance: this row is a measurement, not a ratified build. It also reopens MECH-005's 2026-09-16 disposition ('testable now ... complicated (buildable)'), which was made before this measurement existed.",
+      "authority": "REGISTRATION ONLY by the science session mech005-science-20260922-exq-1073 under the user's 2026-09-22 ruling on campaign science-20260922-mech005-path-authority: option B, route to substrate first, queue NOTHING. That ruling went AGAINST both the session's and the Orchestrator's recommendation (both favoured narrowing to MECH-005's criterion (1) and running); the user chose to fix the instrument before spending a run. No EXQ id was consumed. Not a build authorisation; /governance adjudicates.",
+      "why_no_existing_owner": "MECH-093 owns the ||z_beta|| -> e3_steps path and is SUPPORTED by V3-EXQ-505, but 505 verified the clock's interpolation ARITHMETIC against an injected synthetic z_beta and so could not observe the endogenous signal's dynamic range. No existing substrate_queue row names that range. The 2026-09-11 refusal recorded the frozen e3_steps as finding F5 but diagnosed it as clamp saturation and left it as a note for a successor rather than registering it.",
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/heartbeat/clock.py::update_e3_rate_from_beta",
+        "ree_core/regulators/phasic_surprise_burst.py"
+      ]
+    },
+    {
+      "node_class": "complicated (buildable)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "priority": "medium",
+      "added_session": "mech005-science-20260922-exq-1073",
+      "added_utc": "2026-09-22T15:26:14Z",
+      "last_seen_session": "mech005-science-20260922-exq-1073",
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "version_scope": "V3-native",
+      "failure_record": [],
+      "depends_on_unresolved": [],
+      "design_doc": "evidence/planning/mech005_successor_pilot_findings_20260922.md",
+      "sd_id": "mech005-betagate-decommit-counter-and-commit-ceiling",
+      "title": "BetaGate.release() increments no release counter anywhere in the class, so the de-commit leg has no instrument -- and the events it would count are starved anyway: measured 1 de-commit per ~600 ticks per arm on the beta_gate signal and ZERO on 'committed_trajectory cleared', with committed_tick_frac pinned at 1.000 (the MECH-107 ceiling-pinned shape on a different field)",
+      "unblocks_claims": [
+        "MECH-005"
+      ],
+      "source_audit": "evidence/planning/mech005_successor_pilot_findings_20260922.md (REE_assembly 897a1f6212, on origin/master) -- pre-design pilot for the MECH-005 successor, campaign science-20260922-mech005-path-authority. The instrumentation half was independently named by the 2026-09-21 falsifier completion + runnability audit and by preflight-batchA-20260922.",
+      "implementation_hint": "TWO HALVES, and the cheap one does NOT fix the expensive one -- do not close this row by adding the counter alone. (1) INSTRUMENT, buildable: ree_core/heartbeat/beta_gate.py:178 release() sets _beta_elevated = False and resets _committed_run_length but increments no counter; grep of the whole class finds no _release_count or equivalent, while elevate() and propagate() both maintain counters (_n_elevation_refractory_blocked, _hold_count, _propagation_count). Every driver that wants the de-commit leg must currently wrap/monkeypatch release() or diff _beta_elevated pre/post tick. Note ree_core/agent.py:6939's own comment: there are TEN beta_gate.release() call sites and only five clear e3._committed_trajectory, so a counter should distinguish elevated->released TRANSITIONS from no-op releases fired while already down. (2) EVENT RATE, the actual blocker: MEASURED 2026-09-22 on a fully trained agent with the env stepped, 600 ticks per arm at beta_magnitude_scale 0.1 and 1.0 -- elevated->released transitions 1 and 1; e3._committed_trajectory cleared 0 and 0 (that signal NEVER fires); MECH-005 criterion (3) numerator 1 and 1 against denominators of 124 and 207 post-commit prediction-error spikes. Separately, committed_tick_frac == 1.000 in both arms, and the companion pilot found n_committed_true == n_fresh_selects EXACTLY in all five of its arms (266/266, 274/274, 244/244, 272/272, 276/276) -- the E3 'committed' diagnostic is pinned at True, so 'post-commit' selects every tick and carries no information. At 1 event per 600 ticks, a FRACTION compared across arms needs ~18,000 ticks per cell (~4.5 h of fleet compute for 3 arms x 3 seeds) and the rate is not known to be linear in ticks. So the build question is why the latch commits on every tick and releases almost never, which is a control-plane question, not a counter.",
+      "falsifier_requirement_satisfied": "MECH-005 confirms on (1) AND (3). Criterion (3) is the post-commit de-commit fraction. With the numerator at 1 per arm-cell and the denominator's 'post-commit' qualifier vacuous, (3) cannot discriminate, so the conjunction cannot be satisfied and the run could only ever record a non-confirmation -- against a claim with ZERO experimental evidence (claim_evidence.v1.json: genuine_exp_count = 0, 5 literature entries, evidence_quadrant plausible_unproven). That is the same unattributable-under-every-outcome shape that refused V3-EXQ-1018 on 2026-09-11, relocated from the DV to a criterion.",
+      "event_or_manipulation_produced": "De-commitment events at a countable rate, and a commit channel that is not pinned at its ceiling, so 'post-commit' names a proper subset of ticks.",
+      "dv_or_instrument_exposed": "A release/de-commit transition counter on BetaGate; and committed_tick_frac, which must come off 1.000 before any post-commit conditional DV is readable.",
+      "ready_blocked_by": "/governance: half (2) is a control-plane design question (why the latch never releases), not a commissioned build. Half (1) is buildable on demand but closes nothing on its own.",
+      "authority": "REGISTRATION ONLY by the science session mech005-science-20260922-exq-1073 under the user's 2026-09-22 ruling on campaign science-20260922-mech005-path-authority: option B, route to substrate first, queue NOTHING. No EXQ id was consumed. Not a build authorisation; /governance adjudicates.",
+      "why_no_existing_owner": "The missing counter was named as driver-side instrumentation by the 2026-09-21 falsifier audit and by preflight-batchA-20260922, both of which classed it as 'experiment-driver instrumentation, not a missing core-substrate producer' and so registered nothing. That classification was right about the counter and wrong about the consequence: the 2026-09-22 measurement shows the events are starved, which no driver can instrument around. No existing row names the starvation. MECH-005's own degeneracy clause anticipates n_committed == 0; the realised failure is the opposite ceiling, which that clause does not cover.",
+      "severity": "corrupting",
+      "substrate_paths": [
+        "ree_core/heartbeat/beta_gate.py::release",
+        "ree_core/heartbeat/beta_gate.py::should_admit_elevation",
+        "ree_core/agent.py::select_action"
+      ]
     }
   ],
   "schema_version": "substrate_queue/v2",
