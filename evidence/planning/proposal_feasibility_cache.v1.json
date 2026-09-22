@@ -271,6 +271,20 @@
     "verdict": "RED"
    }
   ],
+  "MECH-562": [
+   {
+    "chip_ref": null,
+    "producer_paths": [
+     "experiments/_lib/interface_probe.py"
+    ],
+    "reason": "No substrate exists: grep over ree_core/ for homeostatic-readout/self-heal/afferent-plasticity patterns finds only unrelated hits (env limb healing, an EMA comment). interface_probe.py is confirmed pure/stateless by design, cannot host adapter state. Claim's own disposition already says zero non-degenerate attempts are possible today. Also: this is framed as a required control arm within MECH-540/INV-110's design, not an independently testable claim -- any run that would test it also tests MECH-540.",
+    "recorded_by": "preflight-batchD-20260922",
+    "recorded_utc": "2026-09-22T15:16:15Z",
+    "ree_v3_sha": "c8c37a160a7d63bb4abde66469dd276fd4ad9e15",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "SD-024": [
    {
     "chip_ref": "chip-20260915-sd024-standing-density-redesign",
