@@ -256,6 +256,21 @@
     "verdict": "RED"
    }
   ],
+  "MECH-561": [
+   {
+    "chip_ref": null,
+    "producer_paths": [
+     "experiments/_lib/interface_probe.py",
+     "ree_core/heartbeat/clock.py"
+    ],
+    "reason": "Confirmed blocked_substrate: EXP-1404 gated 2026-09-19 (IGW-20260919-240). At the only locus tried (V3-EXQ-1043) cross-validated rank collapses to rank=dy on 3/3 seeds (rrr_rank_at_ladder_ceiling true) -- RRR constraint inactive, principal-angle DV would measure OLS sampling noise not addressing structure. Release path (V3-EXQ-1043b) not yet landed as of 2026-09-22. Phase coordinate itself (clock.py _e3_phase_step) is live and armed; block is entirely the shared sender-side rank instrument.",
+    "recorded_by": "preflight-batchD-20260922",
+    "recorded_utc": "2026-09-22T15:16:10Z",
+    "ree_v3_sha": "c8c37a160a7d63bb4abde66469dd276fd4ad9e15",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "SD-024": [
    {
     "chip_ref": "chip-20260915-sd024-standing-density-redesign",
