@@ -17471,7 +17471,9 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-531
   epistemic_category: substrate_conditional
   depends_on:
     - INV-035
@@ -44055,8 +44057,9 @@
       from: "decision:MECH-270@2026-04-25T15:42:09.107859Z"
       as_of: 2026-04-25
       verdict: hold_pending_v3_substrate/applied
-  implementation_phase: v4
-  phase_provenance: assigned
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-456
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
@@ -44837,7 +44840,6 @@
   depends_on:
     - ARC-019   # generic staged curriculum this refines
     - MECH-276  # scientist-agent principle, mechanism across all stages
-    - ARC-010   # stage-3 substrate (V4)
     - MECH-256  # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-20260901): RESOLVES the 2026-08-07 digestion flag below/above. Stage-1 closure is self/world discrimination, which MECH-256's single-pass comparator still supplies (output-consuming, like-for-like repoint); SD-029 (z_harm_s-specific) deliberately not added -- ARC-059 is stream-agnostic.
     - SD-005    # z_self / z_world split (currently engineered; developmental construction flagged)
   coupled_with:
@@ -51424,7 +51426,6 @@
     - INV-059    # bilateral play frame signal -- the basic expressions instantiate this
     - ARC-049    # play frame tag -- authorisation mechanism for synthetic stakes
     - ARC-009    # parent architectural commitment: language as coordination layer
-    - ARC-010    # social cognition / OTHER_SELFLIKE detection
     - MECH-014   # minimal signalling channel (pre-language interface this MECH extends)
   location: docs/architecture/language/emergence_and_bootstrapping.md
   functional_restatement: >
@@ -65567,7 +65568,9 @@
       from: "decision:ARC-080@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-531
   v3_pending: false
   claim_level: architectural
   registered_utc: 2026-06-04
@@ -69106,7 +69109,9 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-535
   version_relevance: v4_v5
   depends_on:
     - IMPL-005
@@ -77247,7 +77252,9 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-104
   version_relevance: v4_v5
   depends_on:
     - MECH-365
@@ -89813,7 +89820,9 @@
     as_of: 2026-08-07
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: GOV-BRIDGE-1
   version_relevance: v4_v5
   claim_level: architectural
   registered: "2026-08-07"
@@ -89978,7 +89987,9 @@
     as_of: 2026-08-07
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: GOV-BRIDGE-1
   version_relevance: v4_v5
   registered: "2026-08-07"
   source:
@@ -94321,7 +94332,9 @@
     as_of: 2026-08-26
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-523
   v3_pending: true
   version_relevance: v4_v5
   registered_utc: 2026-08-26
@@ -94416,7 +94429,9 @@
     as_of: 2026-08-26
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-523
   v3_pending: true
   version_relevance: v4_v5
   registered_utc: 2026-08-26
@@ -94884,7 +94899,9 @@
     as_of: 2026-08-26
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-523
   v3_pending: true
   version_relevance: v4_v5
   registered_utc: 2026-08-26
@@ -94975,7 +94992,9 @@
     as_of: 2026-08-26
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-523
   v3_pending: true
   version_relevance: v4_v5
   registered_utc: 2026-08-26
@@ -96060,7 +96079,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: ARC-137
   version_relevance: v3_v4
   registered_utc: '2026-09-01'
   depends_on:
@@ -96519,7 +96540,6 @@
   version_relevance: v3_v4
   registered_utc: '2026-09-01'
   depends_on:
-    - MECH-507  # the full v4/v5 reciprocal-bridge reframing this claim pulls the v3-testable core forward from (SPLIT per GOV-V4CUT-1 F2 / GFLAG-0102)
     - MECH-523  # names the untrained compression sites this claim's "at least one" quantifies over
     - SD-056    # E2.world_forward trained decompression/prediction head -- coded, default OFF, unvalidated; the existence-proof instance at the z_world site
     - SD-070    # z_world anti-collapse encoder-training recipe -- pairs with SD-056 as the compression-side half at the same site
@@ -98337,7 +98357,6 @@
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
-    - ARC-139   # the architectural principle this mechanism serves
     - MECH-517  # RIVAL/sibling: interface collapse, the other way an interface hides a representation
     - MECH-518  # action-object dual-role variance contention at a named candidate locus
     - SD-080    # frozen action-object projection -- the locus of the strongest historical negative
@@ -98451,7 +98470,9 @@
       as_of: 2026-09-17
       verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-109
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
@@ -98494,7 +98515,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-110
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
@@ -98538,7 +98561,9 @@
       as_of: 2026-09-17
       verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-110
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
@@ -98586,7 +98611,9 @@
     needs_review: false
   epistemic_category: substrate_conditional
   claim_level: architectural
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: GOV-CONTRACT-2
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
@@ -99155,7 +99182,9 @@
     needs_review: false
   epistemic_category: substrate_conditional
   claim_level: architectural
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: GOV-CONTRACT-1
   version_relevance: v4_v5
   registered_utc: '2026-09-08'
   depends_on:
@@ -99263,7 +99292,6 @@
     - ARC-142         # the contract this rule governs admission to
     - GOV-INTRO-1     # sibling: introspection generates, never validates alone
     - GOV-ANALOGY-1   # label discipline for REE:Assembly convergence (section 5 of the source thought)
-    - ARC-100         # grammar/LLMs mined, never imported -- the primitive-cut cousin of the inverse-probe method
     - GOV-HELDOUT-1   # rule-change validation family
     - INV-105         # latent-access evidence ladder: the REE-internal domain's own admissibility standard
   location: docs/architecture/cognitive_contract.md#gov-contract-1
@@ -99343,7 +99371,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: GOV-CONTRACT-2
   version_relevance: v4_v5
   registered_utc: '2026-09-08'
   source_thought: docs/thoughts/2026-09-08_deriving_the_cognitive_contract.md
@@ -99587,7 +99617,9 @@
       as_of: 2026-09-17
       verdict: "note_only (claim-free diagnostic; no direction)/substrate_conditional"
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-109
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   source_thought: docs/thoughts/2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
@@ -99711,7 +99743,9 @@
       as_of: 2026-09-17
       verdict: "note_only (non-attributed instrument observation; no direction)/substrate_conditional"
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-109
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   source_thought: docs/thoughts/2026-09-08_receiver_conditioned_translation_and_recurrent_interface_stability.md
@@ -100855,7 +100889,9 @@
     needs_review: false
   epistemic_category: substrate_conditional
   claim_level: architectural
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: GOV-CONTRACT-2
   version_relevance: v4_v5
   registered_utc: '2026-09-15'
   source_thought: docs/thoughts/2026-09-08_candidate_cognitive_invariants.md
@@ -101770,14 +101806,12 @@
   depends_on:
     - MECH-537       # the communication subspace this indexes by phase
     - MECH-547       # sibling conditioner: receiver STATE; this claim conditions on an organism-level cyclic coordinate instead
-    - MECH-225       # distinguished-from: phase-based separation of STREAMS within one substrate, not of a sender->receiver channel
     - MECH-091       # the E3 heartbeat phase and its salient-event reset -- the primary candidate phi in V3
     - MECH-108       # BreathOscillator: a second, literally cyclic candidate phi (default OFF, breath_period=0)
     - ARC-023        # three characteristic rates -- the multi-rate tick grid is the third candidate phi
     - MECH-466       # rival/convention: event-relative alignment may beat clock-relative; phi must be tested against it
     - Q-081          # supplies the surrogate-null discipline for any statistic computed over multi-rate streams
     - INV-105        # access ladder: phase conditioning is a statement about rungs 3-6, and inherits the controls
-    - ARC-145      # generalized from: phase is one candidate coordinate for level (3)
   location: docs/architecture/dynamic_information_governance.md#mech-561
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: (a) the chosen phase coordinate phi must have live variance and must NOT be a deterministic function of the configured update rates (Q-081's a-priori filter) -- _e3_phase_step qualifies because MECH-091's salient-event reset makes it event-driven; a raw multi-rate tick index does not and is excluded; (b) breath_period > 0 if the BreathOscillator (MECH-108) is the chosen phi, since it defaults OFF and historical trajectories contain no breath phase; (c) enough rows per phase bin to fit a rank-selected RRR without the bin count itself driving the principal angles -- a bin-count sweep is required; (d) a sender measured to contain the content (rawfield25; trained z_world inadmissible per V3-EXQ-1010). All four are satisfiable today. SEQUENCING (part of the precondition): a single waking interface metric must have demonstrated range and stability at one locus first -- the diagnostic's cheapness is the trap the 2026-09-07 intake named.
@@ -102171,7 +102205,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: INV-110
   version_relevance: v3_v4
   registered_utc: '2026-09-15'
   source_thought: docs/thoughts/2026-09-09_hippocampal_replay_interface_maintenance_supplement.md
@@ -102605,7 +102641,6 @@
     - GOV-CONTRACT-3   # reduction admissibility: the anti-cheating test any deletion challenge must satisfy (rate, decoder, context, latency, robustness budget matched)
     - GOV-JURIS-1      # this is the D6 member of the profile
     - ARC-140          # compensatory realizability: removal is what exposes compensation and alternative-pathway recruitment
-    - MECH-557         # the 3 + 2 reduction hypothesis is a candidate deletion challenge on the cognitive-contract ledger
     - GOV-HELDOUT-1    # rule-change validation family
   related_claims:
     - GOV-SUBTRACT-1
