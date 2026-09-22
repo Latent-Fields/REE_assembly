@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-09-17T19:07:47Z",
+  "last_updated_utc": "2026-09-22T06:48:00Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -446,6 +446,45 @@
         "MECH-568"
       ],
       "last_known_state_note": "Registered by the Sense pass of governance cycle governance-20260917 (Step 6b), off confirmed failure_autopsy_V3-EXQ-1023a_2026-09-17 (ratified REE_assembly eeeb0550ed5). SIBLING, read it before mining so the two are not worked twice: CDQ-007 (conversion_ceiling_campaign:P-comp) is the same SHAPE one layer down -- 'a learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation'. CDQ-007 is a sufficient-observation -> policy transfer failure; this row is a trained-objective -> consumer transfer failure. They may share a mechanism, and if the intake finds one it should be registered ONCE and wired into both. SENSE ONLY -- no claims registered, no intake opened, no thread opened in REE_convergence. || MINE+REGISTER COMPLETE 2026-09-17 (session cdq010-transfer-mechanism-20260917). REGISTERED: MECH-566 (LEAD -- the preservation loss is EXACTLY invariant to GL(32) acting on the code, because W is a freely-trained linear decoder in the same optimiser: (A.f, W.A^-1) attains an identical loss. The substrate's own comment cites Baldi & Hornik 1989 as its anchor, and that theorem yields the principal SUBSPACE only up to an arbitrary invertible transform, never the principal COMPONENTS -- so PCA-32 is the well-conditioned representative of the SAME orbit, which is why it clears the bar 3/3 at matched reconstruction while SD-106 falls 0.1227 short. Falsifier is cheap and decisive both ways: ZCA-whiten the FROZEN latent, which changes no information and leaves preservation R^2 exactly unchanged, then re-measure the consumer); MECH-567 (the objective carries no term with the consumer's target -- MuZero trains the encoder ONLY through consumer heads and needs an MCTS-IMPROVED target to avoid a degenerate self-agreement fixed point, while DreamerV3 carries the consumer's TARGET rather than its GRADIENT; registered in the DreamerV3 auxiliary-head shape because z_world is SHARED and MuZero's single-consumer latent is unaffordable here); MECH-568 (a task-aligned term must be protected by a SATURATING FLOOR, not a weight ratio -- REE's crowding curve is ALREADY MEASURED on SD-106's landing at 0.5702/0.4313/0.4064/0.3982 and was recorded as a cost, never read as a mechanism). CORRECTION OF RECORD, this row's own premise: DreamerV3 does NOT carry actor/value gradients into the latent -- actor and critic train on DETACHED model states. What it carries is the consumer's TARGET (reward + continue heads at beta_pred=1.0), not its GRADIENT, and that distinction IS the mechanism, because it is what lets a preservation objective transfer without any one consumer owning a shared latent. SIBLING FINDING, answering this row's explicit instruction: CDQ-007 and CDQ-010 do NOT share a mechanism, so nothing was registered once across both. MECH-459 locates its failure in the RETURN PATHWAY (two stacked two-sided normalisers); MECH-566 locates its failure in the ENCODER OBJECTIVE (GL-invariance of a jointly-trained reconstruction loss). Different operator, different pathway, different falsifier, and a single claim spanning both would have no single falsifier. What they DO share is a family resemblance and a diagnostic habit -- an invariance sitting between a lever and a consumer annihilates the lever, so a 'this lever is exhausted' conclusion should be preceded by a check for one -- recorded in both claims' notes and in the architecture stub rather than merged. OFFERED TO THE RE-POSE, not applied: MECH-566 is offered as a candidate re-operationalization of zworld_actor_adequacy_locus, being the first non-LOCUS shape available to that question and therefore responsive to the GOV-HOTHER-1 rotation event. hypothesis_space_registry.v1.json was NOT edited -- its single producer is /failure-autopsy Step 9b; the re-pose is routed on GFLAG-0312 and the registry corrections on GFLAG-0329. CONSTRAINTS HONOURED: biology lit-pull run FIRST as a precondition sub-step and scoped to TRANSFER, deliberately not duplicating the generic-vs-task-relevant COMPRESSION pull owned by the open chip chip-20260916-sd106-compression-litpull (1023a routes it primary with an explicit do-not-spawn-a-second instruction); no build licensed; no experiment queued; generation v3 and blocks_v3_critical_path unchanged at false. NOTABLE FOR ADJUDICATION: REE already owns the MuZero-shaped lever (config.actor_critic_cotrain_encoder, exercised at V3-EXQ-742/752/772/780/788) and has never pointed it at SD-106's acceptance DV -- but because REE has NO policy-improvement operator, a co-train arm is the predicted DEGENERATE case, so latent participation ratio must be logged under co-training before its DV is read. Cheapest next measurement overall is MECH-568's per-term gradient-norm audit: no substrate change, and it can weaken a claim before anything is built."
+    },
+    {
+      "row_id": "CDQ-011",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "A candidate MECHANISM claim for a frozen-battery world-forward readout that is SIMULTANEOUSLY (i) readable on a converged base -- not sitting at its chance or degenerate value -- and (ii) positive in the across-sleep direction at that same setting, registered in claims.yaml and wired into INV-063's depends_on, with an architecture-doc stub. It must name a MECHANISM (what makes a consolidation pass measurably improve a frozen held-out readout), not another candidate OBJECTIVE: two objectives have now been measured and each fails one requirement, so a third objective proposed on the same framing is more of the same move. Biology precondition first per CLAUDE.md biology-before-formal-definitions: what is measured in sleep-dependent consolidation that improves a HELD-OUT probe rather than the training objective.",
+        "satisfied": false
+      },
+      "target_nodes": [
+        "sleep_substrate:GAP-2"
+      ],
+      "mechanism_gap": "INV-063 leg B has NO readout that satisfies readability and direction together on a converged base, and the two candidates fail in opposite ways rather than by degree. The V3-EXQ-701b/701c per-element MSE reconstruction readout moves NEGATIVE across sleep on a converged base, 3/3 seeds (-7.14e-05, -6.72e-04, -9.22e-04; 9/9 cells) -- a sleep cycle degrades it, so it cannot be read as an improvement that falls with intake (V3-EXQ-1063). The SD-056 InfoNCE frozen-battery objective fails BOTH requirements simultaneously in its readout temperature: on V3-EXQ-798a configuration (conv_rel_drop 0.9899, K=64) readability -- headroom above 5 percent of ln K -- requires tau <= 0.01, while a positive across-sleep delta requires tau >= 0.03, with NO overlapping window; at the user-ratified tau=1e-3 pin headroom is 18.54 percent but the delta is -0.389 (GFLAG-0382). The bind looks STRUCTURAL rather than a tuning accident: as tau -> 0 the softmax sharpens toward a hard nearest-neighbour test that a sleep pass degrades on an MSE-converged head, and as tau -> infinity the loss flattens toward ln(K) where every delta is tiny, positive and uninformative. This is why governance DE-PINNED leg B on 2026-09-22 and stated it as a requirement rather than naming an objective (GFLAG-0364/0367/0382/0394). It is mechanism-unclear, not awaiting-a-run: no queued experiment supplies the missing readout, and V3-EXQ-1071 is reserved but deliberately unused. LIMITS carried, not buried: GFLAG-0382 is n=1 seed, 1800-step P0, one sleep cycle -- enough to decline registering the pin, NOT enough to assert leg B is permanently unreadable.",
+      "external_sources": [
+        {
+          "name": "dreamer-v3",
+          "intake_state": "EXTEND",
+          "path": "REE_convergence/sources/dreamer-v3/",
+          "why": "already carries objective_transfer_balance.md from CDQ-010; the question there was whether an encoder objective's gains reach a CONSUMER, and this is its offline twin -- whether a replay/consolidation pass improves a FROZEN held-out probe rather than only the training objective. Extend rather than re-clone."
+        },
+        {
+          "name": "muzero",
+          "intake_state": "EXTEND",
+          "path": "REE_convergence/sources/muzero/",
+          "why": "consumer_trained_encoder.md already exists from CDQ-010; MuZero's reanalyse pass is the closest external analogue of a consolidation pass whose benefit must be demonstrated on held-out targets rather than on the objective it optimises."
+        },
+        {
+          "name": "sleep-replay-consolidation",
+          "intake_state": "NEW",
+          "path": null,
+          "why": "the readability-vs-direction bind is the shape the sleep-replay / generative-replay consolidation literature addresses directly -- what property of a replay pass makes a held-out probe improve rather than degrade. No intake exists."
+        }
+      ],
+      "generation": "v3",
+      "blocks_v3_critical_path": false,
+      "priority": 2,
+      "in_flight": null,
+      "last_known_state_note": "Raised by governance cycle governance-20260922 at the Step 6b Sense pass, in the same cycle that de-pinned leg B. Sense only: no claim registered, no intake opened, no experiment queued. NOTE leg A is INDEPENDENTLY blocked and this row does not address it -- all three registered C1 leg-A DVs are transforms of e3_prediction_error, the scalar P1's own manipulation check gates on (GFLAG-0389), so leg A needs RE-REGISTRATION with an independent DV before the four-arm ladder is worth running even if this row delivers a leg-B readout. INV-063 is epistemic_category substrate_conditional (GFLAG-0390) and status candidate; nothing here reverses that."
     }
   ]
 }
