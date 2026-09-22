@@ -1,3 +1,9 @@
+---
+status: candidate/v3_pending
+status_asof: 2026-09-22
+status_claim: MECH-572
+---
+
 # Across-Sleep Readout Mechanisms (INV-063 leg B)
 
 **Status:** architecture stub. Registered by the CDQ-011 Mine+Register pass of the Convergence

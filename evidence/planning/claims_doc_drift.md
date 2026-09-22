@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-22T06:17:36Z
+Generated: 2026-09-22T18:32:49Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 108
+Docs resolved to a claim: 110
 
 ## Frontmatter drift -- HARD (0)
 
@@ -26,12 +26,13 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (146)
+## Unresolved with a hand status line -- INFO (148)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
 - `active_inference_bridge.md` -- "first pass (WS-5 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `affect_terminology_instinct_protoemotion.md` -- "provisional terminology / architecture note"
+- `affordance_valuation_bridge.md` -- "candidate. Registered from"
 - `agency_responsibility_flow.md` -- "provisional"
 - `anticipatory_affect_conjunction_vs_dual_channel.md` -- "MECH-307 SUBSTRATE READY (IGW-20260521-023 closed 2026-05-21). Landed 2026-05-08/11; canonical validation V3-EXQ-540g PA"
 - `architecture_scaling_needs.md` -- "planning hypothesis"
@@ -63,6 +64,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `dr12_pe_conditioned_e3_confidence.md` -- "IMPLEMENTED 2026-06-17"
 - `dr13_self_recurrence_temporal_depth.md` -- "IMPLEMENTED 2026-07-01"
 - `dv_temporal_depth_v3_form.md` -- "candidate, implementation_phase: v3, v3_pending: true (V3 form);"
+- `dynamic_consensus_integration.md` -- "candidate. Registered from"
 - `e1.md` -- "stable"
 - `e1_e2_constraint_propagation.md` -- "candidate"
 - `e2.md` -- "stable"

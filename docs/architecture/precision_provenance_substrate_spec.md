@@ -1,3 +1,9 @@
+---
+status: candidate/v3_pending
+status_asof: 2026-09-22
+status_claim: MECH-572
+---
+
 # Precision-Provenance Substrate Spec (SD-PP-1..4) -- interface contract
 
 **Status:** SPECIFICATION (2026-09-22, session `compassionate-pike-fe9174`). Build authorised by

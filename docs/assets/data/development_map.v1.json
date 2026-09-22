@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-22T06:13:01Z",
+  "generated_at": "2026-09-22T18:26:59Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -767,7 +767,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "150 / 217",
+      "value": "154 / 235",
       "detail": "modules recorded as built"
     },
     {
@@ -1077,6 +1077,24 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-024",
+              "title": "Offline consolidation and online commitment must remain isolated at responsibility-bearing write loci.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 2,
+              "depends_on": [
+                "INV-021",
+                "INV-023",
+                "ARC-020",
+                "SD-026",
+                "MECH-067"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-054",
               "title": "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity.",
               "status": "candidate",
@@ -1139,18 +1157,6 @@
                 "ARC-007"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "INV-067",
-              "title": "V(t): Verisimilitude is the precision-weighted, phase-aligned, hierarchical correspondence between ascending sensory-constrained and descending model-based signals.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 9,
-              "depends_on": [],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1193,7 +1199,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 80,
+              "incoming_dependencies": 81,
               "depends_on": [
                 "ARC-004",
                 "ARC-003"
@@ -1299,6 +1305,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-002",
+              "title": "E2 is the fast forward predictor of affordances.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 19,
+              "depends_on": [
+                "INV-013",
+                "ARC-004",
+                "ARC-001",
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-061",
               "title": "Commit-boundary token reclassifies pre-commit vs post-commit error routing.",
               "status": "active",
@@ -1312,23 +1335,6 @@
                 "ARC-015",
                 "INV-012",
                 "MECH-060"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-002",
-              "title": "E2 is the fast forward predictor of affordances.",
-              "status": "active",
-              "phase": "unset",
-              "claim_class": "architecture_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 18,
-              "depends_on": [
-                "INV-013",
-                "ARC-004",
-                "ARC-001",
-                "ARC-005"
               ],
               "additional_dependencies": 0
             }
@@ -1678,7 +1684,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 252,
+      "total": 260,
       "buckets": [
         {
           "key": "active",
@@ -1813,6 +1819,20 @@
               "additional_dependencies": 0
             },
             {
+              "id": "SD-006",
+              "title": "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep.",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "ARC-023"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "SD-007",
               "title": "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change.",
               "status": "implemented",
@@ -1823,20 +1843,6 @@
               "incoming_dependencies": 6,
               "depends_on": [
                 "SD-005"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "SD-006",
-              "title": "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep.",
-              "status": "implemented",
-              "phase": "substrate_unspecified",
-              "claim_class": "substrate_or_design",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "ARC-023"
               ],
               "additional_dependencies": 0
             }
@@ -1929,8 +1935,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 224,
-          "more_count": 214,
+          "count": 232,
+          "more_count": 222,
           "nodes": [
             {
               "id": "INV-049",
@@ -2108,7 +2114,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 295,
+      "total": 313,
       "buckets": [
         {
           "key": "active",
@@ -2331,7 +2337,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 24,
+              "incoming_dependencies": 27,
               "depends_on": [
                 "MECH-092",
                 "ARC-038",
@@ -2387,8 +2393,7 @@
                 "MECH-094",
                 "MECH-121",
                 "INV-049",
-                "MECH-256",
-                "ARC-031"
+                "MECH-256"
               ],
               "additional_dependencies": 0
             },
@@ -2461,8 +2466,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 223,
-          "more_count": 213,
+          "count": 241,
+          "more_count": 231,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2586,6 +2591,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-105",
+              "title": "The latent-access evidence ladder: a variable's status in a latent space is not one property but seven, which must never be collapsed -- encoded (statistically present) != decodable (recoverable by an external probe) != natively accessible (usable by the system's existing consumer) != bridgeable (usable through a constrained map between frozen endpoints) != pairing-specific (useful specifically when the correct sender state is paired with the correct receiver situation) != causally used (interventions on its content alter downstream computation) != behaviourally beneficial (that causal use improves adaptive performance). Two evidential consequences bind rather than advise: (1) a content-transmission claim about any internal channel or bridge REQUIRES correct-vs-mismatched-vs-zero-vs-moment-matched-random controls, because a channel can be strongly load-bearing while its example-specific content is barely load-bearing; (2) a null measured on a COMPRESSED representation requires a dimensionality-matched RANDOM-PROJECTION floor, not a zero floor, before it can be read as information loss.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 18,
+              "depends_on": [
+                "INV-104",
+                "MECH-517",
+                "MECH-532"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-120",
               "title": "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio.",
               "status": "candidate",
@@ -2602,8 +2623,8 @@
               "additional_dependencies": 0
             },
             {
-              "id": "ARC-062",
-              "title": "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063 -- brought forward V4->V3 2026-05-18, this parenthetical is stale as of registration 2026-05-08). Architectural slot, not yet implemented.",
+              "id": "ARC-023",
+              "title": "Three BG-like loops operate at characteristic thalamic heartbeat rates.",
               "status": "candidate",
               "phase": "v3",
               "claim_class": "active_v3_closure",
@@ -2611,28 +2632,8 @@
               "attention_rank": 4,
               "incoming_dependencies": 17,
               "depends_on": [
-                "SD-054",
-                "MECH-269",
-                "SD-029"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-063",
-              "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
-              "status": "candidate",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 17,
-              "depends_on": [
-                "ARC-064",
-                "ARC-062",
-                "SD-029",
-                "SD-033a",
-                "SD-034",
-                "MECH-269"
+                "ARC-021",
+                "MECH-069"
               ],
               "additional_dependencies": 0
             }
@@ -2644,7 +2645,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 309,
+      "total": 293,
       "buckets": [
         {
           "key": "active",
@@ -2660,7 +2661,7 @@
               "claim_class": "horizon_v5",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 39,
+              "incoming_dependencies": 37,
               "depends_on": [
                 "INV-005",
                 "ARC-004",
@@ -2699,24 +2700,9 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 307,
-          "more_count": 297,
+          "count": 291,
+          "more_count": 281,
           "nodes": [
-            {
-              "id": "ARC-023",
-              "title": "Three BG-like loops operate at characteristic thalamic heartbeat rates.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 16,
-              "depends_on": [
-                "ARC-021",
-                "MECH-069"
-              ],
-              "additional_dependencies": 0
-            },
             {
               "id": "ARC-139",
               "title": "Integration does not require representational sameness, it requires selective mutual legibility: specialised cognitive subsystems may preserve distinct high-dimensional PRIVATE internal representations while coordinating through low-dimensional, context-sensitive communication subspaces and low-complexity transformations, so development can raise local specialisation and cross-system legibility AT THE SAME TIME rather than trading one against the other. Non-redundant prediction: a maturing REE shows rising local competence in E1/E2/hippocampus/E3 while GLOBAL representational similarity between them stays flat or falls, and increasing representational similarity between subsystems must therefore NOT be used as the default marker of maturation. This is an explicit ALTERNATIVE framing to ARC-121's shared epistemic-state object, not a refutation of it: one common object, specialised objects with a shared interface format, specialised objects joined by context-specific translation, and a hybrid invariant-core-plus-private-dimensions architecture all remain live, and ARC-121 must not be used to prejudge the question.",
@@ -2725,67 +2711,13 @@
               "claim_class": "horizon_v4",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 16,
+              "incoming_dependencies": 17,
               "depends_on": [
                 "ARC-121",
                 "MECH-517",
                 "MECH-532",
                 "MECH-507",
                 "INV-104"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-538",
-              "title": "Minimum bridge complexity as the measure of mutual legibility: for systems A and B and a family of constrained mappings of increasing expressiveness (native readout -> orthogonal/Procrustes -> affine -> low-rank affine -> constrained nonlinear -> high-capacity upper bound), define L(A -> B) = the minimum bridge complexity achieving a predeclared HELD-OUT functional criterion between FROZEN endpoints; lower L means greater mutual legibility, and the simpler the bridge that works the stronger the evidence that the sender already held an appropriately structured representation -- a high-capacity bridge that succeeds may be performing new cognition and is therefore evidence about the bridge, not about the endpoints. L must never be read alone: two systems that became identical because one LOST its specialisation would show falling L with worsening cognition, so development is tracked on two axes (local specialisation/competence, and cross-system legibility). Non-redundant developmental prediction: sender and receiver each improve local competence WHILE global representational similarity stays flat or falls, task information concentrates in the consumer-facing subspace, and minimum bridge rank falls -- coordination without homogenisation.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 14,
-              "depends_on": [
-                "ARC-139",
-                "MECH-537",
-                "INV-105"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-142",
-              "title": "The cognitive contract: a unified mind built from heterogeneous engines (E1 / E2 / E3 / hippocampus and later specialists, differing in representational geometry, temporal scale, compression level, learning dynamics and uncertainty representation) requires not a common latent space but an INVARIANT-PRESERVING CONTRACT -- a small set of relations I such that for any lossy translation x_A -> C_A(x_A) -> T_AB -> D_B -> x'_B, I(x_A) ~ I(x'_B), even though x'_B = x_A is meaningless across different spaces. The contract is relational / semantic, not representational: each engine may encode an invariant differently (explicit scalar, trajectory position, recurrent-state relation, geometric direction, ordering relation) so long as the relation is recoverable at the boundary when needed. It sits ABOVE the translation machinery and ABOVE schemas (cognitive contract -> representation / translation machinery -> schemas -> particular concepts, memories and environmental models): a schema rewrite, including offline reorganisation during sleep, changes WHAT the organism knows; contract failure changes WHETHER its subsystems can still understand one another. The contract specifies RECOVERABLE RELATIONSHIPS, never a fixed data structure or ontology -- engines encode invariants differently, new representational systems can be added, schemas reorganise, and contract dimensions may be added or retired. Its two failure poles are representation collapse (one canonical latent forced on every engine, destroying the specialisation that makes multiple engines useful) and cognitive fragmentation (engines keep exchanging tensors while progressively losing shared meaning -- computationally active, no longer one mind). Unity does not require representational sameness; it requires preservation of the relations that keep representations about the same cognitive world.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 12,
-              "depends_on": [
-                "ARC-139",
-                "INV-104",
-                "MECH-538",
-                "MECH-539",
-                "ARC-121",
-                "ARC-089",
-                "MECH-507",
-                "MECH-532"
-              ],
-              "additional_dependencies": 4
-            },
-            {
-              "id": "MECH-540",
-              "title": "Sleep as selective interface maintenance -- the third offline job: MECH-529 gives offline consolidation two functions, revising the representation (split/merge/reweight over equivalence classes) and re-indexing episodic traces so autobiographical addressability survives that revision. This claim adds a THIRD: adjusting or stabilising the INTERFACE -- the subspace through which another subsystem reads the revised representation. The prediction is explicitly NOT global alignment but a PLASTICITY/STABILITY DIVISION OF LABOUR across interfaces: some reconfigure because recent learning demands it, others remain stable because downstream continuity matters more, so the strongest test compares at least TWO interfaces with different predicted plasticity rather than asking whether all systems become more similar after sleep. Four distinguishable post-sleep signatures: S1 representational retuning (interface metrics move only because the sender moved), S2 interface recalibration (local competence stable, communication subspace or bridge complexity improves), S3 stable scaffold (representations move, mapping holds), S4 maladaptive homogenisation (similarity rises while local competence or task-specific differentiation worsens).",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 9,
-              "depends_on": [
-                "MECH-529",
-                "ARC-139",
-                "MECH-538",
-                "MECH-537"
               ],
               "additional_dependencies": 0
             },
@@ -2806,43 +2738,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "ARC-080",
-              "title": "Object identity is a cross-cutting representational primitive. An object is a token-bound identity representation that persists across time and perceptual gaps, generalising z_object/z_resource into an object-file/binding layer (ARC-006), defined by causal feature-coherence under intervention (MECH-278), and consumed by drive/goal (SD-057), hippocampal planning (MECH-262), and the self/other special-object cases. The four planned object capabilities -- (1) permanence, (2) self-as-object, (3) tools/affordances, (4) others-as-object -- are specialisations of one primitive, not four separate mechanisms.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 8,
-              "depends_on": [
-                "ARC-006",
-                "MECH-278",
-                "ARC-059",
-                "SD-015",
-                "SD-049",
-                "SD-057",
-                "SD-039"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-086",
-              "title": "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 8,
-              "depends_on": [
-                "IMPL-005",
-                "INV-061",
-                "MECH-343",
-                "RA-002"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "MECH-183",
               "title": "z_beta leakage: attributed other-model affective state activates self z_beta directly, not via inference.",
               "status": "candidate",
@@ -2859,19 +2754,121 @@
               "additional_dependencies": 0
             },
             {
-              "id": "MECH-539",
-              "title": "Dynamic interface compatibility: between PREDICTIVE systems, pointwise state correspondence across an interface is insufficient -- a mapping must additionally satisfy that receiver_transition(T(x_t), a_t) is compatible with T(x_(t+1)) under the relevant action/context, because a bridge can succeed pointwise while destroying transition geometry. The registered diagnostic separation is: map ONLY the initial state and let the receiver evolve natively, versus repeatedly mapping sender rollout states -- this distinguishes a bridge that supplies a compatible starting condition from one that must continually correct incompatible dynamics. Failure signature `good static + bad dynamic` routes to transition-geometry work rather than to representation work; `good one-step + degrading long-horizon` indicates compounding dynamics mismatch; `good dynamic but poor behaviour` routes downstream to valuation/selection.",
+              "id": "ARC-047",
+              "title": "Multi-agent gridworld with affective state leakage as gradient scent fields is the minimal substrate for empirically testing ARC-010 mirror modelling, MECH-041 affective expression, and cooperative behavior claims.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "MECH-041",
+                "MECH-031",
+                "MECH-036",
+                "MECH-127",
+                "IMPL-019"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-084",
+              "title": "Typed signed cognifold coupling: the cognifold represents inter-field coupling as a typed, signed edge -- cognifold_edge = {source, target, sign, gain, precision, gate, timescale, write_authority} -- with competition (sign < 0) as a FIRST-CLASS GENERATIVE coupling mode alongside cooperation (sign > 0) and gated-decoupling, not an emergent by-product of selection softmaxes. Three coupling modes: cooperative (binding, coherent trajectory, shared context), competitive (suppress incompatible trajectories, preserve boundaries, prevent runaway resonance, stop one field absorbing all others), gated-decoupling (isolate simulation / offline integration / unsafe candidates from release authority).",
               "status": "candidate",
               "phase": "v4",
               "claim_class": "horizon_v4",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 8,
+              "incoming_dependencies": 7,
               "depends_on": [
-                "ARC-139",
-                "MECH-538",
-                "INV-088",
-                "MECH-537"
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-094",
+              "title": "No empathy module / no empathy scalar: fast empathy must emerge from binding existing motivational-affective streams across self -> object -> other, never as an empathy_enabled flag or empathy_score primitive.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "ARC-010",
+                "INV-005",
+                "SD-011",
+                "MECH-112"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-359",
+              "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-055",
+                "SD-011",
+                "MECH-341",
+                "SD-056"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-499",
+              "title": "Ephaptic/oscillatory field-level coherence functions as a fast, non-synaptic CONTENT-AGGREGATION mechanism -- not merely the confidence/eligibility readout MECH-270 already covers -- synthesising distributed oscillatory information (amplitude, phase, relative phase, frequency, synchrony, cross-frequency relationships) into the temporally-coherent 'actionable now' state that seeds hippocampal proposal generation. The field need not 'understand' anything; its attraction as a mechanism is that the physical substrate may perform part of the aggregation automatically, fast enough that proposal generation is not stale by the time candidate futures are produced.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-228",
+                "MECH-270",
+                "MECH-269",
+                "MECH-022",
+                "MECH-149",
+                "ARC-018",
+                "MECH-089"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-040",
+              "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-269",
+                "SD-039"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-087",
+              "title": "Sense-specific perceptual-manifold adaptor: each sensory modality requires its own adaptor transforming raw stimulus space into a perceptual-manifold (metric) space before shared-world-model entry; senses are not interchangeable raw streams.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "ARC-017",
+                "MECH-103",
+                "ARC-004",
+                "ARC-005",
+                "ARC-019"
               ],
               "additional_dependencies": 0
             }
@@ -2883,7 +2880,7 @@
   "record_counts": {
     "active": 179,
     "closed": 50,
-    "planned": 940
+    "planned": 950
   },
   "archive": {
     "snapshot_count": 114,

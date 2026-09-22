@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-22T06:45:11Z",
+  "generated_at": "2026-09-22T18:27:33Z",
   "counts": {
-    "total": 1170,
-    "reading_drift": 4,
-    "unstamped": 3,
+    "total": 1179,
+    "reading_drift": 10,
+    "unstamped": 6,
     "needs_review": 2,
-    "never_reviewed": 1149,
-    "provenance_drift": 26
+    "never_reviewed": 1158,
+    "provenance_drift": 27
   },
   "reading_drift": [
     {
@@ -40,6 +40,54 @@
       "diffs": [
         "reading: stored='candidate/negative_pilot_no_skill' derived='candidate'"
       ]
+    },
+    {
+      "claim": "ARC-149",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-575",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-576",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-577",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-578",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-579",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
     }
   ],
   "unstamped": [
@@ -53,6 +101,18 @@
     },
     {
       "claim": "MECH-568",
+      "would_derive": "candidate/v3_pending"
+    },
+    {
+      "claim": "MECH-572",
+      "would_derive": "candidate/v3_pending"
+    },
+    {
+      "claim": "MECH-573",
+      "would_derive": "candidate/v3_pending"
+    },
+    {
+      "claim": "MECH-574",
       "would_derive": "candidate/v3_pending"
     }
   ],
@@ -1221,7 +1281,16 @@
     "MECH-569",
     "MECH-570",
     "MECH-571",
-    "GOV-UNWRITTEN-1"
+    "MECH-572",
+    "MECH-573",
+    "MECH-574",
+    "GOV-UNWRITTEN-1",
+    "ARC-149",
+    "MECH-575",
+    "MECH-576",
+    "MECH-577",
+    "MECH-578",
+    "MECH-579"
   ],
   "provenance_drift": [
     {
@@ -1263,6 +1332,11 @@
       "claim": "MECH-065",
       "stored_from": null,
       "derived_from": "decision:MECH-065@2026-09-20T12:17:03.676535Z"
+    },
+    {
+      "claim": "INV-024",
+      "stored_from": null,
+      "derived_from": "v3_exq_1072_inv024_offline_online_isolation_audit_20260922T152522Z_v3"
     },
     {
       "claim": "INV-063",
@@ -1352,7 +1426,7 @@
     {
       "claim": "GOV-UNWRITTEN-1",
       "stored_from": null,
-      "derived_from": "decision:GOV-UNWRITTEN-1@2026-09-22T06:30:53Z"
+      "derived_from": "decision:GOV-UNWRITTEN-1@2026-09-22T07:10:38Z"
     }
   ],
   "provenance_available": true
