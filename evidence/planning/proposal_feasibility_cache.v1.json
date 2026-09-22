@@ -1,5 +1,20 @@
 {
  "entries": {
+  "ARC-044": [
+   {
+    "chip_ref": "chip-proposal-exp-0501-paced",
+    "producer_paths": [
+     "ree_core/predictors/e3_selector.py",
+     "ree_core/predictors/e2_fast.py"
+    ],
+    "reason": "No producer for a joint w_harm x running_variance readout: w_harm only enters E3Selector.score_trajectory's harm term and running_variance only the commit gate (e3_selector.py); generate_candidates_random (e2_fast.py:767) is precision-blind. Claim's own WWA records two convergent design-review blocks (V3-EXQ-990 draft).",
+    "recorded_by": "preflight-20260922",
+    "recorded_utc": "2026-09-22T11:36:53Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "INV-063": [
    {
     "chip_ref": "chip-proposal-exp-0736-paced",
