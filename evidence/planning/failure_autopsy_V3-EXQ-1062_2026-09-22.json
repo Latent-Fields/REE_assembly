@@ -1,0 +1,137 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-22T18:39:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [
+    "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T125835Z_v3"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3",
+      "queue_id": "V3-EXQ-1062",
+      "claim_ids": [
+        "MECH-055"
+      ],
+      "bears_on": [
+        "affect_channel_separation",
+        "world_rule_shift_lever_dose_response"
+      ],
+      "failed_criterion": "readiness_precondition -- no decisive criterion was scored. C1 (load-bearing, MECH-055 FALSIFYING (ii)) was UNEVALUABLE (measured NaN, scored_arms []); C2 (load-bearing, FALSIFYING (i)) PASSED but on the STATIONARY arm only, where there is no manipulation, so it tests resting non-collinearity rather than falsifier (i)'s 'under manipulations designed to perturb only one' clause; C3 (not load-bearing) is vacated with its matched-exposure premise.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- untested. The decisive falsifier never scored; nothing here verdicts MECH-055.",
+        "biological_reference": "clear -- 5 literature entries already pulled (lit_conf 0.674); dissociation of affective level coding from PE signalling is well evidenced in mammals. No biology divergence, no /lit-pull owed.",
+        "prerequisites": "present -- every readiness floor met on the stationary arm, and harm_a_forward_r2 was 0.932-0.977 in EVERY cell including the red arm (floor 0.30).",
+        "implementation": "complete -- all four axes computed, forward model trained, accumulation trap avoided by routing on within-episode increments, red-team F1-F7 fixes applied. The lever mis-scheduling is an experiment-DESIGN defect, not an implementation defect in ree_core.",
+        "environment": "wrong pressures -- manipulation SCHEDULE, not dose. The world_rule_shift was live from step 0 of P0: _make_env is called once per cell (driver:643) before the training loop, the shift fires inside env.step() (causal_grid_world.py:2520) on a cumulative counter that DELIBERATELY survives reset() (:984-985, :1879-1885), so permutations accumulate across episodes -- up to ~810 depth-2 transpositions before P2 begins. The lever's stated premise (a learned stable action map made systematically wrong until re-learned) was therefore never instantiated at ANY dose. Exposure still ran ~4.28x the reference against a 1.25x ceiling.",
+        "measurement": "partial -- three recorded limits: (a) the harm-forward model's ACTION-sensitivity was never instrumented (no persistence baseline z_pred = z_harm_a(t-1) on the same r2_pairs), so a persistence-dominated predictor cannot be distinguished from an action-conditioned one that adapted; (b) the dACC precision leg was pinned at its cap on ~95% of ticks, so axis 3 is an unweighted residual and the run cannot speak to precision-weighting; (c) scored series lengths span 226-1784 across seeds in the green arm.",
+        "integration": "coupled but inert BY STARVED UPSTREAM -- the decoupling manipulation never supplied the residual perturbation the design required. Channel movement is real but heterogeneous, and the pooled means overstate it: per seed (c3_per_seed) valence rel-change was +14.9% / -52.9% / -65.3% and dACC PE rel-change -22.5% / -5.0% / +31.2%, i.e. one seed's valence ROSE and PE swings +-30%. Implementation is NOT downgraded on this account.",
+        "scale": "likely insufficient -- 0.84 s CPU per env step forced dropping the interval-25 rung, leaving a two-point ladder with no redundancy when the single shift rung went red. Note this is now a SECONDARY finding: under the schedule defect, extra rungs would not have helped."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- ENVIRONMENT primary (the experimental pressure was mis-SCHEDULED: the decoupling manipulation ran throughout training, so the premise it depends on was never instantiated), with a MEASURES contribution (the harm-forward model's action-sensitivity was never instrumented). MECHANISM reads established per the GOV-FAILLOC-1 table because Implementation completeness is 'complete' -- the inertness is a design defect, not an implementation one -- but note that no mechanism VERDICT exists either way, since C1 was never scored. NOT chargeable to REE (environment not established) and NOT chargeable to MECH-055."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dissociation between affective LEVEL coding (basolateral amygdala valence-specific projections; Namburi 2015) and prediction-error / surprise signalling in dorsal anterior cingulate (Hayden 2011), with wanting/liking separable within the valence channel (Berridge 2009).",
+        "dependencies": [
+          "harm-side forward model",
+          "precision weighting of the PE channel",
+          "a manipulation that perturbs the residual without changing exposure"
+        ],
+        "is_formal_import": false,
+        "divergence": "None identified. The REE translation (residue-field valence tag vs dACC-consumed forward-model residual) maps onto a genuinely dissociable mammalian pair. The failure is not a translation defect; it is an experimental-design defect in the decoupling manipulation's schedule.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Operating-point / measurement debt, not a substrate ceiling. 'standard' is the enum-compliant value for 'no epistemic suppression applies' and is what MECH-055 already carries; the run does not license moving it. NOTE for governance: MECH-055's own what_would_answer (2026-08-08) flags that a stricter reading could argue substrate_conditional, because the claim's wording requires the harm/benefit duality whose benefit half MECH-054 confirms is architecturally absent. This autopsy does NOT recommend that move -- substrate_conditional would put MECH-055 into _EPI_SUPPRESS_PROPOSAL and mark it not-v3-testable, starving it of experiment lanes, while the claim itself states a narrowed two-axis test CAN run now. Flagged for the user, not applied.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1062 (2026-09-22) is the first experimental run ever tagged MECH-055 and does NOT verdict it. The decisive falsifier (ii) criterion C1 was never scored: it is evaluated on SHIFT arms only, and the single shift arm failed two readiness preconditions -- harm exposure deviated ~4.28x from the stationary reference against a pre-registered 1.25x ceiling, and harm-PE load was 3.3% LOWER than stationary against a +5% floor. ROOT CAUSE (found at autopsy, and NOT what the run's own routing says): the world_rule_shift ran from step 0 of P0 rather than being enabled after training, so the harm-forward model trained under ~810 accumulated action-map permutations and never had a stable map to be made wrong about. harm_a_forward_r2 is accordingly indistinguishable between arms (0.932-0.954 shift vs 0.940-0.977 stationary). Interpretable signal recorded rather than discarded: (1) on the green stationary arm the load-bearing falsifier (i) criterion C2 PASSED (max pairwise axis R^2 0.271 against a 0.8 ceiling, 3/3 seeds), and the unrouted harm-channel correlations were 0.215-0.493 against a 0.9 redundancy threshold -- evidence against the collapsed-harm-scalar reading AT REST, but not under the decoupling manipulation falsifier (ii) requires; (2) the shift DID reach the world/E3 side (mean E3 running precision fell 3.2x-6.5x under shift) without reaching the harm-forward side, which is itself informative about what the lever touches; (3) the run's own remedy ('re-queue at an adequate P0') is unsupported -- P0 is the encoder-warmup budget, is never operationalised anywhere in the driver, and the successor must fix the shift ONSET, not lengthen warmup.",
+      "per_claim_recommendation": {
+        "MECH-055": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "Direction non_contributory and epistemic_category standard both STAND unchanged; what must be applied is the diagnostic-adjudication flag, which MECH-055 does not currently carry any value for -> diagnostic_evidence_adjudicated: true",
+          "pending_retest_after_substrate": false,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B4-one-shot-world-rule-shift-lever",
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/environment/causal_grid_world.py::_maybe_shift_world_rule"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3",
+          "experiment_type": "v3_exq_1062_mech055_affect_channel_separation_diagnostic",
+          "metric": "ONSET gap, not a dose gap. world_rule_shift is schedulable only by modulo interval/depth set at env construction, and its counter deliberately survives reset() (causal_grid_world.py:984-985, 1879-1885), so a driver that needs a TRAINED-THEN-SHIFTED regime has no kwarg to start the shift after training. V3-EXQ-1062 consequently trained its harm-forward model under ~810 accumulated permutations (P0 30 eps + P1 60 eps x <=90 steps at interval 10): harm_a_forward_r2 was statistically indistinguishable between arms (0.932-0.954 shift vs 0.940-0.977 stationary), mean dACC harm-PE FELL 3.3%, and harm exposure rose to ~4.28x the reference. The lever reached the world/E3 side (E3 running precision fell 3.2x-6.5x) but not the harm-forward side.",
+          "target": "A supported way to enable world_rule_shift at a phase boundary (post-training onset) rather than from env construction. Workaround available to drivers today without a substrate change: set env.world_rule_shift_enabled / _interval / _depth directly after the training loop. Separately, no prior run has ever measured whether this lever moves the dACC harm-PE channel -- the pe_load_elevated_vs_stationary precondition's control cites V3-EXQ-861e's MEL-gradient DV, a different channel.",
+          "resolved": "open"
+        },
+        "unblocks_claims_add": [
+          "MECH-055"
+        ],
+        "severity_note": "degrading, set deliberately rather than left unset: the modulo schedule is CORRECT behaviour for its registered consumers (861e-class MEL producers), so it does not make their evidence look valid-but-false -- that rules out 'corrupting'. It is recorded rather than left unset because this is a second, generalisable hazard for any consumer using the lever as a post-training decoupler, which is a WARN other experiments should see."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "0 prior autopsy targets tag MECH-055 across 533 artifacts (canary: SD-003 at 74, so the zero is a real zero). This is the first autopsy on the claim; the driver's own embedded count agrees. Brake does not fire and the granularity-debt trigger cannot fire."
+      },
+      "learning_extracted": [
+        "A decoupling manipulation must be SCHEDULED against the training phases, not merely configured. world_rule_shift was enabled at env construction and ran throughout P0+P1, so the harm-forward model trained under ~810 accumulated action-map permutations and adapted to them. Its premise -- a learned stable map made systematically wrong until re-learned -- was never instantiated at any dose, and no amount of dose tuning would have instantiated it. The tell was in the manifest all along: harm_a_forward_r2 statistically indistinguishable between arms despite continual permutation.",
+        "A self-routed remedy can be mis-specified even when the self-routed LABEL is right. The run correctly routed substrate_not_ready_requeue, but prescribed 're-queue at an adequate P0'. P0 is the encoder-warmup budget, 'adequate P0' is never operationalised anywhere in the 1826-line driver, and harm_a_forward_r2 (which is P1's product, not P0's) was 0.93+ in every cell. The label is a routing class; the remedy is a separate claim and needs its own evidence.",
+        "A precondition's control can cite a DIFFERENT channel from the one it gates. pe_load_elevated_vs_stationary justifies itself with V3-EXQ-861e's MEL-gradient readout, but gates on the dACC harm-PE. No prior run had ever measured whether this lever moves THIS channel, so the precondition's premise was untested on its own DV.",
+        "Two negative instruments could not have warned. assert_no_structurally_unsatisfiable_gate runs under --dry-run but detects only via structural_max/structural_min lambdas, and none of the eight PreconditionSpecs declares them. Separately the smoke was structurally forced to the real run's outcome AND label (FRESH_TICKS_MIN=200 unreachable at a 60-step dry P2 budget; CORR_MIN_N=100 forces every statistic to NaN), so it carried zero discriminating information about whether the real gate would pass.",
+        "Dropping a ladder rung for compute removes REDUNDANCY, not just resolution -- the interval-25 rung was the only alternative scoring site for C1, so one readiness failure took the decisive falsifier from 'partially answered' to 'unevaluable'. Recorded as a real design lesson, but SECONDARY here: under the schedule defect the extra rung would not have rescued the run.",
+        "The dACC precision leg ran 5x-50x above its saturation cap (mean E3 precision 24,872-250,856 against a 15,000 saturation point; mean_prec_norm pinned 2.93-3.00), while the design-time red-team predicted the opposite regime (~95, a ~1.02 multiplier) -- a 260x-2600x miss. The scale-invariance argument holds and no verdict changes (recomputed between-arm multiplier bias 0.47%; de-biased PE rel-change ~ -0.029, still below the +0.05 floor), but the cap HIDES a real between-arm precision effect and mean_prec_norm is emitted per-row without being rolled into the flat readout.",
+        "Recording defects for the successor to fix: the emitted dv_symmetry_note asserts the symmetry statement holds 'for all three arms' while full_config['arms'] carries two; and substrate_stable_across_run: false over-reads, since per_cell_hashes_disagree is false with exactly one distinct cell hash -- it reflects post-run worker DISK drift (15:02:37Z -> 17:52:12Z), not in-run instability."
+      ],
+      "routing": "queue-experiment",
+      "red_team": {
+        "model": "fable (cross-model; this session drafted on Opus 5)",
+        "verdict": "CONTESTED",
+        "contested_finding": "F1 -- the draft charged the failure to manipulation DOSE and prescribed a multi-rung dose ladder. The shift was live throughout P0/P1, so a same-schedule ladder aliases all live hypotheses to one flat-residual verdict at every rung (~9h at 0.84 s/step). VERIFIED INDEPENDENTLY by the drafting session before acceptance: one _make_env call at driver:643 preceding the training loop, world_rule_shift_enabled set only at driver:459, no toggle at the P2 boundary, and the causal_grid_world.py:984-985 / 1879-1885 non-reset comments read as quoted. ACCEPTED -- environment narrative, failure_record_entry and successor prescription all revised.",
+        "targets_that_held": [
+          "P0 not the binding constraint (on the structural argument)",
+          "C2 PASS is conservative (small n and lag-1 autocorr 0.989 both inflate R^2 toward an UPPER ceiling)",
+          "precision cap changes no verdict (between-arm multiplier bias recomputed at 0.47%)",
+          "change-tail storable and not-already-true",
+          "brake count 0 with canary SD-003 at 74"
+        ]
+      },
+      "routing_detail": "Re-queue as V3-EXQ-1062a (alphabetic suffix: same scientific question, implementation fix). The successor MUST, in order: (1) train P0/P1 on the STATIONARY env and enable the shift only at the P2 boundary, by setting env.world_rule_shift_enabled / _interval / _depth after the training loop -- no substrate change needed; (2) carry a PERSISTENCE-BASELINE R^2 (z_pred = z_harm_a(t-1), computed on the existing r2_pairs at zero extra env cost) as a readiness instrument, so a persistence-dominated harm-forward model is measured rather than assumed; (3) only AFTER (1)+(2) show the residual can move, ladder the dose. Also: declare structural_min on fresh_select_sample_floor so the design-time guard is no longer inert, roll mean_prec_norm into the flat readout, and fix the 'all three arms' note. EXPLICITLY NOT RECOMMENDED: lengthening P0, and a same-schedule multi-rung dose ladder (which was this autopsy's own first draft, withdrawn on the red-team finding -- recorded so a successor does not retry it).",
+      "fanout_recommendation_note": "No fanout_recommendation emitted, and the GOV-FANOUT-1 exemption is claimed on the RE-POSED design only. A same-schedule dose ladder would have been a power-bump of the braked design and would have aliased H1 (structural exposure/residual coupling), H2 (training-regime adaptation) and H3 (persistence-dominated harm-forward model) to a single flat-residual verdict. The re-posed successor moves on the SCHEDULE axis and adds a MEASUREMENT instrument (the persistence baseline) that discriminates H3 directly, so it is one unambiguous design fix rather than a portfolio. Put to the user at the Step 8 gate and confirmed."
+    }
+  ],
+  "cluster_pattern": null,
+  "user_confirmation": {
+    "confirmed_utc": "2026-09-22T18:39:09Z",
+    "gate": "Step 8 interactive gate held with the user present; all four dispositions confirmed as recommended.",
+    "decisions": {
+      "successor_design": "As proposed -- onset fix (train P0/P1 stationary, enable shift at the P2 boundary via public env attributes) + persistence-baseline R^2 instrument; dose ladder deferred until the residual is shown movable.",
+      "substrate": "amend SD-PP-B4-one-shot-world-rule-shift-lever, and ADD MECH-055 to its unblocks_claims.",
+      "epistemic_category": "Keep standard (substrate_conditional explicitly declined: it would suppress proposals and mark the claim not-v3-testable while a narrowed test can run now).",
+      "pending_retest_after_substrate": "false -- deliberate deviation from the default non_contributory pairing; the retest is owed but not build-gated."
+    },
+    "recommendation_ledger_entries": [
+      534,
+      535,
+      536,
+      537
+    ]
+  }
+}
