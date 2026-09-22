@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-20T14:06:11Z",
+  "generated_at": "2026-09-22T06:13:01Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -309,7 +309,7 @@
         "claims": [
           "MECH-017"
         ],
-        "surviving": 3,
+        "surviving": 2,
         "initial": 3,
         "convergence": "static",
         "is_hero": false
@@ -767,7 +767,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "150 / 188",
+      "value": "150 / 217",
       "detail": "modules recorded as built"
     },
     {
@@ -777,7 +777,7 @@
     },
     {
       "label": "Narrow",
-      "value": "132 / 185",
+      "value": "131 / 185",
       "detail": "rival explanations still standing"
     },
     {
@@ -791,7 +791,7 @@
       "id": "foundations",
       "title": "Foundations",
       "summary": "Invariants and premises carried into the programme.",
-      "total": 49,
+      "total": 48,
       "buckets": [
         {
           "key": "active",
@@ -986,8 +986,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 22,
-          "more_count": 12,
+          "count": 21,
+          "more_count": 11,
           "nodes": [
             {
               "id": "INV-077",
@@ -1077,26 +1077,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "INV-063",
-              "title": "minimum_entropy_intake_sleep_dependency",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 1,
-              "depends_on": [
-                "INV-049",
-                "SD-017",
-                "MECH-121",
-                "MECH-205",
-                "MECH-209",
-                "MECH-210",
-                "MECH-211"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "INV-054",
               "title": "Benefit terrain collapse creates a closed negative feedback loop (reduced exploration -> reduced benefit exposure -> continued sub-threshold seeding) predicting chronicity.",
               "status": "candidate",
@@ -1158,6 +1138,18 @@
                 "ARC-003",
                 "ARC-007"
               ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-067",
+              "title": "V(t): Verisimilitude is the precision-weighted, phase-aligned, hierarchical correspondence between ascending sensory-constrained and descending model-based signals.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "experiment_planned",
+              "attention_rank": 2,
+              "incoming_dependencies": 9,
+              "depends_on": [],
               "additional_dependencies": 0
             }
           ]
@@ -1686,7 +1678,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 250,
+      "total": 252,
       "buckets": [
         {
           "key": "active",
@@ -1937,8 +1929,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 222,
-          "more_count": 212,
+          "count": 224,
+          "more_count": 214,
           "nodes": [
             {
               "id": "INV-049",
@@ -2891,13 +2883,14 @@
   "record_counts": {
     "active": 179,
     "closed": 50,
-    "planned": 939
+    "planned": 940
   },
   "archive": {
-    "snapshot_count": 113,
-    "latest": "2026-09-20",
+    "snapshot_count": 114,
+    "latest": "2026-09-21",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-09-21",
       "2026-09-20",
       "2026-09-19",
       "2026-09-16",
@@ -2906,8 +2899,7 @@
       "2026-09-13",
       "2026-09-12",
       "2026-09-11",
-      "2026-09-08",
-      "2026-09-07"
+      "2026-09-08"
     ]
   }
 }

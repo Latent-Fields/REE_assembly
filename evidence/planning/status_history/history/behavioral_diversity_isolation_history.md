@@ -343,6 +343,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-B`
 
@@ -683,6 +684,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-C`
 
@@ -1023,6 +1025,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-C-build`
 
@@ -1363,6 +1366,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-D`
 
@@ -1703,6 +1707,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-E`
 
@@ -2043,6 +2048,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-F`
 
@@ -2383,6 +2389,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-G`
 
@@ -2723,6 +2730,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-H`
 
@@ -3063,6 +3071,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-I`
 
@@ -3403,6 +3412,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-J`
 
@@ -3743,6 +3753,7 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 
 ## `behavioral_diversity_isolation:GAP-K`
 
@@ -4083,4 +4094,5 @@ Source plan: `evidence/planning/behavioral_diversity_isolation_plan.md`
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
 

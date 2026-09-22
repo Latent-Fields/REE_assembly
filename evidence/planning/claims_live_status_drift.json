@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-20T14:06:49Z",
+  "generated_at": "2026-09-22T06:13:34Z",
   "counts": {
-    "total": 1168,
-    "reading_drift": 2,
+    "total": 1169,
+    "reading_drift": 4,
     "unstamped": 3,
     "needs_review": 2,
-    "never_reviewed": 1147,
-    "provenance_drift": 28
+    "never_reviewed": 1148,
+    "provenance_drift": 29
   },
   "reading_drift": [
     {
@@ -18,11 +18,27 @@
       ]
     },
     {
+      "claim": "INV-063",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
       "claim": "SD-071",
       "stored_reading": "candidate",
       "derived_reading": "provisional",
       "diffs": [
         "reading: stored='candidate' derived='provisional'"
+      ]
+    },
+    {
+      "claim": "GOV-UNWRITTEN-1",
+      "stored_reading": "candidate/negative_pilot_no_skill",
+      "derived_reading": "candidate",
+      "diffs": [
+        "reading: stored='candidate/negative_pilot_no_skill' derived='candidate'"
       ]
     }
   ],
@@ -1203,13 +1219,14 @@
     "MECH-568",
     "MECH-569",
     "MECH-570",
-    "MECH-571"
+    "MECH-571",
+    "GOV-UNWRITTEN-1"
   ],
   "provenance_drift": [
     {
       "claim": "MECH-017",
       "stored_from": null,
-      "derived_from": "failure_autopsy_V3-EXQ-1057-1057a-cluster_2026-09-20#V3-EXQ-1057a"
+      "derived_from": "failure_autopsy_V3-EXQ-1057b_2026-09-22"
     },
     {
       "claim": "MECH-018",
@@ -1234,7 +1251,7 @@
     {
       "claim": "MECH-037",
       "stored_from": null,
-      "derived_from": "decision:MECH-037@2026-09-20T12:17:20Z"
+      "derived_from": "decision:MECH-037@2026-09-20T14:16:26.077350Z"
     },
     {
       "claim": "MECH-050",
@@ -1254,7 +1271,7 @@
     {
       "claim": "ARC-029",
       "stored_from": "failure_autopsy_V3-EXQ-063a_2026-09-14",
-      "derived_from": "failure_autopsy_V3-EXQ-1070_2026-09-20"
+      "derived_from": "failure_autopsy_V3-EXQ-1070a_2026-09-22"
     },
     {
       "claim": "INV-063",
@@ -1269,12 +1286,12 @@
     {
       "claim": "MECH-316",
       "stored_from": "decision:MECH-316@2026-08-16T11:57:28.897709Z",
-      "derived_from": "decision:MECH-316@2026-09-20T12:40:30Z"
+      "derived_from": "decision:MECH-316@2026-09-20T14:16:26.207734Z"
     },
     {
       "claim": "MECH-317",
       "stored_from": "decision:MECH-317@2026-08-16T11:57:28.937162Z",
-      "derived_from": "decision:MECH-317@2026-09-20T13:16:20Z"
+      "derived_from": "decision:MECH-317@2026-09-20T14:16:26.277428Z"
     },
     {
       "claim": "ARC-083",
@@ -1345,6 +1362,11 @@
       "claim": "MECH-566",
       "stored_from": null,
       "derived_from": "failure_autopsy_V3-EXQ-1065_2026-09-20"
+    },
+    {
+      "claim": "GOV-UNWRITTEN-1",
+      "stored_from": null,
+      "derived_from": "decision:GOV-UNWRITTEN-1@2026-09-21T04:41:47Z"
     }
   ],
   "provenance_available": true

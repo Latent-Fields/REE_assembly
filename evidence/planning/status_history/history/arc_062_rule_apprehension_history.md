@@ -173,6 +173,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-B`
 
@@ -343,6 +348,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-C`
 
@@ -513,6 +523,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-D`
 
@@ -683,6 +698,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-E`
 
@@ -853,6 +873,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-F`
 
@@ -1023,6 +1048,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-G`
 
@@ -1193,6 +1223,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-H`
 
@@ -1363,6 +1398,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-I`
 
@@ -1533,6 +1573,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-I-absorption`
 
@@ -1703,6 +1748,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-J`
 
@@ -1873,6 +1923,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-K`
 
@@ -2043,6 +2098,11 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 
 ## `arc_062_rule_apprehension:GAP-L`
 
@@ -2213,4 +2273,9 @@ Source plan: `evidence/planning/arc_062_rule_apprehension_plan.md`
 - `2026-09-20T12:40Z` [decision] `decision:MECH-316@2026-09-20T12:40:30Z` -> [`evidence/decisions/decision_log.v1.jsonl#L523`](../../../../evidence/decisions/decision_log.v1.jsonl#L523) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:16Z` [decision] `decision:MECH-317@2026-09-20T13:16:20Z` -> [`evidence/decisions/decision_log.v1.jsonl#L524`](../../../../evidence/decisions/decision_log.v1.jsonl#L524) :: decision undefer_owning_node (approved)
 - `2026-09-20T13:17Z` [decision] `decision:MECH-314a@2026-09-20T13:17:08Z` -> [`evidence/decisions/decision_log.v1.jsonl#L525`](../../../../evidence/decisions/decision_log.v1.jsonl#L525) :: decision undefer_owning_node (approved)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-316@2026-09-20T14:13:50Z` -> [`evidence/decisions/decision_log.v1.jsonl#L529`](../../../../evidence/decisions/decision_log.v1.jsonl#L529) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-317@2026-09-20T14:13:54Z` -> [`evidence/decisions/decision_log.v1.jsonl#L530`](../../../../evidence/decisions/decision_log.v1.jsonl#L530) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:13Z` [decision] `decision:MECH-314a@2026-09-20T14:13:57Z` -> [`evidence/decisions/decision_log.v1.jsonl#L531`](../../../../evidence/decisions/decision_log.v1.jsonl#L531) :: decision undefer_owning_node (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-316@2026-09-20T14:16:26.207734Z` -> [`evidence/decisions/decision_log.v1.jsonl#L535`](../../../../evidence/decisions/decision_log.v1.jsonl#L535) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-20T14:16Z` [decision] `decision:MECH-317@2026-09-20T14:16:26.277428Z` -> [`evidence/decisions/decision_log.v1.jsonl#L536`](../../../../evidence/decisions/decision_log.v1.jsonl#L536) :: decision hold_pending_v3_substrate (applied)
 

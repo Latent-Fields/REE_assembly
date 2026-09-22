@@ -594,6 +594,15 @@
       "selected_option": "Keep candidate; hold recorded",
       "timestamp_utc": "2026-09-03T20:44:11.976886Z"
     },
+    "GOV-UNWRITTEN-1": {
+      "actor": "digest-decisions-forms-20260920",
+      "decision_needed": "Unwritten-prerequisite discovery: the first pre-registered pilot of an /unwritten-edges skill FAILED its shipping bar (1 verified new prerequisite in 39 nominations, 2.6%; needed >=50% and >=3 new nodes). Do you want (a) a revised second pilot, (b) the one recipe that worked folded into experiment design instead, or (c) to accept the negative result and stop?",
+      "decision_status": "proposed",
+      "rationale": "None",
+      "recommendation": "Option (b) now; (a) only if (b) keeps finding gaps. The single genuine hit (MECH-318 needs a within-episode rule-switch event + adaptation-time instrument, registered as mech318-within-episode-rule-switch-instrument) came from tracing a claim's FALSIFIER to what its experiment must be able to emit and measure -- the other detectors (stale-gate prose, 'not yet built' phrases, empty dependency lists) produced 36 false positives. That trace is cheap and belongs where experiments are designed.",
+      "selected_option": "None",
+      "timestamp_utc": "2026-09-21T04:41:47Z"
+    },
     "INV-040": {
       "actor": "governance-20260908-0703 (user)",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -631,13 +640,13 @@
       "timestamp_utc": "2026-04-10T18:06:06.632775Z"
     },
     "INV-063": {
-      "actor": "governance-20260908-0703 (user)",
-      "decision_needed": "Conflict resolution before promotion",
+      "actor": "dgolden",
+      "decision_needed": "INV-063 C1 leg-A DV circularity + three other failed preconditions: convert via escape hatch?",
       "decision_status": "applied",
-      "rationale": "HOLD RECORDED 2026-09-08: the conflict is LITERATURE-only (IGW-232 lit-pull landed 5 entries 09-08, literature_confidence 0.687 with mixed directions); no experimental conflict; the GFLAG-0123 detector shape. No claims.yaml status change; INV-063's own digestion flags (GFLAG-0203..0206) await the staged review.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "hold_candidate_resolve_conflict",
-      "timestamp_utc": "2026-09-08T15:30:04.464955Z"
+      "rationale": "User decision 2026-09-20 (AskUserQuestion via orchestrate-20260920-1121; GFLAG-0390). Applied by governance-20260920-cycle: epistemic_category standard -> substrate_conditional; status stays candidate.",
+      "recommendation": "convert_to_substrate_conditional",
+      "selected_option": "(c) CONVERT to substrate_conditional",
+      "timestamp_utc": "2026-09-20T14:18:42.570585Z"
     },
     "INV-074": {
       "actor": "user",
@@ -821,12 +830,12 @@
     },
     "MECH-037": {
       "actor": "dgolden",
-      "decision_needed": "MECH-037: demote provisional -> candidate? The pipeline recommends demote_to_candidate (epistemic_category standard, exp_entries 0, lit_entries 5, directions supports 2 / weakens 1 / mixed 2, conflict_ratio 0.667 -- a literature-only conflict, which per the 2026-09-03 EXT-003 ruling is non-gating). Alternative: hold as provisional. No experimental evidence exists either way.",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Answered at the governance-20260920 walk (AskUserQuestion); applied in claims.yaml 108b156192.",
-      "recommendation": "demote_to_candidate (pipeline); governance session left it undecided for lack of context on why it was promoted",
-      "selected_option": "Demote to candidate",
-      "timestamp_utc": "2026-09-20T12:17:20Z"
+      "rationale": "Governance cycle governance-20260920-cycle: user accepted all four pending_user hold recommendations as recommended (AskUserQuestion). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user every cycle. Lit-only conflict_ratio 0.667 (5 entries, exp 0); demoted to candidate earlier today (108b156192).",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate; conflict gate stands",
+      "timestamp_utc": "2026-09-20T14:16:26.077350Z"
     },
     "MECH-040": {
       "actor": "user",
@@ -1045,13 +1054,13 @@
       "timestamp_utc": "2026-08-08T08:30:48.470619Z"
     },
     "MECH-074d": {
-      "actor": "user",
-      "decision_needed": "Demotion review: provisional -> candidate (conflict_ratio 0.667)",
-      "decision_status": "approved",
-      "rationale": "as candidate it should attract more scrutiny and possible upddates to allow for promotion of full working set",
-      "recommendation": "demote_to_candidate",
-      "selected_option": "Demote to candidate (apply the recommendation)",
-      "timestamp_utc": "2026-09-20T12:37:49Z"
+      "actor": "dgolden",
+      "decision_needed": "Literature conflict noted; claim stays gated pending upstream probe/substrate",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920-cycle: user accepted all four pending_user hold recommendations as recommended (AskUserQuestion). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user every cycle. conflict_ratio 0.8; substrate_conditional on MECH-153 context-labeling objective; already candidate since 288c1c7b986.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Acknowledge conflict, no status change",
+      "timestamp_utc": "2026-09-20T14:16:26.137950Z"
     },
     "MECH-075": {
       "actor": "user",
@@ -1101,11 +1110,11 @@
     "MECH-091": {
       "actor": "user",
       "decision_needed": "Orphan V3 claim: owning node commitment_closure:GAP-7 is deferred",
-      "decision_status": "approved",
+      "decision_status": "applied",
       "rationale": "None",
       "recommendation": "decide_blocker_generation_then_route",
       "selected_option": "DECIDE the generation of SD-006 phase 2 first; then either queue it + un-defer, or keep deferred and correct claims.yaml implementation_phase v3 -> v4",
-      "timestamp_utc": "2026-09-20T13:18:11Z"
+      "timestamp_utc": "2026-09-20T14:14:00Z"
     },
     "MECH-092": {
       "actor": "governance",
@@ -1893,11 +1902,11 @@
     "MECH-314a": {
       "actor": "user",
       "decision_needed": "Orphan V3 claim: owning node behavioral_diversity_isolation:GAP-G is deferred",
-      "decision_status": "approved",
+      "decision_status": "applied",
       "rationale": "None",
       "recommendation": "undefer_owning_node",
       "selected_option": "Un-defer the node (-> blocked, depends_on GAP-B which is partial); NO claims.yaml change",
-      "timestamp_utc": "2026-09-20T13:17:08Z"
+      "timestamp_utc": "2026-09-20T14:13:57Z"
     },
     "MECH-314b": {
       "actor": "user",
@@ -1918,22 +1927,22 @@
       "timestamp_utc": "2026-05-16T19:08:31Z"
     },
     "MECH-316": {
-      "actor": "user",
-      "decision_needed": "Orphan V3 claim: owning node arc_062_rule_apprehension:GAP-I-absorption is deferred",
-      "decision_status": "approved",
-      "rationale": "None",
-      "recommendation": "undefer_owning_node",
-      "selected_option": "needs to be part of v3 if needed to complete v3",
-      "timestamp_utc": "2026-09-20T12:40:30Z"
+      "actor": "dgolden",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920-cycle: user accepted all four pending_user hold recommendations as recommended (AskUserQuestion). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user every cycle. V3-pending gate stands; owning node arc_062_rule_apprehension:GAP-I-absorption is blocked_pending_substrate (in the V3 denominator).",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold pending V3 substrate",
+      "timestamp_utc": "2026-09-20T14:16:26.207734Z"
     },
     "MECH-317": {
-      "actor": "user",
-      "decision_needed": "Orphan V3 claim: owning node arc_062_rule_apprehension:GAP-I-absorption is deferred",
-      "decision_status": "approved",
-      "rationale": "None",
-      "recommendation": "undefer_owning_node",
-      "selected_option": "If the mechanism is required for V3 closure then it should be undeferred. If it is a v4 mechanism then it should be relabelled. THis needs perhaps an investigation as it seems like this is becoming v3",
-      "timestamp_utc": "2026-09-20T13:16:20Z"
+      "actor": "dgolden",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260920-cycle: user accepted all four pending_user hold recommendations as recommended (AskUserQuestion). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user every cycle. V3-pending gate stands; owning node arc_062_rule_apprehension:GAP-I-absorption is blocked_pending_substrate (in the V3 denominator).",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold pending V3 substrate",
+      "timestamp_utc": "2026-09-20T14:16:26.277428Z"
     },
     "MECH-318": {
       "actor": "user",
@@ -3232,7 +3241,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-20T14:04:36.212334Z",
+  "generated_at_utc": "2026-09-22T05:09:59.731820Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

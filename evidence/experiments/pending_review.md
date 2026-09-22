@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-09-22T05:10:36Z`  
+Generated: `2026-09-22T06:12:28Z`  
 Last review: `2026-09-20T12:15:51Z`  
-Pending: **3** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 2 diagnostic run(s) with no confirmed autopsy
+Pending: **3** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
@@ -23,15 +23,6 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
 | `v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3` | PASS | final_pass_dose_response_opposite_sign_across_orders_last_writer_signature |
-| `v3_exq_1070a_arc029_env_operating_point_feasibility_20260920T155046Z_v3` | FAIL | substrate_not_ready_requeue |
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

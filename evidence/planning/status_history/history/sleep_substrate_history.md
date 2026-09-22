@@ -132,6 +132,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-2`
 
@@ -261,6 +262,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-3`
 
@@ -390,6 +392,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-3b`
 
@@ -519,6 +522,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-4`
 
@@ -648,6 +652,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-5`
 
@@ -777,6 +782,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-5b`
 
@@ -906,6 +912,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-6`
 
@@ -1035,6 +1042,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-7`
 
@@ -1164,6 +1172,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-8`
 
@@ -1293,6 +1302,7 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 
 ## `sleep_substrate:GAP-9`
 
@@ -1422,4 +1432,5 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-09-20T08:20Z` [manifest] `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3` -> [`evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json`](../../../../evidence/experiments/v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3.json) :: PASS manifest non_contributory
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1063` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-20T11:40Z` [autopsy] `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` -> [`evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json`](../../../../evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.json) :: autopsy non_contributory/standard routing=governance-note-only **<- live head**
+- `2026-09-20T14:18Z` [decision] `decision:INV-063@2026-09-20T14:18:42.570585Z` -> [`evidence/decisions/decision_log.v1.jsonl#L537`](../../../../evidence/decisions/decision_log.v1.jsonl#L537) :: decision convert_to_substrate_conditional (applied)
 

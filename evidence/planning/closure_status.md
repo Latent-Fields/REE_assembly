@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-21T01:14:13Z
+Generated: 2026-09-22T06:12:59Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -22,7 +22,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-09-08 |
 | `policy_decomposition_trigger_plan.md` | ARC-070 / MECH-321 decomposition trigger operationalization | 1 | 10% | blocked:1 | 2026-08-21 |
-| `zworld_adequacy_plan.md` | observation -> z_world encoding adequacy (the V3 binding-constraint interface) | 2 | 10% | assembling:1 upstream_blocked:1 | 2026-09-18 |
+| `zworld_adequacy_plan.md` | observation -> z_world encoding adequacy (the V3 binding-constraint interface) | 2 | 10% | assembling:1 upstream_blocked:1 | 2026-09-21 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-23 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 6 | 28% | blocked:4 deferred:1 done:1 | 2026-09-04 |
 | `orienting_epistemic_deficit_v3_plan.md` | Orienting & Epistemic-Deficit Cluster (V3 closure) | 6 | 32% | blocked:1 done:1 in_progress:2 open:2 | 2026-09-17 |
@@ -95,7 +95,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | routing=queue-experiment | built |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | routing=queue-experiment | blocked_on_upstream |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
-| zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | observation -> z_world preserves decision-relevant content (SD-106 gen | assembling | SD-106 | queued | 2026-10-15 | 2026-09-18 |
+| zworld_adequacy_plan.md | `zworld_adequacy:ZW-1` | observation -> z_world preserves decision-relevant content (SD-106 gen | assembling | SD-106 | built | 2026-10-15 | 2026-09-21 |
 
 ## Deferred -- not required for v3 closure (10)
 
