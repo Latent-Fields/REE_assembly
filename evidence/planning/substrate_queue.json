@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "mech005-science-20260922-exq-1073",
-  "last_updated_utc": "2026-09-22T15:26:14Z",
+  "last_updated_utc": "2026-09-22T16:33:33Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -11938,10 +11938,10 @@
     },
     {
       "node_class": "complicated (buildable)",
-      "status": "in_progress_build_authorised_2026_09_22",
-      "ready": true,
+      "status": "implemented_pending_validation",
+      "ready": false,
       "registration_is_not_build_authorisation": false,
-      "owner_route": "/implement-substrate (in progress, session compassionate-pike-fe9174) -> V3-EXQ-1073 validation",
+      "owner_route": "V3-EXQ-1073 validation run -> /failure-autopsy -> /governance",
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
@@ -11970,14 +11970,19 @@
       "why_no_existing_owner": "grep of ree_core for sensory/obs/observation/evidence/outcome precision returns nothing; no owner exists.",
       "substrate_paths": [
         "ree_core/precision/observation_reliability.py"
-      ]
+      ],
+      "implementation_status": "implemented_pending_validation",
+      "implemented_utc": "2026-09-22T16:33:33Z",
+      "implemented_session": "compassionate-pike-fe9174",
+      "implementation_note": "Landed ree-v3 origin/main 9a3907d93c (2026-09-22): default-OFF, bit-identical by structural absence; 45 unit + 7 integration contract tests; remote suite 6493 passed (hub run DLAPTOP-4-27574-20260922T152701Z) + flag-registry fix. Follow-on commit (same session): residual_only mode redesigned to a current-residual scheduler + estimator get_state/set_state (freeze record items 1 and 6). Validation experiment: V3-EXQ-1073 (diagnostic). Record: ree-v3 docs/substrate/SD-PP-1-*.md.",
+      "validation_experiment": "V3-EXQ-1073"
     },
     {
       "node_class": "complicated (buildable)",
-      "status": "in_progress_build_authorised_2026_09_22",
-      "ready": true,
+      "status": "implemented_pending_validation",
+      "ready": false,
       "registration_is_not_build_authorisation": false,
-      "owner_route": "/implement-substrate (in progress, session compassionate-pike-fe9174) -> V3-EXQ-1073 validation",
+      "owner_route": "V3-EXQ-1073 validation run -> /failure-autopsy -> /governance",
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
@@ -12007,14 +12012,19 @@
       "why_no_existing_owner": "E3's running-variance EMA is on a different prediction; SD-063 conflates noise with model uncertainty; no producer of the world head's own epistemic precision exists.",
       "substrate_paths": [
         "ree_core/precision/world_forward_epistemic_precision.py"
-      ]
+      ],
+      "implementation_status": "implemented_pending_validation",
+      "implemented_utc": "2026-09-22T16:33:33Z",
+      "implemented_session": "compassionate-pike-fe9174",
+      "implementation_note": "Landed ree-v3 origin/main 9a3907d93c (2026-09-22): default-OFF, bit-identical by structural absence; 45 unit + 7 integration contract tests; remote suite 6493 passed (hub run DLAPTOP-4-27574-20260922T152701Z) + flag-registry fix. Follow-on commit (same session): residual_only mode redesigned to a current-residual scheduler + estimator get_state/set_state (freeze record items 1 and 6). Validation experiment: V3-EXQ-1073 (diagnostic). Record: ree-v3 docs/substrate/SD-PP-2-*.md.",
+      "validation_experiment": "V3-EXQ-1073"
     },
     {
       "node_class": "complicated (buildable)",
-      "status": "in_progress_build_authorised_2026_09_22",
-      "ready": true,
+      "status": "implemented_pending_validation",
+      "ready": false,
       "registration_is_not_build_authorisation": false,
-      "owner_route": "/implement-substrate (in progress, session compassionate-pike-fe9174) -> V3-EXQ-1073 validation",
+      "owner_route": "V3-EXQ-1073 validation run -> /failure-autopsy -> /governance",
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
@@ -12045,14 +12055,19 @@
       "why_no_existing_owner": "The experience buffers store only (z_world, action_one_hot); no per-entry metadata carrier exists on this path.",
       "substrate_paths": [
         "ree_core/hippocampal/replay_provenance.py"
-      ]
+      ],
+      "implementation_status": "implemented_pending_validation",
+      "implemented_utc": "2026-09-22T16:33:33Z",
+      "implemented_session": "compassionate-pike-fe9174",
+      "implementation_note": "Landed ree-v3 origin/main 9a3907d93c (2026-09-22): default-OFF, bit-identical by structural absence; 45 unit + 7 integration contract tests; remote suite 6493 passed (hub run DLAPTOP-4-27574-20260922T152701Z) + flag-registry fix. Follow-on commit (same session): residual_only mode redesigned to a current-residual scheduler + estimator get_state/set_state (freeze record items 1 and 6). Validation experiment: V3-EXQ-1073 (diagnostic). Record: ree-v3 docs/substrate/SD-PP-3-*.md.",
+      "validation_experiment": "V3-EXQ-1073"
     },
     {
       "node_class": "complicated (buildable)",
-      "status": "in_progress_build_authorised_2026_09_22",
-      "ready": true,
+      "status": "implemented_pending_validation",
+      "ready": false,
       "registration_is_not_build_authorisation": false,
-      "owner_route": "/implement-substrate (in progress, session compassionate-pike-fe9174) -> V3-EXQ-1073 validation",
+      "owner_route": "V3-EXQ-1073 validation run -> /failure-autopsy -> /governance",
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
@@ -12087,7 +12102,12 @@
         "ree_core/sleep/provenance_gain.py",
         "ree_core/sleep/cross_module_consolidation.py",
         "ree_core/predictors/e2_fast.py::world_forward_contrastive_loss"
-      ]
+      ],
+      "implementation_status": "implemented_pending_validation",
+      "implemented_utc": "2026-09-22T16:33:33Z",
+      "implemented_session": "compassionate-pike-fe9174",
+      "implementation_note": "Landed ree-v3 origin/main 9a3907d93c (2026-09-22): default-OFF, bit-identical by structural absence; 45 unit + 7 integration contract tests; remote suite 6493 passed (hub run DLAPTOP-4-27574-20260922T152701Z) + flag-registry fix. Follow-on commit (same session): residual_only mode redesigned to a current-residual scheduler + estimator get_state/set_state (freeze record items 1 and 6). Validation experiment: V3-EXQ-1073 (diagnostic). Record: ree-v3 docs/substrate/SD-PP-4-*.md.",
+      "validation_experiment": "V3-EXQ-1073"
     },
     {
       "node_class": "complex (probe-gated) -> puzzle (known rules)",

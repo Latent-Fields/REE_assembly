@@ -300,7 +300,7 @@ prediction + noisy evidence has low write authority (K small, m small); bounded 
 |---|---|---|
 | `provenance` | rule above | ARM C |
 | `provenance_nohist` | rule with `r_i = 1` | ARM C-nohist (is historical precision load-bearing? intake F1) |
-| `residual_only` | `g_i = global_scale * l_i / mean_j(l_j)` (l = per-row CURRENT loss, detached; no clip) | ARM D-residual (current residual only, budget = global_scale) |
+| `residual_only` | `g_i = clip(gain_max * sqrt(pe_cur_i / v_ref), gain_min, gain_max)` with `pe_cur_i` = CURRENT per-row MSE of the head on the replayed triple (passed as `per_row_residual`; no packet, no precision, `global_scale` ignored). AMENDED pre-freeze 2026-09-22 (freeze record item 6) from the budget-matched `global_scale * l_i / mean(l)` form, which could not reallocate across regimes. | ARM D-residual (current residual only, NOT budget-matched) |
 | `global` | `g_i = global_scale` | ARM D-global (matched budget, no information) |
 A packet missing for a row (`get()` None or `has_prev` False) -> `g_i = 1.0` and `n_missing` counted.
 
