@@ -33140,12 +33140,12 @@
   epistemic_category: standard
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-09-22
     needs_review: false
     evidence:
       from: failure_autopsy_V3-EXQ-900_2026-09-14
       as_of: 2026-09-14
-      verdict: supports/standard
+      verdict: "supports/standard"
   narrow_supports: true
   evidence_quality_note: >
     [2026-09-15 governance, cycle governance-20260915, applying confirmed
@@ -33200,6 +33200,52 @@
     adjudication above was applied by governance-20260915 from confirmed
     failure_autopsy_V3-EXQ-900_2026-09-14 (note, live_status, what_would_answer C2 annotation); this
     line records the artifact slug so the scan can certify it. No field moves.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-900_2026-09-14 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. The stamp was already correct; what was owed is this autopsy's full adjudication in the note. Direction
+    stays supports and status stays candidate. CARRIED FROM THE AUTOPSY'S per-claim recommendation and worth reading
+    against what_would_answer: the CONFIRMING (mechanism) C2 entry reading 'measured 0.517' is the DENSITY_DELTA figure,
+    not the pre-registered raw-density statistic, which measures 0.18 on this run and does NOT clear RHO_LIVE_MIN. The
+    note below carries the full adjudication including that narrowing.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    2026-09-14 failure-autopsy (V3-EXQ-900, resolving GFLAG-0246; adversarially red-teamed on a different model, verdict
+    CONTESTED -> corrected below). (1) FLAT BENEFIT_MAGNITUDE FINDING: mean_benefit_magnitude_across_cluster_sizes_ge2
+    (0.5577) vs cluster_size_1 (0.5582) is NOT a functional discriminator and does not falsify or qualify anything.
+    benefit_magnitude is the near-constant environmental input (CV ~1.6% across all 57 pooled events) multiplied by the
+    genuinely variable drive_level (34x range) to form dopamine_signal; a magnitude-keyed split was never going to show a
+    gap by construction. This finding is CONFIRMED by independent recompute and does not need further work. (2) THE
+    DEEPER, VALIDATED CONCERN: GFLAG-0246's underlying worry -- that nothing in the combination rule (C1 AND C2 AND C4)
+    actually tests the FUNCTIONAL half of the claim's label -- is SUBSTANTIALLY CORRECT, though not via the
+    benefit_magnitude route. Traced to source: the manifest's own field 'C2_cluster_size_vs_density' (measured rho=0.5166)
+    is NOT computed on raw density (the signal field.py's own docstring identifies as 'the signal the SD-025 curiosity
+    drive follows') -- it is computed on density_delta (post-event minus pre-event density AT the event's own location).
+    Recomputed directly from per_seed_rows: rho(cluster_size, RAW density) = 0.1775, below the driver's own pre-registered
+    RHO_LIVE_MIN=0.30 bar (driver docstring lines 97-100, 155-157 name 'density', not 'density_delta'; the substitution is
+    made in evaluate(), documented in code comments as a fix for a field-history confound found in a pre-run probe -- but
+    the docstring's formal PRE-REGISTERED ACCEPTANCE section was never updated to match). Further: density_delta is
+    substantially an ARITHMETIC function of cluster_size and the fixed jitter/bandwidth geometry (single-center delta =
+    1.0 +/- 2e-6 for 51/51 events; per-center delta for clusters ~0.49, matching exp(-E[||jitter||^2]/(2*bw^2)) exactly)
+    -- it is closer to a re-run of the P0 synthetic sweep (R2, rho=1.0) than a live functional-propagation test, and at
+    the smallest cluster size (n=2) one of two observed events reads LOWER density at the contact point than a single
+    center would (delta 0.958 < 1.000), directly undermining 'more centers -> more density read here' as a live-tested
+    proposition. VERDICT: the PASS is a genuine, well-powered, LOO-robust (min 0.495 on C1) confirmation of the
+    REPRESENTATIONAL sub-clause (C1: DA responds to live cluster allocation) and the MECH-233 ASYMMETRY (C4: 0 of 1403
+    harm calls allocate a cluster) -- both robust and claim-confidence-bearing. It does NOT establish that this structural
+    difference propagates into the STANDING density signal the rest of the substrate (SD-025's curiosity drive) actually
+    reads; the properly-operationalized version of that test fails on this run's own live data. Recorded as
+    narrow_supports: true. SD-024 stays candidate (status unchanged); the claims.yaml CONFIRMING(mechanism) section's C2
+    entry ('measured 0.517') should be corrected to note it is the delta-based figure and that the raw-density form (0.18)
+    does not clear the pre-registered bar. This also completes, for this one instance, the 'may invalidate the run's
+    VERDICT, not merely its recording' governance question GFLAG-0249 deferred to a future decision -- resolved here as:
+    does not invalidate the PASS's representational/asymmetry evidence, does invalidate the label's functional half and
+    claims.yaml's current C2 characterization. RECOMMENDED FUTURE WORK (not queued from this autopsy; governance chips
+    once ratified): a redesign that operationalizes functional propagation via a STANDING read (e.g. density at a fixed
+    post-event delay/revisit, or an explicit baseline-subtracted trend across an episode) rather than an immediate event-
+    marginal delta, and that additionally sweeps benefit_magnitude at pinned drive_level (the axis Duvelle 2019 and the
+    substrate's own linear formula make opposite, currently-untested predictions on) alongside the already-planned
+    drive_level sweep.
   registered: "2026-04-14"
   depends_on:
     - SD-004
@@ -76620,12 +76666,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-09-05
+    as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1039_2026-09-16
-      as_of: 2026-09-16
-      verdict: non_contributory/standard
+      from: failure_autopsy_V3-EXQ-1039a_2026-09-20
+      as_of: 2026-09-20
+      verdict: "non_contributory/standard"
   diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   subject: goal.maintenance_feedback_necessity
@@ -76739,6 +76785,21 @@
 
     [governance-20260920] V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds 43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes 0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
 
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-1039a_2026-09-20 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. Direction and category already match the stored values, so nothing storable moves; what was owed is the
+    note plus the citation. Provenance advanced failure_autopsy_V3-EXQ-1039_2026-09-16 ->
+    failure_autopsy_V3-EXQ-1039a_2026-09-20, the successor run's own confirmed adjudication.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and
+    MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained
+    on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds
+    43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo
+    CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes
+    0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native
+    magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is
+    gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
 - id: MECH-426
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: TWO preconditions, not one. (a) The agent must forage measurably above random on this env family, so completion rate and commitment persistence have dynamic range to lose -- currently unmet. (b) The velocity signal must have non-zero cross-condition range (not magnitude-only), and the SPARSE OFF arm must retain less z_goal than the DENSE OFF arm, or the run self-routes substrate_not_ready_requeue.
@@ -76993,12 +77054,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-09-05
+    as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1039_2026-09-16
-      as_of: 2026-09-16
-      verdict: non_contributory/standard
+      from: failure_autopsy_V3-EXQ-1039a_2026-09-20
+      as_of: 2026-09-20
+      verdict: "non_contributory/standard"
   diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   subject: goal.subgoal_bootstrapped_seeding
@@ -77098,6 +77159,23 @@
     this run is not it).
 
     [governance-20260920] V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds 43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes 0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-1039a_2026-09-20 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. Direction and category already match the stored values. pending_retest_after_substrate STAYS true for the
+    reason the confirmed V3-EXQ-1004 autopsy already gave and the 1030 and 1039 drafts restated: the SD-094-enabled retest
+    of V3-EXQ-884 as V3-EXQ-884a has still never run, and this run is not that retest. Provenance advanced
+    failure_autopsy_V3-EXQ-1039_2026-09-16 -> failure_autopsy_V3-EXQ-1039a_2026-09-20.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    V3-EXQ-1039a (diagnostic, FAIL, substrate_not_ready_requeue; supersedes V3-EXQ-1039): non_contributory for INV-086 and
+    MECH-428 -- neither claim exercised. 5 of 10 paired readiness gates red, by three routes: seed 42 -- bias head trained
+    on the hard-clamp path (rule_readout_consumer off), clamp on its rail in all arms, exactly-zero gradient (C0d); seeds
+    43/44 -- proposer pool collapsed to a median of 2 first-action classes in every arm (B1), which also starved the demo
+    CE update stream to 14 and 22 steps so A3 there is an n=1 and n=2 statistic; all seeds -- bias-head ablation changes
+    0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native
+    magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is
+    gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
   pending_retest_after_substrate: true
   implementation_note: >
     SD-092 (2026-08-02): inherits MECH-427's primitive directly -- the SAME
@@ -77309,12 +77387,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1039_2026-09-16
-      as_of: 2026-09-16
-      verdict: non_contributory/standard
+      from: failure_autopsy_V3-EXQ-1012a_2026-09-14
+      as_of: 2026-09-14
+      verdict: "non_contributory/standard"
   epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
@@ -77529,6 +77607,41 @@
     nothing relates these flips to the executed action; and two of the five declared
     commensurability channels (benefit_weighted, goal_weighted) have a scale estimate of exactly 0.0
     in every cell, so the operator arbitrated among 3 live channels, not 5.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-1012a_2026-09-14 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. NO STORABLE FIELD MOVES: status candidate, epistemic_category standard, diagnostic_evidence_adjudicated
+    true and pending_retest_after_substrate true are all already set, so a tail on any of them would be already-true --
+    which is exactly why this row could only ever clear via the provenance stamp. pending_retest_after_substrate STAYS
+    true: this run is the substrate rung's ACCEPTANCE INSTRUMENT, not the claim's retest, and the retest MECH-439's
+    what_would_answer describes (F's committed-selection-variance share against a collapsed-proposer control and a
+    matched-noise control) has still never run. PROVENANCE CORRECTED, and this is a GFLAG-0310-CLASS FINDING ON A CLAIM
+    GFLAG-0310 DOES NOT LIST: live_status.evidence.from read failure_autopsy_V3-EXQ-1039_2026-09-16, which carries
+    claim_ids ['INV-086', 'MECH-428'] and per-claim recommendations for those two only -- MECH-439 is not one of its
+    targets and does not even appear in its bears_on list; the connection is the THEME token
+    f_dominance_conversion_ceiling. So a non-adjudicating artifact was outranking a real per-claim adjudication purely by
+    being later-dated, which is GFLAG-0310's mechanism one step weaker than the bears_on-claim-id case it documents. Re-
+    pointed to the artifact that actually adjudicated this claim.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    [2026-09-14, V3-EXQ-1012a, PASS, diagnostic] The acceptance instrument for SD-E3-CHANNEL-COMMENSURABILITY's AMENDED
+    readiness target (GFLAG-0234, /governance option A, user-approved 2026-09-10), superseding the parked V3-EXQ-1012
+    whose original share-based target was found to be an arithmetic identity of the operator it was meant to validate. NOT
+    a test of MECH-439 -- non_contributory, and the driver's own outcome_note says so: 'MECH-439's direction does not move
+    on this record.' WHAT IT ESTABLISHES: the operator is not a no-op at the primary-score selection stage. Shadow OFF/ON
+    replay, intra-tick with the EMA state frozen and a self-check replay that must reproduce the live scores exactly (0
+    failures in 8 of 8 cells), gives a primary-argmin flip rate of 0.821 fed / 0.724 starved over 158-258 genuine fresh
+    selections per cell. WHAT IT DOES NOT ESTABLISH, and what a reader must not infer: that the flip is principled. There
+    is no null arm. The criterion's bar is computed from the same four seeds it tests (bar = 2 x sd of the arm's own
+    rates, so it is a coefficient-of-variation test, not a test against any reference), and a differential rescaling that
+    spans four orders of magnitude between the live channels would be expected to move the argmin at roughly the rate two
+    unrelated rankings disagree -- so this run cannot distinguish 'the operator imposes a different, principled ranking'
+    from 'the operator scrambles the ranking'. The reference it needs is a PLACEBO differential rescaling carrying no
+    commensurability content. Two further scope bounds: the DV characterises the primary-score stage only, and the
+    `final_commit_by_primary_frac` readout the driver's own docstring calls mandatory interpretive context was not
+    emitted, so nothing relates these flips to the executed action; and two of the five declared commensurability channels
+    (benefit_weighted, goal_weighted) have a scale estimate of exactly 0.0 in every cell, so the operator arbitrated among
+    3 live channels, not 5.
   diagnostic_evidence_adjudicated: true
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
@@ -98190,14 +98303,35 @@
     bears_on; the adjudicating artifact is this one.
 
     [governance-20260920] V3-EXQ-1043a (diagnostic, FAIL, substrate_not_ready_requeue; instrument repair of V3-EXQ-1043, n=6, 11.1h): non_contributory for MECH-537. One readiness gate red: at the parsimonious rank (8-11 of 146 live dims) the random-rank arm clears the previous-action predictor on 6/6 seeds but by less than the 0.05 floor on 5/6. Unadjudicated but recorded: the claim's routing phenotype is largely present (C1, C3, C4a 6/6; C5 premise 0.643 vs chance 0.066); the orientation contrast is positive on 5/6 seeds, mean 0.050, 95% CI [0.005, 0.095] -- excludes 0, includes the 0.05 floor, so H1-small-but-real's declared null is NOT met. The permutation clause (p = 1.0, 6/6) means all 200 shuffled refits decode WORSE than the real subspace: it shows the sender->receiver map is real; it does not test orientation against a random same-rank subspace, because that reference (many random draws; randrank is ONE draw per seed) was never built. failure_autopsy_V3-EXQ-1043a_2026-09-20. SUPERSEDES the V3-EXQ-1043-era lead of this note as the current reading.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-1043a_2026-09-20 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. PROVENANCE CORRECTED -- this is GFLAG-0310's documented case, and MECH-537 is the first claim on that
+    flag's list. live_status.evidence.from read failure_autopsy_V3-EXQ-1044_2026-09-17, which is the HIPPOCAMPAL ASSAY A
+    autopsy: it carries claim_ids [] and names MECH-537 only in bears_on, with per-claim recommendations for MECH-547 and
+    MECH-548 alone. A bears_on-only mention was outranking a real per-claim adjudication purely by being later-dated --
+    and it was pointing this communication-subspace claim at a different campaign entirely. Re-pointed to
+    failure_autopsy_V3-EXQ-1043a_2026-09-20, which does adjudicate it. epistemic_category was already standard; the note
+    below replaces the 1043-era lead.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    V3-EXQ-1043a (diagnostic, FAIL, substrate_not_ready_requeue; instrument repair of V3-EXQ-1043, n=6, 11.1h):
+    non_contributory for MECH-537. One readiness gate red: at the parsimonious rank (8-11 of 146 live dims) the random-
+    rank arm clears the previous-action predictor on 6/6 seeds but by less than the 0.05 floor on 5/6. Unadjudicated but
+    recorded: the claim's routing phenotype is largely present (C1, C3, C4a 6/6; C5 premise 0.643 vs chance 0.066); the
+    orientation contrast is positive on 5/6 seeds, mean 0.050, 95% CI [0.005, 0.095] -- excludes 0, includes the 0.05
+    floor, so H1-small-but-real's declared null is NOT met. The permutation clause (p = 1.0, 6/6) means all 200 shuffled
+    refits decode WORSE than the real subspace: it shows the sender->receiver map is real; it does not test orientation
+    against a random same-rank subspace, because that reference (many random draws; randrank is ONE draw per seed) was
+    never built. failure_autopsy_V3-EXQ-1043a_2026-09-20.
   live_status:
     reading: candidate
-    as_of: 2026-09-17
+    as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1044_2026-09-17
-      as_of: 2026-09-17
-      verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
+      from: failure_autopsy_V3-EXQ-1043a_2026-09-20
+      as_of: 2026-09-20
+      verdict: "non_contributory/standard"
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3_v4
@@ -99416,14 +99550,42 @@
     A1 on 16 of 30 matched cells, the median within-cell restart spread over 210 fitted cells is
     0.0573 against a 0.05 floor, and the paired SE of the C1b mean equals the floor. SCOPE, binding
     on every restatement: this FORBIDS any statement that the interface is unconditional in general.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-1044_2026-09-17 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. NOTE-ONLY, and deliberately so. The run carries claim_ids [] BY DESIGN -- it is a claim-free diagnostic
+    and must not create a scoring evidence entry on any claim. NO direction is written, diagnostic_evidence_adjudicated is
+    NOT set (the run tagged no claim, so that flag would assert something untrue), and epistemic_category stays
+    substrate_conditional, correctly: MECH-547 is implementation_phase v4 and a v3 synthetic frozen-interface instrument
+    cannot adjudicate it. Gate A1 is UNDETERMINED at this instrument, NOT negative -- do not record this as a weakening.
+    The stamp already pointed at this artifact; the note is what was owed. The stored verdict string is corrected from
+    'weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED' to a note-only reading, since the autopsy's
+    recommended_evidence_direction for this claim is explicitly null.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    [2026-09-17 | V3-EXQ-1044 | failure_autopsy_V3-EXQ-1044_2026-09-17] Claim-free diagnostic, excluded from scoring.
+    Hippocampal campaign assay A, Gate A1: adjudicated UNDETERMINED, not negative. Receiver-state-conditioned access (A4)
+    did not clear its +0.05 floor at either pre-registered evaluation width (C1b mean -0.0736 at M*, C1a mean -0.0141 at
+    M_A4; 0 of 3 seeds cleared the floor, though at M_A4 2 of 3 per-seed deltas were positive and the mean is carried by
+    seed 45 alone). The result CANNOT be read as a negative, because the instrument's own residuals exceed the effect it
+    is built to detect: A4's hypothesis class strictly contains A1's, yet A4 < A1 on 16 of 30 matched cells (7 by at least
+    0.05, worst -0.195); the median within-cell restart spread over 210 fitted cells is 0.0573 against a 0.05 floor; and
+    27 of 135 adjacent-width steps run downward although width M nests M-1. The paired SE of the C1b mean equals the
+    floor. This IS the post-redesign instrument -- the predecessor's structural artefact (an MSE fit to a query-invariant
+    target) was genuinely closed -- so the finding is an instrument-resolution limit, not the old confound recurring.
+    SCOPE, binding on every restatement: this FORBIDS any statement that the interface is unconditional in general.
+    Refinements: C3 (attribution) is an underpowered null at 0.0433 vs 0.05; C7 (repeated use) fails, but on a denominator
+    issue that limits what it can carry. OWED FIRST, at zero compute: re-adjudicate C1a/C1b from the banked restart arrays
+    using a within-cell median instead of the block-2 argmax, and report the nested-order violation rate as an instrument
+    gate.
   live_status:
     reading: candidate/substrate_conditional
-    as_of: 2026-09-17
+    as_of: 2026-09-22
     needs_review: false
     evidence:
       from: failure_autopsy_V3-EXQ-1044_2026-09-17
       as_of: 2026-09-17
-      verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
+      verdict: "note_only (claim-free diagnostic; no direction)/substrate_conditional"
   epistemic_category: substrate_conditional
   implementation_phase: v4
   version_relevance: v3_v4
@@ -99513,14 +99675,41 @@
     vanishingly narrow on the seed the draft leaned on hardest. Observation: across the bridged
     arms, closed-loop agreement at step 20 fell below the arm's own trivial bar on 2 of 3 seeds. No
     direction, no flag, no epistemic_category change.
+
+    [2026-09-22 governance, cycle governance-20260922 -- GOV-APPLY-1 BACKLOG ROW APPLIED, user-approved] Confirmed
+    failure_autopsy_V3-EXQ-1044_2026-09-17 (dry_run_checked true) had a recorded claim-layer change that claims.yaml did
+    not reflect. NOTE-ONLY and NON-ATTRIBUTED, REDUCED at the autopsy's own Step 7c from a claim-linked observation to an
+    instrument observation about the BRIDGED interface generally. The draft had let C7 carry a MECH-548 note; the red-team
+    showed that survives only if the spec's own gating on C7 is ignored, and that C7's statistic and its bar use DIFFERENT
+    denominators, making its pass region vanishingly narrow on the seed the draft leaned on hardest. So this is NOT
+    evidence about recurrent interface stability. No direction, no diagnostic_evidence_adjudicated, epistemic_category
+    stays substrate_conditional (implementation_phase v4). The stored verdict string is corrected from 'weakens (manifest
+    stamp) -- FLAGGED AS UNSUPPORTED' to a note-only reading.
+
+    AUTOPSY'S DRAFTED NOTE, APPLIED VERBATIM:
+    [2026-09-17 | V3-EXQ-1044 | failure_autopsy_V3-EXQ-1044_2026-09-17] Claim-free diagnostic, excluded from scoring.
+    Hippocampal campaign assay A, Gate A1: adjudicated UNDETERMINED, not negative. Receiver-state-conditioned access (A4)
+    did not clear its +0.05 floor at either pre-registered evaluation width (C1b mean -0.0736 at M*, C1a mean -0.0141 at
+    M_A4; 0 of 3 seeds cleared the floor, though at M_A4 2 of 3 per-seed deltas were positive and the mean is carried by
+    seed 45 alone). The result CANNOT be read as a negative, because the instrument's own residuals exceed the effect it
+    is built to detect: A4's hypothesis class strictly contains A1's, yet A4 < A1 on 16 of 30 matched cells (7 by at least
+    0.05, worst -0.195); the median within-cell restart spread over 210 fitted cells is 0.0573 against a 0.05 floor; and
+    27 of 135 adjacent-width steps run downward although width M nests M-1. The paired SE of the C1b mean equals the
+    floor. This IS the post-redesign instrument -- the predecessor's structural artefact (an MSE fit to a query-invariant
+    target) was genuinely closed -- so the finding is an instrument-resolution limit, not the old confound recurring.
+    SCOPE, binding on every restatement: this FORBIDS any statement that the interface is unconditional in general.
+    Refinements: C3 (attribution) is an underpowered null at 0.0433 vs 0.05; C7 (repeated use) fails, but on a denominator
+    issue that limits what it can carry. OWED FIRST, at zero compute: re-adjudicate C1a/C1b from the banked restart arrays
+    using a within-cell median instead of the block-2 argmax, and report the nested-order violation rate as an instrument
+    gate.
   live_status:
     reading: candidate/substrate_conditional
-    as_of: 2026-09-17
+    as_of: 2026-09-22
     needs_review: false
     evidence:
       from: failure_autopsy_V3-EXQ-1044_2026-09-17
       as_of: 2026-09-17
-      verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
+      verdict: "note_only (non-attributed instrument observation; no direction)/substrate_conditional"
   epistemic_category: substrate_conditional
   implementation_phase: v4
   version_relevance: v3_v4

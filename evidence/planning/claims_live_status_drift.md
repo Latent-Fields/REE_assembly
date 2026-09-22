@@ -1,12 +1,12 @@
 # Claims live_status Drift Report
 
-Generated: 2026-09-22T06:13:34Z
+Generated: 2026-09-22T06:45:11Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 1169
+Claims in registry: 1170
 
 ## Reading drift -- HARD (4)
 
@@ -38,13 +38,12 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 | SD-016 | `implemented/substrate_ceiling` | promoted status 'implemented' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 | SD-017 | `stable/substrate_ceiling` | promoted status 'stable' but epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate) |
 
-## Event-provenance drift -- SOFT (29)
+## Event-provenance drift -- SOFT (26)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
 | claim | stored evidence.from | re-projected from |
 |-------|----------------------|-------------------|
-| MECH-017 | `_none_` | `failure_autopsy_V3-EXQ-1057b_2026-09-22` |
 | MECH-018 | `_none_` | `decision:MECH-018@2026-09-18T19:04:17.464654Z` |
 | MECH-019 | `_none_` | `decision:MECH-019@2026-09-18T19:04:17.506193Z` |
 | MECH-021 | `_none_` | `failure_autopsy_V3-EXQ-1050_2026-09-18` |
@@ -53,7 +52,6 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-050 | `_none_` | `decision:MECH-050@2026-09-20T12:17:03.116022Z` |
 | MECH-055 | `_none_` | `decision:MECH-055@2026-09-20T12:17:03.324767Z` |
 | MECH-065 | `_none_` | `decision:MECH-065@2026-09-20T12:17:03.676535Z` |
-| ARC-029 | `failure_autopsy_V3-EXQ-063a_2026-09-14` | `failure_autopsy_V3-EXQ-1070a_2026-09-22` |
 | INV-063 | `decision:INV-063@2026-09-08T15:30:04.464955Z` | `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069` |
 | ARC-054 | `decision:ARC-054@2026-09-11T16:54:08.598899Z` | `decision:ARC-054@2026-09-18T19:04:17.348743Z` |
 | MECH-316 | `decision:MECH-316@2026-08-16T11:57:28.897709Z` | `decision:MECH-316@2026-09-20T14:16:26.207734Z` |
@@ -62,19 +60,18 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | SD-080 | `failure_autopsy_V3-EXQ-1043_2026-09-17` | `failure_autopsy_V3-EXQ-1043a_2026-09-20` |
 | SD-071 | `_none_` | `decision:SD-071@2026-09-20T12:17:02.529572Z` |
 | MECH-423 | `failure_autopsy_V3-EXQ-1026_2026-09-14` | `failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1060` |
-| INV-086 | `failure_autopsy_V3-EXQ-1039_2026-09-16` | `failure_autopsy_V3-EXQ-1039a_2026-09-20` |
-| MECH-428 | `failure_autopsy_V3-EXQ-1039_2026-09-16` | `failure_autopsy_V3-EXQ-1039a_2026-09-20` |
+| MECH-439 | `failure_autopsy_V3-EXQ-1012a_2026-09-14` | `failure_autopsy_V3-EXQ-1039_2026-09-16` |
 | MECH-482 | `failure_autopsy_V3-EXQ-1047_2026-09-17` | `failure_autopsy_V3-EXQ-1047_2026-09-17` |
 | SD-098 | `_none_` | `sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3` |
-| MECH-537 | `failure_autopsy_V3-EXQ-1044_2026-09-17` | `failure_autopsy_V3-EXQ-1043a_2026-09-20` |
 | MECH-547 | `failure_autopsy_V3-EXQ-1044_2026-09-17` | `failure_autopsy_V3-EXQ-1043a_2026-09-20` |
+| MECH-548 | `failure_autopsy_V3-EXQ-1044_2026-09-17` | `failure_autopsy_V3-EXQ-1044_2026-09-17` |
 | SD-106 | `failure_autopsy_V3-EXQ-1023a_2026-09-17` | `failure_autopsy_V3-EXQ-1065_2026-09-20` |
 | MECH-555 | `failure_autopsy_V3-EXQ-1043_2026-09-17` | `failure_autopsy_V3-EXQ-1043a_2026-09-20` |
 | MECH-561 | `_none_` | `decision:MECH-561@2026-09-20T12:17:03.975416Z` |
 | MECH-566 | `_none_` | `failure_autopsy_V3-EXQ-1065_2026-09-20` |
-| GOV-UNWRITTEN-1 | `_none_` | `decision:GOV-UNWRITTEN-1@2026-09-21T04:41:47Z` |
+| GOV-UNWRITTEN-1 | `_none_` | `decision:GOV-UNWRITTEN-1@2026-09-22T06:30:53Z` |
 
-## Never reviewed (no `last_reviewed`) -- INFO (1148 of 1169)
+## Never reviewed (no `last_reviewed`) -- INFO (1149 of 1170)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 
