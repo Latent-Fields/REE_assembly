@@ -5898,6 +5898,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0413",
+      "claim_ids": [
+        "MECH-572"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-1073 (precision-provenance consolidation gain, thought_intake_2026-09-22) REFUSED at /queue-experiment Step 2.5d as first authored: the falsifier's INSTRUMENT is ABSENT -- no historical/evidence precision producer exists on the world-forward consolidation path (E3 running_variance reads the proposer's prediction, not e2.world_forward; SD-063 emits total spread; no sensory-precision producer anywhere; replay buffers carry only (z_world, action)). Result-6 route taken per the user brief. USER DECISION 2026-09-22 (ledger entry 520): build full producers first (SD-PP-1..4, in progress, spec docs/architecture/precision_provenance_substrate_spec.md), then run. 8 further necessities registered REGISTRATION ONLY as substrate_queue SD-PP-B1..B8 (evidence/planning/precision_provenance_substrate_necessities_20260922.md) -- B1 (no default-on behavioural consumer of e2.world_forward) caps ALL MECH-572/573/574 and INV-063 leg B evidence at mechanistic level until governance picks a canonical consumer. Governance owed: adjudicate B1-B8 rows; MECH-573 skill>0 readability gate edit; note that V3-EXQ-1073's ARM A vs ARM D-global is a direct MECH-572 lr-lever measurement.",
+      "raised_by_session": "compassionate-pike-fe9174",
+      "raised_at": "2026-09-22T15:17:42Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
