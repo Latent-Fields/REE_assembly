@@ -166,7 +166,14 @@ def _compat(summary: Dict[str, Any], target_hash: Optional[str]) -> str:
 # query
 # ----------------------------------------------------------------------------
 def cmd_query(args: argparse.Namespace) -> int:
-    rows = scan_manifests()
+    # `all_rows` / `total_scanned` are the TRUE pre-filter count: every manifest
+    # actually read off disk under evidence/experiments/, before --claim/--purpose
+    # narrow it. Keep this distinct from the post-filter counts below for the rest
+    # of the function -- conflating them is exactly the bug this fixes (a
+    # legitimate zero-match --claim filter used to print byte-identically to a
+    # broken/empty scan root, both as "scanned 0 manifests").
+    all_rows = scan_manifests()
+    total_scanned = len(all_rows)
     readout = args.readout
 
     # filters
@@ -177,7 +184,7 @@ def cmd_query(args: argparse.Namespace) -> int:
             return False
         return True
 
-    rows = [s for s in rows if keep(s)]
+    rows = [s for s in all_rows if keep(s)]
 
     # annotate
     annotated = []
@@ -196,7 +203,8 @@ def cmd_query(args: argparse.Namespace) -> int:
         payload = {
             "readout": readout,
             "target_substrate_hash": args.substrate_hash,
-            "n_manifests_scanned": len(rows),
+            "n_manifests_scanned": total_scanned,
+            "n_manifests_after_claim_purpose_filter": len(rows),
             "n_matched": len(annotated),
             "groups": {
                 gh: [
@@ -220,14 +228,18 @@ def cmd_query(args: argparse.Namespace) -> int:
         print(json.dumps(payload, indent=2))
         return 0
 
-    print("[reanalysis_query] scanned %d manifests under evidence/experiments/"
-          % len(rows))
+    # Report scanned (true pre-filter total) and matched (post-filter) as two
+    # distinct numbers, always, so a legitimate zero-match --claim/--purpose
+    # filter against a real scan root cannot be misread as a broken/empty scan
+    # root -- before this fix both printed identically as "scanned 0 manifests".
+    print("[reanalysis_query] scanned %d manifests under evidence/experiments/, "
+          "%d matched the filters%s"
+          % (total_scanned, len(annotated),
+             " + carry the readout" if args.require_readout else ""))
     if readout:
         print("[reanalysis_query] readout substring: %r" % readout)
     if args.substrate_hash:
         print("[reanalysis_query] target substrate_hash: %s" % args.substrate_hash)
-    print("[reanalysis_query] %d manifest(s) matched the filters%s"
-          % (len(annotated), " + carry the readout" if args.require_readout else ""))
     print("")
 
     # print groups: substrate-carrying groups first, no-hash group last
