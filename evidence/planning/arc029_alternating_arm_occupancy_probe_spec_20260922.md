@@ -187,21 +187,41 @@ bar value changes and `commit_gate_window_fill` does not reset.
 | env rung | **L1 only** -- `num_hazards=4, hazard_harm=0.04, proximity_harm_scale=0.10` (`v3_exq_1070a...py:478`) | 1 |
 | seed | 0, 42, 43 | 3 |
 | quantile q | 0.25, 0.50, 0.75 | 3 |
-| arm | `STATIC` (a=0, `breath_period=0`), `ALT_002`, `ALT_005`, `ALT_010` | 4 |
+| arm | `STATIC` (a=0, `breath_period=0`), `ALT_010`, `ALT_020`, `ALT_040`, `ALT_100` | 5 |
 
-= **36 measurement cells** on 3 trained agents.
+= **45 measurement cells** on 3 trained agents.
 
 Seeds 0 and 42 are 1070a's, kept deliberately so the STATIC arm is a direct
 replication check against section 2's table. Seed 43 is added because 1070a's
 n=2 made every within-rung split n=1 vs n=1 (its autopsy section 6, "Scale:
 likely insufficient").
 
-Amplitudes span GFLAG-0354's measured workable band (0.02-0.10) at its two ends
-and its midpoint. `sweep_duration` held at the default 5; `breath_period` set so
-the sweep duty cycle is ~20% -- i.e. `breath_period = 25`. **Derive and state
-the duty cycle in the driver**: the arm's realised occupancy is a time-weighted
-mix of bar and swept-bar regimes, so duty cycle is a design parameter, not a
-default to inherit silently.
+**Amplitudes are sized against the MEASURED residual dispersion, not against
+GFLAG-0354's nominal band.** The sweep multiplies the bar by `(1 - a)`, which in
+the bar's own log-residual space is a downward shift of `ln(1/(1-a))`; 1070a
+records that space's dispersion directly (`rv_residual_dispersion_sd`, L1 seed
+means 0.03138 / 0.02591 / 0.02391 at q = 0.25 / 0.50 / 0.75). In those units
+GFLAG-0354's nominal 0.02-0.10 band spans 0.78 to 4.07 SD -- its top end is
+total suppression, not a probe point. The corrected ladder, with **pre-registered
+predicted in-sweep occupancy** under a normal-residual approximation:
+
+| arm | a | shift | SD (q=0.50) | pred. in-sweep occ. q=0.25 / 0.50 / 0.75 |
+|---|---|---|---|---|
+| `ALT_010` | 0.010 | 0.0101 | 0.39 | 0.160 / 0.349 / 0.600 |
+| `ALT_020` | 0.020 | 0.0202 | 0.78 | 0.094 / 0.218 / 0.432 |
+| `ALT_040` | 0.040 | 0.0408 | 1.58 | 0.024 / 0.058 / 0.151 |
+| `ALT_100` | 0.100 | 0.1054 | 4.07 | 0.000 / 0.000 / 0.000 |
+
+`ALT_100` is retained deliberately as a **saturating positive control**: it must
+drive in-sweep occupancy to ~0, which is what proves the readout can be moved at
+all. It is not a candidate operating point. The normality assumption is the
+prediction's, not the measurement's -- the driver records the empirical residual
+CDF, and a systematic departure from this table is itself a Q2 finding.
+
+`sweep_duration` held at the default 5; `breath_period = 25`, so the sweep duty
+cycle is 20%. **The duty cycle is a design parameter, not a default to inherit
+silently** -- and see 5.2 R1, where it is the reason the run-mean cannot be the
+discriminating readout.
 
 ### 4.4 Held fixed (from 1070a, transcribed)
 
@@ -230,17 +250,41 @@ driver cannot be re-queued as written.
 - **G3 -- STATIC-arm replication.** The STATIC cells at seeds 0/42 must
   reproduce section 2's occupancy within 0.10 absolute. A miss means the probe's
   harness differs from 1070a's and NOTHING else in the run is interpretable.
-- **G4 -- non-degeneracy.** The oscillator must actually move something: at
-  a=0.10, realised occupancy must differ from the paired STATIC cell by more
-  than the STATIC arm's own seed-to-seed spread at that q. A null that fails G4
+- **G4 -- non-degeneracy, tested on R1a and NEVER on the run-mean.** At
+  `ALT_100` the **in-sweep** occupancy must differ from the paired STATIC cell by
+  more than the STATIC arm's own seed-to-seed spread at that q (predicted: to
+  ~0.000, against a static 0.26-0.73 -- so this should pass by a wide margin, and
+  a failure means the sweep is not reaching the bar at all). A null that fails G4
   is "inert sweep", not "sweep preserves occupancy" -- these are opposite
-  findings and must not be allowed to read alike.
+  findings and must not be allowed to read alike. **Applying G4 to the run-mean
+  would defeat it**: 4.3's arithmetic shows the run-mean barely moves across the
+  whole ladder, so a run-mean G4 could fail while the manipulation is in fact
+  working perfectly.
 
 ### 5.2 PRIMARY READOUTS
 
-- **R1 (Q1):** per-cell `committed_step_fraction` and `mean_committed_run_length`
-  under each amplitude, against `P1_OCCUPANCY_BAND` and `P1_RUNLEN_FLOOR`.
-  **The deliverable is the amplitude band, if any, where P1 still holds.**
+- **R1 (Q1) -- CONDITIONED ON SWEEP PHASE. The run-mean is NOT the discriminating
+  readout and must not be reported as though it were.** The driver records
+  `clock.sweep_active` at every select call and partitions the cell three ways:
+  - **R1a (DISCRIMINATING): in-sweep occupancy** -- `committed_step_fraction`
+    over ticks with `sweep_active == True`, against the predicted ladder in 4.3.
+  - **R1b: inter-sweep occupancy** -- the same over `sweep_active == False`. It
+    should track the STATIC arm at that q; a departure means the oscillator is
+    perturbing the bar outside its own sweep phase, which would be a finding.
+  - **R1c: run-mean occupancy and `mean_committed_run_length`**, against
+    `P1_OCCUPANCY_BAND` / `P1_RUNLEN_FLOOR`. This is ARC-029's formal P1 and is
+    kept for that reason -- but it is **recorded as telemetry, not as the
+    deliverable.**
+
+  **Why R1c cannot carry the verdict, computed before the run.** At a 20% duty
+  cycle the run-mean is `~0.8*F(q) + 0.2*F(q - shift)`, so on the ladder above it
+  is predicted at 0.224-0.670 across every amplitude and every quantile --
+  **inside `P1_OCCUPANCY_BAND` at all 12 combinations, including `ALT_100`, where
+  in-sweep occupancy is 0.0000.** A readout that returns "P1 holds" identically
+  for a well-behaved sweep and for one that annihilates commitment on every sweep
+  phase has not measured the manipulation. **The deliverable is the amplitude
+  band where R1a stays inside `P1_OCCUPANCY_BAND`**, with R1c reported alongside
+  as the formal-P1 record.
 - **R2 (Q2):** `|realised occupancy - q|` per cell, static and alternating,
   against the static baseline (max 0.0658 / mean 0.0298). Plus the recorded
   log-residual dispersion (already recorded by 1070a -- see section 10).
@@ -280,10 +324,10 @@ Registering a threshold either would be inventing a bar to clear.
 
 ## 7. Budget
 
-~50k env steps total (~43k measurement across 36 cells, ~7k training across 3
+~61k env steps total (~54k measurement across 45 cells, ~7k training across 3
 agents). Reference point: V3-EXQ-1063 ran 50k steps in 29 min.
 
-**Book 90 minutes**, `machine_affinity: any`, priority to be set at queue time.
+**Book 120 minutes**, `machine_affinity: any`, priority to be set at queue time.
 The cadence at L1 (measured 1.43 env steps per select call) differs from 1063's,
 so the reference is an order-of-magnitude check, not a transferable timing.
 `/queue-experiment` must re-derive this from a smoke run.
@@ -375,33 +419,23 @@ was wrong.** 1070a records it per cell:
 | 42 | 0.50 | 0.02439 | 0.03776 | 0.4956 | 45 | 24 |
 | 42 | 0.75 | 0.02322 | 0.03601 | 0.7317 | 68 | 25 |
 
-### 10.2 CORRECTION -- the amplitude ladder in 4.3 is mis-sized, and the DV is diluted
+### 10.2 CORRECTION -- amplitude ladder and the R1 dilution defect (now APPLIED INLINE)
 
-Against a measured residual SD of ~0.0317, the sweep's log-space shift `ln(1/(1-a))` is:
+Both corrections this section originally carried have been **applied to sections
+4.3, 5.1 (G4) and 5.2 directly**, so those sections are current and this is a
+pointer, not a superseding note. In summary:
 
-| a | shift (log units) | in residual SD |
-|---|---|---|
-| 0.015 | 0.0151 | 0.48 |
-| 0.02  | 0.0202 | 0.64 |
-| 0.03  | 0.0305 | 0.96 |
-| 0.05  | 0.0513 | 1.62 |
-| 0.06  | 0.0619 | 1.95 |
-| 0.10  | 0.1054 | **3.32** |
+1. The 0.02/0.05/0.10 ladder was sized against GFLAG-0354's nominal band rather
+   than the measured residual dispersion, putting its top rung at 4.07 SD --
+   total suppression. Replaced by 0.010/0.020/0.040 with 0.100 retained as an
+   explicit saturating positive control (4.3, with the predicted in-sweep ladder).
+2. **The R1 readout could not discriminate.** At a 20% duty cycle the run-mean
+   occupancy is predicted inside `P1_OCCUPANCY_BAND` at all 12 (amplitude x
+   quantile) combinations -- including where in-sweep occupancy is 0.0000 -- so
+   "P1 holds" would have been returned identically by a working sweep and by one
+   that annihilates commitment. R1 is now partitioned on `clock.sweep_active`
+   (R1a in-sweep is the deliverable, R1c run-mean is telemetry), and G4 is tested
+   on R1a (5.1, 5.2).
 
-**So the oscillator is NOT inert at these amplitudes -- it is strong**, and section 4.3's top
-rung (a=0.10, 3.32 SD) is the saturating end GFLAG-0354 warns about rather than a probe point. A
-ladder recentred on the measured dispersion -- **{0.015, 0.03, 0.06} = 0.48 / 0.96 / 1.95 SD**,
-with 0.10 retained only as a deliberate saturating anchor for G4 -- is the corrected axis.
-
-**And a second, sharper defect this exposes.** With `sweep_duration`/`breath_period` = 5/25, the
-sweep fires on only 20% of ticks, so the RUN-MEAN occupancy in section 5.2's R1 is
-`~0.8*F(q) + 0.2*F(q - shift)`. At a=0.10, q=0.25 that is `~0.8 * 0.2585 = 0.207` -- still inside
-`P1_OCCUPANCY_BAND`. **The duty cycle dilutes the manipulation into the band by construction**,
-so R1 as written could report "P1 holds" across the whole ladder without the regime structure
-ever having been examined. That is a Step 4.5 family-2 defect (criterion cannot discriminate by
-construction), found here before any compute was spent.
-
-**Corrected readout: R1 must be occupancy CONDITIONED ON SWEEP PHASE** -- in-sweep vs
-inter-sweep, reported separately, with the run-mean kept only as descriptive telemetry. The
-driver must record `clock.sweep_active` per select call to make that partition possible. Whoever
-implements this spec should treat 4.3 and 5.2 as superseded by this section.
+Found by arithmetic on 1070a's own recorded dispersion, before any compute was
+spent. Cell count 36 -> 45, budget 90 -> 120 minutes.
