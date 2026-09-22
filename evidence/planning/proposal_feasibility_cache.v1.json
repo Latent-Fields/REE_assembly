@@ -44,6 +44,22 @@
     "verdict": "RED"
    }
   ],
+  "MECH-105": [
+   {
+    "chip_ref": "chip-proposal-exp-0860-paced",
+    "producer_paths": [
+     "ree_core/hippocampal/module.py",
+     "ree_core/heartbeat/beta_gate.py",
+     "ree_core/utils/config.py"
+    ],
+    "reason": "compute_completion_signal = sigmoid(-best_score*0.5) over non-negative residue cost -> reachable range (0.0, 0.5] at default config (module.py:3266-3322); completion_release_threshold defaults 0.75 (beta_gate.py:33), unreachable as identity. beta_gate_bistable also defaults False (config.py:3485). Matches substrate_queue entry residue-completion-signal-threshold-unreachable.",
+    "recorded_by": "preflight-20260922",
+    "recorded_utc": "2026-09-22T11:37:13Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-107": [
    {
     "chip_ref": "chip-proposal-exp-0862-paced",
