@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "codex-20260920-unwritten-edge-discovery",
-  "last_updated_utc": "2026-09-21T04:35:11Z",
+  "last_updated_utc": "2026-09-22T04:10:21Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -884,7 +884,24 @@
         "INV-054",
         "SD-036"
       ],
-      "validation_experiment": "V3-EXQ-476"
+      "validation_experiment": "V3-EXQ-476",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "Q-034",
+          "SD-029",
+          "SD-032b",
+          "SD-036",
+          "INV-054",
+          "Q-041"
+        ],
+        "finding": "Batch 48: status implemented / ready:true while this entry's own post_implementation_validation_status reads wired_but_inert, so Q-034, SD-029, SD-032b, SD-036 and INV-054 all read as unblocked when the consumer is inert. Recorded; status not changed.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "added_session": "governance-2026-04-24T08:10",
@@ -2436,7 +2453,23 @@
         "MECH-273"
       ],
       "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: MECH-273 self-model writeback consumer.",
-      "validation_experiment": "tests/contracts/test_sleep_phase_d_aggregator.py (10 contracts)"
+      "validation_experiment": "tests/contracts/test_sleep_phase_d_aggregator.py (10 contracts)",
+      "falsifier_runnability_audit_2026_09_21": {
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims_unblocked": [
+          "MECH-275"
+        ],
+        "requirement": "Track attained feedstock readiness separately from the still-owed scientific correction/stability comparison.",
+        "event_manipulation": "Counterfactual-backed versus correlational waking records; aggregate on/off across multiple episodes.",
+        "DV_instrument": "Held-out causal attribution error and correction/stability, alongside existing posterior readouts.",
+        "finding": "V3-EXQ-703a ran 2026-08-08 and its manifest records both readiness gates met plus posterior discrimination PASS, diagnostic with claim_ids=[]; the old WWA assertion that it had not run was stale. This is no claim promotion or proof of accurate revision.",
+        "ownership": "Existing BayesianAggregator node and sleep_substrate:GAP-3b own this pathway and its validation; no new aggregator node.",
+        "version_scope": "V3 place/self specialisations; object/other stay V4.",
+        "date": "2026-09-21",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
@@ -2475,7 +2508,23 @@
         "SD-003"
       ],
       "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-003 offline causal_sig refinement.",
-      "validation_experiment": "tests/contracts/test_sleep_phase_e_self_model.py (10 contracts)"
+      "validation_experiment": "tests/contracts/test_sleep_phase_e_self_model.py (10 contracts)",
+      "falsifier_runnability_audit_2026_09_21": {
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims_unblocked": [
+          "MECH-273"
+        ],
+        "requirement": "The existing Phase-E owner must expose target provenance and held-out causal benefit, not only parameter movement.",
+        "event_manipulation": "Spurious attribution followed by counter-evidence across sleep cycles; gradient-on versus zero-gradient sleep with sampling/routing retained.",
+        "DV_instrument": "Record each target region, source waking tuple identity, posterior source and prediction-before/after; hold out true waking transitions for residual and correction/lag DVs.",
+        "finding": "GAP-4 replaced synthetic inputs with real pairs, so the implementation_hint is historical. Current self_model_aggregator samples unlabelled pairs independently of the region target and broadcasts each scalar posterior mean across latent dimensions. A nonzero parameter delta is not region-specific correction.",
+        "ownership": "MECH-273 and sleep_substrate:GAP-4/GAP-3b already own the replay-derived training and its scientific validation; add the missing measurement edge here instead of a second self-model mechanism.",
+        "version_scope": "V3-native instrumentation; any change to target semantics requires separate design review.",
+        "date": "2026-09-21",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
@@ -3026,7 +3075,21 @@
       ],
       "validation_experiment": "NOT YET QUEUED -- 2x2 retest of V3-EXQ-774 ablating Phase 7 x SD-076",
       "node_class": "complicated (buildable)",
-      "implementation_note_update": "Phase 7 / Option B LANDED 2026-07-20: ree-v3 main 8ac193d7ed (pushed). E3TrajectorySelector.broadcast_precision_pull + read site at the top of REEAgent.select_action; REEConfig.use_rem_precision_broadcast / rem_precision_broadcast_gain, no-op default, also on from_dims. Ungated from V4 deferral by the confirmed failure_autopsy_V3-EXQ-774_2026-07-17 (substrate_ceiling, 'F1 alone insufficient'; the script's own self-route did NOT fire -- it gates on cross-arm spread < 0.05 and measured 0.21 -- because a convergence-gated ceiling makes the spread SEED-DEPENDENT rather than collapsing it). WRITE-SITE CORRECTED score -> precision: a broadcast scalar added uniformly to E3 scores is invariant under argmax AND softmax and every downstream consumer is relative, so the 2026-05-09 spec'd site was provably selection-inert (the inert_arm_knob shape). The lit-pull adjudicated what to READ (choice (a), _persistent_zero_point, honoured unchanged), never where to WRITE. Precision space is non-inert: rv feeds an ABSOLUTE commit threshold and 1/(rv+1e-6), and is where 774's own DV lives. See sleep_substrate_plan.md decision log 2026-07-20. PAIRED WITH SD-076 (same commit): the symmetric precision EMA made rv track true error BY CONSTRUCTION, so the MECH-173 overconfidence DV was pinned near zero regardless of ablation -- a tautology, not a null. Phase 7 alone would have retested to an identical null that LOOKED like a Phase-7 refutation. Contracts: full suite green, 1990 passed / 0 failed. Smoke 6/6. NOT VALIDATED -- the behavioural retest of 774 is NOT yet queued and must ablate BOTH Phase 7 AND SD-076 (a 2x2), because ablating only Phase 7 leaves the DV tautological. TRIGGER-SCOPE CAVEAT (unresolved): 774 scored MECH-173, which is not in the trigger's named claim list (Q-041/Q-042/SD-029/MECH-111/MECH-256); proceeded on the reading that the list is illustrative. Judgment call, not adjudicated."
+      "implementation_note_update": "Phase 7 / Option B LANDED 2026-07-20: ree-v3 main 8ac193d7ed (pushed). E3TrajectorySelector.broadcast_precision_pull + read site at the top of REEAgent.select_action; REEConfig.use_rem_precision_broadcast / rem_precision_broadcast_gain, no-op default, also on from_dims. Ungated from V4 deferral by the confirmed failure_autopsy_V3-EXQ-774_2026-07-17 (substrate_ceiling, 'F1 alone insufficient'; the script's own self-route did NOT fire -- it gates on cross-arm spread < 0.05 and measured 0.21 -- because a convergence-gated ceiling makes the spread SEED-DEPENDENT rather than collapsing it). WRITE-SITE CORRECTED score -> precision: a broadcast scalar added uniformly to E3 scores is invariant under argmax AND softmax and every downstream consumer is relative, so the 2026-05-09 spec'd site was provably selection-inert (the inert_arm_knob shape). The lit-pull adjudicated what to READ (choice (a), _persistent_zero_point, honoured unchanged), never where to WRITE. Precision space is non-inert: rv feeds an ABSOLUTE commit threshold and 1/(rv+1e-6), and is where 774's own DV lives. See sleep_substrate_plan.md decision log 2026-07-20. PAIRED WITH SD-076 (same commit): the symmetric precision EMA made rv track true error BY CONSTRUCTION, so the MECH-173 overconfidence DV was pinned near zero regardless of ablation -- a tautology, not a null. Phase 7 alone would have retested to an identical null that LOOKED like a Phase-7 refutation. Contracts: full suite green, 1990 passed / 0 failed. Smoke 6/6. NOT VALIDATED -- the behavioural retest of 774 is NOT yet queued and must ablate BOTH Phase 7 AND SD-076 (a 2x2), because ablating only Phase 7 leaves the DV tautological. TRIGGER-SCOPE CAVEAT (unresolved): 774 scored MECH-173, which is not in the trigger's named claim list (Q-041/Q-042/SD-029/MECH-111/MECH-256); proceeded on the reading that the list is illustrative. Judgment call, not adjudicated.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "MECH-204",
+          "INV-049",
+          "MECH-173"
+        ],
+        "finding": "Batch 41: validation_experiment still reads 'NOT YET QUEUED -- 2x2 retest of V3-EXQ-774 ablating Phase 7 x SD-076'; that 2x2 ran as V3-EXQ-794 (2026-07-21) and 794a (2026-07-24, confirmed autopsy: headroom and dose separation work, absolute overconfidence NOT established at either dose). The staleness propagates to the 8 unblocks_claims. Same fact the 2026-09-21 checkpoint recorded on sd_waking_confidence_inflation_headroom; GFLAG-0385 (open) owns the stale record. Status/ready not changed.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "added_session": "governance-cycle-friday-pm-2026-05-08",
@@ -3812,7 +3875,19 @@
       "title": "Simulation-mode rule-write gating (categorical replay tag). Substrate-level instantiation of MECH-094 at the rule-arbitration layer.",
       "unblocks_claims": [
         "MECH-319"
-      ]
+      ],
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "MECH-319"
+        ],
+        "finding": "Batch-05 audit: entry reads ready:false blocked on a successor falsifier that has since run and passed; separately, effective_simulation_mode has exactly two consumers and ree_core/policy/candidate_rule_field.py hard-skips on the raw simulation_mode argument without consulting the gate, so the ADMIT arm under-covers the declared scope. Recorded for governance; ready/status deliberately not changed by the audit. Related: simulation_mode_rule_gate.py names V3-EXQ-543c (consumed 2026-05-11) as its falsifier -- stale pointer (batch 50).",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "added_session": "governance-cycle-2026-05-10T1224Z",
@@ -4599,7 +4674,8 @@
         "SD-033a",
         "SD-034",
         "SD-059",
-        "MECH-358"
+        "MECH-358",
+        "ARC-019"
       ],
       "unblocks_note": "GFLAG-0091 edge repair (chip-20260901-gflag0091-unblocks-claims-edge-repair, 2026-09-08, w6hk-k3-registry-20260908) -- id split from glued prose, prose preserved here: SD-049 Phase 2 behavioural.",
       "current_pending_amend": {
@@ -4672,7 +4748,20 @@
         "MECH-307 [substrate-landed 2026-05-11; default-value recalibration 2026-05-12; behavioural validation pending]",
         "MECH-295 [implemented 2026-04-26; default-value recalibration 2026-05-12]"
       ],
-      "governance_2026_09_04": "depends_on_unresolved cleared to [] (6a reconcile): every named dependency's own annotation reads implemented/landed and ready:true already reflected that; prior list preserved in depends_on_resolved_2026_09_04."
+      "governance_2026_09_04": "depends_on_unresolved cleared to [] (6a reconcile): every named dependency's own annotation reads implemented/landed and ready:true already reflected that; prior list preserved in depends_on_resolved_2026_09_04.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "ARC-019",
+          "ARC-060"
+        ],
+        "finding": "Batch 37: ARC-019's release condition names this node (ready:true, z_goal healthy) but unblocks_claims omitted it; edge added. Batch 17: ARC-060's pending_retest_after_substrate on this node is spent (ready flipped 2026-06-11 after V3-EXQ-603n) -- successor is a /queue-experiment re-queue of the validated 651a script, not a build.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "added_session": "governance-20260531T112511Z",
@@ -5754,7 +5843,8 @@
       ],
       "unblocks_claims": [
         "MECH-343",
-        "Q-056"
+        "Q-056",
+        "MECH-527"
       ],
       "failure_record": null,
       "implementation_hint": "COMMISSIONED, NOT BUILT. Read evidence/planning/sd061_real_trigger_commission_20260919.md first -- it carries the measurements and the ordering. THE ONE COST-RELEVANT INSTRUCTION: try a TRAINED-ENOUGH AGENT FIRST (a driver change -- SD-070 / zworld_p0_episodes via the _train_all_on_agent family), because the stall may be competence rather than blockage and that would dissolve this entry with no substrate work at all. Only if that fails, try a SOLVABLE blocked path (the current scheduled_action_block cancels moves on a schedule with no way through, so stall never ends); goal re-targeting is a distant third. WHY THIS EXISTS: _progress_deficit saturates at 1.0 and stays there, so with declared_axes=('progress',) the asymmetric EMA climbs to 1.0 and holds -- measured duty 0.980 with the peak on the LAST tick, i.e. G9 pole B. The other declarable set ('progress','margin') never fires at all (duty 0.000, G9 pole A). Neither is a usable trigger and MECH-343 requires peak-then-decay. ACCEPTANCE: (1) a demonstrated resume in the agent's own goal_proximity series on >= 2/3 seeds; (2) duty(is_stuck) strictly inside (0.05, 0.80) under declared_axes=('progress',) -- the interval is quoted from MECH-527's G9 precondition, not invented; (3) peak-then-decay on >= 2/3 seeds; (4) the goal-salience negative control still holds (SD-061 criterion 4). FREE RIDER: record mech090_n_elevation_admitted and beta rising edges in the same run -- that is how BUILD ITEM 2's MECH-342 dependency gets measured without opening a MECH-342 work item. Related: GFLAG-0352, and the MECH-343 DV re-scope flag raised 2026-09-19.",
@@ -5765,7 +5855,21 @@
       "last_seen_session": "metaworker-science-20260918-sd061-mech343-q056-commission",
       "implementation_log": [
         "2026-09-19: COMMISSIONED by user decision 1C on chip-20260919-q056-axis-choice-and-dv-reach-decision. Not built. Candidate entry only, ready=false, so the IGW routine stages it as its own consented chip."
-      ]
+      ],
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "MECH-527",
+          "ARC-078",
+          "MECH-389"
+        ],
+        "finding": "Batches 23/29: MECH-527's duty-cycle/decay precondition is exactly this entry (stuck_state_detector records committed_action_class 0/100 ticks); edge added. ARC-078's goal-deferral-then-recovery battery (persistent obstruction + context shift + re-approach) and MECH-389's resumption event are the same environment shape as this commission's option 2 (a SOLVABLE blocked path); recorded as co-beneficiaries rather than minted as a duplicate node (goal_deliberation_v4:GDL-5 owns the interrupt->resume span and asks for a V3 demonstration).",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "f_dominance_conversion_ceiling",
@@ -5850,7 +5954,8 @@
         "MECH-449",
         "Q-045",
         "Q-078",
-        "SD-037"
+        "SD-037",
+        "Q-052"
       ],
       "fallback_ladder": [
         {
@@ -6385,7 +6490,20 @@
       "added_utc_backfill_note": "Backfilled by governance-20260904-1347 from the committer date of REE_assembly 88b13aaf3a, the first commit carrying this sd_id (6a reconcile; GOV-SUBPATH-1 cannot gate a severity-bearing entry without added_utc).",
       "governance_2026_09_16": "Applied confirmed failure_autopsy_V3-EXQ-1012a_2026-09-14 (user gate 2026-09-16T12:16:45Z) in governance-20260916: 1012a failure_record appended (rung 3 amended target is NOT an identity but is UNINTERPRETABLE WITHOUT A NULL); depends_on_unresolved[2] residual rewritten so the fired brake's refusal is not read as released; 571c item LEFT OPEN with a context note (no state change). severity/substrate_paths UNCHANGED. Note: this entry reads CLOSED to check_substrate_path_overlap.py because its status string contains VALIDATED -- its corrupting severity currently gates nothing (governance decision owed, surfaced 2026-09-16).",
       "implementation_status": "wontfix",
-      "status_note": "2026-09-16 orchestrate-20260916-1305 (GFLAG-0293, user decision): implementation_status set to the enum token so /queue-experiment Step 2.5c (exact-match CLOSED test, REE_Working b2e828585f) classifies this entry CLOSED; the free-text status is left verbatim in `status` for its other readers. Token rationale: conversion route of record EXHAUSTED, no_new_build_owed, PROMOTES_NOTHING -- nothing for /implement-substrate to build"
+      "status_note": "2026-09-16 orchestrate-20260916-1305 (GFLAG-0293, user decision): implementation_status set to the enum token so /queue-experiment Step 2.5c (exact-match CLOSED test, REE_Working b2e828585f) classifies this entry CLOSED; the free-text status is left verbatim in `status` for its other readers. Token rationale: conversion route of record EXHAUSTED, no_new_build_owed, PROMOTES_NOTHING -- nothing for /implement-substrate to build",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "Q-052",
+          "MECH-439"
+        ],
+        "finding": "Batch 48: Q-052's class-uniform candidate-pool degeneracy is owned by this entry's rung ladder but Q-052 was not listed; edge added. Batch 07: MECH-439's proposed residue-magnitude bound was REJECTED as a new node because rung 3 (E3 channel commensurability, built ree-v3 c47b885, 1012a validation null owed) owns the non-monopolised-share requirement and this entry records the user-confirmed decision to leave residue/field.py untouched. NOTE (batch 48): V3-EXQ-571c found the monopoly occupant is residue_weighted, not F, on all 4 seeds -- Q-052's 'forward-model dominance' framing may need re-checking.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "v4_loop_segregation",
@@ -6423,7 +6541,8 @@
         "MECH-314",
         "MECH-440",
         "MECH-441",
-        "MECH-140"
+        "MECH-140",
+        "Q-019"
       ],
       "validation_experiment": "V3-EXQ-707",
       "validating_runs": [],
@@ -6552,7 +6671,23 @@
           "what": "status string updated so a later session does not read the instrument as still missing",
           "doc": "GFLAG-0045; failure_autopsy_V3-EXQ-711-713_2026-07-20"
         }
-      ]
+      ],
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "Q-019",
+          "MECH-450",
+          "MECH-140",
+          "ARC-108",
+          "ARC-110"
+        ],
+        "finding": "Batch 48: Q-019's ARM_DROP_LIMBIC byte-identity degeneracy is owned here but Q-019 was not listed; edge added. Batches 08/11/16: ARC-108, ARC-110, MECH-450 and MECH-140 all resolve to this entry plus the governance-held 713x re-letter (GFLAG-0045, refused 2026-08-21) -- one decision, not four builds.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "SD-063",
@@ -6756,7 +6891,8 @@
         "INV-034",
         "INV-088",
         "MECH-457",
-        "Q-021"
+        "Q-021",
+        "ARC-046"
       ],
       "failure_record": [
         {
@@ -6825,7 +6961,21 @@
       "implemented_by": "jovial-joliot-9f904b (/implement-substrate capacity-amend, routed from failure_autopsy_V3-EXQ-765)",
       "implemented_note": "ORIGINAL BUILD 2026-07-16 (unruffled-lichterman-65e45e, ree-v3 main 022a284): composed floor->competent bootstrap explorer in experiments/_lib/mech457_bootstrap_explorer.py -- RND success-independent drive + prioritized credit-replay converter + developmental intrinsic-coef/entropy anneal + increased budget on the first-class actor-critic, both z_world cotrain and raw 5x5. Retest V3-EXQ-765 RAN and FAILED (bootstrap_explorer_plateaus_capacity_gap_remains): drive half works on raw (+5.87) but the actor-critic plateaus at ~13% of the 48.05 ceiling and z_world cotrain is destructive (ON 0.35 < OFF 5.22). CAPACITY-SIDE AMEND 2026-07-16 (jovial-joliot-9f904b, /implement-substrate, routed from failure_autopsy_V3-EXQ-765): three JOINT capacity/reliability/integration knobs applied to the SAME build (not competing hypotheses) -- (a) ON actor_critic_hidden 128->256 + ON_BUDGET_MULTIPLIER 3->5 (capacity); (b) ON warm_start_fraction 0.2 + credit_replay_passes 3->6 / credit_topk 32->64 (reliability, cut the 15.9/3.05/0.5 seed variance); (c) ON cotrain_encoder False = z_world DETACHED, train policy on the frozen prediction-trained encoder (Stooke 2021, since cotrain corrupts z_world). All five new BootstrapExplorerConfig fields OFF-preserving no-op defaults -> OFF arms bit-identical to 765's (drift-guard ~5.22 z_world / ~0.6 raw). Threaded actor_critic_hidden/cotrain_encoder through make_rep -> RawViewRep/ZWorldRep -> fan.make_rawview_ac/make_zworld_agent -> x742._make_actor_critic_agent(hidden=); credit passes/topk + warm_then_anneal through train_a2c -> _prioritized_credit_replay. 5 new contracts (C7-C11); 11 bootstrap-explorer contracts pass, full contracts green (0 regressions). Retest V3-EXQ-769 (supersedes 765) queued + coordinator-ingested (diagnostic, OFF-vs-ON x {z_world,raw}, lift >=7.83 above the 5.22 plateau; cloud ree-cloud-2). RE-DERIVE BRAKE HELD-BUT-SANCTIONED (5th non_contributory MECH-457 autopsy; the brake refuses another single-axis probe, NOT this named-capacity post-build retest under a NEW EXQ number). MECH-457 stays candidate/v3_pending (pending_retest_after_substrate); INV-088 candidate/pending_substrate_reconfirmation until 769 scores.",
       "validation_exq": "V3-EXQ-770 / V3-EXQ-771 / V3-EXQ-772 (GOV-FANOUT-1 portfolio; V3-EXQ-769 capacity retest FALSIFIED)",
-      "blocked_note": "STALE NOTE BELOW CORRECTED 2026-08-28 (chip-20260827-competence-final-discriminator): the GOV-FANOUT-1 discrimination this note describes as pending has RUN AND CLOSED. H-bc-prior vs H-approach-primitive resolved 2026-07-18 (V3-EXQ-780/781): H-approach-primitive ELIMINATED; H-bc-prior SPLIT into acquisition (CONFIRMED -- a BC-of-policy prior installs supra-lift-target competence on raw_view, 20.933 vs the 13.05 target, 3/3 seeds) + retention (routed to a 4-leg portfolio) + installability-on-z_world (voided as a frozen-random-projection instrument artifact, superseded by the CONFIRMED H-zworld-trained-instrument, V3-EXQ-819a). The 4-leg RETENTION portfolio (value estimator / update constraint / auxiliary persistence / consummatory binding) then closed 2026-08-08 (last leg V3-EXQ-821b eliminates H-consummation-binding on a re-calibrated instrument): PROCESS-family mechanisms are CONFIRMED as what sets the retention half-life -- a distributional/two-hot critic (H-retention-critic, V3-EXQ-788) and a KL-anchor to the installed policy (H-retention-consolidation, V3-EXQ-792a), each independently sufficient; CONSTITUTION-family (auxiliary persistence V3-EXQ-789, consummatory binding V3-EXQ-821b) ELIMINATED. hypothesis_space_registry.v1.json qid competence_floor: all 20 hypotheses (and every split child) are now terminally resolved; its own decision block states 'the campaign's discrimination phase is complete' and growth_restriction is CLOSED TO FURTHER FAN-OUT (2026-08-08) -- do NOT re-queue a discrimination leg on this qid. WHICH dependency to build is therefore NAMED (compose a distributional critic + KL-anchor consolidation into the bootstrap-explorer build); the remaining blocker is the substrate dependency MECH-229 (still status:provisional / v3_pending in claims.yaml, itself depends_on SD-005/SD-015/SD-049/ARC-030/MECH-069), not discrimination. Original 2026-07-18 note preserved for context: 'Re-derive brake FIRED (7th non_contributory MECH-457 autopsy, 2026-07-18). FOUR axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772). REFUSE any further config/env/credit/capacity amend.'"
+      "blocked_note": "STALE NOTE BELOW CORRECTED 2026-08-28 (chip-20260827-competence-final-discriminator): the GOV-FANOUT-1 discrimination this note describes as pending has RUN AND CLOSED. H-bc-prior vs H-approach-primitive resolved 2026-07-18 (V3-EXQ-780/781): H-approach-primitive ELIMINATED; H-bc-prior SPLIT into acquisition (CONFIRMED -- a BC-of-policy prior installs supra-lift-target competence on raw_view, 20.933 vs the 13.05 target, 3/3 seeds) + retention (routed to a 4-leg portfolio) + installability-on-z_world (voided as a frozen-random-projection instrument artifact, superseded by the CONFIRMED H-zworld-trained-instrument, V3-EXQ-819a). The 4-leg RETENTION portfolio (value estimator / update constraint / auxiliary persistence / consummatory binding) then closed 2026-08-08 (last leg V3-EXQ-821b eliminates H-consummation-binding on a re-calibrated instrument): PROCESS-family mechanisms are CONFIRMED as what sets the retention half-life -- a distributional/two-hot critic (H-retention-critic, V3-EXQ-788) and a KL-anchor to the installed policy (H-retention-consolidation, V3-EXQ-792a), each independently sufficient; CONSTITUTION-family (auxiliary persistence V3-EXQ-789, consummatory binding V3-EXQ-821b) ELIMINATED. hypothesis_space_registry.v1.json qid competence_floor: all 20 hypotheses (and every split child) are now terminally resolved; its own decision block states 'the campaign's discrimination phase is complete' and growth_restriction is CLOSED TO FURTHER FAN-OUT (2026-08-08) -- do NOT re-queue a discrimination leg on this qid. WHICH dependency to build is therefore NAMED (compose a distributional critic + KL-anchor consolidation into the bootstrap-explorer build); the remaining blocker is the substrate dependency MECH-229 (still status:provisional / v3_pending in claims.yaml, itself depends_on SD-005/SD-015/SD-049/ARC-030/MECH-069), not discrimination. Original 2026-07-18 note preserved for context: 'Re-derive brake FIRED (7th non_contributory MECH-457 autopsy, 2026-07-18). FOUR axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772). REFUSE any further config/env/credit/capacity amend.'",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "ARC-046",
+          "MECH-307",
+          "ARC-030"
+        ],
+        "finding": "Batch 40: ARC-046's remaining gate was repointed to this wall but the entry omitted it; edge added. Batch 03: MECH-307 and ARC-030 retest gates both run through this entry, which is blocked_pending_dependency on MECH-229 (GFLAG-0100) -- MECH-229 is therefore unusually high-leverage.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "node_class": "complicated (buildable)",
@@ -7366,8 +7516,14 @@
       "last_seen_session": "jolly-yonath-68893d",
       "implementation_status": "implemented",
       "implemented_utc": "2026-07-22T00:00:00Z",
-      "implementation_note_update": "IMPLEMENTED 2026-07-22 (ree-v3 452f99e367, session hopeful-panini-cf272d): waking_confidence_rv_floor_relative_frac (default 0.0, bit-identical) + waking_confidence_rv_floor_mode (hard/soft) + waking_confidence_rv_floor_softness added to E3Config. Smoke at the measured 794 scale (true error 0.0037) 14/14 PASS: old config reproduces the defect exactly (LO==HI==0.01); repaired config gives rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and both genuinely overconfident. Pinned by 17 contracts in ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py. Behavioural validation (V3-EXQ-794a, same-question re-run of the identical 2x2) not yet queued.",
-      "validation_experiment": "V3-EXQ-794a (not yet queued)"
+      "implementation_note_update": "IMPLEMENTED 2026-07-22 (ree-v3 452f99e367, session hopeful-panini-cf272d): waking_confidence_rv_floor_relative_frac (default 0.0, bit-identical) + waking_confidence_rv_floor_mode (hard/soft) + waking_confidence_rv_floor_softness added to E3Config. Smoke at the measured 794 scale (true error 0.0037) 14/14 PASS: old config reproduces the defect exactly (LO==HI==0.01); repaired config gives rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and both genuinely overconfident. Pinned by 17 contracts in ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py. CORRECTED 2026-09-21: behavioural validation V3-EXQ-794a ran on 2026-07-24. Dose levels separate after the repair, but C1 absolute overconfidence failed at both levels; MECH-204 correction remains untested under operative drift. Keep ready=false; no requeue of the burned ID. See runnability_audit_20260921 and GFLAG-0385.",
+      "validation_experiment": "V3-EXQ-794a (ran 2026-07-24; headroom repaired, absolute-overconfidence gate failed)",
+      "runnability_audit_20260921": {
+        "classification": "EXISTING NODE, STALE STATUS",
+        "history": "IMPLEMENTED 2026-07-22 (ree-v3 452f99e367, session hopeful-panini-cf272d): waking_confidence_rv_floor_relative_frac (default 0.0, bit-identical) + waking_confidence_rv_floor_mode (hard/soft) + waking_confidence_rv_floor_softness added to E3Config. Smoke at the measured 794 scale (true error 0.0037) 14/14 PASS: old config reproduces the defect exactly (LO==HI==0.01); repaired config gives rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and both genuinely overconfident. Pinned by 17 contracts in ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py. Behavioural validation (V3-EXQ-794a, same-question re-run of the identical 2x2) not yet queued.",
+        "evidence": "evidence/planning/failure_autopsy_V3-EXQ-794a_2026-07-31.json; evidence/planning/exq541d_redteam_blocking_refusal_staged_20260919.md section 8; GFLAG-0385",
+        "remaining_requirement": "Demonstrate a live absolute overconfidence source and independent calibration DV; readiness remains false. This does not adjudicate the unresolved mechanism-form alternatives or authorise a build."
+      }
     },
     {
       "sd_id": "SD-082",
@@ -8431,7 +8587,20 @@
       "added_session": "heuristic-mccarthy-7498cc",
       "added_utc": "2026-08-08T08:49:05Z",
       "last_seen_session": "heuristic-mccarthy-7498cc",
-      "origin": "check_substrate_ceiling_audit.py 6a-v Orphaned finding (Q-021, INV-034), 2026-08-08 governance cycle. No confirmed autopsy names an unapplied recommended_substrate_queue_entry for either claim; per the 6a-v Orphaned EXCEPTION clause, the substrate gap is already explicitly named and well-understood in INV-034's own what_would_answer (2026-08-03 digestion pass), so a stub is minted directly rather than routing to a fresh /failure-autopsy for a question V3-EXQ-866b already answered."
+      "origin": "check_substrate_ceiling_audit.py 6a-v Orphaned finding (Q-021, INV-034), 2026-08-08 governance cycle. No confirmed autopsy names an unapplied recommended_substrate_queue_entry for either claim; per the 6a-v Orphaned EXCEPTION clause, the substrate gap is already explicitly named and well-understood in INV-034's own what_would_answer (2026-08-03 digestion pass), so a stub is minted directly rather than routing to a fresh /failure-autopsy for a question V3-EXQ-866b already answered.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "Q-021",
+          "INV-034"
+        ],
+        "finding": "Batch 48: ready:true with unblocks_claims Q-021 despite diagnosis_done_NO_SUBSTRATE_CHANGE_WARRANTED; batch 40: INV-034's WWA names this retired fix path, contradicted by the user-confirmed 2026-08-08 diagnosis (real owner: MECH-457 competence floor). Recorded; not changed.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "mech203-valence-pool-admissibility",
@@ -8462,7 +8631,7 @@
       "release_condition_verbatim": "A MECH-203 confirming DV becomes constructible once the harm/benefit valence write path is wired AND read off a TRAINED substrate: use_harm_stream=True + obs_dict['harm_obs'] passed to agent.sense() + valence_harm_enabled=True, plus a P0 encoder warmup, plus contact-localized (not per-step) valence tagging with guaranteed benefit AND harm contact. Until then any forced-exposure lettered iteration reproduces the same invalid measurement. [EVB-0157 release_condition, verbatim as of 2026-08-08; see currency_finding -- partly superseded by substrate that landed 2026-08-02.]",
       "currency_finding": "REGISTRATION-TIME FINDING (2026-08-08, this session, source-verified -- NOT adjudicated by governance): the release_condition's three sub-requirements are NOT three equal open builds. (c) contact-localized valence tagging is ALREADY BUILT and contract-pinned: ree-v3 adfd8c01 'MECH-203: SR-2 harm-symmetric harm-salience write path' landed 2026-08-02T12:26Z (on origin/main) adding SerotoninModule.harm_salience() = (1 - tonic_5ht) * harm_exposure and REEAgent.update_harm_salience(), an ADDITIVE THIRD write path into VALENCE_HARM_DISCRIMINATIVE that is contact-localized (called at the same step-loop point as update_benefit_salience(), keyed on the env's EMA'd harm_exposure = body_obs[10]), tonic-5HT-modulated, and gated by the SAME tonic_5ht_enabled master switch (no new config flag, bit-identical OFF). It is pinned by tests/contracts/test_mech203_harm_salience_writepath.py C1-C5, whose C3 is a SWAMPING REGRESSION that reproduces the naive raw-|harm_signal| fix, shows it degenerates the shared RBF field to ~100% harm / ~0% benefit, and then shows update_harm_salience() + update_benefit_salience() together leave BOTH VALENCE_WANTING and VALENCE_HARM_DISCRIMINATIVE non-trivial -- i.e. exactly the non-degenerate pool C3 admissibility needs. It is already exercised live by the V3-EXQ-887/887a/887b drivers. CRITICALLY, this route reads the env scalar harm_exposure, NOT z_harm -- so it does not touch the HarmEncoder at all, which means (a) harm-stream wiring (use_harm_stream / harm_obs / valence_harm_enabled) and (b) P0 encoder warmup may be UNNECESSARY ON THIS ROUTE rather than owed. TIMING: adfd8c01 landed ~35h BEFORE the 2026-08-03T23:44Z proposal flip that wrote the release_condition, so the release_condition (and MECH-203's what_would_answer clauses (a)/(b)/(c), which restate it) appear to be a currency gap in the proposal, not a chronology problem. This finding is REGISTERED, NOT ACTED ON -- it needs governance adjudication before anyone either builds (a)/(b) or declares them unnecessary.",
       "implementation_hint": "Do NOT open by building harm-stream wiring + P0 encoder warmup -- per currency_finding that may be work against a false premise. Sequence instead: STEP 1 (cheap probe, this entry's actual residual) -- instrument a MECH-203 waking rollout with tonic_5ht_enabled=True that calls agent.update_harm_salience(harm_exposure) and agent.update_benefit_salience(benefit_exposure) at contact, over an environment/protocol that GUARANTEES both benefit AND harm contact (the 843 autopsy's forced-exposure lever is still the right way to get harm contact -- it was never the part that was wrong; what was wrong was reading a DV nothing wrote). Measure n_harm_states and n_benefit_states. If both are non-trivially > 0, admissibility is met with NO further substrate build and the residual is a /queue-experiment task (a 843c successor), not an /implement-substrate one. STEP 2 (only if STEP 1 fails) -- then (a) and (b) become genuinely owed: wire use_harm_stream=True + obs_dict['harm_obs'] into agent.sense() + valence_harm_enabled=True, AND add a P0 encoder warmup training the HarmEncoder (ree_core/latent/stack.py::HarmEncoder) before any measurement rollout, AND make the SD-014 per-step write at ree_core/agent.py sense() (h_val = z_harm.norm() written on EVERY step under valence_harm_enabled) contact-localized rather than per-step -- that per-step write is degeneracy (3b) and is documented as non-symmetric with tonic_5ht in update_harm_salience()'s own docstring.",
-      "what_is_NOT_owed": "Not another forced-exposure lettered iteration of the 843 design as literally prescribed by the 2026-08-01 autopsy -- that exact fix was built and empirically disproven twice over before queuing (see prior_failure_records 3a/3b); MECH-203's what_would_answer now explicitly says do NOT re-attempt it. Not the SWS replay-selection machinery itself: SerotoninModule drive_state, ResidueField valence, and HippocampalModule._select_valence_weighted_start were confirmed correctly wired by the 2026-08-01 autopsy and have simply never been REACHED -- no repair is owed there. Not a new config flag for the harm-salience write (adfd8c01 deliberately reuses tonic_5ht_enabled). Not a MECH-203 disposition change: every failure to date is non_contributory/measurement_test_design_defect and the claim stays candidate, never fairly tested, NOT weakened.",
+      "what_is_NOT_owed": "Not another forced-exposure lettered iteration of the 843 design as literally prescribed by the 2026-08-01 autopsy -- that exact fix was built and empirically disproven twice over before queuing (see prior_failure_records 3a/3b); MECH-203's what_would_answer now explicitly says do NOT re-attempt it. The waking drive_state-to-valence start selector is built. The old assertion that this proved SWS replay-selection wiring is superseded by the 2026-09-21 boundary audit below: the SWS tag-consumption edge is not established by that waking selector. Not a new config flag for the harm-salience write (adfd8c01 deliberately reuses tonic_5ht_enabled). Not a MECH-203 disposition change: every failure to date is non_contributory/measurement_test_design_defect and the claim stays candidate, never fairly tested, NOT weakened.",
       "substrate_paths": [
         "ree_core/agent.py::update_harm_salience",
         "ree_core/agent.py::update_benefit_salience",
@@ -8488,7 +8657,24 @@
       "added_utc": "2026-08-08T15:58:59Z",
       "last_seen_session": "metaworker-chip-20260808-mech203-substrate-queue-registration",
       "origin": "Registration-only chip chip-20260808-mech203-substrate-queue-registration (metaworker-dispatch, headless), acting on the GOVERNANCE FLAG raised in MECH-203's own what_would_answer block on 2026-08-08 ('no substrate_queue.json entry exists for EVB-0157's release_condition ... despite being named twice now (2026-08-01 autopsy, 2026-08-03 proposal flip). Chip spawned to register it.'). Context: claims.yaml MECH-203 (evidence_quality_note + its 2026-08-08 CORRECTION + what_would_answer) and evidence/planning/failure_autopsy_V3-EXQ-843_2026-08-01.md. NO substrate was built or modified by this session -- registration and source-verification only.",
-      "amend_note_2026_09_14": "Session 7a9afdfe-a81a-4836-8189-cdb08e629aaa-substrateq (metaworker-chip-proposal-exp-0913-paced), verifying substrate for MECH-208 (proposal EXP-0880, /queue-experiment task) before authoring an experiment. MECH-208's own mechanism ('the harm-salience parameter modulates the valence asymmetry in replay... harm-path replay is weighted relative to reward-path replay') is read off the IDENTICAL DV pathway this entry tracks: ree_core/hippocampal/module.py::_select_valence_weighted_start -> ResidueField.get_valence_priority() -> evaluate_valence(), scored against the same non-degenerate benefit/harm valence pool. MECH-208 needs strictly MORE than MECH-203's own confirming DV (a further downstream approach/avoidance BEHAVIOURAL measurement on top of the replay-selection bias), so it cannot be tested before MECH-203's own admissibility gate clears. No new failure evidence added here -- V3-EXQ-843's C3 admissibility failure (n_harm_states=0, all 3 seeds) and the unresolved mech203_pool_admissibility_probe (not yet commissioned, per this entry's depends_on_unresolved) apply unchanged. NOT buildable yet for MECH-208; no experiment queued. Registering here rather than creating a duplicate entry, since the release_condition and residual work (implementation_hint STEP 1) are identical for both claims. EXP-0880 (MECH-208's proposal, experiment_proposals.v1.json) left status='proposed' -- flipping it to deferred_substrate_not_ready is a governance disposition (GOV-CONFIRM-1-adjacent) out of scope for this session; flagged here for /governance to action, mirroring EVB-0157/EXP-0450's 2026-08-03 flip for MECH-203."
+      "amend_note_2026_09_14": "Session 7a9afdfe-a81a-4836-8189-cdb08e629aaa-substrateq (metaworker-chip-proposal-exp-0913-paced), verifying substrate for MECH-208 (proposal EXP-0880, /queue-experiment task) before authoring an experiment. MECH-208's own mechanism ('the harm-salience parameter modulates the valence asymmetry in replay... harm-path replay is weighted relative to reward-path replay') is read off the IDENTICAL DV pathway this entry tracks: ree_core/hippocampal/module.py::_select_valence_weighted_start -> ResidueField.get_valence_priority() -> evaluate_valence(), scored against the same non-degenerate benefit/harm valence pool. MECH-208 needs strictly MORE than MECH-203's own confirming DV (a further downstream approach/avoidance BEHAVIOURAL measurement on top of the replay-selection bias), so it cannot be tested before MECH-203's own admissibility gate clears. No new failure evidence added here -- V3-EXQ-843's C3 admissibility failure (n_harm_states=0, all 3 seeds) and the unresolved mech203_pool_admissibility_probe (not yet commissioned, per this entry's depends_on_unresolved) apply unchanged. NOT buildable yet for MECH-208; no experiment queued. Registering here rather than creating a duplicate entry, since the release_condition and residual work (implementation_hint STEP 1) are identical for both claims. EXP-0880 (MECH-208's proposal, experiment_proposals.v1.json) left status='proposed' -- flipping it to deferred_substrate_not_ready is a governance disposition (GOV-CONFIRM-1-adjacent) out of scope for this session; flagged here for /governance to action, mirroring EVB-0157/EXP-0450's 2026-08-03 flip for MECH-203.",
+      "falsifier_runnability_audit_2026_09_21": {
+        "kind": "INSTRUMENT EXISTS BUT WRONG LOCUS/TIMESCALE",
+        "claims_unblocked": [
+          "MECH-203",
+          "MECH-208"
+        ],
+        "requirement": "Separate calibrated waking tag/pool admissibility from the full MECH-203 waking-tag-to-SWS-selection condition.",
+        "event_manipulation": "Matched waking benefit/harm contacts with independently varied tagging-time tonic 5HT, followed by actual SWS; clamp selection-time drive separately.",
+        "DV_instrument": "Phase-labelled episode/region replay selections linked to the original waking valence tags, with admissible mixed benefit/harm pools.",
+        "finding": "_select_valence_weighted_start is called with drive_state by waking _do_replay. SleepReplaySampler reads staleness, not those valence tags; run_rem_attribution_pass passes drive_state=None. The old statement that SWS replay selection was already wired conflates boundaries.",
+        "ownership": "Existing SR-2 in docs/architecture/sleep/serotonergic_cross_state_substrate.md already requires SWS benefit/harm tag use, and this entry owns confirming-DV admissibility. This connects that existing requirement; no duplicate node.",
+        "version_scope": "V3-native cross-state hook already requested by SR-2; clinical generalisation remains external.",
+        "date": "2026-09-21",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "SD-E3-SCORER-COMPLETION",
@@ -8991,7 +9177,9 @@
       "unblocks_claims": [
         "SD-017",
         "ARC-045",
-        "MECH-166"
+        "MECH-166",
+        "MECH-152",
+        "ARC-021"
       ],
       "failure_record": [
         {
@@ -9124,7 +9312,20 @@
         "ree_core/predictors/e1_deep.py::ContextMemory.write",
         "experiments/v3_exq_970a_contextmemory_write_content_h1_mi_instrument.py:876 (training-pool state capture; :887 is action selection and is NOT the training-relevant detach)",
         "experiments/v3_exq_972a_sd070_write_stream_heldout_linear_probe.py"
-      ]
+      ],
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "MECH-152",
+          "ARC-021"
+        ],
+        "finding": "Batches 16/36: GFLAG-0044 gates MECH-152's owed measurement redesign on this entry and GFLAG-0229 recommends amending it for ARC-021, but unblocks_claims listed only SD-017/ARC-045/MECH-166. Edges added. NOTE (batch 32): MECH-069's MERGED-arm crash (ContextMemory.write mutates the nn.Parameter via .data, e1_deep.py:169-179) is a DIFFERENT defect in the same function and is not covered by this entry.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "SD-SLEEP-ENTRY-PRESSURE",
@@ -9238,7 +9439,21 @@
       "implementation_hint": "DO NOT BUILD BEFORE GOVERNANCE ADJUDICATES ARC-007 -- this entry records a decision point, not a ready build. FINDING (independently source-traced and measured 2026-08-18, contract-pinned at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py): nothing on the ranking path reads an action-object. o_t lands only in Trajectory.action_objects; world_forward/predict_next_self never read it, so world_states are bias-free; _score_trajectory scores get_world_state_sequence() and never touches action_objects; _trajectory_first_action_class (and thus the SP-CEM elite path) and the MECH-294 theta packet both read .actions; e3_selector.py has ZERO occurrences of action_object/action_bias. Across ree_core, action_objects appears in exactly two files (e2_fast.py producer, hippocampal/module.py refit + storage copies). action_bias's ONLY channel is the CEM refit, as an exact additive translation (ao_mean += b, ao_std unchanged, both refit branches, so it never compounds -- always exactly one b). NOT INERT, and do not quote the finding as if it were: that rigid translation passes through the nonlinear action_object_decoder and flips the whole final candidate pool's first-action class. It steers WHERE proposals are drawn, never WHICH one wins. This is also why SD-055's differentiable CEM restored an action-sequence gradient (V3-EXQ-568 grad_max=372) with no behavioural divergence -- gradient and ranking authority are different things, and SD-055 only ever addressed the former. THE DECISION: the obvious repair -- teach _score_trajectory to read action_objects -- is FORBIDDEN by Q-020/ARC-007 STRICT (hippocampal/module.py header: 'HippocampalModule generates VALUE-FLAT proposals ... No separate value head ... E3 introduces ALL weighting'). MECH-151's own wording ('E1 biases which action-objects RANK HIGHLY, but E3 still selects') is satisfiable only where E3 selects, and E3 cannot see an action-object at all. So governance must choose between: (A) give E3 an action-object input channel and consume the bias there (honours ARC-007; the larger build -- E3.select signature, Trajectory threading, and a decision about what consuming it MEANS, since a per-batch constant added identically to every candidate can only re-rank through a nonlinear term such as an alignment/norm read, not through a linear one); or (B) accept the substrate as correct under ARC-007 and QUALIFY MECH-151's registered mechanism -- 'pre-shapes HippocampalModule search' is defensible for a proposal-mean translation, 'ELEVATED/SUPPRESSED' and 'RANK HIGHLY' are not. Note (B) is a claims edit, not a build, and would close this entry with no code. SEPARATELY AND INDEPENDENTLY: this is NOT the cause of the action_bias_divergence=0.0 that EXP-0155 was queued to explain. That metric is computed on e1.extract_cue_context() output, upstream of all of the above; its exact 0.0 is the uniform-attention ContextMemory degeneracy already queued as contextmemory-write-path-addressing-degeneracy (measured 2026-08-18 at fresh init: slot-selection entropy 2.7726 == ln(16), cue_context divergence 0.000e+00). Fixing this entry will NOT move action_bias_divergence, and fixing that one will NOT give action_bias ranking authority. They are independent.",
       "status_prior_to_2026_09_05": "proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET",
       "governance_decision_2026_09_05": "GFLAG-0133 decision (B), user gate governance-20260905: qualify MECH-151, no build. Substrate accepted as correct; action_bias's only channel is the CEM refit; MECH-151 note amended. 'ARC-007' as named here was a dangling reference (claims.yaml ARC-007 is the hippocampal path-replay claim). Reopen only as a NEW entry if a claim later needs the E3 ranking channel.",
-      "last_seen_session": "governance-20260905"
+      "last_seen_session": "governance-20260905",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "MECH-151",
+          "MECH-326",
+          "ARC-072"
+        ],
+        "finding": "Batches 13/22: the wontfix note ('E3 has no action-object input channel at all') is contradicted by compute_action_object_alignment_bias (e3_selector.py:297, called agent.py ~9353, flag use_action_object_bias_channel, contract-pinned), landed 2026-09-01 -- four days BEFORE the GFLAG-0133 decision (B) set this entry to wontfix. EXP-1311 is still blocked_substrate on the pre-build finding. Recorded for governance re-read against ree-v3 84e211a; status not changed by the audit.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "mech142-no-valence-arousal-orthogonal-axis-substrate",
@@ -9466,7 +9681,11 @@
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-092",
-        "MECH-205"
+        "MECH-205",
+        "ARC-038",
+        "MECH-206",
+        "MECH-271",
+        "ARC-014"
       ],
       "failure_record": [],
       "priority": "medium",
@@ -9474,7 +9693,22 @@
       "added_utc": "2026-09-01T18:58:23Z",
       "last_seen_session": "govapply-20260901",
       "source_memo": "GFLAG-0076 / GFLAG-0086 replay-and-consolidation cluster; user-approved sub-decision D3-a, 2026-09-01",
-      "implementation_hint": "REGISTRATION ONLY -- records an unowned blocker so it stops being invisible; does NOT authorise a build. VERIFIED 2026-09-01 against ree-v3 source: Agent._do_replay (ree_core/agent.py:10366) assigns replay_trajs from hippocampal.diverse_replay (:10418) or hippocampal.replay (:10425), and the function ENDS at :10428 without ever reading the variable -- it returns None. The trailing comment ('hypothesis_tag=True: these trajectories cannot update residue, MECH-094') describes a consumer contract for a consumer that does not exist. Exhaustive search of ree_core/ finds no reader of replay output anywhere. So the replay TRIGGER is built and confirmed (V3-EXQ-761 PASS for MECH-092's triggering half) while the CONSOLIDATION-BENEFIT half has never been exercisable. WHAT IS NEEDED: a consumer that ingests replayed trajectories into the viability map under the MECH-094 constraint already stated at the call site (hypothesis-tagged trajectories must not update residue). SCOPE HONESTY -- 'building this unblocks all four cited claims' is HALF TRUE and must not be quoted that way: it unblocks MECH-092's benefit half and MECH-205 leg (iii) only. MECH-121 and MECH-209 stay blocked on unbuilt balanced harm/goal replay scheduling AND the MECH-439 conversion ceiling; those two have ZERO experimental entries between them and are deliberately NOT listed in unblocks_claims. NOTE the gates in MECH-209/MECH-291 previously named bare 'SD-006', whose registry status reads 'implemented' (phase 1 time-multiplexed clock, ree_core/heartbeat/clock.py) while phase 2 is deferred (clock.py:32) -- so those gates read as CLEARED to any status check. Repointed at this entry 2026-09-01."
+      "implementation_hint": "REGISTRATION ONLY -- records an unowned blocker so it stops being invisible; does NOT authorise a build. VERIFIED 2026-09-01 against ree-v3 source: Agent._do_replay (ree_core/agent.py:10366) assigns replay_trajs from hippocampal.diverse_replay (:10418) or hippocampal.replay (:10425), and the function ENDS at :10428 without ever reading the variable -- it returns None. The trailing comment ('hypothesis_tag=True: these trajectories cannot update residue, MECH-094') describes a consumer contract for a consumer that does not exist. Exhaustive search of ree_core/ finds no reader of replay output anywhere. So the replay TRIGGER is built and confirmed (V3-EXQ-761 PASS for MECH-092's triggering half) while the CONSOLIDATION-BENEFIT half has never been exercisable. WHAT IS NEEDED: a consumer that ingests replayed trajectories into the viability map under the MECH-094 constraint already stated at the call site (hypothesis-tagged trajectories must not update residue). SCOPE HONESTY -- 'building this unblocks all four cited claims' is HALF TRUE and must not be quoted that way: it unblocks MECH-092's benefit half and MECH-205 leg (iii) only. MECH-121 and MECH-209 stay blocked on unbuilt balanced harm/goal replay scheduling AND the MECH-439 conversion ceiling; those two have ZERO experimental entries between them and are deliberately NOT listed in unblocks_claims. NOTE the gates in MECH-209/MECH-291 previously named bare 'SD-006', whose registry status reads 'implemented' (phase 1 time-multiplexed clock, ree_core/heartbeat/clock.py) while phase 2 is deferred (clock.py:32) -- so those gates read as CLEARED to any status check. Repointed at this entry 2026-09-01.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "ARC-038",
+          "MECH-206",
+          "MECH-271",
+          "ARC-014"
+        ],
+        "finding": "Batches 16/27/33: REEAgent._do_replay computes replay_trajs and returns without reading them (agent.py ~10806-10865); this REGISTRATION-ONLY entry owns that blocker for MECH-092/MECH-205 but the same discarded output also blocks ARC-038 (hc_viability has zero write_gate call sites), MECH-206, MECH-271 and ARC-014 leg A. Edges added; registration is not build authorisation.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "MECH465-COMMIT-GATE-HEADROOM",
@@ -9542,7 +9776,20 @@
       "added_session": "governance-20260902",
       "last_seen_session": "governance-20260909",
       "governance_2026_09_05": "GFLAG-0136 decision, user gate governance-20260905: route a warmup-budget sweep PROBE (WARM400/800 plus phased P0a->P0b, thresholds recalibrated per arm so P1 becomes readable); do NOT mint the gate-rescale build; do NOT close the route. The recorded 11-19x P2 shortfall is OVERSTATED ~3-4x (confound-free spike: 2.7-5.8x, monotone in warmup budget, not plateaued -- evidence/planning/mech465_zworld_warmup_dispersion_spike_20260904.md). Chip: chip-20260905-mech465-warmup-budget-sweep. The IGW-20260904-213 staged build assignment should be withdrawn (it staged the now-retired gate rescale).",
-      "governance_2026_09_09": "Applied confirmed failure_autopsy_V3-EXQ-1015_2026-09-09 (user gate 00:55:13Z) as an AMEND, not a create, and deliberately did NOT supersede the route_retired item (red-team F9: its OUTCOME -- no static gate-rescale build -- stands and is in the autopsy's own explicitly_not_recommended; a flipped resolved field is what IGW auto-discovery reads as 'build again'). MAGNITUDE DEPRECATION, read this before citing any figure in this entry: the '2.7-5.8x' P2 shortfall (and the '11-19x' it corrected) measure against the 0.51 IQR/median bar, which MECH-465's own what_would_answer FORBIDS per seed -- both figures are therefore VOID as statements about the claim and must not be re-cited. They remain in the 2026-09-04/09-05 implementation_hint and governance_2026_09_05 blocks as historical record ONLY and are not corrected in place, so that the decision trail stays auditable. What is true after 1015: the legitimate clause (commit-rate band) is REACHED on 2 of 3 seeds, so no build gates the conjunct-3 experiment. node_class stays complex (probe-gated); ready stays false; MECH-465's pending_retest_after_substrate set false this cycle and its epistemic_category HELD at substrate_ceiling pending the EXP-0590 amend and the conjunct-3 queue entry. Resolves GFLAG-0238 with a third option (neither extend-the-sweep nor accept-and-gate)."
+      "governance_2026_09_09": "Applied confirmed failure_autopsy_V3-EXQ-1015_2026-09-09 (user gate 00:55:13Z) as an AMEND, not a create, and deliberately did NOT supersede the route_retired item (red-team F9: its OUTCOME -- no static gate-rescale build -- stands and is in the autopsy's own explicitly_not_recommended; a flipped resolved field is what IGW auto-discovery reads as 'build again'). MAGNITUDE DEPRECATION, read this before citing any figure in this entry: the '2.7-5.8x' P2 shortfall (and the '11-19x' it corrected) measure against the 0.51 IQR/median bar, which MECH-465's own what_would_answer FORBIDS per seed -- both figures are therefore VOID as statements about the claim and must not be re-cited. They remain in the 2026-09-04/09-05 implementation_hint and governance_2026_09_05 blocks as historical record ONLY and are not corrected in place, so that the decision trail stays auditable. What is true after 1015: the legitimate clause (commit-rate band) is REACHED on 2 of 3 seeds, so no build gates the conjunct-3 experiment. node_class stays complex (probe-gated); ready stays false; MECH-465's pending_retest_after_substrate set false this cycle and its epistemic_category HELD at substrate_ceiling pending the EXP-0590 amend and the conjunct-3 queue entry. Resolves GFLAG-0238 with a third option (neither extend-the-sweep nor accept-and-gate).",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "MECH-465",
+          "MECH-332"
+        ],
+        "finding": "Batch 20: ARC-029 (D) variance-tracking commit bar landed ree-v3 2026-09-18 (E3Config.use_variance_tracking_commit_threshold; arc029_variance_tracking_commit_bar_build_20260918.md) and its build record deliberately did not touch this entry, so ready:false now describes a superseded headroom state. Caveat: multiplicative urgency modulation re-saturates occupancy under the quantile bar (0.974 at urgency ~0.2) and precision_margin_norm inverts (0.999986 -> 0.032963), a live MECH-027 input. Recorded; ready not changed.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "sd_phasic_burst_decay_and_warmup_headroom",
@@ -9558,7 +9805,9 @@
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-063",
-        "SD-069"
+        "SD-069",
+        "SD-104",
+        "SD-105"
       ],
       "failure_record": [
         {
@@ -9603,7 +9852,20 @@
           "governance": "PROMOTES NOTHING. MECH-063 and SD-069 stay pending_retest_after_substrate -- the autopsy's re-derive brake requires BOTH legs SHOWN fixed by the retest, not merely built, so failure_record[0].resolved stays 'open' until V3-EXQ-963b scores."
         }
       ],
-      "validation_experiment": "OWED, UNOWNED. V3-EXQ-963b was DESIGNED by campaign-c2c-20260904 but REFUSED at Step-4.5 red-team review and NEVER QUEUED (ree-v3 d2104f88f42fc6f49454df7245188c9f95933737, 2026-09-04, titled 'V3-EXQ-963b driver: BLOCKING red-team verdict recorded, NOT queued': a BLOCKING finding means at least one pre-registered criterion cannot discriminate under any outcome -- do not queue). Corrected 2026-09-10 under GFLAG-0168; the superseded text asserted it had been queued by campaign-c2c-20260904 with the dv_headroom precondition class (ree-v3 8e133d26ed) declared for each load-bearing criterion, and that assertion is FALSE: `git log -S963b -- experiment_queue.json` in ree-v3 returns nothing and the live ree-v3/experiment_queue.json items[] is empty. A successor must use the frozen/shared-multiplier form specified in SD-105 what_would_answer; the d2104f8 driver script is retained lint-clean and smoke-tested at that commit and is the starting point. NO OWNER ASSIGNED -- chip the successor design. status_phase stays validation_owed, which is accurate, and failure_record[0].resolved stays open (this entry's own governance sub-note already records that it stays open until V3-EXQ-963b scores, which it never will in this form). Coupled to GFLAG-0167 (same defect, different artifact: the SD-105 design doc); SD-105's digestion_note already records the contradiction from the claims side."
+      "validation_experiment": "OWED, UNOWNED. V3-EXQ-963b was DESIGNED by campaign-c2c-20260904 but REFUSED at Step-4.5 red-team review and NEVER QUEUED (ree-v3 d2104f88f42fc6f49454df7245188c9f95933737, 2026-09-04, titled 'V3-EXQ-963b driver: BLOCKING red-team verdict recorded, NOT queued': a BLOCKING finding means at least one pre-registered criterion cannot discriminate under any outcome -- do not queue). Corrected 2026-09-10 under GFLAG-0168; the superseded text asserted it had been queued by campaign-c2c-20260904 with the dv_headroom precondition class (ree-v3 8e133d26ed) declared for each load-bearing criterion, and that assertion is FALSE: `git log -S963b -- experiment_queue.json` in ree-v3 returns nothing and the live ree-v3/experiment_queue.json items[] is empty. A successor must use the frozen/shared-multiplier form specified in SD-105 what_would_answer; the d2104f8 driver script is retained lint-clean and smoke-tested at that commit and is the starting point. NO OWNER ASSIGNED -- chip the successor design. status_phase stays validation_owed, which is accurate, and failure_record[0].resolved stays open (this entry's own governance sub-note already records that it stays open until V3-EXQ-963b scores, which it never will in this form). Coupled to GFLAG-0167 (same defect, different artifact: the SD-105 design doc); SD-105's digestion_note already records the contradiction from the claims side.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "SD-104",
+          "SD-105"
+        ],
+        "finding": "Batch 19: V3-EXQ-963b (written, smoke-tested, gated, never queued) is the acceptance run for SD-104/SD-105 as well as MECH-063/SD-069; edges added, validation_experiment text left as governance has it.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "dv-dynamic-range-precondition-class",
@@ -9769,7 +10031,20 @@
       "added_session": "governance-20260904-1347",
       "added_utc": "2026-09-04T18:56:25Z",
       "last_seen_session": "governance-20260904-1347",
-      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "MECH-518",
+          "MECH-517"
+        ],
+        "finding": "Batch 20: MECH-518 is listed in unblocks_claims but its manipulation is the driver-side grounding regression v3_exq_817a already implements and all four WWA instruments are present in ree_core/hippocampal/module.py -- MECH-518 is R0 and mis-blocked on this entry; MECH-517 depends on MECH-518's P1. Recorded; unblocks_claims not edited.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "SD-086",
@@ -9785,7 +10060,9 @@
         "SD-020"
       ],
       "unblocks_claims": [
-        "Q-086"
+        "Q-086",
+        "MECH-046",
+        "MECH-074c"
       ],
       "failure_record": [],
       "implementation_hint": "Replace the z_harm_a latent-norm readout with a calibrated scalar valuation (trained/calibrated against harm outcomes) so the affective readout is not conflated with latent magnitude; unblocks Q-086.",
@@ -9793,7 +10070,20 @@
       "added_session": "governance-20260904-1347",
       "added_utc": "2026-09-04T18:56:25Z",
       "last_seen_session": "governance-20260904-1347",
-      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "MECH-046",
+          "MECH-074c"
+        ],
+        "finding": "Batch-05 audit: MECH-046 and MECH-074c share this entry's root blocker (cea_fast_route_threshold=0.5 versus embodied z_harm_a max ~0.216; latent-norm readout defect) but were not listed in unblocks_claims. Edge added; no status change.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "SD-097",
@@ -9822,7 +10112,20 @@
       "added_session": "governance-20260904-1347",
       "added_utc": "2026-09-04T18:56:25Z",
       "last_seen_session": "governance-20260904-1347",
-      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it.",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, STALE STATUS",
+        "claims": [
+          "SD-098",
+          "MECH-470"
+        ],
+        "finding": "Batches 18/21/25: ree_core/hippocampal/possibility_topology.py (use_possibility_topology; relational admission inside GhostGoalBank.rank; 16 contracts) landed on origin/main 2026-09-17 (ree-v3 a902639), so pending_implementation/ready:false is stale and v3_exq_1055's docstring ('SD-097 does NOT exist') is wrong. CONTESTED: the V3-EXQ-1055 header also records a user decision dated 2026-09-17 'do NOT build SD-097's typed topology'. Both facts recorded; status deliberately not flipped -- governance must reconcile the decision with the landed code. Built form is one-hop `enables` admission, not a graded relational-distance term.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "SD-098",
@@ -9854,13 +10157,26 @@
       "design_doc": "REE_assembly/docs/architecture/precision_control.md#signed-harmbenefit-pe-precision-implementation-sketch",
       "depends_on_unresolved": [],
       "unblocks_claims": [
-        "MECH-054"
+        "MECH-054",
+        "ARC-052"
       ],
       "failure_record": [],
       "implementation_hint": "MECH-054 (docs/architecture/control_plane.md#mech-054) asserts separate precision channels for harm- vs benefit-related prediction error (pi_H, pi_B) rather than one collapsed valence scalar. Confirmed 2026-09-04: zero occurrences of pi_H/pi_B/lambda_H/lambda_B or any harm/benefit-split precision channel anywhere in ree-v3/ree_core (grep). The only existing precision machinery is the single unsigned running-variance term in e3_selector.py (update_running_variance: prediction_error.pow(2).mean(), verified live-invoked from the real step loop at e3_selector.py:4151) -- this is what EXP-0793/LIT-0794 (claim MECH-043) found is invariant to a gain sweep and cannot serve as MECH-054's signed dissociation control. docs/architecture/precision_control.md already carries an 'Implementation Sketch' (not yet built) with the concrete update rule: e_H = harm-related PE (from HARM/HOMEOSTASIS streams), e_B = benefit-related PE (from VALENCE/reward-proxy streams); pi_H(t+1) = (1-alpha_H)*pi_H(t) + alpha_H*f(|e_H(t)|, context), pi_B(t+1) analogous with its own alpha_B, f bounded/saturating; learning uses pi_H*e_H + pi_B*e_B applied PER CHANNEL (not collapsed to a scalar); commitment gating: pi_H*|e_H| exceeding a threshold feeds the aversive gate (MECH-053) to suppress/delay commitment. Build: (1) add e_H/e_B extraction from the existing HARM/HOMEOSTASIS and VALENCE streams already live in ree_core (HARM is the one live per-candidate stream per the MECH-035 substrate probe), (2) add pi_H/pi_B state + the two EMA update rules above as new REEConfig-gated fields (default-off, matching the codebase's existing pattern for new control channels), (3) wire pi_H*e_H + pi_B*e_B into the learning-update path alongside (not replacing) the existing unsigned term, (4) wire the pi_H*|e_H| threshold into the MECH-053 aversive/commitment gate. No open design question -- the sketch already specifies the update rule and the two consumers; this is scoping + implementation, not new theory. Named by two blocked proposals: EXP-0793 and LIT-0794 (both claim_id MECH-043), whose falsifier (iv) needs MECH-054 as the dissociation control and self-routes substrate_not_ready without it. NOTE: MECH-054 also depends_on ARC-017 (per control_plane.md), which is itself the vector-VALENCE stream-tagging build already covered by open chip chip-20260901-mech035-vector-valence-substrate (MECH-035) -- the e_B (benefit/VALENCE) extraction in step (1) above may be able to reuse whatever that chip lands rather than duplicating stream work; check its outcome before implementing step (1).",
       "priority": 2,
       "added_session": "campaign-c3-20260904 (drafted; not yet applied -- awaiting governance lock release)",
-      "last_seen_session": "campaign-c3-20260904"
+      "last_seen_session": "campaign-c3-20260904",
+      "falsifier_runnability_audit_2026_09_22": {
+        "date": "2026-09-22",
+        "by": "falsifier-runnability-audit-resume-20260922",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "ARC-052"
+        ],
+        "finding": "Batch 21: ARC-052's missing consumer is exactly this proposed row, which listed only MECH-054. Edge added.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false,
+        "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
+      }
     },
     {
       "sd_id": "waypoint-proximity-field-observable",
@@ -10562,7 +10878,7 @@
     },
     {
       "sd_id": "mech318-within-episode-rule-switch-instrument",
-      "title": "Within-episode rule-switch event and switch-aligned adaptation-time instrument for the existing MECH-318 falsifier",
+      "title": "Switch-aligned behavioural adaptation-time instrument for MECH-318; reuse existing SD-MEL-PRODUCER event",
       "node_class": "measurement prerequisite (registration only)",
       "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
       "ready": false,
@@ -10579,11 +10895,925 @@
       "source_memo": "UEP-034; prospective unwritten-edge pilot, protocol 5c486824fe; D3 + manual D5",
       "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
       "ready_blocked_by": "REGISTRATION ONLY, not a build authorization. Scientific use remains gated by arc_062_rule_apprehension:GAP-B competence and current SD-082 validation; this environment instrument does not clear either gate or authorize a frozen-encoder portfolio.",
-      "implementation_hint": "The MECH-318 what_would_answer requires adaptation timing at within-episode rule-switch points. Existing v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate.py explicitly changes reef_bipartite_axis across episodes, calls env.reset()/agent.reset(), and defers within-step switching. The free-text multi-rule-context substrate dependency names no event/measurement provider. Register an environment event + switch-aligned DV contract, NOT a dedicated meta-RL module or a cross-episode persistence change. No implementation choice or numeric scientific success criterion is selected here. Scope is MECH-318 only; this does not unblock the full ARC-064 / MECH-316 / MECH-317 cluster.",
+      "implementation_hint": "CORRECTED 2026-09-21: SD-MEL-PRODUCER already generates within-episode action-map switches and switch-relative timestamps. Reuse that event where scientifically suitable; do not commission a duplicate switch producer. The residual registration owns behavioural recovery-latency measurement and the continuous-episode assay. A reef-specific rule switch is not automatically equivalent to action-map re-permutation; require explicit task justification. EXQ-606b remains an across-episode test and is insufficient. GAP-B/SD-082 competence and readout gates remain. Registration only, not build authorisation; no new mechanism or experiment commissioned. Previous rationale retained in runnability_audit_20260921.history.",
       "acceptance_falsifier": "A provider trace must contain a real rule transition during a continuous episode with no agent reset at that transition; log transition time for evaluation without giving the agent a privileged task-ID cue; permit computable adaptation latency for intact versus recurrent-state-ablated arms and a no-switch control. The absence diagnosis is falsified by an already registered/live provider meeting this same contract. A build and its scientific retest need separate authorization.",
       "phase_verdict": "V3-NATIVE",
       "forward_version_check": "Inspected V4/V5 nodes and belief-state, option, memory and plasticity plans; related internal architecture does not supply this environment event/DV. W5 cross-episode continuity remains a separate V4 question. No stopgap architecture selected; any later fossilisation or pull-forward scope choice goes to the user.",
-      "pending_retest_after_substrate": true
+      "pending_retest_after_substrate": true,
+      "existing_event_provider": "SD-MEL-PRODUCER",
+      "runnability_audit_20260921": {
+        "primary_class": "R2",
+        "secondary_classes": [
+          "R1",
+          "R5"
+        ],
+        "registration_is_build_authorisation": false,
+        "history": "The MECH-318 what_would_answer requires adaptation timing at within-episode rule-switch points. Existing v3_exq_606b_arc064_gap_i_mech318_multi_rule_empirical_gate.py explicitly changes reef_bipartite_axis across episodes, calls env.reset()/agent.reset(), and defers within-step switching. The free-text multi-rule-context substrate dependency names no event/measurement provider. Register an environment event + switch-aligned DV contract, NOT a dedicated meta-RL module or a cross-episode persistence change. No implementation choice or numeric scientific success criterion is selected here. Scope is MECH-318 only; this does not unblock the full ARC-064 / MECH-316 / MECH-317 cluster.",
+        "event_evidence": "ree-v3/ree_core/environment/causal_grid_world.py:_maybe_shift_world_rule and step; tests/contracts/test_world_rule_shift_producer.py (12 passed in audit)",
+        "remaining_requirement": "Verify effective map change without episode/reset boundary, rule-task suitability, baseline competence and continuous post-switch window; add intact/recurrent-ablated/no-switch comparisons and censored behavioural recovery latency. Event flag or rule_state differentiation alone is not adaptation."
+      }
+    },
+    {
+      "sd_id": "mech089-context-gated-theta-window",
+      "title": "Context-gated theta window: default-OFF flag making ThetaBuffer batching conditional on a live gating signal (beta_gate.is_elevated / E3 running_variance) instead of global_step % theta_buffer_size",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-089",
+        "ARC-032"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "MECH-089's only open falsifier requires a non-uniform, context-conditioned theta window tested against a fixed static-k baseline; a static-k run can only reproduce the already-confirmed adverse result.",
+      "event_or_manipulation_produced": "A context-gated theta batching regime: the theta window (width and/or whether summary() is consulted at all) conditioned on an existing commitment/volatility signal such as beta_gate elevation or E3 running_variance, behind a default-OFF flag that is bit-identical when disabled.",
+      "dv_or_instrument_exposed": "Per-tick records of which regime each theta tick was in, plus harm_auc and E3 prediction error split by regime, so the batching cost and benefit can be attributed to stable versus volatile windows separately.",
+      "why_no_existing_owner": "The only substrate_queue entry naming MECH-089 is theta-buffer-phase-aware-summary, which is implemented and delivers the phase-weighted summary only; no entry, claim depends_on edge, closure-plan node or code path owns the context-gating half, and a corpus search for a context-gated theta owner returns nothing. // COORDINATOR: MECH-089 what_would_answer names the requirement; theta-buffer-phase-aware-summary delivered SD-100 only; 2026-09-09 temporal-gates intake declined a MECHANISM claim but registered no build.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "MECH-089 what_would_answer names the requirement; theta-buffer-phase-aware-summary delivered SD-100 only; 2026-09-09 temporal-gates intake declined a MECHANISM claim but registered no build."
+    },
+    {
+      "sd_id": "mech303-safety-terrain-decay",
+      "title": "Safety-terrain decay knob: route a default-0.0 (bit-identical) decay_rate into ResidueField.accumulate_safety -> add_residue so contextual-safety extinction is measurable against ConditionedSafetyStore decay",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-303",
+        "MECH-304"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "MECH-303's registered falsifiable clause predicts SLOWER extinction of context-conditioned safety than cue-conditioned safety; with no extinction path on the contextual terrain the comparison is degenerate and cannot be run either way.",
+      "event_or_manipulation_produced": "An extinction/decay path on the MECH-303 contextual safety terrain -- accumulate_safety routed through the existing add_residue decay_rate argument behind a default-0.0 (bit-identical OFF) config knob, so harm reintroduction in a previously safe context can erode the accumulated safety value.",
+      "dv_or_instrument_exposed": "A per-episode readout of contextual safety value at a fixed probe location after harm reintroduction, comparable against ConditionedSafetyStore prototype norm decay over the same window, giving the two extinction rates on one axis.",
+      "why_no_existing_owner": "No substrate_queue entry, claim, closure-plan node or governance flag owns a safety-terrain extinction mechanism. SD-052 owns the accumulation build, SD-067 owns terrain bandwidth and SD-MECH303-THRESHOLD-SOURCING owns the gate signal; none touches decay, and accumulate_safety passes no decay_rate to add_residue, so the field is monotone by construction. // COORDINATOR: accumulate_safety calls add_residue with no decay_rate (monotone terrain); add_residue already supports decay_rate (SD-RESIDUE-VALENCE-BOUND path); SD-MECH303-THRESHOLD-SOURCING covers threshold sourcing only.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "accumulate_safety calls add_residue with no decay_rate (monotone terrain); add_residue already supports decay_rate (SD-RESIDUE-VALENCE-BOUND path); SD-MECH303-THRESHOLD-SOURCING covers threshold sourcing only."
+    },
+    {
+      "sd_id": "mech267-mode-content-location-instrument",
+      "title": "Mode-content LOCATION instrument readable upstream of the support_preserving_ao_std_floor clamp (GFLAG-0224 route B)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-267",
+        "MECH-266",
+        "MECH-261"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "The ordered four-mode gradient in proposal CONTENT (location), which the registered falsifier needs and which the extreme-pair breadth result does not supply.",
+      "event_or_manipulation_produced": "Mode-conditioned proposal generation read at a boundary upstream of the support-preserving ao_std floor clamp, so the elite-selection channel's contribution is observable rather than washed out by the post-refit clamp.",
+      "dv_or_instrument_exposed": "A mode-content location readout with resolution below the current 0.02 centroid floor -- for example per-mode elite-set composition or pre-clamp refit mean, recorded per mode per tick with a manipulation check that it varies across modes.",
+      "why_no_existing_owner": "SD-MECH267-CEM-SELECTION-FIX owns the breadth fix and its ordered-gradient residual, but no substrate_queue entry owns a location INSTRUMENT; the 2026-09-10 governance edit that narrowed the confirming branch states explicitly that this entry is owed and was not registered by that edit, and a queue scan confirms none exists. // COORDINATOR: GFLAG-0224 (resolved, user-approved 2026-09-10) left two routes: narrow MECH-267 to the breadth channel (H3/BOTH, V3-EXQ-928) OR register a complicated-build substrate_queue entry per the 1009 spike record. Neither was done; this row is route B, registration only; governance still chooses between the two.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "GFLAG-0224 (resolved, user-approved 2026-09-10) left two routes: narrow MECH-267 to the breadth channel (H3/BOTH, V3-EXQ-928) OR register a complicated-build substrate_queue entry per the 1009 spike record. Neither was done; this row is route B, registration only; governance still chooses between the two."
+    },
+    {
+      "sd_id": "mech108-breath-phase-rollout-initiation-instrument",
+      "title": "Breath-phase instrument: named scan/execute phases and an exhale-end boundary event from the existing MultiRateClock._breath_phase_step, a countable phase-tagged pre-commit rollout / DMN-simulation initiation event, breath phase on transition records, and a default-off BetaGate.receive_respiratory_phase hook (MERGED with MECH-250 candidate)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-108",
+        "MECH-107",
+        "MECH-250",
+        "MECH-090"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A phase-resolved breath readout plus an enumerable rollout/DMN-simulation initiation event, so that plan-sweep periodicity and scan-versus-execute asymmetry can be measured rather than inferred from a scalar threshold. // MECH-250 needs a positive release trigger at the exhale-end boundary and the ability to bin de-commitment events by breath phase, neither of which the shipped BreathOscillator provides.",
+      "event_or_manipulation_produced": "Two named breath phases (scan/execute) exposed on MultiRateClock from the existing _breath_phase_step counter, and a hook that lets the scan phase trigger (or at minimum tag) pre-commit rollout generation. // Expose the exhale-end boundary as an event on MultiRateClock and add BetaGate.receive_respiratory_phase(phase) calling release() at that boundary behind a default-off flag, bit-identical when off -- roughly the same shape as the existing receive_hippocampal_completion route.",
+      "dv_or_instrument_exposed": "Per-tick breath phase angle, rollout/DMN-simulation initiation count per phase, and commitment/abandonment events per phase, emitted into the manifest alongside the existing sweep diagnostics. // Per-tick breath phase attached to committed-to-uncommitted transition records, which is what makes the circular-concentration (Rayleigh) leg computable and separates phase locking from a bare rate increase.",
+      "why_no_existing_owner": "substrate_queue.json has no breath or respiratory entry (searched all 189 queue items); MECH-107 is a sibling CLAIM that names the same missing substrate and routes around it with a proxy, and no plan node or governance flag owns the build. // The 2026-09-06 thought-digestion partial-absorption kept this residual under substrate_conditional but registered no build; substrate_queue.json contains no breath or respiratory entry, and MECH-108's BreathOscillator is complete as built and does something different (threshold softening, arithmetically inert at the operating point). // COORDINATOR: CORRECTION to the auditor text: MultiRateClock.get_state() already emits breath_phase_step and sweep_active (clock.py:236-241), so a raw phase counter IS readable; absent are named phases, any phase-tagged rollout-initiation count, and any consumer of phase other than the scalar commit threshold. No breath/respiratory entry in the queue; MECH-107 sibling routes around the gap with a proxy.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "CORRECTION to the auditor text: MultiRateClock.get_state() already emits breath_phase_step and sweep_active (clock.py:236-241), so a raw phase counter IS readable; absent are named phases, any phase-tagged rollout-initiation count, and any consumer of phase other than the scalar commit threshold. No breath/respiratory entry in the queue; MECH-107 sibling routes around the gap with a proxy."
+    },
+    {
+      "sd_id": "arc063-crf-per-action-evidence-trace-recorder",
+      "title": "CandidateRuleField per-action evidence-trace recorder (passive instrument) required by ARC-063 forks (b) clinical failure mode and (c) sleep-vs-waking asymmetry",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-063",
+        "MECH-352",
+        "MECH-349",
+        "MECH-350",
+        "MECH-351"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "Forks (b) clinical/rule-field-attributable failure mode and (c) sleep-versus-waking refinement asymmetry both require a structured per-action record linking active rules to the rollouts they biased, the selected and suppressed alternatives, the commitment, the outcome and the resulting residue. ARC-063's own what_would_answer names its absence as half of precondition (1).",
+      "event_or_manipulation_produced": "No new mechanism -- the recorder is passive. It makes an existing event legible: on each committed action it logs which CandidateRule ids were available and gated, which proposals they biased, which was selected, which were suppressed, and what outcome and prediction error followed.",
+      "dv_or_instrument_exposed": "A per-action evidence-trace record keyed by rule id, from which rule-pool reorganisation between a sleep pass and a matched waking pass, and rule-attributable residue, both become measurable. Today CREDIT is a scalar eligibility trace only, and no consumer of it exists under ree_core/sleep/.",
+      "why_no_existing_owner": "Verified this audit: no substrate_queue entry mentions rollout eligibility shaping or an evidence trace (searched all 189 queue entries), and the three plan nodes that would use it (arc_062_rule_apprehension GAP-E/F/G) are deferred TEST nodes that presuppose the record rather than owning its build. crf-availability-maintenance owns the availability half only. // COORDINATOR: arc_062_rule_apprehension:GAP-E/F/G are deferred TEST nodes that presuppose the record; plan line ~888 lists evidence-trace records as unbuilt; no queue entry mentions an evidence trace or eligibility shaping.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "arc_062_rule_apprehension:GAP-E/F/G are deferred TEST nodes that presuppose the record; plan line ~888 lists evidence-trace records as unbuilt; no queue entry mentions an evidence trace or eligibility shaping."
+    },
+    {
+      "sd_id": "mech105-completion-signal-range-parity",
+      "title": "Completion-signal range/threshold parity on the hippocampal -> BetaGate release path (compute_completion_signal range (0,0.5] vs 0.75 release threshold; docstring range inverted; beta_gate_bistable default False)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-105",
+        "ARC-028",
+        "MECH-290"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "An ON/OFF ablation of the hippocampal-completion release pathway that is not bit-identical by construction, i.e. one in which the completion signal can actually cross the release threshold and the pathway can fire.",
+      "event_or_manipulation_produced": "Range/threshold parity on the completion pathway: either rescale compute_completion_signal so a low-residue trajectory maps above the release threshold, or expose completion_release_threshold as a config field calibrated to the producer's realised distribution, and surface beta_gate_bistable through REEConfig.from_dims so the wiring runs at production config.",
+      "dv_or_instrument_exposed": "Per-tick completion_signal distribution and receive_hippocampal_completion invocation count persisted to the manifest, so 'never invoked' is distinguishable from 'invoked but below threshold'.",
+      "why_no_existing_owner": "substrate_queue.json has zero entries naming compute_completion_signal or completion_release_threshold; GFLAG-0344 diagnosed the defect on 2026-09-18 and explicitly asked for a queue entry that was never opened. The nearby residue entries (SD-024, ARC-046, SD-067, the MECH-303 bandwidth item) all own different residue properties. // COORDINATOR: GFLAG-0344 (open, 2026-09-18) diagnoses the defect and asks for a queue entry that was never opened; substrate_queue has zero entries naming either symbol. Registration only; the flag stays open for governance.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "GFLAG-0344 (open, 2026-09-18) diagnoses the defect and asks for a queue entry that was never opened; substrate_queue has zero entries naming either symbol. Registration only; the flag stays open for governance."
+    },
+    {
+      "sd_id": "mech478-integrated-benefit-divergence-regime",
+      "title": "Environment regime in which the integrated-benefit optimum provably diverges from the greedy-contact optimum, certified on the environment (oracle-vs-greedy) rather than on the agent",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-478",
+        "MECH-163",
+        "MECH-479"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "An environment regime in which the integrated-benefit optimum provably differs from the greedy-contact optimum, with the divergence certified on the environment itself rather than inferred from agent behaviour.",
+      "event_or_manipulation_produced": "A layout/schedule (for example a delayed-maturation or accumulating-patch resource whose yield depends on dwell or on arrival order) where a greedy-contact walker is provably suboptimal in integrated benefit.",
+      "dv_or_instrument_exposed": "Per-episode integrated benefit alongside contact count, plus an environment-side oracle-vs-greedy certification metric that gates scoring.",
+      "why_no_existing_owner": "substrate_queue has no entry for a long-horizon or divergent-optimum environment regime; SD-049 benefit curves shape within-contact yield only, and MECH-353 action blocks are single-tick with no layout change. // COORDINATOR: SD-049 / SD-049-PHASE-2 / PHASE-3 shape within-contact yield and the drive cascade only; no plan, queue or flag names a divergence regime; without it MECH-478 is non-degenerate only by assumption.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "SD-049 / SD-049-PHASE-2 / PHASE-3 shape within-contact yield and the drive cascade only; no plan, queue or flag names a divergence regime; without it MECH-478 is non-degenerate only by assumption."
+    },
+    {
+      "sd_id": "mech354-two-bound-fast-effort-accumulator",
+      "title": "Two-bound fast EFFORT accumulator (MECH-354 own leg), the owed registration named in GFLAG-0142 part (i)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-354"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "The fast within-task two-bound effort accumulator does not exist -- ARC-078 appears nowhere in ree_core -- so V3 cannot generate the bound-crossing event or the STOP it emits. The slow Process-S leg has an accumulator (EntryPressureAccumulator) but it integrates MEL demand, not effort, has one bound not two, and emits no in-task STOP.",
+      "event_or_manipulation_produced": "Fatigue accumulator ON versus OFF; within ON, vary time-on-task, vary incentive at FIXED accumulated F, and insert versus omit a rest/offline phase.",
+      "dv_or_instrument_exposed": "The effort axis and its positive control exist -- CausalGridWorldV2 carries effort_harm_coupling_enabled, effort_dissociation_enabled and effort_benefit_asymmetry (v3_exq_730_q080a_effort_harm_coupling.py exercises them). No F recorder exists because no F accumulator exists; the only ree_core items named fatigue are an env AR(1) observation-noise term and PCCConfig.fatigue_weight reading SD-012 drive_level.",
+      "why_no_existing_owner": " // COORDINATOR: GFLAG-0142 resolution (user-approved 2026-09-10) part (i): \"register a substrate_queue.json entry for the two-bound fast EFFORT accumulator (MECH-354 own leg) as a build item\". Verified 2026-09-22 that no such entry existed. SD-SLEEP-ENTRY-PRESSURE covers the slow leg with the wrong integrand.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "GFLAG-0142 resolution (user-approved 2026-09-10) part (i): \"register a substrate_queue.json entry for the two-bound fast EFFORT accumulator (MECH-354 own leg) as a build item\". Verified 2026-09-22 that no such entry existed. SD-SLEEP-ENTRY-PRESSURE covers the slow leg with the wrong integrand."
+    },
+    {
+      "sd_id": "context-ambiguity-2x2-environment-family",
+      "title": "Context-ambiguity 2x2 environment family (perceptually-similar / opposing-policy pair with ground-truth latent-context labels and a second complexity level) plus an occupancy-aware effective-bucket-count / relational-topology readout over ContextMemory",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-493",
+        "MECH-494",
+        "MECH-495",
+        "INV-101",
+        "MECH-496"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "All three claims need the same similar-appearance / different-context cell: an environment family where near-identical observations demand opposing policies, so that misassignment is behaviourally costly and dwell/switch dynamics become measurable. // An environment-conditional claim needs two arms whose latent complexity differs by a KNOWN margin, plus a readout of the resolved representational structure that is not a fixed-N spread statistic.",
+      "event_or_manipulation_produced": "Paired contexts with near-identical observations and inverted contingencies, plus experimenter-controlled transient ambiguity episodes and genuine persistent context shifts. // A declared ground-truth latent-context count on CausalGridWorld (a labelled context/regime generator) and a second, designed complexity level of the same environment family, so latent complexity can be varied with architecture held fixed.",
+      "dv_or_instrument_exposed": "A per-episode context-assignment trace exposing dwell length, switch count, orienting occupancy, and competence conditioned on correct-context dwell, with off-diagonal cell counts reported. // Effective bucket count (occupancy-aware) and a relational-topology readout over ContextMemory, reported alongside write() call counts so the capacity confound is measurable rather than assumed.",
+      "why_no_existing_owner": "The 2026-08-19 intake instructs that the environment be built once for MECH-493/494/495 but no substrate_queue entry, claim, closure-plan node or experiment script owns it; CausalGridWorldV2 is the only environment in ree_core/environment. // MECH-495 owns the memory-side objective and MECH-496 the plasticity schedule; neither owns the environment-side ground truth or the structure readout, and substrate_queue has no entry mentioning INV-101, MECH-495 or MECH-496. // COORDINATOR: Both 2026-08-19 intakes (context-inference; hippocampal-episodic-organisation) name the need and the hippocampal intake instructs \"build the 2x2 environment family once, for both intakes\"; neither registered a queue row; ree_core/environment holds only causal_grid_world.py. ONE node for MECH-493/494/495/INV-101/MECH-496.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "Both 2026-08-19 intakes (context-inference; hippocampal-episodic-organisation) name the need and the hippocampal intake instructs \"build the 2x2 environment family once, for both intakes\"; neither registered a queue row; ree_core/environment holds only causal_grid_world.py. ONE node for MECH-493/494/495/INV-101/MECH-496."
+    },
+    {
+      "sd_id": "mech213-rem-joint-e1-e2-rollout-probe",
+      "title": "Offline REM joint E1-E2 rollout probe plus an E1-vs-E2 calibration-divergence recorder",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-213",
+        "MECH-123"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "An offline phase that actually runs E1 world-state generation and E2 action generation in a closed loop, and a DV that separates E1-side from E2-side calibration error.",
+      "event_or_manipulation_produced": "A REM-phase joint rollout probe (E1 prior -> E2 action-object -> E2 world forward -> next E1 state) runnable ON/OFF against the current re-routing-only REM pass, under the existing simulation_mode no-mint discipline.",
+      "dv_or_instrument_exposed": "An E1-versus-E2 calibration-divergence recorder over held-out state-action pairs, sampled before and after the offline block, exposed on the sleep manifest alongside the existing phase metrics.",
+      "why_no_existing_owner": "substrate_queue.json has no entry for a REM generative loop -- MECH-204, MECH-217 and the MECH-423 hook all operate on the replay/aggregation path; EXP-0887's gating_reason documents the absence but owns no build. // COORDINATOR: REM_ANALOG only re-routes frozen SWS draws and run_rem_attribution_pass is an attribution pass, not a joint generative rollout; no queue entry names a REM generative loop.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "REM_ANALOG only re-routes frozen SWS draws and run_rem_attribution_pass is an attribution pass, not a joint generative rollout; no queue entry names a REM generative loop."
+    },
+    {
+      "sd_id": "mech114-zself-deff-read-at-e3-select",
+      "title": "z_self D_eff read at E3TrajectorySelector.select() behind a default-off flag with per-tick gate telemetry, sequenced behind a demonstrated self-model perturbation that moves D_eff beyond its noise band",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-114",
+        "MECH-113"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "The falsifier needs D_eff to be both MOVABLE beyond noise and READ at the commit decision; today it is neither.",
+      "event_or_manipulation_produced": "A self-model perturbation protocol demonstrated to move z_self D_eff by a pre-registered margin above its measured run-to-run noise band while leaving running_variance in range, replacing the Gaussian-noise protocol that moved it 0.03 percent.",
+      "dv_or_instrument_exposed": "A d_eff read at E3TrajectorySelector.select() behind a default-off flag, emitting per-tick gate-decision telemetry (variance verdict, d_eff verdict, combined verdict) so the two signals can be scored separately.",
+      "why_no_existing_owner": "substrate_queue has no entry naming MECH-114 or d_eff gating; the only live proposal is the literature twin LIT-0836, and the claim's own pending_design note has stood unbuilt since 2026-03-23. // COORDINATOR: No queue entry names d_eff, self-maintenance or MECH-113/114. Carry the batch-16 code finding: agent.py:5585 stores _current_latent detached, so compute_self_maintenance_loss has no gradient path -- the perturbation must be shown to move D_eff before wiring is meaningful.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "No queue entry names d_eff, self-maintenance or MECH-113/114. Carry the batch-16 code finding: agent.py:5585 stores _current_latent detached, so compute_self_maintenance_loss has no gradient path -- the perturbation must be shown to move D_eff before wiring is meaningful."
+    },
+    {
+      "sd_id": "arc067-engagement-rate-estimator-discharge-marker",
+      "title": "Per-episode / windowed executive-engagement-rate estimator over the three registered proxies (commit transitions, E3 deliberation depth, residue-write rate), novelty recorded separately, plus an explicit discharge-event marker on the agent tick",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-330",
+        "MECH-331",
+        "ARC-067",
+        "ARC-068",
+        "ARC-066"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A measurable engagement-rate signal and a defined discharge event, so that any boredom accumulator can be keyed to something observable and its behavioural effect time-locked. // ARC-067's falsifier needs low engagement to be a MEASURED quantity before any accumulator can be shown to respond to it; without a rate readout an ON/OFF arm cannot be scored and cannot be separated from novelty absence.",
+      "event_or_manipulation_produced": "A windowed executive-engagement-rate estimator over the three registered inputs (commit transitions per episode, E3 deliberation depth, residue-write rate) plus an explicit discharge-event marker, exposed on the agent tick. // No new mechanism -- it makes the already-occurring idle regime observable: a per-episode engagement-rate readout over the three lit-selected executive proxies (commit transitions, E3 deliberation depth, residue-write rate), with novelty count recorded separately rather than folded in.",
+      "dv_or_instrument_exposed": "Per-tick engagement rate, e_deficit and discharge markers on the manifest, which makes the idle regime observable and lets the boredom accumulator (a small pure-arithmetic module in the noise_floor.py / tonic_vigor.py pattern) be validated against a yoked-constant control. // An engagement-rate scalar plus its three components per episode, exposed alongside action density so the boredom DV can be conditioned on measured engagement rather than on elapsed idle time.",
+      "why_no_existing_owner": "substrate_queue.json contains no ARC-067 entry; ARC-066 tonic vigor is a different, score-side layer, and EXP-0973 is blocked_substrate with nothing owning the build. // ARC-067 has no substrate_queue row of its own (it appears only inside ARC-066's implementation hint), no IGW ledger entry, no child MECH, and no code; EXP-0270 is gated on exactly this absence. // COORDINATOR: MERGED from three auditor candidates (MECH-330, MECH-331, ARC-067). substrate_queue has no ARC-067 entry (only ARC-066 tonic vigor); EXP-0270 is gated on exactly this absence.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "MERGED from three auditor candidates (MECH-330, MECH-331, ARC-067). substrate_queue has no ARC-067 entry (only ARC-066 tonic vigor); EXP-0270 is gated on exactly this absence."
+    },
+    {
+      "sd_id": "arc004-serial-depth-cascade-flag",
+      "title": "Flag-gated SERIAL depth cascade in LatentStack.encode (prev z_beta -> z_theta -> z_delta smoothing chain), the wiring ARC-004 awaiting names verbatim",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-004",
+        "MECH-520",
+        "MECH-522",
+        "INV-013"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "ARC-004's registered PASS criterion (monotonic per-depth autocorrelation half-life ordering by >= 0.8 SD of the cross-seed delta) cannot discriminate on a stack whose three depths are parallel filters sharing one time constant.",
+      "event_or_manipulation_produced": "A flag-gated SERIAL depth cascade in LatentStack.encode -- z_theta smoothed over z_beta's history, z_delta over z_theta's -- default OFF and bit-identical when off, giving the falsifier a manipulated arm and the current parallel stack as its null.",
+      "dv_or_instrument_exposed": "Per-depth autocorrelation half-life becomes a non-degenerate quantity; the existing probe scripts and the MECH-423 inference_convergence readout already record it, so no new instrument is needed.",
+      "why_no_existing_owner": "The claim's own awaiting field names the wiring verbatim and assembly_status is 'queued', but no substrate_queue entry, experiment proposal or IGW assignment owns it -- the three ARC-004-tagged proposals (EXP-0380/0392/0393) belong to MECH-423, ARC-005 and ARC-007 and are all executed. // COORDINATOR: ARC-004 awaiting names the wiring and assembly_status reads queued, but no queue entry, proposal or IGW assignment owns it; the 2026-08-28 probe (WORKSPACE_STATE, session elated-nobel-914234) measured that serial wiring reaches ARC-004 PASS criterion untrained.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "ARC-004 awaiting names the wiring and assembly_status reads queued, but no queue entry, proposal or IGW assignment owns it; the 2026-08-28 probe (WORKSPACE_STATE, session elated-nobel-914234) measured that serial wiring reaches ARC-004 PASS criterion untrained."
+    },
+    {
+      "sd_id": "q018-provenance-authority-marking-instrument",
+      "title": "Environment-level provenance/authority marking (spoof channel), an explicit RC_conflict channel with an authority/provenance-mismatch event at matched content, plus gate telemetry for the reality-coherence conflict lane (MERGED with MECH-065 candidate)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-018",
+        "MECH-065",
+        "MECH-062",
+        "Q-037"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "Q-018's falsifier needs organic provenance conflict and a gate in the agent; both are absent, so no calibration measured in V3 today can generalise past the driver-local simulation EXQ-158 already ran. // An explicit, independently readable RC_conflict channel plus an authority/provenance-mismatch event at matched surface content, so that a pre-commit threshold shift can be attributed to reality-coherence conflict rather than to generic surprise.",
+      "event_or_manipulation_produced": "An environment-level provenance/authority marking on observations (source tag plus a mis-marking mode that lets an internally generated signal arrive with external provenance), so authority-spoofing events arise from the event stream rather than being synthesised by a driver. // Observations carrying a provenance or authority tag that can be spoofed or verified while the content is held bit-identical, giving RC_conflict measurable non-zero variance.",
+      "dv_or_instrument_exposed": "Per-tick records of provenance-conflict magnitude, gate state (armed / held / released), hold duration against tau_rc_recovery, and the realised precision floor -- enough to read spoof detection and legitimate-switch suppression as two separate error directions from one run. // A per-tick RC_conflict scalar recorded alongside the already-measurable commit_threshold, with a benign-novelty control channel so the lane can be separated from S1/S3 conflict.",
+      "why_no_existing_owner": "MECH-065 names the RC-conflict lane conceptually but no substrate_queue entry, closure-plan node or governance flag registers building it; a scan of all 189 substrate_queue entries returns nothing on spoofing, provenance, rc_conflict or authority. // No substrate_queue entry, closure-plan node or governance flag covers reality-coherence conflict, provenance tagging or authority spoofing; the 2026-09-04 authority-field intake cross-references MECH-065 only as a predicted benefit of MECH-534, not as an owner. The control-plane doc still lists the S5 update equations as its own TODO. // COORDINATOR: ree_core has zero occurrences of rc_conflict / theta_high / pi_rc_floor / MECH-065 / provenance; V3-EXQ-158 built its own encoders inside the driver; MECH-065 is candidate with no substrate.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "ree_core has zero occurrences of rc_conflict / theta_high / pi_rc_floor / MECH-065 / provenance; V3-EXQ-158 built its own encoders inside the driver; MECH-065 is candidate with no substrate."
+    },
+    {
+      "sd_id": "q092-behavioural-discriminability-umpire-harness",
+      "title": "Behavioural-discriminability umpire harness plus the ecological/excursion trajectory feature family",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-092",
+        "MECH-490",
+        "ARC-065",
+        "ARC-062",
+        "MECH-439"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "Q-092's confirming signature requires held-out classification of condition from a multivariate trajectory-segment feature signature, benchmarked against a label-permutation null, a matched untrained-policy control and an orthogonal-perturbation selectivity check -- none of which any current module or driver provides.",
+      "event_or_manipulation_produced": "Produces no new event: reef_enabled and hazard_food_attraction already exist in causal_grid_world. It packages the existing episodes into held-out folds blocked by episode and seed, which is what the pipeline-validity precondition needs.",
+      "dv_or_instrument_exposed": "Exposes (a) an ecological/excursion feature family (refuge occupancy fraction, excursion count and duration, harm rate in versus out of shelter) explicitly excluded from _lib/trajectory_metrics.py, and (b) a reusable discriminability harness returning held-out accuracy with label-permutation, feature-permutation, null-data and design-variable controls.",
+      "why_no_existing_owner": "The 2026-08-11 metrics-library scoping proposal deliberately scoped BOTH pieces out (Sections 3a and 3b item 4) and nothing took them up: there is no substrate_queue entry, no experiment proposal and no closure-plan node for either. MECH-490 already plans to reuse the same methodology for the pre/post-sleep case, so a shared harness has a second consumer. // COORDINATOR: experiments/_lib/trajectory_metrics.py explicitly scopes both out in its docstring; nothing in substrate_queue, proposals or closure plans took them up; MECH-490 is a second consumer.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "experiments/_lib/trajectory_metrics.py explicitly scopes both out in its docstring; nothing in substrate_queue, proposals or closure plans took them up; MECH-490 is a second consumer."
+    },
+    {
+      "sd_id": "mech094-write-gate-coverage-and-provenance-auditor",
+      "title": "Write-gate coverage + durable-write provenance auditor: re-derive the write-capable-consumer set from the current tree on every run, assert hypothesis_tag gating coverage, and record each durable write (site, tick, phase, commit state at application)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-094",
+        "INV-011",
+        "INV-019",
+        "MECH-092",
+        "MECH-205",
+        "MECH-319",
+        "MECH-322",
+        "INV-021",
+        "INV-012",
+        "MECH-066",
+        "MECH-067"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "MECH-094's own what_would_answer requires the enumerated call-site set to be re-derived from the CURRENT tree at run time and states that a single historical PASS does not discharge the claim, because the failure mode is a newly landed write-capable consumer that never learned about the tag. No artefact performs that re-derivation. // Leg 1 asks whether any durable write reaches persistent state without passing a commit boundary; that is a provenance question and needs a record, not a performance DV.",
+      "event_or_manipulation_produced": "Produces no new event or environment: it operates statically over the current tree plus, if wanted, a runtime probe that drives one simulation tick and one matched waking tick through every enumerated consumer. // No new event is needed -- the existing durable writes (weight updates, residue-field writes, hippocampal consolidation, anchor-set changes) are the population; the node only has to make them observable as events.",
+      "dv_or_instrument_exposed": "Exposes the coverage DV directly -- a per-consumer table of (module, write-capable entry point, gate present yes/no, gate form) re-derived on each run, failing when a durable-write entry point reaches a real-experience channel with no hypothesis_tag / simulation_mode / replay_origin consultation, with MECH-322 as an explicit allowlisted exception. // A durable-write provenance recorder: one append-only record per durable write, carrying the write site, the tick, the phase (wake/offline) and the commit state at application time, so writes outside any commit boundary can be counted directly.",
+      "why_no_existing_owner": "Searched claims, substrate_queue, closure plans, proposals, governance flags and tests/contracts: GFLAG-0285 flags only the stale count, INV-011 states the audit-trace FORM in prose without an artefact, and tests/contracts has test_mech_319_simulation_mode_rule_gate.py (one substrate's gate) but nothing that enumerates consumers. The requirement is written in three places and built in none. // No substrate_queue entry, closure-plan node or governance flag owns write provenance; SD-026 covers a prospective-precision write channel, and the ARC-107 lineage covers commit decisiveness, neither of which records who wrote what under which commit. // COORDINATOR: MERGED from MECH-094 (coverage auditor) and INV-021 (provenance recorder). MECH-094 what_would_answer requires re-derivation each run; no contract test or script does it; SD-026 supplies a write channel, not provenance; discharges a shared obligation for MECH-092/205/319/322 and the MECH-066/067 write-locus question the 1052 spike only sampled.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "MERGED from MECH-094 (coverage auditor) and INV-021 (provenance recorder). MECH-094 what_would_answer requires re-derivation each run; no contract test or script does it; SD-026 supplies a write channel, not provenance; discharges a shared obligation for MECH-092/205/319/322 and the MECH-066/067 write-locus question the 1052 spike only sampled."
+    },
+    {
+      "sd_id": "q015-commit-boundary-granularity-knob-and-token-credit-recorder",
+      "title": "Tunable commit-boundary granularity knob plus a per-commit-token credit-vs-ground-truth recorder",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-015",
+        "MECH-061",
+        "MECH-066",
+        "ARC-003",
+        "MECH-137",
+        "MECH-139"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A tunable commit-boundary granularity, plus a per-commit-token credit record that can be correlated against ground-truth outcome contribution at two timescales.",
+      "event_or_manipulation_produced": "Commit tokens spanning a configurable number of ticks (whole-trajectory down to per-step), making granularity a swept independent variable rather than a hard-coded unit of the BetaGate release.",
+      "dv_or_instrument_exposed": "Per-token assigned credit and per-token ground-truth outcome contribution, emitted at within-commit and across-commit timescales so a rank correlation is computable at each.",
+      "why_no_existing_owner": "Verified absent from substrate_queue.json (189 entries, none naming Q-015 or a commit-granularity knob) and from ree_core/utils/config.py; MECH-276's (scale, segment_id) attribution keys spatial regions rather than commit tokens; and the 2026-08-28 unrunnable-falsifier population lists Q-015 as one of six active claims with an unmet precondition and no build route. // COORDINATOR: mech317-action-chunk-boundary-instrument is a readout over EXECUTED action-stream entropy troughs (different object); MECH-061 owns the token itself; no config knob exists; MECH-276 attribution keys spatial regions, not commit tokens.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "mech317-action-chunk-boundary-instrument is a readout over EXECUTED action-stream entropy troughs (different object); MECH-061 owns the token itself; no config knob exists; MECH-276 attribution keys spatial regions, not commit tokens."
+    },
+    {
+      "sd_id": "mech048-leg-a-write-gate-breadth-consumer",
+      "title": "MECH-048 leg-(a) consumer path (write_gate breadth), the /implement-substrate item the 2026-07-24 backlog autopsy routed and nobody minted",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-048",
+        "ARC-005",
+        "MECH-259"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "Leg (a)'s behavioural difference-in-differences needs a downstream consumer whose sensitivity to a mode-prior entropy shift is large enough to clear the registered 0.02 floor; at present a confirmed 1.105-nat prior-entropy change produces a 0.0007-0.002 behavioural change.",
+      "event_or_manipulation_produced": "A mode-prior entropy change that propagates into selection/write breadth, so that coupling-ON versus coupling-OFF differs in observable behaviour under the same environmental regime contrast.",
+      "dv_or_instrument_exposed": "Per-tick write/selection breadth alongside the existing effective_temperature and mode_entropy readouts, so the entropy-to-behaviour transfer function is measurable rather than inferred from a null DiD.",
+      "why_no_existing_owner": "The 2026-07-24 backlog autopsy routed this to implement-substrate as 'write_gate breadth' but no substrate_queue entry was ever minted; sd_032d owns the producer side only and sd_salience_contested_mode_occupancy is explicitly a different, deliberately unbundled build for leg (b). // COORDINATOR: sd_032d owns the producer side only; sd_salience_contested_mode_occupancy is explicitly the leg-(b) build; the autopsy routing was never registered.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "sd_032d owns the producer side only; sd_salience_contested_mode_occupancy is explicitly the leg-(b) build; the autopsy routing was never registered."
+    },
+    {
+      "sd_id": "mech026-restraint-sensitivity-readout",
+      "title": "Hold-invariant per-decision-tick restraint/sensitivity readout with a perfect-avoider positive control (INSTRUMENT half only)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-026",
+        "MECH-161",
+        "MECH-027"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "MECH-026 needs the agent HELD at a regulator-selected non-maximal sensitivity, plus a restraint/sensitivity readout at E3 decision ticks that can separate a perfect avoider from an untrained one.",
+      "event_or_manipulation_produced": "A closed-loop arousal controller over the existing MECH-093 z_beta -> e3_steps_per_tick channel that settles on an interior optimum, yielding tuned / below / above arms instead of forced-period sweeps.",
+      "dv_or_instrument_exposed": "Hold-invariant per-decision-tick detection sensitivity with commitment and false-alarm rates, carrying a positive control in which a geometrically perfect avoider scores at ceiling.",
+      "why_no_existing_owner": "No substrate_queue entry names the regulator; MECH-161 is a claim, not a build node, and the confirmed 2026-09-04 autopsy records that the first probe chose to bypass the regulator rather than build it, so nothing of the 999a shape will move MECH-026. // COORDINATOR: The closed-loop arousal controller the auditor also proposed is MECH-026 own mechanism and stays claim-owned; the 2026-09-04 V3-EXQ-999 autopsy records that the first probe bypassed the regulator.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "The closed-loop arousal controller the auditor also proposed is MECH-026 own mechanism and stays claim-owned; the 2026-09-04 V3-EXQ-999 autopsy records that the first probe bypassed the regulator."
+    },
+    {
+      "sd_id": "residue-field-geometry-ring-bandwidth-neural-gating",
+      "title": "Residue-field geometry node: 32-slot round-robin ring capacity, harm-terrain kernel bandwidth (~8x the reachable manifold at from_dims defaults), and untrained neural_field gating (folds in the GFLAG-0338 owed mint residue-cost-untrained-neural-field)",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-023",
+        "MECH-024",
+        "MECH-034",
+        "MECH-105",
+        "ARC-013",
+        "Q-003",
+        "Q-005",
+        "Q-006"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A residue field whose accumulated harm history is ADDITIVE over a whole trained life and whose kernel resolves distinct visited regions of the z_world manifold, so that path-shaped and region-localised residue geometry is expressible at all.",
+      "event_or_manipulation_produced": "Divergent harm PATHS between matched forks become a real difference in the field rather than a relocation of the same 32 centres; harm in region R becomes distinguishable from harm in a distant region R-prime.",
+      "dv_or_instrument_exposed": "Region-resolved ResidueField.evaluate readings and the residue_weighted component of the E3 score decomposition become non-degenerate across regions; intact-versus-zeroed residue lesion reads stop carrying a seed-varying untrained-neural_field offset.",
+      "why_no_existing_owner": "GFLAG-0344 (open, 2026-09-18) states explicitly that there is NO substrate_queue entry for residue-field GEOMETRY and proposes opening one; SD-024, ARC-046, SD-RESIDUE-VALENCE-BOUND and SD-067 are all other residue items, and SD-067's opt-in bandwidth covers only the MECH-303 safety terrain. The three coupled defects (ring capacity, harm-terrain bandwidth, untrained neural_field) are named only in open flags and in EXP-0761/EXP-0763 release_conditions. // COORDINATOR: GFLAG-0344 (open) states no substrate_queue entry exists and proposes opening one; GFLAG-0338 owes a mint of residue-cost-untrained-neural-field; release condition written in evidence/planning/mech023_residue_geometry_substrate_blocked_20260917.md sec 5 but attached to MECH-023 only; batch 34 measured the same geometry as the joint non-degeneracy gate for Q-003/Q-005/Q-006.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "GFLAG-0344 (open) states no substrate_queue entry exists and proposes opening one; GFLAG-0338 owes a mint of residue-cost-untrained-neural-field; release condition written in evidence/planning/mech023_residue_geometry_substrate_blocked_20260917.md sec 5 but attached to MECH-023 only; batch 34 measured the same geometry as the joint non-degeneracy gate for Q-003/Q-005/Q-006."
+    },
+    {
+      "sd_id": "item-level-recall-probe-central-vs-peripheral",
+      "title": "Item-level recall probe over the replay/reactivation sample with within-episode central/gist versus peripheral item categories tagged at encoding",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-074b",
+        "MECH-074",
+        "MECH-074a",
+        "SD-035"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A within-episode central/gist versus peripheral item distinction with per-item recall scored independently, so the vector-versus-scalar contrast can be read as the LaBar and Cabeza dissociation rather than as 888's between-trace threat-versus-neutral contrast.",
+      "event_or_manipulation_produced": "Episodes that expose categorised items (central/gist threat-associated versus peripheral neutral) inside one episode, tagged at encoding, with the arousal tag written per item.",
+      "dv_or_instrument_exposed": "A per-item recall readout over the replay/reactivation sample, reporting recall separately for the central and peripheral categories against an ARM_OFF neutral baseline.",
+      "why_no_existing_owner": "Grep of ree_core finds no central/gist or peripheral category; a scan of all 189 substrate_queue entries finds none naming a peripheral/central item-level recall harness, and SD-035 is closed as implemented with its validation experiments already run. // COORDINATOR: MERGED from MECH-074a (recall-accuracy probe presumed by EXP-1382 but nonexistent) and MECH-074b (no central/peripheral item category in ree_core); memory_strength has no consumer other than replay-sampling weight.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "MERGED from MECH-074a (recall-accuracy probe presumed by EXP-1382 but nonexistent) and MECH-074b (no central/peripheral item category in ree_core); memory_strength has no consumer other than replay-sampling weight."
+    },
+    {
+      "sd_id": "mech245-observation-substitution-deafferentation-lever",
+      "title": "Config-gated, no-op-by-default observation-substitution (deafferentation) lever at the agent perception boundary -- own prediction substituted for encoded z_world during a window -- plus a per-tick record of z_world source, commit decisions, residue writes and ground-truth drift",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-245",
+        "MECH-244",
+        "MECH-094"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A live-agent deafferentation event in which the agent's own prediction is fed forward in place of the encoded observation, so the asserted percept can reach the same consumers a real percept reaches.",
+      "event_or_manipulation_produced": "A config-gated, no-op-by-default observation-substitution lever at the perception boundary with two arms (frozen last grounded estimate; own-prediction substitution) and a window length parameter.",
+      "dv_or_instrument_exposed": "Per-tick record of which source supplied z_world, the resulting commit decisions, residue accumulate calls with hypothesis_tag False, and ground-truth drift of the substituted state.",
+      "why_no_existing_owner": "No substrate_queue entry, claim or plan node names a sensory-deafferentation or observation-substitution lever; searches of substrate_queue.json and evidence/planning for deafferentation and sensory-dropout return nothing relevant. // COORDINATOR: No queue entry, claim, plan or autopsy owns a deafferentation window or an observation-substitution lever; the event MECH-245 requires cannot be generated by any existing knob.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "No queue entry, claim, plan or autopsy owns a deafferentation window or an observation-substitution lever; the event MECH-245 requires cannot be generated by any existing knob."
+    },
+    {
+      "sd_id": "mech097-contact-envelope-scale-and-commit-event-recorder",
+      "title": "Contact-envelope (peripersonal) scale parameter in the grid environment plus a commit-event recorder emitting tick, position and distance-to-nearest-hazard per beta-gate elevation",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-097"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "A commit-locus falsifier needs commit events timestamped with the agent-to-object distance, and a way to move the near-body envelope independently of harm exposure.",
+      "event_or_manipulation_produced": "A contact-envelope scale parameter in the grid environment (the radius at which a self-world consequence is registered), giving at least two envelope settings at matched hazard density.",
+      "dv_or_instrument_exposed": "A commit-event recorder emitting, per beta-gate elevation, the tick, the agent position and the distance to the nearest hazard and resource, so commit-onset distance distributions are directly comparable across envelope settings.",
+      "why_no_existing_owner": "No substrate_queue entry, closure-plan node or governance flag owns a peripersonal or contact-envelope construct; SD-005 and ARC-016 are implemented and do not cover it, and EXP-1319 misattributes the block to MECH-091. // COORDINATOR: No peripersonal-space construct exists anywhere in substrate_queue, plans, flags or ree_core; the 2026-04-24 weakens entry never touched the commit boundary.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "No peripersonal-space construct exists anywhere in substrate_queue, plans, flags or ree_core; the 2026-04-24 weakens entry never touched the commit boundary."
+    },
+    {
+      "sd_id": "inv038-posthoc-ethical-constraint-comparator-stage",
+      "title": "Experiment-layer post-hoc ethical-scoring comparator (veto / choice-set CONSTRAINT) stage with a calibrated accuracy knob and a held-out manipulation check",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "INV-038",
+        "INV-001",
+        "ARC-035",
+        "INV-015",
+        "Q-006",
+        "MECH-145"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "INV-038's 2x2 needs a post-hoc scoring stage whose accuracy can be set independently of the generative pathway, so that 'correct scoring, absent preparation' is a producible condition rather than a described one.",
+      "event_or_manipulation_produced": "An experiment-layer scorer applied to E3 candidate trajectories after generation, with a calibrated accuracy knob (high / degraded) and a held-out manipulation check proving the degradation changes scoring accuracy.",
+      "dv_or_instrument_exposed": "Per-cell counts of norm-violating candidates generated versus suppressed, suppression failure rate under an imposed step or compute budget, and the ambiguous-case default -- recorded per arm.",
+      "why_no_existing_owner": "No substrate_queue entry, claim or design doc registers a post-hoc ethical filter; ree_core has no such stage, and ARC-035's owners cover only the preparation side of the contrast. // COORDINATOR: ree_core has no post-hoc or veto scoring stage (harm scoring sits inside E3 candidate evaluation) and every ethical pathway (lambda_ethical, rho_residue, MECH-357 bias) is an additive score term, so the constraint-vs-additive contrast that INV-038, INV-015 and Q-006 all presuppose cannot be instantiated; INV-038/MECH-145 are claims, not build rows.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "ree_core has no post-hoc or veto scoring stage (harm scoring sits inside E3 candidate evaluation) and every ethical pathway (lambda_ethical, rho_residue, MECH-357 bias) is an additive score term, so the constraint-vs-additive contrast that INV-038, INV-015 and Q-006 all presuppose cannot be instantiated; INV-038/MECH-145 are claims, not build rows."
+    },
+    {
+      "sd_id": "play-substrate-phase0-frame-tag-v3-slice",
+      "title": "Play-substrate Phase 0 (V3 single-agent slice): play-frame tag channel with frame_open/frame_close events and an authorised-synthetic exit transition, as specified in docs/architecture/play_substrate_design.md",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-049",
+        "ARC-073",
+        "INV-058",
+        "INV-060",
+        "Q-048",
+        "Q-049",
+        "MECH-194",
+        "MECH-198",
+        "MECH-196",
+        "ARC-050",
+        "MECH-197",
+        "MECH-202",
+        "MECH-327"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "The entire three-level signal architecture is unbuilt in ree_core, so neither the required event nor the manipulation can be produced. The bilateral co-maintenance clause is additionally untestable in V3 because a scripted experimenter can only ever cooperate with the frame.",
+      "event_or_manipulation_produced": "Two arms differing only in whether an L3 repair signal is delivered immediately after the ambiguous action; the play_frame_tag, its L1 events and the ambiguity threshold that triggers L3 do not exist in ree_core.",
+      "dv_or_instrument_exposed": "Absent. Word-boundary greps of ree_core for play_frame_tag, frame_open, frame_close, ambiguity_threshold and play_mode return zero hits (re-verified 2026-09-22); the nearest built analogue is the one-party MECH-094 hypothesis_tag on LatentState.",
+      "why_no_existing_owner": " // COORDINATOR: The design doc exists but has NO substrate_queue entry; developmental_dmn_v4:DMN-3 specifies the build in its readiness_gate while being blocked on that same build (circular); ree_core has zero hits for play_mode / play_frame_tag / frame_open / frame_close / learning_progress, and the V3-implementation paragraph of the design doc FALSELY asserts a persistent play_frame_tag in LatentState (stack.py:735-757 carries hypothesis_tag only; batch 47). Ten claims across four batches and the 2026-09-21 checkpoint bottom out on this one absence. REGISTRATION ONLY: the standing V4 deferral decisions on play (developmental_dmn_v4, MECH-328 disposition) are NOT reversed by this row; governance decides whether a V3 slice is ever built.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "The design doc exists but has NO substrate_queue entry; developmental_dmn_v4:DMN-3 specifies the build in its readiness_gate while being blocked on that same build (circular); ree_core has zero hits for play_mode / play_frame_tag / frame_open / frame_close / learning_progress, and the V3-implementation paragraph of the design doc FALSELY asserts a persistent play_frame_tag in LatentState (stack.py:735-757 carries hypothesis_tag only; batch 47). Ten claims across four batches and the 2026-09-21 checkpoint bottom out on this one absence. REGISTRATION ONLY: the standing V4 deferral decisions on play (developmental_dmn_v4, MECH-328 disposition) are NOT reversed by this row; governance decides whether a V3 slice is ever built."
+    },
+    {
+      "sd_id": "mech179-typed-waking-mel-channel",
+      "title": "Typed waking-MEL channel (world-model versus affective type) with per-type MEL and per-phase step counts exposed",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-179",
+        "INV-050",
+        "MECH-121",
+        "MECH-123"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "MECH-179 needs waking prediction error to carry a TYPE tag and the sleep scheduler to allocate SWS versus REM in response to that tag, so that phase composition can vary while total MEL is held constant.",
+      "event_or_manipulation_produced": "A typed waking-MEL accumulator that routes each step's error to a world-model channel (the existing E3 z_world PE) or an affective channel (|z_harm_a| surprise, already forwarded through e3_selector.select), letting a block be composed to any type mix at fixed total magnitude.",
+      "dv_or_instrument_exposed": "Per-type MEL totals plus the realised SWS and REM step counts per cycle, exposed as cycle metrics -- making the SWS:REM ratio per unit typed MEL directly readable, which the current single duration_factor makes constant by construction.",
+      "why_no_existing_owner": "substrate_queue.json has SD-MEL-CONSUMER and SD-MEL-PRODUCER for MEL MAGNITUDE and cadence only; EXP-0341's release condition (b) names an error-type channel/classifier as a requirement but no queue entry, plan node or claim owns it. // COORDINATOR: SD-MEL-CONSUMER owns the MAGNITUDE half of the waking-MEL signal; nothing owns the TYPE half MECH-179 requires (memory: MECH-179 type->phase substrate-blocked).",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "SD-MEL-CONSUMER owns the MAGNITUDE half of the waking-MEL signal; nothing owns the TYPE half MECH-179 requires (memory: MECH-179 type->phase substrate-blocked)."
+    },
+    {
+      "sd_id": "mech248-retrieval-side-source-attribution-readout",
+      "title": "Retrieval-side source-attribution readout P(external | representation), separate from the hypothesis_tag write gate",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-248",
+        "Q-105",
+        "MECH-094",
+        "MECH-249"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "MECH-248 and Q-105 both need P(external | representation) to be readable separately from the write gate, so that attribution can be scored, ablated and dissociated from write permission.",
+      "event_or_manipulation_produced": "No new cognitive mechanism -- a retrieval-side readout head over already-stored representations that emits a graded source-attribution score, plus a switch to ablate it, leaving hypothesis_tag's write gating untouched and bit-identical when off.",
+      "dv_or_instrument_exposed": "Per-item graded P(external) with its ground-truth origin, enabling attribution accuracy and calibration curves, which today cannot be computed because the only source signal is the binary write-gate bit.",
+      "why_no_existing_owner": "substrate_queue.json's self-attribution entries (SD-030 comparator_z_self, SD-031 comparator_z_world, MECH-256) are reafference comparators for self-versus-world motor prediction; none exposes a source-attribution readout, and Q-105 is a v4 consumer of the readout rather than its owner. // COORDINATOR: No queue entry, plan node or flag owns a retrieval-side attribution readout; the hypothesis_tag machinery is a write-side gate. Second blocker recorded: ree_core/neuromodulation holds serotonin only, so the encoding-side MECH-249 control arm is also unbuildable.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "No queue entry, plan node or flag owns a retrieval-side attribution readout; the hypothesis_tag machinery is a write-side gate. Second blocker recorded: ree_core/neuromodulation holds serotonin only, so the encoding-side MECH-249 control arm is also unbuildable."
+    },
+    {
+      "sd_id": "arc037-attribution-routing-event-ledger",
+      "title": "Per-event attribution-routing ledger (INSTRUMENT half only): records, per outcome event, the attribution verdict and which of E1 / E3 the update was routed to, so the routing claim can be scored once a consumer exists",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "design_doc": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-037",
+        "MECH-136"
+      ],
+      "failure_record": [],
+      "priority": "medium",
+      "added_session": "falsifier-runnability-audit-resume-20260922",
+      "added_utc": "2026-09-22T04:10:21Z",
+      "last_seen_session": "falsifier-runnability-audit-resume-20260922",
+      "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
+      "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
+      "falsifier_requirement_satisfied": "ARC-037's only unique criterion is a 2x2 interaction between routing state and channel, so BOTH learning channels must be gatable by one agent-internal attribution signal in the same run, and the per-event routing decision must be recorded.",
+      "event_or_manipulation_produced": "A routing-ON/OFF manipulation in the live loop: per prediction-error event, the agent's own comparator classification (SD-031 z_world residual or SD-029 z_harm_s residual) sets the weight of the E1 residue update (owned / world_delta) and of the E3 harm_eval / trajectory update, with the two forced-misrouting inversion arms available as positive controls.",
+      "dv_or_instrument_exposed": "A per-event routing ledger (classification, avoidability label, channel weights applied, resulting false_attr_rate and harm_eval calibration gap) so the interaction term and both main effects are computable per seed at the learning boundary rather than offline.",
+      "why_no_existing_owner": "Verified 2026-09-22: no substrate_queue entry names ARC-037, and self_attribution_plan.md's GAP-1..GAP-6 all own comparator construction (SD-029/MECH-256 z_harm_s, SD-031 z_world, SD-030 z_self), not the downstream routing consumer. The 2026-09-06 thought-digestion note reached the same conclusion independently. // COORDINATOR: No substrate_queue row names ARC-037 and self_attribution_plan GAP-1..GAP-6 own comparator construction, not the downstream routing consumer; the attribution-gated routing CONSUMER itself is ARC-037 own mechanism and stays claim-owned. self_attribution:GAP-6 live-loop prohibition still binds -- this ledger does not release it.",
+      "version_scope": "V3-native",
+      "registration_is_not_build_authorisation": true,
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "authority": "No substrate_queue row names ARC-037 and self_attribution_plan GAP-1..GAP-6 own comparator construction, not the downstream routing consumer; the attribution-gated routing CONSUMER itself is ARC-037 own mechanism and stays claim-owned. self_attribution:GAP-6 live-loop prohibition still binds -- this ledger does not release it."
     }
   ],
   "schema_version": "substrate_queue/v2",

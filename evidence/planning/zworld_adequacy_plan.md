@@ -4,7 +4,7 @@ closure_plan:
   title: "observation -> z_world encoding adequacy (the V3 binding-constraint interface)"
   generation: v3
   registered: 2026-09-11
-  last_updated: 2026-09-18
+  last_updated: 2026-09-21
   scope_claims: [INV-088, MECH-457, SD-015, ARC-030, MECH-117, ARC-065]
   sibling_plans: [goal_pipeline, conversion_ceiling_campaign, ree_ai_design_critique]
   related_threads:
@@ -65,20 +65,29 @@ closure_plan:
       phase: 1
       status: assembling
       awaiting: SD-106
-      assembly_status: queued
+      assembly_status: built
       revisit_after: 2026-10-15
       severity: high
-      owner_exq: V3-EXQ-1010
+      owner_exq: V3-EXQ-1023a
       unblocks_claims: ["INV-088", "MECH-457", "SD-015", "ARC-030", "MECH-117", "ARC-065"]
       depends_on: []
       cross_plan_link: ["goal_pipeline:GAP-2", "ree_ai_design_critique"]
-      last_updated: 2026-09-18
+      last_updated: 2026-09-21
       blocking_on: >
-        The SD-106 build (substrate_queue.json, status pending_implementation,
-        ready true, priority 1, node_class "complicated (buildable)"). Nothing
-        upstream of it is unresolved -- depends_on_unresolved is empty and the
-        measurement harness already exists -- so this node is
-        awaiting_construction, not probe-gated.
+        Acceptance remains unmet after the build. V3-EXQ-1023a exercised the
+        longer 40-epoch SD-106 budget and missed the 0.85 consumer agreement
+        bar (mean 0.7273); the confirmed 2026-09-17 autopsy records a fair
+        negative. V3-EXQ-1065 subsequently tested the ZCA geometry member and
+        returned a fair negative (2026-09-20). This is no longer an unbuilt
+        SD-106 prerequisite. Neither result authorises ZW-2's held bypass;
+        the bypass-versus-repair decision remains a governance question.
+      audit_2026_09_21: >
+        Falsifier-runnability audit: existing node, stale status repaired.
+        Advanced owner_exq to the executed acceptance assay and assembly_status
+        to built; the scientific closure remains open. Historical registration
+        notes below describe the September 11 state, not current readiness.
+        Sources: failure_autopsy_V3-EXQ-1023a_2026-09-17.md and
+        failure_autopsy_V3-EXQ-1065_2026-09-20.md. No build or experiment authorised.
       what_is_established: >
         The three-run diagnostic chain resolved the locus. V3-EXQ-1010's
         over-capacity decoder sweep put five decoder rungs spanning about
@@ -252,8 +261,10 @@ Frozen-ledger question `zworld_actor_adequacy_locus` now reads `alive: 0`.
 ## The live front
 
 **SD-106** -- `encoder.generic_bottleneck_variance_preservation`, the successor
-shape to SD-018. `pending_implementation`, `ready: true`, priority 1,
-`complicated (buildable)`, `depends_on_unresolved: []`. Minted by gov-20260911
+shape to SD-018, is built and its acceptance comparison has run. The longer-budget
+V3-EXQ-1023a missed the 0.85 bar (mean 0.7273); the subsequent ZCA member tested
+by V3-EXQ-1065 also returned a fair negative. The encoding adequacy question
+remains open, but “pending implementation” is no longer its blocker. Minted by gov-20260911
 as a NEW `sd_id` rather than a third SD-018 shape, on the reasoning that a
 named-feature entry which returned NULL should not absorb evidence for a
 different mechanism.
@@ -264,7 +275,8 @@ oracle-action agreement** at `x734.PPOPolicyNet` / `PPO_TRUNK_HIDDEN` on a
 **seed majority** -- re-measured by re-running
 `experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` **unchanged**.
 The harness, dataset recipe, PCA-32 anchor and random-init negative control all
-already exist; this is a re-run, not a new experiment design.
+already exist. V3-EXQ-1023a has now exercised this acceptance question. Its negative
+does not itself release the ZW-2 hold or commission another encoder variant.
 
 ## Deliberately NOT owned here
 
