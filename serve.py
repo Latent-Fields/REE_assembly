@@ -1186,6 +1186,49 @@ def _runner_draining(ver: str, pid: int | None) -> bool:
 _LAUNCHD_PLIST_PATH = Path.home() / "Library" / "LaunchAgents" / "com.ree.runner.plist"
 _LAUNCHD_LABEL = "com.ree.runner"
 
+# ── "stay down" flag (2026-09-22, user instruction) ──────────────────────────
+# ~/.ree_runner_disabled means: the Mac runner must not run, and nothing but
+# the user starting it may change that. Two enforcement points, because the
+# runner has two supervisors:
+#   - ree_runner_launchd.sh checks it before exec'ing the runner and boots the
+#     launchd job out, which is what actually defeats a KeepAlive respawn (the
+#     LOADED job keeps whatever KeepAlive it had when launchd read the plist,
+#     so editing the plist alone does not stop the respawn of a live job);
+#   - start_runner() below checks it, which covers the Popen paths that never
+#     touch launchd at all (start_shadow / start_coordinator).
+# An explicit Start from the explorer clears it -- that IS the user starting
+# the runner. Nothing else clears it; `rm ~/.ree_runner_disabled` by hand is
+# the other way.
+_RUNNER_DISABLED_FLAG = Path.home() / ".ree_runner_disabled"
+
+
+def runner_disabled_note() -> str | None:
+    """Return the flag file's contents (or a default note) if the runner is
+    held down, else None."""
+    try:
+        if not _RUNNER_DISABLED_FLAG.is_file():
+            return None
+        note = _RUNNER_DISABLED_FLAG.read_text().strip()
+    except OSError:
+        return None
+    return note or "no reason recorded"
+
+
+def clear_runner_disabled_flag() -> bool:
+    """Remove the stay-down flag. Returns True if a flag was actually removed.
+
+    Called only from the explicit Start endpoints -- see the comment above.
+    """
+    try:
+        if _RUNNER_DISABLED_FLAG.is_file():
+            _RUNNER_DISABLED_FLAG.unlink()
+            print(f"[serve] cleared {_RUNNER_DISABLED_FLAG} (explicit Start)",
+                  flush=True)
+            return True
+    except OSError as e:
+        print(f"[serve] could not clear {_RUNNER_DISABLED_FLAG}: {e}", flush=True)
+    return False
+
 
 def _launchd_supervises_v3() -> bool:
     """True iff the v3 runner should be driven via launchctl rather than Popen."""
@@ -6160,6 +6203,14 @@ def start_runner(ver: str = "v3", extra_env: dict | None = None) -> dict:
     if ver not in RUNNERS:
         return {"status": "error", "message": f"Unknown substrate: {ver}"}
 
+    held = runner_disabled_note()
+    if held is not None:
+        return {"status": "disabled", "substrate": ver,
+                "message": f"runner held down by {_RUNNER_DISABLED_FLAG} "
+                           f"({held}). Press Start again -- the Start endpoint "
+                           f"clears the flag -- or `rm "
+                           f"{_RUNNER_DISABLED_FLAG}` to release it."}
+
     cfg = RUNNERS[ver]
     pid = _runner_pid(ver)
     if pid:
@@ -7913,12 +7964,18 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
         # Versioned runner endpoints
         if path == "/api/runner/v3/start":
+            # An explicit Start IS the user starting the runner,
+            # so it releases the stay-down flag.
+            clear_runner_disabled_flag()
             result = start_runner("v3")
         elif path == "/api/runner/v3/stop":
             result = stop_runner("v3")
         elif path == "/api/runner/v3/force_stop":
             result = force_stop_runner("v3")
         elif path == "/api/runner/v2/start":
+            # An explicit Start IS the user starting the runner,
+            # so it releases the stay-down flag.
+            clear_runner_disabled_flag()
             result = start_runner("v2")
         elif path == "/api/runner/v2/stop":
             result = stop_runner("v2")
@@ -7926,6 +7983,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             result = force_stop_runner("v2")
         # Legacy endpoints (default to V3)
         elif path == "/api/runner/start":
+            # An explicit Start IS the user starting the runner,
+            # so it releases the stay-down flag.
+            clear_runner_disabled_flag()
             result = start_runner("v3")
         elif path == "/api/runner/stop":
             result = stop_runner()  # stop any
