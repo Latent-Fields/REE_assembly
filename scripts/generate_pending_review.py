@@ -251,6 +251,31 @@ def load_degenerate_evidence_run_reasons() -> dict:
     return reasons
 
 
+def _count_experimental_entries(data: dict) -> int:
+    """Count claim_evidence experimental-source entries -- the SCAN denominator.
+
+    negative_instrument_audit_20260922.md sec 2.3: `Pending: **0**` renders
+    byte-identical whether the corpus is genuinely caught up or the checkout
+    was wedged/behind when claim_evidence.v1.json was last regenerated (fewer
+    entries than the real corpus). This is the total load_pending_entries()
+    iterates over BEFORE the reviewed/dry-run/PASS-FAIL filters narrow it to
+    the pending set -- printed alongside `Pending:` in the header so a shrunk
+    corpus is visible even when the pending count itself does not change.
+    Mirrors load_pending_entries()'s own `entries` + `unlinked_runs` walk and
+    its `source_type == "experimental"` filter exactly, so the number means
+    "how many entries load_pending_entries actually considered", not some
+    looser count of the whole file.
+    """
+    count = 0
+    for e in data.get("entries", []):
+        if e.get("source_type") == "experimental":
+            count += 1
+    for e in data.get("unlinked_runs", []):
+        if e.get("source_type") == "experimental":
+            count += 1
+    return count
+
+
 def _iter_manifest_paths():
     """Every result-manifest path on disk -- ALL THREE shapes that exist.
 
@@ -1049,7 +1074,10 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                          error_manifests: list[dict],
                          last_review_utc: str,
                          fail_needs_autopsy: list[dict] | None = None,
-                         grandfathered_outstanding: int = 0) -> None:
+                         grandfathered_outstanding: int = 0,
+                         entries_considered: int = 0,
+                         reviewed_count: int = 0,
+                         manifests_on_disk: int = 0) -> None:
     fail_needs_autopsy = fail_needs_autopsy or []
     passes = [r for r in runs if r["status"] == "PASS"]
     fails  = [r for r in runs if r["status"] != "PASS"]
@@ -1114,6 +1142,12 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "",
         f"Generated: `{now}`  ",
         f"Last review: `{last_review_utc}`  ",
+        # Scan denominator (negative_instrument_audit_20260922.md sec 2.3): makes a
+        # wedged/behind checkout's shrunk corpus visible even when the pending count
+        # itself is 0 -- see _count_experimental_entries()'s docstring.
+        f"Scanned: {entries_considered} claim_evidence entr"
+        f"{'y' if entries_considered == 1 else 'ies'} considered"
+        f" ({reviewed_count} already reviewed), {manifests_on_disk} manifest file(s) on disk.  ",
         f"Pending: **{total_pending}** item(s)"
         f" -- {len(passes)} PASS, {len(fails)} FAIL,"
         f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke),"
@@ -1680,10 +1714,21 @@ def main():
     fail_needs_autopsy = [r for r in fail_candidates
                           if r["run_id"] not in grandfather]
     grandfathered_outstanding = len(cand_ids & grandfather)
+    # Scan-denominator figures for the header (sec 2.3 fix) -- computed here,
+    # not inside write_pending_review, so the render function stays a pure
+    # function of its arguments for the unit tests. CLAIM_EVIDENCE is
+    # guaranteed to exist at this point (load_pending_entries() above exits 1
+    # otherwise); the .exists() guard is defensive only.
+    entries_considered = (_count_experimental_entries(_load_claim_evidence())
+                          if CLAIM_EVIDENCE.exists() else 0)
+    manifests_on_disk = sum(1 for _ in _iter_manifest_paths())
     write_pending_review(runs, runner_undiscussed, unclaimed,
                          error_manifests, last_review_utc,
                          fail_needs_autopsy=fail_needs_autopsy,
-                         grandfathered_outstanding=grandfathered_outstanding)
+                         grandfathered_outstanding=grandfathered_outstanding,
+                         entries_considered=entries_considered,
+                         reviewed_count=len(reviewed),
+                         manifests_on_disk=manifests_on_disk)
     append_substrate_change_section()
 
 

@@ -1375,5 +1375,132 @@ class DryRunConsumerParityTests(unittest.TestCase):
         self.assertEqual(offenders, [], "\n".join(offenders))
 
 
+class CountExperimentalEntriesTests(unittest.TestCase):
+    """_count_experimental_entries() -- the sec 2.3 scan denominator.
+
+    negative_instrument_audit_20260922.md sec 2.3: a wedged/behind checkout
+    regenerates claim_evidence.v1.json with far fewer entries than the real
+    corpus, and `Pending: **0**` renders byte-identical either way. This
+    denominator is the fix's load-bearing number, so its counting rules are
+    pinned directly rather than only through the rendered header.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def test_counts_experimental_entries_and_unlinked_runs(self):
+        data = {
+            "entries": [
+                {"source_type": "experimental", "run_id": "a"},
+                {"source_type": "experimental", "run_id": "b"},
+                {"source_type": "literature", "run_id": "c"},
+            ],
+            "unlinked_runs": [
+                {"source_type": "experimental", "run_id": "d"},
+                {"source_type": "literature", "run_id": "e"},
+            ],
+        }
+        self.assertEqual(self.mod._count_experimental_entries(data), 3)
+
+    def test_empty_data_counts_zero(self):
+        self.assertEqual(self.mod._count_experimental_entries({}), 0)
+        self.assertEqual(
+            self.mod._count_experimental_entries(
+                {"entries": [], "unlinked_runs": []}), 0)
+
+    def test_missing_source_type_is_not_counted(self):
+        """An entry with no source_type at all is not 'experimental'."""
+        data = {"entries": [{"run_id": "a"}], "unlinked_runs": []}
+        self.assertEqual(self.mod._count_experimental_entries(data), 0)
+
+
+class ScanDenominatorRenderTests(unittest.TestCase):
+    """The rendered 'Scanned:' header line -- the sec 2.3 fix itself.
+
+    Demonstrates the two cases the audit says must now differ: a healthy,
+    caught-up corpus and a wedged/empty one both legitimately print
+    `Pending: **0**`, but only the fix makes the SCAN SIZE visible alongside
+    it, so a human (or a script) can tell them apart without re-deriving the
+    corpus size by hand.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _render(self, **denominators):
+        import io
+        from contextlib import redirect_stdout
+        written = {}
+
+        class _FakeOut:
+            def __init__(self, store):
+                self.store = store
+
+            def write_text(self, text):
+                self.store["text"] = text
+
+            def relative_to(self, _root):
+                return "evidence/experiments/pending_review.md"
+
+        orig = self.mod.OUTPUT
+        self.mod.OUTPUT = _FakeOut(written)
+        try:
+            with redirect_stdout(io.StringIO()):
+                self.mod.write_pending_review(
+                    [], [], [], [], "2026-09-22T00:00:00Z", **denominators)
+        finally:
+            self.mod.OUTPUT = orig
+        return written.get("text", "")
+
+    def test_healthy_caught_up_corpus_shows_its_real_scan_size(self):
+        """A genuinely caught-up corpus: large Scanned figures, Pending: 0."""
+        text = self._render(entries_considered=3184, reviewed_count=3184,
+                            manifests_on_disk=3190)
+        self.assertIn(
+            "Scanned: 3184 claim_evidence entries considered "
+            "(3184 already reviewed), 3190 manifest file(s) on disk.",
+            text)
+        self.assertIn("Pending: **0** item(s)", text)
+
+    def test_wedged_or_empty_corpus_shows_zero_scanned_not_just_zero_pending(self):
+        """The case the old output could not distinguish from the one above:
+        a wedged/behind checkout where nothing was actually scanned. Same
+        'Pending: **0**' text, but the Scanned line now reads 0/0/0 instead of
+        silently omitting the denominator -- the two are no longer
+        byte-identical."""
+        text = self._render(entries_considered=0, reviewed_count=0,
+                            manifests_on_disk=0)
+        self.assertIn(
+            "Scanned: 0 claim_evidence entries considered "
+            "(0 already reviewed), 0 manifest file(s) on disk.",
+            text)
+        self.assertIn("Pending: **0** item(s)", text)
+
+    def test_the_two_cases_are_no_longer_byte_identical(self):
+        """The audit's own framing, checked directly: simulate BOTH scenarios
+        against an empty index (0 pending either way) and assert their
+        rendered bodies now differ -- pre-fix they did not."""
+        healthy = self._render(entries_considered=3184, reviewed_count=3184,
+                               manifests_on_disk=3190)
+        wedged = self._render(entries_considered=0, reviewed_count=0,
+                              manifests_on_disk=0)
+        self.assertIn("Pending: **0** item(s)", healthy)
+        self.assertIn("Pending: **0** item(s)", wedged)
+        self.assertNotEqual(healthy, wedged)
+
+    def test_default_denominators_are_zero_and_do_not_crash(self):
+        """Existing callers (and the pre-fix test suite) that omit the new
+        kwargs must keep working -- defaults render 0, not a KeyError/TypeError."""
+        text = self._render()
+        self.assertIn("Scanned: 0 claim_evidence entries considered", text)
+
+    def test_singular_entry_grammar(self):
+        text = self._render(entries_considered=1, reviewed_count=0,
+                            manifests_on_disk=1)
+        self.assertIn("Scanned: 1 claim_evidence entry considered", text)
+
+
 if __name__ == "__main__":
     unittest.main()
