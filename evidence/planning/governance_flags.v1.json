@@ -5951,6 +5951,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0417",
+      "claim_ids": [
+        "MECH-090",
+        "MECH-042"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "The MECH-090 commit-readiness gate is behaviourally INERT even when armed: the 2026-09-18 liveness probe (IGW-20260918-245, evidence/planning/mech042_telemetry_lead_time_pathology_liveness_blocked_20260918.md) set use_commit_readiness_gate=True and pinned CommitReadiness._readiness=0.0 below commit_readiness_floor=0.05 and measured 0/150 action divergences against CONTROL, contradicting MECH-090's substrate notes that the BetaGate readiness conjunction gates commit entry. MECH-042's 2026-09-22 runnability audit records it as EXISTING NODE, MISSING EDGE, but no substrate_queue row owns the repair. Surfaced by thought-intake 2026-09-22 (MECH-580, REE_assembly 006ce4e941): the WHETHER face of arousal-gated commitment has no live consumer, independent of the world-model gap. Asks /governance to (a) register a substrate_queue row for diagnosing why the armed gate does not bite (commitment path vs BetaGate path), and (b) decide whether it gates MECH465-COMMIT-GATE-HEADROOM's next spike.",
+      "raised_by_session": "thought-ingest-acwm-arousal-commit-20260922",
+      "raised_at": "2026-09-22T18:41:03Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
