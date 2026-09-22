@@ -1,6 +1,11 @@
 # ARC-029 -- alternating-arm occupancy + detrend-validity probe: pre-registration spec
 
 Status: **DRAFT SPEC -- not queued, not implemented.**
+**REFUSED at `/queue-experiment` Step 2.5c on 2026-09-22 (GFLAG-0418).** Two open
+`severity: corrupting` substrate_queue rows (`mech005-betagate-decommit-counter-and-commit-ceiling`,
+`mech005-endogenous-arousal-dynamic-range`) overlap `ree_core/agent.py` and
+`ree_core/heartbeat/clock.py` at module level. EXQ id 1074 was reserved and released.
+See section 10 for the refusal and the two corrections it produced.
 Drafted 2026-09-22 by `/diagnose-errors` on V3-EXQ-1066, at user request.
 Claim: ARC-029 (only). Purpose: **diagnostic** (excluded from confidence scoring).
 
@@ -90,8 +95,10 @@ Mechanism, verified at source 2026-09-22:
 `exp(trend_now + quantile_q(residuals))` (`e3_selector.py:975-994`), so
 multiplying by `(1 - a)` is a DOWNWARD SHIFT OF `ln(1/(1-a))` IN LOG-RESIDUAL
 UNITS: 0.0202 at a=0.02, 0.0513 at a=0.05, 0.1054 at a=0.10. Whether that moves
-occupancy at all depends entirely on the residual dispersion, which is a
-property of the trained run and is not currently recorded anywhere. A sweep too
+occupancy at all depends entirely on the residual dispersion. **CORRECTED
+2026-09-22: that quantity IS already recorded** -- `rv_residual_dispersion_sd`
+0.0232-0.0318 across the six 1070a L1 cells, against which this section's
+0.02/0.05/0.10 ladder spans 0.64/1.62/3.32 SD. See section 10.2. A sweep too
 small is inert; too large drives occupancy to ~0. GFLAG-0354 puts the workable
 band at a ~ 0.02-0.10 and records ARC-029's own registered amplitudes (> 0.18,
 derived at a pre-training rv) as **measured stale** on this bar.
@@ -236,7 +243,7 @@ driver cannot be re-queued as written.
   **The deliverable is the amplitude band, if any, where P1 still holds.**
 - **R2 (Q2):** `|realised occupancy - q|` per cell, static and alternating,
   against the static baseline (max 0.0658 / mean 0.0298). Plus the recorded
-  log-residual dispersion, which no landed manifest currently carries.
+  log-residual dispersion (already recorded by 1070a -- see section 10).
 - **R3 (P2, precision invariance):** paired per-seed `current_precision`
   distributions, alternating vs static. ARC-029 requires these
   indistinguishable. **The oscillator cannot write `running_variance` directly,
@@ -326,3 +333,75 @@ What `/governance` still owes, and what this probe deliberately only feeds:
 the successor can be designed straight off section 2.** That outcome would make
 the probe unnecessary -- which is an argument for putting (1) to `/governance`
 FIRST and only then queueing, not for skipping the probe on a guess.
+
+---
+
+## 10. Step 2.5c refusal, and the two corrections it produced (2026-09-22)
+
+**Refused at `/queue-experiment` Step 2.5c**, recorded as **GFLAG-0418** (ARC-029, MECH-005).
+No driver was written and no queue entry added; EXQ id **1074** was reserved and released.
+
+Two open `severity: corrupting` `substrate_queue.json` rows overlap this driver's modules:
+
+| sd_id | overlapping substrate_paths |
+|---|---|
+| `mech005-betagate-decommit-counter-and-commit-ceiling` | `heartbeat/beta_gate.py::release`, `::should_admit_elevation`, `agent.py::select_action` |
+| `mech005-endogenous-arousal-dynamic-range` | `heartbeat/clock.py::update_e3_rate_from_beta`, `regulators/phasic_surprise_burst.py` |
+
+The probe exercises `agent.py::select_action` (the `sweep_reduction` site, `agent.py:7608`) and
+`clock.py` (the BreathOscillator), so both match at module level and the gate fails toward
+blocking, as it is written to.
+
+**Measured, for whoever adjudicates it:** row 1's stated defect is `committed_tick_frac` pinned
+at 1.000 with zero de-commits. Under the variance-tracking bar at L1 that does not obtain --
+1070a records 30-89 committed runs per cell, occupancy 0.2585-0.7317, run length 4.56-6.62 and
+`n_latched_ticks` 102-339 across all six L1 cells. Row 2 concerns arousal-modulated E3 cadence,
+which this probe does not manipulate. Both rows are
+`status: proposed_REGISTRATION_ONLY_not_a_build_authorisation`, `ready: false`, and name modules
+essentially every V3 driver touches -- so while they stand open+corrupting the gate blocks the
+whole corpus, not this probe. That is the governance question GFLAG-0418 poses.
+
+### 10.1 CORRECTION -- the residual dispersion was already recorded
+
+Sections 3 and 5.2 originally said no landed manifest carried the log-residual dispersion. **That
+was wrong.** 1070a records it per cell:
+
+| seed | q | `rv_residual_dispersion_sd` | `iqr` | occupancy | `n_committed_runs` | window span (eps) |
+|---|---|---|---|---|---|---|
+| 0  | 0.25 | 0.03175 | 0.04462 | 0.2585 | 45 | 29 |
+| 0  | 0.50 | 0.02742 | 0.03585 | 0.4691 | 63 | 27 |
+| 0  | 0.75 | 0.02459 | 0.03560 | 0.6842 | 89 | 30 |
+| 42 | 0.25 | 0.03100 | 0.04895 | 0.3008 | 30 | 26 |
+| 42 | 0.50 | 0.02439 | 0.03776 | 0.4956 | 45 | 24 |
+| 42 | 0.75 | 0.02322 | 0.03601 | 0.7317 | 68 | 25 |
+
+### 10.2 CORRECTION -- the amplitude ladder in 4.3 is mis-sized, and the DV is diluted
+
+Against a measured residual SD of ~0.0317, the sweep's log-space shift `ln(1/(1-a))` is:
+
+| a | shift (log units) | in residual SD |
+|---|---|---|
+| 0.015 | 0.0151 | 0.48 |
+| 0.02  | 0.0202 | 0.64 |
+| 0.03  | 0.0305 | 0.96 |
+| 0.05  | 0.0513 | 1.62 |
+| 0.06  | 0.0619 | 1.95 |
+| 0.10  | 0.1054 | **3.32** |
+
+**So the oscillator is NOT inert at these amplitudes -- it is strong**, and section 4.3's top
+rung (a=0.10, 3.32 SD) is the saturating end GFLAG-0354 warns about rather than a probe point. A
+ladder recentred on the measured dispersion -- **{0.015, 0.03, 0.06} = 0.48 / 0.96 / 1.95 SD**,
+with 0.10 retained only as a deliberate saturating anchor for G4 -- is the corrected axis.
+
+**And a second, sharper defect this exposes.** With `sweep_duration`/`breath_period` = 5/25, the
+sweep fires on only 20% of ticks, so the RUN-MEAN occupancy in section 5.2's R1 is
+`~0.8*F(q) + 0.2*F(q - shift)`. At a=0.10, q=0.25 that is `~0.8 * 0.2585 = 0.207` -- still inside
+`P1_OCCUPANCY_BAND`. **The duty cycle dilutes the manipulation into the band by construction**,
+so R1 as written could report "P1 holds" across the whole ladder without the regime structure
+ever having been examined. That is a Step 4.5 family-2 defect (criterion cannot discriminate by
+construction), found here before any compute was spent.
+
+**Corrected readout: R1 must be occupancy CONDITIONED ON SWEEP PHASE** -- in-sweep vs
+inter-sweep, reported separately, with the run-mean kept only as descriptive telemetry. The
+driver must record `clock.sweep_active` per select call to make that partition possible. Whoever
+implements this spec should treat 4.3 and 5.2 as superseded by this section.
