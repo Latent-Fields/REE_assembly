@@ -1175,13 +1175,43 @@ def _runner_draining(ver: str, pid: int | None) -> bool:
 
 # ── launchd supervision (Mac v3 runner) ──────────────────────────────────────
 # When ~/Library/LaunchAgents/com.ree.runner.plist is installed, the v3
-# runner is supervised by launchd (KeepAlive=true) instead of being
-# spawned as a Popen child of this serve.py. This matches the cloud
-# workers' systemd setup: crashes auto-respawn, the explorer's Stop
-# button still maps to a genuine "really stop" (launchctl bootout). The
-# plist runs ~/.local/bin/ree_runner_launchd.sh which loads the same env
-# vars _default_runner_extra_env would have injected, so behaviour is
-# bit-identical to the Popen path on a normal run.
+# runner is supervised by launchd instead of being spawned as a Popen
+# child of this serve.py. The plist runs ~/.local/bin/ree_runner_launchd.sh
+# which loads the same env vars _default_runner_extra_env would have
+# injected, so behaviour is bit-identical to the Popen path on a normal run.
+#
+# STOP IS `launchctl kill TERM`, NOT `launchctl bootout` -- and this is the
+# one thing about this block that must not be "simplified" back.
+# ---------------------------------------------------------------------------
+# `launchctl bootout` is not a polite unload. It sends SIGTERM and then
+# SIGKILLs the job when the exit timeout expires, and the runner's SIGTERM
+# handler is GRACEFUL-ONLY by design: experiment_runner.main() sets
+# _drain_flag and keeps running until the current experiment finishes
+# ("SIGTERM / remote stop only request drain"), which on this fleet is
+# routinely hours and was ~99h for V3-EXQ-1067. So bootout does not drain a
+# busy runner -- it destroys the in-flight experiment a few seconds later,
+# while the explorer reports "draining".
+#
+# Measured on this Mac 2026-09-22, with a throwaway LaunchAgent whose
+# program traps SIGTERM and keeps running: bootout SIGKILLed it 5.10s and
+# 5.11s after the call (two runs). `launchctl print gui/<uid>/com.ree.runner`
+# reports `exit timeout = 5` for the real job, matching. The plist sets no
+# ExitTimeOut key, so 5s is simply what launchd gives an unconfigured job --
+# it is NOT the 20s that launchd's documented default would suggest, and the
+# margin is five orders of magnitude short of a real drain either way.
+# By contrast `launchctl kill TERM` delivers SIGTERM and never escalates:
+# the same probe was still running, job still loaded, 45s later.
+#
+# Respawn, the reason bootout was reached for in the first place, is handled
+# without it: the plist is KeepAlive=false / RunAtLoad=false, so a job loaded
+# from it does not come back when the drained runner finally exits, and
+# ree_runner_launchd.sh independently refuses to start (and boots its own job
+# out) while ~/.ree_runner_disabled exists. A deliberately-NOT-built third
+# belt: a deferred bootout once the runner has actually exited. It would need
+# a watcher thread or a side effect wired into the status poll, to defend a
+# case the plist already covers -- and its failure mode is the one this
+# comment exists to prevent. If you add it, it must key on the drain PID
+# being GONE, never on a timer.
 
 _LAUNCHD_PLIST_PATH = Path.home() / "Library" / "LaunchAgents" / "com.ree.runner.plist"
 _LAUNCHD_LABEL = "com.ree.runner"
@@ -1308,7 +1338,14 @@ def _launchd_kickstart() -> tuple[bool, str]:
 
 
 def _launchd_bootout() -> tuple[bool, str]:
-    """Unload the plist entirely. KeepAlive does NOT respawn after bootout."""
+    """Unload the plist entirely, SIGKILLing the job if it does not exit fast.
+
+    NOT a drain. bootout sends SIGTERM and then SIGKILLs the job when the
+    exit timeout expires -- measured at ~5s on this Mac; see the launchd
+    supervision block above. Only ever call this on a runner that is already
+    dead or that you are deliberately force-killing (force_stop_runner).
+    stop_runner() must use _launchd_kill("TERM") instead.
+    """
     try:
         r = subprocess.run(
             ["launchctl", "bootout", _launchd_target()],
@@ -1325,7 +1362,14 @@ def _launchd_bootout() -> tuple[bool, str]:
 
 
 def _launchd_kill(sig: str) -> tuple[bool, str]:
-    """Send a signal to the launchd-supervised runner. sig is 'TERM' or 'KILL'."""
+    """Send a signal to the launchd-supervised runner. sig is 'TERM' or 'KILL'.
+
+    Delivers exactly that signal and nothing else: unlike bootout there is no
+    escalation to SIGKILL and no unload, so 'TERM' is a true graceful-drain
+    request the runner can take as long as it needs to honour (measured: a
+    SIGTERM-ignoring probe survived 45s+ with the job still loaded). That
+    property is what stop_runner() depends on.
+    """
     try:
         r = subprocess.run(
             ["launchctl", "kill", sig, _launchd_target()],
@@ -6722,11 +6766,14 @@ def start_coordinator() -> dict:
 def stop_runner(ver: str | None = None) -> dict:
     """Request graceful drain of a runner (ver='v3'/'v2') or any running runner.
 
-    Sends SIGTERM which triggers the runner's drain mode: it finishes the current
-    experiment then exits cleanly.  Returns immediately with status='draining' --
-    the runner continues running until the experiment completes.
+    Sends SIGTERM and NOTHING ELSE, on every path including the launchd one:
+    that triggers the runner's drain mode, in which it finishes the current
+    experiment then exits cleanly.  Returns immediately with status='draining'
+    -- the runner continues running until the experiment completes, which may
+    be days.  Nothing here imposes a deadline on that, and nothing may.
 
-    Use force_stop_runner() for an immediate SIGKILL when data loss is acceptable.
+    Use force_stop_runner() for an immediate SIGKILL when data loss is
+    acceptable.  That is the ONLY entry point permitted to end a run early.
     """
     versions_to_try = [ver] if ver else ["v3", "v2"]
 
@@ -6735,27 +6782,28 @@ def stop_runner(ver: str | None = None) -> dict:
             continue
         cfg = RUNNERS[v]
 
-        # Launchd-supervised v3: unload the plist entirely so KeepAlive
-        # does NOT respawn the runner after this clean exit. The Stop
-        # button keeps its expected "really stop" meaning. To run the
-        # runner again the user clicks Start, which re-bootstraps the
-        # plist + kickstarts. If launchctl reports no PID (transition
-        # state: plist installed but the running runner is an orphan
-        # Popen child of a previous serve.py session), fall through to
-        # the legacy Popen / ext_pid detection below so the Stop button
-        # can still SIGTERM the orphan.
+        # Launchd-supervised v3: ask launchd to deliver SIGTERM, and leave
+        # the job loaded. This used to call _launchd_bootout(), which is a
+        # SIGTERM followed ~5s later by SIGKILL -- i.e. it silently destroyed
+        # the in-flight experiment while returning "draining" to the operator.
+        # See the launchd supervision block above for the measurements and for
+        # why not booting out is safe (plist is KeepAlive=false, and
+        # ree_runner_launchd.sh holds the runner down on its own).
+        # To run the runner again the user clicks Start, which bootstraps
+        # (a no-op while still loaded) + kickstarts. If launchctl reports no
+        # PID (transition state: plist installed but the running runner is an
+        # orphan Popen child of a previous serve.py session), fall through to
+        # the legacy Popen / ext_pid detection below so the Stop button can
+        # still SIGTERM the orphan.
         if v == "v3" and _launchd_supervises_v3():
             target_pid = _launchd_pid()
             if target_pid is not None:
-                # bootout sends SIGTERM (drain) and unloads the plist.
-                # The runner finishes the current experiment then exits,
-                # with no respawn. Return immediately -- drain may take
-                # minutes.
-                ok, note = _launchd_bootout()
+                ok, note = _launchd_kill("TERM")
                 if not ok:
                     return {"status": "error", "message": note}
                 print(f"[serve] {cfg['label']} drain requested via "
-                      f"launchd bootout (PID {target_pid}; {note})",
+                      f"launchctl kill TERM (PID {target_pid}; {note}); "
+                      f"job left loaded -- no deadline on the drain",
                       flush=True)
                 _runner_drain_pids[v] = target_pid
                 return {"status": "draining", "pid": target_pid,
@@ -6801,10 +6849,15 @@ def force_stop_runner(ver: str | None = None) -> dict:
         cfg = RUNNERS[v]
 
         # Launchd-supervised v3: SIGKILL via launchctl, then bootout to
-        # prevent KeepAlive respawn. force_stop semantics are "no drain,
-        # no respawn, gone now". If launchctl reports no PID, fall
-        # through to legacy Popen / ext_pid detection so we can still
-        # kill an orphan from a previous serve.py session.
+        # unload the job. force_stop semantics are "no drain, no respawn,
+        # gone now", so unlike stop_runner() the bootout is CORRECT here --
+        # the caller has already accepted losing the in-flight experiment,
+        # and by this point SIGKILL has been delivered anyway. The order
+        # matters: kill first, so bootout is unloading an already-dead job
+        # rather than being the thing that races the exit timeout. If
+        # launchctl reports no PID, fall through to legacy Popen / ext_pid
+        # detection so we can still kill an orphan from a previous serve.py
+        # session.
         if v == "v3" and _launchd_supervises_v3():
             target_pid = _launchd_pid()
             if target_pid is not None:
