@@ -2,8 +2,7 @@
 
 **What this is.** Draft `what_would_answer` text produced in the SAME session as the Stage 2 intake
 `evidence/planning/thought_intake_2026-09-22_action_conditioned_world_model_and_arousal_gated_commitment.md`,
-staged here for the user's review per `/thought-digestion` (draft-only mode). NOT applied to
-`claims.yaml`. The user decides the falsifier and disposition; the session proposes.
+staged here for the user's review per `/thought-digestion` (draft-only mode). APPLIED to `claims.yaml` 2026-09-22 after the user's approval (session thought-digest-mech580-apply-20260922); disposition (c) substrate_conditional retained. Kept as the record of what was proposed.
 
 **How to use.** Read the draft below; on approval, the applying session copies it verbatim into the
 claim's `what_would_answer`, sets `epistemic_category` per the disposition, and checkpoint-commits.

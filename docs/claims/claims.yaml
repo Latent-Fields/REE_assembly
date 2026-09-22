@@ -104684,3 +104684,49 @@
     The ordering clause (WHICH-SET presupposes an action-conditioned world model) is anchored ONLY
     by the model-based-RL literature (Ha & Schmidhuber 2018; Hafner et al. 2019/2020; Lambert,
     Pister & Calandra 2022), not by any decision-neuroscience result.'
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION:
+    (P1) Candidate futures are ACTION-DISCRIMINABLE: cross-candidate F-score spread sits above the
+    float32 ULP floor (the V3-EXQ-643 non-vacuity gate, as MECH-463 requires) AND E2 world-forward
+    pairwise divergence across the K candidates tracks their action differences (ARC-002 weak form).
+    Without P1 a breadth change admits or excludes nothing that differs, and the run is vacuous.
+    (P2) The eligibility envelope is LIVE: use_f_eligibility_demotion is ON and excluded_count varies
+    across ticks (not the V3-EXQ-654h admitted-all twin, excluded_count == 0).
+    (P3) The arousal manipulation has DYNAMIC RANGE within the run: arousal is set EXOGENOUSLY, i.i.d.
+    over a pre-registered decile range at each tick (MECH-463's protocol), because endogenous ||z_beta||
+    spans 0.91% of its mean (substrate_queue mech005-endogenous-arousal-dynamic-range) and an
+    endogenous-arousal arm is degenerate until that row lands.
+    (P4) A SAMPLED commit pick is armed (use_gap_scaled_commit_temperature or
+    use_precision_scaled_commit_temperature), because under a pure argmin a breadth change can only
+    matter on the ticks where it excludes the incumbent; the deterministic-argmin arm is reported but
+    is not the verdict arm.
+    Degenerate if any of P1-P4 fails; a null under unmet preconditions is not evidence against.
+
+    CONFIRMING: K_eligible (admitted-set size per tick) falls monotonically with arousal decile with the
+    bottom-versus-top gap above the pre-registered effect-size floor (scaled on the seed SD of the
+    delta plus an absolute floor of 2 candidates); committed-class entropy rises at low arousal and
+    falls at high arousal; the committed candidate's F-rank changes with arousal ONLY through
+    admitted-set membership -- the rank-preserving fraction within the admitted set stays ~1.0 (as
+    V3-EXQ-689d) and the full-K score ORDER is invariant across arousal arms (MECH-463's
+    argmax-invariance retained, not contradicted).
+
+    FALSIFYING: with P1-P4 met, K_eligible is flat across arousal deciles (breadth is not the route),
+    OR committed-class entropy does not move with K_eligible (breadth moves but does not convert to a
+    different committed candidate), OR the committed candidate changes with arousal WHILE the full-K
+    score order also changes (arousal is reordering, which refutes MECH-463's argmax-invariance instead
+    and re-routes to that claim rather than to this one).
+
+    Manipulation: couple the envelope to the arousal scalar with a pre-registered MONOTONE map
+    (f_eligibility_envelope_floor rising with arousal, and/or f_eligibility_dn_sigma narrowing), versus
+    a fixed-floor control at matched seeds; arousal set exogenously across deciles per P3.
+    Control: fixed envelope floor (stock 0.30) at every arousal decile; an arousal-OFF arm; a
+    deterministic-argmin arm (P4 off) reported alongside.
+    Required event: waking E3 selection over the K=32 CEM candidate pool with the BG eligibility
+    constitution ON (use_f_eligibility_demotion) on a substrate where candidate scores are
+    discriminable -- the GAP-A foraging substrate on which V3-EXQ-689d measured 0.371 -> 0.938.
+    DV: K_eligible per tick by arousal decile; committed-class entropy per decile; rank-preserving
+    fraction within the admitted set; full-K score-order invariance across arms; realised commit rate
+    (to confirm the WHETHER face did not move -- a moving commit rate is a confound to be reported,
+    not a result).
+    BOUNDARY: this claim is about the WHICH-SET face only. A result that the commit RATE moves with
+    arousal belongs to MECH-465; a result that E3 CADENCE moves belongs to MECH-093/MECH-005.
