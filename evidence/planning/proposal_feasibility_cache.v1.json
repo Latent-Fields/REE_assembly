@@ -1,5 +1,20 @@
 {
  "entries": {
+  "ARC-037": [
+   {
+    "chip_ref": "chip-proposal-exp-0494-paced",
+    "producer_paths": [
+     "ree_core/agent.py",
+     "ree_core/predictors/e3_selector.py"
+    ],
+    "reason": "Unwired: no E3-side attribution consumer exists (e3_selector.py has no agency/self_caused routing); the comparator output _tpj_last_is_self_caused (agent.py:3395/3643/4104/4116) is written but never read anywhere; use_tpj_comparator defaults False (config.py:4424); canonical harness calls update_residue() positionally, leaving owned=True/world_delta=None defaults (agent.py:10869-10875). Also gated by self_attribution:GAP-6 live-loop prohibition.",
+    "recorded_by": "preflight-batchB-20260922",
+    "recorded_utc": "2026-09-22T12:49:27Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "ARC-044": [
    {
     "chip_ref": "chip-proposal-exp-0501-paced",
