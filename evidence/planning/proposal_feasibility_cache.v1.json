@@ -242,6 +242,20 @@
     "verdict": "RED"
    }
   ],
+  "MECH-539": [
+   {
+    "chip_ref": null,
+    "producer_paths": [
+     "experiments/_lib/interface_probe.py"
+    ],
+    "reason": "dynamic_compatibility() (interface_probe.py:1472) has zero callers anywhere in experiments/ -- never exercised once. Also blocked on the same source-adequacy gate as MECH-555 (no validated multi-step rollout source; trained z_world inadmissible per V3-EXQ-1010 H-F). Claim's own notes: DO NOT build in V3 and DO NOT queue an experiment.",
+    "recorded_by": "preflight-batchD-20260922",
+    "recorded_utc": "2026-09-22T15:16:02Z",
+    "ree_v3_sha": "c8c37a160a7d63bb4abde66469dd276fd4ad9e15",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "SD-024": [
    {
     "chip_ref": "chip-20260915-sd024-standing-density-redesign",
