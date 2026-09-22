@@ -30717,7 +30717,7 @@
 
     [2026-09-10 governance, GFLAG-0204, user-adjudicated FULL SPLIT -- description AND confidence, not notes-only] The 2026-09-06 split above was PROSE-ONLY and is now EXECUTED. (1) DESCRIPTION: the psychiatric-risk-gradient sentence has been removed from this claim's description and re-registered as INV-106 (out_of_domain, immediately below this block). This claim is now the REE starvation mechanism in description as well as in what_would_answer. (2) EVIDENCE LANE, which the prose-only split left fused: the five literature entries that landed 2026-09-08 (REE_assembly 09c24b7127, "lit-pull INV-063: 5 literature entries (EVB-1349 / LIT-0688)") are hippocampal-electrophysiology and behavioural-animal papers -- Larkin 2014 CA1 generalized novelty, the Huber 2004 deprivation arm and siblings -- which bear on THIS leg, and they are correctly tagged claim_id INV-063 in claim_evidence.v1.json. With the epidemiological leg gone from the description, the overall_confidence they produce (0.687, 3 supports / 1 mixed / 1 weakens, evidence_quadrant plausible_unproven) now scores the REE leg ONLY and no longer silently spans a clinical-epidemiological assertion it never measured. DO NOT re-tag those five entries to INV-106. (3) REMAINING OPEN ITEM, deliberately not done in this edit: LIT-0688 is still mis-scoped. It was designated the out_of_domain epidemiological pull (EXP-1398's design text in evidence/planning/experiment_proposals.v1.json says verbatim that "LIT-0688 should be RETAINED and re-scoped to the out_of_domain epidemiological leg only") but it absorbed REE-leg literature instead. Re-scoping LIT-0688 to INV-106 is a proposals-file edit and is the last piece of this split. (4) The flag's own two premises were false as of 2026-09-08 and are recorded as false here so they are not re-derived: INV-063 does NOT have "zero sources of either kind" and does NOT sit at overall_confidence 0.0.
   registered: "2026-04-07"
-  depends_on: [INV-049, SD-017, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211]
+  depends_on: [INV-049, SD-017, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211, MECH-572, MECH-573, MECH-574]
   session_c_resolution: >
     Session C batch 2026-04-17: classified emergent on SD-017, paralleling
     the sleep-cluster decisions on INV-045/046/050/062. The "entropy intake"
@@ -103360,6 +103360,279 @@
     empathy; the analogy to the affective pathway is a reason to look, not a result.
     substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
 
+- id: MECH-572
+  title: |-
+    across_sleep_readout_sign_governed_by_consolidation_step_to_residual_ratio. A consolidation pass
+    measurably improves a frozen held-out readout only when the parameter displacement the pass imposes
+    is SMALL relative to the residual error it is reducing. REE's consolidator violates this by
+    construction: CrossModuleConsolidator.consolidate() builds a FRESH torch.optim.Adam per call
+    ("built fresh each call so the pass owns no persistent optimiser state",
+    ree-v3 ree_core/sleep/cross_module_consolidation.py), and a fresh Adam's bias-corrected first step
+    is approximately lr*sign(g) REGARDLESS of |g|, so displacement is bounded by n_steps*lr = 8*1e-3 =
+    0.008 whatever the gradient is. V3-EXQ-1063's landed manifest shows world_head_max_abs_delta at
+    0.00798-0.00807 in 6 of 6 lever-on cells (99.7-100.9% of that bound) across bases whose residual
+    battery MSE differs by a factor of about 1000. The step size is therefore set by the OPTIMISER, not
+    by how converged the head is -- so on a converged base the pass overwrites a residual it is 18-41x
+    larger than, and the measured "sleep degrades the readout" is that overwrite rather than a property
+    of consolidation.
+  claim_type: mechanism_hypothesis
+  subject: sleep.consolidation_step_to_residual_ratio
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-09-22
+  depends_on: [SD-017]
+  functional_restatement: |-
+    This claim explains INV-063 leg B's readability-vs-direction bind as ONE phenomenon rather than two,
+    and predicts that no third objective can resolve it. Requirement (ii) (a positive across-sleep delta)
+    needs the residual to be large relative to the pass's displacement; requirement (i) (readable on a
+    converged base) drives the residual toward zero. With a displacement that does not scale with
+    convergence, the two requirements are placed in DIRECT OPPOSITION by the optimiser, not by the loss.
+    That is why substituting a second objective (SD-056 InfoNCE for 701b MSE) reproduced the bind instead
+    of dissolving it, and why the objective-substitution framing looks exhausted: any objective descended
+    with a fresh bias-corrected Adam for a fixed 8 steps displaces the weights by the same ~0.008.
+    MEASURED SUPPORT, from the LANDED V3-EXQ-1063 manifest and requiring no new run. On the CONVERGED base
+    (conv_rel_drop 0.9967-0.9992) the first-cycle MSE rise is 18.2x, 41.3x and 19.7x the pre-cycle residual
+    for seeds 42/123/456, and the across-sleep delta is negative 3/3. On the FRESH base (conv_rel_drop 0.0,
+    residual ~1000x larger) the SAME 0.008 displacement produces a change that is a fraction of the residual
+    and the delta is POSITIVE 2/3 seeds (+32.6e-4, +63.9e-4; seed 123 -7.5e-4). Sign tracks the
+    residual-to-displacement ratio, not the objective.
+  evidence_quality_note: |-
+    NO EXPERIMENT RUN FOR THIS CLAIM. Registered as a candidate by the CDQ-011 Mine+Register pass
+    2026-09-22. The optimiser property is a fact about the code, verifiable by reading
+    ree_core/sleep/cross_module_consolidation.py plus torch's Adam bias correction, not an experimental
+    result. The quantitative support is a RE-READING of V3-EXQ-1063's already-landed manifest
+    (evidence/experiments/v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3.json) along an axis the
+    run recorded but its criteria did not score: per_cycle_readouts, world_head_max_abs_delta and
+    identity_predictor_mse were all instrumented deliberately (the script's own note says a later reader
+    attributing the result to E1 must first rule out E2 from those numbers), and this claim is that ruling.
+    LIMITS, carried not buried. (1) n=3 seeds, one configuration, one lever; V3-EXQ-1063 was designed as a
+    DESCRIPTIVE run and is non_contributory for INV-063 by design. (2) This claim does NOT show that a
+    residual-gated step would make the delta positive -- that is the falsifier, not a result. (3) It does
+    not establish that MECH-574's re-presentation account contributes nothing; the two are separable and
+    the falsifier says how. (4) It is NOT the retired scale/shift-invariance argument: V3-EXQ-1063's header
+    already refutes that story for this implementation (the logits are squared L2 distances, so a global
+    scale changes every distance and a global shift leaves a cross term that does not cancel), and nothing
+    here revives it.
+  what_would_answer: |-
+    NON-DEGENERACY PRECONDITION: the comparison must hold the OBJECTIVE and the replay content fixed and
+    vary ONLY the displacement-to-residual ratio, or the step-size account is confounded with MECH-574's
+    target-novelty account. conv_rel_drop must be asserted from measured output, and -- per MECH-573 -- the
+    base must additionally clear the TRIVIAL predictor, since a head at its copy-the-input value has no
+    residual worth protecting and the ratio is then undefined in the sense that matters.
+    CONFIRMING: with the objective, the replay batch and the base all unchanged, reducing the consolidation
+    displacement until it is small relative to the converged head's residual (by lowering
+    cross_module_consolidation_lr, reducing cross_module_consolidation_steps, or reusing optimiser state
+    across cycles so the second-moment estimate adapts to small gradients) turns the across-sleep
+    frozen-battery delta non-negative on at least 2/3 seeds while conv_rel_drop stays >= 0.99 and the head
+    stays above the trivial predictor. Both requirements (i) and (ii) then hold at the SAME setting, which
+    is exactly what leg B is blocked on.
+    FALSIFYING: the across-sleep delta stays negative on a converged base even when the imposed displacement
+    is demonstrably small relative to the residual (say below 10% of it), on at least 2/3 seeds. That would
+    show the degradation is not an overwrite and would redirect leg B onto the objective or the replay
+    content -- MECH-574 -- instead.
+    PRECONDITION NOT MET (P-FAIL): if no setting can be found at which displacement is small relative to
+    residual AND the head remains above the trivial predictor, the claim converts to
+    epistemic_category substrate_conditional, status stays candidate, and the failing precondition is named
+    with the measurement that failed it. That is a legitimate outcome and is NOT a falsification.
+    SUBSTRATE / INSTRUMENT: no new substrate. cross_module_consolidation_lr and
+    cross_module_consolidation_steps are existing config knobs; world_head_max_abs_delta,
+    identity_predictor_mse and per-cycle battery readouts are already instrumented by V3-EXQ-1063.
+    REGISTRATION IS NOT BUILD AUTHORISATION and no experiment is queued: INV-063 is substrate_conditional
+    and has no experiment budget; V3-EXQ-1071 stays reserved and unused.
+  notes: |-
+    Registered by the CDQ-011 Mine+Register pass of the Convergence Demand Pipeline (plan of record
+    evidence/planning/convergence_demand_pipeline_plan.md section 5 steps 2-3), session
+    pensive-feistel-471e3c, chip-20260922-cdq011-sleep-readout-mechanism-intake. LEAD claim of the three.
+    Mined from REE_convergence/sources/dreamer-v3/consolidation_readout_alignment.md (DREAMER-V3-OBJ-007):
+    DreamerV3's free bits -- "clipping the dynamics and representation losses below the value of 1 nat" --
+    is a floor on OPTIMISER EFFORT, so an already-sufficient term stops producing gradient. REE's
+    consolidator has no such floor and takes its fixed 8 steps regardless. Biology precondition discharged
+    FIRST per CLAUDE.md biology-before-formal-definitions: evidence/literature/targeted_review_inv_063
+    entries dated 2026-09-22 (REE_assembly 61c46c642f).
+    THE MECHANISM IS AN OPTIMISER PROPERTY, NOT A LOSS PROPERTY, and that is the whole point relative to
+    CDQ-011's instruction: the row forbids proposing a third candidate OBJECTIVE because two have now been
+    measured on the same framing and each failed one requirement. This claim says the framing itself was
+    misaddressed -- the readout was never the free variable.
+    ARCHITECTURE STUB: docs/architecture/across_sleep_readout_mechanisms.md.
+- id: MECH-573
+  title: |-
+    heldout_readout_readability_must_be_referenced_to_the_TRIVIAL_predictor_not_random_init. A
+    consolidation pass can only improve a held-out readout on the component of the target that is NOT
+    reproducible by the trivial predictor, so a readout is READABLE in requirement (i)'s own sense only
+    when it is demonstrably above that predictor -- not merely far from random initialisation. INV-063
+    leg B's existing gate uses the wrong reference: conv_rel_drop is normalised by the RANDOM-INIT battery
+    MSE (V3-EXQ-1063's own F5 note), and random init on a forward model is vastly worse than simply
+    copying the input, so conv_rel_drop >= 0.99 is satisfiable while the head sits AT its degenerate value.
+  claim_type: mechanism_hypothesis
+  subject: sleep.heldout_readout_trivial_predictor_reference
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-09-22
+  depends_on: [SD-017]
+  functional_restatement: |-
+    MEASURED, from the LANDED V3-EXQ-1063 manifest and requiring no new run. The manifest records
+    identity_predictor_mse = mean((z1-z0)^2), the "do nothing / copy the input" reference, per cell. At the
+    convergence leg B calls converged (conv_rel_drop 0.99802 / 0.99670 / 0.99917) the ratio of the
+    converged battery MSE to that reference is 1.071, 0.773 and 1.007 for seeds 42/123/456 -- a skill score
+    1 - MSE_model/MSE_identity of -0.071, +0.227 and -0.007. The "converged" world-forward head is at or
+    BELOW copy-the-input on 2 of 3 seeds, and its mean skill over the three is about +0.05.
+    So requirement (i) as currently gated does not implement the requirement it states. It asks that the
+    statistic "not sit at its chance or degenerate value" and then tests distance from random init, which a
+    head can clear completely while carrying no world-dynamics information at all. A pass cannot improve
+    what is not there: when the non-trivial component of the target is approximately zero, the measurable
+    across-sleep delta is bounded by noise regardless of what the consolidation pass does, which is the
+    most economical account of why the measured deltas are so small (-7.14e-05, -6.72e-04, -9.22e-04).
+    This is the REE form of the Ellenbogen 2007 finding: trained premise-pair retention was above 85% in
+    every group with no group differences -- pinned at ceiling, a degenerate value -- and reporting only
+    that measure would have licensed the conclusion "sleep does nothing", which the held-out inference
+    probe shows to be false.
+  evidence_quality_note: |-
+    NO EXPERIMENT RUN FOR THIS CLAIM. Registered as a candidate by the CDQ-011 Mine+Register pass
+    2026-09-22. The numbers are a RE-READING of already-landed data
+    (evidence/experiments/v3_exq_1063_inv063_legb_dv_direction_20260919T102929Z_v3.json): the run recorded
+    identity_predictor_mse per cell deliberately, and this claim is the comparison that field exists to
+    support but that the run's own criteria did not score.
+    LIMITS. (1) n=3 seeds, one configuration. (2) The identity predictor is A trivial reference, not
+    necessarily THE right one -- a per-dimension linear extrapolator would be a stricter bar, and this claim
+    does not establish that copy-the-input is the correct floor, only that random init is the wrong one.
+    (3) Seed 123 does clear the reference (+0.227 skill), so the finding is "at or below on 2/3", not
+    "uniformly degenerate", and it must not be quoted as the latter. (4) This claim does NOT assert leg B is
+    unreadable -- GFLAG-0382's n=1 limit still binds that conclusion, and the point here is the opposite one:
+    the existing gate is too WEAK, so a future run could pass it while measuring nothing.
+  what_would_answer: |-
+    NON-DEGENERACY PRECONDITION: the trivial-predictor reference must be computed on the SAME frozen
+    battery as the model readout, in the same units, within the same no-grad evaluation -- otherwise the
+    ratio compares two different populations. identity_predictor_mse as already instrumented satisfies this.
+    CONFIRMING: a base that clears conv_rel_drop >= 0.99 but whose skill score 1 - MSE_model/MSE_identity is
+    at or below 0 shows no interpretable across-sleep movement in EITHER direction beyond noise, while a
+    base matched on conv_rel_drop but with skill comfortably above 0 shows a larger-magnitude and
+    sign-consistent across-sleep delta, on at least 2/3 seeds. That would establish the skill score, not
+    conv_rel_drop, as leg B's readability gate.
+    FALSIFYING: across-sleep delta magnitude and sign consistency are unrelated to the skill score once
+    conv_rel_drop is held fixed -- i.e. heads at negative skill move just as informatively as heads at
+    positive skill. That would show the trivial-predictor reference is not the operative constraint and
+    would leave conv_rel_drop standing as the gate.
+    PRECONDITION NOT MET (P-FAIL): if no achievable P0 budget produces a base with skill score above 0 on a
+    majority of seeds, the claim converts to epistemic_category substrate_conditional, status stays
+    candidate, and the finding is recorded as a bound on the world-forward head rather than on the readout.
+    That is a legitimate outcome and NOT a falsification -- and it would be a materially important finding
+    for INV-063, because it would mean leg B is blocked upstream of the readout question entirely.
+    SUBSTRATE / INSTRUMENT: none required. identity_predictor_mse is already recorded per cell.
+    REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued; V3-EXQ-1071 stays reserved and unused.
+  notes: |-
+    Registered by the CDQ-011 Mine+Register pass, session pensive-feistel-471e3c,
+    chip-20260922-cdq011-sleep-readout-mechanism-intake. Biology precondition discharged FIRST:
+    evidence/literature/targeted_review_inv_063 entries dated 2026-09-22 (REE_assembly 61c46c642f),
+    principally Ellenbogen et al. 2007 PNAS (trained measure at ceiling while the held-out probe carries
+    the effect) and Born & Wilhelm 2012 (consolidation transforms rather than preserves, so a verbatim
+    reconstruction error is the statistic the process is least committed to).
+    CONSEQUENCE FOR THE FALSIFIER TEXT, offered to /governance and NOT applied here: INV-063's
+    what_would_answer currently operationalises requirement (i) as "conv_rel_drop >= 0.99 asserted from
+    measured output". If this claim is right that gate should additionally require a skill score above 0
+    against identity_predictor_mse. That is a falsifier edit and belongs to a governance cycle, not to an
+    intake pass, so it is recorded here rather than made.
+    ARCHITECTURE STUB: docs/architecture/across_sleep_readout_mechanisms.md.
+- id: MECH-574
+  title: |-
+    consolidation_improves_a_heldout_readout_only_when_replay_REGENERATES_an_improved_target. A
+    consolidation pass over stored experience improves a frozen held-out readout only to the extent replay
+    supplies a target the current model does not already match -- re-presenting the originally observed
+    target to a head that has converged on it carries no information, and what remains is whatever
+    displacement the optimiser imposes on its own account. MuZero Reanalyze is the external positive case:
+    it "revisits its past time-steps and re-executes its search using the latest model parameters,
+    potentially resulting in a better quality policy than the original search", and that RE-DERIVED target
+    drives 80% of updates. REE's sleep world-forward trainer has no improvement operator: compute_e2_world_loss
+    draws (world[i], action[i+1], world[i+1]) straight from the replay buffers and descends against the
+    originally observed next state, unchanged on every cycle.
+  claim_type: mechanism_hypothesis
+  subject: sleep.replay_target_regeneration
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-09-22
+  depends_on: [SD-017]
+  functional_restatement: |-
+    Distinguishes two accounts of the same measurement that MECH-572 alone leaves fused. MECH-572 says the
+    across-sleep delta is negative because the optimiser's displacement exceeds the residual. This claim says
+    it is negative because there is no residual to reduce IN THE FIRST PLACE on replayed content the head has
+    already fit -- the pass is re-presentation, not re-derivation -- so the only thing the step can do is move
+    the head off its optimum.
+    The two are SEPARABLE on one run, and that separability is the reason both are registered rather than one:
+    MECH-572 predicts the delta tracks the displacement-to-residual ratio regardless of target novelty;
+    MECH-574 predicts it tracks target novelty regardless of step size. A design that crosses a small-step
+    arm with a novel-target arm decides between them, and a two-by-two is cheaper than two separate runs.
+    WHAT REE CAN ACTUALLY DO HERE, since MuZero's operator does not port. MuZero improves targets with MCTS
+    over a reward-bearing action space; REE's world-forward head predicts z_world_{t+1} and has no planning
+    operator over world states and no value function on them to bootstrap from. The REE-available improvement
+    operators are (a) multi-step consistency -- world_forward_contrastive_loss_multistep already exists and
+    rolls the head out over an action sequence, so a k-step-consistent target is reachable with NO new
+    substrate -- and (b) harder in-batch negatives, which change what the discrimination has to separate. Both
+    regenerate a target the 1-step observed triple does not supply.
+  evidence_quality_note: |-
+    NO EXPERIMENT RUN FOR THIS CLAIM, and the WEAKEST-EVIDENCED of the three registered by this pass --
+    deliberately registered as such. MECH-572's step-size account currently has the stronger support because
+    it is measured (6/6 cells at the optimiser bound across a 1000x residual range); this claim is an
+    external-source transfer with a REE-side code reading behind it, and no REE measurement isolates it.
+    Registered as a candidate by the CDQ-011 Mine+Register pass 2026-09-22.
+    LIMITS. (1) The MuZero mechanism is stated for a policy target improved by search; REE has neither, so
+    only the weaker form ("replay must regenerate a target the model does not already match") transfers, and
+    that weaker form is what is registered. (2) It does not establish that re-presentation is the DOMINANT
+    cause rather than a contributing one. (3) It does not show a k-step target would help; that is the
+    falsifier. (4) A NOT-REGISTERED SIBLING is recorded rather than silently dropped: the biology's selection
+    mechanism (Wilhelm 2011 -- sleep produced NO benefit over wake for uninformed, unselected material; Born &
+    Wilhelm 2012 -- consolidation "does not enhance every memory") predicts that a held-out battery drawn from
+    a different env instance than the replay buffer is diluted toward zero. It was NOT registered because it
+    predicts a NULL and leg B measured a consistent NEGATIVE, so on its own it under-determines the
+    observation. It is carried as SLEEPRC-Q-002 in the intake.
+  what_would_answer: |-
+    NON-DEGENERACY PRECONDITION: the novel-target arm must be shown to actually DIFFER from the 1-step
+    observed target on the replayed content -- assert a non-trivial loss value on the regenerated target at
+    the start of the cycle from measured output, not from the fact that a different code path ran. A k-step
+    target that the head already satisfies is the same re-presentation in a new costume. The consolidation
+    displacement must be held fixed across arms, or this is confounded with MECH-572.
+    CONFIRMING: at FIXED consolidation displacement and fixed base convergence, replacing the 1-step observed
+    target with a regenerated target the head does not already match (k-step consistency, or harder in-batch
+    negatives) moves the across-sleep frozen-battery delta toward positive on at least 2/3 seeds, while the
+    matched re-presentation arm stays negative.
+    FALSIFYING: target novelty makes no difference to the across-sleep delta at fixed displacement, on at
+    least 2/3 seeds, while varying the displacement does. That would attribute the whole effect to MECH-572
+    and this claim should be demoted.
+    PRECONDITION NOT MET (P-FAIL): if no REE-available operator regenerates a target that measurably differs
+    from the observed one on converged replay content, the claim converts to epistemic_category
+    substrate_conditional, status stays candidate, and the missing improvement operator is named as the
+    substrate dependency. That is a legitimate outcome and NOT a falsification.
+    SUBSTRATE / INSTRUMENT: world_forward_contrastive_loss_multistep already exists
+    (ree-v3 ree_core/predictors/e2_fast.py), so the k-step arm needs a call-site change rather than new
+    substrate. REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued; V3-EXQ-1071 stays reserved and
+    unused.
+  notes: |-
+    Registered by the CDQ-011 Mine+Register pass, session pensive-feistel-471e3c,
+    chip-20260922-cdq011-sleep-readout-mechanism-intake. Mined from
+    REE_convergence/sources/muzero/reanalyse_improved_target.md (MUZERO-OBJ-004), which EXTENDS the CDQ-010
+    lens consumer_trained_encoder.md along the offline axis: MUZERO-OBJ-003 already recorded that the policy
+    target must be an IMPROVED policy rather than the consumer's own output, and reanalyse is that same
+    requirement applied to stored experience.
+    RELATIONSHIP TO MECH-572, stated so a later reader does not treat them as duplicates: same observation,
+    different operator. MECH-572 locates the failure in the OPTIMISER (displacement that does not scale with
+    convergence); MECH-574 locates it in the REPLAY CONTENT (a target carrying no error). They have different
+    falsifiers, they are separable on a single two-by-two design, and a single claim spanning both would have
+    no single falsifier. This is the same discipline CDQ-010 applied when it declined to merge MECH-459 and
+    MECH-566.
+    ARCHITECTURE STUB: docs/architecture/across_sleep_readout_mechanisms.md.
 - id: GOV-UNWRITTEN-1
   title: A boundary audit for unwritten prerequisites must earn a standing workflow through prospectively measured new-node precision; the first leverage-ranked pilot failed its shipping threshold.
   claim_type: governance_rule
