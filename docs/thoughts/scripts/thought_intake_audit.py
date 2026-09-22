@@ -238,7 +238,7 @@ def _audit_stage1(
         status = _extract_status(lines)
         if status != "processed":
             continue
-        links = _extract_processed_links(lines)
+        links, _link_form = _extract_processed_links(lines)
         broken: list[str] = []
         for link in links:
             for cid in claim_id_re.findall(link):

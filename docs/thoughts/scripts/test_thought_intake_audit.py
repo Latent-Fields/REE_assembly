@@ -163,6 +163,77 @@ class ClassifyStage2Tests(unittest.TestCase):
         self.assertEqual(missing, [])
 
 
+class AuditStage1Tests(unittest.TestCase):
+    """Regression tests for `_audit_stage1` (chip
+    chip-20260922-thought-intake-audit-crash).
+
+    Confirmed live 2026-09-22: `_extract_processed_links()` (thought_sweep.py)
+    returns a 2-tuple `(links: list[str], link_form: str)`, but
+    `_audit_stage1` assigned the whole tuple to `links` instead of unpacking
+    it (`links = _extract_processed_links(lines)` instead of
+    `links, _link_form = _extract_processed_links(lines)`). Iterating that
+    tuple in `for link in links:` bound `link` to the tuple's first element
+    (the list itself) on the first pass, and `claim_id_re.findall(link)`
+    raised `TypeError: expected string or bytes-like object, got 'list'` --
+    on EVERY `Status: processed` file, since even a zero-links result is
+    still a 2-tuple. No prior test called `_audit_stage1` with any thoughts
+    tree content (MainEndToEndTests' `thoughts_root` is empty), so the crash
+    was invisible to the suite despite it firing on every real run.
+    """
+
+    def _run(self, tmp: Path, thoughts_files: dict[str, str], claim_ids: set[str]):
+        thoughts_root = tmp / "thoughts"
+        thoughts_root.mkdir()
+        for name, text in thoughts_files.items():
+            (thoughts_root / name).write_text(text, encoding="utf-8")
+        pat = M._build_claim_id_re(claim_ids)
+        return M._audit_stage1(thoughts_root, claim_ids, pat)
+
+    def test_does_not_raise_on_a_processed_file_with_links(self):
+        """The exact crash shape: a `Status: processed` file with a legacy
+        `Processed in:` link block must not raise TypeError."""
+        with tempfile.TemporaryDirectory() as tmp:
+            findings = self._run(
+                Path(tmp),
+                {
+                    "2026-09-01_example.md": (
+                        "Status: processed\n\nProcessed in:\n- MECH-100\n"
+                    )
+                },
+                {"MECH-100"},
+            )
+            self.assertEqual(findings, [])
+
+    def test_broken_link_is_still_flagged_after_the_fix(self):
+        """Negative control: the fix must not silently swallow a genuinely
+        broken (retracted/renamed) claim reference."""
+        with tempfile.TemporaryDirectory() as tmp:
+            findings = self._run(
+                Path(tmp),
+                {
+                    "2026-09-01_example.md": (
+                        "Status: processed\n\nProcessed in:\n- MECH-999\n"
+                    )
+                },
+                {"MECH-100"},  # MECH-999 deliberately absent
+            )
+            self.assertEqual(len(findings), 1)
+            self.assertEqual(findings[0].file, "2026-09-01_example.md")
+            self.assertEqual(findings[0].broken_ids, ["MECH-999"])
+
+    def test_unprocessed_and_empty_link_files_do_not_raise(self):
+        """A file with no `Processed in:` block at all (empty-links 2-tuple)
+        must not raise either -- this is the shape that crashed on the
+        FIRST iteration regardless of whether any links were present."""
+        with tempfile.TemporaryDirectory() as tmp:
+            findings = self._run(
+                Path(tmp),
+                {"2026-09-01_no_links.md": "Status: processed\n\nNo link block here.\n"},
+                {"MECH-100"},
+            )
+            self.assertEqual(findings, [])
+
+
 class IncidentalIdMaskingTests(unittest.TestCase):
     """Regression tests for the per-candidate-item split (chip
     chip-20260809-intake-audit-incidental-id-masking).
