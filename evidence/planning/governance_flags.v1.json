@@ -5677,6 +5677,40 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0401",
+      "claim_ids": [
+        "MECH-261",
+        "SD-056",
+        "SD-063",
+        "INV-022",
+        "MECH-341",
+        "SD-014",
+        "MECH-480",
+        "ARC-006",
+        "MECH-154",
+        "ARC-001",
+        "Q-005",
+        "MECH-029",
+        "MECH-030",
+        "SD-027",
+        "SD-033d",
+        "MECH-384",
+        "INV-109",
+        "INV-104",
+        "ARC-072",
+        "INV-086",
+        "ARC-003",
+        "MECH-426"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Falsifier-runnability audit (REE_assembly 02caebd047, evidence/planning/falsifier_completion_and_runnability_audit_20260921.md): experiment_proposals.v1.json carries stale or false gating/status records that the audit could not edit (generated file) -- EXP-0148/0149 (MECH-261) read executed with no run; EXP-0440/0585 (SD-056) say both stability levers true in zero runs though e2_rollout_output_norm_clamp_enabled is armed in v3_exq_604b; EXP-1400 (SD-063/INV-022) would measure the EMA arm twice because conditional_predictive_variance is never passed to e3.select(); EXP-1387 (MECH-341) proposes the retired label V3-EXQ-660c; EXP-0227 (SD-014) has two of three blocks discharged and a wrong directory in release_condition; EXP-0413/1375 (MECH-480) read executed with no successor; EXP-0580 (ARC-006) executed with null executed_by and no tagged run; EXP-0361 (MECH-154) executed with zero evidence rows; EXP-0415 says ARC-001 has no what_would_answer (it is R0 today); EXP-1315 (Q-005) requires a sleep phase that exists; EXP-1273 (MECH-029) and EXP-1300 (MECH-030) cite substrate gaps closed by V3-EXQ-876 and the landed sleep cluster; EXP-0417 (SD-027) cites implementation_phase v4 for a now-v3 claim; EXP-1150/LIT-1151 (SD-033d), EXP-1011/LIT-1012 (MECH-384) and EXP-0193 (INV-109) sit proposed against claims whose dispositions forbid an experiment; EXP-0040/1397 (INV-104) are blocked on a P0a seam that landed 2026-09-09/11; EXP-0319 (ARC-072) says SD-055 closed gap 2 but the agent-side detach still severs it; the 1004 autopsy cites a non-existent EXP-0705 (INV-086; live one is EXP-0710); EXP-0395 (ARC-003) release_condition and the claim's blocked_on disagree; EXP-0384/1045 (MECH-426) stay blocked_substrate against a behavioural block. Governance to re-derive on the next proposal regen.",
+      "raised_by_session": "falsifier-runnability-audit-resume-20260922",
+      "raised_at": "2026-09-22T04:17:58Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
