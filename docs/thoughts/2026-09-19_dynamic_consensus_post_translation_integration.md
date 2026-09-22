@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-19_dynamic_consensus_post_translation_integration.md
+Claims registered: MECH-578, MECH-579
+
 # Dynamic consensus as the post-translation integration mechanism
 
 **Date:** 2026-09-19
-**Status:** Raw thought / hypothesis-generating intake
+**Status:** processed 2026-09-22 -- ingested to the intake above (MECH-578, MECH-579, both `candidate` / `substrate_conditional`). Most of this thought was already owned; see the intake novelty table.
 **Parent thought family:** Mutual legibility / communication subspaces / receiver-conditioned translation
 **Primary external evidence:** Javadzadeh M, Schimel M, Hofer SB, Ahmadian Y, Hennequin G. *Reciprocal connections dynamically build consensus between neocortical areas.* Nature Neuroscience. Published 18 September 2026. DOI: 10.1038/s41593-026-02437-3.
 

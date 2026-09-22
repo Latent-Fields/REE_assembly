@@ -103932,3 +103932,130 @@
     varying across areas) - a biological finding about those populations, NOT evidence that REE requires a
     posterior-parietal module nor that its planning/execution boundary follows the same organisation. DO
     NOT build in V3. DO NOT queue an experiment - routing flagged for /governance per ARC-149's note.
+- id: MECH-578
+  title: >-
+    Agreement-dependent timescale separation as the signature of reciprocal reconciliation: when two REE
+    subsystems are reciprocally coupled through a learned selective correspondence, joint states in which the
+    two are MUTUALLY COMPATIBLE should decay more slowly than equally-strong incompatible joint states --
+    tau_agree > tau_disagree -- so that the coupled dynamics progressively bias the pair toward mutually
+    supportable states WITHOUT either system converging on the other's representation. Integration is thereby
+    dynamical compatibility, not representational equality, and the terminal pair (A*, B*) is mutually
+    supportable rather than identical. This proposes a FURTHER RUNG on INV-105's ladder -- RECIPROCALLY
+    RECONCILED, above bridgeable and causally used -- deliberately carrying NO ORDINAL, because four claims
+    (MECH-548, MECH-555, GOV-CONTRACT-3, INV-110) already each describe themselves as adding an eighth rung
+    and MECH-556 a ninth; that collision is flagged for governance rather than compounded. THREE
+    PRE-REGISTERED FALSIFIERS, each an ablation that must abolish the separation if the claim is true.
+    (1) COUPLING-DIRECTION ABLATION: measure tau_agree and tau_disagree under intact bidirectional coupling,
+    A->B only, B->A only, and both removed; if a unidirectional condition reproduces the separation, what is
+    being measured is persistence, not reciprocal reconciliation, and the claim is refuted. (2)
+    CORRESPONDENCE SCRAMBLE AT MATCHED COUPLING STRENGTH: preserve total coupling magnitude while permuting
+    WHICH dimensions are connected; if the separation survives a scramble, it is generic recurrence rather
+    than learned like-to-like correspondence, and the claim is refuted. (3) FALSE-CONSENSUS CHALLENGE:
+    inject a shared but INCORRECT latent signal into both systems; if agreement alone stabilises it and
+    independent environmental error cannot destabilise it, the mechanism manufactures coherence without
+    correctness and must not be built. Perturbation magnitude must be matched across the agree and disagree
+    conditions or the comparison is uninterpretable.
+  claim_type: mechanism_hypothesis
+  subject: representation.agreement_dependent_timescale_separation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-22'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-22'
+  source_thought: docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md
+  location: docs/architecture/dynamic_consensus_integration.md#mech-578
+  depends_on:
+  - ARC-139
+  - INV-105
+  - MECH-539
+  - MECH-548
+  - ARC-145
+  - MECH-561
+  - INV-108
+  - MECH-558
+  source:
+  - docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md
+  - evidence/planning/thought_intake_2026-09-19_dynamic_consensus_post_translation_integration.md
+  notes: >-
+    EXPLICITLY DISTINCT FROM MECH-548, and the distinction is DIRECTIONALITY. MECH-548 already owns "an
+    interface can be statically useful yet recurrently unstable" and supplies the off-manifold-compounding and
+    semantic-double-counting mechanisms plus the cumulative-versus-clean-base diagnostic -- but it is ONE
+    BRIDGE APPLIED REPEATEDLY, and its predicted signatures are drift and gain escalation. MECH-578 is TWO
+    SYSTEMS COUPLED RECIPROCALLY, and its predicted signature is a timescale SEPARATION between agreeing and
+    disagreeing joint states. A system could satisfy MECH-548 (recurrently stable) and still show no
+    agreement-dependent separation, which is MECH-578 failing; and the reverse. EXPLICITLY DISTINCT FROM
+    MECH-539, which asks whether a MAPPING preserves transition geometry (a property of the bridge); MECH-578
+    asks what states become stable once the pair is closed into a loop (a property of the coupled system).
+    EXPLICITLY DISTINCT FROM ARC-139, which already owns integration-without-representational-sameness --
+    ARC-139 says sameness is not required; MECH-578 says what replaces it dynamically. GUARDED BY INV-108,
+    NOT DUPLICATING IT: INV-108 already forbids training an agreement objective into the evaluators and
+    requires convergence to be DETECTED over preserved diversity. MECH-578 must therefore be read as a
+    DIAGNOSTIC PREDICTION about dynamics that arise, never as a licence to optimise tau_agree - a system
+    trained to maximise the separation would violate INV-108 outright, and falsifier (3) is the operational
+    guard. The thought's dominance-masquerading-as-consensus and preserve-legitimate-disagreement failure
+    modes are owned by INV-108 and MECH-558 and were deliberately NOT re-registered. LITERATURE NOT VERIFIED
+    AS REE EVIDENCE - Javadzadeh et al. 2026 (Nat Neurosci, V1/LM mouse visual cortex) is an external prompt
+    about two cortical areas in one simple task; the thought itself states the generalisation is not
+    established. DO NOT build in V3. DO NOT queue an experiment - routing flagged for /governance.
+- id: MECH-579
+  title: >-
+    Developmental pruning of an early dense cross-system interface carves a CONSENSUS TOPOLOGY, not merely a
+    translation dictionary: what a maturing REE discovers and retains is not only which dimensions across two
+    subsystems CORRESPOND, but which couplings produce stable useful agreement, which disagreements are
+    resolvable, which dimensions should remain INDEPENDENT, how strongly each direction should influence the
+    other, and when coupling should be opened or gated. Development therefore runs from DENSE EXPLORATORY
+    COUPLING to LEARNED SELECTIVE RECIPROCAL COUPLING, rather than from dense translation to sparse
+    translation. PRIMARY PREDICTION, which is what separates this from ordinary subtractive sparsification:
+    MECH-578's agreement-dependent timescale separation should EMERGE OVER LEARNING and should become
+    SELECTIVE -- early systems showing broad, unstable, largely undifferentiated coupling, and mature systems
+    showing stronger persistence specifically for the agreement modes that are BEHAVIOURALLY USEFUL, not for
+    agreement in general. PRIMARY FALSIFIER: if the separation is present at initialisation, or if it grows
+    uniformly across all agreement modes irrespective of which ones cash out in adaptive behaviour, then what
+    is being observed is a property of the coupling architecture rather than a learned topology, and this
+    claim is refuted while MECH-578 may still stand. SECOND FALSIFIER: if a mature selective topology is
+    reachable WITHOUT the dense early phase -- trained directly at the mature connectivity at matched final
+    capacity -- the developmental ordering claimed here is unnecessary (this is the MECH-549 test applied to
+    the interface).
+  claim_type: mechanism_hypothesis
+  subject: development.consensus_topology_carved_by_pruning
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-09-22'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-09-22'
+  source_thought: docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md
+  location: docs/architecture/dynamic_consensus_integration.md#mech-579
+  depends_on:
+  - MECH-578
+  - MECH-362
+  - MECH-549
+  - MECH-550
+  - ARC-139
+  source:
+  - docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md
+  - evidence/planning/thought_intake_2026-09-19_dynamic_consensus_post_translation_integration.md
+  notes: >-
+    EXPLICITLY DISTINCT FROM MECH-362 (subtractive developmental sparsification), which asserts that mature
+    sparse structured connectivity emerges by pruning and down-weighting rather than by additive growth -
+    MECH-362 is about WITHIN-system connectivity and says nothing about what the pruned object MEANS across
+    an interface. MECH-579's content is that the surviving structure is a map of WHERE AGREEMENT IS WORTH
+    HAVING, which is a different object from a sparse weight matrix and carries the different prediction
+    above. EXPLICITLY DISTINCT FROM MECH-550 (functional persistence, not weight magnitude, is the retention
+    criterion), which supplies the CRITERION this claim assumes; MECH-579 says what is being retained in the
+    cross-system case. MECH-549 (developmental-history irreducibility at matched final capacity) supplies
+    this claim's SECOND FALSIFIER directly and is the reason that falsifier is stated in MECH-549's own terms
+    rather than reinvented. DEPENDS ON MECH-578 in the strong sense: if there is no agreement-dependent
+    timescale separation at all, there is no topology for development to carve and this claim is vacuous
+    rather than false. LITERATURE NOT VERIFIED AS REE EVIDENCE - the developmental reading is the source
+    thought's own extension of Javadzadeh et al. 2026 and is NOT something that paper tested. DO NOT build in
+    V3. DO NOT queue an experiment - routing flagged for /governance.
