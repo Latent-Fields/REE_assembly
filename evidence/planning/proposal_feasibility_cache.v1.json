@@ -27,6 +27,23 @@
     "verdict": "RED"
    }
   ],
+  "MECH-019": [
+   {
+    "chip_ref": "chip-proposal-exp-0800-paced",
+    "producer_paths": [
+     "ree_core/utils/config.py",
+     "ree_core/agent.py",
+     "ree_core/hippocampal/module.py",
+     "ree_core/cingulate/salience_coordinator.py"
+    ],
+    "reason": "operating_mode has no ENABLED consumer at any production config: salience_apply_to_dacc_bias (config.py:4075) and mode_conditioning_enabled (config.py:2785) both default False; their consumer branches (agent.py:7898; hippocampal/module.py:1829/2001/2027/2171) never run. Open chip-20260917-sd032a-operating-mode-no-consumer is the tracked unblock.",
+    "recorded_by": "preflight-20260922",
+    "recorded_utc": "2026-09-22T11:36:58Z",
+    "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-204": [
    {
     "chip_ref": "chip-20260918-exq541d-mech204-f1-guard-validation",
