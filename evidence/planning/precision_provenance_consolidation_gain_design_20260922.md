@@ -325,3 +325,13 @@ marked non-degenerate on seeds where the converged base fails MECH-573's skill >
 +0.227, seeds 42/456 negative). The citable yield is therefore: A/B neutrality, the factor-by-factor
 mechanism readout (k/m/r per condition), the attainability curve, P3, and a three-seed instrument
 record that condition 3 is unposeable on this head. Ceiling remains Result 4 (mechanistic/local).
+
+**Freeze addendum (same day, after the D-residual redesign was probed):** ARM D-residual's realised
+per-condition gain vs ARM C (seed 42): converged 0.033 vs 0.038 (0.86x); underfit 1.42 vs 1.78
+(0.80x); confidently wrong 0.077 vs 0.072 (1.07x); noisy 0.045 vs 0.027 (**1.69x**). So the
+residual-only rival runs HOTTER than C exactly and only where the evidence is unreliable, which is
+what makes P5 a test of evidence precision rather than of budget. P5's dry-run delta moved from
+-8.6 (old budget-matched Dr, handed ~18x its natural cond-4 budget) to -2.8; the smaller number is the
+honest size of the effect and `dr_budget_ratio_COND_NOISY_CONTRADICTION_s<seed>` must be quoted with
+any P5 citation. Every ARM B/C probe figure is bit-identical before and after the redesign.
+Queued as V3-EXQ-1073 (ree-v3 commit named in the queue entry); design FROZEN at this point.
