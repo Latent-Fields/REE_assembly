@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_103",
+  "entry_id": "2026-09-23_arc_103_absent_anticipatory_scr_moretto2010",
+  "timestamp_utc": "2026-09-23T07:02:48Z",
+  "claim_ids_tested": [
+    "ARC-103"
+  ],
+  "source": {
+    "title": "A psychophysiological investigation of moral judgment after ventromedial prefrontal damage",
+    "authors": [
+      "Giovanna Moretto",
+      "Elisabetta Làdavas",
+      "Flavia Mattioli",
+      "Giuseppe di Pellegrino"
+    ],
+    "year": 2010,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn.2009.21367",
+    "pmid": "19925181",
+    "pmc": null,
+    "volume": "22",
+    "issue": "8",
+    "pages": "1888-1899"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Independent lesion cohort that both replicates the Koenigs behavioural direction and adds the missing mechanistic link: the anticipatory skin-conductance response, an EMBODIED signal, is absent in patients and correlates negatively with utilitarian endorsement in controls. The physiological measure is what lifts this above Koenigs alone for a claim whose subject is specifically EMBODIED harm sensing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The harm-avoidance signal is generated BEFORE the judgement is committed (anticipatory SCR); an architecture that consults a harm channel only after an inference has been produced would not reproduce this timing.",
+    "In patients the harmful endorsement is made with no bodily anticipatory marker at all -- the absence is silent, not experienced as a suppressed objection."
+  ],
+  "tags": [
+    "arc-103",
+    "inv-007",
+    "harm_sensing",
+    "vmpfc",
+    "skin_conductance",
+    "somatic_marker"
+  ],
+  "mapping": {
+    "source_claim_statement": "vmPFC patients approved more personal moral violations than controls and failed to generate anticipatory skin-conductance responses before endorsing them; in healthy participants the magnitude of the anticipatory SCR correlated negatively with the frequency of utilitarian judgement.",
+    "ree_translation": "The harm signal that restrains a harmful-but-arguable action is (a) somatic/embodied rather than inferential and (b) emitted ANTICIPATORILY, before the judgement is committed. For ARC-103 this specifies the architecture: the harm authority is not a post-hoc filter applied to an inference engine's output but a pre-commitment signal that must be present in the decision path -- and its absence produces harmful endorsement silently, with no error raised.",
+    "mapping_caveat": "SCR is a coarse, non-specific autonomic index of arousal, not a harm-specific readout; a negative correlation with utilitarian judgement in controls is correlational within that group even though the patient/control difference is lesion-driven. More importantly, REE's 'embodied harm sensing' is an engineered channel with no autonomic nervous system behind it, so the mapping borrows the FUNCTIONAL ROLE (anticipatory, non-inferential, veto-bearing) and not the physiology. The study also says nothing about symbolic or analogical inference specifically.",
+    "source_context": "Human vmPFC lesion patients vs brain-damaged and healthy controls; moral-dilemma judgement with concurrent skin-conductance recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity set above the Koenigs entry because the anticipatory-SCR finding speaks directly to the EMBODIED and PRE-COMMITMENT properties ARC-103 asserts, rather than to affect in general. Transfer risk unchanged: still human autonomic physiology standing in for an engineered signal."
+  }
+}

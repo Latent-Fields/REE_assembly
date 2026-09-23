@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-09-23_arc_105_discrete_frontal_zones_badre2018",
+  "timestamp_utc": "2026-09-23T07:04:32Z",
+  "claim_ids_tested": [
+    "ARC-105"
+  ],
+  "source": {
+    "title": "Frontal Cortex and the Hierarchical Control of Behavior",
+    "authors": [
+      "David Badre",
+      "Derek Evan Nee"
+    ],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.11.005",
+    "pmid": "29229206",
+    "pmc": "PMC5841250",
+    "volume": "22",
+    "issue": "2",
+    "pages": "170-188"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the exact source ARC-105's DISCRETE wording was derived from, and the full text confirms the specific commitment: the authors state the evidence supports three major functional subdivisions that are 'functionally discontinuous, violating a linear, progressive rostro-caudal gradient'. High mapping fidelity because the REE claim was written to track this paper's revision rather than the 2009 gradient framing. Discounted from the top band because it is a review synthesising others' data, not a primary test, and because its mid-DLPFC-apex revision cuts against the simple rostral-holds-abstract-goal reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model that encodes goal abstraction as a single continuous granularity scalar cannot reproduce the functional discontinuities the authors report between zones.",
+    "The apex of the control hierarchy is mid-DLPFC rather than the most rostral region, so 'more rostral = more abstract = more superordinate control' is not a safe simplification."
+  ],
+  "tags": [
+    "arc-105",
+    "arc-051",
+    "goal_hierarchy",
+    "granularity",
+    "rostrocaudal",
+    "lateral_pfc",
+    "discrete_zones"
+  ],
+  "mapping": {
+    "source_claim_statement": "Evidence across neuroimaging, lesion and intracranial work consistently supports three major functional subdivisions of frontal cortex -- sensory-motor control (caudal), contextual control (mid-lateral), and schematic control (rostral) -- which are functionally discontinuous rather than lying on a linear rostro-caudal abstraction gradient; separate frontal networks interact via local and global hierarchical structure, with intracranial theta-gamma coupling showing PFC-to-premotor directionality stronger than the reverse, and an anatomical connectional-asymmetry meta-analysis placing anterior mid-DLPFC rather than rostrolateral PFC at the apex.",
+    "ree_translation": "Directly licenses ARC-105's central design choice: goal representation should be organised as a SMALL NUMBER OF DISCRETE granularity levels (~3) rather than a single continuous granularity scalar, and control between levels is asymmetric (abstract-to-concrete stronger than the reverse). The three named zones give REE a concrete target cardinality and semantics -- schematic (episodic/temporally structured goal), contextual (present-moment task context), sensorimotor (effector-level action) -- for a multi-scale z_goal substrate that V3 does not yet have.",
+    "mapping_caveat": "The paper's zones are levels of CONTROL ABSTRACTION over task representations generally, not specifically a goal-representation hierarchy; ARC-105 reads a goal-granularity axis off an abstraction-of-control axis, which is an interpretive narrowing. The three-zone count is the authors' synthesis of a contested literature, not a measured constant, and they explicitly revise their own earlier gradient account -- so the number could move again. The mid-DLPFC apex finding actively complicates ARC-105's 'rostral PFC holds abstract/superordinate goals' anchor wording, which was inherited from the 2009 framing.",
+    "source_context": "Human frontal cortex; review synthesising fMRI, lesion, intracranial EEG and anatomical connectivity evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.3,
+    "notes": "Mapping fidelity unusually high for a review because ARC-105 was authored FROM this paper and its 'discrete, ~3 zones' wording matches the source almost verbatim. Transfer risk moderate: human PFC organisation informing an artificial goal substrate, with no claim that REE must implement the same anatomy."
+  }
+}

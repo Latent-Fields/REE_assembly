@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_103",
+  "entry_id": "2026-09-23_arc_103_vmpfc_utilitarian_judgement_koenigs2007",
+  "timestamp_utc": "2026-09-23T07:02:48Z",
+  "claim_ids_tested": [
+    "ARC-103"
+  ],
+  "source": {
+    "title": "Damage to the prefrontal cortex increases utilitarian moral judgements",
+    "authors": [
+      "Michael Koenigs",
+      "Liane Young",
+      "Ralph Adolphs",
+      "Daniel Tranel",
+      "Fiery Cushman",
+      "Marc Hauser",
+      "Antonio Damasio"
+    ],
+    "year": 2007,
+    "venue": "Nature",
+    "doi": "10.1038/nature05631",
+    "pmid": "17377536",
+    "pmc": null,
+    "volume": "446",
+    "issue": "7138",
+    "pages": "908-911"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Landmark Nature lesion study with a rare, anatomically focal bilateral VMPFC group and a double dissociation (abnormal only on high-conflict personal dilemmas, normal elsewhere), which is what makes it causal rather than correlational. Held below 0.85 by n=6 and by the fact that REE's 'harm sensing' is an architectural posit rather than a measured homologue of VMPFC-mediated affect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the affective harm signal is removed but deliberative reasoning capacity is intact, the reasoning system endorses actively harmful acts at an elevated rate -- i.e. reasoning does not self-correct toward harm avoidance in the absence of an independent harm authority."
+  ],
+  "tags": [
+    "arc-103",
+    "inv-007",
+    "harm_sensing",
+    "vmpfc",
+    "moral_judgement",
+    "lesion"
+  ],
+  "mapping": {
+    "source_claim_statement": "Patients with focal bilateral ventromedial prefrontal damage produce an abnormally utilitarian pattern of judgement specifically on moral dilemmas that pit aggregate welfare against an emotionally aversive personal harm, while judging other moral dilemmas normally.",
+    "ree_translation": "An intact inferential/deliberative pathway is not sufficient to prevent endorsement of harm: when the embodied harm-sensing channel is lesioned, cost-benefit inference proceeds unopposed and licenses the harmful act. This is direct biological support for ARC-103's architectural commitment that symbolic/compositional inference must remain subordinate to a structurally separate harm authority rather than being trusted to derive harm avoidance itself.",
+    "mapping_caveat": "The dissociation is between AFFECT and REASONING in humans; it does not establish that a SYMBOLIC or compositional inference layer specifically (ARC-103's subject) is the dangerous party, since VMPFC patients' impairment is not selective to symbolic recombination. It also shows only that removing harm sensing changes judgement -- it does NOT test the converse architectural question of whether a harm authority can successfully VETO an inference engine, which is what ARC-103 actually commits to. Supports the motivation for the commitment, not its sufficiency.",
+    "source_context": "Human focal bilateral VMPFC lesion patients vs brain-damaged and healthy comparison groups; verbal moral-dilemma judgement task."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Nature, focal lesion group, double dissociation). Mapping fidelity moderate: the affect/reason split maps well onto ARC-103's harm-vs-inference split, but 'symbolic inference' is narrower than the deliberative reasoning the patients retained. Transfer risk moderate -- human neuro to artificial architecture."
+  }
+}

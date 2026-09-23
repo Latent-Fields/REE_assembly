@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_103",
+  "entry_id": "2026-09-23_arc_103_persuasion_jailbreak_taxonomy_zeng2024",
+  "timestamp_utc": "2026-09-23T07:02:48Z",
+  "claim_ids_tested": [
+    "ARC-103"
+  ],
+  "source": {
+    "title": "How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs",
+    "authors": [
+      "Yi Zeng",
+      "Hongpeng Lin",
+      "Jingwen Zhang",
+      "Diyi Yang",
+      "Ruoxi Jia",
+      "Weiyan Shi"
+    ],
+    "year": 2024,
+    "venue": "arXiv preprint (subsequently ACL 2024)",
+    "doi": null,
+    "arxiv_id": "2401.06373",
+    "pmid": null,
+    "url": "https://arxiv.org/abs/2401.06373"
+  },
+  "evidence_class": "machine_learning_experiment",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly operationalises ARC-103's stated threat model -- persuasive, structured ARGUMENTATION as the jailbreak vector -- with a large reported effect (>92% attack success on Llama-2-7b-Chat, GPT-3.5 and GPT-4 over 10 trials). Discounted for preprint-at-time status, for attack-success-rate metrics being judge-dependent and historically inflated, and because it demonstrates the vulnerability rather than testing ARC-103's proposed remedy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Safety training that resists algorithmic/gibberish adversarial suffixes can still be defeated by fluent, human-interpretable persuasive argument -- so robustness measured against one attack class does not generalise to the argumentative class.",
+    "The successful attacks are interpretable and reasonable-sounding, meaning a harmfulness check that scores the ARGUMENT's coherence rather than the ACT's harm will pass them."
+  ],
+  "tags": [
+    "arc-103",
+    "inv-007",
+    "mech-011",
+    "rationalisation",
+    "jailbreak",
+    "persuasion",
+    "llm_safety"
+  ],
+  "mapping": {
+    "source_claim_statement": "A taxonomy of persuasion techniques drawn from social science can be used to generate interpretable persuasive adversarial prompts that elicit prohibited behaviour from safety-trained LLMs at over 92% attack success rate on Llama-2-7b-Chat, GPT-3.5 and GPT-4, outperforming algorithm-focused attacks, and existing defences do not close the gap.",
+    "ree_translation": "This is ARC-103's threat model demonstrated in an artificial system: the recombinational/argumentative capacity IS the attack surface, and a safety mechanism that lives inside or downstream of the same reasoning process gets argued out of the way. It supports ARC-103's inference that the harm authority must be structurally separate from and superordinate to the inference engine, rather than being another consideration the engine weighs.",
+    "mapping_caveat": "An LLM's RLHF refusal behaviour is not an embodied harm-sensing channel, so this shows the failure of a mechanism ARC-103 already regards as inadequate -- it cannot show that ARC-103's proposed embodied authority would resist the same attack. Attack-success-rate figures are also judge-model dependent and not directly comparable across papers; the >92% headline should be read as 'large and easily reproduced', not as a calibrated constant. Finally, the paper studies input-side persuasion, which is nearer ARC-104's language-INPUT guard than ARC-103's inference-OUTPUT guard; it is tagged to ARC-103 because the vector is argumentative recombination rather than token-level prompt manipulation.",
+    "source_context": "Black-box and open-weight LLMs (Llama-2-7b-Chat, GPT-3.5, GPT-4); prompt-based adversarial evaluation, 10 trials per setting."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "Source quality reflects a well-cited, methodologically clear paper whose central metric (ASR) is nevertheless soft. Transfer risk is LOW relative to the neuro entries -- this is already an artificial reasoning system, so no cross-species step is required -- but the safety mechanism under attack is not the one ARC-103 proposes."
+  }
+}

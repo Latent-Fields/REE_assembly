@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-09-23_arc_105_mid_lpfc_apex_nee2016",
+  "timestamp_utc": "2026-09-23T07:04:32Z",
+  "claim_ids_tested": [
+    "ARC-105"
+  ],
+  "source": {
+    "title": "The hierarchical organization of the lateral prefrontal cortex",
+    "authors": [
+      "Derek Evan Nee",
+      "Mark D'Esposito"
+    ],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.12112",
+    "pmid": "26999822",
+    "pmc": "PMC4811776",
+    "volume": "5",
+    "pages": "e12112"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Genuinely two-directional for ARC-105 and filed as mixed for that reason. It SUPPORTS the claim's core architectural commitment (asymmetric, hierarchical inter-level influence rather than a flat or continuous organisation) while WEAKENING the claim's inherited biological anchor (that the most rostral zone is the superordinate one), by placing mid-LPFC at the apex. Confidence reflects a well-executed DCM study whose conclusions nonetheless rest on model-comparison assumptions that are known to be sensitive to model space.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hierarchy apex is mid-LPFC, not the most rostral region: an implementation that orders goal levels by assuming the most abstract level is also the top controller inherits a reading this study contradicts.",
+    "Inter-level influence is asymmetric but not strictly unidirectional top-down -- connectivity modulations ran TOWARD mid-LPFC under cognitive demand, implying the superordinate level integrates upward information rather than only dictating downward."
+  ],
+  "tags": [
+    "arc-105",
+    "arc-051",
+    "goal_hierarchy",
+    "lateral_pfc",
+    "dynamic_causal_modelling",
+    "apex",
+    "asymmetry"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human fMRI with dynamic causal modelling across manipulated levels of abstraction in lateral PFC revealed asymmetrical LPFC interactions indicative of hierarchical processing, but contrary to dominant assumptions the relative strength of efferent versus afferent connections positioned mid-LPFC -- not rostrolateral PFC -- as the apex of the hierarchy; cognitive demand produced connectivity modulations toward mid-LPFC consistent with integrating abstract and concrete information for control, and individual differences in these dynamics correlated with cognitive ability.",
+    "ree_translation": "For ARC-105 this splits. The asymmetric-hierarchical-interaction finding SUPPORTS a multi-level goal substrate with directed cross-level influence, which is what the claim needs. The apex finding WEAKENS the claim's stated biological anchor that rostral PFC is where the superordinate goal lives: the integrating apex sits in the middle of the abstraction range, suggesting a REE goal hierarchy should place the controlling level where abstract and concrete information MEET rather than at the abstract extreme.",
+    "mapping_caveat": "DCM conclusions are conditional on the model space compared and on the regions entered; an apex result is a statement about relative efferent/afferent strength among the selected nodes, not an anatomical fact. The study manipulates abstraction of TASK RULES, not goal granularity as such, so the same abstraction-versus-goal narrowing that applies to Badre & Nee 2018 applies here. It also does not test goal MAINTENANCE across subgoal switching, which is ARC-105's actual falsifier.",
+    "source_context": "Healthy human adults; fMRI with dynamic causal modelling over rostral/mid/caudal LPFC across manipulated abstraction levels."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.3,
+    "notes": "Mapping fidelity is the lowest of the three ARC-105 entries: the study's dependent variable is effective connectivity among abstraction-graded rule representations, two steps from ARC-105's goal-maintenance-under-switching falsifier. Filed anyway because it is the primary evidence behind the apex revision that ARC-105's anchor wording has not absorbed."
+  }
+}

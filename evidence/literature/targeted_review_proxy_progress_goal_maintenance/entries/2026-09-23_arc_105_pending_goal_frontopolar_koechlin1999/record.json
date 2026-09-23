@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-09-23_arc_105_pending_goal_frontopolar_koechlin1999",
+  "timestamp_utc": "2026-09-23T07:04:32Z",
+  "claim_ids_tested": [
+    "ARC-105"
+  ],
+  "source": {
+    "title": "The role of the anterior prefrontal cortex in human cognition",
+    "authors": [
+      "Etienne Koechlin",
+      "Gianpaolo Basso",
+      "Pietro Pietrini",
+      "Seth Panzer",
+      "Jordan Grafman"
+    ],
+    "year": 1999,
+    "venue": "Nature",
+    "doi": "10.1038/20178",
+    "pmid": "10335843",
+    "pmc": null,
+    "volume": "399",
+    "issue": "6732",
+    "pages": "148-151"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical (pre-2015 but foundational) demonstration that holding a main goal in a pending state WHILE executing subgoals recruits a dissociable substrate -- the precise functional operation ARC-105's what_would_answer specifies. Confidence is capped by 1999-era fMRI methods, small-sample subtraction logic, and the two decades of contested reinterpretation of frontopolar function that followed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Neither working memory alone nor dual-task attention-switching alone elicited the frontopolar response, so abstract-goal maintenance is not reducible to holding more items or to switching faster -- an architecture that models it as either will not reproduce the dissociation.",
+    "The pending main goal must survive the subgoal episode; a representation overwritten by the currently executing subgoal is exactly the failure ARC-105 predicts for a single-level encoding."
+  ],
+  "tags": [
+    "arc-105",
+    "arc-051",
+    "goal_maintenance",
+    "branching",
+    "frontopolar",
+    "subgoal",
+    "superordinate_goal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Bilateral frontopolar prefrontal cortex is selectively activated when subjects must keep a main goal in mind while performing concurrent subgoals; this activation appeared neither for working-memory load alone nor for dual-task sequential attention allocation, leading the authors to conclude that frontopolar cortex selectively mediates holding goals in mind while exploring and processing secondary goals.",
+    "ree_translation": "This is the operational form of ARC-105's test condition: superordinate-goal maintenance ACROSS concrete-subgoal execution is a distinct function with a distinct substrate, separable from both memory capacity and task switching. It supports the claim's premise that the abstract goal must be encoded somewhere the executing subgoal does not overwrite -- i.e. at a distinct level -- rather than competing for the same single-scale representation.",
+    "mapping_caveat": "Selective ACTIVATION is not evidence that the two goals are encoded at distinct GRANULARITY levels; a dissociable region could equally hold a same-format goal in a protected buffer, which is a different architecture (separate store) from the one ARC-105 asserts (distinct granularity level). The study is also 1999 fMRI with subtraction-based inference, and frontopolar function has been repeatedly recontextualised since -- including by Badre & Nee 2018, filed alongside, which displaces the hierarchy apex away from rostrolateral PFC. Treat as strong evidence for the FUNCTION being dissociable, weak evidence for the specific REPRESENTATIONAL format.",
+    "source_context": "Healthy human adults; blocked fMRI with branching, working-memory and dual-task control conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Source quality reflects foundational status offset by 1999 methods and small samples. Mapping fidelity held at 0.7 by the store-versus-level ambiguity, which is the single biggest interpretive gap between this paper and ARC-105's actual commitment."
+  }
+}
