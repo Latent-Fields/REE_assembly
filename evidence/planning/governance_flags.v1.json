@@ -5017,9 +5017,9 @@
       "summary": "V3-EXQ-1039a is queued (ree-v3 80dae9b9bb, on origin/main) carrying supersedes: V3-EXQ-1039, so once 1039a lands a manifest, V3-EXQ-1039's manifest (v3_exq_1039_mech428_inv086_waypoint_field_consumer_drive_signal_20260915T025330Z_v3.json) needs evidence_direction set to 'superseded' and the evidence index rebuilt -- nothing reads the supersedes field looking for that owed follow-on, which is how the manual step was silently lost twice before (V3-EXQ-870, V3-EXQ-821a). LEAVE the existing governance non_contributory stamp on 1039's manifest in place; this flag concerns only the superseded direction. Context: the CONFIRMED failure_autopsy_V3-EXQ-1039_2026-09-16 (user Step 8 gate 2026-09-16T13:06:22Z, applied as REE_assembly db6d20ebee) established that 1039's PASS was a VACUOUS null -- shaped_rl bit-identical to sparse_rl on every behavioural channel across 3/3 seeds under a training return two-plus orders of magnitude larger, demo_warmstart CE at exactly ln(32), and the C0d readiness gate passing at 0.667 on a field that is not computed on that recipe -- so the H1 (drive-axis) leg of waypoint_field_consumer_reach is UNRESOLVED rather than answered, and 1039a is the same-question instrument repair it routed. Both claims stay READ-ACROSS/non_contributory under 1039a as they were under 1039; this flag proposes NO promotion, demotion or confidence change.",
       "raised_by_session": "metaworker-science-20260918-exq1039a-absorption-rerun",
       "raised_at": "2026-09-18T23:09:40Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:36:38Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. Applied REE_assembly 3ce0323273: 1039a has landed and has a confirmed autopsy (2026-09-20). V3-EXQ-1039 flat + pack are set to superseded, with the non_contributory reasoning kept in the note. No claim-level change (INV-086/MECH-428 stay READ-ACROSS/non_contributory)."
     },
     {
       "flag_id": "GFLAG-0354",
