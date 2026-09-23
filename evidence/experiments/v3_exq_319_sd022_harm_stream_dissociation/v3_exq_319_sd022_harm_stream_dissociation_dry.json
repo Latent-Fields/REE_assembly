@@ -7,11 +7,8 @@
     "SD-011"
   ],
   "experiment_purpose": "evidence",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {
-    "SD-022": "does_not_support",
-    "SD-011": "does_not_support"
-  },
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": null,
   "outcome": "FAIL",
   "timestamp_utc": "20260409T194041Z",
   "registered_thresholds": {
@@ -185,5 +182,7 @@
     "offset_steps": 60,
     "harm_obs_a_dim": 7,
     "limb_damage_enabled": true
-  }
+  },
+  "dry_run": true,
+  "evidence_direction_note": "[2026-09-23 governance, cycle governance-flags-20260923b, GFLAG-0252 / GOV-DRY-1, user decision] NEUTRALISED. This is a --dry-run smoke (dry-named file and run_id) that predates the top-level dry_run field, not evidence. It carried an ASSERTING evidence_direction ('does_not_support') that made it indistinguishable from adjudicated evidence. Direction and any per-claim directions removed; the run is quarantined as non-evidence, matching the 3 siblings already quarantined from the same list (v3_exq_323 / _dry_v3_exq_918a / v3_exq_259). A smoke's metrics are never a measurement, never a replicate, and never a population member."
 }
