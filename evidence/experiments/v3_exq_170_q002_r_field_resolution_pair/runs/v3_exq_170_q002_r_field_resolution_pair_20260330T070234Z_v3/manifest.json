@@ -23,7 +23,7 @@
     "Q-002"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -42,5 +42,6 @@
   "seeds": [
     42,
     123
-  ]
+  ],
+  "evidence_direction_note": "SUPERSEDED 2026-09-23 (governance-flags-20260923b, GFLAG-0245, user decision): DUPLICATE EMISSION of v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3. Every recorded metric is bit-identical between the two (only run_id and timestamp_utc differ, emitted 9.5h apart), so this is one experiment recorded twice, not an independent replicate. The earlier copy is kept as the scoring record. [prior evidence_direction: 'mixed']"
 }

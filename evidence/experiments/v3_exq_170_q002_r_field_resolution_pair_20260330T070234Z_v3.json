@@ -6,7 +6,7 @@
   ],
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "outcome": "FAIL",
-  "evidence_direction": "mixed",
+  "evidence_direction": "superseded",
   "evidence_class": "discriminative_pair",
   "criteria": {
     "C1_fine_harm_rate_not_worse_than_coarse": false,
@@ -82,5 +82,6 @@
     ]
   },
   "dry_run": false,
-  "timestamp_utc": "2026-03-30T07:02:34.769516+00:00"
+  "timestamp_utc": "2026-03-30T07:02:34.769516+00:00",
+  "evidence_direction_note": "SUPERSEDED 2026-09-23 (governance-flags-20260923b, GFLAG-0245, user decision): DUPLICATE EMISSION of v3_exq_170_q002_r_field_resolution_pair_20260329T213812Z_v3. Every recorded metric is bit-identical between the two (only run_id and timestamp_utc differ, emitted 9.5h apart), so this is one experiment recorded twice, not an independent replicate. The earlier copy is kept as the scoring record. [prior evidence_direction: 'mixed']"
 }
