@@ -382,11 +382,93 @@ def test_the_sweep_record_carries_its_base_so_the_commit_is_findable(tmp_path, m
 
 
 def test_nothing_to_fix_does_not_commit(tmp_path, monkeypatch):
+    """A FRESH no-op row (this run's own, minted with ts=now) must not
+    trigger a commit by itself -- the stale-flush added below only fires on
+    a row that has sat uncommitted past STALE_LEDGER_FLUSH_HOURS, and a
+    brand-new row is never that old. This is the no-noise half of the
+    contract; see test_stale_noop_rows_flush for the other half.
+    """
     repo = make_repo(tmp_path / "r", drifted=False)
     before = head(repo)
     assert sweep(repo, monkeypatch) == sw.EXIT_OK
     assert head(repo) == before
     assert sweep_records(repo)[-1]["committed"] is False
+
+
+# ---------------------------------------------------------------------------
+# stale no-op ledger rows self-flush (2026-09-23) -- see steward_sweep.py
+# module docstring "THE LEDGER NEVER SITS UNCOMMITTED INDEFINITELY"
+# ---------------------------------------------------------------------------
+
+def test_stale_noop_rows_flush(tmp_path, monkeypatch):
+    """THE CORE CONTRACT: a no-op row that has sat UNCOMMITTED longer than
+    STALE_LEDGER_FLUSH_HOURS must be force-committed (alone) on the next run,
+    even though that run's own outcome is also "nothing to fix". Before this
+    change nothing landed a purely-boring streak of runs at all -- the row
+    sat dirty on the shared checkout until an unrelated session's commit
+    happened to sweep it in.
+    """
+    repo = make_repo(tmp_path / "r", drifted=False)
+    stale_ts = "2020-01-01T00:00:00Z"
+    sw.append_ledger(repo, {"action": "autofix", "source": "steward_sweep",
+                            "ts": stale_ts, "repo": str(repo), "dry_run": False,
+                            "applied": 0, "committed": False,
+                            "note": "simulated stranded no-op row"})
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() != "", \
+        "fixture setup: the ledger must start dirty"
+
+    assert sweep(repo, monkeypatch) == sw.EXIT_OK
+
+    assert git(repo, "status", "--porcelain", sw.LEDGER_REL).strip() == "", \
+        "the stale row, plus this run's own fresh row, must now be committed"
+    landed_ts = {r.get("ts") for r in ledger_records(repo)}
+    assert stale_ts in landed_ts, "the stale row must have actually landed"
+
+
+def test_flush_noop_when_ledger_already_committed(tmp_path, monkeypatch):
+    """NEGATIVE CONTROL, "a clean ledger never commits": a row with an
+    ancient timestamp that is ALREADY landed in HEAD (governance.sh's own
+    regen, or a human's own commit, beat the sweep to it) must never be
+    re-committed. `_stale_flush_due` looks at UNCOMMITTED content only, so
+    this must no-op before `commit()` is even called -- proving the flush
+    can never fight another writer that already landed the ledger.
+    """
+    repo = make_repo(tmp_path / "r")
+    old_rec = {"action": "autofix", "source": "steward_sweep",
+               "ts": "2020-01-01T00:00:00Z", "repo": str(repo),
+               "dry_run": False, "applied": 0, "committed": False}
+    sw.append_ledger(repo, old_rec)
+    git(repo, "add", sw.LEDGER_REL)
+    git(repo, "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+        "commit", "-q", "-m", "simulate governance.sh/human landing the ledger")
+    before = head(repo)
+
+    calls = []
+    monkeypatch.setattr(sw, "commit",
+                        lambda *a, **k: calls.append(a) or (True, ""))
+    sw._flush_stale_ledger(repo, push=False)
+
+    assert calls == [], "already-committed content must never be re-committed"
+    assert head(repo) == before
+
+
+def test_uncommitted_ledger_records_is_the_disk_head_suffix(tmp_path):
+    """Unit-level pin for the diffing mechanism itself: HEAD's copy is a
+    prefix of disk's copy (append-only), so the uncommitted rows are exactly
+    the suffix past that prefix -- never content-diffed, never re-ordered.
+    """
+    repo = make_repo(tmp_path / "r")
+    assert sw.uncommitted_ledger_records(repo) == []
+    rec1 = {"ts": "2020-01-01T00:00:00Z", "n": 1}
+    sw.append_ledger(repo, rec1)
+    git(repo, "add", sw.LEDGER_REL)
+    git(repo, "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+        "commit", "-q", "-m", "land rec1")
+    assert sw.uncommitted_ledger_records(repo) == []
+
+    rec2 = {"ts": "2020-01-02T00:00:00Z", "n": 2}
+    sw.append_ledger(repo, rec2)
+    assert sw.uncommitted_ledger_records(repo) == [rec2]
 
 
 def test_dry_run_writes_nothing_at_all(tmp_path, monkeypatch):

@@ -681,6 +681,21 @@ governance, and the ledger is what calibrates it.
 `state/steward_ledger.jsonl` gets one line per run (counts, escalated ids,
 duration, per-detector totals). Its value is the time series.
 
+**A no-op ("nothing to fix") row does not commit by itself, but it does not
+sit uncommitted forever either (2026-09-23).** Nothing else lands it --
+`governance.sh` Step 3m below is read-only, so a run of pure no-op days used
+to leave the ledger dirty on the shared checkout until some unrelated
+session's own commit happened to sweep it in (observed: sometimes ~2 days
+later). `steward_sweep.py`'s `finish()` now checks, on every run, whether the
+OLDEST uncommitted ledger row is older than `STALE_LEDGER_FLUSH_HOURS` (24)
+and, only then, force-commits the ledger alone through the same
+`ree_commit.py` path a real fix uses. A single fresh no-op row never
+triggers this by itself -- the no-noise intent is unchanged -- and it can
+never fight `governance.sh` or a human landing the ledger first: it looks at
+UNCOMMITTED content only, and if there is genuinely nothing to flush it
+never calls `ree_commit.py` at all. Full reasoning in `steward_sweep.py`'s
+module docstring, "THE LEDGER NEVER SITS UNCOMMITTED INDEFINITELY".
+
 `state/steward_state.json` is absent until the first run, which is what makes that
 first run escalate everything.
 

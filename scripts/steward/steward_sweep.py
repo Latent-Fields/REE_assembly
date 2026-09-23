@@ -52,6 +52,36 @@ WHAT IT DOES, AND THE FOUR GATES IT PASSES THROUGH
      any concurrent writer landing in that gap silently wins. ree_commit reads
      each path once, builds a private index, and compare-and-swaps the ref.
 
+THE LEDGER NEVER SITS UNCOMMITTED INDEFINITELY (STALE-ROW FLUSH, 2026-09-23)
+=====================================================================
+A "nothing to fix" run (the common case -- most days ARE boring) still
+appends a summary line to the ledger, and the sweep deliberately does NOT
+commit on that path: see "WHY THIS IS A SEPARATE SCHEDULED JOB" above, the
+no-noise intent. But nothing else commits the ledger either -- governance.sh
+Step 3m is a bare, read-only `run_detectors.py` call (no --fix, no commit; see
+README.md "Wiring") -- so a run of pure no-op days left that row sitting as a
+dirty diff on the shared checkout until some UNRELATED session's own commit
+happened to sweep it in by naming `git status --porcelain` paths, sometimes
+~2 days later (observed 2026-09-23).
+
+Fix: `finish()` checks, after appending its own row, whether the OLDEST
+UNCOMMITTED ledger row (not merely this run's own, which is always fresh) is
+older than `STALE_LEDGER_FLUSH_HOURS`. Only then does it force-commit the
+ledger alone, through the same `commit()` path a real fix uses. This keeps
+the no-noise intent intact -- a single boring day's fresh row is NOT enough
+to trigger a commit -- while guaranteeing no row can be silently stuck open
+for days.
+
+Cannot fight governance.sh or a human landing the ledger first: staleness is
+judged over UNCOMMITTED content only (`uncommitted_ledger_records()` diffs
+the working-tree ledger against its own HEAD copy, which is always a prefix
+of it -- the ledger is strictly append-only). If another writer already
+landed the row, there is nothing uncommitted left to find, so the check is
+false and nothing is committed. And if there genuinely is nothing to flush,
+`_flush_stale_ledger()` never calls `commit()` at all, so `ree_commit.py`'s
+own "no changes in the named paths -- nothing to commit" no-op (see
+scripts/ree_commit.py) is a second, independent backstop, not the only one.
+
 THE LEDGER APPEND NEVER STAYS DIRTY, EVEN WHEN THE COMMIT FAILS
 =====================================================================
 Confirmed 2026-08-28/29 (fleet-wedge campaign W6/C2): a sweep's ledger append
@@ -131,6 +161,15 @@ from detectors.d102_moving_ref_guard import _pin_refs_for, guard  # noqa: E402
 LEDGER_REL = "scripts/steward/state/steward_ledger.jsonl"
 PENDING_LEDGER_REL = "scripts/steward/state/steward_ledger_pending.jsonl"
 COMMIT_PREFIX = "steward-sweep:"
+
+# A no-op ("nothing to fix") ledger row may sit uncommitted for this long
+# before the sweep force-commits the ledger alone (see module docstring
+# "THE LEDGER NEVER SITS UNCOMMITTED INDEFINITELY"). 24h keeps a single
+# boring day noise-free (the no-op row from THIS run is always fresh, so it
+# alone never triggers a flush) while bounding how long a row can go
+# unlanded on the shared checkout -- the observed failure mode let rows sit
+# for ~2 days because nothing else commits them.
+STALE_LEDGER_FLUSH_HOURS = 24
 
 EXIT_OK = 0
 EXIT_ERROR = 1
@@ -343,6 +382,98 @@ def flush_pending(repo_root: Path, push: bool) -> None:
          % (len(pending), detail))
 
 
+def _committed_ledger_lines(repo_root: Path) -> list[str]:
+    """The ledger's content as it stands in HEAD right now, or [] if HEAD has
+    no copy of it at all (never committed yet)."""
+    proc = subprocess.run(
+        ["git", "-C", str(repo_root), "show", "HEAD:%s" % LEDGER_REL],
+        capture_output=True, text=True)
+    if proc.returncode != 0:
+        return []
+    return proc.stdout.splitlines()
+
+
+def uncommitted_ledger_records(repo_root: Path) -> list[dict]:
+    """Ledger rows present on disk but not yet landed in HEAD.
+
+    Compared by LINE COUNT against HEAD's copy, not by content diffing:
+    `append_ledger()` only ever opens the file in "a" mode, so it is strictly
+    append-only, and HEAD's copy is therefore always a byte-identical PREFIX
+    of the working-tree copy (until some other writer lands it, at which
+    point the prefix grows to match and this returns []). Anything past that
+    prefix is what this run or an earlier one appended and never committed.
+    A corrupt line is skipped, never raised -- this feeds a best-effort
+    staleness check, not a correctness-critical read.
+    """
+    path = repo_root / LEDGER_REL
+    if not path.exists():
+        return []
+    disk_lines = path.read_text(encoding="utf-8").splitlines()
+    head_lines = _committed_ledger_lines(repo_root)
+    out = []
+    for line in disk_lines[len(head_lines):]:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            out.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return out
+
+
+def _stale_flush_due(repo_root: Path) -> bool:
+    """True only when the OLDEST uncommitted ledger row is older than
+    STALE_LEDGER_FLUSH_HOURS. A single fresh row (this run's own "nothing to
+    fix" summary, always minted with `ts=now`) is never enough by itself --
+    that is what keeps a boring day noise-free.
+    """
+    records = uncommitted_ledger_records(repo_root)
+    if not records:
+        return False
+    timestamps = [r.get("ts") for r in records if r.get("ts")]
+    if not timestamps:
+        return False
+    oldest_raw = min(timestamps)
+    try:
+        oldest = datetime.strptime(oldest_raw, "%Y-%m-%dT%H:%M:%SZ").replace(
+            tzinfo=timezone.utc)
+    except ValueError:
+        return False
+    age_hours = (datetime.now(timezone.utc) - oldest).total_seconds() / 3600.0
+    return age_hours >= STALE_LEDGER_FLUSH_HOURS
+
+
+def _flush_stale_ledger(repo_root: Path, push: bool) -> None:
+    """Force-commit the ledger ALONE when it has a genuinely stale
+    uncommitted row -- see module docstring "THE LEDGER NEVER SITS
+    UNCOMMITTED INDEFINITELY". Must never raise: this runs from inside
+    `finish()`, on the tail of every non-committing exit, and a failure here
+    must not turn a clean sweep run into an error.
+
+    Cannot fight governance.sh or a human's own commit that already landed
+    the ledger: `_stale_flush_due` looks at UNCOMMITTED content only, so if
+    another writer got there first this is a no-op before `commit()` is even
+    called. And if it IS called, `commit()` -> ree_commit.py itself no-ops
+    when the named path has no diff against HEAD ("no changes in the named
+    paths -- nothing to commit") -- a second, independent backstop.
+    """
+    try:
+        if not _stale_flush_due(repo_root):
+            return
+        message = ("%s flush stale no-op ledger row(s) (uncommitted more "
+                   "than %dh, no fix activity of its own to report)"
+                   % (COMMIT_PREFIX, STALE_LEDGER_FLUSH_HOURS))
+        ok, detail = commit(repo_root, [LEDGER_REL], message, push)
+        if ok:
+            _log("flushed stale ledger row(s)")
+        else:
+            _log("stale ledger flush failed, will retry next run: %s"
+                 % detail[-1500:])
+    except Exception as exc:  # pragma: no cover -- defensive, see docstring
+        _log("stale ledger flush raised %r, will retry next run" % exc)
+
+
 def commit(repo_root: Path, paths: list[str], message: str,
            push: bool) -> tuple[bool, str]:
     """Commit `paths` through ree_commit.py. Never plain git -- see the header."""
@@ -371,6 +502,12 @@ def sweep(repo_root: Path, push: bool = True, dry_run: bool = False) -> int:
         rec["exit_code"] = rc
         if not dry_run and ledger:
             append_ledger(repo_root, rec)
+            # Every path that reaches here left the ledger uncommitted (the
+            # one path that commits it -- gate 4 success -- returns EXIT_OK
+            # directly and never calls finish() at all). So this is exactly
+            # the place to ask whether a PRIOR stale row (this run's own is
+            # always fresh) now needs flushing.
+            _flush_stale_ledger(repo_root, push)
         _log(json.dumps({k: v for k, v in rec.items()
                          if k not in ("repo",)}, sort_keys=True))
         return rc
