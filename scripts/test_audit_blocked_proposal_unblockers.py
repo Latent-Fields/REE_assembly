@@ -131,15 +131,26 @@ def test_shape_c_self_block_does_not_resolve_to_colliding_sd_id(fixture_rows):
 # --------------------------------------------------------------------------
 # the blind-spot measurement: the OLD code must FAIL these
 # --------------------------------------------------------------------------
+# The revision immediately BEFORE the READY/READY_UNVERIFIED split. Pinned to a
+# sha, not HEAD: against HEAD this measurement would silently start SKIPPING the
+# moment the fix landed, and a skip reads exactly like a pass. The blind spot is
+# meant to keep reproducing for as long as the guard exists.
+PRE_FIX_SHA = "0c24017da5d~1"
+
+
 def _old_module(tmp_path: Path):
     """Import the pre-fix revision of the script from git."""
-    src = subprocess.run(
+    r = subprocess.run(
         ["git", "-C", str(ROOT), "show",
-         "HEAD:scripts/audit_blocked_proposal_unblockers.py"],
-        capture_output=True, text=True, check=True).stdout
-    if "READY_UNVERIFIED" in src:
-        pytest.skip("HEAD already carries the fix; blind-spot measurement "
-                    "is only meaningful against the pre-fix revision")
+         "%s:scripts/audit_blocked_proposal_unblockers.py" % PRE_FIX_SHA],
+        capture_output=True, text=True)
+    assert r.returncode == 0, (
+        "cannot read the pinned pre-fix revision %s -- this measurement must "
+        "FAIL rather than skip, or a broken read would read as a pass: %s"
+        % (PRE_FIX_SHA, r.stderr.strip()))
+    src = r.stdout
+    assert "READY_UNVERIFIED" not in src, (
+        "%s already carries the fix; the pin is wrong" % PRE_FIX_SHA)
     path = tmp_path / "old_audit.py"
     path.write_text(src, encoding="utf-8")
     import importlib.util

@@ -51,6 +51,13 @@ BUCKETS
              entry -- the build has an owner and a lane.
   UNOWNED    blocked, and at least one blocker has NO substrate_queue entry.
              This is the bucket that never moves on its own.
+  UNATTRIBUTED
+             blocked, and names no blocker at all. Until 2026-09-23 these were
+             SKIPPED, so the census silently covered only the minority that
+             carried `blocked_by` (77 of 223 measured that day). Nothing can be
+             re-checked for them -- they are counted so that they are visible,
+             and `scripts/record_proposal_refusal.py` is the sanctioned write
+             path that stops new ones being created.
 
 `blocked_by` has no schema -- entries are variously a claim id (`MECH-054`),
 a substrate_queue `sd_id` (`modulatory-bias-selection-authority`), or free
@@ -214,6 +221,26 @@ def audit(root: Path) -> list[dict]:
         if isinstance(raw, str):
             raw = [raw]
         if not raw:
+            # UNATTRIBUTED. This used to be `continue` -- a blocked proposal
+            # that names no blocker was dropped from the census entirely, so
+            # the audit silently reported on a MINORITY of blocked proposals
+            # while its header read like a total. Measured 2026-09-23: 146
+            # such rows against the 77 that carry blocked_by. They cannot be
+            # re-checked against substrate (there is nothing to check), but
+            # they must be COUNTED, because an uncountable block is the one
+            # that never moves. scripts/record_proposal_refusal.py is the
+            # write path that stops new ones being created.
+            out.append({
+                "proposal_id": item.get("proposal_id"),
+                "backlog_id": item.get("backlog_id"),
+                "proposal_type": item.get("proposal_type"),
+                "claim_id": item.get("claim_id"),
+                "status": item.get("status"),
+                "bucket": "UNATTRIBUTED",
+                "blockers": [], "outstanding": [], "unowned": [],
+                "undetermined": ["no_blocked_by"],
+                "stated_conditions": stated_conditions(item, []),
+            })
             continue
         self_claim = str(item.get("claim_id") or "").strip()
         blockers = [resolve_blocker(unblocker_id(r), by_sd, by_claim,
@@ -272,16 +299,21 @@ def main() -> int:
         print(json.dumps({"findings": rows, "n": len(rows)}, indent=2))
         return 0
 
-    order = ["READY", "READY_UNVERIFIED", "PARTIAL", "UNOWNED", "OWNED"]
+    order = ["READY", "READY_UNVERIFIED", "PARTIAL", "UNOWNED", "OWNED",
+             "UNATTRIBUTED"]
     # Count over ALL rows, never the --bucket-filtered view: a filtered run used
     # to print "proposals carrying blocked_by: 2", which reads as a data
     # discrepancy against the unfiltered 19 rather than as a filter, and cost a
     # reader a diagnostic detour. The filter belongs in the body, not the census.
     counts = {b: sum(1 for r in all_rows if r["bucket"] == b) for b in order}
+    n_attr = sum(1 for r in all_rows if r["bucket"] != "UNATTRIBUTED")
     print("BLOCKED-PROPOSAL UNBLOCKER AUDIT")
     print("=" * 74)
-    print("proposals carrying blocked_by: %d   %s" % (
-        len(all_rows), "  ".join("%s=%d" % (b, counts[b]) for b in order)))
+    # Print BOTH denominators. The old header said only the first and read as a
+    # total, which is how 146 unattributed rows stayed invisible.
+    print("blocked proposals: %d   of which carrying blocked_by: %d" % (
+        len(all_rows), n_attr))
+    print("  %s" % "  ".join("%s=%d" % (b, counts[b]) for b in order))
     if args.bucket:
         print("showing only [%s] -- %d of %d" % (
             args.bucket.upper(), len(rows), len(all_rows)))
@@ -302,6 +334,10 @@ def main() -> int:
         elif bucket == "UNOWNED":
             print("  no substrate_queue entry for the blocker: the owed build has")
             print("  no owner and no lane, so this never moves on its own.")
+        elif bucket == "UNATTRIBUTED":
+            print("  blocked, but names NO blocker -- nothing to re-check and no")
+            print("  detector can route it. Counted here so it is not invisible;")
+            print("  scripts/record_proposal_refusal.py stops new ones arising.")
         for r in sel:
             print("  %-9s %-11s %-18s %s" % (
                 r["proposal_id"], r["claim_id"], r["proposal_type"] or "?",
@@ -352,6 +388,10 @@ def main() -> int:
     if counts["UNOWNED"]:
         print("\nNEXT: the UNOWNED blockers need a substrate_queue entry before any")
         print("lane can pick them up -- /implement-substrate has nothing to read.")
+    if counts["UNATTRIBUTED"]:
+        print("\nNEXT: UNATTRIBUTED rows need a NAMED blocker before anything else")
+        print("can be said about them. Record one via")
+        print("scripts/record_proposal_refusal.py --proposal <id> --blocked-by <id>.")
     return 0
 
 
