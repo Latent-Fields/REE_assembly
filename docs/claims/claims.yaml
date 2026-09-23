@@ -30754,7 +30754,7 @@
 
     [2026-09-10 governance, GFLAG-0204, user-adjudicated FULL SPLIT -- description AND confidence, not notes-only] The 2026-09-06 split above was PROSE-ONLY and is now EXECUTED. (1) DESCRIPTION: the psychiatric-risk-gradient sentence has been removed from this claim's description and re-registered as INV-106 (out_of_domain, immediately below this block). This claim is now the REE starvation mechanism in description as well as in what_would_answer. (2) EVIDENCE LANE, which the prose-only split left fused: the five literature entries that landed 2026-09-08 (REE_assembly 09c24b7127, "lit-pull INV-063: 5 literature entries (EVB-1349 / LIT-0688)") are hippocampal-electrophysiology and behavioural-animal papers -- Larkin 2014 CA1 generalized novelty, the Huber 2004 deprivation arm and siblings -- which bear on THIS leg, and they are correctly tagged claim_id INV-063 in claim_evidence.v1.json. With the epidemiological leg gone from the description, the overall_confidence they produce (0.687, 3 supports / 1 mixed / 1 weakens, evidence_quadrant plausible_unproven) now scores the REE leg ONLY and no longer silently spans a clinical-epidemiological assertion it never measured. DO NOT re-tag those five entries to INV-106. (3) REMAINING OPEN ITEM, deliberately not done in this edit: LIT-0688 is still mis-scoped. It was designated the out_of_domain epidemiological pull (EXP-1398's design text in evidence/planning/experiment_proposals.v1.json says verbatim that "LIT-0688 should be RETAINED and re-scoped to the out_of_domain epidemiological leg only") but it absorbed REE-leg literature instead. Re-scoping LIT-0688 to INV-106 is a proposals-file edit and is the last piece of this split. (4) The flag's own two premises were false as of 2026-09-08 and are recorded as false here so they are not re-derived: INV-063 does NOT have "zero sources of either kind" and does NOT sit at overall_confidence 0.0.
   registered: "2026-04-07"
-  depends_on: [INV-049, SD-017, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211, MECH-572, MECH-573, MECH-574]
+  depends_on: [INV-049, SD-017, MECH-121, MECH-205, MECH-209, MECH-210, MECH-211, MECH-572, MECH-573, MECH-574, MECH-581, MECH-582]
   session_c_resolution: >
     Session C batch 2026-04-17: classified emergent on SD-017, paralleling
     the sleep-cluster decisions on INV-045/046/050/062. The "entropy intake"
@@ -103611,7 +103611,7 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: 2026-09-22
-  depends_on: [SD-017]
+  depends_on: [SD-017, MECH-582]
   functional_restatement: |-
     MEASURED, from the LANDED V3-EXQ-1063 manifest and requiring no new run. The manifest records
     identity_predictor_mse = mean((z1-z0)^2), the "do nothing / copy the input" reference, per cell. At the
@@ -103697,7 +103697,7 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: 2026-09-22
-  depends_on: [SD-017]
+  depends_on: [SD-017, MECH-581, MECH-582]
   functional_restatement: |-
     Distinguishes two accounts of the same measurement that MECH-572 alone leaves fused. MECH-572 says the
     across-sleep delta is negative because the optimiser's displacement exceeds the residual. This claim says
@@ -104828,3 +104828,396 @@
     not a result).
     BOUNDARY: this claim is about the WHICH-SET face only. A result that the commit RATE moves with
     arousal belongs to MECH-465; a result that E3 CADENCE moves belongs to MECH-093/MECH-005.
+
+# Registered 2026-09-23 -- CDQ-012 Register pass (session cdq012-register-20260923): MECH-581/582
+# satisfy the row; MECH-583/584 are the competing SD-007 readings; MECH-585 is the folded-in harm-PE
+# attribution claim. Stub: docs/architecture/cdq012_action_readability_comparator_gain.md
+- id: MECH-581
+  title: |-
+    world_forward_comparator_gain_scaled_to_the_predicted_action_consequence. The comparator that reads the
+    world-forward prediction error carries a GAIN (precision) term set by the magnitude of the action
+    consequence the forward model predicts, relative to its own residual at that scale, so that a small
+    action-driven displacement stays legible to the comparator. Subtraction of the predicted self-caused
+    change (SD-007 ReafferencePredictor, MECH-098) is one member of the corollary-discharge family; gain
+    modulation scaled to the predicted consequence is a distinct member that REE does not implement, and it
+    is the member that keeps a contradiction of a small predicted consequence separable from the converged
+    residual. Without it, every contradiction-based falsifier on z_world (MECH-574's novel-target arm, the
+    precision-provenance intake's F3 anti-self-sealing test) is scored in absolute z units against a
+    per-step movement of ~3-4e-3 per dim and is unposeable.
+  claim_type: mechanism_hypothesis
+  subject: world_model.forward_comparator_consequence_scaled_gain
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: '2026-09-23'
+  location: docs/architecture/cdq012_action_readability_comparator_gain.md#mech-581
+  depends_on: [SD-005, SD-007, MECH-098, MECH-059]
+  functional_restatement: |-
+    CDQ-012 asked how an action-conditioned latent dynamics model keeps its action readable at small
+    per-step displacement. GFLAG-0432 corrected the premise: the converged OFF head already reads its action
+    (0.20-0.30 above its own copy-the-input blind null on 3/3 seeds, V3-EXQ-1075a handover); what fails is
+    that the action-driven difference is too small, in absolute z units, for a contradiction to be scored
+    against the converged residual. This claim locates the missing mechanism at the COMPARATOR, not the
+    head: the prediction error is read through a gain calibrated to the scale of the predicted consequence,
+    so a rule inversion that reverses a small predicted displacement produces a PE that is large RELATIVE
+    TO what was predicted, even when it is small in absolute terms.
+    WHAT IT IS NOT. It is not a margin or objective on the head (the contrastive interventional margin is
+    MEASURED, V3-EXQ-1075, and buys A1 only where MSE inflates 5-10x). It is not a global rescale of z_world
+    (MuZero's min-max rescale, MUZERO lens MZ2): a global rescale preserves the ratio of displacement to
+    spread and is therefore this claim's CONTROL, not its instance. It does not touch reconstruction, so
+    CDQ-012 criterion (ii) (reconstruction within 2x of OFF) is met by construction and must be stated as
+    such, not counted as evidence.
+    RELATION TO MECH-582. Complementary and separable: MECH-582 changes how much action information the
+    encoder puts into z_world; this claim changes how the comparator reads whatever displacement is there.
+    Either can hold without the other, and a 2x2 (encoder consistency ON/OFF x comparator gain ON/OFF)
+    separates them.
+  evidence_quality_note: |-
+    NO REE EXPERIMENT RUN FOR THIS CLAIM. Registered by the CDQ-012 Register pass 2026-09-23 on a biology
+    lit-pull (REE_assembly 04554d0fd17) and two external intakes (REE_convergence 8d5534d). The biology
+    supports the TAXONOMY (subtraction / gain / gating are distinct corollary-discharge strategies, Crapse &
+    Sommer 2008) and the FUNCTION (the comparator's informativeness tracks prediction accuracy at the
+    signal's own scale, Keller et al. 2012; subtraction raises detectability of small external residuals,
+    Enikolopov et al. 2018). The cleanest gain-modulation precedent (Poulet & Hedwig 2006) is the OPPOSITE
+    regime -- a LARGE self-signal gated down -- so the transfer is at the level of computational strategy,
+    not circuit. No source measures gain modulation that scales UP for a small predicted consequence;
+    that direction is REE's inference and is the part most at risk.
+    UNIT CORRECTION carried from the lit summaries: they quote the V3-EXQ-1075a displacement as
+    "0.013-0.016 RMS/dim"; the handover computes sqrt(WORLD_DIM * identity_mse), which is an L2 norm over
+    16 dims, i.e. ~3.2-4.1e-3 per dim. The intake probe reproduces 2.3-2.6e-3/dim at alpha_world 0.3.
+  what_would_answer: |-
+    NON-DEGENERACY PRECONDITIONS. (P1) OPERATING POINT: run at alpha_world >= 0.9 (SD-008, stable) with the
+    value recorded in the manifest; V3-EXQ-1073/1075 inherited 0.3 from REEConfig.from_dims and a result at
+    0.3 is confounded with the EMA's ~3x attenuation of per-step displacement. (P2) DENOMINATION: every
+    ratio is scored against the per-cell MEASURED copy-the-input blind null, never against 1.0, which is the
+    random-init null on this battery (GFLAG-0432); a ratio drifting toward 1.0 is decay toward init. (P3) The
+    head must beat the trivial predictor (MECH-573 skill > 0) on the cells scored, or the gain is amplifying
+    model error, not a predicted consequence. (P4) The gain must be shown to VARY with the predicted
+    consequence magnitude across states (non-constant, from measured output), or the arm is a global
+    rescale in disguise.
+    CONFIRMING: on a one-shot action-map inversion at matched head weights, the gain-weighted comparator's
+    contradiction PE (inverted / original, blind-null-denominated) exceeds BOTH the unweighted comparator
+    AND a global min-max-rescaled comparator (the MZ2 control) on at least 2/3 seeds, with the excess
+    concentrated in states whose predicted consequence is small.
+    FALSIFYING: the gain-weighted comparator does no better than the global-rescale control on at least
+    2/3 seeds (the effect is pure scale, not consequence-scaled gain), or it separates the inversion only by
+    also inflating the PE on the ORIGINAL rule (a gain that amplifies noise as much as signal).
+    PRECONDITION NOT MET (P-FAIL): if no cell satisfies P3 (the head does not beat persistence/identity),
+    the claim stays candidate and routes to MECH-582 (the encoder) first; that is not a falsification.
+    SUBSTRATE: SD-PP-B10 (substrate_queue.json) candidate test 4 is this claim's MZ2 control; the gain
+    itself is not yet specified as a substrate item -- a design pass is owed before any build.
+    REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued.
+  literature_anchors:
+  - 'Crapse & Sommer (2008) Nat Rev Neurosci, PMID 18641666 -- corollary discharge is a family (subtraction /
+    gain modulation / gating); SD-007 implements subtraction only. conf 0.78. [targeted_review_efference_copy_small_signal_gain]'
+  - 'Poulet & Hedwig (2006) Science, PMID 16439660 -- a single identified interneuron modulates auditory
+    pathway GAIN timed to the motor command; opposite (large self-signal) regime, strategy-level transfer.
+    conf 0.76. [targeted_review_efference_copy_small_signal_gain]'
+  - 'Keller, Bonhoeffer & Hubener (2012) Neuron, PMID 22681686 -- V1 L2/3 sensorimotor mismatch; the
+    comparator''s informativeness tracks prediction accuracy at the signal''s scale. conf 0.82.
+    [targeted_review_efference_copy_small_signal_gain]'
+  - 'Enikolopov, Abbott & Sawtell (2018) Neuron, PMID 30001507 -- subtracting the negative image enhances
+    detection of small external stimuli; the payoff of subtraction is at the downstream comparator. conf 0.80.
+    [targeted_review_efference_copy_small_signal_gain]'
+  notes: |-
+    Registered by the CDQ-012 Register pass, session cdq012-register-20260923 (dispatched by
+    orchestrate-20260923-restart, user-authorised "step 3"). Inputs: biology lit-pull REE_assembly
+    04554d0fd17; intakes REE_convergence 8d5534d (sources/dreamer-v3/ and sources/muzero/
+    action_readability_small_displacement.md). Wired into INV-063.depends_on and MECH-574.depends_on (the
+    novel-target arm needs a poseable contradiction). NOT wired into MECH-572: per SD-PP-B5's
+    implementation_hint, MECH-572's CONFIRMING does not require a readable head. The SD-007 (A)/(B) tension
+    (MECH-583 vs MECH-584) decides WHICH prediction error this gain applies to when reafference is enabled;
+    it is latent while reafference is off, as it was in V3-EXQ-1073/1075.
+    ARCHITECTURE STUB: docs/architecture/cdq012_action_readability_comparator_gain.md.
+- id: MECH-582
+  title: |-
+    zworld_encoder_shaped_through_the_dynamics_keeps_action_caused_change. The z_world encoder keeps the
+    action-caused part of the observation's per-step change only if a transition objective reaches it: the
+    world-forward (or E1) loss must carry gradient into the encoder through the ONLINE input z_t while the
+    TARGET z_{t+1} stays stop-gradient, with an anti-collapse floor against trivially predictable codes. REE
+    detaches both ends (agent.py buffer write; SD-070 P0 trains the encoder on static single-frame targets),
+    so the encoder never learns which of its directions the action moves, and action information present
+    in world_obs (~0.69 of the per-step change is action-attributable at the observation) is lost before
+    z_world (~0.22-0.38 action-attributable in z_world with an untrained encoder).
+  claim_type: mechanism_hypothesis
+  subject: world_model.zworld_encoder_transition_consistency
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: '2026-09-23'
+  location: docs/architecture/cdq012_action_readability_comparator_gain.md#mech-582
+  depends_on: [SD-005, SD-008, SD-070]
+  functional_restatement: |-
+    This is the ENCODER leg of the V3-EXQ-1075 autopsy fan-out (H-encoder-displacement), which that autopsy
+    left unowned. The intake probe (dreamer-v3 lens sec. 0c) locates the loss of action information at TWO
+    points between world_obs and z_world: (1) the fixed, action-blind z_world EMA (stack.py:1584), which at
+    the inherited alpha_world 0.3 attenuates per-step displacement ~3x and makes the target depend on
+    history the head cannot see; and (2) the encoder, which even at alpha 1.0 keeps only ~0.27-0.38 of the
+    change action-attributable against ~0.69 at the observation. (1) is an operating-point property already
+    governed by SD-008 (stable: alpha_world >= 0.9); this claim is about (2).
+    EXTERNAL MECHANISM. DreamerV3 trains the encoder through the dynamics (L_dyn + L_rep) with free bits
+    against trivial predictability; EfficientZero pulls g(s_t, a_t) toward the representation of the next
+    observation with the target branch stop-gradient, so the encoder is trained through the dynamics. The
+    REE diff is small: keep z_{t+1} detached, stop detaching z_t, and use SD-070's variance/covariance
+    hinge as the anti-collapse floor.
+    WHAT IT IS NOT. Not a margin/objective on the head (the head's own margin is MEASURED, V3-EXQ-1075). Not
+    action repeat (the environment step is already large at the observation). Not SD-018 (resource-
+    proximity supervision, validated negative for shape (a) by V3-EXQ-978) and not SD-106 (generic
+    bottleneck variance preservation) -- the 1075 autopsy red-team removed both as encoder routes.
+  evidence_quality_note: |-
+    NO REE EXPERIMENT RUN FOR THIS CLAIM. The supporting REE measurement is a read-only LINEAR probe on an
+    UNTRAINED encoder with uniform-random actions (3 seeds, ridge regression, held-out R^2), so it shows
+    where action information is present, not what a trained world_forward will learn. External support is
+    DreamerV3's ablation ranking of the KL objective and EfficientZero's consistency ablation (largest drop)
+    -- both on high-dimensional pixel observations; REE's world_obs is low-dimensional, so the magnitude
+    may not transfer. Biology: efference-copy forward models operate on a representation that already
+    carries the action's consequence (Keller et al. 2012 -- V1 combines the motor-derived expectation with
+    visual flow), which bears on where the comparison happens more than on how the encoder is trained;
+    this claim's biology support is therefore indirect and is stated as such.
+  what_would_answer: |-
+    NON-DEGENERACY PRECONDITIONS. (P1) The alpha_world operating-point probe (SD-PP-B10 test 1) must be
+    run FIRST and this claim tested at the alpha it selects (>= 0.9 per SD-008); if raising alpha alone
+    closes the gap, the claim's premise dissolves and it is scored P-FAIL, not confirmed. (P2) Collapse
+    guard: the participation ratio (SD-070's own metric) must not fall below the OFF arm's; a consistency
+    objective rewards trivially predictable codes, and a collapsed code can raise action-attributable
+    share by deleting everything else. (P3) All ratios blind-null-denominated per cell (GFLAG-0432), and
+    reference and run share machine_class (1075a handover sec. 3).
+    CONFIRMING: with gradient into the encoder via the online z_t (target z_{t+1} detached) plus SD-070's
+    hinge, at the P1 operating point, the held-out action-attributable share of dz in z_world rises toward
+    the observation-level share, AND the world-forward head's action-sensitivity ratio excess over the
+    blind null rises, with MSE-vs-identity NOT inflating (the V3-EXQ-1075 failure signature), on at least
+    2/3 seeds.
+    FALSIFYING: the action-attributable share does not rise, or rises only with a participation-ratio
+    collapse or MSE inflation, on at least 2/3 seeds.
+    PRECONDITION NOT MET (P-FAIL): if the alpha probe alone brings the action-attributable share to
+    within the observation-level band, this claim is not needed for CDQ-012 and should be re-scoped or
+    retired by /governance -- that is a legitimate outcome.
+    SUBSTRATE: SD-PP-B10-zworld-encoder-action-displacement (substrate_queue.json), candidate test 2.
+    REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued.
+  literature_anchors:
+  - 'Keller, Bonhoeffer & Hubener (2012) Neuron, PMID 22681686 -- the comparison happens where the
+    motor-derived expectation and the sensory stream both arrive; indirect for encoder training. conf 0.82.
+    [targeted_review_efference_copy_small_signal_gain]'
+  - 'Hafner et al. (2023/2025) DreamerV3, arXiv:2301.04104 -- encoder trained through L_dyn/L_rep with
+    free bits. External (REE_convergence sources/dreamer-v3/action_readability_small_displacement.md M2).'
+  - 'Ye et al. (2021) EfficientZero, arXiv:2111.00210 -- temporal consistency with stop-gradient target
+    trains the encoder through the dynamics. External (REE_convergence sources/muzero/
+    action_readability_small_displacement.md EZ1).'
+  notes: |-
+    Registered by the CDQ-012 Register pass, session cdq012-register-20260923. Wired into INV-063.depends_on,
+    MECH-574.depends_on (poseable contradiction) and MECH-573.depends_on (SD-PP-B5's implementation_note:
+    MECH-573's skill-vs-trivial-predictor axis is encoder-bound). NOT wired into MECH-572 (see MECH-581
+    notes). When SD-007 reafference is ON, the consistency TARGET is decided by MECH-583 vs MECH-584:
+    corrected z_world under (A), z_world_raw under (B).
+    PREMISE CORRECTION carried: V3-EXQ-1073 and V3-EXQ-1075 never set alpha_world and inherited 0.3
+    (config.py:7562), contrary to SD-008 (stable, >= 0.9); SD-PP-B5's validated-negative verdict was
+    measured at that attenuated operating point.
+    ARCHITECTURE STUB: docs/architecture/cdq012_action_readability_comparator_gain.md.
+- id: MECH-583
+  title: |-
+    reafference_reading_A_zworld_is_self_cancelled_so_action_readability_lives_in_a_separate_predictor. Under
+    SD-007, z_world is DESIGNED to have the action-predictable self-caused change subtracted; the forward
+    model on the corrected z_world should therefore predict EXTERNAL dynamics, and the action-readable
+    signal belongs in the separate action-conditioned predictor that produced the subtraction (the
+    ReafferencePredictor / a prior in the RSSM sense). Demanding that world_forward read its action from a
+    cancelled stream asks the wrong component.
+  claim_type: mechanism_hypothesis
+  subject: world_model.reafference_locus_of_action_readability
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: '2026-09-23'
+  location: docs/architecture/cdq012_action_readability_comparator_gain.md#mech-583
+  depends_on: [SD-007, MECH-098, MECH-101]
+  competes_with: [MECH-584]
+  functional_restatement: |-
+    One of two competing readings of SD-007 surfaced by the CDQ-012 intake (dreamer-v3 lens sec. 5) and
+    NOT resolved by the biology pull. DreamerV3's posterior q(z_t | h_t, x_t) is structurally similar: z_t
+    need carry only what the action-conditioned prior missed. On this reading the comparator that detects
+    a rule inversion is the reafference comparator (actual raw change vs ReafferencePredictor's
+    prediction), and world_forward on corrected z_world is scored on external-event prediction, not on
+    action sensitivity.
+    Registered as a COMPETING pair with MECH-584 on the ARC-033 / ARC-058 precedent (e2_harm_a.py: one code
+    path, two registered readings, arbitrated by ablation). The choice is deliberately not made here.
+    LATENT in V3-EXQ-1073/1075: reafference_action_dim = 0 (config.py:205), so corrected z_world and the
+    pre-EMA z_world_raw differ there only by the EMA.
+  evidence_quality_note: |-
+    NO REE EXPERIMENT RUN. Support is structural (the DreamerV3 posterior analogy) and biological only in the
+    sense that subtraction is the strategy SD-007 cites (Crapse & Sommer 2008; Enikolopov et al. 2018 --
+    subtraction's function is to raise the detectability of the small EXTERNAL residual, which is what
+    this reading says the corrected stream is for). Keller et al. 2012 (mismatch computed where prediction
+    and raw stream both arrive) is at least as consistent with MECH-584, so the biology does not
+    discriminate.
+  what_would_answer: |-
+    DISCRIMINATING OBSERVATION (shared with MECH-584). With SD-007 reafference ON and its predictor trained,
+    alpha_world matched across arms (>= 0.9, SD-008), and every ratio blind-null-denominated per predictor
+    (GFLAG-0432): apply a one-shot action-map inversion and measure the contradiction PE (inverted /
+    original) at three loci -- (i) the ReafferencePredictor's own comparison, (ii) world_forward trained on
+    corrected z_world, (iii) world_forward trained on z_world_raw.
+    NON-DEGENERACY PRECONDITION: the ReafferencePredictor must beat its trivial predictor (skill > 0 vs
+    copy-the-input) and the inversion must measurably change the raw per-step change (asserted from
+    measured output), or neither locus has anything to detect.
+    CONFIRMING (A): (i) carries the contradiction above its blind null on at least 2/3 seeds, (ii) does not,
+    AND external-event detection from corrected z_world beats z_world_raw (the Enikolopov 2018 signature:
+    subtraction pays off downstream).
+    FALSIFYING (A): (ii) or (iii) carries the contradiction while (i) does not, or corrected z_world is no
+    better than z_world_raw for external-event detection, on at least 2/3 seeds.
+    NOTE: both readings can be partly true (the two loci carry the contradiction redundantly); that
+    outcome demotes the pair to a design choice and is recorded rather than forced.
+    SUBSTRATE: the one-shot inversion lever is SD-PP-B4 (registration only; driver poke of env._action_map
+    is its documented workaround). REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued.
+  literature_anchors:
+  - 'Crapse & Sommer (2008) Nat Rev Neurosci, PMID 18641666 -- subtraction as one corollary-discharge
+    strategy. conf 0.78. [targeted_review_efference_copy_small_signal_gain]'
+  - 'Enikolopov, Abbott & Sawtell (2018) Neuron, PMID 30001507 -- subtraction enhances detection of small
+    external stimuli; supplies this reading''s external-event-detection prediction. conf 0.80.
+    [targeted_review_efference_copy_small_signal_gain]'
+  notes: |-
+    Registered by the CDQ-012 Register pass, session cdq012-register-20260923, as instructed: register the
+    two SD-007 readings as COMPETING, do not choose. Resolution decides the target locus for MECH-581 (which
+    PE the gain applies to) and MECH-582 (which stream the consistency target is) whenever reafference is
+    enabled. ARCHITECTURE STUB: docs/architecture/cdq012_action_readability_comparator_gain.md.
+- id: MECH-584
+  title: |-
+    reafference_reading_B_cancellation_is_perception_side_so_the_forward_model_predicts_the_uncorrected_stream.
+    Under SD-007 the subtraction is a PERCEPTION-side operation on what the organism reports as external;
+    the forward model still receives the efference copy and predicts the reafferent change BEFORE
+    subtraction. world_forward should therefore be trained against z_world_raw (retained at stack.py:1513,
+    before both the reafference correction and the EMA), and it is on that prediction that contradiction-
+    based falsifiers should be posed.
+  claim_type: mechanism_hypothesis
+  subject: world_model.reafference_locus_of_action_readability
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: '2026-09-23'
+  location: docs/architecture/cdq012_action_readability_comparator_gain.md#mech-584
+  depends_on: [SD-007, MECH-098, MECH-101]
+  competes_with: [MECH-583]
+  functional_restatement: |-
+    The competing reading to MECH-583. On this reading the efference copy feeds a forward model of the FULL
+    sensory consequence, and the corrected stream is a downstream product used for attribution (MECH-095 /
+    MECH-101), not the forward model's target. Contradictions of the action's consequence are then detected
+    by world_forward on z_world_raw.
+    CONFOUND TO CONTROL: z_world_raw is also PRE-EMA (stack.py:1513 precedes the EMA at :1584), so any
+    advantage of a z_world_raw target is confounded with removing the alpha_world attenuation unless
+    alpha_world is matched (or set to 1.0) in both arms. At alpha 1.0 with reafference OFF the two targets
+    are identical, so the discrimination is only meaningful with reafference ON.
+  evidence_quality_note: |-
+    NO REE EXPERIMENT RUN. Biological support is Keller et al. 2012 (the mismatch is computed where the
+    motor-derived prediction and the raw sensory stream both arrive, i.e. against the uncorrected signal),
+    which is consistent with this reading but does not exclude MECH-583. No external source in either
+    intake discriminates the two.
+  what_would_answer: |-
+    DISCRIMINATING OBSERVATION: identical to MECH-583's (three loci under a one-shot action-map inversion,
+    reafference ON, alpha_world matched, blind-null-denominated), with the same non-degeneracy
+    precondition.
+    CONFIRMING (B): (iii) world_forward on z_world_raw carries the contradiction above its blind null on at
+    least 2/3 seeds and at least as strongly as (i) the ReafferencePredictor's comparison, while (ii) on
+    corrected z_world does not.
+    FALSIFYING (B): (iii) does not carry the contradiction, or carries it only when alpha_world differs
+    between arms (the EMA confound), on at least 2/3 seeds.
+    REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued.
+  literature_anchors:
+  - 'Keller, Bonhoeffer & Hubener (2012) Neuron, PMID 22681686 -- mismatch computed against the raw
+    sensory stream at the site where both arrive. conf 0.82. [targeted_review_efference_copy_small_signal_gain]'
+  - 'Crapse & Sommer (2008) Nat Rev Neurosci, PMID 18641666 -- the copy is transformed into a
+    sensory-coordinate prediction combined quantitatively with actual input. conf 0.78.
+    [targeted_review_efference_copy_small_signal_gain]'
+  notes: |-
+    Registered by the CDQ-012 Register pass, session cdq012-register-20260923, as the competing half of
+    the MECH-583/584 pair. ARCHITECTURE STUB: docs/architecture/cdq012_action_readability_comparator_gain.md.
+- id: MECH-585
+  title: |-
+    harm_prediction_error_is_attributed_to_world_surprise_only_from_a_competent_calibrated_predictor. The
+    harm-stream prediction error that dACC consumes is informative about the WORLD only when two conditions
+    hold: the harm forward model beats a trivial baseline (persistence) and the error exceeds that model's
+    own calibrated, per-state expected error. Error beyond calibrated expectation from a predictor that
+    beats baseline reads as world surprise; every other error reads as model error. The precision that
+    weights the harm PE must therefore be the harm predictor's OWN reliability, not a precision borrowed
+    from another stream.
+  claim_type: mechanism_hypothesis
+  subject: harm.pe_attribution_world_surprise_vs_model_error
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  diagnostic_evidence_adjudicated: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: '2026-09-23'
+  location: docs/architecture/cdq012_action_readability_comparator_gain.md#mech-585
+  depends_on: [MECH-258, MECH-059, ARC-033]
+  functional_restatement: |-
+    The user's framing (2026-09-23): "we need to ensure precision can sensibly attach to the raw prediction
+    error magnitude -- we need to know if the error came from the world being surprising or the predictor
+    being bad." MECH-258 already asserts that z_harm_a enters as a precision-weighted PE rather than a raw
+    magnitude; it does not say whose precision. In code (ree-v3 cdbcb4c) the weight is
+    e3.current_precision (agent.py dACC call), the E3 proposer's z_world running-variance precision, and
+    dacc._affective_pe multiplies the PE UP by (1 + precision_norm) -- nothing in it estimates the harm
+    predictor's reliability. V3-EXQ-1062a measured that predictor BELOW persistence in 6/6 cells
+    (SD-PP-B9), so the dACC harm PE MECH-055 axis 3 routes on was dominated by model error.
+    WHY A SEPARATE CLAIM FROM MECH-258 AND MECH-059. MECH-258 can hold with any precision source; this claim
+    names the source and the two-way attribution, and is falsifiable independently. MECH-059 says the
+    confidence channel must stay distinct from residual error in general; this is its harm-stream
+    instance plus a competence floor MECH-059 does not state.
+    TWO INGREDIENTS (the substrate is SD-PP-B11): (a) a per-state calibrated expected error for the harm
+    predictor (ensemble disagreement from a re-pointed ModelDisagreementEnsemble, or an error-predictor
+    head, per SD-PP-B6); (b) a competence floor against persistence, using the bounded d statistic of
+    experiments/_lib/persistence_skill_gate.py computed online.
+  evidence_quality_note: |-
+    NO REE EXPERIMENT RUN FOR THIS CLAIM. The motivating REE measurement is the V3-EXQ-1062a autopsy
+    (harm-forward skill vs persistence negative 6/6; the magnitude is denominator-driven, the SIGN is the
+    robust statement). The biology is carried by existing corpus entries on the expected/unexpected
+    uncertainty distinction (Yu & Dayan 2005; Bach & Dolan 2012 -- distinct kinds of uncertainty are
+    encoded by distinct systems) and on pain as a precision-weighted prediction signal (Seymour 2019);
+    NO targeted pull on harm-predictor reliability specifically was run for this registration. A targeted
+    /lit-pull (how aversive-prediction circuits estimate their own reliability; anterior insula / ACC) is
+    OWED before any design of SD-PP-B11 beyond the two ingredients named here -- biology-before-formal-
+    definitions: the epistemic/aleatoric split is a formal concept.
+  what_would_answer: |-
+    NON-DEGENERACY PRECONDITIONS. (P1) The harm predictor must be trained to convergence with its training
+    curve recorded (SD-PP-B9 piece 2), or the attribution has nothing competent to attribute to. (P2) The
+    expected-error estimate must be CALIBRATED: its per-state prediction must track realised squared error
+    on held-out transitions (coverage/rank correlation above a pre-registered floor), else "beyond
+    expectation" is noise. (P3) The world-surprise manipulation and the model-error manipulation must be
+    independently instantiated and exposure-matched (SD-PP-B9's harm_exposure_relative_deviation_bounded
+    precondition).
+    CONFIRMING: with the harm predictor above persistence, a one-shot harm-map shift (world surprise)
+    raises the fraction of harm PE classified as world surprise, while an equal-magnitude corruption of
+    the predictor's weights at a stationary map (model error) raises the model-error fraction instead,
+    on at least 2/3 seeds; the E3-precision-weighted PE (current code) fails to separate the two.
+    FALSIFYING: the calibrated attribution separates the two manipulations no better than the
+    E3-precision-weighted PE, on at least 2/3 seeds.
+    PRECONDITION NOT MET (P-FAIL): if no configuration yields a harm predictor above persistence
+    (SD-PP-B9's fan-out resolves to H-pe-source-structurally-wrong), the claim converts: the harm PE has
+    no competent source, all of it reads as model error, and MECH-055 axis 3 needs a different PE source.
+    SUBSTRATE: SD-PP-B11-harm-stream-predictor-reliability-producer. REGISTRATION IS NOT BUILD
+    AUTHORISATION. No experiment queued.
+  literature_anchors:
+  - 'Yu & Dayan (2005) Neuron, PMID 15944135 -- expected vs unexpected uncertainty as distinct neuromodulatory signals.
+    [targeted_review_q_045 / targeted_review_connectome_mech_104, existing corpus]'
+  - 'Bach & Dolan (2012) Nat Rev Neurosci, PMID 22781958 -- distinct kinds of uncertainty (estimation vs state) are
+    encoded by distinct neural systems. [targeted_review_arc_121, existing corpus]'
+  - 'Seymour (2019) Neuron, PMID 30897355 -- pain as a precision-weighted learning signal. [targeted_review_sd_029,
+    existing corpus]'
+  notes: |-
+    Registered by the CDQ-012 Register pass, session cdq012-register-20260923, folded in at the user's
+    request (harm-stream analogue of SD-PP-2). Related, deliberately NOT edited: MECH-055 (its axis-3
+    falsifier consumes this PE; SD-PP-B9 unblocks it only partially) and SD-032b (the dACC consumer).
+    ARCHITECTURE STUB: docs/architecture/cdq012_action_readability_comparator_gain.md.

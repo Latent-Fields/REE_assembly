@@ -12588,7 +12588,8 @@
       "added_session": "governance-20260923-0717",
       "added_utc": "2026-09-23T09:25:24Z",
       "last_seen_session": "governance-20260923-0717",
-      "experiment_queued": false
+      "experiment_queued": true,
+      "probe_queue_id": "V3-EXQ-1077"
     },
     {
       "sd_id": "arc044-joint-wharm-running-variance-readout-producer",
@@ -12785,6 +12786,143 @@
       "added_utc": "2026-09-23T09:32:20Z",
       "last_seen_session": "governance-20260923-0717",
       "experiment_queued": false
+    },
+    {
+      "sd_id": "SD-PP-B10-zworld-encoder-action-displacement",
+      "title": "z_world ENCODER action-displacement: action information present in world_obs (~0.69 of the per-step change action-attributable at the observation) is lost before z_world (~0.22-0.38 action-attributable) at TWO loci -- the fixed action-blind z_world EMA (alpha_world, stack.py:1584) and an encoder that never receives a transition gradient (z_world detached into the replay buffer; SD-070 P0 trains on static single-frame targets). The V3-EXQ-1075 autopsy's encoder leg (H-encoder-displacement), previously unowned.",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication, then /queue-experiment for candidate test 1 (the alpha_world operating-point probe needs NO new substrate); /implement-substrate only for tests 2/3 and only if test 1 does not dissolve the premise",
+      "priority": "high",
+      "added_session": "cdq012-register-20260923",
+      "added_utc": "2026-09-23T16:10:46Z",
+      "last_seen_session": "cdq012-register-20260923",
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "version_scope": "V3-native",
+      "failure_record": [],
+      "depends_on_unresolved": [],
+      "design_doc": "docs/architecture/cdq012_action_readability_comparator_gain.md",
+      "unblocks_claims": [
+        "MECH-582",
+        "MECH-581",
+        "MECH-573",
+        "MECH-574",
+        "INV-063"
+      ],
+      "unblocks_note": "MECH-582 is this entry's own claim. MECH-581 (comparator gain) needs a head that beats the trivial predictor on the scored cells (its P3). MECH-573/MECH-574/INV-063 are SD-PP-B5's unblocks, reached via MECH-582/MECH-581 in their depends_on. MECH-572 deliberately NOT listed: its CONFIRMING does not require a readable head (SD-PP-B5 implementation_hint).",
+      "source_audit": "REE_convergence sources/dreamer-v3/action_readability_small_displacement.md sec. 0c (8d5534d)",
+      "source_autopsy": "failure_autopsy_V3-EXQ-1075_2026-09-23 (fanout_recommendation leg H-encoder-displacement, recorded on SD-PP-B5)",
+      "loss_locus": "SMOOTHING + ENCODER, per the CDQ-012 intake probe (linear ridge, held-out R^2, untrained encoder, uniform-random actions, 3 seeds, V3-EXQ-1075 env/dims): (1) SMOOTHING -- alpha_world 0.3 (inherited by V3-EXQ-1073/1075 from REEConfig.from_dims default, config.py:7562; SD-008 is STABLE at >= 0.9) cuts RMS per-step dz to 2.3-2.6e-3/dim vs 6.6-7.7e-3 at 0.9 and 7.5-8.8e-3 at 1.0, and drops state-only predictability to ~0.01 because the EMA target mixes unobserved history; (2) ENCODER -- even at alpha 1.0 only ~0.27-0.38 of dz is action-attributable in z_world vs ~0.69 at a PCA-16 of world_obs. The environment step itself is NOT small (so action repeat is not a remedy).",
+      "candidate_tests_ranked": [
+        {
+          "rank": 1,
+          "name": "alpha_world operating point (MAY DISSOLVE THE PREMISE -- run first)",
+          "sketch": "Re-run V3-EXQ-1073's OFF arm or V3-EXQ-1075's ARM_OFF at alpha_world 0.9 and 1.0 against the inherited 0.3, from_dims otherwise identical, blind null re-measured per cell, reference and run on the same machine_class. Predicts RMS displacement ~3x and a larger action-sensitivity excess over the blind null. If the gap closes here, SD-PP-B5's validated-negative verdict was measured at an attenuated operating point and the small-displacement premise must be re-stated before any build.",
+          "needs_substrate": false
+        },
+        {
+          "rank": 2,
+          "name": "EfficientZero-style consistency: gradient into the encoder via z0",
+          "sketch": "In the P0 world_forward trainer, stop detaching the ONLINE input z0; keep the TARGET z1 stop-gradient; train the encoder jointly with SD-070's variance/covariance hinge as the anti-collapse floor. Predicts the action-attributable share of dz rises toward the observation-level ~0.69 without MSE-vs-identity inflation. Guard: participation ratio (collapse). Run at the rank-1 alpha.",
+          "needs_substrate": true
+        },
+        {
+          "rank": 3,
+          "name": "MuZero consumer-demanded readability (two candidate consumers, NOT chosen here)",
+          "sketch": "A consumer target evaluated on world_forward(z0, a) with gradient into world_transition. Two consumers fit about equally and the choice changes what gets measured: (a) E3 harm/benefit evaluators (behaviourally load-bearing, sparse) vs (b) SD-018 resource-proximity / resource-field heads (dense, already on z_world). Signature: the ratio rises where actions differ in consequence (near hazard/resource) and stays flat in empty space. Pair with rank 2 (EfficientZero shows consumer-only training under-trains the dynamics in low data).",
+          "needs_substrate": true
+        },
+        {
+          "rank": 4,
+          "name": "min-max rescale control (scale only)",
+          "sketch": "Min-max or LayerNorm the z_world input to world_forward. Predicts the 1075a absolute-margin ceiling disappears while the blind-null-relative ratio changes little. This is the CONTROL arm for MECH-581 (a global rescale preserves the displacement/spread ratio).",
+          "needs_substrate": true
+        },
+        {
+          "rank": 5,
+          "name": "multi-step readability",
+          "sketch": "Score the action-sensitivity ratio at horizon h = 1..5 with the existing world_forward_contrastive_loss_multistep rollout (e2_fast.py). Predicts the excess over the blind null grows with h (action-attributable displacement accumulates over a consistent action).",
+          "needs_substrate": false
+        }
+      ],
+      "open_tension": "SD-007 reading (A) z_world is self-cancelled so action readability belongs in a separate predictor (MECH-583) vs (B) the forward model predicts the uncorrected z_world_raw, which stack.py:1513 retains before both the reafference correction and the EMA (MECH-584). Registered as COMPETING, not chosen. Latent in this lineage (reafference_action_dim = 0); decides the rank-2 consistency TARGET whenever SD-007 is on.",
+      "implementation_hint": "Do NOT build before rank 1 runs: it needs no substrate and may dissolve the premise. Rank 2 is a small diff (EfficientZero asymmetry) but REQUIRES the anti-collapse floor, which already exists (SD-070 hinge, ree_core/latent/zworld_p0.py). The linear probe is not the MLP head's action_sensitivity_ratio; use the existing gate experiments/_lib/action_sensitivity_gate.py (three-valued) plus a head-health guard (owed by the 1075 autopsy) for any readiness claim.",
+      "substrate_paths": [
+        "ree_core/latent/stack.py::LatentStack",
+        "ree_core/agent.py",
+        "ree_core/latent/zworld_p0.py",
+        "ree_core/predictors/e2_fast.py::world_forward"
+      ],
+      "substrate_paths_note": "stack.py: the z_world EMA (:1584) and z_world_raw (:1513); agent.py: the world experience buffer detach (~:6162).",
+      "falsifier_requirement_satisfied": "Contradiction-based falsifiers on z_world (MECH-574 novel-target arm, the precision-provenance intake's F3) need a contradiction separable from the converged residual; this entry supplies the displacement.",
+      "event_or_manipulation_produced": "n/a (representation property)",
+      "dv_or_instrument_exposed": "held-out action-attributable share of dz (intake probe, dreamer-v3 lens sec. 6); action_sensitivity_gate; identity_predictor_mse; SD-070 participation ratio",
+      "why_no_existing_owner": "SD-PP-B5 owns the head-side margin (validated negative); its fan-out names the encoder leg but the 1075 autopsy red-team removed the only pointers (SD-009 has no entry; SD-018 validated negative for shape (a); SD-106 is generic variance preservation, 0/3). CDQ-012 row: the encoder leg was unowned.",
+      "authority": "REGISTRATION ONLY by the CDQ-012 Register pass (session cdq012-register-20260923, dispatched by orchestrate-20260923-restart; user-authorised 'step 3', and the claims.yaml overlap with staged IGW-227 user-approved rec-20260923-9de5f0e7). Not a build authorisation; /governance adjudicates before any /implement-substrate or /queue-experiment commission."
+    },
+    {
+      "sd_id": "SD-PP-B11-harm-stream-predictor-reliability-producer",
+      "title": "HARM-STREAM predictor reliability / precision producer for e2_harm_a -- the harm-domain analogue of SD-PP-2. e2_harm_a.py describes a 'precision-weighted' affective PE, but no producer estimates the harm predictor's own reliability: the dACC call passes precision=e3.current_precision (the E3 proposer's z_world precision) and _affective_pe multiplies the PE up by (1 + precision_norm). The consumer therefore cannot tell world surprise from model error, and V3-EXQ-1062a shows the harm predictor is below persistence (SD-PP-B9).",
+      "node_class": "complicated (buildable)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication before any /implement-substrate commission",
+      "priority": "medium",
+      "added_session": "cdq012-register-20260923",
+      "added_utc": "2026-09-23T16:10:46Z",
+      "last_seen_session": "cdq012-register-20260923",
+      "experiment_queued": false,
+      "phase_verdict": "V3-NATIVE",
+      "version_scope": "V3-native",
+      "failure_record": [],
+      "depends_on_unresolved": [],
+      "ready_blocked_by": "SD-PP-B9-harm-forward-below-persistence-baseline (a competent harm predictor) for meaningful readings; /governance adjudication for the build.",
+      "depends_on_note": "Buildable now as a producer, but its readings are only meaningful once SD-PP-B9 yields a harm predictor that beats persistence: until then the competence floor (ingredient b) correctly reads ALL harm PE as model error. Related: MECH-055 (axis 3 consumes this PE; SD-PP-B9 unblocks it only partially), SD-PP-2 (the z_world-domain producer this mirrors), SD-PP-B6 (native epistemic/aleatoric split).",
+      "design_doc": "docs/architecture/cdq012_action_readability_comparator_gain.md",
+      "unblocks_claims": [
+        "MECH-585",
+        "MECH-258",
+        "MECH-055 (PARTIAL -- with SD-PP-B9)"
+      ],
+      "related_entries": [
+        "SD-PP-B9-harm-forward-below-persistence-baseline",
+        "SD-PP-B6-native-epistemic-aleatoric-split",
+        "SD-PP-2"
+      ],
+      "ingredients": [
+        {
+          "id": "a",
+          "name": "per-state calibrated expected error",
+          "options": "Either (a1) ensemble disagreement from MECH-441's ModelDisagreementEnsemble re-pointed onto (z_harm_a, action) -- its heads are already ResidualHarmForward, the same class as E2HarmAForward's ARC-033 path, so the re-point is a config change, not a new predictor class; or (a2) an error-predictor head over (z_harm_a, a) regressed on the realised squared error (per SD-PP-B6). NOTE the difference: (a1) is epistemic by construction; (a2) is TOTAL expected error. The contract below needs total expected error for the 'beyond expectation' test, so (a1) needs an aleatoric term added (SD-PP-B6's split). Choose at /implement-substrate; the calibration check is mandatory either way.",
+          "path_correction": "SD-PP-B6's implementation_hint cites ree_core/curiosity/model_disagreement.py; the module is at ree_core/policy/model_disagreement.py (ree-v3 cdbcb4c)."
+        },
+        {
+          "id": "b",
+          "name": "competence floor against a trivial baseline (persistence)",
+          "options": "Reuse the bounded, denominator-symmetric d = (SSE_persistence - SSE_model)/(SSE_persistence + SSE_model) statistic from experiments/_lib/persistence_skill_gate.py (ree-v3 88b1005). That module is a per-RUN, driver-side readiness gate with a bootstrap CI; the organism-side producer needs the same statistic computed ONLINE from running SSE EMAs, in ree_core -- reuse the statistic, not the module."
+        }
+      ],
+      "consumer_contract": "dACC's harm PE is weighted by this producer's output, replacing e3.current_precision at that call. Error beyond the calibrated expectation FROM a predictor whose online d > 0 reads as WORLD SURPRISE; every other error (predictor at/below persistence, or error within calibrated expectation) reads as MODEL ERROR. The producer emits both the weight and the two-way attribution so the consumer and the manifest can record it.",
+      "default_off": true,
+      "implementation_hint": "Default OFF, bit-identical when off (the SD-PP-1..4 convention). Mirror SD-PP-2's read-order contract: precision_at(z, a) BEFORE observe_outcome, never mutating on read, and report the SOURCE that served each read (per-state vs global fallback) so a state-blind read is distinguishable. Record the harm head's training-loss trajectory (SD-PP-B9 piece 2) -- the competence floor is uninterpretable without it.",
+      "substrate_paths": [
+        "ree_core/predictors/e2_harm_a.py::E2HarmAForward",
+        "ree_core/policy/model_disagreement.py::ModelDisagreementEnsemble",
+        "ree_core/cingulate/dacc.py",
+        "ree_core/agent.py",
+        "ree_core/precision/"
+      ],
+      "substrate_paths_note": "dacc.py is the CONSUMER (its precision argument is re-sourced, nothing in it is defective); agent.py is the dACC call site passing precision=e3.current_precision; ree_core/precision/ is where the new producer sits alongside world_forward_epistemic_precision.py (SD-PP-2).",
+      "falsifier_requirement_satisfied": "MECH-585's discrimination (world-surprise vs model-error manipulations separate) and MECH-258's precision-weighted PE become testable with a named, harm-stream-own precision source.",
+      "event_or_manipulation_produced": "n/a (producer)",
+      "dv_or_instrument_exposed": "per-step harm PE attribution (world_surprise / model_error), online d vs persistence, expected-error calibration",
+      "why_no_existing_owner": "SD-PP-2 owns world_forward precision in the z_world domain only; SD-PP-B9 owns the harm head's COMPETENCE (below persistence), not a reliability producer; MECH-441's ensemble is wired to curiosity; the dACC consumer borrows E3's precision.",
+      "authority": "REGISTRATION ONLY by the CDQ-012 Register pass (session cdq012-register-20260923, dispatched by orchestrate-20260923-restart; user-authorised 'step 3', and the claims.yaml overlap with staged IGW-227 user-approved rec-20260923-9de5f0e7). Not a build authorisation; /governance adjudicates before any /implement-substrate or /queue-experiment commission. Folded in at the user's request (harm-stream precision entry)."
     }
   ],
   "schema_version": "substrate_queue/v2",
