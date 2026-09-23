@@ -4256,9 +4256,9 @@
       "summary": "MECH-558's note cites the two synthetic assay manifests at evidence/experiments/convergence_signal_synthetic_assay_001/runs/20260909_seed7/manifest.json and .../002/runs/20260909_seed11/manifest.json; on 2026-09-16 (user decision, chip-20260916-synthetic-assay-pack-writer) all six were moved to evidence/planning/convergence_signal_synthetic_assay_runs/assay_00N/<run>/manifest.json and the experiments/ dirs removed, so the note's paths are stale. Update the paths when GFLAG-0287 (evidence-attachment decision for MECH-558/559) is worked; any attachment must not route through runs/, which claim scoring reads.",
       "raised_by_session": "lucid-wright-b6a9d5",
       "raised_at": "2026-09-16T23:06:32Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:15:08Z",
+      "resolution_note": "[governance-flags-20260923b] Path-only fix, bundled with GFLAG-0287 (REE_assembly ddeb471d38): MECH-558's notes retargeted from the removed evidence/experiments/convergence_signal_synthetic_assay_00{1,2}/runs/ paths to evidence/planning/convergence_signal_synthetic_assay_runs/assay_00{1,2}/..., and its 'carry claim_ids []' sentence updated to record the 2026-09-23 link. MECH-559 cites the assays by number only, so nothing to fix there."
     },
     {
       "flag_id": "GFLAG-0303",
