@@ -4022,9 +4022,9 @@
       "summary": "The V3-EXQ-1010 H-F 'confirmed' basis (which drove the SD-018 amend and the SD-106 mint) carries an unadjudicated methodological objection from docs/thoughts/2026-09-09_exq1010_substrate_readiness_audit.md: all three half-to-full sample deltas were POSITIVE (+0.0200/+0.0136/+0.0356, two above the ~0.013 seed spread) and the sub-split sampled by ROWS (torch.randperm) rather than whole episodes, so the saturation reading is not established; the audit's named remedy (nested whole-episode subsets on mlp512) was never put to the user at the Step 8 gate. Related hazard: v3_exq_1010_...py _best_over_rungs (line ~1178) does not exclude diverged=true rows, and SD-106's acceptance target is an unchanged 1010 re-run, so a diverged row could win the max and read as an SD-106 success. Details: thought_intake_2026-09-09_exq1010_substrate_readiness_audit.md.",
       "raised_by_session": "thought-pipeline-20260915",
       "raised_at": "2026-09-15T07:01:19Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:34:53Z",
+      "resolution_note": "Half 2 FIXED: ree-v3 0c70b39 -- v3_exq_1010 _best_over_rungs(exclude_diverged=True) at every in-driver max (verdict, Guard 2 train max, anchor, untrained control); new _rung_fit_census; a seed with every OFF rung diverged reports off_best_status=cannot_determine_all_rungs_diverged and routes substrate_not_ready_requeue (criterion C_off_some_rung_fitted_every_seed) instead of counting as non-clearing. Helper default stays unfiltered so importer V3-EXQ-1023 is byte-identical. Self-test 0 failures, --dry-run smoke PASS (dry run itself had 2 diverged OFF rungs, both excluded), red-team (fable) CLEAR. No recorded run changes: 1010 (20260909), 1023, 1023a had zero diverged rows. SD-106 doc updated to cite the fixed script: REE_assembly f2d8f8eec1. Half 1 (H-F-confirmed gloss) superseded by the V3-EXQ-1023/1041/1023a autopsies per the chip; no work. No run queued."
     },
     {
       "flag_id": "GFLAG-0287",
