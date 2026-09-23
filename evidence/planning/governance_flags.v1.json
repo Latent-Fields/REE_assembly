@@ -5962,9 +5962,9 @@
       "summary": "The MECH-090 commit-readiness gate is behaviourally INERT even when armed: the 2026-09-18 liveness probe (IGW-20260918-245, evidence/planning/mech042_telemetry_lead_time_pathology_liveness_blocked_20260918.md) set use_commit_readiness_gate=True and pinned CommitReadiness._readiness=0.0 below commit_readiness_floor=0.05 and measured 0/150 action divergences against CONTROL, contradicting MECH-090's substrate notes that the BetaGate readiness conjunction gates commit entry. MECH-042's 2026-09-22 runnability audit records it as EXISTING NODE, MISSING EDGE, but no substrate_queue row owns the repair. Surfaced by thought-intake 2026-09-22 (MECH-580, REE_assembly 006ce4e941): the WHETHER face of arousal-gated commitment has no live consumer, independent of the world-model gap. Asks /governance to (a) register a substrate_queue row for diagnosing why the armed gate does not bite (commitment path vs BetaGate path), and (b) decide whether it gates MECH465-COMMIT-GATE-HEADROOM's next spike.",
       "raised_by_session": "thought-ingest-acwm-arousal-commit-20260922",
       "raised_at": "2026-09-22T18:41:03Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:37:40Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. USER RULING 2026-09-23 (accepted the governance recommendation, rec-20260923-e1e14f35). Option A: the MECH465-COMMIT-GATE-HEADROOM row records that CommitReadiness was measured inert even when armed at floor (0/150 divergences), so it is off the causal path; keep use_commit_readiness_gate default False and re-check if the new commit-readiness-gate-no-behavioural-consumer row (GFLAG-0341) is repaired (REE_assembly abc200bd95)."
     },
     {
       "flag_id": "GFLAG-0418",
