@@ -2096,6 +2096,444 @@ def classify(d):
     return status, reasons
 
 
+# --- oversized-evidence placemarker copy audit -------------------------------
+#
+# WHAT THIS GUARDS. REE_assembly keeps a handful of evidence artifacts OFF git
+# deliberately (V3-EXQ-921's 184.6MB episode log blew GitHub's 100MB per-blob
+# limit and crash-looped every phase3 writer for ~52 minutes on 2026-08-12).
+# What origin/master carries instead is a `.placemarker.json` pointer naming
+# where the real bytes live, in `full_copy_locations`.
+#
+# That pointer is a NEGATIVE INSTRUMENT in the exact CLAUDE.md sense: it is the
+# thing that AUTHORISES not keeping the bytes in git, and its "the real copies
+# are safe over there" claim was, until 2026-09-23, checked by nothing at all.
+# It was also already wrong. Audited that day (chip-20260923-placemarker-copy-
+# audit): 2 placemarkers, 4 declared locations, 3 verified -- V3-EXQ-978's
+# declared hub copy did not exist, so a placemarker asserting 2-of-2 redundancy
+# was really 1-of-1. No evidence it was ever there; the pointer was written
+# 2026-09-03T17:55Z and the hub path was empty two minutes later.
+#
+# THE THREE REMEDIES CLAUDE.md ASKS OF A NEGATIVE INSTRUMENT, all present here:
+#
+#   (1) an explicit CANNOT-DETERMINE CATEGORY, structural rather than printed.
+#       UNREACHABLE (the box did not answer) and UNRESOLVED (the `where` string
+#       maps to no known box) are first-class statuses that are NEVER folded
+#       into MISSING and never counted as VERIFIED. A powered-off ree-cloud-2
+#       must not read as "the copy is gone" -- that is the single most likely
+#       way this check would manufacture a false alarm, and a check that cries
+#       wolf on every scaler power-down is a check somebody turns off.
+#       The rollup therefore reports `verified/missing/undetermined of declared`
+#       and its verdict distinguishes DEGRADED (a real copy is gone) from
+#       UNDETERMINED (we could not look), which is why there are two words.
+#
+#   (2) a known-baseline CANARY -- PLACEMARKER_CANARY_PATHS. The two real
+#       placemarkers must keep being FOUND by the discovery step. This is the
+#       only one of the three that catches a PARTIALLY broken search: a
+#       `git ls-tree` glob that silently stops matching one layout (the two
+#       live placemarkers sit at different depths -- one flat beside its run
+#       JSON, one nested under runs/<run_id>/) yields a clean, confident,
+#       wrong "all copies verified" over the half it can still see. The canary
+#       lives in the LIVE run, not in selftest, because that is where the real
+#       search actually executes.
+#
+#   (3) a printed pre-filter DENOMINATOR. The report always leads with how many
+#       `*.placemarker.json` files were seen at the ref, before any parsing or
+#       filtering. Zero found is rendered as CANNOT DETERMINE, never as a pass.
+#
+# READ-ONLY, like every other probe in this file: `wc -c` and a sha, over ssh,
+# and nothing else. It never creates, moves or repairs a copy.
+
+PLACEMARKER_SUFFIX = ".placemarker.json"
+PLACEMARKER_ARTIFACT_TYPE = "oversized_evidence_artifact_placemarker"
+
+# Canary (remedy 2 above). Pinned real placemarkers that discovery MUST keep
+# returning. Deliberately retiring one means editing this tuple in the same
+# commit that removes it -- which is the point: the pin makes the removal a
+# decision rather than a silent regression.
+PLACEMARKER_CANARY_PATHS = (
+    "evidence/experiments/v3_exq_921_mech490_sleep_commitgate_spawn_matched/"
+    "v3_exq_921_mech490_sleep_commitgate_spawn_matched_20260812T152532Z_"
+    "episode_log.json.placemarker.json",
+    "evidence/experiments/v3_exq_978_sd018_directional_field_fishtank/runs/"
+    "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3/"
+    "v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_"
+    "episode_log.json.placemarker.json",
+)
+
+# `full_copy_locations[].where` is free prose written by whoever made the
+# pointer ("DLAPTOP (Mac)", "DLAPTOP-4 (Mac)", "ree-cloud-1 (hub)"), so it has
+# to be resolved to a FLEET key before anything can be probed.
+#
+# THIS IS AN ALLOWLIST AND MUST STAY ONE. The temptation is a prefix or fuzzy
+# match; for these names that is precisely wrong. Per CLAUDE.md's machine-
+# identity note, `ree-cloud-1..5` and `ree-worker-1..4` must never be collapsed,
+# because for them the TRAILING DIGIT IS THE IDENTITY -- a fuzzy matcher that
+# resolved "ree-cloud-3" onto ree-cloud-4 would verify a copy on the wrong box
+# and report redundancy that does not exist. An unrecognised `where` resolves
+# to UNRESOLVED and is reported by name, which is the honest answer and tells a
+# human exactly which line to add here.
+#
+# The Mac is the one sanctioned collapse: DLAPTOP / DLAPTOP-4 / DLAPTOP-5 all
+# alias forward to the one laptop (CLAUDE.md, 2026-08-15 HostName pin), and
+# placemarkers written months apart already spell it two different ways.
+#
+# NOT mapped on purpose: `ree-worker-N`. ree-cloud-3 answers `hostname` as
+# `ree-worker-3`, so the two names probably do denote one box -- but "probably"
+# is not what an allowlist is for, and no placemarker uses that spelling today.
+# If one ever does it will report UNRESOLVED, naming the string, and whoever
+# sees it can confirm the mapping before adding it here.
+PLACEMARKER_WHERE_ALIASES = {
+    "dlaptop": "DLAPTOP-4",
+    "dlaptop-4": "DLAPTOP-4",
+    "dlaptop-5": "DLAPTOP-4",
+    "mac": "DLAPTOP-4",
+    "ree-cloud-1": "ree-cloud-1",
+    "ree-cloud-2": "ree-cloud-2",
+    "ree-cloud-3": "ree-cloud-3",
+    "ree-cloud-4": "ree-cloud-4",
+}
+
+# Statuses that mean "we could not find out", as distinct from a finding.
+PLACEMARKER_UNDETERMINED = ("UNREACHABLE", "UNRESOLVED", "PRESENT_UNVERIFIED")
+
+
+def placemarker_where_target(where):
+    """Resolve a `where` string to a FLEET key, or None.
+
+    Returns (fleet_key_or_None, token) -- the token is what was looked up, so
+    an UNRESOLVED finding can name it.
+    """
+    token = (where or "").strip()
+    # "ree-cloud-1 (hub)" -> "ree-cloud-1"; a bare name is left as-is.
+    head = token.split("(")[0].strip().rstrip(",").strip()
+    return PLACEMARKER_WHERE_ALIASES.get(head.lower()), (head or token)
+
+
+def _pm_git(root, *args):
+    """Local `git` for the audit.
+
+    NOT a duplicate of the `git()` helper further up this file: that one lives
+    inside UNTRACKED_PY, the worker-side grader source that is base64'd and
+    executed on the far end, so it does not exist in this process at all.
+    Calling it here raised NameError on the first live run.
+    """
+    try:
+        p = subprocess.run(("git",) + args, cwd=root,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    except Exception:                             # pragma: no cover - defensive
+        return None
+    if p.returncode != 0:
+        return None
+    return p.stdout.decode("utf-8", "replace")
+
+
+def load_placemarkers(root, ref="origin/master"):
+    """Read every placemarker doc at `ref`. Returns (docs, seen, problems).
+
+    `seen` is the PRE-FILTER count -- how many *.placemarker.json paths the ref
+    carries, before parsing or artifact_type filtering. It is remedy (3): the
+    denominator has to be reported separately from the numerator, because both
+    come out of this one `git ls-tree` and one broken glob takes both to zero
+    while every downstream count still reads as a confident pass.
+    """
+    listing = _pm_git(root, "ls-tree", "-r", "--name-only", ref)
+    if listing is None:
+        return [], None, [f"could not list {ref} (is the ref fetched?)"]
+    paths = [p for p in listing.splitlines() if p.endswith(PLACEMARKER_SUFFIX)]
+    docs, problems = [], []
+    for rel in sorted(paths):
+        raw = _pm_git(root, "show", f"{ref}:{rel}")
+        if raw is None:
+            problems.append(f"{rel}: could not read blob at {ref}")
+            continue
+        try:
+            doc = json.loads(raw)
+        except Exception:
+            doc = None
+        if not isinstance(doc, dict):
+            problems.append(f"{rel}: not parseable JSON")
+            continue
+        if doc.get("artifact_type") != PLACEMARKER_ARTIFACT_TYPE:
+            problems.append(f"{rel}: artifact_type is "
+                            f"{doc.get('artifact_type')!r}, not "
+                            f"{PLACEMARKER_ARTIFACT_TYPE!r}")
+            continue
+        docs.append((rel, doc))
+    return docs, len(paths), problems
+
+
+# Read-only existence + integrity probe. POSIX sh: `wc -c` rather than `stat`
+# (BSD spells it -f%z, GNU -c%s) and sha256sum-or-shasum, so the identical
+# script runs on a worker and on the Mac. Paths arrive by heredoc, not as argv,
+# so spaces in a path cannot re-split.
+PLACEMARKER_PROBE = r'''
+while IFS= read -r p; do
+  [ -n "$p" ] || continue
+  if [ -f "$p" ]; then
+    sz=$(wc -c < "$p" | tr -d ' ')
+    if command -v sha256sum >/dev/null 2>&1; then
+      h=$(sha256sum "$p" | cut -d' ' -f1)
+    else
+      h=$(shasum -a 256 "$p" | cut -d' ' -f1)
+    fi
+    printf '%s|present|%s|%s\n' "$p" "$sz" "$h"
+  else
+    printf '%s|absent||\n' "$p"
+  fi
+done <<'REE_PM_PATHS'
+__PATHS__
+REE_PM_PATHS
+'''
+
+
+def _placemarker_probe_script(paths):
+    return PLACEMARKER_PROBE.replace("__PATHS__", "\n".join(paths))
+
+
+def _parse_placemarker_probe(stdout):
+    out = {}
+    for line in (stdout or "").splitlines():
+        parts = line.rstrip("\n").split("|")
+        if len(parts) != 4:
+            continue
+        path, state, size, sha = parts
+        out[path] = {"present": state == "present",
+                     "size_bytes": int(size) if size.isdigit() else None,
+                     "sha256": sha or None}
+    return out
+
+
+def probe_placemarker_paths(target, paths, timeout=180):
+    """stat+sha every path on one box. Returns (results, error_or_None).
+
+    An error here is CANNOT-DETERMINE for every path on this target, never
+    "missing" -- a powered-off worker is the normal case, not a finding.
+    """
+    paths = [p for p in paths if "\n" not in p and "REE_PM_PATHS" not in p]
+    if not paths:
+        return {}, None
+    script = _placemarker_probe_script(paths)
+    argv = (["ssh", "-o", "ConnectTimeout=15", "-o", "BatchMode=yes",
+             f"ree@{target.ip}", "sh -s"] if target.ip else ["sh", "-s"])
+    try:
+        r = subprocess.run(argv, input=script, capture_output=True, text=True,
+                           timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return {}, "probe timed out"
+    except Exception as exc:                      # pragma: no cover - defensive
+        return {}, f"probe failed: {exc}"
+    if r.returncode != 0:
+        tail = (r.stderr or "").strip().splitlines()
+        return {}, (tail[-1] if tail else "ssh failed")
+    return _parse_placemarker_probe(r.stdout), None
+
+
+def grade_placemarker_location(declared_size, declared_sha, observed, err):
+    """One declared location -> (status, detail).
+
+    The whole point of this function is that it has FIVE outcomes, not two.
+    VERIFIED / MISSING / CORRUPT are findings; UNREACHABLE / UNRESOLVED /
+    PRESENT_UNVERIFIED are cannot-determine and are counted apart from both.
+    """
+    if err is not None:
+        return "UNREACHABLE", err
+    if observed is None:
+        return "UNREACHABLE", "box answered but this path was not graded"
+    if not observed.get("present"):
+        return "MISSING", "no file at the declared path"
+    size, sha = observed.get("size_bytes"), observed.get("sha256")
+    if declared_sha and sha and sha != declared_sha:
+        return "CORRUPT", f"sha256 {sha} != declared {declared_sha}"
+    if declared_size is not None and size is not None and size != declared_size:
+        return "CORRUPT", f"size {size} != declared {declared_size}"
+    if not declared_sha:
+        return "PRESENT_UNVERIFIED", ("present, but the placemarker declares no "
+                                      "sha256 -- integrity unverifiable")
+    if not sha:
+        return "PRESENT_UNVERIFIED", "present, but no sha could be computed"
+    return "VERIFIED", f"{size} bytes, sha256 matches"
+
+
+def rollup_placemarker(locations):
+    """Per-placemarker verdict over its graded locations.
+
+    DEGRADED and UNDETERMINED are separate verdicts on purpose. Collapsing them
+    -- "fewer than declared, call it degraded" -- is the mistake this whole
+    module is about: it would turn every routine scaler power-down into an
+    evidence-loss alarm, and the second time that happened somebody would stop
+    reading the output.
+    """
+    verified = sum(1 for l in locations if l["status"] == "VERIFIED")
+    lost = sum(1 for l in locations if l["status"] in ("MISSING", "CORRUPT"))
+    undet = sum(1 for l in locations if l["status"] in PLACEMARKER_UNDETERMINED)
+    declared = len(locations)
+    if declared == 0:
+        verdict = "NO_LOCATIONS"           # a pointer that points nowhere
+    elif verified == 0 and lost and not undet:
+        verdict = "CRITICAL"               # every declared copy is gone
+    elif verified == 0:
+        verdict = "UNDETERMINED"           # nothing confirmed, nothing refuted
+    elif lost:
+        verdict = "DEGRADED"               # a real copy is gone
+    else:
+        verdict = "OK"
+    return {"verdict": verdict, "verified": verified, "lost": lost,
+            "undetermined": undet, "declared": declared,
+            # A single surviving copy is not a finding, but it IS the state one
+            # disk failure away from CRITICAL, so it is said out loud.
+            "thin": verified == 1}
+
+
+def audit_placemarker_copies(root=None, ref="origin/master", fetch=True,
+                             timeout=180):
+    """Verify every declared full_copy_location of every placemarker at `ref`.
+
+    One ssh per BOX, not per path: locations are grouped by resolved target so
+    a placemarker set spanning four boxes costs four connections regardless of
+    how many artifacts it names.
+    """
+    root = root or os.path.join(LOCAL_BASE, "REE_assembly")
+    report = {"ref": ref, "root": root, "fetch_problems": [],
+              "seen": None, "parsed": 0, "problems": [],
+              "canary": {}, "placemarkers": [], "unreachable_targets": {}}
+    if fetch:
+        report["fetch_problems"] = _fetch_local(os.path.dirname(root),
+                                                timeout=timeout)
+    docs, seen, problems = load_placemarkers(root, ref)
+    report["seen"] = seen
+    report["parsed"] = len(docs)
+    report["problems"] = problems
+
+    # Canary (remedy 2): the pinned real placemarkers must still be FOUND.
+    found = {rel for rel, _ in docs}
+    listing_ok = seen is not None
+    report["canary"] = {
+        "expected": list(PLACEMARKER_CANARY_PATHS),
+        "missing": [p for p in PLACEMARKER_CANARY_PATHS if p not in found]
+        if listing_ok else list(PLACEMARKER_CANARY_PATHS),
+        "checked": listing_ok,
+    }
+
+    # Group every declared location by the box it lives on.
+    by_target = {}          # fleet_key -> list of (doc_index, loc_index, path)
+    entries = []
+    for di, (rel, doc) in enumerate(docs):
+        locs = doc.get("full_copy_locations")
+        locs = locs if isinstance(locs, list) else []
+        graded = []
+        for li, loc in enumerate(locs):
+            loc = loc if isinstance(loc, dict) else {}
+            where = loc.get("where", "")
+            path = loc.get("path", "")
+            key, token = placemarker_where_target(where)
+            graded.append({"where": where, "path": path, "target": key,
+                           "status": None, "detail": None})
+            if key and key in FLEET and path:
+                by_target.setdefault(key, []).append((di, li, path))
+            elif not path:
+                graded[-1].update(status="UNRESOLVED",
+                                  detail="location declares no path")
+            else:
+                graded[-1].update(
+                    status="UNRESOLVED",
+                    detail=f"`where` {token!r} maps to no known box -- add it "
+                           f"to PLACEMARKER_WHERE_ALIASES once confirmed")
+        entries.append({"placemarker": rel, "run_id": doc.get("run_id"),
+                        "original_filename": doc.get("original_filename"),
+                        "size_bytes": doc.get("size_bytes"),
+                        "sha256": doc.get("sha256"), "locations": graded})
+
+    for key, items in sorted(by_target.items()):
+        target = FLEET[key]
+        observed, err = probe_placemarker_paths(
+            target, sorted({p for _, _, p in items}), timeout=timeout)
+        if err:
+            report["unreachable_targets"][key] = err
+        for di, li, path in items:
+            e = entries[di]
+            status, detail = grade_placemarker_location(
+                e["size_bytes"], e["sha256"],
+                None if err else observed.get(path), err)
+            e["locations"][li].update(status=status, detail=detail)
+
+    for e in entries:
+        e["rollup"] = rollup_placemarker(e["locations"])
+    report["placemarkers"] = entries
+    return report
+
+
+def render_placemarker_report(report):
+    """Render the audit. Returns (lines, exit_code).
+
+    Exit 1 on a real finding (CRITICAL / DEGRADED / a broken canary / a pointer
+    with no locations). Cannot-determine alone never fails the run: a
+    powered-off worker is normal, and a check that goes red on normal gets
+    disabled. It is still always PRINTED.
+    """
+    L = []
+    bad = False
+    L.append(f"placemarker copy audit  ref={report['ref']}")
+    for p in report["fetch_problems"]:
+        L.append(f"  [note] fetch: {p}")
+
+    seen = report["seen"]
+    if seen is None:
+        L.append("  [CANNOT DETERMINE] could not list the ref -- this is NOT "
+                 "'no placemarkers'; nothing below was checked")
+        return L, 1
+    L.append(f"  scanned {seen} *{PLACEMARKER_SUFFIX} path(s) at "
+             f"{report['ref']}; {report['parsed']} parsed as "
+             f"{PLACEMARKER_ARTIFACT_TYPE}")
+    if seen == 0:
+        L.append("  [CANNOT DETERMINE] zero placemarker files found. Read this "
+                 "as a possibly-broken search, not as a clean bill of health.")
+        bad = True
+    for p in report["problems"]:
+        L.append(f"  [note] {p}")
+
+    canary = report["canary"]
+    if canary["missing"]:
+        bad = True
+        L.append(f"  [CANARY BROKEN] {len(canary['missing'])} pinned "
+                 f"placemarker(s) were not found by discovery -- the search is "
+                 f"broken or they were removed without updating the pin:")
+        for p in canary["missing"]:
+            L.append(f"      {p}")
+    else:
+        L.append(f"  [canary] all {len(canary['expected'])} pinned "
+                 f"placemarker(s) still discovered")
+
+    for key, err in sorted(report["unreachable_targets"].items()):
+        L.append(f"  [cannot-determine] {key} did not answer ({err}) -- its "
+                 f"declared copies are UNDETERMINED, not missing")
+
+    tot_v = tot_l = tot_u = tot_d = 0
+    for e in report["placemarkers"]:
+        r = e["rollup"]
+        tot_v += r["verified"]; tot_l += r["lost"]
+        tot_u += r["undetermined"]; tot_d += r["declared"]
+        if r["verdict"] in ("CRITICAL", "DEGRADED", "NO_LOCATIONS"):
+            bad = True
+        L.append("")
+        L.append(f"  {r['verdict']}  {e['placemarker']}")
+        L.append(f"      declared {r['declared']} copy location(s): "
+                 f"{r['verified']} verified, {r['lost']} missing/corrupt, "
+                 f"{r['undetermined']} undetermined")
+        if r["thin"] and r["verdict"] != "OK":
+            L.append("      [thin] exactly ONE copy is confirmed to exist")
+        for loc in e["locations"]:
+            L.append(f"      [{loc['status']}] {loc['where']}")
+            L.append(f"          {loc['path']}")
+            if loc["detail"]:
+                L.append(f"          {loc['detail']}")
+
+    L.append("")
+    L.append(f"  TOTAL: {tot_v}/{tot_d} declared copy location(s) verified; "
+             f"{tot_l} missing or corrupt; {tot_u} undetermined")
+    return L, (1 if bad else 0)
+
+
+
 def selftest():
     """Assert classify() on RECORDED real fleet states. No ssh, no network.
 
@@ -2422,6 +2860,7 @@ def selftest():
     failed += _selftest_parent_crosscheck()
     failed += _selftest_recheck_and_host_resolution()
     failed += _selftest_fetch_is_local_only()
+    failed += _selftest_placemarker_copies()
     print()
     print("selftest: %d case(s) FAILED" % failed if failed else "selftest: all cases pass")
     return 1 if failed else 0
@@ -4039,6 +4478,289 @@ def _selftest_fetch_is_local_only():
     return bad
 
 
+
+
+def _selftest_placemarker_copies():
+    """Assert the placemarker audit on the RECORDED 2026-09-23 fleet state.
+
+    Hermetic: a temp directory stands in for the boxes, and the REAL sh probe
+    source runs against it -- the grading is read out of the module under test
+    rather than restated here as a literal, so this cannot pass while the
+    thing it guards is broken.
+
+    Case 1 is not synthetic. It is V3-EXQ-978 exactly as found on 2026-09-23:
+    declared on DLAPTOP and on ree-cloud-1, present and sha-matching on the
+    Mac, simply absent on the hub.
+    """
+    import tempfile
+    failed = 0
+    print()
+    print("selftest: placemarker copy audit")
+
+    real_sha = ("e418d9bc0a3c6036bca373d6a9fd400dcaa4c0d59f4b49a7ebc723dd0f"
+                "b557c4")
+
+    # --- the real sh probe, against a real directory -------------------------
+    with tempfile.TemporaryDirectory() as tmp:
+        good = os.path.join(tmp, "episode_log.json")
+        with open(good, "w") as fh:
+            fh.write("payload")
+        import hashlib
+        good_sha = hashlib.sha256(b"payload").hexdigest()
+        gone = os.path.join(tmp, "not_here.json")
+        local = Target("selftest-local", "local", tmp, None, False)
+        observed, err = probe_placemarker_paths(local, [good, gone], timeout=60)
+        if err:
+            print(f"  [FAIL] probe: the real sh probe errored: {err}")
+            failed += 1
+        elif not observed.get(good, {}).get("present"):
+            print("  [FAIL] probe: an existing file did not read as present")
+            failed += 1
+        elif observed[good]["sha256"] != good_sha:
+            print(f"  [FAIL] probe: sha mismatch "
+                  f"{observed[good]['sha256']} != {good_sha}")
+            failed += 1
+        elif observed[good]["size_bytes"] != 7:
+            print(f"  [FAIL] probe: size {observed[good]['size_bytes']} != 7")
+            failed += 1
+        elif observed.get(gone, {}).get("present"):
+            print("  [FAIL] probe: an absent file read as present")
+            failed += 1
+        else:
+            print("  [PASS] probe: the real sh probe reports size+sha for a "
+                  "present path and absence for a missing one")
+
+    # --- case 1: V3-EXQ-978 as found 2026-09-23 ------------------------------
+    locs = [
+        dict(status=grade_placemarker_location(
+            565573, real_sha,
+            {"present": True, "size_bytes": 565573, "sha256": real_sha},
+            None)[0]),
+        dict(status=grade_placemarker_location(
+            565573, real_sha, {"present": False, "size_bytes": None,
+                               "sha256": None}, None)[0]),
+    ]
+    roll = rollup_placemarker(locs)
+    if [l["status"] for l in locs] != ["VERIFIED", "MISSING"]:
+        print(f"  [FAIL] 978-as-found: graded {[l['status'] for l in locs]}, "
+              f"expected ['VERIFIED', 'MISSING']")
+        failed += 1
+    elif roll["verdict"] != "DEGRADED":
+        print(f"  [FAIL] 978-as-found: verdict {roll['verdict']}, "
+              f"expected DEGRADED")
+        failed += 1
+    elif not roll["thin"]:
+        print("  [FAIL] 978-as-found: one surviving copy was not called thin")
+        failed += 1
+    else:
+        print("  [PASS] 978-as-found (2026-09-23): 1 verified + 1 missing "
+              "reads DEGRADED and thin")
+
+    # --- case 2: the cannot-determine separation, and its BLIND-SPOT measure --
+    # A powered-off ree-cloud-2. THE case this module's two-word vocabulary
+    # exists for. Measured against the naive grading it replaces ("fewer
+    # verified than declared -> degraded"), which gets this wrong.
+    undet = [dict(status=grade_placemarker_location(
+                 565573, real_sha,
+                 {"present": True, "size_bytes": 565573, "sha256": real_sha},
+                 None)[0]),
+             dict(status=grade_placemarker_location(
+                 565573, real_sha, None, "ssh: connect: No route to host")[0])]
+    roll_u = rollup_placemarker(undet)
+    naive = "DEGRADED" if roll_u["verified"] < roll_u["declared"] else "OK"
+    if undet[1]["status"] != "UNREACHABLE":
+        print(f"  [FAIL] powered-off box: graded {undet[1]['status']}, "
+              f"expected UNREACHABLE")
+        failed += 1
+    elif roll_u["verdict"] != "OK":
+        print(f"  [FAIL] powered-off box: verdict {roll_u['verdict']}, "
+              f"expected OK (an unreachable box is not a lost copy)")
+        failed += 1
+    elif roll_u["lost"] != 0 or roll_u["undetermined"] != 1:
+        print(f"  [FAIL] powered-off box: counted lost={roll_u['lost']} "
+              f"undetermined={roll_u['undetermined']}, expected 0/1")
+        failed += 1
+    elif naive != "DEGRADED":
+        print("  [FAIL] blind-spot measure: the naive grading did NOT misfire "
+              "on this case, so this test is not measuring anything")
+        failed += 1
+    else:
+        print("  [PASS] powered-off box: UNREACHABLE counts apart from lost "
+              "and stays OK -- where the naive count-based grading says "
+              "DEGRADED (blind spot measured)")
+
+    # --- case 3: every declared copy gone -> CRITICAL, and it is not the same
+    #     verdict as 'we could not look' -------------------------------------
+    allgone = [dict(status="MISSING"), dict(status="MISSING")]
+    nolook = [dict(status="UNREACHABLE"), dict(status="UNREACHABLE")]
+    v_gone = rollup_placemarker(allgone)["verdict"]
+    v_nolook = rollup_placemarker(nolook)["verdict"]
+    if v_gone != "CRITICAL":
+        print(f"  [FAIL] all-copies-gone: verdict {v_gone}, expected CRITICAL")
+        failed += 1
+    elif v_nolook != "UNDETERMINED":
+        print(f"  [FAIL] all-boxes-unreachable: verdict {v_nolook}, "
+              f"expected UNDETERMINED")
+        failed += 1
+    elif v_gone == v_nolook:
+        print("  [FAIL] 'every copy is gone' and 'we could not look' produced "
+              "the SAME verdict -- the distinction this module exists for")
+        failed += 1
+    else:
+        print("  [PASS] all-gone reads CRITICAL and all-unreachable reads "
+              "UNDETERMINED -- never the same word")
+
+    # --- case 4: corruption is a finding, not a pass -------------------------
+    st, _ = grade_placemarker_location(565573, real_sha,
+                                       {"present": True, "size_bytes": 565573,
+                                        "sha256": "0" * 64}, None)
+    st_nosha, _ = grade_placemarker_location(
+        565573, None, {"present": True, "size_bytes": 565573,
+                       "sha256": real_sha}, None)
+    if st != "CORRUPT":
+        print(f"  [FAIL] sha mismatch graded {st}, expected CORRUPT")
+        failed += 1
+    elif st_nosha != "PRESENT_UNVERIFIED":
+        print(f"  [FAIL] placemarker with no declared sha graded {st_nosha}, "
+              f"expected PRESENT_UNVERIFIED")
+        failed += 1
+    else:
+        print("  [PASS] a sha mismatch is CORRUPT; a pointer with no declared "
+              "sha is PRESENT_UNVERIFIED, never VERIFIED")
+
+    # --- case 5: the resolver is an ALLOWLIST -------------------------------
+    checks = [("DLAPTOP (Mac)", "DLAPTOP-4"), ("DLAPTOP-4 (Mac)", "DLAPTOP-4"),
+              ("ree-cloud-1 (hub)", "ree-cloud-1"),
+              ("ree-cloud-3 (worker)", "ree-cloud-3"),
+              ("ree-cloud-9 (worker)", None), ("ree-worker-3", None),
+              ("some laptop", None)]
+    wrong = [(w, placemarker_where_target(w)[0], exp)
+             for w, exp in checks if placemarker_where_target(w)[0] != exp]
+    if wrong:
+        print(f"  [FAIL] where-resolver: {wrong}")
+        failed += 1
+    elif placemarker_where_target("ree-cloud-3 (worker)")[0] == \
+            placemarker_where_target("ree-cloud-4 (worker)")[0]:
+        print("  [FAIL] where-resolver COLLAPSED two cloud boxes -- the "
+              "trailing digit IS the identity for these names")
+        failed += 1
+    else:
+        print("  [PASS] where-resolver: aliases the Mac, keeps each cloud box "
+              "distinct, and refuses an unknown name rather than guessing")
+
+    # --- case 6: a pointer that points nowhere is a finding ------------------
+    if rollup_placemarker([])["verdict"] != "NO_LOCATIONS":
+        print("  [FAIL] a placemarker with zero full_copy_locations did not "
+              "report NO_LOCATIONS")
+        failed += 1
+    else:
+        print("  [PASS] a placemarker declaring no copy locations at all is a "
+              "finding, not a vacuous pass")
+
+    # --- case 8: DISCOVERY, for real, against a real git repo ---------------
+    # Added after the fact, and the reason is worth keeping: cases 1-7 all
+    # graded ALREADY-PARSED inputs, so the whole discovery half -- ls-tree,
+    # blob read, JSON parse -- was unexercised, and the first live run died
+    # with NameError on `git(...)` (that helper lives inside UNTRACKED_PY and
+    # does not exist in this process). Seven green cases and a broken tool.
+    # This is CLAUDE.md's "a guard that supplies the thing it asserts is not a
+    # guard" in miniature: the graded fixtures were hand-supplied, so nothing
+    # asked whether real placemarkers could be FOUND and READ at all.
+    #
+    # The two real placemarkers sit at DIFFERENT depths -- one flat beside its
+    # run JSON, one nested under runs/<run_id>/ -- so the fixture reproduces
+    # both, which is the layout split the canary exists to protect.
+    with tempfile.TemporaryDirectory() as repo:
+        def _g(*a):
+            subprocess.run(("git",) + a, cwd=repo, stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL, check=False)
+        _g("init", "-q")
+        _g("config", "user.email", "selftest@example.invalid")
+        _g("config", "user.name", "selftest")
+        flat = "evidence/experiments/exp_a/exp_a_log.json" + PLACEMARKER_SUFFIX
+        nested = ("evidence/experiments/exp_b/runs/exp_b_run_v3/"
+                  "exp_b_log.json" + PLACEMARKER_SUFFIX)
+        for rel, doc in ((flat, {"artifact_type": PLACEMARKER_ARTIFACT_TYPE,
+                                 "sha256": "a" * 64, "size_bytes": 7,
+                                 "full_copy_locations": []}),
+                         (nested, {"artifact_type": PLACEMARKER_ARTIFACT_TYPE,
+                                   "sha256": "b" * 64, "size_bytes": 9,
+                                   "full_copy_locations": []})):
+            os.makedirs(os.path.join(repo, os.path.dirname(rel)), exist_ok=True)
+            with open(os.path.join(repo, rel), "w") as fh:
+                json.dump(doc, fh)
+        # A decoy: right suffix, wrong artifact_type. Must be SEEN (it is in
+        # the denominator) but must not be graded as a placemarker.
+        decoy = "evidence/experiments/exp_c/other.json" + PLACEMARKER_SUFFIX
+        os.makedirs(os.path.join(repo, os.path.dirname(decoy)), exist_ok=True)
+        with open(os.path.join(repo, decoy), "w") as fh:
+            json.dump({"artifact_type": "something_else"}, fh)
+        _g("add", "-A")
+        _g("commit", "-qm", "selftest fixture")
+
+        docs, seen, problems = load_placemarkers(repo, "HEAD")
+        rels = [r for r, _ in docs]
+        if seen != 3:
+            print(f"  [FAIL] discovery: denominator {seen}, expected 3 "
+                  f"(two placemarkers plus the wrong-type decoy)")
+            failed += 1
+        elif sorted(rels) != sorted([flat, nested]):
+            print(f"  [FAIL] discovery: found {rels}, expected the flat AND "
+                  f"the nested placemarker")
+            failed += 1
+        elif not any("artifact_type" in p for p in problems):
+            print("  [FAIL] discovery: the wrong-type decoy was dropped "
+                  "silently instead of being reported")
+            failed += 1
+        elif docs[0][1].get("sha256") not in ("a" * 64, "b" * 64):
+            print("  [FAIL] discovery: blob content did not survive the read")
+            failed += 1
+        else:
+            print("  [PASS] discovery: a REAL ls-tree+blob-read finds both "
+                  "layouts, counts the decoy in the denominator and reports "
+                  "it rather than dropping it")
+
+        # A ref that does not exist must be CANNOT-DETERMINE (seen=None), not
+        # an empty-but-confident zero.
+        _, seen_bad, _ = load_placemarkers(repo, "refs/heads/no-such-ref")
+        if seen_bad is not None:
+            print(f"  [FAIL] discovery: an unreadable ref returned seen="
+                  f"{seen_bad!r}, expected None (cannot-determine)")
+            failed += 1
+        else:
+            print("  [PASS] discovery: an unreadable ref is cannot-determine, "
+                  "never a confident zero")
+
+    # --- case 7: the denominator is reported, and zero is CANNOT DETERMINE ---
+    empty = {"ref": "origin/master", "root": "/x", "fetch_problems": [],
+             "seen": 0, "parsed": 0, "problems": [],
+             "canary": {"expected": list(PLACEMARKER_CANARY_PATHS),
+                        "missing": list(PLACEMARKER_CANARY_PATHS),
+                        "checked": True},
+             "placemarkers": [], "unreachable_targets": {}}
+    lines, code = render_placemarker_report(empty)
+    blob = "\n".join(lines)
+    if code == 0:
+        print("  [FAIL] an empty placemarker search exited 0 -- 'found "
+              "nothing' read the same as 'all clear'")
+        failed += 1
+    elif "CANNOT DETERMINE" not in blob:
+        print("  [FAIL] an empty search did not render as CANNOT DETERMINE")
+        failed += 1
+    elif "CANARY BROKEN" not in blob:
+        print("  [FAIL] the canary did not fire when discovery returned none "
+              "of its pinned paths")
+        failed += 1
+    elif "scanned 0" not in blob:
+        print("  [FAIL] the pre-filter denominator was not printed")
+        failed += 1
+    else:
+        print("  [PASS] zero findings from a zero-denominator search renders "
+              "CANNOT DETERMINE, breaks the canary and exits non-zero")
+
+    return failed
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Probe fleet workers for wedged / skewed / gc-blocked git checkouts.")
@@ -4077,6 +4799,13 @@ def main():
                          "false-positive shape -- see module docstring); "
                          "never touches a worker, only re-reads the Mac's own "
                          "checkout")
+    ap.add_argument("--placemarkers", action="store_true",
+                    help="audit oversized-evidence .placemarker.json pointers "
+                         "instead of checkout health: verify every declared "
+                         "full_copy_locations entry still exists and matches "
+                         "its declared sha256. Exits 1 on a lost copy or a "
+                         "broken canary; an unreachable box is reported as "
+                         "UNDETERMINED, never as a missing copy")
     ap.add_argument("--selftest", action="store_true",
                     help="assert classify(), the untracked grader, local "
                          "target resolution and the claim cross-check against "
@@ -4085,6 +4814,16 @@ def main():
 
     if args.selftest:
         return selftest()
+
+    if args.placemarkers:
+        rep = audit_placemarker_copies(fetch=not args.no_fetch)
+        if args.json:
+            print(json.dumps(rep, indent=2, sort_keys=True))
+            lines, code = render_placemarker_report(rep)
+            return code
+        lines, code = render_placemarker_report(rep)
+        print("\n".join(lines))
+        return code
 
     targets = resolve_hosts(args.host)
     if targets is None:

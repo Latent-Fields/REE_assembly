@@ -45,6 +45,23 @@ evidence/experiments/v3_exq_921_mech490_sleep_commitgate_spawn_matched/v3_exq_92
 # V3-EXQ-978 fishtank companion -- real bytes stay on Mac + hub via SSH; git holds only the .placemarker.json sibling (same convention as 921).
 evidence/experiments/v3_exq_978_sd018_directional_field_fishtank/runs/v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_v3/v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_episode_log.json
 
+# Same V3-EXQ-978 bytes, at the FLAT path a worker recovery left behind on
+# ree-cloud-3 (sha256-identical to the nested copy above; verified 2026-09-23,
+# chip-20260923-placemarker-copy-audit). Ignored for the same reason as the
+# nested path -- this content is deliberately off git -- but the flat spelling
+# needs its own line, and without it two things went wrong on that box:
+#   1. the runner's prepull stash selects on `?? ` with --ignored=no, so it
+#      stashed and popped this file before EVERY pull -- ~1440 cycles a day,
+#      1020+ by 2026-09-15 -- and each cycle is a chance for the pop to fail,
+#      which is the documented silent-loss path (CLAUDE.md, stash audit).
+#   2. the stuck-path escalation then advised that "this file is the only copy
+#      and needs manual delivery", which is FALSE here: it is the third copy of
+#      content whose canonical home is the placemarker'd nested path, with two
+#      verified durable copies (Mac + hub). A true warning with a wrong remedy.
+# Ignoring it ends the churn, silences the false escalation, and blocks it from
+# being swept into a commit that would land bytes git deliberately excludes.
+evidence/experiments/v3_exq_978_sd018_directional_field_fishtank_20260903T111718Z_episode_log.json
+
 # Derived evidence read-model (derived_evidence_index:P1). A disposable SQLite
 # projection of the git-tracked manifests + claim_evidence.v1.json, rebuilt from
 # scratch by evidence/experiments/scripts/build_experiment_indexes.py on every
