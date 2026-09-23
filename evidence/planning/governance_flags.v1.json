@@ -5124,9 +5124,9 @@
       "summary": "The IGW-242 literature pull (REE_assembly origin/master 1e98ae94e8, 5 entries in evidence/literature/targeted_review_connectome_mech_066, lit_confidence 0.868) supports MECH-066's permissive half but contests its scope as written: 'must stay separated at durable write boundaries' quantifies over ALL persistent stores, and DreamerV3 (Hafner et al., Nature 2025, PMID 40175544) -- the strongest published instance of this architecture -- deliberately violates that at one of its two durable write loci, training its world model only on replayed real experience while durably training actor and critic PURELY on imagined rollouts. Proposed narrowing for the user's decision: MECH-066 should name the protected component by epistemic role (the component required to be veridical about the world, i.e. REE's E1 and the residue field) rather than quantifying over every persistent store. Second, separable point: the correct instrument for any future MECH-066 test is a STATIC read of the write topology, not a representational-overlap statistic -- Kaufman et al. (Nat Neurosci 2014, PMID 24487233) show channels can be maximally overlapping in population space and still perfectly separated at the write boundary, so MECH-061's inherited |pre_post_corr|=0.044 measures the wrong thing for this claim.",
       "raised_by_session": "igw-242-literature-proposal-for-mech-066",
       "raised_at": "2026-09-19T17:59:50Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:37:31Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. USER RULING 2026-09-23 (accepted the governance recommendation, rec-20260923-e1e14f35). Option A: MECH-066 narrowed by epistemic role. Only components that must stay veridical about the world (E1, residue field, and bound attribution records) are protected; policy/actor-critic parameters trained on imagined rollouts are out of scope (DreamerV3; IGW-242 lit pull 1e98ae94e8). Title and WWA scope updated (REE_assembly 6b0d1cb1dc)."
     },
     {
       "flag_id": "GFLAG-0362",
