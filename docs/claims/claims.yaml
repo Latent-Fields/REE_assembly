@@ -34936,6 +34936,17 @@
     The architecture naturally generalises: maximising D_V over long H corresponds
     to the ethical axioms (Axiom 5: preserve existence = avoid D_V collapse; Axiom 7:
     others' existence = extend D_V tracking).
+
+    [2026-09-23 governance, governance-flags-20260923b, GFLAG-0278, user decision] EVIDENCE BASE COMPLETED from the ARC-055 decomposition
+    pull (evidence/literature/targeted_review_arc_055/). Two entries support the SHAPE this claim asserts -- a
+    selectively removable, causally necessary, context-conditional signal on the selection path: Zajkowski 2017
+    (frontopolar cTBS, Horizon Task; 0.72 -- but the manipulated quantity is an information bonus, not a depth-like
+    verisimilitude signal) and Tervo 2014 (LC->ACC, model-validity gating of strategy; 0.71 -- a binary mode switch,
+    not graded re-ranking). Two dissociate confidence REPORT from choice: Lak 2014 (OFC inactivation; mixed, 0.60 --
+    confidence-guided waiting collapses while choice accuracy survives) and Fleming 2014 (anterior PFC lesion;
+    weakens, 0.64 -- plus domain-specificity). Net: the selection-path shape is supported; the reading that ONE global
+    explicit V(t) is needed for choice is weakened, and V(t) may be domain-local rather than a single shared-bus
+    quantity. No status or confidence change (the V3 test lives at V3-EXQ-491, per GFLAG-0242).
   v3_form_note: |
     Promoted v4 -> v3 on 2026-04-26 in *rollout-horizon synaptic-EMA form*. The V3 form
     reads V_hat_pi(t+k) from MECH-269 per-region V_s (Phase 2 iii T4 readout) walked
@@ -34964,6 +34975,10 @@
   location: docs/architecture/dv_temporal_depth_v3_form.md
   source:
     - evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+    - evidence/literature/targeted_review_arc_055/entries/2026-09-10_arc_055_frontopolar_directed_exploration_horizon_zajkowski2017
+    - evidence/literature/targeted_review_arc_055/entries/2026-09-10_arc_055_model_validity_gates_selection_tervo2014
+    - evidence/literature/targeted_review_arc_055/entries/2026-09-10_arc_055_confidence_report_choice_dissociation_lak2014
+    - evidence/literature/targeted_review_arc_055/entries/2026-09-10_arc_055_metacognition_lesion_domain_specific_fleming2014
 
 - id: ARC-055
   title: "Verisimilitude signal explicitness: V(t) and D_V must be explicit signals (addressable representations, not emergent epiphenomena) that influence E1 state representation, the E2 transition model, and learning-update prioritisation."
@@ -45182,6 +45197,15 @@
     a content specification. MECH-275 specifies the content: the
     aggregation that is necessary is of counterfactual-backed
     attribution, not arbitrary evidence.
+
+    [2026-09-23 governance, governance-flags-20260923b, GFLAG-0284, user decision] CLAIM-VERSUS-CODE MISMATCH, pointer only: the landed
+    aggregator (ree-v3 ree_core/sleep/bayesian_aggregator.py, gated behind enable_sleep_aggregation_cluster(),
+    default off) aggregates across replay DRAWS sampled WITH replacement from a frozen snapshot (replay_sampler.py
+    draw()), keyed on (domain, region) with no dependency / ancestry term -- so repeated draws of one episode count as
+    independent evidence. That is not the cross-EPISODE aggregation this claim's title asserts, and it is the
+    noise-fit hazard the functional_restatement warns against. MECH-554's notes carry the full account and why it
+    stays substrate_conditional. The assertion text above is deliberately left as registered (INV-049 depends on it;
+    MECH-273/274/278 frame against it): the intended cross-episode mechanism is UNBUILT, not disproved.
   evidence_quality_note: >
     Candidate, no direct experiment yet. Natural validation is the
     generalisation of the MECH-273 experiment template, parameterised
@@ -99033,6 +99057,16 @@
     source package explicitly forbids queueing a sleep mutual-legibility experiment until a
     WAKING interface metric has demonstrated stability and range, because otherwise the assay
     measures the instrument. DO NOT queue an experiment from this entry.
+
+    [2026-09-23 governance, governance-flags-20260923b, GFLAG-0280, user decision] SIGNATURE LIST HELD AT FOUR (S1-S4), following
+    the GFLAG-0235 precedent (proposal stays on the proposing claim; the canonical claim carries a forward reference).
+    Three proposed extensions are NOT absorbed here while MECH-540 is itself candidate / substrate_conditional: (a)
+    MECH-548's sleep corollary -- offline recalibration must preserve CLOSED-LOOP stability when waking resumes; a
+    change that improves a static probe but destabilises the next waking trajectory is a failure, not consolidation;
+    (b) MECH-551's offline capacity-reduction job -- weakening redundant routes while verifying no counterfactual or
+    regulatory distinction is lost; (c) the 2026-09-10 thought's 'replay maintains causal ACCESS correspondence'
+    (docs/thoughts/2026-09-10_dynamic_information_governance_propagating_causal_privilege.md section 5), which stays
+    unregistered as its source intended. Revisit absorption when any of them has evidence.
 
 - id: ARC-140
   title: "Compensatory realizability -- recovery without restoration: an adaptive organism should not be REQUIRED to recover by reconstructing its former internal state; the target property is the capacity to preserve or recover a useful function by REORGANIZING CAUSAL RESPONSIBILITY across internal processes rather than returning to one canonical implementation. Operational criterion: after perturbation, recovered behaviour must be accompanied by a demonstrably ALTERED DISTRIBUTION OF CAUSAL IMPORTANCE, not a hidden reconstruction of the original pathway -- evidenced by the original route remaining observably impaired, a different internal process becoming NECESSARY (selective re-ablation removes the recovered competence), and later restoration of the original route producing competition/redundancy/reorganisation rather than revealing it had silently returned. Requires a four-arm design -- no-intervention, restorative-normalization analogue, compensatory-amplification analogue (lesion left in place, the recruited substitute selectively strengthened), and a CONTROL-AMPLIFICATION arm strengthening a comparably sized non-compensatory process -- because without the fourth arm 'generic added capacity' is an unexcluded explanation of any recovery."
