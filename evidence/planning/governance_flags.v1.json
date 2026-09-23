@@ -6196,6 +6196,22 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0433",
+      "claim_ids": [
+        "MECH-573",
+        "MECH-574",
+        "INV-063",
+        "SD-008"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-1073 and V3-EXQ-1075 never set alpha_world, so they inherited the from_dims default of 0.3 (ree-v3/ree_core/utils/config.py:7562; smoothing at stack.py:1584), below SD-008's stable-claim floor of >= 0.9 that ~880 other experiment call sites honour. A read-only linear probe at the 1075 settings (REE_convergence 8d5534d, sources/dreamer-v3/action_readability_small_displacement.md) measured per-step z_world displacement ~3x larger at alpha_world 0.9/1.0 than at 0.3 (2.3-2.6e-3/dim vs 6.6-8.8e-3/dim). The governance-ratified validated-NEGATIVE (corrupting) verdict on SD-PP-B5 (cycle governance-20260923-0717) and the 1073/1075 evidence on MECH-573/MECH-574/INV-063 were therefore measured at a damped operating point that violates SD-008. Proposed: review whether the SD-PP-B5 verdict and those evidence weights stand as measured, pending the alpha_world operating-point probe registered first in SD-PP-B10-zworld-encoder-action-displacement (REE_assembly f7c4530ec1); also consider making the from_dims default honour SD-008.",
+      "raised_by_session": "orchestrate-20260923-restart",
+      "raised_at": "2026-09-23T16:17:17Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
