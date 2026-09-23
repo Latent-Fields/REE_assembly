@@ -1,5 +1,8 @@
 # Failure autopsy (diagnostic adjudication) -- V3-EXQ-1004, SD-WAYPOINT-FIELD validation
 
+> **Citation correction (2026-09-23 governance, GFLAG-0401):** this artifact cites `EXP-0705` (5 times here, 4 in the paired .json). No proposal with that id exists in `experiment_proposals.v1.json` / `experiment_proposals_index.v1.json` today; the live INV-086 experimental proposal is `EXP-0710` (EVB-1363, blocked_substrate). The original text is left unedited because not every mention is verifiably the same referent; read `EXP-0705` as a stale id and resolve against `EXP-0710` before acting on it.
+
+
 - **Status:** `confirmed`
 - **Generated (UTC):** 2026-09-05T02:38:25Z (STAGING MODE draft, headless; produced for governance session `governance-20260905`)
 - **Confirmed (UTC):** 2026-09-05T09:35:20Z by `governance-20260905 (user gate, inline route A)`, after a cross-model Step 7c red-team pass (verdict CONTESTED -- see section 11b) and the Step 8 human gate.

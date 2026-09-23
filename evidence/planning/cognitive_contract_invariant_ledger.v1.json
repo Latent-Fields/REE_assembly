@@ -2,8 +2,8 @@
   "schema_version": "1.1",
   "governing_claim": "GOV-CONTRACT-1",
   "contract_claim": "ARC-142",
-  "updated_utc": "2026-09-14",
-  "notes": "Updated after the first and second cognitive-contract literature pulls. Evidence verdicts are in {unassessed, supports, absent, contradicts}; classification in {architectural, embodied, cultural, uncertain}; status in {candidate, not_required, admitted}. 'Admitted' means the candidate currently clears the GOV-CONTRACT-1 multi-domain admissibility bar, not that its encoding or primitive status is fixed. Composite candidates remain candidate even when recurrence is strong. Negative/corrective findings are preserved. Reconciled 2026-09-14 (bundleE-planning-docs-20260914, chip-20260908-cognitive-contract-ledger-reconcile) against the independent targeted lit-pull in evidence/literature/targeted_review_cognitive_contract_invariants/SYNTHESIS.md (REE_assembly 4390fc6c8a, chip-20260908-cognitive-contract-litpull, session peaceful-kare-a6a78f) for the five overlapping records CCI-001..CCI-005: added Session B sources/verdicts per domain, set 4 previously-unassessed cells, and recorded per-record disagreements in each record's new session_b_reconciliation field. This ledger's own build commit is REE_assembly 7e906c7a84e (session xenodochial-austin-8c5984, chip-20260908-cognitive-contract-ledger).",
+  "updated_utc": "2026-09-23 (governance, GFLAG-0281 tranche-3 amendment application)",
+  "notes": "Updated after the first and second cognitive-contract literature pulls. Evidence verdicts are in {unassessed, supports, absent, contradicts}; classification in {architectural, embodied, cultural, uncertain}; status in {candidate, not_required, admitted}. 'Admitted' means the candidate currently clears the GOV-CONTRACT-1 multi-domain admissibility bar, not that its encoding or primitive status is fixed. Composite candidates remain candidate even when recurrence is strong. Negative/corrective findings are preserved. Reconciled 2026-09-14 (bundleE-planning-docs-20260914, chip-20260908-cognitive-contract-ledger-reconcile) against the independent targeted lit-pull in evidence/literature/targeted_review_cognitive_contract_invariants/SYNTHESIS.md (REE_assembly 4390fc6c8a, chip-20260908-cognitive-contract-litpull, session peaceful-kare-a6a78f) for the five overlapping records CCI-001..CCI-005: added Session B sources/verdicts per domain, set 4 previously-unassessed cells, and recorded per-record disagreements in each record's new session_b_reconciliation field. This ledger's own build commit is REE_assembly 7e906c7a84e (session xenodochial-austin-8c5984, chip-20260908-cognitive-contract-ledger). Tranche-3 amendment (evidence/planning/cognitive_contract_invariant_ledger_tranche3_amendment_2026-09-08.md, section 13) applied 2026-09-23 per GFLAG-0281: CCI-015/016/017/018 created (14 -> 18 records), CCI-003 demoted to historical composite parent (status: not_required), CCI-004 kept as composite target with causal/control split to CCI-018, CCI-011 renamed non_obtaining_expected_absence with new neural/comparative evidence, CCI-014 demoted from presumptive membership (status stays candidate), CCI-007 gained an external-positive-control literature note. Negative/demoting results from the amendment are preserved verbatim per the amendment's own closing instruction.",
   "records": [
     {
       "record_id": "CCI-001",
@@ -57,7 +57,9 @@
       "classification": "uncertain",
       "confidence": "moderate",
       "source_claims": ["ARC-142","MECH-545"],
-      "status": "candidate"
+      "status": "not_required",
+      "split_into": ["CCI-015","CCI-016"],
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Per tranche-3 amendment sec.4/13: retained ONLY as a historical composite convenience label, not evaluated as a primitive candidate in its own right (status moved candidate -> not_required to record that negative finding, per this ledger's own status-enum semantics -- see top-level 'notes'). Split into CCI-015 (provenance/source/ownership) and CCI-016 (branch/obtaining/update status), both created this cycle. All prior domain evidence on this record is left untouched as the historical basis for the split."
     },
     {
       "record_id": "CCI-004",
@@ -75,7 +77,9 @@
       "classification": "uncertain",
       "confidence": "high-recurrence-composite",
       "source_claims": ["ARC-142","MECH-545"],
-      "status": "candidate"
+      "status": "candidate",
+      "split_into": ["CCI-018"],
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Per tranche-3 amendment sec.6/13: KEPT AS COMPOSITE TARGET, not a primitive (status stays 'candidate' -- composite, high recurrence, weak primitive status per the amendment's own verdict, not a negative finding). Causal/control relation split out to its own record, CCI-018, created this cycle; the remaining composite is source/ownership + action + predicted consequence + counterfactual comparison."
     },
     {
       "record_id": "CCI-005",
@@ -127,7 +131,8 @@
       "classification": "architectural",
       "confidence": "high",
       "source_claims": ["ARC-142","ARC-139","MECH-539"],
-      "status": "admitted"
+      "status": "admitted",
+      "positive_control_note": "[2026-09-23 governance, GFLAG-0281] Per tranche-3 amendment sec.11/13: Webb et al. 2024 (relation-selective processing bottleneck) and Campbell & Cohen 2024 (factorised/approximately orthogonal feature dimensions under a relational inductive bias) are attached here as an EXTERNAL POSITIVE CONTROL for the relational-topology experimental design, NOT as independent confirmation that REE's contract will emerge spontaneously (the bottleneck in that work is imposed, REE's is not). Proper role: positive-control arm D = imposed relational bottleneck; target arm E = unlabeled multi-consumer narrowing; E approaching D without relation labels supports emergence; D-only working suggests a stronger inductive bias is needed."
     },
     {
       "record_id": "CCI-008",
@@ -182,12 +187,12 @@
     },
     {
       "record_id": "CCI-011",
-      "candidate": "negation_absence",
-      "definition": "A represented relation/state can be marked as not obtaining or an expected event can be represented as absent, distinct from mere lack of information.",
+      "candidate": "non_obtaining_expected_absence",
+      "definition": "The distinction between 'unknown whether X', 'expected X but X did not occur', and 'X is represented as not obtaining' remains recoverable.",
       "linguistic": {"verdict":"supports","sources":["NSM: NOT","McDermott-Hinman et al. 2026 DOI 10.1037/xge0001938"],"note":"Negation is universal in human thought/language; acquisition study supports a linguistic rather than conceptual bottleneck for English negation words."},
       "developmental": {"verdict":"supports","sources":["Szabó & Kovács 2025 DOI 10.1016/j.cognition.2024.105929","McDermott-Hinman et al. 2026 PMID 42241087"],"note":"Whether infancy begins with full logical negation or narrower rejection/non-existence remains open."},
-      "neural": {"verdict":"unassessed","sources":[],"note":"Dedicated neural-negation pull still owed."},
-      "comparative": {"verdict":"unassessed","sources":[],"note":"Critical next question: non-linguistic representation of non-occurrence/absence across species."},
+      "neural": {"verdict":"supports","sources":["Yaron et al. 2026 DOI 10.1111/ejn.70566, PMID 42210581"],"note":"Omission responses across species/modalities; reward-prediction-error paradigms provide timed responses to omitted expected outcomes (tranche-3 amendment sec.7, replacing the prior 'unassessed' verdict)."},
+      "comparative": {"verdict":"supports","sources":["Yaron et al. 2026 DOI 10.1111/ejn.70566, PMID 42210581 (cross-species omission-response evidence)"],"note":"Omission responses across species/modalities, timed to omitted expected outcomes under reward-prediction-error paradigms (tranche-3 amendment sec.7, replacing the prior 'unassessed' verdict)."},
       "artificial_agent": {"verdict":"unassessed","sources":[],"note":"Could be tested directly in predictive agents via omitted expected events."},
       "ree": {"verdict":"supports","sources":["language thought: prediction-error/correction 'no'; predictive error machinery"],"note":"No dedicated contract claim yet."},
       "lesion_prediction": "Preserve positive content but delete non-obtaining/absence -> inability to reject hypotheses, represent missing expected events or distinguish not-X from unknown-X.",
@@ -195,7 +200,9 @@
       "classification": "uncertain",
       "confidence": "moderate",
       "source_claims": ["ARC-142"],
-      "status": "candidate"
+      "status": "candidate",
+      "old_candidate_name": "negation_absence",
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Renamed and sharpened per tranche-3 amendment sec.7/13. Interpretation carried over verbatim from the amendment: strong evidence for representing non-occurrence/absence RELATIVE TO EXPECTATION; insufficient evidence for a universal language-like logical NOT primitive. classification/confidence/status left unchanged (uncertain / moderate / candidate) -- the amendment's own verdict is 'candidate; moderate confidence; possible operator derived from prediction + expectation + mismatch', which matches this record's existing classification, so no change is made there."
     },
     {
       "record_id": "CCI-012",
@@ -246,7 +253,86 @@
       "classification": "uncertain",
       "confidence": "moderate",
       "source_claims": ["ARC-142"],
-      "status": "candidate"
+      "status": "candidate",
+      "presumptive_membership": false,
+      "admission_condition": "Demonstrate a boundary where preserving the other admitted relations while deleting priority causes a deficit that the receiving system cannot reconstruct locally.",
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Per tranche-3 amendment sec.10/13: DEMOTED from presumptive contract membership. Status left 'candidate' (not moved to 'not_required') because the amendment's own verdict is 'candidate/not-yet-required', i.e. a demotion in presumptive standing rather than a settled negative finding -- promotion requires the admission_condition above to be demonstrated at a real boundary."
+    },
+    {
+      "record_id": "CCI-015",
+      "candidate": "provenance_source_ownership",
+      "definition": "Evidence about how a representation was generated or constrained: externally sampled versus internally generated, self versus other source/ownership, retrieved versus newly simulated where recoverable.",
+      "linguistic": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled from CCI-003's fused linguistic evidence; tranche-3 split (sec.4), dedicated pull owed."},
+      "developmental": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled from CCI-003's fused developmental evidence; dedicated pull owed."},
+      "neural": {"verdict":"supports","sources":["Dijkstra et al. 2022 DOI 10.1016/j.neubiorev.2022.104557 (perceptual reality-monitoring review)","Dijkstra et al. 2025 Neuron DOI 10.1016/j.neuron.2025.05.015"],"note":"Perception and imagination share perceptual machinery and are discriminated using signal/cue evidence plus frontal reality judgement (tranche-3 amendment sec.4)."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "artificial_agent": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "ree": {"verdict":"unassessed","sources":[],"note":"No dedicated REE contract claim registered yet; split candidate from CCI-003 (MECH-545 lesion design)."},
+      "lesion_prediction": "Delete provenance/source information while preserving content -> loss of self/other source attribution, false ownership of generated content, retrieved-vs-simulated confusion.",
+      "alternative_explanation": "May not be separable from CCI-016 branch/status; both were fused under CCI-003 reality_status until this split.",
+      "classification": "architectural",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142","MECH-545"],
+      "status": "candidate",
+      "split_from": "CCI-003",
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Created per evidence/planning/cognitive_contract_invariant_ledger_tranche3_amendment_2026-09-08.md section 4/13, splitting CCI-003 reality_status into provenance/source (this record) and branch/status (CCI-016)."
+    },
+    {
+      "record_id": "CCI-016",
+      "candidate": "branch_obtaining_update_status",
+      "definition": "Whether represented content is currently treated as obtaining, a candidate, a simulation, a counterfactual, or committed for belief/action update.",
+      "linguistic": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled from CCI-003's fused linguistic evidence (evidentiality/modality literature); dedicated pull owed."},
+      "developmental": {"verdict":"supports","sources":["developmental modal/alternative-state literature (tranche-3 amendment sec.4)"],"note":"Memory/future-imagination overlap and developmental alternative-state work support separating content-generation machinery from branch/status."},
+      "neural": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "artificial_agent": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "ree": {"verdict":"supports","sources":["MECH-094","MECH-365"],"note":"E2 counterfactual and MECH-094/365 lineage inside REE (tranche-3 amendment sec.4)."},
+      "lesion_prediction": "Delete branch/obtaining status while preserving content -> confusion between candidate, simulated, counterfactual and committed representations; false commitment to unconfirmed states.",
+      "alternative_explanation": "May not be separable from CCI-015 provenance/source; both were fused under CCI-003 reality_status until this split.",
+      "classification": "architectural",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142","MECH-545"],
+      "status": "candidate",
+      "split_from": "CCI-003",
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Created per evidence/planning/cognitive_contract_invariant_ledger_tranche3_amendment_2026-09-08.md section 4/13."
+    },
+    {
+      "record_id": "CCI-017",
+      "candidate": "viability_preference_relation",
+      "definition": "The representation preserves relation to an admissible/preferred/viable region or homeostatic constraint; signed reward/value can be derived from movement toward/away from that region.",
+      "linguistic": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "developmental": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "neural": {"verdict":"unassessed","sources":[],"note":"Not yet pulled; active-inference / homeostatic literature owed."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Not yet pulled."},
+      "artificial_agent": {"verdict":"supports","sources":["Keramati & Gutkin 2014 eLife DOI 10.7554/eLife.04811"],"note":"Derives primary reward from homeostatic-need fulfilment / drive reduction; viability theory constrains trajectories to admissible sets without requiring a total scalar ranking of all viable states. Active-inference accounts likewise require preferences but do not prove a universal scalar value coordinate (tranche-3 amendment sec.8)."},
+      "ree": {"verdict":"unassessed","sources":[],"note":"REE's harm/benefit machinery is operationally load-bearing whichever hypothesis (H1 signed-value vs H2 viability/preference) wins; no dedicated contract claim yet."},
+      "lesion_prediction": "Delete viability/preference-region relation while preserving raw scalar value -> loss of homeostatic drive-reduction structure, inability to distinguish movement toward/away from admissible states from simple magnitude comparison.",
+      "alternative_explanation": "Rival hypothesis (H2) to CCI-009 value/valence's signed-value basis (H1); REE's harm/benefit machinery is load-bearing under either. Pre-registered comparison: whether signed value or viability/preference geometry transfers better under harm/resource rescaling while retaining behavioural preference (tranche-3 amendment sec.8).",
+      "classification": "embodied",
+      "confidence": "moderate-high",
+      "source_claims": ["ARC-142"],
+      "status": "candidate",
+      "rival_to": "CCI-009",
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Created per evidence/planning/cognitive_contract_invariant_ledger_tranche3_amendment_2026-09-08.md section 8/13 as the H2 rival to CCI-009's H1 signed-value hypothesis."
+    },
+    {
+      "record_id": "CCI-018",
+      "candidate": "causal_control_relation",
+      "definition": "The causal/control relation between an actor and an event's outcome -- whether an event was actor-caused and actor-controllable -- remains recoverable independent of source/ownership, the action itself, or predicted consequence.",
+      "linguistic": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled from CCI-004's fused linguistic evidence (causative morphology); dedicated pull owed."},
+      "developmental": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled from CCI-004's fused developmental evidence; dedicated pull owed."},
+      "neural": {"verdict":"supports","sources":["Maier & Seligman 2016 PMID 27337390 (controllability, mPFC)","Crapse & Sommer 2008 PMID 18641666 (corollary discharge, cross-phyla)"],"note":"Controllability is separately represented from raw action/consequence (tranche-3 amendment sec.6, split from CCI-004's fused neural evidence)."},
+      "comparative": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled."},
+      "artificial_agent": {"verdict":"unassessed","sources":[],"note":"Not yet separately pulled."},
+      "ree": {"verdict":"unassessed","sources":[],"note":"No dedicated REE contract claim registered yet; split candidate from CCI-004 (MECH-545 lesion design)."},
+      "lesion_prediction": "Preserve source/ownership, action and consequence but delete the causal/control relation -> internal/external attribution errors, impaired responsibility assignment, poor controllability-based learning.",
+      "alternative_explanation": "May not be separable from CCI-004's remaining source/ownership + action + consequence + counterfactual-comparison composite; both were fused under CCI-004 agency until this split.",
+      "classification": "uncertain",
+      "confidence": "moderate",
+      "source_claims": ["ARC-142","MECH-545"],
+      "status": "candidate",
+      "split_from": "CCI-004",
+      "amendment_note": "[2026-09-23 governance, GFLAG-0281] Created per evidence/planning/cognitive_contract_invariant_ledger_tranche3_amendment_2026-09-08.md section 6/13, giving causal/control its own record rather than leaving it hidden inside CCI-004 agency."
     }
   ]
 }
