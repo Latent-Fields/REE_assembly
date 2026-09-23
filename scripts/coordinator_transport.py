@@ -661,15 +661,63 @@ def fetch_chip(chip_ref=None, task_id=None):
     return None
 
 
+class ChipPage(list):
+    """A page of chips from list_chips(), plus whether it is the WHOLE
+    matching set. Behaves exactly like a plain list (iterate/index/len/
+    truthiness) so every pre-existing caller works unchanged -- the only
+    new surface is `.complete`.
+
+    Negative-instrument finding (2026-09-22): the coordinator's GET
+    /chip/list hard-caps `limit` at 5000 server-side (coordinator/app.py)
+    and its response carries no total count or truncation flag -- just
+    {"chips": [...]}. A caller with no limit used to get the server's OWN
+    default of 500 with nothing distinguishing "that is all of them" from
+    "that is the first 500 of many": measured live, an unfiltered
+    list_chips() returned exactly 500 rows while the ledger held ~4139, and
+    an independent status="open" count reached via the CLI (133, the true
+    figure) disagreed with a client-side count over that truncated page
+    (81). `.complete` is that missing discriminator, in the data model
+    rather than a print statement a later edit can drop -- see
+    CLAUDE.md "Negative instruments"."""
+
+    def __init__(self, rows, complete):
+        super().__init__(rows)
+        self.complete = complete
+
+
+# The server's own hard cap (`limit = max(1, min(limit, 5000))`,
+# coordinator/app.py GET /chip/list) -- used as OUR default when a caller
+# does not name a limit, in place of the server's much smaller default
+# (500). This narrows the window the truncation above fires in; it does
+# NOT close it by itself (the ledger will pass 5000 too) -- `ChipPage.
+# complete` is the structural signal that keeps that future growth from
+# silently reintroducing the same bug. CLAUDE.md "Negative instruments":
+# raising a cap alone "moves the cliff without removing it".
+_CHIP_LIST_SERVER_MAX = 5000
+
+
 def list_chips(status=None, origin=None, chip_ref=None, task_id=None, limit=None):
-    """GET /chip/list, returning the raw chips list, or None on ANY transport
-    failure or a non-ok verdict (mode off, unreachable, 5xx, unparseable
-    body). Deliberately never [] for "no answer" -- an empty list must mean
-    the coordinator's genuine answer is empty, not that nothing was heard
-    back, so a caller can tell "fall back to git" (None) apart from
-    "genuinely no chips" ([]). kind is not filterable server-side (the
-    endpoint has no such column predicate); callers apply it client-side on
-    the returned list."""
+    """GET /chip/list, returning a ChipPage (list subclass) on success, or
+    bare None on ANY transport failure or a non-ok verdict (mode off,
+    unreachable, 5xx, unparseable body) -- that None/non-None split is
+    UNCHANGED from before and remains the caller's "fall back to git"
+    signal: an empty list must mean the coordinator's genuine answer is
+    empty, not that nothing was heard back.
+
+    NEW: the returned ChipPage additionally carries `.complete` -- True iff
+    fewer rows came back than the limit actually sent to the server. A page
+    that exactly fills its limit cannot be told apart from one that was cut
+    off there, so it reports as incomplete (cannot-determine), never as
+    "probably fine". When `limit` is omitted this call asks the server for
+    its own hard cap (5000, see _CHIP_LIST_SERVER_MAX) rather than settling
+    for its much smaller default (500) -- see ChipPage's docstring for the
+    finding this closes. Callers that only ever consume the page as a plain
+    list (every pre-existing one) are unaffected; a caller that must know
+    whether it saw everything should check `.complete`.
+
+    kind is not filterable server-side (the endpoint has no such column
+    predicate); callers apply it client-side on the returned list."""
+    limit_used = limit if limit else _CHIP_LIST_SERVER_MAX
     params = []
     if status:
         params.append(("status", status))
@@ -679,12 +727,14 @@ def list_chips(status=None, origin=None, chip_ref=None, task_id=None, limit=None
         params.append(("chip_ref", chip_ref))
     if task_id:
         params.append(("task_id", task_id))
-    if limit:
-        params.append(("limit", str(limit)))
+    params.append(("limit", str(limit_used)))
     v = get("/chip/list", params)
     if v is None or not v.ok:
         return None
-    return (v.payload or {}).get("chips")
+    rows = (v.payload or {}).get("chips")
+    if rows is None:
+        return None
+    return ChipPage(rows, complete=len(rows) < limit_used)
 
 
 def attach_chip(chip_ref, task_id, attached_by_session_id=None,
