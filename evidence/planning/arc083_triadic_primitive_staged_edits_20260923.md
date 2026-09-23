@@ -1,6 +1,6 @@
 # ARC-083 follow-on: staged edits (ARC-150 triadic co-reference primitive)
 
-**Status:** STAGED, NOT APPLIED. Drafted 2026-09-23 by session infallible-elion-289944 for
+**Status:** APPLIED 2026-09-23 as REE_assembly 20792df26d (ARC-150), under user-authorised --allow-overlap. Originally STAGED, NOT APPLIED. Drafted 2026-09-23 by session infallible-elion-289944 for
 chip `chip-20260923-arc083-triadic-primitive` (follow-on to GFLAG-0309). Not applied because
 `REE_assembly/docs/claims/claims.yaml` was owned by `governance-pause-20260923-1741` at the time
 (task_claim.py arbitration, exit 3). This doc exists so the work survives the session.
