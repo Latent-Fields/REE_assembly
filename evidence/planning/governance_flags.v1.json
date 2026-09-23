@@ -4947,9 +4947,9 @@
       "summary": "EXP-1194 (EVB-1666, experimental) REFUSED at queue-experiment design: SD-086's non_degeneracy_precondition cannot discriminate as written. Measured in the claim's own raw-warmup scope: harm_obs_a has EXACT rank 2 (2 distinct column patterns, singular values [22.6, 6.7, 0, 0]); the AffectiveHarmEncoder is unreachable by the standard all-on trainer (0 of 53 latent_stack and 0 of 4 affective params covered by any optimizer it builds -- the same defect allon_training.py:475 already records for z_world); and at that frozen random projection corr(norm(z_harm_a), hazard_EMA) = 0.9885. So a linear decode from the 16-d vector CLEARS trivially while the norm carries the same signal, making the precondition a vacuous_pass that would license the expensive two-arm trained-head build on evidence that does not support it. The pre-flight's premise ('a norm that is flat while the vector is informative') is measurably false here. No experiment queued; no registry edited. Full measurements + 4 re-specification options: REE_assembly/evidence/planning/sd086_zharma_readout_precondition_staged_20260918.md (origin/master fd227194ca). Second-order finding for SD-011: the rank-2 bottleneck bounds ANY z_harm_a readout at 2 d.o.f., which bears on SD-086's proposed remedy, not only its precondition.",
       "raised_by_session": "metaworker-science-20260918-sd086-zharma-readout",
       "raised_at": "2026-09-18T18:52:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:36:31Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. Applied REE_assembly 335a821c30. The user's 2026-09-18 decision (D then C) is executed as far as it can go: P0h made the encoder trainable (e10d6c5), C's operationalisation V3-EXQ-1064 was refused at design (59f7bd8), and the 2026-09-21 audit's WWA precondition supersedes the legacy field, which now points at it. No SD-086 experiment is queued."
     },
     {
       "flag_id": "GFLAG-0349",
