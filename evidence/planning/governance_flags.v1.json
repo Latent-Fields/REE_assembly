@@ -3585,9 +3585,9 @@
       "summary": "SUCCESSOR to GFLAG-0219 (resolved 2026-09-10). 0219's substrate_queue edit is applied, but its GOV-CONFIRM-1 half is a DETECTOR defect that edit does not discharge: the confirmer treats ANY occurrence of a claim-id string anywhere under ree-v3/ree_core/ as evidence that the substrate is built. For MECH-057b the only hit is a COMMENT saying the opposite -- 'EXQ-048/049 confirmed: beta gate never elevated, MECH-057b/090 could not be tested' (config.py:1094). A detector whose positive signal can be produced by a comment recording absence will keep manufacturing false 'built' verdicts across the registry, not just here.",
       "raised_by_session": "gov-flagbacklog-20260909",
       "raised_at": "2026-09-10T06:55:19Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:22:54Z",
+      "resolution_note": "REE_assembly 3a70dc85c24: GOV-CONFIRM-1 detector (generate_inter_governance_workset.py) now counts only string-constant/docstring tags and comment tag headers; comment-prose-only ids are a mention_only cannot-determine set rendered blocked (not ready, not dropped). Live flip: 11 claims.yaml ids built->mention_only (INV-023 INV-086 MECH-022 MECH-023 MECH-074 MECH-173 MECH-191 MECH-230 MECH-233 MECH-329 MECH-447); current confirmer lane unchanged (15 items). Chip framing (strip comments+docstrings) rejected on measurement: 316->35 ids. New test scripts/test_generate_inter_governance_workset_substrate_tags.py fails on pre-fix code."
     },
     {
       "flag_id": "GFLAG-0255",
