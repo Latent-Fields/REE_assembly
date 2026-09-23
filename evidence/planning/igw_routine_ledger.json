@@ -6496,7 +6496,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-22T20:22:11Z",
       "staged_at": "2026-09-22T20:22:11Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-23T07:00:53Z",
+      "completion_summary": "Never launched. SD-PP-B5 was already built and landed by another session: ree-v3 origin/main 8f10214 (2026-09-22T20:53Z), 31 min AFTER this item was staged at 20:22Z; its validation experiment V3-EXQ-1075 landed 9e17cb6 and the substrate record was filled in 27b04a2 (both 2026-09-23T03:23Z). Worktree clean, no unpushed commits. Closed DUPLICATE by orchestrate-20260922-subagent-wave.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "Never launched. SD-PP-B5 was already built and landed by another session: ree-v3 origin/main 8f10214 (2026-09-22T20:53Z), 31 min AFTER this item was staged at 20:22Z; its validation experiment V3-EXQ-1075 landed 9e17cb6 and the substrate record was filled in 27b04a2 (both 2026-09-23T03:23Z). Worktree clean, no unpushed commits. Closed DUPLICATE by orchestrate-20260922-subagent-wave."
     },
     {
       "igw_id": "IGW-20260923-251",
@@ -9566,6 +9570,23 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-23T06:59:11Z",
       "re_eligible_after": "2026-09-25T06:59:11Z"
+    },
+    {
+      "stable_hash": "a1b4c93a5177",
+      "igw_id_at_disposition": "IGW-20260922-228",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-573",
+        "MECH-572",
+        "MECH-574",
+        "INV-063"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: SD-PP-B5-z-world-per-step-displacement-range",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-23T07:00:54Z",
+      "re_eligible_after": "2026-09-25T07:00:54Z"
     }
   ]
 }
