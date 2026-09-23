@@ -5307,9 +5307,9 @@
       "summary": "INSTRUMENT DEFECT in the landed V3-EXQ-854 driver, found while building its successor. experiments/v3_exq_854_sd036_gaba_tone_dose_response.py:204 unpacks the environment step as '_, od, _, done, _ = env.step(...)', but CausalGridWorldV2.step returns (flat_obs, harm_signal, done, info, obs_dict) (causal_grid_world.py:2476 signature, :3709 return). The unpack therefore binds harm_signal to 'od' and the info DICT to 'done'. A non-empty info dict is truthy on every step, so the 'if done: env.reset()' branch fires EVERY step: the observation tape built by _record_tape is a sequence of post-reset first-steps rather than a trajectory. This does NOT invalidate V3-EXQ-854's C1/C3 verdicts, which are scored on record_stream_trajectories via StepHarness (correctly wired), but it does mean 854's READINESS CONTROL -- the measurement that discharges SD-036 precondition (i), 'any run must assert a non-zero sweep spread on EVERY stream it scores' -- was computed on a degraded tape. The recorded readiness spreads (0.1069 / 0.0997 / 0.1083) remain non-zero and above the 1e-3 floor, so the gate's verdict stands, but the tape is not the trajectory the methodology intends. The successor V3-EXQ-1068 fixes the unpack at both of its own sites. Recommend /governance decide whether 854's readiness figure needs re-measuring on a correct tape before it is cited again as the precondition-(i) discharge.",
       "raised_by_session": "metaworker-science-20260919-sd036-observable3-regime-matrix",
       "raised_at": "2026-09-20T00:57:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:37:54Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. USER RULING 2026-09-23 (accepted the governance recommendation, rec-20260923-e1e14f35). Option A: SD-036 carries 'V3-EXQ-854 readiness spreads UNVERIFIED (GFLAG-0375)': the readiness tape was built under an env.step unpack bug (every frame after the first a fresh reset). C1-C3 are unaffected. Re-measure when the observable-#3 line resumes (REE_assembly 6b0d1cb1dc)."
     },
     {
       "flag_id": "GFLAG-0376",
