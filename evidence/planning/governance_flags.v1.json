@@ -3641,9 +3641,9 @@
       "summary": "SUCCESSOR to GFLAG-0247 (resolved 2026-09-10, user-approved). The REGISTRY half of the cross-tagging decision is applied as dated bears-on disposition blocks. The MECHANISED half is owed and is what actually makes the decision bite: build_experiment_indexes.py must learn to READ the bears_on field. It is already being written -- V3-EXQ-839's manifest carries bears_on: [SD-084, MECH-321, ARC-070, ARC-071, MECH-288] -- and the 9244-line indexer has ZERO occurrences of the string, so the plumbing is dormant on the producer side only. Deliberately not patched with the registry edits: it is a multi-site code feature with its own test file and an index regeneration, not a byte-exact registry edit. Until it lands, cross-tagging is a prose convention the scorer cannot see.",
       "raised_by_session": "gov-flagbacklog-20260909",
       "raised_at": "2026-09-10T06:55:22Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:47:10Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: close flags whose remaining work is owned by an open chip as ROUTED; the chip ledger is the durable tracker. If the owning chip's prompt says to close this flag on landing, that step is now a no-op.] The REGISTRY half (dated bears_on disposition blocks on MECH-288/SD-084/MECH-343/MECH-527) is applied and still present. The MECHANISED half -- build_experiment_indexes.py reading bears_on (0 occurrences, re-verified 2026-09-23) -- is ROUTED to chip-20260910-merge-governance-scorer-semantics (open, unclaimed; it absorbed withdrawn chip-20260910-gflag0258-indexer-bears-on-support)."
     },
     {
       "flag_id": "GFLAG-0259",
