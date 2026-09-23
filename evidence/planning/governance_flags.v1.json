@@ -5437,9 +5437,9 @@
       "summary": "substrate_queue entry sd_waking_confidence_inflation_headroom carries a FACTUALLY WRONG validation_experiment note that has now misdirected planning twice. It reads 'V3-EXQ-794a (not yet queued)'. V3-EXQ-794a RAN on 2026-07-24 and FAILED: manifest evidence/experiments/v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3.json, outcome FAIL, evidence_direction inconclusive, interpretation.label 'drift_source_insufficient_dv_still_tautological', supersedes v3_exq_794. Its preconditions ALL passed -- the repaired scale-relative/softplus rv floor works, inflation_lowers_rv 0.0014-0.0057 across arms, dose_levels_separated -- but the load-bearing C1 'inflation_creates_absolute_overconfidence' FAILED at BOTH the LO (0.6) and HI (0.8) asymmetry levels, as did C2 'broadcast_corrects_under_drift'. V3-EXQ-794's pre-registered route for precisely that outcome is explicit: 'if C1 fails at BOTH levels the route is NOT sweep higher: it is that the asymmetric-EMA form is the wrong drift source and a different SD-076 mechanism is owed.' CONSEQUENCES: (1) the entry's ready:False is correct but its stated reason is not -- the validation is not pending, it is DONE and NEGATIVE; (2) SD-076 as built cannot serve as the waking drift source MECH-204's what_would_answer (a) requires, so MECH-204 Option A remains unfalsifiable and the owed work is an /implement-substrate BUILD of a different drift-source mechanism, not another experiment; (3) this stale note caused a user decision on 2026-09-20 to sequence 'queue 794a first, then 541d on the validated drift source', which is not executable. Requested: correct validation_experiment to name the 2026-07-24 run and its FAIL, and record the owed different-mechanism build. Related: GFLAG-0379, GFLAG-0384, GFLAG-0377.",
       "raised_by_session": "metaworker-science-20260920-mech204-541d-cd",
       "raised_at": "2026-09-20T11:45:23Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T17:58:38Z",
+      "resolution_note": "Already fixed before this cycle: sd_waking_confidence_inflation_headroom validation_experiment was corrected to name V3-EXQ-794a RAN 2026-07-24 FAIL, with the owed different-drift-source build recorded, by the 2026-09-20 governance cycle and the 2026-09-21 audit (both cite this flag). Verified flags-only governance cycle governance-flags-20260923 (2026-09-23)."
     },
     {
       "flag_id": "GFLAG-0386",
