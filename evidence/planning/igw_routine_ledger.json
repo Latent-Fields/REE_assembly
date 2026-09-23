@@ -6659,6 +6659,32 @@
       "completion_summary": "No build owed: second spawn of IGW-20260916-217 (completed NO_OP, user decision 2026-09-17). Landed permanent DEFER on stable_hash f2a1a5aab7ab (REE_assembly 4e8319146fac, verified on origin) after the expired 48h AUTO_DEFER let it respawn. Code-level train/inference divergence re-verified on trunk and survives; severity demotion + title re-scope stay owed to /governance under GFLAG-0324.",
       "outcome": "DUPLICATE",
       "outcome_evidence": "No build owed: second spawn of IGW-20260916-217 (completed NO_OP, user decision 2026-09-17). Landed permanent DEFER on stable_hash f2a1a5aab7ab (REE_assembly 4e8319146fac, verified on origin) after the expired 48h AUTO_DEFER let it respawn. Code-level train/inference divergence re-verified on trunk and survives; severity demotion + title re-scope stay owed to /governance under GFLAG-0324."
+    },
+    {
+      "igw_id": "IGW-20260923-219",
+      "stable_hash": "4df00b6a091d",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "SD-105",
+        "MECH-063",
+        "SD-069"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: sd105_frozen_shared_entropy_floor_multiplier",
+      "worktree": ".claude/worktrees/igw-219-substrate-ready-sd105-frozen-sha",
+      "branch": "claude/igw-219-substrate-ready-sd105-frozen-sha",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260923-219",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-219-substrate-ready-sd105-frozen-sha && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-219-substrate-ready-sd105-frozen-sha-20260923T185150Z",
+      "task_claim_claimed_at": "2026-09-23T18:51:50Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-09-23T18:48:05Z",
+      "staged_at": "2026-09-23T18:48:05Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
