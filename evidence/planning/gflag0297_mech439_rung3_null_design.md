@@ -110,7 +110,7 @@ Full spec: section 6. Core:
     properly: not a null the operator must beat, but a way to separate EMA lag from shape.
 - **C1:** per regime, PASS iff R_ON >= 0.25 in at least 3 of 4 seeds.
 
-**Monte Carlo** (k = 32, margin 0.25, three standardised live channels, one channel "D" varied; scratchpad `elig_R.py`,
+**Monte Carlo** (k = 32, margin 0.25, three standardised live channels, one channel "D" varied; Appendix A,
 20,000 ticks per case):
 
 | D's realised geometry | R | mean |E| | reading |
@@ -224,3 +224,35 @@ The reviewer **independently confirmed** that the criterion is not an identity: 
 - **Process observation.** 1012a's own Step 4.5 red-team finding (2) *added* the `majority_clears_floor` disjunct. The 1012a autopsy later found that disjunct made the criterion unfailable. A red-team fix can introduce the defect class it is meant to catch. 1012c has one criterion per regime and no disjunct.
 - **Step 2.5c known limitation.** 1012c runs under open corrupting entry `contextmemory-write-path-addressing-degeneracy` (`ContextMemory.write` is live and its fix is default-off). It shapes the candidate inputs upstream of the stage under test. Rung 3 has to be validated in the regime the conversion falsifiers run in, which carries the same defect, as 1012a and 571c did. A later default flip changes the regime.
 - **Step 9.5.** The plan-gap drift check flags `behavioral_diversity_isolation:GAP-K` (MECH-439 overlap) for `/inter-governance-brief`. Informational.
+
+---
+
+## Appendix A. Monte Carlo behind the sec. 4 table (reproducible; numpy, seed 1)
+
+```python
+# R = min_c Jbar_c / max_c Jbar_c over 3 live channels; Jbar_c = tick-mean Jaccard
+# distance between the margin-eligible set and the set with channel c knocked out.
+import numpy as np
+rng=np.random.default_rng(1); K=32; M=0.25; N=20000
+def elig(S):
+    lo=S.min(1,keepdims=True); return S<=lo+M*(S.max(1,keepdims=True)-lo)
+def jac(E,F): return (1-(E&F).sum(1)/(E|F).sum(1)).mean()
+def chan(shape,r):
+    if shape=="gauss": z=rng.standard_normal((N,K))
+    elif shape=="spike+":
+        z=np.zeros((N,K)); z[np.arange(N),rng.integers(0,K,N)]=1.0
+    elif shape=="spike-":
+        z=np.zeros((N,K)); z[np.arange(N),rng.integers(0,K,N)]=-1.0
+    z=(z-z.mean(1,keepdims=True))/z.std(1,keepdims=True); return z*r
+def R(chs):
+    S=sum(chs); E=elig(S); J=[jac(E,elig(S-c)) for c in chs]
+    return min(J)/max(J), E.sum(1).mean(), [round(j,3) for j in J]
+cases=[("gauss",1),("gauss",3),("gauss",5),("gauss",10),("gauss",30),
+       ("spike+",1),("spike+",2),("spike+",3),("spike-",1),("spike-",3)]
+for sh,r in cases:
+    rr,n,J=R([chan(sh,r),chan("gauss",1),chan("gauss",1)])
+    print(f"D={sh:6s} r_D={r:3d}  R={rr:.3f} |E|={n:5.1f} J={J}")
+# OFF anchor: D at 1e3..1e5 x the others (1012a scale gaps)
+for r in [1e3,1e5]:
+    rr,n,J=R([chan("gauss",r),chan("gauss",1),chan("gauss",1)]); print(f"OFF-like r_D={r:.0e} R={rr:.4f} |E|={n:.1f}")
+```
