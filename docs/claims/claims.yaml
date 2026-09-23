@@ -70661,9 +70661,22 @@
     FALSIFYING evidence: any live code path is found where a raw
     performance score, experiment outcome, or telemetry value writes
     DIRECTLY into a confidence-bearing field of docs/claims/claims.yaml
-    (status, epistemic_category, exp_conf, live_status.evidence.verdict)
+    (status, epistemic_category, exp_conf)
     WITHOUT passing through (a) review_tracker.json's reviewed_run_ids
     gate AND (b) an explicit, attributable governance-cycle commit.
+    [2026-09-23 governance, governance-flags-20260923b, GFLAG-0273, user decision]
+    CARVE-OUT: live_status.evidence.verdict was REMOVED from the field list
+    above. It is a citation aid, not a confidence-bearing field: it is written
+    only by scripts/apply_live_status.py, a manual, human-invoked, attributably
+    committed projection whose docstring and code never touch status,
+    confidence, v3_pending or epistemic_category; no scorer, promotion path or
+    workset reads it (build_experiment_indexes.py and
+    generate_inter_governance_workset.py do not reference live_status; only
+    reporting scripts do -- the drift / status-head reporters and GOV-APPLY-1's
+    stale-citation check), and serve.py / explorer.html do not surface
+    it. The 2026-09-14 re-audit's finding (it is projected from raw PASS outcomes
+    with no review_tracker read) is therefore recorded, not a falsifier. It
+    BECOMES one the moment any consumer promotes, demotes or gates on it.
     Concretely, falsified if any of:
       - a Phase-3 sync_daemon writer (phase3_git_writer /
         phase3_queue_writer / phase3_heartbeat_writer in
