@@ -1808,5 +1808,184 @@ class NewerStampRetiresOlderStampRowTests(Base):
                           if r.get("retired_by_stamp")], [])
 
 
+
+# =========================================================================
+# UNCERTIFIABLE -- the 2026-09-23 repair (GFLAG-0251)
+#
+# A `change` text that NO parser arm recognises used to be answered by
+# `_reflects`'s structured fallbacks alone. When they held, the row read as
+# "applied" and printed nothing, although the prose saying what the autopsy
+# asked for was never read. These tests pin the explicit cannot-determine
+# category that replaced that silence. Every bucket key and every arm value
+# is read from the module under test, never restated as a literal.
+#
+# Old-vs-new: the positives here FAIL against the pre-repair script (it
+# has no `UNCERTIFIABLE` key, and it files the "none" row as ACTIONABLE).
+# The boundary pins state what must hold whichever version runs.
+# =========================================================================
+UNPARSEABLE_NO_ARROW = ("C1's sub-check is the driver's own positive control; "
+                        "withdraw that mapping. Nothing storable moves -- apply "
+                        "the corrected evidence_quality_note")
+UNPARSEABLE_FRAGMENT_TAIL = ("own stated prediction (ratio -> 1.0) is CONFIRMED "
+                             "by X = 0.9993; nothing storable moves -- apply the "
+                             "corrected note")
+
+
+class UncertifiableTests(Base):
+
+    def _one(self, change, rec_extra=None, pack_direction="non_contributory",
+             claim=None, recommended="non_contributory"):
+        if claim is not None:
+            self.fx.write_claims([claim])
+        rec = {"change": change}
+        rec.update(rec_extra or {})
+        self.fx.autopsy(targets=[self.fx.target(
+            recommended=recommended, per_claim_recommendation={CLAIM: rec})])
+        self.fx.pack(direction=pack_direction)
+        return self.scan()
+
+    def test_unparseable_prose_certified_only_by_structured_fields_is_reported(self):
+        """THE DEFECT. No-arrow prose. The rec's structured direction matches
+        the manifest, so `_reflects` certifies it. The old code printed
+        nothing for this row, and "nothing" also means "applied". It must
+        now be reported, with the structured verdict recorded."""
+        buckets = self._one(UNPARSEABLE_NO_ARROW,
+                            {"recommended_evidence_direction": "non_contributory"})
+        rows = buckets[M.UNCERTIFIABLE]
+        self.assertEqual([(r["claim_id"], r["structured_verdict"]) for r in rows],
+                         [(CLAIM, "holds")])
+        self.assertEqual(rows[0]["artifact"], SLUG)
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_fragment_tail_certified_by_structured_fields_is_reported(self):
+        """Same defect, arrow-bearing shape (SD-017): the last arrow's tail
+        is a sentence fragment, and only the last-resort structured check
+        certifies it."""
+        buckets = self._one(UNPARSEABLE_FRAGMENT_TAIL,
+                            {"recommended_evidence_direction": "non_contributory"})
+        self.assertEqual([r["structured_verdict"] for r in buckets[M.UNCERTIFIABLE]],
+                         ["holds"])
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_unparseable_prose_with_nothing_structured_is_not_actionable(self):
+        """GFLAG-0107 recommendation (b): with no parse and nothing
+        structured, `_reflects`'s False is a default, not a finding. The row
+        is UNCERTIFIABLE ("none") and must not be ACTIONABLE. The old code
+        filed it under unapplied_disposition."""
+        buckets = self._one(UNPARSEABLE_NO_ARROW, recommended=None)
+        self.assertEqual([(r["claim_id"], r["structured_verdict"])
+                          for r in buckets[M.UNCERTIFIABLE]], [(CLAIM, "none")])
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_a_failing_structured_field_keeps_the_row_actionable(self):
+        """BOUNDARY: a structured field was checked and failed (the manifest
+        still scores `weakens`), so something is provably owed. That is a
+        certified gap, not an uncertifiable one."""
+        buckets = self._one(UNPARSEABLE_FRAGMENT_TAIL,
+                            {"recommended_evidence_direction": "non_contributory"},
+                            pack_direction="weakens")
+        self.assertEqual([r["claim_id"] for r in buckets["unapplied_disposition"]],
+                         [CLAIM])
+        self.assertEqual(buckets[M.UNCERTIFIABLE], [])
+
+    def test_a_parsed_disposition_is_never_uncertifiable(self):
+        """BOUNDARY, both verdicts: a clean `-> <direction>` tail is parsed,
+        whether applied or not."""
+        want = sorted(M.INERT_DIRECTIONS)[0]
+        applied = self._one("weakens -> %s" % want,
+                            {"recommended_evidence_direction": want},
+                            pack_direction=want)
+        self.assertEqual(applied[M.UNCERTIFIABLE], [])
+        self.assertEqual(applied["unapplied_disposition"], [])
+
+    def test_every_parser_arm_is_recognised_as_parsed(self):
+        """CANARY for the classifier. Every phrasing below is one that some
+        `_target_state` arm recognises, so `_prose_target` must parse it. A
+        classifier that stopped seeing an arm would flood this bucket with
+        rows that are really parsed, which is how a warning gets ignored. The
+        corpus is built from the module's own constants, and it is guarded
+        against coming out empty."""
+        boolean = M._BOOLEAN_CLAIM_FIELDS[0]
+        direction = sorted(M._DIRECTION_VOCAB)[0]
+        phrasings = [
+            "weakens -> %s" % direction,                                  # bare token
+            "unset -> standard",                                          # bare token
+            "flag missing -> %s: true" % boolean,                         # field: value
+            "the claim does not carry it -> %s" % boolean,                # bare boolean
+            "withdrawal -> set %s false" % boolean,                       # set-field
+            "Withdraw weakens -> %s. Nothing storable moves" % direction,  # clause
+            "re-cite -> stamp failure_autopsy_V3-EXQ-1_2026-01-01",       # stamp
+            "provenance: stamp this artifact",                            # self-stamp
+        ]
+        self.assertGreaterEqual(len(phrasings), 8)
+        for phrasing in phrasings:
+            with self.subTest(phrasing=phrasing):
+                self.assertIsNotNone(M._prose_target(phrasing, own_slug=SLUG))
+                self.assertFalse(M._is_uncertifiable_prose(
+                    {"id": CLAIM}, phrasing, own_slug=SLUG))
+
+    def test_the_two_unparseable_shapes_fail_every_arm(self):
+        """The mirror of the canary: both fixtures above really are
+        unparseable, so the positives are testing what they say they test."""
+        for change in (UNPARSEABLE_NO_ARROW, UNPARSEABLE_FRAGMENT_TAIL):
+            with self.subTest(change=change[:30]):
+                self.assertIsNone(M._prose_target(change, own_slug=SLUG))
+                self.assertTrue(M._is_uncertifiable_prose({"id": CLAIM}, change,
+                                                          own_slug=SLUG))
+
+    def test_a_tail_matching_live_status_reading_was_checked(self):
+        """BOUNDARY: `_reflects` compares a multi-word arrow tail against
+        `live_status.reading` verbatim. A tail that matches it was checked
+        and certified by that arm, so it is not uncertifiable."""
+        reading = "stays candidate pending retest"
+        buckets = self._one("old reading -> %s" % reading, recommended=None,
+                            claim={"id": CLAIM, "live_status": {"reading": reading}})
+        self.assertEqual(buckets[M.UNCERTIFIABLE], [])
+        self.assertEqual(buckets["unapplied_disposition"], [])
+
+    def test_supersession_still_wins_over_the_none_route(self):
+        """BOUNDARY on ordering: an older unparseable row that a LATER,
+        applied disposition supersedes keeps the more informative
+        `superseded_disposition` reading."""
+        self.fx.write_claims([{"id": CLAIM, "epistemic_category": "standard"}])
+        self.fx.autopsy(slug="failure_autopsy_OLDER_2026-08-01",
+                        generated="2026-08-01T00:00:00Z",
+                        targets=[self.fx.target(
+                            run_id="v3_exq_older_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": UNPARSEABLE_NO_ARROW}})])
+        self.fx.autopsy(slug="failure_autopsy_NEWER_2026-09-01",
+                        generated="2026-09-01T00:00:00Z",
+                        targets=[self.fx.target(
+                            run_id="v3_exq_newer_v3", recommended=None,
+                            per_claim_recommendation={CLAIM: {
+                                "change": "unset -> standard"}})])
+        buckets = self.scan()
+        self.assertEqual([r["artifact"] for r in buckets["superseded_disposition"]],
+                         ["failure_autopsy_OLDER_2026-08-01"])
+        self.assertEqual(buckets[M.UNCERTIFIABLE], [])
+
+    def test_strict_never_fails_on_an_uncertifiable_row(self):
+        """`--strict`'s contract: an UNCERTIFIABLE row, even a "none" one,
+        never sets the exit code, and the report still names it."""
+        self._one(UNPARSEABLE_NO_ARROW, recommended=None)
+        rc, out = self.run_main("--strict")
+        self.assertEqual(rc, 0)
+        self.assertIn("UNCERTIFIABLE", out)
+        self.assertIn("nothing structured to check", out)
+        self.assertIn(M.UNCERTIFIABLE, out)
+
+    def test_json_surfaces_the_bucket_and_its_denominator(self):
+        """The bucket is a structural key in the data model, so it must show
+        up in `--json` together with the denominator it is a fraction of."""
+        self._one(UNPARSEABLE_NO_ARROW,
+                  {"recommended_evidence_direction": "non_contributory"})
+        rc, out = self.run_main("--json")
+        self.assertEqual(rc, 0)
+        data = json.loads(out)
+        self.assertEqual([r["claim_id"] for r in data[M.UNCERTIFIABLE]], [CLAIM])
+        self.assertEqual(data["n_per_claim_dispositions"], 1)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

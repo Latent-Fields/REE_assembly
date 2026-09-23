@@ -125,6 +125,21 @@ BUCKETS
                          decision. Added 2026-09-11; see "THE 2026-09-11
                          REPAIR" below.
 
+  uncertifiable_disposition
+                         A confirmed target's `per_claim_recommendation[<claim>]`
+                         has `change` text that NO parser arm in `_target_state`
+                         recognises, so this audit cannot certify it applied OR
+                         unapplied. WARN-only, never part of `--strict`. The
+                         key is the module constant `UNCERTIFIABLE`; each row
+                         carries `structured_verdict` -- "holds" (the rec's
+                         structured `recommended_*` fields were checked and
+                         hold, but the prose may ask for more than they say) or
+                         "none" (there was nothing structured to check at all).
+                         A row whose structured fields provably FAIL is not
+                         here: that is a certified gap and stays in
+                         `unapplied_disposition`. Added 2026-09-23
+                         (GFLAG-0251); see "THE 2026-09-23 REPAIR" below.
+
   superseded_citation    A claim whose `live_status.evidence.from` cites autopsy X
                          for run R, while a NEWER confirmed adjudication of the same
                          run R exists. The claim is being weighted by a superseded
@@ -404,6 +419,7 @@ USAGE
   python3 scripts/check_unapplied_autopsy_recommendations.py --full     # list every direction row
   python3 scripts/check_unapplied_autopsy_recommendations.py --strict   # exit 1 on unapplied_disposition
   python3 scripts/check_unapplied_autopsy_recommendations.py --strict-direction
+  python3 scripts/check_unapplied_autopsy_recommendations.py --json     # every bucket, machine-readable
 
 `--strict`'s contract is DELIBERATELY UNCHANGED by the direction bucket: it gates on
 `unapplied_disposition` only, because governance.sh Step 3h and any CI caller predate
@@ -676,6 +692,68 @@ the old and new wording (six positives plus the inverted
 certified and the new one correctly reports); the remaining ten are boundary
 pins that must hold either way. All 99 pre-existing tests pass against BOTH
 versions, so nothing previously certified was lost.
+
+THE 2026-09-23 REPAIR -- an UNCERTIFIABLE bucket, instead of parser arm N+1
+--------------------------------------------------------------------------
+GFLAG-0107 (2026-09-01) recommended two fixes: (a) a producer rule, making
+/failure-autopsy end every `change` on a machine-checkable tail, and (b) a
+detector rule, reporting an unparseable `change` in its own bucket. (a)
+landed. (b) did not. The detector got a parser arm for each new phrasing
+instead (`_SET_FIELD_RE`, `_clause()`, `_SELF_STAMP_RE`, the bare-boolean
+arm), and each arm was added only AFTER its phrasing had misfired.
+GFLAG-0251 re-raised (b) and governance decided to build it
+(governance-flags-20260923b).
+
+THE DEFECT IS A NEGATIVE THAT LOOKS THE SAME AS A POSITIVE. When every prose
+arm declines, `_reflects` still returns a verdict. It takes the no-arrow
+`recommended_evidence_direction` substitution or the last-resort
+`_STRUCTURED_REC_CHECKS`, and failing those it defaults to False. The True
+case is the silent one: the row reads "applied" when only the `recommended_*`
+fields were checked, and the prose saying what the autopsy asked for was
+never read. That prose often asks for more than those fields hold: "apply
+the corrected evidence_quality_note", "update live_status.evidence verdict
+to cite this artifact". On the day this landed, every uncertifiable row on
+the corpus was this shape. None of them showed up in any bucket. This is
+the explicit cannot-determine category that CLAUDE.md "Negative instruments"
+puts first among its remedies.
+
+WHAT COUNTS AS UNCERTIFIABLE is defined by what `_prose_target` sees, not by
+any list of phrasings: run `_target_state` WITHOUT the recommended direction
+(so the structured substitution cannot stand in for a parse), and call the
+result parsed when it has any `field_hint`, or a value that is a single
+clean token. The one arm that lives in `_reflects` rather than
+`_target_state` -- an arrow tail equal to `live_status.reading` -- is
+honoured in `_is_uncertifiable_prose`. A multi-word fragment after the last
+"->", or text with no "->" and no stamp, is uncertifiable. A NEW parser arm
+therefore shrinks this bucket automatically; it never needs updating here.
+
+ROUTING -- two rules, and the exception between them:
+  * prose unparseable, `_reflects` True  -> UNCERTIFIABLE, "holds". These
+    rows used to be silent.
+  * prose unparseable, `_reflects` False, `rec` carries NO structured field
+    at all -> UNCERTIFIABLE, "none". These rows used to be ACTIONABLE, but
+    only as `_reflects`'s default: nothing had been checked.
+  * prose unparseable, `_reflects` False, a structured field was checked and
+    FAILED -> stays `unapplied_disposition`. Something provably is owed. That
+    is a certified finding, and the prose adds no doubt to it.
+The override, cross-run supersession and newer-stamp routes are all
+consulted BEFORE the "none" rule, so a row they can explain keeps their more
+informative reading. `_reflects` itself is untouched, and so is the cascade's
+`latest_reflects`, so no other bucket can move. Corpus A/B on 2026-09-23:
+every other bucket's full row set was byte-identical, old vs new.
+
+`--strict` IS NOT WIDENED and gets only one narrowing: it still gates on
+`unapplied_disposition`, which can lose only the "none" rows (unparseable,
+nothing structured). Those were ACTIONABLE by default bias and never by
+evidence. They still print every cycle, under their own header. There were
+none on the corpus on the day this landed.
+
+DO NOT "FIX" A ROW HERE BY ADDING A PARSER ARM FOR ITS PHRASING. That is the
+Goodhart-fragile direction GFLAG-0107 warned about and this bucket exists to
+stop. Read the row by hand. If the phrasing recurs, correct it at the
+producer (/failure-autopsy's machine-checkable-tail rule). `--json` was added
+in the same change, so the bucket and its `n_per_claim_dispositions`
+denominator can be read by machine; this script had no `--json` before.
 
 Tests: scripts/test_check_unapplied_autopsy_recommendations.py
 """
@@ -1293,6 +1371,88 @@ def _target_state(change, recommended_direction, own_slug=None):
     return None, None
 
 
+# ---------------------------------------------------------------------------
+# UNCERTIFIABLE -- the change text matched NO parser arm (GFLAG-0251).
+#
+# See "THE 2026-09-23 REPAIR" in the module docstring. `_target_state` has a
+# growing list of arms (stamp, self-stamp, `<field>: <value>`, bare boolean,
+# `set <field> <bool>`, clause-narrowed token, bare token). Prose that none
+# of them recognises used to fall silently through to the structured
+# fallbacks and read as "applied" or "unapplied" exactly like a parsed row.
+# This is the explicit cannot-determine category CLAUDE.md "Negative
+# instruments" asks for: a row lands here on the FAILURE of every arm, so a
+# new phrasing is reported the first time it appears, rather than only after
+# someone notices it misfire and adds arm number N+1.
+# ---------------------------------------------------------------------------
+UNCERTIFIABLE = "uncertifiable_disposition"
+
+# A bare state token -- the shape `_reflects` compares against the direction
+# vocabulary and `_GENERIC_CLAIM_FIELDS` ("non_contributory", "standard",
+# "false"). Same character class as the clause-narrowed retry in
+# `_target_state`, so the two agree on what counts as a clean value.
+_BARE_TOKEN_RE = re.compile(r"^[a-z0-9_]+$")
+
+
+def _prose_target(change, own_slug=None):
+    """What the change PROSE alone parses to, or None if no arm recognises it.
+
+    Runs `_target_state` with NO recommended direction, so its structured
+    fallback (the no-arrow `recommended_evidence_direction` substitution)
+    cannot stand in for a parse. What counts as parsed:
+
+      * any `field_hint` at all -- a citation stamp, a self-stamp, a named
+        `<field>: <value>`, a bare boolean field, or `set <field> <bool>`;
+      * a value that is a single clean token (a bare state such as
+        "non_contributory" or "standard", including the clause-narrowed one).
+
+    What does NOT: a multi-word tail after the last "->" (the sentence
+    fragment every arm above declined), and text with no "->" and no stamp.
+    """
+    field_hint, value = _target_state(change, None, own_slug=own_slug)
+    if field_hint:
+        return field_hint, value
+    if not isinstance(value, str):
+        return None
+    token = value.rstrip(".").strip().lower()
+    if _BARE_TOKEN_RE.match(token):
+        return None, token
+    return None
+
+
+def _is_uncertifiable_prose(claim, change, own_slug=None) -> bool:
+    """True when `change` fails EVERY prose arm `_reflects` could check.
+
+    One arm lives in `_reflects` rather than `_target_state`: an arrow tail
+    compared verbatim against `live_status.reading`. A multi-word tail that
+    equals the claim's reading WAS checked, and certified, by that arm, so it
+    is not uncertifiable.
+    """
+    if not isinstance(change, str):
+        return True
+    if _prose_target(change, own_slug=own_slug) is not None:
+        return False
+    if "->" in change and isinstance(claim, dict):
+        live = claim.get("live_status")
+        tail = change.rsplit("->", 1)[-1].strip()
+        if isinstance(live, dict) and tail \
+                and str(live.get("reading") or "").strip() == tail:
+            return False
+    return True
+
+
+def _has_structured_disposition(rec) -> bool:
+    """Does `rec` carry ANY structured field `_reflects` can check?
+
+    These are the keys the last-resort fallback reads (`_STRUCTURED_REC_CHECKS`,
+    which includes `recommended_evidence_direction`, the key the no-arrow path
+    substitutes in). With none of them and unparseable prose, a False from
+    `_reflects` is a default, not a finding.
+    """
+    if not isinstance(rec, dict):
+        return False
+    return any(key in rec for key, _ in _STRUCTURED_REC_CHECKS)
+
+
 def _field_value_matches(actual, target_state) -> bool:
     """Compare one claims.yaml field's live value against a parsed target.
 
@@ -1752,6 +1912,7 @@ def scan(root: Path) -> dict:
     unapplied = []
     superseded_disposition = []
     overridden_disposition = []
+    uncertifiable = []
     direction_rows = []
     n_with_pcr = 0
     n_with_recommended_direction = 0
@@ -1817,9 +1978,27 @@ def scan(root: Path) -> dict:
         latest_reflects = None
         for entry in entries_sorted:
             claim = claims.get(cid)
+            # UNCERTIFIABLE is decided on the PROSE, before any verdict, so a
+            # row that the structured fallback certifies is still reported --
+            # that certification read the `recommended_*` fields, never the
+            # text that says what the autopsy actually asked for. See "THE
+            # 2026-09-23 REPAIR" in the module docstring. `_reflects` itself is
+            # unchanged, so the supersession cascade below reads exactly the
+            # verdicts it read before.
+            unparsed = _is_uncertifiable_prose(claim, entry["change"], own_slug=entry["slug"])
+            uncertifiable_row = {
+                "claim_id": cid,
+                "change": entry["change"],
+                "artifact": entry["slug"],
+                "generated_utc": entry["gen"],
+                "run_id": entry["run_id"],
+            }
             if _reflects(claim, entry["change"], entry["rec"].get("recommended_evidence_direction"),
                          entry["slug"], claim_id=cid, run_id=entry["run_id"], resolver=resolver,
                          rec=entry["rec"]):
+                if unparsed:
+                    uncertifiable_row["structured_verdict"] = "holds"
+                    uncertifiable.append(uncertifiable_row)
                 continue
             # A RATIFIED decision that postdates this autopsy settles the row.
             # Checked AFTER _reflects so an override never masks a disposition
@@ -1887,6 +2066,14 @@ def scan(root: Path) -> dict:
                     "superseded_by_change": "",
                     "retired_by_stamp": True,
                 })
+                continue
+            if unparsed and not _has_structured_disposition(entry["rec"]):
+                # Nothing parsed and nothing structured to check: the False
+                # above is `_reflects`'s default, not a finding. A row whose
+                # structured fields were checked and FAILED is a certified gap
+                # and falls through to `unapplied_disposition` as before.
+                uncertifiable_row["structured_verdict"] = "none"
+                uncertifiable.append(uncertifiable_row)
                 continue
             unapplied.append({
                 "claim_id": cid,
@@ -1993,9 +2180,11 @@ def scan(root: Path) -> dict:
         "unapplied_evidence_direction": direction_rows,
         "superseded_disposition": superseded_disposition,
         "overridden_disposition": overridden_disposition,
+        UNCERTIFIABLE: uncertifiable,
         "superseded_citation": superseded,
         "n_confirmed_targets": len(targets),
         "n_with_per_claim_recommendation": n_with_pcr,
+        "n_per_claim_dispositions": sum(len(v) for v in per_claim_entries.values()),
         "n_with_recommended_direction": n_with_recommended_direction,
         "n_direction_checkable": n_direction_checkable,
         "n_direction_unresolved": n_direction_unresolved,
@@ -2022,14 +2211,26 @@ def main() -> int:
                                 UNRESOLVED_DISPLAY_LIMIT))
     parser.add_argument("--root", default=str(REPO_ROOT),
                         help="REE_assembly root (default: this script's parent)")
+    parser.add_argument("--json", action="store_true",
+                        help="print every bucket and counter from scan() as JSON "
+                             "instead of the report (exit code unchanged)")
     args = parser.parse_args()
 
     root = Path(args.root)
     buckets = scan(root)
+    if args.json:
+        print(json.dumps(buckets, indent=1, sort_keys=True))
+        if args.strict and buckets["unapplied_disposition"]:
+            return 1
+        if args.strict_direction and any(
+                d["live"] for d in buckets["unapplied_evidence_direction"]):
+            return 1
+        return 0
     unapplied = buckets["unapplied_disposition"]
     directions = buckets["unapplied_evidence_direction"]
     superseded_disposition = buckets["superseded_disposition"]
     overridden = buckets["overridden_disposition"]
+    uncertifiable = buckets[UNCERTIFIABLE]
     superseded = buckets["superseded_citation"]
     n_targets = buckets["n_confirmed_targets"]
     n_pcr = buckets["n_with_per_claim_recommendation"]
@@ -2049,10 +2250,14 @@ def main() -> int:
     print("  unapplied evidence direction, not scoring (WARN): %d" % len(other_rows))
     print("  superseded claim disposition (WARN)     : %d" % len(superseded_disposition))
     print("  overridden by ratified decision (WARN)  : %d" % len(overridden))
+    print("  UNCERTIFIABLE claim disposition (WARN)  : %d" % len(uncertifiable))
     print("  superseded live_status citation (WARN)  : %d" % len(superseded))
     print("  coverage: %d of %d confirmed targets carry a machine-readable"
           % (n_pcr, n_targets))
     print("            per-claim disposition (-> unapplied_disposition);")
+    print("            %d of those %d per-claim dispositions have change text no"
+          % (len(uncertifiable), buckets["n_per_claim_dispositions"]))
+    print("            parser arm recognises (-> %s);" % UNCERTIFIABLE)
     print("            %d carry a target-level recommended_evidence_direction"
           % n_rec_dir)
     print("            (-> unapplied_evidence_direction), of which %d resolve"
@@ -2169,6 +2374,26 @@ def main() -> int:
             if item["ratified_by"]:
                 print("      ratified by: %s" % item["ratified_by"])
             print("      reason: %s" % item["reason"])
+
+    if uncertifiable:
+        print("")
+        print("WARN -- UNCERTIFIABLE: a confirmed autopsy's per-claim `change` text")
+        print("matched NO parser arm, so this audit can say neither 'applied' nor")
+        print("'unapplied' from it. 'structured fields hold' means the rec's")
+        print("recommended_* fields were checked and agree with current state, but")
+        print("the prose may ask for more (a note, a citation, another field);")
+        print("'nothing structured to check' means no verdict was possible at all.")
+        print("Read the prose against claims.yaml by hand. The durable fix is at the")
+        print("producer: end `change` on a machine-checkable tail ('-> <field>:")
+        print("<value>' or 'stamp <slug>'), per /failure-autopsy -- NOT a new")
+        print("parser arm for this phrasing.")
+        for item in sorted(uncertifiable,
+                           key=lambda d: (d["generated_utc"], d["claim_id"])):
+            print("  - %-12s %s" % (item["claim_id"], item["change"]))
+            print("      from %s (%s)" % (item["artifact"], item["generated_utc"][:10]))
+            print("      %s" % ("structured fields hold"
+                                if item["structured_verdict"] == "holds"
+                                else "nothing structured to check"))
 
     if superseded:
         print("")
