@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "mech005-science-20260922-exq-1073",
-  "last_updated_utc": "2026-09-23T09:25:24Z",
+  "last_updated_utc": "2026-09-23T09:32:20Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -12587,6 +12587,202 @@
       "source_audit": "failure_autopsy_V3-EXQ-1062a_2026-09-23 (confirmed; REE_assembly 67a7597e89); created by /governance Step 6a-iv, user-ratified 2026-09-23 (rec-20260923-10bca6b5)",
       "added_session": "governance-20260923-0717",
       "added_utc": "2026-09-23T09:25:24Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "arc044-joint-wharm-running-variance-readout-producer",
+      "title": "Joint w_harm x running_variance readout producer: w_harm enters only E3Selector.score_trajectory and running_variance only the commit gate; no joint readout exists and generate_candidates_random is precision-blind (the two convergent design-review blocks in ARC-044 WWA / V3-EXQ-990 draft)",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication + a scoping spike (complex (probe-gated)) before any /implement-substrate or /queue-experiment commission",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-044"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/predictors/e3_selector.py",
+        "ree_core/predictors/e2_fast.py"
+      ],
+      "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins ARC-044 with the verbatim reason: \"No producer for a joint w_harm x running_variance readout: w_harm only enters E3Selector.score_trajectory's harm term and running_variance only the commit gate (e3_selector.py); generate_candidates_random (e2_fast.py:767) is precision-blind. Claim's own WWA records two convergent design-review blocks (V3-EXQ-990 draft).\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "priority": "medium",
+      "phase_verdict": "UNSTATED (claim carries no implementation_phase)",
+      "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:31:11Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "inv092-suppression-strength-dial-and-other-agent-channel",
+      "title": "Evidence-attenuation / suppression-strength dial plus an other-agent signal channel: neither exists in ree_core (zero grep hits), and the completion-axis denominator (n_consumption_events) is near-zero against the pre-registered floor of 15 on V3-EXQ-874b",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication + a scoping spike (complex (probe-gated)) before any /implement-substrate or /queue-experiment commission",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "INV-092"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/"
+      ],
+      "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins INV-092 with the verbatim reason: \"Completion axis has no denominator: V3-EXQ-874b manifest (evidence/experiments/v3_exq_874b_...json) shows n_consumption_events of 1,0,3 / 0,2,1 / 0,1,0 across seeds x arms -- pooled near-zero against the pre-registered floor of 15, so no suppression setting can be shown to MAXIMISE completion. No evidence-attenuation/suppression-strength dial and no other-agent channel exist anywhere in ree_core (zero grep hits).\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "priority": "medium",
+      "phase_verdict": "V3-NATIVE",
+      "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:31:11Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "inv093-other-agent-channel-and-competence-acquisition-floor",
+      "title": "Other-agent signal channel (zero grep hits, single-agent V3) plus a reliably-acquired-competence substrate: V3-EXQ-890 split-group discrimination is the binding gate for EXP-0717 release condition (b); use_policy_chunking defaults False",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication + a scoping spike (complex (probe-gated)) before any /implement-substrate or /queue-experiment commission",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "INV-093"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/",
+        "ree_core/utils/config.py"
+      ],
+      "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins INV-093 with the verbatim reason: \"Competence-acquisition floor unmet: V3-EXQ-890 (evidence/experiments/v3_exq_890_...json) is a 16-seed acquisition-reliability probe whose own split-group discrimination criterion is the binding gate for EXP-0717 release condition (b); a refinement-strength sweep would score non-degradation against a substrate that has not reliably acquired competence. use_policy_chunking defaults False (config.py:5555); no other-agent channel exists anywhere in ree_core (zero grep hits, single-agent V3).\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "priority": "medium",
+      "phase_verdict": "V3-NATIVE",
+      "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:31:11Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "mech019-operating-mode-enabled-consumer",
+      "title": "operating_mode has no ENABLED consumer at any production config: salience_apply_to_dacc_bias (config.py:4075) and mode_conditioning_enabled (config.py:2785) default False and their consumer branches never run; tracked unblock chip-20260917-sd032a-operating-mode-no-consumer",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication + a scoping spike (complex (probe-gated)) before any /implement-substrate or /queue-experiment commission",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-019"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/utils/config.py",
+        "ree_core/agent.py",
+        "ree_core/hippocampal/module.py"
+      ],
+      "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins MECH-019 with the verbatim reason: \"operating_mode has no ENABLED consumer at any production config: salience_apply_to_dacc_bias (config.py:4075) and mode_conditioning_enabled (config.py:2785) both default False; their consumer branches (agent.py:7898; hippocampal/module.py:1829/2001/2027/2171) never run. Open chip-20260917-sd032a-operating-mode-no-consumer is the tracked unblock.\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "priority": "medium",
+      "phase_verdict": "UNSTATED (claim carries no implementation_phase)",
+      "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:31:11Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "mech126-overmerge-oversplit-rate-producer-and-merge-split-operator",
+      "title": "No producer for overmerge_rate / oversplit_rate anywhere in ree_core and no merge/split operator in ObjectFileBuffer (strict 1:1 greedy match only); same gap as MECH-531 R3 in the 2026-09-21 falsifier completion audit",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication + a scoping spike (complex (probe-gated)) before any /implement-substrate or /queue-experiment commission",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-126"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/entities/object_file_buffer.py"
+      ],
+      "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins MECH-126 with the verbatim reason: \"No producer for overmerge_rate/oversplit_rate anywhere in ree_core (grepped, zero matches); no merge/split operator in ree_core/entities/object_file_buffer.py (ObjectFileBuffer, strict 1:1 greedy match only). Matches MECH-531 R3 in falsifier_completion_and_runnability_audit_20260921.json: operator does not exist, build unrouted.\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "priority": "medium",
+      "phase_verdict": "V3-NATIVE",
+      "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:31:11Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "mech562-receiver-local-self-healing-adapter-substrate",
+      "title": "Receiver-local self-healing adapter substrate: no homeostatic-readout / self-heal / afferent-plasticity mechanism exists in ree_core and interface_probe.py is pure/stateless by design, so the standing rival control arm for MECH-540 / INV-110 interface-repair designs cannot be instantiated",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "probe_gated",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/governance adjudication + a scoping spike (complex (probe-gated)) before any /implement-substrate or /queue-experiment commission",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-562"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/",
+        "experiments/_lib/interface_probe.py"
+      ],
+      "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins MECH-562 with the verbatim reason: \"No substrate exists: grep over ree_core/ for homeostatic-readout/self-heal/afferent-plasticity patterns finds only unrelated hits (env limb healing, an EMA comment). interface_probe.py is confirmed pure/stateless by design, cannot host adapter state. Claim's own disposition already says zero non-degenerate attempts are possible today. Also: this is framed as a required control arm within MECH-540/INV-110's design, not an independently testable claim -- any run that would test it also tests MECH-540.\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "priority": "medium",
+      "phase_verdict": "V3-NATIVE",
+      "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:31:11Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "mech567-oracle-action-ce-head-on-zworld-p0a",
+      "title": "Oracle-action / reward cross-entropy head on z_world during P0a (the MECH-567 target-carrying head, the pre-registered M1_FALSIFY route of failure_autopsy_V3-EXQ-1065_2026-09-20): ZWorldP0Trainer.observe() buffers only world_obs + resource_proximity_target, ZWorldP0Config has no action/oracle weight, zero oracle_action references in ree_core/, heads are constructed inside ZWorldP0Trainer.train() with no experiment-side hook",
+      "node_class": "complicated (buildable)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "registration_is_not_build_authorisation": true,
+      "owner_route": "/implement-substrate once governance authorises the build; then /queue-experiment EXP-0255 (EVB-1786) which was REFUSED at Step 2.5 substrate-readiness for exactly this gap",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-567",
+        "SD-106"
+      ],
+      "failure_record": [],
+      "substrate_paths": [
+        "ree_core/latent/zworld_p0.py::ZWorldP0Trainer",
+        "ree_core/utils/config.py::ZWorldP0Config"
+      ],
+      "implementation_hint": "From GFLAG-0425 (2026-09-23T07:00:36Z, session queuerefill-20260923): EXP-0255 (MECH-567) needs an oracle-action or reward CE head trained on z_world during P0a. Not buildable experiment-side: observe() has no action channel, the config has no oracle weight, and the heads are built inside train(). Build = (1) an action/oracle target channel into ZWorldP0Trainer.observe(), (2) a config weight (default 0.0, byte-identical OFF), (3) the CE head constructed alongside the existing heads, (4) a contract test pinning OFF == pre-change. SD-106 lineage context: SD-106 is 0/3 on its own validation and the zworld_actor_adequacy_locus question carries a recorded H-other rotation (failure_autopsy_V3-EXQ-1023a_2026-09-17), so this head is a discrimination instrument for MECH-567, not an SD-106 rescue. Registered by /governance Step 6a 2026-09-23 so the build has an owner the IGW workset can stage; registration is NOT build authorisation.",
+      "priority": 1,
+      "phase_verdict": "V3-NATIVE",
+      "source_audit": "GFLAG-0425 + failure_autopsy_V3-EXQ-1065_2026-09-20 (routing queue-experiment via M1_FALSIFY, refused at /queue-experiment Step 2.5 on 2026-09-23)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:32:20Z",
       "last_seen_session": "governance-20260923-0717",
       "experiment_queued": false
     }
