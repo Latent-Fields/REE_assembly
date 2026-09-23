@@ -16517,14 +16517,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_082",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": "MECH-081 E2->E1 attentional-sampling channel has zero code representation in ree-v3: zero hits for attentional_sampling / e2_to_e1 / MECH-081 anywhere in ree_core (re-verified 2026-09-23)",
+      "release_condition": "The MECH-081 E2->E1 attentional-sampling channel is implemented in ree_core so that an E2-side hippocampal map distortion can be shown to reach E1 sampling; at that point MECH-082's without-explicit-E1-retraining falsifier becomes runnable and this proposal returns to status proposed.",
+      "gating_reason": "MECH-082 asserts distortion PROPAGATES through E2 to bias E1 attentional sampling. The propagation channel it names is its own dependency MECH-081, which does not exist in code, so the manipulation has no route to the DV.",
+      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated."
     },
     {
       "acceptance_checks": [
@@ -22369,14 +22373,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_328",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": "play-mode subsystem absent from ree-v3: zero hits for z_goal_synthetic / play_to_real / PlayMode anywhere in ree_core (re-verified 2026-09-23), and no play-mode entry exists in substrate_queue.json (the 10 'play' substring hits there are all REPLAY entries)",
+      "release_condition": "A play-mode substrate entry exists in substrate_queue.json AND a synthetic-z_goal generator is landed in ree_core such that synthetic and real z_goal vectors can both be emitted and compared in one run; at that point MECH-328's manifold-overlap falsifier becomes runnable and this proposal returns to status proposed.",
+      "gating_reason": "MECH-328 asserts synthetic and real z_goal must share a latent manifold for play-to-real transfer. With no play mode there is no synthetic z_goal to compare, so the falsifier has no second population and any run would measure nothing.",
+      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated."
     },
     {
       "acceptance_checks": [
