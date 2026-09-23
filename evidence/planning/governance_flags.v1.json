@@ -3994,9 +3994,9 @@
       "summary": "MECH-275's title says sleep phases aggregate across many EPISODES and its functional_restatement warns against noise-fit; the implementation (ree-v3 ree_core/sleep/bayesian_aggregator.py, tau_post = tau + tau_lik and posterior.n += 1 per routed replay event, keyed (domain, region), no dependency term) aggregates across replay DRAWS sampled with replacement (replay_sampler.py draw()). Cross-episode independence is the claim's premise; per-draw accumulation is the behaviour. Bears directly on the newly registered MECH-554 (replay amplification of false independence).",
       "raised_by_session": "thought-pipeline-20260915",
       "raised_at": "2026-09-15T07:00:47Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:10:56Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23] Pointer note, no text rewrite (REE_assembly 75e36eaa43): MECH-275's notes now record that the landed aggregator (bayesian_aggregator.py, default off) aggregates replay DRAWS sampled with replacement from a frozen snapshot with no ancestry term, not episodes, and point at MECH-554's full account. The assertion text stays as registered because INV-049 depends on it and MECH-273/274/278 frame against it; the cross-episode mechanism is recorded as UNBUILT, not disproved. No status/category change on either claim."
     },
     {
       "flag_id": "GFLAG-0285",
