@@ -6482,6 +6482,80 @@ _PROPOSAL_STATUS_CARRY_FORWARD_FIELDS = (
 )
 
 
+# Free-text annotation keys a governance session writes onto a proposal row when
+# it corrects one by hand: withdrawn_note, governance_note,
+# status_correction_note_2026_09_23, executed_by_retracted_2026_09_23,
+# release_condition_note_2026_09_23, ... -- `<words>_note` or `<words>_retracted`,
+# optionally date-suffixed. The generator never mints these on a proposal row, so
+# on the previous file they can only be a session's work.
+_PROPOSAL_ANNOTATION_KEY_RE = re.compile(
+    r"^(?:[a-z0-9]+_)*(?:note|retracted)(?:_\d{4}_\d{2}_\d{2})?$"
+)
+
+# The gating RECORD a session leaves on a row it RELEASED back to "proposed"
+# ("RELEASED 2026-09-23 (GFLAG-0401): the prior gating premise ... is FALSE").
+# Deliberately NOT blocked_by / blocked_note / release_condition: those are
+# block SIGNALS, not history -- proposal_feasibility's FILTER G reads a recorded
+# release_condition on a non-ran row as "still blocked", so carrying one onto a
+# released row would silently re-block the claim the release was meant to free.
+_PROPOSAL_RELEASED_ROW_CARRY_FIELDS = ("gating_reason", "gated_at_utc", "gated_by_session")
+
+
+def proposal_annotation_fields(existing_row: dict[str, Any]) -> dict[str, Any]:
+    """The hand-written fields of a PREVIOUS generated row that must survive regen.
+
+    THE DEFECT (GFLAG-0401, chip-20260923-proposal-regen-audit-gap). The
+    status carry-forward registers only rows whose status is not "proposed", and
+    carries only _PROPOSAL_STATUS_CARRY_FORWARD_FIELDS. Governance corrections
+    land in two shapes that fall outside both: (a) an annotation field
+    documenting the correction (withdrawn_note on an R7 withdrawal,
+    status_correction_note_* + executed_by_retracted_* on an executed->proposed
+    revert, governance_note on a GFLAG-0317 block), dropped on EVERY status; and
+    (b) a row RELEASED to "proposed" whose gating_reason now records why
+    ("RELEASED 2026-09-23 ..."), dropped because a "proposed" row was never
+    registered at all. Measured on an origin/master regen 2026-09-23: 13 of the
+    69 rows hand-fixed in REE_assembly f578fcdb7c, and both GFLAG-0317 rows of
+    be4523acb8e, lost a field this way. Every STATUS survived, withdrawn
+    included -- this is the companion-text layer only.
+
+    Status-family fields are excluded on purpose: they belong to the status
+    carry-forward and its manual-authority predicate, which this must not
+    bypass. Empty values are skipped so a blank never fills a gap.
+    Pure and module-level so it is testable without running the indexer.
+    """
+    out: dict[str, Any] = {}
+    for k, v in existing_row.items():
+        if k in _PROPOSAL_STATUS_CARRY_FORWARD_FIELDS:
+            continue
+        if _PROPOSAL_ANNOTATION_KEY_RE.match(k) and v not in (None, "", [], {}):
+            out[k] = v
+    if str(existing_row.get("status") or "proposed").strip().lower() == "proposed":
+        for k in _PROPOSAL_RELEASED_ROW_CARRY_FIELDS:
+            if existing_row.get(k):
+                out[k] = existing_row[k]
+    return out
+
+
+def apply_proposal_annotation_carry_forward(
+    item: dict[str, Any], carried: dict | None
+) -> list[str]:
+    """Fill `carried` annotation fields into `item` IN PLACE; never clobber.
+
+    Fill-only, like the companion fields in apply_proposal_status_carry_forward:
+    a value the freshly generated (or manual-sourced) row already carries always
+    wins, so a manual row's own note and a derived value are never overwritten.
+    Returns the keys filled.
+    """
+    if not carried:
+        return []
+    filled = []
+    for k, v in carried.items():
+        if not item.get(k):
+            item[k] = v
+            filled.append(k)
+    return filled
+
+
 def _reserve_manual_proposal_backlog_ids(
     manual_doc: dict[str, Any], used_numeric_ids: set[int]
 ) -> None:
@@ -7749,6 +7823,11 @@ def _write_planning_outputs(
     # lane spelling changed or is absent) from an AMBIGUOUS one (the EXP/LIT twin
     # collision -- must NOT match across lanes). See _proposal_lane.
     _existing_lanes_by_key: dict[str, set[str]] = {}
+    # Same (identity key, LANE) keying, for the hand-written annotation layer
+    # (proposal_annotation_fields). Separate so the status carry-forward, its
+    # manual-authority predicate and the manual write-back are untouched.
+    _existing_proposal_annotations: dict[tuple[str, str], dict] = {}
+    _existing_ann_lanes_by_key: dict[str, set[str]] = {}
     _existing_proposals_doc: dict | None = None
     _existing_proposals_path = planning_root / "experiment_proposals.v1.json"
     if _existing_proposals_path.exists():
@@ -7758,6 +7837,14 @@ def _write_planning_outputs(
             )
             for _ep in _existing_proposals_doc.get("items", []):
                 _ep_keys = _proposal_identity_keys(_ep)
+                # Hand-written annotations, registered for EVERY status
+                # ("proposed" included) -- see proposal_annotation_fields.
+                _ep_ann = proposal_annotation_fields(_ep) if _ep_keys else {}
+                if _ep_ann:
+                    _ep_ann_lane = _proposal_lane(_ep)
+                    for _ep_key in _ep_keys:
+                        _existing_proposal_annotations[(_ep_key, _ep_ann_lane)] = _ep_ann
+                        _existing_ann_lanes_by_key.setdefault(_ep_key, set()).add(_ep_ann_lane)
                 if _ep_keys and _ep.get("status", "proposed") != "proposed":
                     _ep_status = {
                         k: _ep[k]
@@ -8218,6 +8305,22 @@ def _write_planning_outputs(
                 (str(_p.get("proposal_id") or "?"), str(_p.get("claim_id") or "?"),
                  str(_p.get("status")), str((_carried or {}).get("status")))
             )
+
+    # Hand-written annotations (withdrawn_note, *_note_<date>, *_retracted_<date>,
+    # and the gating record on a row released to "proposed") -- fill-only, after
+    # the status carry-forward and BEFORE the claim gate, so a live claim gate
+    # still re-stamps a gate-minted row's gating_reason. GFLAG-0401; see
+    # proposal_annotation_fields.
+    _annotation_fills = 0
+    for _p in proposals:
+        _ann = lookup_existing_proposal_status(
+            _p, _existing_proposal_annotations, _existing_ann_lanes_by_key
+        )
+        if apply_proposal_annotation_carry_forward(_p, _ann):
+            _annotation_fills += 1
+    if _annotation_fills:
+        print(f"  proposal status: {_annotation_fills} row(s) kept hand-written "
+              f"annotation field(s) from the previous file")
 
     # A claim-level experiment queue gate (claims.yaml `experiment_gate` /
     # anchored `GATED: DO NOT QUEUE`) makes the experimental proposal BORN
