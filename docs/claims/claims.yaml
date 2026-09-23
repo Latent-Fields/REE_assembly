@@ -6134,6 +6134,7 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: standard
+  pending_retest_after_substrate: true
   depends_on:
     - ARC-005
     - MECH-048
@@ -20253,7 +20254,9 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-529
   depends_on:
     - ARC-018
     - MECH-033
@@ -35161,7 +35164,9 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-521
   depends_on:
     - ARC-053
     - MECH-225
@@ -65656,7 +65661,7 @@
     ARC-080 directly.
   depends_on:
     - ARC-006    # representational substrate -- the object-file / binding layer (provisional, dormant; biology grounding via L1 pull in progress)
-    - MECH-278   # object DEFINITION -- causally-coherent feature bundle under intervention
+    - MECH-276   # object DEFINITION -- causally-coherent feature bundle under intervention (re-pointed from MECH-278, v4 phase_locked, to its V3 parent; GFLAG-0408, governance 2026-09-23)
     - ARC-059    # developmental ordering -- self -> objects -> others
     - SD-015     # live identity latent -- z_resource (location-invariant embedding)
     - SD-049     # per-type identity tag + classifier head + per-axis drive
@@ -68370,7 +68375,9 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-548
   version_relevance: v4_v5
   depends_on:
     - ARC-005
@@ -68647,7 +68654,9 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-545
   version_relevance: v4_v5
   depends_on:
     - ARC-085
@@ -89628,7 +89637,9 @@
     as_of: 2026-08-07
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: ARC-124
   version_relevance: v4_v5
   claim_level: architectural
   registered: "2026-08-07"
@@ -89948,7 +89959,9 @@
     as_of: 2026-08-07
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: SD-096
   version_relevance: v4_v5
   claim_level: architectural
   registered: "2026-08-07"
@@ -93789,7 +93802,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: ARC-142
   version_relevance: v4_v5
   claim_level: architectural
   registered_utc: "2026-08-25"
@@ -93847,7 +93862,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-529
   version_relevance: v4_v5
   claim_level: architectural
   registered_utc: "2026-08-25"
@@ -94030,7 +94047,9 @@
     as_of: 2026-09-17
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-529
   version_relevance: v4_v5
   claim_level: mechanistic
   registered_utc: "2026-08-25"
@@ -94423,9 +94442,7 @@
   version_relevance: v4_v5
   registered_utc: 2026-08-26
   depends_on:
-    - MECH-278  # RIVAL -- the incumbent causal-coherence individuation criterion
     - ARC-080   # object-identity spine; OBJ-1 coregistration this would extend by a fourth facet
-    - MECH-359  # candidate-differentiated affect -- the requirement this criterion would satisfy structurally
     - SD-057    # live object-bound incentive salience: wanting[k] is already usefulness x interoceptive state
     - MECH-344  # benefit-to-object-identity binding
     - ARC-006   # object-file / binding layer
@@ -95088,10 +95105,7 @@
     - MECH-450  # minimal recurrent settling step; built, for SELECTION not perception
     - MECH-089  # theta-cycle packaging -- the carrier, active in v3
     - MECH-294  # multi-content theta packet; its FIXED-ARITY sub-slots are the contrast case
-    - MECH-499  # ephaptic content aggregation -- distinct function
-    - MECH-500  # ephaptic temporal/readiness authority -- distinct function
     - MECH-228  # ephaptic coupling as general coherence substrate
-    - Q-077     # slot-vs-resource for SD-046; this claim is a THIRD answer to that fork
     - ARC-006   # binding substrate
     - MECH-045  # ObjectFileBuffer -- the only V3 site where capacity and occupancy coexist
   coupled_with:
@@ -98339,7 +98353,9 @@
       verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
   epistemic_category: substrate_conditional
   claim_level: architectural
-  implementation_phase: v4
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: ARC-140
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
@@ -99469,7 +99485,6 @@
     - MECH-094       # simulation/real distinction -- reality-status lesion at content level already owned
     - MECH-365       # one-way provenance gate on event tokens -- the built reality-status invariant
     - MECH-271       # hypothesis-tag loss signature (probe content reaching consolidation) -- content-level cousin
-    - ARC-092        # imagination-learning constraint -- what a reality-status lesion breaks
     - ARC-080        # object identity as token-bound persistence -- identity lesion's content-level owner
     - MECH-256       # forward-model comparator -- agency lesion's content-level owner
     - INV-035        # temporal position as a state-defining distinction -- temporal lesion's content-level owner
@@ -99842,7 +99857,6 @@
     - ARC-139    # federation principle; recurrent stability is a condition on any bridge it licenses
     - INV-088    # E1's own rollout consistency -- adjacent horizon-degradation lineage, different object
     - ARC-084    # typed signed coupling with gain/gate fields -- the overlay is a gated coupling, not a rewrite
-    - MECH-363   # runaway resonance under all-cooperative coupling -- the double-counting mechanism's cognifold-level cousin
   location: docs/architecture/receiver_conditioned_translation.md#mech-548
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: the interface must be traversed REPEATEDLY over a horizon the system actually uses, and the one-step result must be positive -- there is nothing to destabilise otherwise (degenerate if one-step utility is at or below floor). Frozen endpoints per INV-109; adequate source per V3-EXQ-1010 (trained z_world inadmissible).
@@ -100990,7 +101004,6 @@
     - MECH-540     # interfaces already differ in PLASTICITY; this says they differ in OBLIGATION -- distinguished-from
     - MECH-545     # lesion assays are already applied at ONE boundary; this says the candidate set itself is boundary-relative
     - INV-091      # integration/non-equivalence viable band -- the measurable form of the collapse-vs-fragmentation poles
-    - Q-104        # cognifold vs braidling: if unity is a property of the transformation network, the network is this family C
   location: docs/architecture/cognitive_contract.md#arc-144
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: at least TWO heterogeneous inter-engine interfaces instrumented with the SAME candidate relation and the SAME receiver-accessible recoverability measure (INV-105 grading), with the relation measurably present at at least one of them. One instrumented boundary, or a relation absent everywhere, leaves the claim untestable rather than false -- a single-boundary programme cannot distinguish boundary-indexed from universal.

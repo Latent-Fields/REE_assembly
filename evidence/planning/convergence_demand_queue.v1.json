@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-09-22T07:09:28Z",
+  "last_updated_utc": "2026-09-23T09:27:29Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -487,6 +487,46 @@
       "priority": 2,
       "in_flight": null,
       "last_known_state_note": "Raised by governance cycle governance-20260922 at the Step 6b Sense pass, in the same cycle that de-pinned leg B. Sense only: no claim registered, no intake opened, no experiment queued. NOTE leg A is INDEPENDENTLY blocked and this row does not address it -- all three registered C1 leg-A DVs are transforms of e3_prediction_error, the scalar P1's own manipulation check gates on (GFLAG-0389), so leg A needs RE-REGISTRATION with an independent DV before the four-arm ladder is worth running even if this row delivers a leg-B readout. INV-063 is epistemic_category substrate_conditional (GFLAG-0390) and status candidate; nothing here reverses that."
+    },
+    {
+      "row_id": "CDQ-012",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "A candidate MECHANISM claim for an action-CONDITIONED world-forward head on z_world that (i) reads its action (inverted-rule battery ratio measurably > 1 on a CONVERGED head, not at the gate's degenerate value) while (ii) keeping reconstruction within 2x of the OFF baseline -- registered in claims.yaml, wired into SD-PP-B5's unblocks (MECH-573/MECH-572/MECH-574/INV-063) via depends_on, with an architecture-doc stub. It must name the MECHANISM by which an external action-conditioned latent dynamics model keeps the action readable at ~3e-3 RMS/dim per-step displacement (or changes the encoder so displacement is larger), not another margin/objective variant on the same head: the contrastive interventional margin form is now MEASURED (V3-EXQ-1075) and buys A1 only where MSE inflates 5-10x. Biology precondition first per CLAUDE.md biology-before-formal-definitions: efference-copy / corollary-discharge routes by which sensory forward models are made action-conditioned.",
+        "satisfied": false
+      },
+      "target_nodes": [
+        "precision_provenance:SD-PP-B5",
+        "sleep_substrate:GAP-2"
+      ],
+      "mechanism_gap": "The world-forward head barely reads its action (V3-EXQ-1073: inverted-map MSE 0.76-0.90x original; V3-EXQ-1075: no margin buys action-sensitivity without destroying reconstruction; max A1 ratio 1.054), so every contradiction-based falsifier on z_world (MECH-574 novel-target arm, the intake's F3 anti-self-sealing test) is unposeable. The 1075 autopsy's 3-leg fan-out names internal routes (margin interval, SD-056 InfoNCE, encoder displacement objective) but no leg names how an action-conditioned latent dynamics model keeps the action readable at small per-step displacement -- a solved problem in external designs.",
+      "external_sources": [
+        {
+          "name": "dreamer_rssm",
+          "role": "action-conditioned recurrent state-space model: deterministic path h_t = f(h_{t-1}, z_{t-1}, a_{t-1}) makes the action a structural input to the latent transition rather than a learned bias on a copy-the-input head",
+          "intake_state": "NEW",
+          "path": null
+        },
+        {
+          "name": "muzero",
+          "role": "learned dynamics g(s, a) trained only through value/policy/reward consistency, i.e. action-readability emerges from a downstream consumer loss rather than a reconstruction margin -- the consumer-side analogue of the transfer-shortfall finding on zworld_actor_adequacy_locus",
+          "intake_state": "NEW",
+          "path": null
+        },
+        {
+          "name": "efference_copy_corollary_discharge",
+          "role": "biology precondition: the forward model receives a copy of the motor command; sensory prediction is action-conditioned by construction (Crapse & Sommer 2008)",
+          "intake_state": "NEW",
+          "path": null
+        }
+      ],
+      "generation": "v3",
+      "blocks_v3_critical_path": false,
+      "priority": 2,
+      "in_flight": null,
+      "last_known_state_note": "Appended by /governance Step 6b Sense pass 2026-09-23T09:27:29Z (session governance-20260923-0717) from the confirmed failure_autopsy_V3-EXQ-1075_2026-09-23 verdict: SD-PP-B5 validated NEGATIVE, node re-marked complex (probe-gated). Not a duplicate of CDQ-011 (which is the READOUT-side mechanism for INV-063 leg B); this row is the ENCODER/dynamics-side cause. Sense only -- no claim registered, no REE_convergence thread opened."
     }
   ]
 }

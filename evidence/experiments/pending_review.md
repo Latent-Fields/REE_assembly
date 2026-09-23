@@ -1,16 +1,9 @@
 # Pending Experiment Review
 
-Generated: `2026-09-23T08:49:22Z`  
-Last review: `2026-09-22T19:23:17Z`  
-Scanned: 2977 claim_evidence entries considered (3000 already reviewed), 4859 manifest file(s) on disk.  
-Pending: **3** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3` | 2026-09-23T00:23 | MECH-055 | — |
-| `v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3` | 2026-09-23T03:33 | (no claim tags) | — |
+Generated: `2026-09-23T09:23:46Z`  
+Last review: `2026-09-23T09:23:27Z`  
+Scanned: 2977 claim_evidence entries considered (3002 already reviewed), 4859 manifest file(s) on disk.  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

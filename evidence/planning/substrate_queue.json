@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "mech005-science-20260922-exq-1073",
-  "last_updated_utc": "2026-09-22T19:22:05Z",
+  "last_updated_utc": "2026-09-23T09:25:24Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -1322,10 +1322,10 @@
         {
           "date_utc": "2026-06-01",
           "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
-          "metric_notes": "Plan \u00a73.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to \u00a75.2 (shorten interval / lift prob) or \u00a75.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc \u00a710 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
+          "metric_notes": "Plan §3.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to §5.2 (shorten interval / lift prob) or §5.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc §10 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
           "metric_value": "C1 curriculum_firing PASS 3/3 (external_hazard_event_count 10/45/6); C2 z_harm_a_nonzero PASS 3/3 (zero_fraction=0.0); C3 sustained_window FAIL 1/3 (seed 42=0 runs, seed 7=1 run, seed 19=0 runs; threshold z>=0.4 for run_len>=10). Pooled z_harm_a_norm p70=0.43, p80=0.44, p90=0.44; upper tail clears BLA arousal_threshold_on=0.4 but does not sustain. Affective stream confirmed wired (post-625 stream-off fix).",
           "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
-          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan \u00a75.2 / \u00a75.4.",
+          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan §5.2 / §5.4.",
           "run_role": "post_build",
           "run_role_basis": "R3 run > entry.implemented_utc"
         }
@@ -1366,9 +1366,9 @@
         {
           "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
           "date_utc": "2026-06-01",
-          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in \u00a75: harm magnitude lift (\u00a75.1) -> sustained-window lengthening via env_drift_interval/prob (\u00a75.2) -> stochasticity for dACC PE (\u00a75.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (\u00a75.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
+          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in §5: harm magnitude lift (§5.1) -> sustained-window lengthening via env_drift_interval/prob (§5.2) -> stochasticity for dACC PE (§5.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (§5.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
           "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
-          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md \u00a73. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
+          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md §3. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
         }
       ],
       "implementation_status": "implemented",
@@ -1379,7 +1379,7 @@
       "metric_trajectory": {
         "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
         "direction": "higher_is_better",
-        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan \u00a73.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
+        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan §3.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
         "observations": [
           {
             "date_utc": "2026-04-25",
@@ -12218,7 +12218,7 @@
       "priority": "low",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
-      "last_seen_session": "gov-20260922-1756",
+      "last_seen_session": "governance-20260923-0717",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
@@ -12228,7 +12228,8 @@
           "experiment_type": "v3_exq_1062_mech055_affect_channel_separation_diagnostic",
           "metric": "ONSET gap, not a dose gap. world_rule_shift is schedulable only by modulo interval/depth set at env construction, and its counter deliberately survives reset() (causal_grid_world.py:984-985, 1879-1885), so a driver that needs a TRAINED-THEN-SHIFTED regime has no kwarg to start the shift after training. V3-EXQ-1062 consequently trained its harm-forward model under ~810 accumulated permutations (P0 30 eps + P1 60 eps x <=90 steps at interval 10): harm_a_forward_r2 was statistically indistinguishable between arms (0.932-0.954 shift vs 0.940-0.977 stationary), mean dACC harm-PE FELL 3.3%, and harm exposure rose to ~4.28x the reference. The lever reached the world/E3 side (E3 running precision fell 3.2x-6.5x) but not the harm-forward side.",
           "target": "A supported way to enable world_rule_shift at a phase boundary (post-training onset) rather than from env construction. Workaround available to drivers today without a substrate change: set env.world_rule_shift_enabled / _interval / _depth directly after the training loop. Separately, no prior run has ever measured whether this lever moves the dACC harm-PE channel -- the pe_load_elevated_vs_stationary precondition's control cites V3-EXQ-861e's MEL-gradient DV, a different channel.",
-          "resolved": "open"
+          "resolved": "open -- NOT resolved by this run",
+          "resolved_note": "Two annotations owed on SD-PP-B4's existing record, neither of which closes it. (1) Its `target` names a driver-side workaround as available-today; V3-EXQ-1062a is the first run to EXERCISE it and it worked (0 pre-P2 permutations in 6/6 cells, canonical map at onset, 180 P2 shifts), so the workaround is demonstrated rather than asserted. The substantive ask (a supported phase-boundary kwarg) is unbuilt, so the record stays open. (2) Its `target` also states 'no prior run has ever measured whether this lever moves the dACC harm-PE channel'. V3-EXQ-1062a has now measured it WITH TRAINING STATIONARY, and the honest answer is PARTIAL, not 'it does not' (corrected at the red-team pass -- writing 'it does not' into a shared substrate record would misinform every future consumer of this lever): the head's harm_a_forward_r2 FALLS 0.044-0.051 on 2/3 seeds (0.947->0.896 and 0.977->0.934; unexplained variance 1.97x and 2.93x), i.e. the lever DOES reach the harm-forward model's residual. What does not clear its bar is the dACC PE MAGNITUDE the gate reads: pooled elevation +2.4% against a +5.0% floor, per-seed +6.9% / -1.2% / -1.9%. Mark the sentence PARTIALLY answered. (annotated by /governance 2026-09-23 from failure_autopsy_V3-EXQ-1062a_2026-09-23)"
         }
       ],
       "depends_on_unresolved": [],
@@ -12255,15 +12256,15 @@
       ]
     },
     {
-      "node_class": "complex (probe-gated) -> mystery (known data)",
-      "status": "implemented_pending_validation",
-      "ready": true,
+      "node_class": "complex (probe-gated)",
+      "status": "implemented_validated_negative",
+      "ready": false,
       "registration_is_not_build_authorisation": false,
       "owner_route": "/implement-substrate (user decision at the V3-EXQ-1073 autopsy gate, 2026-09-22T19:01:39Z)",
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
-      "last_seen_session": "gov-20260922-1756",
+      "last_seen_session": "governance-20260923-0717",
       "experiment_queued": true,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
@@ -12275,6 +12276,14 @@
           "target": "cond-3 pe/residual > 2.0 and early surprise fraction >= 0.5 on >= 2/3 seeds; head skill vs identity > 0 on >= 2/3 seeds",
           "resolved": "open",
           "source": "failure_autopsy_V3-EXQ-1073_2026-09-22.json"
+        },
+        {
+          "run_id": "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
+          "experiment_type": "v3_exq_1075_sdppb5_action_sensitivity_validation",
+          "metric": "Four-rung margin ladder, 3 seeds, frozen 64-row 5-action battery. A1 (ratio > 1.0) seeds: 0/1/2/3 at margin 0.01/0.05/0.10/0.50. A4 (MSE <= 2x OFF) seeds: 3/2/0/0. A3 (conv_rel_drop >= 0.99) seeds: 1/1/0/0 against an ARM_OFF baseline of 1/3. max_mse_inflation 0.92 / 5.90 / 9.63 / 174.19. A2 (skill vs identity) 0/3 at every rung, falling -3.8/-13.3/-36.9/-556.4 mean by rung against ARM_OFF -5.5. passing_rungs empty. DEGENERACY: at M050 the A1-passing ratios are 1.0015/1.0026/1.0109, i.e. the gate's own documented degenerate value, on a destroyed head; max ratio anywhere is 1.0540. The gate guards a degenerate BATTERY (n_distinct_actions >= 2) but not a degenerate HEAD.",
+          "target": "One margin rung with A1 met on >= 2/3 seeds BY A MARGIN excluding the degenerate ratio ~1.0 (e.g. ratio >= 1.2) AND a head-health condition (skill_vs_identity no worse than ARM_OFF), together with A4 (MSE <= 2x OFF) on >= 2/3 seeds. A3 must be RE-DENOMINATED ON THE CONTROL (conv_rel_drop >= OFF - 0.01, not an absolute 0.99) or the base first brought to V3-EXQ-1073's 0.998, because ARM_OFF clears the absolute bar on only 1/3 seeds. Separately: add a head-health guard to experiments/_lib/action_sensitivity_gate.py so a destroyed head returns cannot_determine rather than action_sensitive.",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1075_2026-09-23"
         }
       ],
       "depends_on_unresolved": [],
@@ -12288,24 +12297,55 @@
         "INV-063"
       ],
       "source_audit": "evidence/planning/precision_provenance_substrate_necessities_20260922.md",
-      "implementation_hint": "Measured on 3 seeds by V3-EXQ-1073: the converged world-forward head's pre-sleep MSE on an INVERTED-action-map battery is 0.760/0.901/0.881x its MSE on the original rule, cond-3 waking pe is 0.745/0.677/0.674x the converged residual, and the early post-inversion surprise fraction is 0.033 -- the head barely reads the action. RETRACT this row's title claim that 'a rule inversion produces PE ~4x the converged residual' (an estimate from the register, now measured at <1x). Any falsifier requiring a reliable contradiction of a confident world-model prediction (the intake's F3 anti-self-sealing test, MECH-574's novel-target arm) is unposeable until the head reads its action; MECH-572's own CONFIRMING does NOT require one and stays reachable via a readable-seed step-scale ladder. Candidate remedies: train world_forward on a z_world with larger per-step displacement (SD-018 amend / SD-009), or an action-sensitivity readiness gate before any contradiction-based experiment.",
+      "implementation_hint": "Measured on 3 seeds by V3-EXQ-1073: the converged world-forward head's pre-sleep MSE on an INVERTED-action-map battery is 0.760/0.901/0.881x its MSE on the original rule, cond-3 waking pe is 0.745/0.677/0.674x the converged residual, and the early post-inversion surprise fraction is 0.033 -- the head barely reads the action. RETRACT this row's title claim that 'a rule inversion produces PE ~4x the converged residual' (an estimate from the register, now measured at <1x). Any falsifier requiring a reliable contradiction of a confident world-model prediction (the intake's F3 anti-self-sealing test, MECH-574's novel-target arm) is unposeable until the head reads its action; MECH-572's own CONFIRMING does NOT require one and stays reachable via a readable-seed step-scale ladder. Candidate remedies (POINTERS CORRECTED 2026-09-23 per failure_autopsy_V3-EXQ-1075 red-team: SD-009 has NO substrate_queue entry, SD-018 is VALIDATED NEGATIVE by V3-EXQ-978, SD-106 is 0/3 -- none of the three is a live encoder route): the contrastive interventional margin form is now MEASURED (V3-EXQ-1075) and does not buy action-sensitivity without destroying reconstruction at any tested margin; the live routes are the fan-out legs in fanout_recommendation. The action-sensitivity readiness gate (experiments/_lib/action_sensitivity_gate.py) IS built and must gate any contradiction-based experiment.",
       "falsifier_requirement_satisfied": "Any falsifier on this head that compares 'converged' to 'contradicted' needs the two to be separable above the residual.",
       "event_or_manipulation_produced": "n/a (representation property)",
       "dv_or_instrument_exposed": "identity_predictor_mse and skill score already instrumented (V3-EXQ-1063).",
       "ready_blocked_by": "/governance: MECH-573's skill>0 readability gate is an owed falsifier edit; this row is its substrate-side twin.",
       "authority": "REGISTRATION ONLY by the science session compassionate-pike-fe9174 while tracing the information-loss boundary for the precision-provenance experiment (thought_intake_2026-09-22). The user's build authorisation covered the producers (SD-PP-1..4) only; this row is minted so the necessity is tracked in a machine-readable worklist rather than prose (queue-experiment Step 2.5 STOP-GATE route 2b rationale). Not a build authorisation; /governance adjudicates. || USER DECISION 2026-09-22T19:01:39Z (real AskUserQuestion at failure_autopsy_V3-EXQ-1073 Step 8): 'Confirm, but escalate B5 to a build now' -- build authorised; chip spawned by session compassionate-pike-fe9174.",
       "why_no_existing_owner": "MECH-573 registers the READOUT-side consequence; nothing registers the encoder-range cause as a substrate item.",
-      "severity": "degrading",
+      "severity": "corrupting",
       "substrate_paths": [
         "ree_core/predictors/e2_fast.py::world_forward",
-        "ree_core/latent/stack.py"
+        "ree_core/utils/config.py",
+        "experiments/_lib/action_sensitivity_gate.py"
       ],
       "title_correction_2026_09_22": "RETRACTED from the title: 'a rule inversion produces PE ~4x the converged residual' was a register-time estimate; V3-EXQ-1073 measured cond-3 waking pe / converged residual 0.745/0.677/0.674 and inverted-rule battery pre-sleep MSE 0.760/0.901/0.881x the original on seeds 42/123/456 -- the head barely reads the action.",
-      "implementation_status": "implemented_pending_validation",
+      "implementation_status": "implemented_validated_negative",
       "implemented_utc": "2026-09-23T03:23:08Z",
       "implemented_session": "elated-chandrasekhar-4a6e6a",
       "validation_experiment": "V3-EXQ-1075",
-      "implementation_note": "IMPLEMENTED 2026-09-22/23, ree-v3 origin/main 8f10214 (substrate) + 9e17cb644f (validation experiment + gate hardening). TWO pieces, both default-OFF: (1) experiments/_lib/action_sensitivity_gate.py -- the action-sensitivity readiness gate SD-031's Validation P1 specified in 2026-04 and nobody built; promotes _identity_predictor_mse out of two copy-pasted private copies (v3_exq_1063, 1073). A NEGATIVE INSTRUMENT carrying all three CLAUDE.md remedies: a structural three-valued status (ready/action_blind/cannot_determine, never a bool), a CANARY_V3_EXQ_1073 replay that DRIVES readiness_verdict itself, and printed denominators. The monostrategy case is why the third value is load-bearing. (2) E2FastPredictor.compute_world_interventional_loss -- SD-013's margin loss ported to the head V3-EXQ-1073 actually trains. E2WorldForward already had it but hard-asserts world_dim>=128 and 1073 ran WORLD_DIM=16. NOT the SD-056 InfoNCE form: that is a confirmed P0 destabiliser (V3-EXQ-701b). Config: use_world_interventional (False), world_interventional_fraction (0.3), world_interventional_margin (0.1), threaded through all three from_dims sites. Liveness: gradient reaching world_action_encoder 0.0021 -> 0.1445 on a real rollout. Documented not fixed: an EXACTLY action-invariant head is a stationary point of this loss family (zero distance is a minimum of the norm); measure-zero under random init, and both reference implementations share it -- chip chip-20260922-sd013-margin-loss-collapse-point raised to check and fix as appropriate. VALIDATION V3-EXQ-1075 queued and live in the coordinator DB. Its A2 axis (skill vs the trivial predictor, MECH-573) is RECORDED NOT GATED (user decision rec-20260923-cb59ede6): that axis is encoder-bound and the driver's OFF arm does not reproduce 1073 on it (-5.79/-2.24 vs -0.071/+0.227, cause unidentified). Its A1 axis DOES reproduce 1073 (0.833/0.879 vs 0.760/0.901). So B5's ENCODER half -- whether z_world needs larger per-step displacement -- remains OPEN and is the escalation route if V3-EXQ-1075 returns FAIL-a."
+      "implementation_note": "IMPLEMENTED 2026-09-22/23, ree-v3 origin/main 8f10214 (substrate) + 9e17cb644f (validation experiment + gate hardening). TWO pieces, both default-OFF: (1) experiments/_lib/action_sensitivity_gate.py -- the action-sensitivity readiness gate SD-031's Validation P1 specified in 2026-04 and nobody built; promotes _identity_predictor_mse out of two copy-pasted private copies (v3_exq_1063, 1073). A NEGATIVE INSTRUMENT carrying all three CLAUDE.md remedies: a structural three-valued status (ready/action_blind/cannot_determine, never a bool), a CANARY_V3_EXQ_1073 replay that DRIVES readiness_verdict itself, and printed denominators. The monostrategy case is why the third value is load-bearing. (2) E2FastPredictor.compute_world_interventional_loss -- SD-013's margin loss ported to the head V3-EXQ-1073 actually trains. E2WorldForward already had it but hard-asserts world_dim>=128 and 1073 ran WORLD_DIM=16. NOT the SD-056 InfoNCE form: that is a confirmed P0 destabiliser (V3-EXQ-701b). Config: use_world_interventional (False), world_interventional_fraction (0.3), world_interventional_margin (0.1), threaded through all three from_dims sites. Liveness: gradient reaching world_action_encoder 0.0021 -> 0.1445 on a real rollout. Documented not fixed: an EXACTLY action-invariant head is a stationary point of this loss family (zero distance is a minimum of the norm); measure-zero under random init, and both reference implementations share it -- chip chip-20260922-sd013-margin-loss-collapse-point raised to check and fix as appropriate. VALIDATION V3-EXQ-1075 queued and live in the coordinator DB. Its A2 axis (skill vs the trivial predictor, MECH-573) is RECORDED NOT GATED (user decision rec-20260923-cb59ede6): that axis is encoder-bound and the driver's OFF arm does not reproduce 1073 on it (-5.79/-2.24 vs -0.071/+0.227, cause unidentified). Its A1 axis DOES reproduce 1073 (0.833/0.879 vs 0.760/0.901). So B5's ENCODER half -- whether z_world needs larger per-step displacement -- remains OPEN and is the escalation route if V3-EXQ-1075 returns FAIL-a.",
+      "status_phase": "probe_gated",
+      "validation_outcome": "V3-EXQ-1075 FAIL-b (2026-09-23): SD-PP-B5 does NOT validate. A1 0/1/2 vs A4 3/2/0 over margins 0.01/0.05/0.10 (0.50 rung degenerate); seeds that fire A1 are the seeds whose MSE inflates 5-10x; max ratio 1.054. Status flipped off implemented_pending_validation by /governance 2026-09-23 per the autopsy governance_owes_status_flip. Substrate stays landed and default-OFF; a further build is fan-out gated (3 legs: margin-form in the untested (0.01,0.05) interval; InfoNCE form SD-056; encoder per-step displacement objective).",
+      "severity_rationale": "Raised from the drafted `degrading` on the A1 finding. A consumer who enables use_world_interventional at its SHIPPED DEFAULT margin 0.10 (ree_core/utils/config.py:910) gets A1 scoring 2/3 -- which reads as 'the head now passes the action-sensitivity gate' -- on a head with skill -33 to -48 and MSE inflated 5.0-9.6x. That is evidence that looks valid and is not, which is the definition of `corrupting`. What keeps the blast radius narrow, and is stated so the Step 2.5c cost is visible: use_world_interventional defaults to False (config.py:908), so only an opt-in consumer is exposed.",
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-margin-form: SD-PP-B5's contrastive interventional margin can buy action-sensitivity without destroying reconstruction at some operating point. NARROWED, NOT FULLY ELIMINATED (corrected at the red-team pass): eliminated at margin >= 0.05, inert at 0.01, and UNTESTED in the interval (0.01, 0.05) -- which is precisely where the true action-conditioned separation of ~0.014 L2 sits.",
+          "H-infonce-form: SD-056's InfoNCE form separates actions without imposing an absolute L2 margin in z_world units. Still open, and arguably PROMOTED: this run shows the margin form deforms once and goes quiet rather than competing throughout, so the two forms' contrast is untested rather than settled.",
+          "H-encoder-displacement: no training-time objective on this head can succeed while z_world moves ~3e-3 RMS/dim per step; the remedy is a per-step DISPLACEMENT objective at the encoder."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-margin-form",
+            "axis": "learning-signal",
+            "sketch": "a cheap RE-RUNG at margins 0.015 / 0.02 / 0.03 -- the untested decade bracketing the true separation (~0.014 L2) -- with A3 re-denominated on ARM_OFF and an A1 margin bar; declared null: A1 and A4 remain unsatisfiable together there too. This is a /queue-experiment item, NOT /implement-substrate."
+          },
+          {
+            "hypothesis": "H-infonce-form",
+            "axis": "learning-signal",
+            "sketch": "the same frozen battery and the same (repaired) bars against SD-056's InfoNCE objective; declared null: InfoNCE shows the same A1/A4 coupling with no workable rung"
+          },
+          {
+            "hypothesis": "H-encoder-displacement",
+            "axis": "representation-update-rate",
+            "sketch": "raise z_world per-step displacement at the encoder and re-measure A1/A4 at a fixed margin; declared null: the coupling survives at every displacement setting"
+          }
+        ],
+        "note": "GOV-FANOUT-1. The single-unambiguous-build exemption is not claimed. TWO POINTERS WERE REMOVED AT THE RED-TEAM PASS and must not be reinstated: an earlier draft routed the encoder leg to 'SD-018-amend / SD-009 / SD-106', a list copied forward from SD-PP-B5's own stale implementation_hint. Checked against substrate_queue.json: SD-009 has NO queue entry at all; SD-018 is amend_implemented_pending_validation but its own record reads VALIDATED NEGATIVE for shape (a) by V3-EXQ-978 and its subject is resource-proximity supervision; SD-106 is implemented_pending_validation with V3-EXQ-1023/1023a already run at 0/3 seeds and its subject is generic bottleneck variance preservation. NONE of the three targets per-step displacement. A governance reader following that list would have looked for a nonexistent entry, re-opened an amend already validated negative, and mistaken a pending validation for the displacement remedy. The encoder leg needs a NEW substrate entry; it is named here as a gap, not routed to an existing id. Ordering: the cheap re-rung probe comes first -- it is the one thing that could still rescue the shipped form."
+      },
+      "node_class_note": "2026-09-23 governance: token normalised from \"complex (probe-gated) -> mystery (known data)\" (invalid compound) to the single token; the reframe half is carried by fanout_recommendation, not by the token."
     },
     {
       "node_class": "complicated (buildable)",
@@ -12474,6 +12514,81 @@
         "ree_core/agent.py::select_action"
       ],
       "severity_note": "GOVERNANCE DISPOSITION 2026-09-22 (GFLAG-0418/0419, user-approved, cycle gov-20260922-1756): severity downgraded corrupting -> degrading while this row's status remains proposed_REGISTRATION_ONLY_not_a_build_authorisation. WHY: /queue-experiment Step 2.5c reads severity and deliberately never reads status (check_substrate_path_overlap.py:173-176 defaults an unrecognised status to OPEN, the safe direction for a corrupting gate), and this row's substrate_paths name modules that 1275 of 1504 v3_exq drivers (85%) import -- so a row that is explicitly NOT a build authorisation was blocking the whole corpus prospectively. degrading keeps it NAMED as a known limitation in every queue note rather than silencing it. Independently defensible on measurement: the corrupting condition is configuration-specific -- committed_tick_frac pinned at 1.000 is a property of the ABSOLUTE bar and measurably does not obtain under use_variance_tracking_commit_threshold (V3-EXQ-1070a: 30-89 committed runs per L1 cell, committed_step_fraction 0.2585-0.7317, n_latched_ticks 102-339 -- the latch releases and is instrumented). RESTORE corrupting if these rows are ratified as builds."
+    },
+    {
+      "sd_id": "SD-PP-B9-harm-forward-below-persistence-baseline",
+      "title": "The harm-forward head scores BELOW the z(t-1) persistence predictor in 6/6 cells (skill -71.7 to -1.2), with residual RMS 1.5-8.5x the true per-step displacement of z_harm_a, so the dACC harm-PE that MECH-055 axis 3 routes on is dominated by model error rather than world surprise. CAUSE NOT ESTABLISHED between under-training / train-eval mismatch and a representation ceiling -- see the fan-out.",
+      "node_class": "complex (probe-gated)",
+      "status": "pending_implementation",
+      "status_phase": "probe_gated",
+      "ready": true,
+      "registration_is_not_build_authorisation": false,
+      "owner_route": "/implement-substrate (instrument + recording pieces buildable now); the substrate piece is a GOV-FANOUT-1 4-leg discrimination -- run the cheapest leg (under-training probe) before any representation build",
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-055 (PARTIAL -- necessary, not sufficient)"
+      ],
+      "unblocks_caveat": "This entry alone does NOT unblock MECH-055's decisive falsifier. C1 is scored on SHIFT arms only, and the shift arm is red on TWO preconditions. Fixing the harm-forward head addresses pe_load_elevated_vs_stationary; it does nothing about harm_exposure_relative_deviation_bounded (3.282 vs a 0.25 ceiling), which is a lever/environment property -- under a permuted map with no P2 training the agent simply walks into hazards. With this entry built and nothing else changed, the shift arm stays red and C1 stays unscored. An exposure-matched design, or a different decoupling lever, is owed alongside it. MECH-054 was REMOVED from this list at the red-team pass: its registered precondition is a BENEFIT-side channel, which a harm-head fix does not supply.",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
+          "experiment_type": "v3_exq_1062a_mech055_affect_channel_separation_postshift",
+          "metric": "harm_forward_skill_vs_persistence NEGATIVE in 6/6 cells (stationary -71.67/-3.98/-23.48, shift -5.99/-2.28/-1.16). Residual-to-displacement ratio (1-r2)/(1-persistence_r2) = 72.7/5.0/24.5 stationary, 7.0/3.3/2.2 shift -- the model's residual RMS is 1.5-8.5x the latent's true per-step displacement. harm_a_forward_r2 0.9405-0.9773 passed its 0.30 readiness floor in every cell while being BELOW the trivial baseline (persistence_r2 0.9693-0.9993). harm_forward_action_sensitivity 0.46-1.19 above its 0.05 floor, so the head is NOT action-blind -- though that statistic is normalised by the model's OWN predicted delta, which is itself 1.5-8.5x too large, so it means 'the action moves a wrong delta by 46-119% of its wrong size'. CAVEAT ON MAGNITUDE: skill is denominator-driven -- 1-persistence_r2 spans 0.00073 to 0.01194 (16.4x) across three seeds at an identical config, so -71.7 is a seed whose latent barely moved, not a 72x-worse model. The robust statement is the SIGN, 6/6. NO TRAINING-LOSS TRAJECTORY for e2_harm_a is recorded, so convergence cannot be checked from this manifest.",
+          "target": "harm_forward_skill_vs_persistence > 0 on >= 2/3 seeds on the stationary arm, ON A HEAD WHOSE TRAINING CURVE IS RECORDED and evaluated at matched epsilon. Plus a readiness precondition that gates on that skill rather than on an absolute R2 floor.",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1062a_2026-09-23"
+        }
+      ],
+      "implementation_hint": "Three separable pieces, cheapest first. (1) INSTRUMENT, owed on every branch and not gated on the discrimination: the readiness gate harm_a_forward_r2_supra_floor is an absolute R2 floor (FORWARD_R2_MIN = 0.30, in the DRIVER at v3_exq_1062a_...postshift.py:496, not in ree_core) with no baseline; it passed at 0.9405 while the trivial predictor scores 0.9955. Gate on skill-vs-persistence, computed on the same r2_pairs at zero extra cost. This is an experiments/_lib or driver change, not a ree_core one. (2) RECORDING, also cheap: the manifest carries NO training-loss trajectory for e2_harm_a, so convergence cannot be checked from the artifact at all -- record it (Experimental Recording Standard section 3b/3c). (3) Only then the SUBSTRATE question, which the fan-out splits: is the head under-trained (60 eps x 90 steps online at batch 1, lr 5e-4, no P2 training, P1 epsilon 0.1 vs P2 epsilon 0.0), or is there a representation ceiling? NOTE the arithmetic that motivates this ordering: a displacement ceiling on a RESIDUAL head predicts delta -> 0 and skill ~ 0, because the conditional-mean delta is in the hypothesis space at the MSE optimum. Skill of -72 is not a ceiling signature -- it requires the head to be ACTIVELY adding error, i.e. non-convergence, distribution mismatch, or overfitting.",
+      "priority": 1,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/latent/stack.py::ResidualHarmForward",
+        "ree_core/predictors/e2_harm_a.py::E2HarmAForward"
+      ],
+      "severity_rationale": "Set to `degrading`, NOT `corrupting`, corrected at the red-team pass. Both consumers are default-OFF -- use_e2_harm_a (config.py:3883) and use_dacc (config.py:3910) are both `False` and appear in this run's enabled_default_off_flags -- which is the same fact the sibling V3-EXQ-1075 artifact uses to argue `degrading`, and applying it there but not here would be inconsistent. No landed evidence in the corpus has been shown to be corrupted: the one valid-looking-but-false reading identified is a row of the V3-EXQ-1062 autopsy, which this artifact retro-weakens in prose. `corrupting` on these paths would BLOCK every dACC and e2_harm_a experiment at priority 1 under /queue-experiment Step 2.5c -- including the MECH-258 / MECH-268 family -- which is a large cost for a defect nothing has yet been shown to have consumed.",
+      "substrate_paths_note": "ree_core/cingulate/dacc.py::_affective_pe was REMOVED at the red-team pass: it is a CONSUMER (pe = ||z_harm_a - z_harm_a_pred||, dacc.py:213-216) and nothing in it is defective. Listing it would have blocked every dACC experiment for a defect located upstream.",
+      "why_not_amend_existing": "7b check C2 fired: SD-PP-B4-one-shot-world-rule-shift-lever already lists MECH-055 in unblocks_claims and already carries V3-EXQ-1062's failure record. It is deliberately NOT the amend target here, on the same subject-matching discipline the V3-EXQ-1062 autopsy applied to itself: B4's registered subject is the ONSET lever ('world_rule_shift has no phase-boundary kwarg; modulo-schedule only'), and V3-EXQ-1062a shows that gap is NO LONGER what blocks this claim -- the driver applied B4's own documented workaround (set env.world_rule_shift_enabled / _interval / _depth after the training loop), the new world_rule_shift_fired_in_p2 readiness precondition confirms the shift fired in P2, and the trained-then-shifted premise was instantiated for the first time. The blocker that remains is a different subject on a different module -- the harm-forward head's inability to beat persistence -- so it gets its own entry.",
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1-exposure-error-coupling: exposure and forward-model error are structurally coupled under the world_rule_shift lever, so no setting raises the dACC harm-PE with exposure held matched. RESTORED at the red-team pass -- the manifest sets h1_exposure_error_coupling_indicated: true and an earlier draft dropped it.",
+          "H-harm-head-undertrained: the head simply never converged, or was evaluated off its training distribution (60 eps x 90 steps online at batch 1, lr 5e-4, no P2 training, P1 epsilon 0.1 vs P2 epsilon 0.0). This is the CHEAPEST leg and the arithmetic favours it: a representation ceiling on a residual head predicts skill ~ 0, not -72.",
+          "H-pe-source-structurally-wrong: no residual forward head on a slow harm-history latent can beat identity, so axis 3 needs a different PE source entirely.",
+          "H-harm-head-representation-ceiling: z_harm_a's per-step displacement is too small for a learned delta to pay -- the SD-PP-B5 analogue. Demoted from the draft's headline CAUSE to one hypothesis among four."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1-exposure-error-coupling",
+            "axis": "environment",
+            "sketch": "an exposure-MATCHED decoupling design (or a different lever) that holds mean_harm_exposure within the 1.25x ceiling while perturbing the harm-forward map; declared null: no such setting exists, exposure and PE move together at every dose"
+          },
+          {
+            "hypothesis": "H-harm-head-undertrained",
+            "axis": "learning-signal",
+            "sketch": "train e2_harm_a to convergence on a RECORDED loss curve at batch > 1, evaluate at matched epsilon, and re-measure skill-vs-persistence; declared null: skill stays <= 0 at convergence. Cheapest probe, and a /queue-experiment item rather than /implement-substrate."
+          },
+          {
+            "hypothesis": "H-pe-source-structurally-wrong",
+            "axis": "readout",
+            "sketch": "score an ensemble-disagreement or innovation-variance PE source against the residual-head PE on the same ticks; declared null: the alternative is no better separated from the VALENCE_HARM level than the residual head is"
+          },
+          {
+            "hypothesis": "H-harm-head-representation-ceiling",
+            "axis": "representation-update-rate",
+            "sketch": "vary harm_history_len / z_harm_a per-step displacement, DV = skill-vs-persistence; declared null: skill stays <= 0 at every setting"
+          }
+        ],
+        "note": "GOV-FANOUT-1: four rivals on four different axes. The single-unambiguous-build exemption is NOT claimed. Ordering matters and was corrected at the red-team pass: the under-training leg is cheapest and is the one the arithmetic favours, so the substrate build must not be commissioned ahead of it. The instrument fix (a skill-vs-persistence readiness floor) and the recording fix (an e2_harm_a training curve) are owed on ALL FOUR branches and are gated on none of them."
+      },
+      "phase_verdict": "V3-NATIVE",
+      "version_scope": "V3-native",
+      "source_audit": "failure_autopsy_V3-EXQ-1062a_2026-09-23 (confirmed; REE_assembly 67a7597e89); created by /governance Step 6a-iv, user-ratified 2026-09-23 (rec-20260923-10bca6b5)",
+      "added_session": "governance-20260923-0717",
+      "added_utc": "2026-09-23T09:25:24Z",
+      "last_seen_session": "governance-20260923-0717",
+      "experiment_queued": false
     }
   ],
   "schema_version": "substrate_queue/v2",

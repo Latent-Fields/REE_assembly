@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-07-26T00:13:10.086940+00:00",
+  "generated_at_utc": "2026-09-23T09:27:58.053781+00:00",
   "repo_root": "/Users/dgolden/REE_Working/REE_assembly",
-  "git_head": "aebd07b5dd31fb117129fc0274260ff288bfbdff",
+  "git_head": "a8cfe82e822f7df49135163a329c3f877fb521a5",
   "status": "pass",
   "findings": [
     {
@@ -15,47 +15,26 @@
     },
     {
       "severity": "warn",
-      "code": "CENTRAL_RUNNER_STATUS_STALE",
-      "message": "evidence/experiments/runner_status.json last_updated 2026-06-09T06:00:15.871353+00:00 is 1122.2h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
+      "code": "SUBSTRATE_QUEUE_NODE_CLASS_INVALID",
+      "message": "32 substrate_queue entr(y/ies) carry a node_class outside the work-graph debt vocabulary token set (docs/architecture/work_graph_debt_vocabulary.md): mech318-within-episode-rule-switch-instrument='measurement prerequisite (registration only)'; mech089-context-gated-theta-window='measurement prerequisite (registration only)'; mech303-safety-terrain-decay='measurement prerequisite (registration only)'; mech267-mode-content-location-instrument='measurement prerequisite (registration only)'; mech108-breath-phase-rollout-initiation-instrument='measurement prerequisite (registration only)'; arc063-crf-per-action-evidence-trace-recorder='measurement prerequisite (registration only)'; mech105-completion-signal-range-parity='measurement prerequisite (registration only)'; mech478-integrated-benefit-divergence-regime='measurement prerequisite (registration only)'; mech354-two-bound-fast-effort-accumulator='measurement prerequisite (registration only)'; context-ambiguity-2x2-environment-family='measurement prerequisite (registration only)'; mech213-rem-joint-e1-e2-rollout-probe='measurement prerequisite (registration only)'; mech114-zself-deff-read-at-e3-select='measurement prerequisite (registration only)'",
       "evidence_paths": [
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_status.json"
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning/substrate_queue.json"
       ],
-      "suggested_next_action": "Check whether coordinator->central-status merge has wedged. If Phase-2 coordinator is active, per-machine files are authoritative."
+      "suggested_next_action": "Set node_class to exactly one of: complicated (buildable), complex (probe-gated), puzzle (known rules), mystery (known data), aleatoric (irreducible). The bracket is part of the token."
     },
     {
       "severity": "warn",
-      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
-      "message": "FAIL experiment 'v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "code": "SUBSTRATE_QUEUE_GATED_ON_NO_TOKEN",
+      "message": "1 substrate_queue entr(y/ies) use 'gated on' language but carry no resolving node_class token: ARC-065",
       "evidence_paths": [
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning/substrate_queue.json"
       ],
-      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
-    },
-    {
-      "severity": "warn",
-      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
-      "message": "FAIL experiment 'v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
-      "evidence_paths": [
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
-      ],
-      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
-    },
-    {
-      "severity": "warn",
-      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
-      "message": "FAIL experiment 'v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
-      "evidence_paths": [
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
-        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
-      ],
-      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+      "suggested_next_action": "'Gated on X' is well-formed only if X resolves to a node_class token. Classify the entry (usually complex (probe-gated) if the residual is a reducible unknown) or reword the note."
     },
     {
       "severity": "info",
       "code": "SUBSTRATE_QUEUE_NODE_CLASS_UNMARKED",
-      "message": "98/124 substrate_queue entries lack node_class; read as complicated (buildable) by default (the queue is the execution backlog). Governance Step 6a populates it going forward.",
+      "message": "99/236 substrate_queue entries lack node_class; read as complicated (buildable) by default (the queue is the execution backlog). Governance Step 6a populates it going forward.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/planning/substrate_queue.json"
       ],
@@ -64,7 +43,7 @@
   ],
   "summary": {
     "block_count": 0,
-    "warn_count": 5,
+    "warn_count": 3,
     "info_count": 1
   }
 }

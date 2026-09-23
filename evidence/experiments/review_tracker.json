@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-22T19:23:17Z",
+  "last_review_utc": "2026-09-23T09:23:27Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1339,7 +1339,9 @@
     "v3_exq_1057b_mech017_additive_budget_dose_ladder",
     "v3_exq_1072_inv024_offline_online_isolation_audit",
     "v3_exq_1062_mech055_affect_channel_separation_diagnostic",
-    "v3_exq_1073_mech572_precision_provenance_gain"
+    "v3_exq_1073_mech572_precision_provenance_gain",
+    "v3_exq_1062a_mech055_affect_channel_separation_postshift",
+    "v3_exq_1075_sdppb5_action_sensitivity_validation"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4341,7 +4343,9 @@
     "v3_exq_1057b_mech017_additive_budget_dose_ladder_20260920T154955Z_v3",
     "v3_exq_1072_inv024_offline_online_isolation_audit_20260922T152522Z_v3",
     "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3",
-    "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3"
+    "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3",
+    "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
+    "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7149,6 +7153,21 @@
         "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3": "failure_autopsy_V3-EXQ-1073_2026-09-22 (confirmed, dry_run_checked); non_contributory / standard STAND, diagnostic_evidence_adjudicated -> true, pending_retest_after_substrate -> true; substrate_queue SD-PP-B5 implementation_hint revised at severity=degrading."
       },
       "note": "V3-EXQ-1066 ERROR manifest deliberately NOT marked -- routes to /diagnose-errors and stays pending by design."
+    },
+    {
+      "utc": "2026-09-23T09:23:27Z",
+      "session": "governance-20260923-0717",
+      "cycle": "governance-20260923",
+      "runs_reviewed": [
+        "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
+        "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3"
+      ],
+      "pass_skim": {},
+      "diagnostics_adjudicated_by_autopsy": {
+        "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3": "failure_autopsy_V3-EXQ-1062a_2026-09-23 (confirmed) -> non_contributory, standard, implement-substrate",
+        "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3": "failure_autopsy_V3-EXQ-1075_2026-09-23 (confirmed) -> non_contributory, standard, implement-substrate"
+      },
+      "note": "2 diagnostic FAILs walked, both with confirmed autopsies (failure_autopsy_V3-EXQ-1062a_2026-09-23, failure_autopsy_V3-EXQ-1075_2026-09-23), both ratified non_contributory at the user gate. 1062a: MECH-055 untested not falsified; harm-forward head below persistence baseline in 6/6 cells -> pending_retest_after_substrate true, SD-PP-B9 created. 1075: SD-PP-B5 does NOT validate -> amended, severity corrupting, status flipped off implemented_pending_validation. Skim: not applicable (no claim-tagged evidence PASS this cycle). V3-EXQ-1066 ERROR left pending for /diagnose-errors."
     }
   ]
 }
