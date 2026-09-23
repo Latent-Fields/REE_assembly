@@ -38,6 +38,7 @@ Optional but recommended:
 - `architecture_epoch`: string, e.g. `"ree_hybrid_guardrails_v1"` for epoch-aware applicability tracking
 - `claim_ids_tested`: string array of REE claim IDs, e.g. `["MECH-056", "Q-011"]`
 - `evidence_class`: string, e.g. `"simulation"`, `"behavioral"`, `"control_theory"`
+  - `"synthetic_harness"` (added 2026-09-23, GFLAG-0287): a design-validation result from a synthetic toy world with no REE substrate. Linked to a claim for provenance only; never scored. Such manifests live outside `evidence/experiments/` (currently `evidence/planning/convergence_signal_synthetic_assay_runs/`) so no ingestion path reads them.
 - `evidence_direction`: one of `"supports"`, `"weakens"`, `"mixed"`, `"unknown"`
 - `failure_signatures`: string array, stable signature IDs
 

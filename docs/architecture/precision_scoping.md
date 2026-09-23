@@ -99,7 +99,7 @@ Cross-τ influence MUST pass through a projection operator:
 
 Properties of \mathcal{P}:
 	•	Slow (many samples required)
-	•	Directional (usually short → long τ only)
+	•	Bidirectional but asymmetric: short → long by slow, lossy accumulation (the direction the examples below show); long → short only as step-size / learning-rate modulation of the faster scale, never as a direct overwrite of its precision (Mathys et al. 2011 hierarchical Gaussian filter; Behrens et al. 2007 volatility-set learning rate). [Corrected 2026-09-23, GFLAG-0290: previously "Directional (usually short → long τ only)", which both cited sources contradict; evidence/literature/targeted_review_connectome_mech_003/]
 	•	Lossy (cannot preserve sharp spikes)
 	•	Context-gated (φ-dependent)
 
@@ -129,8 +129,9 @@ These violations correspond to known failure modes:
 Biological Correspondence (Non-normative note)
 
 This separation mirrors:
-	•	phasic dopamine → πγ / πβ
-	•	tonic dopamine → πθ / πδ
+	•	low-level (fast-scale) prediction errors → dopamine (midbrain)
+	•	high-level (slow-scale) prediction errors → acetylcholine (basal forebrain) (Iglesias et al. 2013, replicated in two groups)
+	•	[Corrected 2026-09-23, GFLAG-0290: previously a single-transmitter phasic/tonic dopamine split by timescale]
 	•	anatomical separation enforcing τ isolation
 
 REE encodes this by design, not by accident.
