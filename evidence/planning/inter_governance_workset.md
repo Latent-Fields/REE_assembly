@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-23T21:14:40Z`
+Generated: `2026-09-23T22:21:53Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -12,11 +12,11 @@ UI: http://localhost:8000/workset
 - Items: **260** (ready 34, in_flight 0, blocked 169)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 93, v4 76, v5 39, v6 25
 - Pending review: **2**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-1012c, V3-EXQ-1067, V3-EXQ-1081, V3-EXQ-906c
+- Live EXQs: V3-EXQ-1067, V3-EXQ-1080, V3-EXQ-1081, V3-EXQ-906c
 
-- Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-1067, MECH-439 -> V3-EXQ-1012c
+- Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-1067
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3
 
@@ -1143,7 +1143,7 @@ Instructions:
 
 </details>
 
-### IGW-20260923-223 -- Queue depth low (1 pending)
+### IGW-20260923-223 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1152,7 +1152,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260923-223
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
