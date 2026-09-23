@@ -5268,9 +5268,9 @@
       "summary": "SD-036's what_would_answer is stale or wrong about its own evidence in THREE places, all re-derived this session from the landed V3-EXQ-854 manifest (v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3). (1) It says of observable #3 'NEVER RUN. This is the live falsifier and the whole content of the claim.' It HAS been run: V3-EXQ-854 carries criterion C2_multi_stream_cluster, load_bearing false, which FAILED with 1 of 3 seeds passing -- seed 42 z_harm F / z_harm_a T / z_beta F; seed 43 F/T/T; seed 44 T/T/T -- inside a run recorded PASS / supports. (2) Precondition (iii) says 'The z_harm effect is real but modest (1.4e-03) beside z_harm_a (1.0e-01)'. The 1.4e-03 figure is z_BETA's sweep spread, not z_harm's; z_harm's trained-agent spread across the 5-tone sweep is 4.84e-02 / 5.72e-02 / 1.54e-01 (seeds 42/43/44), i.e. 30-110x larger than stated, and it is UNORDERED (per-seed Spearman rho of sustain_ratio vs gaba_tone = +0.10 / +0.70 / -0.50). The characterisation is wrong in both the number and the direction: z_harm's effect is not modest, it is absent-but-noisy. (3) Across the full registered sweep only ONE of the three streams responds to gaba_tone at all -- z_harm_a rho = -1.00 on 3/3 seeds, z_harm mean rho +0.10, z_beta mean rho +0.23 -- so the premise that observable #3 is an open question between three responding streams is itself stale. Raised by the V3-EXQ-1068 authoring session; claims.yaml was NOT edited.",
       "raised_by_session": "metaworker-science-20260919-sd036-observable3-regime-matrix",
       "raised_at": "2026-09-20T00:56:32Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T17:59:39Z",
+      "resolution_note": "Applied flags-only governance cycle governance-flags-20260923 (2026-09-23), REE_assembly 9606fb86fe: SD-036 evidence_quality_note correction. The 1.4e-03 spread is z_beta's, not z_harm's (z_harm's is 4.84e-02..1.54e-01 and unordered). Only z_harm_a responds (rho -1.00 on 3/3 seeds); C2_multi_stream_cluster passes 1/3. The observable-#3 'never run' half was already fixed in the WWA rewrite."
     },
     {
       "flag_id": "GFLAG-0373",
