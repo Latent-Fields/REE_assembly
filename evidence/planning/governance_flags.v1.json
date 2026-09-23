@@ -5137,9 +5137,9 @@
       "summary": "The blocked_substrate disposition recorded for EXP-0810 / EVB-1416 (MECH-066) at 2026-09-19T16:47:57Z by IGW-20260919-242's /queue-experiment twin names its substrate gap as 'no representation-isolation comparator arm, no coupling measure' -- and the literature pull completed on the SAME claim ~80 minutes later (REE_assembly origin/master 1e98ae94e8, GFLAG-0361) argues that a representation-isolation / coupling measure is the WRONG INSTRUMENT for MECH-066, so the named gap may not be a real blocker. Kaufman et al. 2014 (Nat Neurosci, PMID 24487233) show a single motor population carrying both the pre-commit and commit-driving computation with separation enforced geometrically at the readout: two channels can be MAXIMALLY OVERLAPPING in representation and still perfectly separated at the write boundary. MECH-066 itself explicitly PERMITS shared representations, so a comparator arm that isolates representations or measures inter-channel coupling tests something MECH-066 does not assert, and a low coupling measure would not confirm it while a high one would not falsify it. The instrument MECH-066 actually needs is a STATIC audit of the write topology -- does pre-commit simulated error ever reach a durable store? -- which needs no new comparator arm and no coupling metric, and is the same shape as DreamerV3's separation (Hafner et al. 2025, Nature, PMID 40175544), where the boundary is a property of which loss touches which parameters rather than any runtime statistic. Asked of governance: re-examine whether EXP-0810 is genuinely substrate-blocked, or blocked only against an instrument the claim does not require. NOTE the ordering dependency -- this should be considered AFTER GFLAG-0361's scope question, since a MECH-066 narrowed to protect only the world-veridical component changes what any write-topology audit must cover.",
       "raised_by_session": "igw-242-literature-proposal-for-mech-066",
       "raised_at": "2026-09-19T18:11:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:36:48Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. Applied REE_assembly f578fcdb7c: EXP-0810 is still correctly blocked, but on the 1052 driver fix (chip-proposal-exp-0845-paced), not on a representation-isolation build. This holds independently of how GFLAG-0361's scope question is ruled."
     },
     {
       "flag_id": "GFLAG-0363",
