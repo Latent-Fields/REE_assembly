@@ -6272,6 +6272,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0438",
+      "claim_ids": [
+        "SD-056"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SD-056 claims.yaml experiment_gate.release_condition still reads '...arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01)...', which GFLAG-0401 found wrong for the clamp lever; because build_experiment_indexes.apply_claim_queue_gate re-stamps gate-minted EXP-0440 and EXP-0585 gating_reason from this text on every regen, their hand correction in f578fcdb7c is reverted each cycle (their release_condition survives). Proposed replacement for the parenthetical, copied from the corrected proposal rows: '(e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it)'. Found by chip-20260923-proposal-regen-audit-gap (REE_assembly 16a08a789e6).",
+      "raised_by_session": "serene-villani-fe3fc7",
+      "raised_at": "2026-09-23T20:03:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
