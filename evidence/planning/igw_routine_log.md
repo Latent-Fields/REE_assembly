@@ -3556,3 +3556,5 @@ One line per hourly tick. ASCII only.
 2026-09-23T17:43:12Z GC removed worktree igw-227-substrate-ready-sd-zworld-sense (removed; branch deleted)
 2026-09-23T17:42:22Z GC sweep removed 1 orphan worktree(s), kept 18
 2026-09-23T17:42:22Z no eligible item (skipped 266): IGW-20260923-001:skill /governance not allowed; IGW-20260923-007:skill /governance not allowed; IGW-20260923-008:skill /governance not allowed
+2026-09-23T18:51:16Z workset published via the coordinator (no local commit; verified on origin/master fe232a4925) (regen -- 259 items, 32 ready, 0 in flight)
+2026-09-23T18:51:16Z workset committed (regen -- 259 items, 32 ready, 0 in flight)
