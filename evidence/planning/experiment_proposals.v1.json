@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-22T18:25:46.577675Z",
+  "generated_at_utc": "2026-09-23T04:40:45.127162Z",
   "items": [
     {
       "acceptance_checks": [
@@ -660,48 +660,6 @@
       "seed_policy": "matched_shared_seeds",
       "status": "executed",
       "suggested_experiment_type": "claim_probe_ext_004",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
-        "insufficient_experimental_replication",
-        "low_exp_conf"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1413",
-      "claim_id": "MECH-055",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-055 with matched seeds and pre-registered thresholds.",
-      "priority": "high",
-      "proposal_id": "EXP-0802",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_055",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -3923,6 +3881,63 @@
       "seed_policy": "matched_shared_seeds",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_arc_076",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1419",
+      "blocked_by": [
+        "map_geometry_decoupled_from_retrieval_anchorkey_not_in_goal_match",
+        "only_geometry_channel_is_relational_admission_dv_reads_manipulation",
+        "required_event_commitment_dependent_f_dominance_conversion_ceiling",
+        "anchor_pool_degenerate_at_defaults_goal_cue_centering_off_0_of_24",
+        "no_v3_recorder_for_phenomenological_selfhood_audit_R7"
+      ],
+      "blocked_note": "Minted by IGW-20260923-251 (/queue-experiment, headless, session igw-251-proposal-for-mech-079) purely to carry the blocked_substrate disposition durably: the auto-generated EXP-#### for EVB-1419 is regenerated every governance cycle, so the stop is recorded here keyed on (backlog_id=EVB-1419, proposal_type=experimental) to survive. Fields status/gated_at_utc/gated_by_session/gating_reason/release_condition/blocked_by/blocked_note are all in build_experiment_indexes._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS, so they propagate onto the regenerated auto row (currently EXP-0816). Status is set in BOTH files per REE_assembly 52e37f8ec4 (ARC-019/EVB-1189), where a manual-only edit was silently reverted by the next regen. Sources read: claims.yaml MECH-079 (what_would_answer, full five-part falsifier); evidence/planning/falsifier_completion_and_runnability_audit_20260921.json+.md (MECH-079 row, R7 primary / R8 secondary, scope_class v3_linked, gap_disposition 'EXISTING NODE, MISSING EDGE'); ree-v3 ree_core/hippocampal/anchor_set.py, ghost_goal_bank.py, possibility_topology.py, module.py; ree_core/utils/config.py (HippocampalConfig goal_cue_centering, use_possibility_topology); manifest v3_exq_773_mech076_residue_basin_geometry_doseresponse (MECH-076 PASS/supports). MECH-079 currently has zero experimental evidence (no entry in claim_evidence.v1.json, no experiment in ree-v3/experiments tags it, no queue entry). No experiment script was written and no queue entry was added.",
+      "claim_id": "MECH-079",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-23T03:21:13Z",
+      "gated_by_session": "igw-251-proposal-for-mech-079 (IGW-20260923-251)",
+      "gating_reason": "MECH-079's registered falsifier is NOT runnable on the current V3 substrate, and the failure is architectural rather than a missing knob. Verified by code read 2026-09-23 against ree-v3 HEAD. The falsifier's manipulation is 'perturb hippocampal topology or attractor geometry while PRESERVING self-state inputs and stored outcome payloads'. In V3 that manipulation has exactly two possible couplings to any DV, and BOTH are degenerate. (a) CONTENT-ADDRESSED RETRIEVAL IS INVARIANT BY CONSTRUCTION. Anchor.goal_match() (ree_core/hippocampal/anchor_set.py:139-190) is a clamped cosine between the stored goal_payload.z_goal_snapshot and the current z_goal; AnchorSet.query_by_goal_match() (anchor_set.py:560-623) and GhostGoalBank.rank()'s direct-admission loop score purely on that cosine. AnchorKey = (scale, segment_id, stream_mixture) -- the map-geometry identity -- never enters the score; geometry appears only as a `scale` pool filter. So a payload-preserving geometry perturbation leaves the retrieved association set bit-identical, and the falsifier would read that architectural invariance as 'preserved behavioural identity despite disrupted geometry', i.e. as WEAKENING MECH-079. That is a false negative manufactured by the architecture, not a measurement. (b) THE ONE GEOMETRY-SENSITIVE CHANNEL READS THE MANIPULATION BACK. GhostGoalBank._admit_relational_successors() (ghost_goal_bank.py:410+) is the only path where map geometry reaches an output; it admits exactly the floor-excluded successors of the SD-097 `enables` edges, scored relation_term = relation_weight * edge.weight * parent_goal_match. Scrambling those edges changes the admitted set precisely and only because the edges ARE its input -- a false positive. Neither arm is contributory. The falsifier's own NON-DEGENERACY PRECONDITION ('match self-state coherence, memory and observations while INDEPENDENTLY perturbing map geometry') therefore cannot be met: in V3, map geometry and retrieved association are architecturally DECOUPLED -- there is no locus at which map geometry causally determines which association is retrieved, which is the very mechanism MECH-079 asserts. SECOND BLOCKER -- the named required event is commitment-dependent. 'Repeated equivalent decisions before and after map-geometry perturbation' routes geometry -> ghost-goal proposal -> E3 selection -> commitment, i.e. the committed-selection path under the documented F-dominance / conversion ceiling. A FAIL there would re-derive that known ceiling, which is a vacuous result, not a verdict on MECH-079. THIRD BLOCKER -- the pool is degenerate at production defaults. Both enabling flags are default-off (HippocampalConfig.goal_cue_centering=False, config.py:2435; use_possibility_topology=False, config.py:3164 -- 'no topology is constructed and every path is bit-identical'), and ghost_goal_bank.py's own SD-079 comment records the measured uncentered regime as effectively undifferentiated: anchor z_goal pairwise cosine min 0.9878, goal_match span 0.0111 across a 24-anchor pool, goal_match_floor excluding 0/24 anchors, and the MECH-339 outshining gate sitting at exactly 0.0000 for every anchor (centered: 9/24 excluded). A map that carries almost no differentiating information cannot have its perturbation mean anything. FOURTH BLOCKER -- the phenomenal leg has no V3 instrument at all. The 2026-09-21/22 falsifier completion and runnability audit classed MECH-079 R7 primary / R8 secondary: 'Phenomenological continuity is conflated with choice persistence; the full claim lacks a V3 DV', instrument 'No V3 recorder for phenomenological selfhood; residue and anchor geometry are only computational proxies'. That audit explicitly recorded 'No experiment is queued'. NOT A ROUTE: the nearest runnable geometry instrument is residue BASIN geometry, which is already owned and PASSED by MECH-076 (V3-EXQ-773, evidence_direction supports, 2026-07-17). Re-running it under a MECH-079 tag would re-credit the sibling's mechanism and re-enact precisely the conflation the R7 disposition flagged. EXPERIMENTAL LANE ONLY -- the literature lane (LIT-0817, same backlog EVB-1419) stays OPEN and is the live evidence route for this claim; why_now lists missing_literature_evidence alongside missing_experimental_evidence. No experiment script was written and no queue entry was added.",
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-079 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0816",
+      "proposal_type": "experimental",
+      "release_condition": "Unblock the experimental lane only when ALL of (a)-(c) hold; (d) is what the claim needs for its phenomenal leg and is not a V3 experiment at all. (a) CLAIM NARROWING (the R7 action, and the same action the audit gave sibling MECH-076): split MECH-079's phenomenal clause from its behavioural identity-persistence clause, and register the bounded sub-claim -- 'payload-preserving perturbation of hippocampal map geometry degrades context-conditioned retrieval persistence' -- as the thing under test. Until that split exists, a run cannot return a clean verdict either way, which is what R7 records. (b) SUBSTRATE: a V3 locus at which map geometry causally enters retrieval INDEPENDENTLY of the perturbed relation itself -- e.g. AnchorKey adjacency modulating the direct-admission score, rather than the SD-097 `enables` edge being both manipulation and DV. None exists today; this is a substrate build (route it through substrate_queue.json + /implement-substrate), not an experiment. Without it, arm (a) of the gating reason stands and any null is architectural. (c) NON-DEGENERACY PROBE: demonstrate, in the exact configuration the experiment would run, that the anchor pool is differentiated -- the recorded split is 0/24 anchors clearing goal_match_floor uncentered versus 9/24 with goal_cue_centering=True, so the probe must confirm differentiation PERSISTS in the intended regime and report the clearing fraction, not assume it from the SD-079 comment. Adjudicate on a fraction basis. (d) PHENOMENAL LEG: either a phenomenology instrument (none is in prospect for V3), or an explicit governance decision restricting MECH-079 to its behavioural leg and routing the phenomenal leg to external evidence. The LIT-0817 literature lane is the live route and does NOT need this block lifted -- it stays open and should be worked independently. Do NOT re-offer the experimental lane on the strength of (c) alone: a differentiated pool still leaves geometry decoupled from retrieval, so (b) is the load-bearing condition.",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_079",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
@@ -16020,104 +16035,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_078",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1419",
-      "blocked_by": [
-        "map_geometry_decoupled_from_retrieval_anchorkey_not_in_goal_match",
-        "only_geometry_channel_is_relational_admission_dv_reads_manipulation",
-        "required_event_commitment_dependent_f_dominance_conversion_ceiling",
-        "anchor_pool_degenerate_at_defaults_goal_cue_centering_off_0_of_24",
-        "no_v3_recorder_for_phenomenological_selfhood_audit_R7"
-      ],
-      "blocked_note": "Minted by IGW-20260923-251 (/queue-experiment, headless, session igw-251-proposal-for-mech-079) purely to carry the blocked_substrate disposition durably: the auto-generated EXP-#### for EVB-1419 is regenerated every governance cycle, so the stop is recorded here keyed on (backlog_id=EVB-1419, proposal_type=experimental) to survive. Fields status/gated_at_utc/gated_by_session/gating_reason/release_condition/blocked_by/blocked_note are all in build_experiment_indexes._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS, so they propagate onto the regenerated auto row (currently EXP-0816). Status is set in BOTH files per REE_assembly 52e37f8ec4 (ARC-019/EVB-1189), where a manual-only edit was silently reverted by the next regen. Sources read: claims.yaml MECH-079 (what_would_answer, full five-part falsifier); evidence/planning/falsifier_completion_and_runnability_audit_20260921.json+.md (MECH-079 row, R7 primary / R8 secondary, scope_class v3_linked, gap_disposition 'EXISTING NODE, MISSING EDGE'); ree-v3 ree_core/hippocampal/anchor_set.py, ghost_goal_bank.py, possibility_topology.py, module.py; ree_core/utils/config.py (HippocampalConfig goal_cue_centering, use_possibility_topology); manifest v3_exq_773_mech076_residue_basin_geometry_doseresponse (MECH-076 PASS/supports). MECH-079 currently has zero experimental evidence (no entry in claim_evidence.v1.json, no experiment in ree-v3/experiments tags it, no queue entry). No experiment script was written and no queue entry was added.",
-      "claim_id": "MECH-079",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-23T03:21:13Z",
-      "gated_by_session": "igw-251-proposal-for-mech-079 (IGW-20260923-251)",
-      "gating_reason": "MECH-079's registered falsifier is NOT runnable on the current V3 substrate, and the failure is architectural rather than a missing knob. Verified by code read 2026-09-23 against ree-v3 HEAD. The falsifier's manipulation is 'perturb hippocampal topology or attractor geometry while PRESERVING self-state inputs and stored outcome payloads'. In V3 that manipulation has exactly two possible couplings to any DV, and BOTH are degenerate. (a) CONTENT-ADDRESSED RETRIEVAL IS INVARIANT BY CONSTRUCTION. Anchor.goal_match() (ree_core/hippocampal/anchor_set.py:139-190) is a clamped cosine between the stored goal_payload.z_goal_snapshot and the current z_goal; AnchorSet.query_by_goal_match() (anchor_set.py:560-623) and GhostGoalBank.rank()'s direct-admission loop score purely on that cosine. AnchorKey = (scale, segment_id, stream_mixture) -- the map-geometry identity -- never enters the score; geometry appears only as a `scale` pool filter. So a payload-preserving geometry perturbation leaves the retrieved association set bit-identical, and the falsifier would read that architectural invariance as 'preserved behavioural identity despite disrupted geometry', i.e. as WEAKENING MECH-079. That is a false negative manufactured by the architecture, not a measurement. (b) THE ONE GEOMETRY-SENSITIVE CHANNEL READS THE MANIPULATION BACK. GhostGoalBank._admit_relational_successors() (ghost_goal_bank.py:410+) is the only path where map geometry reaches an output; it admits exactly the floor-excluded successors of the SD-097 `enables` edges, scored relation_term = relation_weight * edge.weight * parent_goal_match. Scrambling those edges changes the admitted set precisely and only because the edges ARE its input -- a false positive. Neither arm is contributory. The falsifier's own NON-DEGENERACY PRECONDITION ('match self-state coherence, memory and observations while INDEPENDENTLY perturbing map geometry') therefore cannot be met: in V3, map geometry and retrieved association are architecturally DECOUPLED -- there is no locus at which map geometry causally determines which association is retrieved, which is the very mechanism MECH-079 asserts. SECOND BLOCKER -- the named required event is commitment-dependent. 'Repeated equivalent decisions before and after map-geometry perturbation' routes geometry -> ghost-goal proposal -> E3 selection -> commitment, i.e. the committed-selection path under the documented F-dominance / conversion ceiling. A FAIL there would re-derive that known ceiling, which is a vacuous result, not a verdict on MECH-079. THIRD BLOCKER -- the pool is degenerate at production defaults. Both enabling flags are default-off (HippocampalConfig.goal_cue_centering=False, config.py:2435; use_possibility_topology=False, config.py:3164 -- 'no topology is constructed and every path is bit-identical'), and ghost_goal_bank.py's own SD-079 comment records the measured uncentered regime as effectively undifferentiated: anchor z_goal pairwise cosine min 0.9878, goal_match span 0.0111 across a 24-anchor pool, goal_match_floor excluding 0/24 anchors, and the MECH-339 outshining gate sitting at exactly 0.0000 for every anchor (centered: 9/24 excluded). A map that carries almost no differentiating information cannot have its perturbation mean anything. FOURTH BLOCKER -- the phenomenal leg has no V3 instrument at all. The 2026-09-21/22 falsifier completion and runnability audit classed MECH-079 R7 primary / R8 secondary: 'Phenomenological continuity is conflated with choice persistence; the full claim lacks a V3 DV', instrument 'No V3 recorder for phenomenological selfhood; residue and anchor geometry are only computational proxies'. That audit explicitly recorded 'No experiment is queued'. NOT A ROUTE: the nearest runnable geometry instrument is residue BASIN geometry, which is already owned and PASSED by MECH-076 (V3-EXQ-773, evidence_direction supports, 2026-07-17). Re-running it under a MECH-079 tag would re-credit the sibling's mechanism and re-enact precisely the conflation the R7 disposition flagged. EXPERIMENTAL LANE ONLY -- the literature lane (LIT-0817, same backlog EVB-1419) stays OPEN and is the live evidence route for this claim; why_now lists missing_literature_evidence alongside missing_experimental_evidence. No experiment script was written and no queue entry was added.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-079 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0816",
-      "proposal_type": "experimental",
-      "release_condition": "Unblock the experimental lane only when ALL of (a)-(c) hold; (d) is what the claim needs for its phenomenal leg and is not a V3 experiment at all. (a) CLAIM NARROWING (the R7 action, and the same action the audit gave sibling MECH-076): split MECH-079's phenomenal clause from its behavioural identity-persistence clause, and register the bounded sub-claim -- 'payload-preserving perturbation of hippocampal map geometry degrades context-conditioned retrieval persistence' -- as the thing under test. Until that split exists, a run cannot return a clean verdict either way, which is what R7 records. (b) SUBSTRATE: a V3 locus at which map geometry causally enters retrieval INDEPENDENTLY of the perturbed relation itself -- e.g. AnchorKey adjacency modulating the direct-admission score, rather than the SD-097 `enables` edge being both manipulation and DV. None exists today; this is a substrate build (route it through substrate_queue.json + /implement-substrate), not an experiment. Without it, arm (a) of the gating reason stands and any null is architectural. (c) NON-DEGENERACY PROBE: demonstrate, in the exact configuration the experiment would run, that the anchor pool is differentiated -- the recorded split is 0/24 anchors clearing goal_match_floor uncentered versus 9/24 with goal_cue_centering=True, so the probe must confirm differentiation PERSISTS in the intended regime and report the clearing fraction, not assume it from the SD-079 comment. Adjudicate on a fraction basis. (d) PHENOMENAL LEG: either a phenomenology instrument (none is in prospect for V3), or an explicit governance decision restricting MECH-079 to its behavioural leg and routing the phenomenal leg to external evidence. The LIT-0817 literature lane is the live route and does NOT need this block lifted -- it stays open and should be worked independently. Do NOT re-offer the experimental lane on the strength of (c) alone: a differentiated pool still leaves geometry decoupled from retrieval, so (b) is the load-bearing condition.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_079",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1419",
-      "claim_id": "MECH-079",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-079.",
-      "priority": "medium",
-      "proposal_id": "LIT-0817",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_079",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -29386,92 +29303,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-1795",
-      "claim_id": "MECH-572",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-572 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0281",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_572",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1795",
-      "claim_id": "MECH-572",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-572.",
-      "priority": "medium",
-      "proposal_id": "LIT-0287",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_572",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-1796",
       "claim_id": "MECH-573",
       "decision_deadline_utc": "",
@@ -29871,6 +29702,54 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_579",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1804",
+      "claim_id": "MECH-580",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-580.",
+      "priority": "medium",
+      "proposal_id": "LIT-0312",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_580",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -35077,6 +34956,92 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_566",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1795",
+      "claim_id": "MECH-572",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-572 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0281",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_572",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1795",
+      "claim_id": "MECH-572",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for MECH-572.",
+      "priority": "medium",
+      "proposal_id": "LIT-0287",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_mech_572",
       "target_repo": "REE_assembly",
       "why_now": [
         "insufficient_experimental_replication",
@@ -42221,6 +42186,93 @@
       "source": "manual",
       "status": "blocked_substrate",
       "target_repo": "ree-v3"
+    },
+    {
+      "acceptance_checks": [
+        "Do NOT queue an experimental run for MECH-079 until release_condition (a), (b) and (c) all hold.",
+        "Any future run must report the anchor-pool clearing fraction (goal_match_floor) as a pre-registered non-degeneracy gate, not assume differentiation.",
+        "Any future run must tag MECH-079 only -- it must not re-credit MECH-076's residue-basin mechanism, which V3-EXQ-773 already established.",
+        "The literature lane (LIT-0817, backlog EVB-1419) is NOT blocked and may proceed independently."
+      ],
+      "backlog_id": "EVB-1419",
+      "blocked_by": [
+        "map_geometry_decoupled_from_retrieval_anchorkey_not_in_goal_match",
+        "only_geometry_channel_is_relational_admission_dv_reads_manipulation",
+        "required_event_commitment_dependent_f_dominance_conversion_ceiling",
+        "anchor_pool_degenerate_at_defaults_goal_cue_centering_off_0_of_24",
+        "no_v3_recorder_for_phenomenological_selfhood_audit_R7"
+      ],
+      "blocked_note": "Minted by IGW-20260923-251 (/queue-experiment, headless, session igw-251-proposal-for-mech-079) purely to carry the blocked_substrate disposition durably: the auto-generated EXP-#### for EVB-1419 is regenerated every governance cycle, so the stop is recorded here keyed on (backlog_id=EVB-1419, proposal_type=experimental) to survive. Fields status/gated_at_utc/gated_by_session/gating_reason/release_condition/blocked_by/blocked_note are all in build_experiment_indexes._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS, so they propagate onto the regenerated auto row (currently EXP-0816). Status is set in BOTH files per REE_assembly 52e37f8ec4 (ARC-019/EVB-1189), where a manual-only edit was silently reverted by the next regen. Sources read: claims.yaml MECH-079 (what_would_answer, full five-part falsifier); evidence/planning/falsifier_completion_and_runnability_audit_20260921.json+.md (MECH-079 row, R7 primary / R8 secondary, scope_class v3_linked, gap_disposition 'EXISTING NODE, MISSING EDGE'); ree-v3 ree_core/hippocampal/anchor_set.py, ghost_goal_bank.py, possibility_topology.py, module.py; ree_core/utils/config.py (HippocampalConfig goal_cue_centering, use_possibility_topology); manifest v3_exq_773_mech076_residue_basin_geometry_doseresponse (MECH-076 PASS/supports). MECH-079 currently has zero experimental evidence (no entry in claim_evidence.v1.json, no experiment in ree-v3/experiments tags it, no queue entry). No experiment script was written and no queue entry was added.",
+      "claim_id": "MECH-079",
+      "design": "NOT DESIGNED -- deliberately. The falsifier as registered would perturb hippocampal topology / attractor geometry while preserving self-state inputs and stored outcome payloads, and measure persistence of context-conditioned choices and retrieved autobiographical associations against a payload-preserving sham. On V3 as built that design is degenerate in both directions (see gating_reason arms (a) and (b)), so no arm structure is offered here. Any future design must first satisfy release_condition (b) -- a geometry->retrieval coupling that is not itself the manipulated edge.",
+      "dispatch_mode": "targeted_probe",
+      "executed_by": null,
+      "executed_queue_id": null,
+      "gated_at_utc": "2026-09-23T03:21:13Z",
+      "gated_by_session": "igw-251-proposal-for-mech-079 (IGW-20260923-251)",
+      "gating_reason": "MECH-079's registered falsifier is NOT runnable on the current V3 substrate, and the failure is architectural rather than a missing knob. Verified by code read 2026-09-23 against ree-v3 HEAD. The falsifier's manipulation is 'perturb hippocampal topology or attractor geometry while PRESERVING self-state inputs and stored outcome payloads'. In V3 that manipulation has exactly two possible couplings to any DV, and BOTH are degenerate. (a) CONTENT-ADDRESSED RETRIEVAL IS INVARIANT BY CONSTRUCTION. Anchor.goal_match() (ree_core/hippocampal/anchor_set.py:139-190) is a clamped cosine between the stored goal_payload.z_goal_snapshot and the current z_goal; AnchorSet.query_by_goal_match() (anchor_set.py:560-623) and GhostGoalBank.rank()'s direct-admission loop score purely on that cosine. AnchorKey = (scale, segment_id, stream_mixture) -- the map-geometry identity -- never enters the score; geometry appears only as a `scale` pool filter. So a payload-preserving geometry perturbation leaves the retrieved association set bit-identical, and the falsifier would read that architectural invariance as 'preserved behavioural identity despite disrupted geometry', i.e. as WEAKENING MECH-079. That is a false negative manufactured by the architecture, not a measurement. (b) THE ONE GEOMETRY-SENSITIVE CHANNEL READS THE MANIPULATION BACK. GhostGoalBank._admit_relational_successors() (ghost_goal_bank.py:410+) is the only path where map geometry reaches an output; it admits exactly the floor-excluded successors of the SD-097 `enables` edges, scored relation_term = relation_weight * edge.weight * parent_goal_match. Scrambling those edges changes the admitted set precisely and only because the edges ARE its input -- a false positive. Neither arm is contributory. The falsifier's own NON-DEGENERACY PRECONDITION ('match self-state coherence, memory and observations while INDEPENDENTLY perturbing map geometry') therefore cannot be met: in V3, map geometry and retrieved association are architecturally DECOUPLED -- there is no locus at which map geometry causally determines which association is retrieved, which is the very mechanism MECH-079 asserts. SECOND BLOCKER -- the named required event is commitment-dependent. 'Repeated equivalent decisions before and after map-geometry perturbation' routes geometry -> ghost-goal proposal -> E3 selection -> commitment, i.e. the committed-selection path under the documented F-dominance / conversion ceiling. A FAIL there would re-derive that known ceiling, which is a vacuous result, not a verdict on MECH-079. THIRD BLOCKER -- the pool is degenerate at production defaults. Both enabling flags are default-off (HippocampalConfig.goal_cue_centering=False, config.py:2435; use_possibility_topology=False, config.py:3164 -- 'no topology is constructed and every path is bit-identical'), and ghost_goal_bank.py's own SD-079 comment records the measured uncentered regime as effectively undifferentiated: anchor z_goal pairwise cosine min 0.9878, goal_match span 0.0111 across a 24-anchor pool, goal_match_floor excluding 0/24 anchors, and the MECH-339 outshining gate sitting at exactly 0.0000 for every anchor (centered: 9/24 excluded). A map that carries almost no differentiating information cannot have its perturbation mean anything. FOURTH BLOCKER -- the phenomenal leg has no V3 instrument at all. The 2026-09-21/22 falsifier completion and runnability audit classed MECH-079 R7 primary / R8 secondary: 'Phenomenological continuity is conflated with choice persistence; the full claim lacks a V3 DV', instrument 'No V3 recorder for phenomenological selfhood; residue and anchor geometry are only computational proxies'. That audit explicitly recorded 'No experiment is queued'. NOT A ROUTE: the nearest runnable geometry instrument is residue BASIN geometry, which is already owned and PASSED by MECH-076 (V3-EXQ-773, evidence_direction supports, 2026-07-17). Re-running it under a MECH-079 tag would re-credit the sibling's mechanism and re-enact precisely the conflation the R7 disposition flagged. EXPERIMENTAL LANE ONLY -- the literature lane (LIT-0817, same backlog EVB-1419) stays OPEN and is the live evidence route for this claim; why_now lists missing_literature_evidence alongside missing_experimental_evidence. No experiment script was written and no queue entry was added.",
+      "notes": "Minted by IGW-20260923-251 (/queue-experiment, headless, session igw-251-proposal-for-mech-079) purely to carry the blocked_substrate disposition durably: the auto-generated EXP-#### for EVB-1419 is regenerated every governance cycle, so the stop is recorded here keyed on (backlog_id=EVB-1419, proposal_type=experimental) to survive. Fields status/gated_at_utc/gated_by_session/gating_reason/release_condition/blocked_by/blocked_note are all in build_experiment_indexes._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS, so they propagate onto the regenerated auto row (currently EXP-0816). Status is set in BOTH files per REE_assembly 52e37f8ec4 (ARC-019/EVB-1189), where a manual-only edit was silently reverted by the next regen. Sources read: claims.yaml MECH-079 (what_would_answer, full five-part falsifier); evidence/planning/falsifier_completion_and_runnability_audit_20260921.json+.md (MECH-079 row, R7 primary / R8 secondary, scope_class v3_linked, gap_disposition 'EXISTING NODE, MISSING EDGE'); ree-v3 ree_core/hippocampal/anchor_set.py, ghost_goal_bank.py, possibility_topology.py, module.py; ree_core/utils/config.py (HippocampalConfig goal_cue_centering, use_possibility_topology); manifest v3_exq_773_mech076_residue_basin_geometry_doseresponse (MECH-076 PASS/supports). MECH-079 currently has zero experimental evidence (no entry in claim_evidence.v1.json, no experiment in ree-v3/experiments tags it, no queue entry). No experiment script was written and no queue entry was added.",
+      "objective": "Carry the experimental-lane blocked_substrate disposition for MECH-079 ('Phenomenological continuous selfhood is an artefact of stable hippocampal map geometry') durably across governance regens. No experiment is proposed: the registered falsifier's non-degeneracy precondition cannot be met on the current substrate.",
+      "priority": "medium",
+      "proposal_id": "EXP-MECH079-MAP-GEOMETRY-IDENTITY",
+      "proposal_type": "experimental",
+      "queue_id": null,
+      "registered_utc": "2026-09-23T03:21:13Z",
+      "related_claims": [
+        "MECH-079",
+        "MECH-076",
+        "MECH-024",
+        "INV-069",
+        "SD-097",
+        "MECH-269"
+      ],
+      "release_condition": "Unblock the experimental lane only when ALL of (a)-(c) hold; (d) is what the claim needs for its phenomenal leg and is not a V3 experiment at all. (a) CLAIM NARROWING (the R7 action, and the same action the audit gave sibling MECH-076): split MECH-079's phenomenal clause from its behavioural identity-persistence clause, and register the bounded sub-claim -- 'payload-preserving perturbation of hippocampal map geometry degrades context-conditioned retrieval persistence' -- as the thing under test. Until that split exists, a run cannot return a clean verdict either way, which is what R7 records. (b) SUBSTRATE: a V3 locus at which map geometry causally enters retrieval INDEPENDENTLY of the perturbed relation itself -- e.g. AnchorKey adjacency modulating the direct-admission score, rather than the SD-097 `enables` edge being both manipulation and DV. None exists today; this is a substrate build (route it through substrate_queue.json + /implement-substrate), not an experiment. Without it, arm (a) of the gating reason stands and any null is architectural. (c) NON-DEGENERACY PROBE: demonstrate, in the exact configuration the experiment would run, that the anchor pool is differentiated -- the recorded split is 0/24 anchors clearing goal_match_floor uncentered versus 9/24 with goal_cue_centering=True, so the probe must confirm differentiation PERSISTS in the intended regime and report the clearing fraction, not assume it from the SD-079 comment. Adjudicate on a fraction basis. (d) PHENOMENAL LEG: either a phenomenology instrument (none is in prospect for V3), or an explicit governance decision restricting MECH-079 to its behavioural leg and routing the phenomenal leg to external evidence. The LIT-0817 literature lane is the live route and does NOT need this block lifted -- it stays open and should be worked independently. Do NOT re-offer the experimental lane on the strength of (c) alone: a differentiated pool still leaves geometry decoupled from retrieval, so (b) is the load-bearing condition.",
+      "script_path": null,
+      "source": "manual",
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3"
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1413",
+      "claim_id": "MECH-055",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-055 with matched seeds and pre-registered thresholds.",
+      "priority": "high",
+      "proposal_id": "EXP-0802",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_055",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "low_exp_conf"
+      ]
     },
     {
       "acceptance_checks": [
