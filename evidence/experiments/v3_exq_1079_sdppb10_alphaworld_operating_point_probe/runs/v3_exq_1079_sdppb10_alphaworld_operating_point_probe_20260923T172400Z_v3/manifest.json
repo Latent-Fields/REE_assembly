@@ -1,0 +1,173 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe",
+  "run_id": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-23T17:24:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "a906c8a24c1d845dcc482d61fce31df67ff7bfb4",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "alpha_world_amplifies_present_action_read",
+    "combination_rule": "Per seed, a paired row bootstrap (2000 resamples, 95% CI) on d_act(0.9) - d_act(0.3), d_act = (SSE_swap - SSE_true)/(SSE_swap + SSE_true) on the burn-in battery (analytic null 0): CI lower > 0 -> grows, CI upper < 0 -> shrinks, else cannot_determine; a seed whose positive control is not live at either alpha, or whose rows are not aligned, is cannot_determine. GROWS if >= 2 seeds grow; SHRINKS if >= 2 seeds shrink; otherwise UNDETERMINED. Every precondition must be met or the run self-routes substrate_not_ready_requeue. outcome PASS iff GROWS or SHRINKS. LABEL SPLITS (red-team, interpretation only; counts unchanged): GROWS is alpha_world_amplifies_present_action_read if the 0.3 cell already reads its action (d_act CI lower > 0) on >= 2 growing seeds, else alpha_world_damping_masked_action_read; SHRINKS is attributed to the encoder (action_read_not_raised_by_alpha_encoder_leg) only if the paired positive-control contrast pc_d_act(0.9) - pc_d_act(0.3) has CI upper <= 0 on >= 2 shrinking seeds, else action_read_shrinks_head_fit_confound. The alpha 1.0 contrast, the V3-EXQ-1075 battery ratio and its nulls, the head/PC readability ratio, and the persistence verdict are RECORDED and do not gate.",
+    "preconditions": [
+      {
+        "name": "battery_rows",
+        "description": "worst cell's burn-in battery row count (either battery)",
+        "measured": 512.0,
+        "threshold": 32.0,
+        "direction": "lower",
+        "offending_cell": "ALPHA_0.3/seed=42",
+        "control": "fixed-length random-action collection after burn-in",
+        "met": true
+      },
+      {
+        "name": "battery_distinct_actions",
+        "description": "worst cell's distinct actions in the burn-in battery (a 1-action battery makes the swap undefined)",
+        "measured": 5.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "offending_cell": "ALPHA_0.3/seed=42",
+        "control": "uniform random actions",
+        "met": true
+      },
+      {
+        "name": "alpha_batteries_row_aligned",
+        "description": "seeds whose burn-in battery rows are the SAME env transitions at 0.3 and 0.9 (the paired contrast is undefined otherwise)",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "same seed, same action rng, alpha-independent env",
+        "met": true
+      },
+      {
+        "name": "positive_control_live_seeds",
+        "description": "READINESS (same statistic as the criterion): seeds where a linear action-aware predictor fitted on the cell's own P0 buffer scores d_act CI lower > 0 on the same burn-in battery at BOTH 0.3 and 0.9. A seed failing this is scoped out of routing (cannot_determine), not failed",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "ridge z0 + [1, z0, a, z0 x a] @ W; reads its action by construction wherever z_world carries linearly readable action information",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_determinate_alpha_contrast",
+        "load_bearing": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "description": "max(seeds growing, seeds shrinking) on the paired d_act(0.9) - d_act(0.3) CI; >= 2 of 3 gives a determinate verdict",
+        "passed": true
+      },
+      {
+        "name": "C1a_seeds_grow",
+        "load_bearing": false,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "description": "seeds whose contrast CI lies entirely above 0 (GROWS route)",
+        "passed": true
+      },
+      {
+        "name": "C1b_seeds_shrink",
+        "load_bearing": false,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "seeds whose contrast CI lies entirely below 0 (SHRINKS route)",
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_determinate_alpha_contrast": true,
+      "C1a_seeds_grow": true,
+      "C1b_seeds_shrink": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "17e203f3353878806e19840fe2cbed23d89e374ba31788e15a690f6c5d9e6480",
+  "substrate_commit": {
+    "commit": "a906c8a24c1d845dcc482d61fce31df67ff7bfb4",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 174.087936974,
+  "config": {
+    "alphas": [
+      0.3,
+      0.9,
+      1.0
+    ],
+    "alpha_primary": 0.9,
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "p0_steps": 3600,
+    "world_dim": 16,
+    "self_dim": 16,
+    "battery_n": 64,
+    "burn_in_steps": 30,
+    "n_bootstrap": 2000,
+    "ci_level": 0.95,
+    "ridge_rel_lambda": 0.001,
+    "seeds_required": 2,
+    "env": {
+      "size": 5,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 9,
+    "goal_state_present": false
+  }
+}
