@@ -406,13 +406,13 @@
       "timestamp_utc": "2026-09-16T13:46:21.650678Z"
     },
     "ARC-080": {
-      "actor": "dgolden",
-      "decision_needed": "Held by V4 architectural commitment (no V3-substrate decision required)",
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "2026-06-06 insights-recs reclassification: claim is v3_pending AND implementation_phase=v4 -> deliberately V4-deferred by architectural commitment, not awaiting V3 substrate. Routed off hold_pending_v3_substrate/pending_user to held_v4_by_architectural_commitment (applied) per the 2026-04-27 misclassification fix. No claim status changes; promotion/demotion stays suppressed.",
-      "recommendation": "held_v4_by_architectural_commitment",
-      "selected_option": "Keep held under the V4 architectural commitment (correct path).",
-      "timestamp_utc": "2026-06-06T07:53:48.739107Z"
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.343475Z"
     },
     "ARC-081": {
       "actor": "dgolden",
@@ -440,6 +440,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Hold; conflict gate stands",
       "timestamp_utc": "2026-09-18T19:04:17.387476Z"
+    },
+    "ARC-086": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.397475Z"
     },
     "ARC-088": {
       "actor": "governance-20260617T2349Z",
@@ -540,6 +549,15 @@
       "selected_option": "Record the hold",
       "timestamp_utc": "2026-09-03T07:21:20.486703Z"
     },
+    "ARC-133": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.450317Z"
+    },
     "ARC-137": {
       "actor": "governance-20260905 (user)",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -548,6 +566,24 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path).",
       "timestamp_utc": "2026-09-05T10:18:38.788976Z"
+    },
+    "ARC-140": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.502773Z"
+    },
+    "ARC-142": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.555500Z"
     },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
@@ -1088,6 +1124,24 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "promote candidate -> provisional",
       "timestamp_utc": "2026-07-18T06:40:45.258446Z"
+    },
+    "MECH-079": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted the hold (rec-20260923-34f34743). No status move. MECH-079 conflict (lit 2 supports / 3 weakens) stands pending a conflict-resolution experiment; none queueable yet.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments",
+      "timestamp_utc": "2026-09-23T09:24:25.106806Z"
+    },
+    "MECH-080": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted the hold (rec-20260923-34f34743). No status move. MECH-080 arm-mapping revision (GFLAG-0431: literature supports the reductive strategy but contradicts the three-way arm assignment) routed to a /claim-synthesis chip this cycle; EXP-0818 stays blocked_substrate.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments",
+      "timestamp_utc": "2026-09-23T09:24:25.160463Z"
     },
     "MECH-086": {
       "actor": "governance-86e36f (user-approved)",
@@ -1854,6 +1908,15 @@
       "selected_option": "Promote provisional->active",
       "timestamp_utc": "2026-07-15T13:44:33.206848Z"
     },
+    "MECH-305": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.609382Z"
+    },
     "MECH-307": {
       "actor": "user",
       "decision_needed": "Hold -- V3 substrate required",
@@ -2151,6 +2214,33 @@
       "selected_option": "Wait for V3 substrate implementation (correct path).",
       "timestamp_utc": "2026-09-15T01:15:56.587563Z"
     },
+    "MECH-353": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.661901Z"
+    },
+    "MECH-354": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.716179Z"
+    },
+    "MECH-356": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.768098Z"
+    },
     "MECH-357": {
       "actor": "governance-cycle-2026-08-13",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -2187,6 +2277,15 @@
       "selected_option": "Promote to provisional",
       "timestamp_utc": "2026-07-16T18:07:07.583233Z"
     },
+    "MECH-426": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.821258Z"
+    },
     "MECH-428": {
       "actor": "governance",
       "decision_needed": "Conflict resolution before promotion",
@@ -2195,6 +2294,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-08-08T08:30:41.657144Z"
+    },
+    "MECH-430": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.873283Z"
     },
     "MECH-436": {
       "actor": "governance-20260617T2349Z",
@@ -2224,13 +2332,13 @@
       "timestamp_utc": "2026-06-29T19:46:55.965365Z"
     },
     "MECH-441": {
-      "actor": "decide-build-tonic-noise-20260627T1050Z",
-      "decision_needed": "Decide-whether-to-build (CPKT-TONIC-EXPLORATION-NOISE-20260618, decision_due 2026-07-02)",
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "BUILD APPROVED 2026-06-27 (user; packet hybridize rec., both legs). Per-candidate E2 model-disagreement directed curiosity; biology anchor weakest (Daw 2006 0.72, substrate-existence only). KNOWN RISK: 706b proved the curiosity channel works and the single-arena collapse (ARC-110) is the bottleneck, not the channel mechanism -> MECH-441 very likely gated on ARC-110 landing first. ceiling_decision park marker removed -> /implement-substrate owed. PROMOTES NOTHING.",
-      "recommendation": "defer_pending_arc110",
-      "selected_option": "BUILD (user override of adjudicator defer rec.)",
-      "timestamp_utc": "2026-06-27T10:54:49.591342Z"
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.928589Z"
     },
     "MECH-442": {
       "actor": "governance-20260619T1832Z",
@@ -2430,6 +2538,24 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-08-08T08:30:48.655481Z"
     },
+    "MECH-520": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:23.981986Z"
+    },
+    "MECH-521": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.035872Z"
+    },
     "MECH-524": {
       "actor": "gov-cycle-20260901",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -2438,6 +2564,24 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Hold; no claims.yaml change",
       "timestamp_utc": "2026-09-01T07:59:31.538855Z"
+    },
+    "MECH-525": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.088931Z"
+    },
+    "MECH-526": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.143336Z"
     },
     "MECH-527": {
       "actor": "gov-cycle-20260901",
@@ -2448,6 +2592,15 @@
       "selected_option": "Hold; no claims.yaml change",
       "timestamp_utc": "2026-09-01T07:59:31.576991Z"
     },
+    "MECH-529": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.196288Z"
+    },
     "MECH-537": {
       "actor": "user",
       "decision_needed": "Hold - V3 substrate required before meaningful evidence can be collected",
@@ -2456,6 +2609,42 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Accept as recommended",
       "timestamp_utc": "2026-09-11T16:54:09.358616Z"
+    },
+    "MECH-538": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.248484Z"
+    },
+    "MECH-539": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.302197Z"
+    },
+    "MECH-540": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.354476Z"
+    },
+    "MECH-545": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.410268Z"
     },
     "MECH-546": {
       "actor": "user",
@@ -2466,6 +2655,24 @@
       "selected_option": "Accept as recommended",
       "timestamp_utc": "2026-09-11T16:54:10.562820Z"
     },
+    "MECH-547": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.466433Z"
+    },
+    "MECH-548": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.519900Z"
+    },
     "MECH-561": {
       "actor": "dgolden",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -2474,6 +2681,33 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation",
       "timestamp_utc": "2026-09-20T12:17:03.975416Z"
+    },
+    "MECH-562": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.571621Z"
+    },
+    "MECH-572": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.623826Z"
+    },
+    "MECH-573": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.675382Z"
     },
     "Q-006": {
       "actor": "user",
@@ -2997,6 +3231,15 @@
       "selected_option": "hold pending V3 substrate; no promotion",
       "timestamp_utc": "2026-07-20T20:22:21.624177Z"
     },
+    "SD-032": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.727105Z"
+    },
     "SD-032b": {
       "actor": "governance-2026-04-25T15:15",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -3024,6 +3267,15 @@
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107888Z"
     },
+    "SD-033": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.778721Z"
+    },
     "SD-033a": {
       "actor": "governance-2026-04-25T15:15",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -3032,6 +3284,24 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107891Z"
+    },
+    "SD-033c": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.832431Z"
+    },
+    "SD-033d": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.887020Z"
     },
     "SD-033e": {
       "actor": "governance-cycle-2026-08-13",
@@ -3068,6 +3338,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Apply hold + route /implement-substrate axis (a) consumer-input-threshold recalibration",
       "timestamp_utc": "2026-05-31T16:48:16.625924Z"
+    },
+    "SD-038": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.942314Z"
     },
     "SD-039": {
       "actor": "user",
@@ -3195,6 +3474,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-07-26T15:35:35.165868Z"
     },
+    "SD-081": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:24.993828Z"
+    },
     "SD-087": {
       "actor": "governance",
       "decision_needed": "Conflict resolution before promotion",
@@ -3221,6 +3509,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-08-08T08:30:48.805613Z"
+    },
+    "SD-097": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep candidate; V3-pending gate stands",
+      "timestamp_utc": "2026-09-23T09:24:25.045779Z"
     },
     "SD-099": {
       "actor": "governance",
@@ -3250,7 +3547,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-22T18:25:46.577675Z",
+  "generated_at_utc": "2026-09-23T17:45:22.748605Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
