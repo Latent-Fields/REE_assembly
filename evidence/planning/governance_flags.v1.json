@@ -5003,9 +5003,9 @@
       "summary": "SD-061's declared temperature lever has NO live consumer at any config its design record names: differentiable_cem_temperature is read only at ree_core/hippocampal/module.py:2416 inside 'if use_differentiable_cem' (SD-055, default False, named in NEITHER sd_061_difficulty_gated_proposal_entropy.md's Config section NOR ree-v3 docs/substrate/SD-061-*.md NOR V3-EXQ-694's driver). So SD-061 what_would_answer criterion (2) and V3-EXQ-694's C2 -- both read as certifying that the regulator 'lifts differentiable_cem_temperature transiently' -- certified the candidate-COUNT half only; the temperature half has never been exercised. Separately, 2 of the detector's 4 DECLARED inputs never reach StuckStateDetector.update in an ecological loop (committed_action_class 0/100, choice_difficulty 0/100 -- and use_dacc=True does NOT populate _dacc_last_bundle), so stuck_score is a 2-axis mean pinned at exactly stuck_threshold and is_stuck never fires (duty 0.000, all arms), and MECH-343's MANDATORY 'report the SD-032b dACC choice_difficulty contribution separately' precondition is unsatisfiable by any driver. Measured on ree-v3 origin/main f21a8c50 by the V3-EXQ-1056 /queue-experiment Step 2.5a probe; full record + recommended substrate fix in REE_assembly/evidence/planning/exq1056_mech343_q056_upstream_leg_design_refusal_20260918.md (origin/master 2bd2b917a4). V3-EXQ-1056 was REFUSED, not queued; the EXQ id is free.",
       "raised_by_session": "metaworker-science-20260918-sd061-mech343-q056",
       "raised_at": "2026-09-18T21:06:01Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:43:08Z",
+      "resolution_note": "Verified at source 2026-09-23 by governance-flags-mid-20260923 (middle-band flag session, GFLAG-0301..0420). ACTIONED. The finding (temperature lever has no live consumer; V3-EXQ-694 C2 tested candidate-count only) is cited by id and applied in the DISPOSITION text of MECH-343, Q-056 and SD-061. ree-v3 has since landed dgpe_enable_differentiable_cem and a temperature_lever_consumer_live diagnostic per Q-056's rewritten falsifier. V3-EXQ-1056 stays unqueued."
     },
     {
       "flag_id": "GFLAG-0353",
