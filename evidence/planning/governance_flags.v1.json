@@ -5674,9 +5674,9 @@
       "summary": "Falsifier-runnability audit (REE_assembly 02caebd047, evidence/planning/falsifier_completion_and_runnability_audit_20260921.md): banked evidence on these claims is invalid or misrecorded as measured in code -- MECH-062's sole supports/PASS (V3-EXQ-502) imports nothing from ree_core and draws its gate values from random.Random; MECH-232's two confirmers (766a/893) are standalone benches with no REEAgent; MECH-113/MECH-114/INV-069's D_eff family shares a detached-z_self defect (agent.py:5585 stores _current_latent detached, so compute_self_maintenance_loss has no gradient path; EXQ-142 ON/ABLATED arms byte-identical across 8 drivers); MECH-057a's two runs are arithmetic nulls (no subgoal_mode; 203 reproduces 139 bit-for-bit); MECH-141's only run chose actions with random.randint; Q-022's 084d build_r3_vector emits a dense direction while its docstring claims concentrated; MECH-231's manifest has pass=True but no outcome/status key (indexer UNKNOWN); ARC-025's two PASS rows are one run_id recorded twice; SD-004's evidence_quality_note still cites EXQ-114's retired 99.2%; MECH-440's 966-cluster autopsy target 959 has recommended_evidence_direction weakens while its note withdraws to non_contributory; MECH-446's live_status.evidence.from points at the 1039 autopsy which never names it; INV-053's four replications share one env config with harm dominance never varied; INV-092/EXP-0715's gating ground (2) is false (aic_analog.py consumes z_harm_a). Full per-claim detail in the ledger rows' false_positives / auditor_notes.",
       "raised_by_session": "falsifier-runnability-audit-resume-20260922",
       "raised_at": "2026-09-22T04:17:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:38:37Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. USER RULING 2026-09-23 (accepted the governance recommendation, rec-20260923-e1e14f35). Option A: the audit's diagnosis recorded as a dated evidence_quality_note on each of the 15 claims; SD-004's retired 99.2% cite corrected (REE_assembly 4cf047ba8f); MECH-231 pack outcome key repaired UNKNOWN -> PASS (3ce0323273). Evidence_direction downgrades route to /failure-autopsy (report-only) and are not applied here."
     },
     {
       "flag_id": "GFLAG-0401",
