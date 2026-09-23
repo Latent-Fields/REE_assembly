@@ -3873,9 +3873,9 @@
       "summary": "E3Selector.score_trajectory()/select() (ree-v3/ree_core/predictors/e3_selector.py) implements a pure weighted-sum cost over f/harm/residue/benefit/goal terms with full cross-term compensation and a single scalar variance-based commit gate (ARC-016); no per-space (goal/harm/identity/resource) hard veto floor exists anywhere in the module or elsewhere in ree_core (grep for 'veto' finds none). This is structurally the same shape as the reward-maximisation account MECH-125 says it is distinct from, so the claim is not currently falsifiable via a probe experiment as literally written -- queueing one would be confirmatory-by-construction. Recommend governance choose: (a) queue an /implement-substrate redesign adding an independent per-space veto-gate structure before probing, or (b) revise/demote MECH-125's wording to match the actual weighted-compensatory architecture. Investigated for paced proposal chip chip-proposal-exp-0872-paced (EXP-0839, MECH-125's current proposal_id; the chip's original EXP-0872 label now belongs to MECH-170 per experiment_proposals.v1.json regenerated 2026-09-11).",
       "raised_by_session": "metaworker-chip-proposal-exp-0872-paced",
       "raised_at": "2026-09-14T15:50:39Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:03:08Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: rewrite to match the code; draft approved before writing] MECH-125 title now states E3 selection is COMPENSATORY (single weighted sum over goal / harm-residue / feasibility-resource / coherence / epistemic terms, one ARC-016 precision commit gate), with no per-candidate per-space veto in V3. Re-verified at source: ree_core has no veto mechanism (only 'veto' string hits are the IncentiveTokenBank substring + one comment); MECH-091's urgency interrupt aborts an existing commitment and re-runs the same selection. The original veto hypothesis and its BG/ACC/insula biology stay in notes as the stated target; what_would_answer records that the argmin falsifier now confirms by construction; epistemic_category -> derivational (no experiment lanes). A veto build, if wanted, is a new claim + /implement-substrate design. Landed in the REE_assembly commit following 32ff0b9db1."
     },
     {
       "flag_id": "GFLAG-0276",
