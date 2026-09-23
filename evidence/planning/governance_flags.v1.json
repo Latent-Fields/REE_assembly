@@ -4036,9 +4036,9 @@
       "summary": "Evidence-attachment decision owed: the six preregistered synthetic convergence assays (evidence/experiments/convergence_signal_synthetic_assay_001..006, all criteria PASS, 2026-09-09) carry claim_ids [] because no claim existed when they ran. MECH-558 (assays 001/002) and MECH-559 (assays 003-006) were registered 2026-09-15 and their what_would_answer text cites these results as synthetic-only. Decide whether the manifests may be re-tagged to cite MECH-558/MECH-559, and under what evidence class (synthetic harness, not REE substrate -- must not count as exp_conf), so six passing runs stop attaching to nothing.",
       "raised_by_session": "thought-digestion-20260915",
       "raised_at": "2026-09-15T09:13:00Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:14:41Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: link + label] APPLIED (REE_assembly ddeb471d38): the six synthetic convergence assay manifests under evidence/planning/convergence_signal_synthetic_assay_runs/ now carry claim_ids (MECH-558 for 001-002, MECH-559 for 003-006), evidence_class synthetic_harness and an evidence_class_note stating they are design-validation results, provenance only, never scored. Verified before writing that every manifest scorer (build_experiment_indexes, generate_canonical_readiness, verify_governance_cycle, audits) is scoped to evidence/experiments/, so the link cannot turn them into substrate evidence. New value documented in evidence/experiments/INTERFACE_CONTRACT.md. Caveat: the assay scripts (REE_assembly/scripts/convergence_signal_synthetic_assay_00N.py) would rewrite claim_ids [] if re-run."
     },
     {
       "flag_id": "GFLAG-0288",
