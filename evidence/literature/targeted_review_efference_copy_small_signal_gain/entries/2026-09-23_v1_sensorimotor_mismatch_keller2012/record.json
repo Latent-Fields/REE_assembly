@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_efference_copy_small_signal_gain",
+  "entry_id": "2026-09-23_v1_sensorimotor_mismatch_keller2012",
+  "timestamp_utc": "2026-09-23T15:52:19Z",
+  "claim_ids_tested": ["MECH-095", "MECH-101"],
+  "source": {
+    "title": "Sensorimotor mismatch signals in primary visual cortex of the behaving mouse",
+    "authors": ["Georg B. Keller", "Tobias Bonhoeffer", "Mark Hubener"],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.03.040",
+    "pmid": "22681686"
+  },
+  "evidence_class": "electrophysiology_multisensory",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Foundational paper (widely replicated and extended, including by the same lab's later Attinger et al. work) establishing that mouse primary visual cortex layer 2/3 combines locomotion-derived motor signal with visual flow to compute a mismatch (prediction-error) signal, and that neurons there respond more strongly to a MISMATCH between predicted and actual visual feedback than to either signal alone. This is the clearest available answer to GFLAG-0432's 'how does the comparator use the action-conditioned prediction' half of the question, in a mammalian cortical system with closed-loop virtual-reality control over the manipulation (visual gain can be set to violate the prediction on demand). Confidence high: closed-loop causal manipulation design, replicated finding, directly measures a comparator-like computation rather than inferring it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The mismatch signal is a population/regional cortical phenomenon (layer 2/3 V1), not a single dedicated comparator neuron or nucleus -- unlike the TPJ framing in MECH-095 or the identified CD interneuron in the cricket entry in this directory, this paper's mechanism is distributed. Mapping to a single 'comparator module' in REE is a simplification the biology itself does not fully support."
+  ],
+  "tags": ["efference_copy", "corollary_discharge", "predictive_coding", "mismatch_signal", "primary_visual_cortex", "comparator", "gain_modulation"],
+  "mapping": {
+    "source_claim_statement": "In awake, behaving mice navigating a visual virtual-reality corridor on a treadmill, layer 2/3 neurons in primary visual cortex are driven both by locomotion (a motor/efference signal) and by mismatch between the visual flow predicted from that locomotion and the visual flow actually delivered (experimentally manipulable via closed-loop gain changes). The cortex is not simply relaying visual input; it is computing and signalling a difference between a motor-derived expectation and the observed sensory consequence, consistent with a predictive-coding / comparator architecture operating at the earliest cortical visual processing stage.",
+    "ree_translation": "This is the clearest existing biological instantiation of what MECH-095's TPJ-analogue comparator is supposed to do, and it is evidence for WHERE and HOW a comparator can be built cheaply: not necessarily a dedicated downstream module, but a difference signal computable directly where the action-conditioned prediction and the raw sensory stream both already arrive. For MECH-101 (z_world encoding requires reafference context), this paper is direct support that the context-dependence is not a nicety but the computational core -- V1 responses here are literally uninterpretable as 'external event vs self-caused' without the motor-derived expectation term, exactly MECH-101's claim. For the small-signal question specifically: because the mismatch signal is a DIFFERENCE (not either raw term alone), its magnitude scales with how well the motor-derived prediction matches the actual visual consequence -- which means the comparator's informativeness in the small-action-effect regime depends on prediction ACCURACY at small scale, not on the action's displacement being large in absolute terms. This reframes CDQ-012's original 'is the displacement large enough' framing: the relevant biological quantity is the prediction's fidelity at whatever scale the true displacement sits, not the displacement's absolute size.",
+    "mapping_caveat": "Locomotion-visual-flow coupling in a virtual corridor is a highly stereotyped, near-linear predictive relationship (visual flow speed is close to a fixed multiple of running speed); REE's z_world action-consequence mapping in CausalGridWorldV2 is discrete and non-linear (grid moves), so the SPECIFIC gain-modulation mathematics in this paper (a roughly linear predicted-flow term) would need substrate-appropriate re-derivation, not direct transplant.",
+    "source_context": "Head-fixed mouse on a spherical treadmill in a closed-loop visual virtual-reality corridor; two-photon calcium imaging and/or extracellular recording in V1 layer 2/3; visual gain experimentally decoupled from locomotion to induce controlled prediction violations."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: Neuron, closed-loop causal manipulation (not merely correlational), widely replicated (see also Liebscher/Keller 2016 in this same PubMed search, an Alzheimer's-model follow-up confirming the mismatch signal's persistence/vulnerability). Mapping fidelity good: the comparator-computation logic maps closely onto MECH-095's function even though the anatomical locus (V1 vs TPJ) differs. Transfer risk moderate: the specific gain-modulation form is tuned to a near-linear locomotion-vision coupling that REE's discrete grid-world action space does not share."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_efference_copy_small_signal_gain",
+  "entry_id": "2026-09-23_corollary_discharge_animal_kingdom_crapse_sommer2008",
+  "timestamp_utc": "2026-09-23T15:52:19Z",
+  "claim_ids_tested": ["MECH-098", "MECH-095"],
+  "source": {
+    "title": "Corollary discharge across the animal kingdom",
+    "authors": ["Trinity B. Crapse", "Marc A. Sommer"],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2457",
+    "pmid": "18641666"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical, highly-cited synthesis review spanning insects, fish, and primates that frames corollary discharge as a general problem: movements produce sensory input (reafference) that is otherwise indistinguishable from externally-caused input (exafference), and the nervous system solves this by routing a copy of the motor command to sensory structures before the movement's sensory consequences arrive, so the predicted (self-caused) component can be discounted from the actual afferent signal. This is the framework paper that the REE cluster (MECH-098/MECH-101/SD-007/MECH-095) already implements piecemeal via species-specific primary sources (Sommer & Wurtz 2002, Blakemore 1998/1999/2000, von Holst 1950); it is included here as the missing overview citation that states the general computational problem (and names the small-consequence case explicitly: a corollary discharge signal must be scaled to the *expected* sensory consequence, not merely gate a binary self/other flag) rather than one species' instantiation of it. Confidence moderate-high: the review itself makes no new empirical claim (it synthesizes existing single-species findings, several of which are already separately cited in this REE cluster), so its marginal evidentiary weight is lower than a primary paper, but its framing value for GFLAG-0432's exact question (how the comparator stays informative when the self-caused component dominates) is high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review is explicit that corollary discharge signals are not simple binary self/other flags -- they must be quantitatively scaled to the specific movement made, which is a harder engineering problem than a gate. A REE mechanism that only gates (rather than scales) reafference correction will reproduce the review's cited failure cases (e.g. saccadic suppression breaking down for unexpected image shifts of the 'wrong' size for the executed saccade)."
+  ],
+  "tags": ["efference_copy", "corollary_discharge", "reafference", "comparator", "review", "cross_species"],
+  "mapping": {
+    "source_claim_statement": "Corollary discharge -- an internal copy of a motor command routed to sensory areas -- is a general solution, present from insects to primates, to the problem that self-generated movement produces sensory input indistinguishable in principle from externally-caused input. The signal must be scaled to the specific predicted sensory consequence of the movement, and multiple neural strategies exist for combining it with the sensory pathway (subtraction/cancellation, gain modulation, and gating), which differ in how they handle motor commands whose expected sensory consequence is small relative to background sensory drive.",
+    "ree_translation": "This is the biological precondition CDQ-012 asks for, restated at the general level: REE's z_world world-forward head already reads its action (measured, GFLAG-0432) -- the open question is which of the review's several combination strategies (subtractive cancellation as in MECH-098/SD-007, gain modulation as in the comparator literature below, or gating) the comparator (MECH-095's TPJ analogue) should use when the action's z_world displacement is small (measured ~0.013-0.016 RMS/dim per step, V3-EXQ-1075a) relative to the encoder's other input drive. The review's own framing implies subtraction alone is not sufficient in general -- gain/precision scaling is a documented co-mechanism, which is the piece REE's SD-007 ReafferencePredictor (pure subtraction) does not yet have.",
+    "mapping_caveat": "This is a synthesis review, not a primary data source -- its evidentiary weight rests on the primary papers it cites (several already independently in this claim cluster), not on new measurement. Treat it as the framework citation that motivates and organizes the primary-source entries in this same directory and in MECH-098/MECH-101/SD-007/MECH-095, not as independent confirmation.",
+    "source_context": "Cross-species synthesis review covering insect (cricket, locust), fish (electric fish, goldfish), and primate (saccadic, reaching) corollary discharge literatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (Nature Reviews Neuroscience, extensively cited, still the standard reference for this topic 18 years on). Mapping fidelity good at the framing level, moderate at the mechanism level since it is necessarily general across many different neural implementations. Transfer risk low for the qualitative framing, moderate for any specific quantitative claim since none is made at the review level."
+  }
+}

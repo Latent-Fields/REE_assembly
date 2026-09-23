@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-23T07:58:27.326500Z`
+Generated: `2026-09-23T15:57:09.000548Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -256,6 +256,7 @@ Generated: `2026-09-23T07:58:27.326500Z`
 | `targeted_review_e1_forward_model_rollout_consistency` | [`2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025`](targeted_review_e1_forward_model_rollout_consistency/entries/2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025/record.json) | 7 | [`summary`](targeted_review_e1_forward_model_rollout_consistency/entries/2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025/summary.md) |
 | `targeted_review_e2_dual_function_mode_distinction` | [`2026-04-18_e2_dual_shenhav2016_dacc`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/record.json) | 5 | [`summary`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/summary.md) |
 | `targeted_review_e2_forward_model_action_divergence` | [`2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023`](targeted_review_e2_forward_model_action_divergence/entries/2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023/record.json) | 6 | [`summary`](targeted_review_e2_forward_model_action_divergence/entries/2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023/summary.md) |
+| `targeted_review_efference_copy_small_signal_gain` | [`2026-09-23_v1_sensorimotor_mismatch_keller2012`](targeted_review_efference_copy_small_signal_gain/entries/2026-09-23_v1_sensorimotor_mismatch_keller2012/record.json) | 4 | [`summary`](targeted_review_efference_copy_small_signal_gain/entries/2026-09-23_v1_sensorimotor_mismatch_keller2012/summary.md) |
 | `targeted_review_ethological_play_signals` | [`2026-05-16_arc049_wenig2021_raven_play_emotional_contagion`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_wenig2021_raven_play_emotional_contagion/record.json) | 8 | [`summary`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_wenig2021_raven_play_emotional_contagion/summary.md) |
 | `targeted_review_event_segmentation` | [`2026-04-22_mech_288_temporal_memory_dubrow2014`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/record.json) | 11 | [`summary`](targeted_review_event_segmentation/entries/2026-04-22_mech_288_temporal_memory_dubrow2014/summary.md) |
 | `targeted_review_evidence_dependency_and_provenance` | [`2026-09-19_mech_558_active_inference_curiosity_insight_friston2017`](targeted_review_evidence_dependency_and_provenance/entries/2026-09-19_mech_558_active_inference_curiosity_insight_friston2017/record.json) | 3 | [`summary`](targeted_review_evidence_dependency_and_provenance/entries/2026-09-19_mech_558_active_inference_curiosity_insight_friston2017/summary.md) |

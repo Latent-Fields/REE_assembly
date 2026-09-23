@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_efference_copy_small_signal_gain",
+  "entry_id": "2026-09-23_negative_image_detection_enhancement_enikolopov2018",
+  "timestamp_utc": "2026-09-23T15:52:19Z",
+  "claim_ids_tested": ["MECH-098", "SD-007"],
+  "source": {
+    "title": "Internally Generated Predictions Enhance Neural and Behavioral Detection of Sensory Stimuli in an Electric Fish",
+    "authors": ["Alexander G. Enikolopov", "L. F. Abbott", "Nathaniel B. Sawtell"],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.06.006",
+    "pmid": "30001507"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct follow-up study to the Sawtell 2010 negative-image cancellation paper already cited in SD-047/MECH-098 (targeted_review_sd_047), from the same lab and circuit (mormyrid electrosensory lobe), specifically closing the loop from 'a negative image is generated' to 'the negative image improves detection of small external stimuli riding on top of self-generated reafference' -- exactly the small-signal-discriminability mechanism GFLAG-0432 asks this pull to target, in a system where it has been measured at both the neural and the behavioral level. Confidence high but not maximal: the abstract available via PubMed efetch does not surface the quantitative detection-improvement figures (SNR gain, d-prime, or percent-correct deltas), so the entry is graded on the design and species-level replication of the negative-image mechanism rather than on independently re-verified numbers; a full-text read would let this be raised.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is an invertebrate (fish) electrosensory system; the specific circuit motif (granule cell combinatorial expansion + anti-Hebbian parallel-fiber plasticity) is a cerebellum-like structure, not neocortex, so the implementation-level mapping to a deep-learning z_world encoder is architectural-analogy only, not a literal template."
+  ],
+  "tags": ["efference_copy", "corollary_discharge", "reafference", "negative_image", "small_signal_detection", "cerebellum_like", "electric_fish"],
+  "mapping": {
+    "source_claim_statement": "In the mormyrid electric fish electrosensory lobe, synaptic plasticity at parallel-fiber-to-Purkinje-like-cell synapses shapes granule cell corollary discharge responses into 'negative images' -- highly specific predictions of the self-generated sensory consequences of the animal's own electric organ discharge. Combining the actual electrosensory input with this internally generated prediction (i.e. subtracting the negative image) measurably enhances both the neural coding and the behavioral detection of small, prey-like external sensory stimuli that ride on top of the self-generated signal.",
+    "ree_translation": "This is the missing second half of MECH-098/SD-007's mechanism. REE's ReafferencePredictor subtracts a predicted self-caused component from z_world, but SD-007's evidence base (Sawtell 2010 et al.) documents only that the subtraction happens and is accurate, not that it functionally improves downstream detection of small external events -- which is the actual measurable outcome the substrate needs when the action's own z_world displacement is small (V3-EXQ-1075a: ~0.013-0.016 RMS/dim). This paper is direct biological evidence that the subtraction step's PAYOFF, in the small-signal regime specifically, is a detectability gain on the residual -- not merely a cleaner-looking predicted trace. If REE's ReafferencePredictor is functioning as intended, the falsifiable prediction this paper licenses is that z_world's post-correction residual should show measurably better external-event discriminability than the uncorrected z_world_raw, PARTICULARLY when the self-caused component is large relative to the external one -- which is the opposite regime from where CDQ-012's completion criterion was originally aimed (it asked whether the action-conditioned prediction is large; this paper says the more relevant test is whether removing it helps detection).",
+    "mapping_caveat": "Prey-like electrosensory stimuli in fish are a single, well-characterized sensory modality with a known ground-truth signal (the animal's own electric organ discharge timing is precisely knowable); z_world in REE is a learned, high-dimensional encoder representation with no equivalent ground-truth decomposition, so 'detection enhancement' in REE would need its own operationalization (e.g. an external-event classifier's AUC on corrected vs uncorrected z_world) rather than a direct transplant of the fish paradigm's psychophysics.",
+    "source_context": "Awake, behaving mormyrid electric fish (Gnathonemus petersii or similar); in vivo whole-cell and extracellular recording in the electrosensory lobe during a prey-capture-like detection task; the sensory background is the fish's own electric organ discharge reafference, and the target stimuli are small electrosensory perturbations mimicking prey."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: Neuron, same rigorous in vivo electrophysiology tradition as the already-cited Sawtell 2010 paper, direct mechanistic follow-up with both neural and behavioral readouts. Mapping fidelity good at the functional-logic level (subtraction improves small-signal detection) but the implementation substrate (cerebellum-like circuit, single well-defined reafferent signal) is quite different from REE's learned high-dimensional z_world encoder. Transfer risk moderate: the qualitative claim (cancellation aids small-signal detection) is well-supported across the corollary-discharge literature generally, but the specific quantitative form of the benefit is species/circuit-specific."
+  }
+}

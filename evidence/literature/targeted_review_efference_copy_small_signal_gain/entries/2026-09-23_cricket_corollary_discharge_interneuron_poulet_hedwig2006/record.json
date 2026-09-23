@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_efference_copy_small_signal_gain",
+  "entry_id": "2026-09-23_cricket_corollary_discharge_interneuron_poulet_hedwig2006",
+  "timestamp_utc": "2026-09-23T15:52:19Z",
+  "claim_ids_tested": ["MECH-098", "MECH-101"],
+  "source": {
+    "title": "The cellular basis of a corollary discharge",
+    "authors": ["James F. A. Poulet", "Berthold Hedwig"],
+    "year": 2006,
+    "venue": "Science",
+    "doi": "10.1126/science.1120847",
+    "pmid": "16439660"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Landmark cellular-resolution identification of a single, multisegmental corollary discharge interneuron (a predecessor/companion series of the same authors' 2002/2003 papers established the phenomenon; this paper identifies the specific cell) that provides both pre- and postsynaptic inhibition of the ascending auditory pathway in singing crickets, timed to the animal's own stridulation motor command. This is the sharpest available small-consequence-vs-large-motor-command case in the literature surveyed here: stridulation produces a very loud self-generated sound (large motor act, large expected self-caused sensory consequence) and the corollary discharge circuit's job is to preserve the animal's ability to detect small external sounds (e.g. a rival male, a predator, a mate's response) against that self-generated din -- a near-inverse framing of REE's regime (small action-driven signal against large background) but mechanistically the same discriminability problem, at the opposite end of the small/large ratio. Confidence solid but not higher: PubMed abstract text did not surface the precise identity/name of the interneuron or exact synaptic timing figures, so the entry is graded on the well-established phenomenon and its single-cell resolution rather than on independently re-verified numeric parameters.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The mechanism here is closer to GATING/attenuation (graded pre- and post-synaptic inhibition timed to the motor command) than to the subtractive cancellation MECH-098/SD-007 implement. If REE's small-signal problem needs a gating-style solution rather than a subtraction-style one, this paper is the stronger biological precedent than the electric-fish negative-image entries in this directory -- worth flagging for governance since it points at a mechanistically distinct implementation choice, not just an additional citation for the same one."
+  ],
+  "tags": ["efference_copy", "corollary_discharge", "gain_modulation", "gating", "single_neuron", "cricket", "auditory", "small_signal_detection"],
+  "mapping": {
+    "source_claim_statement": "A single, identified multisegmental interneuron in the cricket central nervous system mediates both presynaptic and postsynaptic inhibition of ascending auditory pathway neurons, timed to and driven by the animal's own stridulation (singing) motor command. This corollary discharge mechanism prevents the animal's own loud self-generated song from desensitizing or saturating its auditory pathway, while preserving (rather than eliminating) sensitivity to external, non-self-generated sounds arriving during singing.",
+    "ree_translation": "This is the cleanest biological precedent for a GAIN/PRECISION-based solution to the small-signal discriminability problem GFLAG-0432 names, as distinct from MECH-098/SD-007's pure subtraction approach. The cricket circuit does not subtract a predicted waveform from the auditory signal; it modulates the GAIN of the auditory pathway (via combined pre- and post-synaptic inhibition) in a manner timed to and scaled by the motor command, so that the pathway's sensitivity to genuinely external input is preserved even while the pathway is being protected from self-generated saturation. Applied to REE: rather than (or in addition to) MECH-098's subtractive correction of z_world, a corollary-discharge-modulated PRECISION or GAIN term on the world-forward comparator (scaled by the predicted action-consequence magnitude) is a distinct, biologically-precedented mechanism candidate for keeping small external events discriminable when the action's own predicted consequence is small -- i.e. exactly the opposite failure mode (under-gating a weak self-signal, rather than over-subtracting a strong one) that the CDQ-012 mechanism gap is asking about.",
+    "mapping_caveat": "This is a single-neuron gating mechanism in an insect auditory system responding to a graded, temporally precise, high-amplitude self-generated signal (the cricket's own song). REE's z_world is a continuous, multi-dimensional learned latent with no single-channel analogue to 'the auditory nerve', so the mapping is at the level of computational strategy (gain modulation as a corollary-discharge mechanism, as opposed to subtraction) rather than a literal circuit-for-circuit transplant.",
+    "source_context": "Intracellular recording from the identified auditory afferent and the CD interneuron in the cricket (Gryllus bimaculatus) thoracic-abdominal ganglion during natural or fictive stridulation (singing)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high: Science, single-cell intracellular resolution, part of a well-established multi-paper series (Poulet & Hedwig 2002 Nature, 2003 J Neurosci, 2003 J Neurophysiol; this 2006 paper is the cellular-identification capstone). Mapping fidelity moderate: the computational STRATEGY (gain modulation vs subtraction) maps cleanly, but the specific circuit (single interneuron, graded synaptic inhibition, auditory nerve) is a very different substrate from REE's distributed learned encoder. Transfer risk elevated because this is an insect system at the opposite end of the small/large signal ratio from REE's own regime (self-signal large here, small in REE) -- the mechanism generalizes at the strategy level but the specific gain-scaling law would need independent derivation for REE's regime."
+  }
+}
