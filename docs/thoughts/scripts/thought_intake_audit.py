@@ -36,6 +36,20 @@ This script checks BOTH stages against that ground truth:
 
 Read-only against claims.yaml and both thought-intake trees; writes only its
 own report files (no claim required to run it -- see docs/thoughts/README.md).
+
+OUTPUT LOCATION (2026-09-23). Defaults write to `<thoughts-root>/state/`,
+which `docs/thoughts/.gitignore` excludes entirely -- a session that runs
+this (per umbrella CLAUDE.md Session Startup step 6a) leaves the checkout
+clean, rather than needing an extra commit or a walk-away dirty diff for the
+next session to trip over (observed 2026-09-22, and again via
+`morning_agenda.md`'s "Blocked Items" listing `thought_intake_audit.v1.json`
+among files another session's pull had to route around). Nothing else in the
+codebase reads either output programmatically -- confirmed by grepping
+serve.py, explorer.html, site generators, scripts/, and every skill under
+.claude/skills + .agents/skills for both filenames before this change landed
+-- so there is no tracked-copy consumer to preserve; `--output-json`/
+`--output-md` remain available for a caller (a test, or a one-off
+publication) that wants the report somewhere else, tracked or not.
 """
 
 from __future__ import annotations
@@ -311,6 +325,7 @@ def _write_json(
     stage2: list[Stage2Record],
     generated_at: str,
 ) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     orphan_classes = {"fully_orphaned", "partially_registered", "not_registered_no_ids"}
     needs_read_classes = {"no_ids_named", "partially_unlabeled"}
     payload = {
@@ -344,6 +359,7 @@ def _write_report(
     stage2: list[Stage2Record],
     generated_at: str,
 ) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     orphan_classes = {"fully_orphaned", "partially_registered", "not_registered_no_ids"}
     needs_read_classes = {"no_ids_named", "partially_unlabeled"}
     orphans = [r for r in stage2 if r.classification in orphan_classes]
@@ -447,8 +463,13 @@ def main() -> None:
     thoughts_root = args.thoughts_root.resolve()
     planning_root = args.planning_root.resolve()
     claims_yaml = args.claims_yaml.resolve()
-    output_json = args.output_json.resolve() if args.output_json else thoughts_root / "thought_intake_audit.v1.json"
-    output_md = args.output_md.resolve() if args.output_md else thoughts_root / "INTAKE_AUDIT_REPORT.md"
+    # Default location is GITIGNORED (docs/thoughts/.gitignore: "state/") --
+    # see the module docstring "OUTPUT LOCATION". --output-json/--output-md
+    # still let a caller publish somewhere tracked on purpose.
+    output_json = args.output_json.resolve() if args.output_json \
+        else thoughts_root / "state" / "thought_intake_audit.v1.json"
+    output_md = args.output_md.resolve() if args.output_md \
+        else thoughts_root / "state" / "INTAKE_AUDIT_REPORT.md"
 
     claim_ids = _load_claim_ids(claims_yaml)
     claim_id_re = _build_claim_id_re(claim_ids)

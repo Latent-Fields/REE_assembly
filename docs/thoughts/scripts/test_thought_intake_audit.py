@@ -30,6 +30,7 @@ Run: /opt/local/bin/python3 docs/thoughts/scripts/test_thought_intake_audit.py
 """
 
 import importlib.util
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -471,6 +472,67 @@ class MainEndToEndTests(unittest.TestCase):
             )
             self.assertNotIn("thought_intake_2026-08-09_example.md", report.split(
                 "### Needs a human read")[1])
+
+
+class DefaultOutputLocationTests(unittest.TestCase):
+    """THE ITEM-2 CONTRACT (2026-09-23): a default run (no --output-json/
+    --output-md) must leave the checkout clean, never dirty -- see the module
+    docstring "OUTPUT LOCATION". Real git repo, real docs/thoughts/.gitignore
+    content, so this actually exercises the ignore rule rather than assuming
+    it works.
+    """
+
+    def _git(self, repo: Path, *args: str) -> str:
+        p = subprocess.run(["git", "-C", str(repo), *args],
+                           capture_output=True, text=True)
+        self.assertEqual(p.returncode, 0, "git %s failed: %s" % (args, p.stderr))
+        return p.stdout
+
+    def test_default_run_leaves_git_status_clean(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            thoughts_root = root / "docs" / "thoughts"
+            planning_root = root / "evidence" / "planning"
+            thoughts_root.mkdir(parents=True)
+            planning_root.mkdir(parents=True)
+            claims_yaml = _claims_yaml(root, ["GOV-FAILLOC-1"])
+            (planning_root / "thought_intake_2026-08-09_example.md").write_text(
+                "## Candidate claims\n\n### GOV-FAILLOC-1\n\n- stub\n",
+                encoding="utf-8")
+            # The SAME rule as the real docs/thoughts/.gitignore -- this test
+            # would be vacuous against a fixture that never actually exercises
+            # the ignore.
+            (thoughts_root / ".gitignore").write_text("state/\n", encoding="utf-8")
+
+            self._git(root, "init", "-q", "-b", "master")
+            self._git(root, "config", "user.name", "Fixture")
+            self._git(root, "config", "user.email", "fixture@example.invalid")
+            self._git(root, "add", "-A")
+            self._git(root, "commit", "-q", "-m", "base")
+
+            argv = [
+                "thought_intake_audit.py",
+                "--thoughts-root", str(thoughts_root),
+                "--planning-root", str(planning_root),
+                "--claims-yaml", str(claims_yaml),
+                # deliberately NO --output-json / --output-md: this is the
+                # default-location contract under test.
+            ]
+            old_argv = sys.argv
+            sys.argv = argv
+            try:
+                M.main()
+            finally:
+                sys.argv = old_argv
+
+            self.assertTrue(
+                (thoughts_root / "state" / "thought_intake_audit.v1.json").exists())
+            self.assertTrue(
+                (thoughts_root / "state" / "INTAKE_AUDIT_REPORT.md").exists())
+
+            status = self._git(root, "status", "--porcelain", "docs/thoughts")
+            self.assertEqual(status.strip(), "",
+                "a default run must not dirty the checkout: %r" % status)
 
 
 if __name__ == "__main__":

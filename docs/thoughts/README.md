@@ -76,10 +76,14 @@ exist and neither substitutes for the other.
 python3 docs/thoughts/scripts/thought_intake_audit.py
 ```
 
-Generated outputs:
+Generated outputs (gitignored -- `docs/thoughts/.gitignore`; a run of this script never leaves
+the checkout dirty, unlike before 2026-09-23):
 
-- `docs/thoughts/thought_intake_audit.v1.json`
-- `docs/thoughts/INTAKE_AUDIT_REPORT.md`
+- `docs/thoughts/state/thought_intake_audit.v1.json`
+- `docs/thoughts/state/INTAKE_AUDIT_REPORT.md`
+
+Nothing in the codebase reads a tracked copy of either file -- `--output-json`/`--output-md`
+still let you write one elsewhere on purpose (e.g. for a one-off review or a test fixture).
 
 Optional strict mode (fails if any Stage 1 broken link or Stage 2 orphan is found):
 
