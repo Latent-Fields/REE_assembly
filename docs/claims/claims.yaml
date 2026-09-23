@@ -98628,6 +98628,35 @@
       verdict: mixed/standard
   diagnostic_evidence_adjudicated: true
   evidence_quality_note: >
+    [2026-09-23 | V3-EXQ-1043b | failure_autopsy_V3-EXQ-1043b_2026-09-23] mixed, diagnostic,
+    excluded from scoring. Third and best-instrumented run of this lineage (6 seeds, 18.2h,
+    1000-draw random-subspace reference). ALL readiness gates green including an explicit
+    positive control, non_degenerate true, so neither a precondition-unmet nor a vacuous-pass
+    case. The registered CONFIRMING conjunction is not met: C2-primary's 95% CI on the cross-
+    seed mean is [-0.01547, +0.07370] (includes 0 and 0.05) and C4b passes only 3 of 6 seeds
+    against 4 required. BUT the run DID adjudicate a registered leg: the pre-registered rank
+    co-primary falsifies H2-no-orientation AS A GLOBAL CLAIM (Fisher p=2.19e-4 SET-ALL,
+    6.86e-5 SET-COMPETENT; Simes 0.0060/0.0050; leave-one-out Fisher 0.0099/0.0038; sets
+    agree; not single-seed driven, though it rests on three seeds), so the fitted
+    communication subspace IS oriented beyond a random subspace of the same rank in at least
+    some encoders. That elimination is GLOBAL-scope only: the per-seed rank percentiles split
+    3 clearly effect-present against 2 clearly absent, the per-seed measurement SE is
+    0.0021-0.0030 against a cross-seed sd of 0.0425, so the disagreement is a real encoder-
+    level property; an h_other_event (partition_expansion) and a new leg H4-encoder-
+    contingent-orientation were registered on that basis. interpretation.primary_agreement
+    records the pre-registered DISAGREEMENT label
+    orientation_contrast_not_positive_rank_significant_DISAGREEMENT_split; evidence_direction
+    alone understates the run and the pre-registration said so in advance. The C5 single-
+    subspace premise held (0.6099 vs 0.2164 required), so the question is NOT re-routed to
+    MECH-547/MECH-555. C4b's FAIL carries little weight: on two seeds scoring a bit-identical
+    encoder at an identical parsimonious rank, its verdict FLIPPED between 1043a and 1043b, so
+    the conjunct is not reproducible on a fixed subspace. Claim alignment INTACT -- not a
+    weakening.
+    [2026-09-23 governance, GFLAG-0435] Promoted to LEAD per V3-EXQ-1043b's
+    per_claim_recommendation; the 1043a autopsy asked for this on 2026-09-20 and only the
+    provenance stamp was applied then (twice-dropped partial application). Entries below are
+    RETAINED in original order for history.
+
     [2026-09-17 | V3-EXQ-1043 | failure_autopsy_V3-EXQ-1043_2026-09-17] mixed, diagnostic, excluded
     from scoring. FIRST experimental evidence for this claim (registered 2026-09-08; the
     confirmed-autopsy corpus contains no prior MECH-537 target). All 7 readiness preconditions
@@ -98696,9 +98725,15 @@
     arXiv:2608.13317, Interlat ACL 2026, Cheng/Das/Ramnath arXiv:2608.04893) are taken from
     the thought's own reference list and a lit-pull is owed before any of them is cited as
     support. Mostik is COMPANY-REPORTED, not independently replicated, and must not be cited
-    as established. DO NOT queue an experiment from this entry. The read-only diagnostic
-    harness (work programme ML-10/ML-12/ML-20) is the sanctioned next step and /governance
-    owns whether it runs.
+    as established.
+    [2026-09-23 governance, GFLAG-0435] SUPERSEDED: the 2026-09-08 prohibition quoted below is
+    contradicted by what happened next. The 2026-09-15 disposition minted proposal EXP-1403
+    and three experiments (V3-EXQ-1043, 1043a, 1043b) have since been queued and run from this
+    entry, with 1043b's own readiness gate citing EXP-1403 as the sanctioning source-adequacy
+    gate. Re-queue decisions are governed by EXP-1403 and the normal falsifier-audit route,
+    not by the original text retained here for history: "DO NOT queue an experiment from this
+    entry. The read-only diagnostic harness (work programme ML-10/ML-12/ML-20) is the
+    sanctioned next step and /governance owns whether it runs."
 
 - id: INV-105
   title: "The latent-access evidence ladder: a variable's status in a latent space is not one property but seven, which must never be collapsed -- encoded (statistically present) != decodable (recoverable by an external probe) != natively accessible (usable by the system's existing consumer) != bridgeable (usable through a constrained map between frozen endpoints) != pairing-specific (useful specifically when the correct sender state is paired with the correct receiver situation) != causally used (interventions on its content alter downstream computation) != behaviourally beneficial (that causal use improves adaptive performance). Two evidential consequences bind rather than advise: (1) a content-transmission claim about any internal channel or bridge REQUIRES correct-vs-mismatched-vs-zero-vs-moment-matched-random controls, because a channel can be strongly load-bearing while its example-specific content is barely load-bearing; (2) a null measured on a COMPRESSED representation requires a dimensionality-matched RANDOM-PROJECTION floor, not a zero floor, before it can be read as information loss."
