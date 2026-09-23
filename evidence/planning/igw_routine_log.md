@@ -3558,3 +3558,4 @@ One line per hourly tick. ASCII only.
 2026-09-23T17:42:22Z no eligible item (skipped 266): IGW-20260923-001:skill /governance not allowed; IGW-20260923-007:skill /governance not allowed; IGW-20260923-008:skill /governance not allowed
 2026-09-23T18:51:16Z workset published via the coordinator (no local commit; verified on origin/master fe232a4925) (regen -- 259 items, 32 ready, 0 in flight)
 2026-09-23T18:51:16Z workset committed (regen -- 259 items, 32 ready, 0 in flight)
+2026-09-23T18:48:05Z STAGE IGW-20260923-219 skill=/implement-substrate prio=25 worktree=igw-219-substrate-ready-sd105-frozen-sha (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
