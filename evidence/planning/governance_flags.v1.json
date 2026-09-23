@@ -3540,9 +3540,9 @@
       "summary": "SUCCESSOR to GFLAG-0107 (resolved 2026-09-10). Recommendation (b) of GFLAG-0107 -- treat an UNPARSEABLE autopsy change-description as UNCERTIFIABLE and report it in its own bucket -- was NOT adopted when 0107's other half landed (REE_assembly 69060999b0). What landed instead is shape-by-shape parser extension (_SET_FIELD_RE, _clause(), _SELF_STAMP_RE, _BOOLEAN_CLAIM_FIELDS), which is the Goodhart-fragile direction GFLAG-0107 itself warned against: every new phrasing needs a new parser arm, and an unrecognised one reads as 'nothing owed' rather than 'cannot certify'. grep confirms no UNCERTIFIABLE bucket exists in check_unapplied_autopsy_recommendations.py. The adjacent 'UNRESOLVED (not checked)' bucket does NOT cover this -- it keys on manifest reachability, not on change-text parseability. Governance to decide whether to add the bucket.",
       "raised_by_session": "gov-flagbacklog-20260909",
       "raised_at": "2026-09-10T06:55:17Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:23:25Z",
+      "resolution_note": "REE_assembly 519c87b08a: GOV-APPLY-1 now reports change text no parser arm recognises in a structural uncertifiable_disposition bucket (module const UNCERTIFIABLE; WARN-only, never in --strict; rows carry structured_verdict holds|none; structured-field FAIL stays ACTIONABLE). Added --json + n_per_claim_dispositions denominator. Live corpus 2026-09-23: 9 of 178 per-claim dispositions, all 'holds', all previously silent (SD-017, MECH-143/144/166/440, MECH-439 936a, MECH-482, SD-069, MECH-268). All other buckets byte-identical in A/B; 127 tests pass; new tests fail on old code."
     },
     {
       "flag_id": "GFLAG-0252",
