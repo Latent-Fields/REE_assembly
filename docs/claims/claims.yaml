@@ -17479,7 +17479,7 @@
     banked evidence. (MECH-367 and MECH-392 also depend on MECH-124 but are both v4, so neither
     could license a v3 derivation; Q-061 is unphased.)
 - id: MECH-125
-  title: "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space."
+  title: "E3 trajectory selection is currently COMPENSATORY, not veto-based: candidates are ranked by a single weighted sum over goal, harm/residue, feasibility/resource, coherence and epistemic terms, and commitment is gated by one precision (PE-variance) threshold (ARC-016). No per-candidate, per-space veto exists in the V3 substrate, so a large cost in one space can be outweighed by gains elsewhere. Multi-constraint VETO viability (any one space independently rejecting a trajectory) is the intended biological design, not a description of V3."
   claim_type: mechanism_hypothesis
   subject: coherence.multiconstraint_viability
   polarity: asserts
@@ -17488,7 +17488,7 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
-  epistemic_category: substrate_conditional
+  epistemic_category: derivational
   implementation_phase: v3
   depends_on:
     - MECH-112
@@ -17504,7 +17504,17 @@
     CONFIRMING: committed trajectories are those on which no evaluation system exceeds its veto threshold, and this predicts commitment BETTER than the argmin of the aggregate score -- specifically, committed actions exist that are NOT the aggregate-score winner because a higher-scoring candidate carried a veto, at a rate above chance.
     FALSIFYING: the committed action is the aggregate-score argmin on essentially every tick -- 'multi-constraint viability' is then an alternative description of scalar maximisation with no separable veto structure, which is what MECH-439's measured 88-89% F-channel variance monopoly currently predicts and why this claim needs its own falsifier rather than inheriting one.
     Disposition 2026-09-15: (c) substrate-blocked -- category set from this claim's own live_status reading where present; if governance judges the veto structure built-and-exercised with its signal absorbed by F-dominance, substrate_ceiling is the right variant.
+    Disposition 2026-09-23 (governance-flags-20260923b, GFLAG-0275, user decision): claim REWRITTEN to the compensatory description the code actually implements; epistemic_category substrate_conditional -> derivational. The FALSIFYING clause above now reads in reverse: an aggregate-score argmin on essentially every tick CONFIRMS the rewritten claim by construction, so no experiment is worth running on it. A behavioural test becomes informative only once a per-space veto is BUILT; that would be a new claim and an /implement-substrate design, not this one.
   notes: >
+    [2026-09-23 governance, governance-flags-20260923b, GFLAG-0275, user decision] REWRITTEN TO MATCH THE CODE.
+    E3Selector.score_trajectory() / select() (ree-v3 ree_core/predictors/e3_selector.py) is a pure weighted sum over
+    f / harm / residue / benefit / goal terms with full cross-term compensation; ree_core contains no veto mechanism (the
+    only "veto" string hits are the substring in IncentiveTokenBank and one comment). The one harm-specific hard override,
+    MECH-091's urgency interrupt (agent.py, urgency_interrupt_threshold), aborts an existing commitment on extreme harm
+    load and re-runs the SAME compensatory selection; it does not reject individual candidates. The text below is the
+    ORIGINAL veto hypothesis, retained as the biological target the claim was registered for. docs/architecture/e3.md
+    section 4a still states that target, not the V3 build.
+
     The selection rule is: lowest-veto + acceptable goal progress, not maximum reward.
     A trajectory is coherent when it does not produce a veto-level error signal in any
     major evaluation system simultaneously. This is distinct from reward maximisation:
