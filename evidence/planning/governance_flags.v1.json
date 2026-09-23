@@ -1154,9 +1154,9 @@
       "summary": "MECH-235's named model-free channel does not exist as an action channel. The claim asserts vmPFC continuously weights model-based (E3) vs model-free (E1) contributions to ACTION SELECTION. Verified: ree-v3 ree_core/predictors/e1_deep.py line 15 states E1 'is READ-ONLY with respect to z_self and z_world' -- it contributes an associative prior and does not drive action selection at all. The only implemented arbitration is E3Config.urgency_interrupt_threshold (config.py:964, default 0.8), a HARD BINARY interrupt, i.e. precisely the binary switch this claim asserts the arbitration is NOT. The graded arbitration weight has never been built. Either build a continuous weight, or re-anchor the habitual leg onto ARC-071 policy chunking -- which feeds the PROPOSAL layer, not selection, and so CHANGES the claim and needs an explicit decision.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:43Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:46:45Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: close flags whose remaining work is owned by an open chip as ROUTED; the chip ledger is the durable tracker. If the owning chip's prompt says to close this flag on landing, that step is now a no-op.] MISDIAGNOSED, not satisfied -- as MECH-235's own what_would_answer (2026-09-09 entry) requires. A graded per-tick arbitration weight DOES exist (SD-081/MECH-477 _arbitrate_dual_system, ree-v3 4472811, 2026-07-22, V3-EXQ-811a PASS), so the premise that none was built is false. What survives, narrower: that weight arbitrates planning depth under uncertainty, not the urgency/harm arbitration MECH-235 asserts; a re-run design (811a + z_harm_a logging) was refused as a guaranteed null (REE_assembly bb8f987842, gflag0080_mech235_harm_arbitration_design_refusal_20260909.md). The harm-PE arbitrator input build is ROUTED to chip-20260910-gflag0080-mech235-harm-pe-arbitration (open). MECH-235 status/confidence unchanged."
     },
     {
       "flag_id": "GFLAG-0081",
