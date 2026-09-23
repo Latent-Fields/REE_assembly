@@ -30814,16 +30814,23 @@
     case the entropy-intake mechanism is not its explanation even where the epidemiology
     holds.
 
-    EVIDENCE LANE (the half of the 2026-09-10 split that is still open): LIT-0688 is the pull
-    designated for this leg and should be RE-SCOPED to this claim in
-    evidence/planning/experiment_proposals.v1.json -- EXP-1398's design text already states
-    that "LIT-0688 should be RETAINED and re-scoped to the out_of_domain epidemiological leg
-    only". Not yet done as of 2026-09-10, and it matters: the five literature entries that
-    landed 2026-09-08 under that lane (REE_assembly 09c24b7127) are hippocampal
-    electrophysiology and behavioural-animal papers. They bear on INV-063's REE leg, are
-    correctly tagged claim_id INV-063 in claim_evidence.v1.json, and must NOT be re-tagged
-    here. This claim therefore starts with ZERO entries and no confidence of its own, which
-    is the correct state: unmeasured, not weakly supported.
+    EVIDENCE LANE ([2026-09-23 governance, GFLAG-0267] corrects the 2026-09-10 original
+    below, which instructed re-scoping LIT-0688 here -- superseded, do not act on it): LIT-0688
+    was RETIRED by the 2026-09-08 governance regen (REE_assembly e2f1f788f23) after its five
+    entries were consumed by the INV-063 lit-pull (REE_assembly 09c24b7127) -- hippocampal
+    electrophysiology and behavioural-animal papers correctly tagged claim_id INV-063 in
+    claim_evidence.v1.json; they must NOT be re-tagged here. Do NOT re-mint or re-scope
+    LIT-0688. This claim's own literature lane is LIT-0130 (EVB-1745), already recorded as
+    INV-106's proposal_id in evidence/planning/experiment_proposals.v1.json and
+    experiment_proposals_index.v1.json -- route any future epidemiological pull there. This
+    claim therefore still starts with ZERO entries and no confidence of its own, which is the
+    correct state: unmeasured, not weakly supported.
+
+    [historical, 2026-09-10, superseded by the paragraph above] EVIDENCE LANE (the half of the
+    2026-09-10 split that is still open): LIT-0688 is the pull designated for this leg and
+    should be RE-SCOPED to this claim in evidence/planning/experiment_proposals.v1.json --
+    EXP-1398's design text already states that "LIT-0688 should be RETAINED and re-scoped to
+    the out_of_domain epidemiological leg only". Not yet done as of 2026-09-10.
   notes: >
     Split out of INV-063 on 2026-09-10 (GFLAG-0204, verdict HOLDS-BUT-MISDIAGNOSED; the user
     decision was the FULL split -- description AND confidence, not notes-only). The
@@ -32825,6 +32832,20 @@
     harm_obs_ema_alpha (0.1). ARC-016 precision wired via e3.current_precision property.
     Backward compatible. Validation: V3-EXQ-324 queued.
 
+    [2026-09-23 governance, GFLAG-0358, applying user decision OPTION I 2026-09-19T02:31:55Z via
+    orchestrate-20260918-1840-cloud4 real AskUserQuestion, chip-20260919-sd020-precision-coupling-
+    runtime-property] SCOPE AMENDMENT (2026-09-19, user decision OPTION I): the precision
+    weighting of the affective-harm prediction-error target is a RUNTIME property, not a
+    training-time one. It is correct while the agent is acting, when e3.current_precision
+    reflects a real running variance; it is destructive during the SD-011 P0 affective-encoder
+    warmup, which by construction runs before any precision has been earned, and where the
+    coupling therefore multiplies the target by its floor (measured precision_norm 0.004, a
+    ~250x attenuation) and reduces training to numerical noise. Training-time uses of this
+    target must floor precision_norm; ree-v3 experiments/_lib/zharm_a_p0_warmup.py does so at
+    0.1 by default (ZHarmAP0Config.p0_precision_norm_floor), chosen mid-plateau on the measured
+    sweep. This narrows WHERE the coupling applies and does not weaken the claim that
+    anterior-insula affective PE is precision-weighted in the acting agent.
+
 - id: SD-021
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: beta_gate must actually be elevated at the tick the readout is taken, and z_harm must be non-null; the CONTROL arm must differ from the DESCENDING arm in the attenuation multiplier alone, with observation, candidate set and harm exposure matched. The legacy path (use_aic_analog False) is the one with demonstrated dynamic range; the AIC path additionally requires operating_mode and drive_level to vary.
@@ -33068,6 +33089,15 @@
     EXQ-323a (2026-04-16, PASS): SD-022 body-damage substrate validated as co-test in
     SD-019/SD-011 nonredundancy experiment. z_harm_a functionally distinct from z_harm_s
     across all 5 seeds. Substrate is production-ready for SD-019/SD-020 experiments.
+
+    [2026-09-23 governance, GFLAG-0350] CORRECTION: functional_restatement's description of
+    harm_obs_a as "structurally identical to harm_obs with a slower time constant" describes
+    the PRE-2026-03-28 construction. ree-v3 2fbf5d62 (2026-03-28) replaced the 50-dim spatial
+    EMA with an agent-cell scalar broadcast (two scalars, hazard and resource, each broadcast
+    identically over 25 dims -- causal_grid_world.py:3037-3038), so the legacy
+    (limb_damage_enabled=False) harm_obs_a is now rank 2 and structurally POORER than harm_obs,
+    not merely a slower-time-constant copy of it. Does not change status/confidence/phase; the
+    limb_damage_enabled=True body-damage source this claim actually validates is unaffected.
   notes: >
     Failure mode mapped to psychiatric conditions: persistent z_harm_a with no current
     world threat = hypervigilance, chronic pain, PTSD (body-state residue persists after
@@ -34776,6 +34806,14 @@
     Also required for: sleep-phase transitions (mode changes require TCL recalibration),
     anaesthesia accounts (MECH-227 = TCL disruption), and the pre-coherency gate (INV-066
     requires that residualization precedes TCL-enabled coherency checks).
+
+    [2026-09-23 governance, GFLAG-0303 item (1)] The 2026-09-11 hold (decision_log
+    gov-20260911-1612, 'Hold - V3 substrate required before meaningful evidence can be
+    collected') predates the 2026-09-16 D-001 bookkeeping edit (REE_assembly ecd247a2db)
+    that moved this claim to implementation_phase v4 / phase_provenance: assigned with
+    v3_pending removed. The hold's rationale text is therefore stale. Disposition (user
+    decision 2026-09-23, flags-only governance cycle): the hold is SUPERSEDED AS MOOT, no
+    status change -- see the 2026-09-23 decision_log entry for this claim.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
@@ -34848,6 +34886,14 @@
     contest + EXQ-481 V_s commit-release. Full V3 substrate plan:
     docs/architecture/dv_temporal_depth_v3_form.md. V3/V4 boundary commitment:
     docs/architecture/v3_v4_phase_substrate_boundary.md.
+
+    [2026-09-23 governance, GFLAG-0303 item (1)] The 2026-09-11 hold (decision_log
+    gov-20260911-1612, 'Hold - V3 substrate required before meaningful evidence can be
+    collected') predates the 2026-09-16 D-001 bookkeeping edit (REE_assembly ecd247a2db)
+    that moved this claim to implementation_phase v4 / phase_provenance: assigned with
+    v3_pending removed. The hold's rationale text is therefore stale. Disposition (user
+    decision 2026-09-23, flags-only governance cycle): the hold is SUPERSEDED AS MOOT, no
+    status change -- see the 2026-09-23 decision_log entry for this claim.
   registered: "2026-04-12"
   location: docs/architecture/dv_temporal_depth_v3_form.md
   source:
@@ -35119,6 +35165,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: out_of_domain
   depends_on:
     - INV-067
     - INV-068
@@ -35151,6 +35198,17 @@
     instability -- all grounded in V(t)/D_V collapse mechanics.
     Loss of consciousness correlates with disrupted long-range cortical connectivity and
     altered oscillatory patterns (increased slow-wave activity) -- consistent with D_V collapse.
+
+    [2026-09-23 governance, GFLAG-0285] epistemic_category set out_of_domain (previously unset,
+    flagged 2026-08-08): an external anaesthesia/consciousness claim that REE substrate cannot
+    test directly (DISPOSITION R8, evidence/planning/falsifier_completion_and_runnability_audit_20260921.md
+    -- "External consciousness/anaesthesia claim; zeroing a V3 scalar is not a test"); the
+    testable V(t)/D_V formalism lives on ARC-053/INV-067/INV-068, which carry their own phase
+    gates. Separately noted, not resolved here: this claim's "V(t) -> 0 globally" framing (a
+    single global integration scalar) is in tension with the dynamic-information-governance
+    family (ARC-145/MECH-560/MECH-561), which holds that effective inter-engine access is
+    CONSTRUCTED and state/routing-dependent (G_eff(t)) rather than a single global scalar.
+    Reconciling the two framings is a /claim-synthesis question, not a text fix.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
 
@@ -45456,6 +45514,23 @@
     hold), but now has its first non-zero exp_conf contribution (previously 0.0 despite lit_conf
     0.805). PROMOTES NOTHING alone; the regulator demonstrably works as designed once the
     encoding-authority bug is fixed.
+
+    [2026-09-23 governance, GFLAG-0372] CORRECTION to two further stale points in this note,
+    both re-measured directly from the same
+    v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3 manifest cited above. (1)
+    "Post-fix spread: 1.4e-03 (z_harm), 1.0e-01 (z_harm_a)" misattributes the 1.4e-03 figure:
+    it is z_BETA's sweep spread (beta_sustain_ratio range ~1.6e-03 in the manifest's
+    arm_results), not z_harm's. z_harm's own trained-agent spread across the 5-tone sweep is
+    4.84e-02 / 5.72e-02 / 1.54e-01 across seeds 42/43/44 -- 30-110x larger than stated -- and
+    it is UNORDERED (per-seed Spearman rho of harm_sustain_ratio vs gaba_tone =
+    +0.10 / +0.70 / -0.50), not a small-but-real monotone effect. (2) The "Still open:
+    pre-registered observable #3 ..." framing above reads as an open question between three
+    responding streams; the same manifest's C2_multi_stream_cluster criterion shows only
+    z_harm_a responds cleanly (rho=-1.00, 3/3 seeds) while z_harm (mean rho +0.10) and z_beta
+    (mean rho +0.23) do not -- only 1 of 3 seeds (seed 44) passes the multi-stream criterion.
+    See this claim's own what_would_answer DISPOSITION (Stale-falsifier correction) for the
+    related, already-applied fix to the WWA's observable-#3 and tau-ordering language. Does
+    not change status/confidence/phase.
   title: "GABAergic regulatory layer applies cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone; missing-decay regulator is the proximal substrate cause of harm-stream lock-in (catatonia subtype II) observed in V3-EXQ-471."
   claim_type: design_decision
   subject: gabaergic.cross_stream_decay_regulator
@@ -56488,7 +56563,7 @@
     re-pointing would only be owed under a full supersede.
   digestion_note: "[2026-08-27 thought-digestion, session responsibility-epistemic-hygiene-d6f9d3] MERGE PROPOSAL PENDING /claim-synthesis confirmation against ARC-071/MECH-323/MECH-324 -- see what_would_answer for full detail and GFLAG (raised same session). Remove this note once claim-synthesis resolves the merge question."
 - id: MECH-318
-  title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C planned wiring closing the loop between the two. Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md."
+  title: "rule_state_abstraction_substrate (meta_RL_recurrent_task_state_representation). A mechanism for abstracting the higher-level rule-state itself as a latent variable in the agent's representation, supporting policy adaptation that depends on inferred rule-context rather than only observable cue. Biological substrate: OFC cognitive map (Wilson, Takahashi, Schoenbaum & Niv 2014; Schuck et al. 2016 OFC encodes task state). Computational analog: meta-RL recurrent task-state representation (Wang et al. 2018 prefrontal-as-meta-RL; Duan et al. 2016 RL^2; Botvinick et al. 2019 review). Sub-claim of ARC-064 bottom-up rule discovery. ABSORPTION CHECK 2026-05-10: VERDICT (B) PARTIALLY ABSORBED. Within-V3 functional weight is borne by SD-033a LateralPFCAnalog rule_state buffer (W1 EMA recurrence + W3 substrate-readiness + W4 downstream bias) plus ARC-062 Phase 1 gated_policy multi-stream context discriminator (W3 per-tick rule-context discrimination + W4 score-aggregation training pressure), with ARC-062 Phase 3 GAP-C wiring now DONE (2026-09-16, V3-EXQ-1039, non_contributory/standard) closing that loop -- the cluster's empirical verdict remains separately gated on GAP-B (in-progress), an independent competence gate this correction does not clear. [2026-09-23 governance, GFLAG-0397] Two residual gaps remain: W2 (multi-task training distribution -- blocked on multi-rule-context substrate, SD-054 single-context insufficient) and W5 (cross-episode hidden-state continuity -- likely V4-scope; SD-033a per-episode reset is architecturally load-bearing for the rest of the agent state machine). Empirical retire-vs-promote verdict deferred to V3-EXQ-543c-successor on multi-rule-context substrate. See REE_assembly/docs/architecture/mech_318_absorption_check.md."
   claim_type: mechanism_hypothesis
   subject: rule_discovery.rule_state_abstraction_substrate
   polarity: asserts
@@ -56589,8 +56664,9 @@
       W3 absorbed by ARC-062 Phase 1 gated_policy multi-stream
          (z_world, z_self, z_harm_a) context discriminator (per-tick,
          trained) + SD-033a rule_state buffer (substrate-ready,
-         content-empty until Phase 3 GAP-C wires the discriminator
-         output into the rule_state update path).
+         content-empty; Phase 3 GAP-C wiring is now DONE (2026-09-16, V3-EXQ-1039,
+         non_contributory/standard) and routes the discriminator output into the
+         rule_state update path).
       W4 absorbed by SD-033a compute_bias() and ARC-062 gated_policy
          heads; both compose additively into dacc_score_bias before
          E3.select().
@@ -56601,8 +56677,11 @@
 
     Empirical retire-vs-promote verdict therefore DEFERRED to
     V3-EXQ-543c-successor on multi-rule-context substrate, sequenced
-    after ARC-062 Phase 2 GAP-B PASS (V3-EXQ-543b) and ARC-062 Phase 3
-    GAP-C wiring closure. If post-Phase-3 the SD-033a + ARC-062
+    after ARC-062 Phase 2 GAP-B PASS (V3-EXQ-543b -- GAP-B remains
+    in-progress as of 2026-09-16, an independent competence gate) and
+    ARC-062 Phase 3 GAP-C wiring closure (DONE 2026-09-16, V3-EXQ-1039;
+    [2026-09-23 governance, GFLAG-0397] this correction does not clear
+    GAP-B). If post-Phase-3 the SD-033a + ARC-062
     cluster produces the within-episode rule-state-adaptation
     behavioural signature on multi-rule-context substrate, MECH-318
     retires as superseded with superseded_by: SD-033a + ARC-062
@@ -56616,7 +56695,10 @@
     Absorption-check verdict B (2026-05-10): the within-V3 portion of
     MECH-318 (W1 + W3 + W4) is partially absorbed into the SD-033a
     LateralPFCAnalog rule_state buffer + ARC-062 Phase 1 gated_policy
-    discriminator + ARC-062 Phase 3 GAP-C planned wiring cluster. The
+    discriminator + ARC-062 Phase 3 GAP-C wiring cluster (GAP-C wiring
+    DONE 2026-09-16, V3-EXQ-1039, non_contributory/standard;
+    [2026-09-23 governance, GFLAG-0397] GAP-B remains the separate,
+    independent in-progress competence gate this does not clear). The
     multi-task-training (W2) and cross-episode-continuity (W5)
     properties are NOT absorbed and remain MECH-318's legitimate
     residual scope if the empirical verdict turns out to require a
@@ -66016,7 +66098,7 @@
   location: docs/architecture/arc_080_object_representation_primitive.md
 
 - id: ARC-083
-  title: "Others-as-object (PILLAR 4 of ARC-080): each other agent j gets its own token-keyed object-file SLOT (z_self_j, z_harm_a_j, drive, commitment chain) -- a special case of the ARC-080 object-file. This pillar is V4 (ARC-010 mirror modelling, ARC-047 SocialGridWorld), gated on MECH-163 multi-step hippocampal planning. Per developmental_needs_register DEV-NEED-021 its prerequisites are object-permanence (PILLAR 1, partial via SD-039 ghost bank) + self-stability (PILLAR 2 self, ARC-081): otherness inference REQUIRES object persistence + a stable self."
+  title: "Others-as-object (PILLAR 4 of ARC-080): each other agent j gets its own token-keyed object-file SLOT (z_self_j, z_harm_a_j, drive, commitment chain) -- a special case of the ARC-080 object-file. This pillar is V4 (ARC-010 mirror modelling, ARC-047 SocialGridWorld), gated on MECH-163 multi-step hippocampal planning. WEAKENED 2026-09-23 (GFLAG-0309, targeted lit-pull REE_assembly 06fa0a6183): otherness inference TYPICALLY DEVELOPS AFTER object-permanence and self-stability progress (DEV-NEED-021's original developmental-ordering observation), but neither is a demonstrated logical/architectural REQUIREMENT -- Sodian+Kristen-Antonow 2015 found neither mediates the actual 12mo-to-50mo predictive path, and Kartner/Keller/Chaudhary 2010 shows matched prosocial behaviour with the mirror-self-recognition link absent. See notes for the full literature basis and the resulting depends_on annotation."
   claim_type: architectural_commitment
   subject: representation.others_as_object_file_slot
   polarity: asserts
@@ -66038,7 +66120,10 @@
     - ARC-010    # other-modelling substrate -- mirror modelling (stable)
     - ARC-047    # other-modelling harness -- SocialGridWorld scent harness (candidate, v4)
     - MECH-163   # GATE -- multi-step hippocampal planning required before V4 social entry
-    - ARC-081    # PREREQUISITE (DEV-NEED-021) -- self-stability: a stable self before others
+    - ARC-081    # SOFT/DEFAULT-ORDERING ONLY, not a gate (weakened 2026-09-23, GFLAG-0309: Sodian+
+                  # Kristen-Antonow 2015 found self-representational stability mediates none of the
+                  # 12mo->50mo predictive path). Retained as depends_on because a build-ordering
+                  # default still exists; NOT treated as a readiness_gate precondition.
     - SD-039     # PREREQUISITE (DEV-NEED-021, partial) -- object-persistence substrate (ghost-goal bank; true object permanence is PILLAR 1, unregistered/future)
   functional_restatement: >
     ARC-083 is a THIN COHERENCE-MAP CHILD of ARC-080, not new mechanism. It adds
@@ -98588,9 +98673,14 @@
   notes: >
     Registered 2026-09-08 from the 2026-09-07 mutual-legibility package. THE METER, not the
     mechanism -- this claim's content is a measurement construct plus one falsifiable
-    developmental prediction. Its orthogonal-Procrustes rung is independently owed elsewhere:
-    V3-EXQ-1002's autopsy names an "information-preserving rotation corroborator" as an open
-    obligation, and a flat result there WEAKENS the confirmed H-C leg. The two-axis
+    developmental prediction. Its orthogonal-Procrustes rung was named by V3-EXQ-1002's autopsy
+    as an owed "information-preserving rotation corroborator". [2026-09-23 governance,
+    GFLAG-0282] That obligation is DISCHARGED, not open: V3-EXQ-1010 (2026-09-11, H-F confirmed)
+    already ran matched comparators at the same 32-dim width -- an information-preserving PCA-32
+    (0.8684) and a random-orthonormal-32 rotation, plus an untrained-net negative control -- and
+    the trained z_world latent scored at or below all three on 3/3 seeds. The result is
+    flat-to-negative for the trained latent, which WEAKENS rather than corroborates the confirmed
+    H-C leg. The two-axis
     requirement is the anti-degeneracy guard and is load-bearing: optimising communication
     -subspace rank toward being as small as possible WITHOUT a competence constraint is an
     explicitly named anti-goal in the source package. DISTINCT FROM ordinary co-training or
