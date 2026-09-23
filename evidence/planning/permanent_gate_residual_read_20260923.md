@@ -115,7 +115,10 @@ unblockers; a row naming none is invisible to it.
 
 The fix is NOT an `experiment_gate` (that is the wrong instrument, per above) and not a text sweep.
 It is for `/governance` to give each of the 14 either a recorded release condition or an explicit
-permanent disposition. Chipped, not actioned here.
+permanent disposition. **Routed as GFLAG-0424** (`stale_note`, naming all 14 claim ids,
+REE_assembly `bead1094ea`) rather than chipped: giving a registry row a disposition is governance's
+own work, and a flag lands in the worklist governance re-derives each cycle instead of becoming a
+second, staler tracker. Not actioned here.
 
 ## State after this session
 
