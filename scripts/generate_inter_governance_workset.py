@@ -179,12 +179,15 @@ backlog, not the workset's headline ready count.
 """
 from __future__ import annotations
 
+import ast
+import io
 import json
 import os
 import re
 import subprocess
 import sys
 import tempfile
+import tokenize
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote as urlquote
@@ -2236,26 +2239,112 @@ def _claim_lit_conf() -> dict[str, float]:
 
 
 _SUBSTRATE_TAG_RE = re.compile(r"\b((?:MECH|ARC|SD|INV|Q|DEV-NEED)-\d+[A-Za-z]?)\b")
+# GFLAG-0254: which comment lines are TAG HEADERS. A comment tags a claim when it
+# leads with an id-shaped token -- `# MECH-463: ...`, `# SD-057 phase-2 L7
+# (MECH-348): ...`. A line led by a CLAIM id counts every claim id on it; a line
+# led by any other id (`# EXQ-048/049 confirmed: ...`) counts only the ids before
+# its first colon. Everything else in a comment is prose that merely MENTIONS a
+# claim ("MECH-057b/090 could not be tested", "the MECH-191 ... gap").
+_TAG_LINE_LEAD_RE = re.compile(r"^[A-Z][A-Z0-9]*(?:-[A-Za-z0-9]+)+\b")
+_CLAIM_LEAD_RE = re.compile(r"^(?:MECH|ARC|SD|INV|Q|DEV-NEED)-\d+[A-Za-z]?\b")
+_SUBSTRATE_SCAN_CACHE: dict = {}
 
 
-def _claims_implemented_in_substrate() -> set[str]:
-    """Claim ids that appear (tagged) in ree-v3/ree_core source -- a deterministic
-    proxy for 'the mechanism substrate is built', since REE modules cite their
-    owning claim id in docstrings/comments. No structured claims.yaml field encodes
-    this (`location` points at lit/architecture docs; `assembly_state` does not
-    distinguish built from unbuilt), so a one-pass source scan is the honest gate.
-    Returns the empty set if the ree_core tree is absent (keeps the confirmer lane
-    inert off-box rather than crashing)."""
-    if not REE_V3_CORE.exists():
+def _comment_tag_ids(comment: str) -> set[str]:
+    """Claim ids a single comment token TAGS (see _TAG_LINE_LEAD_RE above)."""
+    t = comment.strip().lstrip("#").strip()
+    if not _TAG_LINE_LEAD_RE.match(t):
         return set()
-    ids: set[str] = set()
-    for py in REE_V3_CORE.rglob("*.py"):
+    if _CLAIM_LEAD_RE.match(t):
+        return set(_SUBSTRATE_TAG_RE.findall(t))
+    return set(_SUBSTRATE_TAG_RE.findall(t.split(":", 1)[0]))
+
+
+def _substrate_tags_in_source(text: str) -> tuple[set[str], set[str]]:
+    """(tagged, mention_only) claim ids for one ree_core source file.
+
+    tagged -- the id occurs in a string constant (module/class/function
+    docstrings, which is the REE tagging convention, and code strings) or in a
+    comment tag header (_comment_tag_ids). mention_only -- the id occurs in the
+    raw text but ONLY in comment prose. A file that does not parse is
+    cannot-determine: every id in it is mention_only, never silently tagged."""
+    mentioned = set(_SUBSTRATE_TAG_RE.findall(text))
+    if not mentioned:
+        return set(), set()
+    try:
+        tree = ast.parse(text)
+        comments = [
+            tok.string
+            for tok in tokenize.generate_tokens(io.StringIO(text).readline)
+            if tok.type == tokenize.COMMENT
+        ]
+    except (SyntaxError, ValueError, tokenize.TokenError):
+        return set(), mentioned
+    tagged: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            tagged |= set(_SUBSTRATE_TAG_RE.findall(node.value))
+    for c in comments:
+        tagged |= _comment_tag_ids(c)
+    tagged &= mentioned
+    return tagged, mentioned - tagged
+
+
+def _scan_substrate_tags(core: Path) -> tuple[frozenset, frozenset]:
+    """(tagged, mention_only) over every .py under `core`; an id tagged in ANY
+    file is tagged. Cached on the file set + mtimes, not per-process: serve.py
+    imports this module and is long-lived, so a plain memo would go stale as
+    ree_core changes. Empty sets if the tree is absent (keeps the confirmer lane
+    inert off-box rather than crashing)."""
+    if not core.exists():
+        return frozenset(), frozenset()
+    files = sorted(core.rglob("*.py"))
+    try:
+        key = (str(core), tuple((str(p), p.stat().st_mtime_ns) for p in files))
+    except OSError:
+        key = None
+    if key is not None and key in _SUBSTRATE_SCAN_CACHE:
+        return _SUBSTRATE_SCAN_CACHE[key]
+    tagged: set[str] = set()
+    mentioned: set[str] = set()
+    for py in files:
         try:
             text = py.read_text(encoding="utf-8", errors="ignore")
         except Exception:
             continue
-        ids |= set(_SUBSTRATE_TAG_RE.findall(text))
-    return ids
+        t, m = _substrate_tags_in_source(text)
+        tagged |= t
+        mentioned |= m
+    result = (frozenset(tagged), frozenset(mentioned - tagged))
+    if key is not None:
+        _SUBSTRATE_SCAN_CACHE.clear()
+        _SUBSTRATE_SCAN_CACHE[key] = result
+    return result
+
+
+def _claims_implemented_in_substrate() -> set[str]:
+    """Claim ids TAGGED in ree-v3/ree_core source -- a deterministic proxy for
+    'the mechanism substrate is built', since REE modules cite their owning claim
+    id in docstrings and comment tag headers. No structured claims.yaml field
+    encodes this (`location` points at lit/architecture docs; `assembly_state`
+    does not distinguish built from unbuilt), so a one-pass source scan is the
+    honest gate.
+
+    GFLAG-0254: this used to regex the RAW text, so a comment recording ABSENCE
+    ("EXQ-048/049 confirmed: beta gate never elevated, MECH-057b/090 could not be
+    tested", config.py) made MECH-057b 'built'. Prose-only mentions are now the
+    separate cannot-determine set _claims_mentioned_only_in_substrate()."""
+    return set(_scan_substrate_tags(REE_V3_CORE)[0])
+
+
+def _claims_mentioned_only_in_substrate() -> set[str]:
+    """Claim ids that appear in ree_core ONLY in comment prose (GFLAG-0254) --
+    neither evidence that the substrate is built nor that it is not. The
+    confirmer lane surfaces these `blocked` (verify by hand) rather than
+    `ready` or dropped: 11 of 304 formerly-'built' claims on 2026-09-23, about
+    half genuine absence/gap notes (MECH-191, MECH-329, MECH-022) and half real
+    substrate named mid-sentence (MECH-074, MECH-023)."""
+    return set(_scan_substrate_tags(REE_V3_CORE)[1])
 
 
 def _evidence_confirmer_candidates(
@@ -2264,6 +2353,7 @@ def _evidence_confirmer_candidates(
     substrate_by_id: dict[str, dict],
     queued_claim_ids: set[str] | None = None,
     adjudicated_by_claim: dict[str, dict] | None = None,
+    mention_only: set[str] | None = None,
 ) -> list[dict]:
     """GOV-CONFIRM-1 (plan gov_confirm_1_plan.md): candidate/provisional claims
     that are confirmable-but-unconfirmed -- built substrate + thin/zero experimental
@@ -2321,14 +2411,27 @@ def _evidence_confirmer_candidates(
     the same branch, with the flag named as the reason. MECH-489 is the confirmed
     case -- three workers (2026-08-03 lineage, IGW-20260826-235,
     IGW-20260906-241), each correctly concluding DO-NOT-QUEUE.
+
+    GFLAG-0254 -- MENTION-ONLY SUBSTRATE. `mention_only` (the call site passes
+    _claims_mentioned_only_in_substrate()) holds claims whose only ree_core
+    occurrence is comment prose, which is evidence neither way. Such a candidate
+    is returned with a `substrate_unverified` reason and rendered `blocked`
+    (never `ready`: that is the false 'built' the flag was about; never dropped:
+    half the population is real substrate named mid-sentence). It sorts after
+    the tagged candidates and re-enters as a normal candidate once ree_core
+    tags it. Defaults to empty, so a caller that does not pass it gets the
+    tagged-only gate.
     """
     lit_conf = _claim_lit_conf()
     built = _claims_implemented_in_substrate()
     queued_claim_ids = queued_claim_ids or set()
     adjudicated_by_claim = adjudicated_by_claim or {}
+    mention_only = (mention_only or set()) - built
     out: list[dict] = []
     for cid, meta in claims_meta.items():
-        if cid not in built:  # built-substrate guard FIRST -- also gates the v3_pending relaxation
+        # built-substrate guard FIRST -- also gates the v3_pending relaxation.
+        # A mention-only claim passes it only to be rendered `blocked` below.
+        if cid not in built and cid not in mention_only:
             continue
         if cid in exp_evidence:
             continue
@@ -2380,8 +2483,15 @@ def _evidence_confirmer_candidates(
                 ),
                 "session": "",
             }
+        if cid in mention_only:
+            rec["substrate_unverified"] = (
+                f"GFLAG-0254: {cid} appears in ree-v3/ree_core ONLY in comment prose "
+                f"(no docstring, string constant or '# {cid}: ...' tag header), which "
+                f"may record ABSENCE ('could not be tested', 'gap'). Verify by hand that "
+                f"the mechanism is built, then tag it in ree_core to re-admit this confirmer."
+            )
         out.append(rec)
-    out.sort(key=lambda d: (-d["lit_conf"], d["claim_id"]))
+    out.sort(key=lambda d: ("substrate_unverified" in d, -d["lit_conf"], d["claim_id"]))
     return out
 
 
@@ -3439,7 +3549,7 @@ def build_workset() -> dict:
     confirmer_adjudicated = _confirmer_adjudicated_proposals()
     for conf in _evidence_confirmer_candidates(
         claims_meta, exp_evidence, substrate_by_id, confirmer_queued_claims,
-        confirmer_adjudicated,
+        confirmer_adjudicated, _claims_mentioned_only_in_substrate(),
     )[:40]:
         cid = conf["claim_id"]
         adj = conf.get("adjudication")
@@ -3452,6 +3562,16 @@ def build_workset() -> dict:
                 + f" recorded {adj['proposal_id']} status={adj['status']} in "
                 f"experiment_proposals.v1.json. See blocked_by; re-runs of this "
                 f"confirmer are NO-OPs until that status is cleared."
+            )[:240]
+        elif conf.get("substrate_unverified"):
+            # GFLAG-0254: a prose-only mention is not evidence the substrate is
+            # built -- surfaced for a human, never autospawned.
+            item_status = "blocked"
+            blockers = [conf["substrate_unverified"][:240]]
+            why_now = (
+                f"GOV-CONFIRM-1: candidate w/ ZERO experimental evidence, lit_conf "
+                f"{conf['lit_conf']:.2f}, but built-substrate is UNVERIFIED (named only "
+                f"in ree_core comment prose). See blocked_by. loc: {conf['location']}"
             )[:240]
         else:
             item_status = conf_status
