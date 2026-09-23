@@ -1,0 +1,208 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1075_sdppb5_action_sensitivity_validation",
+  "run_id": "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-23T03:33:29Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "a95e33e172f7c1f8fd3d3154f26811d43d1ac4d6",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readability_bought_at_reconstruction_cost",
+    "combination_rule": "PASS iff at least ONE ON rung meets A1 (inverted-rule ratio > 1.0) AND A3 AND A4, each on >= 2/3 seeds, AND every precondition N1/N2/N3 is met. A1 met with A3/A4 violated is FAIL-b (action-sensitivity bought by destroying reconstruction), NOT a pass. A2 (skill vs the trivial predictor) is RECORDED but does NOT gate: it is encoder-bound and this driver's OFF arm does not reproduce V3-EXQ-1073's skill baseline, so a skill verdict here would not be comparable to that run.",
+    "preconditions": [
+      {
+        "name": "gate_spoke_in_every_cell",
+        "description": "no cell returned cannot_determine (N1)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "the gate's own third value; a monostrategy battery cannot test",
+        "met": true
+      },
+      {
+        "name": "battery_distinct_actions",
+        "description": "worst cell's distinct-action count (N2 denominator)",
+        "measured": 5.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "random-action battery collection",
+        "met": true
+      },
+      {
+        "name": "battery_rows",
+        "description": "worst cell's battery row count (N2)",
+        "measured": 64.0,
+        "threshold": 16.0,
+        "direction": "lower",
+        "control": "frozen battery captured before P0",
+        "met": true
+      },
+      {
+        "name": "off_arm_reproduces_1073_blindness",
+        "description": "ARM_OFF must be action_blind on >= 2/3 seeds (N3); if OFF comes back ready the operating point has drifted since 1073 and the ON/OFF comparison is void",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "V3-EXQ-1073 measured ratio 0.760/0.901/0.881, skill -0.071/+0.227/-0.007 at this operating point",
+        "met": true
+      },
+      {
+        "name": "canary_replays",
+        "description": "the gate's own known-baseline replay reproduces 1073's classification",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "check_canary() over the landed autopsy values",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "A1_action_sensitivity_ratio",
+        "load_bearing": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "description": "seeds with ratio > 1.0 at the best ON rung",
+        "passed": true
+      },
+      {
+        "name": "A2_skill_vs_identity_RECORDED_NOT_GATED",
+        "load_bearing": false,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "seeds where the SAME seed clears both the ratio bar and skill > 0 at the best ON rung (MECH-573)",
+        "passed": false
+      },
+      {
+        "name": "A3_conv_rel_drop_preserved",
+        "load_bearing": true,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "seeds still converging >= 0.99 at the best ON rung",
+        "passed": false
+      },
+      {
+        "name": "A4_mse_not_inflated",
+        "load_bearing": true,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "seeds with ON battery MSE <= 2x OFF at the best ON rung",
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "A1_action_sensitivity_ratio": true,
+      "A2_skill_vs_identity_RECORDED_NOT_GATED": true,
+      "A3_conv_rel_drop_preserved": true,
+      "A4_mse_not_inflated": true
+    },
+    "passing_rungs": [],
+    "sensitive_but_broken_rungs": [
+      "ARM_ON_M010",
+      "ARM_ON_M050"
+    ],
+    "sensitive_not_readable_rungs": []
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "440f7aa5c942e9608d4ad68af7ab36c4a120db257cb50dde20ab9454af129bc2",
+  "substrate_commit": {
+    "commit": "a95e33e172f7c1f8fd3d3154f26811d43d1ac4d6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "e2.use_world_interventional": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 157.34149186,
+  "config": {
+    "arms": [
+      {
+        "arm": "ARM_OFF",
+        "margin": null
+      },
+      {
+        "arm": "ARM_ON_M001",
+        "margin": 0.01
+      },
+      {
+        "arm": "ARM_ON_M005",
+        "margin": 0.05
+      },
+      {
+        "arm": "ARM_ON_M010",
+        "margin": 0.1
+      },
+      {
+        "arm": "ARM_ON_M050",
+        "margin": 0.5
+      }
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "p0_steps": 3600,
+    "world_dim": 16,
+    "self_dim": 16,
+    "battery_n": 64,
+    "interventional_fraction": 0.3,
+    "env": {
+      "size": 5,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 15,
+    "goal_state_present": false
+  }
+}
