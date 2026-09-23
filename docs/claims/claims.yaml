@@ -3697,7 +3697,7 @@
     CONFIRMING: Integration preserves harm-context residue while improving harmless-context specificity and traversability relative to both controls at a declared compression budget. Manipulation: Enable sleep residue integration versus disable integration, keeping experiences and sleep scheduling fixed. Control: No-integration and uniform naive-decay arms; fixed harm and equidistant harmless evaluation points. Required event: WRITEBACK after harm experience with overlapping residue kernels. DV: Pre/post harm-context residue preservation, harm-to-harmless specificity ratio, approximation error at a declared representation budget, and harmless-region proposal rejection rate.
     FALSIFYING: After verifying a live trained approximator is the consumer's read path, integration erases harm information, broadens over-generalisation or fails to improve the declared specificity/traversability measures. Falling approximation loss alone does not establish all four claimed effects.
     SUBSTRATE / INSTRUMENT REQUIREMENT: SleepLoopManager WRITEBACK calls ResidueField.integrate and emits both firing/training checks. integrate trains the neural approximator without merging RBF centres or changing RBF weights. evaluate and evaluate_trajectory already read RBF + 0.1 * neural output; a paired geometry/readout driver must distinguish training loss from geometry at that live consumer. Consumer / boundary: Offline residue representation changed in WRITEBACK and the same representation actually read by waking trajectory scoring. Existing owners: MECH-018, GFLAG-0366.
-    DISPOSITION: R1 (primary); The old missing WRITEBACK call is repaired. A matched geometry/consumer assay is still needed; fixed neural capacity and unchanged RBF centres do not instantiate a literal centre-compression manipulation. Secondary classes: R7. Corrected 2026-09-21 against current code and autopsies; previous text preserved verbatim in the audit JSON history. No status/confidence change, build authorisation or experiment queueing.
+    DISPOSITION: R1 (primary); The old missing WRITEBACK call is repaired. A matched geometry/consumer assay is still needed; fixed neural capacity and unchanged RBF centres do not instantiate a literal centre-compression manipulation. Readout (iii) COMPRESSION is NARROWED (USER DECISION 2026-09-19, GFLAG-0356/0366): it is scored as approximation error (integration_loss) at a declared representation budget only. No centre-merge operation is required or commissioned, and active-centre count is not a DV (6 -> 6 by construction). Secondary classes: R7. Corrected 2026-09-21 against current code and autopsies; previous text preserved verbatim in the audit JSON history. No status/confidence change, build authorisation or experiment queueing.
   source:
     - docs/processed/legacy_tree/architecture/sleep/residue_integration.md
 - id: IMPL-017
@@ -4953,7 +4953,7 @@
     CONFIRMING: harm-avoidance depends on BOTH clauses. Three arms on matched seeds over long lives with hazards straddling transitions: (A) intact; (B) mode-locked (no transitions); (C) reset-on-switch (residue field + e2_harm_s restored to their pre-switch snapshot at every mode switch, transitions intact). Readouts: recurrence rate of harm from hazards learned BEFORE a transition, measured AFTER it; and the avoidance COST (approach-suppression of non-harm resources, i.e. over-generalised avoidance) in the post-transition mode. CONFIRMING if (C) shows harm recurrence above (A) (preservation across transitions is load-bearing) AND (B) shows a distinct deficit from (A) -- either harm recurrence (the locked mode cannot consolidate what it learned) or an avoidance-cost rise (a hypervigilance lock), sign-consistent across >=3 seeds.
     FALSIFYING: (A) = (B) = (C) on both readouts -- mode transitions and cross-mode preservation are irrelevant to harm behaviour in V3, and 'ethical behaviour depends on appropriate transitions between modes' has no content here; or (C) = (A) because harm learning is entirely re-acquirable within-mode (then the preservation clause is false as stated and the claim should be narrowed to the transition clause).
     SUBSTRATE: ree_core/cingulate/salience_coordinator.py (SD-032a operating_mode, MECH-259 switch threshold, MECH-261 write_gate registry), ree_core/residue/field.py, e2_harm_s (ARC-033) in ree_core/agent.py, ree_core/sleep/phase_manager.py for the offline_consolidation mode. Built. Note the MECH-027 hypervigilance probe (V3-EXQ-979, 2026-09-02) was refused because the precision channel had no graded runtime consumer -- this design does not read precision; it reads harm recurrence and avoidance cost, which have consumers.
-    Disposition 2026-09-16: testable now; complicated (buildable). Biology first: the doc grounds this in fatigue / trauma / care as mode-shaping factors -- the reset-on-switch arm is the mechanistic analogue of state-dependent learning failing to transfer; no lit-pull owed before the test.
+    DISPOSITION (2026-09-21 audit, applied 2026-09-23 per GFLAG-0342): R5. Genuine within-life graded mode transitions (owed by substrate_queue mode-governance-engagement / sd_salience_contested_mode_occupancy) and a registered MECH-261 harm-learning write_gate target are both unsatisfiable today (EXP-0765 blocked_substrate); the falsifier design itself is KEPT. Existing ownership: MECH-028, EXP-0765, GFLAG-0342, MECH-261, MECH-259, chip-20260917-sd032a-operating-mode-no-consumer. Biology first: the doc grounds this in fatigue / trauma / care as mode-shaping factors; no lit-pull owed.
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
 - id: MECH-029
@@ -5278,6 +5278,7 @@
     reading: provisional
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-013
     - ARC-018
@@ -30701,7 +30702,7 @@
 - id: INV-063
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: P1-P4 stand as written, but leg A must first be RE-REGISTERED with a DV that is not a transform of e3_prediction_error, and the two P1 sub-controls the driver already computes (PE decay within a stationary window, and the matched-PE noise arm) must actually gate rather than be recorded and ignored. Any slot-routed DV stays excluded, now for a stronger reason than P5 gives: writing at all homogenises the bank.
-    CONFIRMING: At pinned offline budget with an independent leg-A DV and a leg-B readout demonstrated to improve across sleep at all, both legs degrade monotonically as intake falls AND the drop between the two lowest arms exceeds the drop between the two highest by the pre-registered SD-scaled margin, on at least 2/3 seeds in the same direction on both legs. Manipulation: Graded waking entropy intake via the SD-MEL-PRODUCER ladder (interval in {0, long, medium, short}) at fixed offline budget, with use_mel_consumer, use_entry_pressure and use_within_life_sleep_trigger all off so sleep quantity cannot co-vary with intake. Control: Zero cross-arm variance in cumulative_sws_writes and cumulative_rem_rollouts asserted from output, plus a matched-PE observation-noise arm that must NOT reproduce the DV pattern, and a stationary-window decay check on steps_since_world_rule_shift. Required event: A multi-episode life at a pinned offline budget under a four-arm graded intake ladder driven by world_rule_shift_enabled/_interval/_depth, with sleep firing and non-zero SWS writes and REM rollouts asserted in every arm including the floor arm. DV: Leg A needs a replacement offline-function DV independent of e3_prediction_error -- a candidate is the replay start-selection composition (which episodes are drawn), not the surprise weight that scores them. Leg B is the across-sleep change in a frozen held-out world-forward readout -- the `agent.e2.world_forward` head, NOT the E2 motor-sequence-learning leg, which is excluded from this claim on the MECH-457 competence floor (the 'E1' label this leg carried until 2026-09-20 was inherited prose naming a head that does not exist; GFLAG-0355). THE READOUT IS DELIBERATELY NOT PINNED TO A NAMED OBJECTIVE, and any readout used here must satisfy BOTH of two requirements, never just one: (i) READABLE on a converged base -- the statistic must not sit at its chance or degenerate value, asserted from measured output, with conv_rel_drop >= 0.99 asserted from measured output and never from config; AND (ii) MOVES IN THE ASSERTED DIRECTION -- the across-sleep delta positive at the SAME setting that satisfies (i). Both candidates measured to date fail one of these, and the InfoNCE candidate fails both SIMULTANEOUSLY in its readout temperature: on V3-EXQ-798a's configuration readability (headroom > 5% of ln K) requires tau <= 0.01 while a positive across-sleep delta requires tau >= 0.03, with no overlapping window (GFLAG-0382; n=1 seed, 1800-step P0, one sleep cycle -- enough to decline to REGISTER the pin, NOT enough to assert leg B is permanently unreadable, which is why this states a requirement rather than a verdict). SUPPLYING A READOUT THAT MEETS (i) AND (ii) TOGETHER IS THE SUBSTRATE DEPENDENCY THIS LEG IS BLOCKED ON, and any re-queue must demonstrate it BEFORE the four-arm ladder is worth running.
+    CONFIRMING: At pinned offline budget with an independent leg-A DV and a leg-B readout demonstrated to improve across sleep at all, both legs degrade monotonically as intake falls AND the drop between the two lowest arms exceeds the drop between the two highest by the pre-registered SD-scaled margin, on at least 2/3 seeds in the same direction on both legs. Manipulation: Graded waking entropy intake via the SD-MEL-PRODUCER ladder (interval in {0, long, medium, short}) at fixed offline budget, with use_mel_consumer, use_entry_pressure and use_within_life_sleep_trigger all off so sleep quantity cannot co-vary with intake. Control: Zero cross-arm variance in the cross-cycle sums of the per-cycle output keys sws_n_writes and rem_n_rollouts asserted from output (no cumulative_* key exists in ree_core; GFLAG-0359), plus a matched-PE observation-noise arm that must NOT reproduce the DV pattern, and a stationary-window decay check on steps_since_world_rule_shift. Required event: A multi-episode life at a pinned offline budget under a four-arm graded intake ladder driven by world_rule_shift_enabled/_interval/_depth, with sleep firing and non-zero SWS writes and REM rollouts asserted in every arm including the floor arm. DV: Leg A needs a replacement offline-function DV independent of e3_prediction_error -- a candidate is the replay start-selection composition (which episodes are drawn), not the surprise weight that scores them. Leg B is the across-sleep change in a frozen held-out world-forward readout -- the `agent.e2.world_forward` head, NOT the E2 motor-sequence-learning leg, which is excluded from this claim on the MECH-457 competence floor (the 'E1' label this leg carried until 2026-09-20 was inherited prose naming a head that does not exist; GFLAG-0355). THE READOUT IS DELIBERATELY NOT PINNED TO A NAMED OBJECTIVE, and any readout used here must satisfy BOTH of two requirements, never just one: (i) READABLE on a converged base -- the statistic must not sit at its chance or degenerate value, asserted from measured output, with conv_rel_drop >= 0.99 asserted from measured output and never from config, AND skill score 1 - MSE_model/MSE_identity > 0 against identity_predictor_mse (the copy-input reference) on the same frozen battery at the same point, because conv_rel_drop is normalised against random init and a head can clear it while carrying no dynamics (GFLAG-0407, ratified 2026-09-23; same finding registered as MECH-573); AND (ii) MOVES IN THE ASSERTED DIRECTION -- the across-sleep delta positive at the SAME setting that satisfies (i). Both candidates measured to date fail one of these, and the InfoNCE candidate fails both SIMULTANEOUSLY in its readout temperature: on V3-EXQ-798a's configuration readability (headroom > 5% of ln K) requires tau <= 0.01 while a positive across-sleep delta requires tau >= 0.03, with no overlapping window (GFLAG-0382; n=1 seed, 1800-step P0, one sleep cycle -- enough to decline to REGISTER the pin, NOT enough to assert leg B is permanently unreadable, which is why this states a requirement rather than a verdict). SUPPLYING A READOUT THAT MEETS (i) AND (ii) TOGETHER IS THE SUBSTRATE DEPENDENCY THIS LEG IS BLOCKED ON, and any re-queue must demonstrate it BEFORE the four-arm ladder is worth running.
     FALSIFYING: With the same preconditions met, the degradation is a slope rather than a knee, or is absent, or reproduces in the matched-PE noise arm -- the knee being the load-bearing leg that distinguishes INV-063 from INV-050. A failure under unmet preconditions is not evidence against the claim.
 
     PRECONDITION NOT MET (P-FAIL): the CONFIRMING and FALSIFYING branches above are each conditioned on the preconditions being met, so a run -- or a diagnostic short of a run -- that establishes a precondition CANNOT currently be met has no registered outcome under either and must NOT be read as a falsification. Pre-registered consequence: the claim converts to epistemic_category substrate_conditional, status STAYS candidate, the failing precondition is named together with the measurement that failed it, and no further experiment budget is spent on this falsifier until the named substrate exists. This is a legitimate and useful outcome and is NOT a falsification. Registered retroactively on 2026-09-22 because it was already exercised on 2026-09-20 (GFLAG-0389 / GFLAG-0390) through a route the falsifier did not carry -- the phrase circulating in those flags and in this claim's evidence_quality_note, that the claim's own text calls conversion 'a legitimate, useful outcome', was not in fact in what_would_answer. Without this clause a later reader could reasonably read a P-gate failure as the FALSIFYING branch (flat -> 'genuinely falsified'), which is wrong by the claim's own logic.
@@ -75248,7 +75249,7 @@
 
 # --- fast_empathy_v5 cluster (ARC-094/095, MECH-405/406/407/408, Q-073) ---
 - id: ARC-094
-  title: "No empathy module / no empathy scalar: fast empathy must emerge from binding existing motivational-affective streams across self -> object -> other, never as an empathy_enabled flag or empathy_score primitive."
+  title: 'No empathy module / no empathy scalar: fast empathy must emerge developmentally from existing motivational-affective streams -- the fast affective route scaffolds the slower self -> object -> other mentalizing route, which then differentiates from it -- never as an empathy_enabled flag or empathy_score primitive.'
   claim_type: architectural_commitment
   subject: social.no_empathy_scalar_prohibition
   polarity: asserts
@@ -75276,6 +75277,8 @@
     scalar violates it. It is the spine of node EMP-1 and constrains every binding
     node below. Replaces NEWCLAIM:no_empathy_scalar_prohibition.
     substrate_conditional on the unbuilt V5 social substrate. DO NOT build in V3.
+  notes: |
+    [2026-09-23 governance, GFLAG-0343] Reworded from concurrent binding to developmental scaffolding per the user's 2026-09-18 reading. Under it, Krishnan et al. 2016 (somatic/vicarious pain cross-decode at chance) is the PREDICTED mature endpoint, not a falsifier. MECH-569 stays a separate claim: ARC-094 is the structural no-scalar commitment, and MECH-569 is the positive developmental-order hypothesis.
 
 - id: ARC-095
   title: "The motivational-affective stream taxonomy (liking, wanting, suffering, threat, relief, frustration, curiosity, attachment/proximity, fatigue/cost, agency, prediction-error) is an open, extensible register of handles -- it must permit later split/merge/rename and must not be frozen into a final ontology."
@@ -76955,9 +76958,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1075_2026-09-23
-      as_of: 2026-09-23
-      verdict: non_contributory/standard
+      from: failure_autopsy_V3-EXQ-1039a_2026-09-20
+      as_of: 2026-09-20
+      verdict: "non_contributory/standard"
   diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   subject: goal.maintenance_feedback_necessity
@@ -77364,9 +77367,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1075_2026-09-23
-      as_of: 2026-09-23
-      verdict: non_contributory/standard
+      from: failure_autopsy_V3-EXQ-1039a_2026-09-20
+      as_of: 2026-09-20
+      verdict: "non_contributory/standard"
   diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   subject: goal.subgoal_bootstrapped_seeding
@@ -77703,9 +77706,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1039_2026-09-16
-      as_of: 2026-09-16
-      verdict: non_contributory/standard
+      from: failure_autopsy_V3-EXQ-1012a_2026-09-14
+      as_of: 2026-09-14
+      verdict: "non_contributory/standard"
   epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
@@ -87279,9 +87282,12 @@
   - docs/thoughts/2026-06-10_z_harm_a_saturation_decoupling.md
   - evidence/planning/thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md
   falsifier: Two-arm comparison, norm-readout vs trained-head-readout, matched seeds. PASS requires BOTH (a) cross-state dynamic range of the readout increases by a margin scaled on the SD of the delta plus an absolute floor, and (b) at least one downstream consumer changes measurably (commit-threshold distribution or lambda_eff distribution moves beyond the seed-noise band). FAIL if range rises but nothing downstream moves -- that shows the readout is not load-bearing.
-  non_degeneracy_precondition: The z_harm_a LATENT must itself carry decodable cross-state information -- a linear decode of behavioural mode or harm-event status from z_harm_a must clear a floor with non-zero cross-seed variance. If the latent is uninformative the readout form is not the defect and the run self-routes substrate_not_ready.
+  non_degeneracy_precondition: 'SUPERSEDED 2026-09-23 (GFLAG-0348). The decode-floor form cleared vacuously: EXP-1194 was refused 2026-09-18 (harm_obs_a rank 2, affective encoder untrained, corr(norm, hazard_EMA)=0.9885). The user decided 2026-09-18 on D then C (chip-20260918-sd086-precondition-respec). Its option-C build V3-EXQ-1064 was refused at design 2026-09-19 (passes on an untrained projection; target = encoder input coords). The operative precondition is the what_would_answer NON-DEGENERACY PRECONDITION: a trained affective encoder, a readout target independent of its own input coordinates, blocked-in-time held-out evaluation, and norm and scalar-head readouts live at the same consumer; random-projection controls must not pass.'
   scope_note: 'Curriculum-scope condition (intake candidate 5): every source number is from a ~50-episode raw warmup with scaffold_train_harm_pathway off and no scaffolded_sd054_onboarding. Conclusions are scoped to raw-warmup agents unless re-run on the curriculum-trained configuration. See project_stageh_harm_pathway_training / 603i/603k harm-pathway co-training.'
-  notes: Reaped from the 2026-06-10 z_harm_a saturation-decoupling intake (candidate 1), written 2026-07-21 by session confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Internal experimental observation from the V3-EXQ-664 affective fishtank showcase; the embodied visualisation surfaced the saturation before the scalar metrics (feedback_whimsy_visualization). No claim in the registry asserts a READOUT FORM for z_harm_a; SD-011/SD-019/SD-019b/MECH-219 constrain what the latent must encode, none constrains how it is read. Readout swap is a substrate change and should not be built until SD-087 and Q-086 report (complex, probe-gated).
+  notes: |
+    Reaped from the 2026-06-10 z_harm_a saturation-decoupling intake (candidate 1), written 2026-07-21 by session confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Internal experimental observation from the V3-EXQ-664 affective fishtank showcase; the embodied visualisation surfaced the saturation before the scalar metrics (feedback_whimsy_visualization). No claim in the registry asserts a READOUT FORM for z_harm_a; SD-011/SD-019/SD-019b/MECH-219 constrain what the latent must encode, none constrains how it is read. Readout swap is a substrate change and should not be built until SD-087 and Q-086 report (complex, probe-gated).
+
+    [2026-09-23 governance, GFLAG-0336] V3-EXQ-642d's z_harm_a-None blocker is SOLVED: the env needs harm_history_len set, plus harm_obs_a_dim (stack.py:1612 gate). SD-011 is NOT the z_harm_a hazard-discrimination failure; negatives route to SD-087/Q-086. The 'decode from harm_history alone first' check is subsumed by the WWA NON-DEGENERACY PRECONDITION (readout target independent of the encoder's own input coordinates; 2026-09-21 audit). V3-EXQ-1054 is refused and unqueued.
   default_off_scope_note: |
     [2026-08-09 governance, GFLAG-0008 resolution]: the title's "E3 consumes it as an
     approximately constant gain" claim is scoped to a NON-DEFAULT configuration. Both named read
@@ -100011,9 +100017,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
-      as_of: 2026-09-23
-      verdict: mixed/standard
+      from: failure_autopsy_V3-EXQ-1044_2026-09-17
+      as_of: 2026-09-17
+      verdict: "note_only (claim-free diagnostic; no direction)/substrate_conditional"
   evidence_quality_note: >
     [2026-09-17 | V3-EXQ-1044 | failure_autopsy_V3-EXQ-1044_2026-09-17] NOTE-ONLY. Claim-free
     diagnostic (claim_ids: [] by design), excluded from scoring -- no evidence_direction is written
@@ -100257,9 +100263,9 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
-      as_of: 2026-09-23
-      verdict: mixed/standard
+      from: failure_autopsy_V3-EXQ-1023a_2026-09-17
+      as_of: 2026-09-17
+      verdict: weakens/standard
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true
   pending_retest_after_substrate: true
@@ -103924,6 +103930,8 @@
     already refutes that story for this implementation (the logits are squared L2 distances, so a global
     scale changes every distance and a global shift leaves a cross term that does not cancel), and nothing
     here revives it.
+
+    [2026-09-23 governance, GFLAG-0413] 1073 evidence PROVISIONAL: alpha_world 0.3 < SD-008 floor, post-death battery (GFLAG-0433/0434; autopsy 1079). ARM A vs ARM D-global is a direct lr-lever measurement for this claim.
   what_would_answer: |-
     NON-DEGENERACY PRECONDITION: the comparison must hold the OBJECTIVE and the replay content fixed and
     vary ONLY the displacement-to-residual ratio, or the step-size account is confounded with MECH-574's
