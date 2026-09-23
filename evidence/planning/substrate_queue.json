@@ -5916,7 +5916,7 @@
       },
       "ready": false,
       "node_class": "complicated (buildable)",
-      "status_phase": "build_owed",
+      "status_phase": "closed",
       "status_phase_note": "Backfilled 2026-08-08 (worked example for the status_phase schema addition, session lucid-spence-efbee6). NOT validation_pending despite ready_blocked_by's own 2026-07-08 text ('forward motion is validation, not construction') -- that text is itself stale by the end of its own entry: the LATER-appended reconcile_note_2026_07_08_719a (same day, but written after ready_blocked_by per last_seen_session=nifty-booth-b574cf-governance-apply-719a) reframes the whole downstream-retest wall as ONE competence root (P2 foraging competence 0/3 seeds at floor) and states explicitly 'NEXT STEP = competence-localization diagnostic ... BEFORE any build' with the re-derive brake FIRED against further same-claim behavioural retests. So the entry's own two most-recent notes disagree about what is owed (retest vs diagnostic) and only the later one is current -- exactly the failure mode status_phase exists to make visible without reading ~400 words of prose to find out which timestamp wins.",
       "ready_blocked_by": "RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T0639Z) and MECH-449 (Go/No-Go; V3-EXQ-689g RAN PASS 2026-06-21, promoted governance 2026-06-22). depends_on_unresolved was [V3-EXQ-689g falsifier run], which has now SCORED -> emptied. NO NEW BUILD is owed on this entry (confirmed failure_autopsy_V3-EXQ-713_2026-07-05: the cross-loop-arbitration-REWEIGHTING route is exhausted and conversion is a SELECTION-face op -- this entry, MECH-448 -- already lifting on GAP-A). ready stays FALSE because the remaining work is DOWNSTREAM BEHAVIOURAL VALIDATION, not a buildable substrate item. UPDATE 2026-07-08 (substrate-queue reconcile): the named selection-face retests have all RUN and did NOT yet demonstrate the GAP-A lift generalising off the foraging substrate -- 654h (arc_062 GAP-B rule-apprehension) RAN 2026-06-21 FAIL/substrate_not_ready_requeue; 485i (sd033b demotion-enabled) RAN 2026-06-21 FAIL/substrate_not_ready_requeue; 625e (sd037 axis-b P1b) RAN 2026-06-19 FAIL/substrate_not_ready_requeue; 445h (sd032b dACC reef) RAN 2026-05-08 evidence_direction=weakens; all four reviewed. The rung-6 de-commit/release-DURATION face (460-lineage; separately BUILT via the closure-commit-entry primitive) also ran its readiness diagnostics (460h 2026-06-20 + 460i 2026-06-21, both FAIL/substrate_not_ready_requeue) -- readiness gate still unmet. So none of the named runs are 'queued/pending' any longer; what is owed is a FRESH successor validation (a queue/governance decision), not these specific runs. ready stays FALSE (no buildable substrate item owed here). flipping ready=true would misread as 'a build is ready to pick up' when none is owed. This entry is now the campaign CONVERSION ROUTE OF RECORD (arbitration route retired); its forward motion is validation, not construction.",
       "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
@@ -6503,7 +6503,8 @@
         "registration_is_not_build_authorisation": true,
         "experiment_queued": false,
         "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
-      }
+      },
+      "governance_2026_09_23": "GFLAG-0331 item 1: status_phase build_owed -> closed, consistent with implementation_status wontfix (GFLAG-0293 user decision 2026-09-16) and the status_note 'nothing for /implement-substrate to build'."
     },
     {
       "sd_id": "v4_loop_segregation",
@@ -9007,7 +9008,7 @@
       "sd_id": "SD-MECH303-THRESHOLD-SOURCING",
       "title": "Give MECH-303's contextual_safety_harm_threshold a DEDICATED proximity-anticipatory harm signal, decoupled from SD-022 damage-sourced z_harm_a",
       "node_class": "complicated (buildable)",
-      "status": "implemented_pending_validation",
+      "status": "implemented_validated",
       "status_phase": "validated",
       "ready": false,
       "design_doc": null,
@@ -9074,7 +9075,8 @@
           }
         ],
         "re_point_build_is_DEFERRED_not_owed_here": "This field is the ENUMERATION only. The MECH-286 re-point BUILD is deliberately deferred and is NOT part of this SD entry's remaining work: it is contingent on MECH-492's first-ever falsifier V3-EXQ-950 (ree-v3 fd93db01ab, queued 2026-08-26), which measures whether the threat conjunct discriminates place safety under each sourcing mode. As of 2026-08-27 that run has landed a manifest (v3_exq_950_mech492_mech286_threat_gate_place_safety_sourcing_20260826T122526Z_v3, outcome PASS, evidence_direction supports) but is NOT yet governance-reviewed, so its disposition is not settled and must not be pre-empted. No default was changed and no ree_core path was touched by this enumeration."
-      }
+      },
+      "governance_2026_09_23": "GFLAG-0323 (user-approved, flags-only governance cycle governance-flags-20260923): status implemented_pending_validation -> implemented_validated, matching status_phase 'validated' set 2026-08-16 on V3-EXQ-930. The stale 'pending' substring made /queue-experiment Step 2.5c gate this entry OPEN, putting a spurious degrading note on nearly every driver (substrate_paths name agent.py/config.py). Signal-layer validation only; the gate-layer residual was discharged by the MECH-303 behavioural retest (chip resolved done 2026-08-18)."
     },
     {
       "sd_id": "SD-QUEUE-SEED-ENFORCEMENT",
@@ -9989,8 +9991,8 @@
       "sd_id": "SD-067",
       "title": "Dedicated safety-terrain RBF bandwidth: an opt-in, tighter bandwidth for the MECH-303 contextual-safety-terrain RBF read, separate from the shared kernel_bandwidth (1.0). The shared bandwidth is ~15x too wide for the z_w",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
+      "status": "implemented_pending_validation",
+      "status_phase": "validation_pending",
       "ready": false,
       "design_doc": "docs/architecture/sd_067_safety_terrain_bandwidth.md",
       "depends_on_unresolved": [
@@ -10004,7 +10006,8 @@
       "added_session": "governance-20260904-1347",
       "added_utc": "2026-09-04T18:56:25Z",
       "last_seen_session": "governance-20260904-1347",
-      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it."
+      "origin": "6a-i reconcile stub added by governance-20260904-1347 (user decision: add the 6 buildable v3-phase design decisions with no entry); depends_on_unresolved copied verbatim from claims.yaml and NOT yet classified against ree-v3/CLAUDE.md -- next cycle resolves it.",
+      "governance_2026_09_23": "GFLAG-0331 item 3 (user-approved): status pending_implementation -> implemented_pending_validation. The build LANDED 2026-07-15 (ree-v3 97e87c1: ResidueConfig.safety_terrain_bandwidth, read in ree_core/residue/field.py when safety_terrain_enabled is True, None falling back to kernel_bandwidth; contract test test_sd067_safety_terrain_bandwidth.py) and is exercised at 0.03 in v3_exq_939a (PASS/supports). Re-verified 2026-09-23: the bandwidth is live ONLY under safety_terrain_enabled=True (default False, field.py:527-539), so it is inert on default configs. Credit gap left open: 939/939a tag MECH-303 only, so SD-067 has no scored evidence of its own -- whether that evidence retro-tags or an SD-067-tagged run is owed is not decided here."
     },
     {
       "sd_id": "SD-080",
@@ -10094,16 +10097,7 @@
       "status_phase": "build_owed",
       "ready": false,
       "design_doc": null,
-      "depends_on_unresolved": [
-        "SD-004",
-        "SD-039",
-        "MECH-292",
-        "MECH-293",
-        "MECH-189",
-        "SD-092",
-        "MECH-427",
-        "MECH-428"
-      ],
+      "depends_on_unresolved": [],
       "unblocks_claims": [
         "SD-098"
       ],
@@ -10126,7 +10120,8 @@
         "registration_is_not_build_authorisation": true,
         "experiment_queued": false,
         "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
-      }
+      },
+      "governance_2026_09_23": "GFLAG-0331 item 4: depends_on_unresolved cleared -- all eight named deps verified landed on ree-v3 trunk (SD-039 anchor_set.py; MECH-292 ghost_goal_bank.py 42f879f; MECH-293 use_mech293_ghost_probes; MECH-189 SuperOrdinalGoalMemory c7ac035; SD-092/MECH-427/MECH-428 credit_subgoal_attainment 500fd67; SD-004). This does NOT make SD-097 buildable: SD-097/SD-098 remain one open design decision (user ruling 2026-09-17: falsify SD-098 against the existing GhostGoalBank.rank() under a mid-episode destination shift rather than build the typed topology). No build disposition stamped."
     },
     {
       "sd_id": "SD-098",
@@ -10231,9 +10226,9 @@
       "sd_id": "sd105_frozen_shared_entropy_floor_multiplier",
       "title": "SD-105 needs a freeze/share API -- a LIVE closed-loop entropy set-point cannot be armed in a difference-of-arms design whose DV is the entropy it regulates; the multiplier must be converged ONCE and applied as a single frozen, shared constant to every arm",
       "node_class": "complicated (buildable)",
-      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status": "pending_implementation",
       "status_phase": "build_owed",
-      "ready": false,
+      "ready": true,
       "ready_note": "DELIBERATELY false, unlike the two existing REGISTRATION_ONLY entries (mech317-action-chunk-boundary-instrument, mech092-replay-consumer-missing) which set ready:true. igw_routine_tick.py auto-discovers new substrate_queue entries within minutes and stages a build; this entry must NOT be staged until governance has ratified the frozen-multiplier design, which is step (1) of the SD-105 claims.yaml digestion_note's own resolution list ('governance ratifies the frozen-multiplier design in what_would_answer or picks the autopsy's second branch'). Flip ready:true once that ratification lands.",
       "design_doc": "REE_assembly/evidence/planning/sd105_freeze_share_api_design_note_20260909.md",
       "depends_on_unresolved": [],
@@ -10259,7 +10254,8 @@
       "added_utc": "2026-09-09T01:06:43Z",
       "created_utc": "2026-09-09T01:06:43Z",
       "validation_experiment": "V3-EXQ-963c (successor to V3-EXQ-963b, not yet authored)",
-      "note": "Design note: REE_assembly/evidence/planning/sd105_freeze_share_api_design_note_20260909.md -- carries the full API proposal, the invariants, the named contract tests, how 963c consumes it, and the open questions (per-seed vs fleet-constant m*, which arm converges it given per-arm warm caches, and whether raising the temperature at all compresses dS_tonic, which would leave the autopsy's second branch as the only one). SEPARATELY OWED, NOT COVERED BY THIS ENTRY: V3-EXQ-963b's C2 magnitude leg must be re-derived against the statistic it actually routes on (the 4th-largest per-seed magnitude, 0.0087, a 2.3x shortfall against the 0.02 bar) or withdrawn -- v3_exq_963b...py:582-592, successor requirement (b) at :633-635. Two further successor requirements from the same block, also outside this entry: (c) R_transient needs a PHASIC_TEMP_DELTA=0.0 lever-off control arm; (d) dv_headroom control values must come from a control arm, not from the treatment contrasts. RELATED, NOT DUPLICATED: substrate_queue entry sd_phasic_burst_decay_and_warmup_headroom (SD-104 + SD-105, implemented_pending_validation, validation_experiment V3-EXQ-963b) owns the BUILD of SD-105; this entry owns the freeze/share API that build lacks, and the parent's own validation_owed cannot discharge until it exists, since V3-EXQ-963b was never queued."
+      "note": "Design note: REE_assembly/evidence/planning/sd105_freeze_share_api_design_note_20260909.md -- carries the full API proposal, the invariants, the named contract tests, how 963c consumes it, and the open questions (per-seed vs fleet-constant m*, which arm converges it given per-arm warm caches, and whether raising the temperature at all compresses dS_tonic, which would leave the autopsy's second branch as the only one). SEPARATELY OWED, NOT COVERED BY THIS ENTRY: V3-EXQ-963b's C2 magnitude leg must be re-derived against the statistic it actually routes on (the 4th-largest per-seed magnitude, 0.0087, a 2.3x shortfall against the 0.02 bar) or withdrawn -- v3_exq_963b...py:582-592, successor requirement (b) at :633-635. Two further successor requirements from the same block, also outside this entry: (c) R_transient needs a PHASIC_TEMP_DELTA=0.0 lever-off control arm; (d) dv_headroom control values must come from a control arm, not from the treatment contrasts. RELATED, NOT DUPLICATED: substrate_queue entry sd_phasic_burst_decay_and_warmup_headroom (SD-104 + SD-105, implemented_pending_validation, validation_experiment V3-EXQ-963b) owns the BUILD of SD-105; this entry owns the freeze/share API that build lacks, and the parent's own validation_owed cannot discharge until it exists, since V3-EXQ-963b was never queued.",
+      "governance_2026_09_23": "GFLAG-0331 item 6: GOVERNANCE RATIFICATION RECORDED (user decision 2026-09-23, flags-only governance cycle governance-flags-20260923). The frozen-multiplier design (governance_flag_adjudication_20260909.md item (1), 'arguably already answered ... but nobody has recorded a ratification') is RATIFIED. ready false -> true and status proposed_REGISTRATION_ONLY_not_a_build_authorisation -> pending_implementation: this entry is now a build authorisation; implement per implementation_hint (no-op lever selection_entropy_floor_frozen_multiplier=None, contract tests B11-B19). The prior ready_note is retained for history and is superseded by this field."
     },
     {
       "sd_id": "SD-106",

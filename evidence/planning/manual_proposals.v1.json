@@ -799,7 +799,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "executed",
+      "status": "proposed",
       "prerequisites": [
         "SD-032a implemented (salience-network coordinator emitting operating_mode vector)",
         "MECH-261 implemented (at least E3 policy-write gate, PFC-analog write gate, and cortical-sensory buffer write gate keyed to mode vector)",
@@ -812,7 +812,8 @@
         "SD-032a"
       ],
       "notes": "Causal test of the salience-network-as-coordinator overlay flagged in targeted_review_systems_consolidation_waking_propagation/synthesis.md. Rodent replay literature does not directly validate the coordinator role; this is a REE-specific prediction. Cannot run until V3 SD-032 cluster is at least minimally implemented. Metric (i) maps onto Tambini & Davachi 2019 forward-cognitive-bias finding; metric (ii) onto Rothschild et al 2017 cortical-hippocampal-cortical loop; metric (iii) onto Peyrache et al 2009 PFC-replay-drives-rule-update.",
-      "backlog_id": "EVB-0532"
+      "backlog_id": "EVB-0532",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921.md): executed_by/executed_queue_id never set and no MECH-261 run executes this design -- V3-EXQ-446's docstring explicitly defers 'behavioural validation of MECH-261 (forward-propagation bias, EXP-0148)'. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
     },
     {
       "proposal_id": "EXP-0149",
@@ -2091,10 +2092,11 @@
         "Report claim_ids_tested=['ARC-006'] (also tag MECH-045 for continuity with V3-EXQ-658) and evidence_direction.",
         "Also, separately from this experiment: bridge V3-EXQ-658's existing PASS evidence onto ARC-006's own evidence block (currently tagged only to MECH-045's claim_ids) so the already-answered persistent/bindable-across-motion legs are visible at the parent-claim level -- this is a claim-synthesis/tagging action, not part of this experiment's acceptance criteria."
       ],
-      "status": "executed",
+      "status": "proposed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07) while drafting ARC-006's what_would_answer. No new substrate build required -- reuses ree_core/entities/object_file_buffer.py and the V3-EXQ-658 harness with a config change (remove the artificial max_tokens headroom). Next step is /queue-experiment, not further digestion.",
-      "backlog_id": "EVB-0582"
+      "backlog_id": "EVB-0582",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401): executed_by/executed_queue_id both null and no ARC-006-sparse-tagged run exists (V3-EXQ-658 tested persistent/bindable for MECH-045, not sparse). Proposed pending a real ARC-006 run."
     },
     {
       "proposal_id": "EXP-0581",
