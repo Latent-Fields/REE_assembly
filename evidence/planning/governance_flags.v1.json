@@ -1787,9 +1787,9 @@
       "summary": "PIPELINE DEFECT (general; ARC-073 and EXT-003 are the concrete instances). The promotion generator raises hold_candidate_resolve_conflict from a conflict_ratio that does not distinguish a LITERATURE-only conflict from an EXPERIMENTAL one, so a claim with genuine_exp_count=0 can be held for 'conflict resolution' by a counterweight paper that a /lit-pull recorded DELIBERATELY (EXT-003: Silver 2021, capped 0.50 for evidentiary FORM; ARC-073: Smith 1991 alongside 2 supports + 2 mixed). USER RULING at the /governance 2026-09-03 Step 3 gate: a literature-only evidence conflict should NOT halt things -- it may legitimately motivate broader hypothesis-space testing, but experimental evidence of working mechanisms is the load-bearing channel (cf. feedback_lit_exp_decoupled, which already holds that lit and exp evidence are not co-equal). Both instances were dispositioned applied this cycle with the reasoning recorded in claims.yaml evidence_quality_note, so they stop re-flagging; the GENERAL behaviour is unfixed and will keep manufacturing lit-only holds. Fix direction: make the conflict-driven hold gate on experimental conflict, and route a lit-only conflict to a hypothesis-space/fan-out surface instead of a promotion hold.",
       "raised_by_session": "gov-20260903-0650",
       "raised_at": "2026-09-03T07:22:39Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:46:50Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: close flags whose remaining work is owned by an open chip as ROUTED; the chip ledger is the durable tracker. If the owning chip's prompt says to close this flag on landing, that step is now a no-op.] The two named instances (ARC-073, EXT-003) carry the 2026-09-03 lit-only-conflict-is-non-gating ruling in claims.yaml (c642dac1478) -- done. The general pipeline defect (build_experiment_indexes.py still feeds pooled lit+exp direction counts into conflict_ratio -> hold_candidate_resolve_conflict, re-verified 2026-09-23) is ROUTED to chip-20260910-merge-governance-scorer-semantics item 2 (open, unclaimed)."
     },
     {
       "flag_id": "GFLAG-0124",
