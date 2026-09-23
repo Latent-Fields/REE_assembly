@@ -5281,9 +5281,9 @@
       "summary": "SD-036's CONFIRMING clause requires 'the per-stream effect magnitudes ordered by their registered taus (0.05 / 0.02 / 0.03)', and that test is ILL-POSED against the substrate it is written for, because it omits alpha. Post ree-v3 35e8969 the composed pole is (1 - alpha) * exp(-tau * gaba_tone) (LatentStack._gaba_state_blend, stack.py:1293, applied at :1655-1670), and sustain-ratio sensitivity to the pole grows sharply as the pole approaches 1. Registered values: z_harm_s tau 0.05 / alpha 0.5 (retained 0.5), z_harm_a tau 0.02 / alpha 0.2 (retained 0.8), z_beta tau 0.03 / alpha_shared 0.3 (retained 0.7, stack.py:1540). Expressed as a memory time constant -1/ln(pole), the 0.3-to-2.0 sweep moves z_harm_a by ~0.56 steps (4.36 -> 3.80) but z_harm_s by only ~0.15 (1.41 -> 1.26), so the substrate PREDICTS the largest sustain-ratio effect on the SMALLEST-tau stream. That is the reverse of what CONFIRMING scores as success, and it is what V3-EXQ-854 measured (z_harm_a, tau 0.02, is the only stream with any dose-response). Scoring the clause as literally written would therefore register a falsification of SD-036 whose cause is a modelling error in the claim text, not the mechanism. PROPOSED AMENDMENT (user decision D2=C, 2026-09-19T23:48:33Z: drop the test from the run and raise this flag instead): re-derive the predicted ordering from the composed pole (1-alpha)*exp(-tau*tone) rather than from tau alone, and re-word CONFIRMING to test that one scalar moves all streams by the amount the SHARED mechanism predicts. claims.yaml was NOT edited.",
       "raised_by_session": "metaworker-science-20260919-sd036-observable3-regime-matrix",
       "raised_at": "2026-09-20T00:56:49Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:43:22Z",
+      "resolution_note": "Verified at source 2026-09-23 by governance-flags-mid-20260923 (middle-band flag session, GFLAG-0301..0420). ACTIONED. SD-036's what_would_answer CONFIRMING clause was rewritten onto the composed pole (1-alpha)*exp(-tau*gaba_tone) by the 2026-09-21 falsifier/runnability audit (REE_assembly 02caebd047f), which names this flag in its DISPOSITION. Status/confidence/phase unchanged."
     },
     {
       "flag_id": "GFLAG-0374",
