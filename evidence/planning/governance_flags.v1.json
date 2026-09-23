@@ -4918,9 +4918,9 @@
       "summary": "ARC-029 what_would_answer P1 is not satisfiable with the lever it names: the MECH-108 BreathOscillator sweep is a FRACTION of commitment_threshold (0.40), but a trained world-forward model puts commit_variance (== _running_variance, its own error EMA) at ~1e-6..1.6e-5 -- five orders below -- measured across phased AND joint (063a-style) training and alpha_world 0.3/0.9, so no sweep_amplitude below ~0.99996 produces any uncommitted window (measured committed_step_fraction 1.0000 at a=0.50 and a=0.999). The claim's worked amplitudes (a>0.18 at rv~0.33) and config.py:1107's 'trained agents commit (variance ~0.33)' comment are both calibrated to an operating point the substrate no longer occupies; the claim's stated P1 remedy (arming use_natural_commit_latch_hold) addresses the OPPOSITE failure direction (460i fragmentation, not the saturation measured here). Evidence + full measurement tables: REE_assembly/evidence/planning/arc029_p1_lever_calibration_finding_20260918.md (REE_assembly 67520bc08d). Nothing was queued; V3-EXQ-1056 reserved and released.",
       "raised_by_session": "metaworker-science-20260917-arc029-p1p3",
       "raised_at": "2026-09-18T13:46:57Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:42:55Z",
+      "resolution_note": "Verified at source 2026-09-23 by governance-flags-mid-20260923 (middle-band flag session, GFLAG-0301..0420). ACTIONED, folded into the 2026-09-23 ARC-029 ruling by governance-pause-20260923-1741 (GFLAG-0354/0416/0421, REE_assembly ca3f1dc15e, claims.yaml ARC-029 DISPOSITION). That ruling re-verified this flag's finding at source (MECH-108 oscillator inert at the lineage operating point: clock.py:120/170/231, agent.py:3718) and struck the oscillator disjunct from ARC-029's what_would_answer entirely. No outstanding action."
     },
     {
       "flag_id": "GFLAG-0347",
