@@ -148,7 +148,11 @@ moves on this landing.
 **ACCEPTANCE TARGET (pre-set by governance, not invented here):** the observation->z_world latent
 reaches PCA-32 parity -- `>= 0.85` held-out oracle-action agreement at the consumer rung
 (`x734.PPOPolicyNet` at `PPO_TRUNK_HIDDEN`) on a seed majority -- re-measured by re-running
-`ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` **UNCHANGED**. The harness,
+`ree-v3/experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py` **UNCHANGED** as a
+measurement instrument -- use the script at or after ree-v3 `0c70b39` (2026-09-23, GFLAG-0286),
+which excludes DIVERGED capacity rungs from every max over rungs and routes a seed whose every OFF
+rung diverged to `substrate_not_ready_requeue` rather than counting it as non-clearing. Before that
+fix a diverged rung could win the max and read as a false clear near the 0.85 bar. The harness,
 dataset recipe, calibration anchor and negative control all already exist and need no new build.
 Queued as **V3-EXQ-1023** (originally minted as V3-EXQ-1015; corrected 2026-09-16 -- see failure_autopsy_V3-EXQ-1023_2026-09-14 and the V3-EXQ-1041 step-budget diagnostic).
 
