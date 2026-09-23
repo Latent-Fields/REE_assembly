@@ -4349,9 +4349,9 @@
       "summary": "EXP-0755 (MECH-018, sleep residue integration) refused at the /queue-experiment Step 2.5/2.5a substrate gate and set status=blocked_substrate (REE_assembly 1d203be9d2); the UNDERLYING SUBSTRATE DEFECT is unowned and needs a substrate_queue.json row plus an /implement-substrate chip, which this headless session could not spawn. ResidueField.integrate() (ree-v3/ree_core/residue/field.py:1122-1144) computes an MSE loss between neural_field and rbf_field but NEVER calls backward() and the module declares no optimizer -- it is a metric loop shaped like a training loop, returning an 'integration_loss' that reads as training progress while nothing trains. Confirmed by a one-tick runtime probe: rbf weights, active_mask, active_centers, neural_field params and evaluate() at the recorded harm locations are ALL unchanged after integrate(num_steps=25), and no param has .grad. Secondary gaps: no residue call site in SleepLoopManager._run_cycle (REEAgent.offline_integration is called by nothing in ree_core/), and no centre-merge op so MECH-018 readout (iii) COMPRESSION cannot move. This matters beyond MECH-018 because the claim lists 'geometrically inert' as an explicit FALSIFYING outcome, so any run today returns a CONFIDENT FALSE FALSIFICATION attributable to the missing optimizer step. V3-EXQ-996's confirmed autopsy (failure_autopsy_V3-EXQ-996_2026-09-04.json, ISEF-005) already found the same defect but recorded recommended_substrate_queue_entry=null, which is why it has sat unowned. Full build spec is in the proposal's release_condition field.",
       "raised_by_session": "igw-235-proposal-for-mech-018",
       "raised_at": "2026-09-17T08:03:23Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:42:01Z",
+      "resolution_note": "Verified at source 2026-09-23 by governance-flags-mid-20260923 (middle-band flag session, GFLAG-0301..0420). ACTIONED via chip-20260917-residue-integrate-no-gradient-step (done 2026-09-19T03:17:38Z; ree-v3 c7ed7090, REE_assembly f52f54683b): ResidueField.integrate() now runs a real optimizer step over neural_field and is wired into SleepLoopManager._run_cycle's WRITEBACK phase, both flag-gated default-off. The remaining EXP-0755 blocker (readout (iii) centre-merge vs narrowing, release_condition part 3) is a distinct ask carried by GFLAG-0366."
     },
     {
       "flag_id": "GFLAG-0307",
