@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-23T08:50:09Z
+Generated: 2026-09-23T17:28:51Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **67** open question(s) across **54** time-series snapshot(s). **5** flag(s) raised, **67** advisory note(s), **27** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
+Audited **67** open question(s) across **54** time-series snapshot(s). **5** flag(s) raised, **69** advisory note(s), **27** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -33,7 +33,7 @@ _An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_
 
 _None._
 
-## Advisory -- labelled fan-out growth (67, NOT violations)
+## Advisory -- labelled fan-out growth (69, NOT violations)
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
@@ -68,6 +68,8 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - `sd082_candidate_discriminating_readout_locus`: +2 leg(s) (H-learning-signal-noisy, H-learning-signal-sign) added by labelled fan-out from `failure_autopsy_V3-EXQ-822f_2026-09-09.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `sd082_candidate_discriminating_readout_locus`: +2 leg(s) (H-replay-rule-state-mismatch, H-selection-authority-bounded) added by labelled fan-out from `failure_autopsy_V3-EXQ-1020_2026-09-11.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `sd082_candidate_discriminating_readout_locus`: denominator grew 5 -> 9 across 2 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
+- `mech537_communication_subspace_orientation`: +1 leg(s) (H4-encoder-contingent-orientation) added by labelled fan-out from `failure_autopsy_V3-EXQ-1043b_2026-09-23.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `mech537_communication_subspace_orientation`: denominator grew 3 -> 4 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `mech055_harm_pe_source_validity`: +3 leg(s) (H-harm-head-undertrained, H-pe-source-structurally-wrong, H-harm-head-representation-ceiling) added by labelled fan-out from `failure_autopsy_V3-EXQ-1062a_2026-09-23.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `mech055_harm_pe_source_validity`: denominator grew 3 -> 6 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - time series 2026-07-17 -> 2026-07-18: total_initial grew by 16, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 16 leg(s)) -- advisory, not a violation.
@@ -105,7 +107,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-09-16 -> 2026-09-17: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
 - time series 2026-09-18 -> 2026-09-20: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
 - time series 2026-09-21 -> 2026-09-22: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
-- time series 2026-09-22 -> 2026-09-23: total_initial grew by 9, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 9 leg(s)) -- advisory, not a violation.
+- time series 2026-09-22 -> 2026-09-23: total_initial grew by 10, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 10 leg(s)) -- advisory, not a violation.
 
 ## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
 
@@ -201,13 +203,14 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `sd082_candidate_discriminating_readout_locus`/`H-replay-rule-state-mismatch`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 - `sd082_candidate_discriminating_readout_locus`/`H-selection-authority-bounded`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 
-## Advisory -- H-other / model-misspecification route (1 recorded event(s), 3 candidate(s); GOV-HOTHER-1, NOT violations)
+## Advisory -- H-other / model-misspecification route (2 recorded event(s), 3 candidate(s); GOV-HOTHER-1, NOT violations)
 
 _Every important question must preserve a route OUTSIDE its registered partition: the pattern may be explained by none of the enumerated legs. A recorded `h_other_events[]` entry is a /failure-autopsy Step 9b Mode D judgement naming the pattern-level signal (no leg explains the full outcome; seeds or environments pick incompatible legs; interaction-only effects; omitted timing or development explains the variance; several legs simultaneously required; every survivor needs a rescue clause) and the routed `response` (rotation via GOV-ROTATE-1, labelled partition expansion, or deferred with a named trigger) -- to be acted on BEFORE another run is queued on a surviving leg. H-other is never a leg and never `confirmed`. A CANDIDATE below is the one machine-visible signal (>= 2 confirmed legs alongside an alive one, no event recorded): a prompt to ask the Mode D question, never a verdict._
 
 **Recorded events**
 
 - `zworld_actor_adequacy_locus` h_other_events[0]: signal='(5) two or more registered legs are simultaneously required, and (1) no single registered leg explains the full outcome. The question now carries FOUR confirmed legs coexisting with alive ones -- H-D-warmup-not-the-locus, H-F-content-discarded-at-encode, H-metric-mismatch and H-anchor-off-distribution -- plus two SPLIT legs (H-C-geometry-mismatch, H-mechanism-defect). It has grown from 2 legs at registration to 11 across FOUR labelled fan-out events, and check_hypothesis_space_integrity.py already lists it under both fan-out recurrence (N>=3, ACTIONABLE) and H-other CANDIDATE.' response=rotation source=failure_autopsy_V3-EXQ-1023a_2026-09-17.json legs=['H-D-warmup-not-the-locus', 'H-F-content-discarded-at-encode', 'H-metric-mismatch', 'H-anchor-off-distribution', 'H-C-geometry-mismatch', 'H-mechanism-defect', 'H-which-directions'] recorded=2026-09-17 -- V3-EXQ-1023a adds a finding no registered leg carries: the SD-106 objective trains hard (+0.1184 held-out R^2 for 3.3x steps, still climbing per V3-EXQ-1041) while almost none of that gain reaches the consumer (+0.0081, a ~50x transfer shortfall against the PCA-anchored expectation). Each surviving leg names a LOCUS at which adequacy is lost; none of them names a TRANSFER FAILURE between a well-trained objective and its consumer. Four confirmed loci coexisting is itself the tell: the partition is enumerating places to look rather than carving the phenomenon, which is the shape GOV-HOTHER-1 exists to catch. H-other is NOT a leg and is NOT confirmed -- this records that the partition may be mis-posed.
+- `mech537_communication_subspace_orientation` h_other_events[0]: signal='(2) different seeds select incompatible legs, and (1) no registered leg explains the full outcome. Per-seed rank percentiles [0.0030,0.1059,0.0460,0.8082,0.7642,0.0010]: seeds 42/44/47 select H1 (orientation present), seeds 45/46 select H2 (contrast INSIDE the random reference). The de-noised per-seed contrast has measurement SE 0.0021-0.0030 (sd_total/sqrt(1000) combined with sd_decoder/sqrt(8)) against a cross-seed sd of 0.0425 -- a ratio of ~14 -- so seeds 45 and 46 at -0.0286 and -0.0166 sit 8-12 measurement-SE BELOW zero. They are real per-encoder properties, not noise, and H1 AS ORIGINALLY REGISTERED ('consistently-positive ... every per-seed value positive') does not predict them.' response=partition_expansion source=failure_autopsy_V3-EXQ-1043b_2026-09-23.json legs=['H1-small-but-real', 'H2-no-orientation'] recorded=2026-09-23 -- The frozen partition was posed as three GLOBAL statements about the interface, so it has no leg for a per-encoder mixture. H2 is eliminated only as a GLOBAL claim; its per-encoder content remains true on seeds 45/46 and must be carried forward rather than discarded. A random-effects reading of H1 does fit the data, but that reading IS the new leg, not the old one -- so the honest statement is that the partition needed expanding, not that H1 already covered it.
 
 **Candidates (no event recorded)**
 

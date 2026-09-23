@@ -1,0 +1,162 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-09-23T17:09:35Z",
+ "scope": "single",
+ "status": "confirmed",
+ "dry_run_checked": true,
+ "excluded_dry_run_ids": [],
+ "targets": [
+  {
+   "run_id": "v3_exq_1043b_mech537_communication_subspace_randrank_20260922T204547Z_v3",
+   "queue_id": "V3-EXQ-1043b",
+   "claim_ids": [
+    "MECH-537"
+   ],
+   "bears_on": [
+    "MECH-547",
+    "MECH-555",
+    "SD-080",
+    "SD-106"
+   ],
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "intact -- the claim could express itself (all readiness gates green, C1 phenotype 0.3792, C5 premise held 0.6099 vs 0.2164 required) and one registered rival (H2-no-orientation) was eliminated in its favour. NOT a weakening.",
+    "biological_reference": "clear -- cortical communication subspace (Semedo et al. 2019 V1->V2; Binish 2026 human PFC->M1). Lit entries exist at evidence/literature/targeted_review_mutual_legibility_communication_subspaces/. Not a formal-definition import.",
+    "prerequisites": "present -- source adequacy 0.9210/0.80, elevation over strongest trivial predictor 0.3532/0.20, RRR heldout R2 0.9968/0.50, reference non-degenerate 6/6.",
+    "implementation": "complete -- the prior autopsy's required change (anchor C4b's ceiling from a measured reference) was implemented; 1000-draw reference and Fisher co-primary built to the pre-registration.",
+    "environment": "adequate",
+    "measurement": "under-instrumented -- THREE debts, the middle one decisive. (i) n=6 cannot settle the magnitude CI (sem 0.0173 against a 0.05 floor), predicted pre-run by the prereg. (ii) C4b is NOT REPRODUCIBLE: on seeds 43/44, which score a bit-identical encoder at an identical parsimonious rank across 1043a and 1043b, the measured ratio moved by 0.215 and 0.051 and pass/fail FLIPPED on both; the probe samples 32 of 64 Jacobian states unseeded. (iii) H3's declared test is unresolvable -- the rank-32 arm is a single draw whose cross-run replicate noise (sd 0.025/seed) is comparable to the effect.",
+    "integration": "coupled and exercised -- not inert; the instrument drove the mechanism and the criteria moved.",
+    "scale": "likely insufficient -- n=6 is the binding limit for a quantity with genuine cross-encoder variance."
+   },
+   "failure_location": {
+    "mechanism": "not_established",
+    "measures": "partial",
+    "environment": "established",
+    "ree": false,
+    "net_classification": "MEASURES -- instrument-reproducibility and power debt. NOT chargeable to REE and NOT a mechanism failure: the one rank-matched DISCRIMINATION criterion (C2 rank co-primary) PASSED and eliminated H2-no-orientation as a global claim. Measurement adequacy reads under-instrumented on three counts, so REE FAILED is not reachable. The signature is the INVERSE of the substrate-ceiling fingerprint: the discrimination criterion passed while the two ABSOLUTE criteria failed."
+   },
+   "biological_reference": {
+    "closest_mechanism": "Cortical communication subspace (Semedo et al. 2019, V1->V2, Neuron; Binish 2026, human PFC->M1)",
+    "dependencies": [
+     "a source area encoding the variable",
+     "a low-rank inter-areal channel",
+     "a receiver reading only that channel"
+    ],
+    "is_formal_import": false,
+    "divergence": "none identified -- cross-validated RRR from sender activity to the ACTUAL consumer input tensor is the same instrument the neurophysiology uses",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_epistemic_category_note": "standard, NOT substrate_ceiling. The failure signature is the inverse of the ceiling fingerprint: the rank-matched DISCRIMINATION criterion passed and the two ABSOLUTE criteria failed. The binding limitations are instrument reproducibility (C4b flips pass/fail on a re-run against the identical subspace) and power (n=6, predicted pre-run) -- both measurement debt. Nothing is substrate-blocked; pending_retest_after_substrate is false.",
+   "recommended_evidence_direction": "mixed",
+   "recommended_evidence_quality_note": "[2026-09-23 | V3-EXQ-1043b | failure_autopsy_V3-EXQ-1043b_2026-09-23] mixed, diagnostic, excluded from scoring. Third and best-instrumented run of this lineage (6 seeds, 18.2h, 1000-draw random-subspace reference). ALL readiness gates green including an explicit positive control, non_degenerate true, so neither a precondition-unmet nor a vacuous-pass case. The registered CONFIRMING conjunction is not met: C2-primary's 95% CI on the cross-seed mean is [-0.01547, +0.07370] (includes 0 and 0.05) and C4b passes only 3 of 6 seeds against 4 required. BUT the run DID adjudicate a registered leg: the pre-registered rank co-primary falsifies H2-no-orientation AS A GLOBAL CLAIM (Fisher p=2.19e-4 SET-ALL, 6.86e-5 SET-COMPETENT; Simes 0.0060/0.0050; leave-one-out Fisher 0.0099/0.0038; sets agree; not single-seed driven, though it rests on three seeds), so the fitted communication subspace IS oriented beyond a random subspace of the same rank in at least some encoders. That elimination is GLOBAL-scope only: the per-seed rank percentiles split 3 clearly effect-present against 2 clearly absent, the per-seed measurement SE is 0.0021-0.0030 against a cross-seed sd of 0.0425, so the disagreement is a real encoder-level property; an h_other_event (partition_expansion) and a new leg H4-encoder-contingent-orientation were registered on that basis. interpretation.primary_agreement records the pre-registered DISAGREEMENT label orientation_contrast_not_positive_rank_significant_DISAGREEMENT_split; evidence_direction alone understates the run and the pre-registration said so in advance. The C5 single-subspace premise held (0.6099 vs 0.2164 required), so the question is NOT re-routed to MECH-547/MECH-555. C4b's FAIL carries little weight: on two seeds scoring a bit-identical encoder at an identical parsimonious rank, its verdict FLIPPED between 1043a and 1043b, so the conjunct is not reproducible on a fixed subspace. Claim alignment INTACT -- not a weakening.",
+   "per_claim_recommendation": {
+    "MECH-537": {
+     "recommended_evidence_direction": "mixed",
+     "recommended_epistemic_category": "standard",
+     "recommended_diagnostic_evidence_adjudicated": true,
+     "pending_retest_after_substrate": false,
+     "status_change": "none -- stays candidate",
+     "change": "epistemic_category already standard and diagnostic_evidence_adjudicated already true, so neither moves. THREE things do. (1) The evidence provenance still cites the superseded 1043a autopsy (live_status.evidence.from = failure_autopsy_V3-EXQ-1043a_2026-09-20) while V3-EXQ-1043b has since run with every readiness gate green and eliminated the registered leg H2-no-orientation. (2) The evidence_quality_note STILL leads with the 2026-09-17 V3-EXQ-1043 entry -- the 1043a autopsy asked for that lead to be replaced and only the provenance stamp was applied, so replace it with the note recommended here. (3) The notes field still ends 'DO NOT queue an experiment from this entry', contradicted by three runs since; raised as GFLAG-0435 (stale_note) rather than edited here. Apply all three -> stamp this artifact"
+    }
+   },
+   "recommended_substrate_queue_entry": {
+    "action": "none"
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "literal_count": 0,
+    "literal_count_meets_threshold": false,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "note": "MECH-537 counting autopsies under R1-R3 = 0. failure_autopsy_V3-EXQ-1043_2026-09-17 and failure_autopsy_V3-EXQ-1043a_2026-09-20 both read category standard with instrument/measurement failure modes owing no substrate build, so neither counts; this target is mixed/standard and does not count either. The brake does NOT fire, so a re-queue is mechanically permitted. This autopsy nonetheless REFUSES another lettered iteration at n=6 against the same C4b ceiling as a SCIENTIFIC judgement (see routing) -- recorded so a successor does not read 'brake not fired' as licence for a fourth same-shape run. COVERAGE GAP recorded for governance, not acted on here: this is the third consecutive MEASURES-attributed autopsy on MECH-537 with a fourth run proposed, and the brake counts zero correctly by its own R3 predicate -- it is built to catch a claim re-tested against an unmoved SUBSTRATE and is blind by construction to one re-tested against an unmoved INSTRUMENT. Widening R3 is a governance decision with fleet-wide consequences and is NOT proposed here."
+   },
+   "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+     "H1-small-but-real: one population, a real positive orientation effect whose magnitude is below the pre-registered 0.05 floor",
+     "H4-encoder-contingent-orientation: orientation exposure is replicate-specific -- some trained encoders route and some do not -- so the cross-seed MEAN is the wrong estimand"
+    ],
+    "suggested_probes": [
+     {
+      "hypothesis": "H1",
+      "axis": "measurement",
+      "sketch": "n >= 18 seeds sized on the observed cross-seed sd 0.034, reported as a CI on the cross-seed mean against the 0.05 floor"
+     },
+     {
+      "hypothesis": "H4",
+      "axis": "learning-signal",
+      "sketch": "the SAME enlarged seed set read as a per-seed distribution (per-seed intervals, dispersion/unimodality) rather than only a mean -- this is what makes the seed increase a discriminating probe instead of a power bump"
+     },
+     {
+      "hypothesis": "both",
+      "axis": "instrumentation",
+      "sketch": "seed the C4b probe's state sample and record its per-seed bootstrap sd (it flips pass/fail on a fixed subspace today); then either keep it with a justified interpolation weight or replace it with a retention-matched criterion built from C4a's rank-and-support-matched null (already 6/6 at mean margin 0.949) rather than by re-weighting the F-to-I interpolation until it passes"
+     }
+    ],
+    "note": "GOV-FANOUT-1. The legs share one enlarged run rather than needing three separate ones: the discriminating quantity is the SHAPE of the cross-seed distribution, which the current n=6 cannot resolve. Declared nulls: H1 falsified if the CI excludes 0.05; H4 falsified if the per-seed distribution is consistent with a single population at the enlarged n."
+   },
+   "learning_extracted": [
+    "A pre-registered co-primary can decisively adjudicate a registered leg while the run's headline fields (evidence_direction, interpretation.label, hypothesis_verdict) report nothing, because those are governed by the claim's registered CONFIRMING conjunction -- a different and much higher bar than any single leg's declared null. Three runs of this lineage have landed mixed/undetermined while the hypothesis space actually moved.",
+    "A pre-registered criterion can be non-reproducible on a FIXED subspace and still be scored as a conjunct. C4b's verdict flipped on seeds 43 and 44 between 1043a and 1043b -- bit-identical encoders, identical parsimonious rank, deterministic RRR, so the same communication subspace scored twice -- because its 32-of-64 Jacobian state sample is unseeded. Measuring a ceiling in-run (the prior autopsy's required fix, correctly implemented) removed the REACHABILITY problem but left the REPRODUCIBILITY of the statistic being compared to it unmeasured. Seed the probe and record its per-seed bootstrap sd before scoring it again.",
+    "Averaging over encoders may be the wrong estimand at this interface: within-encoder cross-stratum subspace agreement is 0.610 against chance 0.066 (~9.2x), while cross-encoder agreement is 0.261 against the same chance (~3.9x). Both exceed chance, but replicate-specific structure is a large fraction of the communication subspace.",
+    "Negative result worth keeping: C5 held at 0.610 vs 0.216 required, so the question stays with MECH-537 and is NOT re-routed to MECH-547/MECH-555. Two runs have now cleared this premise.",
+    "M2 (the 1043a red-team concern that C4b's effective per-unit bar rises toward 1.0 as F approaches I) was left OWED to a successor autopsy by the pre-registration and is discharged here: F/I is 0.40-0.53 on every seed with anchor headroom 0.47-0.60 and n_seeds_unreachable_anchor 0, so the degenerate regime is real in principle and INERT in this run.",
+    "A partial application of a prior autopsy's per_claim_recommendation can silently clear GOV-APPLY-1: stamping live_status.evidence.from satisfies the provenance test and closes the row even when the note replacement and the notes-field correction the same recommendation asked for were never made. MECH-537 has now carried the same 'DO NOT queue an experiment from this entry' contradiction through three runs and two autopsies that each named it as owed.",
+    "A newly added hypothesis can be observationally identical to the leg it is meant to rival. H4 as first worded ('orientation is encoder-contingent, so the mean is the wrong estimand') made the same prediction as a random-effects reading of H1 on every quantity the design records -- a leg that cannot be adjudicated at any n. The fix is a declared null on EXCHANGEABILITY plus a named encoder-level covariate, with mechanically circular covariates excluded explicitly: here ws250_comm_parsrank correlates at -0.943 with C2 only because C2 = D_randrank - D_comm and D_randrank is flat across seeds."
+   ],
+   "routing": "queue-experiment",
+   "unapplied_prior_recommendation": {
+    "prior_artifact": "failure_autopsy_V3-EXQ-1043a_2026-09-20.json",
+    "applied": [
+     "live_status.evidence.from stamped to the 1043a artifact"
+    ],
+    "not_applied": [
+     "replace the 1043-era evidence_quality_note lead (the note still leads with the 2026-09-17 V3-EXQ-1043 entry)",
+     "resolve the standing 'DO NOT queue an experiment from this entry' vs EXP-1403 contradiction in notes -- owed since the V3-EXQ-1043 autopsy 2026-09-17, re-flagged by 1043a 2026-09-20, still present"
+    ],
+    "routed_as": "GFLAG-0435 (stale_note, MECH-537, raised 2026-09-23 by autopsy-20260923-1700)",
+    "note": "A PARTIAL application is the failure mode here: the provenance stamp cleared GOV-APPLY-1's provenance test while two of the three requested edits were never made, so the row stopped being ACTIONABLE without the work being done. Recorded so the third recurrence is visible as a recurrence."
+   },
+   "h_other_event": {
+    "fires": true,
+    "signals": [
+     "(1) no registered leg explains the full outcome",
+     "(2) different seeds select incompatible legs"
+    ],
+    "legs": [
+     "H1-small-but-real",
+     "H2-no-orientation"
+    ],
+    "response": "partition_expansion",
+    "recorded_in_registry": true,
+    "note": "Recorded on the question BEFORE the leg it licenses, per the registry's h_other_route invariant. This REVERSED an earlier call in this same autopsy: the first draft recorded Mode D as not firing because 'H1 explains the split by chance', which the Step 7c red-team showed holds only under a random-effects H1 observationally identical to the leg being added."
+   },
+   "red_team": {
+    "verdict": "CONTESTED",
+    "model": "fable (drafting session: Opus 5)",
+    "findings_accepted": [
+     "F2 h_other_events step skipped",
+     "F3 'by chance' inference wrong and H4 undiscriminable",
+     "F4 H3 sign-reversal is noise",
+     "F5 'unanchored' withdrawn; replicate argument adopted",
+     "F6 H2 elimination is GLOBAL-scope only",
+     "F7 name the adjudicable survivor per leg"
+    ],
+    "findings_confirmed_no_change": [
+     "F1 (already corrected while drafting)",
+     "F8 fan-out growth legitimate",
+     "F9 brake=0 correct",
+     "F10 readiness gates carry no self-anchoring defect"
+    ],
+    "numbers_reproduced": "all core statistics reproduced exactly by independent recomputation",
+    "note": "The pass confirmed the science and contested the routing and ledger text. F3 overturned reasoning that had been used to SUPPRESS a required registry step, so a CONFIRMED verdict would have left that in place."
+   }
+  }
+ ],
+ "cluster_pattern": null
+}

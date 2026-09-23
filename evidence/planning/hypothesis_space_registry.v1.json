@@ -7714,10 +7714,11 @@
    ],
    "registered_utc": "2026-09-17T02:35:00Z",
    "fanout_sources": [
-    "failure_autopsy_V3-EXQ-1043_2026-09-17.json"
+    "failure_autopsy_V3-EXQ-1043_2026-09-17.json",
+    "failure_autopsy_V3-EXQ-1043b_2026-09-23.json"
    ],
    "is_hero": false,
-   "initial_frozen_count": 3,
+   "initial_frozen_count": 4,
    "initial_frozen_count_at_registration": 3,
    "synthesis": null,
    "decision": {
@@ -7725,7 +7726,7 @@
     "live_gate": "C2 (D_randrank - D_comm at matched rank) clearing its floor against a within-run reference distribution, read at a rank where the low-rank premise holds",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "two diagnostic runs completed, neither adjudicating (1043 underpowered; 1043a refused at readiness); three rivals alive; the missing instrument is a many-draw random-subspace reference (V3-EXQ-1043b)",
+    "distance_phrase": "three diagnostic runs completed; V3-EXQ-1043b eliminated H2-no-orientation via the pre-registered rank co-primary (Fisher p=2.19e-4, leave-one-out robust) with every readiness gate green; H1 and H3 remain alive and a fourth leg H4 (replicate-contingent orientation) is pre-registered; the missing instruments are an enlarged seed set read as a distribution and an ANCHORED replacement for C4b",
     "observation_bottleneck": "The CV-selected rank sits at the receiver dimension, where the RRR fit is unconstrained OLS, so the low-rank channel the biology posits is not instantiated at the evaluation point."
    },
    "hypotheses": [
@@ -7740,17 +7741,18 @@
      "resolution": {
       "state": "alive",
       "resolving_runs": [
-       "V3-EXQ-1043a"
+       "V3-EXQ-1043a",
+       "V3-EXQ-1043b"
       ],
       "evidence_direction": "pending",
       "control_passed": false,
       "non_degenerate": null,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "ALIVE. V3-EXQ-1043a refused at readiness (randrank margin over the trivial predictor under 0.05 on 5/6 seeds), so nothing is adjudicated. The pre-registered statistic was still recordable: 95% CI on the C2 mean [0.0051, 0.0948] at the parsimonious rank ([0.0154, 0.0535] at rank 32) -- excludes 0, includes 0.05, so this leg's declared null (CI excludes 0.05) is NOT met. Adjudicating run is now V3-EXQ-1043b (many-draw random-subspace reference) (failure_autopsy_V3-EXQ-1043a_2026-09-20.json)."
+      "basis": "ALIVE. V3-EXQ-1043b ran with every readiness gate green. Declared null ('the CI excludes 0.05') NOT met: the 95% CI on the cross-seed mean of the de-noised C2 is [-0.01547, +0.07370], which includes 0.05 and also 0 -- so H1 is neither falsified nor confirmed. The pre-registration predicted this BEFORE the run (the binding variance is the cross-seed sd ~0.042, not the draw noise 1043b removes) and instructed it be reported as a non-adjudication with no upgrade. CORRECTION carried from the red-team pass on this autopsy: an earlier draft argued the two negative seeds were consistent with H1 'by chance'. That holds only under a RANDOM-EFFECTS reading of H1, which is observationally identical to H4 on every quantity this design records; under H1 as originally registered ('consistently-positive') the negatives are 8-12 measurement-SE below zero and are not chance. Separating the two is what H4's declared null now exists to do. Adjudicating run V3-EXQ-1043c. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)"
      },
      "adjudicating_runs": [
-      "V3-EXQ-1043b"
+      "V3-EXQ-1043c"
      ]
     },
     {
@@ -7762,16 +7764,18 @@
      "pre_registered_utc": "2026-09-17T02:35:00Z",
      "pre_registration_source": "failure_autopsy_V3-EXQ-1043_2026-09-17.json",
      "resolution": {
-      "state": "alive",
+      "state": "eliminated",
       "resolving_runs": [
-       "V3-EXQ-1043a"
+       "V3-EXQ-1043b"
       ],
-      "evidence_direction": "pending",
-      "control_passed": false,
-      "non_degenerate": null,
-      "met_elimination_bar": false,
-      "resolved_utc": null,
-      "basis": "ALIVE. The permutation null this leg named ran: p = 1.0 on 6/6 seeds, i.e. all 200 shuffled refits decode WORSE than the real subspace. That statistic is P(D_comm_perm <= D_comm): it shows the fitted sender->receiver map is real and does not test orientation against a random same-rank subspace (randrank was ONE draw per seed). Uninformative for this leg. Adjudicating run is now V3-EXQ-1043b (failure_autopsy_V3-EXQ-1043a_2026-09-20.json)."
+      "evidence_direction": "weakens",
+      "epistemic_category": "standard",
+      "self_route_label": "routing_signature_incomplete_undetermined",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-09-22T20:45:47Z",
+      "basis": "ELIMINATED AS A GLOBAL CLAIM. The pre-registered rank co-primary -- the reference distribution this leg itself names -- falsifies its declared null: Fisher p=2.19e-4 (SET-ALL, n=6) and 6.86e-5 (SET-COMPETENT, n=5); Simes 0.0060/0.0050; leave-one-out Fisher 0.0099/0.0038; sets_disagree=false. Independently checked by combiners the prereg did not name: Stouffer p=0.00168, and a raw count test P(>=3 of 6 seeds at p<=0.05 | all uniform)=0.0022. All readiness gates green including an explicit positive control. SCOPE, which must not be dropped: what is refuted is 'the fitted communication subspace is not meaningfully different from a random subspace of the same rank AT THIS INTERFACE' read as a statement about the interface as a whole. The leg's PER-ENCODER content is TRUE on seeds 45 and 46 (percentiles 0.8082/0.7642) and is carried forward inside H4-encoder-contingent-orientation -- so this is 3 alive -> 2 alive + 1 expanded leg, NOT a clean 3 -> 2. The elimination is not one-seed-driven (LOO holds) but it does rest on three seeds: Fisher with seeds 42 and 47 removed is p=0.169. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)"
      },
      "adjudicating_runs": [
       "V3-EXQ-1043b"
@@ -7788,18 +7792,67 @@
      "resolution": {
       "state": "alive",
       "resolving_runs": [
-       "V3-EXQ-1043a"
+       "V3-EXQ-1043a",
+       "V3-EXQ-1043b"
       ],
       "evidence_direction": "pending",
       "control_passed": false,
       "non_degenerate": null,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "ALIVE. Declared null ('C2 is flat in rank') NOT met: C2 mean 0.0345 at rank 32 vs 0.0500 at the parsimonious rank (8-11 of 146 live sender dims, held-out R2 0.996). Readiness red, so not an elimination (failure_autopsy_V3-EXQ-1043a_2026-09-20.json)."
+      "basis": "ALIVE, and its declared test is NOT RESOLVABLE with the instrument as built. Within 1043b, like-for-like on the single-fit statistic: C2 mean 0.0415 at the selected rank 32 vs 0.0282 at the parsimonious rank; paired diff -0.0133, paired t=-1.108 (df 5, t_crit 2.571), not distinguishable from zero. The rank-32 arm is a SINGLE draw with no reference distribution, and the 1043a->1043b replicate on bit-identical encoders shows that arm moving by sd 0.025 per seed from decoder noise alone -- comparable to the whole effect. So the apparent sign difference against 1043a's +0.0155 is two draws from the same noise, NOT a reversal, and 1043a's own basis ('declared null NOT met: 0.0345 vs 0.0500') was an over-read of that noise and is corrected here. This leg's STRUCTURAL premise is re-confirmed (CV-selected rank at the ladder ceiling on 6/6 seeds; heldout R2 already 0.981 at rank 1, so the parsimonious rank of 9-11 comes from a 0.001 tolerance on an almost-flat ladder), but its SUBSTANTIVE claim is weakened: the rank co-primary is significant AT the parsimonious rank, so the low-rank subspace IS oriented. A successor must give the rank-32 arm its own reference distribution before this leg can be adjudicated at all. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)"
      },
      "adjudicating_runs": [
-      "V3-EXQ-1043b"
+      "V3-EXQ-1043c"
      ]
+    },
+    {
+     "hid": "H4-encoder-contingent-orientation",
+     "label": "orientation exposure is replicate-specific rather than architectural: independently trained encoders land on communication subspaces that share well-above-chance but substantially less structure than one encoder shares across receiver-state strata, and orientation is present in some and absent in others -- so the cross-seed MEAN of C2 is a summary of a heterogeneous quantity and is the wrong estimand.",
+     "axis": "learning-signal",
+     "desc": "Enlarge to n>=18 seeds and test EXCHANGEABILITY across encoders, not just the cross-seed mean. DECLARED NULL (H1's prediction): the per-encoder C2 is exchangeable -- its sign and magnitude are not predicted by any pre-registered encoder-level covariate. H4 predicts the opposite: a systematic encoder-level predictor exists. PRE-REGISTERED COVARIATE: cross-stratum data-span overlap at the parsimonious rank (`cross_stratum_data_span_overlap_parsrank`), which on 1043b's 6 seeds has Spearman -0.886 against the de-noised C2 -- a CANDIDATE at n=6 with 8 covariates screened, explicitly NOT a finding. EXCLUDED AS CIRCULAR, and recorded so a successor does not re-propose it: the comm-subspace agreement `ws250_comm_parsrank` correlates at -0.943, but C2 = D_randrank - D_comm and D_randrank is flat across seeds (Spearman -0.029 vs C2), so that covariate is very nearly -C2 itself and cannot discriminate anything.",
+     "basis": "V3-EXQ-1043b's per-seed contrasts are precisely measured (measurement SE 0.0021-0.0030) yet differ across encoders by a cross-seed sd of 0.0425 -- a ratio of ~14 -- with two of six seeds genuinely negative at 8-12 SE below zero. So between-encoder variation is real signal, not sampling noise. Supporting structure: within-encoder cross-stratum subspace agreement is 0.6099 against a measured chance level of 0.0664 at the parsimonious rank (~9.2x chance), while CROSS-encoder agreement is 0.2610 (min 0.2170, max 0.2908) against the SAME chance level (~3.9x chance). NOTE the correction this figure carries: an earlier draft compared the cross-encoder overlap against 0.22, which is the chance level at rank 32, not at the rank 9-11 bases the pairwise overlaps are actually computed on. Replicates therefore share well ABOVE chance but well below within-encoder structure -- partially shared subspaces, not independent ones.",
+     "pre_registered_utc": "2026-09-23T17:09:35Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1043b_2026-09-23.json",
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "Pre-registered at fan-out time by failure_autopsy_V3-EXQ-1043b_2026-09-23.json as the partition_expansion response to the h_other_event recorded on this question the same day; not yet run."
+     },
+     "adjudicating_runs": [
+      "V3-EXQ-1043c"
+     ]
+    }
+   ],
+   "fanout_growth_events": [
+    {
+     "recorded_utc": "2026-09-23T17:09:35Z",
+     "pre_registered_utc": "2026-09-23T17:09:35Z",
+     "fanout_source": "failure_autopsy_V3-EXQ-1043b_2026-09-23.json",
+     "added_hids": [
+      "H4-encoder-contingent-orientation"
+     ],
+     "delta": 1,
+     "note": "GOV-FANOUT-1 portfolio opened as the partition_expansion RESPONSE to the h_other_event recorded on this question on 2026-09-23 (Mode D signal (1)+(2): the frozen partition was three GLOBAL statements and had no leg for a per-encoder mixture). Order matters and is as the registry requires: H-other event first, labelled growth second. Axis 'learning-signal' (family 'constitution') is a family not previously represented here, so this is refinement rather than circling."
+    }
+   ],
+   "fanout_growth_note": "Denominator grew 3 -> 4 on 2026-09-23 (labelled fan-out growth, invariant 3a, as the partition_expansion response to an h_other_event). Report BOTH ratios: surviving/at-registration 3/3 and surviving/current 3/4. This question has NOT converged, and H2's elimination is a GLOBAL-scope elimination whose per-encoder content moved into H4 -- so it is not a clean 3 -> 2.",
+   "h_other_events": [
+    {
+     "recorded_utc": "2026-09-23T17:09:35Z",
+     "source": "failure_autopsy_V3-EXQ-1043b_2026-09-23.json",
+     "signal": "(2) different seeds select incompatible legs, and (1) no registered leg explains the full outcome. Per-seed rank percentiles [0.0030,0.1059,0.0460,0.8082,0.7642,0.0010]: seeds 42/44/47 select H1 (orientation present), seeds 45/46 select H2 (contrast INSIDE the random reference). The de-noised per-seed contrast has measurement SE 0.0021-0.0030 (sd_total/sqrt(1000) combined with sd_decoder/sqrt(8)) against a cross-seed sd of 0.0425 -- a ratio of ~14 -- so seeds 45 and 46 at -0.0286 and -0.0166 sit 8-12 measurement-SE BELOW zero. They are real per-encoder properties, not noise, and H1 AS ORIGINALLY REGISTERED ('consistently-positive ... every per-seed value positive') does not predict them.",
+     "legs": [
+      "H1-small-but-real",
+      "H2-no-orientation"
+     ],
+     "rationale": "The frozen partition was posed as three GLOBAL statements about the interface, so it has no leg for a per-encoder mixture. H2 is eliminated only as a GLOBAL claim; its per-encoder content remains true on seeds 45/46 and must be carried forward rather than discarded. A random-effects reading of H1 does fit the data, but that reading IS the new leg, not the old one -- so the honest statement is that the partition needed expanding, not that H1 already covered it.",
+     "response": "partition_expansion"
     }
    ]
   },
