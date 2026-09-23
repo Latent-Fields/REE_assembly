@@ -5320,9 +5320,9 @@
       "summary": "MECH-279's pag_n_commits readout appears STRUCTURALLY UNREACHABLE at the harm-stream group's default configuration, which bears on any future run instrumented to emit it (SD-036's what_would_answer commissions exactly that at theta_freeze 2.0 and 0.8). PAGFreezeGate increments its duration counter only while ||z_harm_a|| exceeds duration_input_threshold, default 0.4 (pag/freeze_gate.py:67, :226), and commits only when z * duration_above_threshold > theta_freeze (:244-247). But V3-EXQ-854's trained z_harm_a at gaba_tone 1.0 peaks at 0.3617 / 0.4106 / 0.3074 on seeds 42/43/44, with the fraction of eval steps above 0.4 measuring 0.0000 / 0.0067 / 0.0000. The duration counter therefore essentially never accumulates and neither theta 2.0 nor 0.8 can fire, so a run would emit 0 commits in both arms and the comparison would be unattributable to theta -- whether a seed's z_harm_a floor happens to straddle 0.4 is set by random encoder initialisation, not by threat. This is EMIT-ONLY in the V3-EXQ-1068 design (no criterion scores MECH-279, direction recorded 'unknown'), so no verdict is at risk today; it is raised so /governance can decide whether the MECH-279 leg needs a configuration that can actually reach the commit predicate before it is instrumented anywhere. V3-EXQ-776's standing PASS was not re-examined.",
       "raised_by_session": "metaworker-science-20260919-sd036-observable3-regime-matrix",
       "raised_at": "2026-09-20T00:57:37Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:43:30Z",
+      "resolution_note": "Verified at source 2026-09-23 by governance-flags-mid-20260923 (middle-band flag session, GFLAG-0301..0420). ACTIONED / mooted. The pag_n_commits-unreachable finding is recorded in SD-036's DISPOSITION (02caebd047f). MECH-279's what_would_answer already requires (since 711da29a024) freeze commits non-zero on >=2/3 seeds before any read, which catches this failure mode at any theta. V3-EXQ-1068, the only driver emitting the readout, is refused and not queued."
     },
     {
       "flag_id": "GFLAG-0377",
