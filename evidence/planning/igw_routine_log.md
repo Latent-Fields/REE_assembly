@@ -3545,3 +3545,4 @@ One line per hourly tick. ASCII only.
 2026-09-23T15:25:19Z GC sweep removed 1 orphan worktree(s), kept 18
 2026-09-23T15:30:22Z workset published (regen -- 266 items, 33 ready, 0 in flight)
 2026-09-23T15:30:22Z workset committed (regen -- 266 items, 33 ready, 0 in flight)
+2026-09-23T15:25:19Z STAGE IGW-20260923-227 skill=/implement-substrate prio=25 worktree=igw-227-substrate-ready-sd-zworld-sense (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
