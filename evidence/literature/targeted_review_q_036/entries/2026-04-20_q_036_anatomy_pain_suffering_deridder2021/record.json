@@ -3,17 +3,24 @@
   "literature_type": "targeted_review_q_036",
   "entry_id": "2026-04-20_q_036_anatomy_pain_suffering_deridder2021",
   "timestamp_utc": "2026-04-20T10:46:37Z",
-  "claim_ids_tested": ["Q-036"],
+  "claim_ids_tested": [
+    "Q-036",
+    "MECH-305"
+  ],
   "source": {
     "title": "The anatomy of pain and suffering in the brain and its clinical implications",
-    "authors": ["Dirk De Ridder", "Divya Adhia", "Sven Vanneste"],
+    "authors": [
+      "Dirk De Ridder",
+      "Divya Adhia",
+      "Sven Vanneste"
+    ],
     "year": 2021,
     "venue": "Neuroscience and Biobehavioral Reviews",
     "doi": "10.1016/j.neubiorev.2021.08.013"
   },
   "evidence_class": "connectome_mechanistic_review",
   "evidence_direction": "supports",
-  "confidence": 0.70,
+  "confidence": 0.7,
   "confidence_rationale": "Comprehensive neuroanatomical review establishing a three-pathway model of pain (lateral=painfulness; medial=suffering; descending inhibitory). The medial pathway (ACC/insula overlapping with salience and stress networks) carries suffering, and the key determinant of suffering in this model is 'salience and context' -- behavioural meaning, not sensory magnitude. This directly supports Q-036's premise that temporal integration of sensory harm is insufficient; suffering requires contextual/meaning variables. Source quality is good (NeuroB&BR, comprehensive synthesis) but the three-pathway model simplifies a complex system.",
   "summary_path": "summary.md",
   "failure_signatures": [
@@ -21,7 +28,17 @@
     "The medial/lateral pathway distinction is a useful simplification but likely an oversimplification; ACC lesion studies show partial dissociations, not clean separations.",
     "Clinical focus on chronic pain may overstate the suffering vs painfulness separation for acute harm signals relevant to REE z_harm_a."
   ],
-  "tags": ["q_036", "suffering", "pain_anatomy", "acc", "anterior_insula", "medial_pathway", "salience", "context"],
+  "tags": [
+    "q_036",
+    "suffering",
+    "pain_anatomy",
+    "acc",
+    "anterior_insula",
+    "medial_pathway",
+    "salience",
+    "context",
+    "mech-305"
+  ],
   "mapping": {
     "source_claim_statement": "Suffering is processed by the medial pain pathway (ACC and insula), which overlaps with the salience and stress networks; suffering is determined by 'salience and context' -- the behavioural meaning of the experience -- not by painfulness per se. Perceived pain disability correlates with suffering, not painfulness.",
     "ree_translation": "Q-036 asks what additional variables beyond temporal integration are required for z_harm_a to constitute a distinct load state. De Ridder et al. locate the answer at the level of 'behavioural meaning' -- suffering is what the medial pathway computes when contextual variables (controllability, persistence, inescapability, PE) modulate the raw sensory signal. In REE terms, z_harm_a as a medial-pathway analogue must encode meaning-laden context, not just accumulated sensory magnitude. The overlap with the salience network (SD-032) is particularly significant: this suggests z_harm_a's computation depends on the salience-network coordinator MECH-259 implements.",
@@ -31,7 +48,7 @@
   "confidence_components": {
     "source_quality": 0.82,
     "mapping_fidelity": 0.68,
-    "transfer_risk": 0.30,
+    "transfer_risk": 0.3,
     "notes": "Good review journal; comprehensive synthesis. Mapping fidelity moderate because the contextual variables are not decomposed into the specific factors Q-036 lists. Transfer risk moderate given chronic-pain orientation."
   }
 }

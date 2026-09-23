@@ -3,10 +3,17 @@
   "literature_type": "targeted_review_blocked_agency_anger_stream",
   "entry_id": "2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020",
   "timestamp_utc": "2026-06-05T19:50:20Z",
-  "claim_ids_tested": ["CANDIDATE-blocked-agency-stream"],
+  "claim_ids_tested": [
+    "CANDIDATE-blocked-agency-stream",
+    "MECH-353"
+  ],
   "source": {
     "title": "Understanding Brain Mechanisms of Reactive Aggression",
-    "authors": ["Katja Bertsch", "Julian Florange", "Sabine C. Herpertz"],
+    "authors": [
+      "Katja Bertsch",
+      "Julian Florange",
+      "Sabine C. Herpertz"
+    ],
     "year": 2020,
     "venue": "Current Psychiatry Reports",
     "doi": "10.1007/s11920-020-01208-6"
@@ -20,7 +27,16 @@
     "Reactive aggression (frustration/threat-triggered, high-arousal, anger) is doubly dissociated from proactive/instrumental aggression (planned, low-arousal, goal-directed); a REE model that routes a blocked-agency signal through the ordinary goal-pursuit/E3 trajectory machinery without a distinct high-arousal assert channel would mis-model the reactive response.",
     "Reactive aggression is normally held in check by prefrontal inhibition (reduced vmPFC volume -> more physical aggression); a blocked-agency consumer with no regulatory/decommit gate would produce unchecked escalation -- the pathological (intermittent-explosive) phenotype, not adaptive assertion."
   ],
-  "tags": ["candidate-blocked-agency-stream", "reactive_aggression", "amygdala_hypothalamus_pag", "prefrontal_regulation", "consumer_assert_decommit", "reactive_vs_proactive", "mech-342_decommit"],
+  "tags": [
+    "candidate-blocked-agency-stream",
+    "reactive_aggression",
+    "amygdala_hypothalamus_pag",
+    "prefrontal_regulation",
+    "consumer_assert_decommit",
+    "reactive_vs_proactive",
+    "mech-342_decommit",
+    "mech-353"
+  ],
   "mapping": {
     "source_claim_statement": "Reactive aggression is a response to social threat, provocation, or frustration, strongly associated with anger and high arousal, mediated by the amygdala-hypothalamus-periaqueductal-gray acute-threat circuit and regulated/inhibited by prefrontal cortex (vmPFC, vlPFC for emotional action control, dlPFC for holding control goals); it differs fundamentally from proactive/instrumental aggression, which is planned and goal-directed.",
     "ree_translation": "Grounds the consumer side of the candidate stream. The blocked-agency signal should drive an ASSERT/escalate response (the adaptive analogue of reactive aggression) that is explicitly GATED by a regulatory/decommit channel -- REE's commitment-threshold adjustment (ARC-016) and maintenance-time decommit (MECH-342). The reactive-vs-proactive dissociation tells REE the assert channel is distinct from ordinary z_goal-driven planned pursuit, supporting a separate affect row rather than a tweak to goal salience.",
@@ -30,7 +46,7 @@
   "confidence_components": {
     "source_quality": 0.82,
     "mapping_fidelity": 0.68,
-    "transfer_risk": 0.40,
+    "transfer_risk": 0.4,
     "notes": "Good source quality (Current Psychiatry Reports review). mapping_fidelity moderate: maps cleanly to the consumer/regulation architecture but the paper's behaviour (overt aggression) and several triggers (social provocation) are V4-scope, so only part of it bears on the V3 proxy. transfer_risk moderate-high: human social aggression -> single-agent REE assert/decommit."
   }
 }

@@ -3,10 +3,21 @@
   "literature_type": "targeted_review_autonomic_rebound_parasympathetic_recovery",
   "entry_id": "2026-06-06_autonomic_rebound_support_modulates_rebound_tung2021",
   "timestamp_utc": "2026-06-06T04:06:09Z",
-  "claim_ids_tested": ["CANDIDATE-autonomic-rebound-parasympathetic-recovery"],
+  "claim_ids_tested": [
+    "CANDIDATE-autonomic-rebound-parasympathetic-recovery",
+    "MECH-356"
+  ],
   "source": {
     "title": "Cardiac vagal control in response to acute stress during pregnancy: Associations with life stress and emotional support.",
-    "authors": ["Irene Tung", "Robert T Krafty", "Meaghan L Delcourt", "Nadine M Melhem", "J Richard Jennings", "Kate Keenan", "Alison E Hipwell"],
+    "authors": [
+      "Irene Tung",
+      "Robert T Krafty",
+      "Meaghan L Delcourt",
+      "Nadine M Melhem",
+      "J Richard Jennings",
+      "Kate Keenan",
+      "Alison E Hipwell"
+    ],
     "year": 2021,
     "venue": "Psychophysiology",
     "doi": "10.1111/psyp.13808"
@@ -20,7 +31,15 @@
     "Greater vagal rebound was evident ONLY for women reporting high emotional support -- demonstrating that a social input can be the proximate modulator of rebound, so an endogenous-rebound experiment must hold social inputs fixed/absent to isolate the offset-triggered component (confound between MECH-355 and the sibling if not controlled).",
     "Higher life stress predicted both greater reactivity AND faster vagal rebound (adaptation to anticipated high-stress environments) -- rebound magnitude is history-dependent, so a fixed-rate REE rebound would mis-model chronically-stressed agents."
   ],
-  "tags": ["autonomic_rebound", "parasympathetic_recovery", "vagal_rebound", "social_support", "mech_355", "mech_355_sibling"],
+  "tags": [
+    "autonomic_rebound",
+    "parasympathetic_recovery",
+    "vagal_rebound",
+    "social_support",
+    "mech_355",
+    "mech_355_sibling",
+    "mech-356"
+  ],
   "mapping": {
     "source_claim_statement": "In pregnant women, piecewise growth-curve modelling separated reactivity and recovery slopes of HRV (RMSSD) across the Trier Social Stress Test; life stress predicted greater HRV reactivity and greater HRV recovery (vagal rebound), but the rebound association held only among women reporting high emotional support.",
     "ree_translation": "Vagal rebound is a separately-modellable recovery axis (distinct slope from reactivity) -- supporting that an endogenous-recovery mechanism is a real, isolable target -- AND a social input (emotional support) modulates that same recovery axis. In REE this is the precise warrant for the design-pass architecture: register the endogenous, offset-triggered rebound as a SIBLING of MECH-355 soothing that shares the recovery target (MECH-219 recovery_rate / SD-032e drive_bias leak) but is driven by an internal offset signal rather than a conspecific. The two inputs converge on one variable; they are dissociable by trigger, not by effector.",

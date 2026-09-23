@@ -3,10 +3,18 @@
   "literature_type": "targeted_review_q_036",
   "entry_id": "2026-04-20_q_036_controllability_pain_neural_salomons2004",
   "timestamp_utc": "2026-04-20T10:46:37Z",
-  "claim_ids_tested": ["Q-036"],
+  "claim_ids_tested": [
+    "Q-036",
+    "MECH-305"
+  ],
   "source": {
     "title": "Perceived Controllability Modulates the Neural Response to Pain",
-    "authors": ["Tim V Salomons", "Tom Johnstone", "Misha-Miroslav Backonja", "Richard J Davidson"],
+    "authors": [
+      "Tim V Salomons",
+      "Tom Johnstone",
+      "Misha-Miroslav Backonja",
+      "Richard J Davidson"
+    ],
     "year": 2004,
     "venue": "Journal of Neuroscience",
     "doi": "10.1523/JNEUROSCI.1315-04.2004",
@@ -21,7 +29,16 @@
     "The differential activation is quantitative (same circuits, different magnitude) not qualitative (different circuits) -- consistent with Q-036's integrator model but does not rule out temporal hysteresis alone being sufficient.",
     "No measurement of temporal accumulation or persistence; the paradigm uses single-trial stimuli, not sustained exposure."
   ],
-  "tags": ["q_036", "controllability", "pain", "acc", "anterior_insula", "affective_load", "suffering"],
+  "tags": [
+    "q_036",
+    "controllability",
+    "pain",
+    "acc",
+    "anterior_insula",
+    "affective_load",
+    "suffering",
+    "mech-305"
+  ],
   "mapping": {
     "source_claim_statement": "Perceived controllability over an identical noxious stimulus reduces activation in the anterior cingulate cortex, insular cortex, and secondary somatosensory cortex, without changing the stimulus itself. Dorsal ACC integrates both stimulus intensity and controllability context; rostroventral ACC shows activation only to controllability, suggesting a modulatory role.",
     "ree_translation": "Q-036 asks whether temporal integration alone is sufficient to make z_harm_a a distinct load state, or whether additional variables (controllability, inescapability, persistence, PE) are required. Salomons et al. show that controllability -- completely orthogonal to stimulus intensity -- modulates the affective pain circuit (ACC/insula). This is direct evidence that at least one non-temporal variable drives affective load over and above sensory magnitude.",
@@ -29,9 +46,9 @@
     "source_context": "Human fMRI; 16 healthy adults; thermal pain stimuli; within-subjects design; perceived (not actual) controllability manipulation."
   },
   "confidence_components": {
-    "source_quality": 0.80,
+    "source_quality": 0.8,
     "mapping_fidelity": 0.78,
-    "transfer_risk": 0.20,
+    "transfer_risk": 0.2,
     "notes": "JNeurosci publication, clean within-subjects design, widely cited. Mapping fidelity high because the circuit implicated (ACC/insula) directly overlaps with z_harm_a's proposed substrate. Transfer risk low (healthy human, directly applicable)."
   }
 }

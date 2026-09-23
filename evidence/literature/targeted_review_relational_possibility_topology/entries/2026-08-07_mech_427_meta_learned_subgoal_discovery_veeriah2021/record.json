@@ -3,10 +3,23 @@
   "literature_type": "targeted_review_relational_possibility_topology",
   "entry_id": "2026-08-07_mech_427_meta_learned_subgoal_discovery_veeriah2021",
   "timestamp_utc": "2026-08-07T20:48:50Z",
-  "claim_ids_tested": ["MECH-427"],
+  "claim_ids_tested": [
+    "MECH-427",
+    "SD-097"
+  ],
   "source": {
     "title": "Discovery of Options via Meta-Learned Subgoals",
-    "authors": ["Vivek Veeriah", "Tom Zahavy", "Matteo Hessel", "Zhongwen Xu", "Junhyuk Oh", "Iurii Kemaev", "Hado van Hasselt", "David Silver", "Satinder Singh"],
+    "authors": [
+      "Vivek Veeriah",
+      "Tom Zahavy",
+      "Matteo Hessel",
+      "Zhongwen Xu",
+      "Junhyuk Oh",
+      "Iurii Kemaev",
+      "Hado van Hasselt",
+      "David Silver",
+      "Satinder Singh"
+    ],
     "year": 2021,
     "venue": "Advances in Neural Information Processing Systems (NeurIPS) 34",
     "doi": "",
@@ -21,7 +34,15 @@
     "The manager-worker architecture is a fixed two-level hierarchy (task-dependent policy over task-independent options); it does not represent or discover lateral/orthogonal relations (the intake's 'retain for later, unrelated to current pursuit' case) or superordinate-goal relations -- only subgoal-like temporal abstractions consumed by a single level above them.",
     "Option discovery proceeds via meta-gradients accumulated across many training tasks/episodes, not as an online event triggered by something noticed mid-trajectory during a single episode of goal pursuit -- so it evidences that subgoal discovery from experience is possible in principle, not that it can happen at the time-scale and triggering-by-surprise the intake's Section 1 scenario describes."
   ],
-  "tags": ["mech-427", "relational_possibility_topology", "hierarchical_reinforcement_learning", "options", "subgoal_discovery", "meta_learning"],
+  "tags": [
+    "mech-427",
+    "relational_possibility_topology",
+    "hierarchical_reinforcement_learning",
+    "options",
+    "subgoal_discovery",
+    "meta_learning",
+    "sd-097"
+  ],
   "mapping": {
     "source_claim_statement": "A meta-gradient method trains a manager policy over a mix of primitive actions and task-independent discovered options; each option's subgoal (its reward and termination functions) is itself parameterized and optimized end-to-end via meta-gradients to maximize the option's usefulness across many training tasks. The resulting discovered options transfer usefully to held-out, novel tasks, letting a freshly initialized manager learn faster than with primitive actions alone.",
     "ree_translation": "Evidences that useful subgoal structure can be DISCOVERED from experience rather than only pre-specified, and that cross-level credit (the manager's reward signal shaping what the worker's subgoal should be) is a workable mechanism for doing so -- directly relevant to MECH-427/428's parent-subgoal credit machinery, and to whether that machinery could, in principle, extend to originating new subgoal candidates rather than only crediting an already-declared hierarchy. This is the ML-side analog of the intake's 'downward discovery' (a new state turns out to be a necessary subgoal): here it is discovered by an optimization process across tasks rather than an in-episode surprise, but the credit-assignment logic (does this subgoal make the manager better off) is structurally similar to what SD-092/MECH-427 already do for a given hierarchy.",

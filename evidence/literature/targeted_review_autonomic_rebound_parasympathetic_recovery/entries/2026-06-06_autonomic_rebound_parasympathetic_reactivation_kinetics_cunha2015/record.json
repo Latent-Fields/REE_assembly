@@ -3,10 +3,19 @@
   "literature_type": "targeted_review_autonomic_rebound_parasympathetic_recovery",
   "entry_id": "2026-06-06_autonomic_rebound_parasympathetic_reactivation_kinetics_cunha2015",
   "timestamp_utc": "2026-06-06T04:06:09Z",
-  "claim_ids_tested": ["CANDIDATE-autonomic-rebound-parasympathetic-recovery"],
+  "claim_ids_tested": [
+    "CANDIDATE-autonomic-rebound-parasympathetic-recovery",
+    "MECH-356"
+  ],
   "source": {
     "title": "Parasympathetic reactivation after maximal CPET depends on exercise modality and resting vagal activity in healthy men.",
-    "authors": ["Felipe A Cunha", "Adrian W Midgley", "Thiago Goncalves", "Pedro P Soares", "Paulo Farinatti"],
+    "authors": [
+      "Felipe A Cunha",
+      "Adrian W Midgley",
+      "Thiago Goncalves",
+      "Pedro P Soares",
+      "Paulo Farinatti"
+    ],
     "year": 2015,
     "venue": "SpringerPlus",
     "doi": "10.1186/s40064-015-0882-1"
@@ -20,7 +29,15 @@
     "Parasympathetic reactivation rate depended on the exercise modality AND on resting vagal activity -- recovery rate is not a fixed constant but a context- and baseline-conditioned parameter, so a single hard-coded REE recovery_rate would mis-model agents in different states.",
     "Reactivation was slower when resting vagal tone was lower -- a depleted baseline predicts impaired recovery, the same coupling Thayer/Mezzacappa report; a REE rebound that ignored current state would over-recover a depleted agent."
   ],
-  "tags": ["autonomic_rebound", "parasympathetic_recovery", "recovery_kinetics", "recovery_rate", "mech_219", "sd_032e"],
+  "tags": [
+    "autonomic_rebound",
+    "parasympathetic_recovery",
+    "recovery_kinetics",
+    "recovery_rate",
+    "mech_219",
+    "sd_032e",
+    "mech-356"
+  ],
   "mapping": {
     "source_claim_statement": "After maximal cardiopulmonary exercise, parasympathetic reactivation (indexed by heart-rate recovery and 30-s-windowed rMSSD) follows a measurable time course whose magnitude/rate depends on exercise modality and on resting cardiac autonomic control; delta-rMSSD into recovery correlated positively with resting HF/rMSSD/SDNN and negatively with resting LF:HF.",
     "ree_translation": "Recovery of autonomic state is a process with its own KINETICS -- a rate, not an instantaneous reset -- and that rate is conditioned by the agent's baseline state. This directly supports the candidate's smallest computational form: an offset-triggered TRANSIENT MULTIPLIER on the MECH-219 recovery_rate / SD-032e drive_bias leak, scaled by current state, rather than a fixed decay constant. The baseline-tone dependence maps onto making the rebound boost a function of current accumulator/drive state.",

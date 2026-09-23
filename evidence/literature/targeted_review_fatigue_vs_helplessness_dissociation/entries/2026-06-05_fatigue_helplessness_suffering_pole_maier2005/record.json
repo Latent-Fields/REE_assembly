@@ -3,10 +3,17 @@
   "literature_type": "targeted_review_fatigue_vs_helplessness_dissociation",
   "entry_id": "2026-06-05_fatigue_helplessness_suffering_pole_maier2005",
   "timestamp_utc": "2026-06-05T19:44:17Z",
-  "claim_ids_tested": ["SD-011", "SD-012"],
+  "claim_ids_tested": [
+    "SD-011",
+    "SD-012",
+    "MECH-354"
+  ],
   "source": {
     "title": "Stressor controllability and learned helplessness: The roles of the dorsal raphe nucleus, serotonin, and corticotropin-releasing factor",
-    "authors": ["Steven F. Maier", "Linda R. Watkins"],
+    "authors": [
+      "Steven F. Maier",
+      "Linda R. Watkins"
+    ],
     "year": 2005,
     "venue": "Neuroscience and Biobehavioral Reviews",
     "doi": "10.1016/j.neubiorev.2005.03.021"
@@ -20,7 +27,18 @@
     "If a fatigue/stop-recover signal were registered on the SD-011 suffering side, it would inherit controllability-gating and DRN/CRF aversive semantics that the biology assigns ONLY to uncontrollable aversive stress -- mis-attributing an energy-budget stop to a harm/escape-failure mechanism.",
     "Helplessness-driven withdrawal does NOT remit with rest (it requires controllability experience or pharmacological reversal); any model that lets rest dissipate a suffering-side stop signal contradicts this literature."
   ],
-  "tags": ["sd-011", "sd-012", "learned_helplessness", "dorsal_raphe", "serotonin", "crf", "controllability", "suffering_pole", "fatigue_dissociation"],
+  "tags": [
+    "sd-011",
+    "sd-012",
+    "learned_helplessness",
+    "dorsal_raphe",
+    "serotonin",
+    "crf",
+    "controllability",
+    "suffering_pole",
+    "fatigue_dissociation",
+    "mech-354"
+  ],
   "mapping": {
     "source_claim_statement": "The behavioral deficits of 'learned helplessness' are produced by the UNCONTROLLABILITY of an aversive stressor (not its mere presence). Uncontrollability is detected by ventromedial prefrontal cortex; when control is absent, the dorsal raphe nucleus (DRN) serotonergic system is intensely activated and sensitized, and corticotropin-releasing factor (CRF) acts in/around the DRN, yielding the escape-failure / passivity phenotype. Controllability engages vmPFC top-down inhibition of the DRN, preventing the deficit.",
     "ree_translation": "This grounds REE's SD-011 (dual nociceptive / aversive) pole, the antecedent of suffering-driven withdrawal: an AVERSIVE, controllability-contingent signal whose 'stop/disengage' output is escape-failure. It defines what fatigue/stop-recover is NOT, supporting the recommendation that a homeostatic fatigue signal register on the SD-012 side, distinct from z_harm_a/SD-011.",
@@ -30,7 +48,12 @@
   "confidence_components": {
     "source_quality": 0.92,
     "mapping_fidelity": 0.72,
-    "transfer_risk": 0.30,
+    "transfer_risk": 0.3,
     "notes": "Source quality near-ceiling (canonical, replicated). Mapping_fidelity high for the antecedent/dynamics contrast but conceptual, not metric. Transfer_risk moderate: rodent->REE substrate has no serotonergic homolog, but the load-bearing claim (uncontrollable-aversion antecedent, no rest-recovery) transfers as a category boundary, which is what the differentiation needs."
+  },
+  "evidence_direction_per_claim": {
+    "MECH-354": "mixed",
+    "SD-011": "supports",
+    "SD-012": "supports"
   }
 }

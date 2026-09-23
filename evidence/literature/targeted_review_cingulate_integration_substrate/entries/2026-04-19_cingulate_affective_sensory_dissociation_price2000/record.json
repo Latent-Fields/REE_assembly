@@ -3,10 +3,15 @@
   "literature_type": "targeted_review_cingulate_integration_substrate",
   "entry_id": "2026-04-19_cingulate_affective_sensory_dissociation_price2000",
   "timestamp_utc": "2026-04-19T09:16:25Z",
-  "claim_ids_tested": ["SD-011"],
+  "claim_ids_tested": [
+    "SD-011",
+    "SD-032"
+  ],
   "source": {
     "title": "Psychological and neural mechanisms of the affective dimension of pain",
-    "authors": ["Donald D. Price"],
+    "authors": [
+      "Donald D. Price"
+    ],
     "year": 2000,
     "venue": "Science",
     "doi": "10.1126/science.288.5472.1769",
@@ -21,7 +26,14 @@
     "Models that collapse sensory and affective pain into a single scalar cost will fail to predict the clinical dissociation (cingulotomy patients still detect noxious stimuli but no longer rate them as unpleasant).",
     "Affective pain in Price's two-stage model is at least partly generated post-hoc from secondary appraisal (harm implications, suffering expectations) -- a consumer that only reads instantaneous z_harm_a and never updates it with trajectory-level consequence inference would underweight the very signal the theory says matters."
   ],
-  "tags": ["sd_011", "affective_pain", "acc", "cingulate_substrate", "foundational"],
+  "tags": [
+    "sd_011",
+    "affective_pain",
+    "acc",
+    "cingulate_substrate",
+    "foundational",
+    "sd-032"
+  ],
   "mapping": {
     "source_claim_statement": "Pain has two functionally and anatomically dissociable dimensions: sensory-discriminative (intensity/location/quality, subserved by lateral thalamus -> S1/S2) and affective-motivational (unpleasantness, suffering, action urgency, subserved by medial thalamus -> ACC/AIC). The affective dimension further splits into immediate pain unpleasantness and secondary appraisal-based affect (suffering, threat to future wellbeing).",
     "ree_translation": "SD-011's dual z_harm_s / z_harm_a split correctly instantiates the primary sensory/affective dissociation. But Price's secondary-appraisal stage -- where affective pain is re-generated from inferred future consequences -- implies z_harm_a should not be purely bottom-up from current noxious input; it should also receive a top-down signal from trajectory-level harm forecasting. This directly speaks to Option B (forward-rollout affective cost) over pure Option A (read-off-current-latent).",
@@ -29,9 +41,9 @@
     "source_context": "Review synthesizing human psychophysics, hypnotic-suggestion fMRI, and cingulotomy/patient data."
   },
   "confidence_components": {
-    "source_quality": 0.90,
-    "mapping_fidelity": 0.80,
-    "transfer_risk": 0.30,
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
     "notes": "Foundational review, not original empirical work, but cited as canonical. Mapping to ree-v3 is strong for the dual-stream existence claim; weaker for the specific wiring question because the paper does not speak the language of action-selection cost functions."
   }
 }

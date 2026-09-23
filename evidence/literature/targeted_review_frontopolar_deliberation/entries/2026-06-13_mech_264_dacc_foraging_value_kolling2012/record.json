@@ -3,10 +3,20 @@
   "literature_type": "targeted_review_frontopolar_deliberation",
   "entry_id": "2026-06-13_mech_264_dacc_foraging_value_kolling2012",
   "timestamp_utc": "2026-06-13T18:06:43Z",
-  "claim_ids_tested": ["MECH-264", "SD-046", "SD-032b"],
+  "claim_ids_tested": [
+    "MECH-264",
+    "SD-046",
+    "SD-032b",
+    "MECH-432"
+  ],
   "source": {
     "title": "Neural mechanisms of foraging",
-    "authors": ["Nils Kolling", "Timothy E. J. Behrens", "Rogier B. Mars", "Matthew F. S. Rushworth"],
+    "authors": [
+      "Nils Kolling",
+      "Timothy E. J. Behrens",
+      "Rogier B. Mars",
+      "Matthew F. S. Rushworth"
+    ],
     "year": 2012,
     "venue": "Science",
     "doi": "10.1126/science.1216930",
@@ -21,7 +31,18 @@
     "Kolling et al place switch/search value in ACC, not lateral FPC. If a V4 implementation puts the entire counterfactual-and-switch computation inside an SD-033e frontopolar-analog with no dACC-analog (SD-032b) partner, it would conflate two anatomically and reference-frame-distinct signals -- the chosen-option value (vmPFC/FPC) and the environment/search value (ACC).",
     "A later re-analysis (Shenhav/Hayden debate) argued some ACC 'foraging value' effects reflect choice difficulty rather than a dedicated search-value signal; if REE's switch gate fires on difficulty/conflict alone, it would reproduce the confound rather than a genuine counterfactual-value comparison."
   ],
-  "tags": ["mech-264", "sd-046", "sd-032b", "dacc", "foraging", "switch_value", "fpc_dacc_loop", "gdl-8", "L2"],
+  "tags": [
+    "mech-264",
+    "sd-046",
+    "sd-032b",
+    "dacc",
+    "foraging",
+    "switch_value",
+    "fpc_dacc_loop",
+    "gdl-8",
+    "L2",
+    "mech-432"
+  ],
   "mapping": {
     "source_claim_statement": "Humans alternate between two modes of choice -- comparative decision-making (vmPFC, encoding values of specific well-defined options) and foraging (ACC, encoding the average value of the environment and the cost of foraging/searching for alternatives) -- using distinct neural substrates with distinct reference frames.",
     "ree_translation": "MECH-264's switch-to-alternative signal is the REE analog of the ACC foraging-value computation: a running estimate of the value of leaving the current course for an alternative, compared against the chosen-option value. The dACC-analog (SD-032b) supplies the environment/search-value side and the SD-033e frontopolar-analog supplies the specific counterfactual-option value; together they form the co-constitutive dACC<->FPC arbitration loop that gates slot-switching in SD-046's multi-slot GoalState.",

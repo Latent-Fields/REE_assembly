@@ -3,10 +3,19 @@
   "literature_type": "targeted_review_connectome_mech_314",
   "entry_id": "2026-06-18_mech_314_frontopolar_exploration_daw2006",
   "timestamp_utc": "2026-06-18T06:56:57Z",
-  "claim_ids_tested": ["MECH-314"],
+  "claim_ids_tested": [
+    "MECH-314",
+    "MECH-441"
+  ],
   "source": {
     "title": "Cortical substrates for exploratory decisions in humans.",
-    "authors": ["Nathaniel D Daw", "John P O'Doherty", "Peter Dayan", "Ben Seymour", "Raymond J Dolan"],
+    "authors": [
+      "Nathaniel D Daw",
+      "John P O'Doherty",
+      "Peter Dayan",
+      "Ben Seymour",
+      "Raymond J Dolan"
+    ],
     "year": 2006,
     "venue": "Nature",
     "doi": "10.1038/nature04766",
@@ -20,7 +29,16 @@
   "failure_signatures": [
     "Daw et al. localise exploration to frontopolar cortex but do not show the exploratory drive is computed as model-disagreement / prediction-error novelty; if MECH-314 is implemented specifically as RND/ensemble-disagreement, the biological mapping is to 'uncertainty-driven frontopolar exploration' generally, and the disagreement-specific form is a computational choice not directly evidenced here."
   ],
-  "tags": ["mech-314", "frontopolar_cortex", "exploration", "uncertainty", "curiosity", "directed_exploration", "cdq-002"],
+  "tags": [
+    "mech-314",
+    "frontopolar_cortex",
+    "exploration",
+    "uncertainty",
+    "curiosity",
+    "directed_exploration",
+    "cdq-002",
+    "mech-441"
+  ],
   "mapping": {
     "source_claim_statement": "Human choices in a 4-armed bandit are well-characterised by a principled explore/exploit strategy; fMRI shows frontopolar cortex and intraparietal sulcus are preferentially active during exploratory decisions, while striatum and vmPFC show activity characteristic of value-based exploitative decisions. Action selection under uncertainty involves switching between exploratory and exploitative modes.",
     "ree_translation": "Frontopolar uncertainty-driven exploration is the biological substrate (b) of ARC-065's behavioural-diversity-generation pathway and the anchor for MECH-314 structured_curiosity_bonus. The CDQ-002 secondary imports the COMPUTATIONAL form of this directed exploration (RND novelty / Plan2Explore model-disagreement) as the MECH-314 mechanism; Daw et al. supply the neural warrant that a dedicated directed-exploration substrate exists and is distinct from value-based exploitation.",

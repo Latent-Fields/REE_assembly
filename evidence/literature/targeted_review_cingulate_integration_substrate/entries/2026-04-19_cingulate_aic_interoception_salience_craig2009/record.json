@@ -3,10 +3,15 @@
   "literature_type": "targeted_review_cingulate_integration_substrate",
   "entry_id": "2026-04-19_cingulate_aic_interoception_salience_craig2009",
   "timestamp_utc": "2026-04-19T09:16:25Z",
-  "claim_ids_tested": ["MECH-091"],
+  "claim_ids_tested": [
+    "MECH-091",
+    "SD-032"
+  ],
   "source": {
     "title": "How do you feel--now? The anterior insula and human awareness",
-    "authors": ["A. D. (Bud) Craig"],
+    "authors": [
+      "A. D. (Bud) Craig"
+    ],
     "year": 2009,
     "venue": "Nature Reviews Neuroscience",
     "doi": "10.1038/nrn2555",
@@ -14,14 +19,22 @@
   },
   "evidence_class": "theoretical_review",
   "evidence_direction": "supports",
-  "confidence": 0.80,
+  "confidence": 0.8,
   "confidence_rationale": "Canonical case for AIC as integrator of interoceptive, emotional, and salient signals with direct wiring to autonomic urgency and to the ACC-AIC salience network. Directly supports Option C (urgency-interrupt role) but clearly separates it from Option A (action-value integration, which is an ACC job). High source quality, strong mapping fidelity for the AIC-interrupt role. Transfer risk moderate because Craig's 'global emotional moment' construct is phenomenological.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "A substrate that routes affective pain through a single action-value channel without a separate salience/interrupt channel will fail to produce the 'sudden urgent break from committed behaviour' pattern that AIC is supposed to mediate -- the agent will integrate affective cost smoothly rather than interrupting.",
     "Craig argues the AIC also represents internal body state (interoception). A ree-v3 substrate with no interoceptive input (drive_level, fatigue, metabolic state) will lack the baseline against which affective pain is evaluated for urgency -- the same nociception should be urgent for a depleted agent, tolerable for a well-resourced one."
   ],
-  "tags": ["cingulate_substrate", "aic", "salience", "interoception", "urgency_interrupt", "mech_091"],
+  "tags": [
+    "cingulate_substrate",
+    "aic",
+    "salience",
+    "interoception",
+    "urgency_interrupt",
+    "mech_091",
+    "sd-032"
+  ],
   "mapping": {
     "source_claim_statement": "The anterior insular cortex (AIC) integrates interoceptive (bodily-state) signals with emotional and cognitive signals to produce a 'global emotional moment' -- a unified representation of subjective feeling. It sits at the hub of the salience network (with dACC/aMCC), responds to salient events of all modalities, and has direct efferent projections to autonomic and motor control regions that allow it to trigger rapid state change. AIC-ACC salience network mediates switching between large-scale brain networks when salient events demand it.",
     "ree_translation": "The AIC/salience-network role is Option C in the z_harm_a question: urgency-interrupt on committed behaviour when affective pain (or any other salient signal) exceeds threshold. This is computationally distinct from Option A (adding affective cost to trajectory score in ongoing action selection) -- it operates at a *different timescale* and on a *different control surface* (commitment / phase reset / network switching) rather than incremental cost integration. ree-v3 already has a stub (urgency_weight in commit threshold), but that stub is (a) off by default and (b) only modulates commitment, not full network-state switching. This paper argues the urgency mechanism should *also* phase-reset E3 (connects to MECH-091) and should be gated on interoceptive baseline, not on affective pain magnitude alone.",

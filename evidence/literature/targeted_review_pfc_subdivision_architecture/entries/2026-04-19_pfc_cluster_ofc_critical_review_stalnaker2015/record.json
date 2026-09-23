@@ -3,24 +3,43 @@
   "literature_type": "targeted_review_pfc_subdivision_architecture",
   "entry_id": "2026-04-19_pfc_cluster_ofc_critical_review_stalnaker2015",
   "timestamp_utc": "2026-04-19T11:26:11Z",
-  "claim_ids_tested": ["ARC-035", "MECH-261"],
+  "claim_ids_tested": [
+    "ARC-035",
+    "MECH-261",
+    "SD-033",
+    "SD-033c"
+  ],
   "source": {
     "title": "What the orbitofrontal cortex does not do",
-    "authors": ["Thomas A. Stalnaker", "Nisha K. Cooch", "Geoffrey Schoenbaum"],
+    "authors": [
+      "Thomas A. Stalnaker",
+      "Nisha K. Cooch",
+      "Geoffrey Schoenbaum"
+    ],
     "year": 2015,
     "venue": "Nature Neuroscience",
     "doi": "10.1038/nn.3982"
   },
   "evidence_class": "connectome_mechanistic_review",
   "evidence_direction": "supports",
-  "confidence": 0.80,
+  "confidence": 0.8,
   "confidence_rationale": "Nature Neuroscience review explicitly critical of the 'OFC does value' framing, from the Schoenbaum lab. Argues OFC represents cognitive maps of task structure (state spaces), not value per se. Complements Rudebeck & Murray 2014: both point toward dissociating OFC from vmPFC but give different accounts of what OFC specifically does. Useful for REE because it frames OFC's function in terms compatible with model-based planning.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "If OFC-lesioned animals showed selective value-tracking deficits while leaving task-structure representation intact, the 'cognitive map' framing would be wrong and the pure value-representation framing would be back in play.",
     "If OFC activity did not discriminate between states that differ only in their latent task-structural role (same reward, same stimuli, different context), the cognitive-map claim would fail at source."
   ],
-  "tags": ["arc_035", "mech_261", "ofc", "cognitive_map", "task_structure", "model_based", "pfc_subdivision"],
+  "tags": [
+    "arc_035",
+    "mech_261",
+    "ofc",
+    "cognitive_map",
+    "task_structure",
+    "model_based",
+    "pfc_subdivision",
+    "sd-033",
+    "sd-033c"
+  ],
   "mapping": {
     "source_claim_statement": "OFC represents cognitive maps of task structure (a 'state space') rather than scalar value; it carries the structured information about what states the agent is in, what transitions are possible, and what outcomes each state predicts. Value signals ride on top of this representation but are not its primary function.",
     "ree_translation": "The OFC-analog in REE holds the task-structure representation that E2 and E3 query when predicting outcomes. This aligns with REE's model-based architecture: OFC-analog is where the learned transition/outcome structure lives, distinct from the scalar valuation in vmPFC-analog. MECH-261 write gating on this substrate needs to permit structural updates during internal_planning (incorporating counterfactual branches) and consolidative updates during offline_consolidation (stabilising task-model structure).",

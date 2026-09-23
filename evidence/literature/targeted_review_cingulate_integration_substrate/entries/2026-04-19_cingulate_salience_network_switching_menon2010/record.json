@@ -3,10 +3,15 @@
   "literature_type": "targeted_review_cingulate_integration_substrate",
   "entry_id": "2026-04-19_cingulate_salience_network_switching_menon2010",
   "timestamp_utc": "2026-04-19T09:16:25Z",
-  "claim_ids_tested": [],
+  "claim_ids_tested": [
+    "SD-032"
+  ],
   "source": {
     "title": "Saliency, switching, attention and control: a network model of insula function",
-    "authors": ["Vinod Menon", "Lucina Q. Uddin"],
+    "authors": [
+      "Vinod Menon",
+      "Lucina Q. Uddin"
+    ],
     "year": 2010,
     "venue": "Brain Structure and Function",
     "doi": "10.1007/s00429-010-0262-0",
@@ -21,7 +26,15 @@
     "A substrate that implements each cingulate subdivision as an isolated module without cross-coupling will fail the core salience-network prediction: that salient events should produce coordinated activity across AIC and dACC simultaneously, and that this coordination drives switching *between* other networks (DMN vs task-positive). ree-v3 has no network-switching primitive.",
     "Menon & Uddin's four-mechanism decomposition (bottom-up salience detection, inter-network switching, anterior-posterior insula autonomic modulation, AIC-ACC coupling for rapid motor access) predicts that failure of ANY one mechanism compromises salience-driven behaviour. A minimal cingulate substrate that implements only one or two will have characteristic failure modes mapped to the missing mechanisms."
   ],
-  "tags": ["cingulate_substrate", "aic", "dacc", "salience_network", "network_switching", "menon_uddin"],
+  "tags": [
+    "cingulate_substrate",
+    "aic",
+    "dacc",
+    "salience_network",
+    "network_switching",
+    "menon_uddin",
+    "sd-032"
+  ],
   "mapping": {
     "source_claim_statement": "AIC is the integral hub of a 'salience network' that includes dACC (and their subcortical connections). The network's core function is to (1) detect salient events bottom-up from multiple modalities, (2) switch between other large-scale networks (DMN vs task-positive) to bring appropriate resources online, (3) modulate autonomic reactivity via anterior-posterior insula coupling, and (4) use strong AIC-ACC functional coupling to get rapid access to motor output. The salience network is functionally distinct from both the DMN and the central-executive network; it is the coordinator that selects between them.",
     "ree_translation": "This is the paper that provides the network-level specification for the new cingulate substrate. The architectural claim: the cingulate substrate is not a set of independent modules (ACC, MCC, AIC, PCC each doing their own thing) -- it is a *coordinated network* whose primary function is selecting between other large-scale processing modes. For ree-v3 this means (i) the cingulate cluster needs internal coupling (AIC-analog <-> dACC-analog <-> MCC-analog are co-active on salient events), (ii) its primary output is not local action-value modification but *selection between operating modes* (task execution vs replay vs consolidation), and (iii) the interrupt/switch function lives at the network level, not in any single module. This unifies several ree-v3 gaps: commit-state transitions, offline-phase entry, mode-dependent write gating, and urgency-interrupt all want to route through this network-switching substrate.",
@@ -31,7 +44,7 @@
   "confidence_components": {
     "source_quality": 0.85,
     "mapping_fidelity": 0.85,
-    "transfer_risk": 0.30,
+    "transfer_risk": 0.3,
     "notes": "Field-defining paper (cited >10,000 times). The triple-network framework is now standard and provides clean computational abstractions ree-v3 can adopt. Transfer risk is low because the network-level framing translates naturally to operating-mode selection in an embodied agent."
   }
 }

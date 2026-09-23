@@ -3,10 +3,18 @@
   "literature_type": "targeted_review_pfc_subdivision_architecture",
   "entry_id": "2026-04-19_pfc_cluster_abstract_rules_mansouri2020",
   "timestamp_utc": "2026-04-19T11:26:11Z",
-  "claim_ids_tested": ["MECH-261", "ARC-035"],
+  "claim_ids_tested": [
+    "MECH-261",
+    "ARC-035",
+    "SD-033"
+  ],
   "source": {
     "title": "Emergence of abstract rules in the primate brain",
-    "authors": ["Farshad A. Mansouri", "David J. Freedman", "Mark J. Buckley"],
+    "authors": [
+      "Farshad A. Mansouri",
+      "David J. Freedman",
+      "Mark J. Buckley"
+    ],
     "year": 2020,
     "venue": "Nature Reviews Neuroscience",
     "doi": "10.1038/s41583-020-0364-5"
@@ -20,7 +28,14 @@
     "If abstract-rule neurons were absent in dorsolateral PFC but present in OFC or vmPFC, REE's 'rules go to lateral PFC, values go to vmPFC/OFC' partition would be wrong.",
     "If rule-selective neurons required stimulus-driven updates to persist, the active-maintenance framing that MECH-261 relies on would collapse."
   ],
-  "tags": ["mech_261", "pfc_subdivision", "abstract_rules", "rule_neurons", "lateral_pfc"],
+  "tags": [
+    "mech_261",
+    "pfc_subdivision",
+    "abstract_rules",
+    "rule_neurons",
+    "lateral_pfc",
+    "sd-033"
+  ],
   "mapping": {
     "source_claim_statement": "Neurons in primate lateral PFC encode abstract task rules (same/different, match/non-match, category membership) independently of the specific stimuli those rules operate on; rule-selective activity emerges with training and persists across delays.",
     "ree_translation": "Supplies the specific single-unit evidence that the lateral-PFC analogue holds stimulus-abstracted rule representations — not just working memory for the current stimulus. MECH-261 writes into these rule-selective populations during internal_planning and external_task, and must not overwrite them during internal_replay.",
@@ -30,7 +45,7 @@
   "confidence_components": {
     "source_quality": 0.92,
     "mapping_fidelity": 0.85,
-    "transfer_risk": 0.30,
+    "transfer_risk": 0.3,
     "notes": "Source quality very high (NRN, three-lab synthesis). Mapping fidelity is strong because 'abstract rule' in the paper corresponds almost exactly to what REE wants the lateral-PFC analogue to hold. Transfer risk is moderate: the mechanism is well-validated in macaque, less directly in humans, and REE is agnostic about the exact format of the abstract representation."
   }
 }

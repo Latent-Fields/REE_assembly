@@ -3,10 +3,21 @@
   "literature_type": "targeted_review_q_036",
   "entry_id": "2026-04-20_q_036_controllability_suffering_dissociation_loffler2018",
   "timestamp_utc": "2026-04-20T10:46:37Z",
-  "claim_ids_tested": ["Q-036"],
+  "claim_ids_tested": [
+    "Q-036",
+    "MECH-305"
+  ],
   "source": {
     "title": "Impact of controllability on pain and suffering",
-    "authors": ["M Loffler", "S Kamping", "M Brunner", "S Bustan", "D Kleinbohl", "F Anton", "H Flor"],
+    "authors": [
+      "M Loffler",
+      "S Kamping",
+      "M Brunner",
+      "S Bustan",
+      "D Kleinbohl",
+      "F Anton",
+      "H Flor"
+    ],
     "year": 2018,
     "venue": "Pain Reports",
     "doi": "10.1097/PR9.0000000000000694",
@@ -22,7 +33,15 @@
     "Physiological indicators (skin conductance, heart rate) showed no group differences, suggesting the effect is cognitive-emotional rather than autonomic -- this limits the mapping to a REE system with autonomic coupling (SD-032e).",
     "The study used a brief experimental pain paradigm (not chronic or persistent), so temporal accumulation and recovery failure effects are not tested."
   ],
-  "tags": ["q_036", "controllability", "suffering", "pain_intensity", "dissociation", "locus_of_control"],
+  "tags": [
+    "q_036",
+    "controllability",
+    "suffering",
+    "pain_intensity",
+    "dissociation",
+    "locus_of_control",
+    "mech-305"
+  ],
   "mapping": {
     "source_claim_statement": "Controllability selectively reduces pain-related suffering as a distinct dimension, without affecting pain intensity or unpleasantness. Chance-attributional locus of control predicts suffering magnitude; catastrophising and fear do not.",
     "ree_translation": "Q-036 asks what additional variables beyond temporal integration determine z_harm_a as a distinct load state. Loffler et al. show suffering is a separable dimension from intensity and unpleasantness, and that controllability is its primary modulator. In REE terms, z_harm_a as the affective harm stream should encode not just accumulated harm signal magnitude but also an estimate of controllability/escapability. This is a functionally distinct variable from what MECH-219 (temporal integrator alone) captures.",
@@ -32,7 +51,7 @@
   "confidence_components": {
     "source_quality": 0.72,
     "mapping_fidelity": 0.75,
-    "transfer_risk": 0.20,
+    "transfer_risk": 0.2,
     "notes": "Pain Reports is a lower-tier venue; the three-way dissociation is clean but no neural data. Mapping fidelity high because the suffering vs intensity dissociation directly addresses the question of whether non-temporal variables are load-determining."
   }
 }
