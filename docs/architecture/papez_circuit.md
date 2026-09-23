@@ -17,19 +17,24 @@ nav_order: 11
 ---
 
 REE can treat a **Papez-like loop** as a functional **reality-filtering / provenance-gating** mechanism rather than a
-direct anatomical claim. The core idea is that E1-generated content should not reach high-precision commitment unless it
-is supported by hippocampal trace structure and temporal ordering signals. This gate reduces confabulation-like failure
-where internally generated content is treated as real without adequate provenance.
+direct anatomical claim. The core idea is that E1-generated content should not reach high-precision commitment unless
+retrieval-coupled filtering, running concurrently with encoding, supports it with hippocampal trace structure and
+temporal context. This reduces confabulation-like failure where internally generated content is treated as real
+without adequate provenance.
 
-## Operational interpretation
+> **Architecture decision (2026-09-23, GFLAG-0340, option A, user-accepted).** This page used to carry two
+> incompatible accounts: an "operational" sequential gate (read a trace store, then license commitment) and a
+> concurrent affective retrieval-augmentation account. MECH-037 could not get a falsifier that could fail while both
+> stood. The **retrieval-augmentation account is adopted**. The sequential-gate account is kept below as history
+> only. The literature favours the concurrent account: Theze 2017 finds OFC-MTL theta coherence at 200-330 ms, while
+> Liverani 2015 (temporal-order judgment dissociates from reality filtering from 310 ms) and Bouzerda-Wahlen 2015
+> (context source monitoring has no expression in the 200-300 ms window) place the sequential gate's nominated inputs
+> downstream of any sequential gate window (lit pull REE_assembly 983bf73c8f3).
 
-- **Provenance gating:** E1 hypotheses are held at low precision unless a hippocampal trace / ordering signal is present.
-- **Commitment filter:** E3 commitment is licensed only when provenance gating is satisfied.
-- **Control-plane bias:** the control plane can down-weight untraced content or mark it as speculative.
+## Adopted architecture: affective retrieval-augmentation
 
-## Affective retrieval-augmentation interpretation
-
-The same loop can be interpreted as a **retrieval-augmentation stage** upstream of commitment:
+The loop is a **retrieval-augmentation stage** upstream of commitment, in which filtering and encoding are concurrent
+and coupled:
 
 - hippocampal systems retrieve relational traces,
 - relay/loop dynamics stabilize temporal context,
@@ -44,18 +49,38 @@ Boundary clarification:
 - the loop can amplify or suppress candidate trajectories,
 - but it does not mint authority writes (`POL`/`ID`/`CAPS`) and does not bypass E3/verifier commit checks.
 
+## History: the superseded "operational" (sequential gate) interpretation
+
+Superseded 2026-09-23 (GFLAG-0340). Retained for provenance only; do not design against it.
+
+- **Provenance gating:** E1 hypotheses are held at low precision unless a hippocampal trace / ordering signal is present.
+- **Commitment filter:** E3 commitment is licensed only when provenance gating is satisfied.
+- **Control-plane bias:** the control plane can down-weight untraced content or mark it as speculative.
+
+Why it was dropped: it treats trace/ordering presence as a precondition checked *before* commitment, but the human
+signals it nominates (temporal-order judgment, source monitoring) measure as slow processes *downstream* of that
+window, so a falsifier built on it cannot distinguish a working gate from no gate.
+
 ## Failure mode
 
 When provenance gating fails, E1 content can be committed without trace support, producing confabulation-like behavior:
 high-confidence narratives that lack appropriate temporal or source grounding.
 
-## Operational checklist
+## Operational checklist (retrieval-augmentation)
 
-- **Input signals:** hippocampal trace presence, temporal ordering confidence, and recency flags.
-- **Gate decision:** if trace/ordering support is low, down-weight precision and mark content as speculative.
-- **Commitment rule:** E3 commitment requires provenance gate pass for E1-derived content.
-- **Control-plane knobs:** tune sensitivity (false positive vs false negative tolerance) per mode.
-- **Failure cues:** rising incoherence + high-confidence claims without trace support.
+- **Input signals:** hippocampal relational-trace retrieval, relay/loop temporal-context stabilisation, and
+  cingulate-like conflict/valence signals, read *concurrently* with candidate formation, not as a precondition
+  checked after it.
+- **Filtering:** conflict/valence signals reweight the retrieval eligibility and precision of candidate trajectories in
+  the same window as encoding. Untraced or conflict-flagged content is down-weighted in the returned candidate bundle,
+  not blocked at a later licensing step.
+- **Commitment rule:** E3 commits over the context-shaped candidate bundle. The loop never mints authority writes
+  (`POL`/`ID`/`CAPS`) and never bypasses E3/verifier commit checks.
+- **Instrument:** per-commitment precision/confidence, not correctness alone. The falsifier DV is the rise in
+  high-confidence commitments of ungrounded content when the loop's reweighting is degraded (MECH-037
+  `what_would_answer`).
+- **Control-plane knobs:** tune the reweighting gain (false positive vs false negative tolerance) per mode.
+- **Failure cues:** rising incoherence plus high-confidence commitments whose candidate bundle lacked trace support.
 
 ## Notes
 
