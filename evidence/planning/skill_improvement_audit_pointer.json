@@ -330,6 +330,68 @@
         "what"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-1043b_2026-09-23|0|1": {
+      "artifact": "failure_autopsy_V3-EXQ-1043b_2026-09-23",
+      "claim_ids": [
+        "MECH-537"
+      ],
+      "embedded_ids": [],
+      "flags": [
+        "twice"
+      ],
+      "item_index": 1,
+      "run_id": "v3_exq_1043b_mech537_communication_subspace_randrank_20260922T204547Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "A pre-registered criterion can be non-reproducible on a FIXED subspace and still be scored as a conjunct. C4b's verdict flipped on seeds 43 and 44 between 1043a and 1043b -- bit-identical encoders, identical parsimonious rank, deterministic RRR, so the same communication subspace scored twice -- because its 32-of-64 Jacobian state sample is unseeded. Measuring a ceiling in-run (the prior autopsy's required fix, correctly implemented) removed the REACHABILITY problem but left the REPRODUCIBILITY of the statistic being compared to it unmeasured. Seed the probe and record its per-seed bootstrap sd before scoring it again.",
+      "tokens": [
+        "autopsy",
+        "bit-identical",
+        "bootstrap",
+        "ceiling",
+        "communication",
+        "compared",
+        "conjunct",
+        "correctly",
+        "criterion",
+        "deterministic",
+        "encoders",
+        "fixed",
+        "flipped",
+        "identical",
+        "implemented",
+        "in-run",
+        "jacobian",
+        "left",
+        "measuring",
+        "non-reproducible",
+        "parsimonious",
+        "per-seed",
+        "pre-registered",
+        "prior",
+        "probe",
+        "problem",
+        "rank",
+        "reachability",
+        "record",
+        "removed",
+        "reproducibility",
+        "required",
+        "same",
+        "sample",
+        "scored",
+        "scoring",
+        "seed",
+        "seeds",
+        "state",
+        "statistic",
+        "subspace",
+        "unmeasured",
+        "unseeded",
+        "verdict"
+      ]
+    },
     "autopsy|failure_autopsy_V3-EXQ-1044_2026-09-17|0|6": {
       "artifact": "failure_autopsy_V3-EXQ-1044_2026-09-17",
       "claim_ids": [],
@@ -3412,7 +3474,7 @@
       ]
     }
   },
-  "last_swept_at": "2026-09-23T08:51:30Z",
+  "last_swept_at": "2026-09-23T17:49:17Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
@@ -3495,6 +3557,7 @@
     "failure_autopsy_V3-EXQ-1041_2026-09-16.json": 1789564030.9807017,
     "failure_autopsy_V3-EXQ-1043_2026-09-17.json": 1789638381.9940832,
     "failure_autopsy_V3-EXQ-1043a_2026-09-20.json": 1789904682.8193529,
+    "failure_autopsy_V3-EXQ-1043b_2026-09-23.json": 1790184786.618221,
     "failure_autopsy_V3-EXQ-1044_2026-09-17.json": 1789638381.996236,
     "failure_autopsy_V3-EXQ-1046_2026-09-17.json": 1789667865.897657,
     "failure_autopsy_V3-EXQ-1047_2026-09-17.json": 1789667889.5005422,
@@ -3952,5 +4015,5 @@
     "failure_autopsy_v3exq665-cluster_2026-08-09.json": 1786259604.7569785,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1790104997.7196138
+  "seen_review_tracker_mtime": 1790155445.4633052
 }

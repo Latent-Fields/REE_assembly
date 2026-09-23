@@ -25,6 +25,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-2`
 
@@ -47,6 +48,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-3`
 
@@ -69,6 +71,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-4`
 
@@ -91,6 +94,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-5`
 
@@ -113,6 +117,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-6`
 
@@ -135,6 +140,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-7`
 
@@ -157,6 +163,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-8`
 
@@ -179,6 +186,7 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 
 ## `autobiographical_memory_v4:ABM-9`
 
@@ -201,4 +209,5 @@ Source plan: `evidence/planning/autobiographical_memory_v4_plan.md`
 - `2026-06-17T14:30Z` [autopsy] `failure_autopsy_V3-EXQ-460e_2026-06-17` -> [`evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460e_2026-06-17.json) :: autopsy non_contributory/substrate_not_ready_requeue_confirmed routing=implement-substrate
 - `2026-06-18T06:03Z` [autopsy] `failure_autopsy_V3-EXQ-460f_2026-06-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
+- `2026-09-23T09:24Z` [decision] `decision:MECH-430@2026-09-23T09:24:23.873283Z` -> [`evidence/decisions/decision_log.v1.jsonl#L553`](../../../../evidence/decisions/decision_log.v1.jsonl#L553) :: decision hold_pending_v3_substrate (applied)
 

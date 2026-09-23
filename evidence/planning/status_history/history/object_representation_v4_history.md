@@ -11,7 +11,8 @@ Source plan: `evidence/planning/object_representation_v4_plan.md`
 - `2026-06-06T07:53Z` [decision] `decision:ARC-082@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L285`](../../../../evidence/decisions/decision_log.v1.jsonl#L285) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-09T19:07Z` [manifest] `v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3` -> [`evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json`](../../../../evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json) :: PASS manifest supports
-- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-23T09:24Z` [decision] `decision:ARC-080@2026-09-23T09:24:23.343475Z` -> [`evidence/decisions/decision_log.v1.jsonl#L543`](../../../../evidence/decisions/decision_log.v1.jsonl#L543) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `object_representation_v4:OBJ-2`
 
@@ -20,7 +21,8 @@ Source plan: `evidence/planning/object_representation_v4_plan.md`
 - `2026-06-06T07:53Z` [decision] `decision:ARC-082@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L285`](../../../../evidence/decisions/decision_log.v1.jsonl#L285) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-09T19:07Z` [manifest] `v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3` -> [`evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json`](../../../../evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json) :: PASS manifest supports
-- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-23T09:24Z` [decision] `decision:ARC-080@2026-09-23T09:24:23.343475Z` -> [`evidence/decisions/decision_log.v1.jsonl#L543`](../../../../evidence/decisions/decision_log.v1.jsonl#L543) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `object_representation_v4:OBJ-3`
 
@@ -29,7 +31,8 @@ Source plan: `evidence/planning/object_representation_v4_plan.md`
 - `2026-06-06T07:53Z` [decision] `decision:ARC-082@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L285`](../../../../evidence/decisions/decision_log.v1.jsonl#L285) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-09T19:07Z` [manifest] `v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3` -> [`evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json`](../../../../evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json) :: PASS manifest supports
-- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-23T09:24Z` [decision] `decision:ARC-080@2026-09-23T09:24:23.343475Z` -> [`evidence/decisions/decision_log.v1.jsonl#L543`](../../../../evidence/decisions/decision_log.v1.jsonl#L543) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `object_representation_v4:OBJ-4`
 
@@ -38,7 +41,8 @@ Source plan: `evidence/planning/object_representation_v4_plan.md`
 - `2026-06-06T07:53Z` [decision] `decision:ARC-082@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L285`](../../../../evidence/decisions/decision_log.v1.jsonl#L285) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-09T19:07Z` [manifest] `v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3` -> [`evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json`](../../../../evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json) :: PASS manifest supports
-- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-23T09:24Z` [decision] `decision:ARC-080@2026-09-23T09:24:23.343475Z` -> [`evidence/decisions/decision_log.v1.jsonl#L543`](../../../../evidence/decisions/decision_log.v1.jsonl#L543) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `object_representation_v4:OBJ-5`
 
@@ -47,7 +51,8 @@ Source plan: `evidence/planning/object_representation_v4_plan.md`
 - `2026-06-06T07:53Z` [decision] `decision:ARC-082@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L285`](../../../../evidence/decisions/decision_log.v1.jsonl#L285) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-09T19:07Z` [manifest] `v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3` -> [`evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json`](../../../../evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json) :: PASS manifest supports
-- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-23T09:24Z` [decision] `decision:ARC-080@2026-09-23T09:24:23.343475Z` -> [`evidence/decisions/decision_log.v1.jsonl#L543`](../../../../evidence/decisions/decision_log.v1.jsonl#L543) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `object_representation_v4:OBJ-6`
 
@@ -56,5 +61,6 @@ Source plan: `evidence/planning/object_representation_v4_plan.md`
 - `2026-06-06T07:53Z` [decision] `decision:ARC-082@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L285`](../../../../evidence/decisions/decision_log.v1.jsonl#L285) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-06T07:53Z` [decision] `decision:ARC-083@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L286`](../../../../evidence/decisions/decision_log.v1.jsonl#L286) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-06-09T19:07Z` [manifest] `v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3` -> [`evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json`](../../../../evidence/experiments/v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3.json) :: PASS manifest supports
-- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied) **<- live head**
+- `2026-09-18T19:04Z` [decision] `decision:ARC-083@2026-09-18T19:04:17.387476Z` -> [`evidence/decisions/decision_log.v1.jsonl#L504`](../../../../evidence/decisions/decision_log.v1.jsonl#L504) :: decision hold_candidate_resolve_conflict (applied)
+- `2026-09-23T09:24Z` [decision] `decision:ARC-080@2026-09-23T09:24:23.343475Z` -> [`evidence/decisions/decision_log.v1.jsonl#L543`](../../../../evidence/decisions/decision_log.v1.jsonl#L543) :: decision hold_pending_v3_substrate (applied) **<- live head**
 

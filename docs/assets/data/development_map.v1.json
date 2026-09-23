@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-23T08:50:00Z",
+  "generated_at": "2026-09-23T17:47:47Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -559,8 +559,8 @@
           "MECH-537"
         ],
         "surviving": 3,
-        "initial": 3,
-        "convergence": "static",
+        "initial": 4,
+        "convergence": "scattering",
         "is_hero": false
       },
       {
@@ -800,7 +800,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "155 / 235",
+      "value": "155 / 245",
       "detail": "modules recorded as built"
     },
     {
@@ -1720,7 +1720,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 243,
+      "total": 254,
       "buckets": [
         {
           "key": "active",
@@ -1736,7 +1736,7 @@
               "claim_class": "substrate_or_design",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 53,
+              "incoming_dependencies": 55,
               "depends_on": [],
               "additional_dependencies": 0
             },
@@ -1839,6 +1839,20 @@
               "additional_dependencies": 0
             },
             {
+              "id": "SD-007",
+              "title": "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change.",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "SD-020",
               "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
               "status": "provisional",
@@ -1867,20 +1881,6 @@
                 "ARC-023"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "SD-007",
-              "title": "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change.",
-              "status": "implemented",
-              "phase": "substrate_unspecified",
-              "claim_class": "substrate_or_design",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "SD-005"
-              ],
-              "additional_dependencies": 0
             }
           ]
         },
@@ -1898,7 +1898,7 @@
               "claim_class": "substrate_or_design",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 7,
+              "incoming_dependencies": 8,
               "depends_on": [
                 "SD-005"
               ],
@@ -1971,8 +1971,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 215,
-          "more_count": 205,
+          "count": 226,
+          "more_count": 216,
           "nodes": [
             {
               "id": "INV-049",
@@ -2150,7 +2150,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 330,
+      "total": 334,
       "buckets": [
         {
           "key": "active",
@@ -2407,7 +2407,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 13,
+              "incoming_dependencies": 14,
               "depends_on": [
                 "SD-011",
                 "ARC-027",
@@ -2502,8 +2502,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 258,
-          "more_count": 248,
+          "count": 262,
+          "more_count": 252,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2681,7 +2681,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 294,
+      "total": 284,
       "buckets": [
         {
           "key": "active",
@@ -2736,27 +2736,9 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 292,
-          "more_count": 282,
+          "count": 282,
+          "more_count": 272,
           "nodes": [
-            {
-              "id": "ARC-139",
-              "title": "Integration does not require representational sameness, it requires selective mutual legibility: specialised cognitive subsystems may preserve distinct high-dimensional PRIVATE internal representations while coordinating through low-dimensional, context-sensitive communication subspaces and low-complexity transformations, so development can raise local specialisation and cross-system legibility AT THE SAME TIME rather than trading one against the other. Non-redundant prediction: a maturing REE shows rising local competence in E1/E2/hippocampus/E3 while GLOBAL representational similarity between them stays flat or falls, and increasing representational similarity between subsystems must therefore NOT be used as the default marker of maturation. This is an explicit ALTERNATIVE framing to ARC-121's shared epistemic-state object, not a refutation of it: one common object, specialised objects with a shared interface format, specialised objects joined by context-specific translation, and a hybrid invariant-core-plus-private-dimensions architecture all remain live, and ARC-121 must not be used to prejudge the question.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 17,
-              "depends_on": [
-                "ARC-121",
-                "MECH-517",
-                "MECH-532",
-                "MECH-507",
-                "INV-104"
-              ],
-              "additional_dependencies": 0
-            },
             {
               "id": "ARC-053",
               "title": "Temporal Coherence Loop (TCL): architecture must include a distributed loop responsible for maintaining phase alignment and temporal synchrony necessary for V(t) to be computable.",
@@ -2808,20 +2790,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "ARC-084",
-              "title": "Typed signed cognifold coupling: the cognifold represents inter-field coupling as a typed, signed edge -- cognifold_edge = {source, target, sign, gain, precision, gate, timescale, write_authority} -- with competition (sign < 0) as a FIRST-CLASS GENERATIVE coupling mode alongside cooperation (sign > 0) and gated-decoupling, not an emergent by-product of selection softmaxes. Three coupling modes: cooperative (binding, coherent trajectory, shared context), competitive (suppress incompatible trajectories, preserve boundaries, prevent runaway resonance, stop one field absorbing all others), gated-decoupling (isolate simulation / offline integration / unsafe candidates from release authority).",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "ARC-005"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "ARC-094",
               "title": "No empathy module / no empathy scalar: fast empathy must emerge from binding existing motivational-affective streams across self -> object -> other, never as an empathy_enabled flag or empathy_score primitive.",
               "status": "candidate",
@@ -2835,43 +2803,6 @@
                 "INV-005",
                 "SD-011",
                 "MECH-112"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-359",
-              "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "MECH-055",
-                "SD-011",
-                "MECH-341",
-                "SD-056"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-499",
-              "title": "Ephaptic/oscillatory field-level coherence functions as a fast, non-synaptic CONTENT-AGGREGATION mechanism -- not merely the confidence/eligibility readout MECH-270 already covers -- synthesising distributed oscillatory information (amplitude, phase, relative phase, frequency, synchrony, cross-frequency relationships) into the temporally-coherent 'actionable now' state that seeds hippocampal proposal generation. The field need not 'understand' anything; its attraction as a mechanism is that the physical substrate may perform part of the aggregation automatically, fast enough that proposal generation is not stale by the time candidate futures are produced.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "MECH-228",
-                "MECH-270",
-                "MECH-269",
-                "MECH-022",
-                "MECH-149",
-                "ARC-018",
-                "MECH-089"
               ],
               "additional_dependencies": 0
             },
@@ -2907,6 +2838,73 @@
                 "ARC-019"
               ],
               "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-090",
+              "title": "Externalised Default Mode Operation: play instantiates DMN functions (self-reference, autobiographical memory, social imagination, future simulation, counterfactual thought, narrative construction) externally -- pushed outward into objects, roles, movement, spoken narration, and temporary as-if worlds -- as the developmental precursor to the internal DMN, compressing into internal generative modelling over development.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "ARC-014",
+                "MECH-029",
+                "ARC-049",
+                "MECH-198",
+                "INV-058",
+                "INV-060"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-095",
+              "title": "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "SD-005",
+                "MECH-069",
+                "ARC-021"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-191",
+              "title": "Stereotyped behavioral signals are causal externalizations of specific internal functional states, making them cross-architecturally legible without learned convention.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "MECH-182",
+                "MECH-183"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-359",
+              "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "MECH-055",
+                "SD-011",
+                "MECH-341",
+                "SD-056"
+              ],
+              "additional_dependencies": 0
             }
           ]
         }
@@ -2916,7 +2914,7 @@
   "record_counts": {
     "active": 179,
     "closed": 50,
-    "planned": 951
+    "planned": 956
   },
   "archive": {
     "snapshot_count": 114,

@@ -489,6 +489,8 @@
   },
   "ARC-044": {
     "assembly_state": "remaining",
+    "assembly_status": "queued",
+    "awaiting": "arc044-joint-wharm-running-variance-readout-producer",
     "coupled_with": [
       "MECH-026",
       "MECH-161"
@@ -3691,6 +3693,8 @@
   },
   "INV-092": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "inv092-suppression-strength-dial-and-other-agent-channel",
     "coupled_with": [
       "INV-093"
     ],
@@ -3704,6 +3708,8 @@
   },
   "INV-093": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "inv093-other-agent-channel-and-competence-acquisition-floor",
     "coupled_with": [
       "INV-092"
     ],
@@ -4097,6 +4103,8 @@
   },
   "MECH-019": {
     "assembly_state": "remaining",
+    "assembly_status": "queued",
+    "awaiting": "mech019-operating-mode-enabled-consumer",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -5367,6 +5375,8 @@
   },
   "MECH-126": {
     "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "mech126-overmerge-oversplit-rate-producer-and-merge-split-operator",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -10072,6 +10082,8 @@
   },
   "MECH-562": {
     "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "mech562-receiver-local-self-healing-adapter-substrate",
     "coupled_with": [
       "INV-110",
       "Q-107"
@@ -10125,6 +10137,8 @@
   },
   "MECH-567": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "mech567-oracle-action-ce-head-on-zworld-p0a",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -10265,6 +10279,62 @@
     "title": "Within REE's GLOBAL-SCALAR arousal routes (the three MECH-463 names), arousal alters WHICH candidate is committed only by modulating commit-ELIGIBILITY BREADTH -- the width of the basal-ganglia eligibility envelope, i.e. the size of the candidate set admitted to the commit gate -- never by reordering candidate scores. High phasic arousal narrows the admitted set toward the incumbent (exploit); low or tonic arousal widens it (explore). This WHICH-SET face is dissociable from the WHETHER face (commit threshold / gate: MECH-465, MECH-106, MECH-090) and the WHEN face (E3 cadence: MECH-093, MECH-005), and it is the ONE route by which a global scalar can change the committed candidate without contradicting MECH-463's argmax-invariance: a scalar cannot reorder K scores, but it can truncate the admitted set and, under a sampled commit pick, change the support the sample is drawn from. PRECONDITION that makes this observable at all: candidate futures must be ACTION-DISCRIMINABLE under the world model (ARC-002 strong form; SD-e1 rollout consistency) -- with near-identical candidate scores a breadth change admits or excludes nothing that differs, so a null under non-discriminable candidates is uninterpretable. The WHEN and WHETHER faces carry no such dependency, which is why the 2026-09-18 inertness of the commit-readiness gate and the 2026-09-22 endogenous z_beta dynamic-range defect are instrument faults with their own repairs, not consequences of the world-model gap.",
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITION:\n(P1) Candidate futures are ACTION-DISCRIMINABLE: cross-candidate F-score spread sits above the\nfloat32 ULP floor (the V3-EXQ-643 non-vacuity gate, as MECH-463 requires) AND E2 world-forward\npairwise divergence across the K candidates tracks their action differences (ARC-002 weak form).\nWithout P1 a breadth change admits or excludes nothing that differs, and the run is vacuous.\n(P2) The eligibility envelope is LIVE: use_f_eligibility_demotion is ON and excluded_count varies\nacross ticks (not the V3-EXQ-654h admitted-all twin, excluded_count == 0).\n(P3) The arousal manipulation has DYNAMIC RANGE within the run: arousal is set EXOGENOUSLY, i.i.d.\nover a pre-registered decile range at each tick (MECH-463's protocol), because endogenous ||z_beta||\nspans 0.91% of its mean (substrate_queue mech005-endogenous-arousal-dynamic-range) and an\nendogenous-arousal arm is degenerate until that row lands.\n(P4) A SAMPLED commit pick is armed (use_gap_scaled_commit_temperature or\nuse_precision_scaled_commit_temperature), because under a pure argmin a breadth change can only\nmatter on the ticks where it excludes the incumbent; the deterministic-argmin arm is reported but\nis not the verdict arm.\nDegenerate if any of P1-P4 fails; a null under unmet preconditions is not evidence against.\n\nCONFIRMING: K_eligible (admitted-set size per tick) falls monotonically with arousal decile with the\nbottom-versus-top gap above the pre-registered effect-size floor (scaled on the seed SD of the\ndelta plus an absolute floor of 2 candidates); committed-class entropy rises at low arousal and\nfalls at high arousal; the committed candidate's F-rank changes with arousal ONLY through\nadmitted-set membership -- the rank-preserving fraction within the admitted set stays ~1.0 (as\nV3-EXQ-689d) and the full-K score ORDER is invariant across arousal arms (MECH-463's\nargmax-invariance retained, not contradicted).\n\nFALSIFYING: with P1-P4 met, K_eligible is flat across arousal deciles (breadth is not the route),\nOR committed-class entropy does not move with K_eligible (breadth moves but does not convert to a\ndifferent committed candidate), OR the committed candidate changes with arousal WHILE the full-K\nscore order also changes (arousal is reordering, which refutes MECH-463's argmax-invariance instead\nand re-routes to that claim rather than to this one).\n\nManipulation: couple the envelope to the arousal scalar with a pre-registered MONOTONE map\n(f_eligibility_envelope_floor rising with arousal, and/or f_eligibility_dn_sigma narrowing), versus\na fixed-floor control at matched seeds; arousal set exogenously across deciles per P3.\nControl: fixed envelope floor (stock 0.30) at every arousal decile; an arousal-OFF arm; a\ndeterministic-argmin arm (P4 off) reported alongside.\nRequired event: waking E3 selection over the K=32 CEM candidate pool with the BG eligibility\nconstitution ON (use_f_eligibility_demotion) on a substrate where candidate scores are\ndiscriminable -- the GAP-A foraging substrate on which V3-EXQ-689d measured 0.371 -> 0.938.\nDV: K_eligible per tick by arousal decile; committed-class entropy per decile; rank-preserving\nfraction within the admitted set; full-K score-order invariance across arms; realised commit rate\n(to confirm the WHETHER face did not move -- a moving commit rate is a confound to be reported,\nnot a result).\nBOUNDARY: this claim is about the WHICH-SET face only. A result that the commit RATE moves with\narousal belongs to MECH-465; a result that E3 CADENCE moves belongs to MECH-093/MECH-005.\n"
+  },
+  "MECH-581": {
+    "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "SD-PP-B10-zworld-encoder-action-displacement",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "world_model.forward_comparator_consequence_scaled_gain",
+    "title": "world_forward_comparator_gain_scaled_to_the_predicted_action_consequence. The comparator that reads the\nworld-forward prediction error carries a GAIN (precision) term set by the magnitude of the action\nconsequence the forward model predicts, relative to its own residual at that scale, so that a small\naction-driven displacement stays legible to the comparator. Subtraction of the predicted self-caused\nchange (SD-007 ReafferencePredictor, MECH-098) is one member of the corollary-discharge family; gain\nmodulation scaled to the predicted consequence is a distinct member that REE does not implement, and it\nis the member that keeps a contradiction of a small predicted consequence separable from the converged\nresidual. Without it, every contradiction-based falsifier on z_world (MECH-574's novel-target arm, the\nprecision-provenance intake's F3 anti-self-sealing test) is scored in absolute z units against a\nper-step movement of ~3-4e-3 per dim and is unposeable.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITIONS. (P1) OPERATING POINT: run at alpha_world >= 0.9 (SD-008, stable) with the\nvalue recorded in the manifest; V3-EXQ-1073/1075 inherited 0.3 from REEConfig.from_dims and a result at\n0.3 is confounded with the EMA's ~3x attenuation of per-step displacement. (P2) DENOMINATION: every\nratio is scored against the per-cell MEASURED copy-the-input blind null, never against 1.0, which is the\nrandom-init null on this battery (GFLAG-0432); a ratio drifting toward 1.0 is decay toward init. (P3) The\nhead must beat the trivial predictor (MECH-573 skill > 0) on the cells scored, or the gain is amplifying\nmodel error, not a predicted consequence. (P4) The gain must be shown to VARY with the predicted\nconsequence magnitude across states (non-constant, from measured output), or the arm is a global\nrescale in disguise.\nCONFIRMING: on a one-shot action-map inversion at matched head weights, the gain-weighted comparator's\ncontradiction PE (inverted / original, blind-null-denominated) exceeds BOTH the unweighted comparator\nAND a global min-max-rescaled comparator (the MZ2 control) on at least 2/3 seeds, with the excess\nconcentrated in states whose predicted consequence is small.\nFALSIFYING: the gain-weighted comparator does no better than the global-rescale control on at least\n2/3 seeds (the effect is pure scale, not consequence-scaled gain), or it separates the inversion only by\nalso inflating the PE on the ORIGINAL rule (a gain that amplifies noise as much as signal).\nPRECONDITION NOT MET (P-FAIL): if no cell satisfies P3 (the head does not beat persistence/identity),\nthe claim stays candidate and routes to MECH-582 (the encoder) first; that is not a falsification.\nSUBSTRATE: SD-PP-B10 (substrate_queue.json) candidate test 4 is this claim's MZ2 control; the gain\nitself is not yet specified as a substrate item -- a design pass is owed before any build.\nREGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued."
+  },
+  "MECH-582": {
+    "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "SD-PP-B10-zworld-encoder-action-displacement",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "world_model.zworld_encoder_transition_consistency",
+    "title": "zworld_encoder_shaped_through_the_dynamics_keeps_action_caused_change. The z_world encoder keeps the\naction-caused part of the observation's per-step change only if a transition objective reaches it: the\nworld-forward (or E1) loss must carry gradient into the encoder through the ONLINE input z_t while the\nTARGET z_{t+1} stays stop-gradient, with an anti-collapse floor against trivially predictable codes. REE\ndetaches both ends (agent.py buffer write; SD-070 P0 trains the encoder on static single-frame targets),\nso the encoder never learns which of its directions the action moves, and action information present\nin world_obs (~0.69 of the per-step change is action-attributable at the observation) is lost before\nz_world (~0.22-0.38 action-attributable in z_world with an untrained encoder).",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITIONS. (P1) The alpha_world operating-point probe (SD-PP-B10 test 1) must be\nrun FIRST and this claim tested at the alpha it selects (>= 0.9 per SD-008); if raising alpha alone\ncloses the gap, the claim's premise dissolves and it is scored P-FAIL, not confirmed. (P2) Collapse\nguard: the participation ratio (SD-070's own metric) must not fall below the OFF arm's; a consistency\nobjective rewards trivially predictable codes, and a collapsed code can raise action-attributable\nshare by deleting everything else. (P3) All ratios blind-null-denominated per cell (GFLAG-0432), and\nreference and run share machine_class (1075a handover sec. 3).\nCONFIRMING: with gradient into the encoder via the online z_t (target z_{t+1} detached) plus SD-070's\nhinge, at the P1 operating point, the held-out action-attributable share of dz in z_world rises toward\nthe observation-level share, AND the world-forward head's action-sensitivity ratio excess over the\nblind null rises, with MSE-vs-identity NOT inflating (the V3-EXQ-1075 failure signature), on at least\n2/3 seeds.\nFALSIFYING: the action-attributable share does not rise, or rises only with a participation-ratio\ncollapse or MSE inflation, on at least 2/3 seeds.\nPRECONDITION NOT MET (P-FAIL): if the alpha probe alone brings the action-attributable share to\nwithin the observation-level band, this claim is not needed for CDQ-012 and should be re-scoped or\nretired by /governance -- that is a legitimate outcome.\nSUBSTRATE: SD-PP-B10-zworld-encoder-action-displacement (substrate_queue.json), candidate test 2.\nREGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued."
+  },
+  "MECH-583": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "world_model.reafference_locus_of_action_readability",
+    "title": "reafference_reading_A_zworld_is_self_cancelled_so_action_readability_lives_in_a_separate_predictor. Under\nSD-007, z_world is DESIGNED to have the action-predictable self-caused change subtracted; the forward\nmodel on the corrected z_world should therefore predict EXTERNAL dynamics, and the action-readable\nsignal belongs in the separate action-conditioned predictor that produced the subtraction (the\nReafferencePredictor / a prior in the RSSM sense). Demanding that world_forward read its action from a\ncancelled stream asks the wrong component.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "DISCRIMINATING OBSERVATION (shared with MECH-584). With SD-007 reafference ON and its predictor trained,\nalpha_world matched across arms (>= 0.9, SD-008), and every ratio blind-null-denominated per predictor\n(GFLAG-0432): apply a one-shot action-map inversion and measure the contradiction PE (inverted /\noriginal) at three loci -- (i) the ReafferencePredictor's own comparison, (ii) world_forward trained on\ncorrected z_world, (iii) world_forward trained on z_world_raw.\nNON-DEGENERACY PRECONDITION: the ReafferencePredictor must beat its trivial predictor (skill > 0 vs\ncopy-the-input) and the inversion must measurably change the raw per-step change (asserted from\nmeasured output), or neither locus has anything to detect.\nCONFIRMING (A): (i) carries the contradiction above its blind null on at least 2/3 seeds, (ii) does not,\nAND external-event detection from corrected z_world beats z_world_raw (the Enikolopov 2018 signature:\nsubtraction pays off downstream).\nFALSIFYING (A): (ii) or (iii) carries the contradiction while (i) does not, or corrected z_world is no\nbetter than z_world_raw for external-event detection, on at least 2/3 seeds.\nNOTE: both readings can be partly true (the two loci carry the contradiction redundantly); that\noutcome demotes the pair to a design choice and is recorded rather than forced.\nSUBSTRATE: the one-shot inversion lever is SD-PP-B4 (registration only; driver poke of env._action_map\nis its documented workaround). REGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued."
+  },
+  "MECH-584": {
+    "assembly_state": "gated_v3",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "world_model.reafference_locus_of_action_readability",
+    "title": "reafference_reading_B_cancellation_is_perception_side_so_the_forward_model_predicts_the_uncorrected_stream.\nUnder SD-007 the subtraction is a PERCEPTION-side operation on what the organism reports as external;\nthe forward model still receives the efference copy and predicts the reafferent change BEFORE\nsubtraction. world_forward should therefore be trained against z_world_raw (retained at stack.py:1513,\nbefore both the reafference correction and the EMA), and it is on that prediction that contradiction-\nbased falsifiers should be posed.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "DISCRIMINATING OBSERVATION: identical to MECH-583's (three loci under a one-shot action-map inversion,\nreafference ON, alpha_world matched, blind-null-denominated), with the same non-degeneracy\nprecondition.\nCONFIRMING (B): (iii) world_forward on z_world_raw carries the contradiction above its blind null on at\nleast 2/3 seeds and at least as strongly as (i) the ReafferencePredictor's comparison, while (ii) on\ncorrected z_world does not.\nFALSIFYING (B): (iii) does not carry the contradiction, or carries it only when alpha_world differs\nbetween arms (the EMA confound), on at least 2/3 seeds.\nREGISTRATION IS NOT BUILD AUTHORISATION. No experiment queued."
+  },
+  "MECH-585": {
+    "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "SD-PP-B11-harm-stream-predictor-reliability-producer",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "harm.pe_attribution_world_surprise_vs_model_error",
+    "title": "harm_prediction_error_is_attributed_to_world_surprise_only_from_a_competent_calibrated_predictor. The\nharm-stream prediction error that dACC consumes is informative about the WORLD only when two conditions\nhold: the harm forward model beats a trivial baseline (persistence) and the error exceeds that model's\nown calibrated, per-state expected error. Error beyond calibrated expectation from a predictor that\nbeats baseline reads as world surprise; every other error reads as model error. The precision that\nweights the harm PE must therefore be the harm predictor's OWN reliability, not a precision borrowed\nfrom another stream.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITIONS. (P1) The harm predictor must be trained to convergence with its training\ncurve recorded (SD-PP-B9 piece 2), or the attribution has nothing competent to attribute to. (P2) The\nexpected-error estimate must be CALIBRATED: its per-state prediction must track realised squared error\non held-out transitions (coverage/rank correlation above a pre-registered floor), else \"beyond\nexpectation\" is noise. (P3) The world-surprise manipulation and the model-error manipulation must be\nindependently instantiated and exposure-matched (SD-PP-B9's harm_exposure_relative_deviation_bounded\nprecondition).\nCONFIRMING: with the harm predictor above persistence, a one-shot harm-map shift (world surprise)\nraises the fraction of harm PE classified as world surprise, while an equal-magnitude corruption of\nthe predictor's weights at a stationary map (model error) raises the model-error fraction instead,\non at least 2/3 seeds; the E3-precision-weighted PE (current code) fails to separate the two.\nFALSIFYING: the calibrated attribution separates the two manipulations no better than the\nE3-precision-weighted PE, on at least 2/3 seeds.\nPRECONDITION NOT MET (P-FAIL): if no configuration yields a harm predictor above persistence\n(SD-PP-B9's fan-out resolves to H-pe-source-structurally-wrong), the claim converts: the harm PE has\nno competent source, all of it reads as model error, and MECH-055 axis 3 needs a different PE source.\nSUBSTRATE: SD-PP-B11-harm-stream-predictor-reliability-producer. REGISTRATION IS NOT BUILD\nAUTHORISATION. No experiment queued."
   },
   "Q-001": {
     "assembly_state": "mature",
@@ -11440,7 +11510,7 @@
     "assembly_status": "built",
     "awaiting": "MECH-267",
     "coupled_with": [],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "implemented",
     "subject": "hippocampal_module.action_object_map_backbone",
     "title": "Action objects as hippocampal map backbone, enabling long-horizon planning beyond step-level trajectories.",
@@ -12645,6 +12715,8 @@
   },
   "SD-106": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "mech567-oracle-action-ce-head-on-zworld-p0a",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "implemented",

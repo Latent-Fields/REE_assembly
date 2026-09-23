@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-23T08:50:00Z",
+  "generated_at": "2026-09-23T17:47:47Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 235,
+      "total_modules": 245,
       "built_modules": 155,
-      "fraction_built": 0.6596,
+      "fraction_built": 0.6327,
       "state_counts": {
-        "proposed": 80,
+        "proposed": 90,
         "implemented": 98,
-        "implemented_pending_validation": 30,
-        "validated": 27
+        "implemented_pending_validation": 29,
+        "validated": 28
       },
-      "build_proof_gap": 128,
-      "build_proof_gap_note": "155 modules built, 128 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 127,
+      "build_proof_gap_note": "155 modules built, 127 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -32,24 +32,24 @@
     "narrow": {
       "question": "how many rival explanations still survive?",
       "total_surviving": 142,
-      "total_initial": 238,
+      "total_initial": 239,
       "total_initial_at_registration": 194,
-      "total_fanout_added": 44,
-      "total_resolved_out": 72,
+      "total_fanout_added": 45,
+      "total_resolved_out": 73,
       "total_confirmed": 49,
       "total_superseded": 3,
-      "reduction_pct_vs_current": 30.3,
+      "reduction_pct_vs_current": 30.5,
       "net_narrowing_pct": 26.8,
       "convergence_classes": {
-        "static": 31,
+        "static": 30,
         "narrowing": 26,
         "circling": 5,
         "refining": 3,
-        "mixed": 1,
-        "scattering": 1
+        "scattering": 2,
+        "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "142 alive against 194 originally enumerated, and against 238 including 44 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "142 alive against 194 originally enumerated, and against 239 including 45 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 67
     },
     "decide": {
@@ -61,225 +61,231 @@
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 237,
+      "surviving": 238,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-11",
-      "surviving": 236,
+      "surviving": 237,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-13",
-      "surviving": 234,
+      "surviving": 235,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-15",
-      "surviving": 230,
+      "surviving": 231,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-16",
-      "surviving": 229,
+      "surviving": 230,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-17",
-      "surviving": 226,
+      "surviving": 227,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-18",
-      "surviving": 220,
+      "surviving": 221,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-19",
-      "surviving": 216,
+      "surviving": 217,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-20",
-      "surviving": 215,
+      "surviving": 216,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-24",
-      "surviving": 214,
+      "surviving": 215,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-27",
-      "surviving": 212,
+      "surviving": 213,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-29",
-      "surviving": 211,
+      "surviving": 212,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-07-31",
-      "surviving": 210,
+      "surviving": 211,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-01",
-      "surviving": 208,
+      "surviving": 209,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-02",
-      "surviving": 202,
+      "surviving": 203,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-04",
-      "surviving": 201,
+      "surviving": 202,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-06",
-      "surviving": 200,
+      "surviving": 201,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-08",
-      "surviving": 198,
+      "surviving": 199,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-09",
-      "surviving": 196,
+      "surviving": 197,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-10",
-      "surviving": 195,
+      "surviving": 196,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-11",
-      "surviving": 194,
+      "surviving": 195,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-12",
-      "surviving": 193,
+      "surviving": 194,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-14",
-      "surviving": 191,
+      "surviving": 192,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-17",
-      "surviving": 190,
+      "surviving": 191,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-20",
-      "surviving": 189,
+      "surviving": 190,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-24",
-      "surviving": 188,
+      "surviving": 189,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-29",
-      "surviving": 185,
+      "surviving": 186,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-08-30",
-      "surviving": 183,
+      "surviving": 184,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-02",
-      "surviving": 182,
+      "surviving": 183,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-05",
-      "surviving": 181,
+      "surviving": 182,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-07",
-      "surviving": 177,
+      "surviving": 178,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-08",
-      "surviving": 176,
+      "surviving": 177,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-09",
-      "surviving": 175,
+      "surviving": 176,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-14",
-      "surviving": 174,
+      "surviving": 175,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-15",
-      "surviving": 171,
+      "surviving": 172,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-17",
+      "surviving": 168,
+      "closure_pct": 72.4,
+      "build_pct": 63.3
+    },
+    {
+      "date": "2026-09-22",
       "surviving": 167,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     },
     {
       "date": "2026-09-23",
       "surviving": 142,
       "closure_pct": 72.4,
-      "build_pct": 66.0
+      "build_pct": 63.3
     }
   ],
   "questions": [
@@ -6943,33 +6949,62 @@
         "MECH-537"
       ],
       "is_hero": false,
-      "initial_frozen_count": 3,
+      "initial_frozen_count": 4,
       "initial_frozen_count_at_registration": 3,
-      "fanout_added": 0,
-      "fanout_growth_events": [],
-      "fanout_growth_note": null,
+      "fanout_added": 1,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-09-23T17:09:35Z",
+          "pre_registered_utc": "2026-09-23T17:09:35Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-1043b_2026-09-23.json",
+          "added_hids": [
+            "H4-encoder-contingent-orientation"
+          ],
+          "delta": 1,
+          "note": "GOV-FANOUT-1 portfolio opened as the partition_expansion RESPONSE to the h_other_event recorded on this question on 2026-09-23 (Mode D signal (1)+(2): the frozen partition was three GLOBAL statements and had no leg for a per-encoder mixture). Order matters and is as the registry requires: H-other event first, labelled growth second. Axis 'learning-signal' (family 'constitution') is a family not previously represented here, so this is refinement rather than circling."
+        }
+      ],
+      "fanout_growth_note": "Denominator grew 3 -> 4 on 2026-09-23 (labelled fan-out growth, invariant 3a, as the partition_expansion response to an h_other_event). Report BOTH ratios: surviving/at-registration 3/3 and surviving/current 3/4. This question has NOT converged, and H2's elimination is a GLOBAL-scope elimination whose per-encoder content moved into H4 -- so it is not a clean 3 -> 2.",
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
+        "convergence_class": "scattering",
+        "reason": "legs added across families but no family has been closed out",
         "families_closed": [],
-        "families_touched": [],
+        "families_touched": [
+          "instrumentation"
+        ],
         "families_fresh": [
-          "instrumentation",
+          "constitution",
           "representation"
         ],
         "unclassified_axes": [],
-        "growth_events": []
+        "growth_events": [
+          {
+            "recorded_utc": "2026-09-23T17:09:35Z",
+            "fanout_source": "failure_autopsy_V3-EXQ-1043b_2026-09-23.json",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H4-encoder-contingent-orientation",
+                "family": "constitution"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": [
+              "instrumentation"
+            ]
+          }
+        ]
       },
       "surviving": 3,
       "alive": 3,
-      "resolved_out": 0,
+      "resolved_out": 1,
       "confirmed": 0,
       "superseded": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.25,
+      "bits_removed": 0.42,
       "synthesis": null,
       "hypotheses": [
         {
@@ -6979,9 +7014,10 @@
           "axis": "measurement",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-1043a"
+            "V3-EXQ-1043a",
+            "V3-EXQ-1043b"
           ],
-          "basis": "ALIVE. V3-EXQ-1043a refused at readiness (randrank margin over the trivial predictor under 0.05 on 5/6 seeds), so nothing is adjudicated. The pre-registered statistic was still recordable: 95% CI on the C2 mean [0.0051, 0.0948] at the parsimonious rank ([0.0154, 0.0535] at rank 32) -- excludes 0, includes 0.05, so this leg's declared null (CI excludes 0.05) is NOT met. Adjudicating run is now V3-EXQ-1043b (many-draw random-subspace reference) (failure_autopsy_V3-EXQ-1043a_2026-09-20.json).",
+          "basis": "ALIVE. V3-EXQ-1043b ran with every readiness gate green. Declared null ('the CI excludes 0.05') NOT met: the 95% CI on the cross-seed mean of the de-noised C2 is [-0.01547, +0.07370], which includes 0.05 and also 0 -- so H1 is neither falsified nor confirmed. The pre-registration predicted this BEFORE the run (the binding variance is the cross-seed sd ~0.042, not the draw noise 1043b removes) and instructed it be reported as a non-adjudication with no upgrade. CORRECTION carried from the red-team pass on this autopsy: an earlier draft argued the two negative seeds were consistent with H1 'by chance'. That holds only under a RANDOM-EFFECTS reading of H1, which is observationally identical to H4 on every quantity this design records; under H1 as originally registered ('consistently-positive') the negatives are 8-12 measurement-SE below zero and are not chance. Separating the two is what H4's declared null now exists to do. Adjudicating run V3-EXQ-1043c. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)",
           "children": [],
           "met_elimination_bar": false
         },
@@ -6990,13 +7026,13 @@
           "label": "the fitted communication subspace is not meaningfully different from a random subspace of the same rank at this interface; C2's positivity is noise and will not survive a permutation null.",
           "desc": "Permutation null on the RRR fit itself (refit on shuffled sender-receiver pairing) to give C2 a within-run reference distribution instead of a hand-set floor. Declared null: the observed C2 sits inside the permutation null.",
           "axis": "instrumentation",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-1043a"
+            "V3-EXQ-1043b"
           ],
-          "basis": "ALIVE. The permutation null this leg named ran: p = 1.0 on 6/6 seeds, i.e. all 200 shuffled refits decode WORSE than the real subspace. That statistic is P(D_comm_perm <= D_comm): it shows the fitted sender->receiver map is real and does not test orientation against a random same-rank subspace (randrank was ONE draw per seed). Uninformative for this leg. Adjudicating run is now V3-EXQ-1043b (failure_autopsy_V3-EXQ-1043a_2026-09-20.json).",
+          "basis": "ELIMINATED AS A GLOBAL CLAIM. The pre-registered rank co-primary -- the reference distribution this leg itself names -- falsifies its declared null: Fisher p=2.19e-4 (SET-ALL, n=6) and 6.86e-5 (SET-COMPETENT, n=5); Simes 0.0060/0.0050; leave-one-out Fisher 0.0099/0.0038; sets_disagree=false. Independently checked by combiners the prereg did not name: Stouffer p=0.00168, and a raw count test P(>=3 of 6 seeds at p<=0.05 | all uniform)=0.0022. All readiness gates green including an explicit positive control. SCOPE, which must not be dropped: what is refuted is 'the fitted communication subspace is not meaningfully different from a random subspace of the same rank AT THIS INTERFACE' read as a statement about the interface as a whole. The leg's PER-ENCODER content is TRUE on seeds 45 and 46 (percentiles 0.8082/0.7642) and is carried forward inside H4-encoder-contingent-orientation -- so this is 3 alive -> 2 alive + 1 expanded leg, NOT a clean 3 -> 2. The elimination is not one-seed-driven (LOO holds) but it does rest on three seeds: Fisher with seeds 42 and 47 removed is p=0.169. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H3-no-low-rank-bottleneck",
@@ -7005,9 +7041,23 @@
           "axis": "representation",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-1043a"
+            "V3-EXQ-1043a",
+            "V3-EXQ-1043b"
           ],
-          "basis": "ALIVE. Declared null ('C2 is flat in rank') NOT met: C2 mean 0.0345 at rank 32 vs 0.0500 at the parsimonious rank (8-11 of 146 live sender dims, held-out R2 0.996). Readiness red, so not an elimination (failure_autopsy_V3-EXQ-1043a_2026-09-20.json).",
+          "basis": "ALIVE, and its declared test is NOT RESOLVABLE with the instrument as built. Within 1043b, like-for-like on the single-fit statistic: C2 mean 0.0415 at the selected rank 32 vs 0.0282 at the parsimonious rank; paired diff -0.0133, paired t=-1.108 (df 5, t_crit 2.571), not distinguishable from zero. The rank-32 arm is a SINGLE draw with no reference distribution, and the 1043a->1043b replicate on bit-identical encoders shows that arm moving by sd 0.025 per seed from decoder noise alone -- comparable to the whole effect. So the apparent sign difference against 1043a's +0.0155 is two draws from the same noise, NOT a reversal, and 1043a's own basis ('declared null NOT met: 0.0345 vs 0.0500') was an over-read of that noise and is corrected here. This leg's STRUCTURAL premise is re-confirmed (CV-selected rank at the ladder ceiling on 6/6 seeds; heldout R2 already 0.981 at rank 1, so the parsimonious rank of 9-11 comes from a 0.001 tolerance on an almost-flat ladder), but its SUBSTANTIVE claim is weakened: the rank co-primary is significant AT the parsimonious rank, so the low-rank subspace IS oriented. A successor must give the rank-32 arm its own reference distribution before this leg can be adjudicated at all. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H4-encoder-contingent-orientation",
+          "label": "orientation exposure is replicate-specific rather than architectural: independently trained encoders land on communication subspaces that share well-above-chance but substantially less structure than one encoder shares across receiver-state strata, and orientation is present in some and absent in others -- so the cross-seed MEAN of C2 is a summary of a heterogeneous quantity and is the wrong estimand.",
+          "desc": "Enlarge to n>=18 seeds and test EXCHANGEABILITY across encoders, not just the cross-seed mean. DECLARED NULL (H1's prediction): the per-encoder C2 is exchangeable -- its sign and magnitude are not predicted by any pre-registered encoder-level covariate. H4 predicts the opposite: a systematic encoder-level predictor exists. PRE-REGISTERED COVARIATE: cross-stratum data-span overlap at the parsimonious rank (`cross_stratum_data_span_overlap_parsrank`), which on 1043b's 6 seeds has Spearman -0.886 against the de-noised C2 -- a CANDIDATE at n=6 with 8 covariates screened, explicitly NOT a finding. EXCLUDED AS CIRCULAR, and recorded so a successor does not re-propose it: the comm-subspace agreement `ws250_comm_parsrank` correlates at -0.943, but C2 = D_randrank - D_comm and D_randrank is flat across seeds (Spearman -0.029 vs C2), so that covariate is very nearly -C2 itself and cannot discriminate anything.",
+          "axis": "learning-signal",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-1043c"
+          ],
+          "basis": "Pre-registered at fan-out time by failure_autopsy_V3-EXQ-1043b_2026-09-23.json as the partition_expansion response to the h_other_event recorded on this question the same day; not yet run.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -7016,7 +7066,7 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Is MECH-537's encoded-but-not-exposed routing failure present at this interface?",
-        "distance_phrase": "two diagnostic runs completed, neither adjudicating (1043 underpowered; 1043a refused at readiness); three rivals alive; the missing instrument is a many-draw random-subspace reference (V3-EXQ-1043b)",
+        "distance_phrase": "three diagnostic runs completed; V3-EXQ-1043b eliminated H2-no-orientation via the pre-registered rank co-primary (Fisher p=2.19e-4, leave-one-out robust) with every readiness gate green; H1 and H3 remain alive and a fourth leg H4 (replicate-contingent orientation) is pre-registered; the missing instruments are an enlarged seed set read as a distribution and an ANCHORED replacement for C4b",
         "live_gate": "C2 (D_randrank - D_comm at matched rank) clearing its floor against a within-run reference distribution, read at a rank where the low-rank premise holds",
         "observation_bottleneck": "The CV-selected rank sits at the receiver dimension, where the RRR fit is unconstrained OLS, so the low-rank channel the biology posits is not instantiated at the evaluation point."
       }
@@ -9337,16 +9387,17 @@
       "evidence_direction": "pending"
     },
     {
-      "run": "V3-EXQ-1043a",
+      "run": "V3-EXQ-1043b",
       "all_runs": [
-        "V3-EXQ-1043a"
+        "V3-EXQ-1043a",
+        "V3-EXQ-1043b"
       ],
       "momentum_class": "inconclusive",
       "qid": "mech537_communication_subspace_orientation",
       "claims": [
         "MECH-537"
       ],
-      "moved": "ALIVE. V3-EXQ-1043a refused at readiness (randrank margin over the trivial predictor under 0.05 on 5/6 seeds), so nothing is adjudicated. The pre-registered statistic was still recordable: 95% CI on the C2 mean [0.0051, 0.0948] at the parsimonious rank ([0.0154, 0.0535] at rank 32) -- excludes 0, includes 0.05, so this leg's declared null (CI excludes 0.05) is NOT met. Adjudicating run is now V3-EXQ-1043b (many-draw random-subspace reference) (failure_autopsy_V3-EXQ-1043a_2026-09-20.json).",
+      "moved": "ALIVE. V3-EXQ-1043b ran with every readiness gate green. Declared null ('the CI excludes 0.05') NOT met: the 95% CI on the cross-seed mean of the de-noised C2 is [-0.01547, +0.07370], which includes 0.05 and also 0 -- so H1 is neither falsified nor confirmed. The pre-registration predicted this BEFORE the run (the binding variance is the cross-seed sd ~0.042, not the draw noise 1043b removes) and instructed it be reported as a non-adjudication with no upgrade. CORRECTION carried from the red-team pass on this autopsy: an earlier draft argued the two negative seeds were consistent with H1 'by chance'. That holds only under a RANDOM-EFFECTS reading of H1, which is observationally identical to H4 on every quantity this design records; under H1 as originally registered ('consistently-positive') the negatives are 8-12 measurement-SE below zero and are not chance. Separating the two is what H4's declared null now exists to do. Adjudicating run V3-EXQ-1043c. (failure_autopsy_V3-EXQ-1043b_2026-09-23.json)",
       "resolved_utc": null,
       "evidence_direction": "pending"
     },

@@ -171,6 +171,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-2`
 
@@ -339,6 +341,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-3`
 
@@ -507,6 +511,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-4`
 
@@ -675,6 +681,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-4-battery`
 
@@ -843,6 +851,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-5`
 
@@ -1011,6 +1021,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-6`
 
@@ -1179,6 +1191,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-7`
 
@@ -1347,6 +1361,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-8`
 
@@ -1515,6 +1531,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-9`
 
@@ -1683,6 +1701,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-10`
 
@@ -1851,6 +1871,8 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
 ## `commitment_closure:GAP-11`
 
@@ -2019,4 +2041,6 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-16T14:14Z` [autopsy] `failure_autopsy_V3-EXQ-935a_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-935a_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
 - `2026-09-20T13:18Z` [decision] `decision:MECH-091@2026-09-20T13:18:11Z` -> [`evidence/decisions/decision_log.v1.jsonl#L526`](../../../../evidence/decisions/decision_log.v1.jsonl#L526) :: decision decide_blocker_generation_then_route (approved)
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
 
