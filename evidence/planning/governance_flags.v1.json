@@ -3439,9 +3439,9 @@
       "summary": "Two run-pack pairs are byte-identical re-emissions a day apart whose metrics.values were left EMPTY on purpose, because filling them would let build_experiment_indexes._detect_and_mark_duplicate_emissions auto-mark the earlier run of each pair evidence_direction=superseded -- an evidence verdict change, not housekeeping. Pairs: v3_exq_170_q002_r_field_resolution_pair (Q-002, 20260329T213812Z superseded by 20260330T070234Z, both FAIL) and v3_exq_171_mech033_kernel_chain_pair (MECH-033, 20260329T213946Z superseded by 20260330T070404Z, both PASS/supports -- so accepting it REMOVES one supporting entry for MECH-033). Both clusters group on a BLANK queue_id, the weakest form of the identity match the detector documents as load-bearing, so confirm the two runs really are one run re-emitted before accepting. To accept: re-run the additive heal without the --exclude-run-id guards (sync_v3_results.py --heal --fill-metrics --apply). Measurement: REE_assembly/evidence/planning/runpack_always_core_heal_20260909.md sec 3b.",
       "raised_by_session": "angry-pascal-6fd799",
       "raised_at": "2026-09-09T14:36:51Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:52:51Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23] Measured: the two pairs are bit-identical on every recorded metric (V3-EXQ-170: 20 floats; V3-EXQ-171: 18 floats); only run_id and timestamp_utc differ (9.5h apart). One experiment recorded twice, not an independent replicate. APPLIED: the LATER copies (v3_exq_170_..._20260330T070234Z_v3, v3_exq_171_..._20260330T070404Z_v3) set evidence_direction superseded on flat + pack with an evidence_direction_note (REE_assembly 7b340c38aa7). The earlier copies are kept as the scoring record -- for Q-002 that preserves the failure_autopsy_grandfathered non_contributory ruling. MECH-033 goes from 2 supporting entries to 1 at the next regen."
     },
     {
       "flag_id": "GFLAG-0246",
