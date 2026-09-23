@@ -4588,9 +4588,9 @@
       "summary": "MECH-019's what_would_answer CONFIRMING criterion requires a MONOTONIC graded redistribution of the operating_mode vector as a control-plane channel is swept, but the arousal literature it implicitly rests on reports an INVERTED-U: McGinley, David & McCormick (2015, Neuron 87:179-192, PMID 26074005) show cortical state and detection performance varying smoothly but non-monotonically with pupil-indexed arousal, peaking at intermediate levels. A substrate behaving exactly as MECH-019 describes could therefore produce a non-monotonic occupancy curve that the criterion as written would score as a failure to confirm. The property the claim actually needs is CONTINUITY (smooth occupancy as a function of the channel, with no flat-then-snap structure), not monotonicity; recommend rewording the criterion to test smoothness plus a comparison against a step-function fit. Separately, Latimer et al. (2015, Science 349:184-187, PMID 26160947) show that a trial-averaged graded trajectory is reproducible by jittered DISCRETE single-trial steps, so the criterion must also specify a PER-RUN readout -- as written, an averaged occupancy curve cannot separate MECH-019's CONFIRMING from its FALSIFYING outcome. Both points are documented with mappings in evidence/literature/targeted_review_mech_019 (REE_assembly origin/master 874be02c8e4). This is a falsifier-wording defect, not a challenge to the claim's status; it is worth fixing before MECH-019 is designed against, which matters now because sibling session igw-241 has just marked the MECH-019 experiment proposal (EVB-1392/EXP-0757) blocked_substrate with a release_condition that will eventually re-open exactly this test.",
       "raised_by_session": "igw-242-literature-proposal-for-mech-019",
       "raised_at": "2026-09-17T13:35:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T17:58:20Z",
+      "resolution_note": "Already fixed before this cycle: MECH-019 CONFIRMING criterion reworded from monotonic to continuity, with a per-run readout, in REE_assembly 02caebd047f (falsifier-completion audit). Verified flags-only governance cycle governance-flags-20260923 (2026-09-23)."
     },
     {
       "flag_id": "GFLAG-0323",
