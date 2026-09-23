@@ -15,6 +15,13 @@ that left open: **of the bound-less drivers, how many could actually carry a str
 
 ## HEADLINE
 
+> **ADDENDUM 2026-09-23 -- the two follow-up checks this document recommends have now been RUN.**
+> The **campaign scope below is superseded: the actionable set is 9 drivers, not 15.** Three of the 15
+> are superseded lineages, one bucket-A spec is emergent rather than budget-bounded, and two bounds
+> do not bind. The bucket counts (A=15 / B=30 / C=22) stand as measured at `8f10214e6a` and are NOT
+> revised -- what changes is which of bucket A is worth acting on. See **ADDENDUM** at the end.
+
+
 Of the **67 bound-less drivers** (of 108 that call the guard, at `8f10214e6a`):
 
 | Bucket | Drivers | Specs | Meaning |
@@ -283,3 +290,114 @@ CLAUDE.md is explicit about what happens to a guard that fires on correct code. 
 report-not-block is stronger after this triage, not weaker: **44 of the 67 bound-less drivers
 (B1 + C, plus the inert half of B2) are bound-less because a bound is meaningless for them,
 not because anyone forgot.**
+
+---
+
+# ADDENDUM -- 2026-09-23T06:00:10Z: the two recommended checks, run
+
+The body above closes with two open questions: which of the 15 bucket-A drivers are still *live*,
+and whether their count-shaped specs are genuinely budget-bounded. Both are now measured.
+**Net effect: the campaign is worth running, on 9 drivers rather than 15.**
+
+Sources: `ree-v3/experiment_queue.json`, `REE_assembly/evidence/experiments/` run manifests, and
+the driver sources at the same pinned `8f10214e6a`.
+
+## 1. Live-vs-spent: 15 -> 12
+
+**None of the 15 are in the active queue** (depth 2: `V3-EXQ-1043b`, `V3-EXQ-1067`).
+
+**Three are superseded lineages. Drop them -- a fix to a superseded file propagates nowhere,**
+because `/queue-experiment` creates a lettered successor by copying, and the successor already exists.
+
+| Driver | Superseded by | Successor state |
+|---|---|---|
+| `v3_exq_1062` (the motivating case) | `1062a` | **already declares `structural_max`** -- the lineage fixed itself |
+| `v3_exq_840` | `840b` | still bound-less; `840b` is itself bucket A and is the live carrier |
+| `v3_exq_983` | `983a` | bucket B; its run died on `revisit_denominator`, the spec flagged for `983` |
+
+That V3-EXQ-1062 -- the case the instrument fix was written from -- is itself spent, with a
+successor that already carries a bound, is worth stating plainly: **the single most-cited
+bucket-A driver needs no retro-fit at all.**
+
+**`v3_exq_1018_mech005_nu_path_authority_live_agent.py` has never run.** No run-pack, no flat
+manifest, not queued. It is the only driver in the set whose guard has a *future first run* to
+fire on, and its bound binds (below). Highest-value target in the set.
+
+The remaining 11 have each run exactly once and are adjudicated. Their guards fire again only via
+a lettered successor -- which copies the script, so a fix does propagate forward for families
+still iterating. Three visibly are: `1062`->`1062a` (ran 2026-09-23, FAIL), `983`->`983a`,
+`840`->`840b`.
+
+## 2. A-mode vs A-emergent: the bucket-A test was too coarse
+
+The body classified bucket A on *shape* -- integer floor plus a count-like name. That cannot
+separate two different things, and the distinction decides whether a bound does any work:
+
+- **A-mode** -- a raw counter (`n_fresh_select = 0` ... `+= 1` per tick) or a `len()` of collected
+  events. Bounded by the run budget. A bound fires **before compute**. This is 1062/840/977's shape.
+- **A-emergent** -- count-shaped, but counting items that passed a *measured* threshold. The
+  ceiling is design-time; the value is not. A bound returns `satisfiable` and the run fails anyway.
+
+**10 of the 12 are A-mode.** Two are not:
+
+- `571c` `n_live_channels`: `[c for c in components if x_means[c] > MIN_LIVE_CHANNEL_VARIANCE and
+  x_fr[c] >= MIN_LIVE_CHANNEL_SHARE]`. A bound (`= len(components)`) is derivable and inert.
+  **This is load-bearing:** 571c's real run died `non_degenerate=False` with all four arms failing
+  `n_live_channels` -- and a structural bound would **not** have saved it. That failure was a
+  genuine substrate finding (variance monopoly), which is exactly what the experiment tested.
+- `833` `survival_above_floor`: mean episode length against `SURVIVAL_FLOOR_STEPS = 8.0`. Derivable
+  (ceiling = episode steps) but 8 is too small to bind.
+
+## 3. Does the bound BIND? -- the number that decides the campaign
+
+A derivable bound that provably never binds is bucket B1 in disguise. Dry-run budget vs floor:
+
+| Driver | Floor | Resolved dry-run budget | Binds |
+|---|---|---|:--:|
+| `1018` | `MIN_FRESH_SELECTS = 30` | `n_ticks = 25 if dry_run` | **yes** |
+| `1012a` | `MIN_FRESH_SELECTIONS = 60` | `DRY_RUN_FRESH_TARGET = 6` | **yes** |
+| `571c` | `MIN_FRESH_SELECTIONS = 60` (`decomp_samples_sufficient`) | `DRY_RUN_FRESH_TARGET = 6` | **yes** |
+| `687a` | `FRESH_SELECT_FLOOR = 100`, `COMMITTED_FLOOR = 50` | 1 ep x 30 steps = 30 ticks | **yes**, both |
+| `791a` | `FRESH_SELECT_FLOOR = 180` | `2 x (30 - 2) = 56` ticks at cadence 1/20 -> ~2 | **yes** |
+| `805` | `MIN_COMMIT_DECISIONS = 200` | 3 eval eps x 25 steps = 75 | **yes** |
+| `840b` | 180 / 200 | 56-tick window | **yes** (verified in the body) |
+| `970a` | `MIN_HELDOUT_PER_CLASS = 24` | 4 heldout eps x 15 steps | plausible, unverified |
+| `972a` | `MIN_TEST_PER_CLASS = 24` | 10 collect eps x 15 steps | plausible, unverified |
+| `799` | `FRESH_SELECT_FLOOR = 100` | 4 eps x 120 steps = 480 ticks | no -- dry-run barely reduced |
+| `833` | `SURVIVAL_FLOOR_STEPS = 8.0` | -- | no -- floor trivially small |
+| `571c` `n_live_channels` | `MIN_LIVE_CHANNELS = 2` | -- | no -- emergent |
+
+**7 confirmed binding, 2 plausible, 3 not.**
+
+`1012a` and `571c` are the sharpest instances in the whole corpus: both already reduce the sample
+*target* under dry-run (`DRY_RUN_FRESH_TARGET = 6`) while leaving the *floor* at 60. The author saw
+the budget-scaling problem and fixed one half of it. That is the clearest available evidence that
+this is an ordinary oversight with a known remedy, not a design disagreement.
+
+## 4. Revised recommendation
+
+**Go -- 9 drivers, enabler first.** At 9, the shared `_lib` enabler clearly pays for itself: one
+convention plus 9 one-line lambdas, versus 9 bespoke fixes.
+
+1. **Tier 1: `v3_exq_1018`.** Never run, bound binds, two bucket-A specs
+   (`commit_channel_live`, `fresh_selects_per_cell`). Do this one regardless of the rest.
+2. **Tier 2 (6):** `1012a`, `571c` (`decomp_samples_sufficient` only), `687a`, `791a`, `805`, `840b`.
+3. **Tier 3 (2), verify first:** `970a`, `972a`.
+4. **Drop from the campaign (6):** `1062`, `840`, `983` (superseded); `799`, `833` (bound does not
+   bind); `571c`'s `n_live_channels` spec (emergent -- leave it `not_evaluated`, which is correct).
+
+**Cost note not stated in the body.** These are `experiments/` scripts, and CLAUDE.md routes any
+modification of an experiment script through `/queue-experiment`, including minimal tweaks. The
+campaign is therefore 9 skill invocations with code review and smoke tests -- not 9 one-line diffs.
+That is the real figure for the go/no-go, and it is why the tiering matters.
+
+## 5. Correction to this document's own prediction
+
+The body predicted the genuine set would "land nearer 5-7 than 12". **That was wrong in the
+conservative direction** -- it is 7 confirmed, 9 including the two plausible. The A-mode share
+(10 of 12) is higher than the shape-based classifier suggested, because most of these specs really
+are raw per-tick counters. Recorded here rather than quietly corrected, since an estimate that
+moved the go/no-go is exactly the kind that should stay auditable.
+
+Unchanged by this addendum: the guard stays non-blocking, no coverage floor is added, bucket B2
+still routes to claim owners rather than a sweep, and buckets B1/C still warrant no action.
