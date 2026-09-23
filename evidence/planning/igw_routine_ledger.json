@@ -9081,7 +9081,7 @@
     },
     {
       "stable_hash": "f2a1a5aab7ab",
-      "igw_id_at_disposition": "IGW-20260916-217",
+      "igw_id_at_disposition": "IGW-20260923-227",
       "owner_exq": null,
       "claim_ids": [
         "INV-086",
@@ -9089,10 +9089,14 @@
       ],
       "skill": "/implement-substrate",
       "title": "Substrate ready: SD-ZWORLD-SENSE-PATH-PARITY",
-      "decision": "AUTO_DEFER",
-      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-09-17T15:49:21Z",
-      "re_eligible_after": "2026-09-19T15:49:21Z"
+      "decision": "DEFER",
+      "note": "NO BUILD OWED -- premise audit by igw-227-substrate-ready-sd-zworld-sense 2026-09-23. This is the SECOND spawn of stable_hash f2a1a5aab7ab (/implement-substrate x INV-086+MECH-428 = substrate_queue entry SD-ZWORLD-SENSE-PATH-PARITY). IGW-20260916-217 completed NO_OP on a user decision 2026-09-17T15:36Z after the discriminating probe REFUTED the entry premise: the ~0.10 sense-vs-direct z_world decodability gap does not reproduce (+0.007/+0.019 paired over 50 cells vs V3-EXQ-1030 +0.1015; -0.028/-0.023 standardised); cause is linear-probe under-convergence on 5x-smaller features plus episode-split noise, not substrate. Source: evidence/planning/zworld_sense_path_parity_spike_20260916.md s2-6; recorded on the entry as spike_result_2026_09_17. RESPAWN MECHANISM, measured: the reaper wrote only a 48h AUTO_DEFER (re_eligible_after 2026-09-19T15:49:21Z); it expired and the item re-spawned 2026-09-23 -- exactly the shape upsert_user_disposition's upgrade path was built for. This DEFER upgrades that row in place. RE-VERIFIED ON TRUNK TODAY, so the entry is NOT closed as invalid: the CODE-level divergence survives -- agent.py:3342 defines world_obs_encoder and sense() applies it at agent.py:5066, while zworld_p0.py:462 _z_world_path calls split_encoder.world_encoder directly on raw world_state, with nothing reconciling them. That is a hygiene defect and a latent hazard, not a decodability repair. LIFT THIS DEFER ONLY VIA GFLAG-0324 (open, contested_disposition, INV-086/MECH-428), which owns the disposition still owed: (b) demote severity degrading -> hygiene/latent and (c) re-scope the title to 'make the two paths agree'. Those change /queue-experiment Step 2.5c coverage on an entry whose substrate_paths include ree_core/agent.py and are governance calls, not a build. See also GFLAG-0320 and GFLAG-0331 item 5.",
+      "noted_at": "2026-09-23T16:57:10Z",
+      "auto_defer_superseded": {
+        "decision": "AUTO_DEFER",
+        "re_eligible_after": "2026-09-19T15:49:21Z",
+        "noted_at": "2026-09-17T15:49:21Z"
+      }
     },
     {
       "stable_hash": "128b21ecf607",
