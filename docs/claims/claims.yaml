@@ -5395,6 +5395,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: substrate_conditional
   depends_on:
     - ARC-009
     - ARC-002
@@ -43996,6 +43997,27 @@
     readout; record per-step series) to obtain the first ecological gradedness evidence -- this is a
     NEW measurement question, not a same-ceiling re-derive of MECH-268's 3 prior substrate_ceiling
     autopsies (all on the unrelated SD-034 closure-control-plane behavioural question).
+
+    [2026-09-23 governance, governance-flags-20260923b, GFLAG-0330 text half; source
+    docs/architecture/mech_268_dacc_saturation_form.md, REE_assembly 588c844333e + c12a11eafb9]
+    Three claim-side facts from the form-vs-gradedness investigation, recorded so they are
+    not rediscovered. (1) FORM, NOT CLAIM: the reciprocal-with-grace f_sat shape is an
+    implementation choice, not part of this claim's assertion. At most W-G+1 distinct values are
+    reachable (7 at defaults) over [1/(1+s(W-G)), 1] (floor 0.357 at s=0.3, 0.25 at s=0.5); the
+    V3-EXQ-1048 and V3-EXQ-1051 designs (GFLAG-0299, GFLAG-0330) were refused for violating this
+    reachable-set fact, not for a claim-level reason. (2) SCOPE: MECH-268 is a claim about the pe
+    signal and the SD-032a MODE REGISTER, never about E3 candidate selection -- the Shenhav
+    EVC->E3 consumer is argmin-invariant by construction (candidate_effort is a constant
+    rollout-horizon proxy) and is out of scope permanently; the mode register is live and testable
+    on a trained agent at dacc_saturation_strength >= 0.5 (single-seed trained-agent measurement:
+    argmax(operating_mode) changes on 151/195 ticks at strength 0.5 vs 7/195 at the 0.3 default).
+    (3) KNOWN LIMITATION: n_rec is a relabeling-symmetric, order-blind count, so E[f_sat] is
+    symmetric-unimodal in harm density under both outcome-class referents (not repaired by ree-v3
+    9cba6c7). Harm density / outcome mixture is therefore NOT a valid dose variable for any
+    MECH-268 design; this supersedes the 'lower EVAL_HAZARDS or raise
+    contextual_safety_harm_threshold' follow-up suggested in the paragraph above. The live
+    successor design (closure inter-fire interval as the dose) is owned by
+    chip-20260917-mech268-closure-cadence-dose. Status and confidence unchanged.
   location: evidence/planning/sd033_governance_plan.md
 
   what_would_answer: >
