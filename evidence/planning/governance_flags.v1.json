@@ -5242,9 +5242,9 @@
       "summary": "V3-EXQ-1067 (SD-032a/MECH-266 squash-vs-clamp cap sweep) REFUSED at /queue-experiment Step 4.5 with a BLOCKING red-team verdict, verified against source: the affinity bounding operator is applied to EVERY affinity_weights signal (salience_coordinator.py:616-636) including the [0,1]-bounded external_task_drive (agent.py:2760-2765, w=3.0), and at sigma=cap the squash returns 0.500x AT the cap / 0.667x at half-cap -- so swapping clamp->squash changes the external_task logit by -0.96..-1.50 while the dacc_pe degeneracy fix under test changes its logit by only -0.034..-0.173 (8x-28x confound, away from external_task). Both PASS and the pre-registered NULL become unattributable, destroying exactly the third-failure attribution the campaign was dispatched to secure. This also falsifies the inference recorded in substrate_queue mode-governance-engagement implementation_log.squash_sigma_decision_2026_09_19.why_sigma_equals_cap ('every SUB-cap signal passes through precisely as the legacy box clamp passes it') -- slope 1 at the ORIGIN is true, identity over [0,cap] is not; that sentence is the stated licence for this sweep. Script authored and committed BLOCKED (not queued); V3-EXQ-1067 reserved but unconsumed. Options + recommendation (A: gain-matched clamp control arm) staged at REE_assembly/evidence/planning/sd032a_squash_vs_clamp_sweep_blocked_staged_20260919.md; decision chip chip-20260919-sd032a-squash-confounded-gain-cut.",
       "raised_by_session": "metaworker-science-20260919-sd032a-squash-clamp-cap-sweep",
       "raised_at": "2026-09-19T22:52:05Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:43:43Z",
+      "resolution_note": "Verified at source 2026-09-23 by governance-flags-mid-20260923 (middle-band flag session, GFLAG-0301..0420). ACTIONED. The user decided OPTION A (2026-09-19, chip-20260919-sd032a-squash-confounded-gain-cut, done): add a gain-matched clamp control arm. V3-EXQ-1067 was re-authored with three bound arms (clamp_baseline/squash/clamp_gain_matched) and queued (ree-v3 b7f406b8cf; present in experiment_queue.json today). Not yet run; its result goes through ordinary review."
     },
     {
       "flag_id": "GFLAG-0371",
