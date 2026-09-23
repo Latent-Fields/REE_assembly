@@ -7626,6 +7626,10 @@
   source:
     - docs/architecture/jepa_e1e2_integration_contract.md
 - id: IMPL-023
+  experiment_gate:
+    gated: true
+    release_condition: 'NOT RELEASED BY ANY SUBSTRATE BUILD. No ree_core feature makes a polarity=''records'' spec note experimentable, so there is nothing here for /implement-substrate to build and this row should not be re-offered on a substrate-readiness signal. The two productive routes are instead: (a) GOVERNANCE, at source -- annotate IMPL-023 in claims.yaml with an explicit epistemic_category the generator already recognises as non-experimental, or move its status to legacy as IMPL-021 and IMPL-022 already are; either stops the generic claim_probe_impl_023 EXP row being re-minted every cycle, and would generalise to the other 24 implementation_note claims. (b) EVIDENCE ON THE MECHANISMS -- if evidence about the V2 representation-interface contract is genuinely wanted, target the mechanism_hypothesis claims in IMPL-023''s depends_on (MECH-057a, MECH-058, MECH-059, MECH-060, MECH-061, MECH-062, MECH-063), which are testable and already carry runs, not the implementation_note that contains them. Re-offer this experimental proposal only if IMPL-023 is itself rewritten to assert a testable mechanism with a named DV -- at which point it would no longer be an implementation_note.'
+    set_by: 'vigilant-colden-ac4766-gatebackfill 2026-09-23 (half A tranche 2, user ruling rec-20260923-ebd1895f ''permanent blocks only''; release_condition mirrored VERBATIM from experiment_proposals.v1.json EXP-IMPL023-V2-SPEC-RECORD status=blocked_substrate. Judged PERMANENT for the experiment lane by reading the row in full: it names no substrate build that releases it)'
   title: "REE-v2 representation-interface-first spec and phase gate."
   claim_type: implementation_note
   subject: roadmap.ree_v2_representation_interface_spec
@@ -83788,6 +83792,19 @@
     NOT a DLIF merge (orthogonal, answered-negative as a unifying mathematical object).
 
 - id: ARC-120
+  experiment_gate:
+    gated: true
+    release_condition: 'Do NOT re-offer ARC-120 as an experiment proposal. Its experimental debt is not dischargeable by a V3 run, and two NON-EXPERIMENT routes are what it actually owes; the first may retire this proposal outright.
+  
+  
+      (a) EVIDENCE TAGGING / SYNTHESIS FIRST (route: /claim-synthesis or /governance, NOT /queue-experiment). ARC-120 generalises over four gates that are each separately registered and separately evidenced (ARC-107 with the MECH-448 rank-preserving demotion and MECH-449 Go/No-Go opponency builds; SD-032b dACC; MECH-261 mode-conditioned write gating; MECH-094 real-vs-simulated write distinction). Cross-tag that EXISTING instance evidence to ARC-120 as framing-level support and re-assess. If tagging discharges the debt -- the likely outcome for a claim that ''introduces no new mechanism'' -- this proposal should move to executed/gated rather than ever being queued, and the why_now signals (missing_experimental_evidence, synthetic_signals_only, lit_only_above_cap) will clear on their own. CAUTION, and it is the load-bearing half: tag at FRAMING level and say so explicitly. Do NOT let an instance''s evidence be read as a direct test of the generalisation -- that is the peripheral-co-tag error ARC-130''s gating names.
+  
+  
+      (b) A DESIGN-SPACE AUDIT, not a run, is the only thing that can falsify this claim. ARC-120''s registered falsifier is ''any future accepted mechanism that grants behavioural or write authority WITHOUT a competence-like gate''. The corresponding standing check is an audit over claims.yaml + the ree_core write/authority sites, asking of each newly-accepted authority-granting mechanism whether it carries a competence-like precondition. That is a governance/architecture practice (candidate route: a /governance audit bucket, or an architecture doc alongside docs/architecture/causal_reach_and_installability.md), NOT an experiment. Note it is ALSO the natural home for the enforced-vs-emergent discrimination that the luna2015 literature entry flags.
+  
+  
+      IF a future session nevertheless believes an ARC-120 experiment is warranted, it must FIRST clear all three gates above -- in particular it must name a readout on which ''one sequence'' and ''four independent gates'' make DIFFERENT predictions. If it cannot name one, the claim is un-posable as an experiment and this gate stands. Any such run must additionally not depend on the ''behavioural influence'' rung while the conversion / F-dominance ceiling stands, and must first turn on the four instance gates that are currently default-off -- which is an /implement-substrate + characterisation task, not a probe.'
+    set_by: 'vigilant-colden-ac4766-gatebackfill 2026-09-23 (half A tranche 2, user ruling rec-20260923-ebd1895f ''permanent blocks only''; release_condition mirrored VERBATIM from experiment_proposals.v1.json EXP-0286 status=blocked_substrate. Judged PERMANENT for the experiment lane by reading the row in full: it names no substrate build that releases it)'
   title: "Behavioural/write authority in REE is (and should remain) EARNED through demonstrated competence, never granted merely because a computation or mechanism exists: REE's existing authority-gating mechanisms are independently-discovered instances of one general developmental sequence -- existence -> representation -> competence -> authority -> behavioural influence -- rather than unrelated ad hoc gates."
   claim_type: architectural_commitment
   subject: architecture.competence_before_authority_framing
