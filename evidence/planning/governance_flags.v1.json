@@ -3847,9 +3847,9 @@
       "summary": "2026-09-14 INV-077 re-audit traced a write path (scripts/apply_live_status.py, SHP-4, predates the 2026-08-07 audit) that writes claims.yaml's live_status.evidence.verdict directly from raw PASS-manifest outcomes (project_status_head.py::load_manifests(), filters outcome==PASS) with zero reference to review_tracker.json's reviewed_run_ids gate anywhere in the call graph -- satisfying the letter of INV-077's own falsifying clause on that one named field. Mitigating factors are all PROCEDURAL not structural (manual-only invocation, attributable commit under a TASK_CLAIMS claim, docstring commitment to never touch status/confidence/epistemic_category/exp_conf verified true by code inspection, consumed only as a citation aid by check_unapplied_autopsy_recommendations.py/default_off_drift_guard.py, not surfaced in serve.py/explorer.html). Governance should adjudicate whether this is a genuine falsifier of INV-077 as currently worded, or whether the what_would_answer falsifying-field list needs narrowing to exclude a field the design doc explicitly declares non-governance-owned and PROMOTES/DEMOTES NOTHING. Full trace in claims.yaml INV-077's 2026-09-14 re-audit CONFIRMED CURRENT STATE addendum.",
       "raised_by_session": "metaworker-chip-20260905-inv077-reaudit",
       "raised_at": "2026-09-14T10:51:32Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:59:45Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: narrow the falsifier] INV-077 what_would_answer FALSIFYING clause: live_status.evidence.verdict removed from the confidence-bearing field list, with a dated carve-out (REE_assembly 32ff0b9db1). Re-verified at source before writing: the field is written only by scripts/apply_live_status.py (never touches status / confidence / v3_pending / epistemic_category); build_experiment_indexes.py and generate_inter_governance_workset.py do not reference live_status; only reporting scripts read it; serve.py / explorer.html do not surface it. The 2026-09-14 re-audit finding (1af88284944) is recorded, not a falsifier; it becomes one if any consumer promotes, demotes or gates on the field."
     },
     {
       "flag_id": "GFLAG-0274",
