@@ -3523,3 +3523,9 @@ One line per hourly tick. ASCII only.
 2026-09-23T06:41:35Z workset materially changed but not committed -- this box is DLAPTOP, not the workset owner (ree-cloud-1) -- regenerated in the working tree, not committed (regen -- 261 items, 29 ready, 0 in flight)
 2026-09-23T06:37:43Z SPAWN IGW-20260923-250 skill=/lit-pull prio=40 uuid=4d2adf13-4d41-47bd-8d1a-eb5f52eb5fd0 pid=53723 worktree=igw-250-literature-proposal-for-mech-080
 2026-09-23T06:59:11Z auto-defer IGW-20260922-216 hash=ad3d9743deff for 48h (complete)
+2026-09-23T06:59:55Z workset published (regen -- verification of the retired ownership gate)
+2026-09-23T07:00:52Z complete IGW-20260922-216 staged->completed outcome=DUPLICATE: Never launched. SD-PP-1 was already built and landed by another session: ree-v3
+2026-09-23T07:00:54Z auto-defer IGW-20260922-228 hash=a1b4c93a5177 for 48h (complete)
+2026-09-23T07:01:33Z complete IGW-20260922-228 staged->completed outcome=DUPLICATE: Never launched. SD-PP-B5 was already built and landed by another session: ree-v3
+2026-09-23T07:49:41Z skip: paused (.igw_routine_pause present)
+2026-09-23T08:23:12Z auto-defer igw-250-literature-proposal-for-mech-080 hash=988dba67b38c for 48h (complete)
