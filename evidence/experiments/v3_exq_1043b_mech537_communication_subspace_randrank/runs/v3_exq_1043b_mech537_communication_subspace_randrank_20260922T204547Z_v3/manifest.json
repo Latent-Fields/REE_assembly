@@ -24,7 +24,9 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "mixed",
-  "evidence_direction_per_claim": {},
+  "evidence_direction_per_claim": {
+    "MECH-537": "mixed"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -332,5 +334,6 @@
     "writer_defect": false,
     "n_agents": 6,
     "goal_state_present": true
-  }
+  },
+  "evidence_direction_note": "[2026-09-23 governance cycle governance-pause-20260923-1741] RATIFIED from confirmed failure_autopsy_V3-EXQ-1043b_2026-09-23 (dry_run_checked true; REE_assembly a733679ddf). Direction 'mixed' confirmed, not changed -- the driver already wrote it and the autopsy recommends the same. Diagnostic, excluded from scoring. The registered CONFIRMING conjunction is not met (C2-primary 95% CI [-0.01547,+0.07370] includes 0 and 0.05; C4b 3/6 seeds vs 4 required), BUT the pre-registered rank co-primary ELIMINATES H2-no-orientation as a GLOBAL claim (Fisher 2.19e-4 SET-ALL / 6.86e-5 SET-COMPETENT, leave-one-out robust). Read interpretation.primary_agreement, NOT evidence_direction alone -- the direction understates the run and the pre-registration said so in advance (GFLAG-0422). Claim alignment INTACT, not a weakening. Claims-layer application: REE_assembly e0d35557bd."
 }
