@@ -67,6 +67,14 @@ behind — two FAIL manifests landed after it (see Experiments Awaiting Review).
   **already ran**, 43 with no queueable validation, 4 known-churn. So the refill surface is nearly
   exhausted by prior work — beyond SD-106, restocking needs a fresh `/queue-experiment` design,
   not a re-queue.
+- **RECURRENCE — this is the second empty queue in five days.** The 2026-09-18 digest found the
+  same zero-pending condition and spawned `chip-20260918-queue-refill-empty`; that chip was still
+  `open` and **never claimed** when this digest ran, so nothing refilled the queue in the interim.
+  It has been withdrawn today as superseded by `chip-20260923-queue-refill-empty` (current
+  context). The pattern to notice is not the empty queue itself but that the refill chip went
+  unactioned for five days — an unclaimed refill chip means the fleet stays idle regardless of how
+  promptly the digest reports it.
+
 - **Owed successors: none.** All four plan `owner_exq` ids (V3-EXQ-1047, 445h, 910b, 938) failed
   the Step 7c (b) check — every one has a landed manifest, i.e. they all ran. No phantoms, no
   declared-never-minted ids.
