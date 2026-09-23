@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_079",
+  "entry_id": "2026-09-23_mech_079_representational_drift_stable_environment_climer2025",
+  "timestamp_utc": "2026-09-23T04:33:10Z",
+  "claim_ids_tested": [
+    "MECH-079"
+  ],
+  "summary_path": "summary.md",
+  "source": {
+    "title": "Hippocampal representations drift in stable multisensory environments",
+    "authors": [
+      "Jason R. Climer",
+      "Heydar Davoudi",
+      "Jun Young Oh",
+      "Daniel A. Dombeck"
+    ],
+    "year": 2025,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-025-09245-y",
+    "pmid": "40702176",
+    "pmc": "PMC12456264",
+    "volume": "645",
+    "issue": "8080",
+    "pages": "457-465"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the entry that bears most directly on MECH-079's load-bearing adjective. The claim is not that hippocampal map geometry matters but that STABLE map geometry is what phenomenal self-continuity is an artefact of; Climer et al. show in Nature that CA1 representations drift steadily even when the environment is held richly and reproducibly constant across days and the animal's behaviour is matched, and that the best single predictor of a cell's drift is its own intrinsic excitability rather than anything about the world. The premise the claim needs -- that the map is the stable thing in the system -- is therefore false at the timescale over which identity persistence is supposed to be explained. Held at 0.74 rather than higher because the paper is silent on selfhood: it refutes the stability premise, not the identity inference, and a defender of MECH-079 can retreat to 'stable topology' (which coarse-grained place-field geometry may well preserve under drift) as distinct from 'stable population code' (which demonstrably is not preserved). That retreat is available but it is a real narrowing, and it is the claim's to make explicitly rather than to assume.",
+  "failure_signatures": [
+    "Representational drift proceeds in a sensorily and behaviourally matched environment, so drift cannot be attributed to the map correctly tracking a changing world. Any REE mechanism that reads self-continuity off the persistence of a population code must therefore predict a discontinuity of self that does not occur in the animal.",
+    "The strongest predictor of per-cell drift was intrinsic excitability, a cell-autonomous variable. This means drift is generated INSIDE the substrate rather than imposed by input statistics, so holding REE's observation stream fixed will not hold its map fixed either -- the non-degeneracy precondition MECH-079's falsifier requires (perturb geometry while preserving self-state inputs) may not be cleanly achievable, because geometry moves on its own.",
+    "The paper measures CA1 population coding over days in mice. It says nothing about whether the coarse topology or attractor-basin profile is preserved under that drift, and MECH-079 is worded in terms of topology. This entry therefore constrains the claim rather than refuting it outright, and must not be cited as though it refuted it."
+  ],
+  "tags": [
+    "mech-079",
+    "representational_drift",
+    "place_cells",
+    "map_stability",
+    "ca1",
+    "excitability",
+    "identity_persistence",
+    "inv-069",
+    "mech-024"
+  ],
+  "mapping": {
+    "source_claim_statement": "Hippocampal CA1 place-cell representations of a familiar virtual environment change progressively over days even when the multisensory environment and the animal's behaviour are held highly reproducible, so drift is not a consequence of environmental or behavioural change. Across the measured variables, the intrinsic excitability of an individual place cell was the most predictive of how much that cell's representation drifted, with more excitable cells drifting less.",
+    "ree_translation": "MECH-079 asserts that phenomenological continuous selfhood is an artefact of STABLE hippocampal map geometry, with the chain same topology -> similar rollouts -> similar commitments -> subjective identity persistence. This result attacks the first link. In the biological system the map is not stable on the timescale over which selves feel continuous; it drifts endogenously under constant input. For REE the consequence is concrete: if anchor/residue geometry is the analogue of the map, then a self-continuity mechanism built on geometric persistence is building on a substrate that biology does not hold still, and the REE version would need to explain continuity DESPITE drift -- e.g. by a re-registration or realignment process -- rather than by persistence. That is a different mechanism from the one MECH-079 names.",
+    "mapping_caveat": "The paper measures population-code similarity in mouse CA1 over days; MECH-079 is a claim about human phenomenal selfhood and is worded in terms of topology and attractor-basin profile rather than population-vector correlation. Drift in the population code is fully compatible with preservation of coarse topology, and the entry must not be read as showing that topology drifts. The transfer also crosses species and crosses from a navigational readout to a phenomenological one, for which the paper offers no measurement at all.",
+    "source_context": "Head-fixed mice navigating reproducible virtual-reality linear environments; chronic two-photon calcium imaging of CA1 place cells tracked across days, with excitability measured in the same cells."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Source quality 0.9: Nature 2025, chronic within-cell tracking with the environmental-change confound explicitly designed out, which is exactly the control earlier drift papers were criticised for lacking. Mapping fidelity 0.6 -- it lands squarely on the 'stable' premise, which is the claim's own wording, but reaches it via population-code similarity rather than topology, and the claim's phenomenal terminus is untouched. Transfer risk 0.5: mouse CA1 navigation to human phenomenal selfhood is a long transfer, mitigated only because the proposition being transferred is a negative one about substrate stability rather than a positive one about function."
+  }
+}

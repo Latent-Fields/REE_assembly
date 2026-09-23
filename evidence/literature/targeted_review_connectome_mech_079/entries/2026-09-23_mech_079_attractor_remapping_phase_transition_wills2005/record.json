@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_079",
+  "entry_id": "2026-09-23_mech_079_attractor_remapping_phase_transition_wills2005",
+  "timestamp_utc": "2026-09-23T04:33:10Z",
+  "claim_ids_tested": [
+    "MECH-079"
+  ],
+  "summary_path": "summary.md",
+  "source": {
+    "title": "Attractor dynamics in the hippocampal representation of the local environment",
+    "authors": [
+      "Tom J. Wills",
+      "Colin Lever",
+      "Francesca Cacucci",
+      "Neil Burgess",
+      "John O'Keefe"
+    ],
+    "year": 2005,
+    "venue": "Science",
+    "doi": "10.1126/science.1108905",
+    "pmid": "15879220",
+    "pmc": "PMC2680068",
+    "volume": "308",
+    "issue": "5723",
+    "pages": "873-876"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "MECH-079's notes contain a specific structural sub-claim that is separable from its phenomenal one: identity-level change is a PHASE TRANSITION in map geometry, a discontinuous restructuring of the attractor-basin profile rather than a graded morph. Wills et al. is the canonical direct evidence for exactly that dynamical signature. Rats trained in a square and a circle, then tested on a morph sequence of intermediate shapes, showed abrupt and population-wide simultaneous switching between the two learned representations rather than gradual interpolation -- the defining behaviour of a system settling into one of two discrete attractors. This supports the sub-claim's dynamics honestly and specifically. It is held at 0.63 because it supports only that sub-claim: it is about the representation of environmental SHAPE in rats, contains nothing about selfhood, identity or autobiography, and is in fact partly in tension with the neighbouring entry in this directory (Climer 2025), since a system with strong discrete attractors is one in which endogenous drift ought to be corrected rather than accumulate. The tension is real and is recorded rather than smoothed over.",
+  "failure_signatures": [
+    "The attractor dynamics demonstrated here are over the representation of environmental geometry in rats, with no self-referential, autobiographical or identity-related variable measured. Support extends to the FORM of the transition (discrete, population-wide, hysteretic) and not at all to the proposition that such a transition constitutes or produces a change of self.",
+    "Discrete attractor dynamics and accumulating representational drift (Climer 2025, same directory) pull in opposite directions: strong pattern completion toward a stored state should correct endogenous noise rather than let it accumulate across days. Both findings are well-supported, so the resolution is presumably one of timescale -- fast within-session settling versus slow across-day reorganisation -- but MECH-079 as worded does not say which timescale carries identity, and cannot be said to be supported by both.",
+    "Later work in this literature reports that morph-sequence responses can be graded rather than abrupt depending on training history and on the region recorded (CA3 versus CA1). The abrupt-switching result should therefore be treated as demonstrating that attractor-like dynamics are AVAILABLE in the hippocampal representation, not that all map change is discontinuous."
+  ],
+  "tags": [
+    "mech-079",
+    "attractor_dynamics",
+    "remapping",
+    "phase_transition",
+    "place_cells",
+    "pattern_completion",
+    "morph_sequence",
+    "map_geometry",
+    "mech-073"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats familiarised with a square and a circular enclosure were tested in a series of intermediate morph shapes. Place-cell populations did not interpolate between the two familiar representations; they switched abruptly and coherently, with the whole population moving together between the square-like and circle-like representations at a critical point in the morph sequence. The authors interpret this as evidence that the hippocampal representation of the local environment behaves as a set of discrete attractors with pattern completion toward stored states.",
+    "ree_translation": "MECH-079's notes assert that identity-level change is a phase transition in map geometry -- a discontinuous restructuring of the attractor-basin profile rather than a graded slide. This entry is the canonical direct evidence that the hippocampal representation does support exactly that dynamical form: coherent, population-wide, abrupt transitions between stored configurations under graded input change. For REE this licenses the dynamical vocabulary in the claim -- basins, discrete transitions, pattern completion toward a stored configuration -- as a description of a real substrate property rather than a metaphor, and it is the strongest available support for the claim's structural leg. It licenses nothing about the phenomenal leg.",
+    "mapping_caveat": "What is discretely switching here is a representation of enclosure SHAPE in rats over minutes; what MECH-079 needs is a discrete transition in SELF-representation in humans over a lifespan. The transfer preserves only the dynamical form. There is also an unresolved tension with the drift entry in this same directory: strong attractors correct noise, and Climer et al. show noise accumulating instead, so the two entries should not be aggregated as though they jointly supported a single 'stable attractor geometry' picture -- they constrain each other, and MECH-079 does not currently specify the timescale at which it is making its claim.",
+    "source_context": "Rats, tetrode recording of CA1 place cells during a square-to-circle morph sequence following familiarisation with both endpoint shapes."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality 0.88: Science 2005 from the O'Keefe laboratory, a foundational and much-replicated result. Mapping fidelity 0.45 is the binding constraint -- the result speaks to the claim's dynamical FORM and to nothing else in it, and shape-representation is a long way from self-representation. Transfer risk 0.55: rat enclosure geometry to human phenomenal identity is a substantial transfer, and the within-literature tension with graded-morph findings in other regions adds to it."
+  }
+}

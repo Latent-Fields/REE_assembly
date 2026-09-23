@@ -1,0 +1,61 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_079",
+  "entry_id": "2026-09-23_mech_079_abstract_cognitive_maps_social_hierarchy_park2020",
+  "timestamp_utc": "2026-09-23T04:33:10Z",
+  "claim_ids_tested": [
+    "MECH-079"
+  ],
+  "summary_path": "summary.md",
+  "source": {
+    "title": "Map Making: Constructing, Combining, and Inferring on Abstract Cognitive Maps",
+    "authors": [
+      "Seongmin A. Park",
+      "Douglas S. Miller",
+      "Hamed Nili",
+      "Charan Ranganath",
+      "Erie D. Boorman"
+    ],
+    "year": 2020,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2020.06.030",
+    "pmid": "32702288",
+    "pmc": "PMC7529977",
+    "volume": "107",
+    "issue": "6",
+    "pages": "1226-1238.e8"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "MECH-079 needs a premise it never states: that hippocampal map machinery applies to self-and-social content at all, rather than only to physical space. Without it the claim is a category error, since selfhood is not a place. Park et al. supply that premise with primary human evidence -- participants learned two 2D social hierarchies one dimension at a time, and hippocampal, entorhinal and vmPFC/mOFC representations came to encode Euclidean distance in a reconstructed 2D social space that was never directly experienced, supporting novel inferences about untested pairs. So the map machinery does generalise to abstract, socially-referred relational structure, and it does so compositionally. This makes MECH-079 a coherent claim rather than a confused one, which is a real contribution. Held at 0.6 because it establishes coherence and not truth: social-status space is not self-continuity, the study is a single fMRI experiment with representational-similarity inference rather than a causal manipulation, and nothing in it speaks to stability over time or to phenomenology.",
+  "failure_signatures": [
+    "The abstract space mapped here is social status along two learned dimensions, inferred within an experimental session. MECH-079 requires a map of the SELF persisting over a lifespan. Generalisation from the former to the latter is an assumption the paper does not test, and the temporal dimension -- the whole point of a continuity claim -- is entirely absent from the design.",
+    "The evidence is representational similarity in BOLD signal, which is correlational. No causal perturbation of the map was performed, so the study cannot show that the mapped geometry is what supports the inferences rather than accompanying them. MECH-079's falsifier requires precisely a causal geometric perturbation, and this entry supplies none of that design.",
+    "Establishing that hippocampal coding generalises to abstract relational domains makes MECH-079 coherent but also makes it less discriminating: if the hippocampus maps status, kinship, task space and value alike, then 'the self is mapped too' is a weak prediction that would be satisfied by almost any relational content, and the claim needs to say what would distinguish a self-map from any other abstract map."
+  ],
+  "tags": [
+    "mech-079",
+    "cognitive_map",
+    "abstract_space",
+    "social_hierarchy",
+    "hippocampus",
+    "entorhinal",
+    "vmpfc",
+    "relational_inference",
+    "compositionality",
+    "arc-013"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human participants learned the status relationships of individuals along two social dimensions, each dimension taught separately, and were then required to make inferences about pairs never directly compared. Activity patterns in hippocampus, entorhinal cortex and vmPFC/mOFC came to reflect Euclidean distance within a reconstructed two-dimensional social space combining the separately-learned dimensions, and this map-like representation supported the novel inferences.",
+    "ree_translation": "MECH-079 relies on an unstated premise: that the hippocampal map format applies to self-referred content, not only to physical space. This paper supplies that premise with human primary evidence, and adds that the mapping is compositional -- separately-learned dimensions are combined into a joint space that supports inference over never-experienced pairs. For REE this licenses treating anchor/residue geometry as a general relational substrate over abstract dimensions, which is what the claim's chain from topology to commitments needs in order to be about selfhood at all rather than about navigation.",
+    "mapping_caveat": "This establishes that the map format generalises to abstract social structure; it does not establish that the self is mapped, nor anything about map stability over time, which is the actual content of a continuity claim. The evidence is representational similarity in BOLD -- correlational, within a single session, with no causal perturbation -- so it cannot show the geometry is load-bearing rather than concomitant. There is also a discriminability cost: the more domains the hippocampus is shown to map, the weaker 'the self is mapped too' becomes as a prediction.",
+    "source_context": "Healthy human adults, fMRI with representational similarity analysis, learning two-dimensional social hierarchies and performing transitive inference over untrained pairs."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.82: Neuron, well-powered human fMRI with a carefully constructed compositional design and RSA analysis. Mapping fidelity 0.5 -- it supplies a premise MECH-079 genuinely needs and never states, which is worth something, but the premise is about domain generality rather than about self-continuity, and the study has no temporal dimension at all. Transfer risk 0.45: human-to-REE with no species gap, but a real gap between social-status space inferred within a session and a self-map persisting across a life."
+  }
+}
