@@ -3559,3 +3559,9 @@ One line per hourly tick. ASCII only.
 2026-09-23T18:51:16Z workset published via the coordinator (no local commit; verified on origin/master fe232a4925) (regen -- 259 items, 32 ready, 0 in flight)
 2026-09-23T18:51:16Z workset committed (regen -- 259 items, 32 ready, 0 in flight)
 2026-09-23T18:48:05Z STAGE IGW-20260923-219 skill=/implement-substrate prio=25 worktree=igw-219-substrate-ready-sd105-frozen-sha (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-09-23T19:59:17Z workset published (regen -- 260 items, 34 ready, 0 in flight)
+2026-09-23T19:59:17Z workset committed (regen -- 260 items, 34 ready, 0 in flight)
+2026-09-23T19:55:47Z STAGE IGW-20260923-222 skill=/implement-substrate prio=25 worktree=igw-222-substrate-ready-sd032b-candidate (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-09-23T21:15:24Z workset published (regen -- 260 items, 34 ready, 0 in flight)
+2026-09-23T21:15:24Z workset committed (regen -- 260 items, 34 ready, 0 in flight)
+2026-09-23T21:10:06Z no eligible item (skipped 260): IGW-20260923-001:skill /governance not allowed; IGW-20260923-226:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem; IGW-20260923-228:status=blocked blocked_by=ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric -- RAN 2026-06-20T22:30Z, PASS, evidence_direction=supports (v3_exq_514u_sd049_phase2_mec
