@@ -4076,9 +4076,9 @@
       "summary": "MECH-003's architecture doc (docs/architecture/precision_scoping.md) states cross-tau precision projection is 'Directional (usually short -> long tau only)', but two independent, methodologically unrelated sources entered in the 2026-09-15 lit-pull point the other way: the hierarchical Gaussian filter (Mathys et al. 2011) has the HIGHER level set the LOWER level's step size, and Behrens et al. 2007 show a slowly-accumulated volatility estimate setting the learning rate applied to each next outcome -- both long -> short. The separation and explicit-projection-operator requirements of MECH-003 are well supported; only the unidirectionality gloss is contradicted, and it should either be corrected to bidirectional coupling or given an explicit REE-specific justification. Secondary discrepancy in the same doc: its non-normative biological note maps phasic dopamine to pi_gamma/pi_beta and tonic dopamine to pi_theta/pi_delta (one transmitter split by timescale), whereas Iglesias et al. 2013 (Neuron, replicated in two groups) find the low/high hierarchical split falling between dopamine (midbrain, low-level PE) and acetylcholine (basal forebrain, high-level PE). Evidence: REE_assembly c1160f28ff, evidence/literature/targeted_review_connectome_mech_003/.",
       "raised_by_session": "igw-242-literature-proposal-for-mech-003",
       "raised_at": "2026-09-16T00:00:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:15:38Z",
+      "resolution_note": "[governance-flags-20260923b, user decision 2026-09-23: correct both glosses] APPLIED (REE_assembly ddeb471d38), doc only, no claims.yaml change: docs/architecture/precision_scoping.md projection property now reads bidirectional-but-asymmetric -- short -> long by slow lossy accumulation; long -> short only as step-size / learning-rate modulation, never a direct precision overwrite (Mathys 2011 HGF; Behrens 2007) -- and the non-normative biology note maps low-level PE to dopamine and high-level PE to acetylcholine (Iglesias 2013), each with a dated correction marker. MECH-003's separation and explicit-projection-operator requirements are unchanged."
     },
     {
       "flag_id": "GFLAG-0291",
