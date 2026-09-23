@@ -1,0 +1,382 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe",
+  "run_id": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-23T22:24:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "c6aa52d9cb2b24691f330b7e60e650c6cabc69de",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sleep_head_change_reaches_e3_ranking__rollout_yes__curiosity_undetermined",
+    "combination_rule": "outcome PASS iff >= 2 ready seeds AND C1 (SLEEP_BOTH top1_diff_rate minus NULL >= 0.05 on >= 2 ready seeds on which SLEEP_BOTH is determinate, i.e. >= MIN_TICKS paired finite ticks). C2/C3 attribute the route, each pass/fail/undetermined and spelled out in the label; C4 (x4 extrapolation), C5 (whole-organism sleep) and C6 (norm-matched random direction) are recorded context. Ready = yoke_exact AND sleep_moved_head AND REINIT_BOTH determinate and >= positive-control floor AND n_ticks.",
+    "preconditions": [
+      {
+        "name": "seed42::yoke_exact",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "description": "NULL twin (identical weights) must reproduce A bit-exactly: max of top1/sel diff rate, TV max and ran-mismatch count",
+        "control": "NULL twin -- identical state_dict, identical per-step RNG",
+        "met": true
+      },
+      {
+        "name": "seed42::sleep_moved_head",
+        "measured": 0.033077021811166646,
+        "threshold": 1e-06,
+        "comparator": ">",
+        "description": "relative L2 change of the world head across the sleep cycle",
+        "control": "S_pre vs S_post world-head parameters",
+        "met": true
+      },
+      {
+        "name": "seed42::positive_control_reach",
+        "measured": 0.24761904761904763,
+        "threshold": 0.1,
+        "description": "a freshly-initialised world head must re-rank >= 10% of E3 ticks, else the instrument cannot register reach",
+        "control": "REINIT_BOTH twin (both routes carry a random head); certifies the top1_diff_rate instrument for BOTH routes jointly",
+        "met": true
+      },
+      {
+        "name": "seed42::n_ticks",
+        "measured": 105.0,
+        "threshold": 20.0,
+        "description": "paired fresh-select E3 ticks (A vs NULL)",
+        "control": "sample floor",
+        "met": true
+      },
+      {
+        "name": "seed42::curiosity_route_live",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "description": "fraction of A's E3 ticks with non-zero 314a novelty deviation range; scoped to C3 ONLY",
+        "control": "A twin, live 314a channel; certifies the curiosity route readout only",
+        "applies_to": "C3_curiosity_route",
+        "met": true
+      },
+      {
+        "name": "seed42::curiosity_route_positive_control",
+        "measured": 0.009523809523809525,
+        "threshold": 0.1,
+        "description": "a random head swapped into ONLY the 314a summary read must re-rank >= 10% of ticks; scoped to C3 ONLY. If unmet, the 314a route has no top-1 authority at this curiosity weight and C3 cannot discriminate (rank_discordance still recorded)",
+        "control": "REINIT_CURIOSITY_ONLY twin; certifies the curiosity route readout only",
+        "applies_to": "C3_curiosity_route",
+        "met": false
+      },
+      {
+        "name": "seed123::yoke_exact",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "description": "NULL twin (identical weights) must reproduce A bit-exactly: max of top1/sel diff rate, TV max and ran-mismatch count",
+        "control": "NULL twin -- identical state_dict, identical per-step RNG",
+        "met": true
+      },
+      {
+        "name": "seed123::sleep_moved_head",
+        "measured": 0.029252750520916342,
+        "threshold": 1e-06,
+        "comparator": ">",
+        "description": "relative L2 change of the world head across the sleep cycle",
+        "control": "S_pre vs S_post world-head parameters",
+        "met": true
+      },
+      {
+        "name": "seed123::positive_control_reach",
+        "measured": 0.22764227642276422,
+        "threshold": 0.1,
+        "description": "a freshly-initialised world head must re-rank >= 10% of E3 ticks, else the instrument cannot register reach",
+        "control": "REINIT_BOTH twin (both routes carry a random head); certifies the top1_diff_rate instrument for BOTH routes jointly",
+        "met": true
+      },
+      {
+        "name": "seed123::n_ticks",
+        "measured": 123.0,
+        "threshold": 20.0,
+        "description": "paired fresh-select E3 ticks (A vs NULL)",
+        "control": "sample floor",
+        "met": true
+      },
+      {
+        "name": "seed123::curiosity_route_live",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "description": "fraction of A's E3 ticks with non-zero 314a novelty deviation range; scoped to C3 ONLY",
+        "control": "A twin, live 314a channel; certifies the curiosity route readout only",
+        "applies_to": "C3_curiosity_route",
+        "met": true
+      },
+      {
+        "name": "seed123::curiosity_route_positive_control",
+        "measured": 0.016260162601626018,
+        "threshold": 0.1,
+        "description": "a random head swapped into ONLY the 314a summary read must re-rank >= 10% of ticks; scoped to C3 ONLY. If unmet, the 314a route has no top-1 authority at this curiosity weight and C3 cannot discriminate (rank_discordance still recorded)",
+        "control": "REINIT_CURIOSITY_ONLY twin; certifies the curiosity route readout only",
+        "applies_to": "C3_curiosity_route",
+        "met": false
+      },
+      {
+        "name": "seed456::yoke_exact",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "description": "NULL twin (identical weights) must reproduce A bit-exactly: max of top1/sel diff rate, TV max and ran-mismatch count",
+        "control": "NULL twin -- identical state_dict, identical per-step RNG",
+        "met": true
+      },
+      {
+        "name": "seed456::sleep_moved_head",
+        "measured": 0.036141915197184286,
+        "threshold": 1e-06,
+        "comparator": ">",
+        "description": "relative L2 change of the world head across the sleep cycle",
+        "control": "S_pre vs S_post world-head parameters",
+        "met": true
+      },
+      {
+        "name": "seed456::positive_control_reach",
+        "measured": 0.6435331230283912,
+        "threshold": 0.1,
+        "description": "a freshly-initialised world head must re-rank >= 10% of E3 ticks, else the instrument cannot register reach",
+        "control": "REINIT_BOTH twin (both routes carry a random head); certifies the top1_diff_rate instrument for BOTH routes jointly",
+        "met": true
+      },
+      {
+        "name": "seed456::n_ticks",
+        "measured": 317.0,
+        "threshold": 20.0,
+        "description": "paired fresh-select E3 ticks (A vs NULL)",
+        "control": "sample floor",
+        "met": true
+      },
+      {
+        "name": "seed456::curiosity_route_live",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "description": "fraction of A's E3 ticks with non-zero 314a novelty deviation range; scoped to C3 ONLY",
+        "control": "A twin, live 314a channel; certifies the curiosity route readout only",
+        "applies_to": "C3_curiosity_route",
+        "met": true
+      },
+      {
+        "name": "seed456::curiosity_route_positive_control",
+        "measured": 0.006309148264984227,
+        "threshold": 0.1,
+        "description": "a random head swapped into ONLY the 314a summary read must re-rank >= 10% of ticks; scoped to C3 ONLY. If unmet, the 314a route has no top-1 authority at this curiosity weight and C3 cannot discriminate (rank_discordance still recorded)",
+        "control": "REINIT_CURIOSITY_ONLY twin; certifies the curiosity route readout only",
+        "applies_to": "C3_curiosity_route",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_sleep_both_reaches_ranking",
+        "load_bearing": true,
+        "passed": true,
+        "state": "pass",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "per_seed_bar": 0.05,
+        "n_ready_seeds": 3,
+        "ready_seeds": [
+          42,
+          123,
+          456
+        ],
+        "n_determinate_seeds": 3
+      },
+      {
+        "name": "C2_rollout_route_reaches",
+        "load_bearing": false,
+        "passed": true,
+        "state": "pass",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "per_seed_bar": 0.05,
+        "n_determinate_seeds": 3
+      },
+      {
+        "name": "C3_curiosity_route_reaches",
+        "load_bearing": false,
+        "passed": false,
+        "state": "undetermined",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "per_seed_bar": 0.05,
+        "n_curiosity_live_ready_seeds": 0,
+        "n_determinate_seeds": 0
+      },
+      {
+        "name": "C4_x4_extrapolation_RECORDED",
+        "load_bearing": false,
+        "passed": true,
+        "state": "pass",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "per_seed_bar": 0.05,
+        "n_determinate_seeds": 3,
+        "note": "not a dose (MLP head, linear extrapolation); recorded, not in the grid"
+      },
+      {
+        "name": "C5_full_sleep_reaches_CONTEXT",
+        "load_bearing": false,
+        "passed": true,
+        "state": "pass",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "per_seed_bar": 0.05,
+        "n_determinate_seeds": 3
+      },
+      {
+        "name": "C6_noise_matched_reaches_CONTEXT",
+        "load_bearing": false,
+        "passed": true,
+        "state": "pass",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "per_seed_bar": 0.05,
+        "n_determinate_seeds": 3,
+        "note": "random direction, per-tensor norm matched to the sleep change: reads C1 against generic magnitude sensitivity; recorded, not in the grid"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_sleep_both_reaches_ranking": true,
+      "C2_rollout_route_reaches": true,
+      "C3_curiosity_route_reaches": false,
+      "C4_x4_extrapolation_RECORDED": true,
+      "C5_full_sleep_reaches_CONTEXT": true,
+      "C6_noise_matched_reaches_CONTEXT": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "17e203f3353878806e19840fe2cbed23d89e374ba31788e15a690f6c5d9e6480",
+  "substrate_commit": {
+    "commit": "c6aa52d9cb2b24691f330b7e60e650c6cabc69de",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "use_structured_curiosity": true,
+    "use_sleep_loop": true,
+    "use_cross_module_consolidation": true,
+    "cross_module_consolidation_steps": 8,
+    "use_sleep_world_forward_consolidation": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 6543.157247324,
+  "config": {
+    "env": {
+      "size": 5,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true
+    },
+    "dims": {
+      "self": 16,
+      "world": 16
+    },
+    "alpha_world": 0.9,
+    "schedule": {
+      "p0": 3600,
+      "wake": 180,
+      "probe": 900,
+      "steps_per_episode": 90
+    },
+    "p0_opt": {
+      "lr": 0.001,
+      "batch": 8,
+      "buf": 256,
+      "min_buf": 16,
+      "max_grad_norm": 1.0
+    },
+    "heldout_n": 64,
+    "thresholds": {
+      "reach_bar": 0.05,
+      "seeds_required": 2,
+      "pos_control_floor": 0.1,
+      "min_ticks": 20,
+      "curiosity_live_frac": 0.5,
+      "head_moved_floor": 1e-06,
+      "early_window": 20,
+      "near_tie_rel": 0.01
+    },
+    "sleep": {
+      "cmc_steps": 8,
+      "cmc_lr": 0.001,
+      "cmc_batch": 16,
+      "world_forward_consolidation": true
+    },
+    "curiosity": {
+      "structured": true,
+      "novelty": true,
+      "uncertainty": false,
+      "learning_progress": false,
+      "novelty_source": "visitation",
+      "candidate_source": "e2_world_forward"
+    },
+    "twins": [
+      "A",
+      "NULL",
+      "SLEEP_BOTH",
+      "SLEEP_ROLLOUT_ONLY",
+      "SLEEP_CURIOSITY_ONLY",
+      "SLEEP_X4_BOTH",
+      "FULL_SLEEP",
+      "REINIT_BOTH",
+      "REINIT_CURIOSITY_ONLY",
+      "NOISE_MATCHED"
+    ],
+    "x_dose": 4.0
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": false
+  }
+}
