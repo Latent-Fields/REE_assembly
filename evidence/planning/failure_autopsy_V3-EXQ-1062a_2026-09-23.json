@@ -1,0 +1,267 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-23T06:03:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
+      "queue_id": "V3-EXQ-1062a",
+      "claim_ids": [
+        "MECH-055"
+      ],
+      "bears_on": [
+        "mech055_harm_pe_source_validity"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- untested. C1 and C3 were never evaluated; nothing here verdicts MECH-055.",
+        "biological_reference": "clear -- 1062's triage stands (BLA valence level vs dACC surprise); faithful translation, no lit-pull owed.",
+        "prerequisites": "missing -- the harm-forward head fails to beat the z(t-1) persistence predictor in 6/6 cells (skill -71.7/-4.0/-23.5 stationary, -6.0/-2.3/-1.2 shift; persistence R2 0.969-0.999). Axis 3's PE is dominated by model error, not world surprise.",
+        "implementation": "partial -- E2HarmAForward is present, trained and action-sensitive (0.46-1.19 normalised, above its 0.05 floor) but net WORSE than identity. Its certifying readiness gate is an absolute R2 floor with no baseline.",
+        "environment": "partial -- WRONG PRESSURES PERSIST. The onset half is fixed and verified (0 pre-P2 permutations in 6/6 cells). The exposure half is NOT: the shift arm's harm_exposure_relative_deviation_bounded failed at 3.282 (~4.28x) against a 0.25 ceiling -- the predecessor measured 3.276, so the onset fix moved it by nothing -- and the early-window copy is 1.804 against the same ceiling. The V3-EXQ-1062 autopsy graded this same number under Environment; this autopsy does not get to call the layer fixed on an unchanged figure.",
+        "measurement": "under-instrumented at the GATE -- 1062's prescribed persistence baseline landed and fired as a RECORDED instrument, but the GATING precondition harm_a_forward_r2_supra_floor remains an absolute 0.30 floor and passed at 0.9405 while persistence scores 0.9955.",
+        "integration": "coupled but inert -- BY STARVED UPSTREAM. Channels live and responsive; the decoupling manipulation cannot reach a residual already dominated by model error. Implementation NOT downgraded on this account (it is downgraded for the skill finding above).",
+        "scale": "adequate -- 12,676 s, fresh-select floor cleared by 19% in the worst cell."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED across all three buckets -- MECHANISM + MEASURES + ENVIRONMENT. Not chargeable to REE and not chargeable to MECH-055. (Corrected at the Step 7c red-team pass: an earlier draft graded environment `established` on the strength of the onset fix alone, while the exposure deviation that the predecessor had filed under Environment was unchanged.)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC precision-weighted prediction-error signalling (Hayden 2011) vs BLA valence-specific level coding (Namburi 2015)",
+        "dependencies": [
+          "a forward model whose residual carries world surprise rather than model error"
+        ],
+        "is_formal_import": false,
+        "divergence": "none newly found; the 1062 triage stands",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "HOLD standard. The substantive finding is a substrate gate on axis 3's PE source, which a stricter reading would stamp substrate_ceiling -- but that would put MECH-055 into _EPI_SUPPRESS_PROPOSAL and mark it not-v3-testable, while falsifier (i) / C2 remains scoreable today and has now passed 3/3 seeds twice. The ceiling reading is carried by pending_retest_after_substrate and the note instead. Flagged as a judgement call at the Step 8 gate.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1062a (diagnostic, FAIL, non_contributory). The onset fix V3-EXQ-1062's autopsy prescribed worked: training ran stationary and the shift fired only in P2. The decisive falsifier C1 still did not score -- the single SHIFT arm failed two cross-arm readiness preconditions -- so MECH-055 is untested, not falsified. What the run DID establish, via the persistence baseline that same autopsy prescribed: the harm-forward model does not beat the trivial z(t-1) predictor in ANY of 6 cells (skill -71.7 to -1.2; persistence R2 0.969-0.999), while remaining action-sensitive (0.46-1.19). So the dACC harm-PE that axis 3 routes on is dominated by model error rather than world surprise, and no dose of an action-map lever can raise it. H2 (the model adapted because it trained under the shift) is left UNSUPPORTED with training now stationary (between-arm harm_a_forward_r2 gap 0.0315; per-seed +0.051/-0.0005/+0.044). A retest is now gated on substrate work.",
+      "per_claim_recommendation": {
+        "MECH-055": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "MECH-055 already carries epistemic_category standard and diagnostic_evidence_adjudicated true, so neither moves. What DOES move is the retest gate: the claim carries NO pending_retest_after_substrate field at all (the V3-EXQ-1062 autopsy RECOMMENDED false and governance applied only diagnostic_evidence_adjudicated, so the field is absent rather than set -- corrected at the red-team pass). V3-EXQ-1062a overturns that recommendation: the harm-forward head does not beat persistence, so the retest is gated on work that does not exist yet -> set pending_retest_after_substrate true",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-PP-B9-harm-forward-below-persistence-baseline",
+        "title": "The harm-forward head scores BELOW the z(t-1) persistence predictor in 6/6 cells (skill -71.7 to -1.2), with residual RMS 1.5-8.5x the true per-step displacement of z_harm_a, so the dACC harm-PE that MECH-055 axis 3 routes on is dominated by model error rather than world surprise. CAUSE NOT ESTABLISHED between under-training / train-eval mismatch and a representation ceiling -- see the fan-out.",
+        "implementation_hint": "Three separable pieces, cheapest first. (1) INSTRUMENT, owed on every branch and not gated on the discrimination: the readiness gate harm_a_forward_r2_supra_floor is an absolute R2 floor (FORWARD_R2_MIN = 0.30, in the DRIVER at v3_exq_1062a_...postshift.py:496, not in ree_core) with no baseline; it passed at 0.9405 while the trivial predictor scores 0.9955. Gate on skill-vs-persistence, computed on the same r2_pairs at zero extra cost. This is an experiments/_lib or driver change, not a ree_core one. (2) RECORDING, also cheap: the manifest carries NO training-loss trajectory for e2_harm_a, so convergence cannot be checked from the artifact at all -- record it (Experimental Recording Standard section 3b/3c). (3) Only then the SUBSTRATE question, which the fan-out splits: is the head under-trained (60 eps x 90 steps online at batch 1, lr 5e-4, no P2 training, P1 epsilon 0.1 vs P2 epsilon 0.0), or is there a representation ceiling? NOTE the arithmetic that motivates this ordering: a displacement ceiling on a RESIDUAL head predicts delta -> 0 and skill ~ 0, because the conditional-mean delta is in the hypothesis space at the MSE optimum. Skill of -72 is not a ceiling signature -- it requires the head to be ACTIVELY adding error, i.e. non-convergence, distribution mismatch, or overfitting.",
+        "unblocks_claims": [
+          "MECH-055 (PARTIAL -- necessary, not sufficient)"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/latent/stack.py::ResidualHarmForward",
+          "ree_core/predictors/e2_harm_a.py::E2HarmAForward"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
+          "experiment_type": "v3_exq_1062a_mech055_affect_channel_separation_postshift",
+          "metric": "harm_forward_skill_vs_persistence NEGATIVE in 6/6 cells (stationary -71.67/-3.98/-23.48, shift -5.99/-2.28/-1.16). Residual-to-displacement ratio (1-r2)/(1-persistence_r2) = 72.7/5.0/24.5 stationary, 7.0/3.3/2.2 shift -- the model's residual RMS is 1.5-8.5x the latent's true per-step displacement. harm_a_forward_r2 0.9405-0.9773 passed its 0.30 readiness floor in every cell while being BELOW the trivial baseline (persistence_r2 0.9693-0.9993). harm_forward_action_sensitivity 0.46-1.19 above its 0.05 floor, so the head is NOT action-blind -- though that statistic is normalised by the model's OWN predicted delta, which is itself 1.5-8.5x too large, so it means 'the action moves a wrong delta by 46-119% of its wrong size'. CAVEAT ON MAGNITUDE: skill is denominator-driven -- 1-persistence_r2 spans 0.00073 to 0.01194 (16.4x) across three seeds at an identical config, so -71.7 is a seed whose latent barely moved, not a 72x-worse model. The robust statement is the SIGN, 6/6. NO TRAINING-LOSS TRAJECTORY for e2_harm_a is recorded, so convergence cannot be checked from this manifest.",
+          "target": "harm_forward_skill_vs_persistence > 0 on >= 2/3 seeds on the stationary arm, ON A HEAD WHOSE TRAINING CURVE IS RECORDED and evaluated at matched epsilon. Plus a readiness precondition that gates on that skill rather than on an absolute R2 floor.",
+          "resolved": "open"
+        },
+        "why_not_amend_existing": "7b check C2 fired: SD-PP-B4-one-shot-world-rule-shift-lever already lists MECH-055 in unblocks_claims and already carries V3-EXQ-1062's failure record. It is deliberately NOT the amend target here, on the same subject-matching discipline the V3-EXQ-1062 autopsy applied to itself: B4's registered subject is the ONSET lever ('world_rule_shift has no phase-boundary kwarg; modulo-schedule only'), and V3-EXQ-1062a shows that gap is NO LONGER what blocks this claim -- the driver applied B4's own documented workaround (set env.world_rule_shift_enabled / _interval / _depth after the training loop), the new world_rule_shift_fired_in_p2 readiness precondition confirms the shift fired in P2, and the trained-then-shifted premise was instantiated for the first time. The blocker that remains is a different subject on a different module -- the harm-forward head's inability to beat persistence -- so it gets its own entry.",
+        "annotates_prior_failure_record": [
+          {
+            "sd_id": "SD-PP-B4-one-shot-world-rule-shift-lever",
+            "run_id": "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3",
+            "resolved": "open -- NOT resolved by this run",
+            "note": "Two annotations owed on SD-PP-B4's existing record, neither of which closes it. (1) Its `target` names a driver-side workaround as available-today; V3-EXQ-1062a is the first run to EXERCISE it and it worked (0 pre-P2 permutations in 6/6 cells, canonical map at onset, 180 P2 shifts), so the workaround is demonstrated rather than asserted. The substantive ask (a supported phase-boundary kwarg) is unbuilt, so the record stays open. (2) Its `target` also states 'no prior run has ever measured whether this lever moves the dACC harm-PE channel'. V3-EXQ-1062a has now measured it WITH TRAINING STATIONARY, and the honest answer is PARTIAL, not 'it does not' (corrected at the red-team pass -- writing 'it does not' into a shared substrate record would misinform every future consumer of this lever): the head's harm_a_forward_r2 FALLS 0.044-0.051 on 2/3 seeds (0.947->0.896 and 0.977->0.934; unexplained variance 1.97x and 2.93x), i.e. the lever DOES reach the harm-forward model's residual. What does not clear its bar is the dACC PE MAGNITUDE the gate reads: pooled elevation +2.4% against a +5.0% floor, per-seed +6.9% / -1.2% / -1.9%. Mark the sentence PARTIALLY answered."
+          }
+        ],
+        "unblocks_caveat": "This entry alone does NOT unblock MECH-055's decisive falsifier. C1 is scored on SHIFT arms only, and the shift arm is red on TWO preconditions. Fixing the harm-forward head addresses pe_load_elevated_vs_stationary; it does nothing about harm_exposure_relative_deviation_bounded (3.282 vs a 0.25 ceiling), which is a lever/environment property -- under a permuted map with no P2 training the agent simply walks into hazards. With this entry built and nothing else changed, the shift arm stays red and C1 stays unscored. An exposure-matched design, or a different decoupling lever, is owed alongside it. MECH-054 was REMOVED from this list at the red-team pass: its registered precondition is a BENEFIT-side channel, which a harm-head fix does not supply.",
+        "severity_rationale": "Set to `degrading`, NOT `corrupting`, corrected at the red-team pass. Both consumers are default-OFF -- use_e2_harm_a (config.py:3883) and use_dacc (config.py:3910) are both `False` and appear in this run's enabled_default_off_flags -- which is the same fact the sibling V3-EXQ-1075 artifact uses to argue `degrading`, and applying it there but not here would be inconsistent. No landed evidence in the corpus has been shown to be corrupted: the one valid-looking-but-false reading identified is a row of the V3-EXQ-1062 autopsy, which this artifact retro-weakens in prose. `corrupting` on these paths would BLOCK every dACC and e2_harm_a experiment at priority 1 under /queue-experiment Step 2.5c -- including the MECH-258 / MECH-268 family -- which is a large cost for a defect nothing has yet been shown to have consumed.",
+        "substrate_paths_note": "ree_core/cingulate/dacc.py::_affective_pe was REMOVED at the red-team pass: it is a CONSUMER (pe = ||z_harm_a - z_harm_a_pred||, dacc.py:213-216) and nothing in it is defective. Listing it would have blocked every dACC experiment for a defect located upstream."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-1062_2026-09-22"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-PP-B9-harm-forward-below-persistence-baseline",
+        "refused_requeue_scope": "The refusal is of another lettered iteration of MECH-055's C1 against this substrate -- no V3-EXQ-1062b at any dose, schedule or measurement window. It is NOT a refusal of the H-harm-head-undertrained probe: that is a new EXQ number on a different mechanism (head convergence) with a different DV (skill-vs-persistence) and no MECH-055 tag, which is the redesign exemption the brake rule states explicitly. Flagged because the brake routes to /implement-substrate while the cheapest next step here is a /queue-experiment diagnostic."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1-exposure-error-coupling: exposure and forward-model error are structurally coupled under the world_rule_shift lever, so no setting raises the dACC harm-PE with exposure held matched. RESTORED at the red-team pass -- the manifest sets h1_exposure_error_coupling_indicated: true and an earlier draft dropped it.",
+          "H-harm-head-undertrained: the head simply never converged, or was evaluated off its training distribution (60 eps x 90 steps online at batch 1, lr 5e-4, no P2 training, P1 epsilon 0.1 vs P2 epsilon 0.0). This is the CHEAPEST leg and the arithmetic favours it: a representation ceiling on a residual head predicts skill ~ 0, not -72.",
+          "H-pe-source-structurally-wrong: no residual forward head on a slow harm-history latent can beat identity, so axis 3 needs a different PE source entirely.",
+          "H-harm-head-representation-ceiling: z_harm_a's per-step displacement is too small for a learned delta to pay -- the SD-PP-B5 analogue. Demoted from the draft's headline CAUSE to one hypothesis among four."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1-exposure-error-coupling",
+            "axis": "environment",
+            "sketch": "an exposure-MATCHED decoupling design (or a different lever) that holds mean_harm_exposure within the 1.25x ceiling while perturbing the harm-forward map; declared null: no such setting exists, exposure and PE move together at every dose"
+          },
+          {
+            "hypothesis": "H-harm-head-undertrained",
+            "axis": "learning-signal",
+            "sketch": "train e2_harm_a to convergence on a RECORDED loss curve at batch > 1, evaluate at matched epsilon, and re-measure skill-vs-persistence; declared null: skill stays <= 0 at convergence. Cheapest probe, and a /queue-experiment item rather than /implement-substrate."
+          },
+          {
+            "hypothesis": "H-pe-source-structurally-wrong",
+            "axis": "readout",
+            "sketch": "score an ensemble-disagreement or innovation-variance PE source against the residual-head PE on the same ticks; declared null: the alternative is no better separated from the VALENCE_HARM level than the residual head is"
+          },
+          {
+            "hypothesis": "H-harm-head-representation-ceiling",
+            "axis": "representation-update-rate",
+            "sketch": "vary harm_history_len / z_harm_a per-step displacement, DV = skill-vs-persistence; declared null: skill stays <= 0 at every setting"
+          }
+        ],
+        "note": "GOV-FANOUT-1: four rivals on four different axes. The single-unambiguous-build exemption is NOT claimed. Ordering matters and was corrected at the red-team pass: the under-training leg is cheapest and is the one the arithmetic favours, so the substrate build must not be commissioned ahead of it. The instrument fix (a skill-vs-persistence readiness floor) and the recording fix (an e2_harm_a training curve) are owed on ALL FOUR branches and are gated on none of them."
+      },
+      "learning_extracted": [
+        "The persistence baseline V3-EXQ-1062's autopsy prescribed as instrument (2) fired, and its result forecloses that autopsy's own conditional step (3): 'only then ladder the dose -- and only if (1)+(2) show the residual can move at all'. Instrument (2) reports the head does not beat a trivial predictor in any cell. No dose ladder is owed and none should be queued.",
+        "The onset fix is verified in the cells, not merely asserted: n_world_rule_shifts_before_p2 = 0 in all 6 cells against ~810 in V3-EXQ-1062, action_map_canonical_at_p2_onset true everywhere, 180 P2 shifts per shift cell. V3-EXQ-1062's confound is gone, which is what makes this run's H2 test the first clean one.",
+        "H2 is PARTIALLY SUPPORTED on 2/3 seeds -- corrected at the red-team pass, where an earlier draft read it as 'the predicted divergence did not appear'. Read on the RAW r2 gap (0.0315 mean) that reading looks right; read on UNEXPLAINED VARIANCE it does not. 1-r2 goes 0.0528 -> 0.1042 (1.97x) on seed 42 and 0.0227 -> 0.0664 (2.93x) on seed 2026, with seed 137 flat at 0.99x. The lever DOES reach the harm-forward model's residual on two of three seeds. What fails is the dACC PE MAGNITUDE floor (+2.4% pooled vs +5.0%). No pre-registered threshold existed for the gap itself, so this is a directional read, not a verdict.",
+        "The onset fix HELPED but not enough, and the direction is worth recording: pe_load_elevated_vs_stationary moved from -0.0332 (V3-EXQ-1062, wrong sign) to +0.0242 (this run, right sign, still under the 0.05 floor). Exposure was unmoved -- 3.282 vs 3.276 against a 0.25 ceiling, i.e. ~4.28x in both runs -- so the exposure confound is a property of the lever, not of the schedule.",
+        "A WINDOWED successor is foreclosed too, by the driver's own non-gating early-window copies: over the first 300 P2 steps harm_exposure_rel_dev_early is 1.804 (still above the 0.25 ceiling) and pe_elevation_early is 0.0132 (still below the 0.05 floor). A shorter measurement window does NOT clear the pre-registered bars without moving them, which is exactly the question those instruments were recorded to answer.",
+        "SHARPER MECHANISM than H3 as worded: the head IS action-sensitive (0.46-1.19) yet permuting the true action->displacement map 180 times barely moves its R2 (paired per-seed gap +0.051/-0.0005/+0.044). So its action-dependence is DECORRELATED from the true map -- the error was never derived from the map, which is why no permutation dose can raise it. That is a different substrate defect from 'the head ignores the action', and it is what the fan-out legs must discriminate.",
+        "H3 SPLITS. Its consequence -- the head does not beat persistence -- is confirmed in 6/6 cells. The mechanism ELIMINATED is the one the 1062a DRIVER stated (a delta driven toward zero, i.e. an action-BLIND head; drv62a:100-105), NOT the V3-EXQ-1062 autopsy's wording, which said only 'persistence-dominated ... no action-map lever at any dose can raise its residual' and named no delta->0 mechanism. Attribution corrected at the red-team pass. Action sensitivity is 0.46-1.19, above its floor -- but normalised by the model's own oversized delta, so it should not be quoted as evidence the head reads the action CORRECTLY.",
+        "NEGATIVE-INSTRUMENT FINDING (CLAUDE.md doctrine): harm_a_forward_r2_supra_floor is a readiness gate with no baseline. It exists to guarantee axis 3 is a forward-model residual rather than a LEVEL, and it cannot see the third case -- a residual dominated by model error. It graded 0.9405 ready against a 0.30 floor while the trivial predictor scored 0.9955. This retro-weakens the Prerequisites='present' row of the V3-EXQ-1062 autopsy, which rested on exactly that figure.",
+        "Cross-target with V3-EXQ-1075: TWO OBSERVATIONS OF THE SAME SHAPE, NOT ONE MECHANISM -- softened at the red-team pass. Both heads are residual (z + delta) and both baselines are copy-the-input, so the form is comparable. But on the world head the result is operating-point dependent -- V3-EXQ-1073 measured skill -0.071/+0.227/-0.007 on the SAME head at the same P0/LR, i.e. seed 123 BEAT identity -- while V3-EXQ-1075's OFF arm measured -5.8/-2.2/-8.4 with the cause unidentified. On the harm head the sign is robust 6/6 but the magnitude is denominator-driven and convergence is unrecorded. Different latents, different training regimes, different baseline meanings. Do not cite this as a single substrate law.",
+        "MAGNITUDE CAVEAT, and it matters for how this is cited: skill-vs-persistence is denominator-driven. 1-persistence_r2 spans 0.00073 to 0.01194 -- a 16.4x spread across three seeds at an IDENTICAL config -- so -71.7 is a seed whose latent happened to move very little, not a 72x-worse model. The robust claim is the SIGN (negative in 6/6), not the magnitude.",
+        "RECORDING GAP (distinct from a measurement gap, and the cheaper fix): the manifest carries no training-loss trajectory for e2_harm_a, so whether the head converged at all cannot be checked from the artifact. That is exactly the recording-debt category -- the readout existed at run time and was not durably written -- and it is what makes the under-training vs representation-ceiling discrimination need a new run rather than a re-read. Cite the Experimental Recording Standard (evidence/planning/experimental_recording_standard_2026-07-12.md) in the successor spec."
+      ],
+      "routing": "implement-substrate",
+      "onset_fix_verification": {
+        "n_world_rule_shifts_before_p2": "0 in all 6 cells (V3-EXQ-1062: ~810 accumulated)",
+        "action_map_canonical_at_p2_onset": "true in all 6 cells",
+        "n_world_rule_shifts_p2": "180 in all 3 shift cells",
+        "world_rule_shift_fired_in_p2": "precondition MET (180 vs 0.5 floor)",
+        "verdict": "The trained-then-shifted premise was instantiated for the first time. V3-EXQ-1062's confound is REMOVED, so this run's H2 test is clean."
+      },
+      "pre_routing_checks_7b": {
+        "fires": [
+          {
+            "check": "C2",
+            "names": [
+              "SD-PP-B4-one-shot-world-rule-shift-lever"
+            ],
+            "message": "action='create' for MECH-055 but SD-PP-B4 already unblocks that claim and is not mentioned",
+            "disposition": "ACTED ON -- the entry now names SD-PP-B4 explicitly and records why it is not the amend target, plus two annotations owed on its open record.",
+            "reason": "see recommended_substrate_queue_entry.why_not_amend_existing and .annotates_prior_failure_record"
+          }
+        ],
+        "after_fix": "re-run clean, fire_count 0",
+        "inapplicable": [
+          {
+            "checks": [
+              "C5"
+            ],
+            "reason": "prose-keyed; run against the draft JSON before the sibling .md existed"
+          }
+        ]
+      },
+      "instrument_findings": [
+        {
+          "id": "I1",
+          "severity": "load-bearing",
+          "finding": "harm_a_forward_r2_supra_floor is a readiness gate with NO BASELINE. It gates on an absolute R^2 floor of 0.30 and passed at 0.9405 while the trivial z(t-1) predictor scores 0.9955. Its stated purpose is to exclude the case where axis 3 is a LEVEL rather than a forward-model residual; it cannot see the third case, a residual dominated by MODEL ERROR. The run already computes the discriminating statistic (harm_forward_skill_vs_persistence) as a RECORDED, deliberately non-gating instrument.",
+          "remedy": "gate on skill-vs-persistence, computed on the same r2_pairs at zero extra cost"
+        },
+        {
+          "id": "I2",
+          "severity": "hygiene -- CARRIED FORWARD, not fixed",
+          "finding": "dv_symmetry_note still asserts the symmetry statement holds for 'three arms' while config.arms carries TWO (ARM_0_STATIONARY, ARM_2_HIGH_SHIFT). This is instrument finding #4 of failure_autopsy_V3-EXQ-1062_2026-09-22 recurring verbatim in the successor; that autopsy explicitly prescribed 'fix the \"all three arms\" note' and it was not applied."
+        },
+        {
+          "id": "I3",
+          "severity": "hygiene -- CARRIED FORWARD, reader caution",
+          "finding": "substrate_stable_across_run: false over-reads again. per_cell_hashes_disagree is false with exactly ONE distinct cell substrate_hash, so every cell ran on one substrate; the flag reflects post-run DISK drift on the worker (process_snapshot_drift), not in-run instability. A reader should not discard this run on that flag. Instrument finding #5 of the V3-EXQ-1062 autopsy, recurring."
+        },
+        {
+          "id": "I4",
+          "severity": "positive -- prescriptions APPLIED",
+          "finding": "Two of the four hygiene prescriptions from the V3-EXQ-1062 autopsy WERE applied: structural_min/structural_max are now declared (9 occurrences, so the design-time unsatisfiability guard is no longer inert), and mean_prec_norm is rolled into the flat readout as mean_prec_norm_mean. Recorded so the carried-forward pair above is read as a partial application, not a general failure to act."
+        }
+      ],
+      "bears_on_note": "NOT tagged v3_binding_constraint_observation_interface, deliberately. That token's prior use (failure_autopsy_V3-EXQ-1030_2026-09-14, INV-086/MECH-428) names the observation -> z_world -> E1/E2 path, and this target's latent is z_harm_a -- a harm-history latent, not z_world. The shared PROPERTY (a slow latent makes a residual forward head worse than trivial) is real and is recorded in prose and in the cross-target section, but reusing the token here would start a chain on a different referent. Token match is not referent match. V3-EXQ-1075 DOES carry that token, correctly: its head is e2.world_forward on z_world.",
+      "red_team": {
+        "model": "fable (claude-fable-5-1)",
+        "cross_model": true,
+        "session_model": "Opus 5",
+        "verdict": "CONTESTED",
+        "reasoning_withheld": true,
+        "findings_accepted": [
+          "F-62a-1",
+          "F-62a-2",
+          "F-62a-3",
+          "F-62a-4",
+          "H-62a-1",
+          "H-62a-2",
+          "H-62a-3",
+          "H-62a-4"
+        ],
+        "findings_rejected": [],
+        "independently_verified_before_acceptance": [
+          "F-62a-2: recomputed 1-r2 per seed from arm_results -- 0.0528->0.1042 (1.97x), 0.0595->0.0590 (0.99x), 0.0227->0.0664 (2.93x). Holds.",
+          "F-62a-3: recomputed (1-r2)/(1-persistence_r2) = 72.7/5.0/24.5 stationary and the 1-persistence_r2 spread 0.00073..0.01194 = 16.4x. Holds. The theoretical point also holds: at the MSE optimum the conditional-mean delta is in a residual head's hypothesis space, so a displacement ceiling predicts skill ~ 0, and skill -72 requires actively-added error.",
+          "F-62a-4: confirmed use_e2_harm_a: bool = False (config.py:3883) and use_dacc: bool = False (config.py:3910)."
+        ],
+        "what_it_did_not_move": [
+          "the 6/6 negative-skill finding",
+          "the verified onset fix",
+          "the readiness gate's inability to discriminate",
+          "the brake firing at threshold 2",
+          "direction non_contributory",
+          "category standard"
+        ],
+        "note": "The pass was aimed at routing rather than arithmetic, per the skill's measured guidance, and that is exactly where it landed: all four contested findings changed recommendations (environment grade, a shared substrate record's wording, the created entry's registered subject, and a severity that would have blocked the dACC experiment family). None changed the science."
+      }
+    }
+  ],
+  "step8_gate": {
+    "confirmed_utc": "2026-09-23T07:52:00Z",
+    "by": "user, interactive Step 8 gate",
+    "decisions": [
+      {
+        "q": "MECH-055 epistemic_category",
+        "chosen": "HOLD standard",
+        "ledger": "rec-20260923-120f3c68"
+      },
+      {
+        "q": "Severity on both substrate entries",
+        "chosen": "degrading on both",
+        "ledger": "rec-20260923-30611285"
+      },
+      {
+        "q": "Routing order",
+        "chosen": "cheap probes FIRST (/queue-experiment) before the substrate build",
+        "ledger": "rec-20260923-0ecb56f1"
+      }
+    ],
+    "note": "All three confirmed as recommended; no change to the drafted routing was required. The drafts already carried these positions after the Step 7c corrections."
+  },
+  "hypothesis_space_ledger": {
+    "qid": "mech055_harm_pe_source_validity",
+    "convergence_class": "scattering",
+    "registry_note": "Registered NEW question mech055_harm_pe_source_validity (claims MECH-055), initial_frozen_count_at_registration 3 (H1/H2/H3, git-witnessed in the V3-EXQ-1062 autopsy committed 2026-09-22), grown to 6 by ONE labelled fanout_growth_event citing this artifact. Resolutions: H2 alive (partially supported 2/3 seeds), H3 SPLIT (H3a confirmed / H3b eliminated), H1 and the three new legs alive. Integrity audit: a=0 b=2 c=3 d=0 -- ALL FIVE pre-existing on OTHER questions (zworld_actor_adequacy_locus, mech467_legc_event_denominator_cause, sd_e1_var_bar_readout_crush); ZERO on this question, which appears in the Advisory -- labelled fan-out growth section as required. CONVERGENCE_CLASS is `scattering`, and that is the honest read: after this run the question spans FIVE axis families (environment, curriculum, learning-signal, representation-update-rate, readout) rather than narrowing. The Step 7c pass is why -- it demoted the draft's assumed displacement-ceiling cause to one hypothesis among four. A scattering question is not a failure, but it is a reason to run the cheapest leg before commissioning any build."
+  }
+}

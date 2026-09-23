@@ -1,0 +1,215 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-23T06:03:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
+      "queue_id": "V3-EXQ-1075",
+      "claim_ids": [],
+      "bears_on": [
+        "SD-PP-B5",
+        "v3_binding_constraint_observation_interface"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids is deliberately empty. The driver documents why: after A2 was withdrawn as a gate the run no longer tests MECH-573's CONFIRMING clause, so tagging it would corrupt governance confidence.",
+        "biological_reference": "partial -- the reference mechanism (a forward model predicting the consequences of action) presupposes a head that reads its action; this one does not, which is the B5 gap 1073 already recorded.",
+        "prerequisites": "present -- all five non-degeneracy preconditions met, including N3 (ARM_OFF reproduces 1073's blindness 3/3) and a known-baseline CANARY that replays 1073's exact classification on all three seeds.",
+        "implementation": "complete -- the margin term landed (ree-v3 8f10214, an ancestor of this run's substrate_commit) and demonstrably ACTS: battery MSE inflates 0.92x -> 5.90x -> 9.63x -> 174.19x with margin. Note it is NOT a monotone action-sensitivity effect: the per-seed ratio peaks at 0.05-0.10 on 2/3 seeds and decays toward 1.0 at 0.50.",
+        "environment": "too sparse -- z_world moves only ~3e-3 RMS/dim per step and identity MSE is ~1e-5, so any margin large enough to separate actions is large enough to dominate the reconstruction target. This is the registered SD-PP-B5 root.",
+        "measurement": "partial -- TWO load-bearing gaps, both of which an earlier draft graded adequate. (a) A1's bar is a bare ratio > 1.0 with no margin and no head-health condition, and the gate module's own docstring names ratio == 1.0 as the DEGENERATE value; a destroyed head therefore scores as action-sensitive. (b) A3's bar (conv_rel_drop >= 0.99) sits ABOVE the operating point of the control it protects -- ARM_OFF clears it on 1/3 seeds (0.98466/0.98486/0.99163) -- so a margin preserving reconstruction exactly at OFF quality would still fail A3 on two seeds, and no precondition checks this. The gate's genuine strengths are real and are on the BATTERY side (cannot_determine category, printed denominator, canary, OFF-reproduction precondition); none of them guards the SUBJECT.",
+        "integration": "coupled and LIVE (not inert) -- the loss changes the head measurably. Its effect on RECONSTRUCTION is monotone in margin; its effect on the action-sensitivity ratio is not, peaking mid-ladder and collapsing to the degenerate ~1.0 once the head stops training.",
+        "scale": "representation-range insufficient -- the SD-PP-B5 encoder bound, now measured against a four-rung ladder. identity_predictor_mse 1.0e-05 to 1.7e-05 against OFF battery_mse_final 4.2e-05 to 1.1e-04."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES + ENVIRONMENT. Not chargeable to REE. The margin term acts as built (MECHANISM established); the A1 criterion cannot discriminate a head that reads its action from a head destroyed into action-independence; and the encoder's per-step range is what makes the trade unavoidable."
+      },
+      "biological_reference": {
+        "closest_mechanism": "action-conditioned forward models in sensorimotor prediction (efference-copy comparator)",
+        "dependencies": [
+          "a latent whose per-step displacement exceeds the noise floor, so an action-conditioned delta can pay for itself"
+        ],
+        "is_formal_import": true,
+        "divergence": "the contrastive margin is a formal separation objective; biology does not buy action-discriminability by degrading reconstruction, which is what the ladder shows this form must do here",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No claim is tagged, so no category is applied to any claim. `standard` is recorded as the non-suppressive stamp required by GOV-CAT-1; the diagnosis lives in the note and in the substrate amend.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1075 (diagnostic, FAIL-b as routed, claim-free). SD-PP-B5's validation, and it does not validate. As the driver scored it: A1 (inverted-rule ratio > 1.0) seeds 0/1/2/3 across margins 0.01/0.05/0.10/0.50, A4 (MSE <= 2x OFF) seeds 3/2/0/0, max MSE inflation 0.92x/5.90x/9.63x/174.19x, passing_rungs empty. TWO CORRECTIONS to that reading, both from the cells. (1) The 0.50 rung is uninformative and must be dropped from the A1 argument: its A1-passing ratios are 1.0015/1.0026/1.0109 -- within 1.1% of the value the gate module's own docstring names as DEGENERATE -- on heads with skill_vs_identity -431/-563/-675, conv_rel_drop 0.028/-1.637/0.398 and battery_mse_final/init of 0.97/2.64/0.60, i.e. at or worse than initialisation. (2) The per-seed ratio is NOT monotone in margin: seeds 42 and 123 PEAK at 0.10 and 0.05 (1.0540, 1.0258) and DECAY toward 1.0 at 0.50, which is the decay an action-independent head produces. So the honest ladder is A1 0/1/2 against A4 3/2/0 over margins 0.01/0.05/0.10. The real support for the trade is SEED-COUPLED at those two rungs: the seeds that fire A1 are the seeds whose MSE inflates (seed 123 at 0.05, ratio 1.026 with 5.90x inflation; seed 42 at 0.10, ratio 1.054 with 4.97x). The maximum ratio anywhere is 1.0540. All five non-degeneracy preconditions passed. FAIL-b survives on A4 alone, which is the one relative, control-denominated criterion.",
+      "per_claim_recommendation": {},
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B5-z-world-per-step-displacement-range",
+        "unblocks_claims": [
+          "MECH-573",
+          "MECH-572",
+          "MECH-574",
+          "INV-063"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/predictors/e2_fast.py::world_forward",
+          "ree_core/utils/config.py",
+          "experiments/_lib/action_sensitivity_gate.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
+          "experiment_type": "v3_exq_1075_sdppb5_action_sensitivity_validation",
+          "metric": "Four-rung margin ladder, 3 seeds, frozen 64-row 5-action battery. A1 (ratio > 1.0) seeds: 0/1/2/3 at margin 0.01/0.05/0.10/0.50. A4 (MSE <= 2x OFF) seeds: 3/2/0/0. A3 (conv_rel_drop >= 0.99) seeds: 1/1/0/0 against an ARM_OFF baseline of 1/3. max_mse_inflation 0.92 / 5.90 / 9.63 / 174.19. A2 (skill vs identity) 0/3 at every rung, falling -3.8/-13.3/-36.9/-556.4 mean by rung against ARM_OFF -5.5. passing_rungs empty. DEGENERACY: at M050 the A1-passing ratios are 1.0015/1.0026/1.0109, i.e. the gate's own documented degenerate value, on a destroyed head; max ratio anywhere is 1.0540. The gate guards a degenerate BATTERY (n_distinct_actions >= 2) but not a degenerate HEAD.",
+          "target": "One margin rung with A1 met on >= 2/3 seeds BY A MARGIN excluding the degenerate ratio ~1.0 (e.g. ratio >= 1.2) AND a head-health condition (skill_vs_identity no worse than ARM_OFF), together with A4 (MSE <= 2x OFF) on >= 2/3 seeds. A3 must be RE-DENOMINATED ON THE CONTROL (conv_rel_drop >= OFF - 0.01, not an absolute 0.99) or the base first brought to V3-EXQ-1073's 0.998, because ARM_OFF clears the absolute bar on only 1/3 seeds. Separately: add a head-health guard to experiments/_lib/action_sensitivity_gate.py so a destroyed head returns cannot_determine rather than action_sensitive.",
+          "resolved": "open"
+        },
+        "severity_rationale": "Raised from the drafted `degrading` on the A1 finding. A consumer who enables use_world_interventional at its SHIPPED DEFAULT margin 0.10 (ree_core/utils/config.py:910) gets A1 scoring 2/3 -- which reads as 'the head now passes the action-sensitivity gate' -- on a head with skill -33 to -48 and MSE inflated 5.0-9.6x. That is evidence that looks valid and is not, which is the definition of `corrupting`. What keeps the blast radius narrow, and is stated so the Step 2.5c cost is visible: use_world_interventional defaults to False (config.py:908), so only an opt-in consumer is exposed.",
+        "governance_owes_status_flip": "SD-PP-B5 is status `implemented_pending_validation`, ready: true. This run IS its validation and it fails. Governance owes the status flip off implemented_pending_validation in addition to appending the failure record; this artifact cannot carry the flip in the entry schema."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "note": "Claim-free target; the per-claim brake does not apply. Recorded for completeness."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-margin-form: SD-PP-B5's contrastive interventional margin can buy action-sensitivity without destroying reconstruction at some operating point. NARROWED, NOT FULLY ELIMINATED (corrected at the red-team pass): eliminated at margin >= 0.05, inert at 0.01, and UNTESTED in the interval (0.01, 0.05) -- which is precisely where the true action-conditioned separation of ~0.014 L2 sits.",
+          "H-infonce-form: SD-056's InfoNCE form separates actions without imposing an absolute L2 margin in z_world units. Still open, and arguably PROMOTED: this run shows the margin form deforms once and goes quiet rather than competing throughout, so the two forms' contrast is untested rather than settled.",
+          "H-encoder-displacement: no training-time objective on this head can succeed while z_world moves ~3e-3 RMS/dim per step; the remedy is a per-step DISPLACEMENT objective at the encoder."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-margin-form",
+            "axis": "learning-signal",
+            "sketch": "a cheap RE-RUNG at margins 0.015 / 0.02 / 0.03 -- the untested decade bracketing the true separation (~0.014 L2) -- with A3 re-denominated on ARM_OFF and an A1 margin bar; declared null: A1 and A4 remain unsatisfiable together there too. This is a /queue-experiment item, NOT /implement-substrate."
+          },
+          {
+            "hypothesis": "H-infonce-form",
+            "axis": "learning-signal",
+            "sketch": "the same frozen battery and the same (repaired) bars against SD-056's InfoNCE objective; declared null: InfoNCE shows the same A1/A4 coupling with no workable rung"
+          },
+          {
+            "hypothesis": "H-encoder-displacement",
+            "axis": "representation-update-rate",
+            "sketch": "raise z_world per-step displacement at the encoder and re-measure A1/A4 at a fixed margin; declared null: the coupling survives at every displacement setting"
+          }
+        ],
+        "note": "GOV-FANOUT-1. The single-unambiguous-build exemption is not claimed. TWO POINTERS WERE REMOVED AT THE RED-TEAM PASS and must not be reinstated: an earlier draft routed the encoder leg to 'SD-018-amend / SD-009 / SD-106', a list copied forward from SD-PP-B5's own stale implementation_hint. Checked against substrate_queue.json: SD-009 has NO queue entry at all; SD-018 is amend_implemented_pending_validation but its own record reads VALIDATED NEGATIVE for shape (a) by V3-EXQ-978 and its subject is resource-proximity supervision; SD-106 is implemented_pending_validation with V3-EXQ-1023/1023a already run at 0/3 seeds and its subject is generic bottleneck variance preservation. NONE of the three targets per-step displacement. A governance reader following that list would have looked for a nonexistent entry, re-opened an amend already validated negative, and mistaken a pending validation for the displacement remedy. The encoder leg needs a NEW substrate entry; it is named here as a gap, not routed to an existing id. Ordering: the cheap re-rung probe comes first -- it is the one thing that could still rescue the shipped form."
+      },
+      "learning_extracted": [
+        "SD-PP-B5 as built does NOT deliver its purpose, and more strongly than the FAIL-b label alone says. It is `implemented_pending_validation` and this run is its validation: no rung shows genuine action-discrimination at all. Its substrate_queue status must move off implemented_pending_validation.",
+        "THE A1 CRITERION CANNOT DISCRIMINATE AT THE DEGENERATE END, and was graded non-degenerate. Its bar is a bare ratio > 1.0. The gate module's own docstring names ratio == 1.0 as the degenerate value produced when permuting actions is a no-op. At M050 the A1-passing ratios are 1.0015/1.0026/1.0109 on a head with skill -431/-563/-675 and MSE 63-174x inflated: that is a head destroyed into action-INDEPENDENCE reading as action-SENSITIVE. The gate guards a degenerate BATTERY (n_distinct_actions >= 2, met at 5) and has no guard for a degenerate HEAD.",
+        "CORRECTED AT THE RED-TEAM PASS -- an earlier draft asserted 'at margin 0.10 and 0.50 the term never goes silent', which the cells flatly contradict. margin_loss_mean is 0.002-0.008% of margin at 0.01, 0.037-0.055% at 0.05, 0.077-0.100% at 0.10 and 0.68-1.04% at 0.50: the hinge is satisfied, i.e. SILENT, for essentially the whole applied-step budget at every rung. So e2_fast.py's design rationale ('the margin form goes silent once the head is separated enough', :247-248) is CONFIRMED, not falsified. What fails is its PREMISE: silence does not undo the deformation already imposed. A margin of 0.05-0.50 in z units forces predictions apart by 3.5-35x the true action-conditioned separation (~0.014 L2, from identity_predictor_mse ~1.3e-5 over world_dim 16); the head reaches that separation, goes quiet, and stays wrecked. The InfoNCE contrast ('competes with reconstruction throughout training') therefore remains OPEN rather than settled -- the margin form does not compete throughout, it deforms once and stops.",
+        "The low rung is not merely harmless, it is mildly HELPFUL, which sharpens the no-operating-point finding rather than softening it. At margin 0.01 the head's mean skill_vs_identity is -3.80 against ARM_OFF's -5.48, and A4 passes 3/3 with MSE at 0.63-0.92x OFF -- the margin term slightly IMPROVES reconstruction at low dose. And it delivers exactly zero action-sensitivity there: A1 is 0/3, ratios 0.8628/0.7026/0.7377. So the ladder has a rung that helps the head and gives no sensitivity, and rungs that give (apparent) sensitivity only by wrecking the head, with nothing in between.",
+        "A3 is a load-bearing guard its OWN CONTROL fails: ARM_OFF clears conv_rel_drop >= 0.99 on 1/3 seeds (0.98466/0.98486/0.99163). So PASS was unreachable by construction on two of three seeds -- only a margin that IMPROVED convergence over OFF could have satisfied it -- and no precondition checks that the control clears it. V3-EXQ-1073 reached 0.998 at the same P0_STEPS and LR, so this run's base is materially less converged than the run whose values justified the bar, and the driver itself records that the OFF arm does not reproduce 1073's baseline with the cause unidentified. The reconstruction verdict rests on A4, which is denominated ON the control and moves cleanly 3/2/0/0.",
+        "INSTRUMENT: STRONG ON THE APPARATUS, BLIND ON THE SUBJECT -- and the canary's scope is narrower than an earlier draft claimed. The battery-side remedies are genuinely exemplary and all held: explicit cannot_determine category, printed pre-filter denominator, N3 control-reproduction precondition, and a known-baseline canary. But the canary feeds V3-EXQ-1073's PUBLISHED (ratio, skill) pairs into readiness_verdict and checks the returned CLASS, so it certifies the classifier's threshold logic, not the measurement path (battery collection, battery_pair_ratio, the inverted env, the head). The measurement-path check is N3, and it passes on the ratio class while this run's OFF arm sits 30-100x off 1073's skill (-5.8/-2.2/-8.4 vs -0.071/+0.227/-0.007) at 0.985 convergence vs 0.998. Read as 'classifier verified; measurement path reproduces 1073's ratio class but not its skill or convergence', not as 'the negative is trustworthy'.",
+        "Cross-target with V3-EXQ-1062a -- the load-bearing convergent finding of this pair. In BOTH runs a readiness/scoring gate certifies a model that the SAME RUN's own recorded skill-vs-trivial-predictor statistic shows is broken, because in both cases that statistic was deliberately RECORDED and NOT GATED. Here A2 (skill vs identity) is 0/3 at every rung and does not gate; in V3-EXQ-1062a harm_forward_skill_vs_persistence is negative in 6/6 cells and does not gate. Each non-gating decision was locally defensible -- avoiding the over-gating that cost V3-EXQ-1062 its whole run -- but the two together produce one generalisable defect."
+      ],
+      "routing": "implement-substrate",
+      "pre_routing_checks_7b": {
+        "fires": [
+          {
+            "check": "C7",
+            "metric": "identity_predictor_mse",
+            "message": "bit-identical across every arm within each seed, so it cannot discriminate between arms",
+            "disposition": "DISMISSED -- and it is a design guarantee, not a defect.",
+            "reason": "identity_predictor_mse is the copy-the-input baseline computed on the FROZEN battery, whose rows and targets are bit-identical across arms by the design's own invariance property (only the trained weights differ between arms). It is a per-seed CONSTANT against which each arm's head is scored, never a discrimination criterion. Its constancy is exactly what makes skill_vs_identity comparable across arms -- had it varied, the A2 comparison would have been confounded. The discriminating quantities are action_sensitivity_ratio, conv_rel_drop and battery_mse_final, all of which vary across arms in every seed. Same shape as the C7 fire dismissed in failure_autopsy_V3-EXQ-1073_2026-09-22."
+          }
+        ],
+        "inapplicable": [
+          {
+            "checks": [
+              "C1",
+              "C2",
+              "C3"
+            ],
+            "reason": "claim-keyed; this target carries claim_ids: [] so the checks could not look",
+            "consequence": "Per the skill's own warning, `inapplicable` is NOT `no fire` -- the claim-keyed checks are structurally blind here, so Step 7c carries the whole mechanical load on this target."
+          },
+          {
+            "checks": [
+              "C5"
+            ],
+            "reason": "prose-keyed; run against the draft JSON before the sibling .md existed"
+          }
+        ]
+      },
+      "red_team": {
+        "model": "fable (claude-fable-5-1)",
+        "cross_model": true,
+        "session_model": "Opus 5",
+        "verdict": "CONTESTED",
+        "reasoning_withheld": true,
+        "findings_accepted": [
+          "F-75-1",
+          "F-75-2",
+          "F-75-3",
+          "F-75-4",
+          "F-75-5",
+          "W-75-1",
+          "W-75-2",
+          "W-75-3"
+        ],
+        "findings_rejected": [],
+        "independently_verified_before_acceptance": [
+          "F-75-2: per-seed ratio sequences recomputed from arm_results -- seed 42 peaks 1.0540 at 0.10 then falls to 1.0109; seed 123 peaks 1.0258 at 0.05 then falls to 1.0026; only seed 456 rises monotonically. The monotonicity absolute does not hold.",
+          "F-75-3: margin_loss_mean recomputed as a fraction of margin -- 0.002-0.008% at 0.01, 0.037-0.055% at 0.05, 0.077-0.100% at 0.10, 0.68-1.04% at 0.50. The hinge is silent at every rung; the draft's 'never goes silent' was simply wrong.",
+          "F-75-5: substrate_queue.json checked directly -- SD-009 absent from the queue; SD-018 carries 'VALIDATED NEGATIVE for shape (a) by V3-EXQ-978'; SD-106 is implemented_pending_validation."
+        ],
+        "convergent_with_drafting_session": [
+          "F-75-1 (A3's control fails its own bar) had already been found independently by the drafting session before the pass returned, and was already corrected in the draft the red team did not see. Recorded as convergent validation rather than as a caught defect."
+        ],
+        "what_it_did_not_move": [
+          "the FAIL-b route",
+          "severity degrading",
+          "the amend to SD-PP-B5",
+          "the implement-substrate routing",
+          "the A1 degeneracy finding at the 0.50 rung",
+          "A4 as the sound, control-denominated leg"
+        ],
+        "note": "Aimed at routing, and two of five contested findings were squarely the measured #1 failure mode -- recommendations that ignore state which already exists (F-75-5) or infer across an untested interval (F-75-4)."
+      }
+    }
+  ],
+  "step8_gate": {
+    "confirmed_utc": "2026-09-23T07:52:00Z",
+    "by": "user, interactive Step 8 gate",
+    "decisions": [
+      {
+        "q": "MECH-055 epistemic_category",
+        "chosen": "HOLD standard",
+        "ledger": "rec-20260923-120f3c68"
+      },
+      {
+        "q": "Severity on both substrate entries",
+        "chosen": "degrading on both",
+        "ledger": "rec-20260923-30611285"
+      },
+      {
+        "q": "Routing order",
+        "chosen": "cheap probes FIRST (/queue-experiment) before the substrate build",
+        "ledger": "rec-20260923-0ecb56f1"
+      }
+    ],
+    "note": "All three confirmed as recommended; no change to the drafted routing was required. The drafts already carried these positions after the Step 7c corrections."
+  },
+  "hypothesis_space_ledger": {
+    "qid": "zworld_action_readability_lever",
+    "convergence_class": "static",
+    "registry_note": "Registered NEW question zworld_action_readability_lever (claims MECH-573 -- the claim the question bears on; this RUN tags none). initial_frozen_count 3, no growth event. H-margin-form is recorded ALIVE with resolving_run V3-EXQ-1075 and met_elimination_bar false -- narrowed to eliminated-at-margin->=0.05 and inert at 0.01, with the interval bracketing the true separation untested. An earlier draft had it `eliminated`; the Step 7c pass showed that inferred across an unsampled interval. Integrity audit: zero flags on this question. convergence_class `static` -- nothing is resolved at the bar yet, which is correct."
+  }
+}
