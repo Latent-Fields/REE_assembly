@@ -18,14 +18,33 @@ substrate_queue.json (`modulatory-bias-selection-authority` = implemented,
 have no substrate_queue entry at all -- the owed build is UNOWNED, so no lane
 is going to produce it.
 
+MEASURED 2026-09-23 (session conversionwriteback-20260923, under a human
+ruling to release the then-READY rows): the READY bucket held 12 proposals and
+ALL TWELVE were false positives. Each was verified per-proposal against the
+substrate record and every one failed its own stated release condition -- the
+bucket authorised STARTING work on the strength of a negative ("no unsatisfied
+blocker") whose predicate was not the one that governs release. Zero were
+released. The READY/READY_UNVERIFIED split below is that finding made
+structural, per CLAUDE.md "Negative instruments": an explicit cannot-determine
+CATEGORY rather than a silently over-confident verdict.
+
 This script is READ-ONLY. It writes nothing, edits no registry, and opens no
 claim. It answers one question -- "which blocks are stale, and which owed
 builds has nobody adopted?" -- and prints the three buckets that follow from
 it. Acting on a finding is a governance decision, not this script's job.
 
 BUCKETS
-  READY      every named blocker is satisfied -> the block is stale, the
-             proposal is a candidate to return to `proposed`.
+  READY      every named blocker is satisfied AND the proposal states no
+             release condition of its own -> the block is stale, the proposal
+             is a candidate to return to `proposed`.
+  READY_UNVERIFIED
+             blocker statuses look satisfied, but this script CANNOT conclude
+             the block is stale. Either the proposal states a release
+             condition in prose (which is routinely stronger than the blocker
+             statuses -- e.g. "reaches VALIDATED" against a blocker sitting at
+             implemented_pending_validation) or a blocker resolved ambiguously
+             (self-block / several substrate_queue entries disagreeing).
+             A SHORTLIST FOR A HUMAN, NOT A RELEASE LIST.
   PARTIAL    some blockers satisfied, some not -> still blocked, but the
              remaining set is smaller than the note says.
   OWNED      blocked, and every unsatisfied blocker has a substrate_queue
@@ -103,26 +122,80 @@ def load_substrate_index(path: Path) -> tuple[dict, dict]:
     return by_sd, by_claim
 
 
-def resolve_blocker(bid: str, by_sd: dict, by_claim: dict) -> dict:
-    """Ownership + satisfaction verdict for one blocker id."""
+def resolve_blocker(bid: str, by_sd: dict, by_claim: dict,
+                    self_claim: str = "") -> dict:
+    """Ownership + satisfaction verdict for one blocker id.
+
+    Three ways this returns "cannot determine" rather than a verdict. Each is
+    a measured false-positive shape from the 2026-09-23 per-proposal audit of
+    the READY bucket, in which 12 of 12 rows were false positives:
+
+    * SELF-BLOCK -- the blocker id equals the proposal's own claim_id. That is
+      a claims.yaml experiment-queue gate, not a substrate dependency, and the
+      id may collide with an unrelated substrate_queue sd_id (EXP-0440 and
+      EXP-0585 are both blocked on the SD-056 claim gate and were resolved
+      against the implemented sd_id SD-056).
+    * AMBIGUOUS MULTI-ENTRY -- a blocker named as a CLAIM id is resolved
+      through `unblocks_claims`, and several entries name it. This used to
+      take by_claim[bid][0] and ignore the rest, so one satisfied entry
+      outvoted an unsatisfied sibling (EXP-0868's MECH-151 resolved through
+      an implemented SD-016 while a `wontfix` entry for that exact gap sat
+      beside it).
+    * UNOWNED -- unchanged: no substrate_queue entry at all.
+    """
+    if self_claim and bid == self_claim:
+        return {"id": bid, "owned": False, "satisfied": False, "via": None,
+                "sd_id": None, "status": None, "ready": None,
+                "undetermined": "self_block"}
     entry = by_sd.get(bid)
-    via = "sd_id"
-    if entry is None and bid in by_claim:
-        entry = by_claim[bid][0]
-        via = "claim"
-    if entry is None:
+    if entry is not None:
+        status = str(entry.get("status") or "").strip()
+        return {"id": bid, "owned": True,
+                "satisfied": status in SATISFIED_STATUSES, "via": "sd_id",
+                "sd_id": entry.get("sd_id"), "status": status,
+                "ready": entry.get("ready"), "undetermined": None}
+    hits = by_claim.get(bid) or []
+    if not hits:
         return {"id": bid, "owned": False, "satisfied": False,
-                "via": None, "sd_id": None, "status": None, "ready": None}
-    status = str(entry.get("status") or "").strip()
-    return {
-        "id": bid,
-        "owned": True,
-        "satisfied": status in SATISFIED_STATUSES,
-        "via": via,
-        "sd_id": entry.get("sd_id"),
-        "status": status,
-        "ready": entry.get("ready"),
-    }
+                "via": None, "sd_id": None, "status": None, "ready": None,
+                "undetermined": None}
+    sats = [str(e.get("status") or "").strip() in SATISFIED_STATUSES
+            for e in hits]
+    first = hits[0]
+    status = str(first.get("status") or "").strip()
+    if len(hits) > 1 and not all(sats):
+        unsat = [str(e.get("sd_id") or "?") for e, ok in zip(hits, sats)
+                 if not ok]
+        return {"id": bid, "owned": True, "satisfied": False, "via": "claim",
+                "sd_id": first.get("sd_id"), "status": status,
+                "ready": first.get("ready"),
+                "undetermined": "ambiguous_multi_entry",
+                "unsatisfied_siblings": unsat}
+    return {"id": bid, "owned": True, "satisfied": all(sats), "via": "claim",
+            "sd_id": first.get("sd_id"), "status": status,
+            "ready": first.get("ready"), "undetermined": None}
+
+
+# Fields in which a human records a condition this script CANNOT evaluate. A
+# proposal carrying any of them has a release test of its own that is strictly
+# stronger than "every blocked_by id has a satisfied substrate_queue status" --
+# typically "reaches VALIDATED" against a blocker sitting at
+# implemented_pending_validation, or a condition naming substrate that is not
+# in blocked_by at all. Measured 2026-09-23: all 12 then-READY rows carried at
+# least one, and all 12 were false positives.
+CONDITION_FIELDS = ("release_condition", "gating_reason", "blocked_note")
+
+
+def stated_conditions(item: dict, raw_blockers: list) -> list[str]:
+    """Names of the human-authored condition fields this proposal carries."""
+    found = [f for f in CONDITION_FIELDS if str(item.get(f) or "").strip()]
+    # Prose inside a blocked_by entry is a condition too: EXP-0176 carries no
+    # condition FIELD, and states its release test inside the blocker string.
+    for r in raw_blockers:
+        if str(r).strip() != unblocker_id(r):
+            found.append("blocked_by_prose")
+            break
+    return found
 
 
 def audit(root: Path) -> list[dict]:
@@ -142,12 +215,23 @@ def audit(root: Path) -> list[dict]:
             raw = [raw]
         if not raw:
             continue
-        blockers = [resolve_blocker(unblocker_id(r), by_sd, by_claim) for r in raw]
+        self_claim = str(item.get("claim_id") or "").strip()
+        blockers = [resolve_blocker(unblocker_id(r), by_sd, by_claim,
+                                    self_claim) for r in raw]
         outstanding = [b for b in blockers if not b["satisfied"]]
+        stated = stated_conditions(item, raw)
         if not outstanding:
-            bucket = "READY"
-        elif any(not b["owned"] for b in outstanding):
+            bucket = "READY" if not stated else "READY_UNVERIFIED"
+        # UNOWNED keeps its original precedence over the new bucket. A row with
+        # a genuinely unowned blocker belongs in the bucket that "never moves on
+        # its own" even if some OTHER blocker resolved ambiguously -- routing it
+        # to READY_UNVERIFIED instead would shrink the UNOWNED census (measured:
+        # 49 -> 42) and hide owed builds behind a softer-sounding label.
+        elif any(not b["owned"] and not b.get("undetermined")
+                 for b in outstanding):
             bucket = "UNOWNED"
+        elif any(b.get("undetermined") for b in outstanding):
+            bucket = "READY_UNVERIFIED"
         elif len(outstanding) < len(blockers):
             bucket = "PARTIAL"
         else:
@@ -162,6 +246,9 @@ def audit(root: Path) -> list[dict]:
             "blockers": blockers,
             "outstanding": [b["id"] for b in outstanding],
             "unowned": [b["id"] for b in outstanding if not b["owned"]],
+            "undetermined": sorted({b["undetermined"] for b in blockers
+                                    if b.get("undetermined")}),
+            "stated_conditions": stated,
         })
     return out
 
@@ -185,7 +272,7 @@ def main() -> int:
         print(json.dumps({"findings": rows, "n": len(rows)}, indent=2))
         return 0
 
-    order = ["READY", "PARTIAL", "UNOWNED", "OWNED"]
+    order = ["READY", "READY_UNVERIFIED", "PARTIAL", "UNOWNED", "OWNED"]
     # Count over ALL rows, never the --bucket-filtered view: a filtered run used
     # to print "proposals carrying blocked_by: 2", which reads as a data
     # discrepancy against the unfiltered 19 rather than as a filter, and cost a
@@ -205,7 +292,13 @@ def main() -> int:
             continue
         print("\n[%s]  %d" % (bucket, len(sel)))
         if bucket == "READY":
-            print("  every named blocker is satisfied -- the block is STALE.")
+            print("  every named blocker is satisfied AND no release condition")
+            print("  is stated -- the block is STALE.")
+        elif bucket == "READY_UNVERIFIED":
+            print("  blocker statuses look satisfied but the proposal states its")
+            print("  own release condition, or a blocker resolved ambiguously.")
+            print("  READ THE CONDITION BEFORE RELEASING. Measured 2026-09-23:")
+            print("  12 of 12 rows in this shape failed their stated condition.")
         elif bucket == "UNOWNED":
             print("  no substrate_queue entry for the blocker: the owed build has")
             print("  no owner and no lane, so this never moves on its own.")
@@ -213,9 +306,15 @@ def main() -> int:
             print("  %-9s %-11s %-18s %s" % (
                 r["proposal_id"], r["claim_id"], r["proposal_type"] or "?",
                 r["status"]))
+            if r.get("stated_conditions") or r.get("undetermined"):
+                bits = list(r.get("stated_conditions") or [])
+                bits += ["blocker:%s" % u for u in (r.get("undetermined") or [])]
+                print("       cannot-determine: %s" % ", ".join(bits))
             for b in r["blockers"]:
                 if b["satisfied"]:
                     mark = "OK  "
+                elif b.get("undetermined"):
+                    mark = "????"
                 elif not b["owned"]:
                     mark = "MISS"
                 elif b["ready"] is True:
@@ -225,8 +324,15 @@ def main() -> int:
                     mark = "WAIT*"
                 else:
                     mark = "WAIT"
-                detail = ("no substrate_queue entry" if not b["owned"]
-                          else "%s (ready=%s)" % (b["status"][:46], b["ready"]))
+                if b.get("undetermined") == "self_block":
+                    detail = "blocker id == this proposal's own claim_id"
+                elif b.get("undetermined") == "ambiguous_multi_entry":
+                    detail = "entries disagree; unsatisfied: %s" % (
+                        ", ".join(b.get("unsatisfied_siblings") or [])[:60])
+                elif not b["owned"]:
+                    detail = "no substrate_queue entry"
+                else:
+                    detail = "%s (ready=%s)" % (b["status"][:46], b["ready"])
                 print("       %-4s %-44.44s %s" % (mark, b["id"], detail))
 
     if any(b["ready"] is True and not b["satisfied"] and b["owned"]
@@ -238,6 +344,11 @@ def main() -> int:
         print("\nNEXT: the READY rows are candidates to return to `proposed`. That is a")
         print("governance decision (the substrate landing may not restore the design's")
         print("validity) -- route via governance_flag.py, do not hand-edit the registry.")
+    if counts["READY_UNVERIFIED"]:
+        print("\nNEXT: READY_UNVERIFIED is a shortlist to READ, not a release list. Open")
+        print("each proposal's release_condition / gating_reason / blocked_note and check")
+        print("it against the substrate by hand. On 2026-09-23 all 12 rows in this shape")
+        print("failed their own stated condition and none was released.")
     if counts["UNOWNED"]:
         print("\nNEXT: the UNOWNED blockers need a substrate_queue entry before any")
         print("lane can pick them up -- /implement-substrate has nothing to read.")
