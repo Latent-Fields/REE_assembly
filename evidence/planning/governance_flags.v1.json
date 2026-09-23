@@ -6092,6 +6092,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0426",
+      "claim_ids": [
+        "ARC-105"
+      ],
+      "flag_type": "stale_note",
+      "summary": "ARC-105's description anchors on 'rostral PFC holds abstract/superordinate goals, caudal PFC concrete action rules' (a Badre & D'Esposito 2009 framing), but Badre & Nee 2018 (TiCS 22:170-188, PMID 29229206) and its primary source Nee & D'Esposito 2016 (eLife 5:e12112, PMID 26999822) place the apex of the frontal control hierarchy at anterior mid-DLPFC rather than rostrolateral PFC, with demand-driven connectivity running TOWARD mid-LPFC as an integration site. Both papers were filed as literature evidence for ARC-105 on 2026-09-23 (REE_assembly 4c316db652) with this recorded as a failure signature. The claim's DISCRETE-levels commitment (~3 zones: schematic/contextual/sensorimotor) is confirmed by the same source and is unaffected; only the rostro-caudal ordering sentence in 'description' needs revising, so that a V4 implementation does not assume the most abstract level is also the top controller. Separately fixed in the same commit, no action needed: the Badre & D'Esposito 2009 entry in targeted_review_proxy_progress_goal_maintenance named this claim only by its pre-registration NEWCLAIM slug and was never tagged ARC-105 in claim_ids_tested, which is why ARC-105 read as zero-literature in evidence_backlog.v1.json despite its notes asserting grounding.",
+      "raised_by_session": "lit-pull-am-b-arc103-arc105-20260923",
+      "raised_at": "2026-09-23T07:10:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
