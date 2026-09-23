@@ -1042,9 +1042,9 @@
       "summary": "CLASS-ENTROPY CEILING: no committed-class-entropy null in the ARC-065/conversion-ceiling lineage is currently a non-degenerate test. support_preserving_min_first_action_classes defaults to 2 and is set to literally 2 at 273 driver call sites, capping committed-class entropy at ln(~3)~1.08 nats ARM-INVARIANTLY. V3-EXQ-708b's own manifest: precommit_n_distinct_classes_mean 2.959/2.958/2.956 across its three arms, mean_precommit_class_entropy 1.060873 in the OFF baseline = 97.8% of ln(2.959)=1.0850 BEFORE any lever is applied. 708b enumerated two explanations, refuted both, filed precommit_shape_headroom_unexplained; the third unenumerated reading is this ceiling. Fix is two config values already proven to fire (V3-EXQ-949: yoked divergence 0.000 P1-only / 0.000 P2-only / 0.3675 both -- a strict AND). Does NOT refute MECH-439 F-dominance or ARC-110 intrinsic ceiling; both may still hold at a raised floor.",
       "raised_by_session": "thought-digestion-v3closure-20260828",
       "raised_at": "2026-08-28T06:50:00Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:40:47Z",
+      "resolution_note": "[governance-flags-20260923b] Closed on REGISTRATION, not on a fix landing (re-verified 2026-09-23). The finding is fully absorbed into claims.yaml: ARC-065 / MECH-440 / MECH-441 what_would_answer state the identical non-degeneracy precondition (P1 support_preserving_min_first_action_classes raised toward action_dim; P2 modulatory authority armed) with the V3-EXQ-708b and V3-EXQ-949 numbers, citing this flag by name, and the 2026-09-21/22 falsifier-completion audit re-confirms it. The default is still 2 (ree-v3 ree_core/utils/config.py:2684), so ANY future ARC-065/MECH-439/440/441/ARC-108/ARC-110 null must set P1 and arm P2 at design time -- /queue-experiment reads that from what_would_answer; no build is owed. No status/confidence change."
     },
     {
       "flag_id": "GFLAG-0073",
