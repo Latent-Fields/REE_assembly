@@ -1,29 +1,17 @@
 # Pending Experiment Review
 
-Generated: `2026-09-23T17:46:28Z`  
-Last review: `2026-09-23T09:23:27Z`  
-Scanned: 2979 claim_evidence entries considered (3002 already reviewed), 4863 manifest file(s) on disk.  
-Pending: **3** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 diagnostic run(s) with no confirmed autopsy
+Generated: `2026-09-23T18:34:57Z`  
+Last review: `2026-09-23T18:35:00Z`  
+Scanned: 2979 claim_evidence entries considered (3004 already reviewed), 4865 manifest file(s) on disk.  
+Pending: **2** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
+## Unclaimed manifests (PASS/FAIL with no claim tags)
 
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_1043b_mech537_communication_subspace_randrank_20260922T204547Z_v3` | 2026-09-22T20:45 | MECH-537 | — |
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
 
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3` | 2026-09-23T17:24 | (no claim tags) |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3` | PASS | alpha_world_amplifies_present_action_read |
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| PASS | `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` | v3_exq_1078_inv069_zself_coherence_unsettled | V3-EXQ-1078 | unknown |
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

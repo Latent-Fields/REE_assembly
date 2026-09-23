@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-23T09:23:27Z",
+  "last_review_utc": "2026-09-23T18:35:00Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1341,7 +1341,9 @@
     "v3_exq_1062_mech055_affect_channel_separation_diagnostic",
     "v3_exq_1073_mech572_precision_provenance_gain",
     "v3_exq_1062a_mech055_affect_channel_separation_postshift",
-    "v3_exq_1075_sdppb5_action_sensitivity_validation"
+    "v3_exq_1075_sdppb5_action_sensitivity_validation",
+    "v3_exq_1043b_mech537_communication_subspace_randrank",
+    "v3_exq_1079_sdppb10_alphaworld_operating_point_probe"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4345,7 +4347,9 @@
     "v3_exq_1062_mech055_affect_channel_separation_diagnostic_20260922T175212Z_v3",
     "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3",
     "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
-    "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3"
+    "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
+    "v3_exq_1043b_mech537_communication_subspace_randrank_20260922T204547Z_v3",
+    "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7168,6 +7172,32 @@
         "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3": "failure_autopsy_V3-EXQ-1075_2026-09-23 (confirmed) -> non_contributory, standard, implement-substrate"
       },
       "note": "2 diagnostic FAILs walked, both with confirmed autopsies (failure_autopsy_V3-EXQ-1062a_2026-09-23, failure_autopsy_V3-EXQ-1075_2026-09-23), both ratified non_contributory at the user gate. 1062a: MECH-055 untested not falsified; harm-forward head below persistence baseline in 6/6 cells -> pending_retest_after_substrate true, SD-PP-B9 created. 1075: SD-PP-B5 does NOT validate -> amended, severity corrupting, status flipped off implemented_pending_validation. Skim: not applicable (no claim-tagged evidence PASS this cycle). V3-EXQ-1066 ERROR left pending for /diagnose-errors."
+    },
+    {
+      "utc": "2026-09-23T18:35:00Z",
+      "session": "governance-pause-20260923-1741",
+      "cycle": "governance 2026-09-23 PM",
+      "runs_reviewed": [
+        "v3_exq_1043b_mech537_communication_subspace_randrank_20260922T204547Z_v3",
+        "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3"
+      ],
+      "skim_outcome": "PASS skim not applicable to either run: V3-EXQ-1043b is a claim-tagged FAIL adjudicated by confirmed failure_autopsy_V3-EXQ-1043b_2026-09-23, and V3-EXQ-1079 is a claim-free DIAGNOSTIC PASS adjudicated by confirmed failure_autopsy_V3-EXQ-1079_2026-09-23 (the mandatory Step 2b driver skim is scoped to claim-tagged EVIDENCE PASSes, of which this cycle had none). The 1079 autopsy performed a deeper equivalent: a cross-model (fable) red-team returned CONTESTED and four adopted findings materially changed the artifact -- the battery is non-stationary on a post-death agent, the persistence sign-flip is baseline-driven with model_r2 falling, and GFLAG-0432's conclusion is regime-dependent.",
+      "still_pending": [
+        {
+          "run_id": "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+          "queue_id": "V3-EXQ-1078",
+          "claim_ids": [
+            "INV-069"
+          ],
+          "why": "diagnostic PASS with NO confirmed autopsy -- landed 18:20:46Z, after this cycle Step 1.5 set was computed. Needs /failure-autopsy before any governance action. Step 1.5 route B: reported, NOT chipped."
+        },
+        {
+          "run_id": "v3_v3_exq_1066_runner_error_20260920T150823Z_v3",
+          "queue_id": "V3-EXQ-1066",
+          "claim_ids": [],
+          "why": "ERROR manifest -- routes to /diagnose-errors, never autopsied. Expected to stay pending."
+        }
+      ]
     }
   ]
 }
