@@ -5097,9 +5097,9 @@
       "summary": "EXP-0687 / chip-proposal-exp-0736-paced: REFUSED at /queue-experiment Step 2.5a; V3-EXQ-1063 reserved but UNUSED (no script, no queue entry). Measured on a converged base (conv_rel_drop 0.997-0.999) that a sleep cycle makes the frozen held-out world-forward MSE WORSE in 9/9 cells, so INV-063 leg B's across-sleep IMPROVEMENT DV is negative before any intake manipulation is applied -- the SD-056 InfoNCE vs 701b MSE objective mismatch V3-EXQ-1060's docstring names, measured past convergence for the first time. Full evidence and four options: REE_assembly/evidence/planning/inv063_legb_dv_readability_staged_20260919.md (e66187df0a, origin/master); user decision pending as chip-20260919-inv063-legb-dv-direction. THREE DRIFTED POINTERS in INV-063's own what_would_answer, verified against ree-v3 origin/main 2026-09-19 and owed a GFLAG-0203-style in-place correction: (1) P2 tells a run to assert cumulative_sws_writes / cumulative_rem_rollouts FROM OUTPUT, but neither name exists anywhere in ree_core -- they appear only in a mel_consumer.py docstring quoting V3-EXQ-677; the real merged sleep-cycle metric keys are sws_n_writes and rem_n_rollouts. (2) P3 cites config.py:6263 for use_sleep_aggregation_cluster; it is at config.py:6709. (3) P2 cites config.py:6291/6337 for use_mel_consumer / use_entry_pressure; they are at 6737 and 6808, with use_within_life_sleep_trigger at 6783. SEPARATELY owed to 6a-iv: substrate_queue entry e2-world-forward-sleep-trainer still reads status pending_implementation with its single failure_record resolved: open, although the build landed (ree-v3 4610133, 2026-09-17) and V3-EXQ-1060 PASSed against it on 2026-09-19 -- a later session reading readiness from that entry gets the wrong answer.",
       "raised_by_session": "metaworker-science-20260919-inv063-four-arm-intake-ladder",
       "raised_at": "2026-09-19T05:33:02Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:36:43Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. Applied REE_assembly 335a821c30: the last drifted pointer is corrected. Item 1 (1063 MSE-worsens) and the substrate_queue staleness were discharged by the GFLAG-0364/0367/0382/0394 cluster and GFLAG-0355. The config.py line cites no longer exist after the 2026-09-21/22 rewrite."
     },
     {
       "flag_id": "GFLAG-0360",
