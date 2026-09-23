@@ -3113,7 +3113,7 @@
         "SD-070",
         "GOV-MATCHAUX-1"
       ],
-      "blocked_note": "blocked at /queue-experiment Step 2.5a: the SD-070 P0a objective weights (presence/distance/proximity/reconstruction/variance/covariance) and the proximity target are unreachable from run_zworld_p0 / _train_all_on_agent, so INV-104's F1 verdict arm (generic-only compression) and its GOV-MATCHAUX-1 matched-arbitrary control (NDP-6) are both unconstructible; condition (i) is already discharged by reanalysis reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z (R_1 = -0.094, 3/3 seeds)",
+      "blocked_note": "[Re-pointed 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: INV-104 R2] The original blocker -- the P0a OBJECTIVE-DECOMPOSITION SEAM -- has LANDED: run_zworld_p0 gained config=ZWorldP0Config and target_fn in ree-v3 c0c47ee (2026-09-09) and _train_all_on_agent gained zworld_p0_config in 616e713 (2026-09-11), covering legs (a), (b) and (c) of the release_condition. The live gate is now R2 DV NON-RESPONSE: the adapter DV has not been shown to respond to the P0a objective at all (C0 failed 0/3 seeds), and the headroom statistic that certified the run green was measured on a different contrast class. Until the DV is re-gated on the objective-choice contrast and the sense-path probe is refit on the path it is evaluated on, every preservation verdict is vacuous rather than negative. Condition (i) remains discharged by reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z.",
       "claim_id": "INV-104",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -3147,7 +3147,8 @@
         "active_conflict",
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "release_condition_note_2026_09_23": "The release_condition below (the P0a seam) is MET; do not read that as release. Operative release: the INV-104 adapter DV re-gated on the objective-choice contrast (C0 responds) and the sense-path probe refit on its evaluation path (GFLAG-0401)."
     },
     {
       "acceptance_checks": [
@@ -3298,7 +3299,7 @@
       "priority": "high",
       "proposal_id": "EXP-0227",
       "proposal_type": "experimental",
-      "release_condition": "A per-hippocampal-node valence vector V=[w,l,h,s] is written incrementally per visit in ree_core/hippocampal, AND the surprise-write path propagates to the replay gate (n_surprise_writes > 0 in a smoke run, unblocking the V3-EXQ-432 replay-gate design), AND an object-bound incentive-salience / drive->wanting coupling substrate produces a non-zero drive-coupled dissociation (WL_drive != WL_nodrive) -- i.e. the 514-family substrate_ceiling is lifted. Retest under a NEW queue id then (432 is burned). Prefer a commitment-free measurement-only diagnostic first.",
+      "release_condition": "[Corrected 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921] Two of the three declared blocks are DISCHARGED: (1) the per-node valence vector EXISTS -- ResidueField carries a per-RBF-centre 6-component valence vector with the four SD-014 slots at their named indices (ree_core/residue/field.py:58-61, 107); the original clause's 'ree_core/hippocampal' was the WRONG DIRECTORY, not a missing substrate; (3) the drive-coupled dissociation was shown by V3-EXQ-887b PASS. REMAINING: (2) the surprise-write path to the replay gate is now wired (the agent-level replay 6-vs-4 broadcast RuntimeError fixed 2026-08-03; width defect contract-pinned) but has never been validated -- no experiment since V3-EXQ-432 manipulates drive_state and measures replay-target composition. Release = a run with n_surprise_writes > 0 reaching the replay gate and replay-target composition read out, under a NEW queue id (432 is burned). Prefer a commitment-free measurement-only diagnostic first.",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -3317,7 +3318,8 @@
       "why_now": [
         "active_conflict",
         "low_exp_conf"
-      ]
+      ],
+      "governance_note_2026_09_23": "[GFLAG-0401] gating_reason block (1) 'NODE-VALENCE-VECTOR ABSENT' is FALSE as of the 2026-09-21 audit (see release_condition) and block (3) is discharged by 887b; only block (2) remains. Status left as recorded (executed by V3-EXQ-887); the release_condition directory and block accounting are corrected."
     },
     {
       "acceptance_checks": [
@@ -4591,7 +4593,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "blocked_substrate",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_018",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4602,7 +4604,8 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_note_2026_09_23": "All three release_condition parts met: (1)+(2) integrate() gradient step and WRITEBACK call site (ree-v3 8997e243/5953f80; GFLAG-0306), (3) the narrowing (GFLAG-0366; MECH-018 readout (iii) scored as approximation error at a declared representation budget, user decision 2026-09-19). Pre-registration must carry GFLAG-0356's second finding: register readout (i) against the rbf core, not pre-integration evaluate(), and add a pedestal-matched control for readout (ii)."
     },
     {
       "acceptance_checks": [
@@ -5506,7 +5509,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_inv_109",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5515,7 +5518,8 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0401). Checked first, as the agenda required: the audit classes INV-109's falsifier R0 (runnable), but INV-109's own claim disposition (what_would_answer, 2026-09-15) records the test as a SPIKE (hash_tensor_state on two reproductions of one recipe; complicated, buildable) and says it is 'not minted as an EXP proposal' -- a universal evidential invariant. The runnable item is that spike, not an EXQ entry, so this experimental proposal contradicts the disposition."
     },
     {
       "acceptance_checks": [
@@ -6000,7 +6004,7 @@
       "blocked_by": [
         "MECH-067"
       ],
-      "blocked_note": "No representation-isolation comparator arm and no coupling measure/store-class vocabulary in ree_core; the shared write-audit spike (V3-EXQ-1052) was refused 2026-09-17 and has never run.",
+      "blocked_note": "Blocked on the V3-EXQ-1052 write-audit driver's documented defects (_anchors reference, natural sleep cycle, ContextMemory coverage, required offline flags, double-cycle). This is the instrument MECH-066's 2026-09-21 WWA names (call wrappers + natural-cycle state hashes). The earlier 'no representation-isolation comparator arm / coupling measure' blocker is WITHDRAWN: MECH-066 permits shared representations and its falsifier does not need that arm (GFLAG-0362). Fix owned by chip-proposal-exp-0845-paced.",
       "claim_id": "MECH-066",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -7785,8 +7789,6 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
-      "executed_by": "V3-EXQ-395",
-      "executed_queue_id": "V3-EXQ-395",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-154 via targeted experiment runs.",
       "priority": "medium",
@@ -7804,7 +7806,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "executed",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_154",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7813,7 +7815,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "executed_by_retracted_2026_09_23": "V3-EXQ-395",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): claim_evidence.v1.json carries zero experimental rows for MECH-154, so no run was ever tagged to this claim. The audit classes it R1: ContextMemory, the diversification knob and a slot-diversity metric exist, but the driver is missing (a degraded-cue retrieval task with a completion readout taken at ContextMemory.read; the only pattern-completion readout in tree scores the SHY store). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
     },
     {
       "acceptance_checks": [
@@ -7993,7 +7997,7 @@
       "blocked_by": [
         "SD-018"
       ],
-      "blocked_note": "2026-09-02 (/queue-experiment, chip chip-proposal-exp-1079-paced, dispatched as proposal_id EXP-1079 -- since renumbered on governance regen; identity resolved via (backlog_id=EVB-1564, proposal_type=experimental) = EXP-1040). NOT queued. This is the SAME underlying question as EXP-0384 (backlog EVB-0555, blocked_substrate 2026-08-03) -- a separate backlog entry for the identical claim was minted by a later proposal generator pass without checking the existing block. MECH-426's OWN mechanism substrate (SD-093, progress_velocity_effort_modulation) is implemented and correct (empirically re-confirmed 2026-09-02: use_progress_velocity_effort_modulation wired in ree_core/goal.py, 18 contract tests). The block is BEHAVIOURAL: the acceptance criteria need a sparse-vs-dense goal-confirmation regime that never occurs because the agent does not forage/complete goals above random (goal_pipeline:GAP-2). Chain: EXP-0384's driver (experiments/v3_exq_885_mech426_progress_velocity_maintenance.py, ree-v3 7cb37e1c89, retained UNQUEUED) measured 0/0/1 confirmations across seeds -- goal never activates. Its named release condition, V3-EXQ-866a ('an agent that forages ABOVE random'), has SINCE RUN (2026-08-03) and FAILED: resource_visit_rate_mean_FULL=0.00331 vs RANDOM=0.01033 (trained agent forages BELOW random). Root cause diagnosed 2026-08-25 by failure-autopsy on V3-EXQ-948: z_world discards recoverable resource-gradient structure even with SD-018's existing scalar proximity supervision; a directional 25-dim field restores D3 foraging competence where the scalar signal does not. Routed to implement-substrate SD-018 amend, which LANDED 2026-09-02T14:19:27Z (ree-v3 028a625e09, chip-20260902-sd018-directional-field-amend): SplitEncoder.resource_field_head, config use_resource_field_head (default False, bit-identical OFF). Its own validation was explicitly OWED at landing time -- and, independently of this chip, has SINCE been queued as V3-EXQ-978 (ree-v3 e08ab0c5, chip-20260902-sd018-fieldhead-validation-run), now CLAIMED and running on ree-cloud-3 (claimed 2026-09-02T17:50:54Z, ~600min estimated, no manifest yet as of this disposition). Until V3-EXQ-978 resolves PASS (establishing that a z_world-only reader clears the D3 foraging floor with the field head ON), queuing MECH-426's own 2x2 velocity ablation would very likely reproduce EXP-0384's exact null-behaviour failure, since use_resource_field_head is bit-identical OFF by default and nothing yet proves it fixes foraging outside the narrow V3-EXQ-948 side-channel probe. Not workaroundable in the driver for the same reason EXP-0384 already established (a scripted/exogenous trajectory would decouple the commit gate from behaviour and leave only the commit gate's own construction as the DV).",
+      "blocked_note": "[Re-pointed 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: MECH-426 R5] NOT a substrate block: SD-093/MECH-426 is complete (18 contracts) and the driver is written. The block is BEHAVIOURAL -- the agent's foraging competence (goal_pipeline:GAP-2 / MECH-457 competence floor): no agent on this env family forages above random, so the maintenance DV sits at its floor. BOTH named release conditions have RETURNED NEGATIVE: V3-EXQ-866a FAIL/non_contributory (resource_visit_rate FULL 0.00331 vs RANDOM 0.01033) and V3-EXQ-978 FAIL on the 1.0 D3 foraging-competence floor. The release owner therefore no longer exists; the live owner is whichever competence-floor route next clears D3 foraging above random. Status label blocked_substrate retained for tooling (it suppresses re-spawn).",
       "claim_id": "MECH-426",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -8249,7 +8253,7 @@
       "exclude_broad_profile_sweeps": false,
       "gated_at_utc": "2026-08-02T14:33:12Z",
       "gated_by_session": "confident-franklin-c8e403",
-      "gating_reason": "not independently testable (user-confirmed 2026-08-02): ARC-001 ('E1 is the persistent predictive substrate') has no what_would_answer falsifier defined anywhere in claims.yaml and functions as a foundational architectural axiom that 25+ mechanism claims (E2/E3/hippocampal/etc., via depends_on) build on and get tested through -- not as an independently falsifiable hypothesis. Its only evidence entry is a single literature SOURCE row with no experimental entries. User confirmed: treat as a foundational axiom whose truth is read off the accumulated evidence for its dependent claims; skip.",
+      "gating_reason": "RELEASED 2026-09-23 (GFLAG-0401): the prior gating premise -- 'ARC-001 has no what_would_answer falsifier defined anywhere in claims.yaml' / 'not independently testable' (user-confirmed 2026-08-02) -- is now FALSE. ARC-001 carries a complete, code-grounded what_would_answer with a matched non-persistent comparator (zeroed context_memory; reset_hidden_state does not touch it) and named existing retrieval readouts, classed R0 (runnable now) by falsifier_completion_and_runnability_audit_20260921. Only an experiment is missing. Previous gating text preserved in git.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-001 via targeted experiment runs.",
       "priority": "medium",
@@ -8267,7 +8271,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "gated",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_arc_001",
       "target_repo": "ree-v3",
       "why_now": [
@@ -8685,7 +8689,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_sd_033d",
       "target_repo": "ree-v3",
       "why_now": [
@@ -8694,7 +8698,8 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921, SD-033d R7): SD-033d is not experimentally adjudicable as registered -- its standing condition is confirmed by the absence of a contrary result and its own falsifier says no experiment is implied. Auto-generated proposal; same treatment as EXP-1124/LIT-1125 for MECH-530."
     },
     {
       "acceptance_checks": [
@@ -17493,14 +17498,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_132",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-132 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-132 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -17579,14 +17585,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_133",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-133 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-133 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -17665,14 +17672,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_134",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-134 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-134 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -18147,14 +18155,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_159",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-159 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-159 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -18507,14 +18516,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_190",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-190 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-190 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -19630,14 +19640,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_227",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-227 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-227 itself was set epistemic_category out_of_domain on 2026-09-23 (GFLAG-0285); only this EXP was left."
     },
     {
       "acceptance_checks": [
@@ -19806,14 +19817,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_233",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-233 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-233 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -20552,14 +20564,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_246",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-246 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-246 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -20638,14 +20651,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_247",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-247 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-247 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -20772,14 +20786,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_249",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-249 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-249 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -23759,14 +23774,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_experiment_type": "claim_probe_mech_384",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921, MECH-384 R7): MECH-384 is a design_decision registered with epistemic_category substrate_coherence precisely so it is suppressed from the proposal lane; no experiment can falsify it. This auto-minted proposal contradicts that suppression."
     },
     {
       "acceptance_checks": [
@@ -23807,14 +23823,15 @@
         ],
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
-      "status": "proposed",
+      "status": "withdrawn",
       "suggested_literature_type": "targeted_review_mech_384",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921, MECH-384 R7): MECH-384 is a design_decision registered with epistemic_category substrate_coherence precisely so it is suppressed from the proposal lane. This auto-minted proposal contradicts that suppression."
     },
     {
       "acceptance_checks": [
@@ -35204,7 +35221,7 @@
       "exclude_broad_profile_sweeps": false,
       "gated_at_utc": "2026-08-02T13:25:34Z",
       "gated_by_session": "determined-ritchie-55a3a6",
-      "gating_reason": "Suggested design (v3_exq_065) already ran: 'Design-inconclusive: uncommitted_steps=0 throughout eval' -- same committed-mode substrate gap as ARC-028/EXQ-139.",
+      "gating_reason": "RELEASED 2026-09-23 (GFLAG-0401): the prior gating reason ('same committed-mode substrate gap as ARC-028/EXQ-139', uncommitted_steps=0 in v3_exq_065) is stale as of 2026-08-02: V3-EXQ-876 produced 165-216 uncommitted steps per seed with non-degenerate harm_pred_std. falsifier_completion_and_runnability_audit_20260921 classes MECH-029 R0: event, manipulation, control, DV and instrument exist; what is missing is a driver (all three MECH-029 scripts predate the fix and recorded zero uncommitted steps). Previous gating text preserved in git.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-029 via targeted experiment runs.",
       "priority": "medium",
@@ -35222,7 +35239,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "gated",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_029",
       "target_repo": "ree-v3",
       "why_now": [
@@ -35945,7 +35962,7 @@
       "exclude_broad_profile_sweeps": false,
       "gated_at_utc": "2026-08-02T13:25:34Z",
       "gated_by_session": "determined-ritchie-55a3a6",
-      "gating_reason": "Suggested design (v3_exq_127) already ran: evidence_direction=superseded -- 'Sleep not implemented in V3; post-training phase simulation does not test MECH-030'. Sleep substrate is a known V3-blocked area for this claim family.",
+      "gating_reason": "[Rewritten 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: R1 dismantling design] The prior reason ('sleep substrate is a known V3-blocked area') is stale: the V3 sleep cluster landed 2026-05-16 and was validated non-vacuously by V3-EXQ-702 (2026-06-23). The actual blocker is design: no experiment has run a DISMANTLING design -- V3-EXQ-702 is on/off and cannot separate 'multi-phase' from 'one phase does all the work'. Release when a phase-dismantling driver exists (MECH-272 routing weights and MECH-273's replay-derived batch are already wired under GAP-8/GAP-4).",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-030 via targeted experiment runs.",
       "priority": "medium",
@@ -36331,7 +36348,7 @@
       "exclude_broad_profile_sweeps": false,
       "gated_at_utc": "2026-08-02T14:28:07Z",
       "gated_by_session": "confident-franklin-c8e403",
-      "gating_reason": "substrate absent: Q-005 requires a genuine V3 sleep/offline phase that anneals or resets R(x,t) (residue field). ree_core/sleep/cross_module_consolidation.py explicitly documents (its own docstring) that it is a weight-update pass and 'nothing is written to residue / anchors / memory'; ree_core/residue/field.py's only attenuation path (discharge_domain(), SD-034) is fired by the waking ClosureOperator (MECH-094), not by any sleep-loop module. No file under ree_core/sleep/ references residue/field.py or calls discharge_domain, as of 2026-08-02. V3-EXQ-150 (2026-03-29) already exhausted this exact question (marked superseded) for the identical reason, unchanged since.",
+      "gating_reason": "[Rewritten 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: R4 attenuation path] The sleep substrate EXISTS (and MECH-018 added a WRITEBACK residue call), so 'no genuine V3 sleep phase' is no longer the blocker. The accurate blocker: no sleep phase can ATTENUATE R(x,t). The only sleep-phase residue operation is ResidueField.integrate(), whose optimiser is over neural_field parameters only and is structurally unable to anneal R; discharge_domain() (the sole attenuation path) has exactly one caller, the waking ClosureOperator (governance/closure_operator.py:698). Release when a sleep-phase residue attenuation/annealing path exists.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for Q-005 via targeted experiment runs.",
       "priority": "medium",
@@ -37342,8 +37359,6 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
-      "executed_by": "V3-EXQ-870a",
-      "executed_queue_id": "V3-EXQ-870a",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-480 via targeted experiment runs.",
       "priority": "medium",
@@ -37361,13 +37376,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "executed",
+      "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_480",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "executed_by_retracted_2026_09_23": "V3-EXQ-870a",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): the only runs are V3-EXQ-870 (ERROR) and V3-EXQ-870a (measurement-defect FAIL, non_contributory). The routed 870b redesign was never queued (no script, queue entry or manifest), so no run has produced a scorable MECH-480 dissociation test. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
     },
     {
       "acceptance_checks": [
@@ -37379,20 +37396,20 @@
       "blocked_by": [
         "SD-056"
       ],
-      "blocked_note": "Born blocked by build_experiment_indexes: SD-056 carries a claims.yaml experiment queue gate (gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.). Not a substrate-readiness finding of this proposal's own; the row lifts back to 'proposed' automatically once the gate is removed from the claim (chip-20260904-indexer-mints-gated-claims-as-blocked).",
+      "blocked_note": "Born blocked by build_experiment_indexes: SD-056 carries a claims.yaml experiment queue gate (gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.). Not a substrate-readiness finding of this proposal's own; the row lifts back to 'proposed' automatically once the gate is removed from the claim (chip-20260904-indexer-mints-gated-claims-as-blocked).",
       "claim_id": "SD-056",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
       "gated_by_session": "build_experiment_indexes:claim_queue_gate",
-      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for SD-056 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0440",
       "proposal_type": "experimental",
-      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -38683,8 +38700,6 @@
       ],
       "design": "Four-arm per-subdivision write-gate manipulation on a fixed task that includes scheduled internal_replay windows (MECH-092) and explicit internal_planning rollouts (E2) in addition to external_task action selection. Arm A (intact): all SD-033 write-gates obey their MECH-261 mode profile normally. Arm B (SD-033a write-gate forced open during internal_replay): the lateral-PFC-analog rule substrate becomes writeable from replay content during quiescence -- replay can overwrite the rule substrate. Predicted signature: rule drift / forgetting after replay events. Arm C (SD-033b write-gate forced closed during internal_planning): the OFC-analog outcome-prediction substrate cannot accept writes during E2 rollouts -- planning cannot deposit speculative outcome predictions. Predicted signature: degraded counterfactual rollout quality (E2 outcome predictions lose calibration against held-out rollout-realisation pairs). Arm D (null: no mode gating at all): all SD-033 substrates are write-open in every mode. Predicted signature: cross-mode contamination in BOTH the rule substrate (rule drift) AND the outcome substrate (replay content bleeding into external-task outcome predictions). Per arm, measure: (i) rule-representation drift across replay events -- cosine distance of SD-033a activity for the same rule cue pre vs post a replay window; (ii) counterfactual rollout quality -- E2 / SD-033b prediction accuracy against held-out (state, action) -> outcome pairs after planning episodes; (iii) cross-mode content leakage -- decoder probe testing whether internal_replay content (replayed trajectory embeddings) is detectable in SD-033b representations during external_task commitment. Success criterion (MECH-261 per-subdivision profile supported): per-arm signatures dissociate in the predicted direction with pairwise Cohen's d >= 0.8 between Arm A and each manipulated arm on at least 5 seeds, AND Arm A is statistically distinguishable from Arm D on both rule drift and rollout quality. FAIL-route-A (rule substrate not protected by mode gating): Arm B == Arm A on rule drift -- forced-open SD-033a write-gate produces no rule drift, suggesting the mode profile is not load-bearing for the rule substrate specifically. FAIL-route-B (planning substrate write-gate redundant): Arm C == Arm A on rollout quality -- closing SD-033b during planning does not degrade rollouts, suggesting writes were not landing there during planning anyway. FAIL-cluster (mode gating per se unnecessary): Arm D == Arm A on all three metrics -- even fully open gates produce no contamination, mode-conditioned write gating is over-specified.",
       "dispatch_mode": "new_run",
-      "executed_by": "V3-EXQ-453",
-      "executed_queue_id": "V3-EXQ-453",
       "notes": "Sibling experiment to EXP-0148, NOT a replacement. EXP-0148 tests the coordinator overlay (does SD-032a-clamping abolish aggregate forward-propagation bias?); EXP-0149 tests per-subdivision write-landing under each mode (do writes actually land in the correct SD-033 subdivision?). Both tests are needed to fully characterise MECH-261: EXP-0148 establishes that the coordinator is load-bearing at all; EXP-0149 establishes that the per-subdivision routing inside the MECH-261 family is functionally specific (not just one coarse on/off gate dressed up as a vector). A coordinator could pass EXP-0148 while failing EXP-0149 by producing the right aggregate bias with mis-routed internal writes; that pattern would force a refinement of MECH-261's specification. Cannot run until SD-032a + SD-033a + SD-033b + MECH-261 + MECH-092 are all implemented in V3 -- proposal-only at registration time. Do not queue in ree-v3/experiment_queue.json until those substrates exist.",
       "objective": "Test whether MECH-261's per-subdivision write-landing profile is correctly mode-routed -- distinct from the coordinator-level test in EXP-0148. EXP-0148 asks whether the coordinator overlay produces the right aggregate forward-propagation bias; EXP-0149 asks whether writes actually land in the correct PFC subdivision (SD-033a vs SD-033b) under each mode. A coordinator could pass EXP-0148 by producing the right aggregate bias while writes are mis-routed internally between subdivisions; only a per-subdivision lesion design can dissociate that.",
       "prerequisites": [
@@ -38698,8 +38713,10 @@
       "proposal_id": "EXP-0149",
       "proposal_type": "experimental",
       "source": "manual",
-      "status": "executed",
-      "target_repo": "ree-v3"
+      "status": "proposed",
+      "target_repo": "ree-v3",
+      "executed_by_retracted_2026_09_23": "V3-EXQ-453",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): no run implements this per-subdivision write-landing design. V3-EXQ-453 validated the MECH-261 write-gate landing, not this design, and MECH-261's indexed evidence (V3-EXQ-455 gate-value modulation, V3-EXQ-484 SD-033a distractor resistance) is not this contrast either. Mirror of the EXP-0148 correction (56fcfde). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
     },
     {
       "added_utc": "2026-04-20",
@@ -39225,10 +39242,12 @@
       "proposal_id": "EXP-0175",
       "proposal_type": "experimental",
       "queue_id_reserved": "V3-EXQ-455b",
-      "release_condition": "BOTH (a) V3-EXQ-614a manifest on REE_assembly/origin/master + reviewed in /governance, AND (b) V3-EXQ-483e manifest on REE_assembly/origin/master + reviewed in /governance.",
+      "release_condition": "A validated run in which the SD-037/MECH-281 consumer cascade produces non-zero consumer output (lifting 483e's substrate_ceiling; SD-037 substrate_queue row), then re-read interpretation_grid_on_release branches 1/2 against the arm-level data.",
       "source": "manual",
       "status": "gated",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "gating_reason": "Release condition (a)+(b) met 2026-05-31, but V3-EXQ-483e is a FAIL (outcome FAIL; confirmed failure_autopsy_V3-EXQ-483e_2026-05-31, substrate_ceiling: consumer outputs zero, action_counts bit-identical across all 4 arms). Per this proposal's own interpretation_grid_on_release branch 3, SD-032a behavioural validation stays gated until the upstream cluster resolves (GFLAG-0313).",
+      "governance_note_2026_09_23": "[governance-flags-mid-20260923, GFLAG-0313] The flag's premise that both gating runs PASSed is false: 483e FAILed (substrate_ceiling), so the pre-registered grid branch 3 applies. Stays gated; release_condition re-pointed at the SD-037 consumer cascade. V3-EXQ-455b is not queued. Previous release_condition: BOTH 614a and 483e manifests landed and reviewed (met 2026-05-31)."
     },
     {
       "acceptance_checks": [
@@ -39400,7 +39419,8 @@
       "script_path": null,
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "blocked_note": "[Re-pointed 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: MECH-426 R5] NOT a substrate block: SD-093/MECH-426 is complete (18 contracts) and the driver is written. The block is BEHAVIOURAL -- the agent's foraging competence (goal_pipeline:GAP-2 / MECH-457 competence floor): no agent on this env family forages above random, so the maintenance DV sits at its floor. BOTH named release conditions have RETURNED NEGATIVE: V3-EXQ-866a FAIL/non_contributory (resource_visit_rate FULL 0.00331 vs RANDOM 0.01033) and V3-EXQ-978 FAIL on the 1.0 D3 foraging-competence floor. The release owner therefore no longer exists; the live owner is whichever competence-floor route next clears D3 foraging above random. Status label blocked_substrate retained for tooling (it suppresses re-spawn)."
     },
     {
       "acceptance_checks": [
@@ -39681,7 +39701,7 @@
         "MECH-057a",
         "MECH-057b"
       ],
-      "release_condition": "ARC-107 BG-selector constitution LANDED in ree-v3 AND the commit/release-duration levers (V3-EXQ-460j / 485i / 654h) RETURNED with a non-degenerate commitment signal. Re-check substrate readiness of the action-commitment layer -- not merely of E3 -- before unblocking.",
+      "release_condition": "ARC-107 BG-selector constitution LANDED in ree-v3 AND the commit/release-duration levers (V3-EXQ-460j / 485i / 654h) RETURNED with a NON-DEGENERATE commitment signal -- i.e. the F-dominance conversion ceiling is lifted, so a behavioural FAIL would adjudicate commitment rather than re-derive 'a navigable landscape does not convert to committed action'. Re-check substrate readiness of the action-commitment layer -- not merely of E3 -- before unblocking. [Reconciled 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: all three levers RETURNED on 2026-06-21 as FAIL / non_contributory (485i substrate_not_ready_requeue) and ARC-107 is provisional with promotion withheld, so this condition is NOT met. ARC-003's blocked_on field dropped the 'non-degenerate commitment signal' half when it was lifted verbatim on 2026-09-10; read literally it would declare LEG B released. This proposal's wording is the correct one; the claim-side blocked_on re-sync is owed separately.]",
       "source": "manual",
       "status": "blocked_substrate",
       "target_repo": "ree-v3"
@@ -39904,8 +39924,6 @@
       "design": "Two-arm ablation on an existing REE task with a reward-contingency change mid-episode (reuse an existing SD-032b/MECH-445-series env if one already has a contingency-switch phase; otherwise the smallest addition to the current fishtank_viz-style env that adds one). Arm A (dacc_weight=0, SD-032b OFF): baseline. Arm B (dacc_weight>0, SD-032b ON, as currently configured): dACC-analog active. PRIMARY DVs per arm, per seed: (i) outcome-sensitivity -- does the agent's trajectory selection shift toward the newly-favoured option within N ticks of the contingency change (an authority metric); (ii) execution strength -- softmax logit margin / selection confidence of the committed action at steady state (a gain metric, NOT action-class entropy). STEP 0, MANDATORY: confirm execution strength (logit margin) shows non-zero cross-arm and cross-seed variance in Arm A before treating any cross-arm comparison as a verdict -- if it is pinned near ceiling/floor in both arms, self-route substrate_not_ready_requeue.",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 180,
-      "executed_by": "V3-EXQ-870",
-      "executed_queue_id": "V3-EXQ-870",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion registration 2026-08-02 from docs/thoughts/2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md via MECH-480. Uses SD-032b's existing dacc_weight config flag -- no new substrate needed. Source paper cited in the raw intake only as 'a recent Nature Communications paper'; exact citation not yet pulled (flag for /lit-pull before finalizing the driver's docstring citation). Author via /queue-experiment per the mandatory skill path; do not write the driver directly from this proposal.",
       "objective": "Test whether SD-032b's dACC-analog output conflates two separable channels -- strategy authority (does accumulated action-outcome evidence retain control) and execution gain (how strongly the persisting policy is expressed) -- as MECH-480 proposes from an ACC/LOFC causal-dissociation paper. Deliberately uses a logit-margin/confidence execution-strength DV rather than action-class entropy, so the test does NOT require committed-action diversity and is not blocked by the F-dominance/committed-action floor-lock that has stalled MECH-260's own c2 retest (see MECH-260 notes, GOV-CEIL-1).",
@@ -39920,8 +39938,10 @@
         "MECH-260"
       ],
       "source": "manual",
-      "status": "executed",
-      "target_repo": "ree-v3"
+      "status": "proposed",
+      "target_repo": "ree-v3",
+      "executed_by_retracted_2026_09_23": "V3-EXQ-870",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): the only runs are V3-EXQ-870 (ERROR) and V3-EXQ-870a (measurement-defect FAIL, non_contributory: half the cells ended before the contingency switch, so execution_strength was NaN where it had to be read). The routed 870b redesign was never queued (no script, queue entry or manifest), so no run has produced a scorable MECH-480 dissociation test. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
     },
     {
       "acceptance_checks": [
@@ -40108,18 +40128,18 @@
       "blocked_by": [
         "SD-056"
       ],
-      "blocked_note": "Born blocked by build_experiment_indexes: SD-056 carries a claims.yaml experiment queue gate (gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.). Not a substrate-readiness finding of this proposal's own; the row lifts back to 'proposed' automatically once the gate is removed from the claim (chip-20260904-indexer-mints-gated-claims-as-blocked).",
+      "blocked_note": "Born blocked by build_experiment_indexes: SD-056 carries a claims.yaml experiment queue gate (gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.). Not a substrate-readiness finding of this proposal's own; the row lifts back to 'proposed' automatically once the gate is removed from the claim (chip-20260904-indexer-mints-gated-claims-as-blocked).",
       "claim_id": "SD-056",
       "design": "Re-run the original V3-EXQ-569e 8-arm Pathway A vs Pathway B mechanism probe (SP-CEM main-path ON, MECH-341 OFF, MECH-313 OFF, MECH-269 default) at behavioural-runtime P1 budget (50 episodes / 200 steps) on the amended substrate (multistep contrastive horizon + output-norm clamp, both now available), with the three script-side acceptance-criteria fixes from the 569e autopsy Section 6 applied: (i) a genuine per-tick NaN-fix gate for C1 rather than 'at least one finite value per seed'; (ii) a sanity ceiling on the C3 rollout-divergence gate so numeric overflow cannot register as 'operative' divergence; (iii) resolution of the acceptance_criteria-dict-vs-verdict_cell contradiction the autopsy flagged.",
       "dispatch_mode": "discriminative_pair",
       "gated_by_session": "build_experiment_indexes:claim_queue_gate",
-      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment. [2026-09-10 GFLAG-0231 registry repair] The 'executed' status and the executed_by link to 'v3_exq_210_mech156_theta_traversal_probe' were FALSE and are removed. That run's own manifest (evidence/experiments/v3_exq_210_mech156_theta_traversal_probe/v3_exq_210_mech156_theta_traversal_probe_1775168257.json) carries claim_ids ['MECH-156'] and timestamp 2026-04-02T22:17:37Z -- no SD-056 tag, and four months BEFORE this proposal was minted (added_utc 2026-08-07). No SD-056 queue entry has existed since minting and the 569e driver is unchanged since 2026-05-30 (pack_writer migration aside), so the run was never dispatched; ree-v3/experiment_queue.json holds 0 items for SD-056. Status restored to a live lifecycle value: this is GATED, not done. SD-056 carries a claims.yaml experiment_gate set 2026-09-08 by clever-joliot-bb5a54 (DO-NOT-QUEUE; W5-S4 item 1, REE_assembly 5819a55ae1, diagnostic_evidence_adjudicated true) -- the representation-level DV is already measured three times (V3-EXQ-613 synthetic; 569d and 569e real training, t=1 cand_world_pairwise_dist ~0.05 ON vs ~0.014 OFF) and the zero genuine_exp_count is a tagging fact, so the ONLY run that moves the claim is this pre-registered EXP-0585 / EVB-0587 569e-equivalent Pathway A vs B probe (8 arms x 5 seeds, P1 budget) with the three 569e autopsy Section 6 script fixes and BOTH stability levers armed (e2_action_contrastive_multistep_enabled + e2_rollout_output_norm_clamp_enabled, true in ZERO runs as of 2026-09-01). That is a wave-budget FUNDING decision for governance, not background fill. Do NOT mint a GOV-CONFIRM-1 confirmer. Because the claim is gated, build_experiment_indexes.py may re-derive this row to 'blocked' with a blocked_note on the next pass (chip-20260904-indexer-mints-gated-claims-as-blocked) -- that is correct and expected; it lifts back to 'proposed' automatically when the gate is removed from the claim. If governance declines to fund it this wave, write the DO-NOT-QUEUE marker via scripts/confirmer_verdict.py rather than reinstating a false 'executed'.",
       "objective": "Re-queue of the V3-EXQ-569e-equivalent Pathway A vs Pathway B mechanism probe SD-056's own evidence_quality_note names as its closing gate. The numerical-stability precondition (V3-EXQ-617, multi-step contrastive horizon h=5 + per-step output norm clamp) PASSED 2026-05-31, but the re-run itself was never queued -- ~7 weeks elapsed. The downstream target this was meant to unblock (ARC-065 GAP-A) closed 2026-06-17 via a DIFFERENT mechanism (V3-EXQ-569i, E3-side top-k shortlist conversion), which does NOT answer SD-056's own mechanism-attribution question (is it per-candidate z_world divergence from SD-056's contrastive training [Pathway A], or E2 rollout-landscape shift [Pathway B], or solely the independent shortlist fix, that produces the selected-action-entropy lift over the matched-noise control).",
       "priority": "medium",
       "proposal_id": "EXP-0585",
       "proposal_type": "experimental",
-      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "require_pre_registered_thresholds": true,
       "seed_policy": "matched_shared_seeds",
       "source": "manual",
@@ -40743,7 +40763,7 @@
       "dispatch_mode": "multi_arm_ablation",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-341 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
-      "objective": "Test MECH-341 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-660c -- MECH-341 scoring-layer class-diversity preservation at an ARMED (raised-P1) candidate pool`\n  (note: the retired \"660c\" label was for the *graded-in-K* successor, which stays retired; if the\n  collision is judged confusing, mint a fresh number rather than a letter -- flagging it here rather\n  than deciding it, per the EXQ versioning policy's \"when in doubt, new number\".)\n- related_claims: `MECH-341` (primary), `ARC-065` (precondition owner + parent pathway),\n  `MECH-442` (consumer of the preserved diversity -- reads the same class statistic downstream),\n  `INV-076`, `MECH-257`\n- acceptance_checks:\n  - R1 measured `mean_distinct_first_action_classes >= 4.5` (of 5) in ",
+      "objective": "Test MECH-341 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-<next free letter at queue time; 660c is RETIRED, do not reuse> -- MECH-341 scoring-layer class-diversity preservation at an ARMED (raised-P1) candidate pool`\n  (note: the retired \"660c\" label was for the *graded-in-K* successor, which stays retired; if the\n  collision is judged confusing, mint a fresh number rather than a letter -- flagging it here rather\n  than deciding it, per the EXQ versioning policy's \"when in doubt, new number\".)\n- related_claims: `MECH-341` (primary), `ARC-065` (precondition owner + parent pathway),\n  `MECH-442` (consumer of the preserved diversity -- reads the same class statistic downstream),\n  `INV-076`, `MECH-257`\n- acceptance_checks:\n  - R1 measured `mean_distinct_first_action_classes >= 4.5` (of 5) in ",
       "priority": "medium",
       "proposal_id": "EXP-1387",
       "proposal_type": "experimental",
@@ -40756,7 +40776,8 @@
       ],
       "source": "manual",
       "status": "proposed",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "governance_note_2026_09_23": "[GFLAG-0401] The retired label V3-EXQ-660c (it belonged to the graded-in-K successor) is removed from the proposed title; the queue id is assigned at queue time. The audit classes MECH-341 R0 (runnable now; V3-EXQ-949 showed the precondition reachable), so this proposal is the highest-readiness item in its batch."
     },
     {
       "acceptance_checks": [
@@ -41077,7 +41098,7 @@
         "SD-070",
         "GOV-MATCHAUX-1"
       ],
-      "blocked_note": "blocked at /queue-experiment Step 2.5a: the SD-070 P0a objective weights (presence/distance/proximity/reconstruction/variance/covariance) and the proximity target are unreachable from run_zworld_p0 / _train_all_on_agent, so INV-104's F1 verdict arm (generic-only compression) and its GOV-MATCHAUX-1 matched-arbitrary control (NDP-6) are both unconstructible; condition (i) is already discharged by reanalysis reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z (R_1 = -0.094, 3/3 seeds)",
+      "blocked_note": "[Re-pointed 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: INV-104 R2] The original blocker -- the P0a OBJECTIVE-DECOMPOSITION SEAM -- has LANDED: run_zworld_p0 gained config=ZWorldP0Config and target_fn in ree-v3 c0c47ee (2026-09-09) and _train_all_on_agent gained zworld_p0_config in 616e713 (2026-09-11), covering legs (a), (b) and (c) of the release_condition. The live gate is now R2 DV NON-RESPONSE: the adapter DV has not been shown to respond to the P0a objective at all (C0 failed 0/3 seeds), and the headroom statistic that certified the run green was measured on a different contrast class. Until the DV is re-gated on the objective-choice contrast and the sense-path probe is refit on the path it is evaluated on, every preservation verdict is vacuous rather than negative. Condition (i) remains discharged by reanalysis_inv104_class1_condition_i_retained_fraction_20260908T212933Z.",
       "claim_id": "INV-104",
       "design": "- Title: \"INV-104 class-1 preservation ladder: retained-fraction of organism-relevant distinction\n  access through the trained z_world compression, with scaffold-removal and matched-arbitrary-auxiliary\n  controls\"\n- related_claims: `INV-104` (primary), `GOV-MATCHAUX-1` (the admissibility rule the design\n  instantiates), `MECH-523` (the untrained-site precondition), `SD-070` (the trained-compression\n  recipe), `SD-018` (the class-1 scaffold), `MECH-517` (the H-B/H-C interpretation gate), `ARC-138`\n  (adjacent, NOT co-tagged as the DV -- see the fusion-risk note above).\n  NOT `INV-088`, NOT `MECH-457` -- the re-derive brake fired on both in the confirmed\n  V3-EXQ-978 autopsy (13 and 2 prior ceiling readings), and a redesign under a new question is\n  precisely what that brake permits.\n- Arms (5), 5 seeds: A0 `rawfield_ceiling` (adapter on the raw 25-dim `resource_field_view`);\n  A1 `zworld_untrained_projection` (floor); A2 `zworld_p0_generic` (SD-070 P0a with generic\n  scene-structure / anti-collapse objectives only -- the F1 verdict arm); A3\n  `zworld_p0_plus_class1_scaffold`, head REMOVED at evaluation; A4 `matched_arbitrary_auxiliary`,\n  equal capacity / loss budget / update frequency / matched target entropy, head removed at\n  evaluation.\n  GOV-REUSE-1: A0 and A1 are already measured by V3-EXQ-1002 (0.985 / 0.980 / 0.973 and\n  0.688 / 0.681 / 0.695) -- cite, do not re-run, unless the encoder config differs from 1002's, in\n  which case say so in the entry note.\n- acceptance_checks: NDP-1..NDP-7 as gating preconditions (each a named manifest field with its\n  measured value and threshold); CONFIRMING (i)-(iv) as the scientific criteria; F1/F2/F3 pre-registered\n  as named verdict labels so the reading cannot be selected after the fact; the H-B/H-C conditional\n  clause pre-registered as an interpretation gate keyed on V3-EXQ-1002's emitted label.\n- Sequencing / STOP-CHECK: gated on V3-EXQ-1002 having LANDED and been autopsied (currently\n  `status: claimed`, in flight). Coordinate with\n  `chip-20260904-regulatory-anchoring-matched-aux` -- that chip is ARC-138's A/B/C anchoring test;\n  this is INV-104's preservation ladder; they share arms A1/A4 and the GOV-MATCHAUX-1 controls and\n  could be run as one driver with two pre-registered readouts, but must not share one verdict\n  label.\n- Class-2 follow-on (same design, one knob): repeat with class 2, oracle = an\n  intervention-sensitivity discrimination (does the transition differ under intervention), enabling\n  `e2_action_contrastive_enabled=True`. This is also the operational form of the three-rival\n  adjudication frame INV-104's notes record: rival (a) predicts A2 already achieves high `R_2`\n  (= F1 for class 2); rival (c) predicts `R_2` rises with SD-056 enabled without any explicit \"self\"\n  target; rival (b) predicts organism-level DV does not move even when `R_2` does (= F2 for class 2).",
       "dispatch_mode": "multi_arm_ablation",
@@ -41105,7 +41126,8 @@
       "release_condition": "Release when the P0a OBJECTIVE-DECOMPOSITION SEAM exists. Route via /implement-substrate, NOT via another lettered experiment here. Concretely, three backwards-compatible pass-throughs: (a) run_zworld_p0 forwards presence_weight, distance_weight, proximity_weight, reconstruction_weight, variance_weight and covariance_weight to ZWorldP0Config, each defaulting to the current ZWorldP0Config default so every existing caller stays bit-identical; (b) run_zworld_p0 accepts a caller-supplied proximity-target callable defaulting to the existing resource_prox_target, which is what makes the GOV-MATCHAUX-1 matched-arbitrary arm constructible at equal head capacity, loss budget, update frequency and example count; (c) _train_all_on_agent forwards the same set. Note for whoever builds it: experiments/_lib/** is folded into substrate_hash, so this edit correctly busts existing arm-reuse fingerprints (a false MISS, which only costs compute) -- that is expected, and is not a reason to route the change around _lib.\n\nWHAT BECOMES RUNNABLE THE MOMENT THE SEAM LANDS: the measurement-only preservation ladder, 5 arms x >=3 seeds, no action-commitment substrate required and therefore NOT gated on the conversion / F-dominance ceiling -- A0 rawfield_ceiling (NDP-3), A1 untrained projection (NDP-4 floor), A2 generic-only (variance/covariance/reconstruction only, all four class-1 weights at 0.0) as the F1 verdict arm, A3 generic + class-1 scaffold, A4 generic + matched-arbitrary target through the new callable. Verdict statistic R_1 = (agreement_arm - agreement_A1) / (agreement_A0 - agreement_A1) via the V3-EXQ-1002 oracle adapter at its pinned 2x128 capacity. Pre-registered readings: F1 fires at R_1(A2) >= 0.75; condition (i) is already discharged (see gating_reason) and A2/A3 only need to replicate it; the R_k leg of (iii) is R_1(A3) - R_1(A2) >= 0.20 absolute; the GOV-MATCHAUX-1 discrimination of (iv) is R_1(A3) - R_1(A4) >= 2x SD of the seed-matched delta; condition (ii) losses-blind is delta world_obs reconstruction loss and delta E2 one-step prediction MSE between A3 and A2, each within 1 SD of the within-arm seed spread. Route F3 (scaffold dependence) is structurally non-applicable and should be reported as such rather than tested: SD-070's auxiliary heads belong to the TRAINER, not the substrate, and are discarded when train() returns, so NDP-6(ii) 'evaluation with the auxiliary head REMOVED' holds by construction.\n\nDO NOT queue the organism-level legs with that ladder. Conditions (iii)/(iv) read at the resources/episode DV, and route F2, stay blocked on NDP-5 until the competence floor is cleared -- the agent sits at ~0.27 res/ep against a 1.0 floor with the demonstrator anchor at 45.75, so a flat organism-level DV there is uninterpretable rather than negative, which is precisely the vacuous re-derivation of the known conversion ceiling. Split them into a separate proposal gated on the competence floor.\n\nTWO CHECKS TO RE-RUN AT QUEUE TIME rather than trusting this note: (1) Step 2.5c substrate-path overlap -- this session stopped at Step 2.5a and never reached a queue decision, and there are open corrupting entries (mode-governance-engagement, status implemented_pending_validation; SD-082) whose substrate_paths include ree_core/agent.py and ree_core/utils/config.py. They are almost certainly off a measurement-only driver's path (the ladder never runs the agent's decision loop -- no select_action, no sense(); the agent is an encoder container and the rollouts are oracle- or random-driven), but that is a judgement to make against the driver as actually written, not in advance. (2) V3-EXQ-1010's result: if the over-capacity decoder sweep recovers the oracle mapping at higher decoder capacity, R_1 at INV-104's own pinned adapter capacity remains the defined statistic, but its reading as content destruction rather than capacity limitation is contested, and the ladder's framing should say so explicitly.",
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "release_condition_note_2026_09_23": "The release_condition below (the P0a seam) is MET; do not read that as release. Operative release: the INV-104 adapter DV re-gated on the objective-choice contrast (C0 responds) and the sense-path probe refit on its evaluation path (GFLAG-0401)."
     },
     {
       "acceptance_checks": [
@@ -41216,8 +41238,14 @@
         "SD-031"
       ],
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_by": [
+        "SD-063"
+      ],
+      "blocked_note": "GFLAG-0401 (falsifier_completion_and_runnability_audit_20260921, SD-063 R4 / INV-022 R4): conditional_predictive_variance is never passed to e3.select() -- agent.py's _e3_select_kwargs carries no such key (re-verified 2026-09-23: zero hits in ree_core/agent.py), so select() always receives None and falls back to the EMA even with the flag True. A run setting only the flag would measure the EMA arm TWICE.",
+      "gating_reason": "The two-arm design's conditional arm is unreachable: the commit-gate consumer (e3_selector.py) exists, but nothing produces its input in the live loop. The fix is one kwarg in agent.py's _e3_select_kwargs (read head.predictive_variance for the leading candidate's (z_world, a) and pass it), not a new mechanism.",
+      "release_condition": "agent.py passes conditional_predictive_variance into e3.select() on the live path, with a contract test asserting the conditional arm differs from the EMA arm; then this proposal returns to proposed with the plumbing stated as a precondition."
     },
     {
       "acceptance_checks": [
@@ -43941,7 +43969,7 @@
       "exclude_broad_profile_sweeps": false,
       "gated_at_utc": "2026-08-02T13:59:40Z",
       "gated_by_session": "elastic-merkle-e0cca8",
-      "gating_reason": "claims.yaml implementation_phase=v4 for SD-027: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-027 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency').",
+      "gating_reason": "[Rewritten 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: R3 no boundary gate] The prior reason ('claims.yaml implementation_phase=v4 for SD-027') is stale -- the registry now carries implementation_phase v3. The actual blocker: the substrate does not exist -- ree_core has no boundary access gate, no top-k selector at the E1/E2 -> E3 boundary and no flag for one, so the falsifier's manipulation cannot be applied. Secondarily the MECH-457 competence-floor precondition is unresolved. Release when a boundary access gate is built.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for SD-027 via targeted experiment runs.",
       "priority": "medium",
@@ -45041,7 +45069,7 @@
       "exclude_broad_profile_sweeps": false,
       "gated_at_utc": "2026-08-02T14:28:07Z",
       "gated_by_session": "confident-franklin-c8e403",
-      "gating_reason": "substrate absent: ARC-072 (claims.yaml) explicitly scopes the diversity-bootstrapping epoch / persistent trajectory library (R1/R2, INV-073's direct mechanism) as a V4 architectural requirement -- implementation_note (2026-05-21) confirms gap 2 (cue gradient) closed by SD-055 but 'gap 1 (bootstrapping epoch / trajectory library) unchanged.' No trajectory_store/bootstrap-epoch code exists in ree_core/hippocampal/module.py as of 2026-08-02 (grep for trajectory_store/trajectory_library/bootstrap.*epoch: no hits).",
+      "gating_reason": "substrate absent: ARC-072 (claims.yaml) explicitly scopes the diversity-bootstrapping epoch / persistent trajectory library (R1/R2, INV-073's direct mechanism) as a V4 architectural requirement -- implementation_note (2026-05-21) records gap 2 (cue gradient) as closed by SD-055 [CORRECTED 2026-09-23, GFLAG-0401/GFLAG-0301: SD-055 closes only the CEM-side (elite-refit) barrier; the agent-side detach -- agent.py detaches z_world before extract_cue_context and detaches action_bias -- still severs the route from cue_action_proj on any trained-policy run; tracked by substrate_queue sd055-agent-side-detach-cue-action-proj-route] and 'gap 1 (bootstrapping epoch / trajectory library) unchanged.' No trajectory_store/bootstrap-epoch code exists in ree_core/hippocampal/module.py as of 2026-08-02 (grep for trajectory_store/trajectory_library/bootstrap.*epoch: no hits).",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for INV-073 via targeted experiment runs.",
       "priority": "medium",
