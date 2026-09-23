@@ -1,0 +1,102 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-23T18:25:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3",
+      "queue_id": "V3-EXQ-1079",
+      "claim_ids": [],
+      "bears_on": [
+        "SD-PP-B10-zworld-encoder-action-displacement",
+        "SD-PP-B5-z-world-per-step-displacement-range",
+        "MECH-573",
+        "MECH-574",
+        "INV-063",
+        "MECH-582",
+        "SD-008"
+      ],
+      "failed_criterion": "none -- PASS, determinate GROWS on the pre-registered paired contrast",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids: [] by design (pure diagnostic, non-contributory to confidence)",
+        "biological_reference": "n/a for the probe itself; the substrate question it serves (a forward model that must read its own action) is the corollary-discharge/reafference family SD-007 cites",
+        "prerequisites": "present -- all 4 pre-registered preconditions met (battery_rows 512>=32, distinct_actions 5>=2, rows_aligned 3>=2, positive_control_live_seeds 3>=2)",
+        "implementation": "complete -- ARM_OFF re-run of the landed V3-EXQ-1075 driver, same env/dims/budget/optimiser/rollout/seeds; substrate_commit a906c8a24c clean, substrate_stable_across_run true",
+        "environment": "wrong pressures -- the agent DIES of health_depleted at step 32/27/22 after env.reset() (governance re-probe, seeds 42/123/456, driver env params size=5 num_hazards=1 num_resources=3), and the driver NEVER READS done: env.step() returns (flat_obs, harm_signal, done, info, obs_dict) and both _collect_battery (:330) and the P0 loop (:499) take out[-1], discarding out[2]. With BURN_IN_STEPS=30 every one of the 512 battery rows is POST-DEATH, on a world_state that accrues without bound (|ws| 5.9 at step 31 -> 8.5 at 100 -> 21.2 at 300 -> 39.7 at 600). The driver's docstring:147 states this is inherited unchanged from V3-EXQ-1075.",
+        "measurement": "misleading -- d_act carries a genuinely ANALYTIC null of 0 (verified in code: _swap_errors averages the ERRORS over the 4 alternative actions, not the predictions, so there is no Jensen term; the recorded random-init head sits at |d| <= 0.022 in all 9 cells), but the DV is strongly NON-STATIONARY along the battery. Governance recompute from per_row_se_* at alpha 0.3: rows 0-63 give d_act -0.0762/+0.0556/-0.0321, rows 64+ give +0.1991/+0.2384/+0.2577, rows 448-511 give +0.4049/+0.2964/+0.2903. The battery is ONE ORDERED TRAJECTORY through a drifting accumulator, not 512 exchangeable transitions.",
+        "integration": "coupled -- the manipulation (alpha_world) moves the DV monotonically on 3/3 seeds and the positive control is live on 3/3",
+        "scale": "adequate in row count but NOT in independence -- 512 rows are serially dependent along one post-death trajectory; the paired row bootstrap resamples row indices and so does not price that dependence."
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- instrument/operating-point probe, not a mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No epistemic suppression is asserted. This is a claim-free instrument/operating-point diagnostic; its consequences are registry-side (re-open an SD verdict, correct two flags), not claim-status-side.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "PENDING -- claim-free; no claim evidence_quality_note is owed. Registry consequences are carried in routing and learning_extracted.",
+      "per_claim_recommendation": {},
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + ENVIRONMENT) -- not chargeable to REE and not to the mechanism. The defect is an instrument and environment-handling defect shared by this run and by V3-EXQ-1073/1075, which it inherited."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B5-z-world-per-step-displacement-range",
+        "title": "SD-PP-B5's validated-negative was measured at alpha_world 0.3 (violating SD-008's >= 0.9 floor) AND on a battery collected from a dead agent -- QUALIFY the verdict, do not re-open it",
+        "implementation_hint": "Do NOT read SD-PP-B5's validated-negative as a clean negative: both runs it rests on (V3-EXQ-1073, V3-EXQ-1075) ran at alpha_world 0.3, where per-step z_world displacement is 3.0-3.1x smaller, and both collect their battery after the agent has died of health_depleted without ever reading `done`. EQUALLY, do NOT read V3-EXQ-1079 as evidence the manipulation works: the head's absolute predictive quality FALLS with alpha (model_r2 0.88->0.72 on 3/3) and it remains below the identity predictor at every alpha tested. Any re-validation must (a) set alpha_world >= 0.9 explicitly and record it, (b) reset the env on `done` or record the battery's post-death position and world_state norm, and (c) route on a statistic with an ANALYTIC null, not a measured battery-ratio null.",
+        "unblocks_claims": [
+          "MECH-573",
+          "MECH-574",
+          "MECH-572",
+          "INV-063"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "substrate_paths": [
+          "ree_core/utils/config.py",
+          "ree_core/latent/stack.py",
+          "ree_core/environment/causal_grid_world.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3",
+          "experiment_type": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe",
+          "metric": "alpha_world 0.3 vs 0.9: rms_dz_per_dim 0.0073-0.0086 -> 0.0228-0.0261 (3.0-3.1x); head action-read d_act +0.17/+0.23/+0.24 -> +0.39/+0.50/+0.50 (paired-bootstrap CI above 0 on 3/3). BUT model_r2 FALLS 0.8828/0.9214/0.8792 -> 0.7247/0.6795/0.7030 and skill_vs_identity stays negative at every alpha. Battery non-stationary: d_act rows 0-63 = -0.0762/+0.0556/-0.0321 vs rows 448-511 = +0.4049/+0.2964/+0.2903, on a post-death trajectory (health_depleted at step 32/27/22; |world_state| 5.9->39.7 over 600 steps).",
+          "target": "A re-validation must set alpha_world >= 0.9 explicitly AND reset on `done` (or record post-death position + world_state norm per battery row) AND report model_r2 alongside any persistence-relative skill, so a baseline collapse is never readable as head improvement.",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "VERDICT STANDS: the pre-registered GROWS route is ROBUST and survives the red-team. d_act(0.9) > d_act(0.3) in every 64-row block of every seed, and the governance recompute reproduces every recorded value exactly. Raising alpha_world from 0.3 to 0.9 really does increase the world-forward head's action read.",
+        "GFLAG-0434 is CONFIRMED AT SOURCE by a purpose-built run. The action-blind null of 0.5632/0.5824/0.5063 that GFLAG-0432 and the V3-EXQ-1075a stop handover rest on is reproduced EXACTLY under 1075's collection order and shown to be a warm-up/order artifact: counterfactual-battery-first gives 2.3397/2.4102/2.2556, and with burn-in it lands at 1.0404/1.2012/0.9337, on top of the random-init null 1.0063/1.0184/1.0019.",
+        "GFLAG-0433's premise is now MEASURED, not argued: per-step z_world displacement is 3.0-3.1x larger at alpha_world 0.9 than 0.3 (rms_dz_per_dim 0.0073-0.0086 -> 0.0228-0.0261), and V3-EXQ-1073/1075 both inherited 0.3 from REEConfig.from_dims against SD-008's stable floor of >= 0.9.",
+        "GFLAG-0432 MUST NOT BE APPLIED AS DRAFTED, and the reason is stronger than first drafted. Its evidence (the trained OFF head leading a MEASURED blind null by 0.20-0.30) is invalid -- against the corrected burn-in null the head sits BELOW on 3/3. Its CONCLUSION ('the head already reads its action at 0.3') is ALSO regime-dependent: on the 1075-comparable 64-row window d_act at alpha 0.3 is -0.0762/+0.0556/-0.0321, i.e. NEGATIVE on 2 of 3 seeds. The conclusion holds only on the full 512-row drifted battery. So the fix is NOT to re-denominate criterion (i) on a better measured null -- any measured null on this battery inherits the non-stationarity -- it is to route on a statistic with an ANALYTIC null AND to fix the battery.",
+        "THE HEAD DOES NOT IMPROVE WITH ALPHA -- the persistence sign-flip is BASELINE-DRIVEN, and this is the single most misreadable number in the run. persistence_relative_skill goes -0.2335/-0.0748/-0.3019 at alpha 0.3 to +0.2429/+0.1303/+0.1992 at 0.9, which reads as the head becoming competent. It is not: model_r2 FALLS on 3/3 seeds (0.8828->0.7247, 0.9214->0.6795, 0.8792->0.7030) while persistence_r2 collapses further (0.9272->0.5480, 0.9324->0.5835, 0.9352->0.5553). Less EMA smoothing makes copy-the-input a much worse predictor; the head is an absolutely WORSE predictor at 0.9 and merely loses by less. Consistent with this, skill_vs_identity_1075_order stays NEGATIVE at every alpha (-5.82/-2.24/-8.39 at 0.3; -2.14/-2.08/-2.68 at 1.0).",
+        "SHARED INSTRUMENT DEFECT ACROSS THE LINEAGE, and it is the finding with the widest reach: the agent dies (health_depleted) at step 32/27/22 after env.reset() and the driver never reads `done` (env.step returns (flat_obs, harm_signal, done, info, obs_dict); _collect_battery:330 and the P0 loop:499 both take out[-1]). Every battery row is post-death on an unboundedly accruing world_state. The driver's own docstring:147 records this as INHERITED UNCHANGED FROM V3-EXQ-1075 -- so V3-EXQ-1073 and V3-EXQ-1075, the two runs SD-PP-B5's validated-negative rests on, carry it too. Whether other runs in the corpus share it is NOT established here and is raised to the user as a scoping decision, not assumed.",
+        "The 512-row battery choice reached positive-control liveness (1/3 -> 3/3 seeds) by EXTENDING INTO THE DRIFTED REGIME, not by narrowing a confidence interval. Governance recompute: the positive control's own rows 0-63 read -0.0089/+0.1375/+0.0939 at alpha 0.3, i.e. near-zero linearly readable action information early in the battery. The instrument choice is therefore not outcome selection, but its stated justification (liveness as a clean non-degeneracy criterion) is not the whole story and is corrected here.",
+        "RECORDING PRECEDENT: alpha_world was never set by V3-EXQ-1073/1075 and was inherited silently from REEConfig.from_dims. A parameter that moves a DV 3x must be explicitly set and recorded, not inherited. The manifest's config block also omits BURNIN_BATTERY_N=512, the single most consequential instrument parameter in this run."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Two routes, both owed. (1) /queue-experiment: a re-validation of the SD-PP-B5 question at alpha_world >= 0.9 on a battery that resets on `done`. This is a NEW question (does the margin manipulation help at a non-damped operating point on a live agent?), not a lettered re-run of 1075. (2) The shared dead-agent battery defect is an instrument defect affecting at least V3-EXQ-1073/1075/1079; its corpus reach is NOT established here and is raised to the user as a scoping decision rather than assumed."
+    }
+  ],
+  "cluster_pattern": null,
+  "red_team": {
+    "verdict": "CONTESTED",
+    "model": "fable (cross-model; session model is Opus 5)",
+    "findings_adopted": 4,
+    "note": "Six findings returned; four adopted and they CHANGED this artifact materially (the GROWS verdict survived, three readings did not). Every adopted finding was independently re-verified by the governance session before adoption -- the per-row d_act recompute, the model_r2/persistence_r2 table, the grep for `done` in the driver, and a fresh env probe."
+  }
+}
