@@ -10027,7 +10027,8 @@
         "MECH-517",
         "MECH-518",
         "MECH-523",
-        "MECH-532"
+        "MECH-532",
+        "MECH-537"
       ],
       "failure_record": [],
       "implementation_hint": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O is untrained; wire a training signal (SD-056 contrastive or a consequence-grounding loss) so downstream MECH-516/517/518/523/532 become testable.",
@@ -10048,7 +10049,8 @@
         "registration_is_not_build_authorisation": true,
         "experiment_queued": false,
         "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
-      }
+      },
+      "governance_2026_09_23": "GFLAG-0282 (third premise): MECH-537 added to unblocks_claims -- claims.yaml MECH-537 depends_on SD-080 ('frozen action-object projection'), and V3-EXQ-1010 names SD-080 as MECH-537's candidate new locus."
     },
     {
       "sd_id": "SD-086",
