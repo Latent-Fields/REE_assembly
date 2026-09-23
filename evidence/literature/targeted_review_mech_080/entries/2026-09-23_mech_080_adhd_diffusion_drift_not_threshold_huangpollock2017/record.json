@@ -1,0 +1,58 @@
+{
+  "claim_ids_tested": [
+    "MECH-080"
+  ],
+  "source": {
+    "title": "Using the Diffusion Model to Explain Cognitive Deficits in Attention Deficit Hyperactivity Disorder",
+    "authors": [
+      "Cynthia Huang-Pollock",
+      "Roger Ratcliff",
+      "Gail McKoon",
+      "Zvi Shapiro",
+      "Alexander Weigard",
+      "Hilary Galloway-Long"
+    ],
+    "year": 2017,
+    "venue": "Journal of Abnormal Child Psychology",
+    "doi": "10.1007/s10802-016-0151-y",
+    "pmid": "27030470",
+    "pmc": "PMC5045756",
+    "volume": "45",
+    "issue": "1",
+    "pages": "57-68"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "The most direct external challenge to MECH-080's arm 1. The claim attributes ADHD to a truncation set-point -- an urgency threshold set too low, producing premature commitment. The best-powered diffusion-model work localises ADHD's deficit to DRIFT RATE (evidence-accumulation efficiency), not boundary separation, in a well-powered sample (N=97 ADHD / 39 control) by the authors who built the model. Drift rate is a competence parameter, which places arm 1 squarely inside MECH-080's own 'reduces to lost competence' falsifier. Held at 0.70 rather than higher because a go/no-go task has no multi-step rollout at all, so the mapping is to REE's commit threshold rather than to rollout depth.",
+  "failure_signatures": [
+    "ADHD's diffusion-model signature was reduced drift rate to no-go decisions, not lowered boundary separation -- if premature commitment in ADHD is an accumulation-QUALITY deficit rather than a THRESHOLD setting, MECH-080's arm 1 is mis-specified at the parameter level.",
+    "ADHD children showed an INCREASED starting point (bias toward responding) alongside reduced drift, so the observed prematurity is jointly produced by bias and poor accumulation -- a REE manipulation of rollout_horizon alone cannot reproduce this and a match on behaviour would be a false positive.",
+    "Because drift rate IS competence, any REE result in which a shortened rollout_horizon produces premature harmful commits is indistinguishable from the conversion-ceiling competence artefact that MECH-080's own precondition rules out as uninformative."
+  ],
+  "tags": [
+    "mech-080",
+    "adhd",
+    "drift-diffusion",
+    "drift-rate",
+    "boundary-separation",
+    "competence-confound"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 97 children with ADHD and 39 controls aged 8-10 performing go/no-go tasks at varying event rates, diffusion-model decomposition attributed ADHD's higher rate of failed inhibitions to a reduced drift rate toward no-go decisions at faster event rates, alongside an increased starting point, rather than to a lowered decision boundary.",
+    "ree_translation": "Directly contests MECH-080's arm-1 parameterisation. The claim reads ADHD as a BG urgency threshold set too low -- in REE terms a lowered commit threshold or a shortened rollout, both of which are policy settings that leave the underlying model intact. This paper says the ADHD signature is instead degraded evidence quality, which in REE maps to a worse z_world / E1-E2 readout rather than to any truncation set-point.",
+    "mapping_caveat": "A go/no-go task involves a single-step decision with no forward rollout whatsoever, so the boundary parameter here is an analog of REE's E3 commit threshold and NOT of config.e2.rollout_horizon. The paper cannot adjudicate rollout DEPTH directly; what it adjudicates is whether ADHD's prematurity is a threshold phenomenon at all, which is the prior question MECH-080's arm 1 assumes an answer to. Children aged 8-10 to a REE agent is a further and substantial step.",
+    "source_context": "Children aged 8-10, ADHD (N=97, 33 girls) vs control (N=39, 26 girls); go/no-go tasks across manipulated event rates; Ratcliff diffusion model decomposition."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Ratcliff and McKoon are the diffusion model's authors, N is well above typical for the design, and the event-rate manipulation is the right way to stress the parameter separation. Mapping fidelity 0.60 -- the threshold-vs-drift distinction transfers cleanly to REE, the single-step task limits inference about rollout depth. Transfer risk 0.40 for the paediatric-to-agent step."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-23_mech_080_adhd_diffusion_drift_not_threshold_huangpollock2017",
+  "timestamp_utc": "2026-09-23T07:35:32Z",
+  "summary_path": "summary.md"
+}

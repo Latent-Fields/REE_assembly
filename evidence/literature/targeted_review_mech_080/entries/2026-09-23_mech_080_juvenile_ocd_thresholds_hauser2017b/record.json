@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "MECH-080"
+  ],
+  "source": {
+    "title": "Increased decision thresholds enhance information gathering performance in juvenile Obsessive-Compulsive Disorder (OCD)",
+    "authors": [
+      "Tobias U. Hauser",
+      "Michael Moutoussis",
+      "Reto Iannaccone",
+      "Susanne Brem",
+      "Susanne Walitza",
+      "Renate Drechsler",
+      "Peter Dayan",
+      "Raymond J. Dolan"
+    ],
+    "year": 2017,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1005440",
+    "pmid": "28403139",
+    "pmc": "PMC5406001",
+    "volume": "13",
+    "issue": "4",
+    "pages": "e1005440"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Two findings pulling opposite ways on MECH-080, in a small sample. It REFUTES the claim's arm-3 assignment (diagnosed OCD showed the extension/over-withholding phenotype the claim reserves for anxiety, not lock-in), while it DEFENDS the claim against its own competence falsifier (OCD patients outperformed controls, so the threshold shift was not degraded competence). n=16 per group caps confidence regardless of how apt the design is.",
+  "failure_signatures": [
+    "Diagnosed OCD patients showed raised decision thresholds and extended sampling -- MECH-080's arm 3 predicts perseverative lock-in for OCD and assigns extended withholding to anxiety, so the observed phenotype is on the wrong arm.",
+    "OCD patients scored HIGHER than controls, so the manipulation-of-interest improved rather than degraded performance; any REE result in which shifted commitment timing is accompanied by uniformly worse task performance is therefore NOT reproducing this clinical signature and more likely reflects lost competence.",
+    "Sample of 16 per group means a null on any single arm of a three-way dissociation would be uninformative at this power; the claim's dissociation design needs more than this literature currently supports."
+  ],
+  "tags": [
+    "mech-080",
+    "ocd",
+    "decision-threshold",
+    "information-gathering",
+    "juvenile",
+    "competence-confound"
+  ],
+  "mapping": {
+    "source_claim_statement": "Sixteen juvenile OCD patients and sixteen matched controls performed a sequential information-gathering task under manipulated sampling costs. Groups differed in draws-to-decision but not accuracy, and OCD patients achieved significantly more points overall. A Bayesian model with a non-linearly escalating subjective sampling cost attributed the difference to delayed cost emergence and a raised decision threshold in the OCD group.",
+    "ree_translation": "Speaks directly to MECH-080's own non-degeneracy precondition and falsifier clause. The claim says a failure is uninformative if all effects reduce to lost competence; this paper is a clinical existence proof that a commitment-timing shift can be competence-NEUTRAL or even competence-POSITIVE, which is the pattern a valid REE dissociation would need to reproduce rather than a uniform performance drop.",
+    "mapping_caveat": "Diagnosed juvenile OCD is not a REE agent with a deep hippocampal basin, and the paper offers no attractor-dynamics measurement at all -- the inference from 'raised threshold' to 'deep basin' is entirely REE-side and unsupported here. The arm-assignment conflict is the substantive caveat and must be reported, not filed as a detail: this is a diagnosed OCD group presenting with the phenotype MECH-080 assigns to anxiety.",
+    "source_context": "Juvenile OCD outpatients vs matched healthy controls, n=16 per group; laboratory sequential sampling task with external cost manipulation; one author declares pharmaceutical speaker honoraria."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Venue and modelling are strong but n=16/16 is small for a case-control group difference and caps source quality at 0.70. Mapping fidelity 0.50: the competence-neutrality finding transfers well, the threshold-to-basin-depth inference does not transfer at all. Transfer risk 0.45 -- juvenile clinical sample, and juvenile OCD may not generalise to adult OCD let alone to a REE rollout parameter."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-23_mech_080_juvenile_ocd_thresholds_hauser2017b",
+  "timestamp_utc": "2026-09-23T07:35:32Z",
+  "summary_path": "summary.md"
+}

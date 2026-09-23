@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-23T07:07:13.598176Z`
+Generated: `2026-09-23T07:58:27.326500Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -349,6 +349,7 @@ Generated: `2026-09-23T07:07:13.598176Z`
 | `targeted_review_mech_064` | [`2026-09-19_mech_064_structural_design_patterns_beurerkellner2025`](targeted_review_mech_064/entries/2026-09-19_mech_064_structural_design_patterns_beurerkellner2025/record.json) | 5 | [`summary`](targeted_review_mech_064/entries/2026-09-19_mech_064_structural_design_patterns_beurerkellner2025/summary.md) |
 | `targeted_review_mech_067` | [`2026-09-19_mech_067_serverless_overprivilege_yeboahduako2026`](targeted_review_mech_067/entries/2026-09-19_mech_067_serverless_overprivilege_yeboahduako2026/record.json) | 5 | [`summary`](targeted_review_mech_067/entries/2026-09-19_mech_067_serverless_overprivilege_yeboahduako2026/summary.md) |
 | `targeted_review_mech_074b` | [`2026-08-07_mech_074b_gist_detail_lesion_adolphs2001`](targeted_review_mech_074b/entries/2026-08-07_mech_074b_gist_detail_lesion_adolphs2001/record.json) | 4 | [`summary`](targeted_review_mech_074b/entries/2026-08-07_mech_074b_gist_detail_lesion_adolphs2001/summary.md) |
+| `targeted_review_mech_080` | [`2026-09-23_mech_080_pavlovian_pruning_planning_depth_huys2012`](targeted_review_mech_080/entries/2026-09-23_mech_080_pavlovian_pruning_planning_depth_huys2012/record.json) | 5 | [`summary`](targeted_review_mech_080/entries/2026-09-23_mech_080_pavlovian_pruning_planning_depth_huys2012/summary.md) |
 | `targeted_review_mech_090_release_motor_cessation` | [`2026-06-02_mech_090_stn_decision_threshold_cavanagh2011`](targeted_review_mech_090_release_motor_cessation/entries/2026-06-02_mech_090_stn_decision_threshold_cavanagh2011/record.json) | 4 | [`summary`](targeted_review_mech_090_release_motor_cessation/entries/2026-06-02_mech_090_stn_decision_threshold_cavanagh2011/summary.md) |
 | `targeted_review_mech_098` | [`2026-04-16_mech_098_auditory_sis_whitford2019`](targeted_review_mech_098/entries/2026-04-16_mech_098_auditory_sis_whitford2019/record.json) | 4 | [`summary`](targeted_review_mech_098/entries/2026-04-16_mech_098_auditory_sis_whitford2019/summary.md) |
 | `targeted_review_mech_099` | [`2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value`](targeted_review_mech_099/entries/2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value/record.json) | 4 | [`summary`](targeted_review_mech_099/entries/2026-04-05_mech099_wikenheiser_schoenbaum_2016_cognitive_maps_value/summary.md) |

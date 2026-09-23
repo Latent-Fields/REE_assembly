@@ -1,0 +1,57 @@
+{
+  "claim_ids_tested": [
+    "MECH-080"
+  ],
+  "source": {
+    "title": "Increased decision thresholds trigger extended information gathering across the compulsivity spectrum",
+    "authors": [
+      "Tobias U. Hauser",
+      "Michael Moutoussis",
+      "NSPN Consortium",
+      "Peter Dayan",
+      "Raymond J. Dolan"
+    ],
+    "year": 2017,
+    "venue": "Translational Psychiatry",
+    "doi": "10.1038/s41398-017-0040-3",
+    "pmid": "29249811",
+    "pmc": "PMC5802702",
+    "volume": "7",
+    "issue": "12",
+    "pages": "1296"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Strong on the claim's FORM and adverse to its CONTENT, which is why it is 'mixed' rather than either pole. It confirms that a single accumulation-threshold parameter generates a dissociable, dimensionally-graded commitment phenotype in a large population-representative sample -- the shape MECH-080 predicts. But it lands extended, over-withheld commitment on the COMPULSIVITY dimension, where MECH-080 assigns extension-bias to anxiety and reserves compulsivity/OCD for attractor lock-in. Held below 0.7 because the accumulation threshold governs an information-sampling stopping rule, not forward-rollout depth.",
+  "failure_signatures": [
+    "Extended information gathering loaded on compulsivity and NOT on the anxiety/depression dimensions measured in the same sample -- MECH-080's arm 2 (anxiety = extension-biased, suppressed commitment) predicts the opposite loading and is not observed here.",
+    "The threshold effect was driven by DELAYED EMERGENCE OF URGENCY rather than a statically raised bound, so a REE manipulation that sets a fixed higher commit threshold would not reproduce the mechanism the paper identifies.",
+    "If one parameter family is to produce all three of MECH-080's arms, this result forces compulsivity onto the extension arm, leaving arm 3 (lock-in) without a distinct psychiatric occupant."
+  ],
+  "tags": [
+    "mech-080",
+    "compulsivity",
+    "decision-threshold",
+    "information-gathering",
+    "urgency",
+    "computational-psychiatry"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a population-representative sample stratified by psychiatric dimension, subjects high in compulsivity sampled more information before committing on a sequential information-gathering task; computational modelling attributed this to a raised decision threshold arising from a delayed emergence of an impatience/urgency signal, and the effect was specific to the compulsivity dimension.",
+    "ree_translation": "Direct external support for MECH-080's core architectural bet: that a commitment-threshold parameter sitting on top of a sampling/search process is sufficient to generate a graded, psychiatrically-loading over-withholding phenotype without any disorder-specific machinery. In REE terms this is the E3 commit threshold plus an urgency term, and the paper shows a single such parameter tracks a real symptom dimension.",
+    "mapping_caveat": "Two boundaries. (1) The threshold here governs WHEN TO STOP SAMPLING EXTERNAL EVIDENCE, not how deep to roll out an internal model -- REE's rollout_horizon and its commit threshold are different knobs, and this paper measures the analog of the latter. (2) The disorder assignment actively conflicts with MECH-080: extension-bias loads on compulsivity, not anxiety. Citing this as support for the claim as written would misreport what it found.",
+    "source_context": "Human adolescents and young adults, NSPN population-representative cohort, dimensional psychiatric stratification rather than diagnosed groups; sequential information-gathering task with cost-free and costly sampling conditions."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High source quality: large population-representative sample, dimensional rather than case-control design, explicit generative model. Mapping fidelity low because of the sampling-threshold vs rollout-depth substitution AND the arm misassignment. Transfer risk moderate: dimensional symptom scores to named disorders is itself a step."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-23_mech_080_compulsivity_decision_threshold_hauser2017",
+  "timestamp_utc": "2026-09-23T07:35:32Z",
+  "summary_path": "summary.md"
+}

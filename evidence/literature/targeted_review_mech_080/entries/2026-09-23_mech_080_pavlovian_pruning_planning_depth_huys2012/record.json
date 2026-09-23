@@ -1,0 +1,56 @@
+{
+  "claim_ids_tested": [
+    "MECH-080"
+  ],
+  "source": {
+    "title": "Bonsai trees in your head: how the Pavlovian system sculpts goal-directed choices by pruning decision trees",
+    "authors": [
+      "Quentin J. M. Huys",
+      "Neir Eshel",
+      "Elizabeth O'Nions",
+      "Luke Sheridan",
+      "Peter Dayan",
+      "Jonathan P. Roiser"
+    ],
+    "year": 2012,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1002410",
+    "pmid": "22412360",
+    "pmc": "PMC3297555",
+    "volume": "8",
+    "issue": "3",
+    "pages": "e1002410"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Canonical, well-specified modelling of exactly the construct MECH-080 needs to exist -- a truncation set-point on forward search that varies between individuals and covaries with psychopathology. Downweighted because the truncation here is VALUE-CONTINGENT branch termination (stop on encountering a large loss), not the uniform depth cap that REE's rollout_horizon implements, and the psychopathology axis is sub-clinical mood rather than any of MECH-080's three named disorders.",
+  "failure_signatures": [
+    "Pruning persisted even where it was demonstrably counterproductive, i.e. the truncation set-point did not adapt to task statistics -- a REE rollout_horizon that self-tunes to the environment would NOT reproduce this signature.",
+    "The pruning parameter is elicited by a specific event (a large loss) rather than being a standing horizon setting, so a manipulation that shortens rollout_horizon uniformly is not the same intervention as the one this paper models."
+  ],
+  "tags": [
+    "mech-080",
+    "planning-depth",
+    "decision-tree-pruning",
+    "rollout-truncation",
+    "computational-psychiatry"
+  ],
+  "mapping": {
+    "source_claim_statement": "Humans planning over sequential decision trees curtail further evaluation of a branch as soon as they encounter a large loss; this pruning is reflexive and Pavlovian rather than deliberative, persists when counterproductive, and its strength covaries with sub-clinical mood disturbance.",
+    "ree_translation": "Establishes the substrate premise MECH-080 rests on: forward-search depth is not fixed by the architecture but is set by a separable, individually-varying parameter, and variation in that parameter tracks affective psychopathology. In REE terms this is the closest published analog of config.e2.rollout_horizon being an individual-difference dimension rather than a hyperparameter.",
+    "mapping_caveat": "Pruning is not rollout_horizon. Huys' subjects truncate CONDITIONALLY on encountering an aversive outcome; REE's rollout_horizon is an unconditional depth cap applied to every rollout. The paper therefore supports 'search depth is a psychiatrically meaningful individual difference' but does NOT license reading rollout_horizon as the parameter those individual differences load on. It also says nothing about ADHD, anxiety or OCD specifically.",
+    "source_context": "Healthy adult humans, laboratory sequential-decision task with monetary outcomes; model-comparison over lookahead strategies; mood measured by self-report in the sub-clinical range."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (PLoS CB, heavily cited, explicit model comparison). Mapping fidelity is the binding constraint: value-contingent pruning vs uniform horizon cap. Transfer risk moderate -- healthy sub-clinical sample used to ground a claim about three diagnosed disorders."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-23_mech_080_pavlovian_pruning_planning_depth_huys2012",
+  "timestamp_utc": "2026-09-23T07:35:32Z",
+  "summary_path": "summary.md"
+}

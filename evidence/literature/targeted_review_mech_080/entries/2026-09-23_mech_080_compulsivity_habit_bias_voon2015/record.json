@@ -1,0 +1,69 @@
+{
+  "claim_ids_tested": [
+    "MECH-080"
+  ],
+  "source": {
+    "title": "Disorders of compulsivity: a common bias towards learning habits",
+    "authors": [
+      "Valerie Voon",
+      "Katherine Derbyshire",
+      "Christian Ruck",
+      "Michael A. Irvine",
+      "Yulia Worbe",
+      "Jesper Enander",
+      "Liana R. Schreiber",
+      "Claire Gillan",
+      "Naomi A. Fineberg",
+      "Barbara J. Sahakian",
+      "Trevor W. Robbins",
+      "Neil A. Harrison",
+      "Jonathan Wood",
+      "Nathaniel D. Daw",
+      "Peter Dayan",
+      "Jon E. Grant",
+      "Edward T. Bullmore"
+    ],
+    "year": 2015,
+    "venue": "Molecular Psychiatry",
+    "doi": "10.1038/mp.2014.44",
+    "pmid": "24840709",
+    "volume": "20",
+    "issue": "3",
+    "pages": "345-352"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Supports MECH-080's arm-3 DV -- repeated obsolete actions after contingency change -- transdiagnostically and with structural correlates, which is a strong form of the behavioural prediction. Discounted to 0.60 because the paper's MECHANISM is a competing account rather than the claim's: control shifts OUT of the model-based planner into a model-free habit system, whereas MECH-080 wants the pathology to live as a deep basin INSIDE the rollout map. Both predict perseveration; they predict different things about whether rollout is happening at all.",
+  "failure_signatures": [
+    "The perseveration is attributed to model-free habit dominance -- i.e. to forward search being BYPASSED -- not to a deep attractor within forward search; a REE agent showing arm-3 perseveration because rollout was disengaged would satisfy the DV while refuting the mechanism.",
+    "The bias was shared across OCD, binge eating disorder and methamphetamine use disorder, so perseveration after contingency change is NOT OCD-specific and cannot by itself identify the arm-3 phenotype in a three-way dissociation.",
+    "Gray matter correlates in caudate and medial orbitofrontal cortex locate the effect in a cortico-striatal habit circuit that REE's hippocampal rollout map does not model, so the substrate claim in MECH-080 has no anatomical support here."
+  ],
+  "tags": [
+    "mech-080",
+    "ocd",
+    "compulsivity",
+    "habit",
+    "model-free",
+    "perseveration",
+    "transdiagnostic"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across three disorders of compulsivity -- obsessive-compulsive disorder, binge eating disorder and methamphetamine use disorder -- subjects showed a common shift toward model-free (habitual) rather than model-based (goal-directed) control on a two-step sequential decision task, and the degree of habit bias correlated with lower gray matter volume in caudate and medial orbitofrontal cortex.",
+    "ree_translation": "Supports the behavioural dependent variable MECH-080 nominates for arm 3: action selection that persists after the contingency it was built for has changed. In REE the corresponding measurement already has an instrument -- world_rule_shift_enabled applies action-pair transpositions and emits steps_since_world_rule_shift -- so perseveration-after-shift is scoreable even though the rest of arm 3 is substrate-blocked.",
+    "mapping_caveat": "The mechanism is a rival, not a confirmation. MECH-080 posits an abnormally deep basin within the hippocampal rollout map such that normal signals cannot trigger basin exit -- pathology INSIDE forward search. Voon et al. describe control being ceded to a habit system that does not forward-search at all -- pathology consisting of forward search being ABSENT. The two are behaviourally convergent and architecturally opposite, and a REE experiment scoring only the DV cannot tell them apart. Any arm-3 design must add a measurement of whether rollout is still running.",
+    "source_context": "Adult clinical samples across three compulsivity diagnoses plus controls; two-step model-based/model-free decision task; structural MRI gray-matter correlation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality 0.80: Molecular Psychiatry, a strong transdiagnostic design with convergent structural imaging and an author list that is most of the field. Mapping fidelity 0.50 is the binding discount and reflects the rival-mechanism problem, not a weakness in the paper. Transfer risk 0.45 -- adult clinical populations and a cortico-striatal circuit to a hippocampal rollout parameter is a long step."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-23_mech_080_compulsivity_habit_bias_voon2015",
+  "timestamp_utc": "2026-09-23T07:35:32Z",
+  "summary_path": "summary.md"
+}
