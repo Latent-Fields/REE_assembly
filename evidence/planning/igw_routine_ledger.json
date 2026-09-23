@@ -6624,7 +6624,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-09-23T09:49:56Z",
       "staged_at": "2026-09-23T09:49:56Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-09-23T14:34:52Z",
+      "completion_summary": "Superseded by ungated dispatched session zworld-b9-20260923 (fleet Orchestrator orchestrate-20260922-subagent-wave), which holds human assent given 2026-09-23 for the SD-PP-B9 INSTRUMENT piece. This IGW item was staged 09:49:56Z behind the REQUIRES_HUMAN_SKILLS assent gate and never started (pid None, session_uuid None). Closed DUPLICATE so it cannot later be clicked and re-run the same work.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "Superseded by ungated dispatched session zworld-b9-20260923 (fleet Orchestrator orchestrate-20260922-subagent-wave), which holds human assent given 2026-09-23 for the SD-PP-B9 INSTRUMENT piece. This IGW item was staged 09:49:56Z behind the REQUIRES_HUMAN_SKILLS assent gate and never started (pid None, session_uuid None). Closed DUPLICATE so it cannot later be clicked and re-run the same work."
     }
   ],
   "dispositions": [
@@ -9629,6 +9633,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-23T08:23:12Z",
       "re_eligible_after": "2026-09-25T08:23:12Z"
+    },
+    {
+      "stable_hash": "2d055171fb2e",
+      "igw_id_at_disposition": "IGW-20260923-228",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-055 (PARTIAL -- necessary, not sufficient)"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: SD-PP-B9-harm-forward-below-persistence-baseline",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-23T14:34:52Z",
+      "re_eligible_after": "2026-09-25T14:34:52Z"
     }
   ]
 }
