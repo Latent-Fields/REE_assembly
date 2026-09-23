@@ -1,0 +1,187 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-23T19:55:42Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "compassionate-greider-803fd7",
+  "chip_ref": "chip-20260923-arc023-942-reread",
+  "readjudication_of": "failure_autopsy_V3-EXQ-942_2026-08-21",
+  "readjudication_scope": "ARC-023 only, under the GFLAG-0406 option-A narrowed falsifier (E3-only realized cadence; REE_assembly 6b0d1cb1dc). The prior artifact's INV-013 disposition (non_contributory / derivational / STANDS) and its C1 persistence reading are NOT re-opened.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_942_inv013_e_ladder_realised_timescale_separation_20260820T073245Z_v3",
+      "queue_id": "V3-EXQ-942",
+      "claim_ids": [
+        "ARC-023"
+      ],
+      "bears_on": [
+        "ARC-023",
+        "SD-006",
+        "MECH-091",
+        "ARC-148"
+      ],
+      "failed_criterion": "absolute",
+      "failed_criterion_note": "Under the narrowed ARC-023 falsifier the run was never scored (it predates the falsifier). Re-read: the 'E3 slower than the per-step loops' leg is MET on all 3 seeds. The 'tracks configured period within a pre-registered tolerance' leg cannot be met (no tolerance pre-registered) and is DEPARTED on seed 37 only: MECH-093 sets E3's period from |z_beta| every step (band 5-20, share 0.05-0.20), seeds 11/23 (0.153/0.169) sit inside that band and are undetermined, seed 37 (0.394) exceeds even the fastest configured period. The falsifier's own named PARTIAL cell.",
+      "facts": {
+        "per_seed_e3_share": {
+          "11": 0.1525,
+          "23": 0.1688,
+          "37": 0.3938
+        },
+        "configured_e3_share_band_mech093": [
+          0.05,
+          0.2
+        ],
+        "configured_e3_share_note": "NOT 0.10. As run (ree-v3 f0cb0d59) _e1_tick calls clock.update_e3_rate_from_beta(z_beta) unconditionally every step (agent.py:5406); defaults beta_rate_min_steps=5, beta_rate_max_steps=20, beta_magnitude_scale=1.0 (config.py:2770-2772); _current_e3_steps = int(20*(1-t)+5*t), t=clamp(|z_beta|). |z_beta| was not recorded. The 375/375/90 'configured' figure in the 2026-08-21 autopsy, GFLAG-0406 and ARC-023's note assumes a fixed period 10 and is false as run.",
+        "seed37_min_reset_driven_share": 0.194,
+        "seeds_11_23_excess": "undetermined in sign (inside the MECH-093 band)",
+        "e1_share": 1.0,
+        "e2_flag_share": {
+          "11": 0.3333,
+          "23": 0.3333,
+          "37": 0.3226
+        },
+        "reset_sources_as_run": "harm trigger (agent.py:10015 as run, every owned harm_signal<0 step, no onset gate) and legacy commit-entry (agent.py:9107 as run, fires on every fresh variance crossing) are live; completion (:5648, needs beta_gate_bistable, default False) and NCL re-assert (:6533, _ncl_hold_active default False) did not fire. Trigger split unrecorded.",
+        "is_committed_note": "The constant is_committed series (n_runs=1) excludes nothing: e3_selector.py:4096 nulls _committed_trajectory every tick before the driver reads it."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- confirming leg needs a pre-registered tolerance 942 never had; falsifying leg not met (and reachable only at share 1.0); partial cell met on seed 37.",
+        "biological_reference": "partial -- thalamo-cortico-striatal loops with a slow deliberative (beta-band) loop; salient-event phase reset is biologically real but onset-triggered and refractory, not per-sample.",
+        "prerequisites": "present -- SD-006 phase-1 clock implemented; MECH-091 wired (6293b2395248).",
+        "implementation": "complete for the clock, with TWO live modulators of E3 cadence: MECH-093 (arousal sets the period every step, 5-20) and MECH-091 resets (harm trigger with no onset gate; legacy commit-entry). The harm site lacks the transition gate the commitment-entry site has on the current tree (agent.py ~10306-10315 comment).",
+        "environment": "adequate for the tick-count readout; harm density varies by seed (seed 37 ~36 steps/episode), which is exactly what moves the E3 share.",
+        "measurement": "under-instrumented -- counts the clock FLAG, not realized _e3_tick invocations (<=1/episode offset: agent.reset() empties the candidate cache); records neither the per-step _current_e3_steps nor per-trigger phase_reset counts nor |z_beta|, so neither the configured baseline nor the excess attribution can be recovered from the manifest (recording gap).",
+        "integration": "coupled -- e3_tick has a live consumer (generate_trajectories gate, agent.py ~6541).",
+        "scale": "adequate -- 3750 steps on 2 seeds, 899 on seed 37."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM partial: two live E3-cadence modulators, ungated harm reset; MEASURES partial: flag count, no per-step period, no reset-by-trigger record, no pre-registered tolerance) -- not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "thalamic-paced cortico-basal ganglia loops; salience-driven phase reset of ongoing oscillation",
+        "dependencies": [
+          "salience onset detection",
+          "refractory period on reset"
+        ],
+        "is_formal_import": false,
+        "divergence": "per-step reset under sustained harm has no refractory analog",
+        "lit_status": "partial"
+      },
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "not re-opened here (already rejected as a C1 veto by the 2026-08-21 autopsy); irrelevant to the E3-cadence read, which does not depend on the step floor.",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Post-hoc re-read of a diagnostic under a falsifier written after the run's numbers were known. Nothing suppresses ARC-023; the category stays standard.",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_per_claim": {
+        "INV-013": "non_contributory",
+        "ARC-023": "mixed"
+      },
+      "recommended_evidence_quality_note": "[2026-09-23 re-read, failure_autopsy_V3-EXQ-942_reread_2026-09-23, GFLAG-0406 follow-on; see GFLAG-0443] V3-EXQ-942 read against the NARROWED E3-only realized-cadence falsifier: PARTIAL (the falsifier's own named partial cell). E3 is slower than the per-step loops on every seed (realized E3 share 0.153 / 0.169 / 0.394 vs E1 1.0; E2 is ungated because e2_tick has no consumer), so the FALSIFYING signature is not met. CORRECTION to the GFLAG-0406 text above: '375/375/90 configured' is FALSE as run. MECH-093 sets E3's period from |z_beta| on every E1 tick (ree-v3 f0cb0d59 agent.py:5406, band 5-20 steps, configured share 0.05-0.20). Seeds 11/23 sit inside that band (departure undetermined); only seed 37 (0.394) exceeds even the fastest configured period, by at least 0.19/step of reset-driven ticks from the harm trigger (no onset gate) and/or legacy commit-entry resets, trigger split unrecorded. Limits: the falsifier was written with these numbers in view and no tolerance was pre-registered, so 942 cannot confirm; diagnostic purpose, so scoring_excluded; the readout is the clock flag (offset <=1/episode) and |z_beta|, the per-step period and resets-by-trigger were not recorded. The narrowed falsifier itself needs tightening (GFLAG-0443): its FALSIFYING leg is reachable only at share 1.0, and 'configured period' is arousal-modulated.",
+      "per_claim_recommendation": {
+        "ARC-023": {
+          "recommended_evidence_direction": "mixed",
+          "recommended_epistemic_category": "standard",
+          "change": "write the partial E3-cadence read and the 375/375/90 correction into evidence_quality_note (note-only; 942 manifest untouched, user-confirmed) -> stamp this artifact",
+          "pending_retest_after_substrate": false,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "MECH-091 harm-trigger onset gating and MECH-093's interaction with any 'characteristic rate' reading are design questions for those claims and for the GFLAG-0443 falsifier decision, not a build owed to ARC-023."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "literal_count_meets_threshold": false
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "basis": "granularity_debt_cluster.py ARC-023: 0 tagging targets before this artifact; this target reads unclear, not weakened"
+      },
+      "exp_0548_disposition": {
+        "current": "status gated (2026-08-02, determined-ritchie-55a3a6); gating_reason = v3_exq_131 freeze-artifact wall",
+        "recommended": "STAY GATED with a REPLACED gating_reason (user-confirmed 2026-09-23, rec-20260923-e532e1b3). The old reason is resolved (the narrowed falsifier bars the var_harm_eval readout). New reason: the narrowed falsifier cannot be tested discriminatingly as written -- its FALSIFYING leg is reachable only at E3 share 1.0, and 'configured period' is arousal-modulated by MECH-093 -- pending GFLAG-0443. Do NOT set status back to 'proposed' (auto-generated proposal; the indexer only carries forward non-'proposed' status). Do NOT set diagnostic_evidence_adjudicated on ARC-023 (it would suppress re-minting once the falsifier is tightened).",
+        "proposed_gating_reason_text": "Falsifier specification owed (GFLAG-0443): ARC-023's narrowed E3-only falsifier has an unreachable FALSIFYING leg (E3 share must reach 1.0) and an arousal-modulated 'configured period' (MECH-093, band 5-20). V3-EXQ-942 re-read 2026-09-23 = partial (failure_autopsy_V3-EXQ-942_reread_2026-09-23). The v3_exq_131 freeze-artifact reason is resolved by the narrowing.",
+        "design_notes_for_when_ungated": "record per-step _current_e3_steps and |z_beta|, realized _e3_tick invocations, and phase_reset() counts by trigger; pin MECH-093 (min=max) or model it explicitly; pre-register a tolerance; replace the share-1.0 FALSIFY leg with a reachable one (for example E3 share reaching E2's configured 1/3 under ecological load, which seed 37 already crosses) -- a choice for the GFLAG-0443 decision, not made here.",
+        "work_graph_node": "complex (probe-gated) / mystery (known data) until the falsifier is tightened -- more runs do not help while the falsifying leg is unreachable",
+        "routing_owner": "/governance applies the experiment_proposals edit and decides GFLAG-0443; this autopsy does not spawn a chip"
+      },
+      "read_across_not_adjudicated": [
+        "MECH-091: the harm trigger calls phase_reset() on every owned harm_signal<0 step with no onset gate, while the commitment-entry trigger is transition-gated. Its V3-EXQ-944b PASS ran with the ungated trigger.",
+        "MECH-093: arousal-driven E3 period (5-20) is live and unconditional by default, so any 'characteristic rate' reading of E3 must state the |z_beta| regime; raised in GFLAG-0443.",
+        "SD-006: unchanged; R4 rejection of tick counts as a representational readout stands. Tick counts are used here only because ARC-023's narrowed falsifier asks for them.",
+        "INV-013 / prior C1 persistence reading: untouched (failure_autopsy_V3-EXQ-942_2026-08-21 stands).",
+        "ARC-148: untouched."
+      ],
+      "learning_extracted": [
+        "A falsifier written after a run's numbers are known cannot be scored by that run: 942 lands in the partial cell the falsifier was written to hold it.",
+        "Re-measure a 'configured' baseline against the code as run: three artifacts carried 375/375/90 while MECH-093 made the configured E3 share a 0.05-0.20 band.",
+        "A falsifier whose falsifying leg requires a saturated regime (share 1.0) is not a test; catch it at falsifier-writing time.",
+        "A tick-count readout needs the per-step period, |z_beta| and resets-by-trigger recorded beside it (recording gap, Experimental Recording Standard 3c)."
+      ],
+      "routing": "governance-note-only",
+      "work_graph_node": "complex (probe-gated) / mystery (known data)",
+      "recommended_manifest_edit": {
+        "action": "none",
+        "note": "User-confirmed 2026-09-23 (rec-20260923-e4e99a5d): note-only. 942's claim_ids and evidence_direction are left untouched; the ARC-023 read lives on ARC-023's note and live_status."
+      },
+      "governance_flags_raised": [
+        "GFLAG-0443"
+      ]
+    }
+  ],
+  "cluster_pattern": null,
+  "confirmed_utc": "2026-09-23T20:09:32Z",
+  "pre_routing_checks": {
+    "run_utc": "2026-09-23T19:55:42Z",
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+      "C5 (no sibling .md at run time)",
+      "C7 (no arm-structured results)"
+    ],
+    "rerun_final": {
+      "fire_count": 0,
+      "fires": [],
+      "inapplicable": [
+        "C6",
+        "C7"
+      ],
+      "note": "re-run on the final artifact with the sibling .md present: C5 now applicable and silent"
+    }
+  },
+  "step_7c": {
+    "model": "fable (cross-model; session on opus)",
+    "verdict": "CONTESTED",
+    "defects_accepted": [
+      "A1 configured share is a MECH-093 band 0.05-0.20, not 0.10 (verified f0cb0d59 agent.py:5406, config.py:2770-2772, clock.py:200-221)",
+      "A2 harm attribution unshown; commit-entry resets live; is_committed series uninformative (e3_selector.py:4096)",
+      "A3 diagnostic_evidence_adjudicated + ungate cancel in the indexer (flag dropped)",
+      "A4 re-scoped 0548 design non-discriminating; falsifier FALSIFY leg reachable only at share 1.0 (-> GFLAG-0443)"
+    ],
+    "direction_survived": "mixed",
+    "findings_file": "scratchpad redteam.md (session-local)"
+  },
+  "step_8": {
+    "confirmed_utc": "2026-09-23T20:09:32Z",
+    "answers": {
+      "direction": "mixed (rec-20260923-fed93dfb)",
+      "vehicle": "note-only (rec-20260923-e4e99a5d)",
+      "exp_0548": "stay gated, new reason (rec-20260923-e532e1b3)"
+    }
+  },
+  "hypothesis_space_ledger": "Step 9b skipped: qid e-ladder-realised-timescale-separation is about persistence half-lives, not E3 cadence; this re-read adjudicates no pre-registered leg and emits no fan-out."
+}
