@@ -6324,6 +6324,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0442",
+      "claim_ids": [
+        "MECH-018"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "MECH-018 needs a decision BEFORE the GFLAG-0441 sampling fix is worth building for this claim: even with integrate() correctly distilling, its OBJECTIVE cannot produce the contextualisation the claim asserts, so readouts (ii) SPECIFICITY and (iv) harmless-region proposal rejection stay unreachable by construction -- the same shape as the readout (iii) centre-merge question GFLAG-0356/0366 settled by narrowing. Arithmetic, from ree-v3 ree_core/residue/field.py: integrate() trains neural_field toward rbf_field targets, and the waking consumer reads evaluate()/evaluate_trajectory() = rbf + 0.1*neural. A converged distillation therefore makes the read 1.1 x the rbf core, and a harm/harmless ratio and any rank-based choice are invariant under that positive rescaling, so post-integration specificity EQUALS the no-integration rbf core's own specificity; the only change from the pre-integration read is removal of the untrained Softplus head's roughly-constant pedestal, which is exactly what GFLAG-0356's pedestal-matched control absorbs. No information about harmless contexts enters integrate() at all (targets are rbf values at jittered harm locations), so there is no signal it could contextualise with. Options: (a) NARROW MECH-018 further to the readouts the substrate can express -- (i) preservation vs naive decay and (iii) approximation error at a declared budget -- and record that (ii)/(iv) are unowned; or (b) commission a contextualisation objective (e.g. a residual head trained on visited harmless states so neural adds at harm and not at harmless contexts; note Softplus>=0 means it can only ADD residue, never subtract over-generalisation from the core). Declared budget fact for (iii): neural_field is ~6.4k params (32->64->64->1) vs 32 active RBF centres x 33 = 1,056, so the 'fewer parameters' reading of compression does not hold either. Raised by the EXP-0755 /queue-experiment session, which queued nothing (GFLAG-0441).",
+      "raised_by_session": "eloquent-lichterman-824f74",
+      "raised_at": "2026-09-23T20:04:34Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
