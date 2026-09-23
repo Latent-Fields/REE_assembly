@@ -222,15 +222,17 @@ def _load_json(path: Path):
 _GIT_CACHE: dict = {}
 
 
-def _git(args: list) -> str:
-    """Run a read-only git command in the repo. Returns '' on any failure --
-    git being unavailable must degrade to `unverifiable`, never to a flag."""
-    key = tuple(args)
+def _git(args: list, repo: Path = None) -> str:
+    """Run a read-only git command in the repo (REE_assembly unless `repo` names a
+    sibling). Returns '' on any failure -- git being unavailable must degrade to
+    `unverifiable`, never to a flag."""
+    root = repo or REPO_ROOT
+    key = (str(root),) + tuple(args)
     if key in _GIT_CACHE:
         return _GIT_CACHE[key]
     try:
         out = subprocess.run(
-            ["git", "-C", str(REPO_ROOT)] + args,
+            ["git", "-C", str(root)] + args,
             capture_output=True, text=True, timeout=20,
         )
         val = out.stdout.strip() if out.returncode == 0 else ""
@@ -240,11 +242,39 @@ def _git(args: list) -> str:
     return val
 
 
+# Sibling repos (under the same REE_Working parent as REE_assembly) whose committed
+# files may legitimately witness a pre-registration. The canonical case is a ree-v3
+# experiment DRIVER whose docstring pre-registers its interpretation grid: it is
+# durably committed before the run exactly as an autopsy artifact is, but in another
+# repo, so a REE_assembly-only lookup found nothing and fell through to the registry's
+# own (later) first commit -- reporting an honestly pre-registered leg `unwitnessed`
+# (zworld_actor_adequacy_locus / H-anchor-off-distribution, GFLAG-0329; ruling in
+# failure_autopsy_zworld_actor_adequacy_locus_repose_2026-09-23). Fails SAFE: if the
+# sibling checkout is absent (hub, worker), git returns nothing and the leg keeps
+# today's behaviour -- never a false `witnessed`.
+SIBLING_WITNESS_REPOS = ("ree-v3",)
+
+
+def _witness_repo_for(rel_path: str) -> tuple:
+    """Route a pre_registration_source to (repo_root, path_inside_that_repo).
+    `ree-v3/experiments/x.py` -> (<REE_Working>/ree-v3, 'experiments/x.py');
+    anything else -> (REPO_ROOT, rel_path) unchanged."""
+    head, sep, rest = (rel_path or "").partition("/")
+    if sep and rest and head in SIBLING_WITNESS_REPOS:
+        return (REPO_ROOT.parent / head, rest)
+    return (REPO_ROOT, rel_path)
+
+
 def _artifact_first_commit(rel_path: str) -> str:
     """Earliest commit date (ISO-8601 Z, date part) that ADDED `rel_path`.
-    '' if the file has no git history (uncommitted / unknown / git absent)."""
+    '' if the file has no git history (uncommitted / unknown / git absent).
+    A path prefixed with a SIBLING_WITNESS_REPOS name is looked up in that repo."""
     if not rel_path:
         return ""
+    repo, inner = _witness_repo_for(rel_path)
+    if repo != REPO_ROOT:
+        out = _git(["log", "--diff-filter=A", "--format=%cI", "--", inner], repo=repo)
+        return out.splitlines()[-1].strip()[:10] if out else ""
     for prefix in ("evidence/planning/", ""):
         p = rel_path if rel_path.startswith(prefix) else prefix + rel_path
         out = _git(["log", "--diff-filter=A", "--format=%cI", "--", p])
@@ -2269,6 +2299,27 @@ def _self_test() -> int:
         failures.append("labelled_growth_not_advised")
     else:
         print("  ok   discrimination: labelled fan-out growth reported as advisory")
+
+    # Cross-repo witness ROUTING (GFLAG-0329). The audit() run above stubs
+    # _artifact_first_commit wholesale, so it cannot see the routing; test the pure
+    # router directly instead of a stub that would supply the answer it asserts.
+    for name, cond, msg in [
+        ("sibling_route", _witness_repo_for("ree-v3/experiments/v3_exq_x.py")
+         == (REPO_ROOT.parent / "ree-v3", "experiments/v3_exq_x.py"),
+         "a ree-v3/... pre_registration_source routes to the sibling repo, prefix stripped"),
+        ("local_route", _witness_repo_for("failure_autopsy_x_2026-07-03.json")
+         == (REPO_ROOT, "failure_autopsy_x_2026-07-03.json"),
+         "a bare artifact name stays in REE_assembly"),
+        ("unknown_prefix_local", _witness_repo_for("ree-v9/x.py") == (REPO_ROOT, "ree-v9/x.py"),
+         "an unlisted repo prefix is NOT routed (allowlist, not a pattern)"),
+        ("bare_prefix_local", _witness_repo_for("ree-v3") == (REPO_ROOT, "ree-v3"),
+         "a bare repo name with no inner path is not routed"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
 
     # Provenance discriminations -- the point of the git witness.
     joined_f = " ".join(flags["f_unverifiable"])

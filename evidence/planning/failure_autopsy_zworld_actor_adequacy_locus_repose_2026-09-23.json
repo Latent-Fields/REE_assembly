@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-23T19:53:37Z",
+  "scope": "question_repose",
+  "qid": "zworld_actor_adequacy_locus",
+  "status": "confirmed",
+  "confirmed_utc": "2026-09-23T19:53:37Z",
+  "confirmed_by": "user, /failure-autopsy Step 8 gate (session vigilant-colden-ac4766); all four gate questions answered with the recommended option -- RECOMMENDATION_LOG rec-20260923-a861459d, rec-20260923-6cdf6030, rec-20260923-acb6a44b, rec-20260923-aced97a9",
+  "dry_run_checked": true,
+  "dry_run_note": "No run is adjudicated here. The one manifest whose numbers are cited as facts (v3_exq_1041_..._20260915T203743Z_v3) carries dry_run: false and a non-dry run_id shape.",
+  "excluded_dry_run_ids": [],
+  "chip_ref": "chip-20260923-zworld-locus-repose",
+  "flags_addressed": ["GFLAG-0312", "GFLAG-0329", "GFLAG-0387 (residual)"],
+  "targets": [],
+  "targets_note": "Question-level re-pose: no run is adjudicated and no claim's evidence direction or epistemic_category moves, so there is no per-target / per_claim_recommendation block. Every write is in hypothesis_space_registry.v1.json (Step 9b) plus one integrity-checker fix.",
+  "registry_correction_GFLAG_0329": {
+    "mode_c_discrimination_test": {
+      "verdict": "REJECTED for all four legs of the V3-EXQ-1041-driver event. Each was ANTICIPATED and durably written down before V3-EXQ-1041 ran, so Mode C (born-not-anticipated) is the wrong door; using it would be the escape hatch the discovery_growth invariant forbids -- the same ruling this question's H-D leg received on 2026-09-05, and the V3-EXQ-1041 autopsy's own red-team F9.",
+      "witnesses": {
+        "H-metric-mismatch": "failure_autopsy_V3-EXQ-1023_2026-09-14.json outcome (1); REE_assembly 8418b0ed762 (first commit, staging draft) 2026-09-14T17:13:28Z; confirmed unchanged 2026-09-15T01:14:02Z (beb47bca).",
+        "H-under-budgeted-p0a": "same artifact, outcome (2).",
+        "H-mechanism-defect": "same artifact, outcome (3); the inert/below-ceiling split only in the driver (red-team F2).",
+        "H-anchor-off-distribution": "ONLY the driver: ree-v3 febce39 (its sole commit) 2026-09-15T20:33:32Z, driver line 94; run started 2026-09-15T20:36:05.7Z (manifest write 20:37:43Z minus elapsed 97.31 s; substrate_identity.resolved_at_utc 20:36:10Z); febce39 is an ancestor of the run's substrate_commit 311789f5."
+      }
+    },
+    "root_cause": "ONE defect, not two. fanout_growth_events[2] cited the ree-v3 driver as its single fanout_source; check_hypothesis_space_integrity.py searched only REE_assembly git, fell back to each hid's first registry commit (2026-09-16, after the 2026-09-15 resolution) and reported 3 legs unwitnessed; _validate_fanout_events then rejects the whole event on one bad leg, so all 4 legs went unaccounted. Not back-dating: the earlier 1023 witness was already named in that event's own note at its registration commit bee93548e (2026-09-16), a day before the flag.",
+    "applied": [
+      "H-metric-mismatch, H-under-budgeted-p0a, H-mechanism-defect: pre_registration_source -> failure_autopsy_V3-EXQ-1023_2026-09-14.json, pre_registered_utc -> 2026-09-14T17:13:28Z; prior values kept under pre_registration_correction.",
+      "fanout_growth_events[2] split into a 3-leg event (source: 1023 autopsy) and a 1-leg event (source: driver); original kept verbatim under split_from. Total delta 4, initial_frozen_count 11 and initial_frozen_count_at_registration 2 all unchanged. Consequence recorded in the events: one fan-out DESIGN now counts as two artifact-keyed portfolios (5 total).",
+      "check_hypothesis_space_integrity.py: new SIBLING_WITNESS_REPOS = ('ree-v3',) + _witness_repo_for(); _artifact_first_commit resolves a 'ree-v3/...' source in the sibling repo; _git takes an optional repo. Fails safe (sibling absent -> '' -> today's behaviour). Self-test gains 4 routing discriminations on the pure router (the audit() self-test stubs _artifact_first_commit, so a stubbed test would have asserted nothing). Blind-spot measured on the real repos: old code returns '' for the driver path, new code '2026-09-15'; REE_assembly path unchanged ('2026-09-14'); a nonexistent ree-v3 path '' under both.",
+      "H-anchor-off-distribution: pre_registration_witness_note records the cross-repo witness and that the leg is a measured fact known true before the run (nothing discriminated it)."
+    ],
+    "audit_after": "check_hypothesis_space_integrity.py: a=0 b=0 d=0; c=2 are mech467_legc_event_denominator_cause H-commitment/H-cadence (pre-existing, GFLAG-0404, owned by session eloquent-lichterman-824f74), not this question. All 11 legs of this question git-witnessed. Previously b=2 (3 unwitnessed legs; 4 unaccounted)."
+  },
+  "repose_GFLAG_0312": {
+    "diagnosis": "MIS-POSED BY CONFLATION, not under-enumerated. The registered question is a LOCUS question about the SHIPPED encoder, answered at V3-EXQ-1010 (H-B, H-E eliminated; H-C split; H-D confirmed; H-F confirmed). Later designs attached by Step 9b claims+theme matching (all carry MECH-457/INV-088) but asked two OTHER questions about SD-106, the repair H-F motivated: (i) the V3-EXQ-1041 grid -- is SD-106's preservation READOUT comparable to its design anchor (encoder plane; all resolved); (ii) the V3-EXQ-1041 autopsy portfolio -- why SD-106's trained objective does not TRANSFER to the consumer (V3-EXQ-1023a: +0.1184 held-out R^2 for 3.3x steps buys +0.0081 agreement). A locus partition cannot carve a transfer phenomenon -- what h_other_events[0] recorded on 2026-09-17. 6 of the 9 grown legs belong to (i)+(ii).",
+    "red_team_correction_to_diagnosis": "The first draft called all 6 legs 'transfer'. Red-team D3: portfolio 3 is readout comparability (encoder plane), not transfer; only portfolio 4 is transfer, and H-which-directions is itself locus-shaped (for SD-106's code). Corrected to the three-way reading above.",
+    "precedent_confronted": "failure_autopsy_V3-EXQ-1041_2026-09-16 first opened a standalone question for these legs and withdrew it at its gate (red-team F3/F9) because that draft booked ZERO growth against this question -- a dodge of the growth accounting. This re-pose keeps every leg and all growth booked here, and splits only going forward.",
+    "applied": [
+      "growth_restriction: CLOSED TO FURTHER FAN-OUT; transfer legs go to sd106_objective_consumer_transfer; other SD-106/z_world questions pre-register their own qid; resolving already-registered legs stays permitted; ONE sanctioned exception -- a layer-wise decode profile localising H-F's loss on the shipped path.",
+      "H-which-directions: SUPERSEDED here (user-ratified; precedents policy_decomposition_discrimination/H-env-underdrives-uncertainty and mech467_legc_event_denominator_cause/H-commitment). control_passed stays true (records V3-EXQ-1023a's passed controls, not a new adjudication); met_elimination_bar false; prior resolution preserved under prior_resolution. Carried forward as sd106_objective_consumer_transfer/H-which-directions-sd106.",
+      "New question sd106_objective_consumer_transfer (claims SD-106, MECH-567, MECH-566), 2 alive Mode A legs: H-which-directions-sd106 (axis representation) and H-target-absent-mech567 (axis learning-signal), both adjudicated by the not-yet-queued MECH-567 experiment, nulls taken verbatim from MECH-567's what_would_answer. The legs are NESTED, not exclusive (MECH-567 is the mechanism, which-directions the phenomenon); MECH-566 listed in claims for routing only (V3-EXQ-1065 narrowed it with no leg opened; its standardisation member IS the baseline).",
+      "synthesis, decision (decision_question / live_gate / distance_phrase / observation_bottleneck + decision_note) and fanout_growth_note refreshed -- they still described H-F as ALIVE and the V3-EXQ-1010 sweep as NOT YET QUEUED. decidable stays true; decision_log_ref stays null (human-owned).",
+      "h_other_events[0].repose_disposition appended (event not rewritten)."
+    ],
+    "audit_after": "Recurrence overlay moved from ACTIONABLE to ACKNOWLEDGED (growth_restriction + 0 alive legs). H-other CANDIDATE and stale-synthesis signals for this question cleared. New qid raises no flag.",
+    "rotation_disposition": "USER DECISION: question side DISCHARGED by this re-pose; claim side STILL OWED -- the /claim-synthesis on MECH-457/INV-088 routed by h_other_events[0] has not run. CDQ-010 (2026-09-17) was a convergence intake that registered MECH-566/567 and fed this re-pose; it is not that synthesis.",
+    "gov_rotate_1_candidate_note": "For governance only, adjudicates nothing: the pre-rotation next step on this lineage was a full v3_exq_1010 decoder-ladder re-run; the rotated (transfer) framing produced V3-EXQ-1065, a 183 s pre-registered post-hoc falsifier on an existing frozen code. That is a candidate instance of GOV-ROTATE-1's build-discipline test (a rotation yielding a smaller, more discriminating next experiment)."
+  },
+  "mech567_residual_GFLAG_0387": {
+    "answer": "NO, the MECH-567 build need not wait for the rotation (user decision).",
+    "reasoning": "The 2026-09-17 ordering constraint forbids a rescue run on a SURVIVING LEG of this question before the rotation. MECH-567 is a new mechanism from the transfer framing, not a rescue; and the only leg that a MECH-567 run would de facto adjudicate (H-which-directions) is now superseded here and carried to the transfer qid, so the constraint has nothing left to protect on this question. The build itself is registration-only (substrate_queue status proposed_REGISTRATION_ONLY_not_a_build_authorisation).",
+    "conditions": [
+      "Its discriminating run is adjudicated against sd106_objective_consumer_transfer (legs already pre-registered by this artifact), never against zworld_actor_adequacy_locus.",
+      "Read on held-out episodes, with MECH-567's mandatory grounding-head co-measurement and, for any co-train arm, the participation-ratio degeneracy pre-check: an oracle-action head scored on oracle-action agreement is close to training on the DV."
+    ]
+  },
+  "red_team": {
+    "model": "fable (claude-fable-5-1), cross-model from the drafting session (Opus 5.5)",
+    "verdict": "CONTESTED",
+    "defects_confirmed": [
+      "D1: a growth_restriction with H-which-directions left alive can never acknowledge the recurrence (_recurrence_acknowledged requires alive == 0) -- fixed by superseding the leg here and carrying it to the new qid (user gate).",
+      "D2: 'register MECH-567's legs Mode A before the run' was unsatisfiable with a DEFERRED new qid (Mode A lives only in /failure-autopsy Step 9b) -- fixed by registering the new qid now (user gate)."
+    ],
+    "confirmed_facts": "Every GFLAG-0329 premise re-derived independently: 1023 first-commit text, driver sole commit and ancestry, run start 20:36:05.7Z, 2 -> 11 accounting, 5 accounted / 4 unaccounted; checker simulation of the correction reproduced.",
+    "hygiene_applied": ["staging-draft vs confirmation timestamps both recorded", "mechanism-defect split witnessed by the driver recorded", "portfolio double-count recorded in event notes", "CDQ-010 described as an intake, not the rotation's product", "h_other_events[0] provenance gap (source artifact carries no H-other text; event written by eeeb0550ed5) recorded", "H-anchor-off-distribution recorded as a measured fact", "1041 withdrawn-question precedent confronted", "H-which-directions adjudicating_runs history noted"],
+    "findings_file": "session scratchpad redteam_findings.md (not committed)"
+  },
+  "step_7b": "autopsy_pre_routing_checks.py: 0 fires; C1/C2/C3 inapplicable (no claim-keyed target), C5 inapplicable (no sibling .md at check time). Step 7c carried the load.",
+  "coupling_note_for_GFLAG_0404": "The superseded-leg shape used here carries control_passed: true, so it does not add to GFLAG-0404's open question (ratified dispositions lacking a passed control). If that session changes rule (c) for ratified dispositions, H-which-directions' supersession should be re-read under the new rule.",
+  "governance_handoff": {
+    "GFLAG-0312": "Resolve on reading this artifact: re-pose authored (growth_restriction; transfer question registered as its own qid). Overlay now ACKNOWLEDGED.",
+    "GFLAG-0329": "Resolve: Mode C test recorded (rejected); provenance corrected; cross-repo witness implemented; b=0 on this question.",
+    "owed_follow_on_for_governance_to_chip": [
+      "/claim-synthesis on MECH-457 / INV-088 (GOV-ROTATE-1 claim-side rotation, still owed per the user's gate decision).",
+      "When the MECH-567 build is authorised and its experiment queued: the driver's interpretation grid must name both sd106_objective_consumer_transfer legs and carry the two conditions above."
+    ],
+    "not_spawned": "Per /failure-autopsy Step 8, this session spawns no chip for its own routing; /governance chips it after ratification."
+  },
+  "learning_extracted": [
+    "Step 9b matches an existing question by claims+theme. Where a question's answer names a BUILD (here SD-106), later questions ABOUT that build match the same claims and land on the answered question, inflating it. The fan-out recurrence overlay caught it, four portfolios late.",
+    "A single cross-repo citation looked like three back-dated legs and four unaccounted ones: the integrity checker read only REE_assembly git, and one unwitnessed leg voids its whole growth event. A 'violation' count is worth tracing to its mechanism before treating it as several defects.",
+    "A growth_restriction alone does not close a recurrence while any leg is alive; the leg has to be resolved or superseded, or the alarm stays ACTIONABLE."
+  ]
+}

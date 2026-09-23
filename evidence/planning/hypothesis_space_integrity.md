@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-23T19:43:21Z
+Generated: 2026-09-23T19:58:31Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **67** open question(s) across **54** time-series snapshot(s). **4** flag(s) raised, **69** advisory note(s), **27** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
+Audited **68** open question(s) across **54** time-series snapshot(s). **2** flag(s) raised, **72** advisory note(s), **31** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **2** acknowledged (worked) recurrence(s), **4** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -12,12 +12,11 @@ _A question's surviving count fell with no adjudicated `weakens`/discrimination 
 
 _None._
 
-## (b) Post-hoc enlargement of a frozen set (2)
+## (b) Post-hoc enlargement of a frozen set (0)
 
 _The frozen initial enumeration grew WITHOUT a valid labelled fan-out record, or a hypothesis was pre-registered after its own adjudicating run. Labelled GOV-FANOUT-1 growth is NOT counted here -- see the advisory section below._
 
-- `zworld_actor_adequacy_locus` fan-out ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py: condition (a) unmet for H-metric-mismatch (adjudicating run already RESOLVED when the leg was added; first durable record 2026-09-16 POST-DATES resolution 2026-09-15 -- self-reported pre_registered_utc 2026-09-15 is unwitnessed), H-mechanism-defect (adjudicating run already RESOLVED when the leg was added; first durable record 2026-09-16 POST-DATES resolution 2026-09-15 -- self-reported pre_registered_utc 2026-09-15 is unwitnessed), H-anchor-off-distribution (adjudicating run already RESOLVED when the leg was added; first durable record 2026-09-16 POST-DATES resolution 2026-09-15 -- self-reported pre_registered_utc 2026-09-15 is unwitnessed) -- a leg added by fan-out must pre-date the run that adjudicates it.
-- `zworld_actor_adequacy_locus`: grew 2 -> 11 (+9) but only 5 leg(s) are covered by a valid fanout_growth_events/discovery_growth_events entry -- 4 unaccounted, which is post-hoc enlargement.
+_None._
 
 ## (c) Confirmed/superseded without a passed control (2)
 
@@ -32,7 +31,7 @@ _An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_
 
 _None._
 
-## Advisory -- labelled fan-out growth (69, NOT violations)
+## Advisory -- labelled fan-out growth (72, NOT violations)
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
@@ -63,7 +62,10 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - `sd_e1_residual_crush_locus`: denominator grew 3 -> 6 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `zworld_actor_adequacy_locus`: +2 leg(s) (H-D-warmup-not-the-locus, H-E-channel-input-capacity) added by labelled fan-out from `exq1002_redteam_findings_20260904.md` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `zworld_actor_adequacy_locus`: +1 leg(s) (H-F-content-discarded-at-encode) added by labelled fan-out from `failure_autopsy_V3-EXQ-1008_2026-09-08.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `zworld_actor_adequacy_locus`: +3 leg(s) (H-metric-mismatch, H-under-budgeted-p0a, H-mechanism-defect) added by labelled fan-out from `failure_autopsy_V3-EXQ-1023_2026-09-14.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `zworld_actor_adequacy_locus`: +1 leg(s) (H-anchor-off-distribution) added by labelled fan-out from `ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `zworld_actor_adequacy_locus`: +2 leg(s) (H-transfer-amplification, H-which-directions) added by labelled fan-out from `failure_autopsy_V3-EXQ-1041_2026-09-16.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `zworld_actor_adequacy_locus`: denominator grew 2 -> 11 across 5 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `sd082_candidate_discriminating_readout_locus`: +2 leg(s) (H-learning-signal-noisy, H-learning-signal-sign) added by labelled fan-out from `failure_autopsy_V3-EXQ-822f_2026-09-09.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `sd082_candidate_discriminating_readout_locus`: +2 leg(s) (H-replay-rule-state-mismatch, H-selection-authority-bounded) added by labelled fan-out from `failure_autopsy_V3-EXQ-1020_2026-09-11.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `sd082_candidate_discriminating_readout_locus`: denominator grew 5 -> 9 across 2 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
@@ -106,7 +108,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-09-16 -> 2026-09-17: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
 - time series 2026-09-18 -> 2026-09-20: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
 - time series 2026-09-21 -> 2026-09-22: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
-- time series 2026-09-22 -> 2026-09-23: total_initial grew by 10, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 10 leg(s)) -- advisory, not a violation.
+- time series 2026-09-22 -> 2026-09-23: total_initial grew by 12, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 12 leg(s)) -- advisory, not a violation.
 
 ## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
 
@@ -123,7 +125,7 @@ _A `confirmed` resolution (supports + control_passed) or a `superseded` resoluti
 - time series 2026-08-05 -> 2026-08-07: surviving fell by 1 with no rise in resolved_out, but total_confirmed and/or total_superseded is absent from one or both snapshots (predates the field) so a confirmation/supersession-explained drop cannot be ruled out -- unverifiable, not a violation.
 - time series 2026-08-18 -> 2026-08-19: surviving fell by 1 with no rise in resolved_out, but total_confirmed and/or total_superseded is absent from one or both snapshots (predates the field) so a confirmation/supersession-explained drop cannot be ruled out -- unverifiable, not a violation.
 
-## Fan-out recurrence (ACTIONABLE, 1) -- N >= 3 portfolios on one question
+## Fan-out recurrence (ACTIONABLE, 0) -- N >= 3 portfolios on one question
 
 _GOV-FROZEN-1 escalation clause. Conditions (a)-(c) license an INDIVIDUAL growth event, so they say nothing about recurrence: a question can fan out indefinitely, clearing every check every time, while its denominator outruns its eliminations. Every portfolio counted below was individually legitimate -- **the recurrence is the signal**, and the reading is that the question may be MIS-POSED rather than under-enumerated._
 
@@ -131,11 +133,11 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 **Response is routing, not demotion.** These are questions, not claims; nothing is promoted or demoted. Re-pose the operationalization before opening another portfolio -- enumerating a further round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Warn-only: this never gates a cycle.
 
-**A count of 0 here is NOT the same as 'no recurrence'.** 1 recurrence(s) are ACKNOWLEDGED this cycle and listed in the next section rather than here -- read both before concluding the ledger is quiet.
+**A count of 0 here is NOT the same as 'no recurrence'.** 2 recurrence(s) are ACKNOWLEDGED this cycle and listed in the next section rather than here -- read both before concluding the ledger is quiet.
 
-- `zworld_actor_adequacy_locus`: 3 distinct labelled fan-out portfolios (>= N=3); denominator 2 -> 11, 1 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 4; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `exq1002_redteam_findings_20260904.md`, `failure_autopsy_V3-EXQ-1008_2026-09-08.json`, `failure_autopsy_V3-EXQ-1041_2026-09-16.json`
+_None._
 
-## Recurrence acknowledged (1, advisory) -- worked, not live
+## Recurrence acknowledged (2, advisory) -- worked, not live
 
 _A recurrence overlay whose question has since been RE-POSED and formally closed. The portfolio count never decreases (GOV-FROZEN-1 has no shrinkage operation, correctly), so a question that crossed N goes on firing forever -- including long after every leg was resolved and the qid was closed to further growth. Listing those alongside live ones is a duplicate-work generator that fires once per governance cycle per closed campaign, which is the alarm-fatigue Goodhart vector GOV-FROZEN-1 warns about turned on the rule itself. Confirmed: `competence_floor` closed 2026-08-08 and a governance cycle routed a re-pose chip for it on 2026-08-12, four days later._
 
@@ -148,6 +150,11 @@ _A recurrence overlay whose question has since been RE-POSED and formally closed
   Restriction, verbatim:
 
   > CLOSED TO FURTHER FAN-OUT (2026-08-08, competence_floor_recurrence_repose_2026-08-08.md, chip-20260808-competence-floor-refpose). This qid accumulated 5 labelled GOV-FANOUT-1 portfolios (denominator 7 -> 20) before its own standing rule -- set by competence_floor_reposing_2026-07-19.md section 7, 'if a fifth portfolio is proposed on the retention operationalization, treat the recurrence flag as BLOCKING' -- was checked against a real case. Portfolio 5 (failure_autopsy_mech476-mech475-cluster_2026-07-29) opened three legs squarely in the already-decided 'process' family (MECH-475's own registration text names the SAME uninformative-baseline mechanism the retention decision had just confirmed a fix for) and nothing checked the 07-19 rule against it, because the rule lived only as prose in a planning document, not as anything a future /failure-autopsy Step 9b invocation would read. It converged decisively anyway (both MECH-475 and MECH-476 fully retired within days, on their own pre-registered falsifiers) -- that was the outcome, not a property of the process that produced it. RULE, stated here so the next session finds it in the qid it applies to, not in a fourth separate document: a claim whose depends_on includes MECH-457, MECH-459, MECH-460, MECH-475, or MECH-476, and whose first /failure-autopsy would otherwise grow competence_floor by Step 9b's claims+theme matching, should instead pre-register its OWN qid -- UNLESS the specific mechanism under test targets an axis family this qid's decision block still lists as undecided (there is currently none; every family -- process, constitution, instrumentation, representation, world -- carries a resolved answer). This qid's 20 hypotheses and their resolutions are UNCHANGED by this note (GOV-FROZEN-1 has no shrinkage operation and none is invoked); what changes is that this qid should not receive hypothesis #21 onward. The one still-alive leg, H-consummation-binding, is not an exception -- it is complicated (buildable) work (a probe-function fix + one calibrated re-run; see decision.observation_bottleneck), not a discrimination, so it does not need or license a sixth portfolio. Recommended follow-on (not started by this session, per scope discipline): teach /failure-autopsy Step 9b to read a target qid's growth_restriction before Mode A/B registration and surface it to the user at the Step 8 gate rather than silently growing the qid.
+- `zworld_actor_adequacy_locus`: 5 distinct labelled fan-out portfolios (>= N=3); denominator 2 -> 11, 0 leg(s) still alive. **ACKNOWLEDGED (fan-out).** The qid carries a `growth_restriction` closing it to further growth AND no leg is still alive, so this recurrence has been WORKED -- it needs no re-pose routing this cycle. Reported, never suppressed: the count does not decrease and the overlay does not clear itself. Re-read the restriction before treating any new portfolio on this qid as sanctioned. Sources: `exq1002_redteam_findings_20260904.md`, `failure_autopsy_V3-EXQ-1008_2026-09-08.json`, `failure_autopsy_V3-EXQ-1023_2026-09-14.json`, `failure_autopsy_V3-EXQ-1041_2026-09-16.json`, `ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py`
+
+  Restriction, verbatim:
+
+  > CLOSED TO FURTHER FAN-OUT (2026-09-23, failure_autopsy_zworld_actor_adequacy_locus_repose_2026-09-23.json, GFLAG-0312, chip-20260923-zworld-locus-repose; user-ratified at the Step 8 gate). This qid reached 4 labelled fan-out designs (5 artifact-keyed portfolios after the GFLAG-0329 event split), denominator 2 -> 11, and carries a GOV-HOTHER-1 rotation event. The re-pose reading: the question was MIS-POSED BY CONFLATION, not under-enumerated. Its registered LOCUS question -- where is the shipped z_world actor-adequacy deficit? -- was answered at V3-EXQ-1010 (consumer eliminated, channel-input width eliminated, warmup not the locus, geometry about a third of the gap, the encoding discards the decision-relevant content). Later designs attached here by Step 9b claims+theme matching (all carry MECH-457/INV-088) but asked two OTHER questions about SD-106, the repair H-F motivated: the V3-EXQ-1041 grid (whether SD-106's preservation READOUT is comparable to its design anchor -- encoder plane, all resolved) and the V3-EXQ-1041 autopsy portfolio (why SD-106's trained objective does not TRANSFER to the consumer). A locus partition cannot carve a transfer phenomenon. RULE: no new leg is added to this qid. A leg about SD-106's objective-to-consumer transfer (MECH-566, MECH-567, which-directions, or any successor) goes to `sd106_objective_consumer_transfer`; any other SD-106 or z_world question pre-registers its OWN qid and names this one in its text. PERMITTED WITHOUT EXCEPTION: resolving legs already registered here (Mode B is not growth). ONE SANCTIONED EXCEPTION: a leg that LOCALISES H-F's content loss to a named layer of the SHIPPED observation->z_world path (decision.observation_bottleneck's layer-wise decode profile) refines the answered locus and may attach here, citing this restriction and user confirmation in its growth event's note. PRECEDENT, confronted: failure_autopsy_V3-EXQ-1041_2026-09-16 opened a standalone question for these legs and withdrew it at its gate because that draft booked ZERO growth here -- a dodge of the growth accounting. This re-pose keeps every leg and all growth booked on this qid and splits only going forward.
 
 ## Advisory -- labelled discovery growth (4, NOT violations)
 
@@ -168,7 +175,7 @@ _Mirrors the fan-out recurrence overlay above, for the discovery-growth path. Ev
 
 _None._
 
-## Pre-registration provenance (27 witnessed, 0 unverifiable)
+## Pre-registration provenance (31 witnessed, 0 unverifiable)
 
 _`pre_registered_utc` is SELF-REPORTED and written into the registry after the fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- no audit reading only the registry can detect that. A fan-out leg whose adjudicating run had ALREADY RESOLVED when it was added therefore clears only on **git-witnessed** provenance: its `pre_registration_source` artifact (or its own registry entry) must have been durably committed before the run resolved. The honest case self-clears with no human adjudication; a back-dated one cannot manufacture a commit._
 
@@ -197,8 +204,12 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `zworld_actor_adequacy_locus`/`H-D-warmup-not-the-locus`: `exq1002_redteam_findings_20260904.md` committed 2026-09-04 <= resolution 2026-09-05
 - `zworld_actor_adequacy_locus`/`H-E-channel-input-capacity`: `failure_autopsy_V3-EXQ-1002_2026-09-05.json` committed 2026-09-05 <= resolution 2026-09-07
 - `zworld_actor_adequacy_locus`/`H-F-content-discarded-at-encode`: `failure_autopsy_V3-EXQ-1008_2026-09-08.json` committed 2026-09-08 <= resolution 2026-09-09
-- `zworld_actor_adequacy_locus`/`H-under-budgeted-p0a`: entered the registry 2026-09-16 <= resolution 2026-09-17
+- `zworld_actor_adequacy_locus`/`H-metric-mismatch`: `failure_autopsy_V3-EXQ-1023_2026-09-14.json` committed 2026-09-14 <= resolution 2026-09-15
+- `zworld_actor_adequacy_locus`/`H-under-budgeted-p0a`: `failure_autopsy_V3-EXQ-1023_2026-09-14.json` committed 2026-09-14 <= resolution 2026-09-17
+- `zworld_actor_adequacy_locus`/`H-mechanism-defect`: `failure_autopsy_V3-EXQ-1023_2026-09-14.json` committed 2026-09-14 <= resolution 2026-09-15
+- `zworld_actor_adequacy_locus`/`H-anchor-off-distribution`: `ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py` committed 2026-09-15 <= resolution 2026-09-15
 - `zworld_actor_adequacy_locus`/`H-transfer-amplification`: `failure_autopsy_V3-EXQ-1041_2026-09-16.json` committed 2026-09-16 <= resolution 2026-09-17
+- `zworld_actor_adequacy_locus`/`H-which-directions`: `failure_autopsy_V3-EXQ-1041_2026-09-16.json` committed 2026-09-16 <= resolution 2026-09-23
 - `sd082_candidate_discriminating_readout_locus`/`H-replay-rule-state-mismatch`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 - `sd082_candidate_discriminating_readout_locus`/`H-selection-authority-bounded`: `failure_autopsy_V3-EXQ-1020_2026-09-11.json` committed 2026-09-11 <= resolution 2026-09-14
 
@@ -221,7 +232,7 @@ _Every important question must preserve a route OUTSIDE its registered partition
 
 _No confirmed autopsy carries an unreflected `hypothesis_space_ledger_pending` block._
 
-## Advisory -- possibly stale `synthesis` prose (5, NOT violations)
+## Advisory -- possibly stale `synthesis` prose (4, NOT violations)
 
 A question's `synthesis` block (`surviving_label` / `text` / `under_test`) is free prose written by whichever `/failure-autopsy` last touched the question, and nothing re-derives it -- so it goes stale silently whenever a later run resolves a leg. It is also the field a reader consults for 'where does this question stand', which is what makes a stale one actively misinform rather than merely lag.
 
@@ -229,7 +240,6 @@ A question's `synthesis` block (`surviving_label` / `text` / `under_test`) is fr
 - `competence_floor`: under_test describes owed work (556 chars) but 0 of 20 legs are alive -- the work it names may already be done.
 - `inv088_evaluator_degeneracy_cause`: the newest run the synthesis cites is V3-EXQ-108b, but V3-EXQ-954 adjudicated `H-horizon-compounding` -> eliminated on 2026-08-29 and is not named anywhere in the block -- the prose predates an adjudication it cannot describe.
 - `e3_fdominance_causal_discrimination`: the newest run the synthesis cites is V3-EXQ-925, but V3-EXQ-936a adjudicated `H5-score-scale-uncontrolled` -> confirmed on 2026-08-17 and is not named anywhere in the block -- the prose predates an adjudication it cannot describe.
-- `zworld_actor_adequacy_locus`: the newest run the synthesis cites is V3-EXQ-1010, but V3-EXQ-1041 adjudicated `H-metric-mismatch` -> confirmed on 2026-09-15 and is not named anywhere in the block -- the prose predates an adjudication it cannot describe.
 
 **Do not auto-repair these.** The block is authored prose; the correct response is that the next `/failure-autopsy` or `/governance` session touching the question REWRITES it against the current leg states. A script cannot write a synthesis, and one that tried would manufacture exactly the confident-but-wrong text this check exists to find.
 
