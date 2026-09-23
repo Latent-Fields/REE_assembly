@@ -6563,7 +6563,11 @@
       "task_claim_session_id": "igw-auto-igw-250-proposal-for-mech-080-20260923T053206Z",
       "task_claim_claimed_at": "2026-09-23T05:32:06Z",
       "assigned_at": "2026-09-23T05:29:05Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-23T05:47:04Z",
+      "completion_summary": "MECH-080/EVB-1420: marked EXP-0818 blocked_substrate (REE_assembly 2c506e287c + 043a80d593) -- no MECH-076 basin lever, commit-layer DVs behind unbuilt commit-entry layer; chipped LIT-0819 lit-pull as the runnable half",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-080/EVB-1420: marked EXP-0818 blocked_substrate (REE_assembly 2c506e287c + 043a80d593) -- no MECH-076 basin lever, commit-layer DVs behind unbuilt commit-entry layer; chipped LIT-0819 lit-pull as the runnable half"
     }
   ],
   "dispositions": [
@@ -9506,6 +9510,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-23T04:47:38Z",
       "re_eligible_after": "2026-09-25T04:47:38Z"
+    },
+    {
+      "stable_hash": "812b8055e82f",
+      "igw_id_at_disposition": "IGW-20260923-250",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-080"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-080",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-23T05:47:08Z",
+      "re_eligible_after": "2026-09-25T05:47:08Z"
     }
   ]
 }
