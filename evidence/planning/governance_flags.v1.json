@@ -5820,9 +5820,9 @@
       "summary": "INV-063 leg B requirement (i) does not implement what it states: it gates readability on conv_rel_drop >= 0.99, but conv_rel_drop is normalised by the RANDOM-INIT battery MSE, and random init on a forward model is far worse than simply copying the input -- so the gate is satisfiable while the head sits AT its degenerate value. Measured from V3-EXQ-1063's own landed manifest, which already records identity_predictor_mse = mean((z1-z0)^2) per cell: at conv_rel_drop 0.99802 / 0.99670 / 0.99917 the skill score 1 - MSE_model/MSE_identity is -0.071 / +0.227 / -0.007, i.e. the converged world-forward head is at or BELOW copy-the-input on 2 of 3 seeds. PROPOSED (not applied by this intake pass, because a falsifier edit belongs to a governance cycle): requirement (i) should additionally require skill > 0 against identity_predictor_mse. Registered as MECH-573 by the CDQ-011 Mine+Register pass (REE_assembly 995decbbad); architecture stub docs/architecture/across_sleep_readout_mechanisms.md. Note this makes the gate STRICTER, not weaker, and it does NOT assert leg B is unreadable -- GFLAG-0382's n=1 limit still binds that.",
       "raised_by_session": "pensive-feistel-471e3c",
       "raised_at": "2026-09-22T07:13:38Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:37:13Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. USER RULING 2026-09-23 (accepted the governance recommendation, rec-20260923-e1e14f35). INV-063 leg-B requirement (i) now also requires skill = 1 - MSE_model/MSE_identity > 0 on the same frozen battery (REE_assembly 335a821c30). Strictly tightening; INV-063 stays substrate_conditional. MECH-573 remains the separately registered hypothesis."
     },
     {
       "flag_id": "GFLAG-0408",
