@@ -4160,9 +4160,9 @@
       "summary": "V3-EXQ-1023a (queued 2026-09-16, ree-v3 57dbd5c01b on origin/main) is the SD-106 acceptance re-measurement at P0a epochs=40 and carries supersedes: V3-EXQ-1023. Per CLAUDE.md 'EXQ Versioning and Supersession Policy', a bare supersedes field hands nothing to governance, so this flag is the handoff: once V3-EXQ-1023a completes, decide whether V3-EXQ-1023's evidence (run v3_exq_1023_sd106_bottleneck_preservation_validation_20260912T045319Z_v3) gets evidence_direction: superseded and the index rebuilt. Basis: the CONFIRMED autopsy failure_autopsy_V3-EXQ-1041_2026-09-16 established that V3-EXQ-1023 measured the SD-106 mechanism at roughly ONE THIRD of its within-range effect size (SD-106-minus-OFF post-hoc medians +0.0169 at the shipped budget vs +0.0509 at epochs=40) and that the preservation head had not saturated. Both runs are experiment_purpose=diagnostic and already excluded from confidence/conflict scoring, so the practical effect is provenance rather than rescoring -- governance should decide, not this session. Raised by science-batch6-20260916 (orchestrate-20260916-1305).",
       "raised_by_session": "science-batch6-20260916",
       "raised_at": "2026-09-16T20:02:37Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:53:25Z",
+      "resolution_note": "[governance-flags-20260923b, user-approved] APPLIED. Precondition met: V3-EXQ-1023a completed 2026-09-17 and its confirmed autopsy answers this flag. Its lead-sentence and live_status recommendations were already applied (governance-20260917 / 20260923). The remaining piece -- V3-EXQ-1023's own manifest -- now reads evidence_direction superseded on flat + pack, with an evidence_direction_note citing failure_autopsy_V3-EXQ-1023a_2026-09-17 and retaining the prior 'mixed' + prior note (REE_assembly 7b340c38aa7). No index regen run; the next governance regen picks it up."
     },
     {
       "flag_id": "GFLAG-0297",
