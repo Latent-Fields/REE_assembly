@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-23T17:47:57Z
+Generated: 2026-09-23T19:43:21Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **67** open question(s) across **54** time-series snapshot(s). **5** flag(s) raised, **69** advisory note(s), **27** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
+Audited **67** open question(s) across **54** time-series snapshot(s). **4** flag(s) raised, **69** advisory note(s), **27** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **1** acknowledged (worked) recurrence(s), **5** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -19,13 +19,12 @@ _The frozen initial enumeration grew WITHOUT a valid labelled fan-out record, or
 - `zworld_actor_adequacy_locus` fan-out ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py: condition (a) unmet for H-metric-mismatch (adjudicating run already RESOLVED when the leg was added; first durable record 2026-09-16 POST-DATES resolution 2026-09-15 -- self-reported pre_registered_utc 2026-09-15 is unwitnessed), H-mechanism-defect (adjudicating run already RESOLVED when the leg was added; first durable record 2026-09-16 POST-DATES resolution 2026-09-15 -- self-reported pre_registered_utc 2026-09-15 is unwitnessed), H-anchor-off-distribution (adjudicating run already RESOLVED when the leg was added; first durable record 2026-09-16 POST-DATES resolution 2026-09-15 -- self-reported pre_registered_utc 2026-09-15 is unwitnessed) -- a leg added by fan-out must pre-date the run that adjudicates it.
 - `zworld_actor_adequacy_locus`: grew 2 -> 11 (+9) but only 5 leg(s) are covered by a valid fanout_growth_events/discovery_growth_events entry -- 4 unaccounted, which is post-hoc enlargement.
 
-## (c) Confirmed/superseded without a passed control (3)
+## (c) Confirmed/superseded without a passed control (2)
 
 _A `confirmed` or `superseded` hypothesis lacks control_passed == true._
 
 - `mech467_legc_event_denominator_cause`/`H-commitment`: state=superseded but control_passed=False -- a superseded node needs a passed control.
 - `mech467_legc_event_denominator_cause`/`H-cadence`: state=superseded but control_passed=False -- a superseded node needs a passed control.
-- `sd_e1_var_bar_readout_crush`/`H-readout-saturation`: state=confirmed but control_passed=False -- a confirmed node needs a passed control.
 
 ## (d) Elimination-bar violation (0)
 
