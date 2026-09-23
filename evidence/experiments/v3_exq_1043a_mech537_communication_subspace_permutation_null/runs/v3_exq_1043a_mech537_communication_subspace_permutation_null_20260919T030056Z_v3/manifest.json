@@ -23,7 +23,7 @@
     "MECH-537"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -280,5 +280,5 @@
     "n_agents": 6,
     "goal_state_present": true
   },
-  "evidence_direction_note": "[governance-20260920] evidence_direction non_contributory ratified by the user at the 2026-09-20 /governance walk from confirmed failure_autopsy_V3-EXQ-1043a_2026-09-20 (claims-layer apply: REE_assembly 108b156192)."
+  "evidence_direction_note": "[governance-20260920] evidence_direction non_contributory ratified by the user at the 2026-09-20 /governance walk from confirmed failure_autopsy_V3-EXQ-1043a_2026-09-20 (claims-layer apply: REE_assembly 108b156192). [2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0422] SUPERSEDED by V3-EXQ-1043b (ree-v3 9ee2700 queue entry declares supersedes: V3-EXQ-1043a; 1043b ran 2026-09-22 with every readiness gate green and is adjudicated by confirmed failure_autopsy_V3-EXQ-1043b_2026-09-23, REE_assembly a733679ddf). evidence_direction moved non_contributory -> superseded so the indexer treats this run as INACTIVE and it stops counting toward MECH-537 confidence or conflict ratio. Prior direction preserved in this note; the run's own findings are unchanged and its autopsy (failure_autopsy_V3-EXQ-1043a_2026-09-20) remains the record of what it measured."
 }
