@@ -6513,7 +6513,11 @@
       "task_claim_session_id": "igw-auto-igw-251-proposal-for-mech-079-20260923T030745Z",
       "task_claim_claimed_at": "2026-09-23T03:07:45Z",
       "assigned_at": "2026-09-23T03:04:29Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-23T03:26:22Z",
+      "completion_summary": "MECH-079/EVB-1419 experimental lane marked blocked_substrate (REE_assembly origin/master 5c44e8121e, both proposal files); no experiment queued -- map geometry is architecturally decoupled from retrieval in V3; LIT-0817 left open",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MECH-079/EVB-1419 experimental lane marked blocked_substrate (REE_assembly origin/master 5c44e8121e, both proposal files); no experiment queued -- map geometry is architecturally decoupled from retrieval in V3; LIT-0817 left open"
     }
   ],
   "dispositions": [
@@ -9428,6 +9432,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-20T15:12:16Z",
       "re_eligible_after": "2026-09-22T15:11:59Z"
+    },
+    {
+      "stable_hash": "6414d4f5cdd0",
+      "igw_id_at_disposition": "IGW-20260923-251",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-079"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-079",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-23T03:26:24Z",
+      "re_eligible_after": "2026-09-25T03:26:24Z"
     }
   ]
 }
