@@ -1,0 +1,226 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1077_sdppb9_harm_head_undertrain_probe",
+  "run_id": "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-23T18:46:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "320796d3523f558e57c8c4dee87303fbd9bf43a3",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "active_error_removed_AMBIGUOUS",
+    "why": "converged head cannot_determine on 3 eligible seeds -- aliased across under-training, representation ceiling and PE-source; NOT a ceiling verdict",
+    "combination_rule": "Preconditions first: reproduction control (ARM_ONLINE_B1 @ eps 0.0 persistence_dominated) on >= 2/3 seeds, else substrate_not_ready_requeue; >= 2 ELIGIBLE (reproduced AND converged) seeds, else substrate_not_ready_requeue. Then on ARM_CONVERGED @ eps 0.1 among eligible seeds, first quorum (>= 2) wins in the order ready -> h_undertrained_confirmed (PASS); persistence_dominated -> h_undertrained_refuted_declared_null (FAIL); cannot_determine -> active_error_removed_AMBIGUOUS (FAIL, not a ceiling verdict); else inconclusive_no_quorum (FAIL). Only C1 is load-bearing for PASS.",
+    "preconditions": [
+      {
+        "name": "eligible_seeds_reproduced_and_converged",
+        "description": "seeds that are BOTH reproduced (control persistence_dominated at eps 0.0) AND converged -- the count the routing actually gates on",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "instrument_canary_reproduces_1062a",
+        "description": "persistence_skill_gate.check_canary: the shipped verdict path classifies the 6 landed 1062a cells persistence_dominated",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "control": "pinned 1062a manifest cells (known persistence_dominated)",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "reproduction_control_persistence_dominated_seeds",
+        "description": "ARM_ONLINE_B1 (1062a's P1 exactly) is persistence_dominated at eps 0.0 -- the defect reproduces on today's substrate",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "known-negative: 1062a measured persistence_dominated 3/3 stationary",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "converged_arm_reached_plateau_seeds",
+        "description": "ARM_CONVERGED: lr-halving schedule exhausted (lr < 1.95e-06) before the 40000-step cap AND best held-out loss <= persistence on the same held-out rows (reachability of the zero-delta point)",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "eval_battery_rows_worst_cell",
+        "description": "fewest paired rows in any evaluation rollout (instrument MIN_ROWS)",
+        "measured": 231.0,
+        "threshold": 32.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_converged_head_ready_eps_matched",
+        "load_bearing": true,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "eligible seeds where ARM_CONVERGED @ eps 0.1 is ready (paired-bootstrap CI on d entirely > 0)",
+        "passed": false
+      },
+      {
+        "name": "N1_declared_null_converged_head_persistence_dominated",
+        "load_bearing": false,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "eligible seeds where the converged head is STILL persistence_dominated (declared null: under-training refuted)",
+        "passed": false
+      },
+      {
+        "name": "A1_aliased_cannot_determine",
+        "load_bearing": false,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "description": "eligible seeds where the converged head is cannot_determine (AMBIGUOUS: aliased across three hypotheses)",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_converged_head_ready_eps_matched": true,
+      "N1_declared_null_converged_head_persistence_dominated": true,
+      "A1_aliased_cannot_determine": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3e6e003846b712acc4469e5da3bd243408b8c651756f1f83626a8e4831d7321e",
+  "substrate_commit": {
+    "commit": "320796d3523f558e57c8c4dee87303fbd9bf43a3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_encoder": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "serotonin.tonic_5ht_enabled": true,
+    "surprise_gated_replay": true,
+    "valence_harm_enabled": true,
+    "valence_liking_enabled": true,
+    "incentive_sensitization_enabled": true,
+    "use_e2_harm_a": true,
+    "use_dacc": true,
+    "dacc_weight": 1.0,
+    "dacc_interaction_weight": 0.5,
+    "dacc_bias_max_abs": 1.0,
+    "use_salience_coordinator": true,
+    "salience_use_stability_temperature": true,
+    "salience_apply_to_dacc_bias": true,
+    "use_pcc_analog": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 9042.405021159,
+  "config": {
+    "base_config": "v3_exq_1062a make_config/_make_env (imported)",
+    "base_driver_sha256": "bbb14419f3c5eca35ac314faa5bac7b97d56e6bd4d15f921acfed16018c8763d",
+    "env": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 6,
+      "hazard_harm": 0.5,
+      "resource_benefit": 0.3,
+      "use_proxy_fields": true,
+      "harm_history_len": 10,
+      "env_drift_interval": 999,
+      "env_drift_prob": 0.0
+    },
+    "world_rule_shift": "disabled_throughout (stationary only)",
+    "schedule": {
+      "p0": 30,
+      "p1": 60,
+      "steps": 90,
+      "epsilon_train": 0.1,
+      "eval_step_budget": 1800,
+      "eval_epsilons": [
+        0.1,
+        0.0
+      ]
+    },
+    "online_arm": {
+      "batch": 1,
+      "lr": 0.0005,
+      "online": true
+    },
+    "converged_arm": {
+      "batch": 64,
+      "lr": 0.0005,
+      "heldout_fraction": 0.1,
+      "plateau_window": 1000,
+      "plateau_rel_improvement": 0.01,
+      "lr_decay_factor": 0.5,
+      "min_lr": 1.953125e-06,
+      "decay_reference": "best_so_far_heldout",
+      "checkpoint": "best_heldout_reloaded_at_each_decay",
+      "reachability": "best_heldout_loss <= persistence_heldout_loss",
+      "permute_seed_offset": 104729,
+      "cap": 40000,
+      "eval_every": 100,
+      "split_seed_offset": 7919
+    },
+    "seeds_required": 2,
+    "instrument": {
+      "n_bootstrap": 2000,
+      "ci_level": 0.95,
+      "bootstrap_seed": 20260923,
+      "min_rows": 32
+    },
+    "fresh_select_namespace": "exq1062a_mech055"
+  },
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "z_goal_stream": {
+    "ticks_total": 89532,
+    "ticks_active": 0,
+    "writer_calls": 89532,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 12,
+    "goal_state_present": true
+  }
+}
