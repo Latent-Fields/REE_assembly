@@ -1,0 +1,489 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation",
+  "run_id": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-23T21:53:22Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "846ae1637816ea962ff593187585c8a78093a585",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-439": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "commensurate_at_eligibility_both_regimes",
+    "preconditions": [
+      {
+        "name": "C_fed_operator_on::decomp_samples_sufficient",
+        "precondition": "decomp_samples_sufficient",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "genuine (fresh, latch-gated) P1 selections scored -- the R denominator",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 201.0,
+        "threshold": 60.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::operator_engaged",
+        "precondition": "operator_engaged",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "channel_scale_estimates.engaged at cell end -- an arm that never left the operator's warmup has no manipulation in it",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::clamp_config_landed",
+        "precondition": "clamp_config_landed",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "the rollout clamp flag actually reached agent.e2.config in every cell",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::residue_protocol_landed",
+        "precondition": "residue_protocol_landed",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "the arm's residue-feeding protocol executed as declared",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_fed_operator_on::n_content_channels",
+        "precondition": "n_content_channels",
+        "arm": "C_fed_operator_on",
+        "kind": "readiness",
+        "description": "channels live by EMA with >= MIN_CONTENT_TICKS content ticks -- R needs >= 2 (restores 571c's n_live_channels >= 2 gate, 1012a autopsy change 7). Does not read R, J, E sizes, r_c(t) or channel shape.",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::decomp_samples_sufficient",
+        "precondition": "decomp_samples_sufficient",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "genuine (fresh, latch-gated) P1 selections scored -- the R denominator",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 158.0,
+        "threshold": 60.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::operator_engaged",
+        "precondition": "operator_engaged",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "channel_scale_estimates.engaged at cell end -- an arm that never left the operator's warmup has no manipulation in it",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::clamp_config_landed",
+        "precondition": "clamp_config_landed",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "the rollout clamp flag actually reached agent.e2.config in every cell",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::residue_protocol_landed",
+        "precondition": "residue_protocol_landed",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "the arm's residue-feeding protocol executed as declared",
+        "control": "all cells of the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "C_starved_operator_on::n_content_channels",
+        "precondition": "n_content_channels",
+        "arm": "C_starved_operator_on",
+        "kind": "readiness",
+        "description": "channels live by EMA with >= MIN_CONTENT_TICKS content ticks -- R needs >= 2 (restores 571c's n_live_channels >= 2 gate, 1012a autopsy change 7). Does not read R, J, E sizes, r_c(t) or channel shape.",
+        "control": "worst seed of this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_eligibility_authority_fed": true,
+      "C1_eligibility_authority_starved": true
+    },
+    "combination_rule": "Precedence: instrument (residual, replay self-check, OFF cross-check, I2 rate) > per-regime class. Per regime exactly one class: not_ready (that arm's gate red; scoped out, never vacates the other regime), else moot (R_OFF >= bar in >= 3/4 seeds), else commensurate (C1: R_ON >= bar in >= 3/4), else ema_lag (R_ORACLE >= bar in >= 3/4), else shape_range. PASS iff both regimes commensurate; every other combination FAIL with label fed_<class>__starved_<class>. outcome is the rung-3 VALIDATION verdict, not a MECH-439 direction.",
+    "on_off_separated": true,
+    "prior_note": "PASS is the expected reading under Gaussian or sparse-HIGH channel shapes at r ~ 1; it fails gate-green for sparse-LOW shapes (R ~0.21 at perfect SD equalisation), sparse-HIGH at r >= 3, or a channel >= ~5x its EMA. Read R with shape_*_quantiles and r_realised_quantiles."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8ab35ebe088e8d5835e85ad6a4fa0bc8f4a116d4efbc8ee5aaf6f65fc7d7a7c9",
+  "substrate_commit": {
+    "commit": "846ae1637816ea962ff593187585c8a78093a585",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e2.e2_rollout_output_norm_clamp_enabled": true,
+    "e3.use_e3_channel_commensurability": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_modulatory_selection_authority": true,
+    "e3.use_modulatory_channel_routing": true,
+    "e3.use_modulatory_shortlist_then_modulate": true,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "use_lateral_pfc_analog": true,
+    "use_modulatory_selection_authority": true,
+    "use_modulatory_channel_routing": true,
+    "use_mech295_liking_bridge": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7356.175331155,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45,
+      46
+    ],
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 4,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "hazard_food_attraction": 0.7,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "schedule": {
+      "p0_warmup_episodes": 60,
+      "p1_episode_cap": 40,
+      "steps_per_episode": 200,
+      "fresh_select_target": 200
+    },
+    "pre_registered_thresholds": {
+      "MIN_FRESH_SELECTIONS": 60,
+      "R_BAR": 0.25,
+      "SEEDS_REQUIRED": 3,
+      "CONTENT_FRAC": 0.1,
+      "MIN_CONTENT_TICKS": 30,
+      "RESIDUAL_REL_TOL": 1e-05,
+      "SELF_CHECK_TOLERANCE": 1e-06,
+      "I2_MAX_MISMATCH_RATE": 0.01
+    },
+    "arms": [
+      {
+        "id": "C_fed_operator_on",
+        "feed_residue": true,
+        "warmup": true,
+        "load_bearing": true
+      },
+      {
+        "id": "C_starved_operator_on",
+        "feed_residue": false,
+        "warmup": true,
+        "load_bearing": true
+      }
+    ],
+    "arm_config_slices": {
+      "C_fed_operator_on": {
+        "use_e3_channel_commensurability": true,
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 60,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": true,
+          "p0_warmup": true
+        },
+        "cell_readout_constants": {
+          "r_bar": 0.25,
+          "content_frac": 0.1,
+          "min_content_ticks": 30,
+          "residual_rel_tol": 1e-05,
+          "self_check_tolerance": 1e-06
+        }
+      },
+      "C_starved_operator_on": {
+        "use_e3_channel_commensurability": true,
+        "env_kwargs": {
+          "size": 12,
+          "num_hazards": 4,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.1,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "reef_enabled": true,
+          "n_reef_patches": 3,
+          "reef_patch_radius": 2,
+          "hazard_food_attraction": 0.7,
+          "reef_bipartite_layout": true,
+          "reef_bipartite_axis": "horizontal",
+          "reef_bipartite_agent_band_radius": 1
+        },
+        "sd056_training": {
+          "sd056_weight": 0.5,
+          "e2_contrastive_lr": 0.0001,
+          "contrastive_batch_k": 8,
+          "transition_buffer_max": 2000,
+          "e2_train_every_k_ticks": 4,
+          "max_grad_norm": 1.0
+        },
+        "config_flags": {
+          "self_dim": 32,
+          "world_dim": 32,
+          "alpha_world": 0.9,
+          "alpha_self": 0.3,
+          "use_harm_stream": true,
+          "z_harm_dim": 32,
+          "use_affective_harm_stream": true,
+          "z_harm_a_dim": 16,
+          "harm_history_len": 10,
+          "z_goal_enabled": true,
+          "goal_weight": 0.5,
+          "drive_weight": 2.0,
+          "e1_goal_conditioned": true,
+          "use_resource_proximity_head": true,
+          "resource_proximity_weight": 0.5,
+          "benefit_eval_enabled": true,
+          "benefit_weight": 1.0,
+          "use_support_preserving_cem": true,
+          "support_preserving_stratified_elites": true,
+          "support_preserving_ao_std_floor": 0.2,
+          "support_preserving_min_first_action_classes": 2,
+          "candidate_summary_source": "e2_world_forward",
+          "use_lateral_pfc_analog": true,
+          "use_mech295_liking_bridge": true,
+          "use_modulatory_channel_routing": true,
+          "modulatory_channel_route_source": "cand_world_summary",
+          "modulatory_channel_route_weight": 1.0,
+          "use_modulatory_selection_authority": true,
+          "use_modulatory_shortlist_then_modulate": true,
+          "modulatory_shortlist_conflict_graded": false,
+          "use_gap_scaled_commit_temperature": false,
+          "use_structured_curiosity": false,
+          "use_e3_score_diversity": false,
+          "use_noise_floor": false,
+          "use_tonic_vigor": false,
+          "use_dacc": false,
+          "use_ofc_analog": false,
+          "use_gated_policy": false,
+          "use_candidate_rule_field": false,
+          "e2_rollout_output_norm_clamp_enabled": true,
+          "e2_rollout_output_norm_clamp_ratio": 2.0
+        },
+        "off_arm_flags": {
+          "use_f_eligibility_demotion": false,
+          "use_go_nogo_constitution": false
+        },
+        "schedule": {
+          "p0_warmup_episodes": 60,
+          "p1_episode_cap": 40,
+          "steps_per_episode": 200,
+          "fresh_select_target": 200
+        },
+        "protocol": {
+          "feed_residue_per_step": false,
+          "p0_warmup": true
+        },
+        "cell_readout_constants": {
+          "r_bar": 0.25,
+          "content_frac": 0.1,
+          "min_content_ticks": 30,
+          "residual_rel_tol": 1e-05,
+          "self_check_tolerance": 1e-06
+        }
+      }
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46
+  ],
+  "z_goal_stream": {
+    "ticks_total": 53837,
+    "ticks_active": 0,
+    "writer_calls": 53837,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 8,
+    "goal_state_present": true
+  }
+}
