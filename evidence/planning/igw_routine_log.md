@@ -3529,3 +3529,9 @@ One line per hourly tick. ASCII only.
 2026-09-23T07:01:33Z complete IGW-20260922-228 staged->completed outcome=DUPLICATE: Never launched. SD-PP-B5 was already built and landed by another session: ree-v3
 2026-09-23T07:49:41Z skip: paused (.igw_routine_pause present)
 2026-09-23T08:23:12Z auto-defer igw-250-literature-proposal-for-mech-080 hash=988dba67b38c for 48h (complete)
+2026-09-23T08:26:12Z complete igw-250-literature-proposal-for-mech-080 spawned->completed outcome=USEFUL_LANDED: MECH-080 lit-pull: 5 literature entries landed (REE_assembly e363db1b52), lit_co
+2026-09-23T08:49:52Z skip: paused (.igw_routine_pause present)
+2026-09-23T09:50:25Z GC removed worktree igw-216-substrate-ready-sd-pp-1 (removed; branch deleted)
+2026-09-23T09:50:50Z GC removed worktree igw-228-substrate-ready-sd-pp-b5-z-world (removed; branch deleted)
+2026-09-23T09:49:56Z GC sweep removed 2 orphan worktree(s), kept 18
+2026-09-23T09:53:07Z WARN workset materially changed vs HEAD and origin but _ree_commit made no commit -- CAS no-op or a degraded git path that found nothing to do; the published copy may be stale (regen -- 266 items, 33 ready, 0 in flight)
