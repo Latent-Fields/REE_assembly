@@ -1,0 +1,253 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1078_inv069_zself_coherence_unsettled",
+  "run_id": "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-23T18:20:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "23bd9cd0163c6b8173d46f7111f2b26fab8d09fa",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-069"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "INV-069": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined|arm_b_sign_locked_gap_above_noise_non_contributory",
+    "arm_a_label": "arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined",
+    "arm_b_label": "arm_b_sign_locked_gap_above_noise_non_contributory",
+    "preconditions": [
+      {
+        "name": "arm_a::recurrence_live",
+        "description": "DR-13 stateful z_self departs from the instantaneous encode",
+        "measured": 0.8651086921493212,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_b::freeze_engaged_closed_form_identity",
+        "description": "frozen ||dz_self|| exactly 0 and frozen vs == 1-(1-tau)^n(1-vs_onset) within tol, no tick with frozen < live (instrument identity, not evidence)",
+        "measured": 1.1102230246251565e-16,
+        "threshold": 1e-06,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_a::dip_measurable",
+        "description": "peak control-minus-perturbed vs gap clears the floor (the same gap statistic A1 reads at K)",
+        "measured": 0.03255917404909672,
+        "threshold": 0.015,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 43,
+        "control": "perturbed vs unperturbed twin of the same trained agent"
+      },
+      {
+        "name": "arm_a::control_off_ceiling",
+        "description": "control per_stream_vs['z_self'] strictly under 1.0",
+        "measured": 0.9985321374276047,
+        "threshold": 0.999999,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_a::events_completed",
+        "description": "eval events surviving to T_PERT+K_REC per seed",
+        "measured": 4.0,
+        "threshold": 3,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "twin_determinism",
+        "description": "control twin replay reproduces itself exactly",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_b::unsettled_regime_present",
+        "description": "live err in the post-boundary window >= 5x settled live err (arm b scope only)",
+        "measured": 11.466017558291933,
+        "threshold": 5.0,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 43
+      }
+    ],
+    "arm_b_failed_preconditions": [],
+    "preconditions_all": [
+      {
+        "name": "arm_a::recurrence_live",
+        "description": "DR-13 stateful z_self departs from the instantaneous encode",
+        "measured": 0.8651086921493212,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_b::freeze_engaged_closed_form_identity",
+        "description": "frozen ||dz_self|| exactly 0 and frozen vs == 1-(1-tau)^n(1-vs_onset) within tol, no tick with frozen < live (instrument identity, not evidence)",
+        "measured": 1.1102230246251565e-16,
+        "threshold": 1e-06,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_a::dip_measurable",
+        "description": "peak control-minus-perturbed vs gap clears the floor (the same gap statistic A1 reads at K)",
+        "measured": 0.03255917404909672,
+        "threshold": 0.015,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 43,
+        "control": "perturbed vs unperturbed twin of the same trained agent"
+      },
+      {
+        "name": "arm_a::control_off_ceiling",
+        "description": "control per_stream_vs['z_self'] strictly under 1.0",
+        "measured": 0.9985321374276047,
+        "threshold": 0.999999,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_a::events_completed",
+        "description": "eval events surviving to T_PERT+K_REC per seed",
+        "measured": 4.0,
+        "threshold": 3,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "twin_determinism",
+        "description": "control twin replay reproduces itself exactly",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "direction": "upper",
+        "met": true,
+        "offending_cell": 42
+      },
+      {
+        "name": "arm_b::unsettled_regime_present",
+        "description": "live err in the post-boundary window >= 5x settled live err (arm b scope only)",
+        "measured": 11.466017558291933,
+        "threshold": 5.0,
+        "direction": "lower",
+        "met": true,
+        "offending_cell": 43
+      }
+    ],
+    "criteria_non_degenerate": {
+      "A1_vs_gap_recovers_within_band_at_K": false,
+      "A2_state_restored_onto_control_trajectory": false,
+      "B_gap_above_settled_noise_band": false
+    },
+    "scoped_out_arms": {
+      "arm_b_frozen_maintenance": "DV fixed by the manipulation (closed form), disposition (b)"
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "6eeb6dfb2365a3e2aee2285a17ebbdbaa1b6d64a23a85a5ceef34b8099baf647",
+  "substrate_commit": {
+    "commit": "23bd9cd0163c6b8173d46f7111f2b26fab8d09fa",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_self_recurrence": true,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_per_stream_vs": true,
+    "heartbeat.breath_period": 50
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 1771.66395106,
+  "config": {
+    "env": {
+      "size": 10,
+      "num_hazards": 2,
+      "num_resources": 5,
+      "hazard_harm": 0.1,
+      "contaminated_harm": 0.0
+    },
+    "agent": {
+      "self_dim": 32,
+      "world_dim": 32,
+      "alpha_world": 0.9,
+      "use_self_recurrence": true,
+      "self_recurrence_e1_coupling": 0.15,
+      "use_per_stream_vs": true
+    },
+    "n_train_episodes": 20,
+    "train_steps": 100,
+    "lr": 0.001,
+    "n_eval_events": 4,
+    "t_on": 2,
+    "w_b": 8,
+    "t_pert": 30,
+    "k_rec": 30,
+    "perturb_frac": 0.5,
+    "dip_floor": 0.015,
+    "recovery_band": 0.005,
+    "state_restore_ratio": 0.1,
+    "unsettled_factor": 5.0,
+    "noise_mult": 3.0
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 6360,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": false
+  }
+}
