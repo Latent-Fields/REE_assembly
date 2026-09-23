@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-22T18:32:49Z
+Generated: 2026-09-23T08:55:07Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (148)
+## Unresolved with a hand status line -- INFO (149)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -147,6 +147,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_mel_consumer.md` -- "IMPLEMENTED"
 - `sd_mel_producer.md` -- "VALIDATED (V3-EXQ-798a, 2026-07-29; confirmed failure_autopsy_V3-EXQ-798a_2026-07-30)"
 - `sd_orienting_decision_scale.md` -- "IMPLEMENTED"
+- `sd_pp_b5_action_sensitive_world_forward.md` -- "IMPLEMENTED (2026-09-22; validation experiment pending)"
 - `sd_queue_seed_enforcement.md` -- "IMPLEMENTED"
 - `sd_residue_valence_bound.md` -- "IMPLEMENTED"
 - `sd_v4_loop_segregation.md` -- "IMPLEMENTED 2026-06-27; finer-channel plumbing DEFECT fixed 2026-06-28; **C2 RELEASE (per-named-channel range-preserving"

@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-22T18:26:59Z",
+  "generated_at": "2026-09-23T08:50:00Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -315,6 +315,17 @@
         "is_hero": false
       },
       {
+        "id": "mech055_harm_pe_source_validity",
+        "title": "harm-PE source validity",
+        "claims": [
+          "MECH-055"
+        ],
+        "surviving": 5,
+        "initial": 6,
+        "convergence": "scattering",
+        "is_hero": false
+      },
+      {
         "id": "mech074d_context_addressing_c2_mechanism",
         "title": "MECH-074d C2 context-addressing mechanism",
         "claims": [
@@ -565,6 +576,17 @@
         "is_hero": false
       },
       {
+        "id": "precision_provenance_consolidation_gain",
+        "title": "precision provenance vs generic gain",
+        "claims": [
+          "MECH-572"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "q081-cross-stream-shared-organisation",
         "title": "Q-081 cross-stream shared organisation",
         "claims": [
@@ -739,6 +761,17 @@
         "is_hero": false
       },
       {
+        "id": "zworld_action_readability_lever",
+        "title": "z_world action-readability lever",
+        "claims": [
+          "MECH-573"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "zworld_actor_adequacy_locus",
         "title": "z_world actor-adequacy locus",
         "claims": [
@@ -767,7 +800,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "154 / 235",
+      "value": "155 / 235",
       "detail": "modules recorded as built"
     },
     {
@@ -777,12 +810,12 @@
     },
     {
       "label": "Narrow",
-      "value": "131 / 185",
+      "value": "142 / 194",
       "detail": "rival explanations still standing"
     },
     {
       "label": "Decide",
-      "value": "23",
+      "value": "24",
       "detail": "design choices currently recorded as ready"
     }
   ],
@@ -1048,6 +1081,25 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-086",
+              "title": "goal_maintenance_feedback_necessity",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "INV-065",
+                "INV-034",
+                "MECH-116",
+                "MECH-217",
+                "ARC-030",
+                "SD-014"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-088",
               "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
               "status": "candidate",
@@ -1139,22 +1191,6 @@
               "depends_on": [
                 "INV-026",
                 "ARC-024"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-035",
-              "title": "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "experiment_planned",
-              "attention_rank": 2,
-              "incoming_dependencies": 9,
-              "depends_on": [
-                "ARC-004",
-                "ARC-003",
-                "ARC-007"
               ],
               "additional_dependencies": 0
             }
@@ -1312,7 +1348,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 19,
+              "incoming_dependencies": 20,
               "depends_on": [
                 "INV-013",
                 "ARC-004",
@@ -1372,7 +1408,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 38,
+              "incoming_dependencies": 39,
               "depends_on": [
                 "ARC-005",
                 "MECH-059",
@@ -1631,6 +1667,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-044",
+              "title": "Context-dependent neuromodulatory gain is a single unifying mechanism expressed at multiple levels: ARC-016 (temporal precision from prediction error variance), MECH-152 (contextual terrain weight from cue-indexed retrieval), MECH-026 (arousal-mediated vigilance sensitivity), and MECH-093 (z_beta heartbeat frequency modulation) are all facets of a global arousal/precision signal (LC-NE) modulated by a context-specific gain signal (vmPFC/OFC).",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "ARC-016",
+                "MECH-152",
+                "MECH-093",
+                "ARC-041"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-047",
               "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
               "status": "candidate",
@@ -1658,23 +1711,6 @@
                 "ARC-005"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-075",
-              "title": "Basal ganglia perform dopaminergic gain/threshold setting on hippocampal attractor dynamics.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "mechanism_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 4,
-              "depends_on": [
-                "Q-019",
-                "ARC-021",
-                "MECH-043",
-                "MECH-073"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1684,7 +1720,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 260,
+      "total": 243,
       "buckets": [
         {
           "key": "active",
@@ -1935,8 +1971,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 232,
-          "more_count": 222,
+          "count": 215,
+          "more_count": 205,
           "nodes": [
             {
               "id": "INV-049",
@@ -2114,7 +2150,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 313,
+      "total": 330,
       "buckets": [
         {
           "key": "active",
@@ -2146,7 +2182,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 30,
+              "incoming_dependencies": 31,
               "depends_on": [
                 "ARC-023",
                 "ARC-021",
@@ -2466,8 +2502,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 241,
-          "more_count": 231,
+          "count": 258,
+          "more_count": 248,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2645,7 +2681,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 293,
+      "total": 294,
       "buckets": [
         {
           "key": "active",
@@ -2700,8 +2736,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 291,
-          "more_count": 281,
+          "count": 292,
+          "more_count": 282,
           "nodes": [
             {
               "id": "ARC-139",
@@ -2880,7 +2916,7 @@
   "record_counts": {
     "active": 179,
     "closed": 50,
-    "planned": 950
+    "planned": 951
   },
   "archive": {
     "snapshot_count": 114,

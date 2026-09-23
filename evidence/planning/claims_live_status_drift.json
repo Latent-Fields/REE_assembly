@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-22T18:27:33Z",
+  "generated_at": "2026-09-23T08:50:35Z",
   "counts": {
-    "total": 1179,
-    "reading_drift": 10,
+    "total": 1180,
+    "reading_drift": 11,
     "unstamped": 6,
     "needs_review": 2,
-    "never_reviewed": 1158,
-    "provenance_drift": 27
+    "never_reviewed": 1159,
+    "provenance_drift": 30
   },
   "reading_drift": [
     {
@@ -83,6 +83,14 @@
     },
     {
       "claim": "MECH-579",
+      "stored_reading": "candidate",
+      "derived_reading": "candidate/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate' derived='candidate/substrate_conditional'"
+      ]
+    },
+    {
+      "claim": "MECH-580",
       "stored_reading": "candidate",
       "derived_reading": "candidate/substrate_conditional",
       "diffs": [
@@ -1290,7 +1298,8 @@
     "MECH-576",
     "MECH-577",
     "MECH-578",
-    "MECH-579"
+    "MECH-579",
+    "MECH-580"
   ],
   "provenance_drift": [
     {
@@ -1326,7 +1335,7 @@
     {
       "claim": "MECH-055",
       "stored_from": null,
-      "derived_from": "decision:MECH-055@2026-09-20T12:17:03.324767Z"
+      "derived_from": "failure_autopsy_V3-EXQ-1062a_2026-09-23"
     },
     {
       "claim": "MECH-065",
@@ -1379,6 +1388,16 @@
       "derived_from": "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1060"
     },
     {
+      "claim": "INV-086",
+      "stored_from": "failure_autopsy_V3-EXQ-1039a_2026-09-20",
+      "derived_from": "failure_autopsy_V3-EXQ-1075_2026-09-23"
+    },
+    {
+      "claim": "MECH-428",
+      "stored_from": "failure_autopsy_V3-EXQ-1039a_2026-09-20",
+      "derived_from": "failure_autopsy_V3-EXQ-1075_2026-09-23"
+    },
+    {
       "claim": "MECH-439",
       "stored_from": "failure_autopsy_V3-EXQ-1012a_2026-09-14",
       "derived_from": "failure_autopsy_V3-EXQ-1039_2026-09-16"
@@ -1422,6 +1441,11 @@
       "claim": "MECH-566",
       "stored_from": null,
       "derived_from": "failure_autopsy_V3-EXQ-1065_2026-09-20"
+    },
+    {
+      "claim": "MECH-572",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-1073_2026-09-22"
     },
     {
       "claim": "GOV-UNWRITTEN-1",

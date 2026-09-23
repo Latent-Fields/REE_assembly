@@ -4409,7 +4409,7 @@
     "coupled_with": [
       "SD-035"
     ],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "amygdala.cea_mode_prior_write",
     "title": "CeA analogue writes a mode prior into the SalienceCoordinator from fast salience classification of z_harm_a.",
@@ -4973,7 +4973,7 @@
       "MECH-289",
       "MECH-291"
     ],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "hippocampal.quiescent_offline_replay",
     "title": "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation.",
@@ -7152,7 +7152,7 @@
       "MECH-285",
       "MECH-287"
     ],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "hippocampal.v_s_residual_schema_staleness_accumulator",
     "title": "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps).",
@@ -7195,7 +7195,7 @@
     "coupled_with": [
       "MECH-284"
     ],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "regulators.broadcast_invalidation_trigger",
     "title": "Dual-component online invalidation trigger: an UPSTREAM anchor-side comparator (CA1/CA3 mismatch flowing through subicular routing per Vinogradova 2001 + O'Mara 2009) coupled to a DOWNSTREAM broadcast event (LC phasic burst per Aston-Jones-Cohen 2005, with parallel signals from generalised dopaminergic prediction error per Schultz 1997 and lateral habenula negative-RPE per Matsumoto-Hikosaka 2007), wired together by the HC-VTA loop (Lisman & Grace 2005). The two components are coupled stages of one trigger event, not alternatives. Distinct from MECH-284 the accumulator: MECH-287 is the discrete trigger event (anchor-side mismatch + broadcast release) that drives accumulation. Triggered by latent-stream prediction failure (norm(z_pred(t-1) - z_obs(t)) > theta_trigger) OR strongly negative value-PE (value_PE(t) < -theta_value) OR exogenous surprise. Carries no schema-region credit on its own; downstream MECH-284 attributes the broadcast event to the active anchor set. Failure modes dissociate from MECH-284: trigger-loss produces single-event blindness (no anchor ever feels invalidated, but staleness map remains queryable); accumulator-loss produces V3-EXQ-475's phenotype directly (releases happen but never integrate). Failure modes also dissociate from MECH-285 sleep priority: trigger-loss prevents staleness from accruing, while sleep-priority loss prevents accrued staleness from being repaired. Within MECH-287 itself, anchor-side comparator failure dissociates from broadcast failure: comparator-loss = no upstream signal to broadcast (silent trigger, biologically a CA1/CA3 lesion); broadcast-loss = comparator fires but no global gain modulation downstream (silent invalidation, biologically an LC lesion).",
@@ -7205,7 +7205,7 @@
   "MECH-288": {
     "assembly_state": "mature",
     "coupled_with": [],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "hippocampal.event_segmenter",
     "title": "Event-segment detection: a substrate-side two-level hierarchical detector that emits monotonic outer.inner segment IDs on detected event boundaries, feeding region-keyed substrates (anchor sets per MECH-269, V_s readouts per Phase 1, staleness accumulators per MECH-284) and the MECH-287 broadcast trigger at the schema/event-segment scale per Eichenbaum 2017 / Sols-DuBrow-Davachi 2017 / Baldassano 2017. Default substrate: PE-threshold detector on the fast scale (z_world+z_self) and BOCPD-Gaussian latent change-point on the slow scale (z_goal); MECH-287 broadcast fires downstream of MECH-288 boundaries (Clewett 2025) rather than via an independent comparator. The segment_id field is the region key consumed by the V_s invalidation runtime cluster; without it, MECH-269 anchor sets and per-region V_s aggregation have no substrate-native source for the region partition.",
