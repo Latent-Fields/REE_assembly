@@ -3549,3 +3549,4 @@ One line per hourly tick. ASCII only.
 2026-09-23T16:38:31Z workset published (regen -- 266 items, 33 ready, 0 in flight)
 2026-09-23T16:38:31Z workset committed (regen -- 266 items, 33 ready, 0 in flight)
 2026-09-23T16:34:38Z no eligible item (skipped 266): IGW-20260923-001:skill /governance not allowed; IGW-20260923-007:skill /governance not allowed; IGW-20260923-008:skill /governance not allowed
+2026-09-23T16:53:17Z LAUNCH (manual interactive) IGW-20260923-227 worktree=igw-227-substrate-ready-sd-zworld-sense
