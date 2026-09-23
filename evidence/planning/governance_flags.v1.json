@@ -3722,9 +3722,9 @@
       "summary": "ARC-021 portfolio H1 (drive axis, encoder unfrozen) was REFUSED at design time, not queued: unfreezing the encoder collapses the control arm's calibration_gap from +0.2169 to +0.0024 and its attribution_auc to chance in BOTH arms, so 0 of 16 control cells reach SEPARATED_SIGNAL_FLOOR=0.20 and three dv_headroom gates are UNMET -- the pre-registered 0.15 bar is 1.6x the entire observed control range. A plumbing bug was ruled out by re-freezing the same driver, which reproduces the reference regime. Leg H-encoder-level-merge-degrades stays alive with adjudicating_runs [] and NO evidence was produced for or against ARC-021/MECH-069; what is owed is an unfreeze-DOSE spike (anchoring does not rescue the readout, shortening the unfreeze does), and if no workable dose exists the honest route is the substrate-blocked H2 leg (GFLAG-0229). Record: REE_assembly/evidence/planning/arc021_h1_leg_refused_readout_dies_under_unfreeze_20260911.md (origin/master 12e3f8677a).",
       "raised_by_session": "queue-arc021-h1-20260911",
       "raised_at": "2026-09-11T15:57:08Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:39:17Z",
+      "resolution_note": "[governance-flags-20260923b] ALREADY-DISCHARGED, re-verified 2026-09-23. The requested ARC-021 H1 unfreeze-dose spike ran and closed 2026-09-11: NO WORKABLE DOSE across 320 cells (REE_assembly 14737627ae / 2a7f476d77, ree-v3 9d7790ca99; chip chip-20260911-arc021-h1-unfreeze-dose-spike status=done). Per this flag's own fallback the finding routed to the H2 leg via chip-20260911-arc021-h2-contextmemory-inplace-write (GFLAG-0229, still open). H-encoder-level-merge-degrades correctly stays alive/pending in the hypothesis registry (no adjudicating run by design)."
     },
     {
       "flag_id": "GFLAG-0265",
