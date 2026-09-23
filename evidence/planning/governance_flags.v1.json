@@ -6089,9 +6089,9 @@
       "summary": "EXP-0255 (EVB-1786, experimental, MECH-567): REFUSED at /queue-experiment Step 2.5 substrate-readiness. The failure_autopsy_V3-EXQ-1065_2026-09-20 routing is 'queue-experiment' via the pre-registered M1_FALSIFY route MECH-567 (target-carrying head), but that manipulation -- an oracle-action/reward CE head on z_world during P0a -- is NOT buildable experiment-side: ZWorldP0Trainer.observe() buffers only world_obs + resource_proximity_target, ZWorldP0Config has no action/oracle weight, and grep finds zero 'oracle_action' references anywhere in ree_core/. The heads are constructed inside ZWorldP0Trainer.train() with no experiment-side hook, so MECH-567 is complicated (buildable) and routes to /implement-substrate, not to another experiment. Additionally the build is UNREGISTERED: substrate_queue.json has no MECH-567 entry and igw_assignments.json/igw_routine_ledger.json have not staged it, so nothing currently owns it. Registry left status=proposed because this session was barred (launch constraints scoped it to ree-v3/experiment_queue.json + ree-v3/experiments/; no claim on experiment_proposals.v1.json).",
       "raised_by_session": "queuerefill-20260923",
       "raised_at": "2026-09-23T07:00:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T09:32:20Z",
+      "resolution_note": "Governance cycle governance-20260923-0717 (2026-09-23): registered substrate_queue entry mech567-oracle-action-ce-head-on-zworld-p0a (proposed_REGISTRATION_ONLY_not_a_build_authorisation, priority 1, build_owed, unblocks MECH-567 + SD-106) so the build has an owner the IGW workset can stage. Build AUTHORISATION not granted here; EXP-0255 stays proposed until the head lands. Committed with this cycle's Step 6a substrate_queue.json."
     },
     {
       "flag_id": "GFLAG-0426",
