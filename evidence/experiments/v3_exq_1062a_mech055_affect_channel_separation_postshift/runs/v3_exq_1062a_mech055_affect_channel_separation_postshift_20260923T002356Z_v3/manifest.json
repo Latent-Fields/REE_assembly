@@ -1,0 +1,305 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1062a_mech055_affect_channel_separation_postshift",
+  "run_id": "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-23T00:23:56Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "2a748d6f9003ea0a4599238626d0544759b94a5f",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-055"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-055": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "note": "NOT DECIDABLE on this run -- C1 (the collapse-risk falsifier) is scored on SHIFT arms and no SHIFT arm passed its readiness gate; C3 needs BOTH the stationary reference and the high-shift arm green, with at least one seed present in each. Gate detail: PARTIAL non-vacuity: arm 'ARM_2_HIGH_SHIFT' failed harm_exposure_relative_deviation_bounded, pe_load_elevated_vs_stationary. Arm(s) ARM_0_STATIONARY passed the gate in full and ARE scored -- a red arm does NOT vacate a green one (failure_autopsy_V3-EXQ-785_2026-07-19.md sections 2a/8). Read the red arm(s) as unscored, NOT as a refutation.. ATTRIBUTION (RECORDED, NON-GATING -- see interpretation.hypothesis_attribution): the shift arm failed the matched-exposure ceiling. THIS IS CONSISTENT WITH H1 (exposure and forward-model error structurally coupled under this lever) BUT DOES NOT ESTABLISH IT -- at least three other causes produce the same signature and this run does not separate them: (a) the policy simply breaking under a permuted map, since P2 does no training so E2.world_forward stays wrong for the whole window and the agent walks into hazards; (b) EMA warm-up bias, because harm_exposure resets to 0 every episode (causal_grid_world.py:1967, :2293) at alpha 0.1 and the shift arm runs many more, much shorter episodes; (c) rare-event sampling noise -- V3-EXQ-1062's stationary reference ran 0.0017 / 0.0040 / 0.0061 across seeds, a 3.6x span, against a 1.25x ceiling. Companion reads recorded beside it: the PROXIMITY deviation (z_harm_s_norm_rel_dev 0.07335957058579638), which is what the level channel actually runs on, and the per-seed PAIRED deviations (both in early_window_nongating_by_arm) -- with training now bit-identical per seed, a paired deviation is the lower-noise comparison. Step 4.5 red-team F2. ; NON-GATING early-window copy over the first 300.0 P2 steps -- harm_exposure_rel_dev_early 1.8044901131544684 against the same 0.25 ceiling, pe_elevation_early 0.013231271910880135 against the same 0.05 floor. Read these before designing a windowed successor: exposure deviation ACCUMULATES with time under the shift while PE elevation is immediate, so these are what say whether a shorter measurement window would clear the PRE-REGISTERED bars WITHOUT moving them.; consistent with H3 (persistence-dominated harm-forward model), on the stationary arm: skill vs the z(t-1) persistence predictor is -33.04, AT OR BELOW its 0.05 floor -- the learned model is not beating the trivial predictor; normalised action sensitivity is 0.7702, ABOVE its 0.05 floor (this leg did NOT trip -- the model DOES use the action). H3 is indicated when EITHER leg trips, so read the per-leg verdicts above before concluding which. Where the SKILL leg is the one that tripped, a dose ladder is not the route; this routes to /implement-substrate or to a different decoupling lever.. This is NOT a substrate ceiling, NOT a lockstep finding, and NOT a refutation of MECH-055; no criterion below should be read as a verdict. DO NOT re-queue this as-is at a longer P0 -- the 1062 autopsy (section 5a) established that neither cross-arm precondition is a function of warmup length, and this run's onset fix is already the remedy that autopsy prescribed. Route to /failure-autopsy and let the attribution above pick between H1, H2 and H3.",
+    "preconditions": [
+      {
+        "name": "ARM_0_STATIONARY::harm_a_forward_r2_supra_floor",
+        "precondition": "harm_a_forward_r2_supra_floor",
+        "arm": "ARM_0_STATIONARY",
+        "kind": "readiness",
+        "description": "E2HarmAForward must actually predict z_harm_a on held-out P2 transitions. Below this floor dacc._affective_pe falls back to ||z_harm_a|| (its z_harm_a_pred-is-None branch), axis 3 is a LEVEL rather than a forward-model residual, and C1 would be comparing two levels -- a starved criterion, not a falsified one.",
+        "control": "V3-EXQ-597b measured harm_a_forward_r2=0.91 on its PE_FORWARD arm on this substrate family against the same 0.30 floor; worst seed in this arm is reported.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9405317557368673,
+        "threshold": 0.3,
+        "met": true,
+        "offending_cell": "ARM_0_STATIONARY/seed137"
+      },
+      {
+        "name": "ARM_0_STATIONARY::valence_harm_series_range_supra_floor",
+        "precondition": "valence_harm_series_range_supra_floor",
+        "arm": "ARM_0_STATIONARY",
+        "kind": "readiness",
+        "description": "Cross-tick RANGE of the PER-TICK INCREMENT of the VALENCE_HARM_DISCRIMINATIVE read -- deliberately the increment and not the level. The residue field ACCUMULATES (field.py:294: update_valence 'does NOT replace the existing value -- adds to it'), so the level is a monotone ramp whose range is large no matter what the channel is doing; the increment is the instantaneous quantity C1/C3/C4 actually route on. This is therefore the SAME statistic those criteria consume: a near-constant increment series gives an undefined correlation, which must read not-ready rather than low.",
+        "control": "V3-EXQ-887b populated HARM_DISC on 31/32 nodes at this exact env and write-path config. This experiment's own 2026-09-19 Step 2.5a probe measured a LEVEL range of EXACTLY 0 until the update_residue / update_harm_salience write paths were driven, and 460.4 once they were -- which is why they are driven explicitly here and why this precondition gates. The floor is applied to the INCREMENT range, which the probe's 0 -> 460.4 ramp over 592 ticks implies is comfortably non-zero (mean increment ~0.78) but which is measured here rather than inferred.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 13.12646484375,
+        "threshold": 0.0001,
+        "met": true,
+        "offending_cell": "ARM_0_STATIONARY/seed42"
+      },
+      {
+        "name": "ARM_0_STATIONARY::dacc_pe_series_range_supra_floor",
+        "precondition": "dacc_pe_series_range_supra_floor",
+        "arm": "ARM_0_STATIONARY",
+        "kind": "readiness",
+        "description": "Cross-tick RANGE of the dACC precision-weighted harm PE -- the same statistic C1/C2/C4 route on, for the same reason as above.",
+        "control": "Step 2.5a probe, 2026-09-19: bundle['pe'] range 0.771 over 592 fresh E3 ticks on this exact config with the write paths driven.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.13784722611308098,
+        "threshold": 0.0001,
+        "met": true,
+        "offending_cell": "ARM_0_STATIONARY/seed42"
+      },
+      {
+        "name": "ARM_0_STATIONARY::axis1_temperature_range_supra_floor",
+        "precondition": "axis1_temperature_range_supra_floor",
+        "arm": "ARM_0_STATIONARY",
+        "kind": "readiness",
+        "description": "Cross-tick RANGE of effective_temperature (axis 1's value). C2's R^2 against axis 1 is undefined if it never varies.",
+        "control": "Step 2.5a probe, 2026-09-19: effective_temperature range 0.310 and pcc_stability 0.0855-0.498 (range 0.413) under 799's re-scoped PCC weights -- NOT the ~0.017 pinned value 799 measured at the substrate defaults.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.13799999406260222,
+        "threshold": 1e-06,
+        "met": true,
+        "offending_cell": "ARM_0_STATIONARY/seed42"
+      },
+      {
+        "name": "ARM_0_STATIONARY::fresh_select_sample_floor",
+        "precondition": "fresh_select_sample_floor",
+        "arm": "ARM_0_STATIONARY",
+        "kind": "readiness",
+        "description": "Number of FRESH E3 selections in this arm's worst cell. The per-tick series are recorded only on fresh ticks (the E3 cadence latches diagnostics ~10x), so this is the TRUE denominator of every correlation below.",
+        "control": "CORRECTED against the predecessor's REALISED counts (Step 4.5 red-team F4). The 2026-09-19 probe figure -- 592 fresh selections per 600 env steps (98.7%), projecting to ~1780 per cell -- held only for that short probe and is NOT what a full run yields. V3-EXQ-1062 actually realised, on its STATIONARY arm at this exact config and these exact seeds: 1800 (seed 42, 0 latched), 384 (seed 137, 1416 latched), 238 (seed 2026, 1562 latched) -- the commitment latch holds for most of the budget on two of three seeds, and seed 2026 clears this 200 floor by only 19%. That is the honest margin, and it is why this gates. NOTE: 1062a's ARM_0_STATIONARY is a config-identical recomputation of 1062's ARM_0 (same _make_env arguments, same seeds, same schedule), so on the same machine class those three numbers double as a free substrate-regression canary -- a stationary row that does NOT reproduce them means the substrate moved.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 238.0,
+        "threshold": 200.0,
+        "met": true,
+        "offending_cell": "ARM_0_STATIONARY/seed2026"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_harm_channels_not_redundant": false,
+      "C2_axes_not_fixed_ratio": true,
+      "C3_differential_channel_response": false,
+      "C4_timing_signatures_differ": true
+    },
+    "hypothesis_attribution": {
+      "h1_exposure_error_coupling_indicated": true,
+      "h2_forward_r2_gap_stationary_minus_shift": 0.03154414526930538,
+      "h2_note": "V3-EXQ-1062 measured harm_a_forward_r2 as statistically INDISTINGUISHABLE between arms (0.932-0.954 shift vs 0.940-0.977 stationary) despite ~810 permutations during the shift arm's own TRAINING -- the signature of a model that had already adapted to permutation. A clearly POSITIVE gap here, with training now stationary in both arms, confirms H2 and shows the lever does reach the harm-forward model once the model was trained on a stable world. A gap at ~0 again leaves H2 unsupported and points at H3 or H1.",
+      "h3_persistence_dominated_indicated": true,
+      "h3_mean_skill_vs_persistence_stationary": -33.04323030995939,
+      "h3_mean_skill_vs_persistence_shift": -3.145562132749097,
+      "h3_mean_action_sensitivity_stationary": 0.7702382065225949,
+      "h3_mean_action_sensitivity_shift": 0.8889799693350549,
+      "h3_mean_persistence_r2_stationary": 0.9954674625035143,
+      "h3_mean_persistence_r2_shift": 0.978806514560008,
+      "persistence_skill_attribution_floor": 0.05,
+      "action_sensitivity_attribution_floor": 0.05,
+      "shift_arm_failed_preconditions": [
+        "harm_exposure_relative_deviation_bounded",
+        "pe_load_elevated_vs_stationary"
+      ],
+      "attribution_lookup_ok": true,
+      "n_arm_gates_scanned": 2,
+      "n_shift_arm_gates_seen": 1,
+      "n_shift_arms_expected": 1,
+      "early_window_nongating_by_arm": {
+        "ARM_2_HIGH_SHIFT": {
+          "z_harm_s_norm_rel_dev": 0.07335957058579638,
+          "mean_z_harm_s_norm": 0.8034534483569157,
+          "per_seed_harm_exposure_rel_dev": [
+            {
+              "seed": 42,
+              "rel_dev": 3.718803512642325
+            },
+            {
+              "seed": 137,
+              "rel_dev": 1.6017927640137044
+            },
+            {
+              "seed": 2026,
+              "rel_dev": 8.336793190750127
+            }
+          ],
+          "mean_harm_exposure_early": 0.01753350182853561,
+          "mean_dacc_pe_early": 0.06349491096908912,
+          "harm_exposure_rel_dev_early": 1.8044901131544684,
+          "pe_elevation_early": 0.013231271910880135,
+          "early_window_steps": 300.0
+        }
+      },
+      "gating_note": "EVERY field in this block is RECORDED and NON-GATING. It is read only to word the decidability branch of the verdict grid. No pre-registered threshold was relaxed and no arm's gate consults any of it.",
+      "summary": "the shift arm failed the matched-exposure ceiling. THIS IS CONSISTENT WITH H1 (exposure and forward-model error structurally coupled under this lever) BUT DOES NOT ESTABLISH IT -- at least three other causes produce the same signature and this run does not separate them: (a) the policy simply breaking under a permuted map, since P2 does no training so E2.world_forward stays wrong for the whole window and the agent walks into hazards; (b) EMA warm-up bias, because harm_exposure resets to 0 every episode (causal_grid_world.py:1967, :2293) at alpha 0.1 and the shift arm runs many more, much shorter episodes; (c) rare-event sampling noise -- V3-EXQ-1062's stationary reference ran 0.0017 / 0.0040 / 0.0061 across seeds, a 3.6x span, against a 1.25x ceiling. Companion reads recorded beside it: the PROXIMITY deviation (z_harm_s_norm_rel_dev 0.07335957058579638), which is what the level channel actually runs on, and the per-seed PAIRED deviations (both in early_window_nongating_by_arm) -- with training now bit-identical per seed, a paired deviation is the lower-noise comparison. Step 4.5 red-team F2. ; NON-GATING early-window copy over the first 300.0 P2 steps -- harm_exposure_rel_dev_early 1.8044901131544684 against the same 0.25 ceiling, pe_elevation_early 0.013231271910880135 against the same 0.05 floor. Read these before designing a windowed successor: exposure deviation ACCUMULATES with time under the shift while PE elevation is immediate, so these are what say whether a shorter measurement window would clear the PRE-REGISTERED bars WITHOUT moving them.; consistent with H3 (persistence-dominated harm-forward model), on the stationary arm: skill vs the z(t-1) persistence predictor is -33.04, AT OR BELOW its 0.05 floor -- the learned model is not beating the trivial predictor; normalised action sensitivity is 0.7702, ABOVE its 0.05 floor (this leg did NOT trip -- the model DOES use the action). H3 is indicated when EITHER leg trips, so read the per-leg verdicts above before concluding which. Where the SKILL leg is the one that tripped, a dose ladder is not the route; this routes to /implement-substrate or to a different decoupling lever."
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "091d4a020fbfcff93680f73a95447646540c0ea196ebe003df587bc0c16a628b",
+  "substrate_commit": {
+    "commit": "2a748d6f9003ea0a4599238626d0544759b94a5f",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_encoder": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "serotonin.tonic_5ht_enabled": true,
+    "surprise_gated_replay": true,
+    "valence_harm_enabled": true,
+    "valence_liking_enabled": true,
+    "incentive_sensitization_enabled": true,
+    "use_e2_harm_a": true,
+    "use_dacc": true,
+    "dacc_weight": 1.0,
+    "dacc_interaction_weight": 0.5,
+    "dacc_bias_max_abs": 1.0,
+    "use_salience_coordinator": true,
+    "salience_use_stability_temperature": true,
+    "salience_apply_to_dacc_bias": true,
+    "use_pcc_analog": true,
+    "goal.valence_wanting_floor": 0.011500108753441558
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 12676.024182712,
+  "config": {
+    "env": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 6,
+      "hazard_harm": 0.5,
+      "resource_benefit": 0.3,
+      "use_proxy_fields": true,
+      "harm_history_len": 10,
+      "env_drift_interval": 999,
+      "env_drift_prob": 0.0
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_0_STATIONARY",
+        "interval": 0,
+        "is_shift": false
+      },
+      {
+        "arm_id": "ARM_2_HIGH_SHIFT",
+        "interval": 10,
+        "is_shift": true
+      }
+    ],
+    "world_rule_shift_depth": 2,
+    "schedule": {
+      "p0_eps": 30,
+      "p1_eps": 60,
+      "total_training_eps": 90,
+      "steps_per_episode": 90,
+      "p2_step_budget": 1800,
+      "epsilon_train": 0.1,
+      "epsilon_eval": 0.0
+    },
+    "substrate": {
+      "world_dim": 32,
+      "self_dim": 32,
+      "z_harm_a_dim": 16,
+      "dacc_weight": 1.0,
+      "dacc_interaction_weight": 0.5,
+      "dacc_bias_max_abs": 1.0,
+      "dacc_precision_scale": 5000.0,
+      "pcc_fatigue_weight": 0.15,
+      "pcc_offline_weight": 0.35,
+      "pcc_offline_recency_window": 200,
+      "sensitization_rate": 0.1,
+      "sensitization_max": 8.0,
+      "sensitization_coupling": 2.5,
+      "liking_threshold": 0.02,
+      "e2_harm_a_lr": 0.0005
+    },
+    "thresholds": {
+      "RHO_MAX": 0.9,
+      "R2_MAX": 0.8,
+      "REL_CHANGE_DELTA_MIN": 0.2,
+      "LAG1_DELTA_MIN": 0.1,
+      "SEED_QUORUM": 2,
+      "FORWARD_R2_MIN": 0.3,
+      "VH_RANGE_MIN": 0.0001,
+      "TEMP_RANGE_MIN": 1e-06,
+      "PE_RANGE_MIN": 0.0001,
+      "HARM_EXPOSURE_REL_DEV_MAX": 0.25,
+      "PE_ELEVATION_MIN": 0.05,
+      "FRESH_TICKS_MIN": 200,
+      "CORR_MIN_N": 100
+    },
+    "nongating_attribution_floors": {
+      "PERSISTENCE_SKILL_ATTRIBUTION_FLOOR": 0.05,
+      "ACTION_SENSITIVITY_ATTRIBUTION_FLOOR": 0.05,
+      "EARLY_WINDOW_STEPS": 300
+    },
+    "world_rule_shift_onset": "p2_boundary_post_training",
+    "active_sample_floors": {
+      "fresh_ticks_min": 200,
+      "corr_min_n": 100,
+      "scaled_for_dry_run_only": false
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "z_goal_stream": {
+    "ticks_total": 44766,
+    "ticks_active": 0,
+    "writer_calls": 44766,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
