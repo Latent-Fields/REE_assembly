@@ -4315,9 +4315,9 @@
       "summary": "Corpus audit corpus_audit_contamination_footgun_20260916.md: 92 CausalGridWorld runs (60 chip-scored) were configured hazard-free (num_hazards=0) without the contamination opt-out, so a self-poisoning agent could truncate their measurement window (the V3-EXQ-874b/940 mechanism, C1 confirmed). The 26 claims listed have >= 50% of their non-superseded experimental entries on such runs (23 claims) or >= 50% of their indexer-scored entries (13 of them >= 50% among indexer-scored entries: ARC-070, INV-054, MECH-074, MECH-074a, MECH-074b, MECH-074d, MECH-106, MECH-189, MECH-303, MECH-329, MECH-427, SD-077, SD-079); decide per claim whether a gated re-measurement is owed.",
       "raised_by_session": "angry-leakey-c8b0a0",
       "raised_at": "2026-09-16T23:22:05Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T19:38:21Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. USER RULING 2026-09-23 (accepted the governance recommendation, rec-20260923-e1e14f35). Options A+B: dated contamination-exposure evidence_quality_notes on the 11 indexer-scored claims not already carrying the caveat (INV-054, SD-077 already did) (REE_assembly 4cf047ba8f). The prevalence probe (re-run 3-4 representative exposed runs with the opt-out plus termination logging, V3-EXQ-940 pattern) is chipped: chip-20260923-contamination-prevalence-probe. Per-claim re-runs are decided after it reads out."
     },
     {
       "flag_id": "GFLAG-0305",
