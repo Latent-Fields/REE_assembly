@@ -3684,6 +3684,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-018@2026-09-18T19:04:17.464654Z"
+      as_of: 2026-09-18
+      verdict: hold_candidate_resolve_conflict/applied
   depends_on:
     - ARC-011
     - ARC-007
@@ -3893,6 +3897,10 @@
     reading: candidate
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-019@2026-09-18T19:04:17.506193Z"
+      as_of: 2026-09-18
+      verdict: hold_candidate_resolve_conflict/applied
   epistemic_category: standard
   depends_on:
     - ARC-005
@@ -3933,6 +3941,14 @@
   subject: temporal.now_construction
   polarity: asserts
   status: provisional
+  live_status:
+    reading: provisional
+    as_of: 2026-07-11
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1050_2026-09-18
+      as_of: 2026-09-18
+      verdict: non_contributory/standard
   epistemic_category: standard
   evidence_quality_note: >
     V3-EXQ-1050 (MECH-021, evidence, FAIL): non_contributory. C2 (past-window lift) was never
@@ -3941,10 +3957,6 @@
     horizon depth lift) pooled +0.076 (>= 0.05 margin) but sign-consistent in only 2/3 seeds (seed 0
     -0.174, its warm-up hazard-survival gate failed) and the curves are non-monotone. Neither the
     FALSIFYING nor CONFIRMING branch was reached. pending re-run with the window made live.
-  live_status:
-    reading: provisional
-    as_of: 2026-07-11
-    needs_review: false
   depends_on:
     - ARC-008
     - ARC-005
@@ -5288,6 +5300,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-035@2026-09-18T19:04:17.543781Z"
+      as_of: 2026-09-18
+      verdict: hold_candidate_resolve_conflict/applied
   depends_on:
     - ARC-017
     - ARC-003
@@ -5351,12 +5367,16 @@
   subject: provenance.papez_like_reality_filtering
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-23
+    needs_review: false
+    evidence:
+      from: "decision:MECH-037@2026-09-20T14:16:26.077350Z"
+      as_of: 2026-09-20
+      verdict: hold_candidate_resolve_conflict/applied
   evidence_quality_note: |
     [governance-20260920] DEMOTED provisional -> candidate, user-approved 2026-09-20 (pending decision dec-20260918T190425-MECH-037). Basis: no experimental evidence and no V3 substrate built against it; literature base is 5 entries at conflict_ratio 0.667 (2 supports / 1 weakens / 2 mixed). Not a falsification; history kept. Re-promotion is gated on the what_would_answer precondition (separately instrumented trace/ordering signal that varies across conditions).
-  live_status:
-    reading: provisional
-    as_of: 2026-07-11
-    needs_review: false
   depends_on:
     - ARC-007
     - ARC-018
@@ -5906,6 +5926,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-050@2026-09-20T12:17:03.116022Z"
+      as_of: 2026-09-20
+      verdict: hold_candidate_resolve_conflict/applied
   depends_on:
     - ARC-006
     - ARC-004
@@ -6133,6 +6157,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1062a_2026-09-23
+      as_of: 2026-09-23
+      verdict: non_contributory/standard
   epistemic_category: standard
   pending_retest_after_substrate: true
   depends_on:
@@ -7024,6 +7052,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-065@2026-09-20T12:17:03.676535Z"
+      as_of: 2026-09-20
+      verdict: hold_candidate_resolve_conflict/applied
   depends_on:
     - ARC-005
     - ARC-007
@@ -8000,6 +8032,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: v3_exq_1072_inv024_offline_online_isolation_audit_20260922T152522Z_v3
+      as_of: 2026-09-22
+      verdict: supports/PASS
   depends_on:
     - INV-021
     - INV-023
@@ -10549,6 +10585,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-079@2026-09-23T09:24:25.106806Z"
+      as_of: 2026-09-23
+      verdict: hold_candidate_resolve_conflict/applied
   depends_on:
     - ARC-007
     - ARC-013
@@ -10580,6 +10620,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-080@2026-09-23T09:24:25.160463Z"
+      as_of: 2026-09-23
+      verdict: hold_candidate_resolve_conflict/applied
   depends_on:
     - ARC-018
     - MECH-027
@@ -30660,13 +30704,13 @@
   pending_substrate_reconfirmation: true
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
     evidence:
-      from: "decision:INV-063@2026-09-08T15:30:04.464955Z"
-      as_of: 2026-09-08
-      verdict: hold_candidate_resolve_conflict/applied
+      from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+      as_of: 2026-09-20
+      verdict: non_contributory/standard
   epistemic_category: substrate_conditional
   evidence_quality_note: |
     [governance-20260920 cycle 2, GFLAG-0390] epistemic_category standard -> substrate_conditional. USER DECISION 2026-09-20 (real AskUserQuestion via orchestrate-20260920-1121, on chip-20260920-inv063-lega-dv-circularity): convert via this claim's own escape hatch. Basis, four independently measured failed preconditions: leg-B 701b MSE degrades across sleep 9/9 cells (V3-EXQ-1063); InfoNCE tau has no readable AND correct-direction window (GFLAG-0382, inv063_legb_tau_bind_20260920); P1 holds on 2/3 seeds only (V3-EXQ-1069); all three registered C1 leg-A DVs are transforms of the same MEL scalar that P1's manipulation check gates on (GFLAG-0389, evidence/planning/inv063_legA_dv_circularity_20260920.md) -- so leg A as registered cannot discriminate and must be RE-REGISTERED with a DV independent of e3_prediction_error before any re-queue. Status stays candidate; not a falsification; no experiment budget until the upstream substrate (a sleep-side world-forward objective that improves the waking readout, plus an independent leg-A DV) exists. V3-EXQ-1071 driver (ree-v3 origin/main 9700362aa5) stays UNQUEUED and reusable.
@@ -33204,7 +33248,6 @@
   subject: hippocampal_module.da_modulated_rbf_density
   polarity: asserts
   status: candidate
-  epistemic_category: standard
   live_status:
     reading: candidate
     as_of: 2026-09-22
@@ -33212,7 +33255,8 @@
     evidence:
       from: failure_autopsy_V3-EXQ-900_2026-09-14
       as_of: 2026-09-14
-      verdict: "supports/standard"
+      verdict: supports/standard
+  epistemic_category: standard
   narrow_supports: true
   evidence_quality_note: >
     [2026-09-15 governance, cycle governance-20260915, applying confirmed
@@ -34698,9 +34742,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: "decision:ARC-053@2026-09-11T16:54:08.188352Z"
-      as_of: 2026-09-11
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:ARC-053@2026-09-23T17:51:48.806814Z"
+      as_of: 2026-09-23
+      verdict: supersede_stale_hold_no_status_change/applied
   implementation_phase: v4
   phase_provenance: assigned
   depends_on:
@@ -34828,9 +34872,9 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: "decision:ARC-054@2026-09-11T16:54:08.598899Z"
-      as_of: 2026-09-11
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:ARC-054@2026-09-23T17:51:48.864696Z"
+      as_of: 2026-09-23
+      verdict: supersede_stale_hold_no_status_change/applied
   implementation_phase: v4
   phase_provenance: assigned
   v3_form_promoted_utc: "2026-04-26"
@@ -39336,6 +39380,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:SD-032@2026-09-23T09:24:24.727105Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -39467,7 +39515,6 @@
   subject: cingulate.salience_network_coordinator
   polarity: asserts
   status: stable
-  diagnostic_evidence_adjudicated: true
   live_status:
     reading: stable
     as_of: 2026-07-11
@@ -39476,6 +39523,7 @@
       from: failure_autopsy_V3-EXQ-935a_2026-09-16
       as_of: 2026-09-16
       verdict: non_contributory/standard
+  diagnostic_evidence_adjudicated: true
   what_would_answer: >
     CORE CLAIM (CONFIRMED, stable): the SalienceCoordinator substrate itself --
     a discrete operating_mode register {external_task, internal_replay,
@@ -40769,6 +40817,10 @@
     reading: candidate/v3_pending
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:SD-033@2026-09-23T09:24:24.778721Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -41309,6 +41361,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:SD-033c@2026-09-23T09:24:24.832431Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: false
   claim_level: architectural
@@ -41418,6 +41474,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:SD-033d@2026-09-23T09:24:24.887020Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: false
   claim_level: architectural
@@ -43213,7 +43273,6 @@
   subject: salience.asymmetric_mode_hysteresis
   polarity: asserts
   status: provisional
-  diagnostic_evidence_adjudicated: true
   live_status:
     reading: provisional
     as_of: 2026-08-13
@@ -43222,6 +43281,7 @@
       from: failure_autopsy_V3-EXQ-935a_2026-09-16
       as_of: 2026-09-16
       verdict: non_contributory/standard
+  diagnostic_evidence_adjudicated: true
   implementation_phase: v3
   v3_pending: false
   epistemic_category: standard  # confirmed 2026-08-13 -- NOT substrate_ceiling; the substrate advanced (occupancy 0.0 -> 1.0), the residual failure is a measurement/gate defect
@@ -45934,6 +45994,10 @@
     reading: candidate/v3_pending
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:SD-038@2026-09-23T09:24:24.942314Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -51153,6 +51217,10 @@
     reading: candidate/v3_pending
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-305@2026-09-23T09:24:23.609382Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -53379,6 +53447,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-354@2026-09-23T09:24:23.716179Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   v3_pending: true
@@ -53587,6 +53659,10 @@
     reading: candidate/v3_pending
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-356@2026-09-23T09:24:23.768098Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
   epistemic_category: standard
@@ -56344,8 +56420,8 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: "decision:MECH-316@2026-08-16T11:57:28.897709Z"
-      as_of: 2026-08-16
+      from: "decision:MECH-316@2026-09-20T14:16:26.207734Z"
+      as_of: 2026-09-20
       verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
@@ -56417,8 +56493,8 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: "decision:MECH-317@2026-08-16T11:57:28.937162Z"
-      as_of: 2026-08-16
+      from: "decision:MECH-317@2026-09-20T14:16:26.277428Z"
+      as_of: 2026-09-20
       verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional   # set 2026-09-01 (mech317-apply-20260901): mechanism absorbed into ARC-071/MECH-323/MECH-324; this claim now carries only the action-stream boundary DV, whose instrument does not exist. See docs/architecture/mech_317_absorption_check.md.
   implementation_phase: v3
@@ -65692,9 +65768,9 @@
     as_of: 2026-09-01
     needs_review: false
     evidence:
-      from: "decision:ARC-080@2026-06-06T07:53:48.739107Z"
-      as_of: 2026-06-06
-      verdict: held_v4_by_architectural_commitment/applied
+      from: "decision:ARC-080@2026-09-23T09:24:23.343475Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   phase_provenance: derived
   phase_derived_from: MECH-531
@@ -66108,9 +66184,9 @@
     as_of: 2026-09-01
     needs_review: false
     evidence:
-      from: "decision:ARC-083@2026-06-06T07:53:48.739107Z"
-      as_of: 2026-06-06
-      verdict: held_v4_by_architectural_commitment/applied
+      from: "decision:ARC-083@2026-09-18T19:04:17.387476Z"
+      as_of: 2026-09-18
+      verdict: hold_candidate_resolve_conflict/applied
   implementation_phase: v4
   v3_pending: false
   claim_level: architectural
@@ -69242,6 +69318,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:ARC-086@2026-09-23T09:24:23.397475Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -71813,6 +71893,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-08-28
     needs_review: false
+    evidence:
+      from: "decision:MECH-525@2026-09-23T09:24:24.088931Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   claim_level: mechanistic
   epistemic_category: substrate_conditional
   implementation_phase: v3
@@ -71899,6 +71983,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-08-28
     needs_review: false
+    evidence:
+      from: "decision:MECH-526@2026-09-23T09:24:24.143336Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   claim_level: mechanistic
   epistemic_category: substrate_conditional
   implementation_phase: v3
@@ -73369,7 +73457,6 @@
   subject: precision.waking_confidence_inflation
   polarity: asserts
   status: candidate
-  diagnostic_evidence_adjudicated: true
   live_status:
     reading: candidate
     as_of: 2026-07-24
@@ -73378,6 +73465,7 @@
       from: "failure_autopsy_preflight_verdict_decoupling_cluster_2026-09-17#V3-EXQ-864a"
       as_of: 2026-09-17
       verdict: non_contributory/standard
+  diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   evidence_quality_note: >
     2026-07-24 governance (V3-EXQ-794 Phase 7 2x2 calibration loop, evidence, claim_ids=[MECH-204,
@@ -73868,8 +73956,8 @@
     as_of: 2026-07-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1043_2026-09-17
-      as_of: 2026-09-17
+      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
+      as_of: 2026-09-23
       verdict: mixed/standard
   implementation_phase: v3
   claim_level: architectural
@@ -74311,9 +74399,13 @@
   polarity: asserts
   status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-18
+    reading: provisional
+    as_of: 2026-09-23
     needs_review: false
+    evidence:
+      from: "decision:SD-071@2026-09-20T12:17:02.529572Z"
+      as_of: 2026-09-20
+      verdict: promote_to_provisional/applied
   epistemic_category: standard
   implementation_phase: v3
   claim_level: architectural
@@ -76545,9 +76637,9 @@
     as_of: 2026-07-16
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1026_2026-09-14
-      as_of: 2026-09-14
-      verdict: supports/standard
+      from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1060"
+      as_of: 2026-09-20
+      verdict: non_contributory/standard
   granularity_debt_disposition: coherent_campaign  # GOV-GRAN-1 human-adjudicated 2026-07-16 (NOT granularity debt); see granularity_debt_recurrence_note
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 discrimination (2026-07-16, session gifted-kilby-8e2491). Audit flagged
@@ -76808,9 +76900,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1039a_2026-09-20
-      as_of: 2026-09-20
-      verdict: "non_contributory/standard"
+      from: failure_autopsy_V3-EXQ-1075_2026-09-23
+      as_of: 2026-09-23
+      verdict: non_contributory/standard
   diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   subject: goal.maintenance_feedback_necessity
@@ -76953,6 +77045,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-426@2026-09-23T09:24:23.821258Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   subject: goal.progress_velocity_maintenance
   implementation_phase: v3
   depends_on: [INV-086, INV-034, MECH-217, MECH-116]
@@ -77196,9 +77292,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1039a_2026-09-20
-      as_of: 2026-09-20
-      verdict: "non_contributory/standard"
+      from: failure_autopsy_V3-EXQ-1075_2026-09-23
+      as_of: 2026-09-23
+      verdict: non_contributory/standard
   diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   subject: goal.subgoal_bootstrapped_seeding
@@ -77385,6 +77481,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: "decision:MECH-430@2026-09-23T09:24:23.873283Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -77531,9 +77631,9 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1012a_2026-09-14
-      as_of: 2026-09-14
-      verdict: "non_contributory/standard"
+      from: failure_autopsy_V3-EXQ-1039_2026-09-16
+      as_of: 2026-09-16
+      verdict: non_contributory/standard
   epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g). [2026-08-10 governance, GOV-APPLY-1]: count corrected 10 -> 9, 710 dropped from the hit list (689a/700/700a/700b/700c/700d/709/711/713) -- failure_autopsy_V3-EXQ-710_2026-07-20 (confirmed re-adjudication) withdrew the 2026-07-03 710 autopsy's own evidentiary basis (a hold-weighted DV plus an analytically-null rank-preserving ablation control), so it no longer counts as a substrate_ceiling hit on MECH-439. Demotion STANDS -- margin to CEILING_EXHAUSTION_N=3 unaffected. Flagged, not resolved: the 710 autopsy also disqualifies conversion legs in 711 and 713 pending their own re-adjudication, so the 9 may itself be an overcount; this does not threaten the demotion."
@@ -77955,9 +78055,9 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: "decision:MECH-441@2026-06-27T10:54:49.591342Z"
-      as_of: 2026-06-27
-      verdict: defer_pending_arc110/applied
+      from: "decision:MECH-441@2026-09-23T09:24:23.928589Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   version_relevance: v3
@@ -83481,7 +83581,6 @@
   subject: architecture.cross_stream_shared_organisation
   polarity: asserts
   status: candidate
-  diagnostic_evidence_adjudicated: true
   live_status:
     reading: candidate
     as_of: 2026-07-22
@@ -83490,6 +83589,7 @@
       from: "failure_autopsy_preflight_verdict_decoupling_cluster_2026-09-17#V3-EXQ-865"
       as_of: 2026-09-17
       verdict: non_contributory/standard
+  diagnostic_evidence_adjudicated: true
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3
@@ -86489,6 +86589,10 @@
     reading: candidate
     as_of: 2026-07-22
     needs_review: false
+    evidence:
+      from: "decision:SD-081@2026-09-23T09:24:24.993828Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   claim_level: architectural
   registered_utc: "2026-07-22"
@@ -88170,7 +88274,7 @@
     evidence:
       from: failure_autopsy_V3-EXQ-1047_2026-09-17
       as_of: 2026-09-17
-      verdict: non_contributory/substrate_conditional
+      verdict: non_contributory/standard
   diagnostic_evidence_adjudicated: true
   pending_retest_after_substrate: true
   evidence_quality_note: >
@@ -90363,6 +90467,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:SD-097@2026-09-23T09:24:25.045779Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   version_relevance: v3_v4
@@ -90489,6 +90597,14 @@
   subject: goal.relational_role_not_stored_node_type
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-17
+    needs_review: false
+    evidence:
+      from: sd098_ghost_goal_readtime_rerank_20260918T182337Z_v3
+      as_of: 2026-09-18
+      verdict: supports/PASS
   evidence_quality_note: >
     V3-EXQ-1055 (evidence, PASS, 11 of 15 evaluation seeds green; tuning seeds disjoint): PARTIAL
     support for half (i) only. Under an A-B-A destination reversal, GhostGoalBank.rank() reinstated
@@ -90503,10 +90619,6 @@
     saturates, so the mean-contrast clause carries the criterion. Four non-green seeds (anchor-group
     supply below floor) also showed positive contrasts. Governance 2026-09-18: no status or category
     change.
-  live_status:
-    reading: candidate/substrate_conditional
-    as_of: 2026-09-17
-    needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v3
   version_relevance: v3_v4
@@ -94519,6 +94631,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-08-26
     needs_review: false
+    evidence:
+      from: "decision:ARC-133@2026-09-23T09:24:23.450317Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -95084,6 +95200,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-08-26
     needs_review: false
+    evidence:
+      from: "decision:MECH-520@2026-09-23T09:24:23.981986Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -95177,6 +95297,10 @@
     reading: candidate/v3_pending/substrate_conditional
     as_of: 2026-08-26
     needs_review: false
+    evidence:
+      from: "decision:MECH-521@2026-09-23T09:24:24.035872Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -96261,6 +96385,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-529@2026-09-23T09:24:24.196288Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -98490,6 +98618,14 @@
   subject: representation.communication_subspace_routing_exposure
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-09-22
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
+      as_of: 2026-09-23
+      verdict: mixed/standard
   diagnostic_evidence_adjudicated: true
   evidence_quality_note: >
     [2026-09-17 | V3-EXQ-1043 | failure_autopsy_V3-EXQ-1043_2026-09-17] mixed, diagnostic, excluded
@@ -98529,14 +98665,6 @@
     refits decode WORSE than the real subspace: it shows the sender->receiver map is real; it does not test orientation
     against a random same-rank subspace, because that reference (many random draws; randrank is ONE draw per seed) was
     never built. failure_autopsy_V3-EXQ-1043a_2026-09-20.
-  live_status:
-    reading: candidate
-    as_of: 2026-09-22
-    needs_review: false
-    evidence:
-      from: failure_autopsy_V3-EXQ-1043a_2026-09-20
-      as_of: 2026-09-20
-      verdict: "non_contributory/standard"
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3_v4
@@ -98704,6 +98832,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-539@2026-09-23T09:24:24.302197Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -98799,6 +98931,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:ARC-140@2026-09-23T09:24:23.502773Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   claim_level: architectural
   implementation_phase: v3
@@ -99370,6 +99506,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:ARC-142@2026-09-23T09:24:23.555500Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   claim_level: architectural
   implementation_phase: v3
@@ -99560,6 +99700,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-545@2026-09-23T09:24:24.410268Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -99755,6 +99899,14 @@
   subject: representation.receiver_conditioned_context_indexed_translation
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-22
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
+      as_of: 2026-09-23
+      verdict: mixed/standard
   evidence_quality_note: >
     [2026-09-17 | V3-EXQ-1044 | failure_autopsy_V3-EXQ-1044_2026-09-17] NOTE-ONLY. Claim-free
     diagnostic (claim_ids: [] by design), excluded from scoring -- no evidence_direction is written
@@ -99797,14 +99949,6 @@
     issue that limits what it can carry. OWED FIRST, at zero compute: re-adjudicate C1a/C1b from the banked restart arrays
     using a within-cell median instead of the block-2 argmax, and report the nested-order violation rate as an instrument
     gate.
-  live_status:
-    reading: candidate/substrate_conditional
-    as_of: 2026-09-22
-    needs_review: false
-    evidence:
-      from: failure_autopsy_V3-EXQ-1044_2026-09-17
-      as_of: 2026-09-17
-      verdict: "note_only (claim-free diagnostic; no direction)/substrate_conditional"
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -99886,6 +100030,14 @@
   subject: representation.recurrent_interface_stability_closed_loop
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-22
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1044_2026-09-17
+      as_of: 2026-09-17
+      verdict: "weakens (manifest stamp) -- FLAGGED AS UNSUPPORTED, see scope note/standard"
   evidence_quality_note: >
     [2026-09-17 | V3-EXQ-1044 | failure_autopsy_V3-EXQ-1044_2026-09-17] NOTE-ONLY and
     NON-ATTRIBUTED. Recorded as an observation about the BRIDGED interface generally, NOT as
@@ -99923,14 +100075,6 @@
     issue that limits what it can carry. OWED FIRST, at zero compute: re-adjudicate C1a/C1b from the banked restart arrays
     using a within-cell median instead of the block-2 argmax, and report the nested-order violation rate as an instrument
     gate.
-  live_status:
-    reading: candidate/substrate_conditional
-    as_of: 2026-09-22
-    needs_review: false
-    evidence:
-      from: failure_autopsy_V3-EXQ-1044_2026-09-17
-      as_of: 2026-09-17
-      verdict: "note_only (non-attributed instrument observation; no direction)/substrate_conditional"
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -100006,9 +100150,9 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1023a_2026-09-17
-      as_of: 2026-09-17
-      verdict: weakens/standard
+      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
+      as_of: 2026-09-23
+      verdict: mixed/standard
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true
   pending_retest_after_substrate: true
@@ -100831,8 +100975,8 @@
     as_of: 2026-09-17
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-1043_2026-09-17
-      as_of: 2026-09-17
+      from: failure_autopsy_V3-EXQ-1043b_2026-09-23
+      as_of: 2026-09-23
       verdict: mixed/standard
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -101985,6 +102129,10 @@
     reading: candidate
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-561@2026-09-20T12:17:03.975416Z"
+      as_of: 2026-09-20
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3_v4
@@ -102391,6 +102539,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-09-17
     needs_review: false
+    evidence:
+      from: "decision:MECH-562@2026-09-23T09:24:24.571621Z"
+      as_of: 2026-09-23
+      verdict: hold_pending_v3_substrate/applied
   epistemic_category: substrate_conditional
   implementation_phase: v3
   phase_provenance: derived
@@ -103278,6 +103430,14 @@
   subject: zworld_adequacy.objective_consumer_transfer_geometry
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1065_2026-09-20
+      as_of: 2026-09-20
+      verdict: mixed/standard
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true
   implementation_phase: v3
@@ -103342,6 +103502,10 @@
   subject: zworld_adequacy.consumer_target_in_encoder_objective
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
   epistemic_category: standard
   implementation_phase: v3
   v3_pending: true
@@ -103407,6 +103571,10 @@
   subject: zworld_adequacy.objective_term_balance
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
   epistemic_category: standard
   implementation_phase: v3
   v3_pending: true
@@ -103602,6 +103770,14 @@
   subject: sleep.consolidation_step_to_residual_ratio
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-1073_2026-09-22
+      as_of: 2026-09-22
+      verdict: non_contributory/standard
   epistemic_category: standard
   diagnostic_evidence_adjudicated: true
   implementation_phase: v3
@@ -103695,6 +103871,14 @@
   subject: sleep.heldout_readout_trivial_predictor_reference
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
+    evidence:
+      from: v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3
+      as_of: 2026-09-23
+      verdict: non_contributory/PASS
   epistemic_category: standard
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
@@ -103781,6 +103965,14 @@
   subject: sleep.replay_target_regeneration
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
+    evidence:
+      from: v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3
+      as_of: 2026-09-23
+      verdict: non_contributory/PASS
   epistemic_category: standard
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
@@ -103863,9 +104055,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/negative_pilot_no_skill
-    as_of: '2026-09-21'
+    reading: candidate
+    as_of: 2026-09-23
     needs_review: false
+    evidence:
+      from: "decision:GOV-UNWRITTEN-1@2026-09-22T07:10:38Z"
+      as_of: 2026-09-22
+      verdict: "Option (b) now; (a) only if (b) keeps finding gaps. The single genuine hit (MECH-318 needs a within-episode rule-switch event + adaptation-time instrument, registered as mech318-within-episode-rule-switch-instrument) came from tracing a claim's FALSIFIER to what its experiment must be able to emit and measure -- the other detectors (stale-gate prose, 'not yet built' phrases, empty dependency lists) produced 36 false positives. That trace is cheap and belongs where experiments are designed./applied"
   epistemic_category: governance_rule
   claim_level: governance
   implementation_phase: v3
@@ -103904,8 +104100,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104033,8 +104229,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104177,8 +104373,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104333,8 +104529,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104501,8 +104697,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104667,8 +104863,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104798,8 +104994,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: '2026-09-22'
+    reading: candidate/substrate_conditional
+    as_of: 2026-09-23
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v4
@@ -104938,6 +105134,10 @@
   subject: world_model.forward_comparator_consequence_scaled_gain
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-09-23
+    needs_review: false
   epistemic_category: substrate_conditional
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
@@ -105036,6 +105236,14 @@
   subject: world_model.zworld_encoder_transition_consistency
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-09-23
+    needs_review: false
+    evidence:
+      from: v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3
+      as_of: 2026-09-23
+      verdict: non_contributory/PASS
   epistemic_category: substrate_conditional
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
@@ -105122,6 +105330,10 @@
   subject: world_model.reafference_locus_of_action_readability
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
   epistemic_category: standard
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
@@ -105190,6 +105402,10 @@
   subject: world_model.reafference_locus_of_action_readability
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-09-23
+    needs_review: false
   epistemic_category: standard
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
@@ -105245,6 +105461,10 @@
   subject: harm.pe_attribution_world_surprise_vs_model_error
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: 2026-09-23
+    needs_review: false
   epistemic_category: substrate_conditional
   diagnostic_evidence_adjudicated: false
   implementation_phase: v3
