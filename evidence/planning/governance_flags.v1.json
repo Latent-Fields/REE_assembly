@@ -6105,6 +6105,28 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0427",
+      "claim_ids": [
+        "ARC-037",
+        "ARC-044",
+        "ARC-121",
+        "MECH-019",
+        "MECH-034",
+        "MECH-108",
+        "MECH-115",
+        "MECH-136",
+        "MECH-221",
+        "SD-026"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Read-only second-pass triage of all 64 distinct RED pre-flight verdicts is staged at REE_assembly/evidence/planning/red_verdict_second_pass_triage_staged.md (REE_assembly 2b99fa13e8, chip-20260920-red-verdict-second-pass-triage). Grouped by failure shape into UNWIRED/MISSING_SUBSYSTEM/NO_FALSIFIER/SEQUENCING_GATED/MAGNITUDE_UNREACHABLE/BLOCKED_SUBSTRATE_ALREADY/GOVERNANCE_OR_STALE/BUILD_ALREADY_CHIPPED/SUPERSEDED/REDESIGN_INSTRUMENT buckets with a suggested route per bucket; no claims.yaml/substrate_queue.json/proposal-file edit made. Highest-value single build: GFLAG-0044 (ContextMemory write-path defect) would release 2 verdicts (MECH-152 + chip-20260814). /governance Step 6a: read the staged doc and apply routes -- this flag only points at it, it does not itself disposition any claim. Claim ids listed here are the UNWIRED bucket (best BUILD candidates); the doc covers all 64 claims across all buckets.",
+      "raised_by_session": "campaign-backlogrouting-20260923",
+      "raised_at": "2026-09-23T07:15:31Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
