@@ -5228,9 +5228,9 @@
       "summary": "V3-EXQ-541d REFUSED at /queue-experiment Step 4.5 (red-team BLOCKING, fable): the V3-EXQ-541c synthetic-PE base cannot answer the MECH-204 F1 cold-start-guard question, so nothing was queued and the reserved EXQ id is released. Verified arithmetically, not asserted: the cross-arm contrast is the exact identity OFF_k - ON_k == 0.9^k * (SENTINEL - p_1), max abs err 8.07e-05 over 16 cycles, so it restates whether the cold-start cycle captured rather than measuring the guard; and the chip's pre-registered falsifier cannot fire because that base drives E3 running variance from a STATIONARY synthetic PE stream (pe_scale = 0.4 + 0.3*rng.random()), leaving no realized precision that can drift. Decision owed to the user: re-scope as a contract check, or rebuild on the IGW-20260915-243 realized-PE base (recommended) -- see REE_assembly evidence/planning/exq541d_redteam_blocking_refusal_staged_20260919.md and decision chip chip-20260919-exq541d-base-regime-blocking. ALSO: ree-v3 docs/substrate/MECH-204-f1-coldstart-guard.md states 'V3-EXQ-541d (queued 2026-09-18)' -- that sentence is FALSE and should be corrected.",
       "raised_by_session": "metaworker-science-20260919-mech204-541d-guard-validation",
       "raised_at": "2026-09-19T22:49:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-23T19:36:59Z",
+      "resolution_note": "Governance-flags-mid-20260923, 2026-09-23. Superseded by GFLAG-0391 (2026-09-20, applied 44a0665b4fc): the user closed MECH-204 Option A outright, so the question was neither re-scoped nor rebuilt. V3-EXQ-541d stays unqueued. The stale 'queued' line in the ree-v3 substrate doc is corrected (ree-v3 ree-v3 b7f2c0764f)."
     },
     {
       "flag_id": "GFLAG-0370",
