@@ -260,9 +260,9 @@ ARC-080  object identity = cross-cutting representational primitive
 | **Existing fragment** | ARC-010 mirror modelling (`stable`); ARC-047 SocialGridWorld scent harness (`candidate`, v4); MECH-031/032/036/041 (derived social tags, empathy coupling, other-harm veto, affective broadcast); MECH-051/052/127/159/190. |
 | **What it actually delivers** | Design-only. |
 | **What's missing** | Each other-agent j needs its own `z_self_j`, `z_harm_a_j`, drive, commitment chain -- an "other-as-object" slot. |
-| **Registered child** | **ARC-083** (others-as-object-file-slot). `depends_on` ARC-080 + ARC-010/ARC-047 + MECH-163 (gate) + ARC-081 (self-stability prereq) + SD-039 (partial-permanence prereq). |
-| **Boundary** | **V4.** Design-only today; gated on MECH-163 multi-step planning. Per DEV-NEED-021, prerequisites are object-permanence (Pillar 1, partial via SD-039) + self-stability (Pillar 2 / ARC-081). See §5.1. |
-| **Insertion point** | other-agent object-file slots; ARC-010 / ARC-047. Gated on MECH-163 (multi-step hippocampal planning) and on Pillars 1+2 (per DEV-NEED-021: otherness inference REQUIRES object persistence + self-stability). [V4] |
+| **Registered child** | **ARC-083** (others-as-object-file-slot). `depends_on` ARC-080 + ARC-010/ARC-047 + MECH-163 (gate) + ARC-081 (soft default ordering only -- weakened 2026-09-23, GFLAG-0309) + SD-039 (candidate motivational-weighting half of person-permanence) + **ARC-150** (triadic co-reference -- the developmental prerequisite; see below). |
+| **Boundary** | **V4.** Design-only today; gated on MECH-163 multi-step planning. DEV-NEED-021's object-permanence (Pillar 1, partial via SD-039) + self-stability (Pillar 2 / ARC-081) are a DEFAULT BUILD ORDERING, not prerequisites (weakened 2026-09-23, GFLAG-0309); the prerequisite the evidence supports is ARC-150. See §5.1. |
+| **Insertion point** | other-agent object-file slots; ARC-010 / ARC-047. Gated on MECH-163 (multi-step hippocampal planning) and on ARC-150 (triadic co-reference over ARC-080 slot allocation). Pillars 1+2 typically come first but are not a gate (GFLAG-0309). [V4] |
 
 ### The ordering is load-bearing
 
@@ -285,9 +285,30 @@ object-file / persistence primitive (ARC-006 reactivated, generalised z_object)
       ├─ action axis    -> PILLAR 3 tools / affordances (SD-016)
       └─ special slots  -> PILLAR 2 self + PILLAR 4 other   [both V4]
 
-DEV-NEED-021: otherness REQUIRES object persistence + self-stability
-  => PILLAR 1 + PILLAR 2 are prerequisites for PILLAR 4
+DEV-NEED-021 (weakened 2026-09-23, GFLAG-0309): otherness TYPICALLY DEVELOPS AFTER
+  object persistence + self-stability  => PILLAR 1 + PILLAR 2 are a default ORDERING for PILLAR 4
+PREREQUISITE the evidence supports: ARC-150 triadic co-reference
+  (self slot + other slot, concurrently live, co-bound to one object token)  --> PILLAR 4
 ```
+
+<a id="arc-150"></a>
+### ARC-150 -- triadic co-reference primitive (the PILLAR 4 prerequisite)
+
+Registered 2026-09-23 (chip-20260923-arc083-triadic-primitive), follow-on to GFLAG-0309. The
+targeted developmental pull (`evidence/literature/targeted_review_arc_083/`) found the
+self-stability half of DEV-NEED-021 unsupported as a necessity: in the one confound-controlled
+longitudinal design (Sodian + Kristen-Antonow 2015, n=83, 12->50 months) 12-month DECLARATIVE
+pointing predicted 50-month false belief, imperative pointing did not, and mirror self-recognition
+mediated none of the path. The supporting source (Bischof-Kohler 2012) names its own mechanism as
+synchronic identification -- holding self and other in view at once. Both point at the same thing:
+a relational binding of **two concurrently-live agent slots to one shared object token**.
+
+Architecturally that is a binding operation over this umbrella's slot machinery, not a new store:
+allocate an other-agent slot concurrent with the self slot, and co-reference both to one object
+file. Rat and bat CA1 (Danjo et al. 2018; Omer et al. 2018) code self and other positions jointly
+and discretely in one population, which is the format this predicts. ARC-083 supplies the other
+slot's content; ARC-150 supplies the relation that makes it usable for otherness inference. V4,
+design-only, substrate_conditional -- no code, no experiment, not in V3 closure.
 
 ---
 
@@ -403,6 +424,7 @@ acknowledge each other and this umbrella:
 - SD-016 (Pillar 3 -- tools/affordances, ungrounded)
 - z_self / SD-005 / SD-030 / DR-10..DR-14 / MECH-214 / MECH-215 / INV-064 (Pillar 2 -- self, V4)
 - ARC-010, ARC-047, MECH-031/032/036/041 (Pillar 4 -- others, V4)
+- ARC-150 (Pillar 4 developmental prerequisite -- triadic co-reference / declarative joint attention, V4)
 
 ## References / Source
 

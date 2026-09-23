@@ -66373,7 +66373,11 @@
                   # Kristen-Antonow 2015 found self-representational stability mediates none of the
                   # 12mo->50mo predictive path). Retained as depends_on because a build-ordering
                   # default still exists; NOT treated as a readiness_gate precondition.
-    - SD-039     # PREREQUISITE (DEV-NEED-021, partial) -- object-persistence substrate (ghost-goal bank; true object permanence is PILLAR 1, unregistered/future)
+    - SD-039     # CANDIDATE motivational-weighting half of person-permanence, NOT a substitute for token persistence
+                  # (GFLAG-0309 disposition (b), 2026-09-23: see notes). True object permanence is still PILLAR 1, unregistered/future.
+    - ARC-150    # DEVELOPMENTAL PREREQUISITE (GFLAG-0309 disposition (a) follow-on, 2026-09-23): triadic co-reference /
+                  # declarative joint attention -- the relational self+other+object binding the evidence actually routes
+                  # otherness inference through (Sodian+Kristen-Antonow 2015), replacing ARC-081 as the prerequisite.
   functional_restatement: >
     ARC-083 is a THIN COHERENCE-MAP CHILD of ARC-080, not new mechanism. It adds
     one framing: that other-modelling's V4 endpoint is an "OTHER-AS-OBJECT" slot --
@@ -66386,11 +66390,13 @@
     is stable as a claim but unimplemented as an other-object slot; ARC-047
     SocialGridWorld is the candidate v4 harness). It is gated on MECH-163
     (multi-step hippocampal planning) before V4 social entry. Per
-    developmental_needs_register DEV-NEED-021, otherness inference REQUIRES object
-    persistence + self-stability, so PILLAR 1 (permanence) and PILLAR 2 (self,
-    ARC-081) are prerequisites for PILLAR 4. Object permanence is only PARTIALLY
-    present (the SD-039 motivational ghost bank, not a true object-file persistence
-    buffer); the token-instance permanence substrate is PILLAR 1, which the ARC-080
+    developmental_needs_register DEV-NEED-021, otherness inference was said to REQUIRE
+    object persistence + self-stability. WEAKENED 2026-09-23 (GFLAG-0309): PILLAR 1
+    (permanence) and PILLAR 2 (self, ARC-081) are a DEFAULT BUILD ORDERING for PILLAR 4,
+    not prerequisites; the prerequisite the evidence supports is the triadic co-reference
+    primitive ARC-150. Object permanence is only PARTIALLY present (the SD-039 motivational
+    ghost bank, not a true object-file persistence buffer -- though see notes: the ghost
+    bank is a CANDIDATE for the motivational half of person-permanence); the token-instance permanence substrate is PILLAR 1, which the ARC-080
     umbrella documents as a FUTURE child and which this batch deliberately does NOT
     register (no duplication).
 
@@ -66408,7 +66414,131 @@
     analysis (ARC-083 as MECH-479's untestable-in-V3 precondition) is unaffected.
     The "v3_pending" mention immediately above describes the pre-2026-09-01 state
     and is left as-is.
+  notes: >-
+    LITERATURE BASIS FOR THE 2026-09-23 WEAKENING (GFLAG-0309; targeted_review_arc_083, REE_assembly
+    06fa0a6183; user decision rec-20260923-79832e4a). Weakening: Kartner/Keller/Chaudhary 2010
+    (19mo Delhi vs Berlin: matched prosocial behaviour with the mirror-self-recognition link absent);
+    Sodian+Kristen-Antonow 2015 (n=83, 12->50mo, controlled: neither mirror self-recognition nor
+    level-1 perspective taking mediates the declarative-pointing -> false-belief path); Slaughter+Boh
+    2001 (mother permanence outruns object permanence in the same infants -- REVERSES the PILLAR 1
+    before PILLAR 4 ordering). Supporting: Bischof-Kohler 2012 (one-sided self-recognition/empathy
+    contingency, but its own mechanism is synchronic identification, i.e. relational); Lucca et al.
+    2025 supports only by subtraction (Hamlin 2007 non-replication). Wittmann 2016 (structured,
+    context-signed self-other contamination in area 9) constrains the slot rather than the ordering:
+    a PILLAR 4 build needs an explicit signed self-other coupling term.
+    DISPOSITION (a) FOLLOW-ON, 2026-09-23 (chip-20260923-arc083-triadic-primitive): both the
+    supporting and the weakening sources point at a triadic self+other+object binding rather than at
+    ARC-081 self-stability. Registered as ARC-150 and wired into depends_on as the developmental
+    prerequisite. ARC-081 stays in depends_on as a soft default ordering only.
+    DISPOSITION (b), 2026-09-23 -- IS SD-039's MOTIVATIONAL GHOST BANK THE RIGHT PRIMITIVE FOR
+    PERSON-PERMANENCE? Verdict: CANDIDATE for the motivational-WEIGHTING half only; NOT adopted as
+    PILLAR 1; NEEDS LIT before any stronger reading. For: Slaughter+Boh 2001 has the motivationally
+    loaded entity persisting through longer occlusion than an inanimate one, which is what a
+    wanting/arousal payload preserved past invalidation (SD-039, live in V3, V3-EXQ-494) would
+    produce; the functional_restatement's "not a true object-file persistence buffer" treated that
+    as a shortfall when it may be the operative mechanism. Against: SD-039 snapshots a GOAL STATE,
+    not an ENTITY TOKEN -- it preserves "what I wanted", not "who is there" -- and ARC-083's slot is
+    token-keyed, so the bank cannot by itself carry an other's identity through occlusion. And the
+    source is thin: 17 completing infants, and Jackson/Campos/Fischer 1978's task-demand objection to
+    the whole person/object decalage literature is unanswered. Working reading: person-permanence =
+    token persistence (PILLAR 1 machinery) x motivational weighting (an SD-039-like payload on the
+    token), with the weighting lengthening survival for significant others. What would move it: a
+    targeted pull on person-vs-object permanence after 1978 and on whether attachment salience
+    extends object persistence generally; architecturally, whether attaching an SD-039-style wanting
+    payload to an ARC-080 token lengthens its occlusion survival. Not a claims.yaml status change;
+    SD-039 itself unedited.
   location: docs/architecture/arc_080_object_representation_primitive.md
+
+- id: ARC-150
+  title: >-
+    Triadic co-reference primitive (declarative joint attention / synchronic two-slot identification):
+    the agent can hold its OWN slot and ONE OTHER agent's slot simultaneously bound to a SINGLE
+    shared object referent, for no instrumental reason. This relational self-other-object binding --
+    not a stable self (ARC-081) and not a generic object-persistence buffer (ARC-080 PILLAR 1) -- is
+    the developmental prerequisite otherness inference (ARC-083) and theory of mind actually run
+    through. It sits on ARC-080's slot-allocation machinery as a binding operation over two
+    concurrently-live slots plus one object token.
+  claim_type: architectural_commitment
+  subject: representation.triadic_self_other_object_coreference
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: false
+  claim_level: architectural
+  version_relevance: v4_v5
+  registered_utc: '2026-09-23'
+  location: docs/architecture/arc_080_object_representation_primitive.md#arc-150
+  depends_on:
+    - ARC-080    # slot-allocation machinery -- the primitive binds two concurrently-live slots + one object token
+    - ARC-010    # the other-slot being bound is the mirror-modelled other (consumer and co-substrate)
+  literature_anchors:
+    - targeted_review_arc_083
+  functional_restatement: >
+    WHAT IT ASSERTS. A distinct relational capacity: two agent slots (self, other j) held live AT THE
+    SAME TIME and co-bound to one shared object referent -- "I see that you and I are attending to
+    THAT". Behavioural signature in humans: DECLARATIVE pointing (~12 months), where the infant directs
+    another's attention to a thing in order to share it, not to obtain it. IMPERATIVE pointing (a
+    request) is the matched control: same motor form, dyadic self->object with the other as a tool,
+    no shared reference.
+
+    WHY IT IS A SEPARATE PRIMITIVE AND WHERE IT SITS. It is neither a stable self (ARC-081 PILLAR 2)
+    nor object persistence (ARC-080 PILLAR 1). It is a BINDING OPERATION over the ARC-080 object-file
+    machinery: allocation of a second agent slot concurrent with the self slot, plus a co-reference
+    link from both to one object token. ARC-083 (per-other slot) supplies the other slot's CONTENT;
+    this primitive supplies the RELATION that makes that slot usable for otherness inference.
+
+    BIOLOGY FIRST (targeted_review_arc_083, 2026-09-17, REE_assembly 06fa0a6183):
+    (1) Sodian + Kristen-Antonow 2015 Dev Psychol -- the only confound-controlled longitudinal design
+        in the pull (n=83, 12mo->50mo, gender + language controlled): 12-month DECLARATIVE pointing
+        predicted 50-month false belief; imperative pointing did not; mirror self-recognition and
+        level-1 perspective taking were both correlated with joint attention but mediated NONE of the
+        path. The triadic act carried the route; the self-representational variable did not.
+    (2) Bischof-Kohler 2012 -- the SUPPORTING source for the old self-stability prerequisite -- names
+        its own mechanism as SYNCHRONIC IDENTIFICATION (holding self and other simultaneously in view),
+        which is this relational two-slot capacity, not self-stability per se.
+    (3) Danjo et al. 2018 (rat CA1) + Omer et al. 2018 (bat CA1), independent labs, same issue of
+        Science: self and other positions are "jointly and discretely encoded" in ONE hippocampal
+        population -- the neural format a concurrent two-slot binding over shared map/object machinery
+        would use (and the reason this is placed on ARC-080's machinery, not in a separate social
+        module).
+    A supporting and a weakening source converging on the same correction is the main reason to
+    register this rather than leave it as prose in GFLAG-0309.
+
+    SCOPE / GUARD. architectural_commitment, substrate_conditional -- promote/demote suppressed; no
+    code, no experiment. V4 phase to match ARC-083 (inherits ARC-083's v4 -> v5 generation flag in
+    mirror_modelling_other_self_v5_plan; both are intrinsically social). Must NOT enter V3 closure.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: a multi-agent substrate (ARC-047 SocialGridWorld or successor) with at
+    least one other agent, a shared object the other can attend to, and an attention/orientation
+    readout for BOTH agents -- plus ARC-080 slots able to hold a second agent slot concurrently. Without
+    a second agent whose attention is observable, the primitive cannot be exercised and any null is
+    vacuous.
+    CONFIRMING: agents with the triadic binding available acquire otherness inference (MIRROR-1
+    OTHER_SELFLIKE tagging) and downstream other-state prediction faster or more robustly than agents
+    lacking it, AND a readout of "self and other co-attending the same token" predicts later
+    other-modelling competence better than a self-stability readout does (the Sodian 2015 structure,
+    reproduced in-agent).
+    FALSIFYING: otherness inference and other-state prediction develop equally well with the triadic
+    binding lesioned (only dyadic self->object and other->object tracking available); or the
+    self-stability readout, not the co-reference readout, carries the predictive path.
+    SUBSTRATE: NOT BUILT. No multi-agent environment in ree_core; no concurrent second agent slot.
+    Registration is not build authorisation.
+  notes: >-
+    Registered 2026-09-23 by chip chip-20260923-arc083-triadic-primitive (session infallible-elion-289944)
+    as the owed follow-on (a) of GFLAG-0309 (resolved 2026-09-23, governance-flags-20260923, user
+    decision rec-20260923-79832e4a: weaken ARC-083's REQUIRES to an ordering). ARC-083 depends_on now
+    names this claim as its developmental prerequisite in place of the demoted ARC-081 gate.
+    Existing-claim check before minting: claims.yaml has no joint-attention / triadic / co-reference
+    claim. ARC-099 (language-bootstrap contract) lists "joint attention" in its enabling-condition
+    inventory with no node behind it, and language_emergence_bootstrap_v6_plan LANG-4 treats joint
+    attention as an "immediate consequence" of MIRROR-1. The Sodian 2015 ordering puts it the other
+    way round -- joint attention PRECEDES and predicts other-modelling -- so this claim is the
+    upstream node both of those point at, not a consequence of MIRROR-1. Neither ARC-099 nor the v6
+    plan was edited here; re-pointing them is follow-on.
+    Caveats carried from the pull: a mediation null (Sodian) is not a dissociation, and n=83 over 38
+    months can hide a modest mediated effect; the hippocampal papers test one other agent, so the
+    PLURAL (several concurrent other slots) is untested.
 
 - id: MECH-340
   what_would_answer: |

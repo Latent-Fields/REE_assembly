@@ -4,16 +4,20 @@ closure_plan:
   generation: v5
   title: "Mirror modelling: others modelled by reusing the self-model (others-as-self / ToM)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
-  scope_claims: [ARC-010, MECH-031, MECH-032, MECH-036, MECH-041, MECH-051, MECH-052, MECH-127, ARC-047, ARC-083, INV-005]
+  last_updated: 2026-09-23
+  scope_claims: [ARC-010, MECH-031, MECH-032, MECH-036, MECH-041, MECH-051, MECH-052, MECH-127, ARC-047, ARC-083, ARC-150, INV-005]
   sibling_plans: [object_representation_v4, self_model_v4, goal_pipeline]
   roadmap_note: >
     FORWARD ROADMAP, not a closure map, and the V5 (SOCIAL mind) tier of the
     three-tier partition (V4 = individual mind, V5 = social, V6 = linguistic).
     The spine is ARC-059 / DEV-NEED-021: self -> objects -> OTHERS -> language.
-    Otherness inference REQUIRES object-permanence AND a stable self, both V4 --
-    so every node here carries a cross_plan_link or readiness_gate back to a V4
-    sibling node (object_representation_v4:OBJ-2 permanence, OBJ-3/SELF-* self),
+    Otherness inference TYPICALLY DEVELOPS AFTER object-permanence and a stable
+    self (weakened from REQUIRES 2026-09-23, GFLAG-0309: a default build ordering,
+    not a gate); the developmental prerequisite the evidence supports is ARC-150
+    triadic co-reference. Nodes still carry cross_plan_links back to V4 siblings
+    (object_representation_v4:OBJ-2 permanence, OBJ-3/SELF-* self) as ordering,
+    and MIRROR-2's SELF-1 gate stays a hard gate on its own MECHANISTIC ground
+    (ARC-010 reuses the self-model, so one must exist to reuse),
     plus the shared MECH-163 multi-step hippocampal planning gate (the V3
     completion item that is the V4-social entry gate; it stays v3, never flagged).
     Nodes carry owner_exq: null and the drift checker stays dormant against them.
@@ -37,12 +41,13 @@ closure_plan:
       unblocks_claims: [MECH-031, MECH-032]
       depends_on: []
       cross_plan_link: ["object_representation_v4:OBJ-5"]
-      blocking_on: "DEV-NEED-021 prerequisite: others-as-object slots (object_representation_v4:OBJ-5) require object-permanence (OBJ-2) + self-stability (OBJ-3/self_model_v4) to exist first. There is no entity to tag OTHER_SELFLIKE until a token-keyed other-object slot can hold it."
+      blocking_on: "There is no entity to tag OTHER_SELFLIKE until a token-keyed other-object slot (object_representation_v4:OBJ-5) can hold it, and no route to otherness inference until ARC-150 triadic co-reference can bind that slot and the self slot to one shared object. OBJ-2 permanence + OBJ-3/self_model_v4 self-stability typically come first but are NOT a gate (DEV-NEED-021 weakened 2026-09-23, GFLAG-0309)."
       readiness_gate:
-        - "object_representation_v4:OBJ-5 (others-as-object: per-agent token-keyed slot) -- the slot MECH-031's tag attaches to; itself gated on OBJ-2 permanence + OBJ-3 self"
+        - "object_representation_v4:OBJ-5 (others-as-object: per-agent token-keyed slot) -- the slot MECH-031's tag attaches to; OBJ-2 permanence + OBJ-3 self are its default build ORDERING, not a gate (GFLAG-0309)"
+        - "ARC-150 triadic co-reference (declarative joint attention): self slot + other slot concurrently live and co-bound to one object token, on ARC-080 slot allocation -- the developmental prerequisite Sodian+Kristen-Antonow 2015 found carries the path to theory of mind (self-recognition mediated none of it)"
         - "social.md otherness-inference rule is design-only: an entity is OTHER when it behaves coherently + predicts similarly to self but does NOT respond to self action commands (no interoceptive closure, loose action-prediction coupling)"
         - "MECH-032 high-recall bias: OTHER_SELFLIKE detection biased toward false-positives -- early false positives are cheaper than false negatives (which block empathy coupling entirely); calibration tightens over development"
-      last_updated: 2026-06-10
+      last_updated: 2026-09-23
       completion_note: "First V5 social step: the agent must mark a perceived entity as another agent BEFORE any social interpretation runs. Otherness is inferred from coupling structure (behaves like self, but self-actions do not control it), never assigned symbolically. This is the entry door of the whole tier; everything below presupposes the tag exists."
     - id: "mirror_modelling_other_self_v5:MIRROR-2"
       title: "Reuse the self generative model to SIMULATE the other (ARC-010): shared L-space, reduced precision, no interoceptive closure"
@@ -153,13 +158,13 @@ closure_plan:
       unblocks_claims: [MECH-052, MECH-127, INV-029]
       depends_on: ["mirror_modelling_other_self_v5:MIRROR-4", "mirror_modelling_other_self_v5:MIRROR-6"]
       cross_plan_link: ["self_model_v4:SELF-7"]
-      blocking_on: "Long-horizon care (MECH-052) and counterfactual cooperative activation (MECH-127) both require multi-step planning over ANOTHER agent's future state -- the MECH-163 hippocampal planner -- plus the harm-equivalence channel (MIRROR-4) and the INV-064 maturational gate (self_model_v4:SELF-7) confirming self-stability precedes social depth."
+      blocking_on: "Long-horizon care (MECH-052) and counterfactual cooperative activation (MECH-127) both require multi-step planning over ANOTHER agent's future state -- the MECH-163 hippocampal planner -- plus the harm-equivalence channel (MIRROR-4) and the INV-064 maturational gate (self_model_v4:SELF-7). That gate is held on INV-064's own authority; its former DEV-NEED-021 'stable self must precede' justification was weakened to an ordering 2026-09-23 (GFLAG-0309)."
       readiness_gate:
         - "MECH-163 multi-step hippocampal planning (V3-completion gate): INV-029 'sharing joys and sorrows' / love-as-long-horizon-care requires planning trajectories that affect another agent's z_harm_a + benefit accumulation over time -- structurally inaccessible to 1-step greedy"
         - "MECH-052 (prolactin-analogue care-investment persistence): coupling persists across episodes/absence -- the stability that makes care a disposition, not a momentary resonance; recalibrated in sleep"
         - "MECH-127 (counterfactual other-cost activation): when the direct task-reward pathway is degraded, modelling anticipated cost to an ABSENT other substitutes as activation -- requires pre-encounter OTHER_SELFLIKE tagging (MIRROR-1) + a mirror that runs counterfactually (MIRROR-2)"
-        - "self_model_v4:SELF-7 / INV-064 maturational gate: a stable self must precede this social depth (DEV-NEED-021)"
-      last_updated: 2026-06-10
+        - "self_model_v4:SELF-7 / INV-064 maturational gate (held on INV-064's own authority; the DEV-NEED-021 'stable self must precede' reading is a default ordering since 2026-09-23, GFLAG-0309)"
+      last_updated: 2026-09-23
       completion_note: "The apex of the tier: mirror coupling becomes a long-horizon DISPOSITION (MECH-052 care persistence) and can ACTIVATE behaviour counterfactually even with the other absent (MECH-127), grounding INV-029 love-as-coherence-bias. This is the deepest social node and the natural bridge to V6 (cooperative coordination precedes shared language). Gated on the full planner + a stable self; design-only today."
 ---
 # Mirror Modelling: Others Modelled by Reusing the Self-Model -- V5 Forward Roadmap
@@ -177,9 +182,12 @@ first.
 This is the **V5 (SOCIAL mind)** tier of the three-tier partition (V4 =
 individual mind, V5 = social, V6 = linguistic). It sits on the ARC-059 /
 DEV-NEED-021 spine: **self -> objects -> OTHERS -> language**. Otherness
-inference is not a free-standing capability -- it REQUIRES object-permanence
-(so an other persists as a trackable entity through occlusion) and a stable
-self (so there is a self-model to mirror FROM). Both are V4. Every node here
+inference is not a free-standing capability. It TYPICALLY DEVELOPS AFTER
+object-permanence and a stable self -- a default ordering, not a requirement
+(weakened 2026-09-23, GFLAG-0309) -- and the prerequisite the developmental
+evidence supports is ARC-150 triadic co-reference (self + other co-bound to one
+object). Mirroring (MIRROR-2) separately needs a self-model to mirror FROM;
+that is a mechanistic dependency and stays a gate. All of these are V4. Every node here
 therefore links back to a V4 sibling plan node, plus the shared **MECH-163**
 multi-step hippocampal planning gate -- the V3-completion item that is the
 V4-social entry gate (it stays v3; it is NOT flagged).
@@ -212,7 +220,7 @@ build.
 
 | Node | Step | Claim | Phase leaning | The prerequisite gate |
 |---|---|---|---|---|
-| MIRROR-1 | otherness inference / OTHER_SELFLIKE tag | MECH-031, MECH-032 | V5 (entry) | OBJ-5 others-as-object slot (needs OBJ-2 + OBJ-3) |
+| MIRROR-1 | otherness inference / OTHER_SELFLIKE tag | MECH-031, MECH-032 | V5 (entry) | OBJ-5 others-as-object slot + ARC-150 triadic co-reference (OBJ-2 + OBJ-3 default ordering only) |
 | MIRROR-2 | reuse self-model to simulate other | ARC-010 | V5 (heart) | self_model_v4:SELF-1 stateful self; MECH-163 planner |
 | MIRROR-3 | precision-weighted signed coupling | ARC-010, MECH-051 | V5 | MIRROR-2 mirror live; ARC-012 no-cost-term constraint |
 | MIRROR-4 | empathy veto / harm-equivalence | INV-005, MECH-036 | V5 | MIRROR-3 coupling live |
@@ -233,8 +241,10 @@ three-tier partition:
   multi-agent test harness for ARC-010 mirror modelling; ARC-083's subject is
   per-other-agent object-file slots. They belong in the V5 SOCIAL tier and are
   reported in `generation_flags[]` (current v4 -> recommended v5). ARC-083's
-  *prerequisites* (object-permanence PILLAR 1, self-stability PILLAR 2) stay
-  V4 -- only the others-as-object endpoint is social.
+  default-ordering predecessors (object-permanence PILLAR 1, self-stability
+  PILLAR 2) stay V4 -- only the others-as-object endpoint is social. Its
+  prerequisite ARC-150 (triadic co-reference) is registered v4 alongside it and
+  inherits the same v4 -> v5 flag.
 - **The mirror-modelling mechanism cluster** (MECH-031, MECH-032, MECH-036,
   MECH-041, MECH-051, MECH-052, MECH-127) carries **no `implementation_phase`
   field at all** today. Every one is intrinsically social / relational /
@@ -300,7 +310,8 @@ One genuine capability gap surfaced, motivating a single new claim:
 | Artefact | Role |
 |---|---|
 | [docs/architecture/social.md](../../docs/architecture/social.md) | ARC-010 mirror modelling, coupling, otherness inference, failure modes, MECH-031/032/036/041/051/052/127 |
-| [docs/architecture/developmental_needs_register.md](../../docs/architecture/developmental_needs_register.md) DEV-NEED-021 | otherness inference REQUIRES object-permanence + self-stability (the V4 prerequisites) |
+| [docs/architecture/developmental_needs_register.md](../../docs/architecture/developmental_needs_register.md) DEV-NEED-021 | otherness inference typically develops after object-permanence + self-stability (default ordering; weakened from REQUIRES 2026-09-23, GFLAG-0309) |
+| claims.yaml ARC-150 + evidence/literature/targeted_review_arc_083/ | triadic co-reference primitive -- the developmental prerequisite for MIRROR-1 |
 | claims.yaml ARC-059 | three-stage developmental ordering (self -> objects -> others); ARC-010 is the stage-3 (V4/V5) substrate |
 | claims.yaml ARC-010 / INV-005 | the spine: mirror modelling + harm-via-mirror (universal invariant) |
 | claims.yaml ARC-047 / ARC-083 | SocialGridWorld harness + others-as-object slot (flagged v4 -> v5) |
@@ -329,3 +340,13 @@ One genuine capability gap surfaced, motivating a single new claim:
   (V3-completion gate, not social work). One new claim proposed:
   `mirror_gain_homeostasis` (the gain-window regulator the failure-mode
   taxonomy implies but no claim asserts).
+- **2026-09-23** -- Readiness gates re-pointed to match the weakened ARC-083 (GFLAG-0309,
+  user decision rec-20260923-79832e4a; chip-20260923-arc083-triadic-primitive). The
+  DEV-NEED-021 'otherness REQUIRES object-permanence + self-stability' gates are now a
+  default build ORDERING: MIRROR-1 no longer gates on OBJ-2 + OBJ-3 and gains ARC-150
+  (triadic co-reference / declarative joint attention, registered the same day) as its
+  prerequisite; MIRROR-7 keeps the SELF-7 gate on INV-064's own authority only. MIRROR-2's
+  SELF-1 gate is deliberately UNCHANGED: it is mechanistic (ARC-010 reuses the self
+  generative model, so a stateful one must exist), not the developmental ordering the lit
+  pull weakened. Basis: evidence/literature/targeted_review_arc_083/ (Sodian+Kristen-Antonow
+  2015, Kartner et al. 2010, Slaughter+Boh 2001, Bischof-Kohler 2012).
