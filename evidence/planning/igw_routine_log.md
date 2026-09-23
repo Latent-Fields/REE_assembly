@@ -3552,3 +3552,7 @@ One line per hourly tick. ASCII only.
 2026-09-23T16:53:17Z LAUNCH (manual interactive) IGW-20260923-227 worktree=igw-227-substrate-ready-sd-zworld-sense
 2026-09-23T16:58:39Z disposition-upgrade IGW-20260923-227 hash=f2a1a5aab7ab decision=DEFER: NO BUILD OWED -- premise audit by igw-227-substrate-ready-sd-zworld-sense 2026-0
 2026-09-23T17:00:42Z auto-defer igw-227-substrate-ready-sd-zworld-sense hash=f2a1a5aab7ab for 48h (complete)
+2026-09-23T17:01:17Z complete igw-227-substrate-ready-sd-zworld-sense launched_manual->completed outcome=DUPLICATE: No build owed: second spawn of IGW-20260916-217 (completed NO_OP, user decision
+2026-09-23T17:43:12Z GC removed worktree igw-227-substrate-ready-sd-zworld-sense (removed; branch deleted)
+2026-09-23T17:42:22Z GC sweep removed 1 orphan worktree(s), kept 18
+2026-09-23T17:42:22Z no eligible item (skipped 266): IGW-20260923-001:skill /governance not allowed; IGW-20260923-007:skill /governance not allowed; IGW-20260923-008:skill /governance not allowed
