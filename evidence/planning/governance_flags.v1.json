@@ -3926,9 +3926,9 @@
       "summary": "IGW-20260915-243 readiness probe (real StepHarness loop, K=1 sleep, F1 step 0.25): the canonical pre-waking agent.reset() fires a sleep cycle that seeds SerotoninModule._persistent_zero_point from precision_init (target precision 2.0 vs realized ~255), so F1 WRITEBACK recalibration pushes an already-calibrated rv AWAY from realized PE variance (0.0039 -> 0.0121, decaying over ~30+ cycles); V3-EXQ-541c shows the same seed (cycle-1 target 2.148) and its tracking_quality measured tracking toward that contaminated target, not calibration -- review whether 541c 'supports' should be re-read, and route the cold-start seeding fix to /implement-substrate (no substrate_queue entry exists). Also commit_threshold=0.4 vs rv~0.004 pins committed_frac at ~1.0.",
       "raised_by_session": "igw-243-proposal-for-mech-016",
       "raised_at": "2026-09-15T03:04:16Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-23T18:39:54Z",
+      "resolution_note": "[governance-flags-20260923b] SUPERSEDED in substance by GFLAG-0369/0377/0379/0384/0385/0391 (2026-09-19..23), which adjudicated the same MECH-204 cold-start/F1-recalibration mechanism in depth. User decision GFLAG-0391 (AskUserQuestion, orchestrate-20260920-1121) closed MECH-204 Option A's experimental question; applied to claims.yaml evidence_quality_note in REE_assembly 44a0665b4f (status stays candidate). The seeding/drift-source build this flag asked to route is owned by chip-20260920-mech204-new-waking-drift-source (open, HOLD to 2026-09-25). MECH-016 needs no edit."
     },
     {
       "flag_id": "GFLAG-0280",
