@@ -6052,6 +6052,32 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0424",
+      "claim_ids": [
+        "ARC-049",
+        "ARC-063",
+        "ARC-064",
+        "ARC-071",
+        "INV-056",
+        "INV-089",
+        "MECH-141",
+        "MECH-183",
+        "MECH-197",
+        "MECH-312",
+        "MECH-343",
+        "Q-019",
+        "Q-088",
+        "SD-092"
+      ],
+      "flag_type": "stale_note",
+      "summary": "These 14 claims' experimental proposal rows in experiment_proposals.v1.json carry a blocking status (blocked_substrate / deferred_substrate_not_ready / proposed_blocked_substrate) with NO release_condition, NO blocked_note and NO gating_reason -- no recorded reason and no release predicate. Because FILTER G (proposal_feasibility.registry_block_reason) blocks on status alone, each row silently suppresses proposal minting for its claim indefinitely, and audit_blocked_proposal_unblockers.py reasons over NAMED unblockers so a row naming none is invisible to it -- nothing any readiness audit can check will ever release them. Q-019 is the sharpest case: status blocked_substrate with blocked_by literally []. Found by reading all 104 previously-unread registry-blocked rows for half A of rec-20260923-4e4795c2 (record: REE_assembly/evidence/planning/permanent_gate_residual_read_20260923.md, commit cec32566a3); the other 90 rows all name a releasing condition. OWED: give each of the 14 either a recorded release condition or an explicit permanent disposition. Do NOT resolve this by writing claims.yaml experiment_gate -- gating a row that names nothing gates on the ABSENCE of information and would convert an unaudited suppression into a permanent one; MECH-343 in particular is releasable by build (blocked_by names modulatory-bias-selection-authority and SD-061).",
+      "raised_by_session": "exciting-morse-761f4a",
+      "raised_at": "2026-09-23T06:41:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
