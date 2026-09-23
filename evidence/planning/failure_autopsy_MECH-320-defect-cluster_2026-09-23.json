@@ -1,0 +1,426 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-23T19:41:57Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "autopsy_question": "GFLAG-0403: are the four scoring-candidate runs v3_exq_544a / 844 / 919 / 904 invalidated by the MECH-320 substrate defect (substrate_queue MECH-320, severity corrupting, substrate_paths ree_core/policy/tonic_vigor.py)? ARC-068 folded in from GFLAG-0399.",
+  "readjudication_of": [
+    "failure_autopsy_V3-EXQ-844_2026-08-01",
+    "failure_autopsy_V3-EXQ-904_2026-08-09",
+    "failure_autopsy_V3-EXQ-919_2026-08-13",
+    "failure_autopsy_substrate-readiness-cluster_2026-09-02"
+  ],
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "scripts/check_dry_run_citations.py over the 4 target run_ids + v3_exq_571_..._20260516T004017Z_v3 + v3_exq_951c_..._20260903T140538Z_v3: 0 dry, 6 clean; --family v3_exq_544a/844/904/919: 0 dry, 1 real each.",
+  "defect_definition": {
+    "failure_record_571_as_quoted_by_GFLAG_0403": "All diversity bias components (dacc, lateral_pfc, ofc, curiosity, tonic_vigor) contribute 0.0 to E3 temporal variance; forward model F dominates 88-89%. Bias channel present in substrate but not propagating to E3 selection.",
+    "failure_record_571_corrected_2026_05_26": "Corrected by arc065-failure-record-correction-20260526T064946Z (cross_ref evidence/planning/v3_exq_571_root_cause_2026-05-25.md): bias channels ARE composed into score_bias and added at e3_selector.py:737; per-candidate spread is structurally zero because E2 world-forward compresses K candidates to identical first-step z_world (cand_world_pairwise_dist=0.0000). Affected consumers are those reading cand_world_summaries: MECH-314a, MECH-320 tonic_vigor, MECH-295, SD-033a, SD-033b. The correction was written to the ARC-065 and MECH-314 substrate_queue rows only; the MECH-320 and MECH-313 rows still carry the superseded text.",
+    "failure_record_951c_tonic_vigor_specific": "tonic_vigor v_raw persistently negative under default baseline_mode='none' (951c: v_raw max exactly 0.0), so max(0,v_raw)=0 and v_t = max(v_t_floor, 0*gates) is pinned AT v_t_floor independently of the gates -- 0.0 at the shipped default, 0.05 where a driver forced the floor (624a/b/c, 951, 951c). The scalar never MOVES. This is the defect the 'corrupting' severity and substrate_paths describe.",
+    "execution_precondition": "use_tonic_vigor defaults False (ree_core/utils/config.py:5189); agent.py:2068-2089 builds self.tonic_vigor only when True and every call site is `is not None`-gated. The other four channels (use_dacc, use_lateral_pfc_analog, use_ofc_analog, use_structured_curiosity) also default False."
+  },
+  "gov_subpath_1_detection_finding": {
+    "summary": "GOV-SUBPATH-1 flagged all four drivers on a PACKAGE-PARENT import, not a direct import of tonic_vigor. None of the four drivers directly imports ree_core.policy.tonic_vigor or sets use_tonic_vigor. (ree_core/policy/__init__.py does import tonic_vigor at module load at all four substrate commits -- constants/class definitions only, inert while use_tonic_vigor is False.)",
+    "mechanism": "REE_assembly/scripts/check_substrate_path_overlap.py:301-310 _modules_overlap() returns True when target.startswith(imp + '.'). resolve_driver_imports() adds the bare module of every from-import, so `from ree_core.policy import ChunkedPrimitive` (844:207, 904:90, 919:188) or `from ree_core.policy import NoiseFloor` (544a:71) yields 'ree_core.policy', and 'ree_core.policy.tonic_vigor'.startswith('ree_core.policy.') matches. Every driver importing ANY name from the ree_core.policy package is reported as a tonic_vigor importer.",
+    "second_defect": "The audit's 'scoring' classification read evidence_direction only: v3_exq_544a carries scoring_excluded=diagnostic_probe on both its claim_evidence rows (MECH-313, ARC-065) and weights nothing (already established by failure_autopsy_substrate-readiness-cluster_2026-09-02). Of GFLAG-0403's 'five scoring runs', three are scoring (844, 919, 904) and one (544a) is not; the flag's fifth item is a read-together note, not a run.",
+    "better_signal": "Import is not enablement. The defect executes only when use_tonic_vigor=True; the manifest's config / enabled_default_off_flags and the driver's config construction are the direct signal."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_544a_mech313_noise_floor_substrate_readiness_v3_20260529T154903Z",
+      "queue_id": "V3-EXQ-544a",
+      "claim_ids": [
+        "MECH-313",
+        "ARC-065"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "scoring_status": "scoring_excluded=diagnostic_probe on both claim_evidence rows -- weights no claim",
+      "defect_exposure": "none",
+      "defect_exposure_basis": "Driver sets no use_tonic_vigor / use_dacc / use_lateral_pfc_analog / use_ofc_analog / curiosity flag (all default False). UC1-UC5 are plumbing checks (instantiation, arithmetic of max(baseline+alpha, min_T), wiring contract); none measures an E3-selection-level effect. MECH-313 NoiseFloor is a uniform softmax TEMPERATURE lift (agent.py ~9200), not a per-candidate additive score_bias and not a cand_world_summaries consumer, so it is outside both the 571 corrected root cause and the 951c tonic-vigor defect.",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- a readiness PASS cannot bear on MECH-313's functional prediction, and it is scoring-excluded",
+        "biological_reference": "present (LC-NE tonic / adaptive gain, Aston-Jones & Cohen 2005); not implicated",
+        "prerequisites": "present",
+        "implementation": "complete (NoiseFloor API exists and responds)",
+        "environment": "n/a -- no selection-level DV",
+        "measurement": "misleading as a claim signal (plumbing verdict emits a claim-bearing 'supports'), contained by scoring_excluded; recording always-core absent (recording_schema, substrate_hash, config, seeds) per validate_recording.py -- the known readiness-template defect",
+        "integration": "isolated",
+        "scale": "n/a"
+      },
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_note": "Unchanged. Not invalidated by the MECH-320 defect. The manifest's 'supports' is already neutralised by scoring_excluded=diagnostic_probe; no edit owed. (The hygiene point that a readiness gate should emit non_contributory is already recorded in failure_autopsy_substrate-readiness-cluster_2026-09-02.)",
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_quality_note": "[2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0403]: V3-EXQ-544a is NOT invalidated by the MECH-320 defect. It never enables use_tonic_vigor or any dacc/lateral_pfc/ofc/curiosity channel, measures no selection-level effect (UC1-UC5 are plumbing checks), and MECH-313's NoiseFloor is a softmax temperature, not a per-candidate score_bias or a cand_world_summaries consumer. The run is already scoring_excluded=diagnostic_probe and weights nothing. No change.",
+      "per_claim_recommendation": {
+        "MECH-313": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "STANDS",
+          "status_change": "none -- stays candidate"
+        },
+        "ARC-065": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "STANDS",
+          "status_change": "none -- stays stable"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "See top-level recommended_substrate_queue_bookkeeping for the MECH-313 row's stale 571 failure_record text."
+      },
+      "pending_retest_after_substrate": null,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null
+      },
+      "learning_extracted": [
+        "A substrate-path audit hit on a readiness diagnostic that is already scoring_excluded has no evidence to invalidate."
+      ],
+      "routing": "governance-reclassify (no-op: stands)"
+    },
+    {
+      "run_id": "v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3",
+      "queue_id": "V3-EXQ-844",
+      "claim_ids": [
+        "MECH-321"
+      ],
+      "experiment_purpose": "evidence",
+      "outcome": "FAIL",
+      "scoring_status": "scoring (genuine_exp weakens)",
+      "defect_exposure": "none",
+      "defect_exposure_basis": "Only manipulation is use_persistent_committed_program_handle (False/True); neither the driver nor its reuse baseline (v3_exq_839 sd084_midexec_reachability) sets use_tonic_vigor or any dacc/lateral_pfc/ofc/curiosity flag, identically in both arms. The lever is commitment-latch / trajectory visibility to the MECH-321 mid-exec hook (E3Selector._persistent_committed_trajectory), not an E3 candidate-score bias. The confirmed 2026-08-01 autopsy code-traced C1's failure to _apply_policy_decomposition (hippocampal/module.py:896-983) performing NO ranked selection at all -- there was no scored-selection pathway in which a zero-contributing bias could manufacture the negative.",
+      "hygiene_finding": "substrate_stable_across_run=false with an ARM-CORRELATED split: all 6 ARM_HANDLE_OFF cells under substrate_hash 3ad9562b0b, all 6 ARM_HANDLE_ON cells under 697e8bd687. Inert for this run: both fingerprints are per-arm snapshots taken ~20 min apart inside ONE in-process run (the driver spawns no subprocess), so the code that executed was imported once at process start; and the delta between the two snapshots is exactly one experiments/_lib line + two new experiments/_lib files (dACC readout fix 51c3d3c) with zero ree_core changes, none imported by this driver. Supporting but partial: seeds 47/23/53 (no mid-exec decomposition) are bit-identical across arms -- that covers the shared path, not the re-tiling path exercised only on seeds 3/71/89. Red-team (fable) supplied the in-process argument; adopted.",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (harm-outcome prediction), unchanged from the 2026-08-01 autopsy; not attributable to the MECH-320 defect",
+        "biological_reference": "unchanged (plan-monitoring clear; threat-modulated path selection gap)",
+        "prerequisites": "present",
+        "implementation": "partial -- no harm-valence signal and no ranked-selection step in _apply_policy_decomposition (unchanged; later built as SD-hazard-aware-policy-decomposition and tested by 919)",
+        "environment": "adequate",
+        "measurement": "adequate for the question; defect-irrelevant",
+        "integration": "isolated (threat appraisal not coupled to redecomposition)",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MECHANISM (implementation partial) -- unchanged; not chargeable to the MECH-320 defect or to REE"
+      },
+      "recommended_evidence_direction": "weakens",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "The 2026-08-01 artifact stamped the out-of-enum 'competence_implementation_gap'; claims.yaml already carries MECH-321 epistemic_category standard, which is the enum-compliant spelling of that reading. No change.",
+      "recommended_evidence_quality_note": "[2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0403]: V3-EXQ-844's weakens is NOT invalidated by the MECH-320 defect: no tonic_vigor or diversity-bias channel is enabled in either arm, and the lever (persistent committed-program handle) acts on commitment visibility, not on an E3 score bias. Separately recorded: an arm-correlated substrate-hash split (OFF 3ad9562b0b / ON 697e8bd687), shown inert by bit-identical action and harm sequences on the three non-decomposing seeds. Disposition stands.",
+      "per_claim_recommendation": {
+        "MECH-321": {
+          "recommended_evidence_direction": "weakens",
+          "recommended_epistemic_category": "standard",
+          "change": "STANDS",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null
+      },
+      "learning_extracted": [
+        "The weakens rests on a structurally absent selection step, which no score-bias defect could fake.",
+        "Arm-correlated substrate drift can be discharged by bit-identical inert-seed controls; a manifest that records per-cell action sequences makes that check cheap."
+      ],
+      "routing": "governance-reclassify (no-op: stands)"
+    },
+    {
+      "run_id": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3",
+      "queue_id": "V3-EXQ-919",
+      "claim_ids": [
+        "MECH-321"
+      ],
+      "experiment_purpose": "evidence",
+      "outcome": "FAIL",
+      "scoring_status": "scoring (genuine_exp weakens)",
+      "defect_exposure": "MECH-320 defect: none. Separate, unmeasured exposure of BOTH stages to E2 world-forward per-candidate collapse (the corrected-571 root cause, not the MECH-320 defect).",
+      "defect_exposure_basis": "Driver sets only decomposition_use_harm_aware_selection + 5 harm-bias params; no use_tonic_vigor / dacc / lateral_pfc / ofc / curiosity flag, so the MECH-320 defect GFLAG-0403 names is absent. HOWEVER both stages consume the SAME per-leaf harm_penalty (hippocampal/module.py:1263-1275: leaves_with_penalty -> Stage 1 harm_bias metadata AND Stage 2 select_harm_aware_leaves), read by _decomposition_harm_penalty (module.py:1128) off each leaf's own e2.rollout_with_world predicted states. If per-leaf predictions collapse, Stage 1 is a near-constant additive offset and Stage 2's argmin is a tie that keeps items[0] -- a harm-BLIND pool cut. Stage 2 fired on 6831 of 6977 decompositions (97.9%), so 'the treatment moved behaviour' (ON-vs-OFF action divergence mean 0.419, recomputed twice) cannot discriminate harm-informed from harm-blind selection. [Withdrawn from the first draft: 'Stage 2 is categorical pool admission and cannot be drowned' -- false, it consumes the same penalty; and the inference 'behaviour moved, therefore not a defect artifact' -- a non-sequitur for this exposure. Red-team (fable) finding B1, confirmed by source read.] Countervailing evidence that the collapse was NOT live in August: contemporaneous trained-agent runs record nonzero per-candidate spread -- consumed_summary_pairwise_dist_mean 0.080-0.095 (847/847a/851/858, other cells 0.021-0.158), cand_world_pairwise_dist_mean 0.124 (925, other cells 0.024-0.157) -- versus 0.0000 in the May untrained-agent measurement; some cells sit below the 0.05 GAP-A floor. These are different drivers/configs, so they bound but do not measure 919's regime. No run in the 867/867a/867b/919 lineage recorded per-leaf harm_penalty spread or the Stage-2 argmin tie rate.",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- unchanged from the 2026-08-13 autopsy; the combined as-built mechanism was live, so the negative is not a defect artifact",
+        "biological_reference": "partial (escapability and threat-predictability co-determinants deferred) -- unchanged",
+        "prerequisites": "present",
+        "implementation": "complete as built (two stages wired and engaged); whether they received DISCRIMINATIVE per-leaf harm input in 919's regime is unmeasured",
+        "environment": "adequate",
+        "measurement": "adequate for 'does the as-built mechanism reduce harm'; under-instrumented for 'was the mechanism harm-informed' (no per-leaf harm_penalty spread, no Stage-2 tie rate). Also flagged for the successor: the OFF-arm forward-PE positive control is near-degenerate (var 5.6e-8 at mean 0.0095 vs a 1e-12 floor) -- not load-bearing here.",
+        "integration": "coupled but unstable (unchanged)",
+        "scale": "adequate (n=40)"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM input-discriminability unmeasured + MEASURES partial) -- not chargeable to the MECH-320 defect; not REE FAILED"
+      },
+      "recommended_evidence_direction": "weakens",
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_quality_note": "[2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0403]: V3-EXQ-919 is NOT touched by the MECH-320 defect (no tonic_vigor or diversity-bias flag enabled). A different, unmeasured exposure is recorded: both stages of harm-aware selection consume one per-leaf harm_penalty read off each leaf's E2-predicted world states (hippocampal/module.py:1263-1275), so if E2 world-forward collapsed per-leaf predictions (the corrected V3-EXQ-571 root cause) Stage 1 would be a constant offset and Stage 2 (97.9% firing rate) a harm-blind tie-break. Contemporaneous August trained-agent runs show nonzero per-candidate spread (0.02-0.16, vs 0.0000 in May), so the collapse is not shown live, but no 867/919-lineage run recorded per-leaf penalty spread. The weakens therefore reads on the as-built mechanism CONDITIONAL on its harm input having been discriminative; a successor must record per-leaf harm_penalty spread and the Stage-2 argmin tie rate, and if the tie rate is high this run re-adjudicates to non_contributory.",
+      "per_claim_recommendation": {
+        "MECH-321": {
+          "recommended_evidence_direction": "weakens",
+          "recommended_epistemic_category": "standard",
+          "change": "direction stands, conditional; append the per-leaf harm-input exposure caveat to evidence_quality_note -> stamp this cluster artifact",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No new substrate entry. The 2026-08-13 confirmed routing (amend SD-hazard-aware-policy-decomposition: add escapability / threat-predictability channels, failure_record for 919) is still UNAPPLIED -- that row carries only the 844 failure_record as of 2026-09-23. See read_across_not_adjudicated."
+      },
+      "recording_gap": "per-leaf harm_penalty spread within each decomposed chunk, the Stage-2 argmin tie rate (fraction of overrides where min penalty is not unique), and per-tick stage attribution. Cheapest route: a diagnostic replay of 919's config on a few seeds reusing 867a's existing _decomposition_harm_penalty monkeypatch to log per-leaf penalties. Cite evidence/planning/experimental_recording_standard_2026-07-12.md.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null
+      },
+      "learning_extracted": [
+        "A treatment that moves behaviour is not thereby shown to be INFORMED: a categorical override that fires 98% of the time moves behaviour even as a harm-blind tie-break.",
+        "Both graded and categorical stages that read per-candidate E2 predictions inherit the E2 world-forward collapse exposure.",
+        "The MECH-320 defect GFLAG-0403 asked about is absent; the live question is a different substrate (E2 per-candidate divergence)."
+      ],
+      "routing": "queue-experiment (diagnostic: per-leaf harm-input discriminability in 919's regime) -- governance chips it after ratification; direction stands conditionally meanwhile",
+      "recommended_followon_not_spawned": {
+        "skill": "/queue-experiment",
+        "purpose": "diagnostic",
+        "question": "In V3-EXQ-919's regime, are per-leaf harm_penalty values distinct among a decomposed chunk's leaves, and what fraction of Stage-2 overrides are argmin ties (harm-blind items[0] keeps)?",
+        "design_sketch": "Replay 919's ARM_SELECTION_ON config on a few seeds; reuse 867a's _decomposition_harm_penalty monkeypatch to log per-leaf penalties; record per-chunk spread, tie rate, and per-candidate predicted-state pairwise distance. Declare both directions: high tie rate -> 919 re-adjudicates to non_contributory; low tie rate -> conditional weakens becomes unconditional.",
+        "claim_ids_suggested": [],
+        "bears_on": [
+          "MECH-321",
+          "SD-hazard-aware-policy-decomposition"
+        ],
+        "note": "Per the autopsy-chip rule, NOT spawned by this session; /governance chips it after ratification."
+      }
+    },
+    {
+      "run_id": "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3",
+      "queue_id": "V3-EXQ-904",
+      "claim_ids": [
+        "ARC-070"
+      ],
+      "experiment_purpose": "evidence",
+      "outcome": "PASS",
+      "scoring_status": "scoring (genuine_exp supports)",
+      "defect_exposure": "none",
+      "defect_exposure_basis": "The sole load-bearing criterion C_BOUNDARY_LIVE counts MECH-288 boundary fires on genuine rollout latents driving decompositions (180 fires/decompositions in ARM_ON_HIGHVS). The trigger is region_vs<threshold OR boundary.fired (policy_decomposition.py evaluate(), event_segmenter.boundary_on()), computed from rollout latents / PE; no read of E3 score_bias, dacc, lateral_pfc, ofc, curiosity or tonic_vigor in the chain. Driver _arm_flags(), manifest enabled_default_off_flags and all 4 arms' arm_config_slices leave all five channels at default off.",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (narrow mechanism-fires reading) -- unchanged",
+        "biological_reference": "clear (pre-existing) -- not implicated",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate; the combination_rule documentation gap from 2026-08-09 is unrelated",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "recommended_evidence_direction": "supports",
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_quality_note": "[2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0403]: V3-EXQ-904's supports is NOT invalidated by the MECH-320 defect: its load-bearing criterion is a trigger/detector statistic (MECH-288 boundary fires driving decomposition) computed from rollout latents, never passing through E3 score_bias, and no tonic_vigor / diversity-bias channel is enabled in any arm. No change.",
+      "per_claim_recommendation": {
+        "ARC-070": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "change": "STANDS",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": null,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "904's supports is the narrow mechanism-fires line only (ARC-070's FALSIFYING clause negated); it says nothing about selection quality -- as already recorded in ARC-070's implementation_note.",
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "Detector/trigger statistics are outside the reach of a score-bias propagation defect by construction."
+      ],
+      "routing": "governance-reclassify (no-op: stands)"
+    },
+    {
+      "run_id": null,
+      "queue_id": "ARC-068-claim-level",
+      "claim_ids": [
+        "ARC-068"
+      ],
+      "target_kind": "claim-level read folded in from GFLAG-0399 (no run in this cluster is tagged ARC-068)",
+      "bears_on": [
+        "GFLAG-0399:ARC-068",
+        "GFLAG-0403"
+      ],
+      "defect_exposure": "every ARC-068-bearing run is MECH-320-tagged; none could express ARC-068 at selection level",
+      "defect_exposure_basis": "ARC-068's implementation IS MECH-320's w_passive * v_t term (2026-05-16 collapse decision; tonic_vigor.py:468, 481). Its three tagged runs (624a/624b/624c) are already non_contributory / scoring-excluded. Those runs, and 951/951c, forced v_t_floor=0.05, so v_t was pinned AT the floor (never moving, per the 951c defect) but nonzero: the no-op cost reached the score and never flipped a selection -- 624a action_density byte-identical ON vs OFF (selection-authority ceiling, failure_autopsy_604a-624a-630_2026-06-03); 951 action_density 1.0 everywhere (saturated headroom). At the shipped default floor 0.0 the term is identically zero. Either way no MECH-320-tagged run let the opportunity-cost term express at selection level, so GFLAG-0399's premise for ARC-068 ('decisive runs exist... tagged only to a sibling') does not hold. [First-draft wording 'v_t pinned at 0.0 under shipped defaults in later MECH-320 runs' withdrawn -- those runs set v_t_floor=0.05; red-team finding B2, confirmed by driver grep.]",
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- no run has let the opportunity-cost term express at selection level",
+        "biological_reference": "clear (Niv 2007; Constantino & Daw 2015; Salamone & Correa 2003 via targeted_review_arc_068_opportunity_cost)",
+        "prerequisites": "missing -- a v_t that moves (951c defect) AND selection authority / action-density headroom for the additive bias (624a, 951)",
+        "implementation": "partial -- w_passive term exists; its scalar is pinned at v_t_floor (0.0 shipped default)",
+        "environment": "unknown -- the claim's own note names SD-054 reef or similar for a clean test",
+        "measurement": "n/a",
+        "integration": "coupled but inert -- inert by DEFECT (v_t pinned at floor by baseline_mode='none'; no selection authority / saturated action_density where forced nonzero)",
+        "scale": "n/a"
+      },
+      "recommended_evidence_direction": null,
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "ARC-068 currently carries no epistemic_category; 'standard' is the enum-compliant stamp for 'no suppression asserted'. Not substrate_conditional: this autopsy is not asserting the answer is gated on a named build beyond MECH-320's own open validation.",
+      "recommended_evidence_quality_note": "[2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0399 ARC-068 item + GFLAG-0403]: ARC-068 has no decisive run. Its implementation is MECH-320's w_passive * v_t term. Its three tagged runs (V3-EXQ-624a/b/c) and MECH-320's 951/951c forced v_t_floor=0.05: the no-op cost reached the score but never changed a selection (624a action_density byte-identical ON vs OFF; 951 action_density saturated at 1.0), and v_t itself never moved (pinned at floor, V3-EXQ-951c). At the shipped default floor 0.0 the term is identically zero. No MECH-320-tagged run is a hidden ARC-068 test; exp=0 / v3_pending is correct, not a bookkeeping miss. Retest owed once MECH-320's v_t source moves AND the bias has selection headroom.",
+      "per_claim_recommendation": {
+        "ARC-068": {
+          "recommended_evidence_direction": null,
+          "recommended_epistemic_category": "standard",
+          "change": "ARC-068 currently carries NO epistemic_category field, so set one -> epistemic_category: standard",
+          "pending_retest_after_substrate": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Covered by the open MECH-320 entry (validation_pending) and the 951c-driven build chip scope."
+      },
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "A claim whose implementation collapsed into a sibling's term inherits that sibling's liveness defects; 'tagged only to a sibling' is not evidence the sibling's runs tested it."
+      ],
+      "routing": "governance-reclassify (category stamp + note)"
+    }
+  ],
+  "recommended_substrate_queue_bookkeeping": [
+    {
+      "sd_id": "MECH-320",
+      "action": "amend",
+      "item": "failure_record[run_id=v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3]",
+      "change": "Propagate the 2026-05-26 corrected metric text (as already carried on the ARC-065 and MECH-314 rows, with corrected_by_session / corrected_utc / superseded_metric_text / cross_ref) onto this item. Keep severity corrupting: the 951c item (v_raw never positive, so v_t is pinned at v_t_floor independently of the gates) is the defect that severity describes. Add a note that the blast radius is runs with use_tonic_vigor=True (enablement), not drivers that import from the ree_core.policy package.",
+      "resolves_prior_failure_record": {
+        "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+        "resolved": "superseded",
+        "resolved_note": "Metric text superseded by arc065-failure-record-correction-20260526T064946Z (v3_exq_571_root_cause_2026-05-25.md): channels are wired; per-candidate spread collapses at E2 world-forward. The tonic-vigor-specific defect is carried by the 951c item."
+      }
+    },
+    {
+      "sd_id": "MECH-313",
+      "action": "amend",
+      "item": "failure_record[run_id=v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3]",
+      "change": "Same text propagation. Additionally note that MECH-313 NoiseFloor is a softmax temperature, not a cand_world_summaries consumer (not listed among affected consumers in v3_exq_571_root_cause_2026-05-25.md), and that 571's temporal-variance decomposition cannot detect a temperature-type effect (noise_floor_temp is near-constant by construction; bias_fraction ~1e-32). The item's target bar ('> 0.01 variance fraction before functional evidence for MECH-313 is interpretable') is therefore the wrong instrument for MECH-313 and should not gate its evidence.",
+      "resolves_prior_failure_record": {
+        "run_id": "v3_exq_571_e3_score_variance_decomp_20260516T004017Z_v3",
+        "resolved": "superseded",
+        "resolved_note": "Superseded as applied to MECH-313: the corrected root cause does not reach a temperature-type mechanism, and the variance-fraction bar cannot measure one."
+      }
+    }
+  ],
+  "read_across_not_adjudicated": [
+    "V3-EXQ-919's confirmed 2026-08-13 routing (amend SD-hazard-aware-policy-decomposition with escapability / threat-predictability channels + a 919 failure_record) is unapplied: the row's failure_record holds only the 844 item. The 919 artifact has per_claim_recommendation null, so GOV-APPLY-1 cannot see it. Governance-owned.",
+    "GFLAG-0403's other 14 runs were already classed unaffected by the flag itself; not re-examined here.",
+    "GOV-SUBPATH-1 will keep re-presenting all 19 runs every cycle until its overlap predicate stops treating a package-parent import as a submodule import (or MECH-320 closes); this artifact is the durable adjudication record meanwhile."
+  ],
+  "cluster_pattern": {
+    "shape": "Four runs flagged by a static package-prefix import match against a corrupting substrate entry; none enables the defective module.",
+    "is_independent_bugs": false,
+    "structural_property": "The flag's signal (import) is not the defect's execution condition (use_tonic_vigor=True), and the 571 failure_record text it quotes was superseded on 2026-05-26 on two of the four substrate_queue rows that carry it.",
+    "readings": [
+      "detection_false_positive_package_prefix",
+      "stale_failure_record_text"
+    ]
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "note": "No disposition changes; MECH-321's alignment distribution (weakened=2: 844, 919) is unchanged and the 2026-08-13 check already found the signatures structurally different without firing."
+  },
+  "hypothesis_space_ledger_pending": {
+    "writes_owed": [],
+    "note": "No leg changes state: mech321_harm_aware_selection_task_effect H-harm-aware-reduces-task-harm stays eliminated by V3-EXQ-919 (control_passed and non_degenerate unaffected by this adjudication). No fan-out emitted. The registry was under another session's claim at write time (eloquent-lichterman-824f74), and nothing here needs it."
+  },
+  "gflag_resolution_recommendation": {
+    "GFLAG-0403": "resolve: all four named runs adjudicated, none touched by the MECH-320 defect; dispositions stand (919 as a CONDITIONAL weakens pending a per-leaf harm-input diagnostic -- a different, E2-side exposure). Bookkeeping: MECH-320 / MECH-313 571 items' text propagation.",
+    "GFLAG-0399": "ARC-068 sub-item: resolve as 'no hidden decisive run -- exp=0 correct'. Other 14 claims in that flag untouched."
+  },
+  "learning_extracted": [
+    "GOV-SUBPATH-1 package-prefix over-match: `from ree_core.policy import X` counts as importing every ree_core.policy submodule.",
+    "Import is not enablement: a default-off module's defect needs its flag in the run's config.",
+    "A failure_record correction written to some but not all rows carrying the same item leaves the uncorrected rows driving audits."
+  ],
+  "pre_routing_checks": {
+    "fires": [
+      {
+        "check": "C2",
+        "names": [
+          "MECH-314a-Phase-2-impl",
+          "INF-ENV-002",
+          "SD-056",
+          "SD-PROBE-WARMUP",
+          "q092-behavioural-discriminability-umpire-harness"
+        ],
+        "queue_id": "V3-EXQ-544a",
+        "disposition": "dismissed -- this autopsy adjudicates defect exposure only and changes no routing for MECH-313/ARC-065; those entries proceed independently and are unaffected."
+      },
+      {
+        "check": "C2",
+        "names": [
+          "arc067-engagement-rate-estimator-discharge-marker"
+        ],
+        "queue_id": "ARC-068-claim-level",
+        "disposition": "dismissed -- ARC-068's retest dependency is the MECH-320 entry (named); the ARC-067 estimator entry is unrelated to the opportunity-cost term."
+      }
+    ],
+    "inapplicable": []
+  },
+  "red_team": {
+    "model": "fable (cross-model; session drafted on opus)",
+    "verdict": "CONTESTED on characterisation; every disposition survived",
+    "findings_accepted": [
+      "B1 (919): Stage 2 consumes the same per-leaf harm_penalty as Stage 1 -- 'cannot be drowned' withdrawn; 'behaviour moved => not an artifact' withdrawn as a non-sequitur; exposure restated as unmeasured, with August spread evidence as a bound; routing adds a per-leaf discriminability diagnostic.",
+      "B2 (ARC-068): 624a/b/c/951/951c set v_t_floor=0.05 -- 'v_t pinned at 0.0' wording withdrawn; inertness restated as pinned-at-floor + no selection headroom.",
+      "844: stronger in-process-snapshot argument for the hash split adopted; inert-seed argument kept as partial support.",
+      "Hygiene: 'not directly imported' (policy/__init__ imports tonic_vigor, inert).",
+      "Hygiene: 919 OFF-arm forward-PE positive control near-degenerate -- flagged for successor."
+    ],
+    "all_arithmetic_reproduced": true
+  },
+  "confirmed_utc": "2026-09-23T20:05:26Z",
+  "interactive_gate": {
+    "held_utc": "2026-09-23",
+    "decisions": {
+      "919_verdict": "Conditional weakens (recommended option accepted) -- direction stays weakens; note records the per-leaf harm-input exposure; routing = diagnostic for governance to chip; if Stage-2 tie rate is high, 919 re-adjudicates to non_contributory.",
+      "other_dispositions": "Confirm all (recommended) -- 544a/844/904 stand; ARC-068 epistemic_category standard + note; propagate corrected 571 text onto MECH-320 and MECH-313 rows; resolve GFLAG-0403 and GFLAG-0399's ARC-068 item.",
+      "gov_subpath_1_tool_fix": "Chip it now (recommended) -- spawned chip-20260923-govsubpath1-package-prefix-fix (task_9ca1f55d), recorded in chip ledger. Code-verified tooling defect, not this autopsy's claim routing."
+    },
+    "recommendation_ledger": [
+      "rec-20260923-6f5786ff",
+      "rec-20260923-fd1d6139",
+      "rec-20260923-f0750907"
+    ]
+  }
+}
