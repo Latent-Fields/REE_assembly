@@ -6908,6 +6908,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0484",
+      "claim_ids": [
+        "MECH-468",
+        "MECH-469",
+        "MECH-470"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Code trace (REE_assembly/evidence/planning/relational_edge_consumer_reach_20260924.md, 410e589ce1): MECH-468's four recorded edge types (A/C/D/E dumps, ree-v3 c4d6a92) have ZERO production callers -- D0/D1 instrumentation, not evidence; type-E causal credit is destroyed inside StalenessAccumulator.integrate()'s fold before any reader. The only native relational consumer is SD-097 PossibilityTopology via GhostGoalBank._admit_relational_successors -> CEM ghost seeding -> E3, carrying ONE edge type, default-off (use_possibility_topology, use_mech293_ghost_probes) and never enabled by any experiment. A typed-vs-collapsed (MECH-469/470) native-consumer discrimination is therefore NOT RUNNABLE; the cheaper prior question is whether the single-type consumer changes CEM seeding / E3 selection at all when enabled (D2).",
+      "raised_by_session": "orchestrate-20260924-breakthrough",
+      "raised_at": "2026-09-24T18:30:59Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
