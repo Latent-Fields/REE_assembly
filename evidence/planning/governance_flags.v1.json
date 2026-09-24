@@ -6992,6 +6992,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0490",
+      "claim_ids": [
+        "SD-080",
+        "ARC-018"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Follow-up to GFLAG-0488: a pre-registered causal probe (REE_assembly/evidence/planning/action_decoder_training_causal_probe_20260925.md, a369f411ff8; seeds 52-56, shuffled-label control) found training the action_object_decoder ALONE does not repair proposal generation -- both criteria FAILED: an honest inverse (held-out accuracy 1.000) moves the CEM pool no more than a shuffled decoder, minority classes stay < 1%, and on benign seeds the added diversity is undirected harm. Post-hoc diagnostic: the proposal edge is a CODEC with three COUPLED defects -- (1) untrained decoder, (2) the decoder's unbounded raw output is fed to E2 as the action vector (module.py:644-647, 2280; executed-action norm 321-1200 vs ~0.25 native once trained), (3) the first CEM iteration samples ~12x outside the encoder's range (module.py:2151 sigma=1). The untrained decoder's small weights MASKED (2)-(3). A decoder-half substrate row must therefore cover the whole codec (joint encoder/decoder training, bounded decode, matched sampling scale) or proposals should move to action space; a decoder-only row as GFLAG-0488 recommended would reproduce this failure.",
+      "raised_by_session": "orchestrate-20260924-breakthrough",
+      "raised_at": "2026-09-24T23:41:56Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
