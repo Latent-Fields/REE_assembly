@@ -7984,6 +7984,23 @@
     FALSIFYING: Arm B matches arm A at matched budget -- recalibration and integration need no protected regime and 'structurally required' is false in V3, demoting to a scheduling preference; or arm A <= arm C, which sends the claim back to MECH-016/017/018 rather than to a re-run. A failure under unmet preconditions is not evidence against the claim.
     SUBSTRATE / INSTRUMENT REQUIREMENT: SleepLoopManager emits mech018_residue_* and mech018_residue_trains in writeback_metrics (phase_manager.py:686-694); e3_selector exposes _rv_history and the recalibrate return pair; HippocampalModule.update_per_stream_vs (module.py:3750) supplies the identity readout. Missing: the online arm's anchor is SerotoninModule's REM-derived zero point, so arm B cannot currently be run with sleep fully absent. Consumer / boundary: Whether PROTECTION of the regime (agent not acting, no authority writes during the operation) is load-bearing, not whether the recalibration and integration operations themselves help. Existing ownership: MECH-018, MECH-204, sleep_substrate:GAP-2, sleep_substrate:GAP-9, EXP-0660.
     DISPOSITION: R1 (primary); The substrate for all three arms now exists but no experiment uses it, and the online arm's precision target is still REM-derived, so a genuinely sleep-free arm B has no anchor. The GAP-2 behavioural-diversity vacuity risk remains the dominant threat to a scorable result. Secondary classes: R2, R5. Gap disposition: EXISTING SUBSTRATE, EXPERIMENT DOES NOT USE IT. Scope: v3_linked. Stale-falsifier correction: The WWA records the residue-integration half as only partly wired, inheriting MECH-018's gap, and GFLAG-0298 stamped the claim substrate_conditional on exactly that. Both halves have since landed: SleepLoopManager calls agent.residue_field.integrate() in WRITEBACK (phase_manager.py:680-691) and ResidueConfig.use_offline_integration_gradient_step (config.py:3284-3307, 2026-09-19) makes that call actually optimise rather than run a metric loop. The budget-matched online comparator also exists now as E3Selector.broadcast_precision_pull, wired at agent.py:6712 behind use_rem_precision_broadcast. Audit disposition only; status/confidence/phase unchanged. Registration is not build authorisation. No experiment queued. History and evidence: evidence/planning/falsifier_completion_and_runnability_audit_20260921.json (resumed 2026-09-22).
+  notes: >-
+    [2026-09-24 governance-20260924, GFLAG-0415 as qualified by GFLAG-0429] Residue-specificity
+    DV root cause QUALIFIED, not as GFLAG-0415 first stated: the ratio-of-means readout saturates
+    on BOTH seeds (1.006675 / 1.000454) because residue kernel_bandwidth 1.0 is ~8x the reachable
+    z_world manifold (max pairwise 0.1249) -- owned by substrate_queue residue-field-kernel-resolution,
+    BUILT ree-v3 58ac5de (opt-in harm_field_bandwidth, default OFF). z_world harm separability is
+    SEED-DEPENDENT (rank AUC 0.8066 seed 0 / 0.5737 seed 1; seed-1 centroid 0.0806 below
+    within-cluster spread 0.1207/0.0853), so an INV-023 run must arm harm_field_bandwidth AND report
+    per-run centroid_dist vs within-cluster spread as a precondition; no z_world-separability
+    substrate row is registered (contradicted in general by V3-EXQ-760 input_separability 0.8885).
+    CAUTION (derived from GFLAG-0442's arithmetic, not measured): residue_field.integrate() trains
+    only neural_field toward rbf targets, so a harm/non-harm ratio is invariant under what
+    integration does to the read; arm A vs arm B can differ on residue specificity only INDIRECTLY
+    (through divergent harm histories), not through the protected operation itself. Design the DV
+    accordingly. pending_retest_after_substrate deliberately NOT set: no experimental evidence
+    exists to hold out, and the flag would trigger an IGW retest spawn against a still-degenerate
+    calibration DV.
   title: "Protected offline recalibration/integration regimes are structurally required."
   claim_type: invariant
   invariant_type: universal
