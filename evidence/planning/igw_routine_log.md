@@ -3625,3 +3625,5 @@ One line per hourly tick. ASCII only.
 2026-09-24T19:22:41Z workset published via the coordinator (no local commit; verified on origin/master fcc1e81dab) (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T19:22:41Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T19:19:35Z no eligible item (skipped 267): IGW-20260924-001:skill /governance not allowed; IGW-20260924-009:skill /governance not allowed; IGW-20260924-011:skill /governance not allowed
+2026-09-24T20:28:22Z workset published (regen -- 267 items, 34 ready, 0 in flight)
+2026-09-24T20:28:22Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
