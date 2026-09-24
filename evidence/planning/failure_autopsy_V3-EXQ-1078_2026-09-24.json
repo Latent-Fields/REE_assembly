@@ -1,0 +1,359 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T06:06:53Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "session_id": "governance-20260924-workset",
+  "staging_mode": true,
+  "staging_note": "Staging-mode subagent run inside the interactive /governance session governance-20260924-workset. Step 8 gate NOT held here -- the parent /governance session owes it. Step 9b drafted only (hypothesis_space_ledger_pending); hypothesis_space_registry.v1.json NOT written. No claim opened/closed, nothing committed.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_record": "scripts/check_dry_run_citations.py v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3 V3-EXQ-1078 -> 0 dry cited, 1 clean; --family v3_exq_1078 -> 0 dry / 1 real. validate_recording.py -> OK, 0 always-core gaps.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+      "queue_id": "V3-EXQ-1078",
+      "claim_ids": [
+        "INV-069"
+      ],
+      "bears_on": [
+        "self_model_v4:SELF-1"
+      ],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "indexer_adjudication": "vacuous_pass",
+      "failed_criterion": "none_failed -- PASS on criteria every one of which is recorded criteria_non_degenerate false (vacuous_pass)",
+      "failed_criterion_note": "A1 (vs gap at K 0.00228 <= 0.005) and A2 (state-divergence ratio 1.14e-7 <= 0.10) pass on all 3 seeds but the driver's own F1 records both non-degenerate=false because the recurrence is untrained (gru_param_max_delta 0.0; 0/53 LatentStack tensors changed on every seed). B (22.3x detrended settled sd >= 3) is descriptive-only, sign-locked by construction, non-degenerate=false.",
+      "facts": {
+        "seeds": [
+          42,
+          43,
+          45
+        ],
+        "gate_a_green": true,
+        "gru_trained": false,
+        "gru_param_max_delta_max": 0.0,
+        "latent_stack_tensors_changed_per_seed": [
+          0,
+          0,
+          0
+        ],
+        "latent_stack_tensors_total": 53,
+        "a_dip_mean_per_seed": [
+          0.03392,
+          0.03256,
+          0.03614
+        ],
+        "a_gap_at_K_per_seed": [
+          0.00211,
+          0.001943,
+          0.002278
+        ],
+        "a_state_div_ratio_per_seed": [
+          9.22e-08,
+          1.107e-07,
+          1.145e-07
+        ],
+        "implied_per_tick_contraction_per_seed": "WITHDRAWN as an init-property figure (red-team H1): ratio^(1/30) = 0.583/0.586/0.587 is an average over a float32 floor. Per-event state_div contracts ~0.46-0.57/tick over ticks 0-~20, then sits at a noisy ~1e-7 floor (late per-tick ratios 0.5-3.3). A2 is floor-limited.",
+        "implied_contraction_derivation": "ratio^(1/K_REC), K_REC=30; recomputed here from per_seed_a_state_div_ratio. A2 passes for any composite c <= 0.1^(1/30) = 0.926.",
+        "b_gap_max_mean_per_seed": [
+          0.02067,
+          0.02195,
+          0.02347
+        ],
+        "b_gap_over_settled_raw_sd_per_seed": [
+          5.48,
+          4.74,
+          4.6
+        ],
+        "b_gap_over_settled_detrended_sd_per_seed": [
+          27.85,
+          22.27,
+          24.28
+        ],
+        "b_closed_form_max_dev": 1.11e-16,
+        "b_ticks_frozen_below_live": 0,
+        "b_unsettled_err_ratio_per_seed": [
+          73.0,
+          11.5,
+          26.9
+        ],
+        "action_divergence_frac_a_and_b": 0.0,
+        "twin_replay_max_abs_diff": 0.0,
+        "manifest_evidence_direction": "unknown (pre-registered unknown in every branch)",
+        "decision_ref": "rec-20260923-061462f2 (user chose Option C over recommended Option A)",
+        "latent_stack_note": "0/53 changed under compute_prediction_loss + compute_e2_loss (the losses DR-13 names). Other V3 losses DO reach latent_stack (agent.py 11611-11916; SD-070 zworld_p0) -- none reaches self_encoder/SelfRecurrenceCell except SD-CM-LIVETAP (ree-v3 30f40ab, default OFF, a ContextMemory write-addressing objective, not a z_self objective)."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the run could not let INV-069 express itself: its CONFIRMING condition needs arm (b) + behaviour, arm (b) is sign-locked on its DV (closed form verified to 1.1e-16), the behavioural leg is inert in V3 (GFLAG-0414), and arm (a) measured an untrained recurrence. Claim intact, untested.",
+        "biological_reference": "partial -- closest reference is self-state restoration by structured attractor dynamics (continuous-attractor restoration, body-schema / interoceptive predictive re-calibration). The discriminating biological signature is restoration to a self-specific attractor beyond what input re-driving of a fading-memory system gives; this run has no null for generic contraction. No INV-069 literature entry exists.",
+        "prerequisites": "missing -- WWA precondition 'one TRAINED substrate per seed' unmet for z_self: under the losses DR-13's doc names ('the GRUCell trains via the EXISTING E1/E2 z_self prediction losses') GRU delta 0.0 and 0/53 LatentStack tensors changed. The only live gradient route into the DR-13 module is SD-CM-LIVETAP (30f40ab, default OFF, write-addressing objective -- not a self objective). DR-10 z_self->behaviour route inert (v4).",
+        "implementation": "partial -- DR-13 SelfRecurrenceCell wired and live (state_departure 0.86-0.91) but inert by DEFECT on the training side: missing link 'no gradient path' for the losses DR-13 names. Detach loci: agent.py ~5721 (_current_latent = new_latent.detach()) and the buffer-side detach agent.py ~6155-6160 (_self_experience_buffer.append(z_self.detach().clone())) that severs E1/E2 training -- the same root V3-EXQ-972a measured (0/49 latent_stack params) and SD-CM-LIVETAP partially addressed for the ContextMemory write path. Same detached-z_self family as MECH-113 (GFLAG-0400).",
+        "environment": "adequate -- CausalGridWorldV2 size 10, contaminated_harm 0.0 (needed so a settled regime exists); 4/4 events per seed survived, no skips.",
+        "measurement": "misleading -- A1 is an EMA artifact for any one-tick event (driver's own statement); A2 passes by construction for any GRU contraction <= 0.926 per tick (driver F1); measured per-event contraction ~0.46-0.57/tick until a ~1e-7 float floor at tick ~20, so the A2 ratio is floor-limited; no generic-contraction null exists. Arm (b) DV annihilated by the manipulation: frozen vs = 1-(1-tau)^n(1-vs_onset) exactly, so frozen-minus-live is a function of the live trace alone.",
+        "integration": "coupled but inert -- recurrence runs and moves z_self, but nothing trains it, and z_self reaches no behaviour (action divergence 0.0 in every twin, both arms).",
+        "scale": "adequate for what was measured (3 seeds x 4 events, twin-matched, determinism 0.0); not the limiting factor."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM + MEASURES) -- not chargeable to REE; this is a PASS whose criteria cannot discriminate, not a REE failure or success."
+      },
+      "biological_reference": {
+        "closest_mechanism": "self-state restoration after perturbation via structured recurrent attractor dynamics (continuous-attractor restoration, e.g. head-direction ring attractor; body-schema / interoceptive predictive re-calibration after e.g. rubber-hand or vestibular perturbation)",
+        "dependencies": [
+          "a learned/structured self attractor (not generic fading memory)",
+          "continuous body/interoceptive input",
+          "a readout of correspondence to the body rather than of the self-stream's own increments"
+        ],
+        "is_formal_import": true,
+        "divergence": "INV-069 is stated as a formal verisimilitude definition (V_self, D_self EMA); V_s in V3 is a consecutive-difference proxy. The proxy's consecutive-difference form is what makes arm (b) sign-locked -- a formal-readout artefact, not a biology divergence in the mechanism.",
+        "lit_status": "absent"
+      },
+      "self_route_label": "arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined|arm_b_sign_locked_gap_above_noise_non_contributory",
+      "self_route_verdict": "CONFIRMED as a description -- both halves of the label are accurate and already name their own non-discrimination; the indexer's vacuous_pass flag is correct. The PASS is NOT cleared as evidence.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-069": "non_contributory"
+      },
+      "recommended_epistemic_category": "substrate_coherence",
+      "recommended_epistemic_category_note": "Keep the RESOLVED default: INV-069 (invariant/universal, no explicit field) already resolves to substrate_coherence (build_experiment_indexes.py ~4488-4494). Stamping an explicit 'standard' (this autopsy's first draft) would silently LIFT universal-invariant suppression (governance SKILL.md: explicit standard 'removes the promote/demote suppression') -- withdrawn per red-team D1. Failure mode for this run: vacuous_pass / measurement_test_design_defect + precondition_unmet (untrained recurrence). Not substrate_conditional: the dissociation stays V3-testable in principle after the WWA amendment + a z_self objective.",
+      "recommended_evidence_quality_note": "[V3-EXQ-1078 autopsy, failure_autopsy_V3-EXQ-1078_2026-09-24] Diagnostic PASS, adjudicated NON-CONTRIBUTORY to INV-069 (vacuous_pass). Arm (a) A1+A2 held on 3/3 seeds, but the z_self recurrence was UNTRAINED: GRU max param delta 0.0 and 0/53 LatentStack tensors changed under the E1/E2 losses DR-13's doc says train it (they do not reach self_encoder or SelfRecurrenceCell; same detach root as V3-EXQ-972a). An untrained contractive GRU passes A2 by construction (any contraction <= 0.926/tick; measured ~0.46-0.57/tick to a float floor) and A1 is an EMA artifact, so the run has no generic-contraction null. Arm (b) is sign-locked exactly (frozen vs == 1-(1-tau)^n(1-vs_onset), dev 1.1e-16): its 22x-detrended-sd gap in the unsettled window is a function of the live trace alone. The behavioural leg is inert in V3 (GFLAG-0414). INV-069 is untested, not weakened. Retest requires the WWA amendment drafted in this autopsy and a z_self training objective.",
+      "per_claim_recommendation": {
+        "INV-069": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_coherence",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": true,
+          "change": "write the evidence_quality_note above, keep the resolved epistemic_category substrate_coherence (do NOT stamp standard), set pending_retest_after_substrate true, apply the WWA amendment drafted in md section 9 (held for this autopsy per GFLAG-0414) -> diagnostic_evidence_adjudicated: true",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "sd_zself_training_path",
+        "title": "Give z_self (self_encoder + DR-13 SelfRecurrenceCell) a z_self training objective whose gradient reaches them, and correct DR-13's false training premise",
+        "implementation_hint": "DR-13's doc states the GRUCell 'trains via the EXISTING E1/E2 z_self prediction losses'; V3-EXQ-1078 measured GRU delta 0.0 and 0/53 LatentStack tensors changed under compute_prediction_loss + compute_e2_loss (Adam over agent.parameters()). Root: the detached experience-buffer / _current_latent path (agent.py ~5721, ~6155-6160) -- the same root V3-EXQ-972a found for ContextMemory, where SD-CM-LIVETAP (30f40ab, default OFF) restored a route for a write-addressing objective only. Add a phased P0 z_self objective (sibling of SD-070 / sd_zworld_warmup_optimizer_group) reaching self_encoder + self_recurrence, with a contract asserting nonzero GRU delta after warmup; correct the DR-13 doc.",
+        "unblocks_claims": [
+          "INV-069",
+          "MECH-113"
+        ],
+        "depends_on_unresolved": [
+          "INV-069 WWA amendment (governance) -- a trained recurrence alone does not make arm (a) discriminating; the generic-contraction null is a measurement change"
+        ],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "severity_note": "A DR-13 run that trusts the doc and does not record gru_param_max_delta reports init contraction as a trained self-recurrence -- evidence that looks valid and is not. substrate_paths deliberately narrowed to the DR-13 module; the root-cause detach site in agent.py is NOT listed because listing agent.py would gate every experiment.",
+        "substrate_paths": [
+          "ree_core/latent/self_recurrence.py"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+          "experiment_type": "v3_exq_1078_inv069_zself_coherence_unsettled",
+          "metric": "gru_param_max_delta 0.0 and latent_stack_tensors_changed 0/53 on all 3 seeds after 20 x 100-step P0 warmup (compute_prediction_loss + compute_e2_loss, Adam lr 1e-3 over agent.parameters())",
+          "target": "gru_param_max_delta > 0 and self_encoder params changed after P0 warmup, under a documented z_self objective",
+          "resolved": "open"
+        },
+        "read_across_claims": [
+          "ARC-081",
+          "MECH-215 (both implementation_phase v4 per DR-13 doc -- read-across, not unblocked)"
+        ],
+        "shared_root_note": "Not a duplicate: no substrate_queue entry owns a z_self objective (7b C2 silent). Shares its detach root with contextmemory-write-path-addressing-degeneracy (V3-EXQ-972a) -- governance may prefer to cross-link."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "First autopsy tagging INV-069 (granularity_debt_cluster.py INV-069 -> 0 targets). Under R3 this target counts 1 (category substrate_coherence is neither ceiling nor instrument marker; direction non_contributory -> step 4). Threshold 2: does not fire. A same-question INV-069 re-queue is nonetheless NOT recommended until the WWA amendment lands -- every V3 arm is non-discriminating by construction.",
+        "refused_requeue": true,
+        "route_to": "governance WWA amendment, then implement-substrate"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "basis": "granularity_debt_cluster.py INV-069: 0 tagging targets across 0 files before this one; this target reads claim_alignment 'unclear', not 'weakened'."
+      },
+      "governance_flag_disposition": {
+        "GFLAG-0414": {
+          "resolvable_by_this_autopsy": false,
+          "why": "Its ACTION REQUESTED is a claims.yaml what_would_answer amendment -- a governance write this skill never makes. INV-069's evidence_quality_note holds that amendment 'for the V3-EXQ-1078 autopsy and GFLAG-0428'; this autopsy discharges that hold and drafts the amendment (md section 9).",
+          "premise_correction": "0414's 'the coherence leg IS fully runnable and non-degenerate' is now false on BOTH arms: arm (b) per GFLAG-0428, arm (a) because the recurrence is untrained and A1/A2 pass by construction.",
+          "draft_resolution_note": "Resolved by the INV-069 WWA amendment applied <date> from failure_autopsy_V3-EXQ-1078_2026-09-24 section 9: behavioural leg restated as v4-gated (DR-10 inert in V3; GatedPolicy rank-invariant at default). The coherence-leg 'fully runnable' premise in this flag was corrected by that autopsy (arm (a) non-discriminating on an untrained recurrence)."
+        },
+        "GFLAG-0428": {
+          "resolvable_by_this_autopsy": false,
+          "why": "Same: its ACTION REQUESTED is the WWA amendment for arm (b). This run supplies the evidence it asked for.",
+          "premise_correction": "Sign-lock CONFIRMED and strengthened (closed form exact to 1.1e-16, 0 frozen<live ticks in 12 events). 'Inside the noise band' is regime-specific: in the unsettled post-boundary window the gap is 4.6-5.5x raw and 22-28x detrended settled sd. Its 'ARM (a) IS UNAFFECTED and remains live and non-degenerate' is corrected: live yes, non-degenerate no.",
+          "draft_resolution_note": "Resolved by the INV-069 WWA amendment applied <date> from failure_autopsy_V3-EXQ-1078_2026-09-24 section 9: arm (b) DV replaced (must not be a function of the frozen stream's own increments), arm (a) given a generic-contraction null (random-init + recurrence-lesioned baselines) and a trained-recurrence precondition. V3-EXQ-1078 adjudicated non_contributory (vacuous_pass)."
+        },
+        "recommended_action": "Keep both open until /governance applies the drafted WWA amendment; then resolve both in the same pass, citing this artifact. Optionally append the premise corrections to BOTH flags now (governance_flag.py) so neither open record is stale."
+      },
+      "read_across_not_adjudicated": [
+        "MECH-113 / D_eff family: same detached-z_self family, recorded by GFLAG-0400; not adjudicated here.",
+        "ARC-081 / MECH-215 (DR-13 consumers, v4-gated): DR-13-on evidence should be checked for gru_param_max_delta; V4-EXQ-002 did not record it.",
+        "contextmemory-write-path-addressing-degeneracy / SD-CM-LIVETAP: same detach root; the livetap is the only current gradient route into the DR-13 module (default OFF, not a self objective)."
+      ],
+      "learning_extracted": [
+        "measurement gap: a recovery criterion on a driven recurrent state needs a generic-contraction null (the same architecture at random init, and a coupling-0 / recurrence-lesioned ablation); 'the perturbation recovered' is true of any contractive fading-memory system receiving the same input.",
+        "implementation gap: DR-13's documented training premise is false for the losses it names -- the E1/E2 losses do not reach self_encoder / SelfRecurrenceCell (shared detach root with V3-EXQ-972a); the WWA's 'trained substrate' precondition cannot be met for z_self without a z_self objective.",
+        "measurement gap (confirmed exactly): a consecutive-difference coherence DV is annihilated by a freeze manipulation; the closed form makes the arm-(b) contrast a function of the live trace alone.",
+        "GFLAG-0428's 'within noise' half is regime-specific; the sign-lock half is structural."
+      ],
+      "work_graph_node": "complex (probe-gated) / mystery (known data) -- the data is in; the WWA frame is wrong on all three legs. Reframe (WWA amendment), do not gather. The z_self training path is complicated (buildable).",
+      "routing": "governance-reclassify (wwa_amendment)",
+      "secondary_routing": [
+        "implement-substrate (sd_zself_training_path)",
+        "lit-pull (targeted_review_INV-069: self-state restoration after perturbation -- structured attractor vs fading memory)"
+      ],
+      "recommended_manifest_edit": {
+        "evidence_direction": "non_contributory",
+        "evidence_direction_per_claim": {
+          "INV-069": "non_contributory"
+        },
+        "note": "Applied by /governance only; manifest currently 'unknown'."
+      },
+      "withdrawn_arguments": [
+        "D3 (red-team, accepted): 'the E1-anchor blend alone gives (1-0.15)^30 = 0.0076, so A2 can pass with no maintenance'. WITHDRAWN -- the anchor is _e1_predicted_next_z_self, E1's prediction from the previous tick's [z_self, z_world] (agent.py ~5090, ~6155, ~6244), so it carries the burst. A2-by-construction rests on the untrained GRU's own contraction (driver F1) only.",
+        "H1 (red-team, accepted): '~0.585/tick uniform across seeds = init property'. WITHDRAWN -- that figure averages over a float32 floor; true early contraction is ~0.46-0.57/tick.",
+        "D1 (red-team, accepted): recommended explicit epistemic_category 'standard'. WITHDRAWN -- would lift the universal-invariant substrate_coherence default.",
+        "D2 (red-team, accepted): 'no V3 loss reaches the LatentStack'. NARROWED to 'no loss DR-13 names reaches self_encoder / SelfRecurrenceCell'."
+      ]
+    }
+  ],
+  "cluster_pattern": null,
+  "revised_utc": "2026-09-24T06:17:41Z",
+  "revision_note": "Revised after Step 7c red-team (fable, CONTESTED): D1 category standard->substrate_coherence; D2 LatentStack absolute narrowed + SD-CM-LIVETAP/972a shared root named; D3 anchor-only argument withdrawn; H1 contraction figure corrected (floor artefact).",
+  "pre_routing_checks": {
+    "tool": "scripts/autopsy_pre_routing_checks.py",
+    "run_utc": "2026-09-24T06:10Z",
+    "fire_count": 0,
+    "fires": [],
+    "inapplicable": [
+      {
+        "check": "C7",
+        "reason": "no arm/condition-structured result array with >=2 arms and >=2 seeds (single condition INV069_OPTC)"
+      }
+    ],
+    "disposition": "No fires. C2 silent = no existing substrate entry for a z_self objective (create is not a duplicate); C3 silent consistent with lit_status absent."
+  },
+  "step_7c": {
+    "model": "fable (cross-model; drafting session on Opus)",
+    "verdict": "CONTESTED",
+    "findings_file": "/private/tmp/claude-501/-Users-dgolden-REE-Working/f6e2a1cf-3867-4625-98db-4adf9866c64e/scratchpad/redteam_1078.md (session scratchpad, not durable)",
+    "defects": [
+      {
+        "id": "D1",
+        "claim": "explicit epistemic_category standard would override INV-069's resolved substrate_coherence and lift suppression",
+        "citation": "REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py ~4488-4494",
+        "confirmer": "sed -n 4484,4496p on that file (verified by drafter)",
+        "disposition": "ACCEPTED -- category changed to substrate_coherence (keep default)"
+      },
+      {
+        "id": "D2",
+        "claim": "'no V3 loss reaches the LatentStack' is a false absolute; SD-CM-LIVETAP (30f40ab) is a live route; same root as V3-EXQ-972a",
+        "citation": "ree-v3/ree_core/agent.py 11611-11916 (7 losses anchored on latent_stack params); git show 30f40ab",
+        "confirmer": "grep -n 'next(self.latent_stack.parameters())' ree-v3/ree_core/agent.py (verified by drafter: 7 hits)",
+        "disposition": "ACCEPTED -- absolute narrowed; substrate entry reframed as a z_self objective; shared root named"
+      },
+      {
+        "id": "D3",
+        "claim": "E1 anchor carries the burst; anchor-only (1-coupling)^k baseline argument unsound",
+        "citation": "ree-v3/ree_core/agent.py ~5083-5091 (anchor = _e1_predicted_next_z_self), ~6155 (total_state from z_self)",
+        "confirmer": "sed -n 5083,5091p ree-v3/ree_core/agent.py (verified by drafter)",
+        "disposition": "ACCEPTED -- argument withdrawn; A2-by-construction now rests on GRU contraction (driver F1) only; WWA arm-(a) null reworded"
+      }
+    ],
+    "hygiene": [
+      "H1 contraction figure is a float-floor artefact (accepted, corrected; drafter re-verified per-event ratios 0.46-0.57 over ticks 0-19)",
+      "H2 cite buffer-side detach 6155-6160 (accepted)",
+      "H3 ARC-081/MECH-215 read-across not unblocked (accepted)",
+      "H4 train-loss range wording (minor, left)",
+      "H5 md anchor hedge moot after D3 (accepted)",
+      "H6 offer premise-correction append for both flags (accepted)"
+    ],
+    "unchanged_by_red_team": "direction non_contributory; sign-lock/closed-form; flag premise corrections; flags not resolvable by this autopsy; severity corrupting on self_recurrence.py judged defensible."
+  },
+  "hypothesis_space_ledger_pending": {
+    "mode": "B (same-cycle new-question registration; drafted only, staging mode -- apply in the confirming session, then run build_hypothesis_space.py + check_hypothesis_space_integrity.py)",
+    "new_question": {
+      "qid": "inv069_process_vs_state_dissociation",
+      "title": "INV-069: is the self a maintained process (restored/sustained by the running recurrence) rather than a stored z_self vector?",
+      "short_title": "INV-069 process vs state",
+      "claims": [
+        "INV-069"
+      ],
+      "registered_utc": "<date -u at apply time>",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-1078_2026-09-24.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "hypotheses": [
+        {
+          "hid": "H-process",
+          "label": "maintained process",
+          "desc": "the running self-recurrence restores z_self after a burst beyond generic contraction and a freeze degrades self-coherence on a non-annihilated DV",
+          "axis": "process",
+          "basis": "INV-069 as stated; untested in V3",
+          "pre_registered_utc": "2026-09-23T18:20:46Z",
+          "adjudicating_runs": [
+            "V3-EXQ-1078"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1078"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_coherence",
+            "self_route_label": "arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined|arm_b_sign_locked_gap_above_noise_non_contributory",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "vacuous_pass: arm (a) passes by construction on an untrained recurrence, arm (b) sign-locked on its DV -- narrows nothing"
+          }
+        },
+        {
+          "hid": "H-stored",
+          "label": "stored vector suffices",
+          "desc": "a stored z_self preserves coherence as well as the live process; 'dynamically sustained' adds nothing",
+          "axis": "representation",
+          "basis": "WWA FALSIFYING branch (b)",
+          "pre_registered_utc": "2026-09-23T18:20:46Z",
+          "adjudicating_runs": [
+            "V3-EXQ-1078"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-1078"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_coherence",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "arm (b) DV cannot discriminate (closed form); no elimination"
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does INV-069's process-vs-state dissociation hold in V3 under the proxy DV?",
+        "live_gate": "WWA amendment (arm-b DV not annihilated by freeze; arm-a generic-contraction null) + a z_self training objective",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "blocked on measurement redesign and a z_self objective",
+        "observation_bottleneck": "arm (b) DV annihilated by freeze; arm (a) run on an untrained recurrence"
+      }
+    },
+    "axis_family_map_check": "axes 'process' and 'representation' -- confirm both exist in axis_families.map at apply time; add rows if absent.",
+    "mode_d_h_other": "not triggered -- no pattern-level signal; the run is simply non-discriminating."
+  }
+}
