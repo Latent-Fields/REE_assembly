@@ -1,7 +1,18 @@
 # V3-EXQ-1093 (MECH-428 parent-statistic ESS sweep): red-team BLOCKING, parked pending a decision
 
-**Status: NOT QUEUED. BLOCKED pending decision chip `chip-20260924-decision-exq1093-c1-pr3-identity`.**
-No queue entry, no coordinator row, no manifest. V3-EXQ-1093 stays reserved for this driver.
+**Status: RESOLVED and QUEUED (2026-09-24 ~17:35Z).** User decision on
+`chip-20260924-decision-exq1093-c1-pr3-identity` (rec-20260924-701216a5) was option **(b)**: C1 ranges
+only over sub-ceiling cells (ESS <= 0.5 x n_att), PR3 stays readiness, and the default-cell
+replication is a reported readout. Applied, re-smoked (PASS), and given one more red-team pass
+(fable). That pass returned **CONTESTED, with no new BLOCKING finding**:
+- F4 fixed: the C1-unmet FAIL now splits into `parent_statistic_separates_only_above_c1_ess_cap`,
+  and separating cells are listed over all real cells.
+- F5 recorded: C1 binds on the highest-ESS eligible cell.
+
+The driver moved to `ree-v3/experiments/v3_exq_1093_mech428_parent_stat_ess_sweep.py` and was
+queued as **V3-EXQ-1093** in ree-v3 `e942c9bd`. The text below is the pre-decision record.
+
+~~BLOCKED pending decision chip `chip-20260924-decision-exq1093-c1-pr3-identity`.~~
 
 - **Written:** 2026-09-24
 - **Session:** `metaworker-science-20260924-mech428-alpha-diag`, a headless science worker in campaign
