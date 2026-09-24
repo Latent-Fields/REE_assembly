@@ -3602,3 +3602,7 @@ One line per hourly tick. ASCII only.
 2026-09-24T12:23:39Z workset regen identical to origin/master aa86ca53cb -- no commit (regen -- 262 items, 35 ready, 0 in flight)
 2026-09-24T12:19:59Z STAGE IGW-20260924-223 skill=/implement-substrate prio=25 worktree=igw-223-substrate-ready-residue-integrat (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-24T13:03:46Z auto-defer a5ae7c2acee6 hash=a5ae7c2acee6 for 48h (complete)
+2026-09-24T13:04:12Z complete a5ae7c2acee6 staged->completed outcome=DUPLICATE: User decision 2026-09-24 ~13:05Z (AskUserQuestion, orchestrate-20260924-b): dupl
+2026-09-24T13:04:36Z GC removed worktree igw-223-substrate-ready-residue-integrat (removed; branch deleted)
+2026-09-24T13:35:12Z workset published (regen -- 262 items, 35 ready, 0 in flight)
+2026-09-24T13:35:12Z workset committed (regen -- 262 items, 35 ready, 0 in flight)
