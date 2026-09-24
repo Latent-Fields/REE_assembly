@@ -6784,6 +6784,31 @@
       "completion_summary": "queued V3-EXQ-1083 for SD-081 (model-uncertainty half only; ree-v3 51037efda9 + 42ac4d4e0e), EVB-1663 executed (REE_assembly d6970b2f48), GFLAG-0454 raised on the familiarity half; finished by orch0924-exq1083 after the IGW session died on HTTP 429",
       "outcome": "USEFUL_LANDED",
       "outcome_evidence": "queued V3-EXQ-1083 for SD-081 (model-uncertainty half only; ree-v3 51037efda9 + 42ac4d4e0e), EVB-1663 executed (REE_assembly d6970b2f48), GFLAG-0454 raised on the familiarity half; finished by orch0924-exq1083 after the IGW session died on HTTP 429"
+    },
+    {
+      "igw_id": "IGW-20260924-222",
+      "stable_hash": "cc9b781d9a56",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "INV-069",
+        "MECH-113"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: sd_zself_training_path",
+      "worktree": ".claude/worktrees/igw-222-substrate-ready-sd-zself-trainin",
+      "branch": "claude/igw-222-substrate-ready-sd-zself-trainin",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260924-222",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-222-substrate-ready-sd-zself-trainin && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-222-substrate-ready-sd-zself-trainin-20260924T111047Z",
+      "task_claim_claimed_at": "2026-09-24T11:10:47Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-09-24T11:05:29Z",
+      "staged_at": "2026-09-24T11:05:29Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
