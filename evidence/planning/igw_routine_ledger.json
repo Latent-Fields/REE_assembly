@@ -6779,7 +6779,11 @@
       "task_claim_session_id": "igw-auto-igw-241-proposal-for-sd-081-20260924T050026Z",
       "task_claim_claimed_at": "2026-09-24T05:00:26Z",
       "assigned_at": "2026-09-24T04:55:49Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-24T10:58:56Z",
+      "completion_summary": "queued V3-EXQ-1083 for SD-081 (model-uncertainty half only; ree-v3 51037efda9 + 42ac4d4e0e), EVB-1663 executed (REE_assembly d6970b2f48), GFLAG-0454 raised on the familiarity half; finished by orch0924-exq1083 after the IGW session died on HTTP 429",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "queued V3-EXQ-1083 for SD-081 (model-uncertainty half only; ree-v3 51037efda9 + 42ac4d4e0e), EVB-1663 executed (REE_assembly d6970b2f48), GFLAG-0454 raised on the familiarity half; finished by orch0924-exq1083 after the IGW session died on HTTP 429"
     }
   ],
   "dispositions": [
@@ -9831,6 +9835,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-24T03:59:13Z",
       "re_eligible_after": "2026-09-26T03:59:13Z"
+    },
+    {
+      "stable_hash": "c61f1483121c",
+      "igw_id_at_disposition": "IGW-20260924-241",
+      "owner_exq": null,
+      "claim_ids": [
+        "SD-081"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for SD-081",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-24T10:58:58Z",
+      "re_eligible_after": "2026-09-26T10:58:58Z"
     }
   ]
 }
