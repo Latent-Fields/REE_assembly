@@ -347,3 +347,94 @@ Cross-refs: `evidence/planning/inv063_legA_dv_circularity_20260920.md` (GFLAG-03
 `evidence/planning/failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20.md`;
 `evidence/planning/falsifier_completion_and_runnability_audit_20260921.json`;
 manifest `v3_exq_1069_inv063_p1_gate_798a_p0_20260920T082003Z_v3`.
+
+---
+
+## 7. Addendum, 2026-09-24: peer review, one correction and one strengthening
+
+Reviewed the same day by session `vigilant-colden-ac4766-inv063dv`, which had been dispatched
+on this identical task (a third dispatch; path-based arbitration did not fire because its claim
+named `..._20260924.md` against this file's `..._20260920.md`). It stood down rather than write a
+second proposal, closed its claim `--not-landed` naming `f6cc06142f`, and **superseded GFLAG-0445
+into GFLAG-0446** (`REE_assembly b9fd0a89c6`), so /governance now sees ONE open leg-A item rather
+than two overlapping ones. Its review re-verified independently that all three EDIT target
+strings occur exactly once on `origin/master` and are disjoint from the leg-B sentence and the
+(P-FAIL) clause. Three points came back; all three are taken up here.
+
+### 7a. The Test-1 probe is now landed and re-runnable (auditability gap, closed)
+
+Section 3a's measurements were originally cited to a session-scoped scratchpad path that no
+longer resolves -- leaving the single arithmetic claim the whole proposal rests on auditable only
+on trust. The probe is now landed alongside this document, following the existing
+`evidence/planning/*_probe_*.py` convention (12 prior instances):
+
+```
+/opt/local/bin/python3 /Users/dgolden/REE_Working/REE_assembly/evidence/planning/inv063_legA_independence_probe_20260924.py
+```
+
+Deterministic (`torch.manual_seed(42)`), ASCII-only output, `REE_V3_PATH`-overridable. Re-run
+2026-09-24 against ree-v3 `origin/main` `4fc6f3d` with torch 2.12.0: it reproduces every figure in
+section 3a exactly -- argmax 7 and top-3 ordering [7, 1, 9] preserved across all four rescalings
+`c` in {1e-3, 1e-2, 0.1, 10}; `top_mass_share` 0.0835288624 -> 0.0863241877 across those same
+rescalings; the retired A3 spread 3.45153e-10 (s=8e-05) -> 4.31449e-06 (s=1); float32 ulp at the
+epsilon floor 1.19209e-13; `A2*v` 4.26e-09 against `epsilon` 1e-6, a ratio of 0.00426. It also
+prints the verdicts, so a reader does not have to reconstruct which candidate each column kills.
+
+### 7b. STRENGTHENING: the MEL form of the surprise weight is itself CONDITIONAL, and this sharpens the finding
+
+Section 3a stated that `drive_state[VALENCE_SURPRISE]` is `min(1.0, _pe_ema * 5.0)` and verified
+that the harm and liking channels are default-off. It did not state that **the MEL form is itself
+gated**. Verified at `agent.py:10984-10986`:
+
+```python
+surprise_weight = 0.3
+if self.config.surprise_gated_replay and self._pe_ema > 0:
+    surprise_weight = min(1.0, self._pe_ema * 5.0)
+```
+
+So the weight is the **constant 0.3** unless `surprise_gated_replay` is True AND `_pe_ema > 0`.
+The conclusion in 3a holds by two independent routes -- INV-063's own P4 requires
+`surprise_gated_replay=True`, and this lineage's builder sets it
+(`experiments/v3_exq_1071_inv063_four_arm_intake_ladder.py:351`) -- so this is a strengthening,
+not a correction.
+
+**And it sharpens what leg A's circularity actually is.** In the ungated branch the weight is a
+constant, hence not a transform of `e3_prediction_error` at all: the circularity GFLAG-0389 found
+is **specifically a property of the P4-pinned regime**, which is the only regime in which leg A
+can be measured (P4 is what makes the MECH-205 instrument live). It is therefore not an incidental
+coupling that a differently-configured run could avoid -- it is entailed by the precondition the
+claim itself requires. That is an argument for re-registering the DV rather than re-configuring
+the run, and it belongs in the record.
+
+### 7c. CORRECTION to this document: EDIT 3 closes a degree of freedom in the CRITERION; it does not measure the confound away
+
+Section 4c ends "the spacing route is unavailable rather than merely unlikely". **That overclaims,
+and is corrected here.** What EDIT 3 establishes exactly:
+
+- **First-order, and this is the real gain:** for a DV that is any AFFINE function of MEL, both
+  per-unit-MEL secants equal the same constant and the excess is identically ZERO regardless of
+  how the arms are spaced. That is precisely the shape that produced the seed-456 artefact in 4a,
+  so an affine DV can no longer manufacture a knee out of spacing. The arm-index rule has no
+  such null.
+- **Residual, second-order:** for a genuinely CURVED DV the two secants sample curvature over
+  windows of different widths (on V3-EXQ-1069's ladder the low-end and high-end MEL steps differ
+  by up to 36x within one seed, per 4b), and a wider window averages more curvature. The
+  comparison therefore retains a magnitude-level spacing dependence. P7 BOUNDS that dependence by
+  requiring both denominators to be resolved; it does not remove it.
+- **What is not established by any of this:** whether the actual A1'/A2' is near-affine in MEL.
+  That is exactly the OWED Test 2 (section 3b), and it cannot be settled from landed data.
+
+So the honest reading for /governance, and the one this addendum asks to be recorded with EDIT 3:
+the per-unit-MEL abscissa **closes the spacing degree of freedom in the criterion's definition**;
+it has not **measured** the confound away, and it does not pre-empt Test 2. This weakens no
+verdict above -- 4a's reproduction of a knee from MEL alone under the arm-index rule stands
+unchanged, and it is still the measurement that forces either EDIT 3 or an explicit narrowing of
+C2 -- but "unavailable" was the wrong word for a guarantee that holds strictly only at the affine
+null.
+
+### 7d. Unchanged residuals, stated so the hand-off is unambiguous
+
+Neither session is working these, and neither is claimed: **(i)** the empirical non-co-movement
+measurement (Test 2), which needs a run that does not exist; **(ii)** the three V3-EXQ-1071 driver
+defects in `inv063_legA_dv_circularity_20260920.md` section 3, which are `/queue-experiment` work
+on an unqueued driver with no budget. Nothing in this addendum applies anything to `claims.yaml`.
