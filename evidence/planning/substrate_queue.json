@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-20260924",
-  "last_updated_utc": "2026-09-24T10:22:20Z",
+  "last_updated_utc": "2026-09-24T10:25:06Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -2929,6 +2929,15 @@
           "target": "ARM_A p1_events >= 3/seed; ARM_A p1_writes >= 2/seed under a scheduled-suffering env curriculum (parallel to SD-029 scheduled_external_hazard) that forces periodic limb-damage accumulation independent of agent avoidance",
           "run_role": "post_build",
           "run_role_basis": "R3 run > entry.implementation_note_update:freetext"
+        },
+        {
+          "run_id": "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
+          "experiment_type": "v3_exq_517d_mech302_relief_completion_discriminative_pair",
+          "metric": "comparator events per scheduled limb-damage injection ~9-17 (1479/85, 129/8, 452/50); events counted per threshold-crossing tick, not per relief episode",
+          "target": "<= 1-2 relief-completion events per damage->heal trajectory",
+          "resolved": "open",
+          "source": "failure_autopsy_gflag0452-D1-cluster_2026-09-24",
+          "resolved_note": "owned by substrate_queue suffering-derivative-comparator-refractory (2026-09-24)"
         }
       ],
       "implementation_log": [
@@ -2954,7 +2963,7 @@
       "implemented_session": "implement-substrate-mech302-comparator-2026-05-04T0019Z",
       "implemented_utc": "2026-05-04T01:03:00Z",
       "last_amend_session": "implement-substrate-mech302-scheduled-limb-damage-curriculum-20260530T084206Z",
-      "last_seen_session": "governance-20260531T081800Z",
+      "last_seen_session": "governance-20260924",
       "last_updated_utc": "2026-05-30T17:16:27Z",
       "next_step": "Substrate validated; v3_pending cleared from claims.yaml MECH-302 and MECH-303. Discriminative-pair evidence V3-EXQ-517c contributory (supports, 2/3 seeds PASS). Gate (c) lifted for MECH-304 conditioned-inhibition experiment (V3-EXQ-519 pending).",
       "pending_retest_after_substrate": false,
@@ -13335,6 +13344,45 @@
       "phase_verdict": "V3-NATIVE",
       "experiment_queued": false,
       "ratified": "user at /governance gate 2026-09-24, session governance-20260924, G4 A rec-20260924-823fac58"
+    },
+    {
+      "sd_id": "suffering-derivative-comparator-refractory",
+      "title": "SufferingDerivativeComparator: one relief-completion event per descent (refractory / offset latch)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "registration_is_not_build_authorisation": false,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-050",
+        "MECH-302",
+        "MECH-304"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
+          "experiment_type": "v3_exq_517d_mech302_relief_completion_discriminative_pair",
+          "metric": "comparator events per scheduled limb-damage injection ~9-17 (1479/85, 129/8, 452/50); events counted per threshold-crossing tick, not per relief episode",
+          "target": "<= 1-2 relief-completion events per damage->heal trajectory",
+          "resolved": "open",
+          "source": "failure_autopsy_gflag0452-D1-cluster_2026-09-24"
+        }
+      ],
+      "implementation_hint": "tick() fires on every tick whose rolling-window drop >= threshold, so one healing trajectory emits a train of events (~9-17 per injection in 517d), each releasing beta and writing VALENCE_LIKING at successive z_world. Add a refractory or re-arm-on-rise latch so a sustained descent yields one event (matching SD-050's 'fires a relief-completion event when a sustained drop ... exceeds a threshold' and the phasic relief-offset biology). MUST be an opt-in flag, default OFF, bit-identical OFF (the per-tick firing is in every historical MECH-302/SD-050/MECH-304 run).",
+      "priority": 3,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/comparator/suffering_derivative_comparator.py",
+        "ree_core/agent.py::select_action"
+      ],
+      "source_autopsy": "failure_autopsy_gflag0452-D1-cluster_2026-09-24",
+      "source_audit": "GFLAG-0452 G6 option A (user decision rec-20260924-2359906f): build authorised as a separate entry rather than re-opening the validated MECH-302 entry",
+      "added_session": "governance-20260924",
+      "added_utc": "2026-09-24T10:25:06Z",
+      "last_seen_session": "governance-20260924",
+      "experiment_queued": false
     }
   ],
   "schema_version": "substrate_queue/v2",
