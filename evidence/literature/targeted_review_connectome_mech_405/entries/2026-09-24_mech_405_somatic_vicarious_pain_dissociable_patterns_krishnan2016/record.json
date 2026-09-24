@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_405",
+  "entry_id": "2026-09-24_mech_405_somatic_vicarious_pain_dissociable_patterns_krishnan2016",
+  "timestamp_utc": "2026-09-24T11:24:34Z",
+  "claim_ids_tested": [
+    "MECH-405"
+  ],
+  "source": {
+    "title": "Somatic and vicarious pain are represented by dissociable multivariate brain patterns.",
+    "authors": [
+      "Anjali Krishnan",
+      "Choong-Wan Woo",
+      "Luke J Chang",
+      "Luka Ruzic",
+      "Xiaosi Gu",
+      "Marina Lopez-Sola",
+      "Philip L Jackson",
+      "Jesus Pujol",
+      "Jin Fan",
+      "Tor D Wager"
+    ],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.15166",
+    "pmid": "27296895",
+    "pmc": "PMC4907690",
+    "volume": "5"
+  },
+  "evidence_class": "neuroimaging_human_multivariate",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "Multivariate patterns predicting somatic and vicarious pain intensity each predicted their own condition perfectly out of sample but were at chance for the other, and vicarious pain somatotopy lay in mentalizing-related rather than somatosensory circuits; replicated across further studies. This directly challenges the reading that vicarious pain is the self-pain representation re-used. Held at 0.6 because the somatic pattern includes sensory components the claim does not invoke, and a shared affective sub-component could still exist beneath distinct whole-brain patterns.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The somatic signature is dominated by nociceptive/sensory features; its failure to predict vicarious pain does not rule out a shared affective (suffering) sub-component, which is what MECH-405 actually needs.",
+    "Vicarious pain was rated from images, favouring an inferential route; more immediate or close-other paradigms might show more sharing."
+  ],
+  "tags": [
+    "mech_405",
+    "vicarious_pain",
+    "multivariate_pattern_analysis",
+    "self_other_distinction",
+    "dissociation",
+    "mentalizing",
+    "disconfirming"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dissociable fMRI patterns predict somatic and vicarious pain intensity; each is at chance for the other experience, and vicarious-pain information is carried in mentalizing-related circuits rather than somatosensory ones, suggesting separate representations rather than a single shared-experience code.",
+    "ree_translation": "Disconfirming pressure on the strong form of MECH-405 (other-bound affect IS the own stream plus a binding tag). If the other-bound representation were the own suffering stream relabelled, a decoder trained on the self stream should transfer at least partially. The REE analogue test: a probe trained on the self SD-011 channel should predict other-bound suffering magnitude; chance-level transfer would favour a separate other-affect representation.",
+    "mapping_caveat": "Human fMRI decoders, not mechanism. Compatible with a weaker claim in which a shared affective component contributes but the other-bound state is a distinct representation constructed largely by mentalizing machinery. Scope, not outright refutation.",
+    "source_context": "Multi-study fMRI with multivariate pattern analysis (Wager lab); thermal, mechanical and electrical pain; image-based vicarious pain ratings."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Rigorous out-of-sample decoding with replication; mapping reduced because the self signature is sensory-heavy while the claim concerns affective streams."
+  }
+}

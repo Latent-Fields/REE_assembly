@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_122",
+  "entry_id": "2026-09-24_arc_122_infant_rat_attachment_learning_sensitive_period_moriceau2010",
+  "timestamp_utc": "2026-09-24T11:24:51Z",
+  "claim_ids_tested": [
+    "ARC-122"
+  ],
+  "source": {
+    "title": "Rodent model of infant attachment learning and stress.",
+    "authors": [
+      "Stephanie Moriceau",
+      "Tania L Roth",
+      "Regina M Sullivan"
+    ],
+    "year": 2010,
+    "venue": "Developmental Psychobiology",
+    "doi": "10.1002/dev.20482",
+    "pmid": "20730787",
+    "pmc": "PMC4334117",
+    "volume": "52",
+    "issue": "7",
+    "pages": "651-60"
+  },
+  "evidence_class": "animal_behavior",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Review of Sullivan-lab infant rat work: during postnatal days 1-9 pups readily learn odor preferences while fear/aversion learning is attenuated, so they learn to approach the caregiver regardless of care quality; after ~PN10 rising corticosterone enables amygdala-dependent fear learning. That is strong mechanistic support for an innate, approach-biased coupling phase preceding a phase with full threat learning. But the transition is reversible: maternal presence restores preference learning and suppresses fear learning in PN10-15 pups, so the phase boundary is gated by the caregiver's presence, not a one-way switch.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rodent olfactory attachment learning maps only loosely onto human attachment or an artificial agent.",
+    "Approach learning that persists regardless of care quality (including to an abusive caregiver) shows phase 1 coupling is not selective for a 'competent' environment, contrary to the claim's framing."
+  ],
+  "tags": [
+    "arc_122",
+    "attachment_learning",
+    "sensitive_period",
+    "infant_rat",
+    "corticosterone",
+    "amygdala",
+    "sullivan"
+  ],
+  "mapping": {
+    "source_claim_statement": "Infant rats show a sensitive period (PN1-9) of enhanced odor-preference and attenuated fear learning, overlapping the stress-hyporesponsive period; after PN10 corticosterone permits amygdala-dependent fear learning; maternal presence reinstates preference learning and suppresses fear in PN10-15 pups via suppression of corticosterone and amygdala activity.",
+    "ree_translation": "Mechanistic analogue of ARC-122 phase (1) -> (2): an early learning regime biased toward coupling to the caregiver, followed by a transition that opens threat learning. The caregiver acts as a social buffer that can re-open the earlier regime.",
+    "mapping_caveat": "The window is caregiver-gated and reversible, which supports graded/overlapping windows rather than strict sequencing; and phase-1 coupling occurs even to a poor caregiver, so 'competent environment' is not a precondition of the mechanism.",
+    "source_context": "Review of Sullivan-lab rodent developmental neurobiology (olfactory bulb, locus coeruleus norepinephrine, corticosterone, amygdala)."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.65,
+    "notes": "Named Sullivan anchor verified; companion review Sullivan & Holman 2010 (PMID 19931556) covers the same transitions."
+  }
+}

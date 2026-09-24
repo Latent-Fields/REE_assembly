@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_421",
+  "entry_id": "2026-09-24_mech_421_learned_relations_dora_cross_domain_doumas2022",
+  "timestamp_utc": "2026-09-24T11:24:37Z",
+  "claim_ids_tested": [
+    "MECH-421",
+    "Q-074"
+  ],
+  "source": {
+    "title": "A theory of relation learning and cross-domain generalization.",
+    "authors": [
+      "Leonidas A A Doumas",
+      "Guillermo Puebla",
+      "Andrea E Martin",
+      "John E Hummel"
+    ],
+    "year": 2022,
+    "venue": "Psychological Review",
+    "doi": "10.1037/rev0000346",
+    "pmid": "35113620",
+    "volume": "129",
+    "issue": "5",
+    "pages": "999-1041"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "The closest existing model of what MECH-421 describes: relational representations learned without supervision from nonrelational input, then used for zero-shot cross-domain transfer (Breakout to Pong) by analogical inference, with a trajectory that tracks children's relational development. Mixed for the claim as worded because the analogy step is an explicit, built-in mapping and binding mechanism (LISA/DORA lineage): relational CONTENT is learned, the MAPPING operator is not. That is evidence against the pure 'no-module' reading in the notes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Success is shown in simple visual stimuli and two Atari games; it does not show the architecture scales to rich grounded domains such as spatial containment vs social inclusion.",
+    "Reading this as support for 'analogy emerges' misstates it: the model learns relations but relies on a hard-wired role-binding and mapping mechanism, which is the dedicated-operator horn of Q-074."
+  ],
+  "tags": [
+    "mech_421",
+    "q_074",
+    "dora",
+    "lisa",
+    "relation_learning",
+    "cross_domain_generalization",
+    "zero_shot_transfer"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cross-domain generalization in humans is analogical inference over structured relational representations; a LISA/DORA-based model learns both the content and the structure of relational representations from nonrelational inputs without supervision, and generalizes zero-shot between domains (Breakout and Pong; several psychological tasks) via analogical inference.",
+    "ree_translation": "Existence proof for MECH-421's end state in a learned system: relations acquired from experience, then mapped across surface-dissimilar domains. It also splits Q-074 more finely than the claim does: what is learned (relational predicates) is separable from what is built (the alignment/binding machinery).",
+    "mapping_caveat": "DORA's substrate is a symbolic-connectionist binding architecture, not MECH-300 theta-sequence traversal over a cognitive map. Whether traversal could supply the binding DORA hard-wires is exactly the open question, and this paper does not test it.",
+    "source_context": "Computational modelling paper extending LISA (Hummel & Holyoak 1997, 2003) and DORA (Doumas et al. 2008), with reinforcement learning added, evaluated on visual stimuli, video games and developmental data."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Strong venue and direct target; the model's built-in binding makes it evidence for a hybrid, not for full emergence."
+  }
+}

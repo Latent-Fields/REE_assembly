@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_501",
+  "entry_id": "2026-09-24_mech_501_unexpected_events_global_motor_suppression_wessel2017",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-501"
+  ],
+  "source": {
+    "title": "On the Globality of Motor Suppression: Unexpected Events and Their Influence on Behavior and Cognition.",
+    "authors": [
+      "Jan R Wessel",
+      "Adam R Aron"
+    ],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.12.013",
+    "pmid": "28103476",
+    "pmc": "PMC5260803",
+    "volume": "93",
+    "issue": "2",
+    "pages": "259-280"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.4,
+  "confidence_rationale": "Establishes that unexpected events (action errors, unexpected outcomes, surprising percepts) recruit the same fronto-basal-ganglia stopping network (via the subthalamic nucleus) that implements action stopping, and that this suppression also disrupts ongoing cognition such as working memory. That supports the interrupt half of MECH-501's premise but assigns the effect to action/cognitive suppression, i.e. the MECH-090/MECH-342 territory, and says nothing about a reconstruction of the current-state estimate. Mixed at 0.4.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reading global suppression's disruption of working memory as 'state-estimate reconstruction' would be a stretch: the review describes interruption/clearing, not replacement by a less-displaced estimate.",
+    "The review is a unifying proposal; the hyperdirect/STN mediation of surprise effects is partly inferred."
+  ],
+  "tags": [
+    "mech_501",
+    "mech_342",
+    "mech_090",
+    "stop_signal",
+    "hyperdirect_pathway",
+    "subthalamic_nucleus",
+    "surprise"
+  ],
+  "mapping": {
+    "source_claim_statement": "Unexpected events of several kinds recruit a fronto-basal-ganglia network for stopping, projecting to the subthalamic nucleus with a putative global suppressive effect on basal-ganglia output, which interrupts action and also affects cognition (working memory, attention).",
+    "ree_translation": "Biological grounding for surprise-triggered interruption of a committed trajectory, the trigger condition in MECH-501. It maps most directly onto MECH-090/MECH-342 (action authority), and so marks the part MECH-501 inherits rather than the part it adds.",
+    "mapping_caveat": "Nothing in this literature shows that surprise-triggered stopping is accompanied by a backward correction of a forward-displaced state estimate; the cognitive effects described are disruption/flushing, not re-anchoring to s_hat(t). If anything, the review makes the downstream 'reconstruction' step look like the unsupported addition. The claim's asserted separation (reconstruction distinct from and downstream of decommit) is neither supported nor contradicted.",
+    "source_context": "Neuron review unifying stop-signal, error, novelty and surprise literatures under a global motor suppression account."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.45,
+    "notes": "Strong review for the interrupt premise; low fidelity to the reconstruction step that is MECH-501's actual content."
+  }
+}

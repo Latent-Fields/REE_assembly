@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-24T10:26:33.986646Z",
+  "generated_at_utc": "2026-09-24T11:30:50.692007Z",
   "items": [
     {
       "acceptance_checks": [
@@ -3779,6 +3779,51 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1498",
+      "claim_id": "MECH-308",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-308 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0961",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_308",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1187",
       "claim_id": "ARC-012",
       "decision_deadline_utc": "",
@@ -4986,10 +5031,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "refusal_route": "implement_substrate",
-      "refused_by_session": "governance-20260924",
-      "refused_utc": "2026-09-24T08:44:45Z"
+      ]
     },
     {
       "acceptance_checks": [
@@ -8634,6 +8676,8 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-1083",
+      "executed_queue_id": "V3-EXQ-1083",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for SD-081 via targeted experiment runs.",
       "priority": "medium",
@@ -8660,9 +8704,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "executed_by": "V3-EXQ-1083",
-      "executed_queue_id": "V3-EXQ-1083"
+      ]
     },
     {
       "acceptance_checks": [
@@ -8945,54 +8987,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_arc_119",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1235",
-      "claim_id": "ARC-122",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-122.",
-      "priority": "medium",
-      "proposal_id": "LIT-0512",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_122",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -9329,54 +9323,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_arc_135",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1749",
-      "claim_id": "ARC-144",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for ARC-144.",
-      "priority": "medium",
-      "proposal_id": "LIT-0136",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_arc_144",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -10191,54 +10137,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_gov_contract_2",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1752",
-      "claim_id": "GOV-CONTRACT-3",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for GOV-CONTRACT-3.",
-      "priority": "medium",
-      "proposal_id": "LIT-0150",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_gov_contract_3",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -21212,92 +21110,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1498",
-      "claim_id": "MECH-308",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-308 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0961",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_308",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1498",
-      "claim_id": "MECH-308",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-308.",
-      "priority": "medium",
-      "proposal_id": "LIT-0962",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_308",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -23824,54 +23636,6 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
-      "backlog_id": "EVB-1545",
-      "claim_id": "MECH-405",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-405.",
-      "priority": "medium",
-      "proposal_id": "LIT-1026",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_405",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
       "backlog_id": "EVB-1546",
       "claim_id": "MECH-406",
       "decision_deadline_utc": "",
@@ -24481,54 +24245,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_420",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1560",
-      "claim_id": "MECH-421",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-421.",
-      "priority": "medium",
-      "proposal_id": "LIT-1041",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_421",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -25582,54 +25298,6 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
-      "backlog_id": "EVB-1587",
-      "claim_id": "MECH-479",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-479.",
-      "priority": "medium",
-      "proposal_id": "LIT-1084",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_479",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
       "backlog_id": "EVB-1588",
       "claim_id": "MECH-483",
       "decision_deadline_utc": "",
@@ -26229,54 +25897,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_498",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1600",
-      "claim_id": "MECH-501",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-501.",
-      "priority": "medium",
-      "proposal_id": "LIT-1101",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_501",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -28728,14 +28348,14 @@
         "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
         "Preserve source wording, REE translation, and mapping caveat for each record."
       ],
-      "backlog_id": "EVB-1809",
-      "claim_id": "MECH-585",
+      "backlog_id": "EVB-1818",
+      "claim_id": "MECH-586",
       "decision_deadline_utc": "",
       "disconfirming_evidence_required": 1,
       "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-585.",
+      "objective": "Improve literature grounding and confidence for MECH-586.",
       "priority": "medium",
-      "proposal_id": "LIT-0364",
+      "proposal_id": "LIT-0375",
       "proposal_type": "literature_review",
       "required_record_contract": {
         "confidence_component_fields": [
@@ -28760,7 +28380,7 @@
         "summary": "include caveats, disconfirming evidence, and mapping limits"
       },
       "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_585",
+      "suggested_literature_type": "targeted_review_mech_586",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -32759,92 +32379,6 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
-      "backlog_id": "EVB-1246",
-      "claim_id": "EXT-001",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "executed_by": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation.py",
-      "executed_queue_id": "V3-EXQ-982",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for EXT-001 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1233",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_ext_001",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1246",
-      "claim_id": "EXT-001",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for EXT-001.",
-      "priority": "medium",
-      "proposal_id": "LIT-1234",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_ext_001",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
       "backlog_id": "EVB-1252",
       "claim_id": "EXT-007",
       "decision_deadline_utc": "",
@@ -32924,90 +32458,6 @@
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1331",
-      "claim_id": "INV-024",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for INV-024 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0662",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_inv_024",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1331",
-      "claim_id": "INV-024",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for INV-024.",
-      "priority": "medium",
-      "proposal_id": "LIT-0663",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_inv_024",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
         "missing_literature_evidence"
       ]
     },
@@ -33311,261 +32761,6 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_mech_219",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-0658",
-      "claim_id": "MECH-290",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-290 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1248",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_290",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-0658",
-      "claim_id": "MECH-290",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-290.",
-      "priority": "medium",
-      "proposal_id": "LIT-1249",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_290",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1515",
-      "claim_id": "MECH-349",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "executed_by": "V3-EXQ-1025",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-349 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0988",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_349",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1515",
-      "claim_id": "MECH-349",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-349.",
-      "priority": "medium",
-      "proposal_id": "LIT-0989",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_349",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1579",
-      "claim_id": "MECH-464",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "executed_by": "V3-EXQ-1019",
-      "executed_queue_id": "V3-EXQ-1019",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-464 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1067",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "executed",
-      "suggested_experiment_type": "claim_probe_mech_464",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1579",
-      "claim_id": "MECH-464",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-464.",
-      "priority": "medium",
-      "proposal_id": "LIT-1068",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_464",
       "target_repo": "REE_assembly",
       "why_now": [
         "insufficient_experimental_replication",
@@ -34954,22 +34149,7 @@
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ],
-      "gating_reason_history": [
-        {
-          "authority": "rec-20260923-e532e1b3",
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_131) already ran and was itself flagged evidence_direction=superseded (identical-metrics rerun of an earlier run) -- re-running again would repeat the same substrate wall.",
-          "superseded_at_utc": "2026-09-24T08:19:23Z"
-        },
-        {
-          "authority": "rec-20260924-3760004e",
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "Falsifier specification owed (GFLAG-0443): ARC-023's narrowed E3-only falsifier has an unreachable FALSIFYING leg (E3 share must reach 1.0) and an arousal-modulated 'configured period' (MECH-093, band 5-20). V3-EXQ-942 re-read 2026-09-23 = partial (failure_autopsy_V3-EXQ-942_reread_2026-09-23). The v3_exq_131 freeze-artifact reason is resolved by the narrowing.",
-          "superseded_at_utc": "2026-09-24T08:42:06Z"
-        }
-      ],
-      "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z"
+      ]
     },
     {
       "acceptance_checks": [
@@ -35716,18 +34896,6 @@
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ],
-      "gating_reason_history": [
-        {
-          "authority": "rec-20260924-5c406791",
-          "by_session": "governance-20260924",
-          "prior_blocked_by": [
-            "mech151-action-bias-has-no-e3-ranking-channel (substrate_queue.json, status proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET, ready=false, added 2026-08-18)",
-            "ARC-007 (governance architectural-decision gate, not a routine substrate build)"
-          ],
-          "prior_gating_reason": "queue-experiment Step 2.5 substrate readiness check: MECH-151 asserts E1's cue-indexed action_bias produces top-down ELEVATE/SUPPRESS ranking of action-affordances within HippocampalModule search prior to E3 selection. Independently re-verified 2026-08-22 (source read of ree_core/hippocampal/module.py _score_trajectory -- scores get_world_state_sequence() / residue-field terrain only and never reads Trajectory.action_objects -- plus ree_core/predictors/e3_selector.py, which has zero action_object/action_bias references) that this ranking channel does not exist in the current substrate, confirming GFLAG-0039/GFLAG-0043 (resolved 2026-08-21, governance cycle gov-20260821-0203; V3-EXQ-922's MECH-151 'supports' reading was withdrawn to non_contributory on this same finding) and the contract-pinned measurement at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py (candidate scores bit-identical at action_bias=None vs 1e3; elite ordering unchanged; bias is bit-identically inert at num_cem_iterations=1). action_bias's only live effect is an additive translation of the CEM proposal mean (steers WHERE candidates are drawn), never a ranking/scoring authority (never determines WHICH candidate wins) -- so a new experiment measuring action_bias context-conditioning the way V3-EXQ-922 did would reproduce a metric already shown not to test the claim's asserted mechanism, and a new experiment probing ranking directly would just re-derive the already-measured, contract-pinned null (bit-identical scores). The repair is NOT a routine /implement-substrate build: substrate_queue.json's own entry ('mech151-action-bias-has-no-e3-ranking-channel') is explicitly gated 'DO_NOT_BUILD_YET' pending a governance decision on ARC-007 STRICT ('HippocampalModule generates VALUE-FLAT proposals ... E3 introduces ALL weighting'), which forbids the obvious fix (teaching _score_trajectory to read action_objects) without a governance ruling. Two live options per that entry: (A) give E3 an action-object input channel (honours ARC-007, larger build) or (B) accept the substrate as correct under ARC-007 and re-word MECH-151's registered mechanism away from 'elevated/suppressed ranking' toward 'pre-shapes the CEM proposal mean' (a claims edit, not a build). Neither is a queue-experiment task; both require a /governance cycle to adjudicate. Full design: REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md.",
-          "superseded_at_utc": "2026-09-24T08:41:24Z"
-        }
       ]
     },
     {
@@ -36635,6 +35803,80 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1246",
+      "claim_id": "EXT-001",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "v3_exq_982_claim_probe_ext_001_sycophancy_channel_separation.py",
+      "executed_queue_id": "V3-EXQ-982",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for EXT-001 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1233",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_ext_001",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1331",
+      "claim_id": "INV-024",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for INV-024 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0662",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_inv_024",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-0316",
       "claim_id": "INV-041",
       "decision_deadline_utc": "",
@@ -36935,6 +36177,79 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-0658",
+      "claim_id": "MECH-290",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-290 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1248",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_290",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1515",
+      "claim_id": "MECH-349",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-1025",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-349 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0988",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_349",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-0575",
       "claim_id": "MECH-427",
       "decision_deadline_utc": "",
@@ -36960,6 +36275,44 @@
       "seed_policy": "distinct_seeds",
       "status": "proposed",
       "suggested_experiment_type": "claim_probe_mech_427",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1579",
+      "claim_id": "MECH-464",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "executed_by": "V3-EXQ-1019",
+      "executed_queue_id": "V3-EXQ-1019",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-464 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1067",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "executed",
+      "suggested_experiment_type": "claim_probe_mech_464",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"

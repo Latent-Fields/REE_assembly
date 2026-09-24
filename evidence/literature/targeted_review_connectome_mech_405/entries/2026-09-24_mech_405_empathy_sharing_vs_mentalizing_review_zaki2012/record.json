@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_405",
+  "entry_id": "2026-09-24_mech_405_empathy_sharing_vs_mentalizing_review_zaki2012",
+  "timestamp_utc": "2026-09-24T11:24:34Z",
+  "claim_ids_tested": [
+    "MECH-405"
+  ],
+  "source": {
+    "title": "The neuroscience of empathy: progress, pitfalls and promise.",
+    "authors": [
+      "Jamil Zaki",
+      "Kevin N Ochsner"
+    ],
+    "year": 2012,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3085",
+    "pmid": "22504346",
+    "volume": "15",
+    "issue": "5",
+    "pages": "675-80"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Authoritative review separating two empathic sub-processes, experience sharing and explicit mentalizing, supported by distinct neural systems. Endorses the sharing route MECH-405 describes while making clear that empathy is not reducible to it. A review rather than new data, so confidence is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A two-system framing can be read as supporting either a pure-sharing mechanism or a pure-inference one; the claim should not cite it for more than the existence of a sharing route plus a separate mentalizing route.",
+    "Review notes artificial stimuli and weak brain-behaviour links in the underlying studies, so the sharing evidence it summarises inherits those limits."
+  ],
+  "tags": [
+    "mech_405",
+    "experience_sharing",
+    "mentalizing",
+    "empathy_subprocesses",
+    "review",
+    "scope"
+  ],
+  "mapping": {
+    "source_claim_statement": "Empathy comprises at least two sub-processes, sharing others' internal states and explicitly considering those states, supported by separable neural systems; much early research used artificial stimuli and lacked links between brain activity and social behaviour.",
+    "ree_translation": "Maps MECH-405 onto the 'experience sharing' sub-process only. The mentalizing sub-process corresponds to the other-model (ARC-083/OBJ-5) doing more than hold a binding slot: it computes the other's state. The claim should say which sub-process 'fast empathy' names.",
+    "mapping_caveat": "Conceptual review; the 'fast' label in MECH-405 plausibly maps to sharing, but the review does not measure speed and does not claim sharing is sufficient for concern or prosocial action.",
+    "source_context": "Nature Neuroscience perspective/review of a decade of empathy neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Well-cited review, no new data; useful mainly for scoping the claim."
+  }
+}

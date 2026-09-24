@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_479",
+  "entry_id": "2026-09-24_mech_479_agent_independent_axis_choice_on_behalf_nicolle2012",
+  "timestamp_utc": "2026-09-24T11:24:33Z",
+  "claim_ids_tested": [
+    "MECH-479"
+  ],
+  "source": {
+    "title": "An agent independent axis for executed and modeled choice in medial prefrontal cortex.",
+    "authors": [
+      "Antoinette Nicolle",
+      "Miriam C Klein-Flugge",
+      "Laurence T Hunt",
+      "Ivo Vlaev",
+      "Raymond J Dolan",
+      "Timothy E J Behrens"
+    ],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.07.023",
+    "pmid": "22998878",
+    "pmc": "PMC3458212",
+    "volume": "75",
+    "issue": "6",
+    "pages": "1114-21"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "The strongest evidence here that choosing on behalf of another reuses the same decision machinery: modelled choices use the same computations as own choices, and when subjects choose for a partner, the region that represented their own executed choices now represents the choice executed for the partner (roles swap). This supports a same-machinery reading of other-directed choice. Held at 0.45 because it concerns single intertemporal-style choices, not planning, and says nothing about hippocampal involvement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Role-swapping between mPFC regions shows that the EXECUTED-choice machinery is agent-independent; it does not show that the planned (hippocampal) pathway is recruited, which is the substance of MECH-479.",
+    "A single fMRI study; the 'axis' interpretation is a functional description at BOLD resolution."
+  ],
+  "tags": [
+    "mech_479",
+    "choice_on_behalf_of_other",
+    "mpfc",
+    "self_other",
+    "same_machinery"
+  ],
+  "mapping": {
+    "source_claim_statement": "The brain models others' values and choices using the same computations as its own choices, resolved in a neighbouring mPFC region; when choosing on behalf of a partner, the executed-choice region represents the partner's choice values and the modelling region now models the subject.",
+    "ree_translation": "Supports the architectural option that other-directed choice runs through the SAME choice/commitment machinery (E3 in REE) with the beneficiary swapped, rather than a separate prosocial controller. If that holds, MECH-479's planned-vs-greedy contrast can be implemented by the existing self planner operating over other-agent state.",
+    "mapping_caveat": "Single-step value-based choice, no trajectories or accumulation; does not test whether lookahead is required. Choosing on the partner's behalf with the partner's preferences is not the same as reducing the partner's harm.",
+    "source_context": "fMRI, value-based choices made for self or on behalf of a partner with different preferences; computational value modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Clear self/other executed-choice swap; supports same-machinery for choice, not for planning."
+  }
+}

@@ -1,0 +1,9 @@
+# Saxe et al. 2019 -- the IB account of deep learning does not generalise
+
+**What they did.** An influential account said deep networks first fit their data and then compress their hidden representations, discarding information about the input that is irrelevant to the label, and that this compression explains generalisation. Saxe and colleagues reproduced the setup and varied it. The compression phase showed up with tanh units but not with ReLU or linear units. They traced it to saturation in double-sided nonlinearities and to the binning method used to estimate mutual information. They also found networks that generalise without compressing, and the reverse, so compression is not what causes generalisation.
+
+**Why it matters here.** This is the disconfirming side of the pull, and it limits how the IB can be cited. For ARC-144, the IB supports the idea that the right payload depends on the receiver's task. It does *not* give evidence that learned modules in fact compress down to that payload at their boundaries, and Saxe et al. show that whether they do depends on architecture. For GOV-CONTRACT-3, the estimator result is a practical warning: mutual-information cost terms estimated from deterministic networks can reflect the estimator more than the system. That bears on the rule's falsifying branch, where cost terms turn out not to be estimable at the available precision, and it argues for bounded-decoder measures (V-information, MDL code length) over raw mutual information.
+
+**Where it doesn't reach.** The paper attacks the IB as a description of learning dynamics. It does not touch the IB as a normative definition of task-relevant compression, and it says nothing about whether obligations differ across interfaces. It weakens a way of citing the literature, not either claim's logic.
+
+**Confidence.** 0.55, weakens, with narrow scope: it undercuts "IB shows modules compress to task-relevant information" as support.

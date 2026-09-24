@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_501",
+  "entry_id": "2026-09-24_mech_501_chronostasis_backdating_abolished_by_violation_yarrow2001",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-501"
+  ],
+  "source": {
+    "title": "Illusory perceptions of space and time preserve cross-saccadic perceptual continuity.",
+    "authors": [
+      "K Yarrow",
+      "P Haggard",
+      "R Heal",
+      "P Brown",
+      "J C Rothwell"
+    ],
+    "year": 2001,
+    "venue": "Nature",
+    "doi": "10.1038/35104551",
+    "pmid": "11713528",
+    "volume": "414",
+    "issue": "6861",
+    "pages": "302-5"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.45,
+  "confidence_rationale": "Chronostasis, one of the four phenomena MECH-501's note names, is explained as backward temporal extension of the saccade target's percept to just before saccade onset, and the illusion disappears when the target is displaced unpredictably during the saccade. So the backward referral here depends on the prediction being confirmed and is abolished by a violation, which is the reverse of MECH-501's trigger. It weakens the use of chronostasis as an analogue; it does not falsify MECH-501's mechanism. 0.45.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Chronostasis concerns duration judgement across saccadic suppression; treating it as a test of state-estimate correction may itself be a category error.",
+    "A single study; later work has offered alternative (non-antedating) accounts of chronostasis, not reviewed here."
+  ],
+  "tags": [
+    "mech_501",
+    "chronostasis",
+    "saccade",
+    "backward_referral",
+    "analogy_check"
+  ],
+  "mapping": {
+    "source_claim_statement": "Saccadic chronostasis arises because the brain extends the percept of the saccade target backwards in time to just before saccade onset; if the target is moved unpredictably during the saccade, breaking spatial continuity, the illusion disappears.",
+    "ree_translation": "Tests the named analogy directly. Backward referral in chronostasis is a gap-filling operation that runs when the predicted post-saccadic state is confirmed; a prediction violation cancels it. MECH-501 posits the opposite: backward correction triggered by violation. The analogy in the claim's note therefore does not hold for chronostasis.",
+    "mapping_caveat": "Chronostasis back-dates a percept in time to fill a suppression gap; MECH-501 pulls a forward-displaced estimate back toward the sensed present. These are different operations that share only the word 'backward'. The result weakens the analogy, not the mechanism.",
+    "source_context": "Human psychophysics of perceived duration of the first post-saccadic interval (stopped-clock illusion), with intrasaccadic target displacement manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Mapping fidelity is to the claim's named analogy, where the finding runs opposite to the claim's trigger condition."
+  }
+}

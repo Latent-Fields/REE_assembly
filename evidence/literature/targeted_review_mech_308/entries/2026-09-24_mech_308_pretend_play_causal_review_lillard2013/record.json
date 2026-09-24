@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_308",
+  "entry_id": "2026-09-24_mech_308_pretend_play_causal_review_lillard2013",
+  "timestamp_utc": "2026-09-24T11:24:44Z",
+  "claim_ids_tested": [
+    "MECH-308"
+  ],
+  "source": {
+    "title": "The impact of pretend play on children's development: a review of the evidence.",
+    "authors": [
+      "Angeline S Lillard",
+      "Matthew D Lerner",
+      "Emily J Hopkins",
+      "Rebecca A Dore",
+      "Eric D Smith",
+      "Carolyn M Palmquist"
+    ],
+    "year": 2013,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/a0029321",
+    "pmid": "22905949",
+    "volume": "139",
+    "issue": "1",
+    "pages": "1-34"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "Systematic review testing three positions (pretend play crucial, one of many routes, epiphenomenon). For language specifically the evidence was consistent with all three but insufficient to decide; for theory of mind, creativity and intelligence, masked-experimenter nonreplications and some good studies favoured epiphenomenalism. It does not refute play-language correlation but directly undercuts reading that correlation as play being the necessary substrate, which is what MECH-308 asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Absence of good causal evidence is not evidence of absence; the review's 'insufficient' verdict on language could be read as neutral rather than weakening.",
+    "Pretend play in preschoolers is a later, narrower construct than MECH-308's play_mode, so a null causal verdict on pretense need not transfer to social-frame or joint-play mechanisms."
+  ],
+  "tags": [
+    "mech_308",
+    "pretend_play",
+    "causality",
+    "epiphenomenon",
+    "equifinality"
+  ],
+  "mapping": {
+    "source_claim_statement": "Existing evidence does not support strong causal claims about the unique importance of pretend play for development; for language the data are consistent with crucial-cause, equifinality and epiphenomenon accounts but insufficient to distinguish them.",
+    "ree_translation": "Weakens MECH-308's causal/substrate reading (language instantiated within play_mode; systems without play fail to acquire socially grounded language). The human data do not show play is necessary for language; equifinality (other routes) would falsify the claim's prediction for systems trained without play.",
+    "mapping_caveat": "Scope mismatch: the review is about pretend play at roughly 2-6 years and its training studies; MECH-308's primary locus is earlier social play and joint engagement at first-word onset. The weakening applies to the pretend-play -> theory of mind -> compositional language chain named in the evidence_quality_note, less to the joint-attention chain.",
+    "source_context": "Psychological Bulletin review of correlational and experimental (play-training) studies across nine developmental domains."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "High-quality review; mapping partial because pretend play is a subset of play_mode."
+  }
+}

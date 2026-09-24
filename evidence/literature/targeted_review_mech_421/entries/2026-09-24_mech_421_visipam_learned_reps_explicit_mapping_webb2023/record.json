@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_421",
+  "entry_id": "2026-09-24_mech_421_visipam_learned_reps_explicit_mapping_webb2023",
+  "timestamp_utc": "2026-09-24T11:24:37Z",
+  "claim_ids_tested": [
+    "MECH-421",
+    "Q-074"
+  ],
+  "source": {
+    "title": "Zero-shot visual reasoning through probabilistic analogical mapping.",
+    "authors": [
+      "Taylor Webb",
+      "Shuhao Fu",
+      "Trevor Bihl",
+      "Keith J Holyoak",
+      "Hongjing Lu"
+    ],
+    "year": 2023,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-023-40804-x",
+    "pmid": "37620313",
+    "pmc": "PMC10449798",
+    "volume": "14",
+    "issue": "1",
+    "pages": "5144"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "visiPAM pairs representations learned from naturalistic images with an explicit similarity-based mapping operation from cognitive theory, and with no task training outperforms a state-of-the-art deep network trained on the mapping task, while matching human patterns on 3D cross-category mapping. That supports structure-mapping as the operation that buys cross-domain transfer, but it is evidence FOR a dedicated mapping step on top of learned representations, i.e. against the pure emergence horn. Moderate confidence: one benchmark family, same lab as the emergent-LLM paper already in the corpus.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Outperforming one deep-learning baseline on part-mapping does not show end-to-end learning cannot get there; a better-trained or larger model could close the gap.",
+    "The 'mapping' here aligns object parts across categories, a much shallower relational structure than containment-to-inclusion or support-to-commitment."
+  ],
+  "tags": [
+    "mech_421",
+    "q_074",
+    "visipam",
+    "probabilistic_analogical_mapping",
+    "hybrid_model",
+    "zero_shot"
+  ],
+  "mapping": {
+    "source_claim_statement": "A model coupling learned visual representations with a cognitively derived, similarity-based analogical mapping operation outperforms a state-of-the-art deep learning model on analogical mapping without direct training, and matches human performance patterns on mapping 3D objects across disparate categories.",
+    "ree_translation": "Direct evidence on the build-vs-emerge fork from the ML side: the same group that reported emergent analogy in LLMs gets better cross-category mapping by adding an explicit mapping operator over learned representations than a network trained end-to-end. For REE this argues that the Q-074 test should include an explicit-operator arm, as its what_would_answer already specifies.",
+    "mapping_caveat": "Visual part correspondence, not abstract relational mapping between grounded social and physical domains. The comparison is against one trained baseline, so 'explicit mapping beats emergence' is shown for this task, not in general.",
+    "source_context": "Computational modelling; visiPAM evaluated against a deep-learning part-matching model and against human participants on a novel 3D cross-category mapping task."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "High-quality venue; task is shallow relative to MECH-421's relational scope, so mapping fidelity is middling."
+  }
+}

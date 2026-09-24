@@ -1,0 +1,9 @@
+# Wyner & Ziv 1976 -- rate depends on what the receiver already has
+
+**What they did.** Wyner and Ziv worked out the minimum bit rate needed to send a source X so that the receiver can rebuild it within a tolerated distortion, in the case where the receiver already holds correlated side information Y that the sender cannot see. The answer, the Wyner-Ziv rate-distortion function, depends on Y. Side information at the decoder alone can cut the required rate a lot, sometimes as far as if the sender also had it.
+
+**Why it matters for ARC-144.** The claim names the literature as information bottleneck, rate-distortion and MDL. Of these, Wyner-Ziv is the closest formal match to the claim's own definition. ARC-144 defines I_AB as the relations B needs *that B cannot cheaply reconstruct locally*, and writes each contract entry with a tolerated distortion and a receiver capability. That is nearly a Wyner-Ziv problem statement: the sender's obligation is set by the receiver's side information and the distortion it can tolerate. The same source, sent to two receivers with different side information, has two different minimum rates. There is no single rate for the source apart from its receiver.
+
+**Where it doesn't reach.** The theorem is about ideal codes over long blocks with unlimited decoding cost. "The receiver can reconstruct it" here means the information is there, not that the receiver can get at it quickly and cheaply. ARC-144, and more sharply GOV-CONTRACT-3, need the resource-bounded version. The result is also about one link at a time. It cannot say whether the obligations at many links overlap in a shared core, which is the part of ARC-144 that could fail.
+
+**Confidence.** 0.5, supports. Good grounds for writing the contract as per-link entries with distortion and receiver terms. It is a theorem, not a measurement, so it does not show the cognitive graph is actually organised this way.

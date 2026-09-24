@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_501",
+  "entry_id": "2026-09-24_mech_501_predict_present_reconstruct_past_hogendoorn2022",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-501"
+  ],
+  "source": {
+    "title": "Perception in real-time: predicting the present, reconstructing the past.",
+    "authors": [
+      "Hinze Hogendoorn"
+    ],
+    "year": 2022,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2021.11.003",
+    "pmid": "34973925",
+    "volume": "26",
+    "issue": "2",
+    "pages": "128-141"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "A published theoretical framework that is nearly isomorphic to ARC-129 plus MECH-501: predictive mechanisms extrapolate ahead to compensate for delays, and reconstruction mechanisms retroactively revise the represented timeline when predictions fail. Held at 0.45 because it is a review/proposal, it concerns perception rather than committed action, and it is independent convergence on the same idea rather than a test of it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Conceptual convergence can be mistaken for evidence; this paper proposes the mechanism, it does not demonstrate the discontinuity MECH-501 predicts.",
+    "Its 'reconstruction' revises the represented past (the timeline), whereas MECH-501 asserts replacement of the estimate consumed as 'now'; these may not be the same event."
+  ],
+  "tags": [
+    "mech_501",
+    "arc_129",
+    "predictive_perception",
+    "neural_delays",
+    "postdiction",
+    "reconstruction"
+  ],
+  "mapping": {
+    "source_claim_statement": "At any moment perceptual mechanisms represent an entire timeline: prediction runs ahead to compensate for transmission delays, and reconstruction retroactively revises perception when those predictions do not come true.",
+    "ree_translation": "Supplies an established name and literature home for MECH-501 (predict-then-reconstruct in real-time perception). It supports treating violation-triggered revision as a separate process from forward prediction, which is the claim's structural point.",
+    "mapping_caveat": "Framework is about perceptual representation of external events under neural delay; it makes no claim about committed action, value-weighted surprise, or interaction with stopping/decommitment circuitry. It frames revision as rewriting the past segment of the timeline, which is related to but not identical with pulling the 'now' estimate back toward s_hat(t).",
+    "source_context": "Trends in Cognitive Sciences opinion/review integrating flash-lag, motion extrapolation, EEG decoding and postdiction work."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Theory paper; high conceptual fidelity to ARC-129/MECH-501, no new data."
+  }
+}

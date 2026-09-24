@@ -1,0 +1,7 @@
+Rattermann and Gentner tested children on a causal-mapping task and report further evidence for Gentner's relational shift: younger children match analogues by object similarity, older children by shared relational structure. The paper is framed partly as a reply to Goswami, who showed that three- to six-year-olds could complete pictorial analogies based on familiar causal relations with few object-similarity errors.
+
+For MECH-421 it supports the reality of the phenomenon: relational mapping is a distinct mode, separable from surface matching, and it is the mode that wins out with development. For Q-074 the interesting part is the explanation. Gentner attributes the shift to growing relational knowledge in each domain, not to the maturation of a new mapping mechanism. That reads as support for analogy quality depending on the richness of the underlying relational representations (the MECH-419/MECH-420 stack), which is closer to the emergence horn.
+
+It does not settle the question. Structure-mapping theory keeps a single alignment process across development, so the knowledge account presupposes an alignment operation rather than deriving it. The Goswami dispute also means the size and timing of the shift depend on how familiar the relations are.
+
+I could only verify this paper through search-engine records (ScienceDirect, APA PsycNet and the author-hosted PDF header); publisher pages are blocked by the proxy and I did not read the full text. Confidence 0.45, direction mixed.

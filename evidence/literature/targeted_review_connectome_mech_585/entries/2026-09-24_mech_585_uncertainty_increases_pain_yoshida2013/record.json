@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_585",
+  "entry_id": "2026-09-24_mech_585_uncertainty_increases_pain_yoshida2013",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-585"
+  ],
+  "source": {
+    "title": "Uncertainty increases pain: evidence for a novel mechanism of pain modulation involving the periaqueductal gray.",
+    "authors": [
+      "Wako Yoshida",
+      "Ben Seymour",
+      "Martin Koltzenburg",
+      "Raymond J Dolan"
+    ],
+    "year": 2013,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4984-12.2013",
+    "pmid": "23536078",
+    "pmc": "PMC3701089",
+    "volume": "33",
+    "issue": "13",
+    "pages": "5638-46"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.4,
+  "confidence_rationale": "Shows that the uncertainty of a harm prediction is represented separately from its mean and has its own effect: observed uncertainty in others' pain ratings was hyperalgesic, independent of the mean's assimilative effect, and tracked PAG activity. That supports 'reliability represented separately and used'. But the use is to amplify the harm signal under uncertainty, not to discount an unreliable prediction, which cuts against a simple precision-down-weighting reading. Hence mixed at 0.4.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Uncertainty came from other people's ratings (vicarious, social), not from the subject's own predictor.",
+    "The hyperalgesic sign may reflect a protective prior under uncertainty, which a precision-weighting design would not reproduce."
+  ],
+  "tags": [
+    "mech_585",
+    "pain",
+    "uncertainty",
+    "periaqueductal_gray",
+    "hyperalgesia",
+    "vicarious"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mean observed pain ratings assimilated subjective pain, while the observed uncertainty (spread) had a separate, potent hyperalgesic effect correlated with periaqueductal gray activity.",
+    "ree_translation": "Mean and uncertainty of a harm prediction are dissociable and separately effective. But in biology low reliability can raise the harm signal rather than shrink its weight, which warns that MECH-585's 'weight by own precision' is a design choice and may need an explicit rule for what low reliability does to harm salience.",
+    "mapping_caveat": "Uncertainty is social information about the stimulus, not the subject's own predictor reliability; no calibration or model-error attribution. PAG, not insula/ACC.",
+    "source_context": "Human fMRI vicarious pain-observation paradigm with manipulated mean and variance of others' ratings before thermal stimulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.55,
+    "notes": "Clean dissociation of mean and uncertainty; the direction of the uncertainty effect complicates the claim's implied weighting."
+  }
+}

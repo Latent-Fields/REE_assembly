@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_boundary_contracts_information_bottleneck",
+  "entry_id": "2026-09-24_arc_144_decoder_side_information_rate_distortion_wyner1976",
+  "timestamp_utc": "2026-09-24T11:24:42Z",
+  "claim_ids_tested": [
+    "ARC-144"
+  ],
+  "source": {
+    "title": "The rate-distortion function for source coding with side information at the decoder",
+    "authors": [
+      "Aaron D. Wyner",
+      "Jacob Ziv"
+    ],
+    "year": 1976,
+    "venue": "IEEE Transactions on Information Theory",
+    "doi": "10.1109/TIT.1976.1055508",
+    "volume": "22",
+    "issue": "1",
+    "pages": "1-10"
+  },
+  "evidence_class": "theoretical_formalism",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Wyner-Ziv coding gives the minimum rate for sending X at a tolerated distortion when the decoder already holds correlated side information the encoder does not see. The required rate is a function of the receiver's side information, so the same source needs different rates to different receivers. That maps closely onto ARC-144's I_AB (what B needs minus what B can reconstruct locally) and its 'tolerated distortion' field. Held at 0.5 because it is a theorem about ideal codes with asymptotic block lengths and unbounded decoders, and gives no evidence that cognitive interfaces work this way.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Asymptotic, unbounded-complexity coding: 'the receiver can reconstruct it from side information' in Wyner-Ziv means information-theoretically, which is weaker than ARC-144's cheap-and-reliable local reconstruction.",
+    "It shows rate is receiver-indexed for a single link; it says nothing about the size of any shared core across many links, which is ARC-144's falsifier."
+  ],
+  "tags": [
+    "arc_144",
+    "wyner_ziv",
+    "side_information",
+    "distributed_source_coding",
+    "receiver_dependent_rate",
+    "rate_distortion"
+  ],
+  "mapping": {
+    "source_claim_statement": "The rate-distortion function for coding a source X when correlated side information Y is available only at the decoder is characterised; the minimum rate depends on Y and can be much lower than without it.",
+    "ree_translation": "Take Y as what receiver B already holds or can compute. Then the rate A must send to B at a given tolerated distortion is R_AB(D), which depends on B. The contract entry {A -> B : I_AB, tolerated distortion, receiver capability} is close to a Wyner-Ziv problem statement, one per directed link.",
+    "mapping_caveat": "ARC-144's 'cannot cheaply and reliably reconstruct' is a resource-bounded notion; Wyner-Ziv is resource-unbounded. ARC-144 also has fallback behaviour and latency, which the theorem ignores. Support is for the form of the contract entry, not for any empirical claim about REE.",
+    "source_context": "Classical information-theory result founding distributed source coding; follow-on 1978 paper by Wyner extends to general sources."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.6,
+    "notes": "Metadata (venue, volume 22, issue 1, pp. 1-10, DOI) from WebSearch hits; IEEE page egress-blocked. Not named in the claim's notes; added as the most exact formal counterpart of I_AB."
+  }
+}

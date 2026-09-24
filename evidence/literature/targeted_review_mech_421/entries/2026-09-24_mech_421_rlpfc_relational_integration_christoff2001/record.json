@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_421",
+  "entry_id": "2026-09-24_mech_421_rlpfc_relational_integration_christoff2001",
+  "timestamp_utc": "2026-09-24T11:24:37Z",
+  "claim_ids_tested": [
+    "MECH-421"
+  ],
+  "source": {
+    "title": "Rostrolateral prefrontal cortex involvement in relational integration during reasoning.",
+    "authors": [
+      "K Christoff",
+      "V Prabhakaran",
+      "J Dorfman",
+      "Z Zhao",
+      "J K Kroger",
+      "K J Holyoak",
+      "J D Gabrieli"
+    ],
+    "year": 2001,
+    "venue": "NeuroImage",
+    "doi": "10.1006/nimg.2001.0922",
+    "pmid": "11697945",
+    "volume": "14",
+    "issue": "5",
+    "pages": "1136-49"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "fMRI on Raven-style 0-, 1- and 2-relational problems found prefrontal recruitment specific to the 2- vs 1-relational contrast, with left rostrolateral PFC (lateral area 10) remaining selective even when RT and accuracy were matched. This is the standard anchor for relational integration as a separable component process, which is the core operation structure-mapping needs. Held near 0.5 because the task is matrix reasoning, not cross-domain analogy, and a separable activation does not show a dedicated mapping operator.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Relational integration on Raven matrices is within-domain pattern completion; it is not the cross-domain source-to-target mapping MECH-421 asserts, so a positive here can be read as more support than it is.",
+    "RLPFC selectivity may reflect generic manipulation of self-generated information (the authors' own suggestion) rather than anything relation-specific, which would make the region a working-memory resource, not an analogy substrate."
+  ],
+  "tags": [
+    "mech_421",
+    "relational_integration",
+    "rostrolateral_pfc",
+    "fmri",
+    "raven_matrices",
+    "q_074"
+  ],
+  "mapping": {
+    "source_claim_statement": "Considering multiple relations simultaneously (relational integration) is a component of complex reasoning that selectively recruits bilateral rostrolateral PFC and right DLPFC; left RLPFC stays selective for 2-relational problems after matching for RT and accuracy.",
+    "ree_translation": "Biological grounding for the claim that relational structure is processed as structure, separately from single-relation retrieval: the brain treats 'hold two relations and align them' as a distinct load. That is the operation MECH-421 needs on top of MECH-419/MECH-420.",
+    "mapping_caveat": "Says nothing about surface-dissimilar domains (containment vs inclusion, support vs commitment). A regional activation difference does not settle Q-074: RLPFC could be a general integration resource that a traversal-based analogy would also use.",
+    "source_context": "Event-related fMRI, healthy adults, problems adapted from Raven's Progressive Matrices at three relational levels."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Well-cited early fMRI study, modest sample; maps onto relational integration, not analogy across domains."
+  }
+}

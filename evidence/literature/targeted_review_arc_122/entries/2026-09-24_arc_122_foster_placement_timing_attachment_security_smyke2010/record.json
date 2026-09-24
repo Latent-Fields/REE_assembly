@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_122",
+  "entry_id": "2026-09-24_arc_122_foster_placement_timing_attachment_security_smyke2010",
+  "timestamp_utc": "2026-09-24T11:24:51Z",
+  "claim_ids_tested": [
+    "ARC-122"
+  ],
+  "source": {
+    "title": "Placement in foster care enhances quality of attachment among young institutionalized children.",
+    "authors": [
+      "Anna T Smyke",
+      "Charles H Zeanah",
+      "Nathan A Fox",
+      "Charles A Nelson",
+      "Donald Guthrie"
+    ],
+    "year": 2010,
+    "venue": "Child Development",
+    "doi": "10.1111/j.1467-8624.2009.01390.x",
+    "pmid": "20331663",
+    "pmc": "PMC4098033",
+    "volume": "81",
+    "issue": "1",
+    "pages": "212-23"
+  },
+  "evidence_class": "developmental_longitudinal_rct",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Randomised trial (BEIP) showing that attachment quality at 42 months depends on when family care begins: placement before 24 months raised the odds of secure attachment, and earlier placement lowered disorganised/insecure-other classifications. That supports a timed window for the caregiver-coupling phase, but the effect is graded with age at placement rather than a hard boundary, and later-placed children still formed organised attachments, which cuts against a strict gate. Held at 0.6 because mapping from infant attachment to an artificial agent's 'coupling' phase is loose.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 24-month cut is an analysis split in a sample placed between ~6 and ~31 months, not an observed discontinuity; reading it as a phase boundary overstates the data.",
+    "Attachment was still forming after placement at all ages, so the result shows diminishing returns with delay, not a closed window."
+  ],
+  "tags": [
+    "arc_122",
+    "attachment",
+    "sensitive_period",
+    "bucharest_early_intervention_project",
+    "foster_care",
+    "developmental_timing"
+  ],
+  "mapping": {
+    "source_claim_statement": "Among institutionalized Romanian children randomised to foster care or care as usual, those placed before 24 months were more likely to be securely attached at 42 months, and earlier placement was associated with fewer disorganised or insecure-other attachments.",
+    "ree_translation": "Bears on ARC-122 phase (1)-(2): coupling with a competent caregiver has a time-sensitive window, and delay degrades the quality of the coupling that later phases would rest on.",
+    "mapping_caveat": "Graded dose-by-timing effect, not a discrete phase transition; says nothing directly about play or language phases. An agent curriculum has no biological maturational clock, so 'window' must be re-derived as a plasticity schedule.",
+    "source_context": "Bucharest Early Intervention Project, RCT, N=169, Strange Situation-style attachment classification at 42 months."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Strong design (randomised placement), but timing of placement was not itself randomised; timing analyses are observational within the foster arm."
+  }
+}

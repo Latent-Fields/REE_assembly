@@ -1,0 +1,7 @@
+Carpenter, Nagell and Tomasello followed 24 infants monthly from 9 to 15 months, measuring joint engagement, gaze and point following, imitation, imperative and declarative gestures, and language comprehension and production, plus some nonsocial cognitive skills as a comparison. Social-cognitive skills appeared in a reliable order, from sharing to following to directing attention, and their ages of emergence were inter-related; the nonsocial skills did not follow that sequence. Time in joint engagement with the mother, and maternal language that followed the infant's focus, predicted the earliest gestural and linguistic communication.
+
+This is the joint-attention anchor the claim's note asks for, and it is verified. It fits MECH-308's picture of language growing out of shared-frame interaction built on basic-expression channels (mutual gaze, pointing). The social versus nonsocial comparison is the closest thing here to acceptance criterion A1.
+
+The mapping has gaps. Joint engagement is not the same as play_mode: it lacks the frame-bracketing and synthetic goal/harm structure the claim relies on. Much of the predictive power sits with the mother's follow-in talk, which is a caregiver-input effect and fits standard social-pragmatic accounts that need no play substrate. The sample is small and the design correlational.
+
+Confidence 0.5: supportive of the social-grounding part, silent on whether play specifically is the substrate.

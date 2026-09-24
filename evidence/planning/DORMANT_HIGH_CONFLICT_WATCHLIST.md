@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-09-24T10:26:33.986646Z`
+Generated: `2026-09-24T11:30:50.692007Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -18,8 +18,12 @@ Sorted worst-conflict-first.
 | `EXT-004` | `dormant_low_activity` | 1 | `candidate` | 1 |
 | `INV-088` | `chronic_under_threshold` | 1 | `candidate` | 9 |
 | `MECH-012` | `dormant_low_activity` | 1 | `candidate` | 0 |
+| `MECH-308` | `dormant_low_activity` | 1 | `candidate` | 0 |
+| `MECH-421` | `dormant_low_activity` | 1 | `candidate` | 0 |
 | `MECH-546` | `dormant_low_activity` | 1 | `candidate` | 0 |
 | `MECH-571` | `dormant_low_activity` | 1 | `candidate` | 0 |
+| `MECH-585` | `dormant_low_activity` | 1 | `candidate` | 0 |
+| `Q-074` | `dormant_low_activity` | 1 | `candidate` | 0 |
 | `Q-084` | `dormant_low_activity` | 1 | `candidate` | 0 |
 | `Q-090` | `dormant_low_activity` | 1 | `candidate` | 0 |
 | `MECH-074d` | `chronic_under_threshold` | 0.857 | `candidate` | 6 |
@@ -47,15 +51,16 @@ Sorted worst-conflict-first.
 | `MECH-130` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `MECH-143` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
 | `MECH-152` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
+| `MECH-405` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `MECH-445` | `chronic_under_threshold` | 0.667 | `candidate` | 8 |
 | `MECH-459` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
 | `MECH-466` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
 | `MECH-471` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
+| `MECH-479` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `MECH-489` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
 | `Q-001` | `dormant_low_activity` | 0.667 | `active` | 1 |
 | `Q-007` | `chronic_under_threshold` | 0.667 | `active` | 5 |
 | `Q-055` | `dormant_low_activity` | 0.667 | `open` | 0 |
-| `Q-074` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `Q-082` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `SD-007` | `chronic_under_threshold` | 0.667 | `implemented` | 18 |
 | `SD-031` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |

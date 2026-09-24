@@ -1,0 +1,9 @@
+# Sonuga-Barke et al. 2017 -- ERA young-adult follow-up
+
+**What they did.** The English and Romanian Adoptees study followed children who spent up to 43 months in severely depriving Romanian institutions before adoption into UK families, plus UK adoptees without deprivation. This paper reports symptom trajectories from age 6 to 22-25. Children were split, by design, into under 6 months and over 6 months of institutional exposure.
+
+**Why it matters for ARC-122.** Under 6 months of deprivation left no measurable long-term excess. Over 6 months produced autism-like symptoms, disinhibited social engagement (indiscriminate friendliness toward strangers) and inattention/overactivity that persisted into adulthood despite many years of good adoptive care. That is a clear case of early deficit in a competent caregiving environment having lasting social consequences, which is the downstream cost the claim's last sentence predicts. Disinhibited social engagement is especially relevant: it is a failure of selective trust, the thing ARC-122's later "trusted channel" phase depends on.
+
+**Where it doesn't reach.** Cognitive impairment, raised at ages 6 and 11, returned to normal rates by young adulthood, so not every early deficit is locked in. Emotional problems appeared late, and follow-up work (Golm et al. 2020) explains them as a cascade from early neurodevelopmental problems through poor adolescent social and vocational functioning. So domains run on different clocks, some recover, and later-life deficits can come from cascades rather than a missing phase. The 6-month split was chosen in advance, and deprivation was global, not only social.
+
+**Confidence.** 0.62, mixed. Supports the importance of early coupling; argues for domain-specific, graded windows over a single sequence of four phases.

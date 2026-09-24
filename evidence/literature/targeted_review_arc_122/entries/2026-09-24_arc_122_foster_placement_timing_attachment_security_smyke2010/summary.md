@@ -1,0 +1,9 @@
+# Smyke et al. 2010 -- foster placement timing and attachment security (BEIP)
+
+**What they did.** The Bucharest Early Intervention Project randomised children raised in Romanian institutions from birth either to stay in care as usual or to move into specially supported foster families. At 42 months the team classified attachment in 169 children, alongside never-institutionalised Romanian children. Attachment in the foster group differed markedly from the institutional group. Within the foster group, children placed before 24 months were more likely to be securely attached, and those placed earlier were less likely to show disorganised or other insecure patterns.
+
+**Why it matters for ARC-122.** This is the most direct human evidence on what the claim's phase (1)-(2) is about: a child coupling with a competent caregiver, and the quality of that coupling depending on when it happens. It supports the idea that there is a timed window in which caregiver coupling is best established, and that missing it has consequences for what comes after.
+
+**Where it doesn't reach.** The effect is graded. Earlier is better, and "before 24 months" is an analysis split, not a cliff. Children placed later still formed organised attachments to their foster carers, so the window narrows rather than closes. The age of placement was not randomised; only placement itself was. A companion BEIP paper (McLaughlin et al. 2015, PNAS, PMID 25902515) found different cut-points for different stress-system measures (before 24 months for cortisol reactivity, before 18 months for parasympathetic reactivity), which suggests several overlapping domain-specific windows rather than one coupling phase with a single end.
+
+**Confidence.** 0.6, mixed. It supports "timing of coupling matters" and weakens "a strict, discrete phase that must complete before the next begins".

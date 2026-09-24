@@ -1,0 +1,9 @@
+# Xu, Zhao, Song, Stewart & Ermon 2020 -- usable information
+
+**What they did.** Shannon mutual information treats information as present if any function could extract it, however expensive. Xu and colleagues define predictive V-information: how much a variable helps predict another *using only models from a family V*. Mutual information is the special case where V contains every model. The main consequence is that V-information can be created by computation. Processing a signal can make information usable that was not usable before, which Shannon's data processing inequality forbids.
+
+**Why it matters for GOV-CONTRACT-3.** This is the most direct published support for the rule's load-bearing clause. GOV-CONTRACT-3 says information-theoretic reducibility ("the information exists somewhere in the sender") is not enough, and only reducibility the receiver can achieve with plausible resources counts. V-information gives that distinction a formal definition and says why it matters: under Shannon information, almost any candidate is redundant given a rich enough basis, exactly as the rule's notes warn. Under a bounded V it need not be. It also bears on ARC-144, since "what B cannot cheaply reconstruct locally" is the gap between what is Shannon-available and what is V_B-available to receiver B.
+
+**Where it doesn't reach.** V is a model class the analyst picks. Nothing in the paper says what V is for a hippocampal replay consumer or an REE engine, and the choice of V decides whether a reduction is admissible. So the rule would need to fix V, the decoder class, before scoring a merge. That is the rule's own requirement (1), "under fixed assumptions about precision and decoder power". The paper also covers decoder power only. It has nothing on latency, robustness or side channels.
+
+**Confidence.** 0.6, supports. Cite it as the formal basis for "operational, not information-theoretic", along with the caveat that V must be fixed in advance.

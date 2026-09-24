@@ -1,0 +1,7 @@
+Lillard and colleagues reviewed correlational and play-training studies to ask whether pretend play is crucial for development, one of several routes to the same outcome (equifinality), or an epiphenomenon of other causes. For language, narrative and emotion regulation they concluded the evidence fits all three positions and cannot yet separate them. For theory of mind, creativity and intelligence they found inconsistent correlations and failures to replicate when experimenters were masked, with some good studies favouring epiphenomenalism.
+
+This is the main counterweight for MECH-308. The claim does not only say play and language co-vary; it says language is a specialised game inside play_mode and that systems without play fail to acquire socially grounded language. That is a necessity claim, and the best review of the human pretend-play literature says necessity is unsupported.
+
+The review does not show play is irrelevant to language. Its language verdict is "insufficient", not "null". It also covers pretend play in preschoolers, which is later and narrower than the joint-play and social-frame competences MECH-308 puts at the root. So it mostly weakens the pretend-play -> theory of mind -> compositional language chain listed in the claim's evidence note, and says little about joint engagement at first-word onset.
+
+Confidence 0.55 for a weakening direction: strong source, partial mapping.

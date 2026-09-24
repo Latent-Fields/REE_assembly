@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_308",
+  "entry_id": "2026-09-24_mech_308_symbolic_play_language_meta_analysis_quinn2018",
+  "timestamp_utc": "2026-09-24T11:24:44Z",
+  "claim_ids_tested": [
+    "MECH-308"
+  ],
+  "source": {
+    "title": "The relationship between symbolic play and language acquisition: A meta-analytic review",
+    "authors": [
+      "Sara Quinn",
+      "Seamus Donnelly",
+      "Evan Kidd"
+    ],
+    "year": 2018,
+    "venue": "Developmental Review",
+    "doi": "10.1016/j.dr.2018.05.005",
+    "volume": "49",
+    "pages": "121-135"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Best quantitative summary of the play-language association: 35 studies, a robust small-to-medium correlation (reported r ~ .35) holding across ages 1-6, comprehension vs production, and concurrent vs longitudinal designs. It supports the tracking half of MECH-308 but is correlational only, and r ~ .35 leaves most language variance unexplained by play. Held near 0.5 because the claim asserts language is instantiated within play, which a moderate correlation cannot distinguish from a shared symbolic-capacity or shared-environment cause.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A shared third factor (general symbolic/representational capacity, nonverbal IQ, caregiver input) can produce the play-language correlation without play being the substrate of language.",
+    "Symbolic play measures often include verbal components or adult modelling, inflating the association."
+  ],
+  "tags": [
+    "mech_308",
+    "symbolic_play",
+    "language_acquisition",
+    "meta_analysis",
+    "correlational"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 35 studies, symbolic play and language are associated at a small-to-medium magnitude that is stable across age (1-6 y), language modality and concurrent vs longitudinal design.",
+    "ree_translation": "Direct but partial evidence for the MECH-308 prediction that language competence tracks play maturation (acceptance criterion A1, play half). The longitudinal component is the part closest to 'tracking' rather than co-occurrence.",
+    "mapping_caveat": "Symbolic/pretend play is only one slice of MECH-308's play_mode (which also covers social-frame opening/closing, rough-and-tumble, basic-expression exchange). The meta-analysis does not compare play against motor or sensory milestones, so A1's specificity clause is untested here. Correlation, not the causal 'language is a play-game' assertion.",
+    "source_context": "Meta-analysis of typically and atypically developing child samples; metadata verified via web search hits (ScienceDirect/Semantic Scholar/MPG listings); full text not retrieved in this session."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Effect size and moderator pattern taken from retrieved abstract-level summaries, not the full text."
+  }
+}

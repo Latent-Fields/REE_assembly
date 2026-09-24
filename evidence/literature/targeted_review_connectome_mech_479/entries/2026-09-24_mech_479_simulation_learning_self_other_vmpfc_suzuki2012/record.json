@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_479",
+  "entry_id": "2026-09-24_mech_479_simulation_learning_self_other_vmpfc_suzuki2012",
+  "timestamp_utc": "2026-09-24T11:24:33Z",
+  "claim_ids_tested": [
+    "MECH-479"
+  ],
+  "source": {
+    "title": "Learning to simulate others' decisions.",
+    "authors": [
+      "Shinsuke Suzuki",
+      "Norihiro Harasawa",
+      "Kenichi Ueno",
+      "Justin L Gardner",
+      "Noritaka Ichinohe",
+      "Masahiko Haruno",
+      "Kang Cheng",
+      "Hiroyuki Nakahara"
+    ],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.04.030",
+    "pmid": "22726841",
+    "volume": "74",
+    "issue": "6",
+    "pages": "1125-37"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Shows that modelling another's valuation directly recruits one's own valuation process in vmPFC (a simulated-other reward prediction error identical for self and other), but that this is insufficient: an additional action prediction error in dmPFC/dlPFC, driven by observing the other's choices, is required. Same core machinery plus a necessary adjunct. Held at 0.45 because the task is predicting another's choices, not planning on their behalf, and involves no multi-step lookahead.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Predicting what another will choose is not acting to change another's welfare; importing this as evidence about prosocial planning conflates theory-of-mind simulation with other-directed control.",
+    "The 'identical for self and other' vmPFC result is a shared-signal finding at fMRI resolution and does not establish shared neurons or shared planning."
+  ],
+  "tags": [
+    "mech_479",
+    "simulation_theory",
+    "vmpfc",
+    "dmpfc",
+    "self_other",
+    "other_modelling"
+  ],
+  "mapping": {
+    "source_claim_statement": "Simulating another's decisions uses a simulated-other reward prediction error in vmPFC that is identical for self and simulated other (direct recruitment), plus a simulated-other action prediction error in dmPFC/dlPFC needed to refine prediction from the other's observed choices.",
+    "ree_translation": "If an REE agent is to plan over a second agent's state, it needs a forward model of that agent. Suzuki et al. suggest the self valuation machinery can be reused for this but is not enough on its own; a separate other-behaviour tracking channel is needed. That is relevant to how the V4 other-agent model feeding MECH-479's planner should be built.",
+    "mapping_caveat": "The study concerns modelling another's values to predict their choices, not planning trajectories that change their harm or benefit. MECH-479's falsifier only requires the agent to PERCEIVE the other agent, which is weaker than simulating its decisions.",
+    "source_context": "fMRI, behavioural modelling; subjects predicted another's choices in a probabilistic reward task and learned the other's values over trials."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.55,
+    "notes": "High-quality computational fMRI; mapping indirect (other-modelling, not other-directed planning)."
+  }
+}

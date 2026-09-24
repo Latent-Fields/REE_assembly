@@ -1,0 +1,9 @@
+# Moriceau, Roth & Sullivan 2010 -- infant rat attachment learning and stress
+
+**What they did.** This review covers the Sullivan lab's work on how infant rats learn to attach to their mother. During the first nine postnatal days, pups readily learn odor preferences, even when the odor is paired with pain, while fear and aversion learning is weak. This overlaps the stress-hyporesponsive period, when pups make little corticosterone. The mechanism runs through high locus coeruleus norepinephrine to the olfactory bulb and piriform cortex. From about day 10, stress-induced corticosterone lets the amygdala engage, and pups can learn fear. But if the mother is present, pups aged 10-15 days learn preferences again and fear learning is suppressed, because she dampens their corticosterone and amygdala activity.
+
+**Why it matters for ARC-122.** This is the clearest mechanistic picture of what the claim's phase (1) might be: an early learning regime tilted toward coupling to the caregiver, followed by a transition that opens threat learning. It supports the idea that there is an innate coupling phase before the learner is allowed to form aversions, and that the transition out of it is regulated.
+
+**Where it doesn't reach.** Two things cut against ARC-122's current wording. The transition is reversible and caregiver-gated: maternal presence re-opens the earlier regime, which is graded and overlapping, not strictly sequential. And pups attach even to an abusive caregiver, so early coupling is not selective for a "competent environment". The mechanism secures the bond whatever the care quality, and the cost of poor care shows up later (the Sullivan lab links it to altered amygdala development). Rodent olfactory learning is also a long way from an artificial agent.
+
+**Confidence.** 0.58, mixed. Good support for a distinct early coupling regime; weakens the strict-sequence reading and the assumption that phase (1) presupposes a competent environment.

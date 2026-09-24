@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_479",
+  "entry_id": "2026-09-24_mech_479_sgacc_prosocial_prediction_error_lockwood2016",
+  "timestamp_utc": "2026-09-24T11:24:33Z",
+  "claim_ids_tested": [
+    "MECH-479"
+  ],
+  "source": {
+    "title": "Neurocomputational mechanisms of prosocial learning and links to empathy.",
+    "authors": [
+      "Patricia L Lockwood",
+      "Matthew A J Apps",
+      "Vincent Valton",
+      "Essi Viding",
+      "Jonathan P Roiser"
+    ],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1603198113",
+    "pmid": "27528669",
+    "pmc": "PMC5024617",
+    "volume": "113",
+    "issue": "35",
+    "pages": "9763-8"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Shows people can learn to obtain rewards for another person with the same reinforcement-learning algorithm as for self, but more slowly, and that a posterior sgACC/basal forebrain region carries a prediction error only in the prosocial condition. So the algorithm is shared while at least one neural node is other-specific. Held at 0.5 because it is a one-step bandit (no planning at all), so it speaks to the same-machinery question but not to the planned-vs-greedy question MECH-479 poses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A prosocial-selective sgACC prediction error in a bandit task shows other-specific VALUATION, not other-specific or shared PLANNING; reading it either way for MECH-479 over-extends it.",
+    "Slower prosocial learning could reflect motivation (trait empathy predicts it) rather than a representational limit."
+  ],
+  "tags": [
+    "mech_479",
+    "prosocial_learning",
+    "sgacc",
+    "prediction_error",
+    "empathy",
+    "other_specific_circuitry"
+  ],
+  "mapping": {
+    "source_claim_statement": "People learn to obtain rewards for others more slowly than for themselves; posterior sgACC/basal forebrain signals a prosocial prediction error only in the prosocial context, and its selectivity and learning speed scale with trait empathy.",
+    "ree_translation": "Evidence that benefit for another agent is learned through an RL-shaped signal but routed through a distinct, other-specific node. For REE this suggests that other-agent benefit_exposure may need its own value/error channel feeding the planner, rather than being a relabelled copy of the self channel.",
+    "mapping_caveat": "A one-step probabilistic choice task: no trajectory, no lookahead, no accumulation of the other's state. It is silent on whether the hippocampal planned pathway is required.",
+    "source_context": "fMRI, probabilistic reward learning for self / other person / no one; RL model fitting; trait empathy correlations."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Clean design, well-cited; bears on shared vs distinct machinery, not on planning horizon."
+  }
+}

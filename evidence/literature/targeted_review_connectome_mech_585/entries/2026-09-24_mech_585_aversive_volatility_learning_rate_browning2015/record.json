@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_585",
+  "entry_id": "2026-09-24_mech_585_aversive_volatility_learning_rate_browning2015",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-585"
+  ],
+  "source": {
+    "title": "Anxious individuals have difficulty learning the causal statistics of aversive environments.",
+    "authors": [
+      "Michael Browning",
+      "Timothy E Behrens",
+      "Gerhard Jocham",
+      "Jill X O'Reilly",
+      "Sonia J Bishop"
+    ],
+    "year": 2015,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3961",
+    "pmid": "25730669",
+    "pmc": "PMC4644067",
+    "volume": "18",
+    "issue": "4",
+    "pages": "590-6"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "In an aversive (shock) learning task, low-anxious people adjust how much each outcome updates their predictions to the volatility of the environment, as a Bayesian learner would; high-anxious people do not. That shows an estimate of how reliable current aversive predictions are, used to gate updating, but also that it is fragile and individually variable. Mixed because the reliability estimate tracks environmental volatility (a world property) rather than the predictor's own competence, and because its failure in anxiety shows the use is not guaranteed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Volatility is a property of the world (unexpected uncertainty), so this supports tracking world-change, not the model-error half of MECH-585's attribution.",
+    "Behaviour plus pupil only; no insula/ACC measurement, so the circuit locus is inferred."
+  ],
+  "tags": [
+    "mech_585",
+    "aversive_learning",
+    "volatility",
+    "learning_rate",
+    "anxiety",
+    "pupil"
+  ],
+  "mapping": {
+    "source_claim_statement": "Low-trait-anxious participants matched updating of aversive outcome predictions to environmental volatility, as predicted by a Bayesian model; high-trait-anxious participants adjusted less, linked to reduced pupil sensitivity to volatility.",
+    "ree_translation": "Aversive predictors in humans are accompanied by an estimate of how trustworthy their current predictions are (via volatility), and that estimate modulates learning from harm PEs. The anxiety deficit is a natural case of a harm stream whose PE is not correctly discounted, which is the failure MECH-585 attributes to the current substrate.",
+    "mapping_caveat": "What is estimated is environmental volatility, not the forward model's calibrated error, and it sets learning rate rather than attributing PE to world versus model. There is no competence-versus-persistence test. It says nothing about ACC or insula directly.",
+    "source_context": "Human aversive learning task (electric stimulation) with stable and volatile blocks; Bayesian learner model; pupillometry; trait anxiety individual differences."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.45,
+    "notes": "Strong design, aversive domain; the reliability tracked is world volatility, and the paper also shows the mechanism breaking down."
+  }
+}

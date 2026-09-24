@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_405",
+  "entry_id": "2026-09-24_mech_405_placebo_analgesia_reduces_pain_empathy_rutgen2015",
+  "timestamp_utc": "2026-09-24T11:24:34Z",
+  "claim_ids_tested": [
+    "MECH-405"
+  ],
+  "source": {
+    "title": "Placebo analgesia and its opioidergic regulation suggest that empathy for pain is grounded in self pain.",
+    "authors": [
+      "Markus Rutgen",
+      "Eva-Maria Seidel",
+      "Giorgia Silani",
+      "Igor Riecansky",
+      "Allan Hummer",
+      "Christian Windischberger",
+      "Predrag Petrovic",
+      "Claus Lamm"
+    ],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1511269112",
+    "pmid": "26417092",
+    "pmc": "PMC4611649",
+    "volume": "112",
+    "issue": "41",
+    "pages": "E5638-46"
+  },
+  "evidence_class": "neuroimaging_human_pharmacological",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Strongest causal (not merely co-activation) evidence that other-directed pain affect runs through the self-pain system: placebo analgesia lowered both first-hand pain and empathy for pain, with reduced anterior insula / midcingulate engagement, and naltrexone reversed both. This is the closest human analogue to 'other-bound suffering = own suffering stream + binding'. Held below 0.7 because effect sizes on empathy ratings were modest, it is one lab's paradigm, and it shows dependence on the self-pain channel, not that the other-model binding slot is the only additional ingredient.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Placebo expectation could lower general negative affect or rating tendency rather than the specific shared pain channel; the naltrexone reversal constrains but does not exclude this.",
+    "Shows dependence of empathy on self-pain machinery, not sufficiency: it cannot show that other-bound affect is NOTHING BUT the self stream plus binding."
+  ],
+  "tags": [
+    "mech_405",
+    "placebo_analgesia",
+    "empathy_for_pain",
+    "opioid",
+    "anterior_insula",
+    "shared_representation",
+    "causal_manipulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Experimentally reducing first-hand pain via placebo analgesia reduces empathy for another's pain and AI/MCC responses; blocking placebo analgesia with the opioid antagonist naltrexone normalises empathy, suggesting pain empathy is grounded in self-pain neural function and neurochemistry.",
+    "ree_translation": "Direct support for MECH-405's core routing assertion: dampening the agent's own suffering stream (SD-011 analogue) should dampen other-bound suffering in the same proportion. Gives a concrete REE falsifier: an attenuation of the self harm/suffering channel that leaves other-bound affect intact would refute the routing claim.",
+    "mapping_caveat": "Human adults with explicit empathy ratings; REE's other-model binding slot (ARC-083) has no identified correlate here. Supports the shared-stream half of the claim only; the attribution/binding half is untested by this design.",
+    "source_context": "fMRI RCT (n=102) plus psychopharmacological follow-up (n=50) with naltrexone; Vienna social neuroscience group."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Causal manipulation in a large sample; maps closely to the routing half of the claim; transfer risk from human rating paradigm."
+  }
+}

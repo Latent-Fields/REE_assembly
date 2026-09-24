@@ -1,0 +1,9 @@
+# Voita & Titov 2020 -- MDL probing charges for the decoder
+
+**What they did.** A standard way to ask whether a representation "contains" a property is to train a classifier (a probe) on it and report accuracy. The trouble is that a strong enough probe can learn the property itself, so accuracy barely separates real representations from random ones. Voita and Titov instead measure the minimum description length of the labels given the representation, using variational and online codes. The code length includes the cost of learning the decoder as well as its fit, so extraction that takes a lot of work shows up as extra bits. With this measure the comparisons became stable and separated representations from controls where accuracy did not.
+
+**Why it matters for GOV-CONTRACT-3.** The rule refuses a reduction when the lost distinctions move into "a more powerful decoder" or "expensive reconstruction machinery". MDL probing shows in practice that this loophole is real (accuracy-only probing falls into it) and that it can be closed by counting decoder effort in the same units as the payload. It is a working template for the "information rate + encoder/decoder complexity" part of the rule's cost. It also matches the MDL anchor the claim names: this is Rissanen's principle, per Grunwald's tutorial, put to exactly this use.
+
+**Where it doesn't reach.** The setting is external probes on language-model representations, not one module feeding another. A probe measures what an outside reader can decode, not what the real downstream consumer uses. Description length still depends on the probe family and coding scheme. Nor does the paper show that such cost terms can be estimated precisely enough to decide merges, which is the rule's own falsifying branch.
+
+**Confidence.** 0.5, supports the relocation checklist's decoder clause as method. Not evidence about REE.

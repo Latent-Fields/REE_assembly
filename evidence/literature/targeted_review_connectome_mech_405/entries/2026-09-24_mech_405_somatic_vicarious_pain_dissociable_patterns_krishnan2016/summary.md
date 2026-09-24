@@ -1,0 +1,7 @@
+Krishnan, Wager and colleagues trained multivariate fMRI patterns to predict the intensity of people's own pain (somatic) and of pain they rated in others from images (vicarious). Each pattern predicted its own condition well in new individuals, but each was at chance for the other. Body-location information was also carried in different places: somatosensory circuits for own pain, mentalizing-related circuits for others' pain. Two further studies generalised the somatic pattern to mechanical and electrical pain and replicated the dissociation.
+
+This is the most direct disconfirming evidence for the strong reading of MECH-405. If other-bound suffering were literally the agent's own suffering stream plus a binding tag, one would expect a decoder of own pain to carry some information about others' pain. It does not. The data fit an account in which the representation of another's pain is constructed separately, largely by inference.
+
+The mismatch is partial. The somatic signature is dominated by nociceptive and sensory features, and MECH-405 invokes the affective suffering stream, which the Singer and Lamm lines of work already put on the shared side. A shared affective component could sit underneath distinct whole-brain patterns. The vicarious task also relied on photographs of strangers, which favours an inferential route.
+
+Confidence 0.6, weakens. It supports narrowing the claim: other-bound affect may draw on the own affective stream as one input, rather than being that stream relabelled. It also suggests a transfer-decoding falsifier for REE.

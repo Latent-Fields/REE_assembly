@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-24T10:26:33.986646Z`
+Generated: `2026-09-24T11:30:50.692007Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -68,9 +68,11 @@ Use this as the human-in-the-loop review queue.
 | `ARC-139` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `ARC-140` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `ARC-142` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `ARC-144` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `EXT-003` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `EXT-004` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `EXT-005` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `GOV-CONTRACT-3` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `INV-040` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `INV-047` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `INV-078` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
@@ -145,6 +147,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-295` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-305` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-307` | `candidate_substrate_landed` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-308` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `MECH-309` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-312` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-313` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -180,8 +183,10 @@ Use this as the human-in-the-loop review queue.
 | `MECH-398` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-399` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-400` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
+| `MECH-405` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-408` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-411` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
+| `MECH-421` | `candidate` | Held by V6 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-426` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-430` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-432` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
@@ -203,11 +208,13 @@ Use this as the human-in-the-loop review queue.
 | `MECH-462` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-463` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `MECH-466` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
+| `MECH-479` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `pending_user` |
 | `MECH-480` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-481` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-487` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-499` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-500` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
+| `MECH-501` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-503` | `candidate` | Held by V4 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-520` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-521` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -231,6 +238,7 @@ Use this as the human-in-the-loop review queue.
 | `MECH-571` | `candidate` | Held by V5 architectural commitment (no V3-substrate decision required) | `held_v4_by_architectural_commitment` | `applied` |
 | `MECH-572` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-573` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
+| `MECH-585` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-033` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -1289,6 +1297,21 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate; V3-pending gate stands
 - Last rationale: Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.
 
+### ARC-144
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim has implementation_phase=v3 but no V3 experimental runs yet. No promotion or demotion should be applied until V3 experiments complete.; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### EXT-003
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
@@ -1345,6 +1368,21 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `dgolden` at `2026-09-03T20:44:11.976886Z`
 - Last selected option: Keep candidate; hold recorded
 - Last rationale: HOLD RECORDED (governance-20260903T2013, user present) so this stops re-flagging pending_user. The conflict is LITERATURE-ONLY and per the 2026-09-03 user ruling (EXT-003) a lit-only conflict is NON-GATING. Experimental channel today: EXT-005 has ONE genuine support (V3-EXQ-995 PASS, 2026-09-03) and its wording is narrowed per GFLAG-0125 with ree_mechanism corrected per GFLAG-0127. Status stays candidate on ABSENT/INSUFFICIENT experimental evidence, not on conflict resolution.
+
+### GOV-CONTRACT-3
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim has implementation_phase=v3 but no V3 experimental runs yet. No promotion or demotion should be applied until V3 experiments complete.; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
 
 ### INV-040
 - Current status: `candidate`
@@ -2549,7 +2587,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-290
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=1, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -2689,6 +2727,25 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-05-08T22:34:09Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: v3_pending=true; pipeline gate. EXQ-540 is the queued discriminative validation; revisit after it runs.
+
+### MECH-308
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=2, weakens=2, mixed=1, unknown=0, conflict_ratio=1
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+- Status note: Prior decision exists but recommendation changed; needs fresh review.
+- Last logged decision: `applied` by `dgolden` at `2026-06-06T07:53:48.739107Z`
+- Last selected option: Keep held under the V4 architectural commitment (correct path).
+- Last rationale: 2026-06-06 insights-recs reclassification: claim is v3_pending AND implementation_phase=v4 -> deliberately V4-deferred by architectural commitment, not awaiting V3 substrate. Routed off hold_pending_v3_substrate/pending_user to held_v4_by_architectural_commitment (applied) per the 2026-04-27 misclassification fix. No claim status changes; promotion/demotion stays suppressed.
 
 ### MECH-309
 - Current status: `candidate`
@@ -3090,7 +3147,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-349
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=1, weakens=0, mixed=0, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=2, weakens=0, mixed=0, unknown=0, conflict_ratio=0
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -3293,6 +3350,20 @@ Use this as the human-in-the-loop review queue.
   - Which V4 substrate milestone unblocks this claim?
 - Decision status: `applied`
 
+### MECH-405
+- Current status: `candidate`
+- Decision needed: Held by V5 architectural commitment (no V3-substrate decision required)
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v5: it is deferred to V5 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V5 substrate work is scheduled.; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
+- Recommendation: `held_v4_by_architectural_commitment`
+- Options (pros/cons):
+  - Keep held under the V5 architectural commitment (correct path).
+  - Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.
+  - Mark legacy/superseded if the commitment is withdrawn.
+- Discussion scope with Codex:
+  - Is this claim genuinely V5-scoped, or has a V3 substrate since made it tractable?
+  - Which V5 substrate milestone unblocks this claim?
+- Decision status: `applied`
+
 ### MECH-408
 - Current status: `candidate`
 - Decision needed: Held by V5 architectural commitment (no V3-substrate decision required)
@@ -3323,6 +3394,20 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `user` at `2026-07-01T01:23:10.371814Z`
 - Last selected option: Keep held under the V5 architectural commitment (correct path).
 - Last rationale: 2026-07-01 governance: implementation_phase=v5 AND v3_pending -> deliberately V5-deferred by architectural commitment, NOT awaiting V3 substrate. Reclassified off hold_pending_v3_substrate to held_v4_by_architectural_commitment (indexer v5 branch fix, extends the 2026-04-27 v4 misclassification fix). No status change; promotion/demotion stays suppressed.
+
+### MECH-421
+- Current status: `candidate`
+- Decision needed: Held by V6 architectural commitment (no V3-substrate decision required)
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v6: it is deferred to V6 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V6 substrate work is scheduled.; directions supports=1, weakens=1, mixed=3, unknown=0, conflict_ratio=1
+- Recommendation: `held_v4_by_architectural_commitment`
+- Options (pros/cons):
+  - Keep held under the V6 architectural commitment (correct path).
+  - Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.
+  - Mark legacy/superseded if the commitment is withdrawn.
+- Discussion scope with Codex:
+  - Is this claim genuinely V6-scoped, or has a V3 substrate since made it tractable?
+  - Which V6 substrate milestone unblocks this claim?
+- Decision status: `applied`
 
 ### MECH-426
 - Current status: `candidate`
@@ -3685,6 +3770,22 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Governance 2026-07-29: V3-EXQ-831 is this claim's first-ever experimental test (weakens, clean, all preconditions cleared) -- waking-only scope does not exceed clock-locked coordination. Sleep-engagement follow-up (use_sleep_loop=True) flagged as likely load-bearing per 829's independent finding. Hold acknowledged, no status change.
 
+### MECH-479
+- Current status: `candidate`
+- Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
+- Why this decision is needed: epistemic_category=substrate_conditional, exp_conf=0, conflict_ratio=0.667, exp_entries=0, lit_entries=5; directions supports=2, weakens=1, mixed=2, unknown=0, conflict_ratio=0.667
+- Evidence quality note: >
+- Recommendation: `hold_candidate_resolve_conflict`
+- Options (pros/cons):
+  - Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)
+  - Escalate the upstream probe/substrate dependency if resolving this conflict has become urgent
+  - Re-open for conflict-resolution experiments once the upstream probe/substrate lands and the gate clears
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### MECH-480
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
@@ -3757,6 +3858,20 @@ Use this as the human-in-the-loop review queue.
 - Current status: `candidate`
 - Decision needed: Held by V4 architectural commitment (no V3-substrate decision required)
 - Why this decision is needed: Claim is v3_pending AND implementation_phase=v4: it is deferred to V4 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V4 substrate work is scheduled.; directions supports=0, weakens=1, mixed=1, unknown=0, conflict_ratio=0
+- Recommendation: `held_v4_by_architectural_commitment`
+- Options (pros/cons):
+  - Keep held under the V4 architectural commitment (correct path).
+  - Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.
+  - Mark legacy/superseded if the commitment is withdrawn.
+- Discussion scope with Codex:
+  - Is this claim genuinely V4-scoped, or has a V3 substrate since made it tractable?
+  - Which V4 substrate milestone unblocks this claim?
+- Decision status: `applied`
+
+### MECH-501
+- Current status: `candidate`
+- Decision needed: Held by V4 architectural commitment (no V3-substrate decision required)
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v4: it is deferred to V4 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V4 substrate work is scheduled.; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Recommendation: `held_v4_by_architectural_commitment`
 - Options (pros/cons):
   - Keep held under the V4 architectural commitment (correct path).
@@ -4161,6 +4276,21 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate; V3-pending gate stands
 - Last rationale: Governance cycle governance-20260923-0717: user accepted all 33 pending_user hold_pending_v3_substrate recommendations as recommended (rec-20260923-34f34743). No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.
 
+### MECH-585
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=1, weakens=1, mixed=3, unknown=0, conflict_ratio=1
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### Q-022
 - Current status: `open`
 - Decision needed: Question narrowing review
@@ -4449,7 +4579,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-074
 - Current status: `candidate`
 - Decision needed: Held by V6 architectural commitment (no V3-substrate decision required)
-- Why this decision is needed: Claim is v3_pending AND implementation_phase=v6: it is deferred to V6 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V6 substrate work is scheduled.; directions supports=2, weakens=1, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: Claim is v3_pending AND implementation_phase=v6: it is deferred to V6 by an architectural commitment, not awaiting V3 substrate. Promotion/demotion stays suppressed; no V3-substrate decision is pending. Revisit when V6 substrate work is scheduled.; directions supports=2, weakens=2, mixed=3, unknown=0, conflict_ratio=1
 - Recommendation: `held_v4_by_architectural_commitment`
 - Options (pros/cons):
   - Keep held under the V6 architectural commitment (correct path).
@@ -4671,7 +4801,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-009
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.221, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.22, conflict_ratio=0.5, exp_entries=1, lit_entries=3; directions supports=3, weakens=1, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: [2026-08-08 governance, V3-EXQ-897, confirmed failure_autopsy_V3-EXQ-897_2026-08-08]: well-controlled ablation (2 arms x 3 seeds) of an additional event-type CE head layered on the SD-070 anti-collapse recipe (held constant in both arms). Positive control and encoder-trained preconditions both met. Primary DV (held-out frozen-probe decodability margin) clears the floor in BOTH arms (mean ON 0.065,…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -4746,7 +4876,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-024
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.671, conflict_ratio=0.5, exp_entries=1, lit_entries=5; directions supports=3, weakens=1, mixed=2, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.67, conflict_ratio=0.5, exp_entries=1, lit_entries=5; directions supports=3, weakens=1, mixed=2, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -5406,10 +5536,14 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `INV-091` | `candidate` | 1 |
 | `MECH-012` | `candidate` | 1 |
 | `MECH-055` | `candidate` | 1 |
+| `MECH-308` | `candidate` | 1 |
+| `MECH-421` | `candidate` | 1 |
 | `MECH-440` | `candidate` | 1 |
 | `MECH-445` | `candidate` | 1 |
 | `MECH-546` | `candidate` | 1 |
 | `MECH-571` | `candidate` | 1 |
+| `MECH-585` | `candidate` | 1 |
+| `Q-074` | `candidate` | 1 |
 | `Q-084` | `candidate` | 1 |
 | `Q-090` | `candidate` | 1 |
 | `SD-016` | `implemented` | 1 |
@@ -5438,12 +5572,13 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-130` | `candidate` | 0.667 |
 | `MECH-143` | `candidate` | 0.667 |
 | `MECH-152` | `candidate` | 0.667 |
+| `MECH-405` | `candidate` | 0.667 |
 | `MECH-463` | `candidate` | 0.667 |
 | `MECH-466` | `candidate` | 0.667 |
+| `MECH-479` | `candidate` | 0.667 |
 | `Q-001` | `active` | 0.667 |
 | `Q-007` | `active` | 0.667 |
 | `Q-055` | `open` | 0.667 |
-| `Q-074` | `candidate` | 0.667 |
 | `Q-082` | `candidate` | 0.667 |
 | `SD-031` | `candidate` | 0.667 |
 | `MECH-099` | `candidate` | 0.6 |
@@ -5454,6 +5589,8 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `ARC-019` | `provisional` | 0.5 |
 | `ARC-058` | `candidate` | 0.5 |
 | `ARC-121` | `candidate` | 0.5 |
+| `ARC-144` | `candidate` | 0.5 |
+| `GOV-CONTRACT-3` | `candidate` | 0.5 |
 | `INV-088` | `candidate` | 0.5 |
 | `MECH-003` | `provisional` | 0.5 |
 | `MECH-005` | `provisional` | 0.5 |
@@ -5465,6 +5602,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-144` | `candidate` | 0.5 |
 | `MECH-188` | `candidate` | 0.5 |
 | `MECH-321` | `candidate` | 0.5 |
+| `MECH-501` | `candidate` | 0.5 |
 | `Q-089` | `candidate` | 0.5 |
 | `Q-093` | `open` | 0.5 |
 | `Q-095` | `open` | 0.5 |
@@ -5510,9 +5648,4 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `ARC-007` | `provisional` | 0.312 |
 | `ARC-030` | `candidate` | 0.308 |
 
-WARNING: 114 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
-
-## Substrate changes with dependent invariants
-
-No substrate status changes this run. No dependent invariants flagged.
-
+WARNING: 122 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.

@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_501",
+  "entry_id": "2026-09-24_mech_501_prediction_revision_latency_cost_blom2021",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-501"
+  ],
+  "source": {
+    "title": "The time-course of prediction formation and revision in human visual motion processing.",
+    "authors": [
+      "Tessel Blom",
+      "Stefan Bode",
+      "Hinze Hogendoorn"
+    ],
+    "year": 2021,
+    "venue": "Cortex",
+    "doi": "10.1016/j.cortex.2021.02.008",
+    "pmid": "33711770",
+    "volume": "138",
+    "pages": "191-202"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.4,
+  "confidence_rationale": "Time-resolved EEG decoding shows predictive latency advantages for expected positions and an additional latency disadvantage when the trajectory unexpectedly reverses, i.e. the predictive activation must be overcome before the violating input is represented. This is neural evidence that revising a forward prediction is a distinct, measurable event with a cost. Held at 0.4 because it measures latency of position representations in passive apparent motion, not a discontinuity in a state estimate during committed action.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A latency penalty for unexpected stimuli is also predicted by generic expectation/adaptation accounts that involve no forward-displaced 'now'.",
+    "Apparent-motion sequences are highly predictable by construction; effect sizes may not transfer to naturalistic or action-generated sequences."
+  ],
+  "tags": [
+    "mech_501",
+    "eeg_decoding",
+    "motion_prediction",
+    "prediction_revision",
+    "trajectory_reversal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Predictive activation facilitates processing of a moving object at its expected position, and the same activation must be overcome when the trajectory unexpectedly reverses, producing a latency disadvantage for prediction-violating stimuli.",
+    "ree_translation": "Neural-level support that a violation of a forward prediction requires active revision of a pre-activated representation, and that this revision is detectable in the time course. Bears on MECH-501's corollary that unexpected violations should produce stronger reconstruction than expected corrections, since the cost arises specifically from the expectation.",
+    "mapping_caveat": "The dependent measure is decoding latency, not a representational jump back toward the sensory-current state. No action, commitment, or consequence manipulation; the 'expected within-trajectory correction of the same magnitude' comparison in MECH-501's corollary is not run.",
+    "source_context": "Human EEG with multivariate decoding of stimulus position in an apparent-motion paradigm including unexpected reversals."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Single EEG study; clean design; indirect mapping to the claim's state-estimate discontinuity."
+  }
+}

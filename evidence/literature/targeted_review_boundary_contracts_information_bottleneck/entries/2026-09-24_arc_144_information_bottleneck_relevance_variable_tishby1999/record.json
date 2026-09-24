@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_boundary_contracts_information_bottleneck",
+  "entry_id": "2026-09-24_arc_144_information_bottleneck_relevance_variable_tishby1999",
+  "timestamp_utc": "2026-09-24T11:24:42Z",
+  "claim_ids_tested": [
+    "ARC-144",
+    "GOV-CONTRACT-3"
+  ],
+  "source": {
+    "title": "The information bottleneck method",
+    "authors": [
+      "Naftali Tishby",
+      "Fernando C. N. Pereira",
+      "William Bialek"
+    ],
+    "year": 1999,
+    "venue": "Proceedings of the 37th Annual Allerton Conference on Communication, Control and Computing",
+    "pages": "368-377",
+    "url": "https://arxiv.org/abs/physics/0004057"
+  },
+  "evidence_class": "theoretical_formalism",
+  "evidence_direction": "supports",
+  "confidence": 0.45,
+  "confidence_rationale": "The IB defines relevant information only relative to a chosen relevance variable Y: the optimal compression of X depends on Y, so there is no Y-free notion of what must be kept. That is formal backing for the idea that what crosses a boundary depends on the consumer's task, which is ARC-144's core. Held low because the IB is a formal definition, not evidence about brains or REE; it is motivational for the per-boundary indexing and does not by itself show that obligations differ across real interfaces or that a shared core is small.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reading 'relevance is relative to Y' as evidence that real cognitive interfaces have different obligation sets; the IB only says they would if their consumers' relevance variables differ.",
+    "The IB assumes the joint p(x,y) is known and the decoder unconstrained; it measures information-theoretic, not operational, sufficiency -- exactly the standard GOV-CONTRACT-3 rules inadmissible."
+  ],
+  "tags": [
+    "arc_144",
+    "information_bottleneck",
+    "relevance_variable",
+    "task_dependent_compression",
+    "rate_distortion"
+  ],
+  "mapping": {
+    "source_claim_statement": "Relevant information in a signal X is defined as the information it carries about another variable Y; the optimal compressed representation T minimises I(T;X) subject to preserving I(T;Y), with a trade-off parameter, and the solution depends on the choice of Y.",
+    "ree_translation": "For a handoff A -> B, take Y to be the variables B's task needs. Then I_AB is (roughly) the IB-relevant part of A's state for Y_B, and two receivers with different Y give different optimal payloads. This is the cleanest formal statement of 'boundary-indexed, not one universal header'.",
+    "mapping_caveat": "ARC-144 defines I_AB as what B needs and CANNOT CHEAPLY RECONSTRUCT locally; the IB has no term for receiver-side resources or side information (see Wyner-Ziv entry for that). The IB also counts Shannon information with an ideal decoder, which GOV-CONTRACT-3 explicitly refuses as a reduction standard. So it supports ARC-144's framing and is at best a starting formalism for GOV-CONTRACT-3's cost, not a validation of it.",
+    "source_context": "Foundational information-theory paper introducing the IB as a variational principle generalising rate-distortion with a relevance-defined distortion."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Canonical and correct as mathematics; mapping is conceptual; transfer to a neural/agent substrate unmeasured. Metadata verified by WebSearch hits (arXiv physics/0004057, Allerton 1999 pp. 368-377); publisher/arXiv pages were egress-blocked in this session, so no DOI is given."
+  }
+}

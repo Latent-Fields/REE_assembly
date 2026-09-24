@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_585",
+  "entry_id": "2026-09-24_mech_585_pain_expectation_precision_pag_grahl2018",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-585"
+  ],
+  "source": {
+    "title": "The periaqueductal gray and Bayesian integration in placebo analgesia.",
+    "authors": [
+      "Arvina Grahl",
+      "Selim Onat",
+      "Christian B\u00fcchel"
+    ],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.32930",
+    "pmid": "29555019",
+    "pmc": "PMC5860873",
+    "volume": "7"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Shows that the precision of a harm-relevant expectation (expected pain relief), not just its magnitude, is represented and used: placebo effects scaled with the relative precision of the prior, with neural correlates in PAG and RVM. This is the 'reliability is attached to the predicted-harm magnitude and is used' half of MECH-585. Capped at 0.55 because the precision is the subject's own belief precision about a treatment, measured by rating spread, not a calibrated estimate of a forward model's error, and the site is brainstem rather than insula/ACC.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Precision was estimated from the spread of expectation ratings; subjective belief precision can be miscalibrated, so 'precision is used' does not imply 'calibrated reliability is used'.",
+    "Placebo paradigm: prior precision weights perception, not the attribution of a PE to world versus model."
+  ],
+  "tags": [
+    "mech_585",
+    "pain",
+    "precision_weighting",
+    "bayesian_integration",
+    "periaqueductal_gray",
+    "placebo"
+  ],
+  "mapping": {
+    "source_claim_statement": "Expectations (prior) and nociceptive input (likelihood) are combined weighted by their relative precision; subjects with more precise treatment expectations showed larger placebo hypoalgesia, and prior precision had neural correlates in PAG and RVM.",
+    "ree_translation": "A harm-stream prediction carries its own precision, separate from its magnitude, and that precision sets how much the prediction versus the incoming signal governs the outcome. This backs MECH-585's requirement that the harm PE be weighted by the harm predictor's own precision rather than one borrowed from another stream.",
+    "mapping_caveat": "Precision here is prior belief precision, not a per-state calibrated expected error of a learned model, and it modulates perception rather than error attribution. No competence floor. Anatomy is PAG/RVM, not the dACC consumer named in the claim.",
+    "source_context": "fMRI with heat pain and a placebo manipulation in 62 healthy subjects; Bayesian model with prior and likelihood precision."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Stream-specific precision is the near-literal match; the calibration and attribution parts of the claim are not tested."
+  }
+}

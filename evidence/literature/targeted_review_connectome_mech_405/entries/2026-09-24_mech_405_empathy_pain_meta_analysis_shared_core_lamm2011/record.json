@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_405",
+  "entry_id": "2026-09-24_mech_405_empathy_pain_meta_analysis_shared_core_lamm2011",
+  "timestamp_utc": "2026-09-24T11:24:34Z",
+  "claim_ids_tested": [
+    "MECH-405"
+  ],
+  "source": {
+    "title": "Meta-analytic evidence for common and distinct neural networks associated with directly experienced pain and empathy for pain.",
+    "authors": [
+      "Claus Lamm",
+      "Jean Decety",
+      "Tania Singer"
+    ],
+    "year": 2011,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2010.10.014",
+    "pmid": "20946964",
+    "volume": "54",
+    "issue": "3",
+    "pages": "2492-502"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Image-based (9 studies) and coordinate-based (32 studies) meta-analysis confirms a reliable anterior insula / anterior-midcingulate core shared between first-hand pain and empathy for pain, consistent with routing through own affective machinery. Held at 0.6 because overlap in fMRI is not identity of representation, and the meta-analysis itself shows paradigm-dependent recruitment of mentalizing (TPJ, vmPFC, precuneus) or action-understanding regions, i.e. more than the self stream is involved.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Spatial overlap at fMRI resolution can reflect distinct but intermixed populations or domain-general salience/negative-affect responses rather than a shared suffering representation.",
+    "Paradigm-dependence (cue-based vs picture-based) means 'empathy for pain' is not one mechanism; the shared-core reading applies best to the affective component."
+  ],
+  "tags": [
+    "mech_405",
+    "empathy_for_pain",
+    "anterior_insula",
+    "anterior_cingulate",
+    "shared_representation",
+    "meta_analysis",
+    "mentalizing"
+  ],
+  "mapping": {
+    "source_claim_statement": "A core network of bilateral anterior insula and medial/anterior cingulate is associated with empathy for pain and overlaps with directly experienced pain; depending on paradigm it co-activates with action-understanding regions (picture-based) or mentalizing regions (abstract cue-based); only picture-based paradigms recruit somatosensory cortex.",
+    "ree_translation": "Supports the claim that other-bound affect reuses the agent's own affective (not sensory) streams: the shared core is the affective/interoceptive component, matching MECH-405's choice of SD-011 suffering and MECH-112 wanting rather than sensory channels. The paradigm-dependent add-ons map onto the other-model slot (mentalizing) and ARC-010 mirror modelling (action understanding).",
+    "mapping_caveat": "Co-activation evidence only. The distinct networks are as informative as the shared core: they indicate that the 'binding' part of the claim is carried by separate machinery whose contribution varies with cue type, which the claim text does not currently acknowledge.",
+    "source_context": "Image-based and coordinate-based fMRI meta-analysis of empathy-for-pain studies (includes the Singer et al. 2004 Science loved-one paradigm lineage)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Solid meta-analysis; mapping limited by correlational overlap; affective-not-sensory split maps well onto the claim's choice of streams."
+  }
+}

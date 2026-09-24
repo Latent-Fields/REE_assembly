@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_501",
+  "entry_id": "2026-09-24_mech_501_transient_corrects_forward_displacement_maus2009",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-501"
+  ],
+  "source": {
+    "title": "Going, going, gone: localizing abrupt offsets of moving objects.",
+    "authors": [
+      "Gerrit W Maus",
+      "Romi Nijhawan"
+    ],
+    "year": 2009,
+    "venue": "Journal of Experimental Psychology: Human Perception and Performance",
+    "doi": "10.1037/a0012317",
+    "pmid": "19485681",
+    "volume": "35",
+    "issue": "3",
+    "pages": "611-26"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "The closest psychophysical match to MECH-501's core computational event: a forward-extrapolated position estimate that is pulled back toward the sensed position when an abrupt trajectory change produces a transient signal, with graded intermediate positions as transient strength and motion signal strength are traded off. Held at 0.55 because the paradigm is passive visual motion, not a committed action, and the 'reconstruction' is inferred from end-point reports rather than measured as a discontinuity in an internal estimate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The corrected percept is equally explained by a pure postdictive (no-extrapolation) account; the paper's two-process reading is favoured, not proven.",
+    "Passive object motion has no commitment, so evidence here cannot separate state-estimate correction from action decommitment, which is the distinction MECH-501 rests on."
+  ],
+  "tags": [
+    "mech_501",
+    "motion_extrapolation",
+    "forward_displacement",
+    "transient_signals",
+    "postdiction",
+    "state_estimate_correction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Two competing position representations exist for moving objects: an extrapolated internal-model estimate that runs ahead of the sensory input, and a transient-driven signal elicited by sudden trajectory changes that corrects the forward-shifted estimate; weaker motion or stronger transients yield less forward displacement.",
+    "ree_translation": "Direct analogue of ARC-129's forward-displaced s_hat(t+tau) and of MECH-501's backward pull toward s_hat(t) when a salient violation arrives. The graded trade-off (transient strength vs extrapolation strength) suggests the reconstruction should be magnitude-dependent rather than all-or-none, which is testable in REE.",
+    "mapping_caveat": "Perceptual localisation of an external object, not the agent's own current-state estimate during a committed action. No consequence/value manipulation, so the 'sufficiently consequential' gate in the claim is untested; the violation here is sensory salience (onset/offset transient), not a prediction error weighted by consequence.",
+    "source_context": "Three psychophysics experiments on localisation of moving objects that abruptly disappear, briefly disappear, or drop in contrast."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Well-controlled psychophysics with a parametric manipulation; mapping is to the computational form only, not to action commitment."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_585",
+  "entry_id": "2026-09-24_mech_585_insula_risk_prediction_error_preuschoff2008",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-585"
+  ],
+  "source": {
+    "title": "Human insula activation reflects risk prediction errors as well as risk.",
+    "authors": [
+      "Kerstin Preuschoff",
+      "Steven R Quartz",
+      "Peter Bossaerts"
+    ],
+    "year": 2008,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4286-07.2008",
+    "pmid": "18337404",
+    "pmc": "PMC6670675",
+    "volume": "28",
+    "issue": "11",
+    "pages": "2745-52"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Direct evidence that a region in the aversive/interoceptive network (anterior insula) carries a second-order signal: the error in the predicted size of prediction errors (risk prediction error), separable from the first-order reward prediction error. That is the existence of an 'expected error' channel attached to a first-order predictor. Held at 0.5 and marked mixed because the task is a monetary gamble whose risk is purely aleatoric outcome variance with a known generative model; it does not show the brain estimating its OWN predictor's reliability or separating model error from world variance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Risk here is outcome variance of a known lottery (aleatoric), so a positive reading conflates 'expected squared error' with 'predictor competence'; MECH-585 needs the latter.",
+    "Reward gambling, not harm; transfer to the harm stream assumes insula's role is valence-general."
+  ],
+  "tags": [
+    "mech_585",
+    "anterior_insula",
+    "risk_prediction_error",
+    "second_order_prediction",
+    "uncertainty"
+  ],
+  "mapping": {
+    "source_claim_statement": "Early-onset anterior insula activation correlates with risk prediction error (the mismatch between predicted and realised squared reward prediction error); a later activation tracks risk prediction itself.",
+    "ree_translation": "Biological precedent for ingredient (a) of MECH-585: a per-state expected-error estimate, updated by its own error signal, maintained alongside the first-order PE. Supports that a predicted magnitude can carry an associated, separately-learned expected-error term.",
+    "mapping_caveat": "Expected error here is irreducible outcome variance, not calibrated model error of a learned forward model; nothing in the design lets the insula attribute error to 'my predictor is bad' versus 'the world is noisy'. No competence-floor analogue. Valence is reward, not harm.",
+    "source_context": "fMRI, human card-gambling task with continuously changing reward probability and hence risk."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Well-cited, model-based fMRI; mapping is to the expected-error representation only, not to the attribution the claim asserts."
+  }
+}

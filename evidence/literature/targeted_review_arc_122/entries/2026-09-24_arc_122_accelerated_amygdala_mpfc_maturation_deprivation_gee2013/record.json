@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_122",
+  "entry_id": "2026-09-24_arc_122_accelerated_amygdala_mpfc_maturation_deprivation_gee2013",
+  "timestamp_utc": "2026-09-24T11:24:51Z",
+  "claim_ids_tested": [
+    "ARC-122"
+  ],
+  "source": {
+    "title": "Early developmental emergence of human amygdala-prefrontal connectivity after maternal deprivation.",
+    "authors": [
+      "Dylan G Gee",
+      "Laurel J Gabard-Durnam",
+      "Jessica Flannery",
+      "Bonnie Goff",
+      "Kathryn L Humphreys",
+      "Eva H Telzer",
+      "Todd A Hare",
+      "Susan Y Bookheimer",
+      "Nim Tottenham"
+    ],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1307893110",
+    "pmid": "24019460",
+    "pmc": "PMC3785723",
+    "volume": "110",
+    "issue": "39",
+    "pages": "15638-43"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "fMRI study showing previously institutionalised children had adult-like (negative) amygdala-mPFC coupling instead of the immature positive coupling typical of childhood, mediated by cortisol. This bears on ARC-122's phase (2) 'plasticity reduction': the timing of regulatory circuit maturation is itself set by caregiving experience, and is pulled earlier by its absence. That supports the claim that caregiving shapes consolidation, but shows the schedule is experience-contingent rather than a fixed curriculum step. Cross-sectional design and modest sample limit confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cross-sectional correlational design; 'accelerated maturation' is inferred from a connectivity sign, not tracked longitudinally.",
+    "Adult-like coupling conferred some reduced anxiety, so early consolidation is adaptive in part, complicating any reading of it as simple damage."
+  ],
+  "tags": [
+    "arc_122",
+    "amygdala_prefrontal",
+    "tottenham",
+    "maternal_deprivation",
+    "stress_acceleration",
+    "plasticity_timing"
+  ],
+  "mapping": {
+    "source_claim_statement": "Previously institutionalized youths showed mature (negative) amygdala-mPFC functional coupling at ages when comparison children show immature positive coupling; the effect was mediated by cortisol and associated with somewhat reduced anxiety.",
+    "ree_translation": "For ARC-122 phase (2) 'coupling consolidation with plasticity reduction': in humans the closing of caregiver-dependent regulatory plasticity is timed by the caregiving signal itself; losing the caregiver closes it early. A curriculum should therefore gate consolidation on coupling quality, not on elapsed training time.",
+    "mapping_caveat": "Speaks to one regulatory circuit, not to the full four-phase structure; suggests the timing is endogenous and adaptive, which favours a dependency-gated rather than a fixed-schedule curriculum.",
+    "source_context": "Cross-sectional fMRI in previously institutionalised and comparison children/adolescents; Tottenham lab (UCLA)."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.6,
+    "notes": "Named Tottenham anchor verified; mapping to 'plasticity reduction' is a reasonable but interpretive step."
+  }
+}

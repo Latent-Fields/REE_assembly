@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_122",
+  "entry_id": "2026-09-24_arc_122_institutional_deprivation_six_month_threshold_sonugabarke2017",
+  "timestamp_utc": "2026-09-24T11:24:51Z",
+  "claim_ids_tested": [
+    "ARC-122"
+  ],
+  "source": {
+    "title": "Child-to-adult neurodevelopmental and mental health trajectories after early life deprivation: the young adult follow-up of the longitudinal English and Romanian Adoptees study.",
+    "authors": [
+      "Edmund J S Sonuga-Barke",
+      "Mark Kennedy",
+      "Robert Kumsta",
+      "Nicky Knights",
+      "Dennis Golm",
+      "Michael Rutter",
+      "Barbara Maughan",
+      "Wolff Schlotz",
+      "Jana Kreppner"
+    ],
+    "year": 2017,
+    "venue": "Lancet",
+    "doi": "10.1016/S0140-6736(17)30045-4",
+    "pmid": "28237264",
+    "volume": "389",
+    "issue": "10078",
+    "pages": "1539-1548"
+  },
+  "evidence_class": "developmental_longitudinal",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Natural experiment following adoptees from Romanian institutions into young adulthood. Under 6 months of deprivation left no detectable excess; over 6 months produced persistent autism-like symptoms, disinhibited social engagement and inattention/overactivity through age 22-25 despite years of good adoptive care, which supports an early window whose consequences do not wash out. But cognitive impairment remitted by adulthood and emotional problems appeared late, so different domains follow different timetables. The 6-month split was set by design, so it does not locate a boundary precisely.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The <6 / >6 month grouping is an a-priori split; it cannot show where (or whether) a sharp boundary lies.",
+    "Deprivation in these institutions was global (social, cognitive, nutritional), so the window may not be specific to caregiver coupling.",
+    "Late-onset emotional problems are explained elsewhere by a developmental cascade (Golm et al. 2020, PMID 32026473), so a later-phase deficit may reflect cascade from early neurodevelopmental problems rather than a skipped phase per se."
+  ],
+  "tags": [
+    "arc_122",
+    "sensitive_period",
+    "english_romanian_adoptees",
+    "institutional_deprivation",
+    "disinhibited_social_engagement",
+    "developmental_timing"
+  ],
+  "mapping": {
+    "source_claim_statement": "Romanian adoptees with more than 6 months of institutional deprivation had persistently higher rates of autism spectrum symptoms, disinhibited social engagement and inattention/overactivity into young adulthood than UK adoptees or those deprived under 6 months; cognitive impairment remitted by adulthood; emotional symptoms emerged late.",
+    "ree_translation": "Evidence that missing early competent-environment coupling (phase 1) produces lasting social deficits that later enrichment does not reverse -- the 'compromised social capabilities' consequence ARC-122 predicts. The disinhibited social engagement outcome is close to the claim's concern about indiscriminate trust.",
+    "mapping_caveat": "Domain-specific persistence and remission patterns argue for multiple graded windows, not four ordered phases. The study does not manipulate order, so it cannot test the 'reordering' half of the claim.",
+    "source_context": "ERA study, prospective natural experiment, 165 Romanian and 52 UK adoptees, assessed at 6, 11, 15 and 22-25 years."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "High-quality long follow-up; mapping limited because deprivation is global and order is never manipulated."
+  }
+}

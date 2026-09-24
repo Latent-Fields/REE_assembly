@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_479",
+  "entry_id": "2026-09-24_mech_479_mtl_episodic_simulation_prosocial_intentions_gaesser2019",
+  "timestamp_utc": "2026-09-24T11:24:33Z",
+  "claim_ids_tested": [
+    "MECH-479"
+  ],
+  "source": {
+    "title": "A role for the medial temporal lobe subsystem in guiding prosociality: the effect of episodic processes on willingness to help others.",
+    "authors": [
+      "Brendan Gaesser",
+      "Josh Hirschfeld-Kroen",
+      "Emily A Wasserman",
+      "Mary Horn",
+      "Liane Young"
+    ],
+    "year": 2019,
+    "venue": "Social Cognitive and Affective Neuroscience",
+    "doi": "10.1093/scan/nsz014",
+    "pmid": "30809675",
+    "pmc": "PMC6523441",
+    "volume": "14",
+    "issue": "4",
+    "pages": "397-410"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.4,
+  "confidence_rationale": "Links prosocial intention to the medial temporal lobe subsystem: MTL (and RTPJ) activity during imagining/remembering helping episodes predicted the boost to willingness to help, and the effect survived TMS disruption of RTPJ, pointing to MTL. This is the only evidence found tying hippocampal-system constructive simulation to other-directed behaviour, which is the direction MECH-479 needs. Held at 0.4 because the outcome is self-reported intention, MTL was not itself perturbed, and episodic scene construction is not trajectory planning over another's harm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Willingness-to-help ratings are intentions, not behaviour; MTL correlates with an intention boost, not with successful multi-step reduction of another's harm.",
+    "The causal manipulation targeted RTPJ, not MTL; MTL's role is inferred by elimination and remains correlational.",
+    "Episodic simulation of a helping scene could raise motivation without any planning of the other agent's state trajectory."
+  ],
+  "tags": [
+    "mech_479",
+    "episodic_simulation",
+    "medial_temporal_lobe",
+    "hippocampus",
+    "prosocial_intention",
+    "tms"
+  ],
+  "mapping": {
+    "source_claim_statement": "Imagining and remembering helping episodes increases prosocial intentions; activity in the MTL subsystem and RTPJ predicts this effect, and it persists under RTPJ TMS, implicating the MTL subsystem.",
+    "ree_translation": "Tentative support for MECH-479's routing of prosocial behaviour through the hippocampally-planned pathway: constructive simulation of an episode involving another's need, supported by MTL, modulates other-directed action tendencies.",
+    "mapping_caveat": "Scene construction for motivation is not lookahead planning that selects actions by predicted effect on another's accumulated harm. The study shows MTL helps prosociality in humans, not that prosociality requires MTL or that greedy control fails at it.",
+    "source_context": "fMRI (Exp 1) of imagined/remembered helping vs control conditions, plus TMS to RTPJ (Exp 2); outcome = rated willingness to help."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.6,
+    "notes": "Two-experiment design with TMS, but intention outcome and indirect MTL inference; conceptually the closest hippocampal link found."
+  }
+}

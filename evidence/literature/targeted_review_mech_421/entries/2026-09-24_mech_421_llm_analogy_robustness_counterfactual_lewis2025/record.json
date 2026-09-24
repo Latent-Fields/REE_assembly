@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_421",
+  "entry_id": "2026-09-24_mech_421_llm_analogy_robustness_counterfactual_lewis2025",
+  "timestamp_utc": "2026-09-24T11:24:37Z",
+  "claim_ids_tested": [
+    "MECH-421",
+    "Q-074"
+  ],
+  "source": {
+    "title": "Evaluating the Robustness of Analogical Reasoning in Large Language Models",
+    "authors": [
+      "Martha Lewis",
+      "Melanie Mitchell"
+    ],
+    "year": 2025,
+    "venue": "Transactions on Machine Learning Research",
+    "url": "https://arxiv.org/abs/2411.14215"
+  },
+  "evidence_class": "ml_benchmark",
+  "evidence_direction": "weakens",
+  "confidence": 0.5,
+  "confidence_rationale": "Tests the emergent-analogy result directly: on letter-string, digit-matrix and story-analogy variants that probe the same abstract structure but are unlike pre-training data, human performance stays high while GPT models decline sharply on letter-string variants. This weakens the strongest artificial-system evidence that analogy emerges without explicit structure-mapping. Verified only through search-engine records of the arXiv listing (2411.14215) and its TMLR publication; the proxy blocks arXiv and OpenReview, so I read no more than the abstract-level description.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LLM fragility on counterfactual variants may reflect training distribution rather than the absence of a mapping mechanism; newer or reasoning-tuned models may behave differently, so this is a snapshot.",
+    "Weakening LLM emergence does not weaken emergence from a structured relational map; an LLM is not the MECH-419/MECH-420/MECH-300 stack."
+  ],
+  "tags": [
+    "mech_421",
+    "q_074",
+    "llm",
+    "analogy_robustness",
+    "counterfactual_tasks",
+    "emergence_critique"
+  ],
+  "mapping": {
+    "source_claim_statement": "GPT models' analogy-making performance declines sharply on letter-string analogy variants that test the same abstract reasoning but are unlikely to resemble pre-training data, while human performance remains high, suggesting reliance on similarity to training data rather than robust abstract reasoning.",
+    "ree_translation": "Counterweight to the emergent-analogy evidence under Q-074: surface-independent mapping (the defining property in MECH-421's title, 'regardless of surface features') is exactly what fails when the surface is made unfamiliar. It adds a falsifier requirement for any REE emergence test: transfer must survive surface-novel and counterfactual variants, not only familiar ones.",
+    "mapping_caveat": "About LLMs trained on text, not about emergence in a grounded relational map. It weakens the analogy from 'LLMs show analogy emerges' to REE; it does not show a traversal-based substrate would fail.",
+    "source_context": "Behavioral comparison of humans and GPT models on original and counterfactual variants of letter-string analogies, digit matrices and story analogies."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "TMLR peer-reviewed per search records; metadata verified via search results only, no full-text read."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_boundary_contracts_information_bottleneck",
+  "entry_id": "2026-09-24_gov_contract_3_usable_information_computational_constraints_xu2020",
+  "timestamp_utc": "2026-09-24T11:24:42Z",
+  "claim_ids_tested": [
+    "GOV-CONTRACT-3",
+    "ARC-144"
+  ],
+  "source": {
+    "title": "A Theory of Usable Information Under Computational Constraints",
+    "authors": [
+      "Yilun Xu",
+      "Shengjia Zhao",
+      "Jiaming Song",
+      "Russell Stewart",
+      "Stefano Ermon"
+    ],
+    "year": 2020,
+    "venue": "International Conference on Learning Representations (ICLR 2020)",
+    "url": "https://arxiv.org/abs/2002.10689"
+  },
+  "evidence_class": "theoretical_formalism",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Predictive V-information measures information relative to a restricted family V of decoders an observer can use. Unlike Shannon mutual information it can be created by computation, breaking the data processing inequality. This formalises GOV-CONTRACT-3's key clause: 'the information exists somewhere' (Shannon) is not 'the receiver can use it' (V-information). Held at 0.6 because V is set by the modeller and the paper gives no guidance on choosing V for a biological or REE receiver, and it models decoder class but not latency or robustness.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The choice of decoder family V decides the answer; a governance user could pick V to make a desired reduction pass or fail.",
+    "V-information covers decoder power but not the rule's other cost terms (side-channel complexity, latency, robustness), so it grounds one clause, not the whole cost function."
+  ],
+  "tags": [
+    "gov_contract_3",
+    "v_information",
+    "usable_information",
+    "computational_constraints",
+    "operational_reducibility",
+    "data_processing_inequality"
+  ],
+  "mapping": {
+    "source_claim_statement": "Shannon mutual information ignores the observer's computational limits; predictive V-information, defined relative to a family V of predictive models, includes mutual information as a special case, can be increased by computation (violating the data processing inequality), and can be estimated reliably with PAC-style guarantees.",
+    "ree_translation": "GOV-CONTRACT-3 distinguishes information-theoretic reducibility (inadmissible) from computational/operational reducibility (admissible). V-information is the published formal version of that split: a candidate is reducible for receiver B if its V_B-information is recoverable from the smaller basis, where V_B is B's decoder class. For ARC-144, 'what B cannot cheaply reconstruct' is naturally the gap between Shannon and V_B-information.",
+    "mapping_caveat": "The paper is about predictors on datasets, not modules in an agent; V is a hypothesis class, not a compute or latency budget. It supports the rule's standard as a coherent, formalisable notion; it does not validate the three collapse requirements or the relocation checklist.",
+    "source_context": "ML theory paper proposing V-information and showing its uses in structure learning and fair representation learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.5,
+    "notes": "Strongest formal support found for GOV-CONTRACT-3's operational standard. Metadata from WebSearch hits (ICLR 2020, arXiv 2002.10689); pages egress-blocked, no DOI."
+  }
+}

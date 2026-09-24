@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_585",
+  "entry_id": "2026-09-24_mech_585_pain_expectancy_confirmation_bias_jepma2018",
+  "timestamp_utc": "2026-09-24T11:24:25Z",
+  "claim_ids_tested": [
+    "MECH-585"
+  ],
+  "source": {
+    "title": "Behavioural and neural evidence for self-reinforcing expectancy effects on pain.",
+    "authors": [
+      "Marieke Jepma",
+      "Leonie Koban",
+      "Johnny van Doorn",
+      "Matt Jones",
+      "Tor D Wager"
+    ],
+    "year": 2018,
+    "venue": "Nature Human Behaviour",
+    "doi": "10.1038/s41562-018-0455-8",
+    "pmid": "31558818",
+    "pmc": "PMC6768437",
+    "volume": "2",
+    "issue": "11",
+    "pages": "838-855"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.45,
+  "confidence_rationale": "The disconfirming case for the idea that biological harm prediction errors are attributed by a calibrated reliability estimate. Pain expectations shaped reported and neural pain, and learning showed a confirmation bias: prediction errors that agreed with the cue's expected direction drove more updating than those that disagreed. A calibrated world-versus-model attribution would do the reverse or be neutral. Held at 0.45 because it argues against optimality in humans rather than against the architectural recommendation, which may still be right for an engineered agent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Weakens the claim only if MECH-585 is read as describing biology; as a design norm it may still be correct, and the bias may be what an uncalibrated system does.",
+    "Symbolic temperature cues and ratings; bias could reflect report dynamics rather than the internal PE weighting."
+  ],
+  "tags": [
+    "mech_585",
+    "pain",
+    "expectancy",
+    "confirmation_bias",
+    "prediction_error_weighting",
+    "disconfirming"
+  ],
+  "mapping": {
+    "source_claim_statement": "Subjective and neural pain assimilated towards cue-based expectations, pain then predicted subsequent expectations, and expectation updating showed a confirmation bias; modelling indicated expectations influence both perception and learning.",
+    "ree_translation": "In humans the weight given to a harm PE is not a neutral, calibrated reliability; it depends on whether the PE confirms the prior. That is a documented way for a harm stream to misattribute error and entrench a bad predictor, i.e. the failure MECH-585 guards against rather than evidence the brain avoids it.",
+    "mapping_caveat": "Does not measure a reliability estimate at all; it shows asymmetric, prior-dependent updating. It bears on the claim as a caution that biology does not straightforwardly implement calibrated attribution, not as a falsifier of the REE design.",
+    "source_context": "Two human experiments with cue-heat pain pairings, trial-wise expectation and pain ratings, fMRI, and computational learning models."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Solid two-study design; mapping is indirect (argues against calibrated attribution in biology)."
+  }
+}

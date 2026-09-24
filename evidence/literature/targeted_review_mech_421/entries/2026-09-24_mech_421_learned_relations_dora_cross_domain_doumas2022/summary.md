@@ -1,0 +1,7 @@
+Doumas, Puebla, Martin and Hummel extend the LISA and DORA models so that they learn both the content and the format of relational representations from nonrelational inputs, without supervision. With reinforcement learning added, the model learns individual domains and then generalizes to new domains on first exposure by analogical inference, including from Breakout to Pong. Its learning trajectory follows children's development of relational reasoning and analogy.
+
+This is the closest existing model of MECH-421's end state: relations acquired from experience and then mapped across domains with different surfaces. The paper also sharpens Q-074. What the model learns is the relational vocabulary. What it does not learn is the mapping and role-binding machinery, which is built into the architecture in the LISA/DORA tradition. So the evidence favours a hybrid: learned relations, built-in alignment.
+
+That matters for the claim's "resist an analogy module" discipline. It does not refute it, because DORA never tried running without the binding mechanism, but the most successful learned-relations model to date keeps an explicit mapper. It is also a symbolic-connectionist architecture rather than cognitive-map traversal, so it cannot say whether MECH-300 traversal could supply what DORA hard-wires.
+
+Confidence 0.55, direction mixed: strong support that learned relations plus mapping yields cross-domain analogy; weak-to-negative for analogy emerging with no mapping operator at all.

@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_boundary_contracts_information_bottleneck",
+  "entry_id": "2026-09-24_gov_contract_3_information_bottleneck_deep_learning_critique_saxe2019",
+  "timestamp_utc": "2026-09-24T11:24:42Z",
+  "claim_ids_tested": [
+    "GOV-CONTRACT-3",
+    "ARC-144"
+  ],
+  "source": {
+    "title": "On the information bottleneck theory of deep learning",
+    "authors": [
+      "Andrew M. Saxe",
+      "Yamini Bansal",
+      "Joel Dapello",
+      "Madhu Advani",
+      "Artemy Kolchinsky",
+      "Brendan D. Tracey",
+      "David D. Cox"
+    ],
+    "year": 2019,
+    "venue": "Journal of Statistical Mechanics: Theory and Experiment",
+    "doi": "10.1088/1742-5468/ab3985",
+    "volume": "2019",
+    "issue": "12",
+    "pages": "124020"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "Saxe et al. found that the reported IB 'compression phase' in deep networks appears with double-saturating nonlinearities (tanh) but not with ReLU or linear networks, that it depends on the binning estimator of mutual information, and that compression and generalisation are not causally linked. This weakens any use of IB compression as a descriptive law of how learned modules actually represent, and shows mutual-information estimates can be artefacts of the estimator. It weakens the IB as evidence for the contract, not the contract's logic, so confidence is moderate and scope is narrow.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Over-reading: the paper attacks IB-as-an-account-of-deep-learning-dynamics, not IB as a normative definition; it does not refute task-relative compression.",
+    "Its estimator critique cuts both ways: it is a warning for GOV-CONTRACT-3's cost terms, not evidence against the rule."
+  ],
+  "tags": [
+    "gov_contract_3",
+    "information_bottleneck_critique",
+    "mutual_information_estimation",
+    "deep_learning",
+    "compression_phase",
+    "disconfirming"
+  ],
+  "mapping": {
+    "source_claim_statement": "The claimed fitting-then-compression phases of deep networks, and their causal link to generalisation, do not hold in general: compression arises from double-sided saturating nonlinearities and the binning used to estimate mutual information; networks that do not compress still generalise and vice versa.",
+    "ree_translation": "Two cautions. (1) For ARC-144: do not cite IB as evidence that trained modules DO compress to the task-relevant payload at their boundary; they may not, and whether they do depends on architecture. (2) For GOV-CONTRACT-3: mutual-information-style cost terms can be estimator artefacts in deterministic networks, which supports the rule's falsifying branch 'cost terms not estimable at available precision' and argues for bounded-decoder measures (V-information, MDL) over raw MI.",
+    "mapping_caveat": "Does not bear on the normative IB definition or on whether obligations differ across boundaries. Mapping is to how the literature may be misused as support.",
+    "source_context": "Journal version of the ICLR 2018 paper; replication and analysis of Shwartz-Ziv & Tishby's IB account of deep learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Metadata (J. Stat. Mech. 2019, 124020, DOI 10.1088/1742-5468/ab3985) from WebSearch hits of IOPscience/ORA. The disconfirming entry for this pull; bears on how IB may be cited, not on the claims' logic."
+  }
+}
