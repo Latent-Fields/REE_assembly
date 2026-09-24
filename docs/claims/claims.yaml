@@ -11491,8 +11491,8 @@
     as_of: 2026-09-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-942_2026-08-21
-      as_of: 2026-08-21
+      from: failure_autopsy_V3-EXQ-942_reread_2026-09-23
+      as_of: 2026-09-24
       verdict: non_contributory/standard
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: the phase-1 time-multiplexed SD-006 substrate must be
@@ -11575,6 +11575,8 @@
     hold_pending_v3_substrate/applied.
 
     [2026-09-23 governance, GFLAG-0406 option A, user-accepted] Falsifier NARROWED to E3-only realized cadence (see what_would_answer). The 2026-09-22 GFLAG-0395 split asked for E1:E2:E3 tick-count ratios, but e2_tick is DEAD (computed at ree-v3 ree_core/heartbeat/clock.py:143, emitted :174, read nowhere in ree_core; independently confirmed by the V3-EXQ-942 autopsy 2026-08-21) and e1_tick is tautological (e1_steps_per_tick=1), and SD-006's same-day R4 disposition rejects tick counting as a representational readout. V3-EXQ-942 already recorded realized E3 tick counts (572/633/354 realized vs 375/375/90 configured; e1:e2 exactly 3750:1250; MECH-091's ungated phase_reset() on negative-harm steps, agent.py:11062, drives the excess) but was scored non_contributory under the pre-split var_harm_eval falsifier. A RE-READ of V3-EXQ-942 under the narrowed falsifier is OWED and is NOT made here (governance applying the ruling does not re-adjudicate the run). EXP-0548 stays gated until that re-read. The representational-boundary rewrite (a rate-gated continuous-state recorder) was option B and was not taken.
+
+    [2026-09-23 re-read, failure_autopsy_V3-EXQ-942_reread_2026-09-23, GFLAG-0406 follow-on; see GFLAG-0443] V3-EXQ-942 read against the NARROWED E3-only realized-cadence falsifier: PARTIAL (the falsifier's own named partial cell). E3 is slower than the per-step loops on every seed (realized E3 share 0.153 / 0.169 / 0.394 vs E1 1.0; E2 is ungated because e2_tick has no consumer), so the FALSIFYING signature is not met. CORRECTION to the GFLAG-0406 text above: '375/375/90 configured' is FALSE as run. MECH-093 sets E3's period from |z_beta| on every E1 tick (ree-v3 f0cb0d59 agent.py:5406, band 5-20 steps, configured share 0.05-0.20). Seeds 11/23 sit inside that band (departure undetermined); only seed 37 (0.394) exceeds even the fastest configured period, by at least 0.19/step of reset-driven ticks from the harm trigger (no onset gate) and/or legacy commit-entry resets, trigger split unrecorded. Limits: the falsifier was written with these numbers in view and no tolerance was pre-registered, so 942 cannot confirm; diagnostic purpose, so scoring_excluded; the readout is the clock flag (offset <=1/episode) and |z_beta|, the per-step period and resets-by-trigger were not recorded. The narrowed falsifier itself needs tightening (GFLAG-0443): its FALSIFYING leg is reachable only at share 1.0, and 'configured period' is arousal-modulated. [Applied 2026-09-24 by /governance session governance-20260924, GOV-APPLY-1 unapplied_disposition; user decision rec-20260924-d981b105.]
   claim_level: mixed
   functional_restatement: >
     Three loops operate at distinct update rates: E1 continuous/frame-rate, E2
@@ -60065,8 +60067,8 @@
     as_of: 2026-08-07
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-938_2026-08-20
-      as_of: 2026-08-20
+      from: failure_autopsy_MECH-320-defect-cluster_2026-09-23
+      as_of: 2026-09-24
       verdict: non_contributory/standard
   epistemic_category: standard
   implementation_phase: v3
@@ -60703,6 +60705,8 @@
     successor must record per-leaf harm_penalty spread and the Stage-2 argmin tie rate, and if the tie rate is
     high this run re-adjudicates to non_contributory. Ratified by governance 2026-09-24
     (governance-flags-mid-20260923, rec-20260924-b52804ea).
+
+    [2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0403]: V3-EXQ-919 is NOT touched by the MECH-320 defect (no tonic_vigor or diversity-bias flag enabled). A different, unmeasured exposure is recorded: both stages of harm-aware selection consume one per-leaf harm_penalty read off each leaf's E2-predicted world states (hippocampal/module.py:1263-1275), so if E2 world-forward collapsed per-leaf predictions (the corrected V3-EXQ-571 root cause) Stage 1 would be a constant offset and Stage 2 (97.9% firing rate) a harm-blind tie-break. Contemporaneous August trained-agent runs show nonzero per-candidate spread (0.02-0.16, vs 0.0000 in May), so the collapse is not shown live, but no 867/919-lineage run recorded per-leaf penalty spread. The weakens therefore reads on the as-built mechanism CONDITIONAL on its harm input having been discriminative; a successor must record per-leaf harm_penalty spread and the Stage-2 argmin tie rate, and if the tie rate is high this run re-adjudicates to non_contributory. [Applied 2026-09-24 by /governance session governance-20260924, GOV-APPLY-1 unapplied_disposition; user decision rec-20260924-d981b105.]
   digestion_note: >
     [2026-08-07, thought-digestion] The falsifier this claim needs (C1_TASK_OUTCOME_IMPROVES on
     harm-aware vs baseline redecomposition, matched at SD-029 hazard-tuned engagement) is not in
