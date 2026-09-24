@@ -1,0 +1,343 @@
+{
+ "generated_utc": "2026-09-24T08:42:13Z",
+ "generated_by": "governance-20260924 read-only subagent (GFLAG-0250 option A, rec-20260924-bced9875)",
+ "population_derivation": ".scratch/gflag0250_remeasure_20260924.py re-run 2026-09-24: 53 PASS none_rederivable, 34 supports, 22 on stable/active/provisional claims; all 22 non-dry (dry_run false/absent, no _dry_ filename)",
+ "method": "/governance Step 2b non-outcome skim: (1) criteria combination, (2) threshold arithmetic vs measured baselines, (3) criteria re-derived from driver",
+ "counts": {
+  "DEFECT": 19,
+  "CLEAN": 3,
+  "UNDETERMINABLE": 0
+ },
+ "subclass_gloss": {
+  "D1_impl_verification_by_construction": "the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known rail. The PASS can fail only if the code breaks. It may be legitimate implementation verification for a design_decision (SD-*) claim, but it is not mechanism evidence.",
+  "D2_contrast_by_construction": "the contrast wins on information content or driver-authored arithmetic, not substrate behaviour",
+  "D2_control_not_matched": "the pre-registered control did not reach its matching condition, so the criterion reduces to another one",
+  "D2_ablation_confound": "the ablation removes more than the claimed mechanism (random baseline), so the contrast cannot attribute the effect",
+  "D3_leg_fires_by_construction": "one or more load-bearing legs fire by construction; any remaining genuine leg carries the whole claim",
+  "D4_combination_direction_misread": "OR-combination or PASS->supports mapping credits a result the run's own label does not support",
+  "D4_winning_arm_channel_inert": "the winning arm's manipulated channel is inert, so the direction reading is wrong",
+  "D4_claim_DV_demoted": "the claim's own DV was made non-gating and ran the wrong way; the PASS rests on a premise-only positive control"
+ },
+ "cross_cutting": [
+  "Double-counting: V3-EXQ-184 has two manifests of the identical design and seeds (20260401T185611Z and 20260404T161554Z), both supports on MECH-033. 184/184-rerun/308 reuse the bit-identical random-arm harm rate 0.0607850.",
+  "Double-counting: V3-EXQ-517c still carries supports on MECH-302/SD-050 although V3-EXQ-517d supersedes it with byte-identical science (517d.supersedes = 517c).",
+  "Diagnostic-purpose runs carrying supports: V3-EXQ-500a and V3-EXQ-917 are experiment_purpose=diagnostic. Check whether the indexer already excludes them from confidence before autopsying (they may already carry zero weight).",
+  "Driver provenance: all 22 drivers are present. Every post-run commit is mechanical (pack_writer migration, dry_run threading, flat readout, emit_outcome sentinel, the 517c/d CLAIM_IDS retro-tag 8891dad). None altered criteria logic, so no run is UNDETERMINABLE."
+ ],
+ "runs": [
+  {
+   "run_id": "v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3",
+   "queue_id": "V3-EXQ-500a",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_500a_sd017_sleep_phase_readiness_phase2.py",
+   "claims": {
+    "SD-017": "stable"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "replay_quality 8.0999-8.1011 vs bar 8.0; phase CV 0.0 in every phase and seed",
+   "reason": "All three bars fire by construction. C1 counts are incremented unconditionally once per cycle (:276,283,291,299). C2: every phase duration is a loop constant, so CV=0.0 identically (:281,289,297,306). C3: replay_quality = rem_rollouts + 0.25*sws_writes + 0.1*diversity = 6 + 2 + 0.1*div (:311), and the 8.0 bar (:139) is exactly the configured op-count contribution, so it passes whenever the sleep cycle executes. Measured 8.0999-8.1011 vs 8.0. The run can only fail if the code breaks. Also experiment_purpose=diagnostic but evidence_direction=supports."
+  },
+  {
+   "run_id": "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
+   "queue_id": "V3-EXQ-501",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_501_sd035_amygdala_analog_vs_binary.py",
+   "claims": {
+    "SD-035": "stable"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D2_contrast_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "rmse_reduction 0.308-0.316 vs 0.25; mae_reduction ~0.58 vs 0.25; lag +1 vs 1",
+   "reason": "No agent and no training. The approach logit is hand-authored in the driver (:68-73) and scored against a graded target sigmoid(4*valence) (:75). BINARY_SIGN_ONLY sets the input to exactly 1.0 or 0.0 (:53-56), which throws away the magnitude the target is a function of, so the analog arm wins by information content alone. The seeds differ only by +/-0.015 valence jitter, so the three seeds are pseudo-replicates (rmse_reduction 0.308/0.314/0.316). The test is arithmetic on a driver-authored readout, not the SD-035 substrate's behaviour."
+  },
+  {
+   "run_id": "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3",
+   "queue_id": "V3-EXQ-503a",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_503a_sd017_sleep_phase_discriminative_phase2.py",
+   "claims": {
+    "SD-017": "stable"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "ARM_A ctxmem change 4.50-5.03 vs 0.10/0.20; ARM_B 0.0; writes 24 vs bar 3",
+   "reason": "ARM_B disables the only writer of every DV (sws/rem/use_sleep_loop=False, :232-239), and zero training steps run, so its zeros on C1-C3 hold by construction. The ARM_A bars sit far below configured op counts: C1/C3 need 1/cycle against 8 writes and 6 rollouts configured (:169,182). C2/C4 need Frobenius change 0.10/0.20 (:178,197) against measured 4.50-5.03, a ~25x margin. The 'discrimination' is sleep code on vs off. The DV is unsigned magnitude, and it scores ARM_A's slot-diversity DROP (1.00->0.61-0.78) as support."
+  },
+  {
+   "run_id": "v3_exq_615_arc065_rung1_matched_entropy_20260531T093116Z_v3",
+   "queue_id": "V3-EXQ-615",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_615_arc065_rung1_matched_entropy_20260531T093116Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_615_arc065_rung1_matched_entropy.py",
+   "claims": {
+    "ARC-065": "stable"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D2_control_not_matched",
+   "supports_flip_risk": "high",
+   "measured": "ARM_1 entropy 0.0 (target ~1.11); ARM_2 1.111; ARM_0 0.0",
+   "reason": "The FP-2 'matched-entropy' control was pre-registered to match ARM_2's entropy through noise_floor_alpha=0.3 (:155, docstring 'may need tuning'). It produced entropy 0.0 in all 3 seeds, the same as BASE_OFF. C2 (ARM_2 - ARM_1 >= 0.15, :506) therefore reduces to C1 (1.11 - 0.0). The structured-vs-noise confound the experiment existed to resolve was not tested. A zero-entropy control should have been a precondition failure, not a pass."
+  },
+  {
+   "run_id": "v3_exq_633_mech094_simulation_real_writegate_discriminative_20260603T072042Z_v3",
+   "queue_id": "V3-EXQ-633",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_633_mech094_simulation_real_writegate_discriminative_20260603T072042Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_633_mech094_simulation_real_writegate_discriminative.py",
+   "claims": {
+    "MECH-094": "stable"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "GATE_ON contamination 0.0, MI 0.693147 exactly (all seeds); GATE_OFF 0.99999, MI 0.0",
+   "reason": "The two arms differ only in the boolean passed to ResidueField.accumulate/update_valence (:272-274), and that boolean feeds an early-return guard (ree_core/residue/field.py:690). GATE_ON M1=0.0, M2=0.0 and M3=ln2=0.6931 are arithmetic identities in every seed, and GATE_OFF M1~1.0 by the symmetry of the injection. This is a unit test of an if-statement. It does not test that live simulation content actually carries the tag."
+  },
+  {
+   "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+   "queue_id": "V3-EXQ-917",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_917_mech303_harm_threshold_calibration_battery.py",
+   "claims": {
+    "SD-011": "stable"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D4_combination_direction_misread",
+   "supports_flip_risk": "medium",
+   "measured": "damage_sourced best AUC 0.52 (C1 FAIL); proximity_ema AUC 0.969 at tau 0.6 (C2 PASS)",
+   "reason": "PASS = C1 OR C2 (:354), and PASS maps to supports (:362). C1, the production damage-sourced path, FAILED: z_harm_a mean norm is 0.4418-0.4420 at every hazard density 0-8, with best AUC 0.52. C2, the non-production legacy proximity-EMA path, passed (AUC 0.97). The driver's own label is 'tension_sourcing_mode_dependent'. A diagnostic calibration run ('found ANY workable config') is counted as supports for stable SD-011, even though it shows the shipped z_harm_a is density-blind. The bars were attainable in both directions (C1 did fail), so the defect is in how the result was mapped, not in the thresholds."
+  },
+  {
+   "run_id": "v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3",
+   "queue_id": "V3-EXQ-149b",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_149b_q004_tau_r_calibration_largebudget.py",
+   "claims": {
+    "Q-004": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D4_winning_arm_channel_inert",
+   "supports_flip_risk": "medium",
+   "measured": "mean_harm FAST 16.3 / DEFAULT 11.0 / SLOW 9.6; SLOW residue_contrast 0.0-0.0095",
+   "reason": "PASS came through C2 'slow wins' (:645-649, :691), and the result was read as 'calibrate tau_R to the E1 timescale'. SLOW_TAU's residue field is nearly empty: residue_contrast 0.0 (seed 42) and 0.0095 (seed 123), total residue 38.7 vs FAST 1041.8. The only engagement gate, C4, checks FAST's contrast (:660) and never the winner's. So the comparison is effectively residue-on vs residue-off, and 'less residue -> less harm' is being read as a timescale preference. With 2 seeds the harm spread is 20x (1.6 vs 31.0)."
+  },
+  {
+   "run_id": "v3_exq_158_q018_rc_conflict_threshold_calibration_20260329T192854Z_v3",
+   "queue_id": "V3-EXQ-158",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_158_q018_rc_conflict_threshold_calibration_20260329T192854Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_158_q018_rc_conflict_threshold_calibration.py",
+   "claims": {
+    "Q-018": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D3_leg_fires_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "harm_rate 0.0 all cells; ADAPTIVE disc gap 0.48/0.53 vs LOW 0.84 / HIGH 0.66-0.73",
+   "reason": "gate_fired (:427) is only counted. It never reaches action selection, which uses policy multinomial (:444). All three conditions therefore run the same trajectory with different thresholds applied afterwards (identical rc_conflict_mean per seed), and harm_rate = 0.0 in all 6 cells. C3 (adaptive harm <= HIGH + 0.02, :591) holds as 0 <= 0.02, so the 'without chronic over-suppression / harm' half of Q-018 was never tested. The RC-conflict computation is driver-local, not the MECH-065 substrate. The adaptive threshold also discriminates worse than both fixed ones (gap 0.48-0.53 vs 0.66-0.84)."
+  },
+  {
+   "run_id": "v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3",
+   "queue_id": "V3-EXQ-171",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_171_mech033_kernel_chain_pair.py",
+   "claims": {
+    "MECH-033": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D2_ablation_confound",
+   "supports_flip_risk": "high",
+   "measured": "harm CHAIN 0.00021 vs random 0.0613; E2 r2 0.98",
+   "reason": "The ablation is uniform random action (:342). It removes the trained harm head AND the planner, not only E2 kernel seeding, so any harm-aware selector (including k=0 greedy on HarmHead) would beat it. There is no hippocampal module: the architecture is inline linear encoders. MECH-033 asserts that E2 kernels seed hippocampal rollouts, and the contrast does not isolate that. The 1pp bar vs a 6.1pp measured delta is not the issue; the issue is what the contrast attributes the delta to. It is not strictly by construction, because EXQ-124 FAILED on the same design."
+  },
+  {
+   "run_id": "v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3",
+   "queue_id": "V3-EXQ-184",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_184_mech033_kernel_chain_pair.py",
+   "claims": {
+    "MECH-033": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D2_ablation_confound",
+   "supports_flip_risk": "high",
+   "measured": "harm CHAIN 0.00024 vs random 0.0608 (identical random baseline to 184b and 308)",
+   "reason": "Same design as 171: the NO_CHAIN arm is random.randint (:346), so the contrast is planner+harm-model vs random, not E2 seeding. Inline architecture, no hippocampal module. This is also one of TWO manifests of the identical 184 design and seeds (second: 20260404T161554Z). Both carry supports, so the same experiment is double-counted."
+  },
+  {
+   "run_id": "v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3",
+   "queue_id": "V3-EXQ-184 (rerun)",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_184_mech033_kernel_chain_pair.py",
+   "claims": {
+    "MECH-033": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D2_ablation_confound",
+   "supports_flip_risk": "high",
+   "measured": "harm CHAIN 0.00021 vs random 0.0608 (bit-identical random arm)",
+   "reason": "A duplicate re-run of 184 with the same driver and seeds. The random-arm harm rate 0.060785 is bit-identical to the 0401 run. It has the same random-ablation confound (:346) and is a pseudo-replicate that should not add independent support weight."
+  },
+  {
+   "run_id": "v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3",
+   "queue_id": "V3-EXQ-308",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_308_mech033_kernel_chain_discriminative.py",
+   "claims": {
+    "MECH-033": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D2_ablation_confound",
+   "supports_flip_risk": "high",
+   "measured": "harm CHAIN 0.00030 vs random 0.0608",
+   "reason": "Same design again, adding an SD-018 proximity head. NO_CHAIN is uniform random (:529), so the contrast still does not isolate E2 kernel seeding of hippocampal rollouts (inline, no hippocampus). The random-arm harm rate 0.0607850 equals 184's exactly, so the same seeded random baseline is reused as the comparator across 3 'independent' supports."
+  },
+  {
+   "run_id": "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier_20260715T081944Z_v3",
+   "queue_id": "V3-EXQ-763",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier_20260715T081944Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier.py",
+   "claims": {
+    "MECH-304": "active"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D3_leg_fires_by_construction",
+   "supports_flip_risk": "low",
+   "measured": "A 0.83 / B 0.0 / C 0.16 / D 1.0; D terrain 12.77 vs 0.5",
+   "reason": "Two of the three load-bearing gaps are fixed by construction. rel_B = 0.0 because the store-OFF arm has no release path. DV2 rel_D = 1.0 in every seed because arm D's terrain pred is 12.77 (identical across seeds) against a 0.5 release threshold; CONTEXTUAL_HARM_THRESHOLD 0.55 (:131) was set above the baseline range so every tick accumulates. The genuinely falsifiable half, cue-specificity A-C = 0.67 against 0.34, passed. However, STORE_THRESHOLD 0.6 (:97) was picked from observed cue/nocue ranges, one seed formed no prototype, and in seed 4 C released 0.97. The claim's support rests on that one leg (n=6)."
+  },
+  {
+   "run_id": "v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3",
+   "queue_id": "V3-EXQ-846",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution.py",
+   "claims": {
+    "ARC-005": "active"
+   },
+   "verdict": "CLEAN",
+   "defect_subclass": null,
+   "supports_flip_risk": null,
+   "measured": "authority MODEPRIOR 1.0 (all seeds); 5HT/PHASIC/PCC 0.0",
+   "reason": "Per-channel OR (:732) is the intended leave-one-out design (A-27 records it as correctly designed). Threshold arithmetic: occupancy is binary (TV 0 or 1 in every seed), so SD=0 and the 0.8*SD gate (:716-717) is vacuous, but the 0.15 absolute floor is attainable both ways: 3 channels read 0.0 and MODEPRIOR reads 1.0. Note: mode-prior authority over mode occupancy is close to definitional (it is a logit bias on external_task), and precision is pre-declared non_contributory."
+  },
+  {
+   "run_id": "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3",
+   "queue_id": "V3-EXQ-939a",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release.py",
+   "claims": {
+    "MECH-303": "active"
+   },
+   "verdict": "CLEAN",
+   "defect_subclass": null,
+   "supports_flip_risk": null,
+   "measured": "A 0.75 / B 0.0 / C 0.0 / D 0.75; gaps 0.75/0.748/0.75 vs 0.34",
+   "reason": "AND of three gaps at 0.34 (:364). DV1 is declared non-load-bearing because it is structural, and the driver says so. DV2 and DV3 are attainable both ways in principle, since C would have released if the hazard-context EMA dipped below 0.25. Notes: the context contrast is extreme and deterministic (num_safety_steps 240 vs 6 identical in all 6 seeds; num_hazards 0 gives proximity ~0 by construction, :887). The agent's action is discarded, so 'behavioural' release is a readout-level crossing. The A-arm operating margin is thin (terrain 0.57-0.71 vs 0.5)."
+  },
+  {
+   "run_id": "v3_exq_517c_mech302_relief_completion_discriminative_pair_20260530T124600Z_v3",
+   "queue_id": "V3-EXQ-517c",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_517c_mech302_relief_completion_discriminative_pair_20260530T124600Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_517c_mech302_relief_completion_discriminative_pair.py",
+   "claims": {
+    "MECH-302": "provisional",
+    "SD-050": "provisional"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "ARM_A events 26/0/455; ARM_B 0/0/0",
+   "reason": "C3/C4 (ARM_B events=writes=0, :259-267) hold by construction because ARM_B disables the comparator. C2 is identical to C1 (p1_writes == p1_events in every cell). The ARM_A bar of 3 events sits against a forced curriculum the docstring expects to give ~120. So this is a wiring check. That can be adequate for SD-050 (the comparator design), but it does not test MECH-302's content (relief REUSES goal-achievement completion machinery). Also superseded by 517d (identical science) yet still carries supports, so it is double-counted. One ARM_A seed had 0 events."
+  },
+  {
+   "run_id": "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
+   "queue_id": "V3-EXQ-517d",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_517d_mech302_relief_completion_discriminative_pair.py",
+   "claims": {
+    "MECH-302": "provisional",
+    "SD-050": "provisional"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "ARM_A events 1479/129/452; ARM_B 0/0/0",
+   "reason": "Same criteria as 517c (:269-277): the ARM_B zeros are by construction, C2 duplicates C1, and the ARM_A floor of 3 events is far below the forced-curriculum yield. It is a comparator-wiring check that does not test MECH-302's reuse-of-completion-machinery content. For SD-050 it may stand as implementation verification."
+  },
+  {
+   "run_id": "v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3",
+   "queue_id": "V3-EXQ-743",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_743_inv089_harm_evaluator_z_harm_bounded.py",
+   "claims": {
+    "INV-089": "provisional"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D4_claim_DV_demoted",
+   "supports_flip_risk": "high",
+   "measured": "decode_mature 0.124 vs 0.05; iv_delta +0.018/-0.014/+0.027; bound rho mean -0.20",
+   "reason": "After a spot-check, the gate was moved to the positive control only. C1 (decode r2 >= 0.05) was set just under the spot-check's 0.065-0.083. C2 (:625) requires only mean delta > 0 and mean rho > 0, with no magnitude or SD floor. The INV-089 bound DV itself (evaluator quality vs z_harm maturity) was made non-gating and ran the wrong way (mean Spearman -0.20; all 3 SEC gates FAIL). One of 3 seeds has a negative IV delta. The run supports the premise (harm is decodable from z_harm), not the invariant. GFLAG-0424's EXP-0153 note already calls 743 the positive-control leg only."
+  },
+  {
+   "run_id": "v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3",
+   "queue_id": "V3-EXQ-757",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional.py",
+   "claims": {
+    "MECH-288": "provisional",
+    "MECH-287": "provisional"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "slow hit 1.0; smooth slow 0; dissoc 0; storm suppressed 373",
+   "reason": "The inputs were engineered past known detector rails. GOAL_LEVELS gaps >= 10 (:154) were chosen so every planted boundary hits BOCPD's decisive path (posterior 1.0, lag 0): hit rate 1.0, 27/27 = the number of planted boundaries. C287_dissoc feeds empty lists and requires 0 broadcasts (:172). C287_tonic feeds 0.9-posterior events every tick (:143) against a tonic threshold of 0.5. C288_graded rides on the fast-scale z-score ticker, which the driver itself says fires on any stream (open frac 0.237 vs 0.20). This is a module unit test on synthetic streams."
+  },
+  {
+   "run_id": "v3_exq_761_mech092_quiescent_replay_selectivity_20260714T204501Z_v3",
+   "queue_id": "V3-EXQ-761",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_761_mech092_quiescent_replay_selectivity_20260714T204501Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_761_mech092_quiescent_replay_selectivity.py",
+   "claims": {
+    "MECH-092": "provisional"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "fire rate quiescent 1.0 / salient 0.0; replay n 5.0 (constant)",
+   "reason": "The driver's own docstring says the C4 alignment is 'code-structural (the if e3_quiescent gate)' (ree_core/agent.py:10912). C1-C3 are occurrence floors: >=3 quiescent ticks, >=1 salient tick, >=1 trajectory (:129-131), where replay returns num_replay_steps=5 whenever theta_buffer is non-empty (every step). Every criterion is either a precondition or fires by construction, so the PASS confirms wiring, not the SWR-equivalent consolidation role."
+  },
+  {
+   "run_id": "v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3",
+   "queue_id": "V3-EXQ-762",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_762_mech046_cea_mode_prior_context_conditioning.py",
+   "claims": {
+    "MECH-046": "provisional"
+   },
+   "verdict": "DEFECT",
+   "defect_subclass": "D1_impl_verification_by_construction",
+   "supports_flip_risk": "high",
+   "measured": "mode_prior 0.0/0.150/0.400/0.700 = docstring prediction; readback diff 0.0",
+   "reason": "mode_prior is a closed-form clip((lf-thr)/cap*cap*gain) (ree_core/amygdala/cea.py:348-353). The driver sets the inputs to targets 0.20/0.65/0.90/1.20 and its docstring pre-computes outputs 0/0.15/0.40/0.70. Measured values are exactly 0.0/0.1499/0.3999/0.6999. The coordinator-write criterion checks that the read-back equals the injected value (tol 1e-9, :158; measured diff 0.0). This is a formula unit test."
+  },
+  {
+   "run_id": "v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3",
+   "queue_id": "V3-EXQ-888",
+   "manifest": "REE_assembly/evidence/experiments/v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3.json",
+   "driver": "ree-v3/experiments/v3_exq_888_mech074_readwrite_head_route_dissociation.py",
+   "claims": {
+    "MECH-074": "candidate",
+    "MECH-074a": "provisional",
+    "MECH-074b": "candidate"
+   },
+   "verdict": "CLEAN",
+   "defect_subclass": null,
+   "supports_flip_risk": null,
+   "measured": "C3 delta_tag_off_vs_off 0.32/0.18/0.25 SD vs 0.03",
+   "reason": "PASS = C1 AND (C2 AND C3), per claim. The OFF arm is a real uniform-weight control (about 0 by construction, which is the prediction). The C3 (MECH-074a) contrast is attainable both ways because the round trip through the shared buffer can misalign. Note: the 0.03-SD margin (:220) sits 6-10x below the measured 0.18-0.32 SD, and C3 is largely BLA arithmetic, since gain and the gt label are both monotone in peak ||z_harm_a|| (the driver says so). The design is sound; the margin is loose."
+  }
+ ],
+ "routing_note": "DEFECT rows route to /failure-autopsy for an evidence_direction call. This audit edited no manifest, claim or registry. D1 rows are a batch: governance can decide once whether implementation-verification PASSes count as supports for SD-* design_decision claims (SD-017, SD-050) versus mechanism claims (MECH-094/092/046/287/288/302), rather than autopsying each separately."
+}

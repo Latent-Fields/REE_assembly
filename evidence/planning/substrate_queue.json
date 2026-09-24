@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-20260924",
-  "last_updated_utc": "2026-09-24T08:34:13Z",
+  "last_updated_utc": "2026-09-24T08:45:14Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -10540,7 +10540,7 @@
       "node_class": "complicated (buildable)",
       "status": "registered_no_build_owed_hygiene_path_divergence",
       "status_phase": "closed",
-      "ready": true,
+      "ready": false,
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -10571,7 +10571,7 @@
       "pending_retest_after_substrate": true,
       "source_autopsy": "failure_autopsy_V3-EXQ-1030_2026-09-14.json",
       "added_session": "governance-20260916",
-      "last_seen_session": "governance-flags-mid-20260923-apply",
+      "last_seen_session": "governance-20260924",
       "added_utc": "2026-09-16T13:44:13Z",
       "notes": "Minted by governance-20260916 (6a-iv create from the confirmed failure_autopsy_V3-EXQ-1030_2026-09-14 routing, user gate 2026-09-16T12:22:00Z; sd_id_suggested used verbatim, no collision in claims.yaml or substrate_queue.json).",
       "unblocks_claims_note": "INV-086 / MECH-428 are read-across co-tags of the discovering run; pending_retest_after_substrate already true on MECH-428.",
@@ -10580,7 +10580,9 @@
       "depends_on_note": "[CORRECTED at the 2026-09-16 cross-model red-team pass (Opus), F4] The draft listed ['SD-070'], which is NOT an sd_id in substrate_queue.json (182 entries, none named SD-070); the SD-070 recipe's entry is `sd_zworld_warmup_optimizer_group`, status validated. A never-resolvable dependency would park the entry permanently, so it is cleared; the relationship is recorded here in prose.",
       "spike_result_2026_09_17": "ATTRIBUTION RESOLVED AS NEITHER CAUSE. The ~0.10 decodability gap does not reproduce; it is attributable to linear-probe under-convergence on 5x-smaller features plus episode-split noise. Both candidate fixes measure at zero within a +/-0.05 noise band, so the choice between them is moot on decodability grounds. Measured +0.007/+0.019 paired over 50 cells against V3-EXQ-1030's +0.1015; -0.018/+0.002 at 10x probe budget; -0.028/-0.023 standardised. Cause B refuted by an encoder-free matched-width control; Cause A's fix recovers ~0.00. Source: REE_assembly/evidence/planning/zworld_sense_path_parity_spike_20260916.md sections 2-6 (REE_assembly 3e57e1c3fe4; ree-v3 cd60233 + 72befcc), from chip-20260916-zworld-sense-path-parity-probe-spike (done 2026-09-17T12:29:25Z). CONSEQUENCE ALREADY REALISED: the build chip chip-igw-217-substrate-ready-sd-zworld-sense (IGW-20260916-217) was WITHDRAWN on a user decision 2026-09-17T15:36Z and the IGW item completed NO_OP, so despite status `pending_implementation` / status_phase `build_owed` NO BUILD IS CURRENTLY OWED. Per the spike's item 2, do NOT schedule the 34-driver run_zworld_p0 migration on decodability grounds -- it now buys a measured ~0.00. WHAT SURVIVES, so this is NOT closed as invalid (spike item 3): a genuine, confirmed CODE-level divergence -- the training path and the inference path differ and nothing reconciles them -- a real hygiene defect and a latent hazard if the pre-projection ever stops being a full-rank, near-identity-scale random map. NOT APPLIED HERE, OWED TO /governance (GFLAG-0324): the spike's item-3 SUGGESTIONS to demote `severity` from degrading to a hygiene/latent class and to re-scope the title from 'repair a ~0.10 decodability loss' to 'make the two paths agree'. Deliberately left to governance rather than taken by this session: this entry's own severity_rationale argues that `degrading` rather than `corrupting` was load-bearing precisely because ree_core/agent.py is in every driver's path, so a further demotion changes /queue-experiment Step 2.5c coverage and is a disposition, not a record. Recorded by cranky-wiles-c85265 2026-09-17 (chip-20260917-substrate-queue-status-enum-hygiene) on handover from orchestrate-20260917-1532, which lost claim arbitration on this file; every cited commit, chip status and the plan doc's section 6 were re-verified against origin before recording. Status tokens and severity are UNCHANGED by this edit.",
       "governance_2026_09_23": "GFLAG-0320 + GFLAG-0324 option A (user-accepted 2026-09-23): applied the 2026-09-17 spike's own proposal. severity degrading -> cosmetic (the flags asked for 'hygiene'; the schema's severity enum is corrupting/degrading/cosmetic and cosmetic is its no-gate class), which REMOVES this entry's Step 2.5c WARN on ree_core/agent.py -- the gate was justified by a ~0.10 decodability cost that did not reproduce. Title re-scoped to 'make the two paths agree'. status/status_phase -> no build owed (status_phase 'closed' because the schema has no latent/hygiene token; ready is true and depends_on_unresolved is empty). The entry is RETAINED, not closed as invalid: the code-level train/inference divergence survives. Re-open to build_owed if the pre-projection stops being a near-identity random map or a run shows a measured cost. Previous title/severity/status preserved in git.",
-      "v3_exq_1030a_requirement": "GFLAG-0320: any V3-EXQ-1030a re-run must use ONE split seed for both probe paths, verify/standardise linear-probe convergence, and report train accuracy alongside held-out accuracy."
+      "v3_exq_1030a_requirement": "GFLAG-0320: any V3-EXQ-1030a re-run must use ONE split seed for both probe paths, verify/standardise linear-probe convergence, and report train accuracy alongside held-out accuracy.",
+      "ready_prior_2026_09_24": true,
+      "ready_blocked_by": "no build owed (governance_2026_09_23, GFLAG-0320/0324 option A): status string registered_no_build_owed_hygiene_path_divergence is not a recognised terminal status, so the workset failed open to ready (IGW-220). Set false 2026-09-24 by governance-20260924 (stalled-session handover finding 7)."
     },
     {
       "sd_id": "sd-allon-training-signal-absorption-telemetry",
@@ -12625,7 +12627,7 @@
       "node_class": "complex (probe-gated)",
       "status": "pending_implementation",
       "status_phase": "probe_gated",
-      "ready": true,
+      "ready": false,
       "registration_is_not_build_authorisation": false,
       "owner_route": "/implement-substrate (instrument + recording pieces buildable now); the substrate piece is a GOV-FANOUT-1 4-leg discrimination -- run the cheapest leg (under-training probe) before any representation build",
       "design_doc": null,
@@ -12701,7 +12703,7 @@
       "added_utc": "2026-09-23T09:25:24Z",
       "last_seen_session": "governance-20260924",
       "experiment_queued": false,
-      "probe_queue_id": "V3-EXQ-1077 (completed 2026-09-23, FAIL active_error_removed_AMBIGUOUS; next leg H-pe-source-structurally-wrong not yet queued)",
+      "probe_queue_id": "V3-EXQ-1077 (completed 2026-09-23, FAIL active_error_removed_AMBIGUOUS); next leg V3-EXQ-1084 HELD (GFLAG-0451 redesign)",
       "fanout_leg_update_2026_09_24": {
         "leg": "H-harm-head-undertrained",
         "status": "RUN (V3-EXQ-1077) -- exhausted as a discriminator for the convergence disjunct and the epsilon form of the off-distribution disjunct; do NOT re-run or re-offer 1077 (the policy/state-distribution form rides as a recorded non-gating readout in the next leg, not as a separate run)",
@@ -12711,7 +12713,9 @@
         "still_live_unrun": [
           "H1-exposure-error-coupling (environment axis)"
         ]
-      }
+      },
+      "ready_prior_2026_09_24": true,
+      "ready_blocked_by": "PE-source discrimination leg owed (H-pe-source-structurally-wrong): V3-EXQ-1084 was HELD at red-team (ree-v3 3ba888d988, DO-NOT-QUEUE) -- its ensemble-disagreement alternative is unfailable-false under exposure matching; redesign options in GFLAG-0451. Not an /implement-substrate item until that leg reads out (failure_autopsy_V3-EXQ-1077_2026-09-24; stalled-session handover finding 6)."
     },
     {
       "sd_id": "arc044-joint-wharm-running-variance-readout-producer",

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-24T07:35:07Z",
+  "last_review_utc": "2026-09-24T08:45:14Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1349,7 +1349,8 @@
     "v3_exq_1078_inv069_zself_coherence_unsettled",
     "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation",
     "v3_exq_1012c_e3_commensurability_eligibility_stage_validation",
-    "v3_exq_1077_sdppb9_harm_head_undertrain_probe"
+    "v3_exq_1077_sdppb9_harm_head_undertrain_probe",
+    "v3_v3_exq_1066_runner_error_20260920T150823Z_v3"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -7232,6 +7233,16 @@
           "why": "ERROR manifest -- routes to /diagnose-errors, never autopsied. Expected to stay pending."
         }
       ]
+    },
+    {
+      "utc": "2026-09-24T08:45:14Z",
+      "session": "governance-20260924",
+      "cycle": "governance 2026-09-24",
+      "runs_reviewed": [
+        "v3_v3_exq_1066_runner_error_20260920T150823Z_v3"
+      ],
+      "skim_outcome": "ERROR disposition, no re-run: V3-EXQ-1066 was queued by mistake (driver says DO NOT QUEUE AS-IS; burn-down 405cd5f ignored it); 2026-09-23 governance ruling (REE_assembly ca3f1dc15e; GFLAG-0421/0416/0354) found ARM_ALTERNATE's oscillator can never engage (episodes 8-14 steps < step-20 sweep start). No traceback reachable (ree-cloud-3 off). No successor, no supersession flag. Source: stalled session governance-20260924-workset handover finding 1.",
+      "still_pending": []
     }
   ]
 }
