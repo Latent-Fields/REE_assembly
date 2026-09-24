@@ -277,6 +277,18 @@
     "verdict": "RED"
    }
   ],
+  "MECH-139": [
+   {
+    "chip_ref": "chip-proposal-exp-1369",
+    "producer_paths": [],
+    "reason": "R6 unwired: no multi-second pre-movement trajectory structure in substrate; V3 action space is atomic per-tick SelectionResult.committed bool, not a trajectory object. Same commit-token gap as MECH-137. gap_disposition=INSTRUMENT EXISTS BUT WRONG LOCUS/TIMESCALE per falsifier_completion_and_runnability_audit_20260921 (R6 primary). claims.yaml WWA already states 'No experiment is queued.'",
+    "recorded_by": "orchestrate-20260924-b",
+    "recorded_utc": "2026-09-24T11:11:45Z",
+    "ree_v3_sha": "76dab48b69129b16c06b3bdd7953be321f83e0ea",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-204": [
    {
     "chip_ref": "chip-20260918-exq541d-mech204-f1-guard-validation",
