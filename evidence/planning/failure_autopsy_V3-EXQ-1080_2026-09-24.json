@@ -1,0 +1,221 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T06:02:36Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "drafted_by": "subagent of /governance session governance-20260924-workset",
+  "dry_run_checked": true,
+  "dry_run_check_detail": "scripts/check_dry_run_citations.py over the run_id and the 4 historical target run_ids: 0 dry / 5 clean; --family v3_exq_1080: 0 dry / 1 real",
+  "excluded_dry_run_ids": [],
+  "brief_premise_corrections": [
+    "GFLAG-0304 is ALREADY status resolved (resolved_at 2026-09-23T19:38:21Z, options A+B, REE_assembly 4cf047ba8f); the outstanding item is the deferred per-claim re-run decision its resolution note names, supplied here."
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_1080_contamination_truncation_prevalence_probe_20260924T000105Z_v3",
+      "queue_id": "V3-EXQ-1080",
+      "claim_ids": [],
+      "audited_claim_ids": [
+        "ARC-070",
+        "INV-054",
+        "MECH-074",
+        "MECH-074a",
+        "MECH-074b",
+        "MECH-074d",
+        "MECH-106",
+        "MECH-189",
+        "MECH-303",
+        "MECH-329",
+        "MECH-427",
+        "SD-077",
+        "SD-079"
+      ],
+      "bears_on": [
+        "GFLAG-0304",
+        "sd094_contamination_footgun_exposure"
+      ],
+      "self_route_label": "contamination_truncation_present_verdicts_robust_no_reruns_owed",
+      "self_route_holds": "yes, within its stated scope (direct claims of 4 determinable targets); non-vacuous: C_PREV compares 4 verdict fields per target, the arms were separated by a large exposure contrast in 3/4 targets (669c/888 window truncation 31%/58%; 939a harm intrusion in 24/24 full-length SAFE walks; 0% gated), and STOCK reproduced every historical verdict tuple in full (outcome, direction, per-claim, label). Qualifications: 904 was never exposed (0 contacts) so ARC-070 is cleared by absence of exposure, not a sensitivity test; 939a's margins were not captured, so its robustness is categorical only. 939a is also coarse by construction: only arm A can flip it (historical A ~0.75 vs DV_MARGIN 0.34).",
+      "failed_criterion": "none_load_bearing (669c/939a/888::stock_dv_death_frac_below_material are non-load-bearing prevalence readouts: 0.310 / 1.000 / 0.583 vs < 0.10; C_PREV passed, 0 of 4 determinable targets verdict-sensitive)",
+      "per_target_readout": {
+        "669c": {
+          "stock_dv_death_frac": 0.3095,
+          "optout_dv_death_frac": 0.0,
+          "stock_contacts": 123,
+          "verdict_changed": false,
+          "stock_reproduces_historical_full_tuple": true,
+          "class": "truncated_verdict_robust",
+          "sub_threshold": "frac_c3_p01_complexity 0.333 -> 0.000 under gating (c3_pass 0 both); MECH-329 weakening strengthened, not weakened"
+        },
+        "939a": {
+          "stock_dv_death_frac": 1.0,
+          "optout_dv_death_frac": 0.0,
+          "stock_warmup_death_frac": 0.5528,
+          "stock_contacts": 1800,
+          "verdict_changed": false,
+          "stock_reproduces_historical_full_tuple": true,
+          "class": "truncated_verdict_robust (driver class name; exposure is harm intrusion WITHOUT window loss: exposure steps_total 2880 and test 1176 identical across arms, 96 deaths inside continuing walks)",
+          "sub_threshold": "not captured (adapter read metrics/readout keys 939a does not emit; target_metrics {})",
+          "window_loss": "none"
+        },
+        "904": {
+          "stock_dv_death_frac": 0.0,
+          "optout_dv_death_frac": 0.0,
+          "stock_contacts": 0,
+          "verdict_changed": false,
+          "stock_reproduces_historical_full_tuple": true,
+          "class": "clean",
+          "sub_threshold": "all counters bit-identical across arms; not exposed in practice (24-step episodes); the observation channel (contamination_view) did differ across arms -- insensitive by construction (counters driven by injected region_vs IV)"
+        },
+        "888": {
+          "stock_dv_death_frac": 0.5833,
+          "optout_dv_death_frac": 0.0,
+          "stock_contacts": 456,
+          "verdict_changed": false,
+          "stock_reproduces_historical_full_tuple": true,
+          "class": "truncated_verdict_robust",
+          "sub_threshold": "c1-c3 3/3 seeds both arms; aor_z_mean FULL 0.434 -> 0.470, TAG_OFF 0.256 -> 0.296, GAIN_FLAT 0.115 -> 0.135 under gating"
+        }
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free; audits the evidence base of 7 direct claims, tests none)",
+        "biological_reference": "n/a (instrument/ecology question: SD-094 self-generated contamination in a nominally hazard-free nursery is an artefact with no ecological analogue; the gate removes exactly it)",
+        "prerequisites": "present (positive control 1.00 stock / 0.00 gated, 20/20 episodes each; all 4 targets determinable, none degenerate in either arm)",
+        "implementation": "complete (class-level instrument covered every env; gate bound on every hazard-free env and on no hazarded env; intended DV-unit counts exact in both arms; post_done_steps 0)",
+        "environment": "adequate (targets at original full-scale config; STOCK reproduced each historical verdict tuple in full)",
+        "measurement": "adequate for the categorical verdict question; partial for margins (939a metrics not captured; 904 unexposed so not a sensitivity test)",
+        "integration": "coupled for 669c/888/939a (hazard-free env feeds each DV; 669c C3 and 888 aor_z moved; 939a only via SAFE arm A); 904 coupled in observation (contamination_view differed) but insensitive by construction (region_vs IV drives its counters), 0 contacts",
+        "scale": "adequate for the 4 targets; insufficient for corpus extrapolation (n=4 purposive of 92 exposed runs; 3 PASS/supports + 1 FAIL/mixed; negative-verdict exposed runs under-sampled)"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "no failure -- diagnostic PASS; self-route holds for its stated scope, with 904 (unexposed) and 939a (categorical-only) qualifications"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent (not applicable to an instrument probe)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "claim-free diagnostic; no epistemic suppression asserted for any claim",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1080 (GFLAG-0304 option B) re-ran V3-EXQ-669c/939a/904/888 at full scale on the current substrate with and without the hazard-free contamination gate. Window truncation was material in 2/4 targets (669c 31% of hazard-free episodes, 888 58% of neutral-context episodes; 0% gated); 939a had contamination harm intrusion without window loss (96 deaths across 24 full-length SAFE walks); 904 was never exposed (0 contacts). Rates describe the configuration on today's substrate. No target's verdict tuple changed and STOCK reproduced every historical verdict. No re-run owed for MECH-329, MECH-189, MECH-303, MECH-074, MECH-074a, MECH-074b, ARC-070; MECH-074d, SD-077, SD-079 keep their caveat; MECH-106, INV-054, MECH-427 not covered. 939a margins not recorded (categorical robustness only).",
+      "per_claim_recommendation": {
+        "MECH-329": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 readout paragraph (669c variant, draft in the .md section 7) to evidence_quality_note, discharging the 2026-09-23 contamination caveat for this claim's verdict -> stamp this artifact",
+          "status_change": "none"
+        },
+        "MECH-189": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 readout paragraph (669c variant) to evidence_quality_note -> stamp this artifact",
+          "status_change": "none"
+        },
+        "MECH-303": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 readout paragraph (939a variant, margins not recorded) to evidence_quality_note -> stamp this artifact",
+          "status_change": "none"
+        },
+        "MECH-074": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 readout paragraph (888 variant) to evidence_quality_note -> stamp this artifact",
+          "status_change": "none"
+        },
+        "MECH-074a": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 readout paragraph (888 variant) to evidence_quality_note -> stamp this artifact",
+          "status_change": "none"
+        },
+        "MECH-074b": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 readout paragraph (888 variant) to evidence_quality_note -> stamp this artifact",
+          "status_change": "none"
+        },
+        "ARC-070": {
+          "recommended_evidence_direction": "n/a -- claim-free audit run, no scoring entry",
+          "change": "append the dated V3-EXQ-1080 not-exposed-in-practice paragraph (904 variant) to evidence_quality_note -> stamp this artifact",
+          "status_change": "none"
+        }
+      },
+      "per_claim_recommendation_note": "recommended_diagnostic_evidence_adjudicated deliberately NOT set: that flag marks an adjudicated-and-expected ZERO experimental count, and these 7 claims carry experimental evidence; this run audits it rather than adding a diagnostic entry. Family claims (MECH-074d, SD-077, SD-079) and uncovered claims (MECH-106, INV-054, MECH-427) get no per-claim recommendation: their 2026-09-23 caveat stands and the re-run decision stays open (optional family paragraph drafted in the .md).",
+      "stale_premise_correction": "The 2026-09-23 GFLAG-0304 option-A paragraphs on the 11 annotated claims state truncation is 'confirmed in only 1 of 92 exposed runs (V3-EXQ-940)'; V3-EXQ-1080 confirms material window truncation in 2 more on today's substrate (669c, 888) and harm intrusion without window loss in a third (939a). Correct by dated addendum, not in-place rewrite.",
+      "gflag_disposition": {
+        "GFLAG-0304": "already resolved 2026-09-23T19:38:21Z -- no status change. This autopsy supplies the deferred per-claim re-run decision its resolution note names ('Per-claim re-runs are decided after it reads out'): no re-run owed for 7 direct claims; family + uncovered undecided; the flag's 13 non-indexer-scored claims were outside the probe.",
+        "suggested_resolution_addendum": "V3-EXQ-1080 read out 2026-09-24 (PASS, contamination_truncation_present_verdicts_robust_no_reruns_owed; autopsy failure_autopsy_V3-EXQ-1080_2026-09-24): window truncation material in 2/4 targets (669c 31%, 888 58%), harm intrusion without window loss in 939a (96 deaths across 24 full-length SAFE walks), 904 unexposed; 0/4 verdict-sensitive; no per-claim re-runs owed for MECH-329, MECH-189, MECH-303, MECH-074, MECH-074a, MECH-074b, ARC-070; family (MECH-074d, SD-077, SD-079) and uncovered (MECH-106, INV-054, MECH-427) remain undecided; the flag's 13 non-indexer-scored claims were outside the probe.",
+        "other_flags": "none open reference the contamination footgun / V3-EXQ-1080 / V3-EXQ-940"
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "claim-free; no ceiling reading"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "note": "claim-free"
+      },
+      "learning_extracted": [
+        "Contamination exposure is prevalent, not rare, on today's substrate: window truncation material in 2/4 re-run targets (669c 31%, 888 58%), harm intrusion without window loss in 939a (96 deaths across 24 full-length SAFE walks); the '1 of 92 confirmed' premise in the 2026-09-23 claim notes is stale. Rates are for the configuration on substrate ce6577a3, not the historical exposure.",
+        "Prevalence and verdict-sensitivity separate: 0/4 verdicts moved, but magnitudes did (669c C3 1/3 -> 0/3 seeds; 888 aor_z effects slightly larger when gated).",
+        "Recording gap (minor): the probe's 939a adapter read metrics/readout keys 939a does not emit, so 939a margins are unobservable; reuse of this pattern should read criteria[].gap / per_seed_release_rate (Experimental Recording Standard sec 3c).",
+        "Cosmetic: manifest top-level seeds [0] is a placeholder; real seeds live in each target driver.",
+        "Sampling asymmetry: exposed negative-verdict runs (INV-054 278/435, MECH-314 family, SD-049 514b) are where truncation could generate a verdict and are under-sampled; INV-054 is the highest-risk uncovered claim.",
+        "STOCK and OPTOUT cells emit identical arm fingerprints (gate injected via class wrap, not config_slice); harmless while arm reuse is emit-only, a false cache HIT if it ever consumes these manifests -- a successor probe should put the gate in the config slice."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "PRIMARY action is governance annotation (no experiment) for the 7 direct claims. The queue-experiment routing is OPTIONAL and governance's call: a new-EXQ extension of the same probe pattern covering INV-054 (V3-EXQ-278/435) first, then MECH-427 (883), MECH-106 (231a), plus one 894* and one 807/823 target to close the family caveats, reading 939a-style criteria[].gap margins. Report only -- governance chips it after ratifying this disposition.",
+      "review_action": "mark reviewed in review_tracker.json; accept the self-route for its stated scope with the 904-unexposed and 939a-categorical-only qualifications recorded."
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "action": "none",
+    "reason": "no registered question covers contamination prevalence, the run opens no rival set, and no fanout_recommendation is emitted; nothing to pre-register or resolve"
+  },
+  "pre_routing_checks_7b": {
+    "fire_count": 0,
+    "inapplicable": [
+      "C1",
+      "C2",
+      "C3",
+      "C5",
+      "C7"
+    ],
+    "note": "claim-free target; 7c carries the load"
+  },
+  "red_team_7c": {
+    "status": "done",
+    "model": "fable (cross-model; drafting session Opus)",
+    "verdict": "CONTESTED (narrow)",
+    "defect": "F1: 939a was not truncated -- exposure steps_total 2880 / test 1176 identical in both arms; its exposure is harm intrusion without window loss. Applied: all 'truncation in 3/4' statements corrected to 2/4 + 939a harm intrusion. Recommendation unchanged.",
+    "cheap_confirmer": "jq '.probe_cells[1].per_arm[].episodes.hf_by_phase' <flat manifest>",
+    "accepted_qualifications": [
+      "A2 939a verdict coarse by construction (only arm A can flip)",
+      "A4 gate also zeroes contamination_view; 904 insensitive by construction",
+      "A5 prevalence is config-on-today's-substrate; full-tuple reproduction established by the autopsy's read, not by the run"
+    ],
+    "clean": [
+      "A3 no cross-arm leakage",
+      "A6 669c/888 genuine sensitivity tests",
+      "A7 no causal over-reach beyond F1"
+    ],
+    "hygiene": [
+      "H1 applied",
+      "H2 pooled enabled_default_off_flags noted",
+      "H3 identical arm fingerprints -> lesson",
+      "H4 seeds [0] placeholder",
+      "H5 fixed"
+    ],
+    "optional_confirmer": "re-run only the 939a adapter with metrics fix, both arms, ~22 min on ree-cloud-2"
+  }
+}

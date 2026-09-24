@@ -1,0 +1,241 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T06:02:41Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "session": "governance-20260924-workset (staging subagent; no claim opened/closed, nothing committed)",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "scripts/check_dry_run_citations.py over the run_id and V3-EXQ-1081: 0 dry, 1 clean (exit 0). scripts/check_autopsy_coverage.py V3-EXQ-1081: AVAILABLE YES (no prior autopsy). validate_experiments.py --checks dry_run_unreachable_criterion: no 1081 finding.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3",
+      "queue_id": "V3-EXQ-1081",
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "claim_ids": [],
+      "bears_on": [
+        "SD-PP-B1-world-forward-behavioural-consumer",
+        "MECH-572",
+        "MECH-573",
+        "MECH-574",
+        "INV-063"
+      ],
+      "self_route_label": "sleep_head_change_reaches_e3_ranking__rollout_yes__curiosity_undetermined",
+      "indexer_adjudication": "precondition_unmet",
+      "failed_criterion": "none -- outcome PASS. The only unmet preconditions are curiosity_route_positive_control on 3/3 seeds (REINIT_CURIOSITY_ONLY top1_diff_rate 0.0095 / 0.0163 / 0.0063 vs floor 0.10), each declared applies_to C3_curiosity_route. Every precondition gating the load-bearing C1 (yoke_exact, sleep_moved_head, positive_control_reach, n_ticks) is met on 3/3 seeds.",
+      "precondition_adjudication": {
+        "unmet": "curiosity_route_positive_control (seeds 42, 123, 456)",
+        "scope": "C3_curiosity_route only (declared applies_to on each entry); the indexer's _compute_adjudication / _precondition_unmet does not read applies_to, so the run-level flag fires for a precondition that gates no load-bearing criterion",
+        "was_assumption_really_unmet": "YES for C3: a freshly initialised world head swapped into ONLY the MECH-314a summary read re-ranks the E3 top-1 on 1/105, 2/123, 2/317 ticks. The 314a route has no top-1 authority over world-head changes at curiosity_novelty_weight 0.05 (the config default): A's novelty deviation range is 4.7% / 7.0% / 0.25% of the E3 score range, so it can only flip the argmin at near-ties (a_near_tie_frac 4.8% / 1.6% / 7.9%).",
+        "is_precondition_test_wrong": "NO -- it is a correctly scoped positive control and C3 honours it (state undetermined, n_determinate_seeds 0).",
+        "self_route_survives": "YES, with two narrowings. The label's rollout_yes and curiosity_undetermined tokens are both correct as stated; the flag is CLEARED for C1/C2 (scoping artefact) and STANDS for C3 (already encoded as 'undetermined' in the label). Narrowing 1: the reach is MAGNITUDE-GENERIC -- NOISE_MATCHED (random direction, per-tensor norm matched to the sleep change) clears the same bar on 3/3 seeds vs C1's 2/3, which by the driver's own pre-stated C6 reading means the reach is sensitivity to a head change of that size, not something specific to the sleep direction. Narrowing 2: C1 is 2/3 with seed 42 a marginal miss (5/105 = 0.0476 vs 0.05; 6 ticks needed), and only seed 123 shows sleep > noise (15/123 vs 7/123); seed 456 is sensitive to every head change (REINIT 0.64, NOISE 0.45, SLEEP 0.45)."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim-free diagnostic (claim_ids []); bears on MECH-572/573/574 and INV-063 leg B only through SD-PP-B1's cap, which this run removes as a premise",
+        "biological_reference": "clear for the route under test: hippocampal forward sweeps / prospective trajectory simulation (VTE, preplay) read by striatal-prefrontal valuation are the biological analogue of HippocampalModule -> E2.rollout_with_world -> E3.score_trajectory; offline consolidation changes the model the next waking sweep uses. The 314a one-step novelty read is closer to a formal curiosity import.",
+        "prerequisites": "partial -- E3 evaluators (harm_eval, benefit, residue) at their P0 state (P0 trains e2 only); z_world encoder untrained; the world head sits barely above copy-the-input (persistence-relative skill 0.21 / 0.18 / 0.06 pre-sleep). These bound what 'reach' means (reach through the current default consumer, not through a trained organism); they do not affect whether a route exists.",
+        "implementation": "complete for the question asked. Rollout route: live, unconditional (e2_fast.py rollout_with_world calls world_forward every step, ree-v3 HEAD 4fc6f3d re-read 2026-09-24). 314a route: coupled but inert at top-1 BY DEFAULT -- missing link 'neutralising guard or default': curiosity_novelty_weight 0.05 with normalize_score_bias_to_e3_range OFF keeps the novelty term at <= 7% of the E3 score range. Not a defect of the build under test; the 314a route was never the native consumer.",
+        "environment": "adequate for a ranking-reach question (5x5 CausalGridWorldV2, 1 hazard, 1 resource, alpha_world 0.9); not asked to carry a behavioural consequence",
+        "measurement": "adequate for C1/C2 -- NULL twin bit-exact (0.0 on 3/3), REINIT_BOTH positive control 0.25 / 0.23 / 0.64, NOISE_MATCHED context, per-twin determinacy (0 desync, 0 non-finite). Partial for C3 -- the positive control shows the top-1 DV cannot register the curiosity route at this weight; rank_discordance (recorded, not gated) is the only readout there (REINIT_CURIOSITY_ONLY 0.018 / 0.053 / 0.001 of candidate pairs). Limitation: the 0.05 per-seed bar on 105 ticks makes seed 42 a 5-vs-6-tick decision.",
+        "integration": "coupled (rollout route, live; FULL_SLEEP top1 equals SLEEP_BOTH on 3/3 seeds, so the ~7% non-head parameter change from the same sleep cycle adds nothing to ranking); 314a route coupled but inert at top-1",
+        "scale": "adequate for the question; 3 seeds, 105-317 paired ticks per seed"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "NOT A FAILURE READ -- outcome PASS on the load-bearing criterion. The single unmet element (C3 undetermined) is a MEASURES limit on the curiosity route at its default weight, correctly declared by the driver. Nothing here is chargeable to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal prospective sweeps (vicarious trial-and-error, preplay) evaluated by ventral striatum / OFC; sleep replay reshapes the model those sweeps run on",
+        "dependencies": [
+          "a world model that the planner actually rolls forward (present: rollout_with_world)",
+          "trained valuation of rolled-out states (absent here: E3 evaluators at P0)",
+          "a consolidation update that improves rather than overwrites the model (absent: see MECH-572 read-across)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing for the route question; the 314a novelty read is a formal-curiosity channel whose weight makes it negligible for top-1 selection",
+        "lit_status": "present for hippocampal prospective simulation feeding choice; not re-pulled -- no claim adjudicated here"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free diagnostic; no category applies. The run settles a substrate-queue premise, not a claim.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1081 (diagnostic, claim-free, PASS 2026-09-23, ree-worker-3, alpha_world 0.9, 3 seeds; failure_autopsy_V3-EXQ-1081_2026-09-24). Yoked-twin counterfactual: a single force_cycle world-head change, swapped into E3 through the DEFAULT proposer-rollout route, re-ranks the E3 top-1 on 5/105, 15/123, 142/317 ticks (C1 2/3 at a 5% bar; NULL twin 0.0 bit-exact; REINIT_BOTH positive control 0.25/0.23/0.64). The reach is magnitude-generic: a norm-matched random head direction re-ranks 7/105, 7/123, 143/317 ticks (3/3). The MECH-314a curiosity route has no top-1 authority at curiosity_novelty_weight 0.05 (random-head positive control 0.009/0.016/0.006, below the 0.10 floor on 3/3), so C3 is undetermined, not negative. The indexer's precondition_unmet flag is that C3-scoped control (applies_to is not read by the indexer); it does not touch C1/C2. Establishes: SD-PP-B1's 'no default-on consumer of e2.world_forward' premise is FALSE (GFLAG-0437). Does NOT establish: that sleep improves anything -- the same cycle DEGRADED held-out world-forward skill on 3/3 seeds -- nor reach through TRAINED evaluators (E3 at its P0 state).",
+      "per_claim_recommendation": {},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B1-world-forward-behavioural-consumer",
+        "title": "CLOSED 2026-09-24 -- premise false (GFLAG-0437, V3-EXQ-1081): e2.world_forward already reaches E3 candidate ranking by default through HippocampalModule -> E2.rollout_with_world -> E3.score_trajectory; no consumer build is owed",
+        "implementation_hint": "NO BUILD OWED. The row's gap does not exist: rollout_with_world calls world_forward at every rollout step (ree_core/predictors/e2_fast.py ~:822, unconditional) and E3 scores those world_states. V3-EXQ-1081 measured it: a random world head moves the E3 top-1 on 23-64% of ticks through that route alone; one sleep cycle's head change (rel-L2 ~3%, max |d| = the 8 x 1e-3 optimiser bound) moves it on 5-45% (2/3 seeds at a 5% bar); the reach is NOT SPECIFIC to the sleep direction at this norm (a norm-matched random direction clears the bar on 3/3; sleep > noise on 1/3 seeds, seed 123 15 vs 7 ticks; one noise draw per seed). The implementation_hint's 'cheapest probe via MECH-314a curiosity_candidate_source=e2_world_forward' is the WRONG consumer: at curiosity_novelty_weight 0.05 that route has no top-1 authority over head changes (<= 1.6% of ticks under a random head). Do not re-open this row to pick a canonical consumer -- the native path already exists. What still caps organism-level evidence for MECH-572/573/574 and INV-063 leg B is NOT a missing route: (i) the sleep update degrades the head (3/3 seeds here, at alpha_world 0.9), (ii) head readability (SD-PP-B5 / MECH-573), (iii) E3 evaluators untrained in any P0-only protocol.",
+        "status_suggested": "closed_premise_false__default_consumer_exists__GFLAG_0437__V3_EXQ_1081",
+        "node_class_suggested": "remove node_class complex (probe-gated) -- the probe has read out; no residual unknown owned by this row",
+        "ready": false,
+        "fields_to_retract": {
+          "title": "No default-on behavioural consumer of e2.world_forward ... capped at mechanistic/local evidence -- FALSE",
+          "why_no_existing_owner": "'No claim or SD registers a native behavioural consumer' -- the consumer is the default hippocampal rollout path, not an SD-gated lever",
+          "implementation_hint_first_sentence": "'e3_selector.py's only reference to world_forward is a docstring' -- literally true, materially misleading: E3 consumes world_forward output via Trajectory.world_states",
+          "event_or_manipulation_produced / dv_or_instrument_exposed": "'NOT PRODUCED / NOT EXPOSED -- this is the gap' -- V3-EXQ-1081 produced the manipulation (swapped head) and exposed the DV (top1_diff_rate, rank_discordance)",
+          "ready_blocked_by": "'/governance must decide which consumer becomes the canonical native path' -- moot"
+        },
+        "unblocks_claims": [
+          "MECH-572",
+          "MECH-573",
+          "MECH-574",
+          "INV-063"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "severity": "cosmetic",
+        "severity_note": "A premise error in a registration-only row; no evidence corrupted. V3-EXQ-1073 cites the false premise in its preregistered Result-4 ceiling (ree-v3 experiments/v3_exq_1073_mech572_precision_provenance_gain.py lines ~194-196 and ~2333-2334: 'no default-on consumer of e2.world_forward').",
+        "substrate_paths": [
+          "ree_core/predictors/e2_fast.py::rollout_with_world",
+          "ree_core/hippocampal/module.py",
+          "ree_core/predictors/e3_selector.py::_get_world_states"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3",
+          "experiment_type": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe",
+          "metric": "E3 top-1 first-action-class change rate vs a bit-exact NULL twin. SLEEP_BOTH 0.048/0.122/0.448; SLEEP_ROLLOUT_ONLY 0.048/0.114/0.454; SLEEP_CURIOSITY_ONLY 0.000/0.008/0.000; FULL_SLEEP = SLEEP_BOTH; NOISE_MATCHED 0.067/0.057/0.451; REINIT_BOTH 0.248/0.228/0.644; REINIT_CURIOSITY_ONLY 0.010/0.016/0.006 (seeds 42/123/456)",
+          "target": "reach bar 0.05 excess over NULL on >= 2/3 seeds -- MET via the default rollout route; the premise 'no route' is refuted",
+          "resolved": "resolved"
+        },
+        "resolves_prior_failure_record": [],
+        "unblocks_claims_note": "ARC-137 dropped (red-team): its access-repair readout (executed behaviour and ecological consequence with upstream content held fixed) is untouched by V3-EXQ-1081; the premise correction removes a route objection only."
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "refused_requeue": false,
+        "route_to": "governance",
+        "note": "Claim-free target; the per-claim brake does not apply and this target counts toward no claim. Recorded for completeness."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "claim_ids []; no claim cluster to read"
+      },
+      "read_across_not_adjudicated": [
+        {
+          "claim": "MECH-572",
+          "observation": "Displacement at the optimiser bound, replicated at alpha_world 0.9 (above the SD-008 floor that made the V3-EXQ-1073 figures PROVISIONAL): head_max_abs_change 0.00805 / 0.00797 / 0.00803 = 99.6-100.7% of n_steps x lr = 8 x 1e-3 on 3/3 seeds, while held-out MSE rose x1.16 / x2.43 / x4.45 and persistence-relative skill fell below copy-the-input on 2/3. CONSISTENT WITH MECH-572's optimiser-bounded-displacement premise; NOT diagnostic of its displacement-to-residual RATIO account -- pre-sleep residual is ~constant across seeds (mse_pre 3.24e-5 / 2.87e-5 / 3.07e-5), so the ratio is fixed while damage spans 4x; that spread is direction/content dependence MECH-572 neither predicts nor contradicts (red-team F2).",
+          "why_not_adjudicated": "Not in claim_ids; the run was not designed as a MECH-572 test (one lever setting, no residual-gated arm). A re-reading, like MECH-572's own V3-EXQ-1063 basis.",
+          "draft_note_append_if_governance_chooses": "[governance-2026-09-24, V3-EXQ-1081 re-reading, claim-free run -- NOT scoring evidence] At alpha_world 0.9 (the SD-008 floor, removing the 1073 PROVISIONAL caveat on this point), one force_cycle moved the world head by max |d| 0.00805/0.00797/0.00803 = the 8 x 1e-3 fresh-Adam bound on 3/3 seeds while held-out MSE rose x1.16/x2.43/x4.45 and persistence-relative skill fell below copy-the-input on 2/3. failure_autopsy_V3-EXQ-1081_2026-09-24."
+        },
+        {
+          "claim": "MECH-573",
+          "observation": "Pre-sleep persistence-relative skill 0.21 / 0.18 / 0.06 despite P0 loss converged to ~3e-5: the head is only modestly above the trivial predictor at alpha_world 0.9 too (seed 456 barely). Consistent with MECH-573's reference point; not a test of it.",
+          "why_not_adjudicated": "not tagged; descriptive only"
+        },
+        {
+          "claim": "MECH-314a / hypothesis_space question curiosity_subflavour_authority (H-novelty-per-candidate, confirmed by V3-EXQ-604c)",
+          "observation": "Changing the world head that feeds the 314a per-candidate summaries (even to a random head) changes the E3 top-1 on <= 1.6% of ticks at weight 0.05.",
+          "why_not_adjudicated": "Different contrast from 604c (604c: novelty ON vs OFF; here: novelty ON under two different heads). No conflict: the novelty channel can carry authority while being insensitive to which head produced the summaries. Do not read this as weakening H-novelty-per-candidate."
+        },
+        {
+          "claim": "INV-063 leg B",
+          "observation": "The 'no behavioural route' half of leg B's organism-level blocker is removed; the 'sleep makes the readout worse' half is re-observed (3/3 seeds, skill delta -0.07/-0.44/-0.66).",
+          "why_not_adjudicated": "not tagged; INV-063 stays substrate_conditional on the sleep-objective half"
+        }
+      ],
+      "gflag_0437_recommendation": {
+        "resolve": true,
+        "condition": "Resolve in the same governance cycle that applies the SD-PP-B1 amend above, so the flag does not close while the false row title persists.",
+        "resolution_note_draft": "Premise-false CONFIRMED twice: (a) code re-read at ree-v3 HEAD 4fc6f3d (2026-09-24; the run itself executed substrate c6aa52d9) -- E2FastPredictor.rollout_with_world calls world_forward unconditionally at every rollout step and HippocampalModule proposes E3 candidates through it (module.py 1113/1342/1384/2284/2895/3031); (b) empirically, V3-EXQ-1081 (failure_autopsy_V3-EXQ-1081_2026-09-24): a random world head re-ranks the E3 top-1 on 23-64% of ticks through that route alone and one sleep cycle's head change on 5-45% (2/3 seeds at a 5% bar); that reach is not specific to the sleep direction at this norm (a norm-matched random direction clears the bar on 3/3; sleep > noise on 1/3 seeds). SD-PP-B1 closed as premise-false (no build). The MECH-572/573/574 / INV-063 leg-B 'mechanistic-only' cap is no longer justified by absence of a route; what remains is sign of the sleep update (MECH-572/574), head readability (SD-PP-B5 / MECH-573), and untrained evaluators in P0-only protocols. The MECH-314a route named in B1's hint is not a viable consumer at weight 0.05."
+      },
+      "learning_extracted": [
+        "SD-PP-B1's premise was a grep artefact: the only literal 'world_forward' token in e3_selector.py is a docstring, but E3 consumes world_forward OUTPUT through Trajectory.world_states produced by rollout_with_world. A consumer search must follow data, not identifiers.",
+        "The default rollout route carries essentially all world-head reach into E3 ranking (SLEEP_ROLLOUT_ONLY ~= SLEEP_BOTH on 3/3); the MECH-314a curiosity route carries ~none at its default weight.",
+        "A sleep-sized head change is at the edge of ranking reach (2/3 seeds, one marginal miss) and the reach is NOT SPECIFIC to the sleep direction at this norm: a norm-matched random direction clears the bar on 3/3 (sleep > noise on seed 123 only, 15 vs 7 ticks; seed 42 5 vs 7; seed 456 142 vs 143; one noise draw per seed, no CI). Magnitude, not content, is what E3 ranking registers here.",
+        "The same cycle that reaches E3 degrades the head (3/3 seeds): reach exists, but what it would carry into behaviour today is damage, not consolidation.",
+        "Indexer gap (hygiene): _compute_adjudication ignores a precondition's applies_to scoping, so a correctly scoped non-load-bearing positive control raises a run-level precondition_unmet. 4 flat manifests in the corpus carry applies_to (418e x2, 418g, 1081)."
+      ],
+      "routing": "governance",
+      "routing_note": "No build, no re-queue, no lit-pull. Governance applies: (1) SD-PP-B1 amend-to-closed as above; (2) GFLAG-0437 resolve with the drafted note; (3) mark the run reviewed with evidence_direction non_contributory (as stamped) and clear the precondition_unmet flag as C3-scoped; (4) optionally append the MECH-572 read-across line; (5) correct the precision_provenance_consolidation_gain observation_bottleneck text (see hypothesis_space_ledger_pending). Follow-on to REPORT (not spawned): indexer applies_to scoping fix in REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py (_compute_adjudication), low priority.",
+      "pre_routing_checks_7b": {
+        "fire_count": 0,
+        "fires": [],
+        "inapplicable": [
+          "C1",
+          "C2",
+          "C3 (claim-keyed; claim_ids [])",
+          "C7 (no arm-structured result array with >= 2 arms)"
+        ],
+        "note": "C5 was applicable (sibling .md present) and did not fire. Claim-keyed checks are structurally blind on this claim-free target, so Step 7c carries the load."
+      },
+      "red_team": {
+        "model": "fable (cross-model; drafting session on Opus)",
+        "verdict": "CONTESTED (narrowly) -> both findings ACCEPTED and fixed; routing CONFIRMED",
+        "findings": [
+          {
+            "id": "F1",
+            "text": "'no more than a norm-matched random direction' is false on seed 123 (SLEEP_BOTH 15/123 vs NOISE 7/123); one noise draw per seed. Confirmer: arm_results SLEEP_BOTH vs NOISE_MATCHED top1 per seed.",
+            "disposition": "accepted -- implementation_hint, gflag resolution_note_draft and learning_extracted[2] reworded to 'not specific to the sleep direction at this norm; sleep > noise on 1/3'"
+          },
+          {
+            "id": "F2",
+            "text": "'same bounded step, very different damage: the MECH-572 signature' over-reads -- residual constant across seeds so the ratio is fixed; 4x damage spread is content dependence. Confirmer: mse_pre column.",
+            "disposition": "accepted -- MECH-572 read-across reframed as consistent with the bounded-displacement premise, not diagnostic of the ratio account"
+          }
+        ],
+        "confirmed_items": [
+          "SD-PP-B1 premise-false closure (code + default-on route + sel_diff tracks top1)",
+          "precondition_unmet = exactly 3 C3-scoped entries; indexer ignores applies_to",
+          "head_max_abs is the world head (HEAD_MODULES = world_transition + world_action_encoder)",
+          "no non-discriminating gate graded adequate",
+          "curiosity_novelty_weight 0.05 default, not overridden",
+          "FULL_SLEEP is a distinct build equal to SLEEP_BOTH at top-1"
+        ],
+        "hygiene": [
+          {
+            "id": "H1",
+            "text": "Result-4 citation unverified",
+            "disposition": "REJECTED on re-check: 1073 driver lines ~194-196 and ~2333-2334 cite the no-consumer premise; citation now explicit in severity_note"
+          },
+          {
+            "id": "H2",
+            "text": "Adam worst-case bound ~3.16 x lr; '= the bound' means the typical bound",
+            "disposition": "noted; inherited from MECH-572 framing"
+          },
+          {
+            "id": "H3",
+            "text": "seed 42 a_near_tie_frac 5/105 equals C1 flip count 5/105; per-tick records absent",
+            "disposition": "noted in .md; strengthens 'marginal' reading of seed 42"
+          },
+          {
+            "id": "H4",
+            "text": "cite run substrate c6aa52d9 vs re-read HEAD 4fc6f3d",
+            "disposition": "fixed in gflag note"
+          },
+          {
+            "id": "H5",
+            "text": "priority/ready on a closed row",
+            "disposition": "harmless; left"
+          }
+        ],
+        "findings_file": "session scratchpad redteam_1081.md (not durable)"
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "mode_a_preregistrations": [],
+    "mode_b_resolutions": [],
+    "mode_c_discoveries": [],
+    "mode_d_h_other": "not fired -- no registered question's partition is at issue",
+    "note": "No leg of any registered question is adjudicated: V3-EXQ-1081 pre-registered no ledger question and no fanout is emitted. One TEXT correction is proposed for the confirming session, not a leg change.",
+    "proposed_text_corrections": [
+      {
+        "qid": "precision_provenance_consolidation_gain",
+        "field": "decision.observation_bottleneck",
+        "current": "The world-forward head sits at copy-the-input and barely reads the action (SD-PP-B5), and no default-on behavioural consumer of it exists (SD-PP-B1); both must land before the question can move.",
+        "proposed": "The world-forward head sits at copy-the-input and barely reads the action (SD-PP-B5); that must land before the question can move. (The earlier SD-PP-B1 'no default-on behavioural consumer' clause was a false premise -- GFLAG-0437, V3-EXQ-1081: the default hippocampal rollout route already carries world_forward into E3 ranking.)",
+        "invariants_touched": "none (no hypotheses, counts or resolutions change)"
+      }
+    ]
+  }
+}
