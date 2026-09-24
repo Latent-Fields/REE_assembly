@@ -3361,6 +3361,8 @@
     2026-09-03 EXT-003 ruling. Text-repair routing: GFLAG-0272 (the 2026-09-11 lit pull directly
     disconfirms two of the claim's three written clauses) stays OPEN and is chipped to
     /claim-synthesis.
+
+    [2026-09-24 governance governance-20260924, GFLAG-0272 option A, user decision]: text repair applied in-cycle (notes + docs/architecture/language/language_and_institutions.md); status candidate and epistemic_category substrate_conditional unchanged; literature-only conflict remains non-gating (EXT-003). chip-20260915-language-cluster-text-repair discharged (MECH-013 half by 2d16f7680de, MECH-012 half here). 
   epistemic_category: substrate_conditional
   depends_on:
     - ARC-009
@@ -3368,6 +3370,8 @@
   location: docs/architecture/language/language_and_institutions.md#mech-012
   source:
     - docs/processed/legacy_tree/architecture/language/language_and_institutions.md
+  notes: >
+    [2026-09-24 governance, GFLAG-0272, user decision] Limbs separated by evidential standing, claim kept whole (MECH-013 precedent, 2d16f7680de: the ARC-009/ARC-010 cluster is substrate-blocked, so child ids would inflate the candidate tail with untestable claims). Evidence: evidence/literature/targeted_review_mech_012/ (6 entries, lit_conf 0.63). (1) 'PRIMARY medium' scoped to the absorption and denial limbs (Bandura, Underwood & Fromson 1975 supports); for diffusion, restated as 'what makes diffusion durable and transferable' because co-presence alone suffices (Beyer et al. 2017, PMID 27803288). (2) 'FULLY DECOUPLES' replaced by severed prospective gating, with a named second failure configuration -- re-signing with affect intact (Haslam, Reicher, Millard & McDonald 2015, PMID 25196821). Caspar et al. 2016 (PMID 26898470) reads the same obedience phenomenon as agency loss and is NOT to be read as settling it. (3) Residue-write vs residue-to-policy gating recorded as separable (Ogunfowora et al. 2022, PMID 34553966). (4) Collective-level constraint: per-agent attenuation does not determine collective harm response (Philpot et al. 2020). SUPERSEDED doc wording, preserved verbatim: 'In collective systems, language becomes the primary medium through which ethical residue is managed or displaced.' / 'REE predicts ethical failure in institutions arises when symbolic language fully decouples from embodied harm signals and residue tracking.' 
 - id: MECH-013
   title: "Language failure modes and pathologies."
   claim_type: mechanism_hypothesis
@@ -104701,7 +104705,10 @@
   - GOV-HELDOUT-1
   - GOV-FROZEN-1
   what_would_answer: 'TRIGGER: a proposed revision to the leverage rank, nomination detectors or manual adjudication contract, or a demonstrated pre-existing provider that invalidates UEP-034. Reassess prospectively on 5-8 newly selected nodes with a frozen ranking, re-pose pre-check, complete raw-hit ledger and deduplication by missing function/interface. Current shipping criterion was precision >=0.50, N>=5, U>=3 new registered prerequisites from >=2 source nodes; do not alter this completed pilot threshold retrospectively. A revised process earns consideration only with an independently recorded pilot and >=3 non-degenerate historical held-out cases whose old/new workflow answers differ before a skill ships. Evidence against the useful-standing-workflow hypothesis is continued low new-node precision or excessive manual work relative to net new registrations; evidence against the missing-node diagnosis is an existing provider satisfying the same falsifier. Already registered nodes, stale-note flags and ungrounded partner guesses never count as U. This is an Assembly process claim, not REE cognition; no EXP is minted and no supports edge layer is proposed.'
-  notes: Protocol committed/pushed as 5c486824fe before extraction. Eight selected nodes; one re-pose stop (not replaced), seven audited. N=39 distinct nominations, U=1 new measurement prerequisite (2.56%; descriptive Wilson 95% 0.45%-13.18%), two stale-note flags, 36 rejections. Source breadth 1; no skill shipped. MECH-092 re-found unaided as a positive control excluded from U/N and held-out evidence. The new prerequisite is mech318-within-episode-rule-switch-instrument, registration only, unblocks MECH-318 alone. No build, experiment or claim promotion. Candidate process record documents a negative pilot, not a new mandatory workflow.
+  notes: >
+    Protocol committed/pushed as 5c486824fe before extraction. Eight selected nodes; one re-pose stop (not replaced), seven audited. N=39 distinct nominations, U=1 new measurement prerequisite (2.56%; descriptive Wilson 95% 0.45%-13.18%), two stale-note flags, 36 rejections. Source breadth 1; no skill shipped. MECH-092 re-found unaided as a positive control excluded from U/N and held-out evidence. The new prerequisite is mech318-within-episode-rule-switch-instrument, registration only, unblocks MECH-318 alone. No build, experiment or claim promotion. Candidate process record documents a negative pilot, not a new mandatory workflow.
+
+    [2026-09-24 governance, GFLAG-0430] Claim-free extension of the falsifier-runnability trace landed REE_Working ed743b5be (/queue-experiment 2.5d, /implement-substrate 3h, .claude + .agents): subject is the driver's criteria block plus the substrate_queue triple when claim_ids is empty. GOV-HELDOUT-1 PASSED general on 4 held-out cases (575, 642 lineage, 798, 909). Premise correction recorded there: V3-EXQ-1075 would NOT have been stopped by it (live DV; bar-denomination defect) -- that defect is GOV-CRITBAR-1.
 - id: ARC-149
   title: >-
     An affordance-and-valuation bridge is architecturally NECESSARY between the world model and the
@@ -106155,3 +106162,104 @@
     request (harm-stream analogue of SD-PP-2). Related, deliberately NOT edited: MECH-055 (its axis-3
     falsifier consumes this PE; SD-PP-B9 unblocks it only partially) and SD-032b (the dACC consumer).
     ARCHITECTURE STUB: docs/architecture/cdq012_action_readability_comparator_gain.md.
+- id: GOV-CRITBAR-1
+  title: >
+    A pre-registered threshold criterion is admissible only if its bar is denominated on the CONTROL
+    ARM OF THE RUN THAT WILL BE SCORED AGAINST IT, at that run's own operating point -- not on the
+    same quantity recorded in another run's landed manifest, and not on an absolute value taken from
+    the design's rationale. A bar the run's own control fails, on a majority of its seeds, is
+    measuring baseline variance rather than the manipulation's effect, and a PASS/FAIL returned
+    against it is uninterpretable in BOTH directions: a FAIL is unattributable to the manipulation,
+    and a PASS is a demonstration that the manipulation exceeded a threshold the control could not
+    reach for unrelated reasons. This is a distinct defect from falsifier-runnability (the DV moves
+    fine; the partition is misplaced) and applies with full force to runs carrying `claim_ids: []`,
+    which set their criteria in the driver with no registry review.
+  claim_type: governance_rule
+  subject: governance.epistemics.control_denominated_criterion_threshold
+  polarity: asserts
+  status: candidate
+  epistemic_category: governance_rule
+  claim_level: governance
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  v3_pending: false
+  registered_utc: '2026-09-24T08:39:56Z'
+  source:
+  - evidence/planning/claim_synthesis_dv_reachability_20260923.md
+  - evidence/planning/failure_autopsy_V3-EXQ-1075_2026-09-23.md
+  depends_on:
+  - GOV-UNWRITTEN-1
+  - GOV-PATHVALID-1
+  related_claims:
+  - GOV-FAILLOC-1
+  - GOV-MATCHAUX-1
+  - GOV-INTERVENE-1
+  - GOV-SHARPEN-1
+  functional_restatement: >
+    Warn-and-record member of the routing-standard family (GOV-PATHVALID-1 production-path traversal,
+    GOV-FAILLOC-1 failure-location triage, GOV-MATCHAUX-1 auxiliary-control admissibility,
+    GOV-UNWRITTEN-1 falsifier-runnability). Those govern whether a manipulation is real, where a
+    failure belongs, which control a result needs, and whether a DV can move. This one governs where
+    the decision boundary is allowed to sit. TRIGGER = any queue entry, driver or autopsy pre-
+    registering a numeric threshold on a quantity that a control/OFF/baseline arm also produces.
+    REQUIRED = the control arm's realised value on the SAME statistic, from THIS run (or from a pilot
+    at this run's operating point), recorded in the manifest alongside the bar. Changes no claim's
+    status or confidence by itself; it is a design/admissibility gate.
+  what_would_answer: >
+    NOT an empirical falsifier -- a DESIGN-VALIDITY rule, checkable by inspecting a run's criteria
+    block against its own arm_results, never by any single REE experiment outcome.
+
+    NON-DEGENERACY PRECONDITION: the criterion's statistic must be computable on the control arm. A
+    criterion scored only on manipulated arms (a within-arm trajectory property with no control
+    analogue) is OUT OF SCOPE, and must be recorded as out of scope rather than forced.
+
+    VIOLATED BY: a scored manifest in which a load-bearing threshold criterion's bar is not cleared
+    by the run's own control arm on a majority of seeds, where no `cannot_determine` was emitted and
+    the resulting PASS or FAIL was carried into an autopsy, a claim-evidence row, or a substrate
+    status flip.
+
+    COMPLIANT: the control arm's value on the same statistic is recorded beside the bar; where the
+    control fails its own bar, the criterion returns `cannot_determine` (the negative-instrument
+    category, CLAUDE.md General Rules) rather than a verdict.
+
+    CONFIRMING: (i) a prospective case in which recording the control's value against the bar
+    CHANGES a design before it runs -- the bar is moved, or the criterion is withdrawn; (ii) a
+    retrospective case in which a verdict already carried into governance is shown to be
+    unattributable by this test alone.
+
+    FALSIFYING: (i) CORPUS SATURATION: a sample of >= 20 landed multi-arm manifests with threshold
+    criteria shows designs already record the control's value against the bar as a matter of
+    course, so the rule names an existing practice and adds nothing (NOT YET RUN; the 0.8%
+    machine-readability figure in the source document measures automatability, not practice, and
+    does not discharge this clause). (ii) SOUND-VERDICT COUNTEREXAMPLES: >= 2 cases in which a
+    design whose control failed its own bar nevertheless produced a verdict later evidence
+    vindicated. (iii) INERT CEREMONY: across >= 3 prospective designs the rule never moves a bar, a
+    criterion or a verdict relative to existing effect-size-margin and non-degeneracy-precondition
+    practice -- demote toward superseded. (iv) SCOPE COLLAPSE: if GOV-UNWRITTEN-1's Step 2.5d trace
+    is extended to cover threshold denomination as well as DV reachability, this claim is absorbed
+    and should be superseded (NOT triggered as of 2026-09-24: REE_Working ed743b5be explicitly
+    scoped threshold denomination out of the 2.5d claim-free extension).
+
+    WHAT WOULD ACTUALLY REVISE IT: evidence that the binding constraint is not the bar's
+    denominator but the absence of a pilot at the run's own operating point -- restate as a pilot
+    requirement.
+
+    READER NOTE: governance_rule about how the Assembly admits a criterion, not an empirical claim
+    about REE cognition. No EXP-#### is to be minted against it.
+  notes: >
+    [2026-09-24 governance governance-20260924, GFLAG-0430 option A, user decision] Registered from
+    the draft in evidence/planning/claim_synthesis_dv_reachability_20260923.md sec. 6 (REE_assembly
+    b5a2cddd48). Distinct claim, not a sharpening, under GOV-SHARPEN-1's C+B vs C+A test: it needs
+    new assumption A (the same quantity in another landed manifest can differ materially from this
+    run's own control at this operating point), MEASURED: V3-EXQ-1073 conv_rel_drop 0.998 vs
+    V3-EXQ-1075 ARM_OFF 0.98466/0.98486/0.99163 at the same P0_STEPS and LR. EVIDENCE SEED: (1)
+    V3-EXQ-1075 A3 bar conv_rel_drop >= 0.99 cleared by its own ARM_OFF on 1/3 seeds
+    (failure_autopsy_V3-EXQ-1075_2026-09-23.md sec 5c, user-confirmed 2026-09-23T07:52:00Z); (2)
+    GFLAG-0428 second finding -- INV-069 arm (b)'s non-degeneracy precondition bites the LIVE
+    control at windows 20/40 (0.9908/0.9925): the same defect on a precondition rather than a
+    criterion. MECHANISATION (measured, do not re-propose a corpus scanner): a retrospective check
+    reaches 0.8% of the 500 most recent manifests; the check belongs IN THE DRIVER at scoring time
+    (100% available, near-zero false-positive rate by construction). Owed nodes, both
+    complicated (buildable): the driver-side control-vs-bar assertion; the >= 20-manifest
+    falsifying-clause-(i) corpus sample. Sibling skill change already landed separately: REE_Working
+    ed743b5be (2.5d/3h claim-free scope, GOV-HELDOUT-1 passed general, 4 cases).
