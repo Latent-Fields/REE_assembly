@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_452",
+  "entry_id": "2026-09-24_mech_452_regional_da_waves_credit_assignment_hamid2021",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "MECH-452"
+  ],
+  "source": {
+    "title": "Wave-like dopamine dynamics as a mechanism for spatiotemporal credit assignment.",
+    "authors": [
+      "Arif A Hamid",
+      "Michael J Frank",
+      "Christopher I Moore"
+    ],
+    "year": 2021,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2021.03.046",
+    "pmid": "33861952",
+    "pmc": "PMC8122079",
+    "volume": "184",
+    "issue": "10",
+    "pages": "2733-2749.e16"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Shows striatal dopamine is NOT one uniform broadcast: it travels as waves organised by functional subregion, with direction set by task agency, and the authors propose this as a credit-assignment mechanism. Supports the claim's goal (credit must land on the right loop) but undercuts its premise (a single shared delta_t with all locality in the trace). Evidence class: in vivo widefield imaging of dopamine axons and release.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Dopamine release organises into localised, subregion-specific clusters and travelling waves, contradicting the premise that the teaching signal is a single globally uniform broadcast.",
+    "The proposed credit-assignment mechanism acts through the spatial structure of the dopamine SIGNAL itself, an alternative to (or complement of) purely trace-based locality; if it is the dominant mechanism, loop-local traces under a uniform delta_t would be an incomplete model."
+  ],
+  "tags": [
+    "mech_452",
+    "dopamine_waves",
+    "credit_assignment",
+    "regional_dopamine",
+    "dms_dls",
+    "agency"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dopamine axon activity and release across dorsal striatum form wave-like spatiotemporal patterns that cluster transients within functionally related subregions; wave direction is tailored to task demands (dorsomedial to dorsolateral when reward depends on behaviour, the opposite when it does not), proposed as a mechanism directing credit assignment to specialised striatal subregions.",
+    "ree_translation": "Bears on MECH-452's premise rather than its conclusion. MECH-452 assumes one shared delta_t and puts all loop-specificity into the eligibility term; Hamid et al. suggest the brain ALSO localises credit by shaping the dopamine signal per region (a DMS/associative vs DLS/motor gradient that maps loosely onto REE's associative vs motor loops). The claim's end state -- credit landing on the loop that acted -- is supported; its mechanism, 'global signal x local trace', may be only half the story.",
+    "mapping_caveat": "Rodent widefield imaging of axons and release; the link from wave direction to credit assignment is a proposed computational account with supporting correlations, not a causal demonstration. REE could represent this either by loop-specific delta_t (contradicting the 'single signal' framing) or by treating waves as a gain on local traces (compatible).",
+    "source_context": "Mice, widefield imaging of dopamine axon activity and dopamine release across dorsal striatum during instrumental and Pavlovian tasks; computational model of agency-dependent wave dynamics."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High-impact study; direction mixed because it supports localised credit while challenging the uniform-broadcast premise."
+  }
+}

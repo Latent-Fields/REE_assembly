@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_452",
+  "entry_id": "2026-09-24_mech_452_silent_eligibility_trace_d1_spn_shindou2018",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "MECH-452"
+  ],
+  "source": {
+    "title": "A silent eligibility trace enables dopamine-dependent synaptic plasticity for reinforcement learning in the mouse striatum.",
+    "authors": [
+      "Tomomi Shindou",
+      "Mayumi Shindou",
+      "Sakurako Watanabe",
+      "Jeffery Wickens"
+    ],
+    "year": 2018,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.13921",
+    "pmid": "29603470",
+    "pmc": "PMC6585681",
+    "volume": "49",
+    "issue": "5",
+    "pages": "726-736"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Independent whole-cell evidence for a synapse-specific eligibility trace in striatal D1 neurons: dopamine potentiated only synapses active ~2 s before its release. Corroborates Yagishita with a different method. Mapping again capped by synapse-versus-loop grain, and the D1-only result limits generality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The trace was demonstrated in D1-expressing neurons only; the pre-post LTD component was absent in D2 neurons, so the paper does not establish the same trace mechanism in the indirect pathway.",
+    "Dopamine released at earlier or later offsets than ~2 s produced no potentiation, i.e. the trace is narrow in time; a broad trace would be a departure from this mechanism."
+  ],
+  "tags": [
+    "mech_452",
+    "eligibility_trace",
+    "silent_trace",
+    "d1_spn",
+    "dopamine_timing",
+    "three_factor"
+  ],
+  "mapping": {
+    "source_claim_statement": "Pre-post spike pairing in D1 striatal neurons leaves a silent, transient trace (a 2-4 s rise in Ca-permeable AMPA receptor rectification); dopamine uncaged ~2 s after the pairing converts it into potentiation selectively at the synapses that were active, but not at earlier or later offsets.",
+    "ree_translation": "A second, independent demonstration that the dopamine third factor acts only through a synapse-specific, short-lived eligibility flag -- supporting MECH-452's requirement that WHICH channels a shared delta_t updates be decided by a local trace, and its specific warning that a temporally smeared trace would misassign credit.",
+    "mapping_caveat": "Synapse-level and D1-only; REE's MECH-452 applies loop-local traces to gating channels across motor/associative/limbic loops, including channels standing in for the indirect pathway where this paper found no equivalent mechanism.",
+    "source_context": "Adult mouse striatal slices, whole-cell recording in D1- and D2-identified SPNs, spike-timing protocols, timed dopamine uncaging."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Solid slice physiology in a respected journal; smaller scope than Yagishita; mapping limited by grain and D1-only finding."
+  }
+}

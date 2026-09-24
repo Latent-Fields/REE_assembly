@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_452",
+  "entry_id": "2026-09-24_mech_452_spine_specific_da_timing_window_yagishita2014",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "MECH-452"
+  ],
+  "source": {
+    "title": "A critical time window for dopamine actions on the structural plasticity of dendritic spines.",
+    "authors": [
+      "Sho Yagishita",
+      "Akiko Hayashi-Takagi",
+      "Graham C R Ellis-Davies",
+      "Hidetoshi Urakubo",
+      "Shin Ishii",
+      "Haruo Kasai"
+    ],
+    "year": 2014,
+    "venue": "Science",
+    "doi": "10.1126/science.1255514",
+    "pmid": "25258080",
+    "pmc": "PMC4225776",
+    "volume": "345",
+    "issue": "6204",
+    "pages": "1616-1620"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Direct cellular evidence for the exact factorisation MECH-452 proposes: a broadcast dopamine signal only changes synapses that carry a recent, local, input-specific activity trace (glutamatergic input 0.3-2 s earlier). Evidence class: slice two-photon single-spine imaging with optical stimulation. Held below 0.8 because single-spine locality is finer than REE's loop-level locality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The locality demonstrated is synapse/spine-level within D1 SPNs; it does not show that locality is organised by cortico-BG loop, which is the grain MECH-452 claims.",
+    "Dopamine outside the 0.3-2 s post-glutamate window produced no spine enlargement: a temporally smeared trace in a model would be a departure from this biology, which is the claim's failure mode rather than evidence against it."
+  ],
+  "tags": [
+    "mech_452",
+    "eligibility_trace",
+    "three_factor",
+    "dopamine_timing",
+    "dendritic_spine",
+    "credit_assignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "In striatal medium spiny neurons, dopamine promotes spine enlargement only when it arrives 0.3-2 s after glutamatergic input to that spine; the contingency is detected by a rapid, spatially confined cAMP/PKA signal in thin distal dendrites, where high phosphodiesterase activity closes the window.",
+    "ree_translation": "Biological instance of 'effective update = shared delta_t x local eligibility trace x active synapse': the dopamine teaching signal is broadcast, but only synapses with a recent local activity flag are updated. Supports MECH-452's central claim that credit locality must live in the trace, not the teaching signal, and that a temporally smeared or over-broad trace would deliver a correct signal to the wrong synapses.",
+    "mapping_caveat": "The paper's locality is at the single-spine scale, far finer than REE's per-loop, per-channel eligibility buffers (_lcg_elig_trace / _fcg_elig_trace gated by _loop_voted). It supports 'eligibility must be local', not specifically 'eligibility must be LOOP-local'; the loop grain is REE's architectural choice.",
+    "source_context": "Mouse striatal slices, two-photon glutamate uncaging plus optogenetic stimulation of dopaminergic axons, single-spine structural plasticity imaging, cAMP/PKA FRET sensors."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Landmark mechanistic study; mapping strong on the factorisation, weaker on the loop grain."
+  }
+}

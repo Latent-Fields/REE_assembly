@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_109",
+  "entry_id": "2026-09-24_arc_109_opal_opponent_actor_da_gain_collins2014",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "ARC-109"
+  ],
+  "source": {
+    "title": "Opponent actor learning (OpAL): modeling interactive effects of striatal dopamine on reinforcement learning and choice incentive.",
+    "authors": [
+      "Anne G E Collins",
+      "Michael J Frank"
+    ],
+    "year": 2014,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0037015",
+    "pmid": "25090423",
+    "volume": "121",
+    "issue": "3",
+    "pages": "337-366"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Closest published formalisation of exactly what ARC-109 asks for: two opponent actor populations whose contribution to CHOICE (not only learning) is scaled by dopamine in opposite directions, fitted across several human/animal datasets. Mapping is high because OpAL's G/N actors are the split; held below 0.8 because it is a model-comparison argument, not a lesion test of the split against an additive scalar.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OpAL's advantage over a single-actor model rests on fitting behavioural datasets (probabilistic RL, effort, motor skill), not on a direct demonstration that an additive G-N scalar cannot reproduce the same choices -- the claim's own ablation falsifier is not run in the paper.",
+    "In OpAL the dopamine gain on choice (beta_G vs beta_N) is a tonic parameter; REE's split uses a da proxy that is often near zero, at which the split degenerates to a rescale."
+  ],
+  "tags": [
+    "arc_109",
+    "d1_d2_split",
+    "opponent_actor",
+    "dopamine_gain",
+    "basal_ganglia",
+    "action_selection"
+  ],
+  "mapping": {
+    "source_claim_statement": "Replacing the single actor of actor-critic with a dual opponent actor (G and N striatal populations) that specialise in positive and negative action values, with dopamine modulating how much each contributes to both learning and choice, captures dopamine's joint effects on learning and choice incentive that single-actor models cannot.",
+    "ree_translation": "Direct algorithmic precedent for ARC-109's two-population representation with opposite dopamine sensitivity at the SELECTION layer (use_d1_d2_population_split with d1_da_gain / d2_da_gain in e3_selector). OpAL keeps G and N separate at choice time, so an option with high G and high N (conflict) is not the same as one with low G and low N (indifference) whenever dopamine is away from its balanced point -- the representational distinction ARC-109 says the additive MECH-449 sign collapses.",
+    "mapping_caveat": "OpAL shows the split is SUFFICIENT to capture dopamine-choice interactions and outperforms a standard actor on those datasets; it does not show the split is NECESSARY relative to every additive parameterisation. At balanced dopamine OpAL's G-N contribution reduces toward a difference score, matching REE's own finding that the split is structurally nil at da == 0 / zero straddle.",
+    "source_context": "Algorithmic/computational model fitted to published human and rodent datasets (probabilistic selection, effort-based choice, motor skill learning)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.3,
+    "notes": "Peer-reviewed flagship model paper; mapping is near-literal at the selection layer; transfer risk from model-fitting to REE is moderate."
+  }
+}

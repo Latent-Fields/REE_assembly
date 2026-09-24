@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_109",
+  "entry_id": "2026-09-24_arc_109_go_nogo_asymmetric_da_parkinsonism_frank2004",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "ARC-109"
+  ],
+  "source": {
+    "title": "By carrot or by stick: cognitive reinforcement learning in parkinsonism.",
+    "authors": [
+      "Michael J Frank",
+      "Lauren C Seeberger",
+      "Randall C O'Reilly"
+    ],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1102941",
+    "pmid": "15528409",
+    "volume": "306",
+    "issue": "5703",
+    "pages": "1940-1943"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Canonical human dissociation predicted by a model with separate Go/NoGo pathways: dopamine state flips the positive-vs-negative learning bias. Strong source; mapping to ARC-109 is partial because the dissociation is in LEARNING, which the claim explicitly notes already existed in REE, and the split's selection-layer role is inferred rather than tested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is between learning from positive versus negative outcomes; it does not by itself show that Go and No-Go must stay separate at CHOICE time rather than being summed after learning.",
+    "Parkinson's patients off/on medication differ in more than striatal dopamine (frontal dopamine, disease duration), so the Go/NoGo attribution rests on the model."
+  ],
+  "tags": [
+    "arc_109",
+    "d1_d2_split",
+    "go_nogo",
+    "parkinson",
+    "dopamine_asymmetry",
+    "reinforcement_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Parkinson's patients off dopaminergic medication learn better to avoid choices with negative outcomes than to pick choices with positive outcomes; medication reverses the bias. This pattern was predicted by a basal ganglia model with separate Go and NoGo pathways differentially modulated by positive and negative reinforcement.",
+    "ree_translation": "Human evidence that low versus high dopamine produces OPPOSITE asymmetries across two dissociable pathways -- the D1-LTP / D2-LTD asymmetry that ARC-108's signed RPE implements and that ARC-109's two populations are the substrate for. It also anchors the claim's psychiatric axis: a Parkinson-analog (dopamine-depleted) organism should show a NoGo-dominated profile a single-scalar lesion does not produce.",
+    "mapping_caveat": "The paper measures learning asymmetry, which ARC-109's own boundary statement says is NOT its subject (the learning-update asymmetry 'already existed'); the selection-layer split is the model's architecture, not what the behaviour isolates. Clinical dopamine depletion is also far coarser than REE's d2_da_gain lesion knob.",
+    "source_context": "Human patients with Parkinson's disease on/off medication versus controls; probabilistic selection and transitive-inference procedural learning tasks; neural network model of basal ganglia-dopamine interactions."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Top venue, widely replicated paradigm; mapping downgraded because the measured asymmetry is in learning, not in the selection-layer representation ARC-109 is about."
+  }
+}

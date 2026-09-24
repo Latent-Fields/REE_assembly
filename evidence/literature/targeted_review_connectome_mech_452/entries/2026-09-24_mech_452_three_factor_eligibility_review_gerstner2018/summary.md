@@ -1,0 +1,9 @@
+# Gerstner et al. 2018 -- eligibility traces and three-factor learning rules
+
+**What it is.** A review from Gerstner's group. It sets out the theoretical case for neoHebbian three-factor learning, where co-activation sets a synaptic eligibility flag and a later neuromodulatory third factor turns the flag into weight change, and then walks through four experiments showing such traces on the seconds-scale that behaviour needs. It is the standard citation for the idea that the brain bridges millisecond spikes and multi-second consequences with local tags plus a broadcast signal.
+
+**Why it matters for MECH-452.** MECH-452's formula (shared delta_t x local eligibility x active synapses) is a three-factor rule applied at the grain of BG gating channels. The review gives the claim its lineage and vocabulary. It also clarifies what the claim's collapse-to-global ablation actually removes: keep the third factor fixed and make the eligibility term non-local. That is the manipulation the 2026-09-21 audit found no REE run has made independently of loop segregation.
+
+**What it adds that the claim lacks.** The time-scale argument cuts both ways. MECH-452 warns only against traces that are too broad or smeared. The review's logic implies that a trace which is too *short* also fails, because the third factor arrives after the flag has decayed. REE's traces have decay constants, so a fair test should check both failure directions, not just the one the claim names.
+
+**Caveats and confidence.** 0.62. It's a review, so it frames rather than adds evidence. It treats the third factor as possibly several neuromodulators (broader than REE's single ARC-108 delta_t), and it says nothing about organising traces by loop. It supports the premise and sharpens the test design. It is not independent evidence for the loop-local claim.

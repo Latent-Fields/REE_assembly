@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_452",
+  "entry_id": "2026-09-24_mech_452_three_factor_eligibility_review_gerstner2018",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "MECH-452"
+  ],
+  "source": {
+    "title": "Eligibility Traces and Plasticity on Behavioral Time Scales: Experimental Support of NeoHebbian Three-Factor Learning Rules.",
+    "authors": [
+      "Wulfram Gerstner",
+      "Marco Lehmann",
+      "Vasiliki Liakoni",
+      "Dane Corneil",
+      "Johanni Brea"
+    ],
+    "year": 2018,
+    "venue": "Frontiers in Neural Circuits",
+    "doi": "10.3389/fncir.2018.00053",
+    "pmid": "30108488",
+    "pmc": "PMC6079224",
+    "volume": "12",
+    "pages": "53"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Authoritative review of the theory and the key experiments behind three-factor rules (local eligibility x global neuromodulator). Supports MECH-452's framing, but as a review it adds framework rather than new evidence, and it does not address loop-organised locality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review establishes that eligibility is synapse-local and the third factor broadcast; it does not argue that eligibility must be partitioned by cortico-BG loop.",
+    "Its time-scale argument (traces bridging ms spikes to seconds of behaviour) implies a trace that is too SHORT also fails credit assignment, a symmetric failure mode MECH-452's text does not name."
+  ],
+  "tags": [
+    "mech_452",
+    "three_factor",
+    "eligibility_trace",
+    "review",
+    "credit_assignment",
+    "neuromodulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Co-activation of pre- and postsynaptic neurons sets a synaptic eligibility flag that yields a weight change only if a third factor (a neuromodulator signalling reward, punishment, surprise or novelty) arrives while the flag is set; four key experiments now support such traces on behavioural (seconds) time scales.",
+    "ree_translation": "The general computational form MECH-452 instantiates: effective update = broadcast third factor x local eligibility x recent co-activity. Positions REE's per-loop eligibility buffers as a coarse-grained three-factor rule and gives the vocabulary for the claim's collapse-to-global ablation (removing locality of the eligibility term while keeping the third factor fixed).",
+    "mapping_caveat": "A review: it adds framework and a curated reading of evidence rather than an independent finding. It treats the third factor as potentially multiple neuromodulators, which is broader than REE's single ARC-108 delta_t; and it is silent on loop-level organisation.",
+    "source_context": "Review of theory and of experimental work in striatum, hippocampus and cortex (including Yagishita 2014 and related studies)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "Well-cited review by a leading theory group; confidence capped because it is framework, not new evidence."
+  }
+}

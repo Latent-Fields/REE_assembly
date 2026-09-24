@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_109",
+  "entry_id": "2026-09-24_arc_109_concurrent_direct_indirect_coactivation_cui2013",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "ARC-109"
+  ],
+  "source": {
+    "title": "Concurrent activation of striatal direct and indirect pathways during action initiation.",
+    "authors": [
+      "Guohong Cui",
+      "Sang Beom Jun",
+      "Xin Jin",
+      "Michael D Pham",
+      "Steven S Vogel",
+      "David M Lovinger",
+      "Rui M Costa"
+    ],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature11846",
+    "pmid": "23354054",
+    "pmc": "PMC4039389",
+    "volume": "494",
+    "issue": "7436",
+    "pages": "238-242"
+  },
+  "evidence_class": "neurophysiology_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Pathway-specific in vivo recording shows D1 and D2 populations CO-activate at action initiation rather than acting as a simple push-pull. That supports the need to keep two populations (their joint state carries information a single signed difference discards) but undercuts the claim's strict 'opposite sign' framing. Evidence class: in vivo pathway-specific fibre-photometry calcium imaging.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Direct and indirect pathways were concurrently active before movement initiation, contradicting the strict opponent (Go promotes / No-Go suppresses the same action) reading that ARC-109's wording leans on.",
+    "Bulk photometry cannot resolve whether the co-active D1 and D2 cells encode the same action or competing ones, so the result is compatible with both action-specific opponency and co-activation for a different computational role."
+  ],
+  "tags": [
+    "arc_109",
+    "d1_d2_split",
+    "coactivation",
+    "action_initiation",
+    "photometry",
+    "opponency_challenge"
+  ],
+  "mapping": {
+    "source_claim_statement": "Direct- and indirect-pathway SPN populations in dorsal striatum both show transient activity increases when mice initiate actions (not when inactive); concurrent activation of both pathways in one hemisphere precedes contraversive movements, challenging the classical opposing-pathway model.",
+    "ree_translation": "Bears on ARC-109 in two directions. For: Go and No-Go activity are high at the same time, so the joint (G, N) state is informative and a single signed difference G - N would discard it -- the conflict-versus-indifference argument. Against: the populations are not simply pushing in opposite directions on the same action at the same moment, so a strict 'Go-promote / No-Go-suppress' opponency (the framing ARC-109 inherits from MECH-449) is at best incomplete; the co-activation may reflect selection-plus-surround-suppression rather than pure opponency.",
+    "mapping_caveat": "Fibre photometry averages over many cells; whether co-activation is within one action channel or across competing channels is unresolved, and later imaging work (not included here) refines this. The paper is evidence about the brain's population dynamics, not a test of whether REE's selection behaviour needs a split.",
+    "source_context": "D1-Cre and A2A-Cre mice, GCaMP3 fibre photometry with time-correlated single-photon counting in dorsal striatum, operant lever task."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Strong venue and method for pathway-specific recording; direction mixed because it supports keeping two populations while weakening the strict opponency framing."
+  }
+}

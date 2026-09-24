@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_109",
+  "entry_id": "2026-09-24_arc_109_d2_indirect_activation_parkinsonian_kravitz2010",
+  "timestamp_utc": "2026-09-24T07:22:46Z",
+  "claim_ids_tested": [
+    "ARC-109"
+  ],
+  "source": {
+    "title": "Regulation of parkinsonian motor behaviours by optogenetic control of basal ganglia circuitry.",
+    "authors": [
+      "Alexxai V Kravitz",
+      "Benjamin S Freeze",
+      "Philip R L Parker",
+      "Kenneth Kay",
+      "Myo T Thwin",
+      "Karl Deisseroth",
+      "Anatol C Kreitzer"
+    ],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09159",
+    "pmid": "20613723",
+    "pmc": "PMC3552484",
+    "volume": "466",
+    "issue": "7306",
+    "pages": "622-626"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Causal, pathway-specific manipulation showing D2/indirect and D1/direct populations drive opposite, dissociable motor phenotypes (freezing/bradykinesia vs locomotion) -- the population-level substrate for ARC-109 leg (ii). Mapping is moderate: optogenetic drive is not a dopamine-gain lesion, and the phenotype is motor, not selection among candidates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bulk optogenetic excitation of a whole pathway is not the same manipulation as ARC-109's asymmetric dopamine-gain lesion (d2_da_gain), so the phenotype cannot be read as a prediction for that knob directly.",
+    "The paper tests gross motor output, not the conflict-versus-indifference selection distinction that is ARC-109's leg (i)."
+  ],
+  "tags": [
+    "arc_109",
+    "d1_d2_split",
+    "indirect_pathway",
+    "parkinsonian_phenotype",
+    "optogenetics",
+    "akinesia"
+  ],
+  "mapping": {
+    "source_claim_statement": "Bilateral optogenetic excitation of indirect-pathway (D2) striatal MSNs produces a parkinsonian state (freezing, bradykinesia, fewer locomotor initiations); excitation of direct-pathway (D1) MSNs reduces freezing, increases locomotion, and rescues these deficits in a dopamine-depleted Parkinson's model.",
+    "ree_translation": "Causal evidence that the two populations are behaviourally dissociable and push in opposite directions -- the precondition for ARC-109's leg (ii): an asymmetric D2-side lesion should produce an akinesia/perseveration-like signature (fewer action initiations, longer commit runs) that is not produced by scaling a single additive accumulator by the same amount.",
+    "mapping_caveat": "Optogenetic drive of a whole population is an activity manipulation, not a change in dopamine sensitivity; mapping it onto a d2_da_gain lesion assumes the two produce the same effective shift in the No-Go population's output. REE also has no registered disorder-analog readout for leg (ii) yet, so the phenotype has no instrument to land on.",
+    "source_context": "D1-Cre and D2-Cre BAC transgenic mice, Cre-dependent ChR2 in dorsomedial striatum, open-field motor behaviour, 6-OHDA dopamine-depletion model."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "High-quality causal rodent study; mapping reduced because the manipulation and readout differ from the claim's lesion and selection DV."
+  }
+}
