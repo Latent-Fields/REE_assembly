@@ -1,6 +1,6 @@
 # E2 world-rollout divergence and proposal state-invariance: undertraining artefact or structural defect?
 
-- **STATUS: FINAL for this pass + ADDENDUM 1 (encoding vs E2 objective) + ADDENDUM 2 (balanced replay, D2 choice quality, closed loop), end of file** (interim versions 18:15Z-18:45Z; final 2026-09-24T18:57:06Z). Limits in "Done / not done".
+- **STATUS: FINAL for this pass + ADDENDUM 1 (encoding vs E2 objective) + ADDENDUM 2 (balanced replay, D2 choice quality, closed loop) + ADDENDUM 3 (partitioned R5/COV/R2 closed-loop test), end of file** (interim versions 18:15Z-18:45Z; final 2026-09-24T18:57:06Z). Limits in "Done / not done".
 - Session: `bt0924-rollout` (Worker D, breakthrough integration pass `orchestrate-20260924-breakthrough`), chip_ref `chip-20260924-e2-rollout-divergence-remeasure`
 - Re-measures: Worker B `residue_consumer_reach_world_dim32_20260924.md` ("E2 world rollout diverges x1.2/step, 0.49 -> 327") and Worker C `monostrategy_type_a_vs_b_discrimination_20260924.md` ("proposal majority class identical at all 40 states").
 - Code under test: ree-v3 `origin/main` @ `86594ec5eb`, private detached worktree. All file:line citations are against that commit.
@@ -285,4 +285,74 @@ The "~99% one class" premise holds for seed 43 only. With the SD-070 encoder, 2 
 4. **Order of the edges, as now measured:** proposal start point (R5) -> action coverage of E2's training data (R6', exploration) -> E3 horizon aggregation (R2). The encoder (ADDENDUM 1) is a ceiling on how far the second can go. None of this was built.
 
 Limits: 3 seeds for A/B/C and 2 for D. The closed loop is 300 steps with arms sequential on one agent. "True" consequence means E3's own one-step J, not environment return. Heads were trained on argmax-class one-hots while runtime actions are continuous.
+
+
+## ADDENDUM 3 (2026-09-24, session `bt0924-rollout-d`): partitioned closed-loop test of R5 / COV / R2 against env-grounded outcomes
+
+- Commissioned by the orchestrator as a PARTITIONED test, not a rescue. Code: ree-v3 `origin/main` @ `44c55300ca` (private worktree; ree_core identical to `07de5a282e`). Nothing was built into ree_core.
+- Probes: `probes/rollout/r5_precheck.py`, `probes/rollout/partitioned_repair_probe.py`, summarized by `probes/rollout/summarize_part.py`. Results: `probes/rollout/results/PART_s{43,42,44}.json`.
+- Regime B, world_dim 32, SD-070-trained encoder (20x50, preservation 1000). About 4 min per seed.
+
+### The repairs, exactly
+
+- **R5.** **R5a** (uninformative CEM initial mean) was tested first by replacing `HippocampalModule._get_terrain_action_object_mean` (`hippocampal/module.py:562`, called at `:2150`) with a zeros-of-the-same-shape function on the live instance. **It is bit-identical to native on 2 of 2 seeds** (s43: majority share 0.920, class 1 at 20/20 states; s42: 0.795, class 4 at 20/20).
+  - That corrects the main record's step 5 mechanism. The collapse is not set by the terrain prior's mean. The untrained `action_object_decoder` (`module.py:178-182`) decodes 0 to exactly the majority class (class 1 on s43, class 4 on s42). The CEM refit contracts the samples toward that region, so the decoder's bias class wins wherever the mean starts. On N(0,1) inputs the same decoder spreads over all 5 classes (s43: 850/1082/1035/665/368 of 4000).
+  - So **R5 here = R5b**, the smallest lever that bypasses the decoder: the existing knob `HippocampalConfig.use_action_class_scaffold_candidates` (`config.py:2741`; `module.py:1361`, used at `:2547`), set True on the live agent. It prepends one one-hot first-action candidate per class. **It is NOT state-conditioned.** A state-conditioned start in action-object space cannot work while the decoder is untrained, so any state dependence has to come from E3's choice among the scaffolds.
+- **COV.** The ADDENDUM 2 arm-D head: trained on uniform-random-action transitions through the agent's own encoder, 3000 updates. Without COV, the head is the ADDENDUM 2 arm-A head (the agent's own replay, same budget).
+- **R2.** `E3._score_depth_limit = 2` (initial state + 1 step). This is SD-081's knob. **Confirmed live** on origin/main: it is read by `_get_world_states` (`e3_selector.py:1331`) on every `compute_*` term, and the only other writers are the dual-system try/finally at `:1928-1959`, which restores it. An assert in the probe confirms it is still set at the end of each run.
+- **Arms:** FULL, FULL-R5, FULL-COV, FULL-R2, NATIVE. **Each arm is a FRESH agent from the same seed**, with the master's trained encoder and the arm's head loaded, run for 600 waking steps in a fresh env with the same seed. There is no carry-over between arms, which removes ADDENDUM 2's confound.
+
+### The outcome measure, and why
+
+**Outcome 1** is the environment's own scalar reward, `StepResult.harm_signal` (negative = harm contact, positive = benefit contact), summed per 100 steps. I also report harm and benefit events separately, plus episodes ended: at max 200 steps per episode, anything above 3 per 600 steps is an early termination. This is the only consequence signal the env scores natively, and it is independent of E3's scorer.
+
+**Outcome 3 (choice quality)** clones the env at 41-48 probe states per seed. For each first action c, Q(c) = the mean over 6 random continuations of the summed env reward of [c, then 4 random steps]. E3's pick on a one-candidate-per-class scaffold (arm head and arm depth) is compared to the Q-best set. R5 does not enter this measure.
+
+### Outcome 1 and behaviour (600 steps per arm)
+
+| seed | arm | reward / 100 steps | harm events / 100 | benefit events / 100 | episodes ended | action entropy (nats) | executed-action majority share | proposal majority class across 20 states (modal fraction) |
+|---|---|---|---|---|---|---|---|---|
+| 43 | FULL | -0.46 | 7.3 | 0.17 | 3 | 0.72 | 0.80 (up) | 1.00 |
+| 43 | FULL-R5 | -0.48 | 5.7 | 0 | 3 | 0.14 | 0.97 | 1.00 |
+| 43 | FULL-COV | **-0.05** | 3.2 | 0.17 | 3 | 1.19 | 0.36 | 1.00 |
+| 43 | FULL-R2 | -0.43 | 5.7 | 0.17 | 4 | 0.12 | 0.98 | 1.00 |
+| 43 | NATIVE | -0.17 | 1.8 | 0 | 3 | 0.03 | 0.99 (down) | 1.00 |
+| 42 | FULL | **-0.78** | 8.5 | 0 | **5** | 0.72 | 0.81 (left) | 1.00 |
+| 42 | FULL-R5 | -6.57 | 49.7 | 1.00 | 32 | 0.73 | 0.58 | 1.00 |
+| 42 | FULL-COV | **-0.49** | 7.8 | 0.50 | 4 | 1.29 | 0.42 | 1.00 |
+| 42 | FULL-R2 | -8.91 | 61.2 | 0.83 | 45 | 0.83 | 0.53 | 1.00 |
+| 42 | NATIVE | -8.76 | 68.5 | 0.67 | **45** | 0.70 | 0.59 (stay/up) | 1.00 |
+| 44 | FULL | **-0.14** | 3.0 | 0.17 | 3 | 1.13 | 0.36 | 0.60 |
+| 44 | FULL-R5 | -1.89 | 24.8 | 0.33 | 10 | 1.22 | 0.34 | 0.45 |
+| 44 | FULL-COV | -0.97 | 17.2 | 0.83 | 6 | 1.35 | 0.38 | 0.70 |
+| 44 | FULL-R2 | -0.99 | 14.7 | 0 | 6 | 1.34 | 0.43 | 0.65 |
+| 44 | NATIVE | -1.30 | 19.0 | 0.67 | 7 | 1.01 | 0.61 | 0.45 |
+| mean | FULL / -R5 / -COV / -R2 / NATIVE | **-0.46** / -2.98 / -0.50 / -3.44 / -3.41 | | 0.11 / 0.44 / 0.50 / 0.33 / 0.44 | | 0.86 / 0.70 / 1.28 / 0.76 / 0.58 | | |
+
+### Outcome 3: choice quality against env-grounded Q (pick in the Q-best set; chance 0.20; 41-48 informative states per seed)
+
+| head / depth | s43 | s42 | s44 |
+|---|---|---|---|
+| own-replay head, full horizon | 0.12 | 0.21 | 0.46 |
+| own-replay head, depth 1 (R2) | 0.20 | 0.21 | 0.37 |
+| COV head, full horizon | 0.22 | 0.35 | 0.32 |
+| COV head, depth 1 (COV+R2) | 0.15 | 0.27 | 0.29 |
+
+### Read-out
+
+1. **FULL is sufficient on outcome 1 in 2 of 3 seeds, and the gain is harm avoidance, not goal pursuit.**
+   - s42: reward -8.76 -> -0.78 per 100 steps; harm events 68.5 -> 8.5; early terminations 42 -> 2.
+   - s44: -1.30 -> -0.14; harm 19.0 -> 3.0.
+   - s43: FULL is *worse* than NATIVE (-0.46 vs -0.17). There the native agent already sits nearly still (0.99 one action, 1.8 harm events per 100), and FULL's extra movement (entropy 0.03 -> 0.72) buys more harm contacts and no benefit. **On s43 the entropy gain is undirected noise**, as the orchestrator anticipated.
+   - Benefit contact does NOT improve in any seed (FULL 0.11 per 100 against NATIVE 0.44).
+2. **Necessity (dropping the repair from FULL loses the outcome gain).**
+   - **R5: necessary in 2 of 3 seeds** (s42 -0.78 -> -6.57; s44 -0.14 -> -1.89; s43 unchanged).
+   - **R2: necessary in 2 of 3 seeds** (s42 -0.78 -> -8.91; s44 -0.14 -> -0.99; s43 unchanged).
+   - **COV: NOT necessary.** FULL-COV matches or beats FULL in 2 of 3 seeds (s43 -0.05, s42 -0.49); only on s44 does dropping it hurt (-0.97).
+   - The working pair is **R5 + R2**: the scaffold gives E3 one candidate per action, and the depth limit makes E3 score each on its one-step prediction.
+3. **Why COV does not matter here, and why only harm improves: the evaluator.** Under default config, E3's score J has no benefit channel (`benefit_eval_enabled` False, `config.py:1327`), and no loss in ree_core trains its `harm_eval_head` (grep: no `harm_eval_head.parameters()` reference and no harm-eval loss in `agent.py`; drivers such as V3-EXQ-1061 train it themselves with BCE; in this harness it is untrained). The only term carrying environment consequence is the residue field, which accumulates at harm contacts, and it is informative only near the visited manifold, i.e. at depth 1. So R5 + R2 lets residue steer E3 away from places where harm happened. The head's action-accuracy (COV) adds little, because nothing in J is a trained value for the predicted consequence. That is the failure signature: **downstream of prediction, the evaluation edge has no learned value for benefit (and no trained harm head).** Choice quality against env Q is weak and does not follow the repairs (0.12-0.46 against 0.20 chance, with no consistent COV or R2 effect), which fits an evaluator that ranks by residue proximity rather than consequence.
+4. **Proposal state-dependence is not restored by any arm.** The majority class of the proposal pool stays at 20/20 states on s42 and s43 in every arm, including the R5 arms. The scaffold adds one candidate per class but the CEM majority still comes from the decoder's bias class. On s44 it varies in every arm, NATIVE included (0.45-0.70). Behavioural diversification under R5 comes from E3 choosing a scaffold candidate, not from a state-conditioned proposal. A truly state-conditioned R5 needs a trained decoder or an action-space proposal. R5a showed the start point is not the lever.
+5. **Stop rule.** FULL does something on outcome 1 in 2 of 3 seeds, so I did not stop at "nothing". But what the partition supports is narrow: **R5 (coverage scaffold) + R2 (depth-1 scoring) turn the residue term into working harm avoidance; COV is not needed for that; and no repair here produces benefit-seeking, because E3's default J cannot value benefit.** I did not escalate.
+
+Limits: 3 seeds, 600 steps per arm, one encoder budget. Outcome 1 is dominated by harm events, and s42's native agent has a hazard-heavy start (45 episodes in 600 steps), so the mean is driven by s42. R5 is a coverage scaffold, not a state-conditioned proposal. Choice-quality Q uses random continuations (6 rollouts of 4 steps), which is a noisy value estimate. Heads were trained on argmax-class one-hots while runtime actions are continuous.
 
