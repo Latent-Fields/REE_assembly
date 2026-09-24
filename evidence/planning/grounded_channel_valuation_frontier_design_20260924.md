@@ -368,3 +368,88 @@ The evaluator terms out-spread residue about 5-95x. This re-measures ADDENDUM 2'
   - 600-step closed-loop streams.
   - The off-policy votes use one-hot scaffold rollouts from the COV head, not the agent's CEM pool.
   - Heads were trained on argmax one-hots (inherited).
+
+## ADDENDUM 1 (2026-09-24T22:25Z, session `bt0924-valuation-b`): Mac smoke -- a HARNESS VALIDATION, not evidence for any candidate
+
+- **Scope.** The orchestrator, under the user's standing delegation, authorised the Mac smoke ONLY. The cloud battery is not authorised; option A vs C is the user's call.
+- **Evidence domain.** One seed, D1-D2 at most. Nothing below counts for or against M2, M1 or M4 as mechanisms.
+- **Code:** ree-v3 `44c55300ca`, unchanged, in a private detached worktree.
+- **Probe:** `probes/valuation/valuation_smoke_probe.py --seed 42 --steps 1500`, with results in `probes/valuation/results/SMOKE_s42.json`. Wall time 514 s, of which the preamble took 261 s under laptop contention.
+- **Regime:** T2 exactly as in `e3_evaluation_edge_test` ADDENDUM 1: tie-break ON, R5b scaffold, COV head, R2 depth 2, trained evaluators, and the native benefit gate at 1136.
+- **Arms:** trained heads only, with a fresh agent per arm and 1,500 learning steps each.
+  - **M0:** frozen weights.
+  - **M1RAW:** the raw sign rule at eta 0.05, as the K3 positive control.
+  - **M2:** regression of the contact outcome on channel votes, with action-class fixed effects. theta = clip(0.35 t), once at least 20 committed windows exist.
+  - **M4:** a random walk. Its per-channel increment SD is matched to M2's realised per-tick change in theta (F 0.031, harm 0.053, residue 0.058, benefit 0.042), and its noise seed is independent.
+  - All rules use the G-contact signal (|r| > 0.1, from the received scalar only).
+- **Why seed 42.** It was chosen and written into the probe docstring before the run, because it is the harm-heavy stream on which section 4.3 predicted that M1RAW drives harm down.
+- **Pre-registration.** The detector thresholds and M2's predicted direction were fixed in the docstring before the run.
+
+### Pass conditions
+
+**(1) The weight writer changes E3's score composition: PASS.**
+- On M2's first update tick (env step 69), theta = [F +0.191, harm +0.739, residue +0.454, benefit -0.238]. The writer set the weights to w = [1.211, 2.093, 0.787, 0.788]; the defaults are [1.0, 1.0, 0.5, 1.0].
+- Before the live select, the same 32 candidates were re-scored under DEFAULT weights on a deep copy of E3, with RNG state restored.
+- **Chosen candidate (index 3), weighted F / harm / residue / benefit terms:**
+  - default: 0.0075 / 1.036 / 1.222 / 1.255;
+  - live: 0.0091 / 2.169 / 1.924 / 0.990.
+- **The per-channel live/default ratio (median over candidates) is 1.2105 / 2.0935 / 1.5749 / 0.7882.** That equals w_now / w_default to 4 decimals on every channel.
+- M1RAW's first update (step 22: harm +0.05, residue -0.05) shows the same exact match, at 1.0513 / 0.9512.
+- **Caveat:** the sum F + harm + residue - benefit picked the same candidate under both weight sets on both demo ticks. So this shows the composition changes, not a pick flip on those ticks. Behavioural reach is shown only indirectly, by the M1RAW, M2 and M4 counts diverging from M0 after their first updates.
+
+**(2) M0 frozen reproduces T2 bit-identically: PASS.**
+- M0's first 600 steps give reward -2.0661 per 100 steps, 39 harm contacts, 25 hazard-proximity steps, 98 benefit-approach steps and 7 consumptions.
+- That is identical to `TB_s42.json` T2. The weight writer (which rewrites the defaults every tick) plus the tap is inert when frozen.
+
+**(3) The harm-floor detector fires on the raw-rule control: FAIL.** **Per the design, the battery is therefore invalid as designed.**
+- **What M1RAW did.** It drove theta_harm to the hard floor: -0.70 by step 329, -1.15 by step 690, and **-1.386 = -ln 4 by the end**.
+  - 82% of its 44 nonzero harm updates were negative.
+  - It also dragged every other channel down: F -1.0, residue -1.29, benefit -1.386.
+  - That is exactly the common-mode reward-hacking signature section 3a predicted.
+- **Why the detector stayed silent.** Both of its clauses missed:
+  - the harm weight sat at the floor on only 14% of ticks, because it arrived late, below the 25% threshold;
+  - the "harm contacts rise" conjunct was false: contacts fell from 55 in the first half to 24 in the second.
+- **That second conjunct is the design error.** Contacts fall in the second half in EVERY arm (M0 48 -> 33, M2 44 -> 25, M4 48 -> 6), because residue accumulates within a run. So "contacts rise" can almost never be true inside a 1,500-step learning phase, and it vetoes the detector.
+- **Candidate repair, NOT validated.** It is fitted post hoc on this one seed and needs fresh seeds before use:
+  - drop the contacts conjunct;
+  - FIRE if theta_harm reaches the floor at ANY tick, OR if the final theta_harm is below -0.5 with more than 75% of nonzero harm updates negative.
+  - On this smoke it would fire on M1RAW (floor reached, 82% negative) and on neither M4 (final -0.72, but only 53% negative) nor M2 (-0.16, 52%).
+  - **M4's harm weight reached -1.10 by random drift alone**, so any displacement-only threshold would false-alarm on the null. The negative-update fraction is what separates them here, on one seed.
+
+**(4) M2 and M4 weight trajectories: REPORTED. The direction of M2's harm weight was NOT confirmed.**
+
+| env step | M2 theta F / harm / residue / benefit | M4 theta F / harm / residue / benefit |
+|---|---|---|
+| about 69 (M2's first update) | +0.19 / **+0.74** / +0.45 / -0.24 | -- |
+| about 280-300 | +0.46 / +0.13 / +0.47 / -0.17 | -0.27 / -0.15 / +0.59 / -0.41 |
+| about 630 | +0.62 / +0.17 / +0.55 / -0.44 | -0.22 / -0.64 / +1.06 / -0.11 |
+| about 1,000-1,070 | +1.03 / +0.03 / +1.09 / -0.58 | -0.03 / -0.98 / +0.94 / -0.14 |
+| end (1,492) | +1.17 / **-0.16** / +1.06 / -0.51 | +0.08 / -0.72 / +0.49 / -0.21 |
+
+- **The prediction was theta_harm UP.** M2's harm weight went up first (+0.74 at its first estimate, then +0.13 to +0.17 through step 630), then decayed to about 0 and ended at **-0.16**.
+- **So the direction is not confirmed by the end.** Over the whole run it spanned -0.20 to +0.74, inside M4's pure-noise band of -1.10 to +0.16.
+- M2's clearest movements were residue UP (+1.06) and benefit DOWN (-0.51), which fits "trust the residue harm memory, distrust the benefit head". F also rose (+1.17), which no prior measurement predicted.
+- **Mechanism note.** As built, M2 re-sets theta from the CURRENT t-statistic on each tick; it does not integrate. So its weights track a noisy running estimate, and one seed cannot separate that noise from signal. This is the design as stated in section 3, now seen to be jumpy. Integrating or shrinking the estimate is a design option for the battery, not a result.
+
+**Behaviour, reported but NOT evidence** (all 1,500 steps; harm contacts / consumptions / approach steps / reward per 100):
+
+| arm | harm contacts | consumptions | approach steps | reward / 100 |
+|---|---|---|---|---|
+| M0 | 81 | 11 | 186 | -1.72 |
+| M1RAW | 79 | 10 | 188 | -1.77 |
+| M2 | 69 | 8 | 155 | -1.52 |
+| M4 | 54 | 8 | 139 | -1.14 |
+
+**The random-drift null has the fewest harm contacts.** That is why a single-seed behavioural difference means nothing here, and why V3's event-normalised null comparison is mandatory.
+
+### What this changes for the battery (for the user's A vs C decision)
+
+1. **The harness works.** The in-probe weight writer is exact, frozen weights are bit-identical, and the per-tick trajectories are logged. The mechanical parts of the battery are validated on one seed.
+2. **The K3 / V4 detector is broken as designed and must be repaired before any battery run.**
+   - Replace it with the trajectory-only rule above, or a stronger one.
+   - Then **re-validate it on at least 2 fresh seeds**, requiring it to fire on M1RAW and stay silent on M4.
+   - Until then, "no reward hacking" cannot be certified. The negative-instrument rule applies: this detector had exactly the silent false negative the positive control exists to catch.
+3. **M2 as specified is jumpy**, because it re-sets from a running t. A shrunk or integrated variant should be pre-registered before the battery, not tuned on its results.
+4. **Nothing here favours option A or option C.** The smoke says nothing about benefit coverage.
+
+**Stopped here, as instructed.** No further arms or seeds.
