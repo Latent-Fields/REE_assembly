@@ -1,0 +1,775 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T09:16:44Z",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "producer": "governance-20260924-autopsy-d34 (subagent of /governance governance-20260924), GFLAG-0452, user decision rec-20260924-34e4e088",
+  "source_skim": "evidence/planning/gflag0250_pass_driver_skim_20260924.json (runs[] for these five run_ids)",
+  "dry_run_checked": true,
+  "dry_run_check": "scripts/check_dry_run_citations.py over all 5 run_ids: 0 dry, 5 clean",
+  "excluded_dry_run_ids": [],
+  "prior_coverage": {
+    "V3-EXQ-917": "failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12 (confirmed) -- this artifact re-adjudicates its SD-011 disposition",
+    "others": "none (check_autopsy_coverage.py)"
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_158_q018_rc_conflict_threshold_calibration_20260329T192854Z_v3",
+      "queue_id": "V3-EXQ-158",
+      "claim_ids": [
+        "Q-018"
+      ],
+      "skim_subclass": "D3_leg_fires_by_construction",
+      "skim_verdict_on_review": "CONFIRMED_AND_EXTENDED",
+      "failed_criterion": "none (manifest PASS) -- C3 (harm) is vacuous by construction; C1/C2/C5 measure an offline threshold classifier whose output nothing consumes",
+      "facts": {
+        "manifest_outcome": "PASS",
+        "manifest_direction": "supports",
+        "experiment_purpose": "evidence (field absent in manifest; driver predates the field)",
+        "harm_rate_all_cells": 0.0,
+        "disc_gap": {
+          "LOW": [
+            0.8413,
+            0.8447
+          ],
+          "HIGH": [
+            0.6622,
+            0.729
+          ],
+          "ADAPTIVE": [
+            0.4834,
+            0.525
+          ]
+        },
+        "suppression_spoof": {
+          "LOW": [
+            0.9282,
+            0.9322
+          ],
+          "HIGH": [
+            0.7092,
+            0.7668
+          ],
+          "ADAPTIVE": [
+            0.4961,
+            0.5341
+          ]
+        },
+        "suppression_clean": {
+          "LOW": [
+            0.0868,
+            0.0875
+          ],
+          "HIGH": [
+            0.047,
+            0.0378
+          ],
+          "ADAPTIVE": [
+            0.0126,
+            0.0091
+          ]
+        },
+        "rc_conflict_mean_identical_across_conditions_per_seed": true,
+        "recording_core_missing": [
+          "substrate_hash",
+          "recording_schema",
+          "machine",
+          "elapsed_seconds",
+          "experiment_purpose"
+        ]
+      },
+      "verification": [
+        "driver :427 gate_fired is only counted into n_*_gated; action at :444 is torch.multinomial(policy probs) -- gate has no consumer, so all three conditions run the identical trajectory (rc_conflict_mean identical per seed across conditions in the manifest).",
+        "NEW (not in skim): driver :452 reads harm as obs_dict_next.get('harm_signal', 0.0). CausalGridWorldV2.step at the run-time commit (ree-v3 8acc947) returns harm_signal as the 2nd tuple element and _get_observation_dict never emits a 'harm_signal' key, so harm_rate is 0.0 by construction in every cell (a phantom-key default), and the harm evaluator was trained against a constant 0 target. C3 (ADAPTIVE harm <= HIGH + 0.02) is 0 <= 0.02 whatever the policy did.",
+        "ADAPTIVE is a stricter operating point on the same classifier, not a better calibration: it is below HIGH on BOTH spoof suppression (0.50-0.53 vs 0.71-0.77) and clean suppression (0.009-0.013 vs 0.038-0.047). C2 (ADAPTIVE clean < LOW clean) follows from it being more conservative. The EMA+2sigma baseline also absorbs the spoof spikes themselves (driver :405-409 updates the EMA on every step, spoofed or not).",
+        "Red-team addition: even with the key read from the step tuple, harm_signal in this env is SIGNED (negative = harm, positive = benefit, env :273; waypoint rewards added at :361/:369), so mean(harm_signal) would be a net-valence average and C3 would compare the wrong sign -- a second reason a corrected driver-local 158a is not the route.",
+        "RC-conflict here is a driver-local linear predictor residual; MECH-065 has no ree_core substrate (grep rc_conflict / reality_coherence in ree_core: 0 hits)."
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- neither half of Q-018 is behaviourally instantiated: 'blocks spoofing' is a counted flag that blocks nothing, 'without chronic over-suppression' has no cost channel and a harm DV pinned at 0",
+        "biological_reference": "partial",
+        "prerequisites": "missing -- MECH-065 RC-conflict lane has no ree_core substrate; the provenance/authority channel Q-018 needs is registered as q018-provenance-authority-marking-instrument (registration only)",
+        "implementation": "partial -- inert by DEFECT (no consumer): gate_fired is computed and counted, never read by action selection",
+        "environment": "wrong pressures -- spoofing is synthesized Gaussian noise injected by the driver; suppression carries no behavioural cost, so over-suppression cannot be observed",
+        "measurement": "misleading -- harm_rate is structurally 0.0 (phantom obs_dict key); the discrimination metrics are post-hoc threshold counts on one shared trajectory",
+        "integration": "coupled but inert (missing link: no consumer -- the call site that should read gate_fired is the action-selection / commit step at :444)",
+        "scale": "adequate for the classifier statistics (2 seeds x ~2000 spoof steps per cell); inadequate seeds for any behavioural claim"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "not_established",
+        "ree": false,
+        "net_classification": "MIXED (MEASURES + MECHANISM-integration + ENVIRONMENT) -- not chargeable to REE; this PASS carries no behavioural information"
+      },
+      "biological_reference": {
+        "closest_mechanism": "source/reality monitoring (medial and anterior PFC) with conflict signalling (dACC) raising response thresholds; LC-NE phasic gain on unexpected-uncertainty",
+        "dependencies": [
+          "a provenance/source signal distinct from generic surprise",
+          "a response-threshold consumer (commit/hold) that the conflict signal actually modulates"
+        ],
+        "is_formal_import": false,
+        "divergence": "the driver equates 'spoofing' with large prediction error on synthetic noise; biological reality monitoring discriminates source/provenance at matched content, which a pure surprise threshold cannot do",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement / test_design defect: gate has no consumer and the harm DV reads a key the environment never emits. Not a substrate_ceiling reading; the answer is additionally gated on the registered provenance/RC-conflict instrument.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-158 (2026-03-29) PASS is NON-CONTRIBUTORY to Q-018 (re-adjudicated failure_autopsy_gflag0452-D3D4-cluster_2026-09-24, GFLAG-0452). (1) The RC-conflict gate never reached action selection: gate_fired (driver :427) is only counted, the action is a policy multinomial (:444), so LOW/HIGH/ADAPTIVE ran the identical trajectory with different thresholds applied afterwards (rc_conflict_mean identical per seed across conditions). (2) harm_rate is 0.0 in all 6 cells BY CONSTRUCTION: the driver reads obs_dict.get('harm_signal', 0.0), but CausalGridWorldV2.step returns harm_signal as a tuple element and the observation dict never carries that key -- so C3 ('without sacrificing harm avoidance') was 0 <= 0.02 whatever happened, and the 'without chronic over-suppression' half of Q-018 was never tested. (3) The discrimination legs (C1/C2/C5) are post-hoc threshold counts on synthetic Gaussian spoof noise: ADAPTIVE (EMA+2sigma) is simply a stricter operating point than HIGH (lower spoof AND lower clean suppression) and discriminates worse than both fixed thresholds (gap 0.48-0.53 vs 0.66-0.84), so it does not identify a calibration that 'blocks spoofing without over-suppression'. The RC-conflict signal is driver-local; MECH-065 has no ree_core substrate. The earlier note ('confirmed RC-conflict gate fires correctly and spoofing suppression applies without chronic over-suppression') over-states the run and is withdrawn. Q-018 remains open; a valid test needs the registered q018-provenance-authority-marking-instrument (provenance mismatch at matched content, a gate the agent's commitment actually reads, a benign-novelty control, harm read from the step return).",
+      "per_claim_recommendation": {
+        "Q-018": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "pending_retest_after_substrate": true,
+          "change": "manifest supports -> non_contributory (stamp this artifact); replace the EXQ-158 paragraph of the evidence_quality_note with this artifact's note and retract the what_would_answer HARD PRECONDITION phrase that 158 'answers the threshold-calibration leg'; live_status.evidence (supports/PASS 2026-03-29) to be re-derived; Q-018 currently carries no epistemic_category -> epistemic_category: standard",
+          "status_change": "none -- stays active (open question remains open)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "q018-provenance-authority-marking-instrument",
+        "failure_record_entry": {
+          "run_id": "v3_exq_158_q018_rc_conflict_threshold_calibration_20260329T192854Z_v3",
+          "experiment_type": "v3_exq_158_q018_rc_conflict_threshold_calibration",
+          "metric": "driver-local RC gate had no consumer (action = policy multinomial) and harm_rate was a phantom-key 0.0 in all 6 cells; the entry's falsifier_requirement note assumes 158 is a valid driver-local calibration -- it is not even that",
+          "target": "a gate whose state modulates the committed action, harm read from the env step return, provenance mismatch at matched content, and a benign-novelty control so over-suppression has a measured cost",
+          "resolved": "open"
+        },
+        "note": "Registration-only entry; amending adds the failure record and corrects the entry's premise that 158 already measured the driver-local calibration. severity left unset (not a build defect in ree_core)."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "counted_hits_including_this": 1,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "measurement gap: obs_dict.get('<key>', default) on a key the env returns as a tuple element silently pins the DV to the default -- a phantom-key read that no criterion can detect, because the pinned value satisfies a 'not worse than' criterion trivially",
+        "implementation gap (inert by defect): a gate counted but never consumed produces discrimination statistics that look like a mechanism test",
+        "claim needs its registered instrument: Q-018's falsifier requires provenance conflict at matched content, not surprise on synthetic noise"
+      ],
+      "routing": "implement-substrate",
+      "routing_note": "Via the registered q018-provenance-authority-marking-instrument (governance adjudication first; registration only). No same-design 158a re-queue: a corrected driver-local re-run cannot generalise past synthetic noise (the entry's own falsifier_requirement). A lint candidate for phantom obs_dict keys is noted, not chipped."
+    },
+    {
+      "run_id": "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier_20260715T081944Z_v3",
+      "queue_id": "V3-EXQ-763",
+      "claim_ids": [
+        "MECH-304"
+      ],
+      "skim_subclass": "D3_leg_fires_by_construction",
+      "skim_verdict_on_review": "CONFIRMED_WITH_REFINEMENT",
+      "failed_criterion": "none (manifest PASS) -- DV2 and the DV1 store-necessity gap are fixed by construction; the DV1 cue-specificity gap is genuine",
+      "facts": {
+        "release": {
+          "A_store_on_cue": 0.8333,
+          "B_store_off_cue": 0.0,
+          "C_store_on_nocue": 0.1611,
+          "D_mech303": 1.0
+        },
+        "per_seed_A_minus_C": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 0.0,
+          "3": 1.0,
+          "4": 0.033,
+          "5": 1.0
+        },
+        "per_seed_signal_A_vs_C_under_threat": {
+          "0": [
+            0.934,
+            0.484
+          ],
+          "1": [
+            0.704,
+            0.173
+          ],
+          "2": [
+            0.0,
+            0.0
+          ],
+          "3": [
+            0.939,
+            0.469
+          ],
+          "4": [
+            0.909,
+            0.655
+          ],
+          "5": [
+            0.632,
+            0.296
+          ]
+        },
+        "arm_D_contextual_pred": "12.770-12.772 in every seed vs release threshold 0.5",
+        "positive_control_no_threat": {
+          "mean": 0.667,
+          "per_seed": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "valid_seeds": "5 of 6 (seed 2 formed no prototype)"
+      },
+      "verification": [
+        "rel_B = 0.0 in all seeds is structural in effect: the harness disables urgency interrupt (1e9), resets the MECH-302 comparator, sets no goal, and B has store OFF and terrain OFF. Red-team precision: one store-independent path stays nominally LIVE -- beta_gate_bistable=True (:170) routes generate_trajectories through compute_completion_signal -> receive_hippocampal_completion (agent.py ee0b0ba:4702-4704, release at completion >= 0.75) -- but with no goal it is unreachable and fired 0/180 trials. So rel_B is an empirical zero on an unreachable path; the store-necessity GAP (A-B) still reduces to the absolute rel_A, and rel_A itself (0.83, 5/5 formed-prototype seeds release 1.0 under concurrent threat) is informative.",
+        "rel_D = 1.0 in every seed with contextual pred 12.77 (seed-invariant) against a 0.5 release threshold: CONTEXTUAL_HARM_THRESHOLD 0.55 (:131) sits above the damage-sourced z_harm_a baseline range (0.34-0.55), so every one of the 240 teaching ticks accumulates. DV2 cannot fail. The driver comment at :131 shows the threshold was placed above the range deliberately ('-> safe ticks accumulate'); it coincides with, rather than follows from, the V3-EXQ-917 C1 fact (damage-sourced z_harm_a raw-norm mean is seed-determined).",
+        "Cue-specificity (A-C = 0.672 vs 0.34) is genuine and varies: at the signal level cue-present > cue-absent under threat in 5/5 formed-prototype seeds; behaviourally 4/5 (seed 4: C released 0.967 because its no-cue signal 0.655 cleared STORE_THRESHOLD 0.6).",
+        "STORE_THRESHOLD 0.6 (:97) was chosen from observed cue/no-cue signal ranges (driver comment 'cue sig ~0.7-0.94 vs nocue ~0.17-0.48'); seed 4 (0.655) and seed 5 (cue 0.632) sit within 0.06 of it, so the behavioural cue-specificity margin rests partly on a tuned threshold.",
+        "Additional (not in skim): the safety signal is higher under threat than without it (seed 1: 0.704 with threat vs 0.471 without, which is why seed 1's no-threat positive control released 0 while its threat trial released 1.0). The centered prototype carries some damage/threat context from the relief window, not the cue alone; cue-specificity still holds because A and C share that context."
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact, narrowly supported -- the core cue-specific release expressed in 4/5 valid seeds; the MECH-303 dissociation half is untested",
+        "biological_reference": "clear",
+        "prerequisites": "present (SD-065 cue channel, SD-066 centered readout, MECH-302 relief teaching)",
+        "implementation": "complete (store -> beta_gate release is live)",
+        "environment": "adequate for the cue leg (harness-induced commitment is inert BY DESIGN -- the competence wall GAP-I is bypassed deliberately, supplied later by the commitment substrate)",
+        "measurement": "partial -- DV2 and the store-necessity gap cannot vary by construction; the cue-specificity leg is adequate but its behavioural margin depends on a threshold chosen from observed ranges",
+        "integration": "coupled for MECH-304; arm D (MECH-303) coupled but inert-by-construction (neutralising guard: harm threshold above the input range makes accumulation unconditional)",
+        "scale": "thin -- 6 seeds, 5 valid, one leg"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED -- MEASURES partial: one genuine leg supports; two legs vacuous. Not an REE failure (it is a PASS)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "conditioned inhibition of fear: IL -> CeA expression, dorsal striatum + dlPFC encoding of the conditioned inhibitor (Laing 2022; Ng & Sangha 2023)",
+        "dependencies": [
+          "a discrete CS paired with omission/relief",
+          "a gating consumer on the defensive commitment"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing for the cue leg; the contextual (MECH-303) comparison was implemented with a threshold that cannot discriminate context",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-763 (2026-07-15) PASS/supports is NARROW (re-adjudicated failure_autopsy_gflag0452-D3D4-cluster_2026-09-24, GFLAG-0452). Of its three load-bearing gaps, two were fixed by construction: (a) the DV1 store-necessity gap -- the harness removes every other release path (urgency interrupt off, MECH-302 comparator reset, no goal, terrain off; a goal-dependent hippocampal completion release stays nominally live but cannot fire without a goal), so store-OFF arm B releases 0.0 (0/180) and the gap reduces to rel_A; (b) DV2 MECH-303 sparing -- CONTEXTUAL_HARM_THRESHOLD 0.55 sits above the damage-sourced z_harm_a range (0.34-0.55), so every teaching tick accumulates and arm D's terrain pred is 12.77 in every seed against a 0.5 release threshold (placed there deliberately, driver :131; it coincides with V3-EXQ-917's C1 finding). The genuine, falsifiable support is the DV1 CUE-SPECIFICITY leg: release with cue 0.83 vs without 0.16 (gap 0.67 vs 0.34 margin); cue-present > cue-absent safety signal in 5/5 formed-prototype seeds, behavioural separation in 4/5 (seed 4 no-cue released 0.97; seed 2 formed no prototype). STORE_THRESHOLD 0.6 was chosen from observed cue/no-cue ranges, so the behavioural margin is partly tuned. The pre-registered provisional->active gate (DV1 AND DV2) was therefore met on its cue-specificity half only; the MECH-303 dissociation remains untested and is owed a non-constructed retest (MECH-303 arm on the now-built SD-MECH303-THRESHOLD-SOURCING dedicated proximity signal, threshold inside its discriminating band; STORE_THRESHOLD pre-registered on held-out seeds). narrow_supports_flag: the claim's behavioural support is one leg, n=5 valid seeds.",
+      "per_claim_recommendation": {
+        "MECH-304": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "narrow_supports": true,
+          "recommended_narrow_supports_flag": true,
+          "change": "direction stands (supports) but the note must record DV2 and the store-necessity gap as construction-fixed and the cue-specificity leg as the sole behavioural support; set narrow_supports_flag true (key currently absent); MECH-304 currently carries no epistemic_category -> epistemic_category: standard",
+          "status_change": "none -- stays active (recommended; the core cue-specific release is the genuine leg and V3-EXQ-759 supplies representation-level support). ALTERNATIVE for the user: active -> provisional, on the reading that the pre-registered promote gate required DV2 and DV2 was vacuous."
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "SD-MECH303-THRESHOLD-SOURCING (dedicated proximity-anticipatory signal for MECH-303's gate) is implemented_validated; the DV2 retest is a queue-experiment on that built substrate, not a build."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "counted_hits_including_this": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "measurement gap: an ablation arm whose every other release path the harness has removed produces a necessity gap equal to the intact arm's absolute rate -- report the absolute, not the gap",
+        "a threshold placed above the input's full range turns an accumulation gate into a constant (arm D); it coincides with the V3-EXQ-917 C1 finding",
+        "the SD-066 centered prototype carries threat/damage context from the relief window as well as the cue (signal higher under threat)"
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Non-constructed MECH-303/MECH-304 dissociation retest: MECH-303 arm on the SD-MECH303-THRESHOLD-SOURCING signal with a threshold inside its reachable+discriminating band; a store-OFF arm that keeps at least one alternative release path REACHABLE (a live-but-unreachable path is what 763 already had), so necessity is a comparison rather than a structural zero; STORE_THRESHOLD fixed on held-out seeds. New EXQ number (the dissociation design changes), not a 763 letter."
+    },
+    {
+      "run_id": "v3_exq_917_mech303_harm_threshold_calibration_battery_20260811T205119Z_v3",
+      "queue_id": "V3-EXQ-917",
+      "claim_ids": [
+        "SD-011"
+      ],
+      "skim_subclass": "D4_combination_direction_misread",
+      "skim_verdict_on_review": "CONFIRMED_IN_CONCLUSION_REFINED_IN_MECHANISM",
+      "readjudication_of": "failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12 (confirmed; recommended supports + narrow_supports_flag)",
+      "failed_criterion": "none (manifest PASS via C2) -- C1 (production damage-sourced path) FAILED; the SD-011 bearing of either outcome is not a test of SD-011",
+      "facts": {
+        "experiment_purpose": "diagnostic",
+        "indexer_weight": "scoring_excluded: diagnostic_probe for SD-011 in claim_evidence.v1.json -- zero confidence weight; this re-adjudication corrects the record, it moves no number",
+        "damage_sourced_density_means": {
+          "0": 0.44196,
+          "1": 0.44181,
+          "2": 0.44188,
+          "4": 0.44197,
+          "8": 0.44181
+        },
+        "damage_sourced_density_spread_std": 6.96e-05,
+        "damage_sourced_per_seed_example": "seed 0: 0.546 / 0.545 / 0.545 / 0.544 / 0.543 across num_hazards 0/1/2/4/8 -- the value is set by the seed, not the environment",
+        "proximity_ema_density_means": {
+          "0": 0.464,
+          "1": 0.522,
+          "2": 0.627,
+          "4": 0.765,
+          "8": 0.778
+        },
+        "C2_recommended": {
+          "threshold": 0.6,
+          "reachability": 0.848,
+          "auc": 0.969
+        }
+      },
+      "verification": [
+        "Combination rule (driver :354-362): PASS iff C1 or C2, PASS -> supports. This was pre-registered and reasoned in the driver docstring, so the misread is not a hidden driver defect; it is in what 'supports SD-011' was taken to mean.",
+        "C1 is worse than 'chance-level discrimination' at the level of the raw-norm MEAN: damage-sourced z_harm_a mean norm is seed-determined and density-invariant (spread std 7e-5 across 0-8 hazards). Red-team qualification: MECH-303's 2026-08-16 V3-EXQ-930 note records within-seed std rising monotonically with density (9.8e-04 -> 2.1e-03), so the output is not wholly environment-blind -- an ABSOLUTE threshold on the raw norm cannot discriminate at this seed offset; a per-seed standardised read might.",
+        "The prior confirmed autopsy's supports rationale -- 'damage-sourced z_harm_a tracks accumulated homeostatic deviation, its SD-011 job, and is therefore the wrong signal for MECH-303' -- is not shown by this run: a density-invariant output is not shown to track accumulated damage either. Both sourcing modes feed the same z_harm_a stream (two untrained AffectiveHarmEncoder instances, 7-dim and 50-dim input), so the run compares two INPUTS to one stream; it never compares z_harm_s with z_harm_a, which is what SD-011's separation asserts.",
+        "Not previously applied to the SD-011 disposition (MECH-303's 2026-08-16 V3-EXQ-930 note already records the untrained encoder and its ~60x init-offset-to-modulation ratio; surfaced here by the Step 7b C2 fire on sd_zharm_a_warmup_optimizer_group): the 917 driver has no optimizer and no training loop -- the AffectiveHarmEncoder is an UNTRAINED random projection in both modes. Damage-sourced input is 7-dim limb damage with heal_rate 0.4 (near zero on most ticks of a 150-tick random walk); proximity input is a 50-dim EMA of the hazard/resource fields, which varies with density. C2 PASS therefore shows that a random projection of a density-varying input varies with density, and C1's seed-determined output is the random init read through a near-constant input. That entry (p0h stage BUILT 2026-09-19) is the route for giving z_harm_a a trained path.",
+        "The driver's own grid makes either outcome non-discriminating for SD-011: C2 PASS shows the AffectiveHarmEncoder can transmit a proximity input (an encoder-transmission positive control); the FAIL branch would have shown an encoder that destroys its input (an implementation defect). Neither bears on the design decision to split the stream. Precedent: failure_autopsy_V3-EXQ-472_2026-09-02 recorded an unscored SD-011 calibration pilot non_contributory on the same grounds."
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a for SD-011 -- a MECH-303 config-default calibration probe; SD-011's stream separation is not manipulated or measured",
+        "biological_reference": "clear (for the MECH-303 sourcing finding); not engaged for SD-011",
+        "prerequisites": "present",
+        "implementation": "complete (battery); production MECH-303 consumer partial (now addressed by SD-MECH303-THRESHOLD-SOURCING, implemented_validated)",
+        "environment": "adequate",
+        "measurement": "adequate for the MECH-303 calibration question; misleading as SD-011 evidence (test_design: the SD-011 bearing was asymmetric and non-discriminating)",
+        "integration": "damage-sourced z_harm_a coupled but inert in this random-walk regime (seed-determined output)",
+        "scale": "adequate (100 arms, 10 seeds)"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (claim mapping) -- the run's genuine finding is about MECH-303's sourcing, not SD-011; not an REE failure"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dual nociceptive pathways (sensory-discriminative vs affective-motivational; Melzack & Casey 1968, Rainville 1997)",
+        "dependencies": [
+          "a comparison between the two streams"
+        ],
+        "is_formal_import": false,
+        "divergence": "the prior autopsy's reactive-vs-anticipatory reading is plausible for MECH-303 sourcing and is kept there; it is not a test of the SD-011 split",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: diagnostic calibration probe whose SD-011 bearing is non-discriminating in both branches; the genuine finding belongs to MECH-303 sourcing (SD-MECH303-THRESHOLD-SOURCING, built).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[re-adjudication, failure_autopsy_gflag0452-D3D4-cluster_2026-09-24, GFLAG-0452; supersedes the SD-011 disposition of failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12] V3-EXQ-917 is NON-CONTRIBUTORY to SD-011, not supports. It is a diagnostic MECH-303 threshold-calibration probe (scoring_excluded: diagnostic_probe -- this correction moves no confidence number). Its PASS came from C2 alone (C1 OR C2 -> supports): under the legacy proximity-EMA input the z_harm_a encoder discriminates hazard density (AUC 0.97 at tau 0.6), while under the production damage-sourced input the raw z_harm_a norm is seed-determined and density-invariant in its mean (mean norm 0.4418-0.4420 at every density 0-8, spread std 7e-5; best AUC ~0.52). Both branches feed the same z_harm_a stream (encoder class instantiated at 7-dim and 50-dim input), so the run compares two inputs to one stream and never compares z_harm_s with z_harm_a; the encoder was an untrained random projection (the 917 driver trains nothing), so C2 shows only that a projection of a density-varying input varies with density, and the 2026-08-12 reading that the dissociation 'confirms the dual-stream separation' does not follow. The run's genuine finding -- MECH-303's gate cannot be calibrated on damage-sourced z_harm_a -- is unchanged and already routed (SD-MECH303-THRESHOLD-SOURCING, implemented_validated). SD-011 status is unaffected (stable rests on EXQ-198/323a and literature, not on 917).",
+      "per_claim_recommendation": {
+        "SD-011": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "replace the [/governance 2026-08-12, V3-EXQ-917 ... supports] paragraph of the evidence_quality_note with this artifact's note, set the 917 manifest evidence_direction supports -> non_contributory",
+          "status_change": "none -- stays stable (917 carries zero indexed weight)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The prior autopsy's create (SD-MECH303-THRESHOLD-SOURCING) stands and is implemented_validated; this re-adjudication does not touch it."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "counted_hits_including_this": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "supersedes_autopsy": "failure_autopsy_V3-EXQ-916-916a-917-920-fishtank-cluster_2026-08-12"
+      },
+      "withdrawn_arguments": [
+        "Checked and dropped: 'C1 FAIL should read weakens for SD-011'. A density-invariant damage-sourced z_harm_a in a 150-tick random walk is an inert-in-regime observation about the SD-022 input, not a test of stream separation; it would need a regime where damage actually accrues and z_harm_s is read alongside."
+      ],
+      "bears_on_note": "Mechanically moves: the SD-011 claims.yaml paragraph dated 2026-08-12 (its 'SUPPORTS SD-011' sentence); the 917 manifest evidence_direction. Does NOT move: SD-MECH303-THRESHOLD-SOURCING, MECH-303's note, or the 916/916a/920 targets of the same cluster artifact. Read-across: V3-EXQ-763 arm D (this cluster) is the same density-invariance seen from MECH-303's consumer.",
+      "learning_extracted": [
+        "a diagnostic whose claim tag was chosen so that PASS means 'the encoder can carry some input' is a transmission control, not claim evidence -- tag it, and read it, accordingly",
+        "untrained damage-sourced z_harm_a has a seed-determined raw-norm mean in a random-walk regime (spread 7e-5 across hazard density); an ABSOLUTE-threshold gate on it is never or always open (a per-seed standardised read is untested)",
+        "distinction kept explicit for consistency with V3-EXQ-743 / V3-EXQ-759: those positive controls establish a CLAIM-SPECIFIC premise (harm decodable from the stream E3 uses; a cue-discriminative store exists) and are read as narrow supports; 917 C2 establishes a generic property of an untrained random projection, which is no premise of the SD-011 split"
+      ],
+      "routing": "governance-reclassify",
+      "routing_note": "Record-level correction only; no experiment and no build owed for SD-011."
+    },
+    {
+      "run_id": "v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3",
+      "queue_id": "V3-EXQ-149b",
+      "claim_ids": [
+        "Q-004"
+      ],
+      "skim_subclass": "D4_winning_arm_channel_inert",
+      "skim_verdict_on_review": "CONFIRMED_AND_EXTENDED (construct mismatch)",
+      "failed_criterion": "none (manifest PASS via C2 slow_wins) -- the manipulation does not instantiate tau_R, and the winning arm's field is empty",
+      "facts": {
+        "mean_harm": {
+          "FAST": [
+            1.6246,
+            31.0057
+          ],
+          "DEFAULT": [
+            0.8158,
+            21.2369
+          ],
+          "SLOW": [
+            0.7832,
+            18.4903
+          ]
+        },
+        "residue_contrast": {
+          "FAST": [
+            0.2243,
+            2.571
+          ],
+          "DEFAULT": [
+            0.0,
+            0.2449
+          ],
+          "SLOW": [
+            0.0,
+            0.0095
+          ]
+        },
+        "total_residue": {
+          "FAST": [
+            412.2,
+            1671.5
+          ],
+          "DEFAULT": [
+            75.2,
+            320.8
+          ],
+          "SLOW": [
+            14.7,
+            62.7
+          ]
+        },
+        "residue_at_harm_vs_elsewhere_FAST": "405.21 vs 404.99 (seed 42), 1651.36 vs 1648.78 (seed 123) -- contrast is 0.05-0.16% of the field level",
+        "active_centers": "32 in every cell (ring buffer saturated; 19-61k harm events per cell)",
+        "seed_spread": "seed 123 harm is 19-26x seed 42 in every condition (31.01/1.62, 21.24/0.82, 18.49/0.78; harm_rate_train 0.50 vs 0.17)",
+        "substrate_commit": "2edeb8ce (field.py byte-identical to 32edd55)"
+      },
+      "verification": [
+        "Skim confirmed: PASS via C2 (:645-649, :691); C4 checks FAST contrast only (:660); SLOW contrast 0.0 / 0.0095; SLOW total residue ~1/27 of FAST.",
+        "NEW -- construct mismatch: tau_R in Q-004 is the decay time constant of the astrocytic regulatory field R(x,t) (docs/processed/legacy_tree/docs/astrocyte_aware_regulatory_stack/regulatory_stack_model.md:90-95, linked as the source of docs/architecture/astrocyte_regulatory_stack.md#q-004; implementation_hooks.md RegulatoryField(tau_R=10.0): dR/dt = -R/tau_R + f_mono + f_local + f_meta + diffusion; Q-004 depends_on MECH-001). MECH-001's own what_would_answer records that no RegulatoryField exists in ree_core (grep astrocyte: 0 hits, 2026-08-08). V3-EXQ-149 DECLARED a proxy mapping (149 driver :11-13: 'tau_R is the effective integration timescale of the residue field R(x,t) ... emerges from two ResidueConfig fields'), 149b kept it 'UNCHANGED from EXQ-149', and the 2026-09-21 falsifier audit adopted it in Q-004's what_would_answer. The mapping varies ResidueConfig.accumulation_rate (a per-deposit GAIN, field.py accumulate: magnitude = |harm| * accumulation_rate) crossed with kernel_bandwidth. ResidueField has no per-tick decay ('residue cannot be erased'), so none of the three arms has a time constant at all; the 'matched to E2 ~30-step / E1 ~200-step horizon' labels are nominal.",
+        "NEW -- the field is spatially near-flat in EVERY arm, not only SLOW: FAST residue at harm vs elsewhere differs by 0.05-0.16% of the field level, with all 32 ring slots occupied. What differs across arms is mainly the field's overall magnitude (FAST > DEFAULT > SLOW), and eval harm tracks that magnitude monotonically. 'Less residue -> less harm' is being read as a timescale preference.",
+        "Seed dominates condition: seed 123's harm is 19-26x seed 42's; with 2 seeds, C5 'seed consistency' is a sign agreement on two draws."
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- the manipulated object is the residue field's deposit gain x bandwidth, not the regulatory field's time constant tau_R",
+        "biological_reference": "partial",
+        "prerequisites": "missing -- MECH-001 RegulatoryField R(x,t) absent from ree_core (MECH-001 is candidate / substrate_conditional)",
+        "implementation": "absent for tau_R (no R(x,t) module); the residue channel that was manipulated is inert by DEFECT-of-mapping in the winning arm (empty field) and near-uniform in all arms",
+        "environment": "adequate",
+        "measurement": "misleading -- the DV ordering tracks residue-field magnitude; C4 validates only the losing arm's field",
+        "integration": "coupled but inert (residue -> CEM/E3 scoring is wired; the field it supplies is spatially near-constant -- the known residue-field-geometry ceiling: 32-slot ring + over-wide kernel)",
+        "scale": "inadequate -- 2 seeds with 12-24x between-seed harm spread"
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED (MECHANISM absent for the claim's object + MEASURES) -- not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "astrocytic calcium/gliotransmitter regulation integrating monoaminergic tone over seconds-to-minutes (the slow field R(x,t) of MECH-001)",
+        "dependencies": [
+          "a slow regulatory field with an explicit decay constant",
+          "a precision-routing consumer that reads it"
+        ],
+        "is_formal_import": false,
+        "divergence": "the harm-residue field is a different mechanism (moral/harm residue, non-erasable) from the astrocytic regulatory field; substituting it answers a different question",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_epistemic_category_note": "Deliberate assertion: Q-004 asks how to calibrate the time constant of R(x,t); no R(x,t) exists in ree_core (MECH-001 substrate_conditional), and the residue field used as its stand-in has no time constant. Retest is gated on a RegulatoryField build.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-149b (2026-08-04) PASS/slow_tau_preferred is NON-CONTRIBUTORY to Q-004 (re-adjudicated failure_autopsy_gflag0452-D3D4-cluster_2026-09-24, GFLAG-0452). (1) CONSTRUCT MISMATCH: tau_R is the decay time constant of the astrocytic regulatory field R(x,t) (regulatory_stack_model.md:90-95, the source of astrocyte_regulatory_stack.md#q-004; Q-004 depends_on MECH-001), which does not exist in ree_core (MECH-001 WWA). EXQ-149 declared the residue field a stand-in for R(x,t) and 149b kept that mapping; it varied ResidueConfig.accumulation_rate -- a per-deposit gain, not a time constant (the residue field has no per-tick decay) -- crossed with kernel_bandwidth. (2) The winning SLOW arm's residue field is effectively empty (residue_contrast 0.0 / 0.0095; total residue ~1/27 of FAST), and C4 checks only FAST's contrast. (3) Even FAST's field is spatially near-flat (contrast 0.05-0.16% of field level, all 32 ring slots occupied -- the residue-field-geometry ceiling), so eval harm tracks overall field MAGNITUDE (FAST > DEFAULT > SLOW), and 'less residue -> less harm' was read as a timescale preference. (4) Two seeds, 19-26x between-seed harm spread. The 2026-09-21 falsifier audit's statement that the Q-004 falsifier 'ran and returned PASS' (claims.yaml what_would_answer, DISPOSITION) rests on this reading and should be corrected. Q-004 remains open and is substrate_conditional on a RegulatoryField (MECH-001) build.",
+      "per_claim_recommendation": {
+        "Q-004": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "substrate_conditional",
+          "pending_retest_after_substrate": true,
+          "change": "manifest supports -> non_contributory (stamp this artifact); append this artifact's note; correct the what_would_answer CONFIRMING/DISPOSITION text that records 149b as a realised PASS; Q-004 currently carries no epistemic_category -> epistemic_category: substrate_conditional",
+          "status_change": "none -- stays active (open question remains open)",
+          "alternative_for_user": "If a v3-testable lane is wanted, register a SEPARATE question (residue deposit gain / kernel bandwidth vs E1/E2 horizon) and leave Q-004 substrate_conditional. Cost of the recommended category, stated on its face: substrate_conditional takes Q-004 out of every v3-testable lane until a RegulatoryField exists, and reverses the 2026-09-21/22 audit's R0 'falsifier ran and returned PASS' disposition."
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "mech001-astrocytic-regulatory-field-registration",
+        "title": "REGISTRATION ONLY: a slow regulatory field R(x,t) with an explicit decay constant tau_R, wired into precision routing (MECH-001), so Q-004 has an object to calibrate",
+        "implementation_hint": "Q-004 asks how to calibrate tau_R, the decay constant of the astrocytic regulatory field in dR/dt = -R/tau_R + f_mono + f_local + f_meta + diffusion; ree_core has no such module, and the V3-EXQ-149/149b stand-in (ResidueField accumulation_rate x kernel_bandwidth) has no time constant. Register the gap so it is visible; building it is a MECH-001 design decision for governance, not authorised by this entry.",
+        "unblocks_claims": [
+          "Q-004",
+          "MECH-001"
+        ],
+        "depends_on_unresolved": [
+          "MECH-001 (candidate, substrate_conditional)"
+        ],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3",
+          "experiment_type": "v3_exq_149b_q004_tau_r_calibration_largebudget",
+          "metric": "manipulation varied residue deposit gain x kernel bandwidth (no time constant); winning arm residue_contrast 0.0/0.0095; FAST field contrast 0.05-0.16% of level",
+          "target": "an R(x,t) module whose tau_R can be set and whose lag against a monoamine-like step is measurable, read by a precision-routing consumer",
+          "resolved": "open"
+        },
+        "note": "status should be proposed_REGISTRATION_ONLY_not_a_build_authorisation, matching the convention for unowned gaps. The residue-field geometry entries (residue-field-ring-capacity, residue-field-kernel-resolution) explain point (3) but are NOT the Q-004 route: fixing residue geometry would still leave no tau_R."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "counted_hits_including_this": 1,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "withdrawn_arguments": [
+        "Checked and dropped: route Q-004 to the residue-field geometry entries (ring capacity / kernel resolution). They explain why every arm's field is flat, but a geometrically sound residue field still has no decay constant, so it would not instantiate tau_R."
+      ],
+      "bears_on_note": "Mechanically moves: Q-004 live_status.evidence (currently cites 149b supports/PASS) and the 2026-09-21 falsifier-audit text in Q-004's what_would_answer. If governance prefers to keep a residue-calibration question, it should be registered as its own question (residue deposit gain / bandwidth vs E1/E2 horizon), and 149b does not answer that either (point 2-4).",
+      "learning_extracted": [
+        "construct mismatch: a DECLARED proxy mapping (EXQ-149 :11-13, residue field as R(x,t)) was never checked against the claim's own architecture source, survived 149b's instrument repair, and was ratified by the 2026-09-21 audit -- check a proxy mapping against the claim's source document, not only against the predecessor driver",
+        "a positive-control check applied only to the losing arm cannot certify the winning arm",
+        "residue-field-geometry ceiling (32-slot ring, over-wide kernel) makes any residue-magnitude manipulation read as a spatially uniform cost"
+      ],
+      "routing": "governance-reclassify",
+      "routing_note": "Reclassify Q-004 substrate_conditional on MECH-001; register the R(x,t) gap (create, registration only). No 149c re-queue: another residue-parameter sweep cannot instantiate tau_R."
+    },
+    {
+      "run_id": "v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3",
+      "queue_id": "V3-EXQ-743",
+      "claim_ids": [
+        "INV-089"
+      ],
+      "skim_subclass": "D4_claim_DV_demoted",
+      "skim_verdict_on_review": "PARTLY_OVERTURNED -- premise-only reading confirmed but already adjudicated (claims.yaml 2026-07-13 and 2026-07-16); the two stronger grounds (post-hoc floor, hidden demotion) overturned; the demoted DV now belongs to INV-090",
+      "failed_criterion": "none (manifest PASS on C1+C2) -- the gate is the premise (harm decodable from z_harm), not the invariant",
+      "facts": {
+        "per_seed_harm_decode_mature": [
+          0.0832,
+          0.1695,
+          0.1208
+        ],
+        "per_seed_iv_delta": [
+          0.0182,
+          -0.0135,
+          0.0275
+        ],
+        "mean_iv_delta": 0.0107,
+        "per_seed_decode_rho": [
+          0.6,
+          -0.1,
+          0.8
+        ],
+        "per_seed_bound_dv_spearman": [
+          -0.5,
+          0.0,
+          -0.1
+        ],
+        "SEC_quality_gain": false,
+        "SEC_monotone": false,
+        "SEC_noise_signature": false
+      },
+      "verification": [
+        "Confirmed: PASS = C1 (mean mature decode r2 >= 0.05) AND C2 (mean IV delta > 0 AND mean decode rho > 0, :625, no magnitude or SD floor). The INV-089 bound DV (harm_eval_z_harm quality vs maturity) was reported non-gating and ran negative (mean Spearman -0.20); all three SEC gates false. 1 of 3 seeds has a negative IV delta and a negative decode rho, so C2's 'decodability rises' is a sign on a 3-seed mean (mean 0.0107, per-seed SD ~0.02).",
+        "C1 is robust: every seed clears 0.05 (0.083 / 0.169 / 0.121). Red-team addition: zharm_decode_r2 already clears 0.05 at onset 0 (untrained HarmEncoder) in all three seeds (0.065 / 0.183 / 0.093), so C1 is a decodability-EXISTENCE control, not a maturation result; and the evaluator's own held-out harm_r2_test is negative at every onset in two seeds (-0.10 to -0.15).",
+        "OVERTURNED (skim detail): the C1 floor 0.05 was NOT set post hoc just under the spot-check -- it is HARM_DECODABLE_FLOOR = 0.05 inherited verbatim from V3-EXQ-740a (driver :208 in 740a, :203 in 743). And the move to a positive-control-only gate was a disclosed, user-selected queue-gate decision (743 docstring 'DELIVERABLE = THE POSITIVE CONTROL', 2026-07-12), not a silent demotion.",
+        "OVERTURNED (skim framing): since the 2026-07-16 split, the bound/monotone-coupling DV belongs to INV-090 (driver child), not INV-089 (ceiling). So 'the claim's own DV ran the wrong way' does not land on INV-089 as now scoped. What remains true for INV-089: the run tests its PREMISE (z_harm carries realized harm), which the 2026-09-21 what_would_answer makes a component of the confirming test ('while the 743 decodability control keeps rising'), not an instance of the invariant."
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested for the invariant; premise supported (C1)",
+        "biological_reference": "partial",
+        "prerequisites": "present (SD-010 HarmEncoder, harm_eval_z_harm head)",
+        "implementation": "complete",
+        "environment": "adequate for decodability; realized post-random-action harm is under-determined (the driver's own flagged confound) for the evaluator DV",
+        "measurement": "adequate for C1; under-powered for C2 (no noise floor, n=3, one seed reversed); the invariant's DV non-gating by design",
+        "integration": "isolated by design (frozen-representation probe; commitment-free)",
+        "scale": "thin -- 3 seeds"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES -- the run measured the premise, not the invariant; not an REE failure (it is a PASS)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "nociceptive representation (spinothalamic / parabrachial) bounding downstream harm valuation (insula, ACC)",
+        "dependencies": [
+          "a harm representation that carries harm",
+          "an evaluator trained on experienced harm distinct from the decodability probe"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; the ceiling form is close to a data-processing bound under current instrumentation (failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "premise-level positive control (narrow supports); the invariant's DV was non-gating by design and has since been re-scoped to INV-090. No substrate reading.",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-743 (2026-07-12) PASS stays SUPPORTS for INV-089 but is premise-level and NARROW (re-adjudicated failure_autopsy_gflag0452-D3D4-cluster_2026-09-24, GFLAG-0452; the 2026-07-13 and 2026-07-16 governance reading is re-confirmed, not changed). Its gate is the PREMISE: realized harm is decodable from frozen z_harm (C1, robust: 0.083 / 0.169 / 0.121 at maturity vs the 0.05 floor inherited verbatim from V3-EXQ-740a -- and already 0.065 / 0.183 / 0.093 at onset 0, so it is a decodability-existence control, not a maturation result). Its 'decodability rises with maturation' leg (C2) has no magnitude or noise floor and is carried by a 3-seed mean with one seed reversed (IV delta -0.014, rho -0.1). The bound DV itself was non-gating by a disclosed 2026-07-12 design decision and ran negative (mean Spearman -0.20, all SEC gates false); since the 2026-07-16 split that DV belongs to INV-090 and does not weigh here. The 2026-09-21 what_would_answer makes this decodability control a component of INV-089's confirming test, not the test. Same rule as MECH-304/V3-EXQ-759: a claim-specific necessary-not-sufficient positive control is provisional-grade support, narrow-flagged; INV-089 stays provisional and must not advance until an instance of the invariant itself passes. Governance precondition (bears-on): re-tag the V3-EXQ-746a manifest from INV-089 to INV-090 per the 2026-07-16 re-assignment, which never reached the index. pending_retest_after_substrate stays true.",
+      "per_claim_recommendation": {
+        "INV-089": {
+          "recommended_evidence_direction": "supports",
+          "recommended_epistemic_category": "standard",
+          "recommended_narrow_supports_flag": true,
+          "pending_retest_after_substrate": true,
+          "change": "direction stands (supports, narrow); append this artifact's note; leave pending_retest_after_substrate true; precondition: re-tag V3-EXQ-746a to INV-090; INV-089 carries no epistemic_category -> epistemic_category: standard",
+          "status_change": "none -- stays provisional (recommended; red-team CONTESTED the draft's provisional -> candidate as re-litigating a twice-settled adjudication with no new fact, and as inconsistent with keeping MECH-304 active on the same necessary-not-sufficient shape). ALTERNATIVE for the user: provisional -> candidate -- but then the same rule must demote MECH-304 active -> provisional (target 2)."
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "counted_hits_including_this": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "withdrawn_arguments": [
+        "Drafted and withdrawn after the Step 7c red-team: 'non_contributory + provisional -> candidate' (promotion-basis withdrawal). Withdrawn because governance had already weighed exactly this premise-only reading on 2026-07-13 and 2026-07-16 and kept provisional; the only facts this autopsy adds (floor inherited, gate move disclosed) REMOVE grounds for a stronger reading; and the corpus (MECH-304 promoted on V3-EXQ-759, a necessary-not-sufficient control indexed supports) treats such controls as narrow supports."
+      ],
+      "bears_on_note": "Read across, not adjudicated: (a) the V3-EXQ-746a manifest still carries claim_ids [INV-089] and direction weakens, so claim_evidence.v1.json still weighs it against INV-089 although claims.yaml re-assigned the 746-lineage to INV-090 on 2026-07-16 (INV-090 has no index entry at all). Until that re-tag, INV-089's index carries a weakens that claims.yaml says belongs to INV-090 -- a scored mis-tag governance should correct. (b) 743's non-gating bound DV (mean Spearman -0.20) is a weak, confessedly unfair driver-test read for INV-090 -- not scored here. (c) hypothesis registry ceiling_vs_driver/H-ceiling: record-only, state unchanged (see hypothesis_space_ledger_pending).",
+      "learning_extracted": [
+        "a positive control promoted a claim: when the only gating criterion is the premise, record narrow_supports_flag in the field, not only in the note",
+        "a directional criterion with no noise floor on n=3 (C2) passes on a sign; pair 'mean > 0' with an SD- or seed-count floor"
+      ],
+      "routing": "governance-reclassify",
+      "routing_note": "Record-level narrowing (category + narrow flag) plus the 746a re-tag precondition. No re-queue from this autopsy: INV-089's confirming test (experience-trained evaluator vs same-budget decode ceiling) is already specified in its what_would_answer and blocked on a distinct non-flat target (2026-07-16)."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "PASS manifests whose load-bearing quantity cannot vary with the manipulation the claim is about",
+    "members": {
+      "constant_by_construction": [
+        "V3-EXQ-158 harm_rate (phantom key, 0.0) + gate with no consumer",
+        "V3-EXQ-763 rel_B (only release path removed) + rel_D (threshold above input range)"
+      ],
+      "constant_by_substrate": [
+        "V3-EXQ-917 C1 damage-sourced z_harm_a (seed-determined)",
+        "V3-EXQ-763 arm D (same fact, consumer side)",
+        "V3-EXQ-149b residue field (spatially flat in every arm; winning arm empty)"
+      ],
+      "claim_object_not_tested": [
+        "V3-EXQ-149b (residue gain for tau_R)",
+        "V3-EXQ-917 (encoder input for stream split)",
+        "V3-EXQ-743 (premise for invariant)"
+      ]
+    },
+    "is_independent_bugs": false,
+    "structural_property": "In four of five runs the quantity the PASS runs through is pinned -- by the harness (158, 763-B), by a threshold outside the input range (763-D), or by a substrate output that does not move in the tested regime (917-C1, 149b). In three of five the criterion reads a proxy of the claim's object. Every PASS in the cluster came through a leg that could not have come out otherwise, or through a proxy. One genuine leg survives (763 cue-specificity).",
+    "shared_substrate_fact": "damage-sourced z_harm_a is seed-determined and environment-invariant in random-walk regimes -- links 917 C1 and 763 arm D (already addressed for MECH-303 by SD-MECH303-THRESHOLD-SOURCING, implemented_validated)",
+    "readings": [
+      "test_design_ceiling (158, 763-B, 743)",
+      "substrate_inertness (917-C1, 763-D, 149b)",
+      "construct_mismatch (149b)"
+    ],
+    "planning_consequence": "direction corrections for three runs (158, 149b to non_contributory with index weight change; 917 to non_contributory with zero weight change, already scoring-excluded) and narrowing for two (763, 743 stay supports with narrow_supports_flag). No single build unblocks the cluster."
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "tagging_targets": {
+      "Q-018": 0,
+      "Q-004": 0,
+      "MECH-304": 0,
+      "INV-089": "4 targets, alignment intact=3 weakened=1 (the weakened one is 746a, since re-scoped to INV-090; the claim was already split INV-089/INV-090 on 2026-07-16)",
+      "SD-011": "15 targets; this re-adjudication changes one (917) from strengthened to n/a"
+    },
+    "note": "No claim shows a second structurally different weakened signature from this cluster; none fires."
+  },
+  "step_7b_pre_routing_checks": {
+    "ran": true,
+    "fire_count": 3,
+    "dispositions": [
+      {
+        "check": "C1",
+        "queue_id": "V3-EXQ-917",
+        "names": [
+          "v3_exq_241_sd011_dual_nociceptive_stream_poc",
+          "v3_exq_472_sd011_platform_stability_pilot"
+        ],
+        "disposition": "DISMISSED as a routing collision: 917's routing is governance-reclassify; this artifact recommends no SD-011 experiment. 472 is already autopsied (failure_autopsy_V3-EXQ-472_2026-09-02, cited as precedent). Noted for governance, no action here: v3_exq_241 (an SD-011 dual-stream POC driver) exists and has never scored -- a run of that kind, not 917, is what would bear on the SD-011 split."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-763",
+        "names": [
+          "SD-051",
+          "mech303-safety-terrain-decay"
+        ],
+        "disposition": "DISMISSED: SD-051 is the ConditionedSafetyStore under test (implemented), not an owed build; mech303-safety-terrain-decay (registration only) concerns MECH-303 extinction and would not remove the above-range accumulation threshold that pins arm D. The DV2 retest uses SD-MECH303-THRESHOLD-SOURCING (implemented_validated)."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-917",
+        "names": [
+          "sd_blocked_agency_mismatch_floor_calibration",
+          "sd_zharm_a_warmup_optimizer_group (earlier fire)"
+        ],
+        "disposition": "ACTED ON for sd_zharm_a_warmup_optimizer_group: it surfaced that the 917 encoder is untrained (now in 917 verification). DISMISSED for sd_blocked_agency_mismatch_floor_calibration: z_block floor calibration, unrelated to z_harm_a sourcing."
+      }
+    ],
+    "inapplicable": [
+      "C5 -- prose-keyed, the check ran on the JSON draft before the .md existed"
+    ]
+  },
+  "step_7c_red_team": {
+    "ran": true,
+    "model": "fable (session drafting model: Opus 5.5) -- cross-model pass",
+    "findings_file": "session scratchpad redteam_d34.md (summarised in the .md section 9)",
+    "verdicts": {
+      "V3-EXQ-158": "CONFIRMED",
+      "V3-EXQ-763": "CONFIRMED (precision: a goal-dependent completion-release path was live but unreachable in arm B)",
+      "V3-EXQ-917": "CONFIRMED (hygiene: untrained-encoder fact already in MECH-303's 930 note; soften 'does not move at all')",
+      "V3-EXQ-149b": "CONFIRMED on facts (seed spread 19-26x not 12-24x; the proxy mapping was DECLARED in EXQ-149, not inherited unexamined; category cost to be stated)",
+      "V3-EXQ-743": "CONTESTED on status_change (provisional -> candidate re-litigated a twice-settled reading and was inconsistent with keeping MECH-304 active); cheap confirmer: grep \"STAYS provisional on 743's single-pathway positive control\" docs/claims/claims.yaml"
+    },
+    "applied": "All corrections applied in this artifact. 743 re-drafted to the red-team's repair: supports + narrow_supports_flag, stays provisional, 746a -> INV-090 re-tag as precondition, pending_retest_after_substrate kept true; the withdrawn draft is recorded under that target's withdrawn_arguments."
+  },
+  "hypothesis_space_ledger_pending": {
+    "note": "Staging mode: NOT written to hypothesis_space_registry.v1.json. For the confirming session to apply.",
+    "edits": [
+      {
+        "qid": "ceiling_vs_driver",
+        "hid": "H-ceiling",
+        "mode": "B (record-only; non-discriminating)",
+        "resolution_patch": {
+          "state": "alive",
+          "resolving_runs_append": [
+            "V3-EXQ-743"
+          ],
+          "evidence_direction": "pending",
+          "basis_append": "V3-EXQ-743 (2026-07-12) establishes the premise (harm decodable from frozen z_harm, C1 0.083-0.169) but does not separate ceiling from driver; state unchanged."
+        },
+        "caveat": "743 completed 2026-07-12, before this question's 2026-07-14 registration; record-only, no state change, so invariant b2 is not engaged."
+      }
+    ],
+    "nothing_to_register": {
+      "V3-EXQ-158": "non-discriminating non_contributory; no pre-registered question; a new question would pad the denominator with an alive leg",
+      "V3-EXQ-149b": "same; the Q-004 object does not exist in substrate",
+      "V3-EXQ-917": "the C1/C2 sourcing dissociation belongs to MECH-303 (Mode B same-cycle registration was declined by the user on 2026-08-12); the SD-011 bearing is non-discriminating",
+      "V3-EXQ-763": "OPTIONAL for the user: a new question 'mech304_cue_specific_release' with H-cue-specific (confirmed, narrow; control_passed true) vs H-context-generic (alive -- seed 4) could be registered same-cycle with pre_registered_utc <= 2026-07-15; not recommended until the dissociation retest runs"
+    }
+  },
+  "routing_summary": {
+    "V3-EXQ-158": "implement-substrate via registered q018-provenance-authority-marking-instrument (amend); no same-design re-queue",
+    "V3-EXQ-763": "queue-experiment: non-constructed MECH-303/304 dissociation retest (new EXQ number)",
+    "V3-EXQ-917": "governance-reclassify (record correction)",
+    "V3-EXQ-149b": "governance-reclassify + create registration-only R(x,t) entry",
+    "V3-EXQ-743": "governance-reclassify (narrow flag + category; 746a -> INV-090 re-tag precondition); status unchanged"
+  }
+}
