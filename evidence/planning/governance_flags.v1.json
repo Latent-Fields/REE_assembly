@@ -6715,6 +6715,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0470",
+      "claim_ids": [
+        "MECH-573",
+        "SD-PP-B5-z-world-per-step-displacement-range"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "The confirmed failure_autopsy_V3-EXQ-1082_2026-09-24 targets[0].fanout_recommendation.suggested_probes[0] specifies the inverted-action-map DV as cross-battery ratio MSE(inverted-map battery)/MSE(original battery) 'with a bar excluding the degenerate ~1.0' via action_sensitivity_gate.readiness_verdict. That 1.0 bar is the correct null only for the SAME-rows action_shuffle_ratio form; the sketch specifies the TWO-battery battery_pair_ratio form (_make_env(invert_action_map=True)), whose null is NOT 1.0 because the two row sets differ in intrinsic transition difficulty. V3-EXQ-1079 already measures that nuisance per cell as blind_null_1075_order on the same battery pair. On 1079's landed manifest (substrate_hash 17e203f335387880) the raw-1.0 bar and the blind-null bar disagree on 6 of 9 cells and route OPPOSITELY at alpha_world 0.9 -- raw: 2/3 seeds READ (1.2563, 1.2755) -> PASS; blind-null: 1/3 -> FAIL -- and that PASS is what the autopsy's routing_note says licenses the MECH-572 contradiction re-pose at alpha 0.9. No artifact in this lineage has ever routed on this ratio (1073 measured and self-routed unposeable; 1079 records it and states it 'does not gate', driver line 759). Queueing STOPPED before any EXQ id was consumed; criterion choice is a user call. Options + recommendation (record all three forms, load-bear the same-rows shuffle verdict where 1.0 IS the true null) staged at REE_assembly/evidence/planning/sdppb5_inverted_map_ratio_criterion_aliasing_staged_20260924.md (origin/master e9e37e46c2). Decision chip chip-20260924-sdppb5-invmap-ratio-bar-decision; science chip chip-20260924-sdppb5-inverted-map-probe left OPEN and unclaimed. Caveat: 1079's cells are post-death batteries and the probe uses 1082's live collector, so the numbers will differ -- the finding is structural (a cross-battery ratio carries a difficulty nuisance whatever the rows), and the 6-of-9 table shows that nuisance is large enough to flip verdicts in practice.",
+      "raised_by_session": "metaworker-science-20260924-orchb-sdppb5-inverted-map",
+      "raised_at": "2026-09-24T12:40:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
