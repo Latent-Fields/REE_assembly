@@ -6755,6 +6755,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0473",
+      "claim_ids": [
+        "ARC-021",
+        "MECH-069"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "ARC-021 H2 (real-stack merge) leg refused at /queue-experiment Step 2.5d, NOT queued: the crash blocker is fixed (b6f6733), but on the current stack E1, E2 and harm losses reach pairwise-DISJOINT parameters (E1/E2 replay on detached buffered latents, agent.py:6171-6172/11252), so the spark driver's one-Adam-over-combined-loss MERGED arm is update-identical to SEPARATE except learning rates (unlisted confound: 1e-3 vs 1e-4/3e-4) and harm-into-encoder (= H1 axis); the topology manipulation is INERT. H2 needs a user decision on what the 'shared trunk' is (chip-20260924-decision-arc021-h2-shared-trunk-definition). Record: REE_assembly/evidence/planning/arc021_h2_leg_refused_merge_inert_disjoint_param_reach_20260924.md (785f065eaa); probe ree-v3 experiments/_scratch/arc021_h2_merged_leg_param_reach_probe.py (9cf61ce06a). Also discharges GFLAG-0465's 'H2 run owed' item into this decision.",
+      "raised_by_session": "metaworker-science-20260924-arc021-h2-merged-leg",
+      "raised_at": "2026-09-24T13:01:51Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
