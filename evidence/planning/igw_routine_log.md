@@ -3627,3 +3627,4 @@ One line per hourly tick. ASCII only.
 2026-09-24T19:19:35Z no eligible item (skipped 267): IGW-20260924-001:skill /governance not allowed; IGW-20260924-009:skill /governance not allowed; IGW-20260924-011:skill /governance not allowed
 2026-09-24T20:28:22Z workset published (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T20:28:22Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
+2026-09-24T20:25:18Z SPAWN IGW-20260924-250 skill=/queue-experiment prio=40 uuid=035eb3b9-47fa-4b4d-9a27-17a011c0be9b pid=52232 worktree=igw-250-proposal-for-mech-081
