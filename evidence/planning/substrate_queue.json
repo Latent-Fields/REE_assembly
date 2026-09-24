@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-20260924",
-  "last_updated_utc": "2026-09-24T09:10:27Z",
+  "last_updated_utc": "2026-09-24T09:39:51Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -13248,6 +13248,42 @@
       "added_utc": "2026-09-24T08:34:13Z",
       "last_seen_session": "governance-20260924",
       "experiment_queued": false
+    },
+    {
+      "sd_id": "mech290-committed-trajectory-predicted-states-one-way-gate",
+      "title": "MECH-290 record_committed_trajectory strips the imagined label at commit ENTRY on the proposal's PREDICTED world_states, so backward_credit_sweep writes committed VALENCE_WANTING along imagined states (ghost probes: rooted at a remote bank anchor) -- a latent MECH-365 one-way-gate non-conformance",
+      "node_class": "complicated (buildable)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "implementation_status": "not_started",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "priority": "medium",
+      "severity": "degrading",
+      "severity_rationale": "Latent only: both flags needed to reach it default OFF (HippocampalConfig.use_backward_credit_sweep=False, use_mech293_ghost_probes=False). Any experiment enabling use_backward_credit_sweep credits committed wanting on E2-PREDICTED states, not observed ones. With ghost probes it can also credit states rooted at a remote anchor the agent never traversed. It would be corrupting for any MECH-290 / MECH-293 / MECH-365 run that reads committed wanting under those flags; for everything else it is not.",
+      "added_session": "governance-20260924-mech365",
+      "added_utc": "2026-09-24T08:32:49Z",
+      "owner_route": "/implement-substrate",
+      "phase_verdict": "V3-NATIVE",
+      "version_scope": "V3-native",
+      "unblocks_claims": [
+        "MECH-365",
+        "MECH-290"
+      ],
+      "depends_on_unresolved": [],
+      "substrate_paths": [
+        "ree_core/hippocampal/module.py::HippocampalModule.record_committed_trajectory",
+        "ree_core/hippocampal/module.py::HippocampalModule.backward_credit_sweep",
+        "ree_core/agent.py::REEAgent.select_action"
+      ],
+      "failure_record": [],
+      "why_no_existing_owner": "Found by source reading during MECH-365 phase-1 design (REE_assembly/evidence/planning/mech365_wwa_and_lesion_design_20260924.md section 0 point 4 and section 5 item 2). No run has exercised it. MECH-290's entry covers the credit sweep's existence, not the provenance of the states it credits.",
+      "implementation_hint": "record_committed_trajectory (module.py ~3534) is called at commit ENTRY (agent.py ~10235 and ~10296, before execution) and stores e3._committed_trajectory.world_states -- the E2 rollout of the chosen PROPOSAL -- with hypothesis_tag=False and metadata=None ('the executed trajectory IS real'). Actions are committed there; the states are still predictions. Candidate fixes (choose at design time): (a) accumulate the OBSERVED z_world sequence during execution (the agent's own latent per committed step) and sweep over that; or (b) keep the proposal's tag until realization and have backward_credit_sweep refuse or discount states whose provenance is still imagined. Either route needs a default-OFF flag, bit-identical OFF, and a contract test that FAILS on the current tree: under use_backward_credit_sweep with a ghost-probe proposal committed, the swept states must not start at the remote anchor.",
+      "falsifier_requirement_satisfied": "MECH-365 one-way leg: every tagged->untagged site strips on REALIZATION (observed states), never on commitment of predicted states.",
+      "event_or_manipulation_produced": "commit entry with use_backward_credit_sweep=True (optionally with use_mech293_ghost_probes=True so a ghost proposal is committed), followed by BetaGate release with outcome_quality >= backward_sweep_min_quality",
+      "dv_or_instrument_exposed": "distance between swept world_states and the agent's observed z_world at the same steps; for ghost commits, swept world_states[0] vs the agent's z_world at commit entry",
+      "authority": "REGISTRATION ONLY from /governance session governance-20260924 via subagent governance-20260924-mech365; the user's build authorisation is still required.",
+      "ready_blocked_by": "User build authorisation owed (registration only). Latent: both reaching flags default OFF.",
+      "last_seen_session": "governance-20260924"
     }
   ],
   "schema_version": "substrate_queue/v2",
