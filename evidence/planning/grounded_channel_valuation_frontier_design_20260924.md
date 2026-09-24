@@ -1,6 +1,6 @@
 # Grounded main-channel valuation: frontier design and feasibility (E3 channel worth learned from experienced consequence)
 
-- **STATUS: FINAL, 2026-09-24T22:25Z.** The interim (steps 1-3) was `3553d59a13`. Changes since: premise P-c is CORRECTED (section 0), M1 and M3 are amended after the step-4 diagnosis (section 3a), and sections 4-6 are added.
+- **STATUS: FINAL, 2026-09-24T22:12:42Z (commit time of `50b679abb8`).** The interim (steps 1-3) was `3553d59a13`. Changes since: premise P-c is CORRECTED (section 0), M1 and M3 are amended after the step-4 diagnosis (section 3a), and sections 4-6 are added.
 - **Domain reached: D1.** The grounded signal and the channel votes exist, are measured and are attributable, open-loop, in 9 closed-loop arms (bit-identical canaries) plus 3 off-policy streams. **No candidate was run closed-loop.** D2/D3 is the battery's job (section 5).
 - Session `bt0924-valuation` (Worker G, breakthrough integration pass `orchestrate-20260924-breakthrough`), chip_ref `chip-20260924-grounded-valuation-frontier-design`.
 - **Design and feasibility only.** Nothing lands in ree_core, nothing is queued, no chips are spawned and no registry is edited.
