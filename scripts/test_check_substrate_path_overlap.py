@@ -144,14 +144,60 @@ class HelperTest(unittest.TestCase):
         self.assertTrue(self.M._modules_overlap(
             {"ree_core.predictors"}, {"ree_core.predictors.e3_selector"}))
 
-    def test_modules_overlap_target_submodule_of_import(self):
-        # driver imports the package; target names a module inside it.
-        self.assertTrue(self.M._modules_overlap(
+    def test_modules_overlap_bare_package_import_does_not_match_a_submodule(self):
+        # chip-20260923-govsubpath1-package-prefix-fix, defect 1 (the
+        # PACKAGE-PREFIX OVER-MATCH). This used to be
+        # test_modules_overlap_target_submodule_of_import and asserted the
+        # OPPOSITE (True) under the comment "driver imports the package;
+        # target names a module inside it" -- that was the bug itself,
+        # restated as a pinned test: a bare `import ree_core.predictors`
+        # (or `from ree_core.predictors import SomethingElse`, which also
+        # lands the bare package name "ree_core.predictors" in `imported`)
+        # does NOT prove the driver ever touches e3_selector specifically.
+        # ree_core/policy/__init__.py imports tonic_vigor at module load, so
+        # treating package-import as "imports everything inside" would flag
+        # every importer of the package -- the over-broad reading this
+        # module docstring explicitly rejects ("stay DIRECT-import").
+        self.assertFalse(self.M._modules_overlap(
             {"ree_core.predictors.e3_selector"}, {"ree_core.predictors"}))
 
     def test_modules_overlap_false_when_unrelated(self):
         self.assertFalse(self.M._modules_overlap(
             {"ree_core.predictors.e3_selector"}, {"ree_core.agent"}))
+
+    def test_modules_overlap_false_for_unrelated_sibling_name_in_target_package(self):
+        # The EXACT measured false-positive (2026-09-23): V3-EXQ-544a/844/
+        # 904/919 do `from ree_core.policy import ChunkedPrimitive` (or
+        # ChunkState / NoiseFloor) and never reference tonic_vigor, but the
+        # pre-fix detector flagged them anyway because "ree_core.policy" (a
+        # bare package name) is a string-prefix of the flagged target
+        # "ree_core.policy.tonic_vigor". Uses resolve_driver_imports() so
+        # this exercises the real producer of `imported`, not a hand-built
+        # set that might not match what the parser actually emits.
+        imported = self.M.resolve_driver_imports(
+            "from ree_core.policy import ChunkedPrimitive\n")
+        self.assertIn("ree_core.policy", imported)  # sanity: the bare name IS present
+        self.assertFalse(self.M._modules_overlap(
+            {"ree_core.policy.tonic_vigor"}, imported),
+            "importing a SIBLING name from the target's package must not "
+            "match the target module itself")
+
+    def test_modules_overlap_true_for_the_three_direct_import_forms(self):
+        # The three forms the module docstring/fix says must KEEP matching
+        # -- each puts the target's own dotted name literally in `imported`
+        # (see resolve_driver_imports), so `imp == target` catches all
+        # three without any prefix heuristic.
+        target = {"ree_core.policy.tonic_vigor"}
+        cases = [
+            "import ree_core.policy.tonic_vigor\n",
+            "from ree_core.policy.tonic_vigor import ScoreBias\n",
+            "from ree_core.policy import tonic_vigor\n",
+        ]
+        for source in cases:
+            with self.subTest(source=source):
+                imported = self.M.resolve_driver_imports(source)
+                self.assertTrue(self.M._modules_overlap(target, imported),
+                                "%r must still match %r" % (source, target))
 
 
 class LoadCorruptingEntriesTest(unittest.TestCase):
@@ -399,6 +445,42 @@ class ScanIntegrationTest(unittest.TestCase):
         self.assertEqual(result["n_entries"], 0)
         self.assertEqual(result["n_candidates"], 0)
         self.assertEqual(result["entries_missing_added_utc"], [])
+
+    def test_package_prefix_over_match_end_to_end(self):
+        """chip-20260923-govsubpath1-package-prefix-fix, defect 1, exercised
+        through the full scan() pipeline (not just _modules_overlap in
+        isolation): a driver importing an unrelated sibling name from the
+        flagged target's PACKAGE must not be reported as a candidate, while
+        a driver that actually imports the flagged target still is. This is
+        the real measured shape -- V3-EXQ-544a et al import ChunkedPrimitive
+        from ree_core.policy, never tonic_vigor, against a substrate_queue
+        entry naming ree_core/policy/tonic_vigor.py."""
+        queue_path, ree_v3_root = self._fixture(
+            entries=[{
+                "sd_id": "MECH-320", "title": "tonic vigor coupling bug",
+                "severity": "corrupting",
+                "substrate_paths": ["ree_core/policy/tonic_vigor.py"],
+                "added_utc": "2026-08-01T00:00:00Z",
+            }],
+            by_run={
+                "v3_exq_544a_noisefloor_20260802T000000Z_v3": {
+                    "experiment_type": "v3_exq_544a_noisefloor", "dry_run": False, "paths": [],
+                },
+                "v3_exq_920_tonic_vigor_user_20260802T000000Z_v3": {
+                    "experiment_type": "v3_exq_920_tonic_vigor_user", "dry_run": False, "paths": [],
+                },
+            },
+            driver_sources={
+                # sibling import from the SAME package -- must NOT match.
+                "v3_exq_544a_noisefloor": "from ree_core.policy import ChunkedPrimitive\n",
+                # a genuine direct import of the flagged module -- must match.
+                "v3_exq_920_tonic_vigor_user": "from ree_core.policy import tonic_vigor\n",
+            },
+        )
+        result = self.M.scan(queue_path, ree_v3_root)
+        self.assertEqual(result["n_candidates"], 1)
+        self.assertEqual(result["candidates"][0]["run_id"],
+                         "v3_exq_920_tonic_vigor_user_20260802T000000Z_v3")
 
 
 if __name__ == "__main__":

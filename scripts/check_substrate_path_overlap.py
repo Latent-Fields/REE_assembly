@@ -299,13 +299,31 @@ def resolve_driver_imports(source: str) -> Set[str]:
 
 
 def _modules_overlap(target_modules: Set[str], imported: Set[str]) -> bool:
+    """A driver is matched if it imports the target module DIRECTLY (exact
+    name, from either `import a.b.c` or a `from a.b import c` -- both forms
+    put the target's own dotted name in `imported`, see
+    resolve_driver_imports), or if it imports a module INSIDE a target
+    PACKAGE path (`imp` is deeper than `target`).
+
+    Deliberately NOT the reverse direction (`target` deeper than `imp`,
+    i.e. `imp` a bare prefix of `target`): that would treat importing ANY
+    name from a package as importing every OTHER module inside it too.
+    `resolve_driver_imports` adds the bare package name `P` for every
+    `from P import N`, so `from ree_core.policy import ChunkedPrimitive`
+    would otherwise "match" target `ree_core.policy.tonic_vigor` even
+    though the driver never references tonic_vigor -- measured live
+    2026-09-23 across V3-EXQ-544a/844/904/919 (GOV-SUBPATH-1
+    package-prefix over-match; chip-20260923-govsubpath1-package-prefix-
+    fix). This check stays DIRECT-import only on purpose: ree_core/
+    policy/__init__.py imports tonic_vigor at module load, so a transitive
+    (import-graph) definition would flag every importer of the package,
+    which is the over-broad "P is a prefix of T" case restated, not a fix.
+    """
     for target in target_modules:
         for imp in imported:
             if imp == target:
                 return True
             if imp.startswith(target + "."):
-                return True
-            if target.startswith(imp + "."):
                 return True
     return False
 
