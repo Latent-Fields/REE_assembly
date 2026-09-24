@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-24T17:08:42Z`
+Generated: `2026-09-24T18:15:11Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,12 +9,12 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **267** (ready 34, in_flight 0, blocked 176)
-- By generation: clinical 11, governance 5, meta 4, process 7, v3 100, v4 76, v5 39, v6 25
+- Items: **268** (ready 35, in_flight 0, blocked 176)
+- By generation: clinical 11, governance 5, meta 4, process 7, v3 101, v4 76, v5 39, v6 25
 - Pending review: **1**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-1067, V3-EXQ-1083, V3-EXQ-1089, V3-EXQ-906c
+- Live EXQs: V3-EXQ-1067, V3-EXQ-1090, V3-EXQ-906c
 
 - Auto-absorbed retests (queued, suppressed from workset): MECH-266 -> V3-EXQ-1067
 
@@ -592,8 +592,8 @@ Instructions:
 ### IGW-20260924-238 -- Retest after substrate: ARC-045
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION [implemented_validated]; contextmemory-write-path-addressing-degeneracy [implemented_pending_validation]; SD-070 [no-substrate-entry] (transitive via contextmemory-write-path-addressing-degeneracy): SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
-- **Why now:** substrate_ceiling -- awaiting substrate enrichment; blocked by 3 unresolved prerequisite(s). See blocked_by.
+- **Blocked by:** MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION [implemented_validated]; contextmemory-write-path-addressing-degeneracy [implemented_pending_validation]; SD-070 [no-substrate-entry] (transitive via contextmemory-write-path-addressing-degeneracy): SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem; sd_cm_livetap_zworld_scale_anchor [implemented_pending_validation]
+- **Why now:** substrate_ceiling -- awaiting substrate enrichment; blocked by 4 unresolved prerequisite(s). See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -603,8 +603,8 @@ Title: Retest after substrate: ARC-045
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-045
-Blocked by: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION [implemented_validated]; contextmemory-write-path-addressing-degeneracy [implemented_pending_validation]; SD-070 [no-substrate-entry] (transitive via contextmemory-write-path-addressing-degeneracy): SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
-Why now: substrate_ceiling -- awaiting substrate enrichment; blocked by 3 unresolved prerequisite(s). See blocked_by.
+Blocked by: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION [implemented_validated]; contextmemory-write-path-addressing-degeneracy [implemented_pending_validation]; SD-070 [no-substrate-entry] (transitive via contextmemory-write-path-addressing-degeneracy): SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem; sd_cm_livetap_zworld_scale_anchor [implemented_pending_validation]
+Why now: substrate_ceiling -- awaiting substrate enrichment; blocked by 4 unresolved prerequisite(s). See blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -1209,7 +1209,7 @@ Instructions:
 
 </details>
 
-### IGW-20260924-230 -- Queue depth low (1 pending)
+### IGW-20260924-230 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1218,7 +1218,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260924-230
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -5955,7 +5955,30 @@ Instructions:
 
 </details>
 
-### IGW-20260924-265 -- Confirm evidence: MECH-340 (lit 0.68, exp ~0)
+### IGW-20260924-265 -- Confirm evidence: SD-081 (lit 0.70, exp ~0)
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
+- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260924-265
+Title: Confirm evidence: SD-081 (lit 0.70, exp ~0)
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: SD-081
+Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260924-266 -- Confirm evidence: MECH-340 (lit 0.68, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1349 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate.
@@ -5964,7 +5987,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260924-265
+REE inter-governance work item: IGW-20260924-266
 Title: Confirm evidence: MECH-340 (lit 0.68, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -5980,7 +6003,7 @@ Instructions:
 
 </details>
 
-### IGW-20260924-266 -- Confirm evidence: MECH-339 (lit 0.66, exp ~0)
+### IGW-20260924-267 -- Confirm evidence: MECH-339 (lit 0.66, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-1348 status=gated: hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate.
@@ -5989,7 +6012,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260924-266
+REE inter-governance work item: IGW-20260924-267
 Title: Confirm evidence: MECH-339 (lit 0.66, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -6005,7 +6028,7 @@ Instructions:
 
 </details>
 
-### IGW-20260924-267 -- Confirm evidence: SD-056 (lit 0.61, exp ~0)
+### IGW-20260924-268 -- Confirm evidence: SD-056 (lit 0.61, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0440 status=blocked_substrate: blocked by SD-056
@@ -6014,7 +6037,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260924-267
+REE inter-governance work item: IGW-20260924-268
 Title: Confirm evidence: SD-056 (lit 0.61, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
