@@ -20375,9 +20375,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-529
+  implementation_phase: v4
   depends_on:
     - ARC-018
     - MECH-033
@@ -20407,6 +20405,8 @@
     action-object hippocampal map backbone.
     Registered 2026-03-30 from hippocampal function literature pull.
   evidence: []
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] implementation_phase v3 -> v4 (restored to its pre-2026-09-23 value). Its derived V3 label (phase_derived_from MECH-529, set by the 2026-09-23 walk) rested solely on a depends_on-only edge, now severed. EXP-0338's gating_reason (phase v4, no DG module in V3) is valid again.
 
 - id: MECH-148
   title: "Hippocampal pure time cells provide a temporal scaffolding signal for E3 credit assignment: a context-independent elapsed-time encoding must be present in the hippocampal rollout module to correctly weight trajectory outcomes by their temporal distance from the reference event."
@@ -68892,9 +68892,7 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-548
+  implementation_phase: v4
   version_relevance: v4_v5
   depends_on:
     - ARC-005
@@ -68945,6 +68943,8 @@
 
     DO NOT design a V3 proxy for this -- per this claim's own instruction, do not build any
     part of the signed-edge layer in V3 until routed by an explicit version decision.
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] implementation_phase v3 -> v4 (restored to its pre-2026-09-23 value). Its derived V3 label (phase_derived_from MECH-548, set by the 2026-09-23 walk, REE_assembly 71c774c99d) rested solely on an analogy-only edge, now severed; its own WWA requires a V4 cognifold signed-edge layer (no cognifold code in ree-v3).
 - id: MECH-363
   title: "Diffuse long-range competitive coupling is a generative stability requirement: stable, synergistic, hierarchical cognifold dynamics require signed competitive coupling -- specifically diffuse, long-range competition between distant fields with opposite profiles -- not merely local damping. An all-cooperative (all-positive) routed-field cognifold is unstable: every salient stream reinforces every other, producing runaway resonance / over-synchronisation / loss of modular segregation. Competition is the constructive ingredient that buys stabilisation, segregation, hierarchy, synergy, and subject-specificity."
   claim_type: mechanism_hypothesis
@@ -96856,7 +96856,6 @@
     - MECH-531   # ARC-134 P0 merge/split operator's existence + corrigibility (split per GOV-V4CUT-1 F1/GFLAG-0101) -- grain must be CORRIGIBLE for this loop to have a substrate
     - MECH-521   # occupancy/capacity settling competition (the grain operator's dynamics)
     - ARC-007    # hippocampal sparse episodic traces + segmentation pressure (the replay source)
-    - MECH-147   # pattern separation / completion gates (the functional mapping targets)
   location: docs/architecture/replay_rebucketing.md#mech-529
   what_would_answer: >
     NON-DEGENERACY PRECONDITION: a corrigible representational grain (ARC-134 P0 merge/split
@@ -96911,6 +96910,8 @@
     off then, against a real harness. No status, confidence, implementation_phase or
     version_relevance change to MECH-529 itself follows from this note.
   evidence: []
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] depends_on edge MECH-529 -> MECH-147 SEVERED as too coarse: MECH-529's text never mentions MECH-147 (edge existed only in depends_on) and ree-v3 has no dentate-gyrus pattern-separation module.
 - id: MECH-530
   title: "E3's decision-outcome signals to any downstream consumer (including a future rebucketing mechanism such as MECH-529) are typed, continuous insufficiency measures -- prediction/consequence mismatch, harm/goal cost, veto/conflict magnitude and count, commit/threshold state -- never semantic category labels. This is an interface contract on E3's EXISTING output surface (SelectionResult, harm_eval/benefit_eval, last_score_diagnostics), holding independently of whether a rebucketing consumer is ever built: E3 already emits only continuous/boolean/count-typed diagnostics keyed by descriptive strings, and preserving that property is what MECH-529's non-oracularity requirement needs to continue holding as more downstream consumers are added."
   claim_type: design_decision
@@ -99019,7 +99020,7 @@
   claim_level: architectural
   implementation_phase: v3
   phase_provenance: derived
-  phase_derived_from: ARC-140
+  phase_derived_from: ARC-142
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
@@ -99056,6 +99057,8 @@
     /governance owns the version-routing decision: the DIAGNOSTIC is v3-runnable on existing
     recorded data, while any architectural response is v4, and this entry defaults to v4
     rather than deciding that unilaterally.
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] phase_derived_from ARC-140 -> ARC-142. The ARC-140 edge was severed (ARC-140 states it is DISTINCT FROM ARC-139), but ARC-139 STAYS V3: it is the parent premise of the derived-V3 legibility/interface family (MECH-538/539/540/547/548, ARC-142 'COMPLEMENTS ARC-139', ARC-144, MECH-562), so reverting it would re-open eight leaks. It remains substrate-blocked per its 2026-09-15 disposition: the ML-10..ML-15 legibility instruments and an adequate source are owed, and local competence must rise in >=2 subsystems (competence-floor wall).
 
 - id: MECH-537
   what_would_answer: |
@@ -99439,7 +99442,6 @@
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
-    - ARC-139   # federation/multiple-realizability of interfaces, the adjacent framing
     - MECH-529  # sleep consolidation of a newly recruited substitute
     - MECH-537  # an interface-level compensation route, if compensation proves interfacial
   location: docs/architecture/compensatory_realizability.md#arc-140
@@ -99467,6 +99469,8 @@
     build in V3. DO NOT queue an experiment from this entry -- the assay is a five-phase
     programme against substrate maturity REE does not yet have, and /governance owns whether
     and when it starts.
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] depends_on edge ARC-140 -> ARC-139 SEVERED: ARC-140's own text says 'DISTINCT FROM ARC-139' (reallocation after damage vs coordination in the intact organism).
 
 - id: MECH-541
   title: "Maladaptive over-stabilized compensation as a distinct pathology mechanism: pathology may arise not only because an original mechanism is damaged, but because an ADAPTATION TO that damage becomes over-stabilized -- a workaround that was initially adaptive becomes over-strengthened, over-generalized or too persistent, trapping the organism in a distorted solution after the original problem has changed or resolved. Predicted routes: the compensatory pathway acquires excessive precision or gain, dominates ambiguous perception, becomes resistant to counterfactual correction, persists after the initiating lesion resolves, recruits memory and sleep processes that progressively stabilise the workaround, or reduces flexibility by making one emergency solution the default policy. REGISTERED DETECTION SIGNATURE: improved LOCAL performance accompanied by POORER generalization, flexibility, calibration or counterfactual revision -- a compensation that improves everything is not this failure mode. Diagnostic is hysteresis: the compensatory solution persisting even after the original route is restored."
@@ -100586,7 +100590,6 @@
     - MECH-540   # sleep as interface maintenance: the closed-loop post-sleep metric is this claim's corollary
     - ARC-139    # federation principle; recurrent stability is a condition on any bridge it licenses
     - INV-088    # E1's own rollout consistency -- adjacent horizon-degradation lineage, different object
-    - ARC-084    # typed signed coupling with gain/gate fields -- the overlay is a gated coupling, not a rewrite
   location: docs/architecture/receiver_conditioned_translation.md#mech-548
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: the interface must be traversed REPEATEDLY over a horizon the system actually uses, and the one-step result must be positive -- there is nothing to destabilise otherwise (degenerate if one-step utility is at or below floor). Frozen endpoints per INV-109; adequate source per V3-EXQ-1010 (trained z_world inadmissible).
@@ -100623,6 +100626,8 @@
     bridge can corrupt rollout trajectories when applied repeatedly. DO NOT build in V3. DO NOT queue an
     experiment from this entry; the source package's sequencing (waking metric with range and stability
     first, then recurrence, then sleep) is part of the claim.
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] depends_on edge MECH-548 -> ARC-084 SEVERED as too coarse: MECH-548 cites ARC-084's gated coupling edge only as an ANALOGY for its overlay-versus-rewrite corollary; ARC-084's own what_would_answer requires a V4 cognifold signed-edge layer that does not exist in ree-v3.
 - id: SD-106
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: Nonconstant observation buffer; preservation objective and skip both enabled and trained; fixed split and mlp128 consumer budget; PCA-32 anchor clears acceptance; no fitting test labels. Read the actual training step count, not just epochs.
