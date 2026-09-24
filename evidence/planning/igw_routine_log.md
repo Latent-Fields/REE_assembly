@@ -3595,3 +3595,8 @@ One line per hourly tick. ASCII only.
 2026-09-24T09:05:12Z skip: paused (.igw_routine_pause present)
 2026-09-24T10:05:15Z skip: paused (.igw_routine_pause present)
 2026-09-24T10:58:58Z auto-defer igw-241-proposal-for-sd-081 hash=c61f1483121c for 48h (complete)
+2026-09-24T10:59:29Z complete igw-241-proposal-for-sd-081 spawned->completed outcome=USEFUL_LANDED: queued V3-EXQ-1083 for SD-081 (model-uncertainty half only; ree-v3 51037efda9 +
+2026-09-24T11:10:00Z workset published (regen -- 262 items, 35 ready, 0 in flight)
+2026-09-24T11:10:01Z workset committed (regen -- 262 items, 35 ready, 0 in flight)
+2026-09-24T11:05:29Z STAGE IGW-20260924-222 skill=/implement-substrate prio=25 worktree=igw-222-substrate-ready-sd-zself-trainin (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-09-24T12:23:39Z workset regen identical to origin/master aa86ca53cb -- no commit (regen -- 262 items, 35 ready, 0 in flight)
