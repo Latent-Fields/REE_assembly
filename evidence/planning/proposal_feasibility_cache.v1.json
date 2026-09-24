@@ -265,6 +265,18 @@
     "verdict": "RED"
    }
   ],
+  "MECH-138": [
+   {
+    "chip_ref": "chip-proposal-exp-1368",
+    "producer_paths": [],
+    "reason": "R4 unwired: no cancel_window/cancel_thresh/veto_reset producer anywhere in ree_core (grepped, zero hits); existing goal-proximity levers (ARC-071 latch, SD-033e de-commit, MECH-260 inject_nogo) sit at different boundaries. gap_disposition=EXISTING NODE, MISSING EDGE per falsifier_completion_and_runnability_audit_20260921 (R4 primary).",
+    "recorded_by": "orchestrate-20260924-b",
+    "recorded_utc": "2026-09-24T11:10:56Z",
+    "ree_v3_sha": "76dab48b69129b16c06b3bdd7953be321f83e0ea",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-204": [
    {
     "chip_ref": "chip-20260918-exq541d-mech204-f1-guard-validation",
