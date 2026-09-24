@@ -310,6 +310,243 @@ Those would be independently interesting even if the broader REE ethical theory 
 
 Conversely, failure to discover a viable learning rule is also evidence. If repeated implementations cannot make one of the axiom-derived transitions work without inserting the desired conclusion as a reward or rule, that counts against the claimed derivation.
 
+
+## Methodological backing: discovering mechanisms rather than merely retrieving them
+
+The frontier route does not need to rely on an improvised REE methodology. A growing automated-science and cognitive-model-discovery literature already supports a closely related workflow: specify a phenomenon or evaluation criterion, generate executable competing mechanisms, design experiments that make those mechanisms disagree, diagnose failures, and synthesize successor mechanisms.
+
+This literature does **not** validate any particular REE ethical mechanism. Its relevance is methodological: it shows that novel computational mechanisms can be treated as a search-and-adjudication problem rather than requiring the human investigator to know the correct algorithm in advance.
+
+### AutoCog: theory -> discriminating experiment -> failure diagnosis -> successor theory
+
+Jagadish et al. (2026), *Closing the Loop to Discover Psychological Theories with an Automated Cognitive Scientist* (AutoCog), explicitly treats cognitive theory-building as a closed-loop search problem. Large-language-model agents advocate competing theories expressed as executable cognitive models, design experiments that best discriminate them, collect data, score the models, diagnose why they fail, and synthesize a better successor. Repeating the cycle searches jointly over theories, executable models, and experiments.
+
+Source: https://arxiv.org/abs/2606.26448
+
+For REE, the transferable pattern is:
+
+> phenomenon/constraint specification -> competing executable mechanisms -> maximally discriminating experiment -> failure diagnosis -> revised candidate mechanism.
+
+This is particularly relevant to LOVE-2/4/5 and A5-A8, where the desired functional property can be specified more clearly than the learning rule that produces it.
+
+### Automated adversarial collaboration: candidate models and experiments may both be unknown
+
+Chandramouli, Kachergis & Jagadish (2026), *Automated Adversarial Collaboration for Advancing Theory Building in the Cognitive Sciences*, combines LLM-based theory agents, program synthesis, and information-theoretic experimental design in a closed loop. Importantly, the framework addresses cases where **both the candidate models and the experiments needed to discriminate them must be discovered during adjudication**.
+
+Source: https://arxiv.org/abs/2604.25521
+
+This strengthens the frontier doctrine. REE does not need a complete menu of candidate mechanisms before experimentation begins. A failed candidate can itself generate the information needed to propose the next one.
+
+### ATLAS: actively construct experiments that make mechanisms disagree
+
+Éltető et al. (2026), *ATLAS: Active Theory Learning for Automated Science*, alternates between generating diverse mechanistic hypotheses and designing experiments that optimally distinguish among them. In in-silico reinforcement-learning recovery tasks, ATLAS reports substantially greater sample efficiency than random experimentation and compares its generated experiments with expert-designed experiments from the literature.
+
+Source: https://arxiv.org/abs/2606.12386
+
+The immediate REE implication is that frontier mechanism discovery should not merely run candidate mechanisms on a fixed ecology. The experiment generator should search for **ecologies, developmental histories, interventions, or conflict cases in which plausible mechanisms make divergent predictions**.
+
+For example, two LOVE-4 implementations that both behave well under ordinary caregiver correction may diverge when causal responsibility is low, relationship continuity is high, or repair is possible but costly. Those boundary cases are more informative than aggregate "prosociality" scores.
+
+### Symbolic cognitive-model discovery
+
+Castro et al. (ICML 2025), *Discovering Symbolic Cognitive Models from Human and Animal Behavior*, adapted FunSearch to automatically discover interpretable symbolic learning and decision-making models from behavioural data. The discovered programs outperformed established cognitive models in the studied reward-learning datasets and could be read as explicit hypotheses about cognitive mechanisms.
+
+Source: https://proceedings.mlr.press/v267/castro25a.html
+
+This is unusually close to the REE need. It demonstrates that the **learning rule itself** can be the object of program search rather than something selected entirely from prior literature.
+
+For REE this suggests a hierarchy:
+
+1. begin with simple hand-specified candidate update laws;
+2. test and eliminate obvious variants;
+3. if the residual phenomenon remains unexplained, allow constrained symbolic/program search over the unresolved update rule;
+4. retain interpretability, causal instrumentation, and explicit write permissions so the resulting mechanism remains scientifically inspectable.
+
+### FunSearch: the human can specify the evaluator rather than the solution
+
+Romera-Paredes et al. (Nature 2024), *Mathematical discoveries from program search with large language models*, introduced FunSearch. Its crucial methodological structure is that the user supplies an evaluation function and optionally a program skeleton, while the search system evolves the difficult program logic. FunSearch discovered new mathematical constructions and algorithms beyond previous best-known solutions.
+
+DOI: https://doi.org/10.1038/s41586-023-06924-6  
+Source: https://www.nature.com/articles/s41586-023-06924-6
+
+This suggests a productive division of labour for frontier REE work:
+
+> Daniel/the project specifies what a valid mechanism must accomplish, what it may read/write, what shortcuts are forbidden, and what would falsify it. Automated implementation/search machinery proposes and mutates the mechanism.
+
+The investigator therefore does not have to know the missing algorithm in advance.
+
+### Optimal experimental design for model discrimination
+
+Myung & Pitt (2009), *Optimal experimental design for model discrimination*, established a statistical framework for selecting experimental conditions that are maximally informative for distinguishing competing cognitive models rather than merely collecting more data under convenient conditions.
+
+DOI: https://doi.org/10.1037/a0016104  
+PubMed: https://pubmed.ncbi.nlm.nih.gov/19618983/
+
+This provides an older methodological foundation beneath the newer agentic systems. REE's frontier process should explicitly optimise experiments for **mechanism discrimination**, not only for competence measurement.
+
+### Robin: iterative hypothesis generation can be closed around real experiments
+
+Hinks et al. (Nature 2026), *A multi-agent system for automating scientific discovery*, describes Robin, which integrates literature search, hypothesis generation, experiment proposal, data analysis, and updated hypothesis generation in an iterative lab-in-the-loop process.
+
+Source: https://www.nature.com/articles/s41586-026-10652-y
+
+Robin is not a cognitive-mechanism-discovery system and its domain is experimental biology, but it is relevant as evidence that agentic hypothesis/data loops can remain scientifically productive when the human investigator controls the experimental substrate and validation.
+
+## The REE frontier mechanism discovery loop
+
+Taken together, the literature supports a more concrete protocol for Class F mechanisms.
+
+### Step 1 — Specify the phenomenon, not the answer
+
+Write a behavioural/causal contract:
+
+- what the mechanism must achieve;
+- inputs it is allowed to read;
+- states it is allowed to modify;
+- states it must not directly modify;
+- expected internal and behavioural signatures;
+- forbidden shortcuts;
+- known alternative explanations;
+- decisive falsifiers.
+
+For LOVE-4, for example, the contract might require attributable harm to update the implicated action/causal model while preserving global self-valence when relationship continuity remains evidenced, and require repair/generalisation without punishment-only appeasement.
+
+### Step 2 — Generate deliberately simple competing mechanisms
+
+Prefer small, interpretable rules before learned black boxes.
+
+Examples:
+
+- policy-only update;
+- policy + causal-model update;
+- policy + causal ownership + residue;
+- the above with relationship-continuity gating of self-valence;
+- an adaptive/learned gate only after fixed alternatives fail.
+
+Every candidate should be default-OFF and independently instrumentable.
+
+### Step 3 — Prove substrate and causal reach before behavioural interpretation
+
+For each candidate, verify:
+
+- the intended input exists and varies;
+- the mechanism actually consumes it;
+- its output reaches the claimed downstream consumer;
+- the dependent variable can change because of that output;
+- OFF controls are bit-identical where appropriate.
+
+This prevents frontier search from rediscovering the current class of "mechanism could not possibly affect the DV" refusals.
+
+### Step 4 — Search for discriminating experiments
+
+Do not ask only whether each candidate "works."
+
+Search for the environmental condition in which their predictions differ most.
+
+Candidate discriminators include:
+
+- high versus low causal responsibility;
+- foreseeable versus unforeseeable harm;
+- relationship continuity versus rupture;
+- repair available versus impossible;
+- self-cost of repair;
+- same surface outcome generated by different causal histories;
+- novel agents/ecologies after identical developmental histories.
+
+### Step 5 — Adversarially test shortcuts
+
+The evaluator must include tests for:
+
+- explicit or hidden proxy reward;
+- punishment avoidance;
+- distress-signal suppression;
+- removing the unethical affordance;
+- self-erasure;
+- relationship avoidance;
+- metric gaming;
+- hard-coded action lookup;
+- channel-presence effects without content dependence;
+- train/test ecological memorisation.
+
+### Step 6 — Diagnose failures and synthesize successors
+
+A candidate that fails is not merely discarded. Record **how** it failed:
+
+- correct representation but no behavioural authority;
+- behavioural success through the wrong causal route;
+- excessive self-valence update;
+- no generalisation;
+- unstable residue;
+- repair only under punishment;
+- collapse under novel other-agents.
+
+Use those failure signatures to constrain the next search generation.
+
+### Step 7 — Escalate search complexity only as needed
+
+The sequence should be:
+
+> simple fixed rule -> parameterised rule -> sparse symbolic/program search -> small learned mapping -> higher-capacity learner only if the simpler hypothesis class is demonstrably inadequate.
+
+This keeps frontier science interpretable and makes it possible to identify what new computational complexity was actually necessary.
+
+### Step 8 — Promote by causal evidence, not by desirable phenotype
+
+A frontier mechanism earns standing only when the **predicted causal pattern** survives:
+
+- ablation;
+- intervention;
+- mismatched/random controls;
+- multiple seeds;
+- altered ecology;
+- developmental variation;
+- comparison with plausible rival mechanisms.
+
+A mechanism is not promoted merely because it produces kindness, cooperation, or low harm.
+
+## The evaluator is the dangerous part
+
+The automated-discovery literature also sharpens a major risk.
+
+Program search is only as scientifically meaningful as its evaluator.
+
+If REE asks a search process to "maximise kindness", "minimise harm", or optimise a single prosocial score, the search can discover:
+
+- deletion of harmful affordances;
+- avoidance of other agents;
+- metric suppression;
+- appeasement;
+- proxy gaming;
+- hard constraints that mimic ethics without agency.
+
+That would collapse REE back into reward engineering.
+
+Therefore the REE evaluator should be a **multi-test causal adjudication battery**, not a scalar moral fitness function.
+
+Where an aggregate score is needed for search mechanics, it should be downstream of hard validity gates and should not permit compensation: e.g. excellent repair behaviour must not compensate for failure of the live-unethical-affordance requirement.
+
+The evaluator should ask whether the mechanism instantiates the claimed causal structure, not whether the resulting phenotype looks morally attractive.
+
+This is likely the central human scientific role in frontier REE development: defining the meaningful discriminations, prohibited shortcuts, and falsifiers that keep automated mechanism search attached to the axioms rather than to superficial output.
+
+## Revised interpretation of the investigator's role
+
+For frontier mechanisms, the human role need not be:
+
+> invent the correct learning algorithm and then code it.
+
+A literature-backed alternative is:
+
+> define the phenomenon precisely enough that competing mechanisms can be generated, made executable, and killed by discriminating experiments.
+
+The implementation/search system can propose code.
+The forge can execute experiments.
+The governance layer can prevent invalid promotion.
+The investigator remains responsible for whether the experiment actually bears on the intended ethical proposition.
+
+This is not a retreat from scientific authorship. It is a redistribution of scientific work around specification, falsification, and experimental adjudication.
+
+
 ## Central methodological commitment
 
 The project should preserve the following rule:
