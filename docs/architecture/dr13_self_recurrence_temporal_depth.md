@@ -13,7 +13,9 @@ DR-11 (SELF-5, z_self-domain goals), DR-12 already-built (SELF-4), and the INV-0
 (SELF-7) maturational-stability gate. MECH-215 (self-model prerequisite for agentive
 prediction) is the load-bearing scope claim.
 **Subject:** latent_stack.self_recurrence (z_self temporal self-model)
-**Status:** IMPLEMENTED 2026-07-01
+**Status:** IMPLEMENTED 2026-07-01; **training path REPAIRED 2026-09-24** -- the
+"trains via the existing E1/E2 losses" premise was measured FALSE (V3-EXQ-1078) and the
+cell now has its own P0 objective. See [Phased training](#phased-training).
 **Generation:** v4 (off the V3 critical path; promotes nothing in V3; excluded from the V3 closure %)
 **Depends on:** SD-005 (z_self/z_world split, implemented) -- z_self exists today as the
 single-MLP + EMA body latent this SD upgrades.
@@ -104,12 +106,90 @@ instantaneous encode; a validation experiment's "buys nothing" off-ramp fires if
 
 ## Phased training
 
-The `GRUCell` is a new trainable element in the z_self recognition path; it trains via the
-**existing** E1/E2 z_self prediction losses -- v1 adds **no new loss** (the anchor is an
-inference-time blend, detached). Standard joint-collapse awareness applies (a recurrence
-can collapse to identity or drift); the E1 anchor defends against drift, and the validation
-falsifier pre-registers the collapse/inert off-ramp. Experiments that train the recurrence
-should follow the usual P0 encoder-warmup -> P1 frozen-encoder phasing.
+> **CORRECTION (2026-09-24).** The paragraph this section used to carry -- *"it trains via
+> the **existing** E1/E2 z_self prediction losses -- v1 adds **no new loss**"* -- WAS
+> FALSE, and is struck. It is kept quoted here rather than deleted because it was the
+> premise several downstream plans were written against. **V3-EXQ-1078** measured it false
+> on 3/3 seeds (`gru_param_max_delta = 0.0`,
+> `latent_stack_tensors_changed = 0/53`, after 20 x 100-step P0 warmup with
+> `compute_prediction_loss() + compute_e2_loss()` over `agent.parameters()`, Adam 1e-3):
+> [`failure_autopsy_V3-EXQ-1078_2026-09-24.md`](../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.md).
+> The [causal-reach trace](../../evidence/planning/zself_causal_reach_trace_20260924.md)
+> root-caused it: **every z_self the E1/E2 losses see is a DETACHED copy** -- `agent.py:5855`
+> (`_current_latent = new_latent.detach()`), `:6294` (`_self_experience_buffer.append(
+> z_self.detach().clone())`) and `:11397` (`record_transition`). The gradient path itself
+> exists (a synthetic `sum(live z_self)` reaches 11 tensors including the GRU); it is the
+> STORED copies that are severed. Nothing in production trains it either: the all-ON
+> recipe's optimizer groups (e2, lpfc bias, ofc deval) and SD-070's
+> `world_path_parameters()` contain ZERO z_self-path members.
+
+**v1 therefore DOES need its own loss**, and it now has one.
+
+**`ree_core/latent/zself_p0.py` (`ZSelfP0Trainer`) is the z_self P0 objective**, with
+`experiments/_lib/zself_p0_warmup.py:run_zself_p0` as the driver-facing wrapper. It is a
+**body forward model** -- `head([z_self_t, a_t]) -> body_obs_{t+1}`, MSE -- run as a
+PHASED trainer that does its OWN forward passes through the native encode path over
+recorded observations, with a fresh detached init state per chunk. That shape is the
+SD-070 / `ZWorldP0Trainer` pattern, and it is what keeps the retained-graph / in-place
+hazard the `agent.py:5855` comment records out of reach BY CONSTRUCTION rather than by
+care. The optimizer holds exactly the z_self recognition path (`body_obs_encoder`,
+`split_encoder.self_encoder`, `self_topdown`, `self_precision_logit`, `self_recurrence`)
+plus the objective's own head. Default OFF, bit-identical: `episodes <= 0` returns without
+constructing the trainer, touching a parameter, or drawing from any RNG stream.
+
+**Why this objective and not one of the other three.** Four forms were prototyped end to
+end and measured on held-out native experience (trace Section 5, 2 seeds):
+
+| candidate | R2 next body | R2 action(t-2) | eff. rank | E1 swap response |
+|---|---|---|---|---|
+| base (E1/E2 P0 only) | 0.456 / 0.233 | 0.100 / 0.051 | 1.21 / 1.13 | 0.7% |
+| **(i) body forward model (SHIPPED)** | **0.660 / 0.638** | **0.170 / 0.244** | **2.61 / 1.91** | 6.6% |
+| (ii) temporal InfoNCE | 0.668 / 0.553 | 0.177 / 0.091 | 1.47 / 1.79 | 113% (E1 swamped) |
+| (iii) match the E1-predicted z_self | 0.067 / 0.033 | 0.003 / 0.001 | 1.02 / 1.03 | 0.2% |
+| (iv) E2-self loss through a LIVE z_self | 0.336 / 0.208 | 0.012 / 0.013 | 1.73 / 1.33 | 0.1% |
+
+(iii) and (iv) **COLLAPSE** the self-state on 2/2 seeds -- both are a learned predictor
+whose target IS the trainable latent, with no stop-gradient or EMA target. **So "let the
+existing E1/E2 losses reach z_self through a live tap" is the COLLAPSE route, not the fix
+for the corrected premise above**, and the SD-CM-LIVETAP remedy does not transfer here.
+(ii) trains successive-z_self similarity, which is exactly what INV-069's V_s
+consecutive-difference coherence proxy reads, so a later coherence PASS on it would be
+circular. Decision of record: `orchestrate-20260924-breakthrough`, trace Section 8 option
+O3.
+
+**The collapse warning below is therefore not hypothetical, and the E1 anchor does not
+defend against it.** Standard joint-collapse awareness applies (a recurrence can collapse
+to identity or drift); the anchor defends against DRIFT, and the falsifier pre-registers
+the collapse/inert off-ramp -- but anchoring z_self TO E1 as a training target is
+candidate (iii), the measured worst collapse. Acceptance for the P0 is pinned by
+`ree-v3/tests/contracts/test_zself_p0_training_path.py` on the trace's Section 9
+criteria: attributable GRU AND `self_encoder` change (necessary, and NOT sufficient --
+all four candidates pass it); non-collapse in held-out effective rank and z norm;
+held-out information gain on episodes never trained on, with the history target above the
+raw-instantaneous-observation ceiling; and a consumer response (E1 under a z_self swap)
+above the untrained baseline.
+
+Experiments that train the recurrence should run this as **P0s, BEFORE** any phase that
+fits a predictor on z_self (E1/E2 P0, the e2 contrastive warmup), then follow the usual
+P1 frozen-encoder phasing.
+
+### SCOPE: this reaches E1, and NOTHING behavioural
+
+**Behavioural consequence (D3) is NOT reachable by the P0 objective above**, and no
+acceptance criterion claims it. Measured in the same trace: swap / zero / matched-norm
+noise / permute on z_self changed the committed action at **0 of 68 E3 ticks**, and a
+persistent closed-loop intervention changed **0 actions in 12/12 whole episodes** -- while
+the z_world canary in the SAME harness moved 4-30% of E3-tick actions and diverged by tick
+0-6, so the harness is sound and the negative is real. The cause is structural and
+downstream of DR-13: E3 scores `world_states` only (`e3_selector.py:1305-1321`), the
+per-candidate E2 self-rollout is computed and DISCARDED (`e2_fast.py:838`), E1's z_self
+response reaches selection only through `hippocampal.terrain_prior` which no loss in
+`ree_core` trains, and DR-10 is default-off with no z_self-derived producer.
+
+So **INV-069 / MECH-113 retests run on top of this build measure SELF-STATE QUALITY and E1
+USE ONLY, not behavioural self-reach.** The missing edge -- a z_self-reading per-candidate
+self-viability valuation consumer -- is routed to /governance as its own
+`substrate_queue.json` row under **GFLAG-0481**; it is deliberately not part of this build.
 
 ## MECH-094
 

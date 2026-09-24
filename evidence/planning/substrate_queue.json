@@ -13216,8 +13216,8 @@
       "sd_id": "sd_zself_training_path",
       "title": "Give z_self (self_encoder + DR-13 SelfRecurrenceCell) a z_self training objective whose gradient reaches them, and correct DR-13's false training premise",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
+      "status": "implemented_pending_validation",
+      "status_phase": "validation_owed",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -13234,7 +13234,7 @@
           "experiment_type": "v3_exq_1078_inv069_zself_coherence_unsettled",
           "metric": "gru_param_max_delta 0.0 and latent_stack_tensors_changed 0/53 on all 3 seeds after 20 x 100-step P0 warmup (compute_prediction_loss + compute_e2_loss, Adam lr 1e-3 over agent.parameters())",
           "target": "gru_param_max_delta > 0 and self_encoder params changed after P0 warmup, under a documented z_self objective",
-          "resolved": "open",
+          "resolved": "resolved_by_build_2026-09-24 -- the E1/E2 route still gives 0.0 BY DESIGN (it reads detached copies); the repair is a separate P0 objective, not a change to that route",
           "source": "failure_autopsy_V3-EXQ-1078_2026-09-24"
         }
       ],
@@ -13243,7 +13243,8 @@
       "severity": "corrupting",
       "severity_note": "A DR-13 run that trusts the doc and does not record gru_param_max_delta reports init contraction as a trained self-recurrence -- evidence that looks valid and is not. substrate_paths deliberately narrowed to the DR-13 module; the root-cause detach site in agent.py is NOT listed because listing agent.py would gate every experiment.",
       "substrate_paths": [
-        "ree_core/latent/self_recurrence.py"
+        "ree_core/latent/self_recurrence.py",
+        "ree_core/latent/zself_p0.py"
       ],
       "read_across_claims": [
         "ARC-081",
@@ -13253,8 +13254,11 @@
       "source_autopsy": "failure_autopsy_V3-EXQ-1078_2026-09-24",
       "added_session": "governance-20260924",
       "added_utc": "2026-09-24T07:33:28Z",
-      "last_seen_session": "governance-20260924",
-      "experiment_queued": false
+      "last_seen_session": "metaworker-campaign-20260924-bt0924-zself-build",
+      "experiment_queued": false,
+      "implementation_note_2026_09_24": "BUILT by chip-20260924-sd-zself-training-path-build (campaign campaign-20260924-bt0924-zself-build, host ree-cloud-5). ree_core/latent/zself_p0.py (ZSelfP0Config/ZSelfP0Trainer) + experiments/_lib/zself_p0_warmup.py:run_zself_p0 (driver wrapper; RNG-neutral; no-op and bit-identical at episodes<=0) + tests/contracts/test_zself_p0_training_path.py (21 contracts). OBJECTIVE: body forward model, head([z_self_t, a_t]) -> body_obs_{t+1}, MSE, as a PHASED trainer running its OWN forward passes over recorded observations (SD-070 / ZWorldP0Trainer pattern), so the retained-graph hazard is avoided by construction. Form DECIDED by orchestrate-20260924-breakthrough under the standing decide-the-obvious delegation (rec-20260924-fb429c72) from the measured candidate ranking in evidence/planning/zself_causal_reach_trace_20260924.md Sections 5/8 (option O3): the two 'let the existing E1/E2 loss reach z_self through a live tap' forms COLLAPSE the self-state on 2/2 seeds, and the InfoNCE form trains INV-069's own coherence DV (circular). MEASURED on this build at trace scale (seeds 42/43; held-out episodes never trained on): GRU max delta 0.31/0.38 and self_encoder 0.32/0.30 (0.0 before); effective rank 1.39->2.37 and 1.28->2.24; z norm 0.77->2.47 and 0.64->2.45; R2 next-body 0.47->0.65 and 0.37->0.64; R2 action(t-2) 0.11->0.26 and 0.05->0.21 against a raw-instantaneous-observation ceiling of -0.14/-0.08. Contract blind spot measured: the new C1/C6 assertions FAIL against a re-introduced GRU-drop defect and PASS on the shipped code. DR-13's false training premise is corrected in docs/architecture/dr13_self_recurrence_temporal_depth.md and in ree_core/latent/self_recurrence.py's own docstring.",
+      "scope_note_d3_unreachable": "BEHAVIOURAL CONSEQUENCE (D3) IS NOT REACHABLE BY THIS BUILD, and no contract here claims it. The causal-reach trace measured 0/68 E3 ticks and 0/12 whole episodes with ANY action change under swap/zero/matched-norm-noise/permute of z_self (z_world canary 4-30% of ticks in the SAME harness, closed-loop divergence by tick 0-6), because no valuation consumer reads z_self: E3 scores world_states only (e3_selector.py:1305-1321), the per-candidate E2 self-rollout is computed and DISCARDED (e2_fast.py:838), E1's z_self response reaches selection only via hippocampal.terrain_prior which no ree_core loss trains, and DR-10 is default-off with no z_self-derived producer. INV-069 / MECH-113 retests on top of this build therefore measure SELF-STATE QUALITY and E1 USE ONLY, not behavioural self-reach. The missing z_self-reading per-candidate self-viability valuation consumer is routed to /governance as its OWN substrate_queue row under GFLAG-0481; it was deliberately NOT built here.",
+      "validation_owed_note": "Validation experiment NOT queued by this build (outside its chip's scope). What it would measure: the INV-069 coherence leg and MECH-113 D_eff on a substrate where the z_self path has actually trained, with the WWA's generic-contraction null (same architecture at random init, plus a recurrence-lesioned ablation) LOAD-BEARING rather than optional -- the self-state is now driven by a body-prediction objective, so 'restoration after a burst' is partly re-encoding of the body input."
     },
     {
       "sd_id": "residue-integrate-sampling-collapse-world-dim-32",
