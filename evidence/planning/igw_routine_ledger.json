@@ -6933,7 +6933,11 @@
       "task_claim_session_id": "igw-auto-igw-251-literature-proposal-for-mech-082-20260924T213741Z",
       "task_claim_claimed_at": "2026-09-24T21:37:41Z",
       "assigned_at": "2026-09-24T21:34:02Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-24T21:52:33Z",
+      "completion_summary": "lit-pull MECH-082: 5 entries (4 supports, 1 mixed) in targeted_review_connectome_mech_082, REE_assembly fda400934a, lit_conf 0.767",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-082: 5 entries (4 supports, 1 mixed) in targeted_review_connectome_mech_082, REE_assembly fda400934a, lit_conf 0.767"
     }
   ],
   "dispositions": [
@@ -10041,6 +10045,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-24T20:36:24Z",
       "re_eligible_after": "2026-09-26T20:36:24Z"
+    },
+    {
+      "stable_hash": "d9d6f04697b6",
+      "igw_id_at_disposition": "IGW-20260924-251",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-082"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-082",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-24T21:52:34Z",
+      "re_eligible_after": "2026-09-26T21:52:34Z"
     }
   ]
 }
