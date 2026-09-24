@@ -69185,6 +69185,92 @@
     - MECH-037
     - INV-011
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#mech-365
+  what_would_answer: |
+    SCOPE: the V3 half after the 2026-09-24 split. V3's committed_vs_imagined label is
+    hypothesis_tag, carried on the representation object (Trajectory.hypothesis_tag /
+    .metadata, LatentState.hypothesis_tag), not only passed as a per-call mode argument. The V3
+    analogue of "committed history" is the ResidueField valence/residue terrain that later reads
+    as experienced value. The full event-token schema on the ARC-085 store is MECH-365a (v4) and
+    is not tested here. The safety property itself (simulation content must not accumulate as
+    experience) is owned by MECH-094 / INV-011 / MECH-037, and their audits stand. This claim adds
+    three testable specifics: (i) the label TRAVELS on the imagined representation to the
+    consolidation boundary; (ii) the gate is SELECTIVE, blocking committed-status writes while
+    imagined content is still presented and read (a gate, not a discard); (iii) it is ONE-WAY,
+    stripping the label only on REALIZATION (observed states), never on commitment of predicted
+    states.
+    BIOLOGY: reality monitoring / source monitoring. Confabulation after ventromedial-orbitofrontal
+    and basal-forebrain damage is a failure to filter currently-irrelevant or internally generated
+    memory traces from what is taken as present reality (Schnider 2003 reality/temporal-context
+    filtering, cited under MECH-094; Papez-loop provenance gating, MECH-037, Theze 2017). Source
+    is multidimensional (Johnson, Hashtroudi & Lindsay 1993, cited under MECH-430). This claim
+    tests only the single reality-status bit; per-dimension provenance is MECH-430.
+    NON-DEGENERACY PRECONDITION: (P1) a real replay -> consolidation writer must be LIVE in the
+    unlesioned arm: the MECH-217 REM wanting-spread (use_offline_wanting_spread, rem_enabled,
+    sleep cycles firing) must make non-zero accepted writes from reverse (real) replay, as it did
+    in V3-EXQ-842. (P2) Imagined content must actually be generated AND presented to that same
+    writer. Today it is not (REM forward replay is scored read-only; waking _do_replay discards
+    its output), so a routing flag is required, and without it every lesion is vacuous by
+    construction. (P3) The imagined trajectories presented must carry non-zero source wanting at
+    their start state (world_states[0]); otherwise spread_reverse_replay_wanting returns before
+    reaching the gate and "no contamination" means "no write attempted". (P4) The contamination
+    DV must have demonstrated range: a CANARY arm with the label suppressed at SOURCE must show
+    imagined-sourced accepted writes > 0, or the instrument cannot detect a gate failure. (P5)
+    The valence clamp must not be saturated (fraction of active centers at clamp_abs < 0.5 in the
+    intact arm), or contamination is absorbed and under-read.
+    CONFIRMING (all, >= 3 seeds, every seed): (C1) with the gate intact and imagined replay routed
+    to the writer, imagined-sourced accepted write mass == 0 and the end-of-run VALENCE_WANTING
+    map matches the unrouted reference arm to within 1e-6 relative L1. (C2) Dropping the label at
+    the consolidation boundary (the sender's Trajectory keeps its label; only the translation into
+    update_valence drops it) makes imagined-sourced mass > 0 and a relative-L1 wanting-map
+    divergence from the intact arm D > theta, theta = max(3 * SD_seeds(D_sham), 0.05). (C3) A sham
+    lesion that runs the same override code path on real (already-untagged) trajectories gives
+    D_sham <= 0.01. (C4) SELECTIVITY: in the intact arm the imagined replay is still generated and
+    read. Forward-replay scored count > 0 and equal to the reference arm, mean forward terrain score
+    equal to within 1e-6, and forward trajectories reach the writer and are refused there (refused
+    waypoint count > 0), not dropped upstream.
+    ONE-WAY LEG (audit, separate from the lesion): re-derive from the CURRENT tree at run time every
+    site that yields an untagged Trajectory / LatentState from a tagged source. CONFIRMING only if
+    every such site strips on realization, i.e. it stores OBSERVED z_world, not a proposal's predicted
+    states.
+    FALSIFYING (any one): (F1) the label does not travel. The intact-gate arm accepts
+    imagined-sourced writes (C1 fails with the P4 canary valid): the gate is not one-way at the
+    only V3 consolidation boundary. (F2) The gate is not selective: making the label honoured also
+    suppresses the read/scoring path (C4 fails), so the mechanism is a blackout, not a
+    status gate, and the "usable for planning" leg fails. (F3) The label is not load-bearing:
+    with P1-P5 met, the boundary lesion produces D <= theta in a majority of seeds. Imagined
+    content then reaches committed history in no material amount, and the provenance label has no
+    keep at this boundary. A sham with D_sham > 0.01 invalidates the run: instrument
+    nondeterminism, no verdict.
+    SUBSTRATE (verified 2026-09-24 at ree-v3 44ddbfd): ree_core/predictors/e2_fast.py Trajectory
+    (hypothesis_tag default False, metadata); ree_core/latent/stack.py LatentState.hypothesis_tag;
+    ree_core/hippocampal/module.py replay() (2975; DEFECT: output is not tagged despite its
+    docstring), diverse_replay() (3193, forward/random steps delegate to replay()),
+    reverse_replay() (3110), spread_reverse_replay_wanting() (3668; the sole ree_core reader of
+    Trajectory.hypothesis_tag, at 3738), record_committed_trajectory() (3534; the sole
+    tagged->untagged site), backward_credit_sweep() (3574); ree_core/residue/field.py
+    update_valence() (847, the hypothesis_tag refusal); ree_core/agent.py _do_replay() (10968,
+    output discarded), run_rem_attribution_pass() (13184, forward replay scored read-only, reverse
+    replay spread). Harness precedent: experiments/v3_exq_842_mech217_offline_wanting_spread_readiness.py
+    (PASS 2026-07-30, MECH-217 writer demonstrably live).
+    CAVEATS, stated plainly: (a) The lesion leg is AUDIT-STRENGTH, like INV-011's. Once the label
+    is stamped and honoured, C1 and C3 are structurally determined, and C2 is near-guaranteed
+    given P3. The informative content is F1 (does the label travel: on the as-built tree it does
+    NOT for replay() output), F2 (selectivity), and the MAGNITUDE of D (does the gate matter).
+    It is not behavioural evidence that contamination changes later action. A behavioural follow-up
+    (post-sleep wanting-gradient approach to imagined-only content) is owed before any promotion
+    beyond candidate. (b) The one-way leg is currently VIOLATED latently at MECH-290
+    (record_committed_trajectory strips the tag at commit entry on predicted world_states; with
+    ghost probes those states start at a remote anchor). Both flags default OFF. This routes to
+    substrate as a non-conformance (store observed states during execution, or keep the tag until
+    realization); it does not refute the claim. (c) Evidence from this falsifier tags MECH-365
+    only. It is NOT a MECH-545 contract-lesion result (no five-way dissociation, no
+    random-projection floor, no acute/adapted separation) and NOT MECH-271 evidence (one
+    destination, no differential routing).
+    Disposition (draft): testable in V3 now for the carried-label + selectivity + boundary-lesion
+    legs after a small, default-OFF substrate edit (label stamp + routing flag + lesion flag) --
+    complicated (buildable). The one-way leg has a known latent non-conformance at MECH-290 --
+    complicated (buildable).
+    REGISTERED 2026-09-24 by /governance session governance-20260924 (user: 'progress MECH-365 now'); drafted by its subagent, design doc: evidence/planning/mech365_wwa_and_lesion_design_20260924.md (section 2 carries arms/DVs/criteria and the three default-OFF substrate edits E1-E3).
   notes: "Assembles into one concrete token schema the provenance fields that REE already enforces in pieces -- MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation), MECH-037 (Papez-like provenance gating / reality filtering), INV-011 (imagination must be possible without belief update). This claim does NOT re-assert that safety property (already owned by those three); it specifies the DATA STRUCTURE that carries it on the ARC-085 unified event substrate and makes the committed_vs_imagined label a first-class, load-bearing field rather than an implicit mode bit. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094; SD-026 (prospective precision-template write channel) is the nearest existing write-side mechanism. V4/V5; off the V3 critical path. substrate_conditional on the ARC-085 event-token store not yet built. DO NOT build in V3 until routed by experiment."
   phase_leak_resolution_2026_09_24: >
     [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-ce7aa5a8] SPLIT (resolution (b), CONFLICT with phase_locked ARC-085): MECH-545 needs only the committed_vs_imagined gate, which already exists in V3, not the ARC-085 unified store. This id keeps the V3 gate half (depends_on ARC-085 removed; epistemic_category substrate_conditional -> standard, since its substrate_conditional reading was 'on the ARC-085 store not yet built'; version_relevance v4_v5 -> v3). The full event-token schema on the unified store -- including the prior notes' 'V4/V5; off the V3 critical path; DO NOT build in V3' guidance -- moves to child MECH-365a (v4). Prior title preserved in title_prior_2026_09_24.
