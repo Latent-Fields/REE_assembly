@@ -156,3 +156,85 @@ Cells read: reward/100 steps / harm events/100 (harm contacts) / benefit events/
   - "Harm events" include hazard-proximity steps; contacts are reported separately.
   - Heads were trained on argmax one-hot actions, while runtime actions are continuous (inherited from ADDENDUM 2-3).
 - **Run log** (from `.scratch/breakthrough-20260924/evaluation/`, worktree @ `44c55300ca`): `run_eval.sh 43 44 42`, `run_split.sh 43 44 42`.
+
+## ADDENDUM 1 (2026-09-24T21:25Z, session `bt0924-evaluation-b`): single factor `proximity_approach_magnitude_tiebreak=True`
+
+- **Commissioned by the orchestrator** as the O1 discriminator.
+- **Code and harness:** ree-v3 `origin/main` @ `44c55300ca` (re-fetched; unchanged), with the same harness and budget as above.
+- **The one change:** `evaluation_edge_probe.py --tiebreak 1 --force-gate 0 --arms E1_FULL,E2_FULL_EVAL,E4_FULL_SHUF` (via `run_tb.sh 43 44 42`).
+  - The flag is applied by wrapping the probe's only env constructor (`rollout_fidelity_probe.py:93`), so it covers the encoder P0, the replay, the label runs, the probe states and every arm. The probe asserts that it is set.
+  - The benefit gate is NATIVE: `_benefit_samples_seen` = the number of benefit positives in the training split. Nothing is forced.
+- **Output:** results in `probes/evaluation/results/TB_s{42,43,44}.json`, tabulated by `summarize_tb.py`.
+- **Wall time:** 3-6 min per seed.
+
+**What the flag changes (confirmed live).**
+- The flag is read at `causal_grid_world.py:2733`.
+- **When both proximity fields are above threshold,** the step is classified by whichever raw field is larger (`hazard_wins = h_field_val >= r_field_val`), not always as hazard.
+- **A benefit-won step** pays `+0.03 * resource_field` (`proximity_benefit_scale`, `:340`) and does not drain health. Before this change, the same step paid `-0.05 * hazard_field` and drained health.
+- **Unchanged:** observations, dynamics and the contact rewards. The env's reward stream is therefore itself different from the main record, so T1 is the baseline here, not the earlier FULL arm.
+
+Arm mapping: **T1** = FULL (R5b+COV+R2, untrained evaluators); **T2** = FULL + trained evaluators (the E2 recipe); **T3** = FULL + the same evaluators trained on label-permuted data (the E4 recipe). Each arm runs 600 steps on a fresh agent from the same seed.
+
+### Coverage: labelled benefit positives and the native gate
+
+| seed | own-policy run (1,500 steps): benefit reward steps (consumptions + benefit-approach) | random run (1,500): benefit steps (consumptions) | benefit positives in the training split | **native gate (50) open without forcing?** | benefit head held-out AUC | harm head AUC |
+|---|---|---|---|---|---|---|
+| 42 | 573 (10 + 563) | 873 (36) | 1136 | **yes** | 0.70 | 0.63 |
+| 43 | 82 (3 + 79) | 831 (46) | 737 | **yes** | 0.90 | 0.81 |
+| 44 | 158 (16 + 142) | 797 (41) | 766 | **yes** | 0.81 | 0.71 |
+
+- **Coverage rose about 20-30x.** The main record had 37-52 positives, and the gate was shut on 2 of 3 seeds. Here E3's benefit channel switches on natively on all 3 seeds.
+- **The new positives are almost all benefit-APPROACH (proximity) steps.** Resource consumption is still rare: 3-16 per 1,500 own-policy steps.
+
+### Closed loop, counts per 600 steps (harm contacts / hazard-proximity steps split out, as corrected in the main record)
+
+| seed | arm | env reward / 100 | harm contacts | hazard-proximity steps | resource consumptions | benefit-approach steps | episodes ended | choice quality vs env-Q (chance 0.20) |
+|---|---|---|---|---|---|---|---|---|
+| 42 | T1 FULL | -0.43 | 8 | 4 | 0 | 36 | 4 | 0.25 |
+| 42 | **T2 FULL+EVAL** | **-2.07** | **39** | **25** | 7 | **98** | 14 | 0.27 |
+| 42 | T3 FULL+SHUF | -0.03 | 2 | 1 | 1 | 18 | 3 | 0.25 |
+| 43 | T1 FULL | -0.10 | 5 | 8 | 4 | 19 | 4 | 0.05 |
+| 43 | **T2 FULL+EVAL** | -0.10 | 6 | 8 | 1 | **56** | 3 | 0.12 |
+| 43 | T3 FULL+SHUF | -0.02 | 1 | 0 | 0 | 12 | 3 | 0.10 |
+| 44 | T1 FULL | -0.38 | 6 | 0 | 0 | 19 | 3 | 0.29 |
+| 44 | **T2 FULL+EVAL** | **-1.26** | **22** | **31** | 5 | **76** | 11 | 0.17 |
+| 44 | T3 FULL+SHUF | +0.02 | 3 | 5 | 3 | 14 | 3 | 0.24 |
+
+J term spread at the probe states (mean cross-candidate std, depth 2):
+
+| seed | residue | T2 trained harm / benefit | T3 shuffled harm / benefit |
+|---|---|---|---|
+| 42 | 0.034 | 0.009 / 0.009 | 0.002 / 0.002 |
+| 43 | 0.0008 | 0.055 / 0.034 | 0.001 / 0.001 |
+| 44 | 0.004 | 0.014 / 0.019 | 0.002 / 0.001 |
+
+### Read-out against the pre-registered criterion
+
+The criterion: benefit up AND harm not worse vs T1, AND T2 > T3, on at least 2 of 3 seeds.
+
+- **Benefit up vs T1: 3 of 3 seeds.** Benefit-approach steps go 36 -> 98, 19 -> 56 and 19 -> 76 (about 2.7-4x). Consumptions go 0 -> 7 (s42), 4 -> 1 (s43) and 0 -> 5 (s44), so consumption rises on 2 of 3 seeds.
+- **T2 > T3 on benefit: 3 of 3 seeds** (98 vs 18, 56 vs 12, 76 vs 14 approach steps). In the main record this held on only 1 of 3 seeds. With coverage, the trained benefit head now carries real, label-specific, directed signal into behaviour.
+- **Harm not worse vs T1: 1 of 3 seeds** (s43: contacts 6 vs 5, proximity steps 8 vs 8, reward equal). On s42 harm contacts go 8 -> 39 and proximity steps 4 -> 25; on s44, contacts 6 -> 22 and proximity steps 0 -> 31. Env reward is worse on both (-0.43 -> -2.07; -0.38 -> -1.26), and early terminations rise (4 -> 14; 3 -> 11).
+- **Directed success: 1 of 3 seeds (s43 only). The criterion is NOT met.**
+- **Choice quality vs env-Q does not move consistently.** T2 vs T1 is 0.27 vs 0.25, 0.12 vs 0.05 and 0.17 vs 0.29.
+
+**Which pre-registered outcome this is: neither cleanly. The evidence points to the third constraint already named.**
+
+1. **Coverage WAS binding for the benefit head.** With labels available, the gate opens natively, the head learns (AUC 0.70-0.90), and it moves behaviour toward resources, beating the shuffled control on 3 of 3 seeds. That is the part of the main record's failure that was coverage.
+2. **E2 prediction is NOT the binding edge for approach-benefit.** T2's benefit effect is directed and survives E2's prediction. That fits the main record's split: state-level proximity signals, like hazard proximity, survive prediction. Consumption is a one-step, one-action event, and it rose on only 2 of 3 seeds with counts of 1-7. So action-blindness for consumption specifically is not excluded, and not tested further here (no added factors).
+3. **What now fails is harm, and the signature is the fragility / commensurability finding.**
+   - In T2 the evaluator terms have spreads of 0.009-0.055. On 2 of 3 seeds that matches or exceeds the residue term's spread (0.0008-0.034), which is what gives FULL its harm avoidance.
+   - The agent now pursues resources through hazard regions. Resources and hazards are co-located, which is why the tie-break is needed at all. Nothing in J is weighted to trade benefit against harm contact.
+   - T3's shuffled heads have near-flat spreads (0.001-0.002) and leave FULL's harm avoidance intact, even improving it slightly. So the harm cost comes from a strong, informative added term overriding residue, not from "any trained head".
+   - In the main record, a shuffled benefit head with spread 0.016 did the same damage (s42 harm 8.5 -> 52.8 events per 100). Across both runs, whichever added term has spread of about 0.01 or more takes over E3's pick under R2.
+   - **This affects ANY added score term under R2,** including a future native evaluator, goal or curiosity term: its weight relative to residue decides whether harm avoidance survives.
+
+**The constraint (stopping here, no further factors).** With benefit coverage supplied, the evaluation edge becomes functional: native gate, directed approach, beats the control. Behaviour is then limited by **score commensurability in E3 under R2**. The raw-weight sum `lambda_ethical * M + rho_residue * Phi - benefit_weight * B` (all at defaults, `e3_selector.py:1710-1751`) has no calibrated trade-off between the new value terms and the residue-borne harm memory. So the benefit gain is bought with 3-5x more harm contacts on 2 of 3 seeds.
+
+The next discriminator, for the orchestrator to decide and not run here: T2 with `use_e3_channel_commensurability` (`e3_selector.py:1714`), or with evaluator weights scaled so their spread matches residue's. The criterion stays the same.
+
+**Limits.**
+- Benefit labels are now about 95% proximity steps, so "benefit" in this addendum mostly means approach, not consumption. Consumption counts are 0-7 per arm.
+- 3 seeds; 600 steps per arm; offline evaluator training on 3,000 own-experience steps.
+- The flag changes the env's reward stream, so T1 is not the main record's FULL.
+- Harm head AUC is lower here (0.63-0.81 vs 0.82-0.93) because hazard-approach labels are now split with benefit-approach.

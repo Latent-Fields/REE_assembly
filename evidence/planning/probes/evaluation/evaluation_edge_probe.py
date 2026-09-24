@@ -273,6 +273,7 @@ def closed_loop(seed, enc_state, head, r5, r2, ev, benefit_on, gate_n, steps):
             "harm_sum_per_100": float(rew[rew < 0].sum() * 100 / steps),
             "benefit_sum_per_100": float(rew[rew > 0].sum() * 100 / steps),
             "harm_contacts": int(sum(v for k, v in tts.items() if k in CONTACT)),
+            "hazard_approach": int(tts.get("hazard_approach", 0)), "benefit_approach": int(tts.get("benefit_approach", 0)),
             "benefit_contacts": int(sum(v for k, v in tts.items() if k in BCONTACT)),
             "transition_types": dict(tts), "action_counts": {str(k): v for k, v in sorted(cc.items())},
             "action_entropy": float(-(p * np.log(p)).sum()), "majority_share": max(cc.values()) / len(acts),
@@ -287,9 +288,20 @@ def main():
     ap.add_argument("--label-steps", type=int, default=1500)
     ap.add_argument("--eval-steps", type=int, default=1500)
     ap.add_argument("--force-gate", type=int, default=1)
+    ap.add_argument("--tiebreak", type=int, default=0)
+    ap.add_argument("--arms", default="")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     t0 = time.time()
+    if a.tiebreak:
+        # ADDENDUM single factor: every env this probe builds goes through R.build_B ->
+        # R.CausalGridWorldV2 (rollout_fidelity_probe.py:93), so patching that name covers
+        # the encoder P0, replay, label runs, probe states and every closed-loop arm.
+        import functools
+        R.CausalGridWorldV2 = functools.partial(R.CausalGridWorldV2, proximity_approach_magnitude_tiebreak=True)
+        _e = R.build_B(a.seed, False)[0]
+        assert _e.proximity_approach_magnitude_tiebreak is True
+    keep = set(x for x in a.arms.split(",") if x)
     # ---- ADDENDUM 3's exact preamble (same RNG order -> same encoder and heads) ----
     R.seed_all(a.seed)
     env, agent, cfg = R.build_B(a.seed, False)
@@ -320,6 +332,7 @@ def main():
         return {"n": len(d), "harm_neg_reward": int((rw < 0).sum()), "benefit_pos_reward": int((rw > 0).sum()),
                 "harm_contacts": int(sum(v for k, v in tt.items() if k in CONTACT)),
                 "benefit_contacts": int(sum(v for k, v in tt.items() if k in BCONTACT)),
+                "benefit_approach": int(tt.get("benefit_approach", 0)), "hazard_approach": int(tt.get("hazard_approach", 0)),
                 "transition_types": dict(tt)}
     counts = {"native": cnt(nat), "random": cnt(ran)}
     print("LABELS %s t=%.0fs" % (json.dumps(counts), time.time() - t0), flush=True)
@@ -347,6 +360,8 @@ def main():
                                        ("E0_NATIVE", headA, None, init_ev, False),
                                        ("E5_FULL_EVALnb", headD, DEPTH, evN, True),
                                        ("E6_FULL_SHUFnb", headD, DEPTH, evNS, True)):
+        if keep and name not in keep:
+            continue
         BP.set_head(agent, head); configure_eval(agent, ev, bon, gate_nat if name.endswith("nb") else gate_used)
         cq[name] = PR.choice_quality(agent, states, A, depth)
         cq[name]["terms"] = term_spread(agent, states, A, depth)
@@ -360,6 +375,8 @@ def main():
             "E4_FULL_SHUF": (headD, 1, 1, evS, True),
             "E5_FULL_EVALnb": (headD, 1, 1, evN, True), "E6_FULL_SHUFnb": (headD, 1, 1, evNS, True)}
     for name, (head, r5, r2, ev, bon) in arms.items():
+        if keep and name not in keep:
+            continue
         res = closed_loop(a.seed, enc_state, head, r5, r2, ev, bon, gate_nat if name.endswith("nb") else gate_used, a.wake)
         res["choice_quality"] = cq[name]
         out["arms"][name] = res
