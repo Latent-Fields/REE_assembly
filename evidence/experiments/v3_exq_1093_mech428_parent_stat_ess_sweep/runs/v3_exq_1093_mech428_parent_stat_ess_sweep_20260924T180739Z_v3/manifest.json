@@ -1,0 +1,295 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1093_mech428_parent_stat_ess_sweep",
+  "run_id": "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-24T18:07:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "bf16cd2329bbcb218dbdebb7ba846a88100d09c7",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-428"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-428": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "parent_statistic_achievable_range_exists",
+    "preconditions": [
+      {
+        "name": "PR0_sense_path_equals_act_path_max_abs_diff",
+        "measured": 0.0,
+        "threshold": 1e-06,
+        "direction": "upper",
+        "control": "worst seed: max |z_world(sense_flat) - z_world(act twin)| over the first 30 ticks of the same scripted walk with the same weights (the 884c probes used act(); this run uses sense_flat())",
+        "met": true
+      },
+      {
+        "name": "PR1_attainment_credits_by_N400",
+        "measured": 58,
+        "threshold": 30,
+        "direction": "lower",
+        "control": "worst seed's count of credited (pre-arrival) events by the first N; the attainment-rate clause of the WWA precondition",
+        "met": true
+      },
+      {
+        "name": "PR2_c0_replay_fidelity_min_cos",
+        "measured": 0.9999998211860657,
+        "threshold": 0.99999,
+        "direction": "lower",
+        "offending_cell": {
+          "N": 400,
+          "cell": "a0.005_d0.005",
+          "cos": 0.9999998211860657,
+          "rel_norm_err": 6.532457632602018e-07,
+          "seed": 42
+        },
+        "control": "cos(w @ Z_credited, parent of a REAL GoalState driven with the agent's call sequence), worst over seed x cell x N, plus agent-vs-reference GoalState; also requires max rel norm err <= 0.0001 (measured 1.11e-06) and 130 checks present (got 130)",
+        "met": true
+      },
+      {
+        "name": "PR3_uniform_ceiling_S_separates_frac",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "positive control of the SAME statistic S and SAME re-constructed null, at the maximum achievable ESS (uniform weights over all credits by N=1600)",
+        "met": true
+      },
+      {
+        "name": "PR4_random_credit_negative_control_max_sep_frac",
+        "measured": 0.0,
+        "threshold": 0.4,
+        "direction": "upper",
+        "offending_cell": "a0.005_d0.005_N1600",
+        "control": "random non-attained ticks credited at their own positions, scored on their OWN partition (884c F2/F4 fixed); must not separate on a majority anywhere",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true
+    },
+    "separating_real_cells": [
+      {
+        "cell": "a0.1_d0.0_N400",
+        "ess_mean": 18.94567007288326,
+        "sep_frac": 0.8,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.05_d0.005_N400",
+        "ess_mean": 23.7007160510075,
+        "sep_frac": 0.8,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.05_d0.0_N400",
+        "ess_mean": 35.9629170959016,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.025_d0.005_N400",
+        "ess_mean": 32.94503192331417,
+        "sep_frac": 0.8,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.025_d0.0_N400",
+        "ess_mean": 52.177329657783126,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.01_d0.005_N400",
+        "ess_mean": 41.1871327780352,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.01_d0.0_N400",
+        "ess_mean": 60.7780725349149,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.005_d0.005_N400",
+        "ess_mean": 44.396627925063385,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.005_d0.0_N400",
+        "ess_mean": 62.28183955154208,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.1_d0.0_N1600",
+        "ess_mean": 18.9999999002373,
+        "sep_frac": 0.6,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.05_d0.005_N1600",
+        "ess_mean": 23.84449093035669,
+        "sep_frac": 0.6,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.05_d0.0_N1600",
+        "ess_mean": 38.9997024627706,
+        "sep_frac": 0.8,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.025_d0.005_N1600",
+        "ess_mean": 34.80126370181646,
+        "sep_frac": 0.8,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.025_d0.0_N1600",
+        "ess_mean": 78.67381727026317,
+        "sep_frac": 1.0,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.01_d0.005_N1600",
+        "ess_mean": 47.76460931498287,
+        "sep_frac": 0.8,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.01_d0.0_N1600",
+        "ess_mean": 167.65566108773365,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      },
+      {
+        "cell": "a0.005_d0.005_N1600",
+        "ess_mean": 54.42077891362378,
+        "sep_frac": 0.8,
+        "in_c1_set": true
+      },
+      {
+        "cell": "a0.005_d0.0_N1600",
+        "ess_mean": 218.1714468041492,
+        "sep_frac": 1.0,
+        "in_c1_set": false
+      }
+    ],
+    "anchor_reachability": {
+      "anchor_name": "PR3_uniform_ceiling_S_separates_frac",
+      "guard": "assert_anchor_reachable",
+      "reference_source": "--pilot seeds 101/102, uniform N=1600, 2026-09-24 (driver docstring PILOT)",
+      "threshold": 0.6,
+      "margin_cells": 0,
+      "required_score": 0.6,
+      "reachable": true,
+      "n_reference_cells": 2,
+      "n_reference_scored_true": 2,
+      "reference_score": 1.0,
+      "per_cell_scored": [
+        true,
+        true
+      ]
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "83ca4d44fa6570de0b8088dddc4da745d1dfe250ab3874585576eac6bf7cc579",
+  "substrate_commit": {
+    "commit": "bf16cd2329bbcb218dbdebb7ba846a88100d09c7",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_world_encoder_skip": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "goal.use_hierarchical_goal_credit": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 78.65256971599956,
+  "config": {
+    "grid_size": 12,
+    "num_waypoints": 3,
+    "world_dim": 32,
+    "alpha_world": 0.9,
+    "p0_episodes": 20,
+    "p0_steps": 50,
+    "p0_preservation_weight": 1000.0,
+    "n_list": [
+      400,
+      1600
+    ],
+    "alphas": [
+      0.2,
+      0.1,
+      0.05,
+      0.025,
+      0.01,
+      0.005
+    ],
+    "decays": [
+      0.005,
+      0.0
+    ],
+    "ref_cell": [
+      0.05,
+      0.005
+    ],
+    "k_ctrl": 32,
+    "n_perm": 400,
+    "credit_representation": "pre_arrival_prev_z_world",
+    "parent_goal_weight": 0.0,
+    "policy": "scripted_waypoint_walk"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 8000,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 5,
+    "goal_state_present": true
+  }
+}
