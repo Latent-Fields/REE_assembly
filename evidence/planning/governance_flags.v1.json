@@ -6825,6 +6825,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0478",
+      "claim_ids": [
+        "MECH-449",
+        "MECH-049"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-449 now has an ENDOGENOUS safety producer (ree-v3 da9221c): default-off E3Config.use_gng_endogenous_safety scores candidates with the harm head against a per-seed running z-score (veto > +2 SD, sd floor 0.01) and feeds the existing safety No-Go, accumulating n_safety_nogo_applied. Contract tests/contracts/test_mech449_endogenous_safety_producer.py. Validation V3-EXQ-1090 is queued (non_contributory substrate diagnostic). A PASS satisfies EVB-1409/EXP-0796 (MECH-049) release condition (b) ONLY; re-setting that proposal's status is /governance's call. claims.yaml MECH-449 notes should stop saying only perseveration reaches the gate.",
+      "raised_by_session": "orchestrate-20260924-0808",
+      "raised_at": "2026-09-24T16:52:03Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
