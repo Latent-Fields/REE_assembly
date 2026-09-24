@@ -9465,9 +9465,9 @@
     },
     {
       "sd_id": "mech151-action-bias-has-no-e3-ranking-channel",
-      "title": "MECH-151's action_bias reaches no ranking path -- E3 has no action-object input channel at all, so the claim's asserted elevate/suppress mechanism is unimplemented rather than untrained",
+      "title": "MECH-151's action_bias E3 ranking channel is BUILT (ree-v3 84e211a, default-off) but INERT AT DEFAULTS: scale-incommensurate at weight 1.0 and cue-degenerate (action_bias detached)",
       "node_class": "mystery (known data)",
-      "status": "wontfix",
+      "status": "implemented_pending_validation",
       "ready": false,
       "design_doc": "REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md",
       "depends_on_unresolved": [],
@@ -9496,7 +9496,7 @@
       "implementation_hint": "DO NOT BUILD BEFORE GOVERNANCE ADJUDICATES ARC-007 -- this entry records a decision point, not a ready build. FINDING (independently source-traced and measured 2026-08-18, contract-pinned at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py): nothing on the ranking path reads an action-object. o_t lands only in Trajectory.action_objects; world_forward/predict_next_self never read it, so world_states are bias-free; _score_trajectory scores get_world_state_sequence() and never touches action_objects; _trajectory_first_action_class (and thus the SP-CEM elite path) and the MECH-294 theta packet both read .actions; e3_selector.py has ZERO occurrences of action_object/action_bias. Across ree_core, action_objects appears in exactly two files (e2_fast.py producer, hippocampal/module.py refit + storage copies). action_bias's ONLY channel is the CEM refit, as an exact additive translation (ao_mean += b, ao_std unchanged, both refit branches, so it never compounds -- always exactly one b). NOT INERT, and do not quote the finding as if it were: that rigid translation passes through the nonlinear action_object_decoder and flips the whole final candidate pool's first-action class. It steers WHERE proposals are drawn, never WHICH one wins. This is also why SD-055's differentiable CEM restored an action-sequence gradient (V3-EXQ-568 grad_max=372) with no behavioural divergence -- gradient and ranking authority are different things, and SD-055 only ever addressed the former. THE DECISION: the obvious repair -- teach _score_trajectory to read action_objects -- is FORBIDDEN by Q-020/ARC-007 STRICT (hippocampal/module.py header: 'HippocampalModule generates VALUE-FLAT proposals ... No separate value head ... E3 introduces ALL weighting'). MECH-151's own wording ('E1 biases which action-objects RANK HIGHLY, but E3 still selects') is satisfiable only where E3 selects, and E3 cannot see an action-object at all. So governance must choose between: (A) give E3 an action-object input channel and consume the bias there (honours ARC-007; the larger build -- E3.select signature, Trajectory threading, and a decision about what consuming it MEANS, since a per-batch constant added identically to every candidate can only re-rank through a nonlinear term such as an alignment/norm read, not through a linear one); or (B) accept the substrate as correct under ARC-007 and QUALIFY MECH-151's registered mechanism -- 'pre-shapes HippocampalModule search' is defensible for a proposal-mean translation, 'ELEVATED/SUPPRESSED' and 'RANK HIGHLY' are not. Note (B) is a claims edit, not a build, and would close this entry with no code. SEPARATELY AND INDEPENDENTLY: this is NOT the cause of the action_bias_divergence=0.0 that EXP-0155 was queued to explain. That metric is computed on e1.extract_cue_context() output, upstream of all of the above; its exact 0.0 is the uniform-attention ContextMemory degeneracy already queued as contextmemory-write-path-addressing-degeneracy (measured 2026-08-18 at fresh init: slot-selection entropy 2.7726 == ln(16), cue_context divergence 0.000e+00). Fixing this entry will NOT move action_bias_divergence, and fixing that one will NOT give action_bias ranking authority. They are independent.",
       "status_prior_to_2026_09_05": "proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET",
       "governance_decision_2026_09_05": "GFLAG-0133 decision (B), user gate governance-20260905: qualify MECH-151, no build. Substrate accepted as correct; action_bias's only channel is the CEM refit; MECH-151 note amended. 'ARC-007' as named here was a dangling reference (claims.yaml ARC-007 is the hippocampal path-replay claim). Reopen only as a NEW entry if a claim later needs the E3 ranking channel.",
-      "last_seen_session": "governance-20260905",
+      "last_seen_session": "governance-20260924",
       "falsifier_runnability_audit_2026_09_22": {
         "date": "2026-09-22",
         "by": "falsifier-runnability-audit-resume-20260922",
@@ -9510,7 +9510,10 @@
         "registration_is_not_build_authorisation": true,
         "experiment_queued": false,
         "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
-      }
+      },
+      "status_prior_to_2026_09_24": "wontfix",
+      "title_prior_to_2026_09_24": "MECH-151's action_bias reaches no ranking path -- E3 has no action-object input channel at all, so the claim's asserted elevate/suppress mechanism is unimplemented rather than untrained",
+      "governance_decision_2026_09_24": "GFLAG-0436 option A: GFLAG-0133 (B)'s no-channel premise false; reconciled to GFLAG-0051 (A). Validation gated on E3 commensurability (c47b885, default-off) or a calibrated weight, and on sd055-agent-side-detach-cue-action-proj-route."
     },
     {
       "sd_id": "mech142-no-valence-arousal-orthogonal-axis-substrate",
