@@ -3610,3 +3610,9 @@ One line per hourly tick. ASCII only.
 2026-09-24T14:49:04Z workset published via the coordinator (no local commit; verified on origin/master 544b938f8c) (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T14:49:05Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T14:42:18Z SPAWN IGW-20260924-252 skill=/lit-pull prio=40 uuid=bef653f1-b153-47d2-b241-13a098d461b8 pid=5027 worktree=igw-252-literature-proposal-for-mech-081
+2026-09-24T16:01:22Z workset published via the coordinator (no local commit; verified on origin/master 8f0a7109fd) (regen -- 267 items, 34 ready, 0 in flight)
+2026-09-24T16:01:22Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
+2026-09-24T16:01:23Z auto-defer IGW-20260924-252 hash=d4ddd261d078 for 48h (reaped -> completed_resumable)
+2026-09-24T16:01:24Z reaped TASK_CLAIMS igw-auto-igw-252-literature-proposal-for-mech-081-20260924T145009Z (ledger IGW-20260924-252 -> completed_resumable)
+2026-09-24T16:01:26Z GC removed worktree igw-252-literature-proposal-for-mech-081 post-reap (ledger IGW-20260924-252 -> completed_resumable; removed; branch deleted)
+2026-09-24T15:56:58Z no eligible item (skipped 267): IGW-20260924-001:skill /governance not allowed; IGW-20260924-009:skill /governance not allowed; IGW-20260924-011:skill /governance not allowed
