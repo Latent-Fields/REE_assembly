@@ -33668,6 +33668,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1815",
+      "blocked_by": [
+        "pag-freeze-gate-phase-scoped-recommit-readout"
+      ],
+      "blocked_note": "REFUSED at /queue-experiment Step 4.5 (red-team fable: BLOCKING), verified at source. MECH-287's pre-registered DV ('freeze re-commit count per PAG release') has no faithful instrument: PAGFreezeGate.reset() (ree_core/pag/freeze_gate.py:145-150) clears freeze state but NOT _n_commits/_n_releases/_n_ticks, while agent.reset() calls it every episode (agent.py:4016-4018), so the only available counter is CUMULATIVE across warmup+eval and n_commits - n_releases <= n_episodes -- making recommits_per_release dominated by EPISODE COUNT, not by re-commit behaviour after a release. V3-EXQ-475's recorded 71/6, 70/5, 64/5 fit exactly (71-6 = 70-5 = 65 = 60 warmup + 5 eval; pag_n_ticks 2629/2124/1993 far exceeds its 1000 eval steps). MECH-287's own functional_restatement ('~12x re-commits per release') and its non-degeneracy precondition both quote that confounded quantity, so every threshold derived from it inherits the confound. Also verified: trigger/accumulator stats are per-episode (agent.reset() zeroes them), so a post-loop get_stats() read sees only the last episode (dry run D_BOTH_ON seed 1: mean_staleness_peak 0.432491 vs staleness_max 0.000000); and the trigger-lesioned / segmenter-off broadcast criteria cannot fail under any outcome (trigger object never constructed when the flag is off, module.py:367-376; empty boundary list short-circuits, invalidation_trigger.py:187-188). NEEDED: a phase-scoped (eval-entry-reset or per-episode-delta) PAG re-commit readout plus per-episode broadcast/staleness snapshots. Driver retained UNRUN with a DO-NOT-QUEUE banner at ree-v3 experiments/v3_exq_1097_mech287_invalidation_trigger_accumulator_factorial.py (origin/main baf83095); EXQ id V3-EXQ-1097 reserved and RELEASED. Full analysis: REE_assembly evidence/planning/mech287_dv_instrument_confound_20260924.md. Prior user decision Option A (use_vs_commit_release ON in every arm) was applied in full and works; this blocker is downstream of it.",
       "claim_id": "MECH-287",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -33678,6 +33682,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0371",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "metaworker-science-20260924-orchb-mech287-invalidation-factorial",
+      "refused_utc": "2026-09-24T13:52:39Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -33690,7 +33697,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_287",
       "target_repo": "ree-v3",
       "why_now": [
