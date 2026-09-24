@@ -6502,6 +6502,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0454",
+      "claim_ids": [
+        "SD-081",
+        "MECH-477"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "SD-081 familiarity (habit-uncertainty) half is untestable on the current substrate and V3-EXQ-786a/811a's 'validated' familiarity manipulation may have measured recency. (1) u_habit = 1 - SD-025 familiarity_tracker.query(z_world); the tracker is a 128-anchor FIFO written on every waking step and turns over ~10x during the 811a-lineage practice (209/216/350/524 anchor allocations per practice layout, seed 102), so frozen at practice end u_habit reads 0.989-1.000 on familiar and 0.979-1.000 on novel layouts, and live it tracks recency (V3-EXQ-1083 dry run: per-seed AUC novel>familiar 0.0/0.25, inverted; seeds 100/101 frozen: 0.48/0.27/0.34 and 0.63/0.61/0.69 across E2-noise doses). The familiarity half of SD-081's what_would_answer therefore needs a practice-retaining familiarity read built first (route /implement-substrate); V3-EXQ-1083 (ree-v3 42ac4d4e0e) was scoped to the model-uncertainty half only. (2) 786a and 811a probed familiar layouts strictly BEFORE novel ones with the tracker live, so their familiarity AUC (e.g. 786a 0.848) is confounded with recency and should be re-read on that ground. Evidence: REE_Working/.scratch/orch-20260924/exq1083/ (fam_probe.log, dose_probe.log, dose_probe_1083.json, redteam_findings.md).",
+      "raised_by_session": "orch0924-exq1083",
+      "raised_at": "2026-09-24T10:57:37Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
