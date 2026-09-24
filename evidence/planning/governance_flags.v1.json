@@ -6282,9 +6282,9 @@
       "summary": "SD-056 claims.yaml experiment_gate.release_condition still reads '...arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01)...', which GFLAG-0401 found wrong for the clamp lever; because build_experiment_indexes.apply_claim_queue_gate re-stamps gate-minted EXP-0440 and EXP-0585 gating_reason from this text on every regen, their hand correction in f578fcdb7c is reverted each cycle (their release_condition survives). Proposed replacement for the parenthetical, copied from the corrected proposal rows: '(e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it)'. Found by chip-20260923-proposal-regen-audit-gap (REE_assembly 16a08a789e6).",
       "raised_by_session": "serene-villani-fe3fc7",
       "raised_at": "2026-09-23T20:03:09Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:17:06Z",
+      "resolution_note": "SD-056 experiment_gate.release_condition parenthetical corrected (REE_assembly 1cd4f1c9e5); prior text preserved as release_condition_prior_2026_09_24. PREMISE CORRECTION: this flag's proposed replacement kept 'multistep true in zero runs, config.py:536', which is also false -- both levers are co-armed in landed drivers V3-EXQ-666/690/955/959, multistep alone in 614b, clamp alone in 604b. EXP-0440/EXP-0585 release_condition updated to match (EXP-0585 in both manual and generated files); gating_reason re-stamps on next regen. Release condition itself unchanged and unmet (no Pathway A vs B probe has run). ree-v3 config.py:536 comment carries the same false claim -- chipped separately."
     },
     {
       "flag_id": "GFLAG-0439",
