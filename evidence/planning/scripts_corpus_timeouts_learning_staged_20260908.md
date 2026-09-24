@@ -1,6 +1,6 @@
 # Scripts-corpus daily-run timeouts: root cause and durable fix (staged design)
 
-**Status: APPLIED (d) 2026-09-14 (REE_Working cfa7c8191, timer re-bootstrapped 23:20 local); (e) approved by user 2026-09-16 -- judgement DEFERRED: 0 of 2 post-fix daily runs clean as of 2026-09-16, re-check after the 2026-09-19 05:15 run (section 9)**
+**Status: APPLIED (d) 2026-09-14 (REE_Working cfa7c8191, timer re-bootstrapped 23:20 local); (e) approved by user 2026-09-16 -- re-checked 2026-09-24: 0 of 9 known-FAIL-set daily runs clean since bootstrap (09-22 undetermined, not credited clean), so the three-consecutive-clean-runs trigger is not met and, per section 6's own escalation clause, ESCALATED TO (b) -- serial lane build chipped `chip-20260924-scriptscorpus-optionb-serial-lane` (section 10)**
 
 Produced by a `/metaworker-learning` pass (session `wizardly-meninsky-e6c09c`, 2026-09-08,
 chip `chip-20260908-scripts-corpus-timeouts-learning`, user decision of 2026-09-08 in
@@ -290,3 +290,80 @@ instruction to (i) count clean runs from the hygiene sweep chips plus the curren
 three clean runs exist, run item (e)'s per-file pass as this chip's step 2 specified, and
 (iii) if the reds persist with the shape above, escalate to (b) per section 6 rather than
 waiting indefinitely. The open sweep-5 chip covers the by-hand re-run of 09-16's five FAILs.
+
+## 10. Item (e) re-check, 2026-09-24 (chip `chip-20260916-scriptscorpus-item-e-recheck-after-0919`, session `orchb0924-h3`)
+
+`launchctl print gui/501/com.ree.scriptscorpus` reports `runs = 10` since the 2026-09-14 23:20
+bootstrap (one per day 09-15..09-24). Run history reconstructed from hygiene-tick sweep chips
+(FAIL sets only, per the 2026-08-28 no-timeout-chip decision) plus the current results JSON
+(latest run only, elapsed known):
+
+| date | elapsed | FAIL (n) | record |
+|---|---|---|---|
+| 09-15 | unknown | 4: `test_dev_doctor_worktrees`, `test_dispatch_budget_gate`, `test_prune_task_claims_push_default`, `test_session_startup_checklist` | `sweep-4-6bae84413e5c7ce4` |
+| 09-16 | 2502 s | 5 (+ `test_taskclaims_writer_lock`) + 2 TIMEOUT | `sweep-5-2d5ce4f9d0da9775` (section 9) |
+| 09-17 | 728 s | 5: `test_dispatch_budget_gate`, `test_prune_task_claims_push_default`, `test_push_default_drift_guard`, `test_session_startup_checklist`, `test_test_provenance` | `sweep-5-d4b68d8be310ae2c` (withdrawn, superseded by the in-chip run-3 record) |
+| 09-18 | unknown | 3: `test_dispatch_budget_gate`, `test_prune_task_claims_push_default`, `test_session_startup_checklist` | `sweep-3-8966f4e726fc3a06` |
+| 09-19 | unknown | 6 (+ `test_check_metaworker_timer_state`, `test_test_provenance`) | `sweep-6-623d1d2f8a9c90ce` |
+| 09-20 | unknown | 5 (as 09-19 minus `test_dev_doctor_worktrees`) | `sweep-5-4a401afd109b9b4c` |
+| 09-21 | unknown | 7 (+ `test_check_worker_work_landed`, `test_dev_doctor_worktrees`) | `sweep-7-b7ba77e9f120d6e4` |
+| **09-22** | **UNDETERMINED** | **UNDETERMINED -- no sweep chip exists for this date** | none |
+| 09-23 | unknown | 6 (+ `test_audit_dangling_claim_refs`) | `sweep-6-daa2aef09c5295e1` |
+| 09-24 | 573 s | 7: `test_audit_dangling_claim_refs`, `test_check_metaworker_timer_state`, `test_dispatch_budget_gate`, `test_prune_task_claims_push_default`, `test_push_default_drift_guard`, `test_session_startup_checklist`, `test_test_provenance` | `sweep-7-a4038443fbde9a48` (matches `logs/scripts_corpus_test_results.json`, mtime 05:24 local) |
+
+**09-22 is a genuine gap, not assumed clean.** `_scripts_corpus_findings()` (`scripts/hygiene_routine_tick.py:8362`)
+mints no chip both when `failures` is empty (clean) AND when the results file is stale, from a
+worktree, or unparseable -- the same negative-instrument ambiguity CLAUDE.md's "Negative
+instruments" rule warns about. Nothing durable survives to distinguish the two for a date whose
+JSON has since been overwritten, so 09-22 is recorded as UNDETERMINED rather than credited as a
+clean run.
+
+**Verdict: item (e)'s three-consecutive-clean-runs trigger is NOT met -- not close.** Every
+known-FAIL-set day from 09-15 to 09-24 (9 of the 10 runs; 09-22 undetermined) reported at least
+3 FAILs; there is no run, consecutive or otherwise, with a confirmed 0-FAIL/0-TIMEOUT result
+since the 2026-09-14 posture fix. Elapsed, where known, is no longer the blocking factor (728 s,
+573 s, both under the 900 s bound; only 09-16 at 2502 s exceeded it) -- consistent with the
+09-17 addendum's finding that elapsed and redness are decoupled post-fix. This is exactly
+section 6's escalation shape (reds persist at the Interactive posture without the P4 timeout
+signature), so per this chip's step 3 the response is: separate genuine defects from artifact
+class by hand, chip only what is not already covered, and escalate the artifact class to option
+(b) -- not another deferral.
+
+**By-hand re-run, main checkout, 2026-09-24T12:19Z** (STOP-CHECK before the run recorded above):
+`run_scripts_tests.sh test_dispatch_budget_gate.py test_prune_task_claims_push_default.py test_session_startup_checklist.py test_check_worker_work_landed.py test_audit_dangling_claim_refs.py`
+-> 5 selected / 5 passed / 0 failed / 0 timeout, 89 s. All five are BY-HAND-GREEN.
+
+**Persistent artifact class (9/9 known days red in the daily run, 0/1 by hand today):**
+`test_dispatch_budget_gate.py`, `test_prune_task_claims_push_default.py`,
+`test_session_startup_checklist.py` -- red on every known run 09-15 through 09-24 with no code
+change to any of them or their subjects in that window (`git log --since=2026-09-15 -- <file>`:
+empty), and green alone every time they have been checked by hand (09-17 addendum; today). This
+is the artifact class section 6 anticipated: self-spawning/live-state contention under the
+daily run's 7-way parallelism, not a code defect. No new chip needed -- covered by the option
+(b) build chip below, which did not previously exist (checked: no open or resolved chip titled
+for a serial lane / option (b) build against this doc).
+
+**Genuine-defect-shaped recurrences, already remediated by concurrent sessions this window --
+not re-chipped:**
+- `test_test_provenance.py` -- fixed via `chip-20260919-provenance-pin-test-claim-session-link`
+  (resolved done 2026-09-24 by session `orchb0924-h1`).
+- `test_push_default_drift_guard.py` -- fixed today, REE_Working `4a1500c83` ("classify
+  episodic_class_dispositions.py"), landed after the 09-24 05:24 run captured above.
+- `test_check_metaworker_timer_state.py` -- fixed today, REE_Working `1d017933c` ("pin the
+  2026-09-18 paused-not-retired decision"), landed after the 09-24 05:24 run.
+- `test_audit_dangling_claim_refs.py` -- fixed today, REE_Working `9c8da1739` ("fix
+  GovernanceWiring fixture to source gov_audit_run").
+- `test_dev_doctor_worktrees.py` -- intermittent (red 09-15/16/19/21, green other known days,
+  by-hand-green in the 09-17 addendum); no fix landed for it specifically this window and it is
+  not in the persistent-3 set, so left unchipped as a likely artifact-class member pending the
+  option (b) build.
+- `test_check_worker_work_landed.py` -- single occurrence (09-21 only), by-hand-green today;
+  not chipped (clean by hand, not recurring).
+
+**Chipped this session:** one headless `kind:work` chip to build option (b) (the serial lane in
+`run_scripts_tests.sh` for the three self-spawning files and four live-state files named in
+section 3), since the persistent-artifact-class evidence above is now three occurrences deep
+and no such build chip existed. See `chip-20260924-scriptscorpus-optionb-serial-lane`.
+
+**Status header updated below** to reflect: item (e) still not judged clean; escalated to
+option (b) per section 6's own escalation clause rather than deferred again.
