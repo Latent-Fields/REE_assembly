@@ -1,0 +1,204 @@
+{
+ "args": {
+  "seed": 47,
+  "wake": 600,
+  "probe_steps": 200,
+  "ncont": 6,
+  "clen": 4,
+  "out": "results/PART_s47.json"
+ },
+ "p0_ran": true,
+ "heads": {
+  "A_native": {
+   "loss_last200": 2.435704439278652e-06,
+   "identity_mse": 1.288419389311457e-05
+  },
+  "D_cov": {
+   "loss_last200": 2.3143180933402618e-05,
+   "identity_mse": 0.0001325184275628999
+  }
+ },
+ "replay_class_counts": {
+  "0": 1405,
+  "2": 63,
+  "4": 24
+ },
+ "choice_quality": {
+  "COV0_R20": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.3170731707317073,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "3": 41
+   }
+  },
+  "COV0_R21": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.21951219512195122,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "1": 30,
+    "3": 11
+   }
+  },
+  "COV1_R20": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.04878048780487805,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "1": 14,
+    "2": 1,
+    "3": 2,
+    "4": 24
+   }
+  },
+  "COV1_R21": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.24390243902439024,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 30,
+    "1": 4,
+    "3": 5,
+    "4": 2
+   }
+  }
+ },
+ "arms": {
+  "FULL": {
+   "steps": 600,
+   "episodes_ended": 5,
+   "reward_per_100": -0.5217127249141535,
+   "harm_events_per_100": 8.0,
+   "benefit_events_per_100": 0.5,
+   "harm_sum_per_100": -0.6995857415099939,
+   "benefit_sum_per_100": 0.17787301659584043,
+   "action_counts": {
+    "0": 235,
+    "1": 288,
+    "2": 16,
+    "3": 53,
+    "4": 8
+   },
+   "action_entropy": 1.0880002595318672,
+   "majority_share": 0.48,
+   "P3_maj_share": 0.603125,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "0": 20
+   },
+   "P3_n_classes": 5.0,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.21951219512195122,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "1": 30,
+     "3": 11
+    }
+   }
+  },
+  "FULL-minus-R5": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": -0.2042770565549533,
+   "harm_events_per_100": 2.6666666666666665,
+   "benefit_events_per_100": 0.16666666666666666,
+   "harm_sum_per_100": -0.2629437233010928,
+   "benefit_sum_per_100": 0.058666666746139524,
+   "action_counts": {
+    "0": 586,
+    "2": 1,
+    "4": 13
+   },
+   "action_entropy": 0.11674675798426407,
+   "majority_share": 0.9766666666666667,
+   "P3_maj_share": 0.684375,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "0": 20
+   },
+   "P3_n_classes": 3.0,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.21951219512195122,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "1": 30,
+     "3": 11
+    }
+   }
+  },
+  "FULL-minus-R2": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": -0.08906409626205762,
+   "harm_events_per_100": 4.333333333333333,
+   "benefit_events_per_100": 0.3333333333333333,
+   "harm_sum_per_100": -0.20484187429149944,
+   "benefit_sum_per_100": 0.11577777802944181,
+   "action_counts": {
+    "0": 383,
+    "2": 59,
+    "3": 148,
+    "4": 10
+   },
+   "action_entropy": 0.9281206927267225,
+   "majority_share": 0.6383333333333333,
+   "P3_maj_share": 0.603125,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "0": 20
+   },
+   "P3_n_classes": 5.0,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.3170731707317073,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "3": 41
+    }
+   }
+  },
+  "NATIVE": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": -0.06549206510186197,
+   "harm_events_per_100": 3.6666666666666665,
+   "benefit_events_per_100": 0.3333333333333333,
+   "harm_sum_per_100": -0.1812698431313038,
+   "benefit_sum_per_100": 0.11577777802944181,
+   "action_counts": {
+    "0": 428,
+    "2": 161,
+    "4": 11
+   },
+   "action_entropy": 0.667283524428997,
+   "majority_share": 0.7133333333333334,
+   "P3_maj_share": 0.6796875,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "0": 20
+   },
+   "P3_n_classes": 3.0,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.3170731707317073,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "3": 41
+    }
+   }
+  }
+ },
+ "depth_limit": 2,
+ "t_total_s": 173.3
+}

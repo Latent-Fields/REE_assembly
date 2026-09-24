@@ -1,0 +1,198 @@
+{
+ "args": {
+  "seed": 51,
+  "wake": 600,
+  "probe_steps": 200,
+  "ncont": 6,
+  "clen": 4,
+  "out": "results/PART_s51.json"
+ },
+ "p0_ran": true,
+ "heads": {
+  "A_native": {
+   "loss_last200": 2.028728481775488e-06,
+   "identity_mse": 1.2121886356908362e-05
+  },
+  "D_cov": {
+   "loss_last200": 1.5863437970438098e-05,
+   "identity_mse": 0.00011283139610895887
+  }
+ },
+ "replay_class_counts": {
+  "0": 1146,
+  "3": 345
+ },
+ "choice_quality": {
+  "COV0_R20": {
+   "n_states": 40,
+   "n_informative": 40,
+   "pick_is_Qbest": 0.05,
+   "chance": 0.2,
+   "pick_counts": {
+    "0": 1,
+    "2": 39
+   }
+  },
+  "COV0_R21": {
+   "n_states": 40,
+   "n_informative": 40,
+   "pick_is_Qbest": 0.275,
+   "chance": 0.2,
+   "pick_counts": {
+    "1": 39,
+    "4": 1
+   }
+  },
+  "COV1_R20": {
+   "n_states": 40,
+   "n_informative": 40,
+   "pick_is_Qbest": 0.225,
+   "chance": 0.2,
+   "pick_counts": {
+    "3": 39,
+    "4": 1
+   }
+  },
+  "COV1_R21": {
+   "n_states": 40,
+   "n_informative": 40,
+   "pick_is_Qbest": 0.3,
+   "chance": 0.2,
+   "pick_counts": {
+    "1": 29,
+    "3": 1,
+    "4": 10
+   }
+  }
+ },
+ "arms": {
+  "FULL": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": 0.014212362070878337,
+   "harm_events_per_100": 1.3333333333333333,
+   "benefit_events_per_100": 0.16666666666666666,
+   "harm_sum_per_100": -0.043565415839354193,
+   "benefit_sum_per_100": 0.057777777910232545,
+   "action_counts": {
+    "0": 159,
+    "1": 1,
+    "3": 440
+   },
+   "action_entropy": 0.5900352418920933,
+   "majority_share": 0.7333333333333333,
+   "P3_maj_share": 0.8671875,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "3": 20
+   },
+   "P3_n_classes": 5.0,
+   "choice_quality": {
+    "n_states": 40,
+    "n_informative": 40,
+    "pick_is_Qbest": 0.275,
+    "chance": 0.2,
+    "pick_counts": {
+     "1": 39,
+     "4": 1
+    }
+   }
+  },
+  "FULL-minus-R5": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": 0.015879028638203927,
+   "harm_events_per_100": 1.3333333333333333,
+   "benefit_events_per_100": 0.16666666666666666,
+   "harm_sum_per_100": -0.04189874927202861,
+   "benefit_sum_per_100": 0.057777777910232545,
+   "action_counts": {
+    "0": 330,
+    "3": 270
+   },
+   "action_entropy": 0.6881388137135884,
+   "majority_share": 0.55,
+   "P3_maj_share": 0.96875,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "3": 20
+   },
+   "P3_n_classes": 2.0,
+   "choice_quality": {
+    "n_states": 40,
+    "n_informative": 40,
+    "pick_is_Qbest": 0.275,
+    "chance": 0.2,
+    "pick_counts": {
+     "1": 39,
+     "4": 1
+    }
+   }
+  },
+  "FULL-minus-R2": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": -0.15707720304528872,
+   "harm_events_per_100": 4.666666666666667,
+   "benefit_events_per_100": 0.5,
+   "harm_sum_per_100": -0.33391053701440493,
+   "benefit_sum_per_100": 0.17683333396911619,
+   "action_counts": {
+    "0": 362,
+    "2": 69,
+    "3": 169
+   },
+   "action_entropy": 0.9104605946825806,
+   "majority_share": 0.6033333333333334,
+   "P3_maj_share": 0.8671875,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "3": 20
+   },
+   "P3_n_classes": 5.0,
+   "choice_quality": {
+    "n_states": 40,
+    "n_informative": 40,
+    "pick_is_Qbest": 0.05,
+    "chance": 0.2,
+    "pick_counts": {
+     "0": 1,
+     "2": 39
+    }
+   }
+  },
+  "NATIVE": {
+   "steps": 600,
+   "episodes_ended": 3,
+   "reward_per_100": 0.014212361574172962,
+   "harm_events_per_100": 1.3333333333333333,
+   "benefit_events_per_100": 0.16666666666666666,
+   "harm_sum_per_100": -0.04356541633605958,
+   "benefit_sum_per_100": 0.057777777910232545,
+   "action_counts": {
+    "0": 403,
+    "3": 197
+   },
+   "action_entropy": 0.6329920401729847,
+   "majority_share": 0.6716666666666666,
+   "P3_maj_share": 0.96875,
+   "P3_modal_frac": 1.0,
+   "P3_majority_counts": {
+    "3": 20
+   },
+   "P3_n_classes": 2.0,
+   "choice_quality": {
+    "n_states": 40,
+    "n_informative": 40,
+    "pick_is_Qbest": 0.05,
+    "chance": 0.2,
+    "pick_counts": {
+     "0": 1,
+     "2": 39
+    }
+   }
+  }
+ },
+ "depth_limit": 2,
+ "t_total_s": 146.4
+}
