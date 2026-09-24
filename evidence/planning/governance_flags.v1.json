@@ -6485,9 +6485,9 @@
       "summary": "19 of 22 load-bearing 'supports' PASS manifests on stable/active/provisional claims are DEFECTIVE on a governance Step 2b driver skim (GFLAG-0250 option A, user decision rec-20260924-bced9875; REE_assembly d5eb2804076, evidence/planning/gflag0250_pass_driver_skim_20260924.md/.json). Each needs /failure-autopsy (accepts a PASS target) before its supports weight is trusted. STABLE: V3-EXQ-500a + 503a (SD-017) and 633 (MECH-094) implementation checks passing by construction; 501 (SD-035) contrast by construction; 615 (ARC-065) matched-noise control entropy 0.0 so C2 collapses into C1; 917 (SD-011) OR over a production-path FAIL mapped to supports. ACTIVE: 149b (Q-004) winning arm's residue channel inert; 158 (Q-018) harm_rate 0.0 everywhere, gate never reaches selection; 171/184/184-rerun/308 (MECH-033) random-action ablation cannot isolate E2 seeding; 763 (MECH-304) two legs by construction (cue-specificity leg genuine, flip risk low). PROVISIONAL: 517c/517d (MECH-302/SD-050), 757 (MECH-288/287), 761 (MECH-092), 762 (MECH-046) impl checks by construction; 743 (INV-089) claim DV made non-gating and ran the wrong way. CROSS-CUTTING: 184 double-counted (same design+seeds twice); 517c still supports though superseded by 517d; 500a and 917 are diagnostic-purpose -- check their confidence weight before autopsying. Route: /failure-autopsy (cluster by defect subclass D1/D2/D3/D4); governance applies the resulting dispositions. CLEAN: 846 (ARC-005), 939a (MECH-303), 888 (MECH-074a).",
       "raised_by_session": "governance-20260924",
       "raised_at": "2026-09-24T08:46:14Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T10:25:37Z",
+      "resolution_note": "All 19 defective load-bearing supports PASSes adjudicated by three confirmed cluster autopsies (failure_autopsy_gflag0452-{D1,D2,D3D4}-cluster_2026-09-24; staged by governance-20260924 subagents, confirmed at the /governance gate G1-G6, rec-20260924-aa33086a..2359906f) and applied: REE_assembly 2e6fe97c4b (manifests 20 flat + 20 pack incl. V3-EXQ-746a re-tag to INV-090; claims.yaml; ledger +2 questions; substrate_queue) and 6352c8c7fa (decision_log; refractory build entry). Status moves: MECH-302/288/287/092 provisional -> candidate; MECH-033 active -> provisional. SD-050 517d non_contributory (G3 B). Read-across 499/569i carried by a new flag; fan-out portfolios for ARC-065/MECH-033 chipped."
     },
     {
       "flag_id": "GFLAG-0453",
