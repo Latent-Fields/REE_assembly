@@ -1,0 +1,389 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1080_contamination_truncation_prevalence_probe",
+  "run_id": "v3_exq_1080_contamination_truncation_prevalence_probe_20260924T000105Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-24T00:01:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "5cac673346b7b2791d9a9bed81b07b808b734450",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "contamination_truncation_present_verdicts_robust_no_reruns_owed",
+    "preconditions": [
+      {
+        "name": "control::stock_death_frac_supra_floor",
+        "description": "Random walker on the 669c nursery dies of contamination at stock settings",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "kind": "readiness",
+        "control": "random walk, 20x100 steps, size-8 0-hazard V2 env; 0.95 measured at design time",
+        "met": true
+      },
+      {
+        "name": "control::gated_death_frac_zero",
+        "description": "The same walker with hazard_free_contamination_gate=True never dies",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "same walker, gate on",
+        "met": true
+      },
+      {
+        "name": "control::episodes_match_intended",
+        "description": "Both control arms recorded exactly 20 episodes",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "loop bound CONTROL_EPISODES",
+        "met": true
+      },
+      {
+        "name": "669c::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "669c::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "669c::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (126); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own loop bounds",
+        "met": true
+      },
+      {
+        "name": "939a::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "939a::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "939a::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (24); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own loop bounds",
+        "met": true
+      },
+      {
+        "name": "939a::hazarded_env_spread_untouched",
+        "description": "Gate left num_hazards>0 envs at their stock contamination_spread",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "904::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "904::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "904::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (320); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own loop bounds",
+        "met": true
+      },
+      {
+        "name": "888::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "888::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "888::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (240); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own loop bounds",
+        "met": true
+      },
+      {
+        "name": "888::hazarded_env_spread_untouched",
+        "description": "Gate left num_hazards>0 envs at their stock contamination_spread",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_PREV_no_verdict_sensitive_target": true,
+      "669c::stock_dv_death_frac_below_material": true,
+      "669c::verdict_unchanged_stock_vs_optout": true,
+      "939a::stock_dv_death_frac_below_material": true,
+      "939a::verdict_unchanged_stock_vs_optout": true,
+      "904::stock_dv_death_frac_below_material": true,
+      "904::verdict_unchanged_stock_vs_optout": true,
+      "888::stock_dv_death_frac_below_material": true,
+      "888::verdict_unchanged_stock_vs_optout": true
+    },
+    "reruns_owed_for_claims": [],
+    "family_reruns_recommended_unmeasured": [],
+    "direct_claims_measured": [
+      "ARC-070",
+      "MECH-074",
+      "MECH-074a",
+      "MECH-074b",
+      "MECH-189",
+      "MECH-303",
+      "MECH-329"
+    ],
+    "direct_claims_cleared_no_rerun_owed": [
+      "ARC-070",
+      "MECH-074",
+      "MECH-074a",
+      "MECH-074b",
+      "MECH-189",
+      "MECH-303",
+      "MECH-329"
+    ],
+    "family_claims_not_cleared_caveat_stands": [
+      "MECH-074d",
+      "SD-077",
+      "SD-079"
+    ],
+    "claims_not_covered": {
+      "MECH-106": "V3-EXQ-231a (size-8 mixed 0/2/5-hazard probe envs)",
+      "INV-054": "V3-EXQ-278/435 (300+300-episode depression/recovery, LOW_HARM phase)",
+      "MECH-427": "V3-EXQ-883 (size-10 V2 env, 40-step episodes)"
+    },
+    "historical_verdict_not_reproduced": [],
+    "fidelity_caveat": "targets re-run on the CURRENT substrate; a determinable target whose STOCK verdict differs from its historical manifest is listed in historical_verdict_not_reproduced for /governance"
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ce6577a3f3b0803855d20f44fa521f3af5d71035db2b9c8c31f794d69482de31",
+  "substrate_commit": {
+    "commit": "5cac673346b7b2791d9a9bed81b07b808b734450",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "goal.use_super_ordinal_goal_anchors": true,
+    "goal.super_ordinal_cue_centering": true,
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "residue.safety_terrain_enabled": true,
+    "heartbeat.beta_gate_bistable": true,
+    "use_contextual_safety_terrain": true,
+    "hippocampal.use_chunk_proposal_injection": true,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_event_segmenter": true,
+    "use_policy_chunking": true,
+    "use_chunk_proposal_injection": true,
+    "use_policy_decomposition": true,
+    "latent.harm_history_len": 10,
+    "replay_diversity_enabled": true,
+    "use_amygdala_analog": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 7536.880929953999,
+  "config": {
+    "targets": [
+      {
+        "key": "669c",
+        "queue_id": "V3-EXQ-669c",
+        "script": "experiments/v3_exq_669c_mech329_wanting_first_goal_seeding.py",
+        "direct_claims": [
+          "MECH-329",
+          "MECH-189"
+        ],
+        "family_claims": [
+          "SD-077"
+        ],
+        "original": {
+          "outcome": "FAIL",
+          "evidence_direction": "mixed",
+          "run_id": "v3_exq_669c_mech329_wanting_first_goal_seeding_20260722T214724Z_v3"
+        },
+        "unit": "episode",
+        "dv_phases": null,
+        "hf_step_budget": 100,
+        "intended_dv_units": 126,
+        "n_target_cells": 9
+      },
+      {
+        "key": "939a",
+        "queue_id": "V3-EXQ-939a",
+        "script": "experiments/v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release.py",
+        "direct_claims": [
+          "MECH-303"
+        ],
+        "family_claims": [],
+        "original": {
+          "outcome": "PASS",
+          "evidence_direction": "supports",
+          "run_id": "v3_exq_939a_mech303_proximity_gated_contextual_safety_vigilance_release_20260821T235047Z_v3"
+        },
+        "unit": "walk",
+        "dv_phases": [
+          "exposure",
+          "test"
+        ],
+        "hf_step_budget": null,
+        "intended_dv_units": 24,
+        "n_target_cells": 24
+      },
+      {
+        "key": "904",
+        "queue_id": "V3-EXQ-904",
+        "script": "experiments/v3_exq_904_arc070_decomposition_trigger_selectivity.py",
+        "direct_claims": [
+          "ARC-070"
+        ],
+        "family_claims": [
+          "SD-079"
+        ],
+        "original": {
+          "outcome": "PASS",
+          "evidence_direction": "supports",
+          "run_id": "v3_exq_904_arc070_decomposition_trigger_selectivity_20260808T201150Z_v3"
+        },
+        "unit": "episode",
+        "dv_phases": null,
+        "hf_step_budget": 24,
+        "intended_dv_units": 320,
+        "n_target_cells": 16
+      },
+      {
+        "key": "888",
+        "queue_id": "V3-EXQ-888",
+        "script": "experiments/v3_exq_888_mech074_readwrite_head_route_dissociation.py",
+        "direct_claims": [
+          "MECH-074",
+          "MECH-074a",
+          "MECH-074b"
+        ],
+        "family_claims": [
+          "MECH-074d"
+        ],
+        "original": {
+          "outcome": "PASS",
+          "evidence_direction": "supports",
+          "run_id": "v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3"
+        },
+        "unit": "episode",
+        "dv_phases": null,
+        "hf_step_budget": 60,
+        "intended_dv_units": 240,
+        "n_target_cells": 12
+      }
+    ],
+    "arms": [
+      "ARM_STOCK",
+      "ARM_OPTOUT"
+    ],
+    "material_death_frac": 0.1,
+    "min_determinable_targets": 3,
+    "control": {
+      "episodes": 20,
+      "steps": 100,
+      "stock_floor": 0.5,
+      "gated_ceiling": 0.0
+    }
+  },
+  "seeds": [
+    0
+  ]
+}
