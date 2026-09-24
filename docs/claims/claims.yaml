@@ -1630,7 +1630,7 @@
     [2026-09-03, thought intake `2026-09-02_decision_useful_counterfactual_world_models_under_uncertainty`] SHARPENING OF AN EXISTING DISTINCTION, no change to status, evidence, or the `what_would_answer` above. ARC-002's confirming signature already separates a strong form (E2's action-conditioned predictions discriminate viable from non-viable actions above a naive baseline) from a weaker one (`cand_world_pairwise_dist` / `world_forward_contrastive_loss` showing predicted-outcome divergence across actions that tracks true viability differences). The source thought supplies the reason that ordering is right, in one line worth recording: "absolute prediction asks, 'what is likely to happen?'; effect prediction asks, 'what changes because of this candidate?'" -- and, sharply, "a system can model environmental evolution accurately while remaining poor at estimating its own causal contribution. Conversely, an action-effect representation can support choice while being an impoverished world model." The weaker form is weaker precisely because divergence-across-actions is a necessary but not sufficient condition for the affordance qualifier in ARC-002's title: a predictor can carry action-conditional divergence that is decision-useful while still failing to encode "what am I able to do here" as structure distinct from "what happens next". No new falsifier, no new criterion, and no change to the existing non-degeneracy precondition is proposed -- this records WHY the two forms are ordered as they are, for whoever next designs an ARC-002 test.
 - id: ARC-003
   title: "E3 selects and commits trajectories."
-  blocked_on: "ARC-107 (BG-selector constitution) landed AND the commit/release-duration levers V3-EXQ-460j / 485i / 654h returned -- this claim's own what_would_answer RELEASE CONDITION, lifted verbatim"
+  blocked_on: "ARC-107 (BG-selector constitution) landed AND the commit/release-duration levers V3-EXQ-460j / 485i / 654h returned with a NON-DEGENERATE commitment signal -- i.e. the F-dominance conversion ceiling (substrate_queue f_dominance_conversion_ceiling) is lifted -- this claim's own what_would_answer RELEASE CONDITION, lifted verbatim (NOT met as of 2026-09-24: all three returned FAIL / non_contributory on 2026-06-21; ARC-107 provisional; V3-EXQ-1012c validated rung 3 at the ELIGIBILITY stage only and released the 654h-class refusal SCOPED to operator-ON re-runs -- a permitted re-run, not a returned non-degenerate signal)."
   blocked_on_justification: >
     [2026-09-10, GFLAG-0091 pilot] ROUTE, not irreducible -- this is the neglect case, not
     the irreducibility case. ARC-003 is CONJUNCTIVE and only half of it is blocked: LEG A
@@ -1640,6 +1640,8 @@
     rather than adjudicate the claim. The route above is named in the claim's own
     what_would_answer; what was missing was any machine-readable record of it, which is why
     this claim reads to every audit as settled while its own test is unrunnable.
+
+    [2026-09-24, GFLAG-0439, governance-20260924] blocked_on corrected: the 2026-09-10 lift dropped the non-degenerate half, so read literally it declared LEG B released. Prior value: "ARC-107 (BG-selector constitution) landed AND the commit/release-duration levers V3-EXQ-460j / 485i / 654h returned -- this claim's own what_would_answer RELEASE CONDITION, lifted verbatim"
   claim_type: architectural_commitment
   subject: E3.trajectory_commitment
   polarity: asserts
@@ -21767,6 +21769,7 @@
   subject: e1.associative_manifold_indexing
   polarity: asserts
   status: candidate
+  pending_retest_after_substrate: true
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -52282,7 +52285,8 @@
   experiment_gate:
     gated: true
     gating_claim: SD-056
-    release_condition: "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54."
+    release_condition: "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled and e2_rollout_output_norm_clamp_enabled). [CORRECTED 2026-09-24, GFLAG-0438: the earlier parenthetical \"true in zero runs as of 2026-09-01\" was wrong for BOTH levers -- both are co-armed in landed drivers V3-EXQ-666 (:216/218, 2026-06-11), V3-EXQ-690 (:323/325, 2026-06-20), V3-EXQ-955 (:487/489, 2026-08-29) and V3-EXQ-959 (:507/509, 2026-08-30); multistep alone in V3-EXQ-614b (:230/426, 2026-05-31); clamp alone in V3-EXQ-604b (:307, 2026-06-07). None is the Pathway A vs B probe, so this release condition is unchanged and NOT met.] Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54."
+    release_condition_prior_2026_09_24: "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54."
     set_by: "clever-joliot-bb5a54 (W5-S4 item 1, GOV-CONFIRM-1 confirm adjudicated DO-NOT-QUEUE 2026-09-08)"
   claim_level: architectural
   registered_utc: "2026-05-29"

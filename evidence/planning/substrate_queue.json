@@ -9223,7 +9223,8 @@
         "ARC-045",
         "MECH-166",
         "MECH-152",
-        "ARC-021"
+        "ARC-021",
+        "MECH-154"
       ],
       "failure_record": [
         {
@@ -9370,7 +9371,18 @@
         "experiment_queued": false,
         "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
       },
-      "decision_2026_09_22": "STALE-HINT CORRECTION + USER RULING. (1) implementation_hint clause (1) -- 'execute the instrument redesign it already directs' -- is DISCHARGED and must not be re-commissioned: V3-EXQ-970a and V3-EXQ-972a both ran 2026-09-07 and the frozen portfolio contextmemory_write_content_discrimination recorded 'Instrument redesign DISCHARGED for legs H1 and H4'. A session reading clause (1) alone will draft a duplicate -- the same failure mode this entry already records for V3-EXQ-943 under GFLAG-0132. Read the portfolio's decision.live_gate, not this hint, for what is owed. (2) USER RULING 2026-09-22 (AskUserQuestion, RECOMMENDATION_LOG.jsonl timestamp_utc 2026-09-22T19:33:36Z header \"Ctx portfolio\"; session ledger-audit-20260922): the portfolio IS about a LEARNED ENCODER, not a frozen projection, discharging the H5 gate. What is owed now is a HARNESS BUILD -- a training path in which the write-address tagger's loss reaches latent_stack -- commissioned as chip-20260922-ctxmem-learned-encoder-harness (task_c7904c66), registered here rather than left in prose because this entry has previously sat with owed work that nothing tracked (see validation_experiment_stale_2026_09_05). NOT by un-detaching the MECH-165 exploration buffer, which is detached by design; note harness_defect_paths_2026_09_08's agent.py:5835-5836 line numbers have DRIFTED (the matching code is REEAgent._record_exploration_state, ~agent.py:4114-4125 as of 2026-09-22). (3) UNCHANGED: status stays implemented_pending_validation and severity stays corrupting. This ruling does NOT release the gate -- governance_2026_09_05 (GFLAG-0132), decision_2026_09_06 and governance_2026_09_08 all stand; the gate releases only when the CONTENT half validates. Audit context: evidence/planning/task_ledger_audit_20260922.md sec 7c. CITATION REPAIR 2026-09-22: the original 'entry_id 541' key was unresolvable -- that id is a coordinator DB id which record_recommendation_outcome.py prints but the materializer does not render (0 of 827 log entries carry any id field). Cite RECOMMENDATION_LOG.jsonl by timestamp_utc + header. session_id is NOT a usable second key: it records as 'unknown' on 50 of today's 54 entries because the CLAUDE.md recipe omits --session-id."
+      "decision_2026_09_22": "STALE-HINT CORRECTION + USER RULING. (1) implementation_hint clause (1) -- 'execute the instrument redesign it already directs' -- is DISCHARGED and must not be re-commissioned: V3-EXQ-970a and V3-EXQ-972a both ran 2026-09-07 and the frozen portfolio contextmemory_write_content_discrimination recorded 'Instrument redesign DISCHARGED for legs H1 and H4'. A session reading clause (1) alone will draft a duplicate -- the same failure mode this entry already records for V3-EXQ-943 under GFLAG-0132. Read the portfolio's decision.live_gate, not this hint, for what is owed. (2) USER RULING 2026-09-22 (AskUserQuestion, RECOMMENDATION_LOG.jsonl timestamp_utc 2026-09-22T19:33:36Z header \"Ctx portfolio\"; session ledger-audit-20260922): the portfolio IS about a LEARNED ENCODER, not a frozen projection, discharging the H5 gate. What is owed now is a HARNESS BUILD -- a training path in which the write-address tagger's loss reaches latent_stack -- commissioned as chip-20260922-ctxmem-learned-encoder-harness (task_c7904c66), registered here rather than left in prose because this entry has previously sat with owed work that nothing tracked (see validation_experiment_stale_2026_09_05). NOT by un-detaching the MECH-165 exploration buffer, which is detached by design; note harness_defect_paths_2026_09_08's agent.py:5835-5836 line numbers have DRIFTED (the matching code is REEAgent._record_exploration_state, ~agent.py:4114-4125 as of 2026-09-22). (3) UNCHANGED: status stays implemented_pending_validation and severity stays corrupting. This ruling does NOT release the gate -- governance_2026_09_05 (GFLAG-0132), decision_2026_09_06 and governance_2026_09_08 all stand; the gate releases only when the CONTENT half validates. Audit context: evidence/planning/task_ledger_audit_20260922.md sec 7c. CITATION REPAIR 2026-09-22: the original 'entry_id 541' key was unresolvable -- that id is a coordinator DB id which record_recommendation_outcome.py prints but the materializer does not render (0 of 827 log entries carry any id field). Cite RECOMMENDATION_LOG.jsonl by timestamp_utc + header. session_id is NOT a usable second key: it records as 'unknown' on 50 of today's 54 entries because the CLAUDE.md recipe omits --session-id.",
+      "governance_2026_09_24_mech154_edge": {
+        "date": "2026-09-24",
+        "by": "governance-20260924",
+        "kind": "EXISTING NODE, MISSING EDGE",
+        "claims": [
+          "MECH-154"
+        ],
+        "finding": "EVB-0114/EXP-0361 refused at /queue-experiment Step 2.5c+2.5d (REE_assembly d3074a511d): MECH-154's own non-degeneracy precondition (slot differentiation under online writes) is this entry's open content half (V3-EXQ-436g: online writes collapse the bank to mean pairwise slot cosine 0.9993). Edge added per GFLAG-0444.",
+        "registration_is_not_build_authorisation": true,
+        "experiment_queued": false
+      }
     },
     {
       "sd_id": "SD-SLEEP-ENTRY-PRESSURE",

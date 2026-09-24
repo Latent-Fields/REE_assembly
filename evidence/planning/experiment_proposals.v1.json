@@ -2509,7 +2509,9 @@
       "why_now": [
         "active_conflict",
         "directional_conflict_alert"
-      ]
+      ],
+      "release_condition": "A harm target is used that the harm_eval head does NOT regress (the prox label makes harm_eval <= ceiling by construction), OR realised harm Y gains graded variance (committed-action / F-dominance conversion ceiling lifted). The decodability positive-control leg is R0 and already ran (V3-EXQ-743).",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: ceiling-bound leg is analytic under current instrumentation; realised harm Y is flat (~0.03-0.06) under random-walk behaviour."
     },
     {
       "acceptance_checks": [
@@ -5978,7 +5980,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "Registry implementation_phase reaches v5 (claim is `implementation_phase: v5`, other-model affective state requires multi-agent substrate). See also exp_0137_mech_183_feasibility_assessment.md.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (implementation_phase); status previously carried no recorded reason. Phase-deferred: excluded from the runnability audit as \"Explicit future phase: v5\"."
     },
     {
       "acceptance_checks": [
@@ -6061,7 +6065,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "SD-090's classification report names the probe target, AND the developmental arm is suppliable (INV-055 successor released from infant_substrate GAP-14 c-1 and the MECH-457 competence-floor wall), OR another classified target without that wall is chosen.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1); status previously carried no recorded reason. R1: protocols are mechanically available but no probe target is classified yet."
     },
     {
       "acceptance_checks": [
@@ -8139,7 +8145,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "An online single-level subgoal-credit comparator arm exists (the credit path currently writes only _z_goal_parent) with a DV defined for both arms (parent_goal_norm is hierarchical-only).",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1 (audit); status previously carried no recorded reason. R1 (audit: EXISTING NODE, STALE STATUS): the necessity falsifier has no comparator. Children ran (MECH-427 PASS, MECH-428 FAIL); neither tests necessity."
     },
     {
       "acceptance_checks": [
@@ -35697,7 +35705,9 @@
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "release_condition": "A redesigned driver that uses the EXISTING arbitration substrate (MECH-090 admission conjunction, MECH-091 threshold interrupt, MECH-342 graded maintenance release), with the claim restated in V3 terms (within-tick admission gate vs across-tick maintenance release) per the GFLAG-0400 note (2026-09-23, user-accepted). The millisecond-vs-second clause has no V3 sub-tick substrate; exclude it.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1); status previously carried no recorded reason. R1: the only run used random.randint action selection (bit-identical arms). The substrate exists; the experiment did not use it. NOTE: \"blocked_substrate\" is a misnomer here; the unmet condition is a claim restatement plus redesign, not a build."
     },
     {
       "acceptance_checks": [
@@ -36969,7 +36979,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0440",
       "proposal_type": "experimental",
-      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled and e2_rollout_output_norm_clamp_enabled). [CORRECTED 2026-09-24, GFLAG-0438: the earlier parenthetical \"true in zero runs as of 2026-09-01\" was wrong for BOTH levers -- both are co-armed in landed drivers V3-EXQ-666 (:216/218, 2026-06-11), V3-EXQ-690 (:323/325, 2026-06-20), V3-EXQ-955 (:487/489, 2026-08-29) and V3-EXQ-959 (:507/509, 2026-08-30); multistep alone in V3-EXQ-614b (:230/426, 2026-05-31); clamp alone in V3-EXQ-604b (:307, 2026-06-07). None is the Pathway A vs B probe, so this release condition is unchanged and NOT met.] Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -38861,7 +38871,9 @@
       "script_path": null,
       "source": "manual",
       "status": "proposed_blocked_substrate",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "release_condition": "modulatory-bias-selection-authority AND SD-061 validated (existing blocked_by) AND sd061-resume-progress-ecology built, so goal progress can resume and the decay leg is measurable. The temperature-lever coupling flag must be armed in the driver.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: temperature lever had no consumer until 2026-09-18 and its coupling flag is default-off and unused; _progress_deficit saturated at 1.0 so the decay leg is unmeasurable."
     },
     {
       "acceptance_checks": [
@@ -38871,7 +38883,9 @@
         "Emit claim_ids_tested=[Q-019] + per-claim direction; pre-register thresholds before execution."
       ],
       "backlog_id": "EVB-0553",
-      "blocked_by": [],
+      "blocked_by": [
+        "v4_loop_segregation"
+      ],
       "claim_id": "Q-019",
       "design": "2-arm (plus per-gate lesion sub-conditions) on the V3 commit-gating stack. ARM SINGLE: one BetaGate scores sensorium+trajectory+motor-commitment readiness jointly. ARM THREE: three separable gates on distinct axes (sensorium/attention, thought/trajectory, motor-commitment). Lesion battery in ARM THREE: independently zero each gate and measure which behavioural axis degrades (attention selectivity / trajectory coherence / commitment timing). Task requires independent control of all three axes. Pre-register thresholds. Non-degeneracy precondition: each gate must be live (non-zero gating variance on its own axis) before its lesion is interpretable -- else self-route substrate_not_ready, NOT a verdict.",
       "dispatch_mode": "multi_arm_ablation",
@@ -38905,7 +38919,9 @@
       "script_path": null,
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "release_condition": "The v4_loop_segregation limbic loop carries non-degenerate per-candidate competition (bias-head per-candidate range above floor, so ARM_DROP_LIMBIC is no longer byte-identical to all-on, V3-EXQ-707). The thought-loop-maintenance and automaticity-gradient legs (R3) need their own substrate.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: loops degenerate; flat bias-head scalar is inert under per-loop zscore."
     },
     {
       "acceptance_checks": [
@@ -39701,7 +39717,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0585",
       "proposal_type": "experimental",
-      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled and e2_rollout_output_norm_clamp_enabled). [CORRECTED 2026-09-24, GFLAG-0438: the earlier parenthetical \"true in zero runs as of 2026-09-01\" was wrong for BOTH levers -- both are co-armed in landed drivers V3-EXQ-666 (:216/218, 2026-06-11), V3-EXQ-690 (:323/325, 2026-06-20), V3-EXQ-955 (:487/489, 2026-08-29) and V3-EXQ-959 (:507/509, 2026-08-30); multistep alone in V3-EXQ-614b (:230/426, 2026-05-31); clamp alone in V3-EXQ-604b (:307, 2026-06-07). None is the Pathway A vs B probe, so this release condition is unchanged and NOT met.] Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "require_pre_registered_thresholds": true,
       "seed_policy": "matched_shared_seeds",
       "source": "manual",
@@ -42162,7 +42178,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "Registry implementation_phase reaches v4 (claim is `implementation_phase: v4`). Re-evaluate at the V3->V4 boundary.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (implementation_phase); status previously carried no recorded reason. Phase-deferred: excluded from the runnability audit as \"Explicit future phase: v4\". Not a V3 substrate block."
     },
     {
       "acceptance_checks": [
@@ -45670,7 +45688,9 @@
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ]
+      ],
+      "release_condition": "substrate_queue mech317-action-chunk-boundary-instrument is built (currently REGISTRATION ONLY). LEG 2's successor needs a real control arm and a chunk supply that lifts the DV off its floor.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R2); status previously carried no recorded reason. R2: no readout over the executed action stream in the ARC-071/MECH-323/MECH-324 family."
     },
     {
       "acceptance_checks": [
@@ -45714,7 +45734,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "A chunk-boundary instrument over the executed action stream exists (substrate_queue mech317-action-chunk-boundary-instrument) AND MECH-316 substrate is built. The committed-action learning-curve DV also needs the conversion ceiling lifted.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R2); status previously carried no recorded reason. R2: no chunk-boundary instrument; MECH-316 has zero built substrate; learning-curve DV sits behind the MECH-439 washout."
     },
     {
       "acceptance_checks": [
@@ -45754,7 +45776,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "CRF reaches the hippocampal rollout pool AND sleep (arc_062_rule_apprehension GAP-E/F/G) AND the f_dominance_conversion_ceiling is lifted for committed-action strong-vs-weak comparisons.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R4); status previously carried no recorded reason. R4: two of six distinctive pieces have no substrate or owner (no CRF hook in hippocampal/module.py or ree_core/sleep/); MECH-439 conversion ceiling confounds downstream."
     },
     {
       "acceptance_checks": [
@@ -47038,7 +47062,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "The play-mode three-level frame-tag signal architecture is built in ree_core (substrate_queue play-substrate-phase0-frame-tag-v3-slice or successor). The bilateral co-maintenance clause stays V3-untestable (scripted experimenter can only cooperate); scope the falsifier to the agent-side leg.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R3); status previously carried no recorded reason. R3: entire three-level signal architecture unbuilt; neither the required event nor the manipulation can be produced."
     },
     {
       "acceptance_checks": [
@@ -47078,7 +47104,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "A multi-channel arbitration gate is built (the live gate is a single-scalar two-head gate; the four channel quantities are not computed anywhere) AND the f_dominance_conversion_ceiling is lifted.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: no multi-channel gate of either form to contrast. The CRF rule pool is no longer empty (crf_frac_active 0.94)."
     },
     {
       "acceptance_checks": [
@@ -47118,7 +47146,9 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "release_condition": "The play cluster (frame tag, play-type curriculum, synthetic z_goal substitution) is built, per play_substrate_design.md, via the frame-tag slice first.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R3); status previously carried no recorded reason. R3: play cluster unbuilt in V3; the build is designed but not registered as a substrate_queue build."
     },
     {
       "acceptance_checks": [

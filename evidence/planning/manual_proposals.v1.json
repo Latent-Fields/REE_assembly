@@ -1406,7 +1406,9 @@
         "SD-061 (substrate_queue.json, implemented_pending_validation) -- difficulty-gated proposal-entropy regulator: stuck-state detector + transient CEM temperature/candidate-count gain + decay; builds MECH-343 substrate_conditional blocker part 2. Was free prose ('not yet designed (no design doc)'), which audit_blocked_proposal_unblockers.unblocker_id() could not resolve to any sd_id, so a blocker that HAS an owner read as UNOWNED; id-first form added 2026-09-10 (GFLAG-0135)."
       ],
       "notes": "Proposal only -- script authoring + queue entry deferred to /queue-experiment per the mandatory skill path. V3-EXQ-614d / MECH-341 is a possible early substrate (within-class temperature -> committed-action diversity) but tests only one piece, not the whole loop. Hypothesis note: docs/thoughts/2026-06-03_difficulty_gated_proposal_entropy.md. Psychiatry bridge: docs/architecture/psychiatric_failure_modes.md.",
-      "backlog_id": "EVB-0552"
+      "backlog_id": "EVB-0552",
+      "release_condition": "modulatory-bias-selection-authority AND SD-061 validated (existing blocked_by) AND sd061-resume-progress-ecology built, so goal progress can resume and the decay leg is measurable. The temperature-lever coupling flag must be armed in the driver.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: temperature lever had no consumer until 2026-09-18 and its coupling flag is default-off and unused; _progress_deficit saturated at 1.0 so the decay leg is unmeasurable."
     },
     {
       "proposal_id": "EXP-0356",
@@ -1447,10 +1449,14 @@
         "Non-degeneracy guard: if any gate has near-zero gating variance on its own axis (gate never live), its lesion is uninterpretable -> self-route substrate_not_ready_requeue -> non_contributory, NOT a single-gate verdict.",
         "Emit claim_ids_tested=[Q-019] + per-claim direction; pre-register thresholds before execution."
       ],
-      "blocked_by": [],
+      "blocked_by": [
+        "v4_loop_segregation"
+      ],
       "notes": "Minted by /thought-digestion 2026-06-11 from Q-019 reframe (testable architectural leg). Script authoring + queue entry deferred to /queue-experiment per the mandatory skill path. Anatomical title-leg routed out_of_domain (neuroanatomy literature). what_would_answer lives on Q-019 in claims.yaml.",
       "source": "manual",
-      "backlog_id": "EVB-0553"
+      "backlog_id": "EVB-0553",
+      "release_condition": "The v4_loop_segregation limbic loop carries non-degenerate per-candidate competition (bias-head per-candidate range above floor, so ARM_DROP_LIMBIC is no longer byte-identical to all-on, V3-EXQ-707). The thought-loop-maintenance and automaticity-gradient legs (R3) need their own substrate.",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: loops degenerate; flat bias-head scalar is inert under per-loop zscore."
     },
     {
       "proposal_id": "EXP-0380",
@@ -2223,7 +2229,7 @@
       "backlog_id": "EVB-0587",
       "gated_by_session": "build_experiment_indexes:claim_queue_gate",
       "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
-      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "release_condition": "EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled and e2_rollout_output_norm_clamp_enabled). [CORRECTED 2026-09-24, GFLAG-0438: the earlier parenthetical \"true in zero runs as of 2026-09-01\" was wrong for BOTH levers -- both are co-armed in landed drivers V3-EXQ-666 (:216/218, 2026-06-11), V3-EXQ-690 (:323/325, 2026-06-20), V3-EXQ-955 (:487/489, 2026-08-29) and V3-EXQ-959 (:507/509, 2026-08-30); multistep alone in V3-EXQ-614b (:230/426, 2026-05-31); clamp alone in V3-EXQ-604b (:307, 2026-06-07). None is the Pathway A vs B probe, so this release condition is unchanged and NOT met.] Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "blocked_by": [
         "SD-056"
       ],
