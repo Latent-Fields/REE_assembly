@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_464",
+  "entry_id": "2026-09-24_mech_464_opal_asymmetric_gain_collinsfrank2014",
+  "timestamp_utc": "2026-09-24T11:01:16Z",
+  "claim_ids_tested": [
+    "MECH-464"
+  ],
+  "source": {
+    "title": "Opponent actor learning (OpAL): modeling interactive effects of striatal dopamine on reinforcement learning and choice incentive.",
+    "authors": [
+      "Anne G. E. Collins",
+      "Michael J. Frank"
+    ],
+    "year": 2014,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0037015",
+    "pmid": "25090423",
+    "pmc": null,
+    "volume": "121",
+    "issue": "3",
+    "pages": "337-366"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "OpAL establishes the qualitative phenomenon MECH-464 asserts -- dopamine acting asymmetrically on opponent D1/D2 (Go/NoGo) populations is not a uniform rescaling and CAN reverse which of two options is preferred, not merely change confidence in a fixed ranking. Collins & Frank show this directly in the effort/T-maze simulations ('dopamine depletion reverses this preference') and state explicitly that asymmetric beta_G vs beta_N gain can 'reverse the asymmetry in choice.' This is moderate-to-strong support for the CLASS of mechanism MECH-464 claims (asymmetric opponent gain is order-changing), but confidence is capped at 0.55 because the specific formalization differs: OpAL's reversals arise from LEARNED G/N actor weights (shaped by a three-factor Hebbian rule across trials) interacting with a performance-time beta gain, not from a single-tick piecewise ReLU split of a pre-existing signed accumulator gained asymmetrically about zero as in MECH-464's _d1_d2_split. The straddle-zero / candidate-pair-reordering formalization and its non-vacuity gate are MECH-464's own sharpening, not something this paper states in those terms.",
+  "failure_signatures": [],
+  "tags": [
+    "mech-464",
+    "opal",
+    "d1_d2_opponent",
+    "dopamine_gain",
+    "action_selection",
+    "reversal",
+    "novel_discovery_check"
+  ],
+  "mapping": {
+    "source_claim_statement": "In OpAL, dopamine state multiplicatively and asymmetrically gains two opponent actor populations (G/D1 and N/D2, beta_G and beta_N) that have separately learned to track positive and negative action value via a nonlinear three-factor Hebbian rule. Because the two populations specialize differently across the value range, dopamine-driven asymmetry in their gain (or in the learning-time alpha_G/alpha_N asymmetry) can flip which of two options nets a higher advantage: e.g. dopamine depletion 'reverses this preference, but only for the 4-versus-2 pellet case'; and 'it is also possible to reverse the asymmetry in choice: when options are learned with a bias toward N weights, a sufficiently large asymmetry in choice incentive toward G weights can still result in relatively better [performance for the option the bias would otherwise disfavor].'",
+    "ree_translation": "Directly analogous to MECH-464's claim that REE's D1/D2 opponent split (_d1_d2_split: go = relu(-accum), nogo = relu(+accum), gained asymmetrically by d1_gain/d2_gain as functions of da) is order-changing rather than a uniform scalar on all K candidates. Both mechanisms are opponent-population architectures where a single neuromodulatory signal gains two ReLU-like populations asymmetrically about a value/preference boundary, and in both, that asymmetry is capable of reordering which option wins, not just rescaling confidence in a fixed order.",
+    "mapping_caveat": "OpAL's reversal is a between-condition / across-learning-history effect driven by LEARNED, history-dependent G/N weight asymmetry plus a performance-time beta scalar; REE's mechanism is a within-tick piecewise transform on live accumulators split by sign at that instant, with no learning history in the split itself. OpAL's discrimination-sharpening framing (see the companion eLife 2023 normative-advantages paper) is about which reward regime is best DISCRIMINATED, not explicitly about a straddle-zero pair-reordering event within one decision. Treat this as class-level (opponent asymmetric gain is order-changing) support, not confirmation of the specific accumulator-sign-straddle formalization or its measured effect sizes.",
+    "source_context": "Computational model (simulation) benchmarked against rodent optogenetic and pharmacological D1/D2 manipulation studies (Kravitz et al. 2012; Tai et al. 2012) and human PD-medication behavioral data; no REE-specific or artificial-agent substrate."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (canonical, highly-cited Psych Review computational model, validated against multiple independent empirical literatures). Mapping fidelity moderate-low: the qualitative principle (asymmetric opponent gain reorders preference) is a clean match, but the specific mechanism (learned Hebbian G/N weights + performance beta vs. a single within-tick signed-accumulator split) differs enough that this is prior art for the PHENOMENON CLASS, not a prior statement of MECH-464's specific claim. This is the load-bearing judgment for the novel_discovery question below."
+  },
+  "summary_path": "summary.md"
+}
