@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_111",
+  "entry_id": "2026-09-24_arc_111_neuromodulation_reconfigures_circuits_marder2012",
+  "timestamp_utc": "2026-09-24T08:17:26Z",
+  "claim_ids_tested": [
+    "ARC-111"
+  ],
+  "source": {
+    "title": "Neuromodulation of neuronal circuits: back to the future.",
+    "authors": [
+      "Eve Marder"
+    ],
+    "year": 2012,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2012.09.010",
+    "pmid": "23040802",
+    "pmc": "PMC3482119",
+    "volume": "76",
+    "issue": "1",
+    "pages": "1-11"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Authoritative review: neuromodulators change both intrinsic excitability and effective synaptic strength, so one anatomical connectome yields different functional circuits in different modulatory states. That is biological precedent for context reaching the effective weights, not only a gain on a fixed transfer function. Moderate confidence because neuromodulation acts through both gain-like and weight-like routes and the review does not separate them in the way ARC-111's discriminator requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Much of the reconfiguration Marder describes works through intrinsic excitability, which is a gain-type change; a gain-only account can explain part of the circuit switching the review cites.",
+    "In the stomatogastric system, modulation-dependent effective synaptic strength is fast and reversible state-dependence, not learned per-context weight sets; ARC-111's 'learned weights as a function of context' goes beyond it."
+  ],
+  "tags": [
+    "arc_111",
+    "neuromodulation",
+    "context_conditioned_weights",
+    "effective_synaptic_strength",
+    "circuit_reconfiguration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Neuromodulators transform the intrinsic firing properties of circuit neurons and alter effective synaptic strength; neuromodulatory substances therefore reconfigure neuronal circuits, often massively changing their output, so the anatomical connectome gives only a minimal structure and the modulatory environment specifies the functional circuit.",
+    "ree_translation": "Supports ARC-111's central distinction: in biology, context (modulatory state) reaches effective connection strengths, and the resulting functional circuit, not just a rescaled version of one, differs by context. It argues that a context signal acting only on output gain is a narrower mechanism than what nervous systems use.",
+    "mapping_caveat": "The biology does not respect a clean gain/weight split: the same modulator can change both. So Marder supports 'context reaches effective weights' but does not support ARC-111's implicit premise that gain and weight forms are cleanly separable mechanisms.",
+    "source_context": "Review of invertebrate (stomatogastric ganglion, other central pattern generators) and vertebrate neuromodulation literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Landmark review; mapping moderate because the review blurs the distinction the claim relies on."
+  }
+}

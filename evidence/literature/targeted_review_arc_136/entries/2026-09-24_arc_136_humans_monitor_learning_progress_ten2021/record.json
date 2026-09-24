@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_136",
+  "entry_id": "2026-09-24_arc_136_humans_monitor_learning_progress_ten2021",
+  "timestamp_utc": "2026-09-24T08:17:26Z",
+  "claim_ids_tested": [
+    "ARC-136"
+  ],
+  "source": {
+    "title": "Humans monitor learning progress in curiosity-driven exploration.",
+    "authors": [
+      "Alexandr Ten",
+      "Pramod Kaushik",
+      "Pierre-Yves Oudeyer",
+      "Jacqueline Gottlieb"
+    ],
+    "year": 2021,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-021-26196-w",
+    "pmid": "34645800",
+    "pmc": "PMC8514490",
+    "volume": "12",
+    "issue": "1",
+    "pages": "5972"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Human free-choice data: when people choose freely among learning activities, models with a learning-progress term fit task selection best, and people avoid unlearnable activities while taking on hard learnable ones. That is the anti-randomness discriminator of ARC-136 measured in humans. Adult lab task, not play or development, so held at 0.70.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Participants were adults doing a short, instructed free-choice task; this shows learning progress guides voluntary task choice, not that it produces spontaneous play or a developmental curriculum.",
+    "People also used competence (percent correct) to avoid easy tasks, so exploration is not driven by learning progress alone; a pure learning-progress model is not the best fit either."
+  ],
+  "tags": [
+    "arc_136",
+    "learning_progress",
+    "curiosity",
+    "anti_randomness",
+    "task_selection",
+    "human_behaviour"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a free-choice paradigm with several learning activities of differing learnability, humans' task selection is best fit by models that include a learning-progress component alongside competence; people avoid tasks that are too easy and avoid laboring on unlearnable tasks while still self-challenging on difficult learnable ones.",
+    "ree_translation": "Direct human evidence for ARC-136 leg (1)'s discriminator: sampling is drawn to LEARNABLE uncertainty and away from unlearnable (stochastic) activities, not simply to the most uncertain option. An REE intrinsic drive of the epistemic-deficit or raw-novelty type would fail this test; a learning-progress term passes it.",
+    "mapping_caveat": "Adult, instructed, lab-based; no viability or commitment context. It evidences the drive's selection rule, not play's developmental emergence or migration across affordance spaces.",
+    "source_context": "Human online free-choice experiment with four learning activities of varying difficulty (one unlearnable); computational model comparison of intrinsic utility functions."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Well-designed, pre-specified model comparison in a strong journal; mapping is to the selection rule, not play itself."
+  }
+}

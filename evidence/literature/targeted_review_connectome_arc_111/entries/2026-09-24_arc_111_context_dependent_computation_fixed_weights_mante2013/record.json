@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_111",
+  "entry_id": "2026-09-24_arc_111_context_dependent_computation_fixed_weights_mante2013",
+  "timestamp_utc": "2026-09-24T08:17:26Z",
+  "claim_ids_tested": [
+    "ARC-111"
+  ],
+  "source": {
+    "title": "Context-dependent computation by recurrent dynamics in prefrontal cortex.",
+    "authors": [
+      "Valerio Mante",
+      "David Sussillo",
+      "Krishna V Shenoy",
+      "William T Newsome"
+    ],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12742",
+    "pmid": "24201281",
+    "pmc": "PMC4121670",
+    "volume": "503",
+    "issue": "7474",
+    "pages": "78-84"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "Macaque prefrontal recordings plus a trained RNN: flexible, context-dependent selection of which sensory input drives the choice is reproduced by ONE fixed set of recurrent weights, with context entering as an input that moves the population state. That is a fully context-dependent behaviour (context changes which evidence matters, not just magnitude) with no per-context weights and no gain-on-output -- a third route ARC-111's 'context must reach the weights' hypothesis does not consider. Weakens the necessity leg, not the claim that REE lacks it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single fixed-weight recurrent network reproduced context-dependent selection and integration; context acted through input-driven dynamics, not through context-indexed weights, contradicting the hypothesis that context-dependent behaviour requires context to reach the weights.",
+    "The RNN was trained across both contexts jointly; once trained its weights are fixed, but the training history is context-mixed, so it shows weights need not be context-INDEXED, not that learning is context-free."
+  ],
+  "tags": [
+    "arc_111",
+    "context_dependent_computation",
+    "recurrent_dynamics",
+    "prefrontal_cortex",
+    "rnn",
+    "necessity_challenge"
+  ],
+  "mapping": {
+    "source_claim_statement": "In monkeys flexibly selecting and integrating either colour or motion evidence depending on context, prefrontal population activity is explained as a single dynamical process; an RNN trained on the task reproduces the population dynamics, showing that selection and integration of the context-relevant input can arise from recurrent dynamics within the same circuit.",
+    "ree_translation": "Challenges ARC-111's HYPOTHESIS that genuinely context-dependent behaviour (reordering, not rescaling) requires context to reach the weights. Mante et al. get context-dependent reordering of which input drives choice from fixed weights plus context as an input to recurrent dynamics. For REE, context already enters through z_world input; the question the paper raises is whether a recurrent, state-dependent E3 gating layer would give the effect without any context-indexed weight object.",
+    "mapping_caveat": "REE's E3 gating layer is largely feed-forward scoring over candidates, not a recurrent attractor network, so the dynamical route may not be available in the current substrate; the paper weakens necessity in general, while leaving open that the weight form is the cheapest route for REE's architecture.",
+    "source_context": "Two rhesus macaques, single- and multi-unit recordings in prefrontal cortex (FEF region) during a context-dependent colour/motion discrimination; RNN trained on the same task and reverse-engineered by linearisation around fixed points."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Landmark study; directly contradicts a strong reading of ARC-111's necessity hypothesis, with transfer risk from REE's non-recurrent gating layer."
+  }
+}

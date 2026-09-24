@@ -1,0 +1,9 @@
+# Mante, Sussillo, Shenoy & Newsome 2013 -- context-dependent computation by recurrent dynamics
+
+**What they did.** Monkeys saw a noisy display with both colour and motion and, depending on a cue, reported one and ignored the other. Single prefrontal neurons responded in bewilderingly mixed ways. At the population level, though, the activity looked like a single dynamical process. An RNN trained on the same task reproduced it. In the trained network, the context cue doesn't switch weights or gate inputs off. It shifts the network's state so the same fixed recurrent weights integrate the relevant evidence and let the irrelevant evidence pass without effect on the choice.
+
+**Why it weakens ARC-111.** The claim's hypothesis is that genuinely context-dependent behaviour, where the ordering changes and not just the magnitude, needs context to reach the weights. Here is a clear counterexample: the choice depends on entirely different evidence in the two contexts, with one fixed weight set, and context entering only as input. That is a third route the claim's gain-versus-weight framing leaves out: fixed weights with context acting through recurrent, state-dependent dynamics.
+
+**Why it doesn't sink it.** REE's E3 gating is mostly feed-forward scoring over candidates, not a recurrent attractor network, so this route may simply not be available in our substrate. The weight form could still be the cheapest route for REE. But the claim should drop its necessity framing ("requires context to reach the weights") and say instead that REE needs either context-indexed weights or context-dependent recurrent dynamics at the gating layer, and currently has neither. That is also a better experiment: add a third arm.
+
+**Confidence.** 0.60, recorded as `weakens`. It weakens the necessity leg, not the diagnosis that REE's current gain-only conditioning can't reorder.

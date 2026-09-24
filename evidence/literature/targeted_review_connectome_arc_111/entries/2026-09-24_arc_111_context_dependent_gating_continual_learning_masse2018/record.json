@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_111",
+  "entry_id": "2026-09-24_arc_111_context_dependent_gating_continual_learning_masse2018",
+  "timestamp_utc": "2026-09-24T08:17:26Z",
+  "claim_ids_tested": [
+    "ARC-111"
+  ],
+  "source": {
+    "title": "Alleviating catastrophic forgetting using context-dependent gating and synaptic stabilization.",
+    "authors": [
+      "Nicolas Y Masse",
+      "Gregory D Grant",
+      "David J Freedman"
+    ],
+    "year": 2018,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1803839115",
+    "pmid": "30315147",
+    "pmc": "PMC6217392",
+    "volume": "115",
+    "issue": "44",
+    "pages": "E10467-E10475"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Neurally-motivated model: a context signal that gates a sparse, mostly non-overlapping subset of units per task lets a network hold many task-specific input-output mappings without forgetting. Gating hidden units selects a different effective weight subnetwork per context, which is functionally the 'different effective weight set selected per context' ARC-111 asks for, and it only works because the learning is context-indexed. Moderate confidence: continual-learning benchmarks, not a test of committed action selection.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Without synaptic stabilisation, context-dependent gating alone left substantial forgetting on long task sequences, so context-indexing is not sufficient by itself.",
+    "Binary unit gating is formally a gain (0/1 multiplier) on hidden units, so the result shows a hidden-layer gain can act as a weight-set selector; it blurs rather than confirms ARC-111's gain-versus-weight distinction."
+  ],
+  "tags": [
+    "arc_111",
+    "context_dependent_gating",
+    "continual_learning",
+    "catastrophic_forgetting",
+    "effective_weight_sets"
+  ],
+  "mapping": {
+    "source_claim_statement": "Adding a context-dependent gating signal so that only sparse, mostly non-overlapping patterns of units are active for each task lets feedforward and recurrent networks, trained with supervised or reinforcement learning, maintain high performance over many sequentially learned tasks, especially combined with synaptic stabilisation.",
+    "ree_translation": "Supports ARC-111's non-degeneracy requirement that the substrate hold more than one effective weight set selected per context: context-gated subnetworks are exactly that, and they matter because each context's learning lands on its own weights. Also a practical design for REE: rather than a full hypernetwork, a context-indexed mask over w_chan (or over a hidden gating layer) gives per-context effective weights with local learning.",
+    "mapping_caveat": "Gating is implemented as a multiplicative mask on hidden units -- formally a gain -- which is evidence that hidden-layer gain is one implementation of the weight form. That supports ARC-111's behavioural requirement but shows its mechanistic gain/weight boundary is a matter of where the multiplier sits, as with Salinas & Sejnowski.",
+    "source_context": "Artificial neural networks (feedforward and recurrent) on permuted-MNIST, ImageNet split and cognitive-task sequences; context-dependent unit gating plus synaptic intelligence / EWC stabilisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Well-cited PNAS modelling paper motivated by biology; strongest value is as a concrete build route for the per-context weight object ARC-111 lacks."
+  }
+}

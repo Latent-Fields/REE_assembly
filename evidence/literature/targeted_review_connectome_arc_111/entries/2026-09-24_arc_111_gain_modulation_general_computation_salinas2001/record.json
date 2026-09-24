@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_111",
+  "entry_id": "2026-09-24_arc_111_gain_modulation_general_computation_salinas2001",
+  "timestamp_utc": "2026-09-24T08:17:26Z",
+  "claim_ids_tested": [
+    "ARC-111"
+  ],
+  "source": {
+    "title": "Gain modulation in the central nervous system: where behavior, neurophysiology, and computation meet.",
+    "authors": [
+      "E Salinas",
+      "T J Sejnowski"
+    ],
+    "year": 2001,
+    "venue": "The Neuroscientist",
+    "doi": "10.1177/107385840100700512",
+    "pmid": "11597102",
+    "pmc": "PMC2887717",
+    "volume": "7",
+    "issue": "5",
+    "pages": "430-440"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Gain modulation is widespread and, across a POPULATION of gain-modulated units read out downstream, supports a general class of computations (coordinate transforms, invariant responses). That is, population-level gain can change the input-output mapping, not only its magnitude. This undercuts ARC-111's discriminator premise that 'a gain model can rescale a fixed policy but cannot REORDER it', which holds only when gain is applied to a single output scalar. Supports the claim's view that context-dependence needs more than output gain, so mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Gain applied to many hidden units followed by a fixed readout can implement context-dependent mappings, including reorderings, so 'reordering' does not by itself discriminate weight-form from gain-form conditioning.",
+    "The review concerns fast, input-driven gain fields (e.g. eye position), not learned context-indexed weights, so it neither supports nor directly tests ARC-111's learned-weight mechanism."
+  ],
+  "tags": [
+    "arc_111",
+    "gain_modulation",
+    "gain_fields",
+    "context_conditioned_gain",
+    "discriminator_validity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Gain modulation, in which one input changes a neuron's sensitivity to another without changing its selectivity, is found in many cortical and subcortical areas; gain-modulated neurons can serve as a basis for a general class of computations, namely coordinate transformations and invariant responses.",
+    "ree_translation": "Bears directly on ARC-111's falsifier. The claim's control arm assumes context-varying gain over a fixed weight set can only rescale, so any context-dependent REORDERING of committed channels must come from the weight form. Salinas & Sejnowski show that with gain on a population of basis units and a downstream readout, gain alone implements nonlinear, context-dependent mappings. Whether REE's gain form can reorder depends on where the gain sits: on a single per-channel output (cannot reorder) or on a hidden population (can).",
+    "mapping_caveat": "REE's current gain forms (MECH-152 terrain_weight, ARC-016 precision, MECH-261 write gating) are mostly scalars on output or on a channel, not gain fields over a basis population, so for the shipped substrate the claim's discriminator may still hold. The caveat is about the discriminator's generality, not the current code.",
+    "source_context": "Review linking parietal gain fields, attentional modulation and computational basis-function models."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Classic review; key value is methodological -- it constrains how the ARC-111 falsifier must be built."
+  }
+}

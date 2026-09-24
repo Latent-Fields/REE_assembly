@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_136",
+  "entry_id": "2026-09-24_arc_136_curiosity_driven_stage_emergence_oudeyer_smith2016",
+  "timestamp_utc": "2026-09-24T08:17:26Z",
+  "claim_ids_tested": [
+    "ARC-136"
+  ],
+  "source": {
+    "title": "How Evolution May Work Through Curiosity-Driven Developmental Process.",
+    "authors": [
+      "Pierre-Yves Oudeyer",
+      "Linda B Smith"
+    ],
+    "year": 2016,
+    "venue": "Topics in Cognitive Science",
+    "doi": "10.1111/tops.12196",
+    "pmid": "26969919",
+    "volume": "8",
+    "issue": "2",
+    "pages": "492-502"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Closest published demonstration of ARC-136's frontier-migration leg: a robot learner selecting experiences by expected learning progress, with no stage-specific rewards, successively discovered object affordances and then vocal interaction with peers, giving ordered developmental stages. Held at 0.66 because it is a robotic model plus review, not a measurement in organisms, and the migration covers two or three spaces rather than the claim's full ladder.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Stage ordering in these robots depends on the designer's choice of sensorimotor spaces and on how learning progress is windowed; a different parameterisation can give different or no ordering, so the order is not guaranteed to be endogenous.",
+    "Only a short segment of ARC-136's ladder (body -> object -> social vocal) is shown; symbolic, counterfactual and abstract spaces are not modelled."
+  ],
+  "tags": [
+    "arc_136",
+    "learning_progress",
+    "intrinsic_motivation",
+    "developmental_curriculum",
+    "frontier_migration",
+    "developmental_robotics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Learners that probabilistically select experiences by their potential to reduce uncertainty (learning progress) self-organise a curriculum with ordered developmental stages; in robot experiments this led to successive discovery of object affordances and then vocal interaction with peers, with regularities and individual diversity resembling infant development.",
+    "ree_translation": "Existence proof for leg (2) of ARC-136's falsifier: exploration mass shifts to the next affordance space as learning progress in the current one saturates, with no stage rewards. It also backs the claim's conditional structure: learning-progress drives avoid both mastered (predictable) and unlearnable (random) regions, which is the anti-randomness discriminator in leg (1).",
+    "mapping_caveat": "The robots have no viability or commitment machinery, so the claim's preconditions (safety, satiety, no urgent commitment, spare capacity) are not tested. Play in REE would have to compete with SD-025's drive and with E3 commitment; the robot learner's exploration never has to.",
+    "source_context": "Review of developmental-robotics experiments (Playground Experiment lineage) with learning-progress-driven intrinsic motivation; comparison with infant developmental data."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Review of the authors' own modelling programme; mapping is near-literal for frontier migration; transfer risk from designer-chosen spaces."
+  }
+}

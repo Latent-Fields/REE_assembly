@@ -1,0 +1,9 @@
+# Oudeyer & Smith 2016 -- curiosity-driven development self-organises stages
+
+**What they did.** This review brings together Oudeyer's developmental-robotics programme and Smith's infant work. The core experiment: a robot learner picks what to practise next by how much it expects to *improve*, which is learning progress rather than raw error or novelty. No stage rewards are given. The robot first masters control of its own body, then discovers object affordances, then turns to vocal interaction with peers. Runs share a broad ordering with room for individual variation, which is roughly what infant development looks like. The earlier paper in this lineage (Kaplan & Oudeyer 2007, Front Neurosci, doi 10.3389/neuro.01.1.1.017.2007) adds the neural hypothesis that tonic dopamine carries the learning-progress signal.
+
+**Why it matters for ARC-136.** This is leg (2) of the claim's falsifier, frontier migration, shown in an artificial agent. As one space saturates, its learning progress falls, and exploration moves on. It also gives leg (1), the anti-randomness discriminator, for free: a learning-progress drive ignores both what is already mastered and what is pure noise, because neither yields progress. So the claim's "learnable uncertainty, not novelty" condition is the natural behaviour of this drive, not an extra assumption.
+
+**Where it doesn't reach.** The robots have nothing to lose. They carry no viability state and no commitment machinery, so the claim's gating conditions (safe, satiated, no urgent commitment) are untested. In REE, play would compete with SD-025's drive and E3 commitment for control of action. The ordering is also partly a product of which sensorimotor spaces the designer provides, so "endogenous" should be read carefully.
+
+**Confidence.** 0.66. The strongest existing precedent for the migration leg, and a good template for the REE ecology the claim's non-degeneracy precondition asks for.
