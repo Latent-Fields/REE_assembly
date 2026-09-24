@@ -1,6 +1,6 @@
 Status: processed
 Intake: evidence/planning/thought_intake_2026-09-24_from_components_to_functional_organism.md
-Claims staged (NOT yet registered): MECH-586 (provisional id) -- intake sec 6; registration deferred because governance-20260924-workset held claims.yaml
+Claims registered: MECH-586 (2026-09-24, chip-20260924-mech586-register) -- intake sec 6
 Orchestrator execution prompt: evidence/planning/orchestrator_execution_prompt_2026-09-24_functional_organism_path.md
 
 # From components that work to an organism that works

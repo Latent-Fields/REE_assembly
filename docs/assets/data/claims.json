@@ -10384,6 +10384,15 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITIONS. (P1) The harm predictor must be trained to convergence with its training\ncurve recorded (SD-PP-B9 piece 2), or the attribution has nothing competent to attribute to. (P2) The\nexpected-error estimate must be CALIBRATED: its per-state prediction must track realised squared error\non held-out transitions (coverage/rank correlation above a pre-registered floor), else \"beyond\nexpectation\" is noise. (P3) The world-surprise manipulation and the model-error manipulation must be\nindependently instantiated and exposure-matched (SD-PP-B9's harm_exposure_relative_deviation_bounded\nprecondition).\nCONFIRMING: with the harm predictor above persistence, a one-shot harm-map shift (world surprise)\nraises the fraction of harm PE classified as world surprise, while an equal-magnitude corruption of\nthe predictor's weights at a stationary map (model error) raises the model-error fraction instead,\non at least 2/3 seeds; the E3-precision-weighted PE (current code) fails to separate the two.\nFALSIFYING: the calibrated attribution separates the two manipulations no better than the\nE3-precision-weighted PE, on at least 2/3 seeds.\nPRECONDITION NOT MET (P-FAIL): if no configuration yields a harm predictor above persistence\n(SD-PP-B9's fan-out resolves to H-pe-source-structurally-wrong), the claim converts: the harm PE has\nno competent source, all of it reads as model error, and MECH-055 axis 3 needs a different PE source.\nSUBSTRATE: SD-PP-B11-harm-stream-predictor-reliability-producer. REGISTRATION IS NOT BUILD\nAUTHORISATION. No experiment queued."
   },
+  "MECH-586": {
+    "assembly_state": "awaiting_substrate",
+    "coupled_with": [],
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "harm_stream.uncertainty_not_discount_asymmetry",
+    "title": "Harm-forecast uncertainty redirects control but does not discount expected adverse cost in selection: low confidence in a hazard prediction may lower that prediction's authority to update beliefs, and may route control toward investigation, a shorter trusted planning horizon, or preservation of alternatives (MECH-485 orient/survey leg), but it must not by itself lower the weight that the predicted adverse outcome carries in E3 candidate ranking. Update-authority precision, prediction confidence, and adverse-outcome cost are three separable quantities at the E3 integration boundary.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "coupled_with": [],

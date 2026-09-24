@@ -106627,3 +106627,57 @@
     complicated (buildable): the driver-side control-vs-bar assertion; the >= 20-manifest
     falsifying-clause-(i) corpus sample. Sibling skill change already landed separately: REE_Working
     ed743b5be (2.5d/3h claim-free scope, GOV-HELDOUT-1 passed general, 4 cases).
+- id: MECH-586
+  title: 'Harm-forecast uncertainty redirects control but does not discount expected adverse cost in
+    selection: low confidence in a hazard prediction may lower that prediction''s authority to update
+    beliefs, and may route control toward investigation, a shorter trusted planning horizon, or
+    preservation of alternatives (MECH-485 orient/survey leg), but it must not by itself lower the
+    weight that the predicted adverse outcome carries in E3 candidate ranking. Update-authority
+    precision, prediction confidence, and adverse-outcome cost are three separable quantities at the
+    E3 integration boundary.'
+  claim_type: mechanism_hypothesis
+  subject: harm_stream.uncertainty_not_discount_asymmetry
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-09-24'
+  source_thought: docs/thoughts/2026-09-24_from_components_to_functional_organism.md
+  location: docs/architecture/precision_control.md#mech-586
+  depends_on:
+  - ARC-052
+  - MECH-485
+  - MECH-510
+  - MECH-059
+  - SD-011
+  - ARC-016
+  source:
+  - docs/thoughts/2026-09-24_from_components_to_functional_organism.md
+  - evidence/planning/thought_intake_2026-09-24_from_components_to_functional_organism.md
+  notes: 'Registered from thought 2026-09-24 sec 5.3 ("Uncertain danger must not automatically become
+    cheap danger"). WHAT IT CONSTRAINS: ARC-052 (harm_precision_weighting) half (A) as written --
+    "E3 weights inputs by exp(-log_sigma)" -- would make a low-precision harm forecast count LESS in
+    selection; this claim asserts that is the wrong use of harm precision for the COST term, while
+    leaving ARC-052''s attribution/commit-gating use and its precision-estimation half (B, V3-EXQ-977
+    PASS) untouched. It is a boundary on ARC-052 and on SD-PP-B11 (registration-only harm-reliability
+    module), to be read BEFORE either one''s E3-weighting half is built. WHAT IT IS DISTINCT FROM:
+    MECH-485 (where low confidence ROUTES -- orient/survey -- not whether cost is discounted; this
+    claim is compatible with and depends on it); MECH-510 (prediction vs error precision -- this claim
+    uses the update-authority side of that split); MECH-454 (uncertainty-gated option preservation for
+    the agent''s OWN options, explicitly not harm); MECH-388 (information-gathering pressure under
+    hidden-state harm -- one of the redirect consumers, not the no-discount constraint); Q-027
+    (defining irreversibility under uncertainty). FALSIFIER SHAPE (draft; digestion owns it): in a
+    world with genuinely uncertain hazard forecasts, discount-by-precision should produce MORE
+    realised avoidable harm than redirect-without-discount at matched reward and matched exposure;
+    if it does not (or the redirect policy starves reward with no harm benefit), the asymmetry is
+    unnecessary. Precondition: the harm-forward forecast must beat persistence (V3-EXQ-1062a found
+    it did not, 6/6), otherwise there is no forecast whose confidence could matter. DO NOT build in
+    V3. DO NOT queue an experiment. Route to /governance for a V3-vs-V4 routing decision: the claim
+    is a design constraint on v3-phase ARC-052, but has no producer to test until a per-stream harm
+    precision head and a better-than-persistence harm forecast both exist. REGISTRATION 2026-09-24
+    (chip-20260924-mech586-register, orchestrator claims batch): staged text applied verbatim from the
+    intake sec 6; what_would_answer NOT yet written -- the full draft (P1-P3 preconditions, CONFIRMING,
+    FALSIFYING, SUBSTRATE) is in evidence/planning/thought_digestion_staged_2026-09-24_from_components_to_functional_organism.md
+    Wave 1 and is draft-only pending the user''s approval to apply it verbatim. Registration is not
+    build authorisation.'

@@ -6,12 +6,12 @@
 **Digestion drafts:** `evidence/planning/thought_digestion_staged_2026-09-24_from_components_to_functional_organism.md` (draft-only; not applied)
 **Orchestrator execution prompt (special output requested by the user):** `evidence/planning/orchestrator_execution_prompt_2026-09-24_functional_organism_path.md`
 
-**Registration status: STAGED, NOT APPLIED.** One narrow claim is recommended (section 6). It was not
-written to `claims.yaml` in this pass. `task_claim.py` arbitration made the active `/governance` session
-`governance-20260924-workset` (claimed 06:00:33Z) the owner of `REE_assembly/docs/claims/claims.yaml`
-and `WORKSPACE_STATE.md`, so this session stopped short of both files. The full YAML is in section 6,
-ready to apply once that claim closes. Re-check the max MECH id at write time. It was MECH-585 at 07:20Z,
-so `MECH-586` is provisional only.
+**Registration status: REGISTERED as MECH-586 (2026-09-24, chip-20260924-mech586-register).** The
+section 6 YAML was applied verbatim to `claims.yaml` (id MECH-586 confirmed free at write time; max was
+MECH-585), with `location: docs/architecture/precision_control.md#mech-586` and a registration line in
+`notes`. It was originally staged, not applied, because `governance-20260924-workset` owned
+`claims.yaml` during this intake pass. The digestion `what_would_answer` draft is NOT yet applied;
+it awaits the user's approval.
 
 ## 1. Verbatim prompt
 

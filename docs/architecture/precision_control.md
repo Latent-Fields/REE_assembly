@@ -221,6 +221,34 @@ that internal formula and routing table.
 
 ---
 
+<a id="mech-586"></a>
+## Harm-Forecast Uncertainty Redirects, Does Not Discount (MECH-586)
+
+**Claim Type:** mechanism_hypothesis
+**Status:** candidate / substrate_conditional -- DO NOT build in V3; DO NOT queue an experiment
+
+Low confidence in a hazard forecast may lower that forecast's authority to UPDATE beliefs, and may
+route control toward investigation, a shorter trusted planning horizon, or preservation of
+alternatives (the MECH-485 orient/survey leg). It must not by itself lower the weight that the
+predicted adverse outcome carries in E3 candidate ranking: uncertain danger must not become cheap
+danger. Update-authority precision, prediction confidence and adverse-outcome cost are three
+separable quantities at the E3 integration boundary.
+
+This is a boundary on ARC-052 (`harm_precision_weighting`) half (A) as written -- "E3 weights inputs
+by exp(-log_sigma)" would discount a low-precision harm forecast on the COST term -- and on SD-PP-B11
+(registration-only harm-reliability module). It should be read before either one's E3 harm-weighting
+half is built. ARC-052's precision-estimation half (B, V3-EXQ-977) and its attribution/commit-gating
+use are untouched. Distinct from MECH-485 (where low confidence routes), MECH-510 (prediction vs
+error precision; this claim uses its update-authority side), MECH-454 (own-option preservation, not
+harm) and MECH-388 (information-gathering pressure, one of the redirect consumers).
+
+Testability is substrate-blocked: no harm encoder emits (mu, log_sigma), and the harm-forward
+forecast does not yet beat persistence (V3-EXQ-1062a, 6/6 cells). Draft falsifier:
+`evidence/planning/thought_digestion_staged_2026-09-24_from_components_to_functional_organism.md`
+(Wave 1). Source: `docs/thoughts/2026-09-24_from_components_to_functional_organism.md` sec 5.3.
+
+---
+
 ## Open Questions
 
 None noted in preserved sources.
@@ -234,6 +262,7 @@ None noted in preserved sources.
 - MECH-055
 - MECH-510 (Generative-vs-error precision routing)
 - MECH-511 (Deep-update eligibility function)
+- MECH-586 (Harm-forecast uncertainty redirects, does not discount)
 
 ## References / Source Fragments
 
