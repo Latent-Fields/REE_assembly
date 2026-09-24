@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-23T18:35:00Z",
+  "last_review_utc": "2026-09-24T07:35:07Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1343,7 +1343,13 @@
     "v3_exq_1062a_mech055_affect_channel_separation_postshift",
     "v3_exq_1075_sdppb5_action_sensitivity_validation",
     "v3_exq_1043b_mech537_communication_subspace_randrank",
-    "v3_exq_1079_sdppb10_alphaworld_operating_point_probe"
+    "v3_exq_1079_sdppb10_alphaworld_operating_point_probe",
+    "v3_exq_1080_contamination_truncation_prevalence_probe",
+    "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe",
+    "v3_exq_1078_inv069_zself_coherence_unsettled",
+    "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation",
+    "v3_exq_1012c_e3_commensurability_eligibility_stage_validation",
+    "v3_exq_1077_sdppb9_harm_head_undertrain_probe"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4349,7 +4355,13 @@
     "v3_exq_1062a_mech055_affect_channel_separation_postshift_20260923T002356Z_v3",
     "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
     "v3_exq_1043b_mech537_communication_subspace_randrank_20260922T204547Z_v3",
-    "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3"
+    "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3",
+    "v3_exq_1080_contamination_truncation_prevalence_probe_20260924T000105Z_v3",
+    "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3",
+    "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+    "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
+    "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
+    "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7191,6 +7203,28 @@
           ],
           "why": "diagnostic PASS with NO confirmed autopsy -- landed 18:20:46Z, after this cycle Step 1.5 set was computed. Needs /failure-autopsy before any governance action. Step 1.5 route B: reported, NOT chipped."
         },
+        {
+          "run_id": "v3_v3_exq_1066_runner_error_20260920T150823Z_v3",
+          "queue_id": "V3-EXQ-1066",
+          "claim_ids": [],
+          "why": "ERROR manifest -- routes to /diagnose-errors, never autopsied. Expected to stay pending."
+        }
+      ]
+    },
+    {
+      "utc": "2026-09-24T07:35:07Z",
+      "session": "governance-20260924",
+      "cycle": "governance 2026-09-24 (adopted from stalled governance-20260924-workset)",
+      "runs_reviewed": [
+        "v3_exq_1080_contamination_truncation_prevalence_probe_20260924T000105Z_v3",
+        "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3",
+        "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+        "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
+        "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
+        "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3"
+      ],
+      "skim_outcome": "PASS skim not applicable: all six runs are DIAGNOSTIC-purpose (four claim-free, 1078 INV-069 and 1012c MECH-439 claim-tagged diagnostics), each adjudicated by a confirmed failure_autopsy_V3-EXQ-<id>_2026-09-24 (drafted in staging mode by governance-20260924-workset, confirmed at this cycle's interactive gate). No claim-tagged EVIDENCE PASS this cycle.",
+      "still_pending": [
         {
           "run_id": "v3_v3_exq_1066_runner_error_20260920T150823Z_v3",
           "queue_id": "V3-EXQ-1066",

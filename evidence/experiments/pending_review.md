@@ -1,47 +1,9 @@
 # Pending Experiment Review
 
-Generated: `2026-09-24T06:04:23Z`  
-Last review: `2026-09-23T18:35:00Z`  
-Scanned: 2985 claim_evidence entries considered (3004 already reviewed), 4875 manifest file(s) on disk.  
-Pending: **7** item(s) -- 4 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 6 diagnostic run(s) with no confirmed autopsy
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3` | 2026-09-23T18:46 | (no claim tags) | — |
-| `v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3` | 2026-09-24T04:50 | (no claim tags) | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` | 2026-09-23T18:20 | INV-069 |
-| `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` | 2026-09-23T21:53 | MECH-439 |
-| `v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3` | 2026-09-23T22:24 | (no claim tags) |
-| `v3_exq_1080_contamination_truncation_prevalence_probe_20260924T000105Z_v3` | 2026-09-24T00:01 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` | PASS | arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined|arm_b_sign_locked_gap_above_noise_non_contributory | **vacuous_pass** |
-| `v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3` | PASS | sleep_head_change_reaches_e3_ranking__rollout_yes__curiosity_undetermined | **precondition_unmet** |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3` | PASS | arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined|arm_b_sign_locked_gap_above_noise_non_contributory |
-| `v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3` | FAIL | active_error_removed_AMBIGUOUS |
-| `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` | PASS | commensurate_at_eligibility_both_regimes |
-| `v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3` | PASS | sleep_head_change_reaches_e3_ranking__rollout_yes__curiosity_undetermined |
-| `v3_exq_1080_contamination_truncation_prevalence_probe_20260924T000105Z_v3` | PASS | contamination_truncation_present_verdicts_robust_no_reruns_owed |
-| `v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3` | FAIL | margin_lowers_action_read |
+Generated: `2026-09-24T07:35:19Z`  
+Last review: `2026-09-24T07:35:07Z`  
+Scanned: 2985 claim_evidence entries considered (3010 already reviewed), 4875 manifest file(s) on disk.  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 

@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "mech005-science-20260922-exq-1073",
-  "last_updated_utc": "2026-09-23T18:57:30Z",
+  "last_seen_session": "governance-20260924",
+  "last_updated_utc": "2026-09-24T07:33:28Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -5939,12 +5939,12 @@
         "crf-availability-maintenance (Root D CRF gate-lockout CLOSED 654f -- isolates B as the residual)",
         "modulatory-bias-selection-authority (the channel whose range reaches the accumulator but cannot move the F-dominated argmin)",
         "rank-preserving F->eligibility demotion lever build (MECH-448 lead) -- BUILT 2026-06-20 (ree-v3 main 4c9b3c9; lever in ree-v3/ree_core/predictors/e3_selector.py, no-op default) + VALIDATED 2026-06-21 (V3-EXQ-689d PASS all 4 load-bearing criteria: committed-class entropy 0.938 strict-above controls on 2/3, rank-preserving 3/3, C_SAFETY met) + PROMOTED candidate->provisional (governance-cycle-20260621T0639Z, exp_conf 0.775). Was depends_on_unresolved[0]; resolved here 2026-06-21.",
-        "MECH-449 Go/No-Go eligibility governance falsifier V3-EXQ-689g -- BUILT 2026-06-21 (no-op default) + RAN PASS/supports 2026-06-21T20:55Z (run_id v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3: conversion_rate_per_seed [1.0,1.0,1.0], 0 safety violations, specificity_pass -- the active No-Go converts a channel rank-preserving demotion structurally cannot) + PROMOTED MECH-449 candidate->provisional (governance 2026-06-22, decision_log appended). Was depends_on_unresolved[0]; RESOLVED here 2026-07-06 (session ecstatic-pare-45f7ad reconcile: the only prior unresolved item, the 689g falsifier run, has scored)."
+        "MECH-449 Go/No-Go eligibility governance falsifier V3-EXQ-689g -- BUILT 2026-06-21 (no-op default) + RAN PASS/supports 2026-06-21T20:55Z (run_id v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3: conversion_rate_per_seed [1.0,1.0,1.0], 0 safety violations, specificity_pass -- the active No-Go converts a channel rank-preserving demotion structurally cannot) + PROMOTED MECH-449 candidate->provisional (governance 2026-06-22, decision_log appended). Was depends_on_unresolved[0]; RESOLVED here 2026-07-06 (session ecstatic-pare-45f7ad reconcile: the only prior unresolved item, the 689g falsifier run, has scored).",
+        "E3 channel-scale normalisation (rung 3) -- BUILT ree-v3 c47b885 + VALIDATED at the eligibility stage by V3-EXQ-1012c (2026-09-23, PASS, confirmed failure_autopsy_V3-EXQ-1012c_2026-09-24): R_ON 0.41-0.86 fed / 0.44-0.62 starved vs R_OFF <= 0.104, instrument clean. Scope: 3 of 5 channels (benefit/goal never entered); eligibility stage only (final pick within E unvalidated); 936 regime under the open contextmemory write-path defect. Target RATIFIED by the user at /governance 2026-09-24 (GFLAG-0297 eligibility-stage target replaces the GFLAG-0234 commit-flip + 1012a placebo target). Resolved here 2026-09-24. PRIOR unresolved text, verbatim: E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) and BUILT: ree-v3 c47b885 (2026-09-07, chip-20260902-e3-channel-commensurability done). Residual = the validation run RAN (V3-EXQ-1012a, 2026-09-14, confirmed failure_autopsy_V3-EXQ-1012a_2026-09-14) and does NOT validate the rung -- the instrument is sound (intra-tick shadow OFF/ON primary-argmin flip rate, self-check clean 8/8) but the target has no reference value (bar = own 2x sd, no placebo-rescaling arm); the 936-family / 654h-class refusal STAYS in place pending a reference-bearing successor (placebo differential rescaling matched to the operator's log-spread; final_commit_by_primary_frac recorded per cell)."
       ],
       "depends_on_unresolved": [
         "SD-018 directional-field amend -- LANDED (ree-v3 028a625e09 + REE_assembly baf4941661; substrate entry amend_implemented_pending_validation). Validation V3-EXQ-978 (2026-09-03) FAILed its behavioural precondition (above-random foraging still unmet; confirmed failure_autopsy_V3-EXQ-978_2026-09-03) -- residual = field-head validation once the encoder-side locus (zworld_actor_adequacy_locus H-F) is adjudicated.",
-        "SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). Leg B DECIDED 2026-09-08T19:50:33Z (user; decision_log.v1.jsonl#2026-09-08T19:50:33Z): same-start denominator -> H-readout-saturation CONFIRMED, the 0.002 e1coe_score_var bar is partly an instrument target. Residual = re-register the bar relative to same-start real-endpoint variance (per-seed) on the SD-e1 lineage, then re-assess MECH-135/INV-088 retest-readiness. Prior history retained: ITEM 2 validation V3-EXQ-976 (2026-09-02, mixed/damping); ITEM 3 validation V3-EXQ-1000 (2026-09-03): cr_ratio(h=1) CLEARED 6/6, e1coe_score_var 36x-1700x short.",
-        "E3 channel-scale normalisation (fallback_ladder rung 3) -- V3-REQUIRED by user decision 2026-09-04 (REE_assembly d58b700204; GFLAG-0116 + GFLAG-0051 resolved) and BUILT: ree-v3 c47b885 (2026-09-07, chip-20260902-e3-channel-commensurability done). Residual = the validation run RAN (V3-EXQ-1012a, 2026-09-14, confirmed failure_autopsy_V3-EXQ-1012a_2026-09-14) and does NOT validate the rung -- the instrument is sound (intra-tick shadow OFF/ON primary-argmin flip rate, self-check clean 8/8) but the target has no reference value (bar = own 2x sd, no placebo-rescaling arm); the 936-family / 654h-class refusal STAYS in place pending a reference-bearing successor (placebo differential rescaling matched to the operator's log-spread; final_commit_by_primary_frac recorded per cell)."
+        "SD-e1-rollout-consistency-training var-bar portfolio -- RAN as V3-EXQ-1006 (2026-09-06; confirmed failure_autopsy_dv-headroom-diagnostics-cluster_2026-09-07). Leg B DECIDED 2026-09-08T19:50:33Z (user; decision_log.v1.jsonl#2026-09-08T19:50:33Z): same-start denominator -> H-readout-saturation CONFIRMED, the 0.002 e1coe_score_var bar is partly an instrument target. Residual = re-register the bar relative to same-start real-endpoint variance (per-seed) on the SD-e1 lineage, then re-assess MECH-135/INV-088 retest-readiness. Prior history retained: ITEM 2 validation V3-EXQ-976 (2026-09-02, mixed/damping); ITEM 3 validation V3-EXQ-1000 (2026-09-03): cr_ratio(h=1) CLEARED 6/6, e1coe_score_var 36x-1700x short."
       ],
       "unblocks_claims": [
         "ARC-062",
@@ -5986,9 +5986,11 @@
         {
           "rung": 3,
           "lever": "divisive_normalization_pooled_denominator",
-          "tractability": "V4-leaning (needs per-channel score decomposition not available at the select site; the V3-tractable std-basis additive form already FAILED 569h)",
-          "status": "recoup-to-V3 if the structural bound caps committed entropy below the proposer ceiling",
-          "note": "phase-label-follows-dependency: if REQUIRED to lift a V3 closure node, recouped to V3 by definition."
+          "tractability": "V3 (built; E3 channel commensurability operator, default per its SD)",
+          "status": "BUILT (ree-v3 c47b885) + VALIDATED at the eligibility stage (V3-EXQ-1012c PASS 8/8, ratified target, 2026-09-24); scope 3 channels / eligibility stage / 936 regime",
+          "note": "phase-label-follows-dependency: if REQUIRED to lift a V3 closure node, recouped to V3 by definition.",
+          "status_prior_2026_09_24": "recoup-to-V3 if the structural bound caps committed entropy below the proposer ceiling",
+          "tractability_prior_2026_09_24": "V4-leaning (needs per-channel score decomposition not available at the select site; the V3-tractable std-basis additive form already FAILED 569h)"
         },
         {
           "rung": 4,
@@ -6294,21 +6296,23 @@
           "run_id": "v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3",
           "experiment_type": "v3_exq_571c_e3_variance_monopoly_presence_936_regime",
           "metric": "Within-tick cross-candidate variance share in the 936 regime: a single channel holds 0.98-0.99999 in 15 of 16 cells (residue_weighted in all 8 fed cells, F/harm_weighted in 7 of 8 starved cells at 0.994-0.9998; sole exception B2/seed46 at 0.7379 with 3 live channels). Every competing channel clears the absolute liveness floor 1e-12 yet falls below the 1e-3 relative-share floor, so n_live_channels=1 red-gated all four arms and the run scored nothing.",
-          "target": ">=2 E3 score channels simultaneously above a 1e-3 relative cross-candidate share in the 936 regime, so that 'which channel holds authority' is a contest rather than a restatement of units -- the precondition every MECH-439 / ARC-062 channel-authority experiment silently assumes. [AMENDED 2026-09-10 (/governance GFLAG-0234, option A, user-approved)] the ORIGINAL target above is an ARITHMETIC IDENTITY of the operator it is meant to validate. The operator divides each channel's per-candidate term by an EMA of THAT CHANNEL'S OWN cross-candidate SD, and the DV is the cross-candidate variance partition over those same post-division terms (e3_selector.py's own comment: 'EFFECTIVE (post-commensurability) terms -- what actually entered the score'). Var(term/s) = Var(term)/s^2 ~= 1 per channel, so shares tend to 1/k and every channel above the 1e-12 ABSOLUTE floor clears the 1e-3 RELATIVE floor by three orders of magnitude. NO EXPERIMENT ADOPTING THE ORIGINAL TARGET CAN FAIL; the build-time ON row (n_live 2, top_share 0.500000 = exactly 1/2) is the identity's fingerprint, not an effect. AMENDED TARGET: a SELECTION-level DV -- commit-flip rate under shadow OFF/ON scoring on the same tick and the same candidate set -- which is what the spec's own argmin-invariance argument is actually about. STATUS OF THE RUNG: IMPLEMENTED but UNVALIDATABLE AS SPECIFIED, which differs materially from 'validation owed'. MECH-439's direction does NOT move: nothing here says the operator does or does not work, only that the registered target cannot tell. The owed validation V3-EXQ-1012 is authored and smoke-green but sits UNQUEUED as a .blocked scratch file and must NOT be queued against the original target. Also refuted, separately: the natural control gate 'the monopoly means n_live==1' is a misreading of a worst-cell verdict -- 571c's env_starved_warmup arm measures n_live 1/2/1/3 across seeds 42/43/45/46 and n_live==1 holds in 8 of its 16 cells (the flag says 7; either figure refutes it). Derivation, citations and successor recipe: evidence/planning/exq1012_blocked_readiness_target_tautological_20260908.md. Amending a CONFIRMED autopsy's pre-registered acceptance condition was done under explicit governance authority; the original text is preserved verbatim everywhere it appears and all four carriers were amended together: docs/architecture/sd_e3_channel_commensurability.md, evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.md, evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json and evidence/planning/substrate_queue.json.",
-          "resolved": "open",
+          "target": ">=2 E3 score channels simultaneously above a 1e-3 relative cross-candidate share in the 936 regime, so that 'which channel holds authority' is a contest rather than a restatement of units -- the precondition every MECH-439 / ARC-062 channel-authority experiment silently assumes. [AMENDED 2026-09-10 (/governance GFLAG-0234, option A, user-approved)] the ORIGINAL target above is an ARITHMETIC IDENTITY of the operator it is meant to validate. The operator divides each channel's per-candidate term by an EMA of THAT CHANNEL'S OWN cross-candidate SD, and the DV is the cross-candidate variance partition over those same post-division terms (e3_selector.py's own comment: 'EFFECTIVE (post-commensurability) terms -- what actually entered the score'). Var(term/s) = Var(term)/s^2 ~= 1 per channel, so shares tend to 1/k and every channel above the 1e-12 ABSOLUTE floor clears the 1e-3 RELATIVE floor by three orders of magnitude. NO EXPERIMENT ADOPTING THE ORIGINAL TARGET CAN FAIL; the build-time ON row (n_live 2, top_share 0.500000 = exactly 1/2) is the identity's fingerprint, not an effect. AMENDED TARGET: a SELECTION-level DV -- commit-flip rate under shadow OFF/ON scoring on the same tick and the same candidate set -- which is what the spec's own argmin-invariance argument is actually about. STATUS OF THE RUNG: IMPLEMENTED but UNVALIDATABLE AS SPECIFIED, which differs materially from 'validation owed'. MECH-439's direction does NOT move: nothing here says the operator does or does not work, only that the registered target cannot tell. The owed validation V3-EXQ-1012 is authored and smoke-green but sits UNQUEUED as a .blocked scratch file and must NOT be queued against the original target. Also refuted, separately: the natural control gate 'the monopoly means n_live==1' is a misreading of a worst-cell verdict -- 571c's env_starved_warmup arm measures n_live 1/2/1/3 across seeds 42/43/45/46 and n_live==1 holds in 8 of its 16 cells (the flag says 7; either figure refutes it). Derivation, citations and successor recipe: evidence/planning/exq1012_blocked_readiness_target_tautological_20260908.md. Amending a CONFIRMED autopsy's pre-registered acceptance condition was done under explicit governance authority; the original text is preserved verbatim everywhere it appears and all four carriers were amended together: docs/architecture/sd_e3_channel_commensurability.md, evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.md, evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.json and evidence/planning/substrate_queue.json. [AMENDED 2026-09-24 (/governance session governance-20260924, user-RATIFIED GFLAG-0297 eligibility-stage target)] RATIFIED TARGET: eligibility-stage per-channel knockout-authority ratio R_ON (min/max tick-mean Jaccard) >= 0.25 in >= 3 of 4 seeds in BOTH regimes, with same-tick OFF and ORACLE anchors (design: evidence/planning/gflag0297_mech439_rung3_null_design.md). The GFLAG-0234 commit-flip text above is preserved verbatim but is superseded as the registered target; no run validated it.",
+          "resolved": "resolved",
           "resolved_note_2026_09_16": "LEFT OPEN DELIBERATELY -- revised from the first draft's `superseded` after Step 7c red-team F7 judged that an overreach, and the judgement is accepted. V3-EXQ-1012a supplies an INSTRUMENT for the target that GFLAG-0234 amended onto this item, and that instrument is sound; but the skill's `superseded` means a later, more specific run REPLACED the prior item's read, and nothing here replaces 571c's read -- the monopoly finding stands untouched and the validation the item owes is still owed, now for a second reason (no reference value for the flip rate). Recorded as CONTEXT on the item rather than as a state change: governance should note that the amended target now has a working instrument and still needs a null before it can validate anything.",
           "run_role": "post_build",
-          "run_role_basis": "R3 run > entry.implementation_log.utc"
+          "run_role_basis": "R3 run > entry.implementation_log.utc",
+          "resolved_note": "Condition MET 2026-09-24 (user ratified at /governance): the same ratification AND on the (2b) carrier amend: resolved against the RATIFIED eligibility-stage target, not against the item's currently-registered GFLAG-0234 commit-flip target (which no run validated -- 1012a was confirmed non-validating). 571c's failure mode -- one channel holding 0.98-0.99999 of cross-candidate variance, so channel authority is decided by units -- is closed for runs with the operator ON by the build (ree-v3 c47b885) and now validated where it bears on the executed action: R_OFF 0.000-0.104 (the 571c monopoly, reproduced as the anchor) vs R_ON 0.41-0.86 on the same ticks. The raw-substrate monopoly with the operator OFF is unchanged, which is why this is 'resolved by a build' rather than 'superseded'. Scope as above (3 channels, eligibility stage)."
         },
         {
           "run_id": "v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3",
           "experiment_type": "v3_exq_1012a_e3_commensurability_selection_level_regime_validation",
           "metric": "Primary-argmin commit-flip rate under intra-tick shadow OFF/ON rescoring, 4 seeds per arm, 158-258 genuine fresh selections per cell: fed 0.8214 (per-seed 0.9856 / 0.7413 / 0.7132 / 0.8455), starved 0.7242 (0.9177 / 0.3400 / 0.9366 / 0.7024). Self-check replay clean in 8 of 8 cells. The criterion's bar is the arm's own 2 x sd (fed 0.2137, starved 0.4803), i.e. derived from the four samples it tests, and there is no placebo-rescaling arm, so the rate has no reference value.",
           "target": "The operator's primary-argmin flip rate should be distinguishable from that of a PLACEBO differential rescaling matched to its own log-spread but carrying no commensurability content, on a pre-registered margin -- not merely above a bar derived from its own between-seed variance. Additionally: `final_commit_by_primary_frac` recorded per cell, so a primary-stage flip can be related to the executed action.",
-          "resolved": "open",
+          "resolved": "resolved",
           "source_autopsy": "failure_autopsy_V3-EXQ-1012a_2026-09-14",
           "run_role": "post_build",
-          "run_role_basis": "R3 run > entry.implementation_log.utc"
+          "run_role_basis": "R3 run > entry.implementation_log.utc",
+          "resolved_note": "Condition MET 2026-09-24 (user ratified at /governance): the ratification in implementation_hint (1). The item's owed follow-on -- a reference-bearing successor with final_commit_by_primary_frac recorded per cell -- was delivered by V3-EXQ-1012c (OFF + ORACLE same-tick anchors; final_commit_by_primary_frac 0.013-0.124), with the placebo construction replaced on the GFLAG-0297 finding that every primary-stage null is non-validating. If governance declines to ratify, leave it open."
         }
       ],
       "metric_trajectory": {
@@ -6339,7 +6343,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-20260916",
+      "last_seen_session": "governance-20260924",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -6515,7 +6519,15 @@
         "experiment_queued": false,
         "audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json"
       },
-      "governance_2026_09_23": "GFLAG-0331 item 1: status_phase build_owed -> closed, consistent with implementation_status wontfix (GFLAG-0293 user decision 2026-09-16) and the status_note 'nothing for /implement-substrate to build'."
+      "governance_2026_09_23": "GFLAG-0331 item 1: status_phase build_owed -> closed, consistent with implementation_status wontfix (GFLAG-0293 user decision 2026-09-16) and the status_note 'nothing for /implement-substrate to build'.",
+      "validation_2026_09_23_v3_exq_1012c": {
+        "run_id": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
+        "experiment_type": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation",
+        "metric": "Eligibility-stage per-channel knockout authority ratio R (min/max tick-mean Jaccard) with the operator ON: fed 0.653/0.599/0.408/0.858, starved 0.437/0.454/0.531/0.620 (8/8 >= 0.25); same-tick OFF anchor fed 0.000/0.001/0.000/0.000, starved 0.047/0.043/0.104/0.062; ORACLE (tick-local SD) fed 0.726/0.618/0.833/0.860, starved 0.651/0.594/0.685/0.961. Instrument clean (0/0/0 failures; I2 mismatch 0.0). 3 content channels per cell.",
+        "target": "R_ON >= 0.25 in >= 3 of 4 seeds in BOTH regimes (GFLAG-0297 design, ~'no live channel runs > ~5x the others at the eligibility stage')",
+        "result": "MET"
+      },
+      "governance_2026_09_24": "/governance session governance-20260924 (adopted from stalled governance-20260924-workset): user RATIFIED the GFLAG-0297 eligibility-stage readiness target as rung 3's acceptance condition; rung 3 VALIDATED at the eligibility stage (V3-EXQ-1012c). The 936-family / 654h-class conversion-falsifier refusal that depends_on_unresolved[2] gated is RELEASED, SCOPED: only for falsifiers run in this same regime with the operator ON and the 3-channel scope stated. ready STAYS false (depends_on_unresolved items SD-018 field-head validation and SD-e1 var-bar re-registration untouched). Named follow-on (not built): a redesigned conversion falsifier with the operator ON (new EXQ; restate MECH-439's confirming branch first). Not recommended: reading 1012c as MECH-439 evidence; another lettered MECH-439 retest on the same substrate."
     },
     {
       "sd_id": "v4_loop_segregation",
@@ -12141,40 +12153,58 @@
       "validation_experiment": "V3-EXQ-1073"
     },
     {
-      "node_class": "complex (probe-gated)",
-      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "status": "closed_premise_false__default_consumer_exists__GFLAG_0437__V3_EXQ_1081",
       "ready": false,
       "registration_is_not_build_authorisation": true,
       "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
-      "priority": "high",
+      "priority": 3,
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
-      "last_seen_session": "governance-flags-mid-20260923-apply",
+      "last_seen_session": "governance-20260924",
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3",
+          "experiment_type": "v3_exq_1081_sdppb1_world_forward_ranking_reach_probe",
+          "metric": "E3 top-1 first-action-class change rate vs a bit-exact NULL twin. SLEEP_BOTH 0.048/0.122/0.448; SLEEP_ROLLOUT_ONLY 0.048/0.114/0.454; SLEEP_CURIOSITY_ONLY 0.000/0.008/0.000; FULL_SLEEP = SLEEP_BOTH; NOISE_MATCHED 0.067/0.057/0.451; REINIT_BOTH 0.248/0.228/0.644; REINIT_CURIOSITY_ONLY 0.010/0.016/0.006 (seeds 42/123/456)",
+          "target": "reach bar 0.05 excess over NULL on >= 2/3 seeds -- MET via the default rollout route; the premise 'no route' is refuted",
+          "resolved": "resolved",
+          "source": "failure_autopsy_V3-EXQ-1081_2026-09-24"
+        }
+      ],
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/precision_provenance_substrate_spec.md",
       "sd_id": "SD-PP-B1-world-forward-behavioural-consumer",
-      "title": "No default-on behavioural consumer of e2.world_forward: the world-forward head has no native route to E3 committed action, so every consolidation claim on it (MECH-572/573/574, INV-063 leg B) is capped at mechanistic/local evidence",
+      "title": "CLOSED 2026-09-24 -- premise false (GFLAG-0437, V3-EXQ-1081): e2.world_forward already reaches E3 candidate ranking by default through HippocampalModule -> E2.rollout_with_world -> E3.score_trajectory; no consumer build is owed",
       "unblocks_claims": [
         "MECH-572",
         "MECH-573",
         "MECH-574",
-        "INV-063",
-        "ARC-137"
+        "INV-063"
       ],
       "source_audit": "evidence/planning/precision_provenance_substrate_necessities_20260922.md",
-      "implementation_hint": "e3_selector.py's only reference to world_forward is a docstring (line 1286). Existing consumers are ALL default-off levers: MECH-314a curiosity_candidate_source='e2_world_forward' (agent.py ~6403), MECH-353 blocked-agency comparator (agent.py ~4349), SD-063 deficit path (agent.py ~4658), escape-affordance linker (agent.py ~5196). E3 plans through E1 proposer rollouts. Cheapest probe: enable the MECH-314a source in ALL arms and measure whether a post-sleep head change alters E3's candidate ranking on a fixed probe set. Do NOT switch a consumer on inside an unrelated experiment -- it changes the waking regime of everything that inherits it.",
+      "implementation_hint": "NO BUILD OWED. The row's gap does not exist: rollout_with_world calls world_forward at every rollout step (ree_core/predictors/e2_fast.py ~:822, unconditional) and E3 scores those world_states. V3-EXQ-1081 measured it: a random world head moves the E3 top-1 on 23-64% of ticks through that route alone; one sleep cycle's head change (rel-L2 ~3%, max |d| = the 8 x 1e-3 optimiser bound) moves it on 5-45% (2/3 seeds at a 5% bar); the reach is NOT SPECIFIC to the sleep direction at this norm (a norm-matched random direction clears the bar on 3/3; sleep > noise on 1/3 seeds, seed 123 15 vs 7 ticks; one noise draw per seed). The implementation_hint's 'cheapest probe via MECH-314a curiosity_candidate_source=e2_world_forward' is the WRONG consumer: at curiosity_novelty_weight 0.05 that route has no top-1 authority over head changes (<= 1.6% of ticks under a random head). Do not re-open this row to pick a canonical consumer -- the native path already exists. What still caps organism-level evidence for MECH-572/573/574 and INV-063 leg B is NOT a missing route: (i) the sleep update degrades the head (3/3 seeds here, at alpha_world 0.9), (ii) head readability (SD-PP-B5 / MECH-573), (iii) E3 evaluators untrained in any P0-only protocol.",
       "falsifier_requirement_satisfied": "Organism-level validation (the intake's post-sleep organism assay; user brief section 11) is impossible without it; V3-EXQ-1073 pre-registers its Result-4 cap because of this row.",
-      "event_or_manipulation_produced": "NOT PRODUCED -- this is the gap.",
-      "dv_or_instrument_exposed": "NOT EXPOSED -- this is the gap.",
-      "ready_blocked_by": "/governance must decide which consumer becomes the canonical native path; it is an architecture choice (ARC-137 typed transformations), not a science-session build.",
+      "event_or_manipulation_produced": "RETRACTED 2026-09-24 (GFLAG-0437, V3-EXQ-1081, failure_autopsy_V3-EXQ-1081_2026-09-24): NOT PRODUCED -- this is the gap.",
+      "dv_or_instrument_exposed": "RETRACTED 2026-09-24 (GFLAG-0437, V3-EXQ-1081, failure_autopsy_V3-EXQ-1081_2026-09-24): NOT EXPOSED -- this is the gap.",
+      "ready_blocked_by": "RETRACTED 2026-09-24 (GFLAG-0437, V3-EXQ-1081, failure_autopsy_V3-EXQ-1081_2026-09-24): /governance must decide which consumer becomes the canonical native path; it is an architecture choice (ARC-137 typed transformations), not a science-session build.",
       "authority": "REGISTRATION ONLY by the science session compassionate-pike-fe9174 while tracing the information-loss boundary for the precision-provenance experiment (thought_intake_2026-09-22). The user's build authorisation covered the producers (SD-PP-1..4) only; this row is minted so the necessity is tracked in a machine-readable worklist rather than prose (queue-experiment Step 2.5 STOP-GATE route 2b rationale). Not a build authorisation; /governance adjudicates.",
-      "why_no_existing_owner": "No claim or SD registers a native behavioural consumer for the E2 world-forward head; INV-063 leg B has the same gap and it has never been written down as a substrate item.",
-      "status_phase": "probe_gated",
-      "governance_2026_09_23": "GFLAG-0413 option A (user-accepted 2026-09-23, governance-flags-mid-20260923): the B1 probe is COMMISSIONED -- arm the MECH-314a curiosity_candidate_source='e2_world_forward' source in all arms and measure whether a post-sleep world-forward head change moves E3 ranking. Owned by a /queue-experiment probe chip spawned by that governance session; node_class set to complex (probe-gated) until the probe reads out. B2-B4 and B6-B8 stay REGISTRATION_ONLY. Registration and probe commission are not build authorisation."
+      "why_no_existing_owner": "RETRACTED 2026-09-24 (GFLAG-0437, V3-EXQ-1081, failure_autopsy_V3-EXQ-1081_2026-09-24): No claim or SD registers a native behavioural consumer for the E2 world-forward head; INV-063 leg B has the same gap and it has never been written down as a substrate item.",
+      "status_phase": "closed",
+      "governance_2026_09_23": "GFLAG-0413 option A (user-accepted 2026-09-23, governance-flags-mid-20260923): the B1 probe is COMMISSIONED -- arm the MECH-314a curiosity_candidate_source='e2_world_forward' source in all arms and measure whether a post-sleep world-forward head change moves E3 ranking. Owned by a /queue-experiment probe chip spawned by that governance session; node_class set to complex (probe-gated) until the probe reads out. B2-B4 and B6-B8 stay REGISTRATION_ONLY. Registration and probe commission are not build authorisation.",
+      "title_retracted_2026_09_24": "No default-on behavioural consumer of e2.world_forward: the world-forward head has no native route to E3 committed action, so every consolidation claim on it (MECH-572/573/574, INV-063 leg B) is capped at mechanistic/local evidence",
+      "node_class_retracted_2026_09_24": "complex (probe-gated)",
+      "implementation_hint_retracted_2026_09_24": "e3_selector.py's only reference to world_forward is a docstring (line 1286). Existing consumers are ALL default-off levers: MECH-314a curiosity_candidate_source='e2_world_forward' (agent.py ~6403), MECH-353 blocked-agency comparator (agent.py ~4349), SD-063 deficit path (agent.py ~4658), escape-affordance linker (agent.py ~5196). E3 plans through E1 proposer rollouts. Cheapest probe: enable the MECH-314a source in ALL arms and measure whether a post-sleep head change alters E3's candidate ranking on a fixed probe set. Do NOT switch a consumer on inside an unrelated experiment -- it changes the waking regime of everything that inherits it.",
+      "severity": "cosmetic",
+      "severity_note": "A premise error in a registration-only row; no evidence corrupted. V3-EXQ-1073 cites the false premise in its preregistered Result-4 ceiling (ree-v3 experiments/v3_exq_1073_mech572_precision_provenance_gain.py lines ~194-196 and ~2333-2334: 'no default-on consumer of e2.world_forward').",
+      "substrate_paths": [
+        "ree_core/predictors/e2_fast.py::rollout_with_world",
+        "ree_core/hippocampal/module.py",
+        "ree_core/predictors/e3_selector.py::_get_world_states"
+      ],
+      "unblocks_claims_note": "ARC-137 dropped (red-team): its access-repair readout (executed behaviour and ecological consequence with upstream content held fixed) is untouched by V3-EXQ-1081; the premise correction removes a route objection only."
     },
     {
       "node_class": "complicated (buildable)",
@@ -12296,7 +12326,7 @@
       "priority": "high",
       "added_session": "compassionate-pike-fe9174",
       "added_utc": "2026-09-22T15:15:31Z",
-      "last_seen_session": "governance-pause-20260923-1741",
+      "last_seen_session": "governance-20260924",
       "experiment_queued": true,
       "phase_verdict": "V3-NATIVE",
       "version_scope": "V3-native",
@@ -12307,22 +12337,33 @@
           "metric": "G9 cond-3 waking pe / converged residual = 0.745/0.677/0.674 (needs > 2.0); inverted-rule battery pre-sleep MSE / original = 0.760/0.901/0.881 (a contradiction needs > 1); G4b early surprise fraction 0.033 (needs >= 0.5); skill vs identity -0.071/+0.227/-0.007",
           "target": "cond-3 pe/residual > 2.0 and early surprise fraction >= 0.5 on >= 2/3 seeds; head skill vs identity > 0 on >= 2/3 seeds",
           "resolved": "open",
-          "source": "failure_autopsy_V3-EXQ-1073_2026-09-22.json"
+          "source": "failure_autopsy_V3-EXQ-1073_2026-09-22.json",
+          "note_2026_09_24": "2026-09-24 V3-EXQ-1082: clause (3) of this target (skill vs identity > 0 on >= 2/3) is MET at alpha 0.9 live (+0.35/+0.22/+0.21). Clauses (1)-(2) -- the inverted-rule readouts that originated this entry -- stand for alpha 0.3 only and are re-owed at alpha 0.9 (the recommended probe). Left open deliberately (red-team Step 7c: superseding it would read as closure of the readout still owed)."
         },
         {
           "run_id": "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
           "experiment_type": "v3_exq_1075_sdppb5_action_sensitivity_validation",
           "metric": "Four-rung margin ladder, 3 seeds, frozen 64-row 5-action battery. A1 (ratio > 1.0) seeds: 0/1/2/3 at margin 0.01/0.05/0.10/0.50. A4 (MSE <= 2x OFF) seeds: 3/2/0/0. A3 (conv_rel_drop >= 0.99) seeds: 1/1/0/0 against an ARM_OFF baseline of 1/3. max_mse_inflation 0.92 / 5.90 / 9.63 / 174.19. A2 (skill vs identity) 0/3 at every rung, falling -3.8/-13.3/-36.9/-556.4 mean by rung against ARM_OFF -5.5. passing_rungs empty. DEGENERACY: at M050 the A1-passing ratios are 1.0015/1.0026/1.0109, i.e. the gate's own documented degenerate value, on a destroyed head; max ratio anywhere is 1.0540. The gate guards a degenerate BATTERY (n_distinct_actions >= 2) but not a degenerate HEAD.",
           "target": "One margin rung with A1 met on >= 2/3 seeds BY A MARGIN excluding the degenerate ratio ~1.0 (e.g. ratio >= 1.2) AND a head-health condition (skill_vs_identity no worse than ARM_OFF), together with A4 (MSE <= 2x OFF) on >= 2/3 seeds. A3 must be RE-DENOMINATED ON THE CONTROL (conv_rel_drop >= OFF - 0.01, not an absolute 0.99) or the base first brought to V3-EXQ-1073's 0.998, because ARM_OFF clears the absolute bar on only 1/3 seeds. Separately: add a head-health guard to experiments/_lib/action_sensitivity_gate.py so a destroyed head returns cannot_determine rather than action_sensitive.",
-          "resolved": "open",
-          "source": "failure_autopsy_V3-EXQ-1075_2026-09-23"
+          "resolved": "superseded",
+          "source": "failure_autopsy_V3-EXQ-1075_2026-09-23",
+          "resolved_note": "Same manipulation (same four rungs, same fraction) re-measured by V3-EXQ-1082 at SD-008's operating point on a live battery with an analytic-null DV; the doubly-confounded 1075 reading is replaced by a clean one in the same direction (no rung buys action-sensitivity without destroying reconstruction). 1075's A1 ratio itself was not re-measured -- its own autopsy declared that readout degenerate."
         },
         {
           "run_id": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3",
           "experiment_type": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe",
           "metric": "alpha_world 0.3 vs 0.9: rms_dz_per_dim 0.0073-0.0086 -> 0.0228-0.0261 (3.0-3.1x); head action-read d_act +0.17/+0.23/+0.24 -> +0.39/+0.50/+0.50 (paired-bootstrap CI above 0 on 3/3). BUT model_r2 FALLS 0.8828/0.9214/0.8792 -> 0.7247/0.6795/0.7030 and skill_vs_identity stays negative at every alpha. Battery non-stationary: d_act rows 0-63 = -0.0762/+0.0556/-0.0321 vs rows 448-511 = +0.4049/+0.2964/+0.2903, on a post-death trajectory (health_depleted at step 32/27/22; |world_state| 5.9->39.7 over 600 steps).",
           "target": "A re-validation must set alpha_world >= 0.9 explicitly AND reset on `done` (or record post-death position + world_state norm per battery row) AND report model_r2 alongside any persistence-relative skill, so a baseline collapse is never readable as head improvement.",
-          "resolved": "open"
+          "resolved": "resolved",
+          "resolved_note": "All three conjuncts of its target met by V3-EXQ-1082: alpha_world 0.9 explicit (MECH-307 assert, precondition met), reset on done (0 post-death rows on 15/15 cells), model_r2 recorded beside persistence skill per cell."
+        },
+        {
+          "run_id": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
+          "experiment_type": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation",
+          "metric": "alpha 0.9, live battery. Margin ladder 0.01/0.05/0.10/0.50: lift d_act(ON)-d_act(OFF) negative 12/12 (s42 -0.177/-0.173/-0.246/-0.326; s123 -0.055/-0.094/-0.131/-0.211; s456 -0.046/-0.054/-0.135/-0.217), C1 0/3, A4 MSE 1.07-1.25/3.1-4.2/9.3-11.8/187-202x OFF. ARM_OFF reads its action unaided: d_act 0.341/0.216/0.227 CI>0 3/3, skill_vs_identity +0.35/+0.22/+0.21.",
+          "target": "No margin-form target owed at this operating point (the lever is unneeded where the head already reads). The open fact is the inverted-action-map ratio on the OFF head at alpha 0.9 live, with an alpha 0.3 arm in the same run for attribution.",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1082_2026-09-24.json"
         }
       ],
       "depends_on_unresolved": [],
@@ -12336,7 +12377,7 @@
         "INV-063"
       ],
       "source_audit": "evidence/planning/precision_provenance_substrate_necessities_20260922.md",
-      "implementation_hint": "Measured on 3 seeds by V3-EXQ-1073: the converged world-forward head's pre-sleep MSE on an INVERTED-action-map battery is 0.760/0.901/0.881x its MSE on the original rule, cond-3 waking pe is 0.745/0.677/0.674x the converged residual, and the early post-inversion surprise fraction is 0.033 -- the head barely reads the action. RETRACT this row's title claim that 'a rule inversion produces PE ~4x the converged residual' (an estimate from the register, now measured at <1x). Any falsifier requiring a reliable contradiction of a confident world-model prediction (the intake's F3 anti-self-sealing test, MECH-574's novel-target arm) is unposeable until the head reads its action; MECH-572's own CONFIRMING does NOT require one and stays reachable via a readable-seed step-scale ladder. Candidate remedies (POINTERS CORRECTED 2026-09-23 per failure_autopsy_V3-EXQ-1075 red-team: SD-009 has NO substrate_queue entry, SD-018 is VALIDATED NEGATIVE by V3-EXQ-978, SD-106 is 0/3 -- none of the three is a live encoder route): the contrastive interventional margin form is now MEASURED (V3-EXQ-1075) and does not buy action-sensitivity without destroying reconstruction at any tested margin; the live routes are the fan-out legs in fanout_recommendation. The action-sensitivity readiness gate (experiments/_lib/action_sensitivity_gate.py) IS built and must gate any contradiction-based experiment.",
+      "implementation_hint": "Measured on 3 seeds by V3-EXQ-1073: the converged world-forward head's pre-sleep MSE on an INVERTED-action-map battery is 0.760/0.901/0.881x its MSE on the original rule, cond-3 waking pe is 0.745/0.677/0.674x the converged residual, and the early post-inversion surprise fraction is 0.033 -- the head barely reads the action. RETRACT this row's title claim that 'a rule inversion produces PE ~4x the converged residual' (an estimate from the register, now measured at <1x). Any falsifier requiring a reliable contradiction of a confident world-model prediction (the intake's F3 anti-self-sealing test, MECH-574's novel-target arm) is unposeable until the head reads its action; MECH-572's own CONFIRMING does NOT require one and stays reachable via a readable-seed step-scale ladder. Candidate remedies (POINTERS CORRECTED 2026-09-23 per failure_autopsy_V3-EXQ-1075 red-team: SD-009 has NO substrate_queue entry, SD-018 is VALIDATED NEGATIVE by V3-EXQ-978, SD-106 is 0/3 -- none of the three is a live encoder route): the contrastive interventional margin form is now MEASURED (V3-EXQ-1075) and does not buy action-sensitivity without destroying reconstruction at any tested margin; the live routes are the fan-out legs in fanout_recommendation. The action-sensitivity readiness gate (experiments/_lib/action_sensitivity_gate.py) IS built and must gate any contradiction-based experiment. [2026-09-24, failure_autopsy_V3-EXQ-1082] At SD-008's alpha_world 0.9 on a live battery the untouched world_forward head reads its action (d_act 0.341/0.216/0.227, CI>0 3/3) and beats copy-the-input (skill_vs_identity +0.35/+0.22/+0.21). The margin remedy does not raise the read at any rung and destroys reconstruction at margin >= 0.05. Do NOT build the InfoNCE or encoder-displacement legs against this entry, and do not queue the (0.01, 0.05) margin re-rung, until the inverted-action-map readiness ratio has been measured on the OFF head at alpha 0.9 live -- the premise those legs would remedy is not reproduced on the d_act/skill axes. Consumers must set alpha_world >= 0.9 explicitly (REEConfig.from_dims default is 0.3, config.py:7562).",
       "falsifier_requirement_satisfied": "Any falsifier on this head that compares 'converged' to 'contradicted' needs the two to be separable above the residual.",
       "event_or_manipulation_produced": "n/a (representation property)",
       "dv_or_instrument_exposed": "identity_predictor_mse and skill score already instrumented (V3-EXQ-1063).",
@@ -12345,6 +12386,7 @@
       "why_no_existing_owner": "MECH-573 registers the READOUT-side consequence; nothing registers the encoder-range cause as a substrate item.",
       "severity": "corrupting",
       "substrate_paths": [
+        "ree_core/predictors/e2_fast.py::compute_world_interventional_loss",
         "ree_core/utils/config.py",
         "ree_core/latent/stack.py",
         "ree_core/environment/causal_grid_world.py"
@@ -12356,7 +12398,7 @@
       "validation_experiment": "V3-EXQ-1075",
       "implementation_note": "IMPLEMENTED 2026-09-22/23, ree-v3 origin/main 8f10214 (substrate) + 9e17cb644f (validation experiment + gate hardening). TWO pieces, both default-OFF: (1) experiments/_lib/action_sensitivity_gate.py -- the action-sensitivity readiness gate SD-031's Validation P1 specified in 2026-04 and nobody built; promotes _identity_predictor_mse out of two copy-pasted private copies (v3_exq_1063, 1073). A NEGATIVE INSTRUMENT carrying all three CLAUDE.md remedies: a structural three-valued status (ready/action_blind/cannot_determine, never a bool), a CANARY_V3_EXQ_1073 replay that DRIVES readiness_verdict itself, and printed denominators. The monostrategy case is why the third value is load-bearing. (2) E2FastPredictor.compute_world_interventional_loss -- SD-013's margin loss ported to the head V3-EXQ-1073 actually trains. E2WorldForward already had it but hard-asserts world_dim>=128 and 1073 ran WORLD_DIM=16. NOT the SD-056 InfoNCE form: that is a confirmed P0 destabiliser (V3-EXQ-701b). Config: use_world_interventional (False), world_interventional_fraction (0.3), world_interventional_margin (0.1), threaded through all three from_dims sites. Liveness: gradient reaching world_action_encoder 0.0021 -> 0.1445 on a real rollout. Documented not fixed: an EXACTLY action-invariant head is a stationary point of this loss family (zero distance is a minimum of the norm); measure-zero under random init, and both reference implementations share it -- chip chip-20260922-sd013-margin-loss-collapse-point raised to check and fix as appropriate. VALIDATION V3-EXQ-1075 queued and live in the coordinator DB. Its A2 axis (skill vs the trivial predictor, MECH-573) is RECORDED NOT GATED (user decision rec-20260923-cb59ede6): that axis is encoder-bound and the driver's OFF arm does not reproduce 1073 on it (-5.79/-2.24 vs -0.071/+0.227, cause unidentified). Its A1 axis DOES reproduce 1073 (0.833/0.879 vs 0.760/0.901). So B5's ENCODER half -- whether z_world needs larger per-step displacement -- remains OPEN and is the escalation route if V3-EXQ-1075 returns FAIL-a.",
       "status_phase": "probe_gated",
-      "validation_outcome": "V3-EXQ-1075 FAIL-b (2026-09-23): SD-PP-B5 does NOT validate. A1 0/1/2 vs A4 3/2/0 over margins 0.01/0.05/0.10 (0.50 rung degenerate); seeds that fire A1 are the seeds whose MSE inflates 5-10x; max ratio 1.054. Status flipped off implemented_pending_validation by /governance 2026-09-23 per the autopsy governance_owes_status_flip. Substrate stays landed and default-OFF; a further build is fan-out gated (3 legs: margin-form in the untested (0.01,0.05) interval; InfoNCE form SD-056; encoder per-step displacement objective).  [2026-09-23 governance cycle governance-pause-20260923-1741 -- QUALIFIED, NOT REVERSED, on confirmed failure_autopsy_V3-EXQ-1079_2026-09-23] This validated-negative is NOT a clean negative. Both runs it rests on (V3-EXQ-1073, V3-EXQ-1075) inherited alpha_world 0.3 from REEConfig.from_dims against SD-008's stable floor of >= 0.9, where per-step z_world displacement is 3.0-3.1x smaller (measured: rms_dz_per_dim 0.0073-0.0086 at 0.3 vs 0.0228-0.0261 at 0.9), and BOTH collect their evaluation battery after the agent has died of health_depleted (step 32/27/22 after env.reset()) without ever reading `done` -- the driver takes out[-1] from env.step()'s (flat_obs, harm_signal, done, info, obs_dict) and discards out[2], so every battery row sits on a world_state that accrues without bound (|ws| 5.9 at step 31 -> 39.7 at step 600). EQUALLY, the verdict is NOT re-opened: V3-EXQ-1079 gives no evidence the margin manipulation works. The head's ABSOLUTE predictive quality FALLS with alpha (model_r2 0.8828/0.9214/0.8792 at 0.3 -> 0.7247/0.6795/0.7030 at 0.9) and it stays BELOW the identity predictor at every alpha tested (skill_vs_identity -5.82/-2.24/-8.39 at 0.3; -2.14/-2.08/-2.68 at 1.0); the apparent persistence-relative 'readiness' flip is the BASELINE collapsing (persistence_r2 0.93 -> 0.55), not the head improving. STATUS UNCHANGED (implemented_validated_negative); what changes is that the basis is now recorded as confounded on two independent axes, so this verdict must not be cited as a clean property of the manipulation.",
+      "validation_outcome": "V3-EXQ-1075 FAIL-b (2026-09-23): SD-PP-B5 does NOT validate. A1 0/1/2 vs A4 3/2/0 over margins 0.01/0.05/0.10 (0.50 rung degenerate); seeds that fire A1 are the seeds whose MSE inflates 5-10x; max ratio 1.054. Status flipped off implemented_pending_validation by /governance 2026-09-23 per the autopsy governance_owes_status_flip. Substrate stays landed and default-OFF; a further build is fan-out gated (3 legs: margin-form in the untested (0.01,0.05) interval; InfoNCE form SD-056; encoder per-step displacement objective).  [2026-09-23 governance cycle governance-pause-20260923-1741 -- QUALIFIED, NOT REVERSED, on confirmed failure_autopsy_V3-EXQ-1079_2026-09-23] This validated-negative is NOT a clean negative. Both runs it rests on (V3-EXQ-1073, V3-EXQ-1075) inherited alpha_world 0.3 from REEConfig.from_dims against SD-008's stable floor of >= 0.9, where per-step z_world displacement is 3.0-3.1x smaller (measured: rms_dz_per_dim 0.0073-0.0086 at 0.3 vs 0.0228-0.0261 at 0.9), and BOTH collect their evaluation battery after the agent has died of health_depleted (step 32/27/22 after env.reset()) without ever reading `done` -- the driver takes out[-1] from env.step()'s (flat_obs, harm_signal, done, info, obs_dict) and discards out[2], so every battery row sits on a world_state that accrues without bound (|ws| 5.9 at step 31 -> 39.7 at step 600). EQUALLY, the verdict is NOT re-opened: V3-EXQ-1079 gives no evidence the margin manipulation works. The head's ABSOLUTE predictive quality FALLS with alpha (model_r2 0.8828/0.9214/0.8792 at 0.3 -> 0.7247/0.6795/0.7030 at 0.9) and it stays BELOW the identity predictor at every alpha tested (skill_vs_identity -5.82/-2.24/-8.39 at 0.3; -2.14/-2.08/-2.68 at 1.0); the apparent persistence-relative 'readiness' flip is the BASELINE collapsing (persistence_r2 0.93 -> 0.55), not the head improving. STATUS UNCHANGED (implemented_validated_negative); what changes is that the basis is now recorded as confounded on two independent axes, so this verdict must not be cited as a clean property of the manipulation.  [2026-09-24 V3-EXQ-1082, failure_autopsy_V3-EXQ-1082_2026-09-24] RE-MEASURED AT THE OPERATING POINT (alpha_world 0.9 explicit, live reset-on-done battery with 0 post-death rows, analytic-null d_act, ridge positive control live 3/3). FAIL-a margin_lowers_action_read: lift at M001/M005/M010/M050 = -0.177/-0.173/-0.246/-0.326 (s42), -0.055/-0.094/-0.131/-0.211 (s123), -0.046/-0.054/-0.135/-0.217 (s456); A4 MSE inflation 1.07-1.25x / 3.1-4.2x / 9.3-11.8x / 187-202x. Secure at M010/M050; M001 unattributed (no training-variance control), M005 confounded with reconstruction loss. ARM_OFF reads its action unaided: d_act 0.341/0.216/0.227 (CI>0 3/3), skill_vs_identity +0.349/+0.219/+0.215, model_r2 0.557/0.479/0.486 vs persistence_r2 0.320/0.332/0.346. CORRECTION to the 2026-09-23 text above: V3-EXQ-1073 DID read `done` and reset (its battery was live); the post-death defect applies to 1075/1079 only.",
       "severity_rationale": "Raised from the drafted `degrading` on the A1 finding. A consumer who enables use_world_interventional at its SHIPPED DEFAULT margin 0.10 (ree_core/utils/config.py:910) gets A1 scoring 2/3 -- which reads as 'the head now passes the action-sensitivity gate' -- on a head with skill -33 to -48 and MSE inflated 5.0-9.6x. That is evidence that looks valid and is not, which is the definition of `corrupting`. What keeps the blast radius narrow, and is stated so the Step 2.5c cost is visible: use_world_interventional defaults to False (config.py:908), so only an opt-in consumer is exposed.",
       "fanout_recommendation": {
         "is_discrimination": true,
@@ -12384,7 +12426,10 @@
         ],
         "note": "GOV-FANOUT-1. The single-unambiguous-build exemption is not claimed. TWO POINTERS WERE REMOVED AT THE RED-TEAM PASS and must not be reinstated: an earlier draft routed the encoder leg to 'SD-018-amend / SD-009 / SD-106', a list copied forward from SD-PP-B5's own stale implementation_hint. Checked against substrate_queue.json: SD-009 has NO queue entry at all; SD-018 is amend_implemented_pending_validation but its own record reads VALIDATED NEGATIVE for shape (a) by V3-EXQ-978 and its subject is resource-proximity supervision; SD-106 is implemented_pending_validation with V3-EXQ-1023/1023a already run at 0/3 seeds and its subject is generic bottleneck variance preservation. NONE of the three targets per-step displacement. A governance reader following that list would have looked for a nonexistent entry, re-opened an amend already validated negative, and mistaken a pending validation for the displacement remedy. The encoder leg needs a NEW substrate entry; it is named here as a gap, not routed to an existing id. Ordering: the cheap re-rung probe comes first -- it is the one thing that could still rescue the shipped form."
       },
-      "node_class_note": "2026-09-23 governance: token normalised from \"complex (probe-gated) -> mystery (known data)\" (invalid compound) to the single token; the reframe half is carried by fanout_recommendation, not by the token."
+      "node_class_note": "2026-09-23 governance: token normalised from \"complex (probe-gated) -> mystery (known data)\" (invalid compound) to the single token; the reframe half is carried by fanout_recommendation, not by the token.",
+      "substrate_paths_note_2026_09_24": "ADD ree_core/predictors/e2_fast.py::compute_world_interventional_loss -- the corrupting defect lives in the margin loss; the three existing paths are the alpha / encoder / env loci and stay.",
+      "severity_note_2026_09_24": "STAYS corrupting, re-confirmed at the operating point: every ON rung including M050 (model_r2 -82..-104) returns d_act status reads_action, so an opt-in consumer reading the status sees a pass on a destroyed head.",
+      "title_correction_2026_09_24": "QUALIFY the title premise 'the world-forward head sits near copy-the-input because z_world barely moves per step': measured at alpha_world 0.3 (V3-EXQ-1073, live battery); NOT reproduced at SD-008's alpha_world 0.9 on a live battery on the d_act and skill-vs-identity axes (V3-EXQ-1082 ARM_OFF). Live-battery per-step displacement at 0.9 is rms_dz_per_dim 0.0068-0.0078 / transition L2 0.021-0.024; 1079's 0.0228-0.0261 per-dim figure was measured on the post-death drifting battery."
     },
     {
       "node_class": "complicated (buildable)",
@@ -12577,9 +12622,17 @@
           "target": "harm_forward_skill_vs_persistence > 0 on >= 2/3 seeds on the stationary arm, ON A HEAD WHOSE TRAINING CURVE IS RECORDED and evaluated at matched epsilon. Plus a readiness precondition that gates on that skill rather than on an absolute R2 floor.",
           "resolved": "open",
           "source": "failure_autopsy_V3-EXQ-1062a_2026-09-23"
+        },
+        {
+          "run_id": "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3",
+          "experiment_type": "v3_exq_1077_sdppb9_harm_head_undertrain_probe",
+          "metric": "V3-EXQ-1077 (H-harm-head-undertrained leg, stationary only, seeds 42/137/2026, 1062a's collection verbatim). Preconditions all met: reproduction control ARM_ONLINE_B1 @ eps 0.0 persistence_dominated 3/3 (d -0.977/-0.771/-0.897); instrument canary reproduces 1062a 6/6; ARM_CONVERGED converged 3/3 (lr-halving exhausted, 9 decays, stop 13500/12900/13400 of a 40000 cap; best held-out/persistence 0.997/0.939/0.994). Load-bearing C1 (converged head READY @ eps 0.1) 0/3. Converged head @ eps 0.1: d -0.0006 CI[-0.0048,0.0033] / +0.0023 CI[-0.0227,0.0218] / +0.0048 CI[-0.0039,0.0137] -- cannot_determine 3/3 (label active_error_removed_AMBIGUOUS). Driver N1 (converged head still persistence_dominated @ eps 0.1) 0/3; the leg's REGISTRY-pre-registered null (skill <= 0 at convergence) is NOT rejected (CIs straddle 0 on 3/3). ACTIVE ERROR REMOVED: online head @ eps 0.1 d -0.918/-0.687/-0.745 (CI upper <= -0.65) -> converged ~0; the online head's FINAL SNAPSHOT is 5.6-32x WORSE than persistence on rows it itself trained on (the converged arm's held-out split: 4.87e-5 vs 1.53e-6; 7.52e-6 vs 1.33e-6; 8.05e-6 vs 9.65e-7; last-200-update tracking loss median 1.7-2.4x), while the converged head from the same init and data sits at 0.94-1.00x on the same rows -- so the 1062a defect is an online batch-1 protocol artifact (optimiser noise and/or recency under a persistent-EMA target; not separated), not train/eval mismatch. Residual mismatch at eps 0.0: converged head persistence_dominated on s42 (d -0.0187 CI[-0.0274,-0.0115]), cannot_determine on 137/2026. Non-gating in-sample bound (fit on the eval rows, permuted-delta twin): real separates from twin on s42 and s137 @ eps 0.1 (d +0.016 / +0.066), not on s2026 -- a small, 'learnable but not learned' component on 2/3 seeds.",
+          "target": "harm-forward skill vs persistence READY (paired-bootstrap CI on d entirely > 0) on >= 2/3 seeds, on a converged head at matched epsilon. 1077 shows convergence alone reaches d ~ 0, not > 0; the residual gap is aliased across H-pe-source-structurally-wrong and H-harm-head-representation-ceiling (and, weakly, an untested policy/state-distribution form of the undertrained leg's off-distribution disjunct).",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1077_2026-09-24"
         }
       ],
-      "implementation_hint": "Three separable pieces, cheapest first. (1) INSTRUMENT, owed on every branch and not gated on the discrimination: the readiness gate harm_a_forward_r2_supra_floor is an absolute R2 floor (FORWARD_R2_MIN = 0.30, in the DRIVER at v3_exq_1062a_...postshift.py:496, not in ree_core) with no baseline; it passed at 0.9405 while the trivial predictor scores 0.9955. Gate on skill-vs-persistence, computed on the same r2_pairs at zero extra cost. This is an experiments/_lib or driver change, not a ree_core one. (2) RECORDING, also cheap: the manifest carries NO training-loss trajectory for e2_harm_a, so convergence cannot be checked from the artifact at all -- record it (Experimental Recording Standard section 3b/3c). (3) Only then the SUBSTRATE question, which the fan-out splits: is the head under-trained (60 eps x 90 steps online at batch 1, lr 5e-4, no P2 training, P1 epsilon 0.1 vs P2 epsilon 0.0), or is there a representation ceiling? NOTE the arithmetic that motivates this ordering: a displacement ceiling on a RESIDUAL head predicts delta -> 0 and skill ~ 0, because the conditional-mean delta is in the hypothesis space at the MSE optimum. Skill of -72 is not a ceiling signature -- it requires the head to be ACTIVELY adding error, i.e. non-convergence, distribution mismatch, or overfitting.",
+      "implementation_hint": "Three separable pieces, cheapest first. (1) INSTRUMENT, owed on every branch and not gated on the discrimination: the readiness gate harm_a_forward_r2_supra_floor is an absolute R2 floor (FORWARD_R2_MIN = 0.30, in the DRIVER at v3_exq_1062a_...postshift.py:496, not in ree_core) with no baseline; it passed at 0.9405 while the trivial predictor scores 0.9955. Gate on skill-vs-persistence, computed on the same r2_pairs at zero extra cost. This is an experiments/_lib or driver change, not a ree_core one. (2) RECORDING, also cheap: the manifest carries NO training-loss trajectory for e2_harm_a, so convergence cannot be checked from the artifact at all -- record it (Experimental Recording Standard section 3b/3c). (3) Only then the SUBSTRATE question, which the fan-out splits: is the head under-trained (60 eps x 90 steps online at batch 1, lr 5e-4, no P2 training, P1 epsilon 0.1 vs P2 epsilon 0.0), or is there a representation ceiling? NOTE the arithmetic that motivates this ordering: a displacement ceiling on a RESIDUAL head predicts delta -> 0 and skill ~ 0, because the conditional-mean delta is in the hypothesis space at the MSE optimum. Skill of -72 is not a ceiling signature -- it requires the head to be ACTIVELY adding error, i.e. non-convergence, distribution mismatch, or overfitting. V3-EXQ-1077 (2026-09-23): piece (1) instrument LANDED (experiments/_lib/persistence_skill_gate.py, ree-v3 88b1005); piece (2) recording satisfied driver-locally (not yet a shared recorder). Piece (3): the under-training leg is RUN -- converging the head removes the below-persistence error (the online head's final snapshot is 5.6-32x worse than persistence on rows it trained on) but gives d ~ 0, not ready. Any downstream probe must use the converged fitter (lr-halving vs best-so-far held-out, best checkpoint, reachability clause), never the online protocol. Next leg: H-pe-source-structurally-wrong.",
       "priority": 1,
       "severity": "degrading",
       "substrate_paths": [
@@ -12626,9 +12679,19 @@
       "source_audit": "failure_autopsy_V3-EXQ-1062a_2026-09-23 (confirmed; REE_assembly 67a7597e89); created by /governance Step 6a-iv, user-ratified 2026-09-23 (rec-20260923-10bca6b5)",
       "added_session": "governance-20260923-0717",
       "added_utc": "2026-09-23T09:25:24Z",
-      "last_seen_session": "governance-20260923-0717",
-      "experiment_queued": true,
-      "probe_queue_id": "V3-EXQ-1077"
+      "last_seen_session": "governance-20260924",
+      "experiment_queued": false,
+      "probe_queue_id": "V3-EXQ-1077 (completed 2026-09-23, FAIL active_error_removed_AMBIGUOUS; next leg H-pe-source-structurally-wrong not yet queued)",
+      "fanout_leg_update_2026_09_24": {
+        "leg": "H-harm-head-undertrained",
+        "status": "RUN (V3-EXQ-1077) -- exhausted as a discriminator for the convergence disjunct and the epsilon form of the off-distribution disjunct; do NOT re-run or re-offer 1077 (the policy/state-distribution form rides as a recorded non-gating readout in the next leg, not as a separate run)",
+        "result": "sub-case (a) CONFIRMED: the online batch-1 protocol (unconverged final snapshot) causes the below-persistence active error. sub-case (b) NOT SUPPORTED, ledger state alive: convergence alone yields d ~ 0, not ready; the ledger null 'skill <= 0 at convergence' is not rejected, and the driver grid calls the cell AMBIGUOUS, not a refutation. The off-distribution disjunct was tested on the epsilon axis only.",
+        "next_leg": "H-pe-source-structurally-wrong (readout axis)",
+        "then": "H-harm-head-representation-ceiling (representation-update-rate axis), NOT more optimisation",
+        "still_live_unrun": [
+          "H1-exposure-error-coupling (environment axis)"
+        ]
+      }
     },
     {
       "sd_id": "arc044-joint-wharm-running-variance-readout-producer",
@@ -13063,6 +13126,50 @@
       "added_session": "governance-flags-mid-20260923-apply",
       "added_utc": "2026-09-23T19:11:26Z",
       "last_seen_session": "governance-flags-mid-20260923-apply",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "sd_zself_training_path",
+      "title": "Give z_self (self_encoder + DR-13 SelfRecurrenceCell) a z_self training objective whose gradient reaches them, and correct DR-13's false training premise",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "depends_on_resolved": [
+        "INV-069 WWA amendment (governance) -- APPLIED 2026-09-24 by /governance session governance-20260924 (generic-contraction null + trained-substrate precondition now in the WWA; arm-(b) substitute DV left OPEN by user decision, which does not gate this build)."
+      ],
+      "unblocks_claims": [
+        "INV-069",
+        "MECH-113"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
+          "experiment_type": "v3_exq_1078_inv069_zself_coherence_unsettled",
+          "metric": "gru_param_max_delta 0.0 and latent_stack_tensors_changed 0/53 on all 3 seeds after 20 x 100-step P0 warmup (compute_prediction_loss + compute_e2_loss, Adam lr 1e-3 over agent.parameters())",
+          "target": "gru_param_max_delta > 0 and self_encoder params changed after P0 warmup, under a documented z_self objective",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1078_2026-09-24"
+        }
+      ],
+      "implementation_hint": "DR-13's doc states the GRUCell 'trains via the EXISTING E1/E2 z_self prediction losses'; V3-EXQ-1078 measured GRU delta 0.0 and 0/53 LatentStack tensors changed under compute_prediction_loss + compute_e2_loss (Adam over agent.parameters()). Root: the detached experience-buffer / _current_latent path (agent.py ~5721, ~6155-6160) -- the same root V3-EXQ-972a found for ContextMemory, where SD-CM-LIVETAP (30f40ab, default OFF) restored a route for a write-addressing objective only. Add a phased P0 z_self objective (sibling of SD-070 / sd_zworld_warmup_optimizer_group) reaching self_encoder + self_recurrence, with a contract asserting nonzero GRU delta after warmup; correct the DR-13 doc.",
+      "priority": 1,
+      "severity": "corrupting",
+      "severity_note": "A DR-13 run that trusts the doc and does not record gru_param_max_delta reports init contraction as a trained self-recurrence -- evidence that looks valid and is not. substrate_paths deliberately narrowed to the DR-13 module; the root-cause detach site in agent.py is NOT listed because listing agent.py would gate every experiment.",
+      "substrate_paths": [
+        "ree_core/latent/self_recurrence.py"
+      ],
+      "read_across_claims": [
+        "ARC-081",
+        "MECH-215 (both implementation_phase v4 per DR-13 doc -- read-across, not unblocked)"
+      ],
+      "shared_root_note": "Not a duplicate: no substrate_queue entry owns a z_self objective (7b C2 silent). Shares its detach root with contextmemory-write-path-addressing-degeneracy (V3-EXQ-972a) -- governance may prefer to cross-link.",
+      "source_autopsy": "failure_autopsy_V3-EXQ-1078_2026-09-24",
+      "added_session": "governance-20260924",
+      "added_utc": "2026-09-24T07:33:28Z",
+      "last_seen_session": "governance-20260924",
       "experiment_queued": false
     }
   ],

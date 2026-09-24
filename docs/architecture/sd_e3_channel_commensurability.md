@@ -2,7 +2,7 @@
 
 **Substrate entry:** `f_dominance_conversion_ceiling` (rung 3, "E3 channel-scale normalisation")
 **Primary claim:** MECH-439
-**Status:** IMPLEMENTED 2026-09-07 -- but **UNVALIDATABLE AS SPECIFIED** as of 2026-09-10 (see "Amendment 2026-09-10"): the rung's pre-registered acceptance condition is an arithmetic identity of this operator, so the rung cannot be validated against it. This is materially different from 'validation owed'.
+**Status:** IMPLEMENTED 2026-09-07; **VALIDATED at the eligibility stage (V3-EXQ-1012c PASS 8/8; ratified target, /governance 2026-09-24)** -- see "Amendment 2026-09-24". PRIOR status line, preserved: IMPLEMENTED 2026-09-07 -- but **UNVALIDATABLE AS SPECIFIED** as of 2026-09-10 (see "Amendment 2026-09-10"): the rung's pre-registered acceptance condition is an arithmetic identity of this operator, so the rung cannot be validated against it. This is materially different from 'validation owed'.
 **Depends on:** MECH-448 (BUILT/VALIDATED), MECH-449 (BUILT/VALIDATED), V3-EXQ-571c instrument
 **Blocks:** MECH-439, ARC-062, MECH-309, MECH-341
 
@@ -218,3 +218,7 @@ known to be vacuous rather than silently passing.
 MECH-439 (primary), ARC-062, MECH-309, MECH-341, MECH-448/449 (the eligibility-face levers
 this rung sits beside), SD-085 (`f_weight`), SD-E3-SCORER-COMPLETION,
 `failure_autopsy_V3-EXQ-571c_2026-09-02`, `substrate_queue.json::f_dominance_conversion_ceiling`.
+
+## Amendment 2026-09-24 (rung status: VALIDATED at the eligibility stage)
+
+**AMENDED 2026-09-24 (/governance session governance-20260924, user-ratified GFLAG-0297 target).** The registered acceptance condition is now the ELIGIBILITY-STAGE per-channel knockout-authority ratio R_ON (min/max tick-mean Jaccard) >= 0.25 in >= 3 of 4 seeds in BOTH regimes, with same-tick OFF and ORACLE anchors (design: `evidence/planning/gflag0297_mech439_rung3_null_design.md`). The 2026-09-10 commit-flip target above is preserved verbatim but superseded; no run validated it (V3-EXQ-1012a was confirmed non-validating). V3-EXQ-1012c PASSED 8/8 cells (R_ON 0.41-0.86 fed / 0.44-0.62 starved vs R_OFF <= 0.104; instrument clean). SCOPE a reader must carry: 3 of 5 channels; eligibility stage only; 936 regime under the open contextmemory write-path defect; 1012c re-instruments the same 8 trajectories as 1012a (not an independent replication). MECH-439 itself is NOT tested by this. The four target carriers were amended together: this doc, `evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.md` and `.json`, and `evidence/planning/substrate_queue.json`. Source: `evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.md`.
