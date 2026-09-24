@@ -3600,3 +3600,4 @@ One line per hourly tick. ASCII only.
 2026-09-24T11:10:01Z workset committed (regen -- 262 items, 35 ready, 0 in flight)
 2026-09-24T11:05:29Z STAGE IGW-20260924-222 skill=/implement-substrate prio=25 worktree=igw-222-substrate-ready-sd-zself-trainin (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-24T12:23:39Z workset regen identical to origin/master aa86ca53cb -- no commit (regen -- 262 items, 35 ready, 0 in flight)
+2026-09-24T12:19:59Z STAGE IGW-20260924-223 skill=/implement-substrate prio=25 worktree=igw-223-substrate-ready-residue-integrat (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
