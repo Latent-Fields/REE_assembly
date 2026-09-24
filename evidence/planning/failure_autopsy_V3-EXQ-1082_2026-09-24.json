@@ -1,0 +1,256 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T06:19:09Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "mode": "staging -- subagent of /governance session governance-20260924-workset (which holds the governance-pause claim); no claim opened, nothing committed, no registry written, no regeneration run",
+  "dry_run_checked": true,
+  "dry_run_check_note": "scripts/check_dry_run_citations.py run over v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3, V3-EXQ-1082, V3-EXQ-1073: 0 dry, 1 clean, exit 0. The 1082 smoke (2 seeds x 5 arms) was written to scratch by dry_run=True and is not in evidence/experiments.",
+  "excluded_dry_run_ids": [],
+  "premise_audit": {
+    "brief_premise_1": "Parent brief named V3-EXQ-1073 as 1082's predecessor. RE-MEASURED: the manifest's predecessor/autopsy fields name V3-EXQ-1079 (queue predecessor) and failure_autopsy_V3-EXQ-1079_2026-09-23; the SD-PP-B5 lineage is 1073 (originating, MECH-572, alpha 0.3, LIVE battery) -> 1075 (margin ladder, alpha 0.3, post-death battery) -> 1079 (alpha probe, OFF only, post-death battery) -> 1082. 1073 is upstream, and 1082 ports its done-handling.",
+    "brief_premise_2": "Self-route margin_lowers_action_read: RE-MEASURED from per-row errors -- all 15 d_act and 12 lifts reproduce to 4 dp.",
+    "stale_record_found": "SD-PP-B5's substrate_queue validation_outcome (governance 2026-09-23) and failure_autopsy_V3-EXQ-1079 section 6 both state 1073 collected its battery post-death without reading `done`. FALSE for 1073: v3_exq_1073_mech572_precision_provenance_gain.py _sample_probe_battery unpacks done and resets (lines ~1054-1058), as does its P0 loop. The post-death defect is 1075/1079 only. Owed: governance_flag.py raise --flag-type stale_note."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
+      "queue_id": "V3-EXQ-1082",
+      "claim_ids": [],
+      "bears_on": [
+        "SD-PP-B5-z-world-per-step-displacement-range",
+        "SD-PP-B10-zworld-encoder-action-displacement",
+        "MECH-573",
+        "MECH-574",
+        "SD-008"
+      ],
+      "bears_on_provenance": "MECH-573/MECH-574/SD-008 from the manifest's own bears_on; SD-PP-B5-z-world-per-step-displacement-range from its validates_substrate (and verbatim from the 1073/1079 autopsies); SD-PP-B10-zworld-encoder-action-displacement verbatim from the 1079 autopsy.",
+      "self_route_label": "margin_lowers_action_read",
+      "off_arm_premise": "off_reads_action",
+      "outcome": "FAIL",
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids [] by design; bears on MECH-573/MECH-574/SD-008 through the SD-PP-B5 substrate entry",
+        "biological_reference": "partial -- efference-copy / cerebellar forward models are trained by action-specific prediction error; the SD-013/SD-PP-B5 norm-hinge (contrastive metric learning) is a formal import that separates commands regardless of whether the world does",
+        "prerequisites": "present -- all 7 pre-registered preconditions met on 15/15 cells (alpha 0.9 threaded + asserted, 0 post-death rows, 512 rows, 5 distinct actions, rows aligned 3/3, encoders equal 3/3, ridge positive control live 3/3)",
+        "implementation": "complete -- margin term live on 1053-1128 steps per ON cell (~30% of training, as configured); head_action_separation tracks the margin (~0.07 / 0.12 / 0.53 L2 at M005/M010/M050 vs OFF 0.017-0.024); training path is torch-RNG-free (env uses numpy default_rng, sense/world_forward deterministic), so the margin gradient is the only between-arm difference",
+        "environment": "adequate -- live battery, reset on done, stationary over 64-row blocks (OFF d_act per block 0.28-0.44 / 0.195-0.238 / 0.188-0.274), closing the 1075/1079 post-death defect. Scope: every row is from the first ~20 steps of a random-policy life (28-33 health_depleted resets per 512 rows) on an UNTRAINED encoder",
+        "measurement": "adequate for the load-bearing verdict (no rung raises the read: 12/12 lifts negative, C1 0/3); partial for the 'lowers' sub-label -- the lift CI is a row bootstrap conditional on one trained head per cell and carries no training-trajectory variance, so the guard-intact M001 lowering (|lift| 0.046-0.177) is unattributed, and at M005-M050 lowering co-occurs with reconstruction destruction (A4 3.1-202x) so 'lowers the read' and 'destroys the head' are not separated. d_act's reads_action status is not head-health guarded (M050 'reads' at model_r2 -82..-104; seed 123 CI lower 7e-4)",
+        "integration": "coupled -- the manipulation moves the DV with dose on 3/3 seeds, secure at M010/M050",
+        "scale": "adequate -- 3 seeds x 5 arms x 3600 P0 steps, 512-row battery; between-training-run replication is 3 seeds and there is no within-arm perturbation replicate"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED: MECHANISM (the margin remedy does not raise the read and destroys reconstruction at >= 0.05) + MEASURES-partial (the M001/M005 'lowers' attribution). Not chargeable to REE: the untouched head reads its action at SD-008's operating point."
+      },
+      "biological_reference": {
+        "closest_mechanism": "cerebellar / efference-copy forward model predicting the sensory consequence of the specific issued command (Wolpert, Miall & Kawato 1998; the Frith/Shergill comparator behind SD-031)",
+        "dependencies": [
+          "action-specific supervised prediction error",
+          "a sensory representation not temporally smeared below the action timescale (SD-008 alpha_world >= 0.9)"
+        ],
+        "is_formal_import": true,
+        "divergence": "The hinge max(0, m - ||f(z,a) - f(z,a_cf)||) is scale-unaware and direction-agnostic: it rewards separating ANY two commands by m, including pairs whose true consequences are identical (wall bumps) or smaller than m. At alpha 0.9 the OFF head already separates actions by 0.017-0.024 L2 against a transition L2 of 0.021-0.024, so m >= 0.05 imposes 2-25x the physical separation, and the measured reconstruction loss follows. A biological forward model separates commands only as far as the world does.",
+        "lit_status": "partial -- targeted_review_e2_forward_model_action_divergence (ML-heavy: PLSM, contrastive RSSM, SWIRL), targeted_review_efference_copy_small_signal_gain, targeted_review_sd_008 and targeted_review_sd_031 exist; nothing on calibrating a contrastive margin to the true action-conditional displacement. Not load-bearing for routing here: the premise, not the form, is what this run moves."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Claim-free substrate re-validation. Failure mode (free text, not a category): remedy_premise_not_reproduced_at_operating_point + margin_mis_scaled. Not an instrument defect: preconditions met, positive control live, analytic null, battery stationary; the verdict does not depend on the contested 'lowers' sub-label.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-1082 (diagnostic, claim-free; alpha_world 0.9 explicit; live reset-on-done battery, 0 post-death rows, stationary; all 7 preconditions met; ridge positive control live 3/3): the SD-PP-B5 interventional margin does NOT raise e2.world_forward's action read at any rung (lift d_act(ON) - d_act(OFF) negative on 12/12 seed x rung cells, C1 0/3); securely at M010/M050 it lowers the read while inflating battery MSE 9-202x. The decisive finding is the OFF arm: at SD-008's operating point the UNTOUCHED head reads its action (d_act 0.341/0.216/0.227, CI lower > 0 on 3/3; untrained head |d_act| < 0.003; 64-81% of the action-aware ridge ceiling; true action beats the alternatives on 91-97% of rows) and beats copy-the-input (skill_vs_identity +0.35/+0.22/+0.21; model_r2 0.56/0.48/0.49 vs persistence_r2 0.32/0.33/0.35). The action-blindness SD-PP-B5 was built to cure (V3-EXQ-1073, alpha 0.3) is not reproduced at alpha 0.9 on a live agent; attributing it to alpha is cross-run (1073 vs 1082, plus 1079) until a within-run alpha contrast is read. Caveats: M001's guard-intact lowering is unattributed (no training-variance control) and M005's is confounded with reconstruction loss; the inverted-action-map readout (the 1073 contradiction precondition) was not measured.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "Empty by design: claim_ids []. The claims this bears on (MECH-573/572/574, INV-063) are moved, if at all, through the SD-PP-B5 entry and the owed inverted-map readout, not through this run.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B5-z-world-per-step-displacement-range",
+        "status_change": "status STAYS implemented_validated_negative (the margin remedy's negative is now measured at the operating point on a live battery; it is no longer confounded on either axis the 1079 qualification named); ready STAYS false; status_phase SET probe_gated (currently absent on the entry); node_class STAYS complex (probe-gated) -- the residual is one measurement (puzzle (known rules)): the inverted-action-map ratio on the OFF head at alpha 0.9",
+        "implementation_hint_append": "[2026-09-24, failure_autopsy_V3-EXQ-1082] At SD-008's alpha_world 0.9 on a live battery the untouched world_forward head reads its action (d_act 0.341/0.216/0.227, CI>0 3/3) and beats copy-the-input (skill_vs_identity +0.35/+0.22/+0.21). The margin remedy does not raise the read at any rung and destroys reconstruction at margin >= 0.05. Do NOT build the InfoNCE or encoder-displacement legs against this entry, and do not queue the (0.01, 0.05) margin re-rung, until the inverted-action-map readiness ratio has been measured on the OFF head at alpha 0.9 live -- the premise those legs would remedy is not reproduced on the d_act/skill axes. Consumers must set alpha_world >= 0.9 explicitly (REEConfig.from_dims default is 0.3, config.py:7562).",
+        "unblocks_claims": ["MECH-573", "MECH-572", "MECH-574", "INV-063"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "severity": "corrupting",
+        "severity_note": "STAYS corrupting, re-confirmed at the operating point: every ON rung including M050 (model_r2 -82..-104) returns d_act status reads_action, so an opt-in consumer reading the status sees a pass on a destroyed head.",
+        "substrate_paths": [
+          "ree_core/predictors/e2_fast.py::compute_world_interventional_loss",
+          "ree_core/utils/config.py",
+          "ree_core/latent/stack.py",
+          "ree_core/environment/causal_grid_world.py"
+        ],
+        "substrate_paths_note": "ADD ree_core/predictors/e2_fast.py::compute_world_interventional_loss -- the corrupting defect lives in the margin loss; the three existing paths are the alpha / encoder / env loci and stay.",
+        "title_correction_2026_09_24": "QUALIFY the title premise 'the world-forward head sits near copy-the-input because z_world barely moves per step': measured at alpha_world 0.3 (V3-EXQ-1073, live battery); NOT reproduced at SD-008's alpha_world 0.9 on a live battery on the d_act and skill-vs-identity axes (V3-EXQ-1082 ARM_OFF). Live-battery per-step displacement at 0.9 is rms_dz_per_dim 0.0068-0.0078 / transition L2 0.021-0.024; 1079's 0.0228-0.0261 per-dim figure was measured on the post-death drifting battery.",
+        "validation_outcome_append": "[2026-09-24 V3-EXQ-1082, failure_autopsy_V3-EXQ-1082_2026-09-24] RE-MEASURED AT THE OPERATING POINT (alpha_world 0.9 explicit, live reset-on-done battery with 0 post-death rows, analytic-null d_act, ridge positive control live 3/3). FAIL-a margin_lowers_action_read: lift at M001/M005/M010/M050 = -0.177/-0.173/-0.246/-0.326 (s42), -0.055/-0.094/-0.131/-0.211 (s123), -0.046/-0.054/-0.135/-0.217 (s456); A4 MSE inflation 1.07-1.25x / 3.1-4.2x / 9.3-11.8x / 187-202x. Secure at M010/M050; M001 unattributed (no training-variance control), M005 confounded with reconstruction loss. ARM_OFF reads its action unaided: d_act 0.341/0.216/0.227 (CI>0 3/3), skill_vs_identity +0.349/+0.219/+0.215, model_r2 0.557/0.479/0.486 vs persistence_r2 0.320/0.332/0.346. CORRECTION to the 2026-09-23 text above: V3-EXQ-1073 DID read `done` and reset (its battery was live); the post-death defect applies to 1075/1079 only.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
+          "experiment_type": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation",
+          "metric": "alpha 0.9, live battery. Margin ladder 0.01/0.05/0.10/0.50: lift d_act(ON)-d_act(OFF) negative 12/12 (s42 -0.177/-0.173/-0.246/-0.326; s123 -0.055/-0.094/-0.131/-0.211; s456 -0.046/-0.054/-0.135/-0.217), C1 0/3, A4 MSE 1.07-1.25/3.1-4.2/9.3-11.8/187-202x OFF. ARM_OFF reads its action unaided: d_act 0.341/0.216/0.227 CI>0 3/3, skill_vs_identity +0.35/+0.22/+0.21.",
+          "target": "No margin-form target owed at this operating point (the lever is unneeded where the head already reads). The open fact is the inverted-action-map ratio on the OFF head at alpha 0.9 live, with an alpha 0.3 arm in the same run for attribution.",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1082_2026-09-24.json"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_1079_sdppb10_alphaworld_operating_point_probe_20260923T172400Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "All three conjuncts of its target met by V3-EXQ-1082: alpha_world 0.9 explicit (MECH-307 assert, precondition met), reset on done (0 post-death rows on 15/15 cells), model_r2 recorded beside persistence skill per cell."
+          },
+          {
+            "run_id": "v3_exq_1075_sdppb5_action_sensitivity_validation_20260923T033329Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "Same manipulation (same four rungs, same fraction) re-measured by V3-EXQ-1082 at SD-008's operating point on a live battery with an analytic-null DV; the doubly-confounded 1075 reading is replaced by a clean one in the same direction (no rung buys action-sensitivity without destroying reconstruction). 1075's A1 ratio itself was not re-measured -- its own autopsy declared that readout degenerate."
+          }
+        ],
+        "prior_failure_record_left_open": [
+          {
+            "run_id": "v3_exq_1073_mech572_precision_provenance_gain_20260922T182856Z_v3",
+            "resolved": "open",
+            "note_to_append": "2026-09-24 V3-EXQ-1082: clause (3) of this target (skill vs identity > 0 on >= 2/3) is MET at alpha 0.9 live (+0.35/+0.22/+0.21). Clauses (1)-(2) -- the inverted-rule readouts that originated this entry -- stand for alpha 0.3 only and are re-owed at alpha 0.9 (the recommended probe). Left open deliberately (red-team Step 7c: superseding it would read as closure of the readout still owed)."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "n/a -- claim_ids [] so the claim-keyed brake cannot count this target",
+        "note": "GOV-DIAG-1 (check_diagnostic_chain_recurrence.py, read-only): full token SD-PP-B5-z-world-per-step-displacement-range = 1 (1079) before this artifact, 2 with it; short token SD-PP-B5 = 1 (1075); 1073 is claim-keyed and excluded. Below N=3 as tokens stand; reconciling 1075's short token would make it 3. That is governance's call. Note the chain is converging (this run answers the premise question), not circling the same floor."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "basis": "claim_ids [] -- no claim cluster. granularity_debt_cluster.py MECH-573: 0 tagging targets, trigger does not fire.",
+        "routing": null
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-operating-point (NEW, partition expansion): at SD-008's alpha_world >= 0.9 on a live battery the untouched world_forward head reads its action without any lever. CONFIRMED on d_act and skill-vs-identity by this run; the question's live_gate readout (inverted-action-map ratio) is still unmeasured at 0.9, and the causal attribution to alpha is cross-run.",
+          "H-margin-form: does not raise the action read at 0.01/0.05/0.10/0.50 at alpha 0.9; the (0.01, 0.05) interval remains unsampled. Its motivation is removed where the head already reads, but M001's lowering is unattributed and is NOT used as evidence against the interval.",
+          "H-infonce-form and H-encoder-displacement: untested; their premise (an action-blind head at the operating point) is not reproduced on the axes measured, so neither is owed a build or a probe until the inverted-map readout says otherwise."
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-operating-point",
+            "axis": "measurement",
+            "sketch": "OFF-only head, live reset-on-done battery, 3 seeds, TWO arms alpha_world 0.3 and 0.9 in one run: inverted-action-map battery MSE / original MSE with a bar excluding the degenerate ~1.0 (reuse 1079's _make_env(invert_action_map=True) and experiments/_lib/action_sensitivity_gate.readiness_verdict), beside d_act and skill_vs_identity. Optional: one null-perturbation OFF replicate per seed (e.g. second batch-order seed) to size training-trajectory variance of d_act. Declared null: at 0.9 the ratio stays <= ~1.0 despite d_act > 0 (the head reads the action but not enough for an inversion to be a contradiction), or the 0.3 and 0.9 arms do not differ."
+          }
+        ],
+        "resolved_this_cycle": ["H-operating-point (confirmed on d_act / skill axes)"],
+        "note": "GOV-FANOUT-1 portfolio COLLAPSES rather than widens: one cheap measurement probe, not three legs. C1-style self-check: no queued item or driver covers it (queue holds only V3-EXQ-1067; V3-EXQ-1081 runs at alpha 0.9 but has no inverted-map readout); 1079's driver already implements the inverted-map env and can be composed with 1082's live battery."
+      },
+      "learning_extracted": [
+        "Existing dependency STRENGTHENED (positive-negative), measured at one alpha: at SD-008's alpha_world 0.9 on a live battery the untouched head reads its action (d_act 0.22-0.34, 64-81% of the ridge ceiling) and beats copy-the-input. SD-PP-B5's action-blind premise is not reproduced there; its attribution to from_dims' 0.3 default rests on 1073 vs 1082 (+1079) and needs a within-run alpha contrast.",
+        "Implementation finding, clean at the operating point: a direction-agnostic, scale-unaware norm-hinge adds no action information to a head that already has it; above the head's natural separation (~0.02 L2) it forces over-separation and destroys reconstruction.",
+        "Measurement gaps: d_act's reads_action status is not head-health guarded (a destroyed M050 head reads), mirroring the 1075 gate defect; a within-cell row bootstrap is not a training-variance CI, so a guard-intact lift of ~0.05 needs a perturbation control.",
+        "Stale record: the 2026-09-23 SD-PP-B5 validation_outcome and the 1079 autopsy wrongly extend the post-death battery defect to V3-EXQ-1073 (1073 resets on done).",
+        "Recording complete (substrate_hash, config, seeds, per-row errors): every number here was recomputed from the manifest."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "(1) /queue-experiment: the OFF-only inverted-action-map readiness probe at alpha 0.3 and 0.9 on a live battery (suggested_probes[0]); on a pass at 0.9 the V3-EXQ-1073 MECH-572 contradiction design re-posed at alpha 0.9 becomes posable. (2) /governance: amend SD-PP-B5 per recommended_substrate_queue_entry; raise a stale_note flag for the 1073 post-death text. (3) Do NOT queue the (0.01, 0.05) margin re-rung and do NOT build the InfoNCE or encoder-displacement legs on this evidence. Reported, not spawned (staging subagent; governance chips after ratification).",
+      "pre_routing_checks_7b": {
+        "fire_count": 1,
+        "fires": [
+          {
+            "check": "C7",
+            "names": ["v3_exq_1082_...:persistence_r2"],
+            "disposition": "DISMISSED -- persistence_r2 is copy-the-input on an arm-invariant battery, so it is identical across arms by construction; it is cited only as the baseline beside model_r2 (per the 1079 routing rule), never as a between-arm discriminator."
+          }
+        ],
+        "inapplicable": ["C1", "C2", "C3 (claim-keyed; claim_ids [])", "C5 (no sibling .md at check time)"],
+        "manual_cover_for_inapplicable": "C1 checked by hand (no driver/queue item covers the recommended probe); C2 n/a (amend of an existing entry, not a create)."
+      },
+      "red_team": {
+        "model": "fable (cross-model; session model Opus 5.5)",
+        "verdict": "CONTESTED (narrow)",
+        "report": "scratchpad fa1082/redteam.md (not committed); findings summarised here",
+        "findings_adopted": [
+          "F1 M001 attribution: the draft asserted 'lowers d_act at every rung' and used M001 to call the (0.01,0.05) interval unpromising while its own measurement layer called M001 unattributed. Hinge gradient is scale-free (e2_fast.py ~295-298) so the 7e-7 loss value implies neither inert nor causal. ADOPTED: hedged everywhere; confirmer = null-perturbation OFF replicate.",
+          "F2 alpha attribution: 'operating-point artefact of the 0.3 default' is cross-run inference from a single-alpha run. ADOPTED: reworded; confirmer = alpha 0.3 arm added to the suggested probe.",
+          "F3 1073 -> superseded over-reaches: only clause (3) of its target was met; clauses (1)-(2) are the readout still owed. ADOPTED: left open with a note.",
+          "F4 stale record: SD-PP-B5 validation_outcome says 1073 never reads done; 1073 driver resets on done. VERIFIED and ADOPTED: correction appended; stale_note flag owed."
+        ],
+        "hygiene_adopted": ["'~100x untrained floor' -> '|d_act| < 0.003'", "ridge-ceiling ratio 64-81% added", "source key on failure_record_entry", "bears_on provenance stated", "'15/15 cells' on per-cell preconditions"],
+        "verified_by_red_team": "all 15 d_act and 12 lifts recomputed from per-row arrays to 4 dp; d_act > 0 cannot arise from shared bias, EMA dynamics or identical-outcome pairs (each pushes toward 0); reads_action can fail (untrained |d| < 0.003); schema forms precedented; probe uncovered"
+      },
+      "hypothesis_space_ledger_pending": {
+        "applies_to_registry": "REE_assembly/evidence/planning/hypothesis_space_registry.v1.json -- NOT written (staging mode). The confirming session applies this, then runs build_hypothesis_space.py + check_hypothesis_space_integrity.py.",
+        "qid": "zworld_action_readability_lever",
+        "growth_restriction_check": "growth_restriction is \"\" (empty) -- no STOP. Framing caveat for the Step 8 gate: the question asks about a TRAINING-TIME LEVER and the new leg is an operating point; the alternative disposition is to register H-operating-point under a new qid naming zworld_action_readability_lever. Recommended: labelled growth on the existing question (it answers that question's decision_question more directly than any lever leg).",
+        "mode_B_resolve": [
+          {
+            "hid": "H-margin-form",
+            "append_adjudicating_runs": ["V3-EXQ-1082"],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": ["V3-EXQ-1075", "V3-EXQ-1082"],
+              "evidence_direction": "non_contributory",
+              "epistemic_category": "standard",
+              "self_route_label": "margin_lowers_action_read",
+              "control_passed": true,
+              "non_degenerate": true,
+              "met_elimination_bar": false,
+              "resolved_utc": "2026-09-24T04:50:04Z",
+              "basis": "Re-measured at alpha 0.9 on a live battery: no rung (0.01/0.05/0.10/0.50) raises d_act (12/12 lifts negative), reconstruction destroyed at >= 0.05. Still NOT eliminated: the (0.01, 0.05) interval is unsampled and M001's lowering is unattributed. Deprioritised because the untouched head already reads its action at this operating point (see H-operating-point)."
+            }
+          }
+        ],
+        "mode_A_labelled_growth_3a": {
+          "add_hypothesis": {
+            "hid": "H-operating-point",
+            "label": "At SD-008's alpha_world >= 0.9 on a live battery, the untouched world_forward head reads its action without any training-time lever",
+            "desc": "The action-blindness behind SD-PP-B5 (V3-EXQ-1073, alpha 0.3) is an operating-point property (EMA damping of z_world), not a head/objective property.",
+            "axis": "representation-update-rate",
+            "basis": "GFLAG-0433/0434 and the confirmed 1079 autopsy routed the re-validation at alpha >= 0.9 on a live battery; the 1082 driver pre-registered the off_reads_action / off_blind premise split before running.",
+            "pre_registered_utc": "2026-09-23T18:26:25Z",
+            "pre_registration_source": "failure_autopsy_V3-EXQ-1079_2026-09-23.json",
+            "pre_registration_witness": "REE_assembly 18a3306a5bf (committed 2026-09-23T18:26:25Z) and ree-v3 5f3b27a (driver with the off_arm_premise split, committed 2026-09-24T04:43:44Z); run resolved 2026-09-24T04:50:04Z",
+            "adjudicating_runs": ["V3-EXQ-1082"],
+            "resolution": {
+              "state": "confirmed",
+              "resolving_runs": ["V3-EXQ-1082"],
+              "evidence_direction": "non_contributory",
+              "epistemic_category": "standard",
+              "self_route_label": "margin_lowers_action_read (off_arm_premise off_reads_action)",
+              "control_passed": true,
+              "non_degenerate": true,
+              "met_elimination_bar": false,
+              "resolved_utc": "2026-09-24T04:50:04Z",
+              "basis": "ARM_OFF d_act 0.341/0.216/0.227 with CI lower > 0 on 3/3 (analytic null; untrained |d| < 0.003; ridge positive control live 3/3), skill_vs_identity +0.35/+0.22/+0.21. Confirmed on the d_act/skill axes at one alpha; the inverted-map live_gate and the within-run alpha attribution remain open, so decision.decidable stays false."
+            }
+          },
+          "question_edits": {
+            "initial_frozen_count": "3 -> 4",
+            "initial_frozen_count_at_registration": "stays 3",
+            "fanout_sources_append": "failure_autopsy_V3-EXQ-1082_2026-09-24.json",
+            "fanout_growth_events_append": {
+              "recorded_utc": "<date -u at apply time>",
+              "pre_registered_utc": "2026-09-23T18:26:25Z",
+              "fanout_source": "failure_autopsy_V3-EXQ-1079_2026-09-23.json",
+              "added_hids": ["H-operating-point"],
+              "delta": 1,
+              "note": "Partition expansion: the lever-only partition omitted the operating point. Anticipated by GFLAG-0433/0434 and the 1079 routing before V3-EXQ-1082 ran; resolved confirmed (d_act/skill axes) by V3-EXQ-1082."
+            },
+            "fanout_growth_note": "one labelled growth event (1082): the question has not converged on its live_gate; the denominator grew by 1",
+            "decision_edits": {
+              "decidable": false,
+              "distance_phrase": "the untouched head reads its action at alpha 0.9 on a live battery (d_act, skill); the live_gate readout (inverted-map ratio) is unmeasured there; the margin lever is narrowed further and deprioritised",
+              "observation_bottleneck": "replace 'z_world's per-step displacement (SD-PP-B5) bounds every objective on this head' with: the bound is the alpha_world operating point (0.3 default vs SD-008's 0.9); the action-sensitivity gate and d_act reads_action status still lack a head-health guard"
+            }
+          }
+        },
+        "mode_D_h_other_event": {
+          "recorded_utc": "<date -u at apply time>",
+          "source": "failure_autopsy_V3-EXQ-1082_2026-09-24.json",
+          "signal": "(1)/(4): no registered leg explains the outcome -- an operating parameter omitted from the partition (alpha_world) accounts for the premise the three lever legs were built to remedy",
+          "legs": ["H-margin-form", "H-infonce-form", "H-encoder-displacement"],
+          "rationale": "All three registered legs are levers on an assumed-blind head; at SD-008's operating point the head is not blind on the axes measured.",
+          "response": "partition_expansion"
+        }
+      }
+    }
+  ]
+}
