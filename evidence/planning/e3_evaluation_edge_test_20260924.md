@@ -342,3 +342,46 @@ Choice quality against env-Q (chance 0.20), scored at the arm's own running scal
 - The probe-state spreads carry the master-residue confound described above.
 - The s44 C2 benefit rise over C1 (+2) is within noise.
 - The flag's running scales start fresh in each arm (fresh agent), so the first 20 E3 ticks of every arm are unnormalised.
+
+## ADDENDUM 3 (2026-09-24T21:50Z, session `bt0924-evaluation-d`): `use_learned_channel_gating` -- STEP 0 producer trace: UNARMED in this regime, and structurally aimed at the wrong channels. Stopped before any arm run.
+
+- Commissioned by the orchestrator as the next single factor (G1/G2/G3), with a producer trace required first. Code: ree-v3 `origin/main` @ `44c55300ca` (re-fetched, unchanged).
+- Empirical arming check: `probes/evaluation/lcg_arming_check.py`. Settings: tiebreak ON, R5b scaffold + R2 depth 2, gating on, seeds 42 and 43, 300 waking steps each. Result: `results/LCG_arming_check.json`.
+- **Record note on claims.** ADDENDUM 2's claim `bt0924-evaluation-c` was opened at about 21:26Z, but the open did not register: it never reached origin, and `task_claim.py check` did not see it. It was opened and closed retroactively at 21:41Z. The open command's full output was cut by `| head -2`, so the exit code was not captured. This session's open (`bt0924-evaluation-d`) printed `opened claim ... coordinator-acknowledged` with exit 0.
+
+### Producer trace
+
+- **(iii) Learning rate, init and bounds.**
+  - w_chan is a `register_buffer` of 3 entries (`e3_selector.py:706-709`).
+  - Init: `ln(e-1) = 0.5413`, chosen so that softplus = 1.0 (`:61-63`). At init the gating is therefore bit-identical to the unweighted sum.
+  - Update: `Delta w[c] = eta * delta_t * elig_c * asym` (`:4893-4903`), with `eta = 0.01`, eligibility decay 0.9, V-hat EMA beta 0.05, asym 1.0 for potentiation and 0.5 for depression (`config.py:1445-1449`).
+  - Bounds: none on w_chan itself; softplus is applied only at use (`:3594-3603`).
+- **(i) Where the reward signal is produced.** `E3.post_action_update` (`:4763`) computes `R_t = benefit_eval_head(z) - harm_eval_head(z)` (`:4848-4855`) and `delta_t = R_t - V-hat_t`.
+  - **So the reward is an INTERNAL PROXY, not env reward.** It is E3's own two valuation heads, read at `agent._current_latent.z_world`.
+  - When the harness calls it (below), `_current_latent` is the latent sensed BEFORE `env.step`, so the "realised state" in the docstring is, on this path, the state the action was chosen from. That is a D0 code read, not probed.
+  - In the default regime harm_eval_head is untrained, so R_t would be read from untrained heads unless a driver trains them.
+- **(ii) Whether the harness calls it per tick.** Yes. `StepHarness.step` calls `agent.update_residue` after `env.step` (`experiments/_harness.py:358-365`), which calls `e3.post_action_update` (`agent.py:11225`).
+  - **But the w_chan write is gated on `_lcg_pending`.** That flag is armed only when the eligibility trace receives a contribution in `select()` (`:4634-4669`).
+  - Eligibility receives a contribution only from `_lcg_terms`, the modulatory channels actually present on that tick. The registry holds exactly `("score_bias", "mech341", "route")` (`:59`). Each is appended only when its producer is live:
+    - `score_bias`: only when a composed score_bias reaches `select()` (`:3504`). That is the dACC/lPFC/OFC/MECH-295/314/320 chain summed in `agent.py`.
+    - `mech341`: only when a `score_diversity` module exists (`:3514-3525`).
+    - `route`: only under `use_modulatory_channel_routing` (`:3543-3568`).
+- **Measured in this regime** (tiebreak ON, R5b + R2, gating on; 41 and 36 E3 selects over 300 steps on s42 / s43):
+  - score_bias passed to select: **0** of 77 selects;
+  - eligibility nonzero after select: **0**;
+  - `_lcg_pending` armed: **0**;
+  - w_chan updates: **0**;
+  - w_chan unchanged at `[0.5413, 0.5413, 0.5413]`; V-hat stays 0.0.
+
+### Verdict: UNARMED. Stopped per the brief; G1/G2/G3 not run, and no substitute built.
+
+1. **Unarmed here.** None of the three gated channels has a live producer in this regime, so no eligibility forms, `_lcg_pending` never arms, and the three-factor rule never writes. G1/G2/G3 would be bit-identical to T1/T2/T3 by construction. The "weights barely move" null does not even arise: the update count is 0, not small.
+   - **Update-rate note, in case it is armed elsewhere.** A single update moves w by `0.01 * delta_t * elig`. With |delta_t| of order 0.1-0.5 (the difference of two sigmoid heads, minus a baseline) and elig of order the per-candidate bias magnitude, softplus(w) moving by about 0.1 would take roughly `0.1 / (0.01 * 0.3 * elig)`, about 30/elig E3 ticks. Here E3 ticks only about 40-110 times per 600 steps (ADDENDUM 2's update counts). So even when armed, at elig below about 0.3 the learning window is longer than this budget. This is a D0 estimate, not measured.
+2. **Structurally aimed at the wrong channels for this constraint, even when armed.** w_chan re-weights only the MODULATORY accumulator (score_bias / MECH-341 / route) and never the primary J channels. The config docstring says so explicitly: it "re-weights only _modulatory_accum, never raw scores/F" (`config.py:1436-1437`). The constraint ADDENDUM 2 isolated sits in J itself: harm_eval vs benefit_eval vs residue, with no value calibration between them. The native ARC-108 gating does not reach those terms. So even armed (for example with a score_bias producer switched on), it could not calibrate the evaluator terms against residue.
+3. **Its teaching signal is the evaluators themselves.** R_t = benefit_eval - harm_eval, so "outcome calibration" through this rule would calibrate the modulatory channels against E3's own valuation heads, not against env outcome. If those heads are wrong (the shuffled G3 case), the rule has no grounded signal from which to learn to down-weight them.
+
+**What the edge now is (for the orchestrator).** ree_core has no mechanism that learns the relative weights of E3's PRIMARY score channels (F, harm_eval, residue, benefit_eval) from grounded outcome:
+- the commensurability operator equalises their spread (ADDENDUM 2);
+- the ARC-108 gating learns weights for modulatory channels only, from an internal proxy.
+
+This is a `complicated (buildable)` gap, not something a flag closes: primary-channel weights updated by grounded env reward (or by residue-confirmed harm and consumption events). It is a substrate decision for the orchestrator and user. Nothing was built here.
