@@ -110,3 +110,6 @@ predictor at every alpha tested. So the verdict is qualified and its basis recor
 
 Any re-validation must report `model_r2` alongside any persistence-relative skill, so a baseline
 collapse can never be read as head improvement.
+
+## 7. Addendum (2026-09-24, GFLAG-0448) -- the dead-agent battery does NOT apply to V3-EXQ-1073
+Section 6 item 2 (and, in the JSON, net_classification, implementation_hint and the SHARED INSTRUMENT DEFECT finding) say V3-EXQ-1073 also collected its battery after the agent died without reading `done`. That is FALSE for 1073: its _sample_probe_battery and P0 loop unpack `done` and reset (ree-v3 experiments/v3_exq_1073_mech572_precision_provenance_gain.py:1054-1057, 1170-1175, 1422-1426). The post-death defect applies to V3-EXQ-1075 and V3-EXQ-1079 only -- this driver's docstring records inheritance from 1075, and the extension to 1073 was not verified. Consequence for SD-PP-B5: of the two runs its validated-negative rests on, only 1075 carries the dead-agent defect; BOTH still ran at alpha_world 0.3 (unchanged, correct). SD-PP-B5's validation_outcome carries the matching correction (REE_assembly 65bb05ec9c). Found by failure_autopsy_V3-EXQ-1082_2026-09-24 sec. 2.

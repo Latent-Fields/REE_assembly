@@ -192,3 +192,7 @@ It did **not** move: the 6/6 negative-skill finding, the verified onset fix, the
 
 Integrity audit after the append: **a=0 b=2 c=3 d=0** -- all five flags are **pre-existing on other questions** (`zworld_actor_adequacy_locus`, `mech467_legc_event_denominator_cause`, `sd_e1_var_bar_readout_crush`). **Zero flags on this question**, and its growth appears in the *Advisory -- labelled fan-out growth* section, which is where a legitimate append belongs. Pre-registration provenance: 27 git-witnessed, 0 unverifiable.
 The question registered here reads `convergence_class: scattering`. That is the honest verdict and worth stating: after this run the question spans **five** axis families rather than narrowing, because the Step 7c pass demoted the draft's assumed displacement-ceiling cause to one hypothesis among four. Scattering is not a failure -- but it is a further reason to run the cheapest leg before commissioning any build.
+
+## Addendum (2026-09-24, GFLAG-0423) -- "C2 passed twice" corrected to once
+Section 6 item 4 and the "Category held at standard" judgement call say C2 has passed 3/3 seeds TWICE. V3-EXQ-1062's C2 did not include a valence axis (its axis 2 was the harm level bit-for-bit, GFLAG-0423), so this run's C2 (0.0851 vs 0.8, 3/3 seeds, on the non-harm component spread) is the FIRST falsifier-(i) pass over a genuine valence axis. The HOLD-standard call is unaffected: it rests on C2 being scoreable today, which remains true.
+

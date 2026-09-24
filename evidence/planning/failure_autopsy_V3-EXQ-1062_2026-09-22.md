@@ -363,3 +363,7 @@ fan-out for MECH-055 will need to open a new question, and should re-check conte
 - **No run pack exists for this run**, so it is currently inert to claim scoring
   (`claim_evidence.v1.json` still shows `exp_posterior.n_entries: 0` for MECH-055) regardless of
   what governance applies.
+
+## 12. Addendum (2026-09-24, GFLAG-0423) -- C2 did not include a valence axis
+Section 7 item 1 is QUALIFIED, not withdrawn. This run's "axis 2 valence spread" is the harm LEVEL bit-for-bit: valence components 4/5 (positive/negative surprise) are written only under use_mech307_split_surprise (ree_core/residue/field.py), which this run did not set, so the component minimum is pinned at 0 and max-min collapses to max, which VALENCE_HARM_DISCRIMINATIVE dominates. Verified: mean_axis2_valence_spread_{level,delta} == mean_valence_harm_{level,delta} in all 6 cells of the manifest. So C2 PASSED on {tone, harm level, harm PE}, not {tone, valence, harm PE}; the max pairwise R^2 0.271 is a real measurement of a different axis set than recorded, and is NOT evidence about the valence axis. The run's FAIL / non_contributory direction is unaffected (it stood on C1 never being scored). The first C2 pass that includes a non-harm valence axis is V3-EXQ-1062a (0.0851 vs 0.8, 3/3 seeds). Source: GFLAG-0423 (V3-EXQ-1062a Step 4.5 red-team finding F1).
+
