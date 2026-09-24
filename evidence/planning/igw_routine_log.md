@@ -3609,3 +3609,4 @@ One line per hourly tick. ASCII only.
 2026-09-24T13:29:48Z STAGE IGW-20260924-224 skill=/implement-substrate prio=25 worktree=igw-224-substrate-ready-suffering-deriva (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-24T14:49:04Z workset published via the coordinator (no local commit; verified on origin/master 544b938f8c) (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T14:49:05Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
+2026-09-24T14:42:18Z SPAWN IGW-20260924-252 skill=/lit-pull prio=40 uuid=bef653f1-b153-47d2-b241-13a098d461b8 pid=5027 worktree=igw-252-literature-proposal-for-mech-081
