@@ -6348,9 +6348,9 @@
       "summary": "ARC-023's narrowed E3-only falsifier (GFLAG-0406 option A, 2026-09-23) has two defects found by the V3-EXQ-942 re-read (failure_autopsy_V3-EXQ-942_reread_2026-09-23): (1) its FALSIFYING leg ('E3 not slower than the per-step loops') is reachable only at E3 share 1.0, i.e. a phase reset on every step, so it is effectively unfalsifiable in the ecological regime; (2) 'configured period' is ambiguous because MECH-093 rewrites E3's period from |z_beta| on every E1 tick (ree-v3 f0cb0d59 agent.py:5406 -> clock.update_e3_rate_from_beta, band 5-20 steps, share 0.05-0.20), so there is no fixed 1/10 to track. The same finding makes ARC-023's evidence_quality_note premise '572/633/354 realized vs 375/375/90 configured' FALSE as run (also stated in the 2026-08-21 942 autopsy); correct it. EXP-0548 should stay gated on this new reason until the falsifier is tightened (user-confirmed 2026-09-23, rec-20260923-e532e1b3).",
       "raised_by_session": "compassionate-greider-803fd7",
       "raised_at": "2026-09-23T20:09:48Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:42:54Z",
+      "resolution_note": "governance-20260924: 375/375/90 premise correction applied 8fdb84d67c (rec-20260924-d981b105); EXP-0548 gating_reason replaced per rec-20260923-e532e1b3 (859798fe74) then amended; user decision (A, rec-20260924-3760004e): ARC-023 falsifier tightened -- ordering leg vs E2 configured 1/3, arousal-set expected count, resets attributed by trigger, tolerances pre-registered, 942 inadmissible. REE_assembly 797901ec696. Follow-on /queue-experiment design chipped at Step 8."
     },
     {
       "flag_id": "GFLAG-0444",
