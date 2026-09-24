@@ -6769,6 +6769,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0474",
+      "claim_ids": [
+        "MECH-288",
+        "MECH-287"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MECH-288's slow/outer BOCPD scale has NO REACHABLE FIRING ROUTE on the in-agent observation path, by arithmetic -- not by z_goal liveness, warmup or benefit-gate state. Verified against source (full record: evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md, REE_assembly d46c032239). (1) The Bayesian posterior route cannot fire at all: in _BOCPDGaussianDetector.step the likelihood weights cancel exactly in normalisation (growth_i = P_i*L_i*(1-hazard), cp_prob = sum_i P_i*L_i*hazard, total = S), so p(r=0) == hazard == 1/40 == 0.025 IDENTICALLY for every observation, against posterior_threshold 0.5 (event_segmenter.py:315-323,343-352,378-384; config.py:2283,2307). Top-k pruning cannot rescue it. (2) The only live route is the implausibility fast path max(pred_log) < -20.0 (:303-312), which via the always-present n<2 run at var=prior_var=1.0 (:257-260) REQUIRES a one-tick change in ||z_goal|| greater than sqrt(40 - ln 2pi) = 6.1775. The detector reads the SCALAR NORM, not the vector (:282). (3) GoalState.update -- the sole writer -- can change that norm by at most 0.005*||z_goal|| + 0.05*||z_world - 0.995*z_goal|| per tick (goal.py:29,33,871,912-919), so a one-tick crossing needs ||z_world|| around 124. (4) Measured live z_goal is 0.110-0.163 mean / 0.209-0.305 max across 5 seeds (V3-EXQ-830 manifest) -- the required jump is ~20x the largest value the norm ever attains. (5) Corroboration: V3-EXQ-757, the only run that has ever fired this scale, used GOAL_LEVELS [5,15,25,10,20,30], every consecutive gap 10-25 and none below 6.1775 (driver:154, comment says the gaps were 'chosen to hit BOCPD's decisive rail'); this also explains the GFLAG-0452 D1 finding that its smooth arm's silence at GOAL_NOISE 0.02 was by construction. CONSEQUENCES: MECH-288's own precondition (1) ('boundary fires > 0 on BOTH scales') is unsatisfiable in-agent, so proposal EXP-1388 is unrunnable as designed and is recorded refused; the two-scale hierarchy reduces to the fast scale alone in-agent, so every in-agent segment id has outer=0, which bears on the (scale, segment_id)-keyed consumers MECH-269, MECH-284 and MECH-287's broadcast trigger -- NOT adjudicated here. Also corrects GFLAG-0468/Part-1, which attributed the zero to a dead z_goal stream: the measurements stand but the causal story was one layer too shallow, since even a fully live stream at the measured scale cannot fire this detector. NO REMEDY CHOSEN: changing the stream, prior_var/hazard/posterior_threshold, or alpha_goal each changes what MECH-288 IS (the claim commits to 'BOCPD-Gaussian latent change-point on the slow scale (z_goal)') -- a claim-level governance + /implement-substrate decision.",
+      "raised_by_session": "metaworker-science-20260924-orchb-mech288-boundary-anchor",
+      "raised_at": "2026-09-24T13:36:29Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
