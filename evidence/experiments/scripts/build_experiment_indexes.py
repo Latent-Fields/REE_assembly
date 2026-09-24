@@ -6488,8 +6488,27 @@ _PROPOSAL_STATUS_CARRY_FORWARD_FIELDS = (
 # release_condition_note_2026_09_23, ... -- `<words>_note` or `<words>_retracted`,
 # optionally date-suffixed. The generator never mints these on a proposal row, so
 # on the previous file they can only be a session's work.
+#
+# Widened 2026-09-24 (chip-20260924-proposal-annotation-carry-gap): the
+# `<words>_note` / `<words>_retracted` shapes missed three more record shapes a
+# governance session writes, and every regen -- /governance's own included --
+# dropped them. Measured on REE_assembly df2ff4912c: EXP-0320 lost
+# refusal_route / refused_by_session / refused_utc (a Step 2.5 refusal record)
+# and EXP-0548 lost gating_reason_history / gating_reason_reviewed_utc (both
+# written by governance-20260924). Added shapes, none of which the generator
+# mints (checked against every quoted key in this file):
+#   <words>_history[_<date>]              -- gating_reason_history, ...
+#   refusal_<words> / refused_<words>     -- the refusal record
+#   <words>_(reviewed|reverified)[_at]_(utc|by_session)
+#                                         -- gating_reason_reviewed_utc,
+#                                            reverified_at_utc, ...
+# Anything a regen still drops is named by report_dropped_proposal_fields.
 _PROPOSAL_ANNOTATION_KEY_RE = re.compile(
-    r"^(?:[a-z0-9]+_)*(?:note|retracted)(?:_\d{4}_\d{2}_\d{2})?$"
+    r"^(?:"
+    r"(?:[a-z0-9]+_)*(?:note|retracted|history)(?:_\d{4}_\d{2}_\d{2})?"
+    r"|(?:refusal|refused)_[a-z0-9_]+"
+    r"|(?:[a-z0-9]+_)*(?:reviewed|reverified)(?:_at)?_(?:utc|by_session)"
+    r")$"
 )
 
 # The gating RECORD a session leaves on a row it RELEASED back to "proposed"
@@ -6534,6 +6553,48 @@ def proposal_annotation_fields(existing_row: dict[str, Any]) -> dict[str, Any]:
             if existing_row.get(k):
                 out[k] = existing_row[k]
     return out
+
+
+# Fields a regen may legitimately clear from a surviving row: the status family
+# (a release to "proposed" drops blocked_by / blocked_note / release_condition on
+# purpose -- see _PROPOSAL_RELEASED_ROW_CARRY_FIELDS) and the stamps the
+# generator re-derives every cycle.
+_PROPOSAL_DROP_REPORT_EXEMPT = frozenset(_PROPOSAL_STATUS_CARRY_FORWARD_FIELDS) | {
+    "generated_utc", "why_now", "signals",
+}
+
+
+def report_dropped_proposal_fields(
+    old_items: list[dict[str, Any]], new_items: list[dict[str, Any]]
+) -> list[tuple[str, str]]:
+    """(proposal_id, key) for every non-empty field a regen removed from a row
+    that is still present by proposal_id.
+
+    The negative-instrument backstop for the name-shape carry-forward above: a
+    governance field whose NAME matches no known shape used to vanish silently
+    (the 2026-09-24 refusal / gating-history loss). This names it instead, so the
+    next unknown shape is seen on the first regen that drops it rather than
+    found by hand later. Report only -- it restores nothing. Pure, for testing.
+    """
+    new_by_id = {
+        str(p.get("proposal_id")): p
+        for p in new_items
+        if isinstance(p, dict) and p.get("proposal_id")
+    }
+    dropped: list[tuple[str, str]] = []
+    for old in old_items:
+        if not isinstance(old, dict):
+            continue
+        pid = str(old.get("proposal_id") or "")
+        new = new_by_id.get(pid)
+        if new is None:
+            continue
+        for k, v in old.items():
+            if k in _PROPOSAL_DROP_REPORT_EXEMPT or v in (None, "", [], {}):
+                continue
+            if k not in new:
+                dropped.append((pid, k))
+    return dropped
 
 
 def apply_proposal_annotation_carry_forward(
@@ -8537,6 +8598,16 @@ def _write_planning_outputs(
         planning_root / "evidence_backlog.v1.json",
         json.dumps(backlog_doc, indent=2, sort_keys=True) + "\n",
     )
+    if _existing_proposals_doc is not None:
+        _dropped_fields = report_dropped_proposal_fields(
+            _existing_proposals_doc.get("items", []), proposals_doc.get("items", [])
+        )
+        if _dropped_fields:
+            print(f"  WARNING proposal status: this regen DROPS {len(_dropped_fields)} "
+                  f"field(s) from surviving rows -- if hand-written, add their name "
+                  f"shape to _PROPOSAL_ANNOTATION_KEY_RE: "
+                  + ", ".join(f"{p}:{k}" for p, k in _dropped_fields[:20])
+                  + (" ..." if len(_dropped_fields) > 20 else ""))
     _atomic_write_text(
         planning_root / "experiment_proposals.v1.json",
         json.dumps(proposals_doc, indent=2, sort_keys=True) + "\n",

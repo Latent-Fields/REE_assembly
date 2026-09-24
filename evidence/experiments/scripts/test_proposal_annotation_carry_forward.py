@@ -147,6 +147,85 @@ class ReleasedRowTest(unittest.TestCase):
         self.assertEqual(item["status"], "proposed")
 
 
+# Governance record shapes the original regex missed; every regen dropped them.
+# Measured 2026-09-24 on REE_assembly df2ff4912c (restored by hand in
+# d6c9c7ba5c): EXP-0320's refusal record and EXP-0548's gating history, both
+# written by governance-20260924. chip-20260924-proposal-annotation-carry-gap.
+GOVERNANCE_RECORD_KEYS = (
+    "refusal_route",
+    "refused_by_session",
+    "refused_utc",
+    "gating_reason_history",
+    "gating_reason_reviewed_utc",
+    "reverified_at_utc",
+    "reverified_by_session",
+)
+
+
+class GovernanceRecordShapeTest(unittest.TestCase):
+    def test_every_governance_record_key_is_recognised(self):
+        for k in GOVERNANCE_RECORD_KEYS:
+            self.assertTrue(b._PROPOSAL_ANNOTATION_KEY_RE.match(k), k)
+
+    def test_generator_keys_still_not_annotations(self):
+        # Keys the generator mints must stay out, or a stale copy would be
+        # filled into a row the generator deliberately left without one.
+        for k in ("objective", "why_now", "acceptance_checks", "dispatch_mode",
+                  "seed_policy", "executed_by", "gated_by_session", "claim_id"):
+            self.assertFalse(
+                b._PROPOSAL_ANNOTATION_KEY_RE.match(k) and
+                k not in b._PROPOSAL_STATUS_CARRY_FORWARD_FIELDS, k)
+
+    def test_refusal_record_survives_regen(self):
+        old = {"proposal_id": "EXP-0320", "claim_id": "MECH-900", "backlog_id": "EVB-0320",
+               "proposal_type": "experimental", "status": "blocked_substrate",
+               "blocked_note": "substrate missing",
+               "refusal_route": "implement_substrate",
+               "refused_by_session": "governance-20260924",
+               "refused_utc": "2026-09-24T08:44:45Z"}
+        ann_map, lanes = _register([old])
+        item = _fresh("EXP-0320", "MECH-900", "EVB-0320")
+        item["status"] = "blocked_substrate"
+        b.apply_proposal_annotation_carry_forward(
+            item, b.lookup_existing_proposal_status(item, ann_map, lanes))
+        for k in ("refusal_route", "refused_by_session", "refused_utc"):
+            self.assertEqual(item.get(k), old[k], k)
+
+    def test_gating_history_survives_regen(self):
+        hist = [{"by_session": "governance-20260924", "prior_gating_reason": "x",
+                 "superseded_at_utc": "2026-09-24T08:19:23Z"}]
+        old = {"proposal_id": "EXP-0548", "claim_id": "ARC-023", "backlog_id": "EVB-0548",
+               "proposal_type": "experimental", "status": "gated",
+               "gating_reason": "current reason",
+               "gating_reason_history": hist,
+               "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z"}
+        ann_map, lanes = _register([old])
+        item = _fresh("EXP-0548", "ARC-023", "EVB-0548")
+        item["status"] = "gated"
+        b.apply_proposal_annotation_carry_forward(
+            item, b.lookup_existing_proposal_status(item, ann_map, lanes))
+        self.assertEqual(item.get("gating_reason_history"), hist)
+        self.assertEqual(item.get("gating_reason_reviewed_utc"), "2026-09-24T08:42:06Z")
+
+
+class DroppedFieldReportTest(unittest.TestCase):
+    """The backstop: an unknown hand-written shape is named, not lost silently."""
+
+    def test_unknown_field_drop_is_reported(self):
+        old = [{"proposal_id": "EXP-1", "status": "gated", "novel_governance_marker": "x",
+                "objective": "o"}]
+        new = [{"proposal_id": "EXP-1", "status": "gated", "objective": "o2"}]
+        self.assertEqual(b.report_dropped_proposal_fields(old, new),
+                         [("EXP-1", "novel_governance_marker")])
+
+    def test_status_family_and_blank_and_vanished_rows_are_not_reported(self):
+        old = [{"proposal_id": "EXP-1", "status": "blocked_substrate",
+                "blocked_note": "n", "release_condition": "r", "empty_note": ""},
+               {"proposal_id": "EXP-2", "anything": "gone with its row"}]
+        new = [{"proposal_id": "EXP-1", "status": "proposed"}]
+        self.assertEqual(b.report_dropped_proposal_fields(old, new), [])
+
+
 class NoClobberAndNoBleedTest(unittest.TestCase):
     def test_existing_value_wins(self):
         item = {"withdrawn_note": "manual row's own note"}
