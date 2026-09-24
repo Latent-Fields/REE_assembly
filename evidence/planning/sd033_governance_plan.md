@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -30,13 +29,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -48,13 +46,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -66,13 +63,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -84,13 +80,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -102,13 +97,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -120,13 +114,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -138,13 +131,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-935a_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "{'kind': 'SAME-QUESTION lineage, sequenced: first a zero-compute re-score of banked cells (no new EXQ needed if governance prefers to fold it into the next walk), then -- conditional on it -- a POWERED same-question re-test with an alphabetic suffix (V3-EXQ-935b). This is a REVISION: the first draft of this autopsy routed a reframed redesign under a NEW EXQ number keyed on the dispersion covari..."
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]

@@ -11,13 +11,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -29,13 +28,12 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -61,13 +59,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -80,13 +77,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -101,13 +97,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -119,13 +114,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -138,13 +132,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -189,13 +182,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -209,13 +201,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]
@@ -228,13 +219,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-20"
-        from: "failure_autopsy_INV-063-1060-1063-1069-cluster_2026-09-20#V3-EXQ-1069"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
         verdict: "non_contributory/standard"
-        next: "routing=governance-note-only"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["inv050_reecore_bisect_20260911:commit_attribution"]
         scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166", "INV-063", "MECH-209", "MECH-210", "MECH-211"]

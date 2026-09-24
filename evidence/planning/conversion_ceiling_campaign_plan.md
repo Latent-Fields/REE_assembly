@@ -14,13 +14,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -30,13 +29,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -46,13 +44,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -62,13 +59,12 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -78,13 +74,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -95,13 +90,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -118,13 +112,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-16"
-        from: "failure_autopsy_V3-EXQ-1039_2026-09-16"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1012c_2026-09-24"
         verdict: "non_contributory/standard"
-        next: "routing=queue-experiment"
+        next: "{'work_graph_debt_class': 'none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)', 'primary_route': \"/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as r..."
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]

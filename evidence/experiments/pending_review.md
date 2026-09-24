@@ -1,11 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-09-24T08:45:28Z`  
+Generated: `2026-09-24T10:27:00Z`  
 Last review: `2026-09-24T08:45:14Z`  
-Scanned: 2985 claim_evidence entries considered (3010 already reviewed), 4875 manifest file(s) on disk.  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Scanned: 2986 claim_evidence entries considered (3010 already reviewed), 4877 manifest file(s) on disk.  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3` | 2026-09-24T09:41 | MECH-365 |
 
 ---
 

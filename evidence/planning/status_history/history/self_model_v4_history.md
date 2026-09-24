@@ -8,7 +8,8 @@ Source plan: `evidence/planning/self_model_v4_plan.md`
 
 - `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
 - `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
-- `2026-07-12T10:53Z` [autopsy] `failure_autopsy_V3-EXQ-740a_2026-07-12` -> [`evidence/planning/failure_autopsy_V3-EXQ-740a_2026-07-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740a_2026-07-12.json) :: autopsy non_contributory/measurement_degeneracy routing=claim-synthesis **<- live head**
+- `2026-07-12T10:53Z` [autopsy] `failure_autopsy_V3-EXQ-740a_2026-07-12` -> [`evidence/planning/failure_autopsy_V3-EXQ-740a_2026-07-12.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740a_2026-07-12.json) :: autopsy non_contributory/measurement_degeneracy routing=claim-synthesis
+- `2026-09-24T06:06Z` [autopsy] `failure_autopsy_V3-EXQ-1078_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1078_2026-09-24.json) :: autopsy non_contributory/substrate_coherence routing=governance-reclassify (wwa_amendment) **<- live head**
 
 ## `self_model_v4:SELF-2`
 

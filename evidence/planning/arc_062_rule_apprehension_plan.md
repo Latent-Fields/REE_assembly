@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -31,10 +31,10 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -156,10 +156,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -175,10 +175,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -195,10 +195,10 @@ closure_plan:
       status: deferred
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -212,10 +212,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -229,10 +229,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -247,10 +247,10 @@ closure_plan:
       status: partial
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -278,10 +278,10 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -297,10 +297,10 @@ closure_plan:
       status: blocked_pending_substrate
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -318,10 +318,10 @@ closure_plan:
       status: blocked
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -335,10 +335,10 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:
@@ -356,10 +356,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D2-cluster_2026-09-24#V3-EXQ-615"
+        verdict: "non_contributory/standard"
+        next: "routing=queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
         brake: "fired"
         needs_review: false
       join:

@@ -33,14 +33,14 @@ closure_plan:
         note: "Self-continuity ingredient; with valence + autobiographical memory + inescapability + replay it forms the prohibited Class-4 combination."
       severity: load-bearing
       live:
-        as_of: "2026-07-12"
-        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
-        verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=claim-synthesis"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_V3-EXQ-1078_2026-09-24"
+        verdict: "non_contributory/substrate_coherence"
+        next: "routing=governance-reclassify (wwa_amendment)"
         brake: "not_fired"
         needs_review: false
       join:
-        bears_on: []
+        bears_on: ["self_model_v4:SELF-1"]
         scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [ARC-081]
       depends_on: []

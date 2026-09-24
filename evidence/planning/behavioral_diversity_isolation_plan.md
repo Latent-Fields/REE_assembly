@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -45,13 +44,12 @@ closure_plan:
       status: partial
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -93,13 +91,12 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -132,13 +129,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -154,13 +150,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -175,13 +170,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -194,13 +188,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -213,13 +206,12 @@ closure_plan:
       status: blocked
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -234,13 +226,12 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -254,13 +245,12 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -303,13 +293,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -329,13 +318,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-09-23"
-        from: "failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a"
-        verdict: "supports/standard"
-        next: "routing=governance-reclassify (no-op: stands)"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-503a"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-reclassify"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]

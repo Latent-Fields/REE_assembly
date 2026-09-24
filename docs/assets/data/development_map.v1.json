@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-24T06:04:49Z",
+  "generated_at": "2026-09-24T10:28:00Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -44,6 +44,17 @@
         ],
         "surviving": 4,
         "initial": 4,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "arc065_structured_vs_noise_diversity",
+        "title": "ARC-065 structured vs noise",
+        "claims": [
+          "ARC-065"
+        ],
+        "surviving": 3,
+        "initial": 3,
         "convergence": "static",
         "is_hero": false
       },
@@ -281,6 +292,17 @@
         "is_hero": false
       },
       {
+        "id": "inv069_process_vs_state_dissociation",
+        "title": "INV-069 process vs state",
+        "claims": [
+          "INV-069"
+        ],
+        "surviving": 2,
+        "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "inv088_diversity_readout",
         "title": "INV-088 diversity readout",
         "claims": [
@@ -315,14 +337,25 @@
         "is_hero": false
       },
       {
+        "id": "mech033_kernel_chaining_isolation",
+        "title": "MECH-033 chaining isolation",
+        "claims": [
+          "MECH-033"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "mech055_harm_pe_source_validity",
         "title": "harm-PE source validity",
         "claims": [
           "MECH-055"
         ],
-        "surviving": 5,
+        "surviving": 4,
         "initial": 6,
-        "convergence": "scattering",
+        "convergence": "mixed",
         "is_hero": false
       },
       {
@@ -780,8 +813,8 @@
           "MECH-573"
         ],
         "surviving": 3,
-        "initial": 3,
-        "convergence": "static",
+        "initial": 4,
+        "convergence": "scattering",
         "is_hero": false
       },
       {
@@ -813,7 +846,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "156 / 249",
+      "value": "158 / 255",
       "detail": "modules recorded as built"
     },
     {
@@ -823,7 +856,7 @@
     },
     {
       "label": "Narrow",
-      "value": "143 / 196",
+      "value": "150 / 204",
       "detail": "rival explanations still standing"
     },
     {
@@ -919,7 +952,7 @@
               "claim_class": "invariant_or_foundation",
               "lifecycle": "experiment_planned",
               "attention_rank": 2,
-              "incoming_dependencies": 12,
+              "incoming_dependencies": 13,
               "depends_on": [],
               "additional_dependencies": 0
             },
@@ -1220,8 +1253,8 @@
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 73,
-          "more_count": 63,
+          "count": 72,
+          "more_count": 62,
           "nodes": [
             {
               "id": "ARC-005",
@@ -1403,7 +1436,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 86,
+              "incoming_dependencies": 87,
               "depends_on": [
                 "ARC-014",
                 "INV-011",
@@ -1561,8 +1594,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 155,
-          "more_count": 145,
+          "count": 156,
+          "more_count": 146,
           "nodes": [
             {
               "id": "MECH-062",
@@ -1611,6 +1644,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-037",
+              "title": "Papez-like loop provides provenance gating and reality filtering.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "ARC-007",
+                "ARC-018",
+                "ARC-003",
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-168",
               "title": "Progressive sleep deprivation or neurodegeneration causes staged failure of the offline consolidation pipeline in reverse dependency order: precision recalibration (MECH-123/Phase 4) degrades first, producing early MCI features; slot-filling (MECH-121/Phase 2-3) next, producing the classic early Alzheimer's episodic profile (intact remote, absent new); slot-formation (MECH-120/Phase 1-2) last, producing middle-stage contextual identity loss and schema destabilisation; global context collapse last.",
               "status": "candidate",
@@ -1640,23 +1690,6 @@
               "incoming_dependencies": 5,
               "depends_on": [
                 "Q-092"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-037",
-              "title": "Papez-like loop provides provenance gating and reality filtering.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "mechanism_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "ARC-007",
-                "ARC-018",
-                "ARC-003",
-                "ARC-005"
               ],
               "additional_dependencies": 0
             },
@@ -1733,13 +1766,13 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 265,
+      "total": 262,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 24,
-          "more_count": 14,
+          "count": 25,
+          "more_count": 15,
           "nodes": [
             {
               "id": "SD-005",
@@ -1984,8 +2017,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 236,
-          "more_count": 226,
+          "count": 232,
+          "more_count": 222,
           "nodes": [
             {
               "id": "INV-049",
@@ -2163,13 +2196,13 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 334,
+      "total": 335,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 56,
-          "more_count": 46,
+          "count": 52,
+          "more_count": 42,
           "nodes": [
             {
               "id": "SD-012",
@@ -2200,24 +2233,6 @@
                 "ARC-023",
                 "ARC-021",
                 "MECH-138"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-092",
-              "title": "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation.",
-              "status": "provisional",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 25,
-              "depends_on": [
-                "ARC-023",
-                "ARC-014",
-                "ARC-018",
-                "ARC-022",
-                "MECH-094"
               ],
               "additional_dependencies": 0
             },
@@ -2289,25 +2304,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "MECH-302",
-              "title": "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'.",
-              "status": "provisional",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 10,
-              "depends_on": [
-                "MECH-057a",
-                "MECH-091",
-                "MECH-094",
-                "MECH-303",
-                "SD-011",
-                "SD-012"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "SD-034",
               "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied. [UMBRELLA NARROWED 2026-06-19: the de-commit-authority sub-property (closure->latch coupling + de-commit magnitude) is decomposed into children MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude); see those claims. SD-034 remains the umbrella design_decision -- closure-operator existence + five-part 'done' token firing + No-Go install are retained here and provisional; NOT demoted, NOT superseded.]",
               "status": "provisional",
@@ -2340,6 +2336,37 @@
                 "MECH-271",
                 "MECH-094",
                 "MECH-092"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-284",
+              "title": "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps).",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "MECH-094",
+                "ARC-007",
+                "ARC-018"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-314",
+              "title": "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs.",
+              "status": "candidate_substrate_landed",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "ARC-065",
+                "MECH-313"
               ],
               "additional_dependencies": 0
             }
@@ -2515,8 +2542,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 262,
-          "more_count": 252,
+          "count": 267,
+          "more_count": 257,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2536,6 +2563,24 @@
                 "SD-005",
                 "SD-010",
                 "SD-011"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-092",
+              "title": "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 25,
+              "depends_on": [
+                "ARC-023",
+                "ARC-014",
+                "ARC-018",
+                "ARC-022",
+                "MECH-094"
               ],
               "additional_dependencies": 0
             },
@@ -2670,21 +2715,6 @@
                 "ARC-016"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "ARC-023",
-              "title": "Three BG-like loops operate at characteristic thalamic heartbeat rates.",
-              "status": "candidate",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 17,
-              "depends_on": [
-                "ARC-021",
-                "MECH-069"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2694,7 +2724,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 285,
+      "total": 289,
       "buckets": [
         {
           "key": "active",
@@ -2749,8 +2779,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 283,
-          "more_count": 273,
+          "count": 287,
+          "more_count": 277,
           "nodes": [
             {
               "id": "ARC-053",
@@ -2799,6 +2829,20 @@
                 "MECH-036",
                 "MECH-127",
                 "IMPL-019"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-084",
+              "title": "Typed signed cognifold coupling: the cognifold represents inter-field coupling as a typed, signed edge -- cognifold_edge = {source, target, sign, gain, precision, gate, timescale, write_authority} -- with competition (sign < 0) as a FIRST-CLASS GENERATIVE coupling mode alongside cooperation (sign > 0) and gated-decoupling, not an emergent by-product of selection softmaxes. Three coupling modes: cooperative (binding, coherent trajectory, shared context), competitive (suppress incompatible trajectories, preserve boundaries, prevent runaway resonance, stop one field absorbing all others), gated-decoupling (isolate simulation / offline integration / unsafe candidates from release authority).",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "ARC-005"
               ],
               "additional_dependencies": 0
             },
@@ -2901,23 +2945,6 @@
                 "MECH-183"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-359",
-              "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
-              "status": "candidate",
-              "phase": "v4",
-              "claim_class": "horizon_v4",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "MECH-055",
-                "SD-011",
-                "MECH-341",
-                "SD-056"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -2925,9 +2952,9 @@
     }
   ],
   "record_counts": {
-    "active": 179,
+    "active": 175,
     "closed": 50,
-    "planned": 957
+    "planned": 963
   },
   "archive": {
     "snapshot_count": 114,

@@ -857,12 +857,12 @@
     },
     "MECH-033": {
       "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "GFLAG-0452: MECH-033's four supporting PASSes (171/184/184-rerun/308) share a random-action ablation confound; only V3-EXQ-055 remains",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Kernel chaining FAIL (EXQ-023): V2 E2 is a transition model only; proper kernel chaining requires SD-004 action objects as hippocampal map backbone.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361133Z"
+      "rationale": "User decision rec-20260924-a796e485 at /governance governance-20260924; confirmed failure_autopsy_gflag0452-D2-cluster_2026-09-24; applied REE_assembly 2e6fe97c4b",
+      "recommendation": "demote_to_provisional",
+      "selected_option": "G2 A: active -> provisional (evidence-weight correction, not falsification)",
+      "timestamp_utc": "2026-09-24T10:24:41.341683Z"
     },
     "MECH-035": {
       "actor": "user (governance cycle governance-20260918 Step 3)",
@@ -1180,13 +1180,13 @@
       "timestamp_utc": "2026-09-20T14:14:00Z"
     },
     "MECH-092": {
-      "actor": "governance",
-      "decision_needed": "Promote candidate->provisional: quiescent-replay triggering signature confirmed",
+      "actor": "user",
+      "decision_needed": "GFLAG-0452: the run(s) this claim's provisional promotion rested on are implementation checks passing by construction (D1 cluster autopsy)",
       "decision_status": "applied",
-      "rationale": "V3-EXQ-761 PASS/supports: replay fires selectively on quiescent E3 cycles via real production path (first triggering-signature evidence). Prior hold_candidate_resolve_conflict was substrate-driven (EXQ-136 couldn't test consolidation), not a genuine support-vs-weaken conflict. Promote-to-active still needs SD-006-gated downstream consolidation-benefit test.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Promote candidate->provisional",
-      "timestamp_utc": "2026-07-15T13:44:33.301255Z"
+      "rationale": "User decision rec-20260924-a796e485 at /governance governance-20260924; confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24; applied REE_assembly 2e6fe97c4b",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "G2 A: provisional -> candidate (evidence-weight correction, not falsification)",
+      "timestamp_utc": "2026-09-24T10:24:41.298773Z"
     },
     "MECH-093": {
       "actor": "user",
@@ -1801,22 +1801,22 @@
       "timestamp_utc": "2026-06-23T22:40:43.016136Z"
     },
     "MECH-287": {
-      "actor": "governance-2026-07-14T20:07Z",
-      "decision_needed": "First indexed V3 evidence (V3-EXQ-757 functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
+      "actor": "user",
+      "decision_needed": "GFLAG-0452: the run(s) this claim's provisional promotion rested on are implementation checks passing by construction (D1 cluster autopsy)",
       "decision_status": "applied",
-      "rationale": "governance 2026-07-14: V3-EXQ-757 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate, all 6 load-bearing criteria); first indexed exp evidence. v3_pending:false, status provisional. Behavioural/integrated confirmation (V3-EXQ-476 unlock + four-arm factorial for 287; Phase-2 downstream integration for 288) remains a separate promote-to-active gate. MECH-288 fast-scale specificity caveat recorded.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Clear v3_pending gate and promote to provisional",
-      "timestamp_utc": "2026-07-14T20:19:21.313158Z"
+      "rationale": "User decision rec-20260924-a796e485 at /governance governance-20260924; confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24; applied REE_assembly 2e6fe97c4b",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "G2 A: provisional -> candidate (evidence-weight correction, not falsification)",
+      "timestamp_utc": "2026-09-24T10:24:41.254084Z"
     },
     "MECH-288": {
-      "actor": "governance-2026-07-14T20:07Z",
-      "decision_needed": "First indexed V3 evidence (V3-EXQ-757 functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
+      "actor": "user",
+      "decision_needed": "GFLAG-0452: the run(s) this claim's provisional promotion rested on are implementation checks passing by construction (D1 cluster autopsy)",
       "decision_status": "applied",
-      "rationale": "governance 2026-07-14: V3-EXQ-757 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate, all 6 load-bearing criteria); first indexed exp evidence. v3_pending:false, status provisional. Behavioural/integrated confirmation (V3-EXQ-476 unlock + four-arm factorial for 287; Phase-2 downstream integration for 288) remains a separate promote-to-active gate. MECH-288 fast-scale specificity caveat recorded.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Clear v3_pending gate and promote to provisional",
-      "timestamp_utc": "2026-07-14T20:19:21.367028Z"
+      "rationale": "User decision rec-20260924-a796e485 at /governance governance-20260924; confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24; applied REE_assembly 2e6fe97c4b",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "G2 A: provisional -> candidate (evidence-weight correction, not falsification)",
+      "timestamp_utc": "2026-09-24T10:24:41.125676Z"
     },
     "MECH-289": {
       "actor": "governance-cycle-2026-08-13",
@@ -1882,13 +1882,13 @@
       "timestamp_utc": "2026-05-31T19:22:15.673324Z"
     },
     "MECH-302": {
-      "actor": "governance:IGW-20260712-001",
-      "decision_needed": "Promotion review: candidate -> provisional",
+      "actor": "user",
+      "decision_needed": "GFLAG-0452: the run(s) this claim's provisional promotion rested on are implementation checks passing by construction (D1 cluster autopsy)",
       "decision_status": "applied",
-      "rationale": "V3-EXQ-517d PASS/supports (ON 686.7 vs OFF 0.0, 3/3 seeds) is the confirming run the 2026-05-30 hold requested, alongside 517c (ARM_A 2/3, ARM_B 3/3). exp_conf 0.824, conflict_ratio 0, epistemic_category standard, no v3_pending gate; load-bearing lit (Andreatta 2012 double dissociation). Governance IGW-20260712-001, user-approved.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "",
-      "timestamp_utc": "2026-07-12T10:01:12.283854Z"
+      "rationale": "User decision rec-20260924-a796e485 at /governance governance-20260924; confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24; applied REE_assembly 2e6fe97c4b",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "G2 A: provisional -> candidate (evidence-weight correction, not falsification)",
+      "timestamp_utc": "2026-09-24T10:24:41.081460Z"
     },
     "MECH-303": {
       "actor": "user (governance cycle 2026-08-22, session bold-chaum-7e245c)",
@@ -2258,6 +2258,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Acknowledge all holds",
       "timestamp_utc": "2026-06-10T16:18:22Z"
+    },
+    "MECH-365": {
+      "actor": "user",
+      "decision_needed": "Hold: V3-phase claim with no V3 run yet",
+      "decision_status": "applied",
+      "rationale": "User decision rec-20260924-c5c4613e (governance-20260924). HOLD RECORDED so it stops re-flagging pending_user until 1085 reads out.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept hold; progress now (WWA registered e6424df604, substrate ree-v3 de12c2c, V3-EXQ-1085 queued)",
+      "timestamp_utc": "2026-09-24T10:24:41.383234Z"
     },
     "MECH-411": {
       "actor": "user",
@@ -3547,7 +3556,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-24T05:09:57.614073Z",
+  "generated_at_utc": "2026-09-24T10:26:33.986646Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

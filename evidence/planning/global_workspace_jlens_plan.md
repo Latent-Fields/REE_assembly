@@ -14,10 +14,10 @@ closure_plan:
       status: blocked
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: true
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
@@ -36,10 +36,10 @@ closure_plan:
       status: open
       severity: high
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: true
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
@@ -59,10 +59,10 @@ closure_plan:
       status: blocked
       severity: load-bearing
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: true
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
@@ -80,10 +80,10 @@ closure_plan:
       status: open
       severity: low
       live:
-        as_of: "2026-08-08"
-        from: "failure_autopsy_grandfathered-r6-closure-sweep_2026-08-08"
-        verdict: "non_contributory/measurement_gap"
-        next: "routing=governance-note-only"
+        as_of: "2026-09-24"
+        from: "failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757"
+        verdict: "non_contributory/standard"
+        next: "routing=governance-demotion"
         brake: "fired"
         needs_review: true
         needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]

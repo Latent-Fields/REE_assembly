@@ -590,3 +590,15 @@ suppressions:
     added: "2026-09-20"
     added_by: "governance-20260920-steward"
     review_after: "2026-12-20"
+  - finding_id: "D-006:GFLAG-0449"
+    reason: >-
+      Adjudicated 2026-09-24 (governance-20260924): GFLAG-0449 and GFLAG-0451 share claim
+      MECH-055 / evidence_discrepancy / date but are INDEPENDENT findings, both resolved.
+      0449 = ledger leg H3b (mech055_harm_pe_source_validity) eliminated on an unconverged
+      head -> reopened to alive (user rec-20260924-3784421d). 0451 = V3-EXQ-1084 PE-source
+      alternative unfailable-false -> re-specified as a fast proximity-field input-level PE
+      (user rec-20260924-d7ac4dc3). Neither restates the other. If the canonical subject of
+      this group changes on the next run, re-read rather than assuming this entry still matches.
+    added: "2026-09-24"
+    added_by: "governance-20260924"
+    review_after: "2026-12-24"
