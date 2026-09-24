@@ -1,0 +1,297 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1083_sd081_adaptive_vs_fixed_allocation",
+  "run_id": "v3_exq_1083_sd081_adaptive_vs_fixed_allocation_20260924T172346Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-24T17:23:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "00210b562cdc26c347af37cfc758a912fab6b7d3",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-081"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-081": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "reach_confirmed_benefit_untestable",
+    "preconditions": [
+      {
+        "name": "pathways_differ_on_choices",
+        "description": "Adaptive arm: fraction of scored E3 ticks whose habit argmin differs from the planned argmin, WORST seed.",
+        "kind": "readiness",
+        "scope": "core",
+        "measured": 0.6516129032258065,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "real E3 ticks after practice; habit vector captured from the substrate's own depth-limited pass",
+        "met": true
+      },
+      {
+        "name": "habit_score_range_non_degenerate",
+        "description": "Cross-candidate range of the habit vector, WORST scored tick over all seeds (the 786a constant-vector defect).",
+        "kind": "readiness",
+        "scope": "core",
+        "measured": 0.00370025634765625,
+        "threshold": 1.0000009999999998e-06,
+        "direction": "lower",
+        "control": "real E3 ticks after practice",
+        "met": true
+      },
+      {
+        "name": "arbitration_live_on_familiarity",
+        "description": "Adaptive arm: fraction of E3 ticks producing a non-degenerate arbitration whose u_habit came from the familiarity tracker, WORST seed.",
+        "kind": "readiness",
+        "scope": "core",
+        "measured": 1.0,
+        "threshold": 0.95,
+        "direction": "lower",
+        "control": "curiosity_weight 0.05 builds the tracker; the E1-novelty fallback is measured-constant on this config",
+        "met": true
+      },
+      {
+        "name": "model_manipulation_reaches_u_planned",
+        "description": "Fraction of seeds (intended n) whose AUC(episode-mean raw u_planned: perturbed > intact), adaptive arm, >= 0.7.",
+        "kind": "readiness",
+        "scope": "core",
+        "measured": 0.75,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "control": "seeded Gaussian noise on E2 world_transition, applied per episode (sigma pre-registered by dose probe)",
+        "met": true
+      },
+      {
+        "name": "seeds_with_reach_data",
+        "description": "Seeds whose adaptive AND fixed arms each log >= 5 disagreement ticks in every cell.",
+        "kind": "readiness",
+        "scope": "core",
+        "measured": 8.0,
+        "threshold": 6.0,
+        "direction": "lower",
+        "control": "count, not a rate",
+        "met": true
+      },
+      {
+        "name": "single_path_outcome_separation",
+        "description": "max over cells of |mean over seeds (return planned_only - return habit_only)|. Gates C3 ONLY.",
+        "kind": "readiness",
+        "scope": "benefit_leg",
+        "measured": 0.03486590025325617,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "the two pure pathways on identical weights",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_allocation_tracks_model_uncertainty": true,
+      "C2_committed_recruitment_beyond_fixed": true,
+      "C3_benefit_over_fixed": false,
+      "C4_reach_beyond_shuffled": true,
+      "C4_benefit_over_shuffled": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "cb6e158c3bae5b202961b6f9ef7365e94b914b435c67fc33515c1cda7df50a9f",
+  "substrate_commit": {
+    "commit": "00210b562cdc26c347af37cfc758a912fab6b7d3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_resource_proximity_head": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "e3.use_dualsystem_arbitration": true,
+    "hippocampal.curiosity_weight": 0.05,
+    "heartbeat.breath_period": 50,
+    "heartbeat.beta_gate_bistable": true,
+    "goal.z_goal_enabled": true,
+    "harm_descending_mod_enabled": true,
+    "use_dacc": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 22968.118425108998,
+  "config": {
+    "config_slice": {
+      "lineage_base": "mech477_dualsystem_arbitration",
+      "base_arm_config": {
+        "lineage": "mech477_dualsystem_arbitration",
+        "arm_id": "arb_on",
+        "use_dualsystem_arbitration": true,
+        "familiar_env_kwargs": {
+          "size": 10,
+          "num_hazards": 3,
+          "num_resources": 5,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.0,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "use_proxy_fields": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "limb_damage_enabled": true,
+          "damage_increment": 0.15,
+          "failure_prob_scale": 0.3,
+          "heal_rate": 0.002,
+          "n_landmarks_b": 2
+        },
+        "novel_env_kwargs": {
+          "size": 14,
+          "num_hazards": 7,
+          "num_resources": 2,
+          "hazard_harm": 0.05,
+          "env_drift_interval": 5,
+          "env_drift_prob": 0.0,
+          "proximity_harm_scale": 0.1,
+          "proximity_benefit_scale": 0.05,
+          "proximity_approach_threshold": 0.2,
+          "hazard_field_decay": 0.5,
+          "resource_respawn_on_consume": true,
+          "use_proxy_fields": true,
+          "toroidal": false,
+          "harm_history_len": 10,
+          "limb_damage_enabled": true,
+          "damage_increment": 0.15,
+          "failure_prob_scale": 0.3,
+          "heal_rate": 0.002,
+          "n_landmarks_b": 5
+        },
+        "familiar_env_seeds": [
+          1000,
+          1001,
+          1002,
+          1003
+        ],
+        "novel_env_seeds": [
+          2000,
+          2001,
+          2002,
+          2003
+        ],
+        "practice_episodes_per_layout": 30,
+        "probe_episodes_per_layout": 4,
+        "accum_episodes_per_layout": 10,
+        "steps_per_episode": 120,
+        "build_config_arm_id": "mech163_recruitment",
+        "curiosity_weight": 0.05,
+        "habit_depth": 2,
+        "dualsystem_arbitration_gain": 4.0,
+        "dualsystem_arbitration_bias": 0.0,
+        "dualsystem_uncertainty_ema_alpha": 0.05,
+        "familiarity_query_bandwidth": 0.2,
+        "familiarity_update_bandwidth": 1.0,
+        "familiarity_ema_alpha": 0.01
+      },
+      "arms": [
+        "adaptive",
+        "fixed",
+        "shuffled",
+        "habit_only",
+        "planned_only"
+      ],
+      "single_path_bias": 12.0,
+      "cells": [
+        [
+          "familiar",
+          "intact"
+        ],
+        [
+          "familiar",
+          "perturbed"
+        ]
+      ],
+      "probe_reps": 3,
+      "probe_layouts": 4,
+      "model_perturb_rel_sigma": 2.0
+    },
+    "familiar_env_kwargs": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.0,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "n_landmarks_b": 2
+    },
+    "familiar_env_seeds": [
+      1000,
+      1001,
+      1002,
+      1003
+    ],
+    "steps_per_episode": 120,
+    "practice_episodes_per_layout": 30,
+    "probe_reps": 3,
+    "probe_layouts": 4
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "z_goal_stream": {
+    "ticks_total": 343953,
+    "ticks_active": 127806,
+    "writer_calls": 286415,
+    "active_frac": 0.3715798379429748,
+    "writer_defect": false,
+    "n_agents": 40,
+    "goal_state_present": true
+  }
+}
