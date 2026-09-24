@@ -6964,6 +6964,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0488",
+      "claim_ids": [
+        "SD-080",
+        "ARC-018"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "HippocampalModule.action_object_decoder (ree-v3 ree_core/hippocampal/module.py:178-182) is NEVER trained, natively or by any driver (REE_assembly/evidence/planning/action_decoder_training_trace_20260924.md, 622716398d4): ~13 drivers (v3_exq_042/043/044/046/053/054/055/190/397*/445a, 1061) put it in terrain_optimizer but the loss MSE(terrain_prior(...), selected_ao) never runs through it, so .grad is None and Adam silently skips it; ~9 more use it read-only under no_grad. It stays at random init and maps the CEM mean region to one action class -- the measured root of the V3 proposal collapse (GFLAG-0487 chain). SD-080 scopes only the ENCODER half (E2.action_object_head). Owed: /governance to register the DECODER half as its own substrate_queue row depends_on SD-080 (recommended over widening SD-080's scope), and to note that any evidence citing a 'trained' decoder via those drivers' optimizers is wrong (dead-optimizer pattern).",
+      "raised_by_session": "orchestrate-20260924-breakthrough",
+      "raised_at": "2026-09-24T22:02:09Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
