@@ -6415,9 +6415,9 @@
       "summary": "STALE TEXT (found by confirmed failure_autopsy_V3-EXQ-1082_2026-09-24, verified against the 1073 driver): section 6 of confirmed failure_autopsy_V3-EXQ-1079_2026-09-23 (and SD-PP-B5's 2026-09-23 validation_outcome) says V3-EXQ-1073 collected its probe battery after the agent died without reading done. That is FALSE for 1073 -- its _sample_probe_battery and P0 loop unpack done and reset; the post-death defect applies to V3-EXQ-1075 and 1079 only. SD-PP-B5's validation_outcome now carries an appended CORRECTION (REE_assembly 65bb05ec9c); the 1079 autopsy .md text is still uncorrected and is autopsy-owned -- a /failure-autopsy session should add a dated correction there.",
       "raised_by_session": "governance-20260924",
       "raised_at": "2026-09-24T07:36:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:18:44Z",
+      "resolution_note": "Dated append-only addendum added to failure_autopsy_V3-EXQ-1079_2026-09-23 (md sec. 7 + json post_confirmation_addenda) correcting the 1073 post-death attribution in md sec. 6 item 2 and three JSON fields; verified against ree-v3 v3_exq_1073 driver lines 1054-1057/1170-1175/1422-1426. SD-PP-B5 correction already in 65bb05ec9c. Addendum commit: see REE_assembly log 2026-09-24 'dated append-only addenda'."
     },
     {
       "flag_id": "GFLAG-0449",
