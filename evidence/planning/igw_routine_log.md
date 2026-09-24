@@ -3628,3 +3628,4 @@ One line per hourly tick. ASCII only.
 2026-09-24T20:28:22Z workset published (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T20:28:22Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T20:25:18Z SPAWN IGW-20260924-250 skill=/queue-experiment prio=40 uuid=035eb3b9-47fa-4b4d-9a27-17a011c0be9b pid=52232 worktree=igw-250-proposal-for-mech-081
+2026-09-24T20:36:24Z auto-defer igw-250-proposal-for-mech-081 hash=e2e35f66bb1b for 48h (complete)
