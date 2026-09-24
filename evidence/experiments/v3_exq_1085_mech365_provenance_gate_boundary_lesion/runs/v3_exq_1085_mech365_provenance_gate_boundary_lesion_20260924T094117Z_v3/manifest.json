@@ -1,0 +1,204 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1085_mech365_provenance_gate_boundary_lesion",
+  "run_id": "v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-24T09:41:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "b7e4a5b43b60cb1d7af1c50353513bea881963e3",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-365"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech365_gate_holds_and_boundary_lesion_contaminates",
+    "preconditions": [
+      {
+        "name": "P1a_writer_live_R0_spread_steps",
+        "measured": 262.0,
+        "threshold": 0.0,
+        "comparator": ">",
+        "offending_cell": 42,
+        "control": "MECH-217 reverse spread on real replay (V3-EXQ-842 positive control)",
+        "met": true
+      },
+      {
+        "name": "P1b_writer_live_A1_reverse_accepted",
+        "measured": 262.0,
+        "threshold": 0.0,
+        "comparator": ">",
+        "offending_cell": 42,
+        "met": true
+      },
+      {
+        "name": "P2_forward_presented_to_writer",
+        "measured": 30.0,
+        "threshold": 6.0,
+        "direction": "lower",
+        "offending_cell": 42,
+        "met": true
+      },
+      {
+        "name": "P3_forward_reached_gate",
+        "measured": 30.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "offending_cell": 42,
+        "met": true
+      },
+      {
+        "name": "P4_canary_detects_source_label_loss",
+        "measured": 100.12906199648779,
+        "threshold": 0.0,
+        "comparator": ">",
+        "offending_cell": 45,
+        "control": "A4: replay() stamp suppressed = the pre-2026-09-24 as-built defect",
+        "met": true
+      },
+      {
+        "name": "P5_center_set_matched_across_arms",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1a": true,
+      "C1b": true,
+      "C2": true,
+      "C3": true,
+      "S4": false
+    },
+    "combination_rule": "PASS = P1..P5 all met AND C1a AND C1b AND C2 AND C3 (each every seed); S4 is a recorded structural audit, not gated. C3 fail or C1b fail -> instrument_invalid (no verdict); C1a fail -> F1 weakens; C2 fail in >=3 seeds -> F3 weakens; C2 fail in 1-2 seeds -> mixed."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1cce53ff3c5048cfa0dbc222fef4ee89873ce460cc981d5b9a06a3a3aa60cba6",
+  "substrate_commit": {
+    "commit": "b7e4a5b43b60cb1d7af1c50353513bea881963e3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_offline_wanting_spread": true,
+    "heartbeat.breath_period": 50,
+    "sws_enabled": true,
+    "rem_enabled": true,
+    "replay_diversity_enabled": true,
+    "hippocampal.rem_route_forward_replay_to_consolidation": true,
+    "hippocampal.mech365_suppress_replay_provenance_stamp": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 29.491649382,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_cycles": 6,
+    "arms": {
+      "R0_unrouted": [
+        false,
+        "off",
+        false
+      ],
+      "A1_gate_intact": [
+        true,
+        "off",
+        false
+      ],
+      "A2_boundary_lesion": [
+        true,
+        "drop_at_consolidation",
+        false
+      ],
+      "A3_sham": [
+        true,
+        "sham_real_only",
+        false
+      ],
+      "A4_canary": [
+        true,
+        "off",
+        true
+      ]
+    },
+    "grid_size": 8,
+    "agent_start": [
+      1,
+      1
+    ],
+    "resource_pos": [
+      6,
+      6
+    ],
+    "control_pos": [
+      1,
+      6
+    ],
+    "max_steps_per_episode": 25,
+    "epsilon": 0.1,
+    "sws_consolidation_steps": 5,
+    "rem_attribution_steps": 10,
+    "waypoint_center_seed": 0.001,
+    "contact_seed_wanting": 2.0,
+    "num_basis_functions": 256,
+    "kernel_bandwidth": 0.03,
+    "alpha_world": 0.9,
+    "alpha_self": 0.3,
+    "replay_diversity_enabled": true,
+    "use_offline_wanting_spread": true
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 25,
+    "goal_state_present": false
+  }
+}
