@@ -13419,6 +13419,44 @@
       "added_utc": "2026-09-24T10:25:06Z",
       "last_seen_session": "governance-20260924",
       "experiment_queued": false
+    },
+    {
+      "sd_id": "sd_cm_livetap_zworld_scale_anchor",
+      "title": "SD-CM-LIVETAP z_world scale anchor: with the ContextMemory live-encoder tap as the encoder's only gradient source, write-side losses inflate z_world -- anchor it (scale-invariant write_addr_tagger input + running-norm hinge)",
+      "node_class": "complicated (buildable)",
+      "status": "implemented_pending_validation",
+      "status_phase": "validation_owed",
+      "ready": false,
+      "design_doc": "ree-v3/docs/substrate/SD-CM-LIVETAP-scale-anchor.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "failure_record": [
+        {
+          "run_id": "(pilot, not a manifest) orch0924-ctxmem-livetap / orch0924-ctxmem-livetap-r2 pilot_b_result_42.json, DLAPTOP .scratch/orch-20260924",
+          "experiment_type": "chip-20260922-ctxmem-livetap-validation-exp pre-queue pilots",
+          "metric": "LIVE-arm z_world norm vs DETACHED: H3 0.37 -> ~140 (E1 loss 0.002 -> 16.6), DIV 0.37 -> 6.3; after SD-070 warmup DIV 31.8x, H3 96.6x DETACHED",
+          "target": "LIVE z_world norm within ~2x of DETACHED over the tap phase",
+          "resolved": "substrate built; validation owed",
+          "source": "chip-20260924-ctxmem-livetap-scale-anchor"
+        }
+      ],
+      "implementation_hint": "Orchestrator decision (orchestrate-20260924-0808, chip-20260924-ctxmem-livetap-anchor-design-decision): option (b) scale-invariant tagger input; add (c) running-norm hinge only if (b) alone fails the contract. Measured: (b) alone FAILED (DIV fixture, 200 tap updates: DETACHED 0.41, unanchored 212, (b) 2.6 end / 5.7 peak); (b)+(c) margin 2.0 held (0.30 end / 0.59 peak). Enable BOTH on cfg.e1 (not from_dims): contextmemory_write_tagger_scale_invariant=True, contextmemory_write_live_scale_anchor_margin=2.0.",
+      "implementation_note": "IMPLEMENTED 2026-09-24, ree-v3 1801e2db9e (e1_deep.py _BlockUnitNorm + ContextMemory flags; contract tests/contracts/test_contextmemory_live_tap_scale_anchor.py). Validation = chip-20260922-ctxmem-livetap-validation-exp (amended to name both flags).",
+      "priority": 2,
+      "severity": "corrupting",
+      "severity_note": "Without the anchor a LIVE-tap validation reads a pass through scale inflation or a fail through a destroyed encoder -- evidence that looks valid and is not.",
+      "substrate_paths": [
+        "ree_core/predictors/e1_deep.py::ContextMemory"
+      ],
+      "source_audit": "chip-20260924-ctxmem-livetap-scale-anchor (campaign-20260924-livetap-anchor-b)",
+      "added_session": "metaworker-campaign-20260924-livetap-anchor-b",
+      "added_utc": "2026-09-24T18:04:16Z",
+      "last_seen_session": "metaworker-campaign-20260924-livetap-anchor-b",
+      "experiment_queued": false
     }
   ],
   "schema_version": "substrate_queue/v2",
