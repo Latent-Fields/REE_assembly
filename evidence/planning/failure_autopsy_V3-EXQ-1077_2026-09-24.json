@@ -1,0 +1,257 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T06:24:14Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staged_by": "subagent of /governance session governance-20260924-workset (no claims opened, nothing committed)",
+  "dry_run_checked": true,
+  "dry_run_check_note": "scripts/check_dry_run_citations.py over the target run_id, V3-EXQ-1077, the 1062a run_id, and --family v3_exq_1077: 0 dry, 1 real.",
+  "excluded_dry_run_ids": [],
+  "recording_check": "ree-v3/validate_recording.py: OK (always-core complete; substrate_stable_across_run true)",
+  "premise_audit": {
+    "a_all_three_converged": "HOLDS -- schedule_exhausted 3/3, cap_hit false, best held-out/persistence 0.997/0.939/0.994 (<= 1).",
+    "b_reproduction_control": "HOLDS -- ARM_ONLINE_B1 @ eps 0.0 persistence_dominated 3/3.",
+    "c_cannot_determine_not_ceiling_not_refutation": "HOLDS under the DRIVER's grid at the load-bearing eps 0.1 (cannot_determine 3/3; its refutation cell N1 0/3). QUALIFIED: (i) the LEDGER's own pre-registered null for this leg ('skill stays <= 0 at convergence') is NOT rejected -- the outcome is consistent with it on 3/3 -- so the two pre-registrations disagree on what counts as the null; 'not a refutation' is true of the driver's N1 only. (ii) at eps 0.0 the converged head is persistence_dominated on s42 (d -0.019). (iii) framing: the removal of the ACTIVE error is established on the measured in-sample pair (online final snapshot 5.6-32x vs converged 0.94-1.00x persistence on the same rows); only positive skill is ambiguous. The user's phrase 'removed active error only ambiguously' inverts this.",
+    "d_no_rerun": "HOLDS -- no re-run recommended.",
+    "e_no_absolute_r2_gate": "HOLDS -- the driver uses d with a paired CI only; R2 values are reported, never gated."
+  },
+  "red_team": {
+    "step": "7c",
+    "model": "fable (cross-model; drafter on Opus)",
+    "verdict": "CONTESTED (narrow)",
+    "findings": [
+      "F1: the draft reported 'declared null N1 0/3' in the ledger basis; the ledger's registered null for this leg (skill <= 0 at convergence) is NOT rejected. FIXED: every occurrence now distinguishes driver N1 from the registry null; (b) is 'alive / not supported' consistently.",
+      "F2: 'dACC harm-PE changed no action' was presented as an observation; it is guaranteed by construction (uniform candidate_effort = trajectory length, dacc_foraging_weight 0). FIXED: integration row reworded (coupled but inert BY CONSTRUCTION), dropped from severity_note, added as a design-audit constraint (no behavioural DV) for the next leg.",
+      "F3: active-error removal is established, but its ground is the in-sample pair, not the eval-CI gap (the converged head's eval position is largely selected by the eligibility gate). FIXED: (a) now rests on the in-sample pair."
+    ],
+    "recomputed": "5.6-32x ratios (31.92/5.65/8.34) from training.in_sample_loss_on_converged_heldout_rows / persistence_heldout_loss; all 12 d values from sse fields; rollout identity in all 6 cells; in-sample separation 2/3.",
+    "hygiene_applied": [
+      "final-snapshot label on 5.6-32x (tracking loss median 1.7-2.4x)",
+      "rows wording (converged arm's held-out split = rows the online head trained on)",
+      "mechanism softened to online-protocol artifact (noise vs recency not separated)",
+      "H3b verb softened (inference, not measurement)",
+      "permuted twin reads ready in-sample on 2/3 seeds -> only separation admissible",
+      "epsilon-override wrong-action PE added to next-leg notes",
+      "EMA also takes an event bump on harm (causal_grid_world.py:3080-3081); structural point unchanged"
+    ],
+    "out_of_scope_flag": "with fixed-horizon candidates, candidate_effort is uniform in every run, so dACC's effort and interaction terms are vacuous fleet-wide -- not this autopsy's to route; surfaced to the parent session for a governance_flag decision.",
+    "file": "scratchpad redteam.md (session-local; findings reproduced here)"
+  },
+  "step7b_pre_routing_checks": {
+    "fire_count": 1,
+    "inapplicable": [
+      "C1",
+      "C2",
+      "C3 (no claim_ids)"
+    ],
+    "fires": [
+      {
+        "check": "C7",
+        "names": [
+          "persistence_heldout_loss"
+        ],
+        "disposition": "DISMISSED: persistence_heldout_loss is the persistence baseline on the converged arm's held-out buffer rows -- a shared DENOMINATOR computed once per seed from the same rows for both arms, identical by design, never used as a between-arm DV. The between-arm quantities (training.in_sample_loss_on_converged_heldout_rows vs eval_loss_over_persistence, and the eval d values) do vary across arms."
+      }
+    ],
+    "note": "C1/C2/C3 could not look (claim-free); 7c carried the load"
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3",
+      "queue_id": "V3-EXQ-1077",
+      "experiment_type": "v3_exq_1077_sdppb9_harm_head_undertrain_probe",
+      "experiment_purpose": "diagnostic",
+      "claim_ids": [],
+      "bears_on": [
+        "mech055_harm_pe_source_validity"
+      ],
+      "validates_substrate": "SD-PP-B9-harm-forward-below-persistence-baseline",
+      "self_route_label": "active_error_removed_AMBIGUOUS",
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "Every precondition and the negative control passed; the one load-bearing criterion (C1, converged head ready at eps 0.1, >= 2/3) scored 0/3 and the driver's refutation cell N1 (still persistence_dominated) also scored 0/3, so the run landed in the driver's pre-registered AMBIGUOUS cell (A1 3/3). NOTE the two pre-registrations differ: the ledger's null for this leg ('skill stays <= 0 at convergence') is NOT rejected -- it is consistent with 3/3. N1's reachable region is also narrow by construction (eligibility already requires held-out loss <= persistence on same-policy buffer rows). A discrimination outcome, not an instrument failure.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim-free diagnostic (claim_ids []); bears on MECH-055 only through the mech055_harm_pe_source_validity question. Nothing here verdicts MECH-055.",
+        "biological_reference": "partial -- dACC carries UNSIGNED surprise (Hayden 2011) and momentary affect is a leaky integral OVER prediction errors (Rutledge 2014); both are in targeted_review_connectome_mech_055. REE computes the harm PE as the residual of a forward model OF the leaky integrator itself (z_harm_a = encoder(EMA alpha 0.05 of proximity fields, persistent across episodes, + harm history len 10)). Biology places the integrator DOWNSTREAM of the PE, so a converged forward model of the integrator sitting at persistence is what the reference predicts, not an anomaly.",
+        "prerequisites": "present -- SD-PP-B9 piece 1 (persistence_skill_gate, ree-v3 88b1005) is live and its canary reproduces 1062a 6/6; piece 2 (loss-curve recording) is satisfied driver-locally in this run (online per-update curve + offline train/held-out/lr curves).",
+        "implementation": "partial for the PRODUCTION training protocol, complete for the probe. The 1062a/E2HarmAConfig protocol (Adam at learning_rate 5e-4, batch 1, online) leaves the head 5.6-32x worse than persistence on its own training rows -- an unconverged head, not a functional forward model. The converged head is functional and sits at the persistence point.",
+        "environment": "adequate for this question -- 1062a's stationary env imported verbatim; eval rows 1776/582/354 (eps 0.1) and 1792/313/231 (eps 0.0), all >= MIN_ROWS 32. Seeds 137/2026 lose rows to latched (non-fresh) ticks, which widens their CIs 2-5x relative to s42.",
+        "measurement": "adequate -- pre-registered relative skill d with paired-bootstrap CI (2000, pinned seed), no absolute R2 or skill floor, canary-pinned. Cosmetic: cannot_determine verdicts record n_bootstrap 0 because persistence_skill_gate's cd() helper does not pass len(vals); the CI itself is a real 2000-resample CI (it matches the cross-scored copy to ~1e-7).",
+        "integration": "coupled but inert BY CONSTRUCTION (missing link: neutralising default). The head is live in the eval loop (agent.select_action rolls e2_harm_a forward; the prediction feeds the dACC PE next tick), but the PE reaches candidate scores only as pe * dacc_effort_cost * candidate_effort, and candidate_effort is trajectory length -- uniform at config.horizon (agent.py:7789-7794) -- so it is a candidate-uniform shift; harm_interaction is identically 0 and dacc_foraging_weight is 0 in the 1062a config. Rollout identity across the online/converged swap (equal sse_persistence, n_rows, n_latched in all 6 seed x epsilon cells) was therefore the ONLY possible outcome and carries NO information about the PE. Inert by design for this probe (its DV is the head's skill); it rules out any BEHAVIOURAL DV for the PE-source leg under this config.",
+        "scale": "adequate for convergence (schedule exhausted well under the cap on 3/3). Data scale is the open item: 2949-4113 banked transitions from a single learning-policy trajectory; the in-sample bound's 2/3 'learnable but not learned' lean is consistent with a train->eval generalisation gap that more optimisation cannot close."
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MECHANISM (training protocol) for the below-persistence defect; the positive-skill gap is UNRESOLVED and aliased -- not chargeable to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC / anterior insula interoceptive-nociceptive prediction error against a slowly varying affective expectation",
+        "dependencies": [
+          "a fast sensory/nociceptive input stream the PE is computed on (here: proximity fields, present in obs but NOT in the head's input)",
+          "a leaky affective integrator driven by the PE (here: the harm_obs_a EMA, alpha 0.05)",
+          "a reliability/precision estimate of the harm predictor (registered only: SD-PP-B11)"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE's PE source is the residual of a forward model of the integrator, whose innovation is 0.05*(x(t) - level) with x(t) absent from the head's input; biology computes PE on the fast input and integrates it. Load-bearing for H-pe-source-structurally-wrong, not a caveat.",
+        "lit_status": "present (targeted_review_connectome_mech_055: 5 entries incl. Hayden 2011, Rutledge 2014)"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "claim-free diagnostic; no epistemic suppression applies. Failure mode: discrimination landed in the pre-registered AMBIGUOUS cell after the defect's sign was explained (training-protocol artifact). Not measurement-invalid, not a substrate ceiling verdict.",
+      "recommended_evidence_quality_note": "V3-EXQ-1077 (claim-free diagnostic, bears_on mech055_harm_pe_source_validity; failure_autopsy_V3-EXQ-1077_2026-09-24). Under-training leg of the SD-PP-B9 fan-out. All preconditions met (reproduction control 3/3, canary 6/6, convergence 3/3). Convergence REMOVES the active error that made e2_harm_a score below persistence in 1062a (online d -0.69..-0.92 -> converged d within CI of 0 on 3/3 seeds at matched epsilon), and the online head's final snapshot is 5.6-32x worse than persistence even on rows it trained on -- so the below-persistence sign is an online batch-1 protocol artifact. Convergence does NOT produce positive skill: cannot_determine 3/3 (C1 0/3; driver N1 0/3; the registry null 'skill <= 0 at convergence' is not rejected). The remaining gap is aliased between a PE-source and a representation-ceiling reading; nothing here verdicts MECH-055. Downstream consequence: any residual-head harm PE computed from an online-trained e2_harm_a is dominated by model error; the next leg must score the residual-head PE of a CONVERGED head.",
+      "per_claim_recommendation": {},
+      "per_claim_recommendation_note": "claim_ids is [] by design (the MECH-055 re-derive brake refused a 1062b; this probe was exempted as a different mechanism/DV with no claim tag). No claims.yaml write is owed; the disposition lands via the substrate_queue amend and the hypothesis-space ledger.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-PP-B9-harm-forward-below-persistence-baseline",
+        "severity": "degrading",
+        "severity_note": "UNCHANGED (degrading). 1077 strengthens the mechanism (online protocol -> model-error PE) but no new consumer or corrupted landed evidence is shown, and use_e2_harm_a / use_dacc remain default-OFF.",
+        "substrate_paths": [
+          "ree_core/latent/stack.py::ResidualHarmForward",
+          "ree_core/predictors/e2_harm_a.py::E2HarmAForward"
+        ],
+        "substrate_paths_note": "UNCHANGED. The defect 1077 localises is the training PROTOCOL (online batch-1 Adam at E2HarmAConfig.learning_rate 5e-4, same file already listed); the training loop itself is driver-owned (1062a P1), not ree_core.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3",
+          "experiment_type": "v3_exq_1077_sdppb9_harm_head_undertrain_probe",
+          "metric": "V3-EXQ-1077 (H-harm-head-undertrained leg, stationary only, seeds 42/137/2026, 1062a's collection verbatim). Preconditions all met: reproduction control ARM_ONLINE_B1 @ eps 0.0 persistence_dominated 3/3 (d -0.977/-0.771/-0.897); instrument canary reproduces 1062a 6/6; ARM_CONVERGED converged 3/3 (lr-halving exhausted, 9 decays, stop 13500/12900/13400 of a 40000 cap; best held-out/persistence 0.997/0.939/0.994). Load-bearing C1 (converged head READY @ eps 0.1) 0/3. Converged head @ eps 0.1: d -0.0006 CI[-0.0048,0.0033] / +0.0023 CI[-0.0227,0.0218] / +0.0048 CI[-0.0039,0.0137] -- cannot_determine 3/3 (label active_error_removed_AMBIGUOUS). Driver N1 (converged head still persistence_dominated @ eps 0.1) 0/3; the leg's REGISTRY-pre-registered null (skill <= 0 at convergence) is NOT rejected (CIs straddle 0 on 3/3). ACTIVE ERROR REMOVED: online head @ eps 0.1 d -0.918/-0.687/-0.745 (CI upper <= -0.65) -> converged ~0; the online head's FINAL SNAPSHOT is 5.6-32x WORSE than persistence on rows it itself trained on (the converged arm's held-out split: 4.87e-5 vs 1.53e-6; 7.52e-6 vs 1.33e-6; 8.05e-6 vs 9.65e-7; last-200-update tracking loss median 1.7-2.4x), while the converged head from the same init and data sits at 0.94-1.00x on the same rows -- so the 1062a defect is an online batch-1 protocol artifact (optimiser noise and/or recency under a persistent-EMA target; not separated), not train/eval mismatch. Residual mismatch at eps 0.0: converged head persistence_dominated on s42 (d -0.0187 CI[-0.0274,-0.0115]), cannot_determine on 137/2026. Non-gating in-sample bound (fit on the eval rows, permuted-delta twin): real separates from twin on s42 and s137 @ eps 0.1 (d +0.016 / +0.066), not on s2026 -- a small, 'learnable but not learned' component on 2/3 seeds.",
+          "target": "harm-forward skill vs persistence READY (paired-bootstrap CI on d entirely > 0) on >= 2/3 seeds, on a converged head at matched epsilon. 1077 shows convergence alone reaches d ~ 0, not > 0; the residual gap is aliased across H-pe-source-structurally-wrong and H-harm-head-representation-ceiling (and, weakly, an untested policy/state-distribution form of the undertrained leg's off-distribution disjunct).",
+          "resolved": "open",
+          "source": "failure_autopsy_V3-EXQ-1077_2026-09-24"
+        },
+        "resolves_prior_failure_record": [],
+        "resolves_prior_failure_record_note": "The 1062a failure_record item stays OPEN: its target (skill > 0 on >= 2/3 on a curve-recorded, matched-epsilon head) is still unmet. 1077 explains its SIGN (online-protocol artifact) but not the absence of positive skill.",
+        "fanout_leg_update": {
+          "leg": "H-harm-head-undertrained",
+          "status": "RUN (V3-EXQ-1077) -- exhausted as a discriminator for the convergence disjunct and the epsilon form of the off-distribution disjunct; do NOT re-run or re-offer 1077 (the policy/state-distribution form rides as a recorded non-gating readout in the next leg, not as a separate run)",
+          "result": "sub-case (a) CONFIRMED: the online batch-1 protocol (unconverged final snapshot) causes the below-persistence active error. sub-case (b) NOT SUPPORTED, ledger state alive: convergence alone yields d ~ 0, not ready; the ledger null 'skill <= 0 at convergence' is not rejected, and the driver grid calls the cell AMBIGUOUS, not a refutation. The off-distribution disjunct was tested on the epsilon axis only.",
+          "next_leg": "H-pe-source-structurally-wrong (readout axis)",
+          "then": "H-harm-head-representation-ceiling (representation-update-rate axis), NOT more optimisation",
+          "still_live_unrun": [
+            "H1-exposure-error-coupling (environment axis)"
+          ]
+        },
+        "implementation_hint_append": "V3-EXQ-1077 (2026-09-23): piece (1) instrument LANDED (experiments/_lib/persistence_skill_gate.py, ree-v3 88b1005); piece (2) recording satisfied driver-locally (not yet a shared recorder). Piece (3): the under-training leg is RUN -- converging the head removes the below-persistence error (the online head's final snapshot is 5.6-32x worse than persistence on rows it trained on) but gives d ~ 0, not ready. Any downstream probe must use the converged fitter (lr-halving vs best-so-far held-out, best checkpoint, reachability clause), never the online protocol. Next leg: H-pe-source-structurally-wrong.",
+        "experiment_queued_update": "probe_queue_id V3-EXQ-1077 -> completed (FAIL, active_error_removed_AMBIGUOUS); experiment_queued false until the PE-source leg is queued",
+        "priority_suggested": 1
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "applicable": false,
+        "note": "claim_ids [] -- the claim-keyed brake does not count this target. The MECH-055 brake (fired at N=2 in failure_autopsy_V3-EXQ-1062a_2026-09-23) is unaffected and still refuses any V3-EXQ-1062b. GOV-DIAG-1: this is the FIRST pure-diagnostic target carrying bears_on mech055_harm_pe_source_validity (1062/1062a are claim-tagged), so the diagnostic chain count is 1 of N=3."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-pe-source-structurally-wrong: a residual forward head on the slow harm integrator cannot supply a PE separable from the VALENCE_HARM level; a different PE source is needed",
+          "H-harm-head-representation-ceiling: z_harm_a's per-step displacement / input content is too small or too incomplete for a learned delta to pay",
+          "H1-exposure-error-coupling: exposure and forward-model error are structurally coupled under the world_rule_shift lever"
+        ],
+        "resolved_this_cycle": [
+          "H-harm-head-undertrained -> split: (a) confirmed as the cause of the active error; (b) insufficient for positive skill (alive, aliased)"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-pe-source-structurally-wrong",
+            "axis": "readout",
+            "order": 1,
+            "sketch": "on the SAME ticks, score an ensemble-disagreement PE (K converged heads, different inits, driver-local -- NOT the SD-PP-B11 producer) against the residual-head PE of a CONVERGED head (1077's fitter), with an exposure-matched baseline; DV = separation of each PE source from the VALENCE_HARM level. Declared null: the alternative is no better separated from the VALENCE_HARM level than the converged residual-head PE.",
+            "design_audit_notes": [
+              "Verdict-aliasing: once the head sits at persistence, residual-head PE ~= raw innovation |z(t)-z(t-1)|, so an 'innovation-variance' source is NOT an independent alternative -- make it a named baseline arm, and ensemble disagreement (or an input-level PE on the fast proximity field) the alternative.",
+              "Do not score the ONLINE head's residual PE as the comparator: it is model error (1077), so any alternative beats it trivially.",
+              "Carry 1077's in-sample bound + permuted twin, plus a within-eval-distribution episode-split held-out fit, as recorded non-gating readouts so a null can be read as 'nothing learnable' vs 'learnable but not learned'.",
+              "Record the converged head's action sensitivity (1062a's H3b elimination rested on the ONLINE head's).",
+              "No BEHAVIOURAL DV for the harm PE is admissible under the 1062a config: candidate_effort is uniform (trajectory length at config.horizon) and dacc_foraging_weight is 0, so the PE is a candidate-uniform shift that cannot change an action. Keep the DV a readout.",
+              "The driver's epsilon override is applied AFTER select_action, whose internal e2_harm_a rollforward uses the pre-override action; on ~10% of eps-0.1 ticks the dACC PE is computed against a prediction for an action not taken. Score the PE the next leg studies from post-override pairs, or evaluate at eps 0.",
+              "In-sample statuses are inadmissible on their own: the permuted twin itself reads ready on 2/3 seeds at eps 0.1; only real-vs-twin separation is readable."
+            ]
+          },
+          {
+            "hypothesis": "H-harm-head-representation-ceiling",
+            "axis": "representation-update-rate",
+            "order": 2,
+            "sketch": "only if the PE-source leg is null: vary harm_history_len and z_harm_a per-step displacement (harm_obs_a EMA alpha), each setting fitted with 1077's converged fitter; DV = skill-vs-persistence d. Declared null: d stays <= 0 (cannot_determine or persistence_dominated) at every setting. NOT more optimisation."
+          }
+        ],
+        "note": "GOV-FANOUT-1 continuation. Order follows the user's intended routing; 1077's evidence does not contradict it (biology and the EMA mechanics favour testing the PE source first). H1 is still live and unrun; the PE-source leg's exposure-matched baseline touches it but does not adjudicate it."
+      },
+      "bears_on_notes": [
+        "H3-persistence-dominated / H3b ('head is action-blind, delta driven toward zero') was ELIMINATED in failure_autopsy_V3-EXQ-1062a_2026-09-23 on the ONLINE head's action sensitivity (0.46-1.19). 1077 shows that head was unconverged (its action-dependence being noise is an inference -- 1077 recorded no action sensitivity for either head); the CONVERGED head sits at persistence (predicted delta ~ conditional mean ~ 0), and its action sensitivity was not recorded. H3b's elimination therefore rests on a non-converged head. Recommend governance re-examine it (not auto-reverted here).",
+        "The substrate entry's own arithmetic ('a representation ceiling on a residual head predicts skill ~ 0, not -72') now applies: 1077's converged d ~ 0 IS that signature -- and also the PE-source signature. Aliased, as the driver pre-registered."
+      ],
+      "withdrawn_arguments": [
+        "Considered and dropped: reading the in-sample bound as a quorum verdict against the representation-ceiling leg. It is non-gating, fits and scores on the same rows, separates on only 2/3 seeds (s2026 does not), and its effect sizes are small (d +0.016/+0.066). It is a lean, not an elimination.",
+        "Considered and dropped: treating the eps 0.0 residual (s42 persistence_dominated, d -0.019) as evidence for the off-distribution disjunct. It is one seed of three at the NON-load-bearing epsilon, 50x smaller than the online defect."
+      ],
+      "learning_extracted": [
+        "existing dependency strengthened: the SIGN of the 1062a defect is an artifact of the online batch-1 protocol (Adam lr 5e-4) on a target with per-step MSE ~1e-6 -- the online head's final snapshot is 5.6-32x worse than persistence on rows it trained on, the converged head 0.94-1.00x on the same rows.",
+        "implementation gap: e2_harm_a has no convergence-capable training protocol in any shared path; every consumer that trains it online gets a model-error PE.",
+        "measurement gap closed for this leg: skill-vs-persistence with a canary replaces the absolute R2 floor; loss curves recorded.",
+        "recording gap (small): the converged head's action sensitivity was not recorded, which is what H3b's elimination would need.",
+        "biology divergence (load-bearing for the next leg): the PE is computed as the residual of a forward model OF the leaky integrator, the reverse of the reference ordering."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Next leg: /queue-experiment H-pe-source-structurally-wrong (new EXQ number, claim_ids [], bears_on mech055_harm_pe_source_validity), per the suggested_probes design-audit notes. If it returns its declared null, the following proposal is H-harm-head-representation-ceiling, not more training. V3-EXQ-1077 is NOT re-run or re-offered. SD-PP-B11 stays registration-only; the ensemble in the PE-source leg is driver-local. Governance chips the follow-on after ratifying this routing (this autopsy does not spawn it)."
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "qid": "mech055_harm_pe_source_validity",
+    "growth_restriction_checked": "empty -- no STOP",
+    "mode": "B (resolve an already pre-registered leg; no new legs, no growth event)",
+    "resolve": [
+      {
+        "hid": "H-harm-head-undertrained",
+        "adjudicating_runs_append": [
+          "V3-EXQ-1077"
+        ],
+        "resolution": {
+          "state": "split",
+          "children": [
+            {
+              "label": "H-undertrained(a) -- online batch-1 non-convergence causes the ACTIVE (below-persistence) error",
+              "state": "confirmed"
+            },
+            {
+              "label": "H-undertrained(b) -- convergence alone yields positive skill vs persistence",
+              "state": "alive"
+            }
+          ],
+          "resolving_runs": [
+            "V3-EXQ-1077"
+          ],
+          "evidence_direction": "non_contributory",
+          "epistemic_category": "standard",
+          "self_route_label": "active_error_removed_AMBIGUOUS",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true,
+          "met_elimination_bar_note": "set true because the skill's Step 9b state-mapping requires the full bar for split; nothing is eliminated -- governance may set false if the registry invariant is read as eliminated-only",
+          "resolved_utc": "2026-09-23T18:46:33Z",
+          "basis": "SPLIT. (a) confirmed, on the measured in-sample pair: the online head's final snapshot is 5.6-32x worse than persistence on rows it trained on, while a head converged from the same init and data sits at 0.94-1.00x on the same rows (the converged head's eval position is largely selected by the eligibility gate, so the eval CIs are corroborating, not the ground). (b) alive / not supported: C1 ready 0/3; this leg's registered null ('skill stays <= 0 at convergence') is NOT rejected -- consistent with 3/3 (d CIs straddle 0); the driver grid calls the cell AMBIGUOUS (its narrower N1, still persistence_dominated, 0/3) and NOT a ceiling verdict; aliased with the PE-source and representation legs; the off-distribution disjunct was tested on epsilon only."
+        },
+        "fallback_if_user_prefers_grid_literal": "state 'alive' with resolving_runs [V3-EXQ-1077], met_elimination_bar false, same basis -- the pre-registered grid labelled this cell AMBIGUOUS and did not name sub-cases in advance."
+      }
+    ],
+    "annotate_no_state_change": [
+      {
+        "hid": "H-harm-head-representation-ceiling",
+        "basis_append": "V3-EXQ-1077: converged d ~ 0 is this leg's predicted signature but is aliased; non-gating in-sample bound reads 'learnable but not learned' on 2/3 seeds (s42, s137), a lean against the strict 'nothing learnable' form."
+      },
+      {
+        "hid": "H-pe-source-structurally-wrong",
+        "basis_append": "V3-EXQ-1077: converged residual-head PE ~= innovation; this leg is next and must compare against the CONVERGED head."
+      },
+      {
+        "hid": "H3-persistence-dominated",
+        "basis_append": "V3-EXQ-1077 bears on child H3b: its elimination used the ONLINE (unconverged) head's action sensitivity; flagged for governance re-examination, no state change drafted here."
+      }
+    ],
+    "mode_d_h_other": "checked -- no signal fires (no two confirmed legs; the undertrained leg's own off-distribution disjunct covers the generalisation lean). Nothing recorded.",
+    "axis_families": "no new axis values"
+  }
+}
