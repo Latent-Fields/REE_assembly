@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_069",
+  "entry_id": "2026-09-24_inv_069_homeostatic_rl_selfstate_laurencon2021",
+  "timestamp_utc": "2026-09-24T18:29:13Z",
+  "claim_ids_tested": ["INV-069"],
+  "source": {
+    "title": "Continuous Homeostatic Reinforcement Learning for Self-Regulated Autonomous Agents",
+    "authors": ["Hugo Laurencon", "Charbel-Raphael Segerie", "Johann Lussange", "Boris S. Gutkin"],
+    "year": 2021,
+    "venue": "arXiv preprint",
+    "arxiv_id": "2109.06580",
+    "url": "https://arxiv.org/abs/2109.06580"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "This is the cleanest available computational instance of the specific structural requirement highlighted for this review: an internal state that is continuously, actively maintained over time (not a fixed representation) and that feeds DIRECTLY into the agent's valuation/reward computation, exactly the missing consumer link named in the brief (z_self has zero reach into E3 selection, GFLAG-0481). Confidence is capped in the middle of the range because the paper's 'self' is a low-dimensional physiological internal-state vector (drive variables) rather than anything resembling a learned self-representation with coherence/identity semantics, and it is an unpublished preprint (never formally peer-reviewed as of this pull) with no perturbation-recovery-vs-frozen-store dissociation experiment of the kind INV-069's WWA specifies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The internal state modelled is a small set of physiological drive/deficit variables (e.g. hunger, thirst analogues), not a learned latent self-representation with anything like coherence, identity, or temporal-depth verisimilitude semantics -- it demonstrates the VALUATION-CONSUMES-MAINTAINED-STATE structure INV-069 needs, but at a much simpler representational level than z_self.",
+    "No experiment isolates 'process' from 'state': the paper never freezes the internal-state update while leaving its last value intact and compares against the live-updating condition, so it cannot itself demonstrate the process-vs-representation dissociation, only the prerequisite architectural pattern (continuous internal-state maintenance feeding reward) that would make such a dissociation testable.",
+    "Not formally peer-reviewed at time of this review (arXiv preprint, submitted 2021, no stated subsequent journal/conference publication found)."
+  ],
+  "tags": ["inv_069", "homeostatic_reinforcement_learning", "internal_state", "valuation", "self_regulation", "computational_model", "arxiv", "e3_selector_analogy"],
+  "mapping": {
+    "source_claim_statement": "The paper extends homeostatically-regulated reinforcement learning (HRRL) -- in which reward is defined as a function of an agent's own internal physiological state rather than external task reward alone -- from a discrete-time to a continuous-time, continuous-space formulation. The agent's internal state (a vector of drive/deficit variables analogous to hunger, thirst, etc.) is updated continuously over time as a function of both its own dynamics and the agent's actions, and the agent must continuously act to keep this internal state within a viable range; reward is derived directly from changes in this maintained internal state, making homeostatic self-regulation the organising principle of behaviour rather than a side effect of it.",
+    "ree_translation": "This is a working computational demonstration of the structural pattern INV-069's behavioural leg requires: an internal, continuously-updated self/body-state variable that is read DIRECTLY by the valuation/reward computation, so that maintaining the state (not merely representing it) is what drives behaviour. This maps onto REE's intended architecture -- D_self/V_self maintained by the SelfRecurrenceCell and read by DR-10's self-viability penalty in e3_selector.py -- more literally than any of the biological/philosophical entries in this pull, precisely because it is itself an implemented agent architecture rather than a theory of biological selfhood. It is the clearest available illustration of what a genuine CONSUMER of a maintained self-state would look like: reward is a function of the internal state's trajectory, not of a frozen snapshot, so an agent whose internal-state update were 'frozen' (arm b) would, on this architecture, necessarily lose the reward signal that ties behaviour to self-regulation -- directly analogous to the drift-under-frozen-maintenance prediction in INV-069's WWA.",
+    "mapping_caveat": "The internal state in this paper is a small set of hand-specified physiological drive variables with a known viability range (e.g. bounded deficit variables), not a learned, high-dimensional latent self-representation with coherence/identity semantics comparable to z_self; the paper's homeostatic reward is a much simpler and more directly interpretable signal than REE's V_self aggregation over precision/coupling-weighted self-tagged latents. The paper also does not run the specific process-vs-state ablation INV-069 needs (freeze the update, keep the last value, compare to the live-updating control) -- it establishes the necessary architectural pattern (continuous state feeding reward) without itself testing the dissociation. It is also an arXiv preprint, not (as far as this search could establish) subsequently peer-reviewed, which the confidence rationale accounts for.",
+    "source_context": "arXiv preprint (cs.AI), submitted September 2021, from researchers associated with the Group for Neural Theory (ENS Paris) and DeepMind/EA Sussex-adjacent AI-safety circles (Segerie); extends prior discrete-time homeostatic-RL work (Keramati and Gutkin 2011, 2014) to continuous time and space."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is the main discount: unpublished preprint, no independent replication found, and the demonstrated internal state is far simpler than z_self. Mapping fidelity is the highest in this pull's set specifically on the valuation-consumer point, because this paper IS an implemented agent whose reward literally is a function of a continuously maintained internal state, which is the mechanism GFLAG-0481 shows is currently absent for z_self in V3. Transfer risk is moderate: same general class of system (an RL-style agent with an internal state read by reward), but the internal-state representation itself is much lower-dimensional and more hand-specified than REE's learned z_self."
+  }
+}

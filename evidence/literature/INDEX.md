@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-24T11:30:50.692007Z`
+Generated: `2026-09-24T18:33:37.466818Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -324,6 +324,7 @@ Generated: `2026-09-24T11:30:50.692007Z`
 | `targeted_review_inv_054` | [`2026-05-05_inv_054_sudden_gains_tang1999`](targeted_review_inv_054/entries/2026-05-05_inv_054_sudden_gains_tang1999/record.json) | 6 | [`summary`](targeted_review_inv_054/entries/2026-05-05_inv_054_sudden_gains_tang1999/summary.md) |
 | `targeted_review_inv_063` | [`2026-09-22_inv_063_system_consolidation_gist_abstraction_born2012`](targeted_review_inv_063/entries/2026-09-22_inv_063_system_consolidation_gist_abstraction_born2012/record.json) | 9 | [`summary`](targeted_review_inv_063/entries/2026-09-22_inv_063_system_consolidation_gist_abstraction_born2012/summary.md) |
 | `targeted_review_inv_064` | [`2026-07-15_inv064_sensorimotor_association_axis_sydnor2021`](targeted_review_inv_064/entries/2026-07-15_inv064_sensorimotor_association_axis_sydnor2021/record.json) | 3 | [`summary`](targeted_review_inv_064/entries/2026-07-15_inv064_sensorimotor_association_axis_sydnor2021/summary.md) |
+| `targeted_review_inv_069` | [`2026-09-24_inv_069_self_organization_process_friston2018`](targeted_review_inv_069/entries/2026-09-24_inv_069_self_organization_process_friston2018/record.json) | 4 | [`summary`](targeted_review_inv_069/entries/2026-09-24_inv_069_self_organization_process_friston2018/summary.md) |
 | `targeted_review_inv_088` | [`2026-07-13_inv_088_value_generalization_bound_lelan2022`](targeted_review_inv_088/entries/2026-07-13_inv_088_value_generalization_bound_lelan2022/record.json) | 4 | [`summary`](targeted_review_inv_088/entries/2026-07-13_inv_088_value_generalization_bound_lelan2022/summary.md) |
 | `targeted_review_inv_089` | [`2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016`](targeted_review_inv_089/entries/2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016/record.json) | 3 | [`summary`](targeted_review_inv_089/entries/2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016/summary.md) |
 | `targeted_review_inv_092` | [`2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010`](targeted_review_inv_092/entries/2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010/record.json) | 5 | [`summary`](targeted_review_inv_092/entries/2026-09-08_inv_092_performance_dependent_pain_inhibition_buhle2010/summary.md) |

@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_069",
+  "entry_id": "2026-09-24_inv_069_active_interoceptive_inference_seth2016",
+  "timestamp_utc": "2026-09-24T18:29:13Z",
+  "claim_ids_tested": ["INV-069"],
+  "source": {
+    "title": "Active interoceptive inference and the emotional brain",
+    "authors": ["Anil K. Seth", "Karl J. Friston"],
+    "year": 2016,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2016.0007",
+    "pmid": "28080966",
+    "pmc": "PMC5062097",
+    "volume": "371",
+    "issue": "1708",
+    "pages": "20160007",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28080966/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "This is the canonical interoceptive-inference review linking predictive maintenance of bodily (allostatic) states directly to embodied selfhood and to emotion/valuation -- the strongest available literature grounding for INV-069's 'interoceptive/predictive self-models' sub-scope, and for the implication that a self-state has to be read by a valuation process to do anything. It is capped at moderate-high confidence because it argues at the level of autonomic/interoceptive regulation and cortical anatomy (agranular cortex, descending predictions to autonomic reflexes), not at the level of a specific recurrent self-representation like SelfRecurrenceCell, and it offers no perturbation-recovery paradigm or measurable process-vs-state dissociation of the kind INV-069's WWA now requires.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review is a survey of a research programme (interoceptive inference), not a single testable model with a stated recovery-after-perturbation prediction -- it cannot be read as directly confirming or falsifying the specific dissociation INV-069 needs (trained maintaining process recovers; frozen store drifts).",
+    "The paper's account of embodied selfhood is grounded in autonomic physiology (allostasis, agranular cortex, neuromodulation) with no discussion of an artificial recurrent self-latent or of what should happen if the maintaining machinery is present but untrained -- exactly the failure mode the 2026-09-24 autopsy found in the current V3 substrate."
+  ],
+  "tags": ["inv_069", "interoceptive_inference", "allostasis", "embodied_self", "predictive_processing", "emotion", "valuation", "seth_friston", "theoretical"],
+  "mapping": {
+    "source_claim_statement": "Interoception is reframed within active (Bayesian) inference: bodily states are regulated by autonomic reflexes that are themselves 'enslaved' by descending predictions from deep generative models of internal and external milieu. This links classical physiological homeostasis to the more anticipatory notion of allostasis (predictive regulation ahead of need), and situates the precision of these interoceptive predictions as central to emotional experience and to a sense of embodied self. The self, on this account, is constituted by the ongoing hierarchical inference that keeps bodily/interoceptive predictions calibrated against arriving signals -- ranging in explanatory scope from autism and depression to consciousness itself.",
+    "ree_translation": "INV-069's 'interoceptive/predictive self-models' sub-scope is directly addressed here: Seth and Friston ground embodied selfhood in an ongoing predictive-regulatory process (allostasis) rather than a static bodily self-image, which is the same 'process not thing' structure INV-069 asserts for the self more generally, specialised to the interoceptive/affective domain that REE's hippocampal module (update_per_stream_vs, the V_s identity-prediction proxy) and E3 selector (DR-10 self-viability penalty) are meant to instantiate computationally. The paper's emphasis on precision and neuromodulation as the mechanism linking interoceptive prediction to emotion is the clearest literature statement of why a self-state must be legible to a valuation process to matter behaviourally -- directly relevant to the context that z_self currently has zero reach into E3 selection in V3 (GFLAG-0481): on this account, a self-model that is computed but never read by anything downstream that assigns value to its precision/predictability is, by the paper's own logic, not yet doing the affective/motivational work embodied selfhood requires.",
+    "mapping_caveat": "This is a review synthesising the interoceptive-inference research programme in biological brains (autonomic reflexes, agranular cortex, neuromodulation); it does not propose or test a specific artificial architecture, and it gives no operational readout comparable to per_stream_vs['z_self'] or a perturb-then-recover design. The domain transfer from mammalian autonomic/interoceptive regulation to a gated recurrent self-latent in a V3 agent is substantial, and the paper is silent on the trained-vs-untrained distinction that determined the 2026-09-24 autopsy's vacuous_pass verdict.",
+    "source_context": "Review article in a themed issue of Phil. Trans. R. Soc. B ('Interoception beyond homeostasis: affect, cognition and mental health'), 2016; foundational and heavily cited synthesis connecting active inference, interoception, allostasis and emotion, authored by two of the principal architects of the active-inference research programme."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.60,
+    "notes": "Source quality is high: canonical, widely cited review from the originators of the framework, in a strong venue. Mapping fidelity is moderate: strong on the general 'process not static representation' and 'valuation must read the self-state' structure, weaker on anything specific to REE's implemented self-recurrence mechanism or its readout. Transfer risk is elevated for the same reason as the other active-inference entries in this pull -- biological interoceptive/autonomic regulation to an artificial recurrent latent is a conceptual transfer, not a mechanistic one."
+  }
+}

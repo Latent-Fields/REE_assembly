@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_069",
+  "entry_id": "2026-09-24_inv_069_self_organization_process_friston2018",
+  "timestamp_utc": "2026-09-24T18:29:13Z",
+  "claim_ids_tested": ["INV-069"],
+  "source": {
+    "title": "Am I Self-Conscious? (Or Does Self-Organization Entail Self-Consciousness?)",
+    "authors": ["Karl Friston"],
+    "year": 2018,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2018.00579",
+    "pmid": "29740369",
+    "pmc": "PMC5928749",
+    "volume": "9",
+    "pages": "579",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29740369/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Friston's own gloss on the piece -- 'consciousness is not a thing but a process of inference' -- is close to a direct restatement of INV-069's central claim, transposed from consciousness to self. The argument is that living systems are characterised by repeated return to a set of attracting states, that this is formalised by a Lyapunov function (model evidence / self-evidencing), and that mind/self-hood is what self-evidencing looks like once it acquires temporal depth (inference about the consequences of one's own action). This maps unusually cleanly onto INV-069's D_self(t) formalism: a quantity actively re-approached over time via a decaying-memory update, not a fixed vector. Confidence is capped in the middle of the range because the paper is programmatic philosophy-of-physics, not a worked or tested model of a self-variable, and it argues for self-organisation entailing self-consciousness generally, not for the specific process-vs-state dissociation INV-069 needs empirically (recovery under transient perturbation vs. drift under a frozen store).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The argument for self-organisation entailing self-consciousness is a physicist's identity claim, not an empirically falsifiable dissociation between a maintained process and a stored representation -- it does not itself distinguish 'process' from 'thing' operationally, only asserts that treating consciousness as a thing is a category error.",
+    "No proposed observable analogous to INV-069's per_stream_vs['z_self'] readout or to a freeze/perturb manipulation; the attracting-state argument is offered at the level of biological self-organisation in general, not at the level of a specific latent self-variable in an agent architecture."
+  ],
+  "tags": ["inv_069", "self_as_process", "self_organization", "self_evidencing", "active_inference", "attracting_states", "friston", "theoretical"],
+  "mapping": {
+    "source_claim_statement": "Living systems are creatures that return repeatedly to a set of attracting states; this recurrence is mathematically equivalent to maximising Bayesian model evidence (self-evidencing) or minimising surprise (self-information). All biological process, from evolution to conscious cognition, can be read as performing this kind of inference. Mind, on this view, comes into being when self-evidencing acquires 'temporal thickness or counterfactual depth' -- i.e. when the inference is not just about the present state but about the consequences of one's own future action. Consciousness, and by extension selfhood, is therefore 'nothing more than inference about my future' -- a process, never a static object one could point to and call 'the self'.",
+    "ree_translation": "This is close to a philosophical restatement of INV-069's core assertion in REE's own vocabulary: D_self(t) is explicitly defined as a temporal-depth-weighted, continually re-approached quantity (an EMA over V_self, itself a precision/coupling-weighted aggregate of self-tagged latents) rather than a fixed label -- i.e. the REE formalism is a concrete, testable instance of Friston's 'attracting state maintained by inference' picture, with 'temporal-depth verisimilitude' playing the role of Friston's 'temporal thickness'. The claim's amendment (2026-09-24 governance) that the self must be a TRAINED, actively maintained process for the dissociation to be testable is the mechanistic analogue of Friston's requirement that self-evidencing be an ongoing, action-consequential inference rather than a passive label.",
+    "mapping_caveat": "Friston's argument is pitched at the level of biological self-organisation writ large (any living system, not agents with an explicit z_self variable), and it is a philosophical/physical argument for WHY self-hood should be process-like, not a demonstration that any particular implemented self-representation behaves this way. It gives INV-069 a strong prior-plausibility grounding but no operational test, no perturbation/recovery paradigm, and no discussion of what happens when the 'attracting state' machinery is present in name but untrained -- which is exactly the vacuous-pass failure mode the 2026-09-24 V3-EXQ-1078 autopsy identified in the current substrate. Treat this as conceptual-framework support, not as evidence bearing on the trained-substrate precondition or on the frozen-maintenance (arm b) DV problem.",
+    "source_context": "Theoretical/opinion piece in Frontiers in Psychology (2018), based on notes for a public-facing AEON essay by the same author; represents Friston's mature position within the free-energy-principle/active-inference programme, widely cited in the computational-psychiatry and consciousness-science literatures."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.55,
+    "notes": "Source quality is moderate for this purpose: influential and widely cited within its own theoretical tradition, but it is an opinion/perspective piece rather than a study with a method to evaluate, and its central claim (self-organisation entails self-consciousness) is itself contested rather than settled. Mapping fidelity is good at the level of vocabulary and structure (attracting state / temporal depth / self-evidencing map onto D_self / temporal-depth verisimilitude / V_self almost term-for-term). Transfer risk is elevated because the domain transfer is from 'any self-organising living system' to 'a specific latent variable in a V3 agent with an explicit recurrent update and readout', and because the paper offers no guidance on the trained-vs-untrained distinction that the autopsy showed is decisive in practice."
+  }
+}

@@ -2862,7 +2862,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "dispatch_mode": "multi_arm_ablation",
       "backlog_id": null,
       "machine_affinity": "any",
@@ -2880,7 +2880,11 @@
         "stationary/noise stretch stays below a pre-registered ceiling (V3-EXQ-757's C288_silence",
         "generalised to the in-agent case -- there it was 27 A-slow vs 0 B-slow); (c) *fast/inner*"
       ],
-      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-288 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue."
+      "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-288 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
+      "blocked_by": [
+        "MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE"
+      ],
+      "blocked_note": "Refused at /queue-experiment Step 4.5 (adversarial red-team, BLOCKING), verdict re-verified against source before acting. EXP-1388's primary criterion C1 is defined on MECH-288's slow/outer BOCPD scale, which has NO REACHABLE FIRING ROUTE on the in-agent observation path: the Bayesian posterior route cannot fire at all (likelihood terms cancel in normalisation, so p(r=0) == hazard == 0.025 identically vs posterior_threshold 0.5; event_segmenter.py:315-323,343-352,378-384), and the only live route -- the max(pred_log) < -20 implausibility fast path (:303-312) -- requires a ONE-TICK change in the SCALAR NORM ||z_goal|| (:282) greater than sqrt(40 - ln 2pi) = 6.1775, while GoalState.update can move it by at most 0.005*||z_goal|| + 0.05*||z_world - 0.995*z_goal|| per tick (goal.py:29,33,871,912-919) and the measured live norm is 0.110-0.163 mean / 0.209-0.305 max (V3-EXQ-830, 5 seeds). The blocker is the slow-scale detector/stream pairing itself, which has NO substrate_queue entry yet -- registering one is the owed step (UNOWNED bucket). This is a claim-level decision: MECH-288 commits to 'BOCPD-Gaussian latent change-point on the slow scale (z_goal)', so changing the stream, the rail (prior_var/hazard/posterior_threshold) or alpha_goal changes what the claim IS. NOT taken here. Full record: evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md (REE_assembly d46c032239); measurement half: mech288_exp1388_inagent_slow_scale_liveness_20260924.md (a576b2a819), GFLAG-0468. No experiment was queued; V3-EXQ-1096 was authored, smoke-passed and released."
     },
     {
       "proposal_id": "EXP-1389",

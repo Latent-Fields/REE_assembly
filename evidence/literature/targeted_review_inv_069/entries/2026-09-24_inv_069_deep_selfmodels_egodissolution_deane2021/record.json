@@ -1,0 +1,42 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_069",
+  "entry_id": "2026-09-24_inv_069_deep_selfmodels_egodissolution_deane2021",
+  "timestamp_utc": "2026-09-24T18:29:13Z",
+  "claim_ids_tested": ["INV-069"],
+  "source": {
+    "title": "Consciousness in active inference: Deep self-models, other minds, and the challenge of psychedelic-induced ego-dissolution",
+    "authors": ["George Deane"],
+    "year": 2021,
+    "venue": "Neuroscience of Consciousness",
+    "doi": "10.1093/nc/niab024",
+    "pmid": "34484808",
+    "pmc": "PMC8408766",
+    "volume": "2021",
+    "issue": "2",
+    "pages": "niab024",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34484808/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Deane's central move -- that phenomenal experience is underpinned by 'subjective valuation', a deep inference about the precision of self-evidencing outcomes of action -- directly instantiates INV-069's requirement that the self-model reach behaviour through valuation (the WWA's DR-10 self-viability route and GatedPolicy's z_self consumption), and his treatment of psychedelic ego-dissolution as a transient collapse of the deep self-model from which ordinary selfhood is recoverable is the clearest literature analogue of INV-069's arm (a) transient-perturbation-then-recovery design. Confidence is capped at the moderate-high end because the paper argues from the active-inference framework at the level of phenomenology and consciousness science, with no proposed quantitative recovery metric, no generic-contraction null, and no discussion of a frozen-vs-live-process distinction (arm b) -- so it supports the qualitative shape of INV-069's dissociation without constraining any of the specific measurement problems the 2026-09-24 autopsy found decisive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Ego-dissolution is treated as a global collapse of precision on the deep self-model (sensory attenuation breaking down), not as a designed, isolable, single-tick perturbation with a measurable recovery time constant -- the paper gives no operational readout comparable to per_stream_vs['z_self'] or a recovery-vs-null-contraction comparison.",
+    "The 'selflessness' states discussed (total ego-dissolution) are argued to still involve self-evidencing at a deeper computational level -- i.e. the paper's own argument is that there is no clean case of a self-model being fully absent, which complicates using it as a clean test of the frozen-maintenance (arm b) condition where the represented state is held constant but the process is stopped."
+  ],
+  "tags": ["inv_069", "self_as_process", "deep_self_model", "active_inference", "ego_dissolution", "psychedelics", "subjective_valuation", "self_evidencing", "recovery_after_perturbation", "theoretical"],
+  "mapping": {
+    "source_claim_statement": "Phenomenal consciousness is underpinned by 'subjective valuation': a deep inference about the precision, or predictability, of the self-evidencing ('fitness-promoting') outcomes of action, computed via a hierarchy of 'deep self-models' that attenuate sensory precision to privilege self-generated predictions. Psychedelic-induced ego-dissolution is explained within this same active-inference framework as a state in which precision-weighting on the deep self-model collapses (e.g. via 5-HT2A-mediated disruption of precision-encoding), producing a transient loss of the sense of a bounded self -- but this is argued not to refute self-model theories of consciousness, because the residual experience during dissolution still instantiates self-evidencing at some level, and ordinary selfhood is recoverable once precision-weighting is restored.",
+    "ree_translation": "INV-069's central dissociation is that a self implemented purely as a stored representation is inert with respect to behaviour and coherence, whereas a self implemented as an actively maintained process both (a) recovers coherence and behaviour-relevant ranking after a transient perturbation and (b) drifts if the maintenance process is stopped even though the stored value is untouched. Deane's 'subjective valuation' route -- deep self-model precision feeding directly into what counts as a self-evidencing, hence valued, outcome -- is the closest literature statement of exactly the CONSUMER side of this claim: a self-state that matters only insofar as downstream valuation reads it. This bears directly on the context that z_self currently has zero reach into E3 selection in the V3 agent (GFLAG-0481): Deane's framework predicts that a self-model with no route into 'subjective valuation' of outcomes would not be functioning as the kind of deep self-model his account of consciousness (and, on REE's reading, of self-relevant behaviour) requires -- the self-model must be a valuation INPUT, not merely a coherence readout, for the claim's behavioural leg to have a target to act on. His ego-dissolution discussion is the clearest available literature analogue of arm (a): a transient precision collapse on the self-model followed by recoverable, restored selfhood, exactly the shape of the transient-perturbation-then-recovery design.",
+    "mapping_caveat": "Deane writes at the level of phenomenal consciousness and precision-weighting in a general active-inference hierarchy, not about a specific gated recurrent cell (SelfRecurrenceCell) or a specific readout (per_stream_vs). He proposes no quantitative recovery criterion, so there is no way to read off from this paper what would count as a generic-contraction-null failure of arm (a), nor does he distinguish a 'live process, stored value frozen' condition from a 'precision reduced to near zero' condition -- his ego-dissolution case is closer to REE's arm (a) (perturb-and-recover) than to arm (b) (freeze-the-process-not-the-value), and should not be read as bearing on arm (b) at all. The domain transfer from psychedelic phenomenology in humans to a lesion/freeze manipulation on an artificial recurrent cell is substantial and is treated as elevated transfer risk below.",
+    "source_context": "Theoretical article in Neuroscience of Consciousness (2021), situated within the active-inference/predictive-processing research programme (Friston, Seth, Clark lineage); engages directly with the 2019-2021 debate over whether psychedelic-induced ego-dissolution refutes self-model theories of consciousness, citing empirical psychedelic neuroimaging and phenomenology literature secondhand rather than reporting new data itself."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.55,
+    "notes": "Source quality: solid theoretical contribution in a specialist consciousness-science venue, engaging carefully with objections rather than simply asserting the framework; not an empirical study. Mapping fidelity is good specifically on the valuation-consumer point (directly relevant to the GFLAG-0481 implication) and moderate on the recovery-after-perturbation point (right shape, no operational metric). Transfer risk is elevated because the paper's evidence base is human psychedelic phenomenology and neuroimaging, and REE's arm (a)/(b) are manipulations on an artificial recurrent cell's hidden state -- the mapping is conceptual, not mechanistic-in-the-same-substrate."
+  }
+}
