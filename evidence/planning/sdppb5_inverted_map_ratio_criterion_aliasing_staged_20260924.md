@@ -458,6 +458,6 @@ exact null of 1.0, a tighter paired CI, and **no second battery at all** --
   substantially weakens its premise on live rows.
 - **GFLAG-0475** (`evidence_discrepancy`, open) -- stop 2's recoverability finding. Its lesson
   was applied this cycle and held.
-- **GFLAG-0476** (`evidence_discrepancy`, open) -- this addendum.
+- **GFLAG-0482** (`evidence_discrepancy`, open) -- this addendum.
 - Script: `ree-v3` origin/main, INERT, DO-NOT-QUEUE banner. `V3-EXQ-1092` never queued; the slot
   is free to reuse or release.
