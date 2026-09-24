@@ -2481,6 +2481,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0445",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: ceiling-bound leg is analytic under current instrumentation; realised harm Y is flat (~0.03-0.06) under random-walk behaviour.",
       "claim_id": "INV-089",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -2491,6 +2492,7 @@
       "priority": "high",
       "proposal_id": "EXP-0153",
       "proposal_type": "experimental",
+      "release_condition": "A harm target is used that the harm_eval head does NOT regress (the prox label makes harm_eval <= ceiling by construction), OR realised harm Y gains graded variance (committed-action / F-dominance conversion ceiling lifted). The decodability positive-control leg is R0 and already ran (V3-EXQ-743).",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -2509,9 +2511,7 @@
       "why_now": [
         "active_conflict",
         "directional_conflict_alert"
-      ],
-      "release_condition": "A harm target is used that the harm_eval head does NOT regress (the prox label makes harm_eval <= ceiling by construction), OR realised harm Y gains graded variance (committed-action / F-dominance conversion ceiling lifted). The decodability positive-control leg is R0 and already ran (V3-EXQ-743).",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: ceiling-bound leg is analytic under current instrumentation; realised harm Y is flat (~0.03-0.06) under random-walk behaviour."
+      ]
     },
     {
       "acceptance_checks": [
@@ -4987,6 +4987,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0643",
+      "blocked_by": [
+        "SD-082 (rule-conditioned credit signal for the bias head; 1046 routing)",
+        "UNREGISTERED env substrate: held-rule transfer task (cue channel + ground-truth rule + novel-stimulus split)"
+      ],
+      "blocked_note": "[governance-20260924, recorded from stalled session governance-20260924-workset finding 4, IGW-20260924-247] /queue-experiment Step 2.5d REFUSED (INERT + ABSENT). SD-033a signature (i) held-rule transfer is unrunnable: (INERT) no existing training procedure yields a RULE-CONDITIONED lateral_pfc readout -- trained heads are less rule-sensitive than init (822f 10/10 cells; 1046 flip 0.018 vs 0.201, rule-zero argmin 0.003-0.032 vs init 0.038-0.212), so 'rule acquisition' cannot be met and ON-vs-FROZEN-HEAD would attribute any effect to rule-invariant candidate preference; per-candidate spread is exactly 0 under the default candidate_summary_source='proposer' (shared t=0 seed) and ~1e-4 of raw E3 score range under 'proposer_post_action', argmin-inert without use_modulatory_selection_authority (1029 0/1694; probe 0/29 at native magnitude). (ABSENT) CausalGridWorldV2 emits no cue-held, stimulus-abstracted rule with a ground-truth rule-consistent choice and a held-out novel-stimulus split (its only 'rule' is the action_map transposition).",
       "claim_id": "SD-033",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -4997,6 +5002,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0320",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "governance-20260924",
+      "refused_utc": "2026-09-24T08:44:45Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -5009,7 +5017,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_sd_033",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5949,6 +5957,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0081",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (implementation_phase); status previously carried no recorded reason. Phase-deferred: excluded from the runnability audit as \"Explicit future phase: v5\".",
       "claim_id": "MECH-183",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -5959,6 +5968,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0295",
       "proposal_type": "experimental",
+      "release_condition": "Registry implementation_phase reaches v5 (claim is `implementation_phase: v5`, other-model affective state requires multi-agent substrate). See also exp_0137_mech_183_feasibility_assessment.md.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -5980,9 +5990,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "Registry implementation_phase reaches v5 (claim is `implementation_phase: v5`, other-model affective state requires multi-agent substrate). See also exp_0137_mech_183_feasibility_assessment.md.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (implementation_phase); status previously carried no recorded reason. Phase-deferred: excluded from the runnability audit as \"Explicit future phase: v5\"."
+      ]
     },
     {
       "acceptance_checks": [
@@ -6034,6 +6042,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0483",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1); status previously carried no recorded reason. R1: protocols are mechanically available but no probe target is classified yet.",
       "claim_id": "Q-088",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -6044,6 +6053,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0299",
       "proposal_type": "experimental",
+      "release_condition": "SD-090's classification report names the probe target, AND the developmental arm is suppliable (INV-055 successor released from infant_substrate GAP-14 c-1 and the MECH-457 competence-floor wall), OR another classified target without that wall is chosen.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -6065,9 +6075,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "SD-090's classification report names the probe target, AND the developmental arm is suppliable (INV-055 successor released from infant_substrate GAP-14 c-1 and the MECH-457 competence-floor wall), OR another classified target without that wall is chosen.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1); status previously carried no recorded reason. R1: protocols are mechanically available but no probe target is classified yet."
+      ]
     },
     {
       "acceptance_checks": [
@@ -8114,6 +8122,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0592",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1 (audit); status previously carried no recorded reason. R1 (audit: EXISTING NODE, STALE STATUS): the necessity falsifier has no comparator. Children ran (MECH-427 PASS, MECH-428 FAIL); neither tests necessity.",
       "claim_id": "SD-092",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -8124,6 +8133,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0414",
       "proposal_type": "experimental",
+      "release_condition": "An online single-level subgoal-credit comparator arm exists (the credit path currently writes only _z_goal_parent) with a DV defined for both arms (parent_goal_norm is hierarchical-only).",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -8145,9 +8155,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "An online single-level subgoal-credit comparator arm exists (the credit path currently writes only _z_goal_parent) with a DV defined for both arms (parent_goal_norm is hierarchical-only).",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1 (audit); status previously carried no recorded reason. R1 (audit: EXISTING NODE, STALE STATUS): the necessity falsifier has no comparator. Children ran (MECH-427 PASS, MECH-428 FAIL); neither tests necessity."
+      ]
     },
     {
       "acceptance_checks": [
@@ -34983,6 +34991,21 @@
       "gated_at_utc": "2026-08-02T13:25:34Z",
       "gated_by_session": "determined-ritchie-55a3a6",
       "gating_reason": "Falsifier tightened 2026-09-24 (GFLAG-0443 A); design needs the REQUIRED RECORDING fields, which no current driver emits -- /queue-experiment owns the design.",
+      "gating_reason_history": [
+        {
+          "authority": "rec-20260923-e532e1b3",
+          "by_session": "governance-20260924",
+          "prior_gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_131) already ran and was itself flagged evidence_direction=superseded (identical-metrics rerun of an earlier run) -- re-running again would repeat the same substrate wall.",
+          "superseded_at_utc": "2026-09-24T08:19:23Z"
+        },
+        {
+          "authority": "rec-20260924-3760004e",
+          "by_session": "governance-20260924",
+          "prior_gating_reason": "Falsifier specification owed (GFLAG-0443): ARC-023's narrowed E3-only falsifier has an unreachable FALSIFYING leg (E3 share must reach 1.0) and an arousal-modulated 'configured period' (MECH-093, band 5-20). V3-EXQ-942 re-read 2026-09-23 = partial (failure_autopsy_V3-EXQ-942_reread_2026-09-23). The v3_exq_131 freeze-artifact reason is resolved by the narrowing.",
+          "superseded_at_utc": "2026-09-24T08:42:06Z"
+        }
+      ],
+      "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-023 via targeted experiment runs.",
       "priority": "medium",
@@ -35005,22 +35028,7 @@
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ],
-      "gating_reason_history": [
-        {
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_131) already ran and was itself flagged evidence_direction=superseded (identical-metrics rerun of an earlier run) -- re-running again would repeat the same substrate wall.",
-          "superseded_at_utc": "2026-09-24T08:19:23Z",
-          "authority": "rec-20260923-e532e1b3"
-        },
-        {
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "Falsifier specification owed (GFLAG-0443): ARC-023's narrowed E3-only falsifier has an unreachable FALSIFYING leg (E3 share must reach 1.0) and an arousal-modulated 'configured period' (MECH-093, band 5-20). V3-EXQ-942 re-read 2026-09-23 = partial (failure_autopsy_V3-EXQ-942_reread_2026-09-23). The v3_exq_131 freeze-artifact reason is resolved by the narrowing.",
-          "superseded_at_utc": "2026-09-24T08:42:06Z",
-          "authority": "rec-20260924-3760004e"
-        }
-      ],
-      "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z"
+      ]
     },
     {
       "acceptance_checks": [
@@ -35692,6 +35700,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0603",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1); status previously carried no recorded reason. R1: the only run used random.randint action selection (bit-identical arms). The substrate exists; the experiment did not use it. NOTE: \"blocked_substrate\" is a misnomer here; the unmet condition is a claim restatement plus redesign, not a build.",
       "claim_id": "MECH-141",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -35702,6 +35711,7 @@
       "priority": "medium",
       "proposal_id": "EXP-1310",
       "proposal_type": "experimental",
+      "release_condition": "A redesigned driver that uses the EXISTING arbitration substrate (MECH-090 admission conjunction, MECH-091 threshold interrupt, MECH-342 graded maintenance release), with the claim restated in V3 terms (within-tick admission gate vs across-tick maintenance release) per the GFLAG-0400 note (2026-09-23, user-accepted). The millisecond-vs-second clause has no V3 sub-tick substrate; exclude it.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -35720,9 +35730,7 @@
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ],
-      "release_condition": "A redesigned driver that uses the EXISTING arbitration substrate (MECH-090 admission conjunction, MECH-091 threshold interrupt, MECH-342 graded maintenance release), with the claim restated in V3 terms (within-tick admission gate vs across-tick maintenance release) per the GFLAG-0400 note (2026-09-23, user-accepted). The millisecond-vs-second clause has no V3 sub-tick substrate; exclude it.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R1); status previously carried no recorded reason. R1: the only run used random.randint action selection (bit-identical arms). The substrate exists; the experiment did not use it. NOTE: \"blocked_substrate\" is a misnomer here; the unmet condition is a claim restatement plus redesign, not a build."
+      ]
     },
     {
       "acceptance_checks": [
@@ -35743,6 +35751,18 @@
       "gated_at_utc": "2026-08-22T06:58:32Z",
       "gated_by_session": "chip-proposal-exp-0499",
       "gating_reason": "MECH-151's E3 ranking channel IS built (ree-v3 84e211a, flag use_action_object_bias_channel, default False) -- the prior 'no ranking channel' reason is false (GFLAG-0436). Blocked on its what_would_answer non-degeneracy precondition: cue action_bias near-constant (detach, sd055-agent-side-detach-cue-action-proj-route) and bias ~4 orders scale-incommensurate at weight 1.0. Design when ungated: ON vs OFF vs shuffled-cue, weight swept, CEM translation held identical, cue-variation gated first.",
+      "gating_reason_history": [
+        {
+          "authority": "rec-20260924-5c406791",
+          "by_session": "governance-20260924",
+          "prior_blocked_by": [
+            "mech151-action-bias-has-no-e3-ranking-channel (substrate_queue.json, status proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET, ready=false, added 2026-08-18)",
+            "ARC-007 (governance architectural-decision gate, not a routine substrate build)"
+          ],
+          "prior_gating_reason": "queue-experiment Step 2.5 substrate readiness check: MECH-151 asserts E1's cue-indexed action_bias produces top-down ELEVATE/SUPPRESS ranking of action-affordances within HippocampalModule search prior to E3 selection. Independently re-verified 2026-08-22 (source read of ree_core/hippocampal/module.py _score_trajectory -- scores get_world_state_sequence() / residue-field terrain only and never reads Trajectory.action_objects -- plus ree_core/predictors/e3_selector.py, which has zero action_object/action_bias references) that this ranking channel does not exist in the current substrate, confirming GFLAG-0039/GFLAG-0043 (resolved 2026-08-21, governance cycle gov-20260821-0203; V3-EXQ-922's MECH-151 'supports' reading was withdrawn to non_contributory on this same finding) and the contract-pinned measurement at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py (candidate scores bit-identical at action_bias=None vs 1e3; elite ordering unchanged; bias is bit-identically inert at num_cem_iterations=1). action_bias's only live effect is an additive translation of the CEM proposal mean (steers WHERE candidates are drawn), never a ranking/scoring authority (never determines WHICH candidate wins) -- so a new experiment measuring action_bias context-conditioning the way V3-EXQ-922 did would reproduce a metric already shown not to test the claim's asserted mechanism, and a new experiment probing ranking directly would just re-derive the already-measured, contract-pinned null (bit-identical scores). The repair is NOT a routine /implement-substrate build: substrate_queue.json's own entry ('mech151-action-bias-has-no-e3-ranking-channel') is explicitly gated 'DO_NOT_BUILD_YET' pending a governance decision on ARC-007 STRICT ('HippocampalModule generates VALUE-FLAT proposals ... E3 introduces ALL weighting'), which forbids the obvious fix (teaching _score_trajectory to read action_objects) without a governance ruling. Two live options per that entry: (A) give E3 an action-object input channel (honours ARC-007, larger build) or (B) accept the substrate as correct under ARC-007 and re-word MECH-151's registered mechanism away from 'elevated/suppressed ranking' toward 'pre-shapes the CEM proposal mean' (a claims edit, not a build). Neither is a queue-experiment task; both require a /governance cycle to adjudicate. Full design: REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md.",
+          "superseded_at_utc": "2026-09-24T08:41:24Z"
+        }
+      ],
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-151 via targeted experiment runs.",
       "priority": "medium",
@@ -35767,18 +35787,6 @@
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ],
-      "gating_reason_history": [
-        {
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "queue-experiment Step 2.5 substrate readiness check: MECH-151 asserts E1's cue-indexed action_bias produces top-down ELEVATE/SUPPRESS ranking of action-affordances within HippocampalModule search prior to E3 selection. Independently re-verified 2026-08-22 (source read of ree_core/hippocampal/module.py _score_trajectory -- scores get_world_state_sequence() / residue-field terrain only and never reads Trajectory.action_objects -- plus ree_core/predictors/e3_selector.py, which has zero action_object/action_bias references) that this ranking channel does not exist in the current substrate, confirming GFLAG-0039/GFLAG-0043 (resolved 2026-08-21, governance cycle gov-20260821-0203; V3-EXQ-922's MECH-151 'supports' reading was withdrawn to non_contributory on this same finding) and the contract-pinned measurement at ree-v3 tests/contracts/test_exp0155_action_bias_no_scoring_authority.py (candidate scores bit-identical at action_bias=None vs 1e3; elite ordering unchanged; bias is bit-identically inert at num_cem_iterations=1). action_bias's only live effect is an additive translation of the CEM proposal mean (steers WHERE candidates are drawn), never a ranking/scoring authority (never determines WHICH candidate wins) -- so a new experiment measuring action_bias context-conditioning the way V3-EXQ-922 did would reproduce a metric already shown not to test the claim's asserted mechanism, and a new experiment probing ranking directly would just re-derive the already-measured, contract-pinned null (bit-identical scores). The repair is NOT a routine /implement-substrate build: substrate_queue.json's own entry ('mech151-action-bias-has-no-e3-ranking-channel') is explicitly gated 'DO_NOT_BUILD_YET' pending a governance decision on ARC-007 STRICT ('HippocampalModule generates VALUE-FLAT proposals ... E3 introduces ALL weighting'), which forbids the obvious fix (teaching _score_trajectory to read action_objects) without a governance ruling. Two live options per that entry: (A) give E3 an action-object input channel (honours ARC-007, larger build) or (B) accept the substrate as correct under ARC-007 and re-word MECH-151's registered mechanism away from 'elevated/suppressed ranking' toward 'pre-shapes the CEM proposal mean' (a claims edit, not a build). Neither is a queue-experiment task; both require a /governance cycle to adjudicate. Full design: REE_assembly/evidence/planning/mech151_affordance_set_instrumentation_design_blocked_20260818.md.",
-          "prior_blocked_by": [
-            "mech151-action-bias-has-no-e3-ranking-channel (substrate_queue.json, status proposed_GATED_on_ARC-007_governance_decision_DO_NOT_BUILD_YET, ready=false, added 2026-08-18)",
-            "ARC-007 (governance architectural-decision gate, not a routine substrate build)"
-          ],
-          "superseded_at_utc": "2026-09-24T08:41:24Z",
-          "authority": "rec-20260924-5c406791"
-        }
       ]
     },
     {
@@ -38861,6 +38869,7 @@
         "modulatory-bias-selection-authority (substrate_queue, created 2026-06-03) -- without genuine modulatory authority at E3.select the entropy gain cannot reach committed action (the 604a/624a selection-authority bottleneck).",
         "SD-061 (substrate_queue.json, implemented_pending_validation) -- difficulty-gated proposal-entropy regulator: stuck-state detector + transient CEM temperature/candidate-count gain + decay; builds MECH-343 substrate_conditional blocker part 2. Was free prose ('not yet designed (no design doc)'), which audit_blocked_proposal_unblockers.unblocker_id() could not resolve to any sd_id, so a blocker that HAS an owner read as UNOWNED; id-first form added 2026-09-10 (GFLAG-0135)."
       ],
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: temperature lever had no consumer until 2026-09-18 and its coupling flag is default-off and unused; _progress_deficit saturated at 1.0 so the decay leg is unmeasurable.",
       "claim_id": "MECH-343",
       "design": "Hard-goal / blocked-path environment with matched easy-goal controls. 4 arms x matched seeds: (1) entropy-gating OFF; (2) entropy-gating ON under stuck-state (transient gain on CEM within-class temperature / candidate-set size, decayed on goal progress, goal+harm scoring preserved, commitment deferred until E3 score-margin clears); (3) entropy ALWAYS high (no gating, no decay); (4) entropy high with goal/harm constraints ablated (DIAGNOSTIC only, run only if safe -- expected to surface arbitration-failure / harmful-random signature). Stuck-state signal = repeated failure to improve goal progress OR low E3 score margin OR low committed-action diversity, with goal salience preserved.",
       "dispatch_mode": "multi_arm_ablation",
@@ -38895,12 +38904,11 @@
         "ARC-018",
         "ARC-065"
       ],
+      "release_condition": "modulatory-bias-selection-authority AND SD-061 validated (existing blocked_by) AND sd061-resume-progress-ecology built, so goal progress can resume and the decay leg is measurable. The temperature-lever coupling flag must be armed in the driver.",
       "script_path": null,
       "source": "manual",
       "status": "proposed_blocked_substrate",
-      "target_repo": "ree-v3",
-      "release_condition": "modulatory-bias-selection-authority AND SD-061 validated (existing blocked_by) AND sd061-resume-progress-ecology built, so goal progress can resume and the decay leg is measurable. The temperature-lever coupling flag must be armed in the driver.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: temperature lever had no consumer until 2026-09-18 and its coupling flag is default-off and unused; _progress_deficit saturated at 1.0 so the decay leg is unmeasurable."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -38913,6 +38921,7 @@
       "blocked_by": [
         "v4_loop_segregation"
       ],
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: loops degenerate; flat bias-head scalar is inert under per-loop zscore.",
       "claim_id": "Q-019",
       "design": "2-arm (plus per-gate lesion sub-conditions) on the V3 commit-gating stack. ARM SINGLE: one BetaGate scores sensorium+trajectory+motor-commitment readiness jointly. ARM THREE: three separable gates on distinct axes (sensorium/attention, thought/trajectory, motor-commitment). Lesion battery in ARM THREE: independently zero each gate and measure which behavioural axis degrades (attention selectivity / trajectory coherence / commitment timing). Task requires independent control of all three axes. Pre-register thresholds. Non-degeneracy precondition: each gate must be live (non-zero gating variance on its own axis) before its lesion is interpretable -- else self-route substrate_not_ready, NOT a verdict.",
       "dispatch_mode": "multi_arm_ablation",
@@ -38943,12 +38952,11 @@
         "MECH-075",
         "Q-020"
       ],
+      "release_condition": "The v4_loop_segregation limbic loop carries non-degenerate per-candidate competition (bias-head per-candidate range above floor, so ARM_DROP_LIMBIC is no longer byte-identical to all-on, V3-EXQ-707). The thought-loop-maintenance and automaticity-gradient legs (R3) need their own substrate.",
       "script_path": null,
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3",
-      "release_condition": "The v4_loop_segregation limbic loop carries non-degenerate per-candidate competition (bias-head per-candidate range above floor, so ARM_DROP_LIMBIC is no longer byte-identical to all-on, V3-EXQ-707). The thought-loop-maintenance and automaticity-gradient legs (R3) need their own substrate.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: loops degenerate; flat bias-head scalar is inert under per-loop zscore."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -42174,6 +42182,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0317",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (implementation_phase); status previously carried no recorded reason. Phase-deferred: excluded from the runnability audit as \"Explicit future phase: v4\". Not a V3 substrate block.",
       "claim_id": "INV-056",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -42184,6 +42193,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0424",
       "proposal_type": "experimental",
+      "release_condition": "Registry implementation_phase reaches v4 (claim is `implementation_phase: v4`). Re-evaluate at the V3->V4 boundary.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -42205,9 +42215,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "Registry implementation_phase reaches v4 (claim is `implementation_phase: v4`). Re-evaluate at the V3->V4 boundary.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (implementation_phase); status previously carried no recorded reason. Phase-deferred: excluded from the runnability audit as \"Explicit future phase: v4\". Not a V3 substrate block."
+      ]
     },
     {
       "acceptance_checks": [
@@ -45688,6 +45696,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0235",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R2); status previously carried no recorded reason. R2: no readout over the executed action stream in the ARC-071/MECH-323/MECH-324 family.",
       "claim_id": "ARC-071",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -45698,6 +45707,7 @@
       "priority": "high",
       "proposal_id": "EXP-0259",
       "proposal_type": "experimental",
+      "release_condition": "substrate_queue mech317-action-chunk-boundary-instrument is built (currently REGISTRATION ONLY). LEG 2's successor needs a real control arm and a chunk supply that lifts the DV off its floor.",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -45715,9 +45725,7 @@
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict"
-      ],
-      "release_condition": "substrate_queue mech317-action-chunk-boundary-instrument is built (currently REGISTRATION ONLY). LEG 2's successor needs a real control arm and a chunk supply that lifts the DV off its floor.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R2); status previously carried no recorded reason. R2: no readout over the executed action stream in the ARC-071/MECH-323/MECH-324 family."
+      ]
     },
     {
       "acceptance_checks": [
@@ -45729,6 +45737,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0217",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R2); status previously carried no recorded reason. R2: no chunk-boundary instrument; MECH-316 has zero built substrate; learning-curve DV sits behind the MECH-439 washout.",
       "claim_id": "ARC-064",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -45739,6 +45748,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0311",
       "proposal_type": "experimental",
+      "release_condition": "A chunk-boundary instrument over the executed action stream exists (substrate_queue mech317-action-chunk-boundary-instrument) AND MECH-316 substrate is built. The committed-action learning-curve DV also needs the conversion ceiling lifted.",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -45761,9 +45771,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "A chunk-boundary instrument over the executed action stream exists (substrate_queue mech317-action-chunk-boundary-instrument) AND MECH-316 substrate is built. The committed-action learning-curve DV also needs the conversion ceiling lifted.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R2); status previously carried no recorded reason. R2: no chunk-boundary instrument; MECH-316 has zero built substrate; learning-curve DV sits behind the MECH-439 washout."
+      ]
     },
     {
       "acceptance_checks": [
@@ -45772,6 +45780,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0216",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R4); status previously carried no recorded reason. R4: two of six distinctive pieces have no substrate or owner (no CRF hook in hippocampal/module.py or ree_core/sleep/); MECH-439 conversion ceiling confounds downstream.",
       "claim_id": "ARC-063",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -45782,6 +45791,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0313",
       "proposal_type": "experimental",
+      "release_condition": "CRF reaches the hippocampal rollout pool AND sleep (arc_062_rule_apprehension GAP-E/F/G) AND the f_dominance_conversion_ceiling is lifted for committed-action strong-vs-weak comparisons.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -45803,9 +45813,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "CRF reaches the hippocampal rollout pool AND sleep (arc_062_rule_apprehension GAP-E/F/G) AND the f_dominance_conversion_ceiling is lifted for committed-action strong-vs-weak comparisons.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R4); status previously carried no recorded reason. R4: two of six distinctive pieces have no substrate or owner (no CRF hook in hippocampal/module.py or ree_core/sleep/); MECH-439 conversion ceiling confounds downstream."
+      ]
     },
     {
       "acceptance_checks": [
@@ -47058,6 +47066,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0254",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R3); status previously carried no recorded reason. R3: entire three-level signal architecture unbuilt; neither the required event nor the manipulation can be produced.",
       "claim_id": "ARC-049",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -47068,6 +47077,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0138",
       "proposal_type": "experimental",
+      "release_condition": "The play-mode three-level frame-tag signal architecture is built in ree_core (substrate_queue play-substrate-phase0-frame-tag-v3-slice or successor). The bilateral co-maintenance clause stays V3-untestable (scripted experimenter can only cooperate); scope the falsifier to the agent-side leg.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -47089,9 +47099,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "The play-mode three-level frame-tag signal architecture is built in ree_core (substrate_queue play-substrate-phase0-frame-tag-v3-slice or successor). The bilateral co-maintenance clause stays V3-untestable (scripted experimenter can only cooperate); scope the falsifier to the agent-side leg.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R3); status previously carried no recorded reason. R3: entire three-level signal architecture unbuilt; neither the required event nor the manipulation can be produced."
+      ]
     },
     {
       "acceptance_checks": [
@@ -47100,6 +47108,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0219",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: no multi-channel gate of either form to contrast. The CRF rule pool is no longer empty (crf_frac_active 0.94).",
       "claim_id": "MECH-312",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -47110,6 +47119,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0141",
       "proposal_type": "experimental",
+      "release_condition": "A multi-channel arbitration gate is built (the live gate is a single-scalar two-head gate; the four channel quantities are not computed anywhere) AND the f_dominance_conversion_ceiling is lifted.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -47131,9 +47141,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "A multi-channel arbitration gate is built (the live gate is a single-scalar two-head gate; the four channel quantities are not computed anywhere) AND the f_dominance_conversion_ceiling is lifted.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R5); status previously carried no recorded reason. R5: no multi-channel gate of either form to contrast. The CRF rule pool is no longer empty (crf_frac_active 0.94)."
+      ]
     },
     {
       "acceptance_checks": [
@@ -47142,6 +47150,7 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0256",
+      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R3); status previously carried no recorded reason. R3: play cluster unbuilt in V3; the build is designed but not registered as a substrate_queue build.",
       "claim_id": "MECH-197",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -47152,6 +47161,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0143",
       "proposal_type": "experimental",
+      "release_condition": "The play cluster (frame tag, play-type curriculum, synthetic z_goal substitution) is built, per play_substrate_design.md, via the frame-tag slice first.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -47173,9 +47183,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "release_condition": "The play cluster (frame tag, play-type curriculum, synthetic z_goal substitution) is built, per play_substrate_design.md, via the frame-tag slice first.",
-      "blocked_note": "[2026-09-24 governance, GFLAG-0424] Reason transcribed from falsifier_completion_and_runnability_audit_20260921 (R3); status previously carried no recorded reason. R3: play cluster unbuilt in V3; the build is designed but not registered as a substrate_queue build."
+      ]
     },
     {
       "acceptance_checks": [
