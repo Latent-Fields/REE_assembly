@@ -6950,6 +6950,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0487",
+      "claim_ids": [
+        "INV-054",
+        "MECH-523"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Partitioned closed-loop chain, measured one factor at a time at world_dim=32 (REE_assembly e2_rollout_divergence_and_proposal_state_dependence_20260924.md addenda 1-3, e3_evaluation_edge_test_20260924.md addenda 1-3; D3 on env reward, 3 seeds, small Mac harness): the V3 action loop is a self-reinforcing monostrategy that instantiates INV-054's benefit-collapse loop via UNTRAINED compression/readout sites (MECH-523): an untrained action decoder collapses CEM proposals to one class -> one-action behaviour starves E2's world head of action coverage -> E3's 30-step aggregation washes out the only informative (depth-1) signal -> the env's benefit-approach shaping never fires (hazard wins the tie, causal_grid_world.py:2733) and the benefit channel never opens. Existing knobs R5b (action-class scaffold candidates) + R2 (_score_depth_limit=2) cut harm on 2/3 seeds; with benefit data supplied the benefit head trains and beats a shuffled control 3/3 but harm rises 3-5x because nothing CALIBRATES E3's main channels (harm/residue/benefit/F) against grounded outcome: commensurability only equalises spread (noise gets a vote), ARC-108 learned gating is unarmed here and reweights modulatory channels from an evaluator proxy. Earliest open edge: experienced consequence -> main-channel valuation weights (missing mechanism, buildable).",
+      "raised_by_session": "orchestrate-20260924-breakthrough",
+      "raised_at": "2026-09-24T21:45:44Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
