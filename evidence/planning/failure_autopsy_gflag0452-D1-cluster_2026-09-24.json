@@ -1,0 +1,897 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T09:13:39Z",
+  "generated_by": "governance-20260924 subagent (staging mode), session governance-20260924-autopsy-d1",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "trigger": "GFLAG-0452 / user decision rec-20260924-34e4e088: D1_impl_verification_by_construction cluster from the GFLAG-0250 PASS driver skim",
+  "source_skim": "REE_assembly/evidence/planning/gflag0250_pass_driver_skim_20260924.md",
+  "dry_run_checked": true,
+  "dry_run_check_note": "scripts/check_dry_run_citations.py over all 8 run_ids: 0 dry, 8 clean (exit 0)",
+  "excluded_dry_run_ids": [],
+  "autopsy_coverage_checked": "scripts/check_autopsy_coverage.py: all 8 AVAILABLE: YES (no prior covering artifact)",
+  "skim_findings_overturned": [],
+  "skim_findings_corrected": [
+    "503a: ARM_A slot differentiation fell to 0.78 / 0.61 / 0.39, not '0.61-0.78' (seed 44 omitted)"
+  ],
+  "skim_findings_extended": [
+    "517d: comparator has no refractory -- fires every tick of a descent (~9-17 events per injection); new secondary substrate finding",
+    "762: C046_coordinator_write is a setter round-trip on the driver's own call, not agent.py's injection site",
+    "757: modules are driver-built (no agent path) in addition to pe_dict=None",
+    "503a: precedent -- the 538a autopsy (confirmed 2026-07-10) already ruled SD-017 SWS/REM-write liveness 'supports' vacuous",
+    "status consequences the skim did not scope: MECH-092, MECH-287, MECH-288, MECH-302 were each PROMOTED candidate->provisional on runs in this cluster"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_500a_sd017_sleep_phase_readiness_phase2_20260509T204158Z_v3",
+      "queue_id": "V3-EXQ-500a",
+      "experiment_purpose": "diagnostic",
+      "claim_ids": [
+        "SD-017"
+      ],
+      "claim_types": {
+        "SD-017": "design_decision"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1_impl_verification_by_construction)",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "manifest_direction": "supports (evidence_direction_per_claim SD-017 supports)",
+        "current_confidence_weight": "ZERO -- claim_evidence.v1.json entry carries scoring_excluded='diagnostic_probe' (build_experiment_indexes.py:3802-3804 excludes every diagnostic/baseline-purpose run from confidence). The direction change below is record hygiene, not a confidence move.",
+        "C1": "phase_counts incremented unconditionally once per cycle (driver :276,283,291,299); prep_ready requires buffers >=2 after 160 wake ticks -- a precondition, true in all 9 cycles",
+        "C2": "wake/test/replay_prep durations are loop constants (160, 24, 1.0); replay duration = sws_n_writes + rem_n_rollouts = 8 + 6 every cycle -> CV 0.0 exactly in every phase and seed",
+        "C3": "replay_quality = rem_n_rollouts + 0.25*sws_n_writes + 0.1*div = 6 + 2 + 0.1*div (driver :311); measured sws_n_writes 8.0 and rem_n_rollouts 6.0 in all 9 cycles = the configured SWS_CONSOLIDATION_STEPS / REM_ATTRIBUTION_STEPS; bar 8.0 (:139) is exactly the op-count term; measured 8.1000-8.1011",
+        "ungated_readout": "slot_diversity before/after the post-sleep test phase unchanged (1.000/1.000, 1.011/1.011, 1.000/1.000) -- sleep produced no measurable slot reorganisation readout in this probe"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not exercised (liveness probe; SD-017's necessity content was never at stake)",
+        "biological_reference": "clear -- SWS sharp-wave-ripple hippocampal->neocortical replay + REM theta replay (19 lit entries, lit_conf 0.903)",
+        "prerequisites": "present",
+        "implementation": "complete -- run_sleep_cycle executes SWS + REM passes (liveness verified)",
+        "environment": "n/a -- no environmental pressure is involved in the criteria",
+        "measurement": "misleading -- every criterion is an op-count or loop constant",
+        "integration": "unknown -- no downstream effect of sleep was measured",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (by-construction criteria); not chargeable to REE -- a PASS that could only fail on a crash"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal SWR replay (SWS) + REM theta reactivation driving systems consolidation",
+        "dependencies": [
+          "waking encoding into hippocampal buffer",
+          "cortical slot/schema store"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at issue -- the test does not reach the mechanism",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "SD-017": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Run-reading for the R3 re-derive-brake counter ONLY -- NOT a claims.yaml write. SD-017 keeps its current epistemic_category substrate_ceiling (set by failure_autopsy_966-436g-951-959-822d-cluster_2026-08-30).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-500a (diagnostic) re-read as implementation-liveness verification by construction -- C1 phase entries are unconditional loop increments, C2 CV is 0.0 because every phase duration is a loop constant, C3's 8.0 bar equals the configured op count (6 REM rollouts + 0.25*8 SWS writes). It confirms run_sleep_cycle executes under the Phase 2 stack; it carries no evidence about SD-017's requirement claim. Manifest direction supports -> non_contributory; it already carried zero confidence weight (diagnostic_probe).",
+      "per_claim_recommendation": {
+        "SD-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": null,
+          "recommended_epistemic_category_note": "no category write -- SD-017 keeps substrate_ceiling",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "change": "500a manifest supports -> non_contributory (diagnostic run, already zero-weight); record the adjudicated diagnostic zero on the claim -> diagnostic_evidence_adjudicated",
+          "status_change": "none -- stays stable"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not a ceiling reading. SD-017 already stands at 12 R3 hits from prior autopsies (brake long since live); this autopsy adds none."
+      },
+      "learning_extracted": [
+        "measurement gap: a readiness probe whose bars equal configured op counts cannot discriminate anything; SD-017 liveness is already established by 265a/500a/538a and needs no further liveness runs"
+      ],
+      "routing": "governance-reclassify",
+      "followon_not_chipped": "none owed for this target"
+    },
+    {
+      "run_id": "v3_exq_503a_sd017_sleep_phase_discriminative_phase2_20260509T214628Z_v3",
+      "queue_id": "V3-EXQ-503a",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "SD-017"
+      ],
+      "claim_types": {
+        "SD-017": "design_decision"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1), with one numeric correction: ARM_A slot differentiation fell 1.00 -> 0.78 / 0.61 / 0.39 (seeds 42/43/44), not 0.61-0.78 as the skim states",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "arms": "ARM_B sets sws_enabled=rem_enabled=use_sleep_loop=False (driver :232-239) -- it switches off the only writer of every DV; zero training steps run (driver :166-170 comment), so ARM_B ctxmem change 0.0, writes 0, rollouts 0 by construction",
+        "C1_C3": "bars N_CYCLES*1 = 3 against configured 8 SWS writes + 6 REM rollouts per cycle; measured 24 / 18 every seed",
+        "C2_C4": "Frobenius ctxmem change >= 0.10 (C2) and |A - B| > 0.20 (C4) with B = 0.0 identically, so C4 == C2 with a higher bar; measured 4.50 / 4.70 / 5.03 (~25x margin, the driver's own calibration comment :178-190)",
+        "ungated_readout": "per-cycle slot differentiation (mean 1-cos) in ARM_A: 0.999->0.783, 1.008->0.614, 1.001->0.388; ARM_B flat. Sleep made ContextMemory slots LESS differentiated. Initial slots are random near-orthogonal (1-cos ~ 1.0 is the ceiling), so any consolidation write toward 20 preloaded randn prototypes must lower it -- a starting-at-ceiling artefact, not evidence either way.",
+        "precedent": "failure_autopsy_V3-EXQ-538a (confirmed, user-adjudicated 2026-07-10): SD-017 'supports' that is SWS/REM-write liveness only was ruled vacuous and NOT counted; SD-017's genuine support named as V3-EXQ-691"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not exercised (the unsigned write-magnitude DV cannot express SD-017's requirement/differentiation content)",
+        "biological_reference": "clear -- SWS/REM consolidation (lit_conf 0.903)",
+        "prerequisites": "present",
+        "implementation": "complete -- sleep passes write ContextMemory (verified)",
+        "environment": "n/a -- synthetic preloaded prototypes, no environment",
+        "measurement": "misleading -- unsigned change magnitude against an arm whose writer is disabled; scores a differentiation DROP as support",
+        "integration": "isolated -- buffer preload + sleep calls, no waking loop",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (DV fires by construction, unsigned); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SWS/REM systems consolidation of hippocampal content into cortical schemas",
+        "dependencies": [
+          "waking encoding",
+          "cortical slot store"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at issue",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "SD-017": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Run-reading for the R3 counter ONLY -- NOT a claims.yaml write. SD-017 keeps substrate_ceiling.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-503a re-read as write-liveness verification by construction -- ARM_B disables every DV's only writer and runs zero training steps, so its zeros are guaranteed; ARM_A bars sit ~25x below configured op counts. Same class as the V3-EXQ-538a SD-017 liveness 'supports' already ruled vacuous (2026-07-10). Its un-gated slot-differentiation readout fell under sleep (1.00 -> 0.39-0.78), a starting-at-ceiling artefact of random-init slots, not interpretable. 503a supports -> non_contributory. SD-017 genuine exp support remains V3-EXQ-691 (supports) against V3-EXQ-436c (weakens).",
+      "per_claim_recommendation": {
+        "SD-017": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": null,
+          "recommended_epistemic_category_note": "no category write -- SD-017 keeps substrate_ceiling",
+          "change": "503a supports is write-liveness by construction (538a precedent) -> non_contributory",
+          "status_change": "none -- stays stable (lit_conf 0.903; genuine exp becomes 1 supports V3-EXQ-691 : 1 weakens V3-EXQ-436c -- live_status.needs_review is already true, governance may revisit on that basis, not on this autopsy's)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "After this change SD-017's only scoring experimental support is V3-EXQ-691 (Q-055 diversity persistence) -- single-pathway; the illusory-conflict rule applies.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not a ceiling reading; SD-017 brake already live at 12 R3 hits; this autopsy adds none."
+      },
+      "bears_on_hypothesis_space": "sd017_arc045_mech166_slot_differentiation_sleep / H-sleep-differentiates-context-slots: 503a's un-gated slot readout moved AGAINST the leg (sleep lowered 1-cos) but from a random-init ceiling with synthetic prototypes and no training -- non-discriminating, leave the leg alive; NOT a resolution.",
+      "learning_extracted": [
+        "measurement gap: an unsigned change-magnitude DV against an arm whose writer is switched off cannot test a DIFFERENTIATION claim; the discriminating readout (signed slot differentiation from a non-ceiling baseline) was recorded but not gated",
+        "consistency: the 538a ruling (SD-017 liveness supports = vacuous) already covered this run's evidence class"
+      ],
+      "routing": "governance-reclassify",
+      "followon_not_chipped": "none new -- SD-017's differentiation question is already carried by the sd017_arc045_mech166 hypothesis-space question and its 436-lineage"
+    },
+    {
+      "run_id": "v3_exq_633_mech094_simulation_real_writegate_discriminative_20260603T072042Z_v3",
+      "queue_id": "V3-EXQ-633",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "MECH-094"
+      ],
+      "claim_types": {
+        "MECH-094": "mechanism_hypothesis"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1)",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "arms": "the arms differ only in the boolean hypothesis_tag the DRIVER passes to ResidueField.accumulate / update_valence for the sim events (driver :271-274); ree_core/residue/field.py:690 (`if hypothesis_tag:` early return) and :869 make GATE_ON sim writes exactly zero",
+        "values": "GATE_ON M1 contamination 0.0, M2 0.0, M3 MI = ln 2 = 0.693147 exactly (50 untagged writes / 50 tagged no-writes), every seed; GATE_OFF M1 ~0.99999, M3 0.0 -- arithmetic identities of the injected design",
+        "not_tested": "whether any live simulation/replay path in the agent actually sets hypothesis_tag=True -- the driver supplies the tag itself; ResidueField is exercised standalone (no agent, no env)"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not exercised (MECH-094 is a system-level functional distinction; the run tests the gate's if-statement given a tag the driver sets)",
+        "biological_reference": "clear -- reality/source monitoring (MECH-248) and neuromodulatory mode-setting (MECH-249) as candidate implementations (lit_conf 0.827, 13 lit supports)",
+        "prerequisites": "present",
+        "implementation": "complete at the gate level (early return verified); tag-provenance on live replay paths unmeasured",
+        "environment": "n/a -- no environment",
+        "measurement": "misleading -- M1/M2/M3 are identities of the injection design",
+        "integration": "isolated -- ResidueField alone",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (unit test of a conditional); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "reality monitoring / source memory (medial PFC, Simons 2017 line) keeping imagined content out of episodic store",
+        "dependencies": [
+          "replay/DMN content tagging at generation",
+          "write-path gating downstream"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at issue",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-094": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-633 re-read as a unit test of the hypothesis_tag early return (field.py:690): the arms differ only in the tag the driver passes, so GATE_ON contamination 0.0 and MI = ln 2 are arithmetic identities. It verifies the gate conditional; it does not test that live simulation content carries the tag, which is MECH-094's system-level content. supports -> non_contributory. MECH-094 stays stable on its literature (promoted 2026-04-24 on 13 lit supports, before 633 ran). Read-across: V3-EXQ-499 (same direct-ResidueField design, status UNKNOWN, still scoring supports) is the same class and was not adjudicated here.",
+      "per_claim_recommendation": {
+        "MECH-094": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": null,
+          "recommended_epistemic_category_note": "no category write -- MECH-094 already carries standard",
+          "change": "633 supports is a unit test of the tag conditional -> non_contributory",
+          "status_change": "none -- stays stable (lit-carried; stable promotion 2026-04-24 predates 633)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "After this change MECH-094's only scoring exp support is V3-EXQ-499, which is the same design class (see read_across_not_adjudicated).",
+      "read_across_not_adjudicated": [
+        {
+          "run": "V3-EXQ-499 v3_exq_499_mech094_hypothesis_tag_writegate_discriminative_20260429T184730Z_v3",
+          "note": "same direct-ResidueField forced-injection gate design (its docstring: 'operates at the substrate level (direct ResidueField.accumulate calls)'); status UNKNOWN yet indexed supports; not in the 22-run skim population. Governance should put it through the same D1 decision -- not adjudicated here."
+        }
+      ],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not a ceiling reading; MECH-094 stands at 4 R3 hits from prior autopsies; this autopsy adds none."
+      },
+      "learning_extracted": [
+        "measurement gap: the discriminating question for MECH-094 is tag PROVENANCE on live replay/DMN paths (does every simulation write carry hypothesis_tag=True in the running agent), not whether the gate honours a tag it is handed"
+      ],
+      "routing": "governance-reclassify",
+      "followon_not_chipped": "governance may chip a /queue-experiment for a tag-provenance audit (instrument every ResidueField write in a closed-loop agent with replay ON and count writes whose source is replay/sim but tag False); NOT spawned here (staging, and the recommendation awaits Step 8)"
+    },
+    {
+      "run_id": "v3_exq_517c_mech302_relief_completion_discriminative_pair_20260530T124600Z_v3",
+      "queue_id": "V3-EXQ-517c",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "MECH-302",
+        "SD-050"
+      ],
+      "claim_types": {
+        "MECH-302": "mechanism_hypothesis",
+        "SD-050": "design_decision"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1) and the double-count confirmed: `diff` of the two drivers shows the science, comparator, curriculum and criteria byte-identical; 517d's only change is the emit_outcome sentinel. 517d.supersedes = 517c.",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "values": "ARM_A events/writes 26/26, 0/0 (seed 43, 1 injection -- ARM_A C1 FAILED on this seed; PASS came via the 2/3 fraction), 455/455; ARM_B 0/0 all seeds. Events per injection 2.6 / 0 / 5.8 (vs 9-17 in 517d): injection count tracks agent survival because the driver breaks on done (:254-255), so the ARM_A floor is an env-dependent liveness leg, not an identity",
+        "double_count": "both 517c and 517d are indexed as scoring 'supports' for MECH-302 and SD-050 (claim_evidence.v1.json); they are one design run twice"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- see V3-EXQ-517d target",
+        "biological_reference": "clear -- see 517d",
+        "prerequisites": "present",
+        "implementation": "complete (comparator live) with the no-refractory caveat recorded on 517d",
+        "environment": "adequate for liveness (forced damage curriculum)",
+        "measurement": "misleading for MECH-302 -- see 517d",
+        "integration": "partially coupled -- see 517d",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (superseded duplicate of 517d); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "see 517d",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "see 517d",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "supersession, not a claim-layer reading. test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-302": "standard",
+        "SD-050": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Run-reading for the R3 counter ONLY -- NOT a claims.yaml write.",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster): V3-EXQ-517c is superseded by V3-EXQ-517d (byte-identical science; 517d added only the emit_outcome sentinel) and must not score alongside it. supports -> superseded for both MECH-302 and SD-050.",
+      "per_claim_recommendation": {
+        "MECH-302": {
+          "recommended_evidence_direction": "superseded",
+          "recommended_epistemic_category": null,
+          "change": "517c double-counts 517d's identical design -> superseded",
+          "status_change": "see V3-EXQ-517d target"
+        },
+        "SD-050": {
+          "recommended_evidence_direction": "superseded",
+          "recommended_epistemic_category": null,
+          "change": "517c double-counts 517d's identical design -> superseded",
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Supersession; no ceiling reading."
+      },
+      "learning_extracted": [
+        "a re-run for a runner-sentinel fix must set evidence_direction superseded on its predecessor at landing (the V3-EXQ-870/821a failure mode: supersedes alone hands nothing to governance)"
+      ],
+      "routing": "governance-reclassify",
+      "followon_not_chipped": "none"
+    },
+    {
+      "run_id": "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
+      "queue_id": "V3-EXQ-517d",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "MECH-302",
+        "SD-050"
+      ],
+      "claim_types": {
+        "MECH-302": "mechanism_hypothesis",
+        "SD-050": "design_decision"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1) for MECH-302; for SD-050 the skim's 'may stand as implementation verification' is the draft default but is a USER CALL (SD-050's own what_would_answer excludes scheduled injection). EXTENDED: the comparator has no refractory (see facts), which the skim did not note.",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "arms": "ARM_B sets BOTH use_suffering_derivative_comparator=False AND valence_liking_enabled=False (driver make_config :134-139), so ARM_B events=writes=0 by construction (C3/C4)",
+        "C2_equals_C1": "the counted valence write is the relief-specific update_valence call inside the relief block in select_action (ree_core/agent.py:7389-7407), fired on the same tick as the event; p1_writes == p1_events in all 6 ARM_A cells of 517c+517d",
+        "values": "ARM_A events 1479 / 129 / 452 against the C1 floor of 3; ARM_B 0 / 0 / 0. The ARM_A floor is an env-dependent liveness leg (injections track agent survival -- the driver breaks on done, :254-255; the identical 517c design FAILED it on seed 43), so only ARM_B's C3/C4 and the C2==C1 duplication are by construction",
+        "no_refractory": "SufferingDerivativeComparator.tick (ree_core/comparator/suffering_derivative_comparator.py:33-50) fires on EVERY tick whose rolling-window (30) start-to-end drop >= 0.005, with no refractory or one-shot latch. With heal_rate 0.002/step a single healing trajectory stays above threshold for many consecutive ticks: measured 17.4 / 16.1 / 9.0 events per scheduled injection (1479/85, 129/8, 452/50; hazard-contact damage also feeds the comparator, so these ratios are upper-bound attributions). So an 'event' is a threshold-crossing TICK, not one relief completion. Each fire writes VALENCE_LIKING at the current z_world, and releases beta when beta_gate.is_elevated (agent.py:7390).",
+        "not_tested": "MECH-302's content -- that relief REUSES the goal-achievement completion pipeline (MECH-057a release, MECH-091 phase reset, MECH-094 tag write). The relief path is a separate hand-coded block (agent.py:7383-7407) that calls beta_gate.release() and update_valence directly; no beta-gate release, phase reset, or goal-achievement comparison was measured",
+        "registered_text_mech302": "MECH-302 what_would_answer precondition D2 (claims.yaml) already states that a run using scheduled_limb_damage_* as its sole relief source 'is a valid SD-050 test and a VACUOUS MECH-302 test' (non-contingent relief cannot credit anything the agent did). 517d is exactly that run. This is an independent ground for MECH-302 non_contributory, stronger than the by-construction argument.",
+        "registered_text_sd050": "SD-050 what_would_answer CONFIRMING requires a descent 'produced by the agent's own trajectory (not scheduled injection)' AND, per fire, BOTH reuse sites (beta_gate.release() with committed_step_idx reset AND update_valence). 517d uses scheduled injection only and measures only the update_valence site. The two claims' registered texts DISAGREE about whether 517d is an SD-050 test."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "MECH-302: intact -- not exercised (reuse-of-completion-machinery is written into the code, not tested). SD-050: strengthened at implementation level -- the comparator arms and fires in the closed agent loop under a damage curriculum",
+        "biological_reference": "clear -- relief learning via VTA-DA / NAc-shell (Navratilova 2012, Andreatta 2012 double dissociation); lit_conf MECH-302 0.875",
+        "prerequisites": "present",
+        "implementation": "partial -- comparator live, but no refractory: fires per tick across a descent rather than once per relief episode (SD-050 text: 'fires a relief-completion event when a sustained drop from peak to trough exceeds a threshold')",
+        "environment": "adequate for liveness (scheduled limb-damage curriculum, identical across arms)",
+        "measurement": "misleading for MECH-302 (counts of a hard-wired write; ARM_B zeros guaranteed); adequate for SD-050 liveness",
+        "integration": "partially coupled -- comparator -> relief block -> update_valence verified; release/phase-reset downstream unmeasured",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MIXED MEASURES+MECHANISM(partial: no refractory); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "pain-offset relief signalled by VTA dopamine to NAc shell, reinforcing the preceding action (opponent-process relief)",
+        "dependencies": [
+          "a phasic offset detector (one event per relief episode, not a sustained signal)",
+          "shared DA-dependent reinforcement/consolidation pathway"
+        ],
+        "is_formal_import": false,
+        "divergence": "relief DA response is a phasic OFFSET transient; the implementation emits a sustained train of events across the whole healing descent -- a possible translation divergence, open (puzzle)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake. For SD-050 the run is legitimate implementation verification (see per-claim).",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-302": "standard",
+        "SD-050": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Run-reading for the R3 counter ONLY -- NOT a claims.yaml write (both claims already carry standard).",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-302": "non_contributory",
+        "SD-050": "supports"
+      },
+      "recommended_evidence_direction_note": "Target-level 'supports' is the SD-050 reading; the manifest must carry evidence_direction_per_claim {MECH-302: non_contributory, SD-050: supports} (today it lists MECH-302 only; SD-050 was retro-tagged into CLAIM_IDS in 8891dad and inherits the blanket).",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-517d is a comparator-wiring check. ARM_B disables both the comparator and valence_liking, so its zeros are guaranteed; C2 duplicates C1 (the counted write is the relief block's own update_valence, agent.py:7389-7407); the ARM_A floor of 3 events is an env-dependent liveness leg (the identical 517c failed it on one seed). The comparator has no refractory and fires every tick of a descent (~9-17 events per scheduled injection). MECH-302: its content (relief REUSES goal-achievement completion machinery) is hand-coded, not tested, and its own what_would_answer D2 already rules a scheduled-injection-only run a vacuous MECH-302 test -> non_contributory. SD-050: [USER CALL] draft reading = supports stands as implementation verification of the detector in the closed loop (MECH-302 D2's framing); but SD-050's own what_would_answer requires natural, non-scheduled descents and both reuse sites, which 517d does not meet -- the alternative is non_contributory.",
+      "per_claim_recommendation": {
+        "MECH-302": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": null,
+          "recommended_epistemic_category_note": "no category write -- MECH-302 already carries standard",
+          "change": "517d tests comparator wiring with scheduled (non-contingent) relief -- its own what_would_answer D2 calls that a vacuous MECH-302 test; with 517c superseded MECH-302 keeps no scoring exp support, and its 2026-07-12 promotion rested on 517d+517c -> status: candidate",
+          "status_change": "provisional -> candidate (revert the 2026-07-12 IGW-20260712-001 promotion, whose rationale was 517d + 517c; lit_conf 0.875 is unchanged)"
+        },
+        "SD-050": {
+          "recommended_evidence_direction": "supports",
+          "recommended_evidence_direction_alternative": "non_contributory",
+          "user_decision_owed": true,
+          "user_decision_note": "Two registered texts disagree. MECH-302 what_would_answer D2: a scheduled-injection-only run 'is a valid SD-050 test'. SD-050 what_would_answer CONFIRMING: requires a descent 'produced by the agent's own trajectory (not scheduled injection)' and BOTH reuse sites per fire; 517d uses scheduled injection and measures only update_valence. Draft default = supports as detector implementation verification, because the D1 gloss and MECH-302 D2 both endorse it; choose non_contributory if SD-050's own falsifier governs, in which case SD-050 keeps no scoring exp support and its 2026-08-29 promotion should be re-reviewed.",
+          "recommended_epistemic_category": null,
+          "change": "[user call] supports stands as detector implementation verification, scheduled descents only, one of two reuse sites measured, no-refractory caveat; stamp this cluster artifact",
+          "status_change": "none -- stays provisional under the default reading (the 2026-08-29 rationale cited '2 supporting runs'; after 517c supersession the scoring count is 1). Under the alternative reading: re-review provisional."
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-302",
+        "user_decision_owed": true,
+        "note": "SECONDARY finding, offered for the Step 8 gate; drop it if the user reads per-tick firing as intended. The queue entry keyed MECH-302 (status validated, the suffering-derivative comparator) is the one that covers this module.",
+        "title": "SufferingDerivativeComparator: one relief-completion event per descent (refractory / offset latch)",
+        "implementation_hint": "tick() fires on every tick whose rolling-window drop >= threshold, so one healing trajectory emits a train of events (~9-17 per injection in 517d), each releasing beta and writing VALENCE_LIKING at successive z_world. Add a refractory or re-arm-on-rise latch so a sustained descent yields one event (matching SD-050's 'fires a relief-completion event when a sustained drop ... exceeds a threshold' and the phasic relief-offset biology).",
+        "unblocks_claims": [
+          "SD-050",
+          "MECH-302",
+          "MECH-304"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "severity": "degrading",
+        "substrate_paths": [
+          "ree_core/comparator/suffering_derivative_comparator.py",
+          "ree_core/agent.py::select_action"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
+          "experiment_type": "v3_exq_517d_mech302_relief_completion_discriminative_pair",
+          "metric": "comparator events per scheduled limb-damage injection ~9-17 (1479/85, 129/8, 452/50); events counted per threshold-crossing tick, not per relief episode",
+          "target": "<= 1-2 relief-completion events per damage->heal trajectory",
+          "resolved": "open"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "SD-050's scoring exp support becomes 517d alone (517c superseded); 515 is diagnostic and zero-weight.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "MECH-302 stands at 3 R3 hits from the 517/517a/517b autopsies -- the /queue-experiment consumer gate already refuses a same-claim lettered 517 re-test; a MECH-302 mechanism test must be a different design (e.g. relief vs goal-achievement on the SAME downstream readouts). This autopsy adds no hit (per-claim category standard)."
+      },
+      "learning_extracted": [
+        "measurement gap: MECH-302 is a REUSE claim; the discriminating test compares the downstream signature (beta release, phase reset, tag write, later approach bias) of relief events against goal-achievement events, not relief ON vs OFF",
+        "implementation gap (secondary, puzzle): comparator emits a per-tick event train instead of a phasic offset event",
+        "design_decision vs mechanism split: the same run legitimately verifies SD-050 (the comparator is built and live in the loop) while carrying no evidence for MECH-302"
+      ],
+      "routing": "governance-demotion",
+      "followon_not_chipped": "(1) the MECH-302 status revert above; (2) the optional comparator-refractory amend (user decision); (3) a MECH-302 reuse test -- a new EXQ number, not a 517 letter (brake live) -- for governance to chip after Step 8"
+    },
+    {
+      "run_id": "v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3",
+      "queue_id": "V3-EXQ-757",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "MECH-288",
+        "MECH-287"
+      ],
+      "claim_types": {
+        "MECH-288": "mechanism_hypothesis",
+        "MECH-287": "mechanism_hypothesis"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1). EXTENDED: the driver builds EventSegmenter/InvalidationTrigger itself from default configs (driver _build_segmenter(), not the agent), so no agent path is exercised; and it passes pe_dict=None (the GFLAG-0190 caveat already on MECH-288).",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "C288_hit": "GOAL_LEVELS gaps >= 10 (driver :154) chosen, per the driver's own comment, so every planted boundary lands on BOCPD's decisive-change path (posterior 1.0, lag 0; silent below ~8); planted boundaries = (600-60)/20 = 27; measured 27/27, hit rate 1.0",
+        "C288_silence": "smooth arm z_goal noise 0.02 is far below the ~8 decisive rail -> 0 slow events by construction",
+        "C288_graded": "rides the fast z-score ticker the driver itself says fires on ~13-26% of any stationary stream; open fraction 0.237 vs bar 0.20",
+        "C287_dissoc": "trigger fed empty boundary lists must broadcast 0 (driver :172) -- guaranteed",
+        "C287_tonic": "storm stream is 0.9-posterior events every tick (driver :143) against tonic_threshold 0.5 -> suppression 373 by construction",
+        "C287_phasic": "broadcast fraction 1.0 on arm A = trigger re-emits each boundary it is handed"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not exercised (both claims assert roles in the integrated agent: region-keyed segmentation feeding anchor sets / V_s / staleness, and a comparator+broadcast invalidation trigger; the run is a module unit test on synthetic streams)",
+        "biological_reference": "clear -- event segmentation (Zacks 2007 EST, Baldassano 2017, Clewett 2025) and LC phasic broadcast (Aston-Jones & Cohen 2005); lit_conf 0.855 / 0.825",
+        "prerequisites": "present (modules built)",
+        "implementation": "complete at module level; PE-threshold trigger path untested (pe_dict=None, GFLAG-0190)",
+        "environment": "n/a -- synthetic latent streams",
+        "measurement": "misleading -- inputs engineered past known detector rails",
+        "integration": "isolated -- driver-built modules, no agent",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (module unit test past known rails); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal/cortical event boundaries (prediction-error spikes) triggering LC-NE phasic reset",
+        "dependencies": [
+          "a live prediction-error stream (pe_dict)",
+          "downstream consumers (anchor sets, V_s, staleness accumulator)"
+        ],
+        "is_formal_import": true,
+        "divergence": "slow scale is BOCPD (a formal change-point import); the PE-spike trigger the title names was not driven (pe_dict=None)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-288": "standard",
+        "MECH-287": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-757 re-read as module implementation verification by construction -- synthetic inputs engineered past the BOCPD decisive rail (GOAL_LEVELS gaps >= 10, 27/27 hits = planted count), a dissociation arm fed empty lists, a storm arm fed 0.9-posterior events every tick against a 0.5 tonic threshold, gradedness riding the fast z-score ticker; modules built by the driver, pe_dict=None. It verifies that event_segmenter.py and invalidation_trigger.py are implemented and behave as coded; it is not mechanism evidence. supports -> non_contributory. The 2026-07-14 candidate->provisional promotion rested on this run alone; the original pre-registered promotion bar (implementation + integration/unlock tests) is met only in its implementation clause.",
+      "per_claim_recommendation": {
+        "MECH-288": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": null,
+          "recommended_epistemic_category_note": "no category write -- MECH-288 already carries standard",
+          "change": "757 is a module unit test past known rails; the 2026-07-14 promotion rested on it alone -> status: candidate",
+          "status_change": "provisional -> candidate (v3_pending stays false: 757 legitimately verifies the substrate is built)"
+        },
+        "MECH-287": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "757 is a module unit test past known rails; the 2026-07-14 promotion rested on it alone -> status: candidate",
+          "status_change": "provisional -> candidate (v3_pending stays false; MECH-287 carries NO epistemic_category -- also set standard)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not a ceiling reading; 0 R3 hits for MECH-288 / MECH-287."
+      },
+      "learning_extracted": [
+        "measurement gap: 'wall-independent functional signature' designs that drive a module with engineered inputs verify implementation, not mechanism; the claims' own promotion bars name integration tests (V3-EXQ-476 unlock, four-arm trigger-vs-accumulator factorial, Phase 2 downstream integration)"
+      ],
+      "routing": "governance-demotion",
+      "followon_not_chipped": "status reverts; the named integration tests (V3-EXQ-476 unlock test, four-arm trigger-vs-accumulator factorial, a real-pe_dict run) for governance to chip after Step 8"
+    },
+    {
+      "run_id": "v3_exq_761_mech092_quiescent_replay_selectivity_20260714T204501Z_v3",
+      "queue_id": "V3-EXQ-761",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "MECH-092"
+      ],
+      "claim_types": {
+        "MECH-092": "mechanism_hypothesis"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1). The driver pre-empts the objection (docstring: C4 alignment is 'code-structural (the if e3_quiescent gate)' and 'NOT the load-bearing content', resting instead on C1-C3); that defence does not hold -- C1/C2 are occurrence floors and C3 is guaranteed by replay()'s fixed step count.",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "C4": "replay fires iff ticks['e3_quiescent'] (ree_core/agent.py:10912) -- measured quiescent fire 1.0, salient 0.0, non-E3 0.0 in all 5 seeds",
+        "C1_C2": "occurrence floors >=3 quiescent, >=1 salient E3 tick per seed (driver :129-131); measured min 19 and 2 -- env-dependent non-vacuity preconditions (C2's margin is thin), not claim tests and not identities",
+        "C3": "hippocampal.replay returns num_replay_steps=5 trajectories whenever theta_buffer is non-empty, and theta_buffer is filled every _e1_tick -> mean 5.0 exactly in every seed",
+        "what_is_genuine": "the run does drive the real production path (act_with_split_obs -> _do_replay -> hippocampal.replay) in a closed loop on an untrained agent -- a genuine end-to-end WIRING check, but one whose every criterion follows from the code",
+        "not_tested": "SWR-equivalence and the consolidation role ('for viability map consolidation') -- no downstream effect of replay was measured"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not exercised (the consolidation half is the claim's content; the triggering half is a code gate)",
+        "biological_reference": "clear -- SWRs during quiet wakefulness/NREM (Buzsaki 2015) consolidating hippocampal content; lit_conf 0.878",
+        "prerequisites": "missing for the consolidation half -- no replay consumer exists (_do_replay assigns replay_trajs and never reads them); gate owner substrate_queue `mech092-replay-consumer-missing` per MECH-092's governance_2026_09_01 note (the older SD-006 citation is stale)",
+        "implementation": "complete for the trigger wiring; consolidation consumer not exercised",
+        "environment": "adequate for the wiring check",
+        "measurement": "misleading -- every criterion is a precondition or a code identity",
+        "integration": "coupled (production path) but the consolidation effect was not measured",
+        "scale": "n/a (untrained)"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (wiring check by construction); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "awake/NREM sharp-wave ripples during low-arousal states consolidating recent experience",
+        "dependencies": [
+          "low-cholinergic quiescent state detection",
+          "a consolidation target (viability map) that replay can change"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at issue",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-092": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "Run-reading for the R3 counter ONLY -- NOT a claims.yaml write. MECH-092 keeps substrate_conditional.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-761 re-read as an end-to-end wiring check by construction. C4 selectivity is the `if e3_quiescent` gate (agent.py:10912), as the driver itself concedes; C1/C2 are occurrence floors; C3 is guaranteed because replay() returns a fixed 5 trajectories whenever theta_buffer is non-empty. It confirms quiescent ticks call replay on the production path; it does not test SWR-equivalence or the consolidation role. supports -> non_contributory. The 2026-07-15 candidate->provisional promotion rested on this run alone.",
+      "per_claim_recommendation": {
+        "MECH-092": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": null,
+          "recommended_epistemic_category_note": "no category write -- MECH-092 keeps substrate_conditional",
+          "change": "761 is a code-structural wiring check; the 2026-07-15 promotion rested on it alone -> status: candidate",
+          "status_change": "provisional -> candidate (revert the 2026-07-15 promotion; genuine exp becomes 0 supports -- EXQ-136 is non_contributory)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not a ceiling reading; MECH-092 has 1 R3 hit (EXQ-136); this autopsy adds none."
+      },
+      "learning_extracted": [
+        "measurement gap: MECH-092's falsifiable content is the consolidation benefit of quiescent-triggered replay, gated on the replay consumer (substrate_queue `mech092-replay-consumer-missing`, per MECH-092 governance_2026_09_01)"
+      ],
+      "routing": "governance-demotion",
+      "followon_not_chipped": "status revert only; the consolidation-benefit test stays gated on mech092-replay-consumer-missing (a joint MECH-092/MECH-121/MECH-209 run once the consumer is built, per the claim's note)"
+    },
+    {
+      "run_id": "v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3",
+      "queue_id": "V3-EXQ-762",
+      "experiment_purpose": "evidence",
+      "claim_ids": [
+        "MECH-046"
+      ],
+      "claim_types": {
+        "MECH-046": "mechanism_hypothesis"
+      },
+      "skim_verdict_checked": "CONFIRMED (D1). EXTENDED: the load-bearing C046_coordinator_write does not exercise agent.py's injection site (agent.py:7991-7993) -- the driver calls salience.update_signal itself (driver :251-253) and reads the same dict back; update_signal is `self._input_signals[name] = float(value)` (salience_coordinator.py:494), so the criterion is a setter round-trip.",
+      "failed_criterion": "none_pass_by_construction",
+      "facts": {
+        "formula": "mode_prior = clip((lf - thr)/cap * cap * gain) (ree_core/amygdala/cea.py:335-353), thr 0.5, cap 0.8, gain 1.0",
+        "inputs": "driver sets |LowFreq(z_harm_a)| targets 0.20 / 0.65 / 0.90 / 1.20 (driver :140-144) and its docstring pre-computes 0 / 0.15 / 0.40 / 0.70",
+        "values": "measured context means 0.0 / 0.149927 / 0.399927 / 0.699927; readback diff 0.0",
+        "not_tested": "any effect of mode_prior on salience weighting or mode selection (the claim's function), and the production injection call site"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not exercised (a closed-form formula plus a dict setter)",
+        "biological_reference": "clear -- CeA fast subcortical threat route biasing cortical mode (Mendez-Bertolo 2016 ~74 ms); lit_conf 0.847",
+        "prerequisites": "present",
+        "implementation": "complete at module level",
+        "environment": "n/a -- synthetic stationary streams",
+        "measurement": "misleading -- outputs are the formula evaluated at driver-chosen inputs",
+        "integration": "isolated -- driver-built CeAAnalog + coordinator; production write site not exercised",
+        "scale": "n/a"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (formula unit test); not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "CeA fast threat classification biasing cortical/salience mode via subcortical route",
+        "dependencies": [
+          "a salience/mode arbitration consumer that reads the prior",
+          "harm_a encoding of threat"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at issue",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design: implementation verification by construction (D1, GFLAG-0452). The discriminating contrast holds by construction -- the arms differ only by a flag that switches off the DV's own code path, or synthetic inputs were engineered past a known detector rail; any remaining leg is a liveness/occurrence floor (which can fail on env dynamics, e.g. 517c seed 43), not a test of the claim's content. No category applies to the claim on this run's account; this is a measurement/test-design reading owing no substrate build, so it does not count toward the R3 re-derive brake.",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-046": "standard"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-762 re-read as a formula unit test -- mode_prior is closed-form clip((lf-thr)/cap*cap*gain) (cea.py:335-353), the driver sets the inputs and its docstring pre-computes the outputs (measured 0.0/0.1499/0.3999/0.6999), and the load-bearing coordinator-write criterion is the driver's own update_signal call read back from the same dict (not agent.py:7991's production site). No effect of mode_prior on salience or mode selection was measured. supports -> non_contributory. MECH-046 stays provisional (the 2026-07-15 decision kept an existing provisional status and did not promote on 762).",
+      "per_claim_recommendation": {
+        "MECH-046": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "762 is a formula unit test -> non_contributory; MECH-046 carries NO epistemic_category, so set one -> epistemic_category: standard",
+          "status_change": "none -- stays provisional (genuine exp becomes 0; 473 is diagnostic, exp_0009 stale_epoch)"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not a ceiling reading; 0 R3 hits for MECH-046."
+      },
+      "learning_extracted": [
+        "measurement gap: MECH-046's content is that the CeA prior BIASES salience/mode selection within 1-2 steps of threat onset; the test must read a downstream mode/salience quantity in the running agent"
+      ],
+      "routing": "governance-reclassify",
+      "followon_not_chipped": "a closed-loop MECH-046 test reading coordinator mode/salience shift latency after z_harm_a threshold crossing, for governance to chip after Step 8"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "PASS whose discriminating criteria follow from the code: arms differ by a flag that disables the DV's own writer, bars equal configured op counts, or synthetic inputs are driven past a known rail; the only non-code legs are liveness/occurrence floors (517 ARM_A events, 761 tick counts). 'Wall-independent functional signature' designs (757/761/762, 2026-07-14/15, GOV-CONFIRM-1 confirmer lineage) and substrate-level discriminative pairs (503a/633/517c/517d) share it.",
+    "is_independent_bugs": false,
+    "structural_property": "A test-design pattern, not a substrate property: when the DV is read from the module being switched, and the manipulation is that module's enable flag or its input, the PASS verifies implementation, not mechanism. For a design_decision (SD-*) that implementation IS the claim's first deliverable (SD-050 via 517d); for a mechanism claim it is not evidence (MECH-094/302/092/287/288/046). SD-017 is a design_decision whose text is a NECESSITY claim, so liveness does not reach it either (538a precedent).",
+    "readings": [
+      "test_design_ceiling"
+    ],
+    "sd_vs_mechanism_rule_proposed": "Implementation-verification PASSes may score 'supports' on an SD-* design_decision only where the SD's content is 'X is built and fires as specified' AND the SD's own what_would_answer does not exclude the run's conditions; they score non_contributory on mechanism claims and on SD-* whose text asserts necessity or an effect (SD-017). SD-050 is the edge case: its content is detector-level, but its registered confirming test excludes scheduled injection and requires both reuse sites -- so even SD-050 is a user call, not a clean instance of the rule. Offered for the user at Step 8 as the batch decision the skim's routing_note asked for.",
+    "provenance": "GOV-CONFIRM-1 evidence-confirmer detector surfaced 761/762 (and the 757 design) as 'confirmable with built substrate'; the confirmer's designs converted 'substrate built' into scored supports. Recurrence risk for other GOV-CONFIRM-1 confirmations -- governance may want the detector's design template reviewed (not adjudicated here)."
+  },
+  "status_change_summary": {
+    "MECH-092": "provisional -> candidate (promotion rested on 761)",
+    "MECH-287": "provisional -> candidate (promotion rested on 757); also set epistemic_category standard",
+    "MECH-288": "provisional -> candidate (promotion rested on 757)",
+    "MECH-302": "provisional -> candidate (promotion rested on 517d + 517c)",
+    "MECH-046": "none -- stays provisional; set epistemic_category standard",
+    "MECH-094": "none -- stays stable (lit-carried)",
+    "SD-017": "none -- stays stable (genuine exp 691 supports vs 436c weakens; lit 0.903)",
+    "SD-050": "[user call] default: none -- stays provisional (517d supports stands as detector implementation verification; scoring count 2 -> 1). Alternative: 517d non_contributory per SD-050's own what_would_answer, then re-review the 2026-08-29 promotion.",
+    "alternative_reading_for_user": "Keep MECH-092/287/288/302 at provisional, reading 'provisional' as 'substrate implemented and verified + literature'. The original pre-registered promotion bars for MECH-287 and MECH-288 named integration tests beyond implementation, which is why this draft recommends the revert."
+  },
+  "manifest_writes_recommended": {
+    "V3-EXQ-500a": {
+      "evidence_direction": "non_contributory",
+      "evidence_direction_per_claim": {
+        "SD-017": "non_contributory"
+      }
+    },
+    "V3-EXQ-503a": {
+      "evidence_direction": "non_contributory",
+      "evidence_direction_per_claim": {
+        "SD-017": "non_contributory"
+      }
+    },
+    "V3-EXQ-633": {
+      "evidence_direction": "non_contributory",
+      "evidence_direction_per_claim": {
+        "MECH-094": "non_contributory"
+      }
+    },
+    "V3-EXQ-517c": {
+      "evidence_direction": "superseded",
+      "evidence_direction_per_claim": {
+        "MECH-302": "superseded",
+        "SD-050": "superseded"
+      }
+    },
+    "V3-EXQ-517d": {
+      "evidence_direction": "supports",
+      "evidence_direction_per_claim": {
+        "MECH-302": "non_contributory",
+        "SD-050": "supports"
+      }
+    },
+    "V3-EXQ-757": {
+      "evidence_direction": "non_contributory",
+      "evidence_direction_per_claim": {
+        "MECH-288": "non_contributory",
+        "MECH-287": "non_contributory"
+      }
+    },
+    "V3-EXQ-761": {
+      "evidence_direction": "non_contributory",
+      "evidence_direction_per_claim": {
+        "MECH-092": "non_contributory"
+      }
+    },
+    "V3-EXQ-762": {
+      "evidence_direction": "non_contributory",
+      "evidence_direction_per_claim": {
+        "MECH-046": "non_contributory"
+      }
+    },
+    "note": "Write both the flat manifest and the runs/<run_id>/manifest.json pack copy -- the indexer scores the run pack."
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "routing": null,
+    "note": "No target reads claim_alignment 'weakened'; this is measurement/test-design debt, not granularity debt."
+  },
+  "hypothesis_space_ledger_pending": {
+    "entries": [],
+    "note": "No fanout_recommendation. None of the 8 runs is a pre-registered leg in hypothesis_space_registry.v1.json, and a by-construction PASS discriminates no leg (state mapping: a non-discriminating non_contributory leaves any leg alive), so there is nothing to pre-register or resolve. Registering new questions solely to hold these would pad the denominator. Bears-on only: 503a vs sd017_arc045_mech166_slot_differentiation_sleep / H-sleep-differentiates-context-slots (non-discriminating, leave alive)."
+  },
+  "step_7b": {
+    "tool": "scripts/autopsy_pre_routing_checks.py --artifact <draft> --json",
+    "fire_count": 4,
+    "fires_and_disposition": [
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-500a / V3-EXQ-503a",
+        "names": [
+          "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION"
+        ],
+        "disposition": "DISMISSED -- that entry (MECH-122 content packaging / spindle selection) unblocks SD-017 on a different axis; this autopsy's finding is test-design and owes no build, so action 'none' stands."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-633",
+        "names": [
+          "mech245-observation-substitution-deafferentation-lever",
+          "mech248-retrieval-side-source-attribution-readout"
+        ],
+        "disposition": "DISMISSED for routing (no build owed by a D1 finding) but NOTED: mech248's retrieval-side source-attribution readout is the natural instrument for the MECH-094 tag-provenance follow-on named under followon_not_chipped; governance should route that follow-on through it."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-762",
+        "names": [
+          "SD-086"
+        ],
+        "disposition": "DISMISSED for routing but NOTED: SD-086 (z_harm_a functional readout as a calibrated scalar valuation) bears on a closed-loop MECH-046 test, which reads CeA input from z_harm_a; name it as a dependency of that follow-on."
+      }
+    ],
+    "inapplicable": [
+      "C5 (prose-keyed; no sibling .md existed at draft time)"
+    ]
+  },
+  "step_7c": {
+    "model": "fable (cross-model; this session drafted on Opus 5.5)",
+    "verdict": "CONTESTED (narrowly) -- both items ACCEPTED and applied to this artifact; no status move overturned",
+    "contested_items": [
+      {
+        "item": "The absolute 'PASS can fail only if the code breaks' is false for 517c/517d ARM_A C1/C2: injection count tracks agent survival (driver breaks on done, :254-255) and 517c seed 43 FAILED C1 (0 events, 1 injection).",
+        "confirmer": "jq '.results_arm_a_mech302_on[]|{seed,p1_events,c1_pass}' on the 517c manifest",
+        "applied": "CAT_NOTE and 517c/517d facts reworded: the discriminating contrast is by construction, the ARM_A floor is an env-dependent liveness leg; MECH-302 non_contributory now also cites its own what_would_answer D2 ('a VACUOUS MECH-302 test')."
+      },
+      {
+        "item": "SD-050 'supports stands' conflicts with SD-050's own what_would_answer (requires non-scheduled descents and BOTH reuse sites).",
+        "confirmer": "grep -c 'not scheduled injection' REE_assembly/docs/claims/claims.yaml -> 1",
+        "applied": "SD-050 made an explicit user call (user_decision_owed, alternative non_contributory) in per_claim_recommendation, status_change_summary and the proposed SD-vs-mechanism rule."
+      }
+    ],
+    "recomputed_by_red_team": "517d events/injection 17.40/16.13/9.04; 500a replay_quality 8.09995 (bar 6+2); 503a end differentiation 0.7832/0.6141/0.3878; 633 MI = ln 2 exactly; SD-017 genuine exp 3 -> 2 (1S/1W); MECH-094 2 -> 1",
+    "hygiene_applied": [
+      "MECH-092 gate re-cited as mech092-replay-consumer-missing (SD-006 citation stale per governance_2026_09_01)",
+      "beta release happens only when beta_gate.is_elevated (agent.py:7390)",
+      "SD-050 scoring count 2 -> 1 after 517c supersession stated",
+      "761 C2 relabelled an env-dependent precondition, not an identity",
+      "517d events/injection ratios flagged as upper-bound attributions (hazard-contact damage also feeds the comparator)"
+    ],
+    "confirmed_by_red_team": "all four status reverts and four 'stays' against decision_log + claims.yaml; every change tail names a value not currently true; indexer per-claim override (build_experiment_indexes.py:3700) and the need for an explicit 517c superseded write (cross-type supersession is not automatic)",
+    "file": "session scratchpad redteam_d1.md (not committed)"
+  }
+}
