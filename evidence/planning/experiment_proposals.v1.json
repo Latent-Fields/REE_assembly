@@ -15976,6 +15976,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1421",
+      "blocked_by": [
+        "MECH-523",
+        "E2-SUFFICIENCY-ENCODER-TERM"
+      ],
+      "blocked_note": "Step 2.5d ABSENT (manipulation instrument): no armable/severable E2-sufficiency training term on the E1/world encoder exists. Re-measured ree-v3 44c5530: zworld_p0.py:470 encoder optimiser holds only world_encoder params (+precision logit/skip); E2 world_forward and SD-056 contrastive train on buffered detached z_world (e2_fast.py:250 contract; 701b clips agent.e2 params only); zero hits for e2_sufficiency/e2_to_e1 in ree_core. Both arms of the required contrast would be the same arm. DV instrument (participation ratio) exists. Release: an armable E2->encoder sufficiency objective registered and built (substrate_queue entry, currently UNOWNED), or governance narrows MECH-081 to a V4 design commitment. LIT-0821 twin is not substrate-gated and stays proposed.",
       "claim_id": "MECH-081",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -15986,6 +15991,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0820",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "igw-250-proposal-for-mech-081",
+      "refused_utc": "2026-09-24T20:32:44Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15998,14 +16006,17 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_081",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gating_reason": "No armable/severable E2-sufficiency training term on the E1/world encoder exists in ree-v3 (encoder optimiser holds only world_encoder params; E2 trains on detached z_world) -- both arms of MECH-081's required contrast are the same arm.",
+      "release_condition": "An armable E2->world-encoder sufficiency objective is registered in substrate_queue.json and built IMPLEMENTED, OR governance narrows MECH-081 to a V4 design commitment.",
+      "gated_by_session": "igw-250-proposal-for-mech-081"
     },
     {
       "acceptance_checks": [
