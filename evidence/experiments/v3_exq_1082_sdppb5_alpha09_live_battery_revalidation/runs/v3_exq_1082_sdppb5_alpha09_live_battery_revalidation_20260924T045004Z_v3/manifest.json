@@ -1,0 +1,209 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation",
+  "run_id": "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-24T04:50:04Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "5f3b27a71a04d80efbaa39b61bd1eac33d6cc872",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "margin_lowers_action_read",
+    "off_arm_premise": "off_reads_action",
+    "combination_rule": "alpha_world=0.9 explicit. Per seed, per ON rung: paired row bootstrap (2000 resamples, 95% CI) on lift = d_act(ON) - d_act(OFF), d_act = (SSE_swap - SSE_true)/(SSE_swap + SSE_true) on a LIVE 512-row battery (reset on done; analytic null 0). A seed is valid iff rows are aligned across arms, encoders are equal, and the ridge positive control reads its action. PASS if some rung has lift CI lower > 0 AND ON d_act CI lower > 0 AND guard (A4 MSE(ON)/MSE(OFF) <= 2.0; 1075's A3 >= 0.99 recorded only) on >= 2 valid seeds; else FAIL-b if some rung has grows+reads with guard violated on >= 2; else FAIL-a (margin_does_not_raise_action_read) if EVERY rung has lift CI upper < 0.05 on >= 2 valid seeds (label margin_lowers_action_read if some rung's lift CI upper < 0 on >= 2 valid seeds, else margin_does_not_raise_action_read); else UNDETERMINED. Any precondition unmet -> substrate_not_ready_requeue. PASS label split by off_arm_premise. model_r2, persistence_r2, persistence_relative_skill, skill_vs_identity and the untrained-head d_act are RECORDED and never gate.",
+    "preconditions": [
+      {
+        "name": "alpha_world_explicit_0p9",
+        "description": "lowest alpha_world read back from any cell's built config (must equal 0.9)",
+        "measured": 0.9,
+        "threshold": 0.9,
+        "direction": "lower",
+        "control": "explicit from_dims kwarg + MECH-307 assert",
+        "met": true
+      },
+      {
+        "name": "battery_rows_all_live",
+        "description": "worst cell's count of battery rows recorded at or after agent_health <= 0 (the V3-EXQ-1075/1079 defect; must be 0)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "offending_cell": "ARM_OFF/seed=42",
+        "control": "reset-on-done (1073 pattern)",
+        "met": true
+      },
+      {
+        "name": "battery_rows",
+        "description": "worst cell's live-battery row count",
+        "measured": 512.0,
+        "threshold": 32.0,
+        "direction": "lower",
+        "offending_cell": "ARM_OFF/seed=42",
+        "control": "fixed-length collection",
+        "met": true
+      },
+      {
+        "name": "battery_distinct_actions",
+        "description": "worst cell's distinct actions in the battery (1 makes the swap undefined)",
+        "measured": 5.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "offending_cell": "ARM_OFF/seed=42",
+        "control": "uniform random actions",
+        "met": true
+      },
+      {
+        "name": "rows_aligned_seeds",
+        "description": "seeds whose battery is bit-identical across all 5 arms (paired contrast)",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "fresh OFF-config battery agent, own rng",
+        "met": true
+      },
+      {
+        "name": "encoder_equal_seeds",
+        "description": "seeds where every arm's latent_stack equals the battery agent's",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "encoder untrained; margin adds no params",
+        "met": true
+      },
+      {
+        "name": "positive_control_live_seeds",
+        "description": "READINESS (same statistic): seeds where a ridge action-aware predictor fitted on the OFF cell's own P0 buffer scores d_act CI lower > 0 on the battery",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "ridge z0 + [1, z0, a, z0 x a] @ W",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_margin_raises_action_read",
+        "load_bearing": true,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "max over ON rungs of valid seeds with lift CI lower > 0 AND ON d_act CI lower > 0 AND reconstruction guard (A4) intact",
+        "passed": false
+      },
+      {
+        "name": "C2_read_bought_by_reconstruction",
+        "load_bearing": false,
+        "measured": 0.0,
+        "threshold": 2.0,
+        "description": "max over rungs of valid seeds with lift grows AND reads but guard violated (FAIL-b)",
+        "passed": false
+      },
+      {
+        "name": "C3_lift_excluded_every_rung",
+        "load_bearing": false,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "description": "min over rungs of valid seeds with lift CI upper < 0.05 (FAIL-a: the manipulation genuinely does not work)",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_margin_raises_action_read": true,
+      "C2_read_bought_by_reconstruction": true,
+      "C3_lift_excluded_every_rung": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "17e203f3353878806e19840fe2cbed23d89e374ba31788e15a690f6c5d9e6480",
+  "substrate_commit": {
+    "commit": "5f3b27a71a04d80efbaa39b61bd1eac33d6cc872",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "e2.use_world_interventional": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 142.752229865,
+  "config": {
+    "alpha_world": 0.9,
+    "arms": [
+      "ARM_OFF",
+      "ARM_ON_M001",
+      "ARM_ON_M005",
+      "ARM_ON_M010",
+      "ARM_ON_M050"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "p0_steps": 3600,
+    "world_dim": 16,
+    "self_dim": 16,
+    "live_battery_n": 512,
+    "post_reset_skip": 3,
+    "interventional_fraction": 0.3,
+    "delta_equiv": 0.05,
+    "conv_rel_drop_bar": 0.99,
+    "mse_inflation_bar": 2.0,
+    "n_bootstrap": 2000,
+    "ci_level": 0.95,
+    "ridge_rel_lambda": 0.001,
+    "seeds_required": 2,
+    "env": {
+      "size": 5,
+      "num_hazards": 1,
+      "num_resources": 1,
+      "use_proxy_fields": true
+    }
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 15,
+    "goal_state_present": false
+  }
+}
