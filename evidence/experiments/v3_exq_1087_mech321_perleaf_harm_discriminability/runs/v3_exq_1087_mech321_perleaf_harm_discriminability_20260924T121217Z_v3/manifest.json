@@ -1,0 +1,230 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1087_mech321_perleaf_harm_discriminability",
+  "run_id": "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-09-24T12:12:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "ea8ea74f3f5342f9862f008973752d922cebff26",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "stage2_discriminative_anti_harm_tracking__stage1_clamp_saturated",
+    "preconditions": [
+      {
+        "name": "probe_non_perturbing",
+        "kind": "readiness",
+        "description": "probe-OFF control replicate of the first seed must reproduce the probe-ON action sequence exactly (count of differing actions).",
+        "control": "seed 11, probe OFF vs probe ON",
+        "measured": 0.0,
+        "threshold_low": 0.0,
+        "threshold_high": 0.0,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "met": true
+      },
+      {
+        "name": "stage2_active_multileaf_units_min",
+        "kind": "readiness",
+        "description": "pre-done Stage-2-active calls over >= 2 leaves (the C1 unit) must reach the pre-registered floor for the tie rate to be read.",
+        "control": "pooled over the 5 measurement seeds",
+        "measured": 243.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "gt_discriminable_nontie_units_min",
+        "kind": "readiness",
+        "description": "non-tie units whose ground truth separates the leaves (the C2 unit) must reach the floor before harm tracking is read.",
+        "control": "ground truth from deep-copied env execution per leaf",
+        "measured": 223.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_STAGE2_TOLERANCE_TIE_RATE",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.07818930041152264,
+        "threshold_high_tie": 0.5,
+        "threshold_low_tie": 0.2,
+        "n": 243,
+        "statement": "Stage-2 tolerance-tie rate over pre-done Stage-2-active multi-leaf calls is decisive: >= 0.50 (harm-blind) or <= 0.20 (discriminative)."
+      },
+      {
+        "name": "C2_HARM_TRACKING",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.07025411061285497,
+        "threshold": 0.05,
+        "measured_z": -2.2255145019087803,
+        "threshold_z": 2.0,
+        "n": 223,
+        "measured_vs_constant_index": -0.19730941704035876,
+        "threshold_vs_constant_index": 0.05,
+        "statement": "Among non-tie GT-discriminable calls, the chosen leaf is a ground-truth-best leaf more often than chance by >= 0.05 with z >= 2.0."
+      },
+      {
+        "name": "R4_919_DV_PRE_DEATH_DOMINANT",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0.8666551882974266,
+        "threshold": 0.5,
+        "statement": "Option A gate (orchestrator decision Q-1087): the '919 weakens unconditional' route requires 919's post-death harm share (health reconstructed from its own per_tick_harm) < 0.50."
+      },
+      {
+        "name": "R5_KEPT_LEAF_EXECUTED_RATE",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.29218106995884774,
+        "threshold": 0.0,
+        "statement": "Reported (red-team F3): fraction of Stage-2-active units whose kept leaf's first action was the action executed that tick."
+      },
+      {
+        "name": "R3_STAGE1_CLAMP_SATURATION",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0.9917695473251029,
+        "threshold": 0.5,
+        "statement": "Reported: fraction of leaves whose Stage-1 harm_bias sits at the clamp."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_STAGE2_TOLERANCE_TIE_RATE": true,
+      "C2_HARM_TRACKING": true
+    },
+    "combination_rule": "probe_non_perturbing AND units>=MIN_STAGE2_EVENTS else substrate_not_ready_requeue; T>=TIE_RATE_HIGH -> harm_blind (919 non_contributory); TIE_RATE_LOW<T<TIE_RATE_HIGH -> intermediate (919 stays conditional); T<=TIE_RATE_LOW -> C2 decides: tracking AND 919 post-death harm share < POST_DEATH_SHARE_MAX -> 919 weakens unconditional; tracking otherwise -> 919 stays conditional (Option A, Q-1087); anti or neither -> 919 non_contributory; GT units<MIN_GT_EVENTS -> undetermined. Stage-1 saturation (>=0.5) is a label qualifier only."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "d6e55b7796704f744d0fe2ebf993d098ff173419b999193202d84fef9aa5a381",
+  "substrate_commit": {
+    "commit": "ea8ea74f3f5342f9862f008973752d922cebff26",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.reafference_action_dim": 5,
+    "e3.goal_weight": 1.0,
+    "hippocampal.use_chunk_proposal_injection": true,
+    "hippocampal.use_event_segmenter": true,
+    "heartbeat.breath_period": 50,
+    "valence_harm_enabled": true,
+    "use_policy_chunking": true,
+    "use_chunk_proposal_injection": true,
+    "use_policy_decomposition": true,
+    "decomposition_use_harm_aware_selection": true,
+    "use_persistent_committed_program_handle": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3070.501,
+  "config": {
+    "seeds": [
+      11,
+      23,
+      47,
+      71,
+      3
+    ],
+    "control_seed": 11,
+    "episodes": 12,
+    "steps_per_episode": 60,
+    "arm": "ARM_SELECTION_ON",
+    "arm_flags": {
+      "use_event_segmenter": true,
+      "use_policy_chunking": true,
+      "use_chunk_proposal_injection": true,
+      "use_policy_decomposition": true,
+      "decomposition_vs_threshold": 0.99,
+      "decomposition_depth_cap": 3,
+      "use_persistent_committed_program_handle": true,
+      "use_affective_harm_stream": true,
+      "use_harm_stream": true,
+      "valence_harm_enabled": true,
+      "decomposition_use_harm_aware_selection": true,
+      "decomposition_harm_bias_gain": 0.1,
+      "decomposition_harm_bias_scale": 0.1,
+      "decomposition_harm_threat_floor": 0.1,
+      "decomposition_harm_threat_ref": 0.5,
+      "decomposition_harm_override_w_threshold": 0.9
+    },
+    "env_overlay": {
+      "scheduled_external_hazard_enabled": true,
+      "scheduled_external_hazard_interval": 20,
+      "scheduled_external_hazard_prob": 0.7,
+      "scheduled_external_hazard_adjacent_only": true,
+      "hazard_harm": 0.2,
+      "proximity_harm_scale": 0.2
+    },
+    "config_matches_919_arm_flags": true,
+    "thresholds": {
+      "EPS_ABS": 1e-06,
+      "EPS_REL": 0.01,
+      "TIE_RATE_HIGH": 0.5,
+      "TIE_RATE_LOW": 0.2,
+      "MIN_STAGE2_EVENTS": 30,
+      "MIN_GT_EVENTS": 30,
+      "HT_EXCESS_MIN": 0.05,
+      "HT_Z_MIN": 2.0,
+      "SAT_TOL": 1e-09,
+      "POST_DEATH_SHARE_MAX": 0.5
+    }
+  },
+  "seeds": [
+    11,
+    23,
+    47,
+    71,
+    3,
+    11
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 4320,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
