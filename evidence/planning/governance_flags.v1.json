@@ -6124,9 +6124,9 @@
       "summary": "Read-only second-pass triage of all 64 distinct RED pre-flight verdicts is staged at REE_assembly/evidence/planning/red_verdict_second_pass_triage_staged.md (REE_assembly 2b99fa13e8, chip-20260920-red-verdict-second-pass-triage). Grouped by failure shape into UNWIRED/MISSING_SUBSYSTEM/NO_FALSIFIER/SEQUENCING_GATED/MAGNITUDE_UNREACHABLE/BLOCKED_SUBSTRATE_ALREADY/GOVERNANCE_OR_STALE/BUILD_ALREADY_CHIPPED/SUPERSEDED/REDESIGN_INSTRUMENT buckets with a suggested route per bucket; no claims.yaml/substrate_queue.json/proposal-file edit made. Highest-value single build: GFLAG-0044 (ContextMemory write-path defect) would release 2 verdicts (MECH-152 + chip-20260814). /governance Step 6a: read the staged doc and apply routes -- this flag only points at it, it does not itself disposition any claim. Claim ids listed here are the UNWIRED bucket (best BUILD candidates); the doc covers all 64 claims across all buckets.",
       "raised_by_session": "campaign-backlogrouting-20260923",
       "raised_at": "2026-09-23T07:15:31Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:38:40Z",
+      "resolution_note": "User decision option A (rec-20260924-348052bc). Staged doc read (REE_assembly 2b99fa13e8). Re-measured 2026-09-24: 9 of 13 NO_FALSIFIER RED verdicts are superseded -- MECH-023/028/038/042/049/050/078/079 and SD-081 received what_would_answer from the 2026-09-21/22 runnability audit (verdicts live only on withdrawn/done chips, not the feasibility cache); 4 of 10 UNWIRED already substrate_queue-covered; INV-063 owned by GFLAG-0445/0446 (now resolved); GFLAG-0044 build owned by chip-20260922-ctxmem-learned-encoder-harness. Residue routed: registration-scoping chip chip-20260924-red-residue-registration-scoping for ARC-044/ARC-121/MECH-019/MECH-115/MECH-221/SD-026/MECH-160/MECH-222; GFLAG-0450 for unowned governance calls SD-024/MECH-024/MECH-384/MECH-464. Remaining buckets PARK (already suppressed by FILTER E/G / withdrawn chips). No claim disposition applied from the doc."
     },
     {
       "flag_id": "GFLAG-0428",
