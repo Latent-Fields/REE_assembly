@@ -453,3 +453,39 @@ The evaluator terms out-spread residue about 5-95x. This re-measures ADDENDUM 2'
 4. **Nothing here favours option A or option C.** The smoke says nothing about benefit coverage.
 
 **Stopped here, as instructed.** No further arms or seeds.
+
+## ADDENDUM 2 (session `bt0924-valuation-c`): PRE-REGISTRATION, committed to origin before any run
+
+- **Authorised by** the orchestrator under the standing delegation. It does the two prerequisites named in ADDENDUM 1 and nothing more.
+- **Regime:** T2, identical to ADDENDUM 1: tie-break ON, R5b scaffold, COV head, R2 depth 2, trained evaluators, native benefit gate, G-contact signal.
+- **Budget:** 1,500 learning steps per arm, with a fresh agent per arm.
+- **Seeds: 45 and 46 ONLY.** Both are fresh: seed 42, and every seed any earlier addendum used, are excluded.
+- **Arms per seed:**
+  - M0: frozen weights.
+  - M1RAW: the raw sign rule, unchanged from ADDENDUM 1 (eta 0.05), the positive control.
+  - M2S: smoothed M2, defined below.
+  - M4: a random walk. Its per-channel increment SD is matched to M2S's realised per-tick change in theta on the same seed, and its noise seed is independent.
+- **Code:** ree-v3 `44c55300ca` (unchanged).
+- **Probe:** `probes/valuation/valuation_smoke2_probe.py`, committed alongside the results.
+
+**(a) Repaired harm-floor detector (K3/V4 v2), exactly as proposed in ADDENDUM 1; the contacts conjunct is dropped.**
+- FIRES if theta_harm <= -ln 4 (the floor) at ANY tick,
+- OR if (final theta_harm < -0.5 AND the fraction of nonzero harm updates that are negative > 0.75).
+- It reads only the harm weight's own trajectory.
+
+**(b) Smoothed M2 = SHRINKAGE (no accumulation).**
+- On every tick with at least 20 completed committed windows: theta_c = clip(kappa * t_c * n / (n + n0), -ln 4, +ln 4), with kappa = 0.35 and n0 = 100.
+- t_c is the same action-fixed-effects vote-regression t-statistic as M2 (section 3a); n is the number of completed committed windows so far.
+- The weight is thereby shrunk toward the default in proportion to how little evidence exists. At n = 20 the gain is 1/6 of M2's.
+- The harm floor is -ln 4, as before. No other constant changes.
+
+**Scoring (fixed now).**
+- **Detector: six calls.**
+  - FIRE on M1RAW for s45 and s46;
+  - NO fire on M0 for s45 and s46 (structurally expected: theta stays at 0);
+  - NO fire on M4 for s45 and s46.
+- **The detector PASSES only if all 6 calls are correct.** That includes the orchestrator's 4 non-trivial calls (M1RAW x2 and M4 x2). False-positive and false-negative counts are reported.
+- A non-fire on M1RAW counts as a detector FAILURE under this criterion, whatever the cause. Separately, and without re-scoring, I will report whether M1RAW's harm weight actually went down on that seed, so a reader can tell "control not induced" from "detector missed".
+- M2S: its trajectories are reported only. There is no success claim and no tuning after the results.
+- **Stop rule:** if the detector fails on a fresh seed, stop and report it. It will not be re-fitted tonight.
+- Also reported, for information only (not scored): the ADDENDUM 1 (v1) detector's calls on the same arms.
