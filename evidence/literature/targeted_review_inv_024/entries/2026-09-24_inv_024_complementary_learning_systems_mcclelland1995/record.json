@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_024",
+  "entry_id": "2026-09-24_inv_024_complementary_learning_systems_mcclelland1995",
+  "timestamp_utc": "2026-09-24T11:05:38Z",
+  "claim_ids_tested": [
+    "INV-024"
+  ],
+  "source": {
+    "title": "Why there are complementary learning systems in the hippocampus and neocortex: insights from the successes and failures of connectionist models of learning and memory.",
+    "authors": [
+      "James L. McClelland",
+      "Bruce L. McNaughton",
+      "Randall C. O'Reilly"
+    ],
+    "year": 1995,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.102.3.419",
+    "pmid": "7624455",
+    "pmc": null,
+    "volume": "102",
+    "issue": "3",
+    "pages": "419-457"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "The Complementary Learning Systems (CLS) framework is the canonical prior-art statement of WHY two write loci (a fast, sparse hippocampal system and a slow, distributed neocortical system) must stay functionally separated: interleaving fast episodic writes directly into the same weights that carry slowly-consolidated semantic structure causes catastrophic interference. This is the general architectural argument for isolating offline consolidation from online commitment that INV-024 asserts for REE's specific write loci. Confidence held at 0.5 (moderate rather than high) because CLS's isolation argument is about SEPARATE LEARNING RATES/REPRESENTATIONS to prevent interference, whereas INV-024's specific claim is about ISOLATING WRITE LINEAGE -- that offline (sleep) writes to authority stores must not occur at all outside a maintenance-only scope, and that online (waking) writes must be provably tied to a committed action -- a stronger, more structural claim than CLS's rate/representation separation.",
+  "failure_signatures": [],
+  "tags": [
+    "inv-024",
+    "complementary_learning_systems",
+    "catastrophic_interference",
+    "consolidation",
+    "sleep",
+    "novel_discovery_check"
+  ],
+  "mapping": {
+    "source_claim_statement": "McClelland, McNaughton & O'Reilly argue from connectionist modeling failures that a single, densely-interconnected learning system cannot both rapidly acquire new episodic information and preserve previously learned structured (semantic) knowledge without catastrophic interference. The brain instead uses TWO complementary systems: a sparse, pattern-separated hippocampal system for rapid one-shot learning, and a slow-learning, overlapping neocortical system for gradual statistical extraction, with the hippocampal system replaying/reinstating recent memories so neocortex can integrate them gradually offline (e.g. during sleep) without disrupting existing structure.",
+    "ree_translation": "INV-024 asserts that offline consolidation (sleep-phase writes to representational parameters) and online commitment (waking, action-tied writes to responsibility-bearing authority stores such as the residue field, BetaGate latch, and E3 committed_trajectory) must remain isolated at the write loci. CLS is the general architectural ancestor of this idea: it is the reason two complementary systems, with different write regimes, exist at all rather than one system doing both jobs -- exactly the isolation INV-024 formalizes for REE's specific stores.",
+    "mapping_caveat": "CLS's argument is about preventing REPRESENTATIONAL catastrophic interference via different learning rates and sparsity/overlap statistics between two systems that are both allowed to write, just on different schedules and at different granularities. INV-024's claim is stricter and more structural: it requires that the OFFLINE pathway make NO write to certain named authority stores at all (bit-identical hashes before/after a sleep cycle for those specific stores), and that every ONLINE durable write be lineage-traceable to a commitment event. This is closer to a write-access-control / provenance invariant than to CLS's interference-avoidance argument, so CLS supports the general architectural motivation but is not a prior statement of the specific write-locus isolation mechanism INV-024 tests.",
+    "source_context": "Theoretical/computational review synthesizing connectionist simulation results (catastrophic interference demonstrations) with hippocampal/neocortical lesion and memory-consolidation literature; no direct empirical write-provenance measurement of the kind INV-024's audit performs."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Very high source quality (foundational, extremely highly-cited theoretical synthesis, arguably the single most load-bearing paper in the consolidation literature). Mapping fidelity capped at 0.4 because INV-024 is a stricter provenance/isolation claim than CLS's interference-avoidance argument -- CLS motivates having two systems, it does not itself assert or test that one system's offline pass must leave certain stores completely untouched while the other's writes must be lineage-gated to commitment."
+  },
+  "summary_path": "summary.md"
+}
