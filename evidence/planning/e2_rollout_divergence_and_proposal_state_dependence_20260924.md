@@ -1,6 +1,6 @@
 # E2 world-rollout divergence and proposal state-invariance: undertraining artefact or structural defect?
 
-- **STATUS: FINAL for this pass + ADDENDUM (encoding vs E2 objective discriminator, end of file)** (interim versions 18:15Z-18:45Z; final 2026-09-24T18:57:06Z). Limits in "Done / not done".
+- **STATUS: FINAL for this pass + ADDENDUM 1 (encoding vs E2 objective) + ADDENDUM 2 (balanced replay, D2 choice quality, closed loop), end of file** (interim versions 18:15Z-18:45Z; final 2026-09-24T18:57:06Z). Limits in "Done / not done".
 - Session: `bt0924-rollout` (Worker D, breakthrough integration pass `orchestrate-20260924-breakthrough`), chip_ref `chip-20260924-e2-rollout-divergence-remeasure`
 - Re-measures: Worker B `residue_consumer_reach_world_dim32_20260924.md` ("E2 world rollout diverges x1.2/step, 0.49 -> 327") and Worker C `monostrategy_type_a_vs_b_discrimination_20260924.md` ("proposal majority class identical at all 40 states").
 - Code under test: ree-v3 `origin/main` @ `86594ec5eb`, private detached worktree. All file:line citations are against that commit.
@@ -203,4 +203,86 @@ Limits: H capped at 10 (20 in one cell) because random-policy episodes are short
 - R5 (state-conditioned proposal) is upstream of R6 and would remove the cause rather than compensate for it.
 - R1 (native waking world-head objective) is still needed, since up to half of recent drivers never train the head. It must come with R6, or it will reproduce the 99%-skew failure.
 - The encoder (SD-070 / representation) is a real but second-order ceiling. R3/R4 are demoted: the objective works when fed diverse data, and the clamp addresses only the norm.
+
+
+## ADDENDUM 2 (2026-09-24, session `bt0924-rollout-c`): does balanced replay fix the agent's own E2, does E3's pick then track true consequences, and does behaviour change?
+
+- Commissioned by the orchestrator as ADDENDUM 1's next action, sharpened to D2 plus one closed-loop check. Code: ree-v3 `origin/main` @ `07de5a282e` (private worktree).
+- Probe: `probes/rollout/balanced_replay_probe.py`, summarized by `probes/rollout/summarize_bal.py`. Results: `probes/rollout/results/BAL_s{43,42,44}.json` (arms A/B/C) and `BALD_s{43,42}.json` (A/B/C plus the D arm added below; A/B/C there reproduce BAL bit-for-bit on s43 and s42).
+- Regime B, world_dim 32. The encoder is trained by SD-070 `run_zworld_p0` (20 eps x 50 steps, preservation 1000). Wall 2.5-7 min per seed.
+- **Design.**
+  - The agent's OWN replay: 1,400-1,500 transitions from a native waking run with the untrained head, labelled by the argmax of the executed action.
+  - Four world heads, each trained from the same initial head with the same budget (3,000 updates, batch 32, Adam 3e-4, clip 1.0, single-step MSE), sampling with replacement by per-transition weight:
+    - **A NATIVE:** uniform weights.
+    - **B BALANCED:** weight 1/n(class).
+    - **C CONTROL:** B's weight vector permuted across transitions, so it has the same weight distribution and the same effective sample size but is uncorrelated with action.
+    - **D EXPLORE (positive control, added):** the same number of transitions, but collected under uniform-random actions through the same encoder. This is coverage, not reweighting.
+  - **Probe states:** 76-93 per seed. At the StepHarness `on_action` hook the env is **cloned** (`copy.deepcopy` works for CausalGridWorldV2; the agent itself cannot be deep-copied), each action class is stepped, and the true next z_world is encoded side-effect-free with sense()'s own encoder call. **Validated: max |difference| 0.0** against the next tick's sensed z_world, on every probe state of every seed.
+  - **Choice quality:** a scaffold pool with one candidate per first-action class (the native pool's first candidate with step 0 replaced by that class). E3 scores it FULL and at depth 1. The "true" value of a class = `E3.score_trajectory` on the one-step trajectory [z0, true z1]. Metric: how often E3's pick is in the true-best set, vs chance = mean(size of best set / 5).
+  - **Closed loop:** a fresh env with the same seed, each arm's head live for 300 waking steps, arms run sequentially on the one agent (order A, B, C, D). Residue and other agent state carry over between arms; that confound is stated here, not removed.
+
+### What each seed's own replay actually contained (a premise re-measured)
+
+| seed | replay class counts (5 classes) | read |
+|---|---|---|
+| 43 | 0: 36, **1: 1451**, 3: 2, 4: 2 (97% one class) | monostrategy, as assumed |
+| 42 | **0: 734, 4: 658**, 1: 8, 3: 2 | two strategies, not monostrategy |
+| 44 | **0: 1115**, 2: 293, 3: 73, 4: 10 (75%) | skewed, not monostrategy |
+
+The "~99% one class" premise holds for seed 43 only. With the SD-070 encoder, 2 of 3 seeds act on 2-4 classes. **In every seed, 1-2 of the 5 classes are absent or have fewer than 10 examples.**
+
+### Measure 1: the head, and E3's use of the rollout (same probe states and same native pools, per arm)
+
+| seed / arm | fidelity k (H 10) | executed action closest h = 1 / 3 / 5 (chance 0.20) | E3 truncation flip rate, d = 1 / 3 / 5 | deep-shuffle flip | J variance from steps > 5 |
+|---|---|---|---|---|---|
+| 43 A native | 0 | 0.22 / 0.23 / 0.21 | 0.91 / 0.79 / 0.63 | 1.00 | 0.95 |
+| 43 B balanced | 0 | 0.23 / 0.23 / 0.22 | 0.84 / 0.68 / 0.59 | 1.00 | 0.95 |
+| 43 C control | 0 | 0.20 / 0.20 / 0.18 | 0.87 / 0.80 / 0.55 | 1.00 | 0.94 |
+| 43 **D explore** | **10** | **0.37 / 0.33 / 0.29** | 0.86 / 0.78 / 0.55 | 1.00 | 0.98 |
+| 42 A native | 2 | 0.33 / 0.26 / 0.22 | 0.95 / 0.89 / 0.74 | 1.00 | 0.99 |
+| 42 B balanced | 2 | 0.32 / 0.25 / 0.24 | 0.95 / 0.85 / 0.76 | 1.00 | 0.98 |
+| 42 C control | 2 | 0.28 / 0.25 / 0.24 | 0.90 / 0.87 / 0.73 | 1.00 | 0.99 |
+| 42 **D explore** | **10** | **0.50 / 0.41 / 0.36** | 0.88 / 0.83 / 0.72 | 1.00 | 0.99 |
+| 44 A native | 5 | 0.28 / 0.26 / 0.26 | 0.82 / 0.60 / 0.47 | 1.00 | 0.86 |
+| 44 B balanced | 6 | 0.23 / 0.20 / 0.22 | 0.84 / 0.70 / 0.51 | 0.99 | 0.86 |
+| 44 C control | 5 | 0.24 / 0.24 / 0.25 | 0.83 / 0.60 / 0.47 | 1.00 | 0.86 |
+
+- **B (class-balanced replay, my R6 as proposed) does not fix the head, and C behaves like B.** B is indistinguishable from A and C on every quantity in all 3 seeds. The reason is visible in the effective sample size: balancing puts 25% of the weight on classes with 2-10 examples (ESS 16 / 25 / 136 of ~1,450). Reweighting cannot create action coverage the replay does not contain.
+- **D (the same budget and transition count, with action coverage) does fix it:** k 0-2 -> 10 and action discrimination 0.22-0.33 -> 0.37-0.50 at h = 1, the ADDENDUM 1 result reproduced on the agent's own encoder.
+- **Fixing the head does NOT change how E3 uses the rollout.** With D, truncating J to the first 1-5 steps still flips the pick 55-88% of the time, shuffling deep steps still flips it 100%, and 98-99% of J's cross-candidate variance still comes from steps > 5. E3's depth profile is a property of its scorer (F, residue and harm terms accumulated over 30 steps), not of the head's quality.
+
+### Measure 2: choice quality against cloned-env true consequences (D2)
+
+| seed / arm | E3 pick in true-best set: FULL horizon | depth-1 | chance | Spearman(J_pred, J_true): FULL / depth-1 |
+|---|---|---|---|---|
+| 43 A / B / C | 0.03 / 0.05 / 0.04 | 0.43 / 0.43 / 0.04 | 0.20 | -0.45 / -0.37 / -0.44 ; 0.11 / 0.09 / -0.17 |
+| 43 **D** | **0.09** | **0.43** | 0.20 | -0.18 ; **0.53** |
+| 42 A / B / C | 0.20 / 0.19 / 0.20 | 0.20 / 0.20 / 0.18 | 0.20 | -0.09 / -0.05 / -0.08 ; 0.12 / 0.06 / 0.05 |
+| 42 **D** | **0.19** | **0.31** | 0.20 | 0.01 ; **0.24** |
+| 44 A / B / C | 0.19 / 0.22 / 0.16 | 0.35 / 0.45 / 0.35 | 0.20 | -0.22 / -0.02 / 0.14 ; 0.32 / 0.36 / 0.33 |
+
+- **E3's actual (full-horizon) pick does not track true consequences in any arm.** It is at or below chance (0.03-0.22 vs 0.20). With the native head on seed 43 it is anti-correlated with the true ranking (rho -0.45). The E3 pick is also nearly constant across states (e.g. s43 class 3 at 73-76 of 76 states, while the true best is class 0 at 67 of 76).
+- **With the fixed head (D), a DEPTH-1 read of the same scorer does track consequence:** rho 0.53 (s43) and 0.24 (s42), against 0.05-0.12 for A/B/C on those seeds; best-pick rate is 0.31-0.43 against 0.20 chance. So a faithful head makes the one-step prediction informative to E3's own function, but **the full-horizon J washes it out** (FULL rho -0.18 / 0.01).
+- So the D2 edge is broken in **two places in series**: (i) the head, which needs action coverage and gets fixed by D; (ii) E3's horizon aggregation, which is not fixed by any head change here. Depth-1 on A/B for s43 (0.43) also beats chance without a good head. That is E3's own one-step terms (F and harm on z1) picking the low-displacement class, not prediction; read the depth-1 improvement from the rho columns, not the hit rate.
+- Caveat on "true": the value is E3's own `score_trajectory` on one true step. Its F term (squared step displacement) favours small moves, so "true-best" partly means "moves least" by E3's own standard, not environment reward. Executed actions in the waking loop are not one-hot (exec one-hot fraction 0.00; heads A-C were trained on the argmax class, and candidates at runtime are continuous decoded vectors). All four arms share that mismatch.
+
+### Measure 3: closed loop (300 waking steps, head live)
+
+| seed | arm | executed action counts | action entropy (nats) | majority share | proposal: majority class across 20 states (modal fraction) | terrain_prior mean decodes to |
+|---|---|---|---|---|---|---|
+| 43 | A / B / C / D | 1:297 / 1:299 / 1:297 / **1:299** | 0.06 / 0.02 / 0.06 / **0.02** | 0.99-1.00 | class 1 at 20/20 in every arm | class 1 at 20/20 |
+| 42 | A / B / C / D | 0:132,4:165 / 0:66,4:231 / 0:104,4:182 / **0:121,4:176** | 0.74 / 0.59 / 0.83 / **0.73** | 0.55-0.77 | class 4 at 20/20 in every arm | class 4 at 20/20 |
+| 44 | A / B / C | 0:184,2:94,3:21 / 0:180,2:39,3:73 / 0:171,2:36,3:86 | 0.87 / 1.01 / 1.02 | 0.57-0.61 | 0.50 modal (classes 0 / 2 / 3 vary with state) in every arm | class 3 at 20/20 |
+
+- **The orchestrator's prediction holds.** Fixing E2 (arm D) changes neither behaviour (s43 still 299/300 one class; s42 entropy 0.73 vs 0.74 native) nor proposal state-dependence (same majority class at 20/20 states, identical to A). Seed 44 is a counter-case to the main record's "always state-invariant": its CEM pool majority does vary with state (modal fraction 0.50), even though the terrain_prior mean still decodes to one class at 20/20. So the CEM stage can add state dependence on some seeds; the prior's start point does not.
+- Within-seed differences between A/B/C in seeds 42 and 44 (entropy 0.59-1.02) are of the same size as the A-vs-C difference, so they are **sampling / carry-over noise, not an effect of balancing.**
+
+### Verdict for ADDENDUM 2 (domain reached: D2 for the head -> E3-pick edge, D3-lite for behaviour)
+
+1. **R6 as I proposed it (class-balanced replay of the agent's own buffer) fails**, and the budget control C matches it. The agent's buffer lacks coverage of 1-2 action classes entirely, and reweighting cannot supply it. **What fixes the head is action-covering data (D).** The repair is exploration or coverage during E2's training (a random or curiosity-driven action fraction feeding the world-head buffer), not replay reweighting. That corrects ADDENDUM 1's R6 wording.
+2. **A fixed head is necessary but not sufficient for E3 to choose on consequences.** With D, E3's one-step read tracks true consequences (rho 0.24-0.53) but its full-horizon J does not (rho -0.18 to 0.01; pick rate at or below chance). E3's 30-step aggregation, where steps > 5 carry 98-99% of the discriminating variance, is a second broken edge in series. The main record's R2 (match the scored depth to fidelity) is therefore promoted from "guard" to **required**, alongside head coverage.
+3. **Behaviour does not diversify when only E2 is fixed.** The proposal's majority class stays fixed across states wherever it was fixed before (s43, s42), and executed-action entropy is unchanged. R6 alone does not break the loop: **R5 (a state-conditioned proposal) is required**, as predicted. Seed 44 shows the CEM stage can add some state dependence on its own, so R5's target is the terrain_prior start point, not the CEM refinement.
+4. **Order of the edges, as now measured:** proposal start point (R5) -> action coverage of E2's training data (R6', exploration) -> E3 horizon aggregation (R2). The encoder (ADDENDUM 1) is a ceiling on how far the second can go. None of this was built.
+
+Limits: 3 seeds for A/B/C and 2 for D. The closed loop is 300 steps with arms sequential on one agent. "True" consequence means E3's own one-step J, not environment return. Heads were trained on argmax-class one-hots while runtime actions are continuous.
 
