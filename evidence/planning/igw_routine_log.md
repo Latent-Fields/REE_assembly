@@ -3606,3 +3606,4 @@ One line per hourly tick. ASCII only.
 2026-09-24T13:04:36Z GC removed worktree igw-223-substrate-ready-residue-integrat (removed; branch deleted)
 2026-09-24T13:35:12Z workset published (regen -- 262 items, 35 ready, 0 in flight)
 2026-09-24T13:35:12Z workset committed (regen -- 262 items, 35 ready, 0 in flight)
+2026-09-24T13:29:48Z STAGE IGW-20260924-224 skill=/implement-substrate prio=25 worktree=igw-224-substrate-ready-suffering-deriva (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
