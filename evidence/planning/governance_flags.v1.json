@@ -6405,6 +6405,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0448",
+      "claim_ids": [
+        "MECH-572"
+      ],
+      "flag_type": "stale_note",
+      "summary": "STALE TEXT (found by confirmed failure_autopsy_V3-EXQ-1082_2026-09-24, verified against the 1073 driver): section 6 of confirmed failure_autopsy_V3-EXQ-1079_2026-09-23 (and SD-PP-B5's 2026-09-23 validation_outcome) says V3-EXQ-1073 collected its probe battery after the agent died without reading done. That is FALSE for 1073 -- its _sample_probe_battery and P0 loop unpack done and reset; the post-death defect applies to V3-EXQ-1075 and 1079 only. SD-PP-B5's validation_outcome now carries an appended CORRECTION (REE_assembly 65bb05ec9c); the 1079 autopsy .md text is still uncorrected and is autopsy-owned -- a /failure-autopsy session should add a dated correction there.",
+      "raised_by_session": "governance-20260924",
+      "raised_at": "2026-09-24T07:36:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
