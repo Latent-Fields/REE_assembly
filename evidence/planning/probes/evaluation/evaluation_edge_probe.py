@@ -54,6 +54,7 @@ torch.set_num_threads(2)
 DEPTH = PR.DEPTH
 CONTACT = {"agent_caused_hazard", "env_caused_hazard", "env_caused_multisource"}
 BCONTACT = {"resource", "resource_contact", "sequence_complete", "waypoint"}
+COMM = False  # ADDENDUM 2 factor: E3Config.use_e3_channel_commensurability (set per arm, as its docs say)
 
 
 def eval_heads(agent):
@@ -208,6 +209,10 @@ def term_spread(agent, states, A, depth):
     terms (harm + benefit) changes E3's argmin."""
     e3 = agent.e3; prev = e3._score_depth_limit; e3._score_depth_limit = depth
     sd = {"F": [], "harm": [], "residue": [], "benefit": [], "J": []}; flips = []
+    sdn = {"F": [], "harm": [], "residue": [], "benefit": []}
+    on = bool(getattr(e3.config, "use_e3_channel_commensurability", False))
+    sc = {k: (e3._commensurability_scale(n) if on else 1.0) for k, n in
+          (("F", "f_weighted"), ("harm", "harm_weighted"), ("residue", "residue_weighted"), ("benefit", "benefit_weighted"))}
     try:
         for st in states:
             trajs = []
@@ -222,10 +227,14 @@ def term_spread(agent, states, A, depth):
             j = np.asarray([float(e3.score_trajectory(t).mean()) for t in trajs])
             for k, v in (("F", f), ("harm", m), ("residue", ph), ("benefit", b), ("J", j)):
                 sd[k].append(float(v.std()))
-            flips.append(int(np.argmin(j) != np.argmin(j - m + b)))
+            for k, v in (("F", f), ("harm", m), ("residue", ph), ("benefit", b)):
+                sdn[k].append(float(v.std() / sc[k]))
+            flips.append(int(np.argmin(j) != np.argmin(j - m / sc["harm"] + b / sc["benefit"])))
     finally:
         e3._score_depth_limit = prev
     return {"xcand_std_mean": {k: float(np.mean(v)) for k, v in sd.items()},
+            "xcand_std_normalised_mean": {k: float(np.mean(v)) for k, v in sdn.items()},
+            "scales_used": sc, "commensurability_on": on,
             "drop_eval_flip_rate": float(np.mean(flips)) if flips else None}
 
 
@@ -244,6 +253,7 @@ def closed_loop(seed, enc_state, head, r5, r2, ev, benefit_on, gate_n, steps):
     agent.hippocampal.config.use_action_class_scaffold_candidates = bool(r5)
     agent.e3._score_depth_limit = DEPTH if r2 else None
     configure_eval(agent, ev, benefit_on, gate_n)
+    agent.e3.config.use_e3_channel_commensurability = bool(COMM)
     agent.eval()
     calls = Counter()
     e3 = agent.e3
@@ -277,7 +287,10 @@ def closed_loop(seed, enc_state, head, r5, r2, ev, benefit_on, gate_n, steps):
             "benefit_contacts": int(sum(v for k, v in tts.items() if k in BCONTACT)),
             "transition_types": dict(tts), "action_counts": {str(k): v for k, v in sorted(cc.items())},
             "action_entropy": float(-(p * np.log(p)).sum()), "majority_share": max(cc.values()) / len(acts),
-            "scorer_calls": dict(calls), "benefit_gate_open": bool(benefit_on and gate_n >= e3._BENEFIT_WARMUP_SAMPLES)}
+            "scorer_calls": dict(calls),
+            "comm_state": {"on": bool(agent.e3.config.use_e3_channel_commensurability),
+                           "ema": dict(agent.e3._chan_scale_ema), "n": int(agent.e3._chan_scale_n),
+                           "last": dict(agent.e3.last_channel_scale_estimates)}, "benefit_gate_open": bool(benefit_on and gate_n >= e3._BENEFIT_WARMUP_SAMPLES)}
 
 
 def main():
@@ -289,6 +302,7 @@ def main():
     ap.add_argument("--eval-steps", type=int, default=1500)
     ap.add_argument("--force-gate", type=int, default=1)
     ap.add_argument("--tiebreak", type=int, default=0)
+    ap.add_argument("--comm", type=int, default=0)
     ap.add_argument("--arms", default="")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
@@ -302,6 +316,8 @@ def main():
         _e = R.build_B(a.seed, False)[0]
         assert _e.proximity_approach_magnitude_tiebreak is True
     keep = set(x for x in a.arms.split(",") if x)
+    global COMM
+    COMM = bool(a.comm)
     # ---- ADDENDUM 3's exact preamble (same RNG order -> same encoder and heads) ----
     R.seed_all(a.seed)
     env, agent, cfg = R.build_B(a.seed, False)
@@ -379,6 +395,19 @@ def main():
             continue
         res = closed_loop(a.seed, enc_state, head, r5, r2, ev, bon, gate_nat if name.endswith("nb") else gate_used, a.wake)
         res["choice_quality"] = cq[name]
+        if COMM:
+            # choice quality / term spread WITH the flag: the master agent's E3 gets this arm's
+            # own running scale state (built over its 600 closed-loop ticks), then re-scores.
+            cs = res["comm_state"]
+            BP.set_head(agent, head); configure_eval(agent, ev, bon, gate_nat if name.endswith("nb") else gate_used)
+            agent.e3.config.use_e3_channel_commensurability = True
+            agent.e3._chan_scale_ema = dict(cs["ema"]); agent.e3._chan_scale_n = int(cs["n"])
+            cqc = PR.choice_quality(agent, states, A, DEPTH if r2 else None)
+            cqc["terms"] = term_spread(agent, states, A, DEPTH if r2 else None)
+            res["choice_quality_comm"] = cqc
+            agent.e3.config.use_e3_channel_commensurability = False
+            agent.e3._chan_scale_ema = {}; agent.e3._chan_scale_n = 0
+            configure_eval(agent, init_ev, False, 0)
         out["arms"][name] = res
         print("ARM %-13s %s t=%.0fs" % (name, json.dumps({k: v for k, v in res.items()
                                                           if k not in ("choice_quality", "transition_types")}),

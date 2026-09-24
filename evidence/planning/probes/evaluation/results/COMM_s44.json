@@ -1,0 +1,667 @@
+{
+ "args": {
+  "seed": 44,
+  "wake": 600,
+  "probe_steps": 200,
+  "label_steps": 1500,
+  "eval_steps": 1500,
+  "force_gate": 0,
+  "tiebreak": 1,
+  "comm": 1,
+  "arms": "E1_FULL,E2_FULL_EVAL,E4_FULL_SHUF",
+  "out": "results/COMM_s44.json"
+ },
+ "heads": {
+  "A": {
+   "loss_last200": 5.687312259397004e-06,
+   "identity_mse": 2.4809340175124817e-05
+  },
+  "D": {
+   "loss_last200": 2.2271869765972953e-05,
+   "identity_mse": 0.00011946633458137512
+  }
+ },
+ "label_counts": {
+  "native": {
+   "n": 1500,
+   "harm_neg_reward": 124,
+   "benefit_pos_reward": 158,
+   "harm_contacts": 33,
+   "benefit_contacts": 16,
+   "benefit_approach": 142,
+   "hazard_approach": 91,
+   "transition_types": {
+    "benefit_approach": 142,
+    "resource": 16,
+    "hazard_approach": 91,
+    "none": 1218,
+    "agent_caused_hazard": 26,
+    "env_caused_hazard": 7
+   }
+  },
+  "random": {
+   "n": 1500,
+   "harm_neg_reward": 503,
+   "benefit_pos_reward": 797,
+   "harm_contacts": 129,
+   "benefit_contacts": 41,
+   "benefit_approach": 756,
+   "hazard_approach": 374,
+   "transition_types": {
+    "benefit_approach": 756,
+    "none": 200,
+    "agent_caused_hazard": 100,
+    "hazard_approach": 374,
+    "env_caused_hazard": 29,
+    "resource": 41
+   }
+  }
+ },
+ "evaluators": {
+  "trained": {
+   "harm": {
+    "trained": true,
+    "npos": 495,
+    "nneg": 1905,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.6098494362831116,
+    "heldout_auc": 0.7079610204610205,
+    "heldout_npos": 132,
+    "out_mean_pos_neg": [
+     0.5671647787094116,
+     0.44376301765441895
+    ]
+   },
+   "benefit": {
+    "trained": true,
+    "npos": 766,
+    "nneg": 1634,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.509786089360714,
+    "heldout_auc": 0.807283821882362,
+    "heldout_npos": 189,
+    "out_mean_pos_neg": [
+     0.6593255996704102,
+     0.3763889670372009
+    ]
+   },
+   "n_benefit_pos_train": 766
+  },
+  "shuffled": {
+   "harm": {
+    "trained": true,
+    "npos": 495,
+    "nneg": 1905,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.6910984516143799,
+    "heldout_auc": 0.30673724423724424,
+    "heldout_npos": 132,
+    "out_mean_pos_neg": [
+     0.48832038044929504,
+     0.5010311007499695
+    ]
+   },
+   "benefit": {
+    "trained": true,
+    "npos": 766,
+    "nneg": 1634,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.6918905228376389,
+    "heldout_auc": 0.6987345357175041,
+    "heldout_npos": 189,
+    "out_mean_pos_neg": [
+     0.510521650314331,
+     0.5007864832878113
+    ]
+   },
+   "n_benefit_pos_train": 766
+  }
+ },
+ "native_gate_open": true,
+ "gate_used": 766,
+ "native_b": {
+  "trained": {
+   "trained": true,
+   "n": 2400,
+   "n_exposure_pos": 2299,
+   "steps": 1500,
+   "loss_last100": 0.00033540022508532274,
+   "target_var": 0.00018200179329141974,
+   "heldout_corr_exposure": 0.020663176722527876,
+   "heldout_auc_benefit_contact": 0.7752959797404242
+  },
+  "shuffled": {
+   "trained": true,
+   "n": 2400,
+   "n_exposure_pos": 2299,
+   "steps": 1500,
+   "loss_last100": 0.00025174760558002165,
+   "target_var": 0.00018200179329141974,
+   "heldout_corr_exposure": -0.0630113448635203,
+   "heldout_auc_benefit_contact": 0.5797150997150997
+  },
+  "gate": 2299
+ },
+ "choice_quality": {
+  "E1_FULL": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.2926829268292683,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 18,
+    "1": 5,
+    "2": 16,
+    "3": 2
+   },
+   "terms": {
+    "xcand_std_mean": {
+     "F": 0.00014577229981086254,
+     "harm": 9.243840176361974e-05,
+     "residue": 0.004302719358867797,
+     "benefit": 0.0,
+     "J": 0.004463498683880109
+    },
+    "xcand_std_normalised_mean": {
+     "F": 0.00014577229981086254,
+     "harm": 9.243840176361974e-05,
+     "residue": 0.004302719358867797,
+     "benefit": 0.0
+    },
+    "scales_used": {
+     "F": 1.0,
+     "harm": 1.0,
+     "residue": 1.0,
+     "benefit": 1.0
+    },
+    "commensurability_on": false,
+    "drop_eval_flip_rate": 0.024390243902439025
+   }
+  },
+  "E2_FULL_EVAL": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.17073170731707318,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 14,
+    "1": 26,
+    "4": 1
+   },
+   "terms": {
+    "xcand_std_mean": {
+     "F": 0.00014577229981086254,
+     "harm": 0.014380425368354792,
+     "residue": 0.004302719358867797,
+     "benefit": 0.01940416685964632,
+     "J": 0.012561157271922268
+    },
+    "xcand_std_normalised_mean": {
+     "F": 0.00014577229981086254,
+     "harm": 0.014380425368354792,
+     "residue": 0.004302719358867797,
+     "benefit": 0.01940416685964632
+    },
+    "scales_used": {
+     "F": 1.0,
+     "harm": 1.0,
+     "residue": 1.0,
+     "benefit": 1.0
+    },
+    "commensurability_on": false,
+    "drop_eval_flip_rate": 0.5365853658536586
+   }
+  },
+  "E4_FULL_SHUF": {
+   "n_states": 41,
+   "n_informative": 41,
+   "pick_is_Qbest": 0.24390243902439024,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 3,
+    "1": 8,
+    "2": 13,
+    "3": 14,
+    "4": 3
+   },
+   "terms": {
+    "xcand_std_mean": {
+     "F": 0.00014577229981086254,
+     "harm": 0.0019007669768525597,
+     "residue": 0.004302719358867797,
+     "benefit": 0.0007215753685696491,
+     "J": 0.0038744565227789196
+    },
+    "xcand_std_normalised_mean": {
+     "F": 0.00014577229981086254,
+     "harm": 0.0019007669768525597,
+     "residue": 0.004302719358867797,
+     "benefit": 0.0007215753685696491
+    },
+    "scales_used": {
+     "F": 1.0,
+     "harm": 1.0,
+     "residue": 1.0,
+     "benefit": 1.0
+    },
+    "commensurability_on": false,
+    "drop_eval_flip_rate": 0.43902439024390244
+   }
+  }
+ },
+ "arms": {
+  "E1_FULL": {
+   "steps": 600,
+   "episodes_ended": 5,
+   "reward_per_100": -0.6517962952454885,
+   "harm_events_per_100": 6.333333333333333,
+   "benefit_events_per_100": 7.333333333333333,
+   "harm_sum_per_100": -1.0510780458648998,
+   "benefit_sum_per_100": 0.39928175061941135,
+   "harm_contacts": 11,
+   "hazard_approach": 27,
+   "benefit_approach": 41,
+   "benefit_contacts": 3,
+   "transition_types": {
+    "benefit_approach": 41,
+    "agent_caused_hazard": 7,
+    "none": 518,
+    "env_caused_hazard": 4,
+    "resource": 3,
+    "hazard_approach": 27
+   },
+   "action_counts": {
+    "0": 184,
+    "2": 343,
+    "3": 57,
+    "4": 16
+   },
+   "action_entropy": 1.0024212142155187,
+   "majority_share": 0.5716666666666667,
+   "scorer_calls": {
+    "harm_fallback": 3552
+   },
+   "comm_state": {
+    "on": true,
+    "ema": {
+     "f_weighted": 0.002614769983261102,
+     "harm_weighted": 0.00032425894433158874,
+     "residue_weighted": 0.00188114543066601,
+     "benefit_weighted": 0.0,
+     "goal_weighted": 0.0
+    },
+    "n": 111,
+    "last": {
+     "scales": {
+      "f_weighted": 0.002614769983261102,
+      "harm_weighted": 0.00032425894433158874,
+      "residue_weighted": 0.00188114543066601,
+      "benefit_weighted": 0.0,
+      "goal_weighted": 0.0
+     },
+     "n_updates": 111,
+     "engaged": true,
+     "warmup_ticks": 20,
+     "floor": 1e-12,
+     "ema_alpha": 0.05,
+     "channels": [
+      "f_weighted",
+      "harm_weighted",
+      "residue_weighted",
+      "benefit_weighted",
+      "goal_weighted"
+     ]
+    }
+   },
+   "benefit_gate_open": false,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.2926829268292683,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 18,
+     "1": 5,
+     "2": 16,
+     "3": 2
+    },
+    "terms": {
+     "xcand_std_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 9.243840176361974e-05,
+      "residue": 0.004302719358867797,
+      "benefit": 0.0,
+      "J": 0.004463498683880109
+     },
+     "xcand_std_normalised_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 9.243840176361974e-05,
+      "residue": 0.004302719358867797,
+      "benefit": 0.0
+     },
+     "scales_used": {
+      "F": 1.0,
+      "harm": 1.0,
+      "residue": 1.0,
+      "benefit": 1.0
+     },
+     "commensurability_on": false,
+     "drop_eval_flip_rate": 0.024390243902439025
+    }
+   },
+   "choice_quality_comm": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.2682926829268293,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 20,
+     "1": 5,
+     "2": 16
+    },
+    "terms": {
+     "xcand_std_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 9.243840176361974e-05,
+      "residue": 0.004302719358867797,
+      "benefit": 0.0,
+      "J": 2.4814196658947756
+     },
+     "xcand_std_normalised_mean": {
+      "F": 0.05574956908028196,
+      "harm": 0.2850758734016348,
+      "residue": 2.287286930997377,
+      "benefit": 0.0
+     },
+     "scales_used": {
+      "F": 0.002614769983261102,
+      "harm": 0.00032425894433158874,
+      "residue": 0.00188114543066601,
+      "benefit": 1.0
+     },
+     "commensurability_on": true,
+     "drop_eval_flip_rate": 0.07317073170731707
+    }
+   }
+  },
+  "E2_FULL_EVAL": {
+   "steps": 600,
+   "episodes_ended": 5,
+   "reward_per_100": -0.5778862407803536,
+   "harm_events_per_100": 4.666666666666667,
+   "benefit_events_per_100": 7.666666666666667,
+   "harm_sum_per_100": -0.9439021199941635,
+   "benefit_sum_per_100": 0.36601587921380985,
+   "harm_contacts": 11,
+   "hazard_approach": 17,
+   "benefit_approach": 44,
+   "benefit_contacts": 2,
+   "transition_types": {
+    "benefit_approach": 44,
+    "agent_caused_hazard": 7,
+    "hazard_approach": 17,
+    "env_caused_hazard": 4,
+    "none": 526,
+    "resource": 2
+   },
+   "action_counts": {
+    "0": 170,
+    "1": 233,
+    "2": 25,
+    "3": 152,
+    "4": 20
+   },
+   "action_entropy": 1.3182728648148605,
+   "majority_share": 0.3883333333333333,
+   "scorer_calls": {
+    "harm_fallback": 3232,
+    "benefit": 3232
+   },
+   "comm_state": {
+    "on": true,
+    "ema": {
+     "f_weighted": 0.0027837211443679493,
+     "harm_weighted": 0.03550924876380582,
+     "residue_weighted": 0.0009313761662842977,
+     "benefit_weighted": 0.07325917040441296,
+     "goal_weighted": 0.0
+    },
+    "n": 101,
+    "last": {
+     "scales": {
+      "f_weighted": 0.0027837211443679493,
+      "harm_weighted": 0.03550924876380582,
+      "residue_weighted": 0.0009313761662842977,
+      "benefit_weighted": 0.07325917040441296,
+      "goal_weighted": 0.0
+     },
+     "n_updates": 101,
+     "engaged": true,
+     "warmup_ticks": 20,
+     "floor": 1e-12,
+     "ema_alpha": 0.05,
+     "channels": [
+      "f_weighted",
+      "harm_weighted",
+      "residue_weighted",
+      "benefit_weighted",
+      "goal_weighted"
+     ]
+    }
+   },
+   "benefit_gate_open": true,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.17073170731707318,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 14,
+     "1": 26,
+     "4": 1
+    },
+    "terms": {
+     "xcand_std_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 0.014380425368354792,
+      "residue": 0.004302719358867797,
+      "benefit": 0.01940416685964632,
+      "J": 0.012561157271922268
+     },
+     "xcand_std_normalised_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 0.014380425368354792,
+      "residue": 0.004302719358867797,
+      "benefit": 0.01940416685964632
+     },
+     "scales_used": {
+      "F": 1.0,
+      "harm": 1.0,
+      "residue": 1.0,
+      "benefit": 1.0
+     },
+     "commensurability_on": false,
+     "drop_eval_flip_rate": 0.5365853658536586
+    }
+   },
+   "choice_quality_comm": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.2682926829268293,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 19,
+     "1": 5,
+     "2": 16,
+     "3": 1
+    },
+    "terms": {
+     "xcand_std_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 0.014380425368354792,
+      "residue": 0.004302719358867797,
+      "benefit": 0.01940416685964632,
+      "J": 4.8192455778753125
+     },
+     "xcand_std_normalised_mean": {
+      "F": 0.052365985043361984,
+      "harm": 0.4049768966955054,
+      "residue": 4.619743895781003,
+      "benefit": 0.2648701418884408
+     },
+     "scales_used": {
+      "F": 0.0027837211443679493,
+      "harm": 0.03550924876380582,
+      "residue": 0.0009313761662842977,
+      "benefit": 0.07325917040441296
+     },
+     "commensurability_on": true,
+     "drop_eval_flip_rate": 0.04878048780487805
+    }
+   }
+  },
+  "E4_FULL_SHUF": {
+   "steps": 600,
+   "episodes_ended": 6,
+   "reward_per_100": -0.5880224887530009,
+   "harm_events_per_100": 3.1666666666666665,
+   "benefit_events_per_100": 10.0,
+   "harm_sum_per_100": -1.0813161383072534,
+   "benefit_sum_per_100": 0.49329364955425264,
+   "harm_contacts": 13,
+   "hazard_approach": 6,
+   "benefit_approach": 57,
+   "benefit_contacts": 3,
+   "transition_types": {
+    "benefit_approach": 57,
+    "agent_caused_hazard": 7,
+    "resource": 3,
+    "hazard_approach": 6,
+    "none": 521,
+    "env_caused_hazard": 6
+   },
+   "action_counts": {
+    "0": 31,
+    "1": 241,
+    "2": 22,
+    "3": 286,
+    "4": 20
+   },
+   "action_entropy": 1.1072281524665997,
+   "majority_share": 0.4766666666666667,
+   "scorer_calls": {
+    "harm_fallback": 3040,
+    "benefit": 3040
+   },
+   "comm_state": {
+    "on": true,
+    "ema": {
+     "f_weighted": 0.0028462436534814352,
+     "harm_weighted": 0.008830930082308086,
+     "residue_weighted": 0.001164077089805615,
+     "benefit_weighted": 0.003997884410345524,
+     "goal_weighted": 0.0
+    },
+    "n": 95,
+    "last": {
+     "scales": {
+      "f_weighted": 0.0028462436534814352,
+      "harm_weighted": 0.008830930082308086,
+      "residue_weighted": 0.001164077089805615,
+      "benefit_weighted": 0.003997884410345524,
+      "goal_weighted": 0.0
+     },
+     "n_updates": 95,
+     "engaged": true,
+     "warmup_ticks": 20,
+     "floor": 1e-12,
+     "ema_alpha": 0.05,
+     "channels": [
+      "f_weighted",
+      "harm_weighted",
+      "residue_weighted",
+      "benefit_weighted",
+      "goal_weighted"
+     ]
+    }
+   },
+   "benefit_gate_open": true,
+   "choice_quality": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.24390243902439024,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 3,
+     "1": 8,
+     "2": 13,
+     "3": 14,
+     "4": 3
+    },
+    "terms": {
+     "xcand_std_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 0.0019007669768525597,
+      "residue": 0.004302719358867797,
+      "benefit": 0.0007215753685696491,
+      "J": 0.0038744565227789196
+     },
+     "xcand_std_normalised_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 0.0019007669768525597,
+      "residue": 0.004302719358867797,
+      "benefit": 0.0007215753685696491
+     },
+     "scales_used": {
+      "F": 1.0,
+      "harm": 1.0,
+      "residue": 1.0,
+      "benefit": 1.0
+     },
+     "commensurability_on": false,
+     "drop_eval_flip_rate": 0.43902439024390244
+    }
+   },
+   "choice_quality_comm": {
+    "n_states": 41,
+    "n_informative": 41,
+    "pick_is_Qbest": 0.3170731707317073,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 15,
+     "1": 6,
+     "2": 17,
+     "3": 3
+    },
+    "terms": {
+     "xcand_std_mean": {
+      "F": 0.00014577229981086254,
+      "harm": 0.0019007669768525597,
+      "residue": 0.004302719358867797,
+      "benefit": 0.0007215753685696491,
+      "J": 3.5727429359475398
+     },
+     "xcand_std_normalised_mean": {
+      "F": 0.051215678472416946,
+      "harm": 0.2152397266354268,
+      "residue": 3.696249498034784,
+      "benefit": 0.18048930246767333
+     },
+     "scales_used": {
+      "F": 0.0028462436534814352,
+      "harm": 0.008830930082308086,
+      "residue": 0.001164077089805615,
+      "benefit": 0.003997884410345524
+     },
+     "commensurability_on": true,
+     "drop_eval_flip_rate": 0.04878048780487805
+    }
+   }
+  }
+ },
+ "t_total_s": 199.2
+}

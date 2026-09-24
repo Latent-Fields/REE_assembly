@@ -238,3 +238,107 @@ The next discriminator, for the orchestrator to decide and not run here: T2 with
 - 3 seeds; 600 steps per arm; offline evaluator training on 3,000 own-experience steps.
 - The flag changes the env's reward stream, so T1 is not the main record's FULL.
 - Harm head AUC is lower here (0.63-0.81 vs 0.82-0.93) because hazard-approach labels are now split with benefit-approach.
+
+## ADDENDUM 2 (2026-09-24T21:40Z, session `bt0924-evaluation-c`): single factor `use_e3_channel_commensurability=True`
+
+- **Commissioned by the orchestrator** as the next single factor. Native machinery only; no hand-set weights.
+- **Code:** ree-v3 `origin/main` @ `44c55300ca` (re-fetched; unchanged).
+- **Harness:** the same as ADDENDUM 1, with the tie-break on throughout and the benefit gate native.
+- **Run:** `evaluation_edge_probe.py --tiebreak 1 --comm 1 --force-gate 0 --arms E1_FULL,E2_FULL_EVAL,E4_FULL_SHUF` via `run_comm.sh 43 44 42`, summarised by `summarize_comm.py`.
+- **Results:** `probes/evaluation/results/COMM_s{42,43,44}.json`.
+- **Canary:** on all 3 seeds the preamble (encoder, heads, evaluators, label counts) is identical to ADDENDUM 1's TB runs, so the flag is the only difference. C1 = T1 + flag, C2 = T2 + flag, C3 = T3 + flag.
+
+### What the operator actually does on origin/main (read before running)
+
+- **What it normalises.** Five additive channels are normalised: `f_weighted`, `harm_weighted`, `residue_weighted`, `benefit_weighted` and `goal_weighted` (`_COMMENSURABILITY_CHANNELS`, `e3_selector.py:149-155`). **Residue is one of them.** Each channel's per-candidate WEIGHTED term (for example `rho_residue * Phi`) is divided by that channel's own running scale before the sum (`:1728-1730`, benefit `:1750`, goal `:1769`).
+- **Which statistic.** The scale is an EMA (alpha 0.05, `config.py:1090`) of the channel's CROSS-CANDIDATE standard deviation of the raw weighted term within one `select()` tick (`_update_channel_scale_estimates`, `:1584-1631`).
+- **Running, not per-tick.** The estimate is folded in after each tick's scoring, so every tick is scored against earlier ticks' estimates.
+- **Warmup and floors.** Channels keep unit scale for the first 20 ticks (`config.py:1097`; `_commensurability_scale`, `:1567-1582`). A channel whose scale is at or below the 1e-12 absolute floor (`config.py:1106`) also keeps unit scale.
+- **Producer: self-contained, no external supplier needed.**
+  - `score_trajectory` captures the raw terms (`:1714-1726`).
+  - `E3.select` collects them per candidate from its main candidate loop (`:3280-3314`) and folds them in once per tick (`:3320`).
+  - The SD-081 habit loop is deliberately excluded from the estimate.
+  - Not wired through `from_dims`; it is set per arm on `agent.e3.config`, as its docstring (`config.py:1080-1083`) says.
+- **Live in every arm.** 72-111 estimate updates per 600-step arm; `engaged=True` in all 9 arms.
+- **Prior status of the operator** (`docs/architecture/sd_e3_channel_commensurability.md`): validated only at the ELIGIBILITY stage (V3-EXQ-1012c PASS, 3 of 5 channels). Its original readiness target, per-channel variance shares, was ruled an arithmetic identity of the operator (GFLAG-0234): Var(term/s) is about 1 per channel by construction. This probe's closed loop is its first behavioural test in this regime.
+
+### Closed loop (600 steps; with the flag vs the ADDENDUM 1 run without it)
+
+Cells read: harm contacts / hazard-proximity steps / resource consumptions / benefit-approach steps / env reward per 100 steps.
+
+| seed | C1 = T1 + flag | C2 = T2 + flag | C3 = T3 + flag | T1 (no flag) | T2 (no flag) | T3 (no flag) |
+|---|---|---|---|---|---|---|
+| 42 | 9 / 6 / 0 / 31 / -0.54 | **15** / 7 / 3 / **67** / -0.63 | 2 / 2 / 1 / 19 / -0.03 | 8 / 4 / 0 / 36 / -0.43 | 39 / 25 / 7 / 98 / -2.07 | 2 / 1 / 1 / 18 / -0.03 |
+| 43 | 5 / 5 / 3 / 25 / -0.12 | **3** / 2 / 0 / **45** / +0.04 | 0 / 2 / 1 / 15 / +0.12 | 5 / 8 / 4 / 19 / -0.10 | 6 / 8 / 1 / 56 / -0.10 | 1 / 0 / 0 / 12 / -0.02 |
+| 44 | 11 / 27 / 3 / 41 / -0.65 | **11** / 17 / 2 / **44** / -0.58 | 13 / 6 / 3 / 57 / -0.59 | 6 / 0 / 0 / 19 / -0.38 | 22 / 31 / 5 / 76 / -1.26 | 3 / 5 / 3 / 14 / +0.02 |
+
+Choice quality against env-Q (chance 0.20), scored at the arm's own running scales with the flag on vs off, C1 / C2 / C3:
+
+| seed | with the flag | without |
+|---|---|---|
+| 42 | 0.25 / 0.25 / 0.25 | 0.25 / 0.27 / 0.25 |
+| 43 | 0.05 / 0.10 / 0.07 | 0.05 / 0.12 / 0.10 |
+| 44 | 0.27 / 0.27 / 0.32 | 0.29 / 0.17 / 0.24 |
+
+### Criterion (pre-registered): C2 benefit up vs C1, AND C2 harm contacts not worse than C1, AND C2 > C3 on benefit, on at least 2 of 3 seeds
+
+"Benefit" below = consumptions + approach steps.
+
+| seed | benefit C2 vs C1 | harm contacts C2 vs C1 | benefit C2 vs C3 | pass? |
+|---|---|---|---|---|
+| 42 | 70 vs 31, up | **15 vs 9, worse** | 70 vs 20, yes | no |
+| 43 | 45 vs 28, up | 3 vs 5, not worse | 45 vs 16, yes | **yes** |
+| 44 | 46 vs 44 (+2, noise) | 11 vs 11, not worse | **46 vs 60, no** | no |
+
+**Directed success on 1 of 3 seeds (s43). The criterion is NOT met.**
+
+### Term spreads with and without the flag (the mechanism check)
+
+**Closed loop.** The arm's own running estimate is the RAW mean cross-candidate spread per channel over its 72-111 ticks (C2), the direct measure of which term dominates without normalisation:
+
+| seed | F | harm (trained) | residue | benefit (trained) |
+|---|---|---|---|---|
+| 42 | 4.5e-4 | 6.6e-3 | **3.2e-4** | 3.7e-3 |
+| 43 | 9.5e-4 | 1.6e-2 | **4.1e-4** | 1.1e-2 |
+| 44 | 2.8e-3 | 3.6e-2 | **9.3e-4** | 7.3e-2 |
+
+- **Without the flag, the evaluator terms out-spread residue about 10-80x in the closed loop,** which is the domination ADDENDUM 1 blamed for the harm cost.
+- **With the flag, each channel is divided by exactly these numbers.** So their average normalised spread is about 1 each by construction; that is the identity noted in the design doc. The mechanism claim "stops one term dominating" therefore holds ON AVERAGE by arithmetic. What it does to behaviour is the test.
+- In C1 the UNTRAINED harm head's raw spread (4e-5 to 3e-4) is scaled up in the same way, because it clears the 1e-12 floor.
+
+**Probe states** (scaffold, 5 one-class candidates, depth 2), mean cross-candidate std; flag-off raw -> flag-on normalised (at the arm's running scales), then the drop-evaluator flip rate off -> on:
+
+| seed | arm | F | harm | residue | benefit | drop-evaluator flip |
+|---|---|---|---|---|---|---|
+| 42 | C2 | 0.0004 -> 0.97 | 0.009 -> 1.3 | 0.034 -> 108 | 0.009 -> 2.5 | 0.17 -> 0.00 |
+| 43 | C2 | 0.0003 -> 0.28 | 0.055 -> 3.5 | 0.0008 -> 1.9 | 0.034 -> 3.0 | 0.05 -> 0.05 |
+| 44 | C2 | 0.0001 -> 0.05 | 0.014 -> 0.41 | 0.004 -> 4.6 | 0.019 -> 0.27 | 0.54 -> 0.05 |
+| 42 / 43 / 44 | C1 (untrained harm) | | 0.0001 -> 1.7 / 0.38 / 0.29 | 0.034 -> 97 / 3.1 / 2.3 | | |
+
+**Caveat on the probe-state rows.** They mix the arm's running scales with the MASTER agent's residue field, which accumulated over all of the master's runs. This is inherited from ADDENDUM 3's choice-quality harness. So residue's normalised magnitude there is inflated, especially on s42. The residue-dominance and flip-rate readings are indicative only; the closed-loop rows above are clean.
+
+### Failure signature (stopping here, as instructed)
+
+1. **The operator moves harm the right way, but only part of the way, and it takes the benefit gain with it.**
+   - Compared with T2 (no flag), C2's harm contacts fall 39 -> 15, 6 -> 3 and 22 -> 11, and reward improves on all 3 seeds (-2.07 -> -0.63, -0.10 -> +0.04, -1.26 -> -0.58).
+   - But benefit-approach falls 98 -> 67, 56 -> 45 and 76 -> 44.
+   - The evaluator's margin over C1 shrinks (+62 -> +39, +34 -> +17, +57 -> +2).
+   - On s44, trained and shuffled evaluators become indistinguishable, and C3 even out-benefits C2 (60 vs 46).
+   - On s42, harm is still worse than C1 (15 vs 9 contacts).
+2. **Variance standardisation is not value calibration.** The operator equalises channels by their cross-candidate SPREAD, not by what their differences are worth.
+   - **An untrained channel gets full authority.** The untrained harm head (nothing in ree_core trains it) has raw spread 4e-5 to 3e-4. That clears the 1e-12 floor, so the operator scales it up to parity with residue.
+   - **C1 on s44 shows the cost.** Compared with T1 (no flag), harm contacts go 6 -> 11, hazard-proximity steps 0 -> 27, and reward -0.38 -> -0.65. The only thing that changed is that the operator gave noise a vote.
+   - **A trained but label-shuffled head gets parity the same way,** which is how C3 catches up with C2 on s44.
+3. **Residue's authority becomes bursty.** Its running scale is the mean of a spread that is near 0 on most ticks and large near harm memory. Dividing by that mean makes residue very strong exactly where it is active. This is consistent with the harm reduction versus T2, but it also flattens the evaluator's influence at those states (probe-state flip 0.17 -> 0.00 on s42 and 0.54 -> 0.05 on s44, subject to the caveat above).
+4. **What this constrains.** With benefit data supplied, the problem is not that one term dominates by units; the native operator fixes that, as arithmetic guarantees. The problem is that E3 has no signal for how much each channel's differences are WORTH:
+   - a trained evaluator, an untrained one and a shuffled one all get equal weight once their spreads are equalised;
+   - residue's contact memory and the evaluators' learned values are not traded against realised outcome.
+
+   The native candidate for that is outcome-driven channel weighting: the ARC-108 learned channel gating, `use_learned_channel_gating` (`config.py:1444`), with per-channel `w_chan` updated by a three-factor RPE rule (`e3_selector.py:708`). That is for the orchestrator to decide, with its own producer-trace check first. It was not run here: no further factors.
+
+**Limits.**
+- 3 seeds; 600 steps per arm.
+- Benefit is mostly approach steps (consumption 0-3 per arm).
+- The probe-state spreads carry the master-residue confound described above.
+- The s44 C2 benefit rise over C1 (+2) is within noise.
+- The flag's running scales start fresh in each arm (fresh agent), so the first 20 E3 ticks of every arm are unnormalised.
