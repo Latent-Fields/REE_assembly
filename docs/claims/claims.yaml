@@ -85844,6 +85844,23 @@
     - MECH-269
     - MECH-283
     - MECH-284
+  implementation_note: >
+    2026-09-24 (metaworker-science-20260924-mech468-relational-dumps): the
+    edge-type inventory spike's recommended minimal recording change
+    (mech468_edge_type_inventory_spike.md Section 4) landed --
+    substrate_queue.json entry mech468-anchor-relational-dump, ree-v3 main.
+    Four of the six named relation types are now recordable: A (latent
+    proximity), C (shared event), D (shared goal/valence) via read-side
+    dumps, and E (causal/outcome) via an in-loop log inside
+    StalenessAccumulator.integrate(). B (action transition) remains
+    unbuilt -- it needs new substrate wiring on the action/decision path,
+    not a recording change, and was explicitly out of scope for this
+    entry. This clears the "recording gap" the spike identified for A/C/D/E;
+    it does NOT by itself satisfy this claim's falsifier (that needs the
+    full A-F inventory plus the F-vs-collapsed ablation, run as an actual
+    experiment against held-out functional labels) and does not change
+    status, confidence, or implementation_phase -- registration/build is
+    not evidence. See docs/substrate/MECH-468-anchor-relational-dump.md.
   notes: >
     *** THE ORGANISATIONAL / REPRESENTATIONAL SEPARATION IS THE GUARD THAT KEEPS THIS
     HONEST, AND IT MUST TRAVEL WITH EVERY DOWNSTREAM USE. *** Organisational claim:
@@ -85903,6 +85920,13 @@
     - MECH-468
     - MECH-069
     - MECH-035
+  implementation_note: >
+    2026-09-24: shares MECH-468's recording landing (substrate_queue.json
+    entry mech468-anchor-relational-dump, ree-v3 main) -- A/C/D/E are now
+    recordable; see MECH-468's implementation_note and
+    docs/substrate/MECH-468-anchor-relational-dump.md. This claim's own
+    ablation series is unaffected (still gated on the same recording, now
+    available for A/C/D/E but not B); status/confidence unchanged.
   notes: >
     THE DIRECT ABLATION FROM MECH-468, registered separately because it is the leg that
     distinguishes "topology helps" from "TYPED topology helps" -- a single-adjacency win
@@ -85949,6 +85973,13 @@
     - MECH-339
     - SD-039
     - MECH-468
+  implementation_note: >
+    2026-09-24: MECH-468's recording landing (substrate_queue.json entry
+    mech468-anchor-relational-dump, ree-v3 main) makes A/C/D recordable;
+    see MECH-468's implementation_note and
+    docs/substrate/MECH-468-anchor-relational-dump.md. This claim's own
+    consumer (GhostGoalBank / _propose_ghost_seeded) is unchanged by this
+    landing; status/confidence unchanged.
   notes: >
     THE APPLIED CLAIM, AND THE ONE WITH A BUILT CONSUMER. MECH-292/293's ghost-goal bank
     already ranks inactive anchors on payload match, so a topological term is a DROP-IN

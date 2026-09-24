@@ -91,6 +91,42 @@
   },
   "queue": [
     {
+      "sd_id": "mech468-anchor-relational-dump",
+      "title": "Per-anchor relational-edge recording: latent proximity (A), shared-event co-membership (C), shared goal/valence (D), and staleness-attribution edges (E) at anchor granularity",
+      "node_class": "complicated (buildable)",
+      "status": "implemented",
+      "implementation_status": "implemented",
+      "ready": true,
+      "priority": "low",
+      "design_doc": "docs/substrate/MECH-468-anchor-relational-dump.md",
+      "substrate_paths": [
+        "ree_core/hippocampal/anchor_set.py::AnchorSet.dump_relational_snapshot",
+        "ree_core/hippocampal/anchor_set.py::AnchorSet.consume_boundary_events",
+        "ree_core/hippocampal/ghost_goal_bank.py::GhostGoalBank.rank",
+        "ree_core/hippocampal/ghost_goal_bank.py::GhostGoalBank.get_relational_components",
+        "ree_core/hippocampal/staleness_accumulator.py::StalenessAccumulator.integrate",
+        "ree_core/hippocampal/staleness_accumulator.py::StalenessAccumulator.edge_log",
+        "ree_core/utils/config.py::AnchorSetConfig",
+        "ree_core/utils/config.py::GhostGoalBankConfig",
+        "ree_core/utils/config.py::StalenessAccumulatorConfig"
+      ],
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-468",
+        "MECH-469",
+        "MECH-470"
+      ],
+      "implementation_hint": "Per REE_assembly/evidence/planning/mech468_edge_type_inventory_spike.md Section 4: (i) A -- AnchorSet.dump_relational_snapshot() emits a bounded pairwise z_world cosine-proximity matrix over all_anchors(), plus per-anchor {created_at, last_accessed}; (ii) C -- consume_boundary_events tags each installed anchor_key onto a bounded per-BoundaryEvent ring buffer ({t, scale, segment_id_old, segment_id_new, sources, anchor_key}), joinable on t to find events shared across families; (iii) D -- GhostGoalBank.rank() retains the raw per-anchor {goal_match, wanting_strength, arousal_tag} via get_relational_components(), alongside (not replacing) the existing weighted component_sums; (iv) E -- StalenessAccumulator.integrate() logs each non-zero per-anchor {attribution_weight, strength} increment via edge_log() INSIDE the accumulation loop, before it folds into self._staleness (the only point the edge-level credit survives -- get_stats()/snapshot() expose only the post-leak aggregate). Relation type B (action transition) is explicitly OUT OF SCOPE -- e3_selector.py and the action/decision path are untouched. All four gated behind a default-False recording flag per sub-config (AnchorSetConfig.record_relational_snapshot, GhostGoalBankConfig.record_relational_components, StalenessAccumulatorConfig.record_edge_log); bit-identical OFF, proven by a contract test that fails against the pre-change tree (the methods/fields did not exist). Non-degeneracy per the spike's Section 3 floors (anchor-count / edge-density for A, concurrent-family sharing for C, goal_match IQR spread for D, stream_overlap-vs-equal-mode contrast for E) is exercised in tests/contracts/test_mech468_relational_dumps.py on synthetic but realistic pools, not enforced in the recording code itself (the floors are a property of the data, checked by the consumer, not a gate on whether to emit it).",
+      "implementation_note": "Implemented 2026-09-24 by metaworker-science-20260924-mech468-relational-dumps. Registration and build landed together per the dispatching chip (chip-20260902-mech468-anchor-relational-dump-substrate), which carried its own pre-flight GREEN verdict (orchestrate-20260924-0808) confirming no unratified scientific choice remained -- the spike itself resolved the only real judgment calls (A's projection form: bounded pairwise proximity score, not a raw-latent or reduced-embedding dump; C's tagging site: inside consume_boundary_events, where the event and the anchor it installed are both in scope together; D's pool: the direct-admission loop only, not the SD-097 relational-successor entries -- a stated, possible future extension). Falsifier-runnability (GOV-UNWRITTEN-1 trace): EVENT exists for all four (any tick that installs an anchor / calls rank() / calls integrate()); DV exists (proximity score, shared anchor_key-by-t grouping, raw goal_match / wanting_strength / arousal_tag, per-anchor attribution_weight); INSTRUMENT exists as a pull-style accessor matching the codebase's existing get_diagnostics()/get_stats() pattern (dump_relational_snapshot(), get_relational_components(), edge_log()) -- populated automatically once the flag is on, since consume_boundary_events/rank()/integrate() already run every tick in normal operation; no additional agent.py/module.py wiring needed. INERT at default config (flags default False, per the no-op-default rule) -- a future validation experiment (MECH-470/EXP-1107, MECH-469; not queued by this build per the chip's explicit instruction) must turn the relevant flag(s) on, and for E specifically must set attribution_mode=stream_overlap (not the default equal, which the spike documents as fully-connected by construction).",
+      "validation_experiment": null,
+      "validation_note": "Not queued by this build (chip's explicit instruction: substrate landing only). Owed next: /queue-experiment re-checks EXP-1107 (MECH-470, blocked_substrate on MECH-468) and a fresh MECH-469 typed-vs-collapsed proposal now that the recording exists.",
+      "added_session": "chip-20260902-mech468-edge-type-inventory-spike",
+      "added_utc": "2026-09-24T13:18:36Z",
+      "implemented_session": "metaworker-science-20260924-mech468-relational-dumps",
+      "implemented_utc": "2026-09-24T13:18:36Z",
+      "last_seen_session": "metaworker-science-20260924-mech468-relational-dumps"
+    },
+    {
       "added_session": "governance-2026-04-09-c",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_013_e2_harm_s_interventional_training.md",
