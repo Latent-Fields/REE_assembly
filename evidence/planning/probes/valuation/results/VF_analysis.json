@@ -1,0 +1,1086 @@
+{
+ "44": {
+  "gate_n": 766,
+  "reward_by_ttype": {
+   "benefit_approach": {
+    "n": 898,
+    "min": 0.015,
+    "max": 0.05000000238418579,
+    "mean": 0.030105321028981277
+   },
+   "resource": {
+    "n": 57,
+    "min": 0.32999999999999996,
+    "max": 0.3650000023841858,
+    "mean": 0.3475414675160458
+   },
+   "hazard_approach": {
+    "n": 465,
+    "min": -0.07500000000000001,
+    "max": -0.020202019810676576,
+    "mean": -0.04052360079301301
+   },
+   "none": {
+    "n": 1418,
+    "min": 0.0,
+    "max": 0.0,
+    "mean": 0.0
+   },
+   "agent_caused_hazard": {
+    "n": 126,
+    "min": -0.4,
+    "max": -0.4,
+    "mean": -0.39999999999999997
+   },
+   "env_caused_hazard": {
+    "n": 36,
+    "min": -0.5833333373069763,
+    "max": -0.5600000023841858,
+    "mean": -0.5679320989383592
+   }
+  },
+  "arms": {
+   "T1_FULL": {
+    "n_steps": 600,
+    "n_select_calls": 83,
+    "n_ticks_multi": 83,
+    "committed_frac": 0.9879518072289156,
+    "K_mean": 32.0,
+    "nonzero_r_steps": 25,
+    "contact_steps": 6,
+    "contact_neg": 6,
+    "contact_pos": 0,
+    "uncommitted_softmax_norm_entropy_mean": 0.9999948906888426,
+    "uncommitted_softmax_pmax_mean": 0.031340799343381846,
+    "window_steps_mean": 7.228915662650603,
+    "weighted_spread_mean": {
+     "F": 0.002596,
+     "harm": 0.00032,
+     "residue": 0.000336,
+     "benefit": 0.0,
+     "goal": 0.0
+    },
+    "vote_abs_mean": {
+     "F": 0.005,
+     "harm": 0.000616,
+     "residue": 0.000928,
+     "benefit": 0.0,
+     "goal": 0.0
+    },
+    "ticks_committed_with_R_Gall": 9,
+    "ticks_all_with_R_Gall": 10,
+    "Gall": {
+     "M1_mean_drift_per_event": {
+      "F": 0.111,
+      "harm": -0.111,
+      "residue": 0.444,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 32.0,
+      "harm": 32.0,
+      "residue": 10.0,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": 53.71409070011199,
+       "t": 5.389144731759103,
+       "n": 82,
+       "n_for_t2": 11.29364544376117
+      },
+      "harm": {
+       "beta": -164.25238464700172,
+       "t": -4.324395578007086,
+       "n": 82,
+       "n_for_t2": 17.53973447630018
+      },
+      "residue": {
+       "beta": 8.80219748776316,
+       "t": 0.9764189426876759,
+       "n": 82,
+       "n_for_t2": 344.0340684310178
+      },
+      "benefit": null,
+      "goal": null
+     }
+    },
+    "ticks_committed_with_R_Gcontact": 5,
+    "ticks_all_with_R_Gcontact": 6,
+    "Gcontact": {
+     "M1_mean_drift_per_event": {
+      "F": 0.0,
+      "harm": 0.0,
+      "residue": 0.2,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 0.0,
+      "harm": 0.0,
+      "residue": 56.0,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": 61.822820182900145,
+       "t": 5.871576365675915,
+       "n": 82,
+       "n_for_t2": 9.514027805416033
+      },
+      "harm": {
+       "beta": -194.78729677303147,
+       "t": -4.852998334165299,
+       "n": 82,
+       "n_for_t2": 13.92687120348568
+      },
+      "residue": {
+       "beta": 7.385906435596239,
+       "t": 0.7551540817524613,
+       "n": 82,
+       "n_for_t2": 575.1785681623082
+      },
+      "benefit": null,
+      "goal": null
+     }
+    },
+    "summary": {
+     "reward_per_100": -0.3754933847983678,
+     "harm_contacts": 6,
+     "hazard_approach": 0,
+     "benefit_approach": 19,
+     "benefit_contacts": 0,
+     "episodes_ended": 3
+    },
+    "M3_Gall": {
+     "theta_end": {
+      "F": 0.00013,
+      "harm": -1e-05,
+      "residue": 0.0,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 2e-06,
+      "harm": 0.0,
+      "residue": 1e-06,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 3.31,
+      "harm": -5.42,
+      "residue": 0.22,
+      "benefit": 0.0,
+      "goal": 0.0
+     }
+    },
+    "M3_Gcontact": {
+     "theta_end": {
+      "F": 0.00013,
+      "harm": -1e-05,
+      "residue": -1e-05,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 2e-06,
+      "harm": 0.0,
+      "residue": 1e-06,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 3.4,
+      "harm": -6.82,
+      "residue": -0.27,
+      "benefit": 0.0,
+      "goal": 0.0
+     }
+    }
+   },
+   "T2_FULL_EVAL": {
+    "n_steps": 600,
+    "n_select_calls": 127,
+    "n_ticks_multi": 127,
+    "committed_frac": 0.9921259842519685,
+    "K_mean": 32.0,
+    "nonzero_r_steps": 134,
+    "contact_steps": 27,
+    "contact_neg": 22,
+    "contact_pos": 5,
+    "uncommitted_softmax_norm_entropy_mean": 0.9999518644276748,
+    "uncommitted_softmax_pmax_mean": 0.03264096891078221,
+    "window_steps_mean": 4.724409448818897,
+    "weighted_spread_mean": {
+     "F": 0.002802,
+     "harm": 0.030383,
+     "residue": 0.004087,
+     "benefit": 0.057661,
+     "goal": 0.0
+    },
+    "vote_abs_mean": {
+     "F": 0.004968,
+     "harm": 0.061325,
+     "residue": 0.012624,
+     "benefit": 0.132662,
+     "goal": 0.0
+    },
+    "ticks_committed_with_R_Gall": 73,
+    "ticks_all_with_R_Gall": 74,
+    "Gall": {
+     "M1_mean_drift_per_event": {
+      "F": -0.151,
+      "harm": 0.397,
+      "residue": 0.288,
+      "benefit": -0.342,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 52.0,
+      "harm": 10.0,
+      "residue": 31.0,
+      "benefit": 11.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -2.155152156301914,
+       "t": -0.7086283525591865,
+       "n": 126,
+       "n_for_t2": 1003.6758791667334
+      },
+      "harm": {
+       "beta": 1.0613864614591892,
+       "t": 2.458277431950381,
+       "n": 126,
+       "n_for_t2": 83.40051801564123
+      },
+      "residue": {
+       "beta": 1.6151982192501815,
+       "t": 2.2009674477221095,
+       "n": 126,
+       "n_for_t2": 104.04070769868238
+      },
+      "benefit": {
+       "beta": -0.504257694939871,
+       "t": -2.286202100137613,
+       "n": 126,
+       "n_for_t2": 96.42758668631275
+      },
+      "goal": null
+     }
+    },
+    "ticks_committed_with_R_Gcontact": 24,
+    "ticks_all_with_R_Gcontact": 25,
+    "Gcontact": {
+     "M1_mean_drift_per_event": {
+      "F": -0.208,
+      "harm": 0.667,
+      "residue": 0.583,
+      "benefit": -0.583,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 31.0,
+      "harm": 2.0,
+      "residue": 4.0,
+      "benefit": 3.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -0.15109385818333787,
+       "t": -0.04813516937364753,
+       "n": 126,
+       "n_for_t2": 217523.17208233464
+      },
+      "harm": {
+       "beta": 1.0876020602560585,
+       "t": 2.4449316092284654,
+       "n": 126,
+       "n_for_t2": 84.31349762542658
+      },
+      "residue": {
+       "beta": 1.6006177529305048,
+       "t": 2.114432283904914,
+       "n": 126,
+       "n_for_t2": 112.73089997834573
+      },
+      "benefit": {
+       "beta": -0.48531869894664065,
+       "t": -2.1304875856656724,
+       "n": 126,
+       "n_for_t2": 111.03822752120851
+      },
+      "goal": null
+     }
+    },
+    "summary": {
+     "reward_per_100": -1.2571005274852116,
+     "harm_contacts": 22,
+     "hazard_approach": 31,
+     "benefit_approach": 76,
+     "benefit_contacts": 5,
+     "episodes_ended": 11
+    },
+    "M3_Gall": {
+     "theta_end": {
+      "F": 5e-05,
+      "harm": -0.00871,
+      "residue": -0.00096,
+      "benefit": 0.01831,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 7e-06,
+      "harm": 0.000138,
+      "residue": 4.7e-05,
+      "benefit": 0.000296,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 0.31,
+      "harm": -2.58,
+      "residue": -0.83,
+      "benefit": 2.53,
+      "goal": 0.0
+     }
+    },
+    "M3_Gcontact": {
+     "theta_end": {
+      "F": 0.00011,
+      "harm": -0.00822,
+      "residue": -0.00116,
+      "benefit": 0.01739,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 6e-06,
+      "harm": 0.000134,
+      "residue": 4.7e-05,
+      "benefit": 0.000287,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 0.69,
+      "harm": -2.51,
+      "residue": -1.01,
+      "benefit": 2.48,
+      "goal": 0.0
+     }
+    }
+   },
+   "T3_FULL_SHUF": {
+    "n_steps": 600,
+    "n_select_calls": 85,
+    "n_ticks_multi": 85,
+    "committed_frac": 0.9882352941176471,
+    "K_mean": 32.0,
+    "nonzero_r_steps": 25,
+    "contact_steps": 6,
+    "contact_neg": 3,
+    "contact_pos": 3,
+    "uncommitted_softmax_norm_entropy_mean": 0.9999897543837654,
+    "uncommitted_softmax_pmax_mean": 0.03199350914227437,
+    "window_steps_mean": 7.0588235294117645,
+    "weighted_spread_mean": {
+     "F": 0.002605,
+     "harm": 0.008472,
+     "residue": 0.000438,
+     "benefit": 0.003789,
+     "goal": 0.0
+    },
+    "vote_abs_mean": {
+     "F": 0.005544,
+     "harm": 0.021657,
+     "residue": 0.001889,
+     "benefit": 0.009439,
+     "goal": 0.0
+    },
+    "ticks_committed_with_R_Gall": 13,
+    "ticks_all_with_R_Gall": 14,
+    "Gall": {
+     "M1_mean_drift_per_event": {
+      "F": -0.615,
+      "harm": 0.385,
+      "residue": -0.077,
+      "benefit": 0.231,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 3.0,
+      "harm": 11.0,
+      "residue": 360.0,
+      "benefit": 60.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -12.219673591950302,
+       "t": -4.654363145348165,
+       "n": 84,
+       "n_for_t2": 15.510248189872032
+      },
+      "harm": {
+       "beta": 16.18846403351892,
+       "t": 3.4594213638916007,
+       "n": 84,
+       "n_for_t2": 28.075813650819985
+      },
+      "residue": {
+       "beta": -18.679375792842475,
+       "t": -4.522313187576106,
+       "n": 84,
+       "n_for_t2": 16.429260136238536
+      },
+      "benefit": {
+       "beta": 41.12184548779654,
+       "t": 3.025629699517794,
+       "n": 84,
+       "n_for_t2": 36.70352098353983
+      },
+      "goal": null
+     }
+    },
+    "ticks_committed_with_R_Gcontact": 4,
+    "ticks_all_with_R_Gcontact": 5,
+    "Gcontact": {
+     "M1_mean_drift_per_event": {
+      "F": -0.75,
+      "harm": 0.5,
+      "residue": 0.25,
+      "benefit": 0.25,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 1.0,
+      "harm": 4.0,
+      "residue": 44.0,
+      "benefit": 44.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -10.42587657872572,
+       "t": -3.811108197128671,
+       "n": 84,
+       "n_for_t2": 23.133253677339592
+      },
+      "harm": {
+       "beta": 15.064601317722898,
+       "t": 3.1687522871811296,
+       "n": 84,
+       "n_for_t2": 33.46283231160786
+      },
+      "residue": {
+       "beta": -15.843789212219148,
+       "t": -3.684743510019047,
+       "n": 84,
+       "n_for_t2": 24.747125011440524
+      },
+      "benefit": {
+       "beta": 36.749918392875934,
+       "t": 2.6582683850235322,
+       "n": 84,
+       "n_for_t2": 47.54902597177671
+      },
+      "goal": null
+     }
+    },
+    "summary": {
+     "reward_per_100": 0.018613755404949195,
+     "harm_contacts": 3,
+     "hazard_approach": 5,
+     "benefit_approach": 14,
+     "benefit_contacts": 3,
+     "episodes_ended": 3
+    },
+    "M3_Gall": {
+     "theta_end": {
+      "F": -7e-05,
+      "harm": 0.00069,
+      "residue": -0.00016,
+      "benefit": 0.00032,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 3e-06,
+      "harm": 1.6e-05,
+      "residue": 5e-06,
+      "benefit": 7e-06,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": -1.02,
+      "harm": 1.8,
+      "residue": -1.36,
+      "benefit": 1.82,
+      "goal": 0.0
+     }
+    },
+    "M3_Gcontact": {
+     "theta_end": {
+      "F": -6e-05,
+      "harm": 0.00064,
+      "residue": -0.00014,
+      "benefit": 0.0003,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 3e-06,
+      "harm": 1.6e-05,
+      "residue": 5e-06,
+      "benefit": 7e-06,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": -0.85,
+      "harm": 1.68,
+      "residue": -1.2,
+      "benefit": 1.7,
+      "goal": 0.0
+     }
+    }
+   }
+  }
+ },
+ "42": {
+  "gate_n": 1136,
+  "reward_by_ttype": {
+   "benefit_approach": {
+    "n": 1400,
+    "min": 0.014166666269302368,
+    "max": 0.05000000238418579,
+    "mean": 0.03175660367565496
+   },
+   "agent_caused_hazard": {
+    "n": 471,
+    "min": -0.4,
+    "max": -0.4,
+    "mean": -0.4
+   },
+   "none": {
+    "n": 646,
+    "min": 0.0,
+    "max": 0.0,
+    "mean": 0.0
+   },
+   "env_caused_hazard": {
+    "n": 35,
+    "min": -0.5833333373069763,
+    "max": -0.5600000023841858,
+    "mean": -0.5675430841105324
+   },
+   "hazard_approach": {
+    "n": 402,
+    "min": -0.07500000000000001,
+    "max": -0.01944444477558136,
+    "mean": -0.042336720906531636
+   },
+   "resource": {
+    "n": 46,
+    "min": 0.33666666626930236,
+    "max": 0.3619999980926514,
+    "mean": 0.3489416056612264
+   }
+  },
+  "arms": {
+   "T1_FULL": {
+    "n_steps": 600,
+    "n_select_calls": 87,
+    "n_ticks_multi": 87,
+    "committed_frac": 0.9885057471264368,
+    "K_mean": 32.0,
+    "nonzero_r_steps": 48,
+    "contact_steps": 8,
+    "contact_neg": 8,
+    "contact_pos": 0,
+    "uncommitted_softmax_norm_entropy_mean": 0.9999991777115378,
+    "uncommitted_softmax_pmax_mean": 0.03133020219866815,
+    "window_steps_mean": 6.896551724137931,
+    "weighted_spread_mean": {
+     "F": 0.000472,
+     "harm": 4.6e-05,
+     "residue": 0.000193,
+     "benefit": 0.0,
+     "goal": 0.0
+    },
+    "vote_abs_mean": {
+     "F": 0.000731,
+     "harm": 4.3e-05,
+     "residue": 0.000871,
+     "benefit": 0.0,
+     "goal": 0.0
+    },
+    "ticks_committed_with_R_Gall": 19,
+    "ticks_all_with_R_Gall": 20,
+    "Gall": {
+     "M1_mean_drift_per_event": {
+      "F": -0.105,
+      "harm": 0.105,
+      "residue": -0.263,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 262.0,
+      "harm": 224.0,
+      "residue": 23.0,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -1.6778134560417695,
+       "t": -0.08523694069219141,
+       "n": 86,
+       "n_for_t2": 47348.11951258653
+      },
+      "harm": {
+       "beta": 81.17807108652582,
+       "t": 0.41068894072502565,
+       "n": 86,
+       "n_for_t2": 2039.5409354481055
+      },
+      "residue": {
+       "beta": 17.169583740241528,
+       "t": 0.7837283115330108,
+       "n": 86,
+       "n_for_t2": 560.0507348542749
+      },
+      "benefit": null,
+      "goal": null
+     }
+    },
+    "ticks_committed_with_R_Gcontact": 7,
+    "ticks_all_with_R_Gcontact": 8,
+    "Gcontact": {
+     "M1_mean_drift_per_event": {
+      "F": -0.571,
+      "harm": -0.286,
+      "residue": -0.429,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 3.0,
+      "harm": 38.0,
+      "residue": 5.0,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -9.650644338290874,
+       "t": -0.46574444385231933,
+       "n": 86,
+       "n_for_t2": 1585.8535448154041
+      },
+      "harm": {
+       "beta": -2.495934212333756,
+       "t": -0.01196845664385362,
+       "n": 86,
+       "n_for_t2": 2401497.5106971567
+      },
+      "residue": {
+       "beta": 28.581818725066412,
+       "t": 1.244651415557242,
+       "n": 86,
+       "n_for_t2": 222.05623285733893
+      },
+      "benefit": null,
+      "goal": null
+     }
+    },
+    "summary": {
+     "reward_per_100": -0.4345992077390354,
+     "harm_contacts": 8,
+     "hazard_approach": 4,
+     "benefit_approach": 36,
+     "benefit_contacts": 0,
+     "episodes_ended": 4
+    },
+    "M3_Gall": {
+     "theta_end": {
+      "F": 4e-05,
+      "harm": 0.0,
+      "residue": 3e-05,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 1e-06,
+      "harm": 0.0,
+      "residue": 1e-06,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 1.69,
+      "harm": 0.72,
+      "residue": 1.57,
+      "benefit": 0.0,
+      "goal": 0.0
+     }
+    },
+    "M3_Gcontact": {
+     "theta_end": {
+      "F": 3e-05,
+      "harm": 0.0,
+      "residue": 2e-05,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 1e-06,
+      "harm": 0.0,
+      "residue": 1e-06,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 1.3,
+      "harm": 0.93,
+      "residue": 1.15,
+      "benefit": 0.0,
+      "goal": 0.0
+     }
+    }
+   },
+   "T2_FULL_EVAL": {
+    "n_steps": 600,
+    "n_select_calls": 135,
+    "n_ticks_multi": 135,
+    "committed_frac": 0.9925925925925926,
+    "K_mean": 32.0,
+    "nonzero_r_steps": 169,
+    "contact_steps": 46,
+    "contact_neg": 39,
+    "contact_pos": 7,
+    "uncommitted_softmax_norm_entropy_mean": 0.9999851133544815,
+    "uncommitted_softmax_pmax_mean": 0.03148558045736972,
+    "window_steps_mean": 4.444444444444445,
+    "weighted_spread_mean": {
+     "F": 0.00076,
+     "harm": 0.006434,
+     "residue": 0.001243,
+     "benefit": 0.005679,
+     "goal": 0.0
+    },
+    "vote_abs_mean": {
+     "F": 0.000802,
+     "harm": 0.008798,
+     "residue": 0.002511,
+     "benefit": 0.005184,
+     "goal": 0.0
+    },
+    "ticks_committed_with_R_Gall": 85,
+    "ticks_all_with_R_Gall": 86,
+    "Gall": {
+     "M1_mean_drift_per_event": {
+      "F": 0.024,
+      "harm": -0.2,
+      "residue": 0.071,
+      "benefit": -0.247,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 4246.0,
+      "harm": 30.0,
+      "residue": 449.0,
+      "benefit": 25.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": 6.391962020629607,
+       "t": 0.37209566536267363,
+       "n": 134,
+       "n_for_t2": 3871.288772377222
+      },
+      "harm": {
+       "beta": 6.161829258973813,
+       "t": 1.5964527534213462,
+       "n": 134,
+       "n_for_t2": 210.30647746361365
+      },
+      "residue": {
+       "beta": 9.202008604756161,
+       "t": 1.8796969821776024,
+       "n": 134,
+       "n_for_t2": 151.70122974583623
+      },
+      "benefit": {
+       "beta": 3.9070684024962823,
+       "t": 0.6961090000663741,
+       "n": 134,
+       "n_for_t2": 1106.1404955051596
+      },
+      "goal": null
+     }
+    },
+    "ticks_committed_with_R_Gcontact": 43,
+    "ticks_all_with_R_Gcontact": 44,
+    "Gcontact": {
+     "M1_mean_drift_per_event": {
+      "F": -0.163,
+      "harm": -0.326,
+      "residue": -0.186,
+      "benefit": -0.372,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 77.0,
+      "harm": 10.0,
+      "residue": 61.0,
+      "benefit": 9.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": 1.7841909329767836,
+       "t": 0.09738684252063178,
+       "n": 134,
+       "n_for_t2": 56515.063380351115
+      },
+      "harm": {
+       "beta": 6.790455429035355,
+       "t": 1.651522010461374,
+       "n": 134,
+       "n_for_t2": 196.51515920906346
+      },
+      "residue": {
+       "beta": 7.279367258942074,
+       "t": 1.386607487008778,
+       "n": 134,
+       "n_for_t2": 278.7774928468812
+      },
+      "benefit": {
+       "beta": 2.7513108530820745,
+       "t": 0.4593753254388505,
+       "n": 134,
+       "n_for_t2": 2539.9751137408152
+      },
+      "goal": null
+     }
+    },
+    "summary": {
+     "reward_per_100": -2.0660930715998016,
+     "harm_contacts": 39,
+     "hazard_approach": 25,
+     "benefit_approach": 98,
+     "benefit_contacts": 7,
+     "episodes_ended": 14
+    },
+    "M3_Gall": {
+     "theta_end": {
+      "F": 0.0002,
+      "harm": 0.00181,
+      "residue": 0.00093,
+      "benefit": 0.00143,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 2e-06,
+      "harm": 1.7e-05,
+      "residue": 1e-05,
+      "benefit": 1.5e-05,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 3.58,
+      "harm": 4.38,
+      "residue": 3.63,
+      "benefit": 3.92,
+      "goal": 0.0
+     }
+    },
+    "M3_Gcontact": {
+     "theta_end": {
+      "F": 0.00018,
+      "harm": 0.00165,
+      "residue": 0.00092,
+      "benefit": 0.00132,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 2e-06,
+      "harm": 1.6e-05,
+      "residue": 1e-05,
+      "benefit": 1.5e-05,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": 3.41,
+      "harm": 4.11,
+      "residue": 3.59,
+      "benefit": 3.7,
+      "goal": 0.0
+     }
+    }
+   },
+   "T3_FULL_SHUF": {
+    "n_steps": 600,
+    "n_select_calls": 81,
+    "n_ticks_multi": 81,
+    "committed_frac": 0.9876543209876543,
+    "K_mean": 32.0,
+    "nonzero_r_steps": 22,
+    "contact_steps": 3,
+    "contact_neg": 2,
+    "contact_pos": 1,
+    "uncommitted_softmax_norm_entropy_mean": 0.9999990259931971,
+    "uncommitted_softmax_pmax_mean": 0.03133701728452994,
+    "window_steps_mean": 7.407407407407407,
+    "weighted_spread_mean": {
+     "F": 0.000402,
+     "harm": 0.001939,
+     "residue": 3.1e-05,
+     "benefit": 0.001409,
+     "goal": 0.0
+    },
+    "vote_abs_mean": {
+     "F": 0.000782,
+     "harm": 0.006703,
+     "residue": 0.000127,
+     "benefit": 0.001356,
+     "goal": 0.0
+    },
+    "ticks_committed_with_R_Gall": 7,
+    "ticks_all_with_R_Gall": 8,
+    "Gall": {
+     "M1_mean_drift_per_event": {
+      "F": -0.571,
+      "harm": 0.286,
+      "residue": 0.143,
+      "benefit": 0.0,
+      "goal": 0.0
+     },
+     "M1_events_for_2sd": {
+      "F": 3.0,
+      "harm": 10.0,
+      "residue": 80.0,
+      "benefit": 2285714286.0,
+      "goal": 0.0
+     },
+     "M2_vote_regression": {
+      "F": {
+       "beta": -10.414556809290035,
+       "t": -1.199877865893788,
+       "n": 80,
+       "n_for_t2": 222.26746398321018
+      },
+      "harm": {
+       "beta": 0.1894264173503927,
+       "t": 0.03952204471456596,
+       "n": 80,
+       "n_for_t2": 204866.60381508115
+      },
+      "residue": {
+       "beta": -8.68571112800138,
+       "t": -0.17279937580227026,
+       "n": 80,
+       "n_for_t2": 10716.812677360962
+      },
+      "benefit": {
+       "beta": 11.709166023686436,
+       "t": 1.2354252182800878,
+       "n": 80,
+       "n_for_t2": 209.66071085967374
+      },
+      "goal": null
+     }
+    },
+    "ticks_committed_with_R_Gcontact": 2,
+    "ticks_all_with_R_Gcontact": 3,
+    "Gcontact": {
+     "M2_vote_regression": {
+      "F": {
+       "beta": -1.0021663910543148,
+       "t": -0.12694673347312244,
+       "n": 80,
+       "n_for_t2": 19856.69283365565
+      },
+      "harm": {
+       "beta": 0.9064653572991824,
+       "t": 0.20988452920508552,
+       "n": 80,
+       "n_for_t2": 7264.222255331716
+      },
+      "residue": {
+       "beta": -6.571700962543664,
+       "t": -0.1450447898741264,
+       "n": 80,
+       "n_for_t2": 15210.577803788176
+      },
+      "benefit": {
+       "beta": 5.56357324789605,
+       "t": 0.6467100624509305,
+       "n": 80,
+       "n_for_t2": 765.1220914177703
+      },
+      "goal": null
+     }
+    },
+    "summary": {
+     "reward_per_100": -0.02559523592392604,
+     "harm_contacts": 2,
+     "hazard_approach": 1,
+     "benefit_approach": 18,
+     "benefit_contacts": 1,
+     "episodes_ended": 3
+    },
+    "M3_Gall": {
+     "theta_end": {
+      "F": -1e-05,
+      "harm": 0.0001,
+      "residue": -0.0,
+      "benefit": -1e-05,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 0.0,
+      "harm": 2e-06,
+      "residue": 0.0,
+      "benefit": 1e-06,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": -2.16,
+      "harm": 2.01,
+      "residue": -1.04,
+      "benefit": -0.27,
+      "goal": 0.0
+     }
+    },
+    "M3_Gcontact": {
+     "theta_end": {
+      "F": -1e-05,
+      "harm": 8e-05,
+      "residue": -0.0,
+      "benefit": -1e-05,
+      "goal": 0.0
+     },
+     "per_step_inc_sd": {
+      "F": 0.0,
+      "harm": 2e-06,
+      "residue": 0.0,
+      "benefit": 1e-06,
+      "goal": 0.0
+     },
+     "z_end": {
+      "F": -1.31,
+      "harm": 1.68,
+      "residue": -1.06,
+      "benefit": -0.31,
+      "goal": 0.0
+     }
+    }
+   }
+  }
+ }
+}

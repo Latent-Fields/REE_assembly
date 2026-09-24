@@ -1,6 +1,7 @@
 # Grounded main-channel valuation: frontier design and feasibility (E3 channel worth learned from experienced consequence)
 
-- **STATUS: INTERIM (steps 1-3 of 6), 2026-09-24.** Steps 4-6 (feasibility measurement, adjudication battery, recommendation) follow in the FINAL version of this file.
+- **STATUS: FINAL, 2026-09-24T22:25Z.** The interim (steps 1-3) was `3553d59a13`. Changes since: premise P-c is CORRECTED (section 0), M1 and M3 are amended after the step-4 diagnosis (section 3a), and sections 4-6 are added.
+- **Domain reached: D1.** The grounded signal and the channel votes exist, are measured and are attributable, open-loop, in 9 closed-loop arms (bit-identical canaries) plus 3 off-policy streams. **No candidate was run closed-loop.** D2/D3 is the battery's job (section 5).
 - Session `bt0924-valuation` (Worker G, breakthrough integration pass `orchestrate-20260924-breakthrough`), chip_ref `chip-20260924-grounded-valuation-frontier-design`.
 - **Design and feasibility only.** Nothing lands in ree_core, nothing is queued, no chips are spawned and no registry is edited.
 - Edge under design: GFLAG-0487's "experienced consequence -> main-channel valuation weights". Follows from `e3_evaluation_edge_test_20260924.md` ADDENDUM 1-3 (origin `5e3c956b41`) and `e2_rollout_divergence_and_proposal_state_dependence_20260924.md` ADDENDUM 3.
@@ -16,11 +17,10 @@
 - **P-b. Per-candidate, per-channel terms are readable without changing behaviour.**
   - `e3_score_decomp_enabled=True` fills `_last_traj_components` per candidate (`:1821-1834`) and `last_score_decomp["per_candidate"]` (`:3953-3957`).
   - It is diagnostics-only. A canary in step 4 checks that turning it on is behaviour-neutral.
-- **P-c. E3 has two choice rules, and a channel weight only has authority on one of them.**
-  - A **committed** tick takes the argmin (`:4507`).
-  - An **uncommitted** tick samples `softmax(-scores / T)` (`:3976`, `:4531`) with `T = 1.0`, passed by the harness (`_harness.py`, `select_action(..., temperature=1.0)`).
-  - Score spreads in this regime are about 0.001-0.05 (ADDENDUM 1-2). At T = 1, uncommitted sampling is therefore close to uniform, and channel weights barely move it.
-  - **So any valuation rule acts mainly through committed ticks.** Credit assignment has to know which kind of tick it is crediting. The committed fraction is measured in step 4.
+- **P-c. E3 has two choice rules, and a channel weight only has authority on the committed one. CORRECTED in step 4: this does not bind here.**
+  - A **committed** tick takes the argmin (`:4509`).
+  - An **uncommitted** tick samples `softmax(-scores / T)` (`:3976`, `:4531`) with `T = 1.0`, passed by the harness (`_harness.py:321`). The measured normalised entropy of that softmax is 0.9999, so it is uniform.
+  - **Measured:** 98.6-99.3% of E3 ticks are committed in every arm (section 4). So channel weights have authority on almost every tick in this regime. The interim's worry was real in mechanism but negligible in rate.
 - **P-d. ARC-108 learned gating does not do this job.** This is inherited from `e3_evaluation_edge_test` ADDENDUM 3 and re-read here, not re-probed:
   - its `w_chan` re-weights only the modulatory accumulator (`config.py:1436-1437`);
   - its teaching signal is an internal evaluator proxy, `benefit_eval - harm_eval` (`e3_selector.py:4848-4855`);
@@ -32,7 +32,9 @@
 - **P-f. Contact and proximity events are separable on the scalar alone,** by magnitude (code read):
   - hazard contact `-hazard_harm = -0.5` and resource contact `+0.3` (`causal_grid_world.py:273, 275`);
   - proximity shaping at most `0.05 x field` (harm) and `0.03 x field` (benefit) (`:339-340`).
-  - A magnitude threshold on the received scalar is therefore a legitimate contact-only signal. This is confirmed empirically in step 4.
+  - A magnitude threshold on the received scalar is therefore a legitimate contact-only signal.
+  - **Confirmed empirically** in 9,000 labelled steps (3 seeds): contacts have |r| of 0.33-0.583, and proximity steps have |r| of at most 0.083. The 0.1 threshold is clean on every seed.
+- **P-g. The goal channel is dead in this regime (measured).** `goal_weight` is 1.0 here, but the goal term is 0.0 on every E3 tick in all 9 arms, because the goal state is never active (`e3_selector.py:1757`). The goal channel is excluded, so the battery calibrates FOUR channels: F, harm, residue and benefit.
 
 ## 1. Prior-art scope and classification: **Class S (synthesis-required)**
 
@@ -143,3 +145,226 @@ They are designed to disagree on K5. Every candidate is run with both.
 Section 5 places the arms where those differences change the P1/P2 readout.
 
 **Learning rates and feasibility:** measured in section 4 (FINAL), from the event rates that are actually available.
+
+### 3a. Amendments forced by the step-4 diagnosis (made before any candidate was run closed-loop)
+
+The frontier doc's Step 6 ("diagnose failures and synthesize successors") applied at D1. Two structural defects showed up in the recorded streams (section 4.3). Each is fixed here, and the unfixed rule is kept as a control.
+
+- **Votes are one-sided.** The chosen candidate is the argmin of the summed score, so a dominant channel votes FOR the pick on almost every tick. In T2, the fraction of committed ticks on which each channel voted for the pick (F / harm / residue / benefit) was:
+  - s42: 0.39 / 0.99 / 0.58 / 0.97;
+  - s43: 0.59 / 0.69 / 0.38 / 0.68;
+  - s44: 0.83 / 0.14 / 0.38 / 0.87. On s44 benefit overrides harm on 86% of ticks, which is the domination itself.
+- **So M1's raw rule, sign(R) x sign(v), mostly measures the OUTCOME BASE RATE, not channel validity.**
+  - On a harm-dominated stream (T2 s42: 38 negative vs 5 positive contact windows), it pushes every dominant channel down, harm included.
+  - Measured drift per event: harm -0.33, benefit -0.37, residue -0.19, F -0.16. That is the K3 reward-hacking direction, produced by a common mode rather than by evidence.
+  - **M1 raw is therefore kept as the POSITIVE CONTROL for the K3 detector:** the battery must see it fire.
+  - **M1c** (the candidate) uses a centred vote, v_c minus its running mean (EMA 0.05), and a centred outcome, sign(R_t - Rbar), where Rbar is the running mean contact outcome per committed tick.
+- **M3 with the ARC-108 asymmetry (depression x0.5) has a potentiation bias.**
+  - With a baseline-subtracted delta of about zero mean, halving the negative half makes net drift proportional to the mean vote, so dominant channels are potentiated.
+  - Open-loop z on T2 s42 was 3.4 to 4.1 on ALL four channels at asym 0.5, and 0.06 to 2.0 at asym 1.0. On s44 it was -2.5 to 2.5 at asym 0.5, and -0.2 to 0.5 at asym 1.0.
+  - **M3n** (the candidate) uses asym 1.0, and votes normalised by each channel's running mean |v| so the weight step is scale-free. That is needed because at ARC-108's eta = 0.01 with raw votes, theta moved at most 0.018 in 600 steps (section 4.4).
+  - Normalising votes does NOT reintroduce ADDENDUM 2's noise-gets-a-vote defect. Here the normalised vote only sets step size, and the SIGN of the step comes from the grounded delta. A channel whose vote does not covary with delta random-walks, and M4 bounds that walk.
+- **M2 gains action-class fixed effects:** R_t ~ b_{a(t)} + sum_c beta_c v_c(t), where a(t) is the first-action class of the pick.
+  - Off-policy, an UNTRAINED head's vote predicted consumptions at t = 2.73 without fixed effects (s43), and at 1.74 with them.
+  - The mechanism: any head's vote is partly a fixed function of the action class, so it inherits per-action base rates. Fixed effects remove that route.
+- **Section 5 runs the amended candidates:** M1c, M2 (with fixed effects), M3n, and M4 matched to each. M1 raw is the K3 positive control, and M0 = T2 is the frozen reference.
+
+## 4. Feasibility (measured; D1, open-loop on recorded streams)
+
+**Probes:**
+- `probes/valuation/valuation_feasibility_probe.py` re-runs ADDENDUM 1's TB regime with a read-only tap on `E3.select`: the per-candidate channel terms, selected index and committed flag per tick, plus the per-step reward and transition type.
+- `probes/valuation/analyze_feasibility.py` computes the tables below.
+- `probes/valuation/offpolicy_vote_probe.py` + `analyze_offpolicy.py`: a uniform-random-action stream of 1,500 steps per seed. At each state the 5 scaffold candidates are rolled out once by E2 (COV head, depth 2) and scored under untrained, trained and shuffled heads. Votes for the executed action are regressed on the grounded outcome.
+- `probes/valuation/common_mode_check.py` backs section 3a.
+- To re-run, copy `probes/rollout/*.py` and `probes/evaluation/evaluation_edge_probe.py` next to these scripts, together with a detached ree-v3 worktree at `ree-v3-wt/` (@ `44c55300ca`). Run `valuation_feasibility_probe.py --seed s` and `offpolicy_vote_probe.py --seed s` for s in 43 44 42, then the two analyzers.
+- Settings: seeds 42/43/44; world_dim 32 (deployed); Mac CPU, 2 threads, one process at a time. The TB closed loop costs **17-20 s of wall time per 600 steps**, plus a 90-120 s preamble per seed per process.
+- Raw per-tick JSON (`VF_s*.json`, `OP_s*.json`, 1-2 MB each) is kept in the session scratch dir `.scratch/breakthrough-20260924/valuation/results/`. The committed `VF_analysis.json` and `OP_analysis.json` carry every number cited here.
+
+**Canary: the tap is inert.** All 9 closed-loop arms reproduce `TB_s{42,43,44}.json` bit-for-bit: harm contacts, hazard-proximity steps, consumptions, approach steps, reward and episodes.
+
+### 4.1 E3 tick structure and grounded event rates (per 600 closed-loop steps; seeds 42 / 43 / 44)
+
+| arm | E3 ticks | committed | env steps per tick | ticks whose window has R != 0, G-all | same, G-contact | contact steps, harm- / benefit+ |
+|---|---|---|---|---|---|---|
+| T1 FULL | 87 / 82 / 83 | 98.8-98.9% | 6.9 / 7.3 / 7.2 | 19 / 21 / 9 | **7 / 9 / 5** | 8-0 / 5-4 / 6-0 |
+| T2 FULL+EVAL | 135 / 81 / 127 | 98.8-99.3% | 4.4 / 7.4 / 4.7 | 85 / 25 / 73 | **43 / 7 / 24** | 39-7 / 6-1 / 22-5 |
+| T3 FULL+SHUF | 81 / 71 / 85 | 98.6-98.8% | 7.4 / 8.5 / 7.1 | 7 / 4 / 13 | **2 / 1 / 4** | 2-1 / 1-0 / 3-3 |
+
+- 32 candidates per tick (the R5b scaffold plus the CEM pool).
+- Uncommitted ticks (0.7-1.4%) sample from a uniform softmax (normalised entropy 0.9999).
+- **Consumption is the scarce event:** 0-7 per 600 steps in every arm.
+
+### 4.2 What the candidates would credit: channel spreads and votes at the chosen candidate (T2; s42 / s43 / s44)
+
+| channel | weighted cross-candidate std | mean abs vote (raw units) |
+|---|---|---|
+| harm_eval | 0.0064 / 0.0182 / 0.0304 | 0.0088 / 0.0138 / 0.0613 |
+| benefit_eval | 0.0057 / 0.0216 / 0.0577 | 0.0052 / 0.0167 / 0.1327 |
+| residue | 0.0012 / 0.0002 / 0.0041 | 0.0025 / 0.0002 / 0.0126 |
+| F | 0.0008 / 0.0010 / 0.0028 | 0.0008 / 0.0006 / 0.0050 |
+
+The evaluator terms out-spread residue about 5-95x. This re-measures ADDENDUM 2's closed-loop domination at the tick level.
+
+### 4.3 Direction previews on the agent's own T2 stream (open loop, G-contact; what each rule WOULD do)
+
+| rule | harm | benefit | residue | F |
+|---|---|---|---|---|
+| M2 vote-regression t (no fixed effects) | **+1.65 / +1.59 / +2.44** | +0.46 / -1.76 / -2.13 | +1.39 / -0.98 / +2.11 | +0.10 / +2.27 / -0.05 |
+| M1 raw, mean drift per contact event | -0.33 / +0.29 / +0.67 | **-0.37 / -0.43 / -0.58** | -0.19 / -0.57 / +0.58 | -0.16 / +0.57 / -0.21 |
+| M3 (ARC-108 constants) open-loop z | +4.11 / +2.27 / -2.51 | +3.70 / +0.78 / +2.48 | +3.59 / -2.09 / -1.01 | +3.41 / -0.37 / +0.69 |
+
+- **Every rule that looks at its own T2 stream says to trust harm_eval more and benefit_eval less** (M2 on harm 3/3 seeds and benefit 2/3; M1 raw on benefit 3/3). That is exactly the correction T2 needs: its harm rise is the benefit channel overriding harm (s44: harm votes for the pick on only 14% of ticks).
+- M3 at ARC-108 constants disagrees on benefit (positive on 3/3). Section 3a traced that to its asymmetry bias.
+- **The candidates therefore genuinely diverge on this stream.** That is the point of the battery.
+
+### 4.4 Can a weight move within budget? (T2 regime)
+
+- **Harm channel: FEASIBLE on-policy.**
+  - M2 needs 84-197 committed ticks for |t| = 2, about **400-930 env steps**.
+  - M1c at eta 0.05 needs about 23-46 contact events to move theta by ln 2, about **600-3,000 steps** (s43 slowest, at 7 contact ticks per 600). This is estimated from M1 raw's drift magnitudes of 0.3-0.6 per event; M1c's own drift was not computed.
+  - M3n (normalised votes, eta 0.01) needs roughly 25-250 events. That is a D0 estimate from the |delta| (0.3-0.6) and eligibility (1-5) magnitudes seen here, not measured.
+- **M3 at the literal ARC-108 constants: INFEASIBLE.** theta moved at most 0.018 in 600 steps (typically 1e-5 to 2e-3). Moving it by ln 2 would take more than 20,000 steps. Hence M3n.
+- **Benefit channel at CONSUMPTION grain: INFEASIBLE on-policy.**
+  - The pooled off-policy evidence (4.5) reaches t = 1.6 at 132 consumptions.
+  - T2's own policy yields 1-7 consumptions per 600 steps, so reaching |t| = 2 on-policy would take about 20,000-100,000 steps.
+  - Benefit calibration is feasible only via (a) G-all, where approach steps number 56-98 per 600 but K5 exposure applies, or (b) an off-policy or exploration fraction feeding the weight learner.
+- **The shuffled arm cannot be judged by raw end weights.** T3 yields 1-4 contact ticks per 600, so any rule barely moves there. "The shuffled heads got lower weights" could be won by INACTION. P2 must therefore be judged event-normalised against the M4 null band (V3 below). This is a negative-instrument trap: a comparison whose numerator and denominator come from the same starved search.
+
+### 4.5 Does a channel's vote carry the grounded consequence at all? (off-policy M2b; action fixed effects; 1,500 random steps per seed; t in the valid direction)
+
+| evaluator set | harm vote -> fewer harm contacts, s42 / s43 / s44 (pooled z) | benefit vote -> consumptions (pooled z) |
+|---|---|---|
+| trained (T2 heads) | +2.51 / +0.85 / +2.00 (**+3.09**) | -0.17 / +2.02 / +0.99 (**+1.64**) |
+| shuffled (T3 heads) | +1.90 / -0.74 / -2.22 (-0.61) | +0.09 / -1.07 / -0.16 (-0.66) |
+| untrained (T1 heads) | +0.23 / -0.74 / +3.42 (+1.68) | -0.43 / +1.74 / +0.09 (+0.81) |
+
+- Totals: 375 harm contacts and 132 consumptions over 4,500 steps.
+- **Pooled across seeds, the grounded signal separates trained from shuffled heads on both channels.** That is the programme-level falsifier's premise: the feature end is not empty.
+- **Per seed, the noise floor is |t| of about 2-3.4.** The untrained harm head reaches +3.42 on s44. So any P2 decision on a single seed is unsafe, and the battery needs pooled seeds plus a permutation null.
+- **The votes are computed on E2-PREDICTED depth-2 states,** which barely separate the one action that enters a hazard or resource cell (ADDENDUM 1-2's action-blindness). That caps how much consequence any valuation rule can attribute to a channel: grounded valuation can only calibrate what the features already carry.
+
+## 5. The adjudication battery (design; not run)
+
+**Mechanics.**
+- Every candidate runs INSIDE THE PROBE. A wrapper on `E3.select` applies the pending weight update to the four `E3Config` weight fields BEFORE the tick's scoring. It then records the new tick's votes, and accumulates the window outcome from the received scalar until the next tick.
+- Nothing is written to ree_core. OFF (M0) is bit-identical by construction.
+- **Learning phase:** 3,000 closed-loop steps with the rule online. Then the weights are frozen and evaluated for 600 steps in a fresh env of the primary ecology (seed s+500), and for 600 steps in the ALTERED ecology (3 hazards / 2 resources, seed s+1000).
+
+**Arms per seed.** Head sets × rules:
+- Head sets: {trained, shuffled, untrained}.
+- Rules: {M0, M1c, M2, M3n, M4 matched to each of M1c/M2/M3n}.
+- Signal: G-contact for all of those. M2 and M3n also run on G-all, to expose K5.
+- Positive control: **M1 raw** on trained heads.
+- **P3 causal re-runs, for survivors only:** frozen-learned weights, default weights, and a random weight vector with the same log-norm displacement, each evaluated in both ecologies.
+
+**Hard validity conditions.** These are non-compensable: any breach voids a PASS, whatever the aggregate.
+- **V1, no immobility or affordance removal.**
+  - Evaluation action entropy must be at least 0.5x T1's on the same seed.
+  - All 5 action classes must be executed at least once.
+  - Consumptions must not fall below T1's.
+  - A harm reduction bought by freezing (the s43 signature, entropy 0.05) is a FAIL.
+- **V2, scoring independence.** Success is scored ONLY on env-internal transition types (harm contacts, consumptions), and no candidate ever reads them. Approach steps are reported but never count as benefit success (K5).
+- **V3, event-normalised validity.**
+  - For each channel, weight displacement per grounded event is compared with M4's null distribution at the SAME event count.
+  - The shuffled and untrained channels must be at or below the null median.
+  - The trained harm channel must be above the null 95th percentile, and trained benefit likewise if the arm has at least 30 consumption events. Otherwise benefit is declared under-powered, not passed.
+  - Significance comes from a within-run permutation of R_t across ticks (at least 200 permutations), pooled over seeds.
+- **V4, harm floor (K3).**
+  - theta_harm at its floor on more than 25% of ticks is a FAIL, and so is theta_harm monotone-down while contacts rise.
+  - **The M1 raw positive control MUST trigger this detector. If it does not, the battery itself is invalid** (a negative instrument must prove it can fire).
+- **V5, transfer (K6).** Frozen weights must keep P1 versus T1 in the altered ecology. The T1/T2 baselines are measured fresh there, because none exist yet.
+- **V6, canary.** M0 arms must reproduce `TB_s*.json` T2/T3 bit-for-bit, as the tap did here.
+- **V7.** The residue weight must not hit its floor. Residue is the harm memory FULL relies on.
+
+**Adversarial checks** (frontier doc Step 5, mapped):
+
+| check | where it sits in the battery |
+|---|---|
+| proxy reward / metric gaming | G-all vs G-contact (K5), and V2 |
+| punishment avoidance / freezing / self-erasure | V1 |
+| removing the unethical affordance | V1; the action set and candidate set cannot be written by contract |
+| channel presence without content | shuffled and untrained heads, V3 |
+| hard-coded lookup | only 4 scalars are writable |
+| train/test memorisation | V5 |
+| seed luck | pooled seeds plus the permutation null |
+| common-mode credit | M1 raw control plus M4 |
+
+**Where the candidates are predicted to disagree** (the arms exist to test these predictions):
+
+| setting | M1c | M2 | M3n | M1 raw |
+|---|---|---|---|---|
+| trained heads, harm-dominated stream | harm up, benefit down | harm up, benefit down (on-policy t) | harm and benefit weights set by delayed contacts (sign open) | ALL down, so K3 fires |
+| shuffled heads | actively down, but only if events arrive | stays at default (t about 0) | random-walks, cannot beat M4 | follows the base rate |
+
+- Across all candidates, benefit at consumption grain is under-powered on-policy.
+- M3n alone credits contacts 3-8 steps after the pick across tick boundaries.
+
+**Pre-flight of the battery's own premises** (read-only, this session):
+
+| quantity the battery reads | producer (file:line @ `44c55300ca`) | grade |
+|---|---|---|
+| received scalar r_t | `experiments/_harness.py:354` (env.step), fed to `update_residue` `:361` | GREEN (measured) |
+| contact vs proximity by magnitude | `causal_grid_world.py:273, 275, 339-340`; 9,000 labelled steps | GREEN (measured, clean) |
+| per-candidate channel terms | `e3_selector.py:1821-1834`, `:3953-3957` (decomp) | GREEN (inert on 9/9 arms) |
+| selected index / committed flag | `SelectionResult`, `e3_selector.py:113-133`; argmin `:4509` | GREEN (98.6-99.3% committed) |
+| writable weights F / harm / residue / benefit | read per call at `e3_selector.py:1710-1732`, `:1737-1751` | GREEN. The benefit gate needs `benefit_weight > 0` (`:1738`), which the x4 bound keeps. |
+| lambda_eff = lambda_ethical | `config.py:1376` `affective_harm_scale` 0.0 | GREEN |
+| goal channel | `e3_selector.py:1757` (goal_state inactive) | **RED**: dead in this regime, so excluded |
+| benefit gate native | `e3_selector.py:695`, `:1737-1739`; gate_n 737-1136 | GREEN |
+| altered ecology | `CausalGridWorldV2(num_hazards=3, num_resources=2)`: obs dims 250/12/5, identical | AMBER: dims verified; no baselines yet; the encoder was trained on regime B |
+| on-policy event counts | section 4.1 | AMBER: harm is adequate; benefit consumption and shuffled-arm counts are too low. Mitigated by V3 and the under-powered declaration. |
+| feature informativeness | section 4.5 | AMBER: pooled only; E2 action-blindness caps it |
+
+**Budget.**
+- Per seed, the full grid is about 3 head sets × 8 rule-signal arms + 1 control + P3 re-runs, about 30 arms × 4,200 steps, about 60 min of CPU.
+- 5 seeds (42-46) come to about 5 CPU-hours. **That is a cloud run.** COMMON rule 4 caps a Mac probe at about 10 min.
+- **A Mac-sized smoke fits:** 1 seed, trained heads, M0 / M2 / M4, L = 1,500, about 6-8 min. It proves the in-probe weight writer, the M0 bit-identity and the K3 detector wiring.
+
+## 6. Recommendation (a proposal for the user; not a decision)
+
+1. **Prototype M2 first:** reward regression on channel votes, action fixed effects, t-gated. Run it with its matched M4 null and the M1-raw K3 positive control, on G-contact. Three reasons:
+   - It is the only candidate that is free of common-mode credit by construction.
+   - It has a principled null behaviour on uninformative channels.
+   - Its on-policy direction preview (harm t +1.6 to +2.4 on 3/3 T2 seeds) matches the calibration T2 needs, and it is feasible at harm grain within about 400-930 steps.
+2. **Run M1c and M3n alongside it,** as the deliberately different rivals.
+3. **Where to run it:**
+   - **Mac smoke first** (1 seed, about 8 min). It checks the weight writer, M0's bit-identity and that the K3 control fires.
+   - **Then the full battery on a cloud worker** (about 5 CPU-hours; about 1 h wall time if parallel per seed).
+4. **Honest expectation.**
+   - The most likely first result is a HARM-vs-BENEFIT TRADE-OFF calibration: harm and residue up relative to benefit, recovering T1's harm level while keeping part of T2's approach gain.
+   - It is NOT expected to learn benefit VALIDITY. At consumption grain the grounded signal is data-starved on-policy (4.4).
+   - Learning benefit validity needs either an exploration or random fraction feeding the weight learner off-policy (M2b pooled t = 1.6 at 4,500 steps), or the G-all signal under the K5 guard.
+   - That is a named sub-edge: **benefit consumption coverage**. ADDENDUM 1 only partly closed it, since its new positives are approach steps.
+5. **The smallest honest build, IF a candidate survives the battery.** This is `complicated (buildable)` once the battery picks the rule. Choosing the rule is `complex (probe-gated)` today.
+   - A default-OFF E3Config flag (for example `use_grounded_channel_valuation`).
+   - About 60-100 lines in E3:
+     - a per-tick vote capture reusing the existing score-decomposition terms;
+     - an outcome accumulator fed by the harm_signal the agent already receives through `update_residue`;
+     - the surviving rule, writing ONLY the four weight fields in bounded log space with the harm floor.
+   - Contracts: OFF bit-identity; bounds and floor enforced; no read of env info or transition types; the M1-raw K3 detector as a regression test.
+   - Validation then goes through `/queue-experiment`.
+6. **Named options for the user:**
+   - **(A)** Mac smoke, then the cloud battery. **Recommended.**
+   - **(B)** Mac smoke only, then decide.
+   - **(C)** Raise benefit consumption coverage first (an exploration fraction), since benefit validity is data-starved. The battery would then learn both trade-off and validity.
+   - **(D)** Park the edge. GFLAG-0487 then stays open with this record as its design.
+
+## Done / not done
+
+- **DONE:**
+  - Prior-art scope and Class S classification.
+  - Pre-registered phenomenon, falsifiers K1-K6 and contract.
+  - Four candidates plus two controls, amended after the D1 diagnosis.
+  - Feasibility in 9 closed-loop arms (bit-identical canaries) and 3 off-policy streams.
+  - The battery design, with a graded pre-flight.
+- **NOT DONE:**
+  - No candidate was run closed-loop (D2/D3 is the battery's job).
+  - No permutation null has been computed yet; the off-policy t values are parametric.
+  - No altered-ecology baselines.
+  - Seeds beyond 42-44.
+  - M3n's step-size estimate is D0.
+- **Limits:**
+  - Open-loop previews ignore feedback: as weights change, event rates change. A harm-down calibration slows its own learning, which is self-limiting.
+  - 600-step closed-loop streams.
+  - The off-policy votes use one-hot scaffold rollouts from the COV head, not the agent's CEM pool.
+  - Heads were trained on argmax one-hots (inherited).
