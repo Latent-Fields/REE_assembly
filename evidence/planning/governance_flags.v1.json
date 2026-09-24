@@ -6662,6 +6662,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0466",
+      "claim_ids": [
+        "SD-032a",
+        "MECH-268"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "While piloting V3-EXQ-1089 (MECH-268, ree-v3 ae57bfd7dc; pilot .scratch/orch-20260924/orch0924-mech268/pilot2_seed42.json), the DISCRETE mode register sat in internal_planning in EVERY arm, including saturation-off, and mode_switch rate was pinned. The exit condition needs salience > 1 while the top mode is external_task, and at near-zero drive both cannot hold at once, so the discrete register cannot show release in this regime whatever the saturation. That is an SD-032a exit-path defect, not a MECH-268 result; 1089 therefore reads the soft-vector top-mode occupancy instead. Route to the mode-governance-engagement work or an SD-032a substrate_queue item; read alongside open GFLAG-0457.",
+      "raised_by_session": "orchestrate-20260924-0808",
+      "raised_at": "2026-09-24T12:29:34Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
