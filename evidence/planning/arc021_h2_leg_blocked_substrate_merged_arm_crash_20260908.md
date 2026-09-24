@@ -9,6 +9,21 @@
 ---
 
 ## 1. The finding
+> **CORRECTION 2026-09-24 (buildcamp, chip-20260911-arc021-h2-contextmemory-inplace-write; fix
+> landed ree-v3 `b6f6733`).** The mechanism paragraph below is WRONG about the mutator and is kept as
+> the historical record. Measured by the 2026-09-24 pre-flight: `ContextMemory.write`'s
+> `.data[idx] = ...` does NOT advance the parameter's version counter, and `write()` is never called
+> in the probe config (stubbing it to a no-op reproduces the crash identically). The mutator is the
+> merged Adam step (an in-place parameter update); the anomaly trace named the forward that SAVED the
+> tensor (`ContextMemory.read`), not the mutator. The stale graph enters through the CARRIED ACTION:
+> `select_action` stores `_last_action` undetached and the next `sense()` passes it as `prev_action`
+> into SD-007 reafference, so step t's `z_world` carries step t-1's selection graph. Fix: default-OFF
+> `REEConfig.detach_carried_prev_action=True` (detaches `prev_action` at the encode call site; forward
+> bit-identical) -> MERGED 40/40 clean at `REEConfig.large`, `e1.context_memory.memory` still gets
+> gradient; `e1_deep.py` untouched. Contract `tests/contracts/test_arc021_h2_merged_optimizer_backward.py`.
+> Section 4 item 1 below is therefore DISCHARGED by a different fix than it names; the H2 driver must
+> set the flag in BOTH arms. The H2 run itself is still owed (not queued).
+
 
 `failure_autopsy_V3-EXQ-993a_2026-09-05`'s H2 probe sketch is explicit that the leg must **start from the existing driver** `ree-v3/experiments/v3_spark_arc021_three_loop_scale.py` ("START FROM THE EXISTING DRIVER, DO NOT AUTHOR A FOURTH"), lists six mandatory repairs, and then says in terms:
 
