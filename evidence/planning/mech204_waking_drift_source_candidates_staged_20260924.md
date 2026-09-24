@@ -1,4 +1,17 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+**Status: ANSWERED 2026-09-24 (candidate B + rider (i)), then B was BUILT and REFUSED at red-team. SECTIONS 4 AND 8 OF THIS FILE ARE WRONG -- read `mech204_sd076b_ou_redteam_blocking_20260924.md` before acting on anything here. Nothing in this file has been written to claims.yaml (or whichever registry).**
+
+> **CORRECTION, 2026-09-24T19:xxZ, same session.** Candidate B was ratified, built and
+> red-teamed. Two of this document's claims about it are refuted by measurement:
+> (1) section 4's Step-3h row marking the 541d Option-A falsifier RUNNABLE for B is WRONG --
+> that statistic is a mean over cycles of a SIGNED displacement and B's multiplier is
+> stationary and mean-reverting, so the mean is ~0.003 against a 0.25 bar (0/360 cells fire
+> over a 6-sigma x 6-theta x 10-seed sweep); the correct row for B is the NOT RUNNABLE row
+> this document gives candidate A. (2) section 4's C2 row for B is WRONG at the write-site
+> built: it measures EXACTLY 0.0. Consequently section 8's recommendation does not survive
+> its own evidence. What B DOES deliver, decisively, is C1: +0.40 against a +0.10 bar.
+> Full record, the measurements, and the four options now owed:
+> `mech204_sd076b_ou_redteam_blocking_20260924.md`. Code parked on `ree-v3`
+> `integration/sd076b-ou-drift-source`, NOT on `main`.
 
 # MECH-204 / SD-076 successor: candidate waking drift-source mechanisms
 
