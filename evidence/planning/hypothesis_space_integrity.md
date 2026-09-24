@@ -1,6 +1,6 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-24T07:28:51Z
+Generated: 2026-09-24T08:36:21Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
@@ -234,9 +234,13 @@ _Every important question must preserve a route OUTSIDE its registered partition
 - `mech152_terrain_modulation_depth`: 2 confirmed leg(s) coexist with 2 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
 - `mech465_commit_gate_headroom_reachability`: 2 confirmed leg(s) coexist with 1 alive -- 'several registered legs simultaneously required' (GOV-HOTHER-1 signal 5) and no h_other_events recorded. Run /failure-autopsy Step 9b Mode D before queueing another run on a surviving leg. Prompt only; never a verdict.
 
-## Advisory -- drafted ledger edits not reflected in the registry (0, NOT violations)
+## Advisory -- drafted ledger edits not reflected in the registry (1, NOT violations)
 
-_No confirmed autopsy carries an unreflected `hypothesis_space_ledger_pending` block._
+`/failure-autopsy` in staging mode drafts its intended Step 9b edits into a `hypothesis_space_ledger_pending` block on the autopsy artifact instead of writing this registry, for the confirming session or the next `/governance` walk to apply. Each CONFIRMED artifact below names a question, a hypothesis, or an intended resolved state that the registry does not currently carry.
+
+- `failure_autopsy_V3-EXQ-1012c_2026-09-24.json`: `H-operator-amplifies` drafted as `alive (UNCHANGED)`, registry has `alive`
+
+A gap here is not automatically an owed edit -- a later, better-informed autopsy may have superseded the draft, which is a legitimate outcome. Apply it, or record the disposition on the block (`applied` / `registry_written` / `applied_utc` / `superseded_by`) so it stops being reported. Note the scan compares question, hypothesis and resolved-state presence only -- never `basis` prose or `resolving_runs` -- so a quiet result is a floor on the gap, not a proof there is none.
 
 ## Advisory -- possibly stale `synthesis` prose (4, NOT violations)
 

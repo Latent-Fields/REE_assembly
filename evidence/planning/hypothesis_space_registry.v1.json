@@ -8373,11 +8373,20 @@
        },
        {
         "label": "H3b MECHANISM as the 1062a DRIVER stated it -- the head is action-BLIND (delta driven toward zero)",
-        "state": "eliminated"
+        "state": "alive"
        }
       ],
-      "basis": "SPLIT. H3a confirmed: harm_forward_skill_vs_persistence is negative in 6/6 cells (stationary -71.67/-3.98/-23.48, shift -5.99/-2.28/-1.16) against persistence_r2 0.969-0.999, on a readiness-green stationary arm. H3b eliminated: harm_forward_action_sensitivity is 0.46-1.19 in every cell, well above its 0.05 floor, so the head is NOT action-blind. The head is action-sensitive AND inaccurate -- its action-dependence is decorrelated from the true action->displacement map, which is why 180 P2 permutations barely move its R^2. That is a different substrate defect from the one H3 named, and it is what the fan-out legs below discriminate. ATTRIBUTION: the eliminated delta->0 mechanism is the 1062a driver's restatement (drv62a:100-105); the V3-EXQ-1062 autopsy's own H3 wording named no such mechanism. MAGNITUDE CAVEAT: skill is denominator-driven -- 1-persistence_r2 spans 16.4x across three seeds at one config -- so the robust claim is the SIGN, 6/6, not the -71.7."
-     }
+      "basis": "SPLIT. H3a confirmed: harm_forward_skill_vs_persistence is negative in 6/6 cells (stationary -71.67/-3.98/-23.48, shift -5.99/-2.28/-1.16) against persistence_r2 0.969-0.999, on a readiness-green stationary arm. H3b eliminated: harm_forward_action_sensitivity is 0.46-1.19 in every cell, well above its 0.05 floor, so the head is NOT action-blind. The head is action-sensitive AND inaccurate -- its action-dependence is decorrelated from the true action->displacement map, which is why 180 P2 permutations barely move its R^2. That is a different substrate defect from the one H3 named, and it is what the fan-out legs below discriminate. ATTRIBUTION: the eliminated delta->0 mechanism is the 1062a driver's restatement (drv62a:100-105); the V3-EXQ-1062 autopsy's own H3 wording named no such mechanism. MAGNITUDE CAVEAT: skill is denominator-driven -- 1-persistence_r2 spans 16.4x across three seeds at one config -- so the robust claim is the SIGN, 6/6, not the -71.7. | 2026-09-24 (GFLAG-0449, user decision rec-20260924-3784421d): child H3b REOPENED -- its elimination rested on the online head's action sensitivity, and V3-EXQ-1077 showed that head unconverged (5.6-32x worse than persistence on its own training rows); the converged head sits at persistence, consistent with H3b, and its action sensitivity is unmeasured. Re-adjudicating measurement: converged-head harm_forward_action_sensitivity in the next PE-source leg."
+     },
+     "governance_amendment": [
+      {
+       "utc": "2026-09-24T08:36:14Z",
+       "session": "governance-20260924",
+       "flag": "GFLAG-0449",
+       "change": "child H3b state eliminated -> alive (count-neutral: children are not counted)",
+       "authority": "rec-20260924-3784421d"
+      }
+     ]
     },
     {
      "hid": "H-harm-head-undertrained",
@@ -8465,9 +8474,17 @@
     "live_gate": "on a harm-forward head that beats the z(t-1) persistence predictor: VALENCE_HARM_DISCRIMINATIVE and the dACC harm-PE show measurably different variance/timing signatures under a manipulation that decouples their upstream sources, on a seed majority, with harm exposure matched between arms",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "two preregistered diagnostics adjudicated; the onset confound is fixed and C2 (falsifier i) has passed 3/3 seeds twice at rest, but the decisive falsifier C1 has never scored and the PE channel it would score on is dominated by model error",
+    "distance_phrase": "two preregistered diagnostics adjudicated; the onset confound is fixed and C2 (falsifier i) has passed 3/3 seeds at rest once over a genuine valence axis (V3-EXQ-1062a; 1062's pass measured the harm level, GFLAG-0423), but the decisive falsifier C1 has never scored and the PE channel it would score on is dominated by model error",
     "observation_bottleneck": "TWO blockers, and the second was missed by the first draft. (1) The harm-forward head does not beat a trivial persistence predictor in any cell, so the dACC harm-PE that axis 3 routes on is model error rather than world surprise; and the readiness gate that certifies it has no baseline, so it cannot detect this. (2) The decisive falsifier C1 is scored on SHIFT arms only, and the shift arm is also red on harm_exposure_relative_deviation_bounded (3.282 vs a 0.25 ceiling, unchanged from the predecessor). Fixing the head alone leaves C1 unscored; an exposure-matched design or a different decoupling lever is owed alongside it."
-   }
+   },
+   "governance_amendment": [
+    {
+     "utc": "2026-09-24T08:36:14Z",
+     "session": "governance-20260924",
+     "flag": "GFLAG-0423",
+     "change": "decision.distance_phrase: 'passed twice' corrected to once over a genuine valence axis"
+    }
+   ]
   },
   {
    "qid": "zworld_action_readability_lever",
