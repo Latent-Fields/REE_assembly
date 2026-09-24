@@ -3636,5 +3636,10 @@ One line per hourly tick. ASCII only.
 2026-09-24T21:37:14Z workset committed (regen -- 267 items, 34 ready, 0 in flight)
 2026-09-24T21:34:02Z SPAWN IGW-20260924-251 skill=/lit-pull prio=40 uuid=8993a904-5322-4b1a-9f6e-fef0ac4b0637 pid=96241 worktree=igw-251-literature-proposal-for-mech-082
 2026-09-24T21:52:34Z auto-defer igw-251-literature-proposal-for-mech-082 hash=d9d6f04697b6 for 48h (complete)
-2026-09-24T22:40:47Z auto-defer cc9b781d9a56 hash=cc9b781d9a56 for 48h (complete)
-2026-09-24T22:41:00Z complete cc9b781d9a56 staged->completed outcome=USEFUL_LANDED: ree-v3 863d23d6 + REE_assembly d85ab3ec2b: z_self P0 body-forward-model objectiv
+2026-09-24T21:54:49Z complete igw-251-literature-proposal-for-mech-082 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-082: 5 entries (4 supports, 1 mixed) in targeted_review_connectome
+2026-09-24T22:47:22Z GC removed worktree igw-251-literature-proposal-for-mech-082 (removed; branch deleted)
+2026-09-24T22:43:44Z GC sweep removed 1 orphan worktree(s), kept 23
+2026-09-24T22:43:44Z no eligible item (skipped 267): IGW-20260924-001:skill /governance not allowed; IGW-20260924-009:skill /governance not allowed; IGW-20260924-011:skill /governance not allowed
+2026-09-24T23:54:19Z workset published (regen -- 266 items, 33 ready, 0 in flight)
+2026-09-24T23:54:19Z workset committed (regen -- 266 items, 33 ready, 0 in flight)
+2026-09-24T23:50:12Z no eligible item (skipped 266): IGW-20260924-001:skill /governance not allowed; IGW-20260924-009:skill /governance not allowed; IGW-20260924-011:skill /governance not allowed
