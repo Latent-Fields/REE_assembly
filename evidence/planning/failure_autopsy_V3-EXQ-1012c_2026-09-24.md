@@ -1,6 +1,7 @@
 # Failure autopsy (diagnostic adjudication) -- V3-EXQ-1012c, SD-E3-CHANNEL-COMMENSURABILITY rung 3 at the eligibility stage
 
 - **Status:** `awaiting_human_confirmation` -- STAGING-MODE DRAFT (headless subagent inside `/governance` session `governance-20260924-workset`). The Step 8 interactive gate is OWED at the governance walk. Nothing marked reviewed; `claims.yaml`, `substrate_queue.json`, `review_tracker.json`, manifests and `hypothesis_space_registry.v1.json` untouched. No claim opened; nothing committed.
+- **CONFIRMED 2026-09-24T07:29:21Z** at the /governance interactive gate (session governance-20260924). Confirmed: user RATIFIED the eligibility-stage target (R_ON >= 0.25 in >=3/4 seeds per regime, OFF/ORACLE anchors) as rung 3's acceptance condition (GFLAG-0297), and approved the SCOPED release of the 936/654h conversion-falsifier refusal (same regime, operator ON, 3-channel scope only). Recommendation-ledger: rec-20260924-f076706a. Hypothesis ledger applied (Step 9b).
 - **Generated (UTC):** 2026-09-24T06:07:19Z (red-team applied 2026-09-24T06:23:36Z)
 - **Scope:** single
 - **Target:** `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` (queue_id `V3-EXQ-1012c`), `experiment_purpose: diagnostic`, outcome **PASS**, self-route `commensurate_at_eligibility_both_regimes`, tagged MECH-439.

@@ -1,6 +1,7 @@
 # Failure autopsy -- V3-EXQ-1081 (SD-PP-B1 world_forward -> E3 ranking reach probe)
 
 - **Status**: `awaiting_human_confirmation` (STAGING -- subagent of `/governance` session `governance-20260924-workset`; nothing committed, no claim opened, hypothesis ledger not written)
+- **CONFIRMED 2026-09-24T07:29:21Z** at the /governance interactive gate (session governance-20260924). Confirmed as drafted: SD-PP-B1 closed premise-false; GFLAG-0437 resolved in the same cycle. Recommendation-ledger: rec-20260924-002ff612. Hypothesis ledger applied (Step 9b).
 - **Generated**: 2026-09-24T06:02:41Z
 - **Run**: `v3_exq_1081_sdppb1_world_forward_ranking_reach_probe_20260923T222438Z_v3` (ree-worker-3, ree-v3 `c6aa52d9`, clean tree, 6543 s)
 - **Purpose / outcome**: diagnostic, claim-free (`claim_ids: []`), **PASS**

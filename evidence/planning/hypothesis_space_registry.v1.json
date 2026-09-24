@@ -7734,7 +7734,7 @@
     "live_gate": "ON-arm |Spearman rho| between per-seed median E3 margin and per-seed eligibility fraction < 0.4, with the cross-seed margin-spread ratio held under 10.0",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "one leg eliminated by V3-EXQ-1038a; the remaining two are separated by whether the operator is itself sound, which V3-EXQ-1012a owns"
+    "distance_phrase": "one leg eliminated by V3-EXQ-1038a; the remaining two are not separated by the operator's own validation (V3-EXQ-1012c validates the operator at the eligibility stage but not on margin dispersion) -- a dispersion-DV probe is owed"
    },
    "hypotheses": [
     {
@@ -7783,7 +7783,7 @@
      "hid": "H-operator-amplifies",
      "axis": "substrate",
      "label": "The commensurability operator is itself defective -- its EMA divisor amplifies intermittent low-SD channels -- so the persistence of scale determination is an operator fault rather than a missing threshold",
-     "basis": "Within-cell margin dispersion GREW under the ON arm on several seeds (seed 1: 7.79 -> 131.47, ~16.9x; seed 3: 10.11 -> 36.93; seed 4: 7.17 -> 9.54), matching the driver's own pre-registered account (ii).",
+     "basis": "V3-EXQ-1012a, named here as the adjudicating run, was CONFIRMED non-validating (failure_autopsy_V3-EXQ-1012a_2026-09-14). Its successor V3-EXQ-1012c (PASS, failure_autopsy_V3-EXQ-1012c_2026-09-24) validates the operator at the eligibility stage on a tick-mean DV, but does NOT measure this leg's DV (cross-seed / within-cell margin dispersion). What it shows that bears on the leg: the EMA divisor's per-tick error is bidirectional and heavy-tailed -- median r_c(t) 0.12-0.93 for the bursty channels (typical ticks under-weighted) and max 5.0-178 (burst ticks over-weighted) -- and R_ON < R_ORACLE in 8/8 cells in sign. Consistent with burst amplification, not discriminating. Leg stays alive; no run currently owns it.",
      "resolution": {
       "state": "alive",
       "resolving_runs": [],
@@ -8257,7 +8257,7 @@
     "decidable": false,
     "decision_log_ref": null,
     "distance_phrase": "one preregistered diagnostic adjudicated: substrate built and validated (SD-PP-1..4), mechanism live and monotone, but the confidently-wrong leg is unposeable and the converged base is unreadable on 2/3 seeds; all three legs alive",
-    "observation_bottleneck": "The world-forward head sits at copy-the-input and barely reads the action (SD-PP-B5), and no default-on behavioural consumer of it exists (SD-PP-B1); both must land before the question can move."
+    "observation_bottleneck": "The world-forward head sits at copy-the-input and barely reads the action (SD-PP-B5); that must land before the question can move. (The earlier SD-PP-B1 'no default-on behavioural consumer' clause was a false premise -- GFLAG-0437, V3-EXQ-1081: the default hippocampal rollout route already carries world_forward into E3 ranking.)"
    }
   },
   {
@@ -8348,7 +8348,7 @@
      "label": "The harm-forward model is persistence-dominated, so no action-map lever at any dose can raise its residual",
      "desc": "z_harm_a is a slow harm-history latent (harm_history_len=10); a learned model that drives delta toward zero scores well on an autocorrelated signal while being action-blind.",
      "axis": "representation-update-rate",
-     "basis": "Named by the V3-EXQ-1062 autopsy section 5c and INSTRUMENTED for the first time by V3-EXQ-1062a at zero extra env cost, on that autopsy's own prescription.",
+     "basis": "Named by the V3-EXQ-1062 autopsy section 5c and INSTRUMENTED for the first time by V3-EXQ-1062a at zero extra env cost, on that autopsy's own prescription. | V3-EXQ-1077 bears on child H3b: its elimination used the ONLINE (unconverged) head's action sensitivity; flagged for governance re-examination, no state change drafted here.",
      "pre_registered_utc": "2026-09-22T00:00:00Z",
      "pre_registration_source": "failure_autopsy_V3-EXQ-1062_2026-09-22.json (REE_assembly, committed 2026-09-22, section 5c)",
      "adjudicating_runs": [
@@ -8387,18 +8387,32 @@
      "basis": "CHEAPEST leg and the one the arithmetic favours (added at the Step 7c red-team pass): at the MSE optimum the conditional-mean delta lies in a residual head's hypothesis space, so a representation ceiling predicts skill ~ 0. Skill of -72 requires ACTIVELY added error -- non-convergence, distribution mismatch or overfitting.",
      "pre_registered_utc": "2026-09-23T06:03:25Z",
      "pre_registration_source": "failure_autopsy_V3-EXQ-1062a_2026-09-23.json",
-     "adjudicating_runs": [],
+     "adjudicating_runs": [
+      "V3-EXQ-1077"
+     ],
      "resolution": {
-      "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
-      "epistemic_category": null,
-      "self_route_label": null,
-      "control_passed": false,
-      "non_degenerate": null,
-      "met_elimination_bar": false,
-      "resolved_utc": null,
-      "basis": "Pre-registered; no adjudicating run has resolved yet."
+      "state": "split",
+      "children": [
+       {
+        "label": "H-undertrained(a) -- online batch-1 non-convergence causes the ACTIVE (below-persistence) error",
+        "state": "confirmed"
+       },
+       {
+        "label": "H-undertrained(b) -- convergence alone yields positive skill vs persistence",
+        "state": "alive"
+       }
+      ],
+      "resolving_runs": [
+       "V3-EXQ-1077"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "active_error_removed_AMBIGUOUS",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-09-23T18:46:33Z",
+      "basis": "SPLIT. (a) confirmed, on the measured in-sample pair: the online head's final snapshot is 5.6-32x worse than persistence on rows it trained on, while a head converged from the same init and data sits at 0.94-1.00x on the same rows (the converged head's eval position is largely selected by the eligibility gate, so the eval CIs are corroborating, not the ground). (b) alive / not supported: C1 ready 0/3; this leg's registered null ('skill stays <= 0 at convergence') is NOT rejected -- consistent with 3/3 (d CIs straddle 0); the driver grid calls the cell AMBIGUOUS (its narrower N1, still persistence_dominated, 0/3) and NOT a ceiling verdict; aliased with the PE-source and representation legs; the off-distribution disjunct was tested on epsilon only."
      }
     },
     {
@@ -8406,7 +8420,7 @@
      "label": "z_harm_a's per-step displacement is too small for a learned delta to pay -- the SD-PP-B5 analogue on the harm side",
      "desc": "Vary harm_history_len / z_harm_a displacement; DV = skill-vs-persistence. Null: skill stays <= 0 at every setting.",
      "axis": "representation-update-rate",
-     "basis": "Demoted at the red-team pass from the first draft's headline CAUSE to one hypothesis among four, because the skill MAGNITUDE is denominator-driven (1-persistence_r2 spans 16.4x across three seeds at one config) and the sign is not a ceiling signature.",
+     "basis": "Demoted at the red-team pass from the first draft's headline CAUSE to one hypothesis among four, because the skill MAGNITUDE is denominator-driven (1-persistence_r2 spans 16.4x across three seeds at one config) and the sign is not a ceiling signature. | V3-EXQ-1077: converged d ~ 0 is this leg's predicted signature but is aliased; non-gating in-sample bound reads 'learnable but not learned' on 2/3 seeds (s42, s137), a lean against the strict 'nothing learnable' form.",
      "pre_registered_utc": "2026-09-23T06:03:25Z",
      "pre_registration_source": "failure_autopsy_V3-EXQ-1062a_2026-09-23.json",
      "adjudicating_runs": [],
@@ -8428,7 +8442,7 @@
      "label": "No residual forward head on a slow harm-history latent can beat identity, so axis 3 needs a different PE source entirely",
      "desc": "Score an ensemble-disagreement or innovation-variance source against the residual-head PE on the same ticks.",
      "axis": "readout",
-     "basis": "The rival to H-harm-head-trainable: if the defect is structural rather than parametric, more displacement will not fix it and axis 3 must be re-sourced.",
+     "basis": "The rival to H-harm-head-trainable: if the defect is structural rather than parametric, more displacement will not fix it and axis 3 must be re-sourced. | V3-EXQ-1077: converged residual-head PE ~= innovation; this leg is next and must compare against the CONVERGED head.",
      "pre_registered_utc": "2026-09-23T06:03:25Z",
      "pre_registration_source": "failure_autopsy_V3-EXQ-1062a_2026-09-23.json",
      "adjudicating_runs": [],
@@ -8464,10 +8478,11 @@
    ],
    "registered_utc": "2026-09-23T06:03:25Z",
    "fanout_sources": [
-    "failure_autopsy_V3-EXQ-1075_2026-09-23.json"
+    "failure_autopsy_V3-EXQ-1075_2026-09-23.json",
+    "failure_autopsy_V3-EXQ-1082_2026-09-24.json"
    ],
    "is_hero": false,
-   "initial_frozen_count": 3,
+   "initial_frozen_count": 4,
    "initial_frozen_count_at_registration": 3,
    "growth_restriction": "",
    "synthesis": null,
@@ -8481,21 +8496,23 @@
      "pre_registered_utc": "2026-09-23T03:33:29Z",
      "pre_registration_source": "failure_autopsy_V3-EXQ-1075_2026-09-23.json",
      "adjudicating_runs": [
-      "V3-EXQ-1075"
+      "V3-EXQ-1075",
+      "V3-EXQ-1082"
      ],
      "resolution": {
       "state": "alive",
       "resolving_runs": [
-       "V3-EXQ-1075"
+       "V3-EXQ-1075",
+       "V3-EXQ-1082"
       ],
       "evidence_direction": "non_contributory",
       "epistemic_category": "standard",
-      "self_route_label": "readability_bought_at_reconstruction_cost",
+      "self_route_label": "margin_lowers_action_read",
       "control_passed": true,
       "non_degenerate": true,
       "met_elimination_bar": false,
-      "resolved_utc": "2026-09-23T03:33:29Z",
-      "basis": "NARROWED, NOT ELIMINATED -- the bar is deliberately not claimed (corrected at the Step 7c red-team pass, which found the elimination inferred across an untested interval). Eliminated at margin >= 0.05 and inert at 0.01, on a four-rung ladder at matched budget, 3 seeds, bit-identical frozen battery: A4 (MSE <= 2x OFF) falls 3/2/0/0 as margin rises 0.01/0.05/0.10/0.50, with inflation 0.92x/5.90x/9.63x/174.19x; passing_rungs is empty. The elimination does NOT rest on A1's grading, which this autopsy contests: the maximum ratio anywhere is 1.0540, and the A1-passing M050 ratios (1.0109/1.0026/1.0015) are the gate module's own documented DEGENERATE value on a head with skill -431/-563/-675. So the form never demonstrates genuine action-discrimination at any rung, which eliminates it more strongly than the FAIL-b label alone at the rungs tested. WHY THE BAR IS NOT CLAIMED: the rungs are 0.01 and 0.05, while the true action-conditioned separation is ~0.014 L2 (identity_predictor_mse ~1.3e-5 over world_dim 16). The interval (0.01, 0.05) that BRACKETS it was never sampled, and it is the one place a hinge could push an action-blind head toward the true separation without exceeding reality. A cheap re-rung at 0.015/0.02/0.03 is owed before this leg is closed. Control passed: ARM_OFF reproduced V3-EXQ-1073's blindness 3/3 and a known-baseline canary replayed that run's values on 3/3 seeds -- though the canary certifies the classifier, not the measurement path."
+      "resolved_utc": "2026-09-24T04:50:04Z",
+      "basis": "Re-measured at alpha 0.9 on a live battery: no rung (0.01/0.05/0.10/0.50) raises d_act (12/12 lifts negative), reconstruction destroyed at >= 0.05. Still NOT eliminated: the (0.01, 0.05) interval is unsampled and M001's lowering is unattributed. Deprioritised because the untouched head already reads its action at this operating point (see H-operating-point)."
      }
     },
     {
@@ -8541,6 +8558,33 @@
       "resolved_utc": null,
       "basis": "Pre-registered; no adjudicating run has resolved yet."
      }
+    },
+    {
+     "hid": "H-operating-point",
+     "label": "At SD-008's alpha_world >= 0.9 on a live battery, the untouched world_forward head reads its action without any training-time lever",
+     "desc": "The action-blindness behind SD-PP-B5 (V3-EXQ-1073, alpha 0.3) is an operating-point property (EMA damping of z_world), not a head/objective property.",
+     "axis": "representation-update-rate",
+     "basis": "GFLAG-0433/0434 and the confirmed 1079 autopsy routed the re-validation at alpha >= 0.9 on a live battery; the 1082 driver pre-registered the off_reads_action / off_blind premise split before running.",
+     "pre_registered_utc": "2026-09-23T18:26:25Z",
+     "pre_registration_source": "failure_autopsy_V3-EXQ-1079_2026-09-23.json",
+     "pre_registration_witness": "REE_assembly 18a3306a5bf (committed 2026-09-23T18:26:25Z) and ree-v3 5f3b27a (driver with the off_arm_premise split, committed 2026-09-24T04:43:44Z); run resolved 2026-09-24T04:50:04Z",
+     "adjudicating_runs": [
+      "V3-EXQ-1082"
+     ],
+     "resolution": {
+      "state": "confirmed",
+      "resolving_runs": [
+       "V3-EXQ-1082"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "margin_lowers_action_read (off_arm_premise off_reads_action)",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": false,
+      "resolved_utc": "2026-09-24T04:50:04Z",
+      "basis": "ARM_OFF d_act 0.341/0.216/0.227 with CI lower > 0 on 3/3 (analytic null; untrained |d| < 0.003; ridge positive control live 3/3), skill_vs_identity +0.35/+0.22/+0.21. Confirmed on the d_act/skill axes at one alpha; the inverted-map live_gate and the within-run alpha attribution remain open, so decision.decidable stays false."
+     }
     }
    ],
    "decision": {
@@ -8548,9 +8592,36 @@
     "live_gate": "one lever setting where the inverted-action-map battery is harder than the original by a MARGIN excluding the degenerate ratio ~1.0, on >= 2/3 seeds, with battery MSE no worse than 2x the OFF arm and the head no worse than OFF against the identity predictor",
     "decidable": false,
     "decision_log_ref": null,
-    "distance_phrase": "one of three levers narrowed to eliminated-at-margin->=0.05 on a four-rung ladder, with the interval bracketing the true separation untested; all three legs remain alive and none of the three probes has run",
-    "observation_bottleneck": "z_world's per-step displacement (SD-PP-B5) bounds every objective on this head; and the action-sensitivity gate itself has no head-health guard, so a destroyed head currently scores as action-sensitive."
-   }
+    "distance_phrase": "the untouched head reads its action at alpha 0.9 on a live battery (d_act, skill); the live_gate readout (inverted-map ratio) is unmeasured there; the margin lever is narrowed further and deprioritised",
+    "observation_bottleneck": "the bound is the alpha_world operating point (0.3 default vs SD-008's 0.9); the action-sensitivity gate and d_act reads_action status still lack a head-health guard"
+   },
+   "fanout_growth_events": [
+    {
+     "recorded_utc": "2026-09-24T07:28:19Z",
+     "pre_registered_utc": "2026-09-23T18:26:25Z",
+     "fanout_source": "failure_autopsy_V3-EXQ-1079_2026-09-23.json",
+     "added_hids": [
+      "H-operating-point"
+     ],
+     "delta": 1,
+     "note": "Partition expansion: the lever-only partition omitted the operating point. Anticipated by GFLAG-0433/0434 and the 1079 routing before V3-EXQ-1082 ran; resolved confirmed (d_act/skill axes) by V3-EXQ-1082."
+    }
+   ],
+   "fanout_growth_note": "one labelled growth event (1082): the question has not converged on its live_gate; the denominator grew by 1",
+   "h_other_events": [
+    {
+     "recorded_utc": "2026-09-24T07:28:19Z",
+     "source": "failure_autopsy_V3-EXQ-1082_2026-09-24.json",
+     "signal": "(1)/(4): no registered leg explains the outcome -- an operating parameter omitted from the partition (alpha_world) accounts for the premise the three lever legs were built to remedy",
+     "legs": [
+      "H-margin-form",
+      "H-infonce-form",
+      "H-encoder-displacement"
+     ],
+     "rationale": "All three registered legs are levers on an assumed-blind head; at SD-008's operating point the head is not blind on the axes measured.",
+     "response": "partition_expansion"
+    }
+   ]
   },
   {
    "qid": "sd106_objective_consumer_transfer",
@@ -8622,6 +8693,82 @@
     "decision_log_ref": null,
     "distance_phrase": "One build plus one discriminating run away; the build is registered but not authorised."
    }
+  },
+  {
+   "qid": "inv069_process_vs_state_dissociation",
+   "title": "INV-069: is the self a maintained process (restored/sustained by the running recurrence) rather than a stored z_self vector?",
+   "short_title": "INV-069 process vs state",
+   "claims": [
+    "INV-069"
+   ],
+   "registered_utc": "2026-09-24T07:28:19Z",
+   "fanout_sources": [
+    "failure_autopsy_V3-EXQ-1078_2026-09-24.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 2,
+   "initial_frozen_count_at_registration": 2,
+   "hypotheses": [
+    {
+     "hid": "H-process",
+     "label": "maintained process",
+     "desc": "the running self-recurrence restores z_self after a burst beyond generic contraction and a freeze degrades self-coherence on a non-annihilated DV",
+     "axis": "process",
+     "basis": "INV-069 as stated; untested in V3",
+     "pre_registered_utc": "2026-09-23T18:20:46Z",
+     "adjudicating_runs": [
+      "V3-EXQ-1078"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [
+       "V3-EXQ-1078"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "substrate_coherence",
+      "self_route_label": "arm_a_state_restores_after_burst_untrained_gru_init_contraction__inv069_undetermined|arm_b_sign_locked_gap_above_noise_non_contributory",
+      "control_passed": true,
+      "non_degenerate": false,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "vacuous_pass: arm (a) passes by construction on an untrained recurrence, arm (b) sign-locked on its DV -- narrows nothing"
+     }
+    },
+    {
+     "hid": "H-stored",
+     "label": "stored vector suffices",
+     "desc": "a stored z_self preserves coherence as well as the live process; 'dynamically sustained' adds nothing",
+     "axis": "representation",
+     "basis": "WWA FALSIFYING branch (b)",
+     "pre_registered_utc": "2026-09-23T18:20:46Z",
+     "adjudicating_runs": [
+      "V3-EXQ-1078"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [
+       "V3-EXQ-1078"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "substrate_coherence",
+      "control_passed": true,
+      "non_degenerate": false,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "arm (b) DV cannot discriminate (closed form); no elimination"
+     }
+    }
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Does INV-069's process-vs-state dissociation hold in V3 under the proxy DV?",
+    "live_gate": "WWA amendment (arm-b DV not annihilated by freeze; arm-a generic-contraction null) + a z_self training objective",
+    "decidable": false,
+    "decision_log_ref": null,
+    "distance_phrase": "blocked on measurement redesign and a z_self objective",
+    "observation_bottleneck": "arm (b) DV annihilated by freeze; arm (a) run on an untrained recurrence"
+   },
+   "growth_restriction": ""
   }
  ]
 }

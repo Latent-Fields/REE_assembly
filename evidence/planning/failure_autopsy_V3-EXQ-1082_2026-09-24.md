@@ -5,6 +5,7 @@
 - **self-route**: `margin_lowers_action_read` (FAIL-a), `off_arm_premise: off_reads_action`
 - **bears_on**: `SD-PP-B5-z-world-per-step-displacement-range`, `SD-PP-B10-zworld-encoder-action-displacement`, MECH-573, MECH-574, SD-008
 - **Status**: `awaiting_human_confirmation`. This is a STAGING draft, written by a subagent of the /governance session `governance-20260924-workset`. No claim was opened, nothing was committed, the hypothesis registry was not written, and no regeneration was run.
+- **CONFIRMED 2026-09-24T07:29:21Z** at the /governance interactive gate (session governance-20260924). Confirmed as drafted: SD-PP-B5 amend; 1073 record left open; stale_note flag raised; H-operating-point as labelled growth on zworld_action_readability_lever (not a new qid); GOV-DIAG-1 token not reconciled. Recommendation-ledger: rec-20260924-002ff612. Hypothesis ledger applied (Step 9b).
 - **Generated**: 2026-09-24T06:19:09Z · **Red-team (Step 7c)**: CONTESTED (narrow), cross-model (fable; session model Opus 5.5). Four findings were adopted.
 
 ## Bottom line

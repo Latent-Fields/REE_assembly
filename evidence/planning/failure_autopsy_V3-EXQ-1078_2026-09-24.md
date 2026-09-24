@@ -1,6 +1,7 @@
 # Failure autopsy -- V3-EXQ-1078 (INV-069 coherence leg, Option C) -- diagnostic PASS, vacuous
 
 - **Status:** `awaiting_human_confirmation` (staging mode). The Step 8 gate is owed by the parent
+- **CONFIRMED 2026-09-24T07:29:21Z** at the /governance interactive gate (session governance-20260924). Confirmed: verdict non_contributory, new substrate row sd_zself_training_path, pending_retest true; WWA amendment APPLIED but the arm-(b) substitute DV is left OPEN (user did not adopt the drafted body-report-correspondence candidate). Recommendation-ledger: rec-20260924-d6c2662b. Hypothesis ledger applied (Step 9b).
   `/governance` session `governance-20260924-workset`. Step 9b was drafted only (JSON
   `hypothesis_space_ledger_pending`); the registry was not written.
 - **Generated:** 2026-09-24T06:06:53Z; revised 2026-09-24T06:17:41Z after the Step 7c red-team (fable, CONTESTED; all three defects accepted, see Section 10)

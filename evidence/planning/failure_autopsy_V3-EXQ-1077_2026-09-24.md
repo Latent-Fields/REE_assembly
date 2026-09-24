@@ -1,6 +1,7 @@
 # Failure autopsy -- V3-EXQ-1077 (SD-PP-B9 H-harm-head-undertrained probe)
 
 - **Status:** `awaiting_human_confirmation` (STAGING MODE -- drafted by a subagent of `/governance` session `governance-20260924-workset`; no claim opened, nothing committed, no index or pending_review regen, `hypothesis_space_registry.v1.json` NOT written)
+- **CONFIRMED 2026-09-24T07:29:21Z** at the /governance interactive gate (session governance-20260924). Confirmed as drafted: SD-PP-B9 amend; H-harm-head-undertrained resolved split; next leg PE-source (ensemble disagreement). Recommendation-ledger: rec-20260924-002ff612. Hypothesis ledger applied (Step 9b).
 - **Generated (UTC):** 2026-09-24T06:24:14Z
 - **Target:** `v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3` (queue `V3-EXQ-1077`), `experiment_purpose: diagnostic`, `claim_ids: []`, `bears_on: ["mech055_harm_pe_source_validity"]`, `validates_substrate: SD-PP-B9-harm-forward-below-persistence-baseline`
 - **Outcome:** FAIL, self-route `active_error_removed_AMBIGUOUS`

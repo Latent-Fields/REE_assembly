@@ -5,6 +5,7 @@
 - Outcome: PASS (6/9 criteria; the 3 non-passing criteria are non-load-bearing prevalence readouts, see section 2)
 - Self-route: `contamination_truncation_present_verdicts_robust_no_reruns_owed`
 - Status: **awaiting_human_confirmation** (staging mode; drafted by a subagent of `/governance` session governance-20260924-workset; generated 2026-09-24T06:02:36Z)
+- **CONFIRMED 2026-09-24T07:29:21Z** at the /governance interactive gate (session governance-20260924). Confirmed as drafted. No re-run owed for the 7 direct claims; family/uncovered claims stay undecided. Recommendation-ledger: rec-20260924-002ff612. Hypothesis ledger applied (Step 9b).
 - Bears on: `GFLAG-0304`, `sd094_contamination_footgun_exposure`
 
 ## 0. Premises re-measured (brief audit)

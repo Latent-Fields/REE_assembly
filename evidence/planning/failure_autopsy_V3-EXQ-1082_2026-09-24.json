@@ -2,7 +2,7 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-09-24T06:19:09Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "mode": "staging -- subagent of /governance session governance-20260924-workset (which holds the governance-pause claim); no claim opened, nothing committed, no registry written, no regeneration run",
   "dry_run_checked": true,
   "dry_run_check_note": "scripts/check_dry_run_citations.py run over v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3, V3-EXQ-1082, V3-EXQ-1073: 0 dry, 1 clean, exit 0. The 1082 smoke (2 seeds x 5 arms) was written to scratch by dry_run=True and is not in evidence/experiments.",
@@ -68,7 +68,12 @@
         "target_sd_id": "SD-PP-B5-z-world-per-step-displacement-range",
         "status_change": "status STAYS implemented_validated_negative (the margin remedy's negative is now measured at the operating point on a live battery; it is no longer confounded on either axis the 1079 qualification named); ready STAYS false; status_phase SET probe_gated (currently absent on the entry); node_class STAYS complex (probe-gated) -- the residual is one measurement (puzzle (known rules)): the inverted-action-map ratio on the OFF head at alpha 0.9",
         "implementation_hint_append": "[2026-09-24, failure_autopsy_V3-EXQ-1082] At SD-008's alpha_world 0.9 on a live battery the untouched world_forward head reads its action (d_act 0.341/0.216/0.227, CI>0 3/3) and beats copy-the-input (skill_vs_identity +0.35/+0.22/+0.21). The margin remedy does not raise the read at any rung and destroys reconstruction at margin >= 0.05. Do NOT build the InfoNCE or encoder-displacement legs against this entry, and do not queue the (0.01, 0.05) margin re-rung, until the inverted-action-map readiness ratio has been measured on the OFF head at alpha 0.9 live -- the premise those legs would remedy is not reproduced on the d_act/skill axes. Consumers must set alpha_world >= 0.9 explicitly (REEConfig.from_dims default is 0.3, config.py:7562).",
-        "unblocks_claims": ["MECH-573", "MECH-572", "MECH-574", "INV-063"],
+        "unblocks_claims": [
+          "MECH-573",
+          "MECH-572",
+          "MECH-574",
+          "INV-063"
+        ],
         "depends_on_unresolved": [],
         "priority_suggested": 2,
         "severity": "corrupting",
@@ -139,7 +144,9 @@
             "sketch": "OFF-only head, live reset-on-done battery, 3 seeds, TWO arms alpha_world 0.3 and 0.9 in one run: inverted-action-map battery MSE / original MSE with a bar excluding the degenerate ~1.0 (reuse 1079's _make_env(invert_action_map=True) and experiments/_lib/action_sensitivity_gate.readiness_verdict), beside d_act and skill_vs_identity. Optional: one null-perturbation OFF replicate per seed (e.g. second batch-order seed) to size training-trajectory variance of d_act. Declared null: at 0.9 the ratio stays <= ~1.0 despite d_act > 0 (the head reads the action but not enough for an inversion to be a contradiction), or the 0.3 and 0.9 arms do not differ."
           }
         ],
-        "resolved_this_cycle": ["H-operating-point (confirmed on d_act / skill axes)"],
+        "resolved_this_cycle": [
+          "H-operating-point (confirmed on d_act / skill axes)"
+        ],
         "note": "GOV-FANOUT-1 portfolio COLLAPSES rather than widens: one cheap measurement probe, not three legs. C1-style self-check: no queued item or driver covers it (queue holds only V3-EXQ-1067; V3-EXQ-1081 runs at alpha 0.9 but has no inverted-map readout); 1079's driver already implements the inverted-map env and can be composed with 1082's live battery."
       },
       "learning_extracted": [
@@ -156,11 +163,18 @@
         "fires": [
           {
             "check": "C7",
-            "names": ["v3_exq_1082_...:persistence_r2"],
+            "names": [
+              "v3_exq_1082_...:persistence_r2"
+            ],
             "disposition": "DISMISSED -- persistence_r2 is copy-the-input on an arm-invariant battery, so it is identical across arms by construction; it is cited only as the baseline beside model_r2 (per the 1079 routing rule), never as a between-arm discriminator."
           }
         ],
-        "inapplicable": ["C1", "C2", "C3 (claim-keyed; claim_ids [])", "C5 (no sibling .md at check time)"],
+        "inapplicable": [
+          "C1",
+          "C2",
+          "C3 (claim-keyed; claim_ids [])",
+          "C5 (no sibling .md at check time)"
+        ],
         "manual_cover_for_inapplicable": "C1 checked by hand (no driver/queue item covers the recommended probe); C2 n/a (amend of an existing entry, not a create)."
       },
       "red_team": {
@@ -173,7 +187,13 @@
           "F3 1073 -> superseded over-reaches: only clause (3) of its target was met; clauses (1)-(2) are the readout still owed. ADOPTED: left open with a note.",
           "F4 stale record: SD-PP-B5 validation_outcome says 1073 never reads done; 1073 driver resets on done. VERIFIED and ADOPTED: correction appended; stale_note flag owed."
         ],
-        "hygiene_adopted": ["'~100x untrained floor' -> '|d_act| < 0.003'", "ridge-ceiling ratio 64-81% added", "source key on failure_record_entry", "bears_on provenance stated", "'15/15 cells' on per-cell preconditions"],
+        "hygiene_adopted": [
+          "'~100x untrained floor' -> '|d_act| < 0.003'",
+          "ridge-ceiling ratio 64-81% added",
+          "source key on failure_record_entry",
+          "bears_on provenance stated",
+          "'15/15 cells' on per-cell preconditions"
+        ],
         "verified_by_red_team": "all 15 d_act and 12 lifts recomputed from per-row arrays to 4 dp; d_act > 0 cannot arise from shared bias, EMA dynamics or identical-outcome pairs (each pushes toward 0); reads_action can fail (untrained |d| < 0.003); schema forms precedented; probe uncovered"
       },
       "hypothesis_space_ledger_pending": {
@@ -183,10 +203,15 @@
         "mode_B_resolve": [
           {
             "hid": "H-margin-form",
-            "append_adjudicating_runs": ["V3-EXQ-1082"],
+            "append_adjudicating_runs": [
+              "V3-EXQ-1082"
+            ],
             "resolution": {
               "state": "alive",
-              "resolving_runs": ["V3-EXQ-1075", "V3-EXQ-1082"],
+              "resolving_runs": [
+                "V3-EXQ-1075",
+                "V3-EXQ-1082"
+              ],
               "evidence_direction": "non_contributory",
               "epistemic_category": "standard",
               "self_route_label": "margin_lowers_action_read",
@@ -208,10 +233,14 @@
             "pre_registered_utc": "2026-09-23T18:26:25Z",
             "pre_registration_source": "failure_autopsy_V3-EXQ-1079_2026-09-23.json",
             "pre_registration_witness": "REE_assembly 18a3306a5bf (committed 2026-09-23T18:26:25Z) and ree-v3 5f3b27a (driver with the off_arm_premise split, committed 2026-09-24T04:43:44Z); run resolved 2026-09-24T04:50:04Z",
-            "adjudicating_runs": ["V3-EXQ-1082"],
+            "adjudicating_runs": [
+              "V3-EXQ-1082"
+            ],
             "resolution": {
               "state": "confirmed",
-              "resolving_runs": ["V3-EXQ-1082"],
+              "resolving_runs": [
+                "V3-EXQ-1082"
+              ],
               "evidence_direction": "non_contributory",
               "epistemic_category": "standard",
               "self_route_label": "margin_lowers_action_read (off_arm_premise off_reads_action)",
@@ -230,7 +259,9 @@
               "recorded_utc": "<date -u at apply time>",
               "pre_registered_utc": "2026-09-23T18:26:25Z",
               "fanout_source": "failure_autopsy_V3-EXQ-1079_2026-09-23.json",
-              "added_hids": ["H-operating-point"],
+              "added_hids": [
+                "H-operating-point"
+              ],
               "delta": 1,
               "note": "Partition expansion: the lever-only partition omitted the operating point. Anticipated by GFLAG-0433/0434 and the 1079 routing before V3-EXQ-1082 ran; resolved confirmed (d_act/skill axes) by V3-EXQ-1082."
             },
@@ -246,11 +277,19 @@
           "recorded_utc": "<date -u at apply time>",
           "source": "failure_autopsy_V3-EXQ-1082_2026-09-24.json",
           "signal": "(1)/(4): no registered leg explains the outcome -- an operating parameter omitted from the partition (alpha_world) accounts for the premise the three lever legs were built to remedy",
-          "legs": ["H-margin-form", "H-infonce-form", "H-encoder-displacement"],
+          "legs": [
+            "H-margin-form",
+            "H-infonce-form",
+            "H-encoder-displacement"
+          ],
           "rationale": "All three registered legs are levers on an assumed-blind head; at SD-008's operating point the head is not blind on the axes measured.",
           "response": "partition_expansion"
         }
       }
     }
-  ]
+  ],
+  "confirmed_utc": "2026-09-24T07:29:21Z",
+  "confirmed_by": "user, at /governance interactive gate (session governance-20260924, adopting stalled governance-20260924-workset)",
+  "confirmation_note": "Confirmed as drafted: SD-PP-B5 amend; 1073 record left open; stale_note flag raised; H-operating-point as labelled growth on zworld_action_readability_lever (not a new qid); GOV-DIAG-1 token not reconciled. Recommendation-ledger: rec-20260924-002ff612.",
+  "hypothesis_space_ledger_applied_utc": "2026-09-24T07:29:21Z"
 }
