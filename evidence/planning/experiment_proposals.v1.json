@@ -5010,6 +5010,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0320",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "governance-20260924",
+      "refused_utc": "2026-09-24T08:44:45Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -5031,10 +5034,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "refusal_route": "implement_substrate",
-      "refused_by_session": "governance-20260924",
-      "refused_utc": "2026-09-24T08:44:45Z"
+      ]
     },
     {
       "acceptance_checks": [
@@ -33929,6 +33929,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0166",
+      "blocked_by": [
+        "ARC-029"
+      ],
+      "blocked_note": "queue-experiment Step 4.5 red-team (model fable, 2026-09-24) found MECH-029's pre-registered committed/uncommitted-window manipulation (BreathOscillator sweep against the ABSOLUTE commit_threshold=0.40) is measured INERT at trained operating points (ARC-029/GFLAG-0346, 2026-09-18: commit_variance collapses to ~1e-6..1.6e-5 post-training, five orders below the bar; committed_step_fraction=1.0000 even at sweep_amplitude 0.999). A corrected V3-EXQ-1091 driver reading the LIVE, non-latched SelectionResult.committed (never the 876-lineage's held-state step-counting, which counted pre-tick DEFAULT-FALSE steps as 'uncommitted') produced 11 committed / 1 uncommitted of 12 fresh E3 selections in a tiny smoke run -- consistent with near-total commitment saturation. The only existing remedy is the already-built opt-in e3.use_variance_tracking_commit_threshold lever, whose config.py docstring states its quantile/window parameters are deliberately unset because they determine what the experiment measures and must be pre-registered, not defaulted by the build. Full finding: GFLAG-0472 (stale_note on MECH-029). Route governance: a human science decision on the variance-tracking quantile/window (or an alternative operationalization) is needed before MECH-029 can be re-queued; this is not a missing substrate build.",
       "claim_id": "MECH-029",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -33937,11 +33941,15 @@
       "gated_at_utc": "2026-08-02T13:25:34Z",
       "gated_by_session": "determined-ritchie-55a3a6",
       "gating_reason": "RELEASED 2026-09-23 (GFLAG-0401): the prior gating reason ('same committed-mode substrate gap as ARC-028/EXQ-139', uncommitted_steps=0 in v3_exq_065) is stale as of 2026-08-02: V3-EXQ-876 produced 165-216 uncommitted steps per seed with non-degenerate harm_pred_std. falsifier_completion_and_runnability_audit_20260921 classes MECH-029 R0: event, manipulation, control, DV and instrument exist; what is missing is a driver (all three MECH-029 scripts predate the fix and recorded zero uncommitted steps). Previous gating text preserved in git.",
+      "governance_flag": "GFLAG-0472",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-029 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-1273",
       "proposal_type": "experimental",
+      "refusal_route": "governance",
+      "refused_by_session": "metaworker-science-20260924-orchb-mech029-commit-sweep",
+      "refused_utc": "2026-09-24T12:58:02Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -33954,7 +33962,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_029",
       "target_repo": "ree-v3",
       "why_now": [
@@ -34130,6 +34138,21 @@
       "gated_at_utc": "2026-08-02T13:25:34Z",
       "gated_by_session": "determined-ritchie-55a3a6",
       "gating_reason": "Falsifier tightened 2026-09-24 (GFLAG-0443 A); design needs the REQUIRED RECORDING fields, which no current driver emits -- /queue-experiment owns the design.",
+      "gating_reason_history": [
+        {
+          "authority": "rec-20260923-e532e1b3",
+          "by_session": "governance-20260924",
+          "prior_gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_131) already ran and was itself flagged evidence_direction=superseded (identical-metrics rerun of an earlier run) -- re-running again would repeat the same substrate wall.",
+          "superseded_at_utc": "2026-09-24T08:19:23Z"
+        },
+        {
+          "authority": "rec-20260924-3760004e",
+          "by_session": "governance-20260924",
+          "prior_gating_reason": "Falsifier specification owed (GFLAG-0443): ARC-023's narrowed E3-only falsifier has an unreachable FALSIFYING leg (E3 share must reach 1.0) and an arousal-modulated 'configured period' (MECH-093, band 5-20). V3-EXQ-942 re-read 2026-09-23 = partial (failure_autopsy_V3-EXQ-942_reread_2026-09-23). The v3_exq_131 freeze-artifact reason is resolved by the narrowing.",
+          "superseded_at_utc": "2026-09-24T08:42:06Z"
+        }
+      ],
+      "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-023 via targeted experiment runs.",
       "priority": "medium",
@@ -34152,22 +34175,7 @@
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ],
-      "gating_reason_history": [
-        {
-          "authority": "rec-20260923-e532e1b3",
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_131) already ran and was itself flagged evidence_direction=superseded (identical-metrics rerun of an earlier run) -- re-running again would repeat the same substrate wall.",
-          "superseded_at_utc": "2026-09-24T08:19:23Z"
-        },
-        {
-          "authority": "rec-20260924-3760004e",
-          "by_session": "governance-20260924",
-          "prior_gating_reason": "Falsifier specification owed (GFLAG-0443): ARC-023's narrowed E3-only falsifier has an unreachable FALSIFYING leg (E3 share must reach 1.0) and an arousal-modulated 'configured period' (MECH-093, band 5-20). V3-EXQ-942 re-read 2026-09-23 = partial (failure_autopsy_V3-EXQ-942_reread_2026-09-23). The v3_exq_131 freeze-artifact reason is resolved by the narrowing.",
-          "superseded_at_utc": "2026-09-24T08:42:06Z"
-        }
-      ],
-      "gating_reason_reviewed_utc": "2026-09-24T08:42:06Z"
+      ]
     },
     {
       "acceptance_checks": [
