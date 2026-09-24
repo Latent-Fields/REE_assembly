@@ -6649,6 +6649,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0465",
+      "claim_ids": [
+        "ARC-021"
+      ],
+      "flag_type": "stale_note",
+      "summary": "ARC-021 H2 merged-arm crash is FIXED by default-off REEConfig.detach_carried_prev_action (ree-v3 b6f6733; contract tests/contracts/test_arc021_h2_merged_optimizer_backward.py). The mutator was the merged Adam step reached through the undetached carried _last_action -> prev_action (SD-007 reafference), not ContextMemory.write, which confirms GFLAG-0460's premise correction. At REEConfig.large the merged arm now runs 40/40 clean steps. Owed: claims.yaml ARC-021 implementation_note, and the H2 merged-vs-separate validation run with the flag ON in BOTH arms.",
+      "raised_by_session": "orchestrate-20260924-0808",
+      "raised_at": "2026-09-24T12:00:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
