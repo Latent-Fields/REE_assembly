@@ -6811,6 +6811,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0477",
+      "claim_ids": [
+        "MECH-287",
+        "MECH-284"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-287's functional_restatement and its non-degeneracy precondition both quote a DV quantity that is confounded with EPISODE COUNT, verified at source 2026-09-24. The claim describes V3-EXQ-475's phenotype as '~12x re-commits per release' and makes 'freeze re-commit count well above floor' the precondition for any successor. But PAGFreezeGate.reset() (ree-v3 ree_core/pag/freeze_gate.py:145-150) clears _freeze_active/_duration_above_threshold/_ticks_in_freeze/_last_output and NOT _n_commits/_n_releases/_n_ticks, while agent.reset() calls it every episode (agent.py:4016-4018) -- so the only instrument for this DV is cumulative across warmup+eval. Freeze entry increments only from inactive and release only from active, and reset() clears the freeze without incrementing _n_releases, giving n_commits - n_releases <= n_episodes and recommits_per_release - 1 ~= (episodes ending frozen)/(PAG releases). V3-EXQ-475 ran 60 warmup + 5 eval = 65 episodes/seed and recorded 71/6, 70/5, 64/5: 71-6 = 70-5 = 65 exactly, 64-5 = 59 <= 65, and its pag_n_ticks 2629/2124/1993 far exceed its 1000 eval steps. OWED EDIT (claims.yaml not editable by this session -- igw-auto-igw-223 holds an active claim, task_claim.py check exit 3): annotate MECH-287's functional_restatement and what_would_answer to record that the '~12x re-commits per release' figure and the derived non-degeneracy precondition are instrument-confounded, and state which quantity a successor must use. Also: the what_would_answer's verdict-3 control (segmenter-off, trigger silent) and its trigger-lesioned-arm clause are TRUE BY CONSTRUCTION -- with use_invalidation_trigger=False the trigger object is never built (module.py:367-376) and an empty boundary list short-circuits before any increment (invalidation_trigger.py:187-188) -- so they are wiring assertions and must not be load-bearing in a successor's PASS conjunction. Raised from the V3-EXQ-1097 refusal (red-team BLOCKING at /queue-experiment Step 4.5). Substrate gap registered on EXP-0371 (status=blocked_substrate, blocked_by=pag-freeze-gate-phase-scoped-recommit-readout, REE_assembly c0a0c36aaa). Full analysis: evidence/planning/mech287_dv_instrument_confound_20260924.md. Decision chip: chip-20260924-mech287-dv-episode-confound.",
+      "raised_by_session": "metaworker-science-20260924-orchb-mech287-invalidation-factorial",
+      "raised_at": "2026-09-24T13:53:42Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
