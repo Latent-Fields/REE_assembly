@@ -296,6 +296,14 @@ the state it fires. This spends ~35 min of cloud compute to restate 1082.
 Both are the user's call: each changes which statistic is load-bearing, which is the same class of
 decision as the first stop.
 
+## Governance record
+
+- **GFLAG-0470** (`contested_disposition`, open) -- the bar-denomination question of stop 1.
+- **GFLAG-0475** (`evidence_discrepancy`, open) -- this refusal: the option-C load-bearing criterion
+  is recoverable from V3-EXQ-1082, plus F2/F3 and the autopsy-inconsistency root finding.
+- Script: `ree-v3` origin/main `556b3831`, INERT (no queue entry), DO-NOT-QUEUE banner in its
+  docstring. No queue entry was ever written; `V3-EXQ-1092` was slot-reserved only.
+
 ## Second stop, and the staleness finding it implies
 
 This is the SECOND stop on `chip-20260924-sdppb5-inverted-map-probe`. Per the campaign's "two stops
