@@ -35397,9 +35397,7 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-521
+  implementation_phase: v4
   depends_on:
     - ARC-053
     - MECH-225
@@ -35431,6 +35429,8 @@
     through coherence).
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-04-09_verisimilitude_ethics.md
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-442307c2] implementation_phase v3 -> v4 (restored to its pre-2026-09-23 value). Its derived V3 label (phase_derived_from MECH-521, set by the 2026-09-23 walk, REE_assembly 71c774c99d) rested solely on the MECH-521 -> MECH-228 edge, now severed. ARC-053 and MECH-225 stay v4.
 
 - id: MECH-229
   what_would_answer: |
@@ -69161,7 +69161,8 @@
     precursor (hypothesis_tag); perspective, source_status, and the identity index itself
     are unbuilt.
 - id: MECH-365
-  title: "Provenance-bearing event token: every autobiographical event token carries an explicit provenance/commitment-status structure -- event_token = {time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined} -- and a ONE-WAY gate ensures imagined / simulated future tokens can be used for planning without ever acquiring committed-history status. The scarce resource in mental time travel is not capacity but provenance: any path that lets a simulated event accrue committed weight is a confabulation bug."
+  title: "Provenance-bearing one-way commit-status gate (V3 half of the 2026-09-24 split): imagined / simulated event representations carry an explicit committed_vs_imagined provenance label, and a ONE-WAY gate ensures they can be used for planning without ever acquiring committed-history status -- the reality-status signature MECH-545's contract-lesion assay targets. Scope: the label and gate on the event representations V3 already carries; the full unified-store event-token schema is MECH-365a (v4, on ARC-085)."
+  title_prior_2026_09_24: "Provenance-bearing event token: every autobiographical event token carries an explicit provenance/commitment-status structure -- event_token = {time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined} -- and a ONE-WAY gate ensures imagined / simulated future tokens can be used for planning without ever acquiring committed-history status. The scarce resource in mental time travel is not capacity but provenance: any path that lets a simulated event accrue committed weight is a confabulation bug."
   claim_type: mechanism_hypothesis
   subject: memory.provenance_bearing_event_token
   polarity: asserts
@@ -69170,18 +69171,40 @@
     reading: candidate/substrate_conditional
     as_of: 2026-07-11
     needs_review: false
-  epistemic_category: substrate_conditional
+  epistemic_category: standard
   implementation_phase: v3
   phase_provenance: derived
   phase_derived_from: MECH-545
-  version_relevance: v4_v5
+  version_relevance: v3
   depends_on:
-    - ARC-085
     - MECH-094
     - MECH-037
     - INV-011
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#mech-365
   notes: "Assembles into one concrete token schema the provenance fields that REE already enforces in pieces -- MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation), MECH-037 (Papez-like provenance gating / reality filtering), INV-011 (imagination must be possible without belief update). This claim does NOT re-assert that safety property (already owned by those three); it specifies the DATA STRUCTURE that carries it on the ARC-085 unified event substrate and makes the committed_vs_imagined label a first-class, load-bearing field rather than an implicit mode bit. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094; SD-026 (prospective precision-template write channel) is the nearest existing write-side mechanism. V4/V5; off the V3 critical path. substrate_conditional on the ARC-085 event-token store not yet built. DO NOT build in V3 until routed by experiment."
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-ce7aa5a8] SPLIT (resolution (b), CONFLICT with phase_locked ARC-085): MECH-545 needs only the committed_vs_imagined gate, which already exists in V3, not the ARC-085 unified store. This id keeps the V3 gate half (depends_on ARC-085 removed; epistemic_category substrate_conditional -> standard, since its substrate_conditional reading was 'on the ARC-085 store not yet built'; version_relevance v4_v5 -> v3). The full event-token schema on the unified store -- including the prior notes' 'V4/V5; off the V3 critical path; DO NOT build in V3' guidance -- moves to child MECH-365a (v4). Prior title preserved in title_prior_2026_09_24.
+- id: MECH-365a
+  title: "Provenance-bearing event token: every autobiographical event token carries an explicit provenance/commitment-status structure -- event_token = {time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined} -- and a ONE-WAY gate ensures imagined / simulated future tokens can be used for planning without ever acquiring committed-history status. The scarce resource in mental time travel is not capacity but provenance: any path that lets a simulated event accrue committed weight is a confabulation bug."
+  claim_type: mechanism_hypothesis
+  subject: memory.provenance_bearing_event_token_unified_store
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  split_from: MECH-365
+  registered_utc: "2026-09-24"
+  depends_on:
+    - ARC-085
+    - MECH-365
+    - MECH-094
+    - MECH-037
+    - INV-011
+  location: docs/architecture/autobiographical_temporality_and_future_simulation.md#mech-365
+  notes: "Assembles into one concrete token schema the provenance fields that REE already enforces in pieces -- MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation), MECH-037 (Papez-like provenance gating / reality filtering), INV-011 (imagination must be possible without belief update). This claim does NOT re-assert that safety property (already owned by those three); it specifies the DATA STRUCTURE that carries it on the ARC-085 unified event substrate and makes the committed_vs_imagined label a first-class, load-bearing field rather than an implicit mode bit. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094; SD-026 (prospective precision-template write channel) is the nearest existing write-side mechanism. V4/V5; off the V3 critical path. substrate_conditional on the ARC-085 event-token store not yet built. DO NOT build in V3 until routed by experiment."
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-ce7aa5a8] Registered as the v4 child of the MECH-365 split: the full event_token schema on the ARC-085 unified autobiographical substrate. No V3 claim depends on this child; ARC-085 stays phase_locked v4.
 - id: MECH-366
   title: "Switchable episodic perspective tag: autobiographical event tokens carry a viewpoint label (participant / first-person vs observer / third-person) and can be re-experienced or re-simulated from either viewpoint at retrieval time, independent of the viewpoint at encoding. Perspective is a represented, switchable property of the episode, not a fixed encoding artefact."
   claim_type: mechanism_hypothesis
@@ -90585,7 +90608,6 @@
     - ARC-124   # branches are what obligations must be allocated ACROSS
     - INV-012   # responsibility arises through commitment -- the thing being inherited
     - MECH-061  # the commit boundary that creates the obligations in the first place
-    - INV-099   # residue continuity: repair obligations are residue-bearing
   notes: >
     REGISTERED 2026-08-07, covering seed CAND-CONT-05 from the 2026-06-25 intake.
     Two-sided on purpose, and both sides are load-bearing: migration must not become an
@@ -90615,6 +90637,8 @@
     with no inspectable record -- in which case erasure and multiplication are
     both possible and neither is detectable, which is precisely the condition
     the claim forbids.
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-ffddd93c] depends_on edge ARC-125 -> INV-099 SEVERED as too coarse (edge existed only in depends_on; ARC-125's text does not rely on residue-bearing continuity). INV-099 stays v4; the ARC-010 / MECH-095 cascade through it is removed. ARC-125 keeps its V3 label (derived SD-096).
 
 - id: SD-095
   title: "Continuity-under-replacement tests must evaluate PROCESS, not output: a component replacement is validated on transferred state, plasticity and update permissions, counterfactual response, uncertainty calibration, residue formation, error attribution and downstream dynamics -- immediate input-output equivalence between old and new implementation is insufficient evidence of continuity."
@@ -94678,7 +94702,6 @@
   depends_on:
     - MECH-496  # representational dimensionality as a developmental crystallization OUTCOME -- distinguished-from: MECH-496 is about bucket COUNT resolving over TRAINING TIME; this claim is about compression DEPTH varying at INFERENCE TIME, orthogonal axes that could both be true simultaneously
     - INV-101   # crystallisation target is environment-conditional -- distinguished-from: same developmental/momentary distinction as MECH-496; INV-101 is the invariant form of that developmental claim
-    - MECH-510  # generative-vs-error precision routing -- distinguished-from: MECH-510 is about CONFIDENCE in a prediction; this claim is about BREADTH of the equivalence class the prediction is generated over, an explicitly separate axis per the source thought
     - MECH-451  # intermediate finer-channel-granularity selection-gating -- distinguished-from: MECH-451's "granularity" is about splitting an E3 arbitration SCORE-BIAS blend into separately-learnable channels (conversion-ceiling / F-dominance work); unrelated subject despite the shared word -- flagged to prevent future confusion, not because the mechanisms overlap
   location: docs/architecture/e1.md#mech-512
   source:
@@ -94695,6 +94718,8 @@
     claim asserts. DO NOT build in V3 and DO NOT queue a V3 experiment -- no compression-depth
     knob exists at any timescale in ree_core/predictors/e1_deep.py today; MECH-496 has to land an
     allocation policy before a momentary variant of the same idea is buildable.
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-9dac79d0] depends_on edge MECH-512 -> MECH-510 SEVERED: MECH-512's own description states the compression-depth axis 'is separable ... from prediction confidence/precision (MECH-510)', so the edge contradicted the claim. MECH-510 stays v4.
 
 - id: INV-103
   title: >
@@ -95739,7 +95764,6 @@
     - MECH-450  # minimal recurrent settling step; built, for SELECTION not perception
     - MECH-089  # theta-cycle packaging -- the carrier, active in v3
     - MECH-294  # multi-content theta packet; its FIXED-ARITY sub-slots are the contrast case
-    - MECH-228  # ephaptic coupling as general coherence substrate
     - ARC-006   # binding substrate
     - MECH-045  # ObjectFileBuffer -- the only V3 site where capacity and occupancy coexist
   coupled_with:
@@ -95869,6 +95893,8 @@
     normalisation but it normalises over E3 ACTION CANDIDATES. Right form, wrong population --
     nothing normalises over an online perceptual-token population, because that population does
     not exist (ARC-134 P0).
+  phase_leak_resolution_2026_09_24: >
+    [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-442307c2] depends_on edge MECH-521 -> MECH-228 SEVERED as too coarse: MECH-521's text never relies on ephaptic coupling; the edge existed only in depends_on and was the sole basis for MECH-228's derived V3 label, which pulled ARC-053 (TCL) and MECH-225 into V3.
 - id: MECH-522
   title: "Ephaptic field strength is the COUPLING CONSTANT of the perceptual settling competition that sets slot occupancy (MECH-521), not a quantity that is measured and counted. A physical field does not enumerate domains; it sets the interaction strength from which the domain count emerges -- and because coherence is a property of each population separately, a field-derived setter is natively HETEROGENEOUS (different streams settling into different domain counts simultaneously) rather than imposing the single ordered abstraction axis that Badre and Nee 2018 reports the evidence does not support. This is a THIRD ephaptic function, distinct from MECH-499 (what the actionable now CONTAINS) and MECH-500 (WHEN a branching future is coherent enough to commit): at what GRAIN the now is carved."
   claim_type: mechanism_hypothesis
