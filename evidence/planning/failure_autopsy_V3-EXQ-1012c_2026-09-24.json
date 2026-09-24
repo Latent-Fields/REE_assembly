@@ -1,0 +1,212 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T06:07:19Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "staging_note": "STAGING-MODE DRAFT (headless subagent inside /governance session governance-20260924-workset). Routing NOT finalised; the Step 8 interactive gate is OWED at the governance walk. Nothing marked reviewed; claims.yaml, substrate_queue.json, review_tracker.json, manifests and hypothesis_space_registry.v1.json untouched. No claim opened, nothing committed.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_detail": "scripts/check_dry_run_citations.py over the run_id, V3-EXQ-1012c, V3-EXQ-1012a: 0 dry cited, 1 clean; --family v3_exq_1012c: 0 dry / 1 real.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
+      "queue_id": "V3-EXQ-1012c",
+      "claim_ids": [
+        "MECH-439"
+      ],
+      "bears_on": [
+        "f_dominance_conversion_ceiling"
+      ],
+      "self_route_label": "commensurate_at_eligibility_both_regimes",
+      "failed_criterion": "none -- PASS (C1_eligibility_authority_fed, C1_eligibility_authority_starved, instrument_clean all passed)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not exercised, correctly so -- substrate-rung acceptance instrument, not a MECH-439 test; driver declares non_contributory on every branch and emits evidence_direction_per_claim (+ evidence_direction_note on the flat manifest). Read-across (not adjudicated): MECH-439's what_would_answer NON-DEGENERACY PRECONDITION (>=2 channels live on the same ticks; scales set by the mechanism rather than an unbounded accumulator) is met with the operator ON only under a SUBSTITUTED operationalisation: the precondition as written is a variance-SHARE condition, which under the operator is the GFLAG-0234 identity (shares -> 1/k), so it cannot be read off this run; what this run does show is the eligibility-stage analogue, R_ON >= 0.408 in 8/8 cells (n_content_channels = 3 is NOT evidence for it -- see prerequisites). And its CONFIRMING branch ('F share stays above 0.85') is unreachable by construction with the operator ON, so any retest needs a restated confirming branch.",
+        "biological_reference": "partial -- divisive normalisation / gain control of heterogeneous afferents before value integration (Carandini & Heeger 2012; Louie, Khaw & Glimcher 2013), faithful in kind. Two recorded divergences: (a) equal cross-candidate SD is A normalisation, not obviously THE one (carried from 1012a); (b) canonical DN normalises by the CONCURRENT pool, which is the ORACLE arm here; REE's running EMA is closer to slow adaptation because score_trajectory scores one candidate at a time. The run measures the cost of that divergence: R_ON < R_ORACLE in 8/8 cells. Not load-bearing (ON still clears the bar); no lit-pull owed.",
+        "prerequisites": "present, with a SCOPE bound -- operator engaged, clamp_config_landed and residue_protocol_landed 1.0 in all cells, n_content_channels 3 in all 8 cells. CAUTION: this gate is own-scale-relative (live by EMA AND sd_c(t) >= 0.1 * s_hat_c, no cross-channel term; driver L706-708), so it is satisfied by any non-dead channel -- including in every fed OFF-scored cell where R_OFF = 0.000 -- and is NOT a restoration of 571c's relative-SHARE n_live_channels gate (which could and did fail). The design's own red-team F6 called it 'a formality'. It certifies only that 3 channels are non-dead; the discrimination is carried by R_ON vs R_OFF. benefit_weighted and goal_weighted were never entered (0 content ticks; z_goal_stream ticks_active 0 of 53837 despite z_goal_enabled true), so the operator is validated as a 3-channel instance.",
+        "implementation": "complete (for the 3 live channels) -- the operator is wired, stable and EXERCISED at the stage under test: R_OFF ~0 vs R_ON 0.41-0.86 on the same ticks shows it changes which channels decide eligibility. Not inert.",
+        "environment": "adequate -- the 936/571c/1012a 12x12 reef regime, byte-identical config; fed/starved is a real manipulation (residue scale 0.48-6.03 fed vs 9.3e-05-6.9e-04 starved). Known limitation: open corrupting contextmemory-write-path-addressing-degeneracy upstream of the stage under test, shared with the regime the conversion falsifiers run in.",
+        "measurement": "adequate -- reference-bearing (same-tick OFF monopoly anchor + tick-local ORACLE), triple instrument gate (I1 residual max rel 1.4e-07, I1b self-check, I1c independent OFF replay) plus I2 float32 eligible-set reconstruction (0 mismatches), a single failable criterion per regime with no disjunct, capture-collapse guard, and the 1012a-owed readouts emitted (k quantiles 32, final_commit_by_primary_frac, shape and r_c(t) quantiles). Caveats, none verdict-moving: PASS was the stated prior (red-team F4) and channel shapes came out near-symmetric in 7/8 cells (starved seed 43 harm/residue sparse-HIGH, eligible set inflated to 13.9, still passing -- the benign direction per the design MC; no sparse-LOW, the failing shape, observed); R is a tick-MEAN and hides heavy-tailed per-tick EMA error (r_realised max: f 2.3-22, harm/residue 5.0-178); R_ON < R_ORACLE is 8/8 in sign but fed43 (0.019) and fed46 (0.001) are effectively ties; 4 seeds per regime on trajectories identical to 1012a's.",
+        "integration": "coupled and exercised at the eligibility stage; the final-commit stage (_modulatory_accum over E) is NOT measured, by design (reserved for separate governance scoping per the 1012a autopsy).",
+        "scale": "adequate denominator -- 158-258 genuine latch-gated selections per cell vs a floor of 60; thin between-seed (4 seeds per regime), and NOT independent of 1012a (same trajectories)."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "n/a -- PASS. No failure to locate: all three buckets read adequate/complete and the mechanism DID demonstrate the pre-registered competence (eligibility-stage commensuration), so REE FAILED is not in play; ree is stamped false because the REE-FAILED bucket additionally requires the competence to be absent. Recorded so no later prose can charge this run to REE."
+      },
+      "biological_reference": {
+        "closest_mechanism": "divisive normalisation / gain control at a value-integration stage (concurrent-pool normalisation)",
+        "dependencies": [
+          "channels live enough to be worth normalising (3 of 5 here)",
+          "a normalisation pool concurrent with the comparison (ORACLE) vs a lagged running estimate (ON)"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE normalises by a running EMA of each channel's own cross-candidate SD because candidates are scored one at a time; biology normalises by the concurrent pool. Measured cost: R_ON below R_ORACLE in 8/8 cells (mean gap 0.17). Non-load-bearing here.",
+        "lit_status": "present (targeted_review_connectome_mech_439 grounding extension; normalisation-model literature)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-439": "standard"
+      },
+      "recommended_epistemic_category_note": "Substrate-validation PASS; asserts no epistemic suppression on MECH-439. Not substrate_ceiling (the rung it validates is BUILT and now validated at the eligibility stage), not a measurement defect.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-439": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[2026-09-23, V3-EXQ-1012c, PASS, diagnostic; failure_autopsy_V3-EXQ-1012c_2026-09-24] Substrate validation of SD-E3-CHANNEL-COMMENSURABILITY (f_dominance_conversion_ceiling rung 3) at the ELIGIBILITY stage -- the stage where, in this regime, the primary score reaches the executed action (margin-eligible set; final_commit_by_primary_frac 0.013-0.124 per cell). NOT a test of MECH-439: non_contributory, emitted directly (in the indexer's allowed set, so no 'supports' re-inference; live index row reads non_contributory / diagnostic_probe -- the 1012a sec. 5g defect is closed for this run). WHAT IT ESTABLISHES: with the operator ON, no live E3 channel monopolises eligibility -- per-channel knockout authority ratio R_ON (min/max tick-mean Jaccard) 0.41-0.86 fed and 0.44-0.62 starved, 8/8 cells above the pre-registered 0.25 bar (C1 needs 3/4 per regime), against a same-tick OFF monopoly anchor of R_OFF 0.000-0.001 fed / 0.043-0.104 starved and a tick-local ORACLE normalisation of 0.59-0.96. Instrument clean (residual, replay self-check, independent OFF-replay cross-check all 0 failures; float32 eligible-set mismatch 0.0). The criterion can FAIL gate-green (pre-registered Monte Carlo: sparse-LOW shape R ~0.21 at perfect equalisation; a channel at >=5x its EMA R <= 0.26), so the PASS is not an identity. SCOPE BOUNDS a reader must carry: (i) 3 of the 5 declared channels only -- benefit_weighted and goal_weighted were never entered (z_goal_stream ticks_active 0); (ii) eligibility stage only -- the final pick by _modulatory_accum within the eligible set is not validated; (iii) the EMA divisor scores below tick-local normalisation (R_ON < R_ORACLE in 8/8 cells in sign, by > 0.05 in 6/8, mean gap 0.17; all three live channels burst -- realised per-tick spread up to 2.3-22x the EMA for f and 5-178x for harm/residue) and under ON f, whose cross-candidate spread is ~1e-4 of its mean, holds the largest eligibility authority in 7/8 cells vs 3/8 under the ORACLE -- consistent with burst-inflated EMAs under-weighting harm/residue on typical ticks, not established; (iv) 1012c re-instruments the SAME 8 trajectories as V3-EXQ-1012a (bit-identical channel scales, fresh counts and latch counts per cell) -- it is a second measurement on those trajectories, not an independent replication; (v) runs under the open corrupting entry contextmemory-write-path-addressing-degeneracy, as the conversion falsifiers do. MECH-439's own retest (committed-class entropy against collapsed-proposer and matched-noise controls) has still never run; pending_retest_after_substrate stays true.",
+      "per_claim_recommendation": {
+        "MECH-439": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "pending_retest_after_substrate": true,
+          "change": "No status/category/flag moves: MECH-439 already carries status candidate, epistemic_category standard, diagnostic_evidence_adjudicated true and pending_retest_after_substrate true (all already-true, so none can be the tail). pending_retest_after_substrate STAYS true -- rung 3 is now validated at the eligibility stage but depends_on_unresolved items [0] (SD-018 field-head validation) and [1] (SD-e1 var-bar re-registration) on f_dominance_conversion_ceiling are untouched, and the claim's own retest has never run. Governance applies the drafted evidence_quality_note (appended) and moves live_status.evidence.from off failure_autopsy_V3-EXQ-1012a_2026-09-14 -> stamp this artifact",
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "title": "SD-E3-CHANNEL-COMMENSURABILITY rung 3 VALIDATED at the eligibility stage (V3-EXQ-1012c PASS, 8/8 cells) -- within a stated 3-channel / eligibility-stage / 936-regime scope, and conditional on the user ratifying the GFLAG-0297 eligibility-stage readiness target",
+        "implementation_hint": "BOOKKEEPING AMEND, no build owed (entry is implementation_status wontfix, status_phase closed). (1) RATIFY FIRST (user decision at the /governance walk): the rung's registered readiness target in its four carriers (docs/architecture/sd_e3_channel_commensurability.md, the 571c autopsy .md/.json, substrate_queue.json) is still the GFLAG-0234 commit-flip DV, and depends_on_unresolved[2] still names 'a reference-bearing successor (placebo differential rescaling matched to the operator's log-spread; final_commit_by_primary_frac recorded per cell)'. V3-EXQ-1012c validates against a DIFFERENT target -- eligibility-stage knockout-authority ratio R_ON >= 0.25 in >= 3/4 seeds per regime, with OFF and ORACLE same-tick anchors -- designed in evidence/planning/gflag0297_mech439_rung3_null_design.md, whose sec. 2 shows every primary-stage null (the placebo included) is identity / knob-decided / off-question. GFLAG-0297 was resolved by the design chip, not by a user-approved target amendment. The literal residual is therefore met in spirit (reference-bearing; final_commit_by_primary_frac recorded, 0.013-0.124) but not in letter (no placebo). (2) IF RATIFIED: rewrite depends_on_unresolved[2] as resolved and move it to depends_on_resolved: 'E3 channel-scale normalisation (rung 3) -- BUILT ree-v3 c47b885 + VALIDATED at the eligibility stage by V3-EXQ-1012c (2026-09-23, PASS, confirmed failure_autopsy_V3-EXQ-1012c_2026-09-24): R_ON 0.41-0.86 fed / 0.44-0.62 starved vs R_OFF <= 0.104, instrument clean. Scope: 3 of 5 channels (benefit/goal never entered); eligibility stage only (final pick within E unvalidated); 936 regime under the open contextmemory write-path defect.' (2b) ALSO amend the two remaining target carriers, exactly as GFLAG-0234 amended all four together: the target sentence in evidence/planning/failure_autopsy_V3-EXQ-571c_2026-09-02.md and .json, and this entry's failure_record 571c item `target` field (which still ends on the GFLAG-0234 'commit-flip rate under shadow OFF/ON' text) -- append the ratified eligibility-stage target with the prior text preserved verbatim, so no carrier registers a target the resolving run never measured. Also docs/architecture/sd_e3_channel_commensurability.md (item 5). (3) Update the stale fallback_ladder rung-3 row ('V4-leaning ... recoup-to-V3') to BUILT + VALIDATED (eligibility stage). (4) The 936-family / 654h-class conversion-falsifier refusal that depends_on_unresolved[2] gates: its release condition is now met at the stage the executed action is decided -- whether to release is the USER's call; recommend release only for falsifiers run in this same regime with the operator ON and with the 3-channel scope stated, noting that `ready` stays false (items [0] and [1] unresolved). (5) Also, outside substrate_queue.json and on the same ratification: SD-E3-CHANNEL-COMMENSURABILITY status IMPLEMENTED -> VALIDATED (eligibility stage) in ree-v3 CLAUDE.md index + docs/substrate/SD-E3-CHANNEL-COMMENSURABILITY-*.md, and the REE_assembly architecture doc's 'UNVALIDATABLE AS SPECIFIED' status line.",
+        "unblocks_claims": [
+          "MECH-439"
+        ],
+        "depends_on_unresolved": [
+          "user ratification of the GFLAG-0297 eligibility-stage readiness target (replacing the GFLAG-0234 commit-flip + 1012a placebo target)"
+        ],
+        "priority_suggested": 2,
+        "severity": null,
+        "severity_note": "LEAVE severity (corrupting) and substrate_paths UNCHANGED as governance has them; this run surfaces no new corrupted file. (The entry already reads CLOSED to Step 2.5c via implementation_status wontfix, GFLAG-0293.)",
+        "substrate_paths": null,
+        "failure_record_entry": null,
+        "failure_record_entry_note": "No failure_record item is appended: this run is a validation PASS and records no failure. Governance may instead record it as a validation note on the entry (e.g. validation_2026_09_23_v3_exq_1012c) carrying the metric and target below. HAND-APPLY: `validation_record_entry` has no precedent in the Step 9 schema and check_unapplied_autopsy_recommendations.py does not read it; and governance Step 6a-iv's mechanical `amend` path only appends failure_record_entry (null here) and updates severity/paths (unchanged here) -- EVERYTHING in implementation_hint (ratification, depends_on move, resolves_prior_failure_record, carrier amends, fallback_ladder, doc flips) must be applied by hand at the walk. Dropped-handoff risk: no standing backstop covers it.",
+        "validation_record_entry": {
+          "run_id": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
+          "experiment_type": "v3_exq_1012c_e3_commensurability_eligibility_stage_validation",
+          "metric": "Eligibility-stage per-channel knockout authority ratio R (min/max tick-mean Jaccard) with the operator ON: fed 0.653/0.599/0.408/0.858, starved 0.437/0.454/0.531/0.620 (8/8 >= 0.25); same-tick OFF anchor fed 0.000/0.001/0.000/0.000, starved 0.047/0.043/0.104/0.062; ORACLE (tick-local SD) fed 0.726/0.618/0.833/0.860, starved 0.651/0.594/0.685/0.961. Instrument clean (0/0/0 failures; I2 mismatch 0.0). 3 content channels per cell.",
+          "target": "R_ON >= 0.25 in >= 3 of 4 seeds in BOTH regimes (GFLAG-0297 design, ~'no live channel runs > ~5x the others at the eligibility stage')",
+          "result": "MET"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_1012a_e3_commensurability_selection_level_regime_validation_20260914T221427Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "CONDITIONAL on the ratification in implementation_hint (1). The item's owed follow-on -- a reference-bearing successor with final_commit_by_primary_frac recorded per cell -- was delivered by V3-EXQ-1012c (OFF + ORACLE same-tick anchors; final_commit_by_primary_frac 0.013-0.124), with the placebo construction replaced on the GFLAG-0297 finding that every primary-stage null is non-validating. If governance declines to ratify, leave it open."
+          },
+          {
+            "run_id": "v3_exq_571c_e3_variance_monopoly_presence_936_regime_20260902T152856Z_v3",
+            "resolved": "resolved",
+            "resolved_note": "CONDITIONAL on the same ratification AND on the (2b) carrier amend: resolved against the RATIFIED eligibility-stage target, not against the item's currently-registered GFLAG-0234 commit-flip target (which no run validated -- 1012a was confirmed non-validating). 571c's failure mode -- one channel holding 0.98-0.99999 of cross-candidate variance, so channel authority is decided by units -- is closed for runs with the operator ON by the build (ree-v3 c47b885) and now validated where it bears on the executed action: R_OFF 0.000-0.104 (the 571c monopoly, reproduced as the anchor) vs R_ON 0.41-0.86 on the same ticks. The raw-substrate monopoly with the operator OFF is unchanged, which is why this is 'resolved by a build' rather than 'superseded'. Scope as above (3 channels, eligibility stage)."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "Checked: MECH-439's evidence list carries no supports entries this run could narrow; this is a non_contributory substrate-validation reading, not a substrate-limitation reclassification of a FAIL.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "count": 15,
+        "literal_count_meets_threshold": true,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+          "failure_autopsy_V3-EXQ-571b_2026-09-01",
+          "failure_autopsy_V3-EXQ-571c_2026-09-02",
+          "failure_autopsy_V3-EXQ-689_2026-06-19",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23 (v3_exq_700)",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23 (v3_exq_700a)",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-711-713_2026-07-20 (v3_exq_711)",
+          "failure_autopsy_V3-EXQ-711-713_2026-07-20 (v3_exq_713)",
+          "failure_autopsy_V3-EXQ-936_2026-08-18",
+          "failure_autopsy_V3-EXQ-936a_2026-08-30",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20 (target #4)"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling",
+        "note": "R1-R3 recipe re-run 2026-09-24 from REE_Working: MECH-439 = 15 counted hits (identical list to 1012a's), threshold 2. fired:false here means THIS run adds 0 (per-claim category standard; it is substrate-validation work, the work the brake routes TO) -- it does NOT mean MECH-439's brake is released. What changes: of the upstream work the brake routes to, rung 3 is now validated at the eligibility stage; depends_on_unresolved[0] and [1] are not. A same-granularity lettered re-test of MECH-439's hypothesis is still REFUSED from this artifact. A redesigned conversion falsifier with the operator ON (different question: does committed-class entropy lift once eligibility is commensurate?) is the permitted shape, and is the user's release decision (implementation_hint (4))."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "granularity_debt_cluster.py 2026-09-24: MECH-439 carries 21 tagging targets across 19 files; per 1012a's read (20 targets: intact 8, unclear 8, other 2, n/a 1, strengthened 1) plus 1012a itself (other/not exercised). No target reads weakened -> measurement/substrate debt, not granularity debt. Does not fire."
+      },
+      "learning_extracted": [
+        "VALIDATION, scoped: the commensurability operator's equalisation survives to the stage where the executed action is decided in this regime -- no channel monopolises the margin-eligible set with the operator ON (R_ON 0.41-0.86, 8/8), against a same-tick OFF monopoly (R_OFF <= 0.104).",
+        "The rung's validation target has now moved TWICE (share identity -> commit-flip, GFLAG-0234 user-approved; commit-flip + placebo -> eligibility-stage R, GFLAG-0297 design, not yet user-ratified as the acceptance condition). The PASS is admissible only once the second move is ratified -- recorded as the load-bearing governance step.",
+        "EMA-vs-tick-local cost measured for the first time: R_ON < R_ORACLE in 8/8 cells (mean gap 0.17). A candidate mechanism, consistent with the readouts but NOT established: all three live channels burst (r_c(t) max f 2.3-22, harm/residue 5.0-178), but harm/residue have heavier tails and lower typical-tick r (medians 0.12-0.65 in 7/8 cells) while f has content on ~100% of ticks and typical-tick r closest to 1 (0.55-1.09); so burst-inflated EMAs plausibly under-weight harm/residue on typical ticks, and f (spread ~1e-4 of its mean) takes the largest eligibility authority in 7/8 cells under ON vs 3/8 under the ORACLE (f share of summed J 0.31-0.53 ON vs 0.26-0.40 ORACLE). f is top under the ORACLE too in 3/8 cells, so part of its authority is not an EMA artefact. The ON-ORACLE gap is > 0.05 in 6/8 cells (fed43, fed46 effectively ties). If a later regime ever fails this criterion, the pre-registered ema_lag branch is the likely one, and a tick-local or robust scale is the amend.",
+        "Read-across (not adjudicated): hypothesis_space question arc131_sd091_recruitment_scale_invariance leg H-operator-amplifies names V3-EXQ-1012a as its adjudicating run; 1012c is the operator's successor validation but does NOT measure that leg's DV (margin dispersion across seeds). It shows the EMA divisor's error is bidirectional and heavy-tailed -- consistent with burst amplification on some ticks -- without discriminating the leg. Leg stays alive; its basis text is stale.",
+        "Reproducibility: 1012c reproduced 1012a's 8 trajectories bit-for-bit (identical final channel scales, fresh and latch counts, P1 episode counts; substrate_hash differs only by the driver). Useful determinism evidence; also means 1012c is not an independent replication. One continuity readout differs by one tick (starved seed 43 primary flip 0.3450 vs 1012a 0.3400 = 69 vs 68 of 200), attributable to argmin on float64 reconstructed sums vs float32 replayed scores at a near-tie.",
+        "1012a sec. 5g emission defect is closed on this driver: evidence_direction non_contributory (in the allowed set, so no re-inference) + evidence_direction_per_claim, plus evidence_direction_note on the FLAT manifest only -- the run pack does not carry the note (converter whitelist), so only one of the '5g both halves' reaches the pack; harmless here because non_contributory needs no re-inference guard. Live index row: non_contributory / scoring_excluded diagnostic_probe.",
+        "Scope carried forward from 1012a, still true: benefit_weighted and goal_weighted never entered (z_goal ticks_active 0 of 53837 with z_goal_enabled true). Reviving them is a harness change; the validation is of a 3-channel operator.",
+        "MECH-439 claim-text implication (for governance, not this autopsy to write): with the operator ON its confirming branch ('F share stays above 0.85') is unreachable by construction, and 571c found the fed-regime monopolist is residue, not F. A retest under the operator needs a restated confirming branch."
+      ],
+      "routing": "governance",
+      "routing_detail": {
+        "work_graph_debt_class": "none on this node -- no build, probe or fact is owed; what remains is a user decision gate (target ratification + refusal release) plus hand-applied bookkeeping. (The substrate entry itself is implementation_status wontfix, status_phase closed.)",
+        "primary_route": "/governance: (a) put the GFLAG-0297 eligibility-stage readiness target to the user for ratification as rung 3's acceptance condition; (b) if ratified, apply the substrate_queue amend (resolve depends_on_unresolved[2] into depends_on_resolved; resolve the 1012a and 571c failure_record items; refresh fallback_ladder rung 3) and flip SD-E3-CHANNEL-COMMENSURABILITY to VALIDATED (eligibility stage) in its three docs; (c) put the 936-family / 654h-class conversion-falsifier refusal release to the user; (d) apply the MECH-439 evidence_quality_note + citation stamp.",
+        "follow_on_named_not_spawned": [
+          "If (c) releases: /queue-experiment a REDESIGNED conversion falsifier run with use_e3_channel_commensurability ON in the 936 regime (new EXQ number; question = does committed-action-class entropy lift over collapsed-proposer AND matched-noise controls once eligibility is commensurate), with MECH-439's confirming branch restated first. Governance chips it.",
+          "/queue-experiment or harness work (optional, lower priority): revive benefit_weighted / goal_weighted in this regime so the operator can be validated as a 5-channel instance.",
+          "Optional scoping for governance: final-commit-stage replay (_modulatory_accum within E) -- still reserved per the 1012a autopsy; not recommended unless a conversion falsifier FAILs in a way that points there.",
+          "Registry hygiene: refresh arc131_sd091_recruitment_scale_invariance H-operator-amplifies basis + decision.distance_phrase (both still name 1012a as the open adjudicator) -- see hypothesis_space_ledger_pending."
+        ],
+        "explicitly_not_recommended": [
+          "Do NOT read the PASS as evidence FOR MECH-439 or as a MECH-439 retest.",
+          "Do NOT treat the literal depends_on_unresolved[2] residual (placebo) as satisfied without the user ratifying the target change.",
+          "Do NOT count 1012c as an independent replication of anything 1012a measured -- same trajectories.",
+          "Do NOT queue another lettered MECH-439 re-test against the same substrate (brake)."
+        ]
+      }
+    }
+  ],
+  "red_team": {
+    "model": "fable (Fable 5.1) -- CROSS-MODEL; this drafting subagent runs on Opus 5.5",
+    "verdict": "CONTESTED",
+    "findings_file": "session scratchpad a1012c/redteam_1012c_autopsy.md (not committed)",
+    "science_recomputed_sound": "R = min/max jbar reproduced in 8/8 cells; C1 4/4 both regimes; instrument 0/0/0; R_ON < R_ORACLE 8/8 (mean 0.1708); f top-J 7/8 ON vs 3/8 ORACLE; 1012c scales/fresh/latch/P1 counts byte-identical to 1012a in 8/8; GFLAG-0297 target never user-ratified (no decision_log entry); routing governance, brake reasoning, conditional 1012a resolution all verified; nothing recommended pre-exists.",
+    "applied": [
+      "F1 (recommendation, HIGH): if-ratified amend list omitted the 571c autopsy .md/.json carriers and the 571c failure_record item's own target field (still the GFLAG-0234 commit-flip text) while marking that item resolved -- APPLIED: item (2b) added; 571c resolution now explicitly against the RATIFIED target and conditional on the carrier amend.",
+      "F2 (assertion, MED-HIGH): 'f -- stationary' contradicted by cells (f r_realised max 11.8-22.3x in 6/8 cells) -- APPLIED: struck; mechanism restated as consistent-not-established, f top under ORACLE in 3/8 noted.",
+      "F3 (recommendation, MED): Step 9b should not append 1012c as a resolving run on H-operator-amplifies (never measured its DV) -- APPLIED: default flipped to basis/distance text refresh only.",
+      "F4 (assertion, MED): n_content_channels is own-scale-relative, true even under OFF at R_OFF 0.000, so it is not a restoration of 571c's share gate nor evidence the MECH-439 precondition is met -- APPLIED: prerequisites and claim_alignment rewritten to rest on R_ON only, substituted operationalisation stated."
+    ],
+    "hygiene_applied": [
+      "H1 gap in sign vs beyond noise",
+      "H2 max-r ranges labelled by channel",
+      "H3 table rounding",
+      "H4/H6 hand-apply warning",
+      "H5 run pack lacks evidence_direction_note",
+      "H7 work-graph token",
+      "H8 shape index exceeds single-spike ceiling"
+    ],
+    "hygiene_not_applied": [
+      "H9 -- both facts (implementation_status wontfix, status_phase closed) are stated; no inconsistency to fix"
+    ]
+  },
+  "hypothesis_space_ledger_pending": {
+    "note": "STAGING MODE -- NOT applied; hypothesis_space_registry.v1.json was NOT written.",
+    "verdict": "ONE non-discriminating Mode B note (state unchanged) plus stale-text refresh; no fan-out, no new question, no growth.",
+    "mode_b_non_discriminating": {
+      "qid": "arc131_sd091_recruitment_scale_invariance",
+      "hid": "H-operator-amplifies",
+      "growth_restriction": null,
+      "state": "alive (UNCHANGED)",
+      "append_resolving_run": null,
+      "append_resolving_run_note": "DEFAULT: do NOT append V3-EXQ-1012c to resolving_runs and do NOT write control_passed / non_degenerate on this leg -- 1012c is not an adjudicating run of this leg and recorded no margin-dispersion statistic (the leg's DV); its instrument gates are not a control on the leg's DV, and resolving_runs feeds build_hypothesis_space.py's derived counts. Apply ONLY the basis and distance_phrase text refresh below (Step 7c red-team F3, accepted).",
+      "basis_replacement": "V3-EXQ-1012a, named here as the adjudicating run, was CONFIRMED non-validating (failure_autopsy_V3-EXQ-1012a_2026-09-14). Its successor V3-EXQ-1012c (PASS, failure_autopsy_V3-EXQ-1012c_2026-09-24) validates the operator at the eligibility stage on a tick-mean DV, but does NOT measure this leg's DV (cross-seed / within-cell margin dispersion). What it shows that bears on the leg: the EMA divisor's per-tick error is bidirectional and heavy-tailed -- median r_c(t) 0.12-0.93 for the bursty channels (typical ticks under-weighted) and max 5.0-178 (burst ticks over-weighted) -- and R_ON < R_ORACLE in 8/8 cells in sign. Consistent with burst amplification, not discriminating. Leg stays alive; no run currently owns it.",
+      "decision_distance_phrase_refresh": "one leg eliminated by V3-EXQ-1038a; the remaining two are not separated by the operator's own validation (V3-EXQ-1012c validates the operator at the eligibility stage but not on margin dispersion) -- a dispersion-DV probe is owed",
+      "why_text_refresh_only": "No new hypothesis is added (not Mode A/C); and Mode B's non-discriminating row presupposes a run that TARGETED the leg's DV and came back uninformative, which 1012c did not. So the honest write is a stale-text correction of a basis that still names 1012a as the open adjudicator, nothing more. The first draft recommended appending 1012c as a resolving run; withdrawn at Step 7c."
+    },
+    "other_questions_checked": "e3_fdominance_causal_discrimination (MECH-439): no leg names 1012a/1012c as adjudicating; H0-selector-regime-confound and H5-score-scale-uncontrolled are already confirmed -- 1012c is downstream-consistent with H5 (with the scale controlled, the eligibility monopoly disappears) but adjudicates nothing there. conversion_ceiling_root: H-f-dominance alive, not addressed by this run.",
+    "mode_d_h_other": "Not triggered -- no pattern-level signal (1)-(6); the run adjudicates no registered partition."
+  }
+}
