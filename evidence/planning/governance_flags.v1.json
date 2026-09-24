@@ -6488,6 +6488,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0453",
+      "claim_ids": [
+        "MECH-094",
+        "ARC-065"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Read-across from the confirmed GFLAG-0452 cluster autopsies (user decision G6 A, rec-20260924-2359906f), NOT yet adjudicated: (1) V3-EXQ-499 (MECH-094) has the same design as V3-EXQ-633, which the D1 cluster autopsy found to be a unit test of the simulation/real tag conditional (non_contributory) -- 499 still scores. (2) V3-EXQ-569i (ARC-065) has a matched-noise arm bit-identical to the proposer arm -- the same inert-control shape that made V3-EXQ-615 non_contributory (D2 cluster). If 569i is confirmed defective, ARC-065 (stable) has no run discriminating structured diversity from noise and should be reviewed stable -> provisional. Route: /failure-autopsy (PASS targets) for 499 and 569i; governance applies. Sources: evidence/planning/failure_autopsy_gflag0452-D1-cluster_2026-09-24 and -D2-cluster_2026-09-24.",
+      "raised_by_session": "governance-20260924",
+      "raised_at": "2026-09-24T10:25:28Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
