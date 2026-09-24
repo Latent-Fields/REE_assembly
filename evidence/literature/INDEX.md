@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-24T18:33:37.466818Z`
+Generated: `2026-09-24T21:48:22.526092Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -154,6 +154,7 @@ Generated: `2026-09-24T18:33:37.466818Z`
 | `targeted_review_connectome_mech_074` | [`2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025`](targeted_review_connectome_mech_074/entries/2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025/record.json) | 15 | [`summary`](targeted_review_connectome_mech_074/entries/2026-04-25_mech_074d_vhpc_bla_circuit_reconsolidation_guo2025/summary.md) |
 | `targeted_review_connectome_mech_075` | [`2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021`](targeted_review_connectome_mech_075/entries/2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021/record.json) | 9 | [`summary`](targeted_review_connectome_mech_075/entries/2026-08-11_mech_075_noradrenaline_plasticity_gate_not_online_prince2021/summary.md) |
 | `targeted_review_connectome_mech_079` | [`2026-09-23_mech_079_representational_drift_stable_environment_climer2025`](targeted_review_connectome_mech_079/entries/2026-09-23_mech_079_representational_drift_stable_environment_climer2025/record.json) | 5 | [`summary`](targeted_review_connectome_mech_079/entries/2026-09-23_mech_079_representational_drift_stable_environment_climer2025/summary.md) |
+| `targeted_review_connectome_mech_082` | [`2026-09-24_mech_082_memory_guided_orienting_summerfield2006`](targeted_review_connectome_mech_082/entries/2026-09-24_mech_082_memory_guided_orienting_summerfield2006/record.json) | 5 | [`summary`](targeted_review_connectome_mech_082/entries/2026-09-24_mech_082_memory_guided_orienting_summerfield2006/summary.md) |
 | `targeted_review_connectome_mech_089` | [`2026-04-08_mech089_theta_gamma_learning_tort2009`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/record.json) | 5 | [`summary`](targeted_review_connectome_mech_089/entries/2026-04-08_mech089_theta_gamma_learning_tort2009/summary.md) |
 | `targeted_review_connectome_mech_090` | [`2026-05-28_mech090_premature_commit_pathology_roesch2007`](targeted_review_connectome_mech_090/entries/2026-05-28_mech090_premature_commit_pathology_roesch2007/record.json) | 12 | [`summary`](targeted_review_connectome_mech_090/entries/2026-05-28_mech090_premature_commit_pathology_roesch2007/summary.md) |
 | `targeted_review_connectome_mech_091` | [`2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007`](targeted_review_connectome_mech_091/entries/2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007/record.json) | 5 | [`summary`](targeted_review_connectome_mech_091/entries/2026-04-08_mech091_phase_reset_vs_evoked_critical_review_sauseng2007/summary.md) |

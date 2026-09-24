@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_082",
+  "entry_id": "2026-09-24_mech_082_ltm_prepares_visual_cortex_stokes2012",
+  "timestamp_utc": "2026-09-24T21:43:19Z",
+  "claim_ids_tested": [
+    "MECH-082"
+  ],
+  "source": {
+    "title": "Long-term memory prepares neural activity for perception",
+    "authors": [
+      "Stokes, Mark G.",
+      "Atherton, Kathryn",
+      "Patai, Eva Zita",
+      "Nobre, Anna C."
+    ],
+    "year": 2012,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1108555108",
+    "pmid": "22109554",
+    "pmc": "PMC3277524",
+    "volume": "109",
+    "issue": "6",
+    "pages": "E360-E367"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Multi-method (behaviour + EEG + fMRI) evidence that LTM content modulates anticipatory state in visual cortex in a spatially specific way before the stimulus arrives, i.e. a top-down change in sensory-level sampling readiness without sensory relearning. Hippocampal involvement is inferred from network fMRI, not isolated or manipulated, and distortion is untested.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hippocampus is implicated only as part of an 'integrated cortical network' in fMRI; the paper does not show that hippocampal signals are the proximal cause of the preparatory modulation in extrastriate cortex.",
+    "Predictions derived from memory were valid on the tested trials; the design cannot show whether a mis-learned location would bias preparatory activity equivalently."
+  ],
+  "tags": [
+    "mech_082",
+    "hippocampus",
+    "long_term_memory",
+    "alpha_desynchronization",
+    "preparatory_activity",
+    "visual_cortex",
+    "top_down_bias"
+  ],
+  "mapping": {
+    "source_claim_statement": "Contents of long-term memory sharpen perceptual sensitivity at memory-predicted locations; memory-guided attention is associated with spatially specific alpha-band desynchronization over visual cortex and spatiotopic modulation of preparatory activity in extrastriate cortex; a network including the hippocampus and dorsal frontoparietal cortex is a likely organiser of these preparatory states.",
+    "ree_translation": "Supports the MECH-082 notion that map-derived predictions reconfigure sensory-level (E1) sampling readiness in advance of input, per spatial dimension, with the sensory encoder's weights untouched. The spatiotopic alpha modulation is a candidate biological readout for the 'per-dimension E1 sampling allocation' DV the claim's what_would_answer calls for.",
+    "mapping_caveat": "Alpha desynchronization and BOLD preparatory activity index gain/readiness, not learning-free 'sampling allocation' in REE's exact sense. The hippocampal link is network-level and correlational. No map distortion, no E2 intermediary, and no feedback-channel ablation, so the claim's discriminating contrast (bias present with feedback intact, absent when cut) is not addressed.",
+    "source_context": "Healthy human adults; memory-guided spatial attention paradigm; behavioural sensitivity, EEG oscillations, and fMRI across experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.35,
+    "notes": "PNAS, convergent methods. Best available precedent for a per-dimension sampling DV, but hippocampal causality is not isolated."
+  }
+}

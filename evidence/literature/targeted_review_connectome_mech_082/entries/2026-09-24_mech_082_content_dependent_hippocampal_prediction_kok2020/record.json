@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_082",
+  "entry_id": "2026-09-24_mech_082_content_dependent_hippocampal_prediction_kok2020",
+  "timestamp_utc": "2026-09-24T21:43:19Z",
+  "claim_ids_tested": [
+    "MECH-082"
+  ],
+  "source": {
+    "title": "Content-based Dissociation of Hippocampal Involvement in Prediction",
+    "authors": [
+      "Kok, Peter",
+      "Rait, Lindsay I.",
+      "Turk-Browne, Nicholas B."
+    ],
+    "year": 2020,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn_a_01509",
+    "pmid": "31820676",
+    "pmc": "PMC6996939",
+    "volume": "32",
+    "issue": "3",
+    "pages": "527-545"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.42,
+  "confidence_rationale": "Follow-up showing the hippocampus acts as a source of top-down predictions for complex shapes but represents only UNEXPECTED orientations (prediction-error-like) for simple gratings. This bounds MECH-082: hippocampal-map-to-perception propagation may be content-dependent, applying to complex/relational features and not to low-level sensory dimensions. Coded mixed because it supports the mechanism in one regime and undercuts domain-general propagation in the other.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "For simple oriented gratings the hippocampus represented only unexpected orientations, a prediction-error-like signal, not the expected orientation; a hippocampal map would therefore not be the source of top-down bias along low-level feature dimensions, contrary to a domain-general reading of MECH-082.",
+    "Content dependence means a test of MECH-082 run on low-level E1 dimensions could fail for reasons unrelated to the claim's core mechanism; the REE falsifier should specify which feature class the distortion acts on."
+  ],
+  "tags": [
+    "mech_082",
+    "hippocampus",
+    "prediction_error",
+    "content_dependence",
+    "predictive_coding",
+    "fmri",
+    "boundary_condition"
+  ],
+  "mapping": {
+    "source_claim_statement": "Auditory cues predicting abstract shapes evoke hippocampal representations of the expected shape (a potential source of top-down prediction), whereas cues predicting simple oriented gratings evoke hippocampal representations only of unexpected orientations (reminiscent of prediction error); the hippocampus' role in predictive processing may depend on stimulus complexity.",
+    "ree_translation": "A boundary condition on MECH-082: the hippocampal map may supply top-down predictions, and so bias sampling, only for compound/relational content, while low-level feature dimensions are left to cortical priors, with the hippocampus signalling surprise there. Map distortion would then bias E1 sampling along object- or relation-level dimensions but not along primitive sensory ones.",
+    "mapping_caveat": "Null-for-prediction results in the grating condition could reflect fMRI sensitivity or the particular paradigm, not a true absence. The paper does not manipulate distortion or measure sampling. REE's E1 latent dimensions do not map cleanly onto 'simple vs complex stimuli', so translating this boundary into REE requires a further modelling choice.",
+    "source_context": "Healthy human adults; two experiments (auditory cues predicting abstract shapes vs oriented gratings); high-resolution fMRI with inverted encoding models."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.4,
+    "notes": "Same lab and methods as Kok 2018. Useful as a boundary condition, so coded mixed. Mapping low because REE feature classes do not map onto the simple/complex split directly."
+  }
+}

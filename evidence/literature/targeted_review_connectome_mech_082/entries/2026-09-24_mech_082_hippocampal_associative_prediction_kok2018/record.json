@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_082",
+  "entry_id": "2026-09-24_mech_082_hippocampal_associative_prediction_kok2018",
+  "timestamp_utc": "2026-09-24T21:43:19Z",
+  "claim_ids_tested": [
+    "MECH-082"
+  ],
+  "source": {
+    "title": "Associative Prediction of Visual Shape in the Hippocampus",
+    "authors": [
+      "Kok, Peter",
+      "Turk-Browne, Nicholas B."
+    ],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0163-18.2018",
+    "pmid": "29986875",
+    "pmc": "PMC6070666",
+    "volume": "38",
+    "issue": "31",
+    "pages": "6888-6899"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "High-resolution fMRI with multivariate reconstruction shows the hippocampus represents the PREDICTED shape (not the presented one) and that the strength of this hippocampal prediction correlates across participants with expectation-related facilitation in visual cortex. That is a map-side prediction dissociable from sensory input and linked to a sensory-level change, which is the structural shape of MECH-082. The correlation is across participants, and the 'bias' measured is facilitation of representation, not sampling allocation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hippocampus-to-visual-cortex link is an across-participant correlation; it does not establish a trial-level causal pathway, and a shared third factor (e.g. overall task engagement) could drive both.",
+    "Expectation-related facilitation of visual-cortex representations is a change in sensory encoding quality, not demonstrably a change in sampling allocation; MECH-082's DV is the latter."
+  ],
+  "tags": [
+    "mech_082",
+    "hippocampus",
+    "predictive_coding",
+    "associative_prediction",
+    "visual_cortex",
+    "inverted_encoding_model",
+    "fmri"
+  ],
+  "mapping": {
+    "source_claim_statement": "When auditory cues predict visual shapes, visual-cortex representations are dominated by the presented shape whereas hippocampal representations reflect only the predicted shape; the strength of hippocampal predictions correlates across participants with expectation-related facilitation in visual cortex.",
+    "ree_translation": "The hippocampus carries a prediction that is dissociable from current sensory input (it represents the expected, not the seen, stimulus), and the strength of that prediction scales with top-down facilitation at the sensory level. This matches MECH-082's structural requirement that a map-derived prediction can differ from sensory evidence and still shape sensory processing, without the sensory encoder being retrained.",
+    "mapping_caveat": "Facilitation of representations is not per-dimension sampling allocation. The link is correlational across subjects. Predictions were learned and valid, so distortion is untested. REE places the prediction in E2 (a forward model) and the source in the hippocampal map; the paper does not separate those two stages.",
+    "source_context": "Healthy human adults; auditory cue -> visual shape associative prediction; high-resolution fMRI of hippocampal subfields and visual cortex with inverted encoding models."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.35,
+    "notes": "J Neurosci, rigorous multivariate methods. Mapping moderate-low: facilitation, not sampling, and between-subject correlation only."
+  }
+}

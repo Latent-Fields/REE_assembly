@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_082",
+  "entry_id": "2026-09-24_mech_082_memory_guided_orienting_summerfield2006",
+  "timestamp_utc": "2026-09-24T21:43:19Z",
+  "claim_ids_tested": [
+    "MECH-082"
+  ],
+  "source": {
+    "title": "Orienting attention based on long-term memory experience",
+    "authors": [
+      "Summerfield, Jennifer J.",
+      "Lepsien, Joran",
+      "Gitelman, Darren R.",
+      "Mesulam, M. Marsel",
+      "Nobre, Anna C."
+    ],
+    "year": 2006,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2006.01.021",
+    "pmid": "16543137",
+    "pmc": null,
+    "volume": "49",
+    "issue": "6",
+    "pages": "905-916"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Direct human evidence that a hippocampus-dependent memory signal steers spatial attention (a sampling allocation) and that hippocampal activity tracks the behavioural benefit. Supports the propagation half of MECH-082 (stored map content -> perceptual sampling bias without sensory relearning). It does not test map DISTORTION, the E2 intermediary, or causality (fMRI correlation), so mapping fidelity caps confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal engagement is correlational (event-related fMRI); the paper cannot rule out that hippocampal activity is a by-product of retrieval that runs in parallel with, rather than upstream of, the frontoparietal orienting signal.",
+    "Memories here are ACCURATE (learned target locations); the paper says nothing about whether an erroneous or distorted memory would bias sampling in the same way, which is the load-bearing half of MECH-082."
+  ],
+  "tags": [
+    "mech_082",
+    "hippocampus",
+    "memory_guided_attention",
+    "spatial_orienting",
+    "top_down_bias",
+    "fmri"
+  ],
+  "mapping": {
+    "source_claim_statement": "Stable long-term memories of object locations within naturalistic scenes guide spatial orienting within short intervals and improve detection; memory-guided orienting recruits the hippocampus together with the parietal-frontal orienting network, and hippocampal activity is specifically engaged by memory-guided (not cue-guided) orienting and correlates with the behavioural advantage.",
+    "ree_translation": "Read as the biological precedent for the MECH-082 propagation path: map-derived expectations (hippocampal/E2-side content) bias where E1-level perceptual sampling is allocated, on a trial-by-trial timescale, with no retraining of the sensory encoder. The hippocampal-frontoparietal interaction is the nearest analogue to an E2-to-E1 sampling-control consumer.",
+    "mapping_caveat": "REE's claim routes the bias through E2 predictions and the MECH-081 sufficiency constraint; the paper identifies a hippocampus + frontoparietal network, not a forward-model stage, so the E2 intermediary is an REE interpretation, not a finding. The memories were veridical; distortion-driven bias is not tested. Spatial orienting is one dimension of 'sampling allocation'; REE's per-dimension allocation DV is broader.",
+    "source_context": "Healthy human adults, naturalistic-scene memory-guided vs. cue-guided spatial orienting task, event-related fMRI."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Neuron, well-cited, replicated paradigm family (Nobre lab). Mapping capped by veridical-memory design and correlational hippocampal evidence."
+  }
+}

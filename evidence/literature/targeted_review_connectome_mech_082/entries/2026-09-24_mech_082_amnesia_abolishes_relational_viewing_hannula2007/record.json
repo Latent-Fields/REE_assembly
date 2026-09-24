@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_082",
+  "entry_id": "2026-09-24_mech_082_amnesia_abolishes_relational_viewing_hannula2007",
+  "timestamp_utc": "2026-09-24T21:43:19Z",
+  "claim_ids_tested": [
+    "MECH-082"
+  ],
+  "source": {
+    "title": "Rapid onset relational memory effects are evident in eye movement behavior, but not in hippocampal amnesia",
+    "authors": [
+      "Hannula, Deborah E.",
+      "Ryan, Jennifer D.",
+      "Tranel, Daniel",
+      "Cohen, Neal J."
+    ],
+    "year": 2007,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn.2007.19.10.1690",
+    "pmid": "17854282",
+    "pmc": null,
+    "volume": "19",
+    "issue": "10",
+    "pages": "1690-1705"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Lesion evidence: memory-driven biasing of overt visual sampling (eye movements toward the relationally-matched face) is absent in amnesic patients with hippocampal damage, and in controls appears within 500-750 ms, before explicit response and even without a response requirement. This is the closest thing in this pull to a necessity test of the hippocampal-source leg of MECH-082. Small patient sample and no distortion manipulation cap confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Amnesic patient groups are small and damage is not always restricted to the hippocampus, so necessity is attributed to the 'hippocampal system' rather than to the hippocampus proper.",
+    "Loss of relational viewing in amnesia shows the hippocampal source is necessary for memory-driven sampling bias; it does not show that a DISTORTED hippocampal map would produce a corresponding distorted bias, which is what MECH-082 asserts."
+  ],
+  "tags": [
+    "mech_082",
+    "hippocampus",
+    "amnesia",
+    "eye_movements",
+    "relational_memory",
+    "visual_sampling",
+    "lesion"
+  ],
+  "mapping": {
+    "source_claim_statement": "Healthy participants show disproportionate viewing of the face previously paired with a scene within 500-750 ms of display onset when a scene preview allows expectancies to form, more than a second before explicit responses and even when no overt response is required; these relational memory effects on eye movements are absent in amnesic patients with hippocampal damage.",
+    "ree_translation": "Overt gaze allocation is the most literal biological form of 'E1 sampling allocation'. The paper shows that a hippocampus-dependent relational prediction biases sampling obligatorily and rapidly, before and independently of explicit report, and that removing the hippocampal source abolishes the bias. In REE terms: a map-derived expectation is propagated into sampling control without any change to the sensory encoder, and the effect depends on the map.",
+    "mapping_caveat": "This is a source-ablation result, not the channel-ablation (E2-to-E1 feedback cut) or distortion manipulation that MECH-082's what_would_answer specifies. The expectancy here is veridical. The route from hippocampus to oculomotor control is not specified, and REE's E2 intermediary is not tested.",
+    "source_context": "Healthy young adults and amnesic patients with hippocampal damage; face-scene relational memory task with eye tracking; four experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "J Cogn Neurosci; four experiments plus patient comparison. Highest mapping in the pull because gaze is literal sampling and the lesion arm gives necessity, but the patient N is small and distortion is untested."
+  }
+}
