@@ -39797,15 +39797,23 @@
       ],
       "added_utc": "2026-09-06",
       "backlog_id": null,
+      "blocked_by": [
+        "MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE"
+      ],
+      "blocked_note": "Refused at /queue-experiment Step 4.5 (adversarial red-team, BLOCKING), verdict re-verified against source before acting. EXP-1388's primary criterion C1 is defined on MECH-288's slow/outer BOCPD scale, which has NO REACHABLE FIRING ROUTE on the in-agent observation path: the Bayesian posterior route cannot fire at all (likelihood terms cancel in normalisation, so p(r=0) == hazard == 0.025 identically vs posterior_threshold 0.5; event_segmenter.py:315-323,343-352,378-384), and the only live route -- the max(pred_log) < -20 implausibility fast path (:303-312) -- requires a ONE-TICK change in the SCALAR NORM ||z_goal|| (:282) greater than sqrt(40 - ln 2pi) = 6.1775, while GoalState.update can move it by at most 0.005*||z_goal|| + 0.05*||z_world - 0.995*z_goal|| per tick (goal.py:29,33,871,912-919) and the measured live norm is 0.110-0.163 mean / 0.209-0.305 max (V3-EXQ-830, 5 seeds). The blocker is the slow-scale detector/stream pairing itself, which has NO substrate_queue entry yet -- registering one is the owed step (UNOWNED bucket). This is a claim-level decision: MECH-288 commits to 'BOCPD-Gaussian latent change-point on the slow scale (z_goal)', so changing the stream, the rail (prior_var/hazard/posterior_threshold) or alpha_goal changes what the claim IS. NOT taken here. Full record: evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md (REE_assembly d46c032239); measurement half: mech288_exp1388_inagent_slow_scale_liveness_20260924.md (a576b2a819), GFLAG-0468. No experiment was queued; V3-EXQ-1096 was authored, smoke-passed and released.",
       "claim_id": "MECH-288",
       "design": "- Title: `V3-EXQ-<next> -- MECH-288 in-agent boundary alignment: slow/fast segment boundaries\n  vs task-natural transitions, rate-matched chance baseline`\n- related_claims: `MECH-288` (primary, `claim_ids: [\"MECH-288\"]` -- the point of the run),\n  bears_on `MECH-269`, `MECH-284`, `MECH-287`, `ARC-070`.\n- acceptance_checks:\n  1. Precondition gates (all four above), each with a measured value and threshold in the\n     manifest's `interpretation.preconditions` block, per house recording standard.\n  2. `pe_dict` declaration gate: the run states explicitly, per arm, whether the fast scale\n     received forward PE or ran the latent-delta fallback. Recommend running BOTH as arms -- this\n     is cheap, it directly adjudicates the spec/substrate divergence flagged below, and a\n     difference between them is itself a finding.\n  3. C1 (slow alignment): hit rate vs +/-2-tick tolerance window, against a rate-matched\n     shuffled-label baseline (not a naive uniform baseline), >= 6 seeds, effect gate\n     `max(1.0 x SD of per-seed delta, 0.15 absolute)`.\n  4. C2 (bounded FP): false-positive rate on a matched stationary stretch below a\n     pre-registered ceiling; the in-agent analogue of V3-EXQ-757's C288_silence.\n  5. C3 (hierarchy separation): slow-vs-fast alignment profiles differ across the two\n     transition classes (a scale x transition-class interaction), fast scale compared against its\n     own ~15% construction floor.\n  6. Negative control: `use_event_segmenter=False` arm -- zero BoundaryEvents, zero\n     MECH-287 broadcasts, bit-identical action sequences, so a null in C1 can never be confused\n     with an inert arm.\n  7. Ground-truth transition labels emitted by the harness and recorded in the manifest, per\n     precondition (4).",
       "dispatch_mode": "multi_arm_ablation",
+      "governance_flag": "GFLAG-0474",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-288 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
       "objective": "Test MECH-288 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - Title: `V3-EXQ-<next> -- MECH-288 in-agent boundary alignment: slow/fast segment boundaries\n  vs task-natural transitions, rate-matched chance baseline`\n- related_claims: `MECH-288` (primary, `claim_ids: [\"MECH-288\"]` -- the point of the run),\n  bears_on `MECH-269`, `MECH-284`, `MECH-287`, `ARC-070`.\n- acceptance_checks:\n  1. Precondition gates (all four above), each with a measured value and threshold in the\n     manifest's `interpretation.preconditions` block, per house recording standard.\n  2. `pe_dict` declaration gate: the run states explicitly, per arm, whether the fast scale\n     received forward PE or ran the latent-delta fallback. Recommend running BOTH as arms -- this\n     is che",
       "priority": "medium",
       "proposal_id": "EXP-1388",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "metaworker-science-20260924-orchb-mech288-boundary-anchor",
+      "refused_utc": "2026-09-24T13:36:47Z",
       "registered_utc": "2026-09-06",
       "related_claims": [
         "MECH-288",
@@ -39815,7 +39823,7 @@
         "ARC-070"
       ],
       "source": "manual",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "target_repo": "ree-v3"
     },
     {
