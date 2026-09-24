@@ -4573,6 +4573,14 @@
       "exclude_broad_profile_sweeps": true,
       "gated_at_utc": "2026-09-24T02:47:18Z",
       "gated_by_session": "igw-241-proposal-for-mech-018",
+      "gating_history": [
+        {
+          "gated_at_utc": "2026-09-17T08:01:12Z",
+          "gated_by_session": "igw-235-proposal-for-mech-018",
+          "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
+          "superseded_note": "all three parts met 2026-09-23 (release_note_2026_09_23); re-gated 2026-09-24 on a new defect"
+        }
+      ],
       "gating_reason": "Refused at /queue-experiment Step 2.5d (falsifier-runnability trace), shape INERT, re-measured by IGW-241 2026-09-24 (duplicating eloquent-lichterman-824f74's 2026-09-23 refusal, which could only take route 2b and so left status=proposed). ResidueField.integrate() jitters samples by per-dimension std = kernel bandwidth, so at world_dim=32 targets sit ~5.6 widths off-support (target/peak 9.4e-06 vs 3.5e-02 at world_dim=8): neural_field is distilled to ~0 and the only effect is removing the untrained Softplus pedestal. Measured: evaluate() drop at harm vs harmless points 0.0651/0.0651; post specificity ratio 3.1389 == rbf-core ratio 3.1417 (pre 2.4666 -- a rise that is pure pedestal arithmetic). Readouts (ii) specificity and (iv) harmless-region rejection cannot move; readout (i) vs rbf core is structurally guaranteed (optimizer isolated from rbf_field) and would be vacuous in the integration arm. Node: complicated (buildable) for the sampling fix, but mystery (known data) for the objective question -- GFLAG-0442 argues even a correct distillation leaves (ii)/(iv) invariant (1.1x rbf rescaling).",
       "governance_flag": "GFLAG-0442",
       "min_shared_seeds": 2,
@@ -4608,14 +4616,6 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "gating_history": [
-        {
-          "gated_at_utc": "2026-09-17T08:01:12Z",
-          "gated_by_session": "igw-235-proposal-for-mech-018",
-          "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
-          "superseded_note": "all three parts met 2026-09-23 (release_note_2026_09_23); re-gated 2026-09-24 on a new defect"
-        }
       ]
     },
     {
@@ -7795,6 +7795,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0114",
+      "blocked_by": [
+        "contextmemory-write-path-addressing-degeneracy"
+      ],
+      "blocked_note": "Step 2.5c STOP-GATE (+2.5d INERT): MECH-154's own non-degeneracy precondition (ContextMemory slot differentiation below the ~0.99+ collapsed baseline, content-dependent read attention) IS the open corrupting content-half of substrate_queue contextmemory-write-path-addressing-degeneracy (status implemented_pending_validation, substrate_paths e1_deep.py::ContextMemory.write): V3-EXQ-436g measured the ONLINE write path alone collapsing the bank to near-rank-1 (WAKING_ONLY mean pairwise slot cosine 0.9993 vs NO_WRITES 0.000), and the content-discrimination portfolio (H1-H4; SD-CM-LIVETAP live-encoder tap built 2026-09-22, unvalidated) is still open. diversification_loss alone makes slots orthogonal by gradient on self.memory (418g slot_diversity 1.000) but content-free, so a completion/separation contrast vs a collapsed control would re-derive the known write-content defect, not test MECH-154 -- vacuous FAIL. Release: content half of contextmemory-write-path-addressing-degeneracy validated (written slots retain measurable pairwise separation under online writes, content-conditioned). Then queue the scoped separation/completion partial-cue probe per MECH-154 what_would_answer (commitment-free; no BG layer needed).",
       "claim_id": "MECH-154",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -7806,6 +7810,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0361",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "igw-241-proposal-for-mech-154",
+      "refused_utc": "2026-09-24T03:55:07Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -7818,7 +7825,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): claim_evidence.v1.json carries zero experimental rows for MECH-154, so no run was ever tagged to this claim. The audit classes it R1: ContextMemory, the diversification knob and a slot-diversity metric exist, but the driver is missing (a degraded-cue retrieval task with a completion readout taken at ContextMemory.read; the only pattern-completion readout in tree scores the SHY store). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping.",
       "suggested_experiment_type": "claim_probe_mech_154",
       "target_repo": "ree-v3",
@@ -39094,9 +39101,9 @@
       "claims_tested": [
         "MECH-285"
       ],
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "dispatch_mode": "discriminative_pair",
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
       "prerequisites": [
         "MECH-285 offline-arm substrate wired (ree_core/hippocampal/sleep_replay_sampler.py or equivalent; HippocampalConfig.use_mech285_sleep_priority flag)",
