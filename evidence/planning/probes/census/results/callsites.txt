@@ -1,0 +1,80 @@
+recipe=native
+  hippocampal.action_object_decoder          calls=194
+       192  callsite_probe.py:53 <- ree_core/hippocampal/module.py:646 <- ree_core/hippocampal/module.py:2280
+         2  callsite_probe.py:53 <- ree_core/hippocampal/module.py:816 <- ree_core/hippocampal/module.py:2767
+  hippocampal.terrain_prior                  calls=2
+         2  callsite_probe.py:53 <- ree_core/hippocampal/module.py:607 <- ree_core/hippocampal/module.py:2150
+  e3.harm_eval_head                          calls=64
+        64  callsite_probe.py:53 <- ree_core/predictors/e3_selector.py:1386 <- ree_core/predictors/e3_selector.py:1678
+  e2.world_transition                        calls=5760
+      5760  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:221 <- ree_core/predictors/e2_fast.py:822
+  e2.self_transition                         calls=5760
+      5760  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:198 <- ree_core/predictors/e2_fast.py:821
+  e2.action_object_head                      calls=5760
+      5760  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:691 <- ree_core/predictors/e2_fast.py:813
+  residue_field.neural_field                 calls=258
+       192  callsite_probe.py:53 <- ree_core/residue/field.py:661 <- ree_core/hippocampal/module.py:1775
+        64  callsite_probe.py:53 <- ree_core/residue/field.py:661 <- ree_core/predictors/e3_selector.py:1406
+         2  callsite_probe.py:53 <- ree_core/residue/field.py:647 <- ree_core/hippocampal/module.py:581
+  latent_stack.self_recurrence               ABSENT
+  latent_stack.beta_encoder                  calls=24
+        12  callsite_probe.py:53 <- ree_core/latent/stack.py:1430 <- ree_core/agent.py:5224
+        12  callsite_probe.py:53 <- ree_core/latent/stack.py:1438 <- ree_core/agent.py:5224
+  latent_stack.split_encoder.world_topdown   calls=12
+        12  callsite_probe.py:53 <- ree_core/latent/stack.py:1017 <- ree_core/latent/stack.py:1444
+  world_obs_encoder                          calls=12
+        12  callsite_probe.py:53 <- ree_core/agent.py:5189 <- callsite_probe.py:65
+  body_obs_encoder                           calls=12
+        12  callsite_probe.py:53 <- ree_core/agent.py:5188 <- callsite_probe.py:65
+  gated_policy.head_0                        ABSENT
+  gated_policy.discriminator                 ABSENT
+  ofc.state_bias_head                        ABSENT
+  lateral_pfc.rule_bias_head                 ABSENT
+  e1.prior_generator                         calls=24
+        12  callsite_probe.py:53 <- ree_core/predictors/e1_deep.py:1236 <- ree_core/predictors/e1_deep.py:2063
+        12  callsite_probe.py:53 <- ree_core/predictors/e1_deep.py:1327 <- ree_core/predictors/e1_deep.py:2064
+  e1.transition_rnn                          calls=240
+       240  callsite_probe.py:53 <- ree_core/predictors/e1_deep.py:1296 <- ree_core/predictors/e1_deep.py:2063
+recipe=allon
+  hippocampal.action_object_decoder          calls=194
+       192  callsite_probe.py:53 <- ree_core/hippocampal/module.py:646 <- ree_core/hippocampal/module.py:2280
+         2  callsite_probe.py:53 <- ree_core/hippocampal/module.py:816 <- ree_core/hippocampal/module.py:2767
+  hippocampal.terrain_prior                  calls=2
+         2  callsite_probe.py:53 <- ree_core/hippocampal/module.py:607 <- ree_core/hippocampal/module.py:2150
+  e3.harm_eval_head                          calls=64
+        64  callsite_probe.py:53 <- ree_core/predictors/e3_selector.py:1386 <- ree_core/predictors/e3_selector.py:1678
+  e2.world_transition                        calls=5763
+      5760  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:221 <- ree_core/predictors/e2_fast.py:822
+         2  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:221 <- ree_core/agent.py:6920
+         1  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:221 <- ree_core/agent.py:8485
+  e2.self_transition                         calls=5760
+      5760  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:198 <- ree_core/predictors/e2_fast.py:821
+  e2.action_object_head                      calls=5760
+      5760  callsite_probe.py:53 <- ree_core/predictors/e2_fast.py:691 <- ree_core/predictors/e2_fast.py:813
+  residue_field.neural_field                 calls=258
+       192  callsite_probe.py:53 <- ree_core/residue/field.py:661 <- ree_core/hippocampal/module.py:1775
+        64  callsite_probe.py:53 <- ree_core/residue/field.py:661 <- ree_core/predictors/e3_selector.py:1406
+         2  callsite_probe.py:53 <- ree_core/residue/field.py:647 <- ree_core/hippocampal/module.py:581
+  latent_stack.self_recurrence               ABSENT
+  latent_stack.beta_encoder                  calls=24
+        12  callsite_probe.py:53 <- ree_core/latent/stack.py:1430 <- ree_core/agent.py:5224
+        12  callsite_probe.py:53 <- ree_core/latent/stack.py:1438 <- ree_core/agent.py:5224
+  latent_stack.split_encoder.world_topdown   calls=12
+        12  callsite_probe.py:53 <- ree_core/latent/stack.py:1017 <- ree_core/latent/stack.py:1444
+  world_obs_encoder                          calls=12
+        12  callsite_probe.py:53 <- ree_core/agent.py:5189 <- callsite_probe.py:65
+  body_obs_encoder                           calls=12
+        12  callsite_probe.py:53 <- ree_core/agent.py:5188 <- callsite_probe.py:65
+  gated_policy.head_0                        calls=2
+         2  callsite_probe.py:53 <- ree_core/policy/gated_policy.py:591 <- ree_core/agent.py:8350
+  gated_policy.discriminator                 calls=2
+         2  callsite_probe.py:53 <- ree_core/policy/gated_policy.py:535 <- ree_core/agent.py:8350
+  ofc.state_bias_head                        calls=2
+         2  callsite_probe.py:53 <- ree_core/pfc/ofc_analog.py:320 <- ree_core/agent.py:8603
+  lateral_pfc.rule_bias_head                 calls=2
+         2  callsite_probe.py:53 <- ree_core/pfc/lateral_pfc_analog.py:473 <- ree_core/agent.py:8542
+  e1.prior_generator                         calls=24
+        12  callsite_probe.py:53 <- ree_core/predictors/e1_deep.py:1236 <- ree_core/predictors/e1_deep.py:2063
+        12  callsite_probe.py:53 <- ree_core/predictors/e1_deep.py:1327 <- ree_core/predictors/e1_deep.py:2064
+  e1.transition_rnn                          calls=240
+       240  callsite_probe.py:53 <- ree_core/predictors/e1_deep.py:1296 <- ree_core/predictors/e1_deep.py:2063

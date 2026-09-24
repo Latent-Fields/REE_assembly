@@ -1,0 +1,212 @@
+====================================================================================================
+recipe=native sha=863d23d65a world_dim=32 self_dim=32 DR13=False act_err=None
+optimizers:
+backward sites: {'census_probe.py:126': 12}
+  latent_stack.split_encoder                     t=14  n=22208   ORPHAN                             read=14/14 opt= reach=
+  latent_stack.beta_encoder                      t=7   n=9472    ORPHAN                             read=7/7 opt= reach=
+  latent_stack.theta_encoder                     t=7   n=6816    ORPHAN                             read=7/7 opt= reach=
+  latent_stack.delta_encoder                     t=5   n=4224    ORPHAN                             read=5/5 opt= reach=
+  latent_stack.delta_to_theta                    t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  latent_stack.theta_to_beta                     t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  latent_stack.beta_to_split                     t=2   n=1040    ORPHAN                             read=2/2 opt= reach=
+  latent_stack.self_predictor                    t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.world_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.beta_predictor                    t=2   n=4160    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.theta_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.delta_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  e1.context_memory                              t=10  n=59840   ORPHAN                             read=8/10 opt= reach=census_probe.py:126
+  e1.transition_rnn                              t=12  n=363520  ORPHAN                             read=12/12 opt= reach=census_probe.py:126
+  e1.output_proj                                 t=4   n=24768   ORPHAN                             read=4/4 opt= reach=census_probe.py:126
+  e1.prior_generator                             t=4   n=20640   ORPHAN                             read=4/4 opt= reach=census_probe.py:126
+  e2.self_transition                             t=6   n=25504   ORPHAN                             read=6/6 opt= reach=census_probe.py:126
+  e2.self_action_encoder                         t=2   n=30      ORPHAN                             read=2/2 opt= reach=census_probe.py:126
+  e2.world_transition                            t=4   n=8992    ORPHAN                             read=4/4 opt= reach=census_probe.py:126
+  e2.world_action_encoder                        t=2   n=30      ORPHAN                             read=2/2 opt= reach=census_probe.py:126
+  e2.action_object_head                          t=4   n=6928    ORPHAN                             read=4/4 opt= reach=
+  residue_field.rbf_field                        t=2   n=1056    NONGRAD-UPDATE                     read=2/2 opt= reach=
+  residue_field.neural_field                     t=6   n=6337    ORPHAN                             read=6/6 opt= reach=
+  e3.reality_scorer                              t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_cost_fallback_scorer                   t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_head                              t=4   n=2177    ORPHAN                             read=4/4 opt= reach=
+  e3.benefit_eval_head                           t=4   n=2177    ORPHAN                             read=0/4 opt= reach=census_probe.py:126
+  e3.harm_eval_z_harm_head                       t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  hippocampal.terrain_prior                      t=4   n=70368   ORPHAN                             read=4/4 opt= reach=
+  hippocampal.action_object_decoder              t=4   n=2821    ORPHAN                             read=4/4 opt= reach=
+  body_obs_encoder.0                             t=2   n=156     ORPHAN                             read=2/2 opt= reach=
+  world_obs_encoder.0                            t=2   n=62750   ORPHAN                             read=2/2 opt= reach=
+  numel by class: {'ORPHAN': '716769 (99.9%)', 'NONGRAD-UPDATE': '1056 (0.1%)'}
+====================================================================================================
+recipe=r1078 sha=863d23d65a world_dim=32 self_dim=32 DR13=True act_err=None
+optimizers:
+   Adam census_probe.py:163 <- census_probe.py:220 n_params=141
+backward sites: {'census_probe.py:173': 80}
+  latent_stack.split_encoder                     t=14  n=22208   DEAD-OPT                           read=14/14 opt=census_probe.py:163 reach=
+  latent_stack.self_recurrence                   t=4   n=6336    DEAD-OPT                           read=4/4 opt=census_probe.py:163 reach=
+  latent_stack.beta_encoder                      t=7   n=9472    DEAD-OPT                           read=7/7 opt=census_probe.py:163 reach=
+  latent_stack.theta_encoder                     t=7   n=6816    DEAD-OPT                           read=7/7 opt=census_probe.py:163 reach=
+  latent_stack.delta_encoder                     t=5   n=4224    DEAD-OPT                           read=5/5 opt=census_probe.py:163 reach=
+  latent_stack.delta_to_theta                    t=2   n=528     DEAD-OPT                           read=2/2 opt=census_probe.py:163 reach=
+  latent_stack.theta_to_beta                     t=2   n=528     DEAD-OPT                           read=2/2 opt=census_probe.py:163 reach=
+  latent_stack.beta_to_split                     t=2   n=1040    DEAD-OPT                           read=2/2 opt=census_probe.py:163 reach=
+  latent_stack.self_predictor                    t=2   n=1056    DEAD-OPT                           read=0/2 opt=census_probe.py:163 reach=
+  latent_stack.world_predictor                   t=2   n=1056    DEAD-OPT                           read=0/2 opt=census_probe.py:163 reach=
+  latent_stack.beta_predictor                    t=2   n=4160    DEAD-OPT                           read=0/2 opt=census_probe.py:163 reach=
+  latent_stack.theta_predictor                   t=2   n=1056    DEAD-OPT                           read=0/2 opt=census_probe.py:163 reach=
+  latent_stack.delta_predictor                   t=2   n=1056    DEAD-OPT                           read=0/2 opt=census_probe.py:163 reach=
+  e1.context_memory                              t=10  n=59840   MIXED(DEAD-OPT:2,TRAINED:8)        read=8/10 opt=census_probe.py:163 reach=census_probe.py:173
+  e1.transition_rnn                              t=12  n=363520  TRAINED                            read=12/12 opt=census_probe.py:163 reach=census_probe.py:173
+  e1.output_proj                                 t=4   n=24768   TRAINED                            read=4/4 opt=census_probe.py:163 reach=census_probe.py:173
+  e1.prior_generator                             t=4   n=20640   TRAINED                            read=4/4 opt=census_probe.py:163 reach=census_probe.py:173
+  e2.self_transition                             t=6   n=25504   TRAINED                            read=6/6 opt=census_probe.py:163 reach=census_probe.py:173
+  e2.self_action_encoder                         t=2   n=30      TRAINED                            read=2/2 opt=census_probe.py:163 reach=census_probe.py:173
+  e2.world_transition                            t=4   n=8992    DEAD-OPT                           read=4/4 opt=census_probe.py:163 reach=
+  e2.world_action_encoder                        t=2   n=30      DEAD-OPT                           read=2/2 opt=census_probe.py:163 reach=
+  e2.action_object_head                          t=4   n=6928    DEAD-OPT                           read=4/4 opt=census_probe.py:163 reach=
+  residue_field.rbf_field                        t=2   n=1056    MOVED-WITHOUT-GRAD                 read=2/2 opt=census_probe.py:163 reach=
+  residue_field.neural_field                     t=6   n=6337    DEAD-OPT                           read=6/6 opt=census_probe.py:163 reach=
+  e3.reality_scorer                              t=4   n=2177    DEAD-OPT                           read=0/4 opt=census_probe.py:163 reach=
+  e3.harm_cost_fallback_scorer                   t=4   n=2177    DEAD-OPT                           read=0/4 opt=census_probe.py:163 reach=
+  e3.harm_eval_head                              t=4   n=2177    DEAD-OPT                           read=4/4 opt=census_probe.py:163 reach=
+  e3.benefit_eval_head                           t=4   n=2177    DEAD-OPT                           read=0/4 opt=census_probe.py:163 reach=
+  e3.harm_eval_z_harm_head                       t=4   n=2177    DEAD-OPT                           read=0/4 opt=census_probe.py:163 reach=
+  hippocampal.terrain_prior                      t=4   n=70368   DEAD-OPT                           read=4/4 opt=census_probe.py:163 reach=
+  hippocampal.action_object_decoder              t=4   n=2821    DEAD-OPT                           read=4/4 opt=census_probe.py:163 reach=
+  body_obs_encoder.0                             t=2   n=156     DEAD-OPT                           read=2/2 opt=census_probe.py:163 reach=
+  world_obs_encoder.0                            t=2   n=62750   DEAD-OPT                           read=2/2 opt=census_probe.py:163 reach=
+  numel by class: {'DEAD-OPT': '228803 (31.6%)', 'MIXED': '59840 (8.3%)', 'TRAINED': '434462 (60.0%)', 'MOVED-WITHOUT-GRAD': '1056 (0.1%)'}
+====================================================================================================
+recipe=r1083 sha=863d23d65a world_dim=32 self_dim=32 DR13=False act_err=None
+optimizers:
+   Adam experiments/_lib/goal_pipeline_tier1.py:529 <- census_probe.py:192 n_params=30
+   Adam experiments/_lib/goal_pipeline_tier1.py:530 <- census_probe.py:192 n_params=6
+   Adam experiments/_lib/goal_pipeline_tier1.py:535 <- census_probe.py:192 n_params=4
+   Adam experiments/_lib/goal_pipeline_tier1.py:537 <- census_probe.py:192 n_params=61
+backward sites: {'x/_lib/goal_pipeline_tier1.py:570': 47, 'x/_lib/goal_pipeline_tier1.py:613': 46, 'x/_lib/goal_pipeline_tier1.py:606': 16, 'x/_lib/goal_pipeline_tier1.py:593': 14}
+  latent_stack.split_encoder                     t=16  n=25761   MIXED(DEAD-OPT:2,TRAINED:14)       read=16/16 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.beta_encoder                      t=7   n=9472    TRAINED                            read=7/7 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.theta_encoder                     t=7   n=6816    TRAINED                            read=7/7 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.delta_encoder                     t=5   n=4224    TRAINED                            read=5/5 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.harm_encoder                      t=4   n=5408    DEAD-OPT                           read=0/4 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  latent_stack.affective_harm_encoder            t=6   n=2209    DEAD-OPT                           read=0/6 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  latent_stack.delta_to_theta                    t=2   n=528     TRAINED                            read=2/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.theta_to_beta                     t=2   n=528     TRAINED                            read=2/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.beta_to_split                     t=2   n=1040    TRAINED                            read=2/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=x/_lib/goal_pipeline_tier1.py:570
+  latent_stack.self_predictor                    t=2   n=1056    DEAD-OPT                           read=0/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  latent_stack.world_predictor                   t=2   n=1056    DEAD-OPT                           read=0/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  latent_stack.beta_predictor                    t=2   n=4160    DEAD-OPT                           read=0/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  latent_stack.theta_predictor                   t=2   n=1056    DEAD-OPT                           read=0/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  latent_stack.delta_predictor                   t=2   n=1056    DEAD-OPT                           read=0/2 opt=x/_lib/goal_pipeline_tier1.py:537 reach=
+  e1.context_memory                              t=10  n=59840   MIXED(DEAD-OPT:2,TRAINED:8)        read=8/10 opt=x/_lib/goal_pipeline_tier1.py:529 reach=x/_lib/goal_pipeline_tier1.py:613
+  e1.transition_rnn                              t=12  n=363520  TRAINED                            read=12/12 opt=x/_lib/goal_pipeline_tier1.py:529 reach=x/_lib/goal_pipeline_tier1.py:613
+  e1.output_proj                                 t=4   n=24768   TRAINED                            read=4/4 opt=x/_lib/goal_pipeline_tier1.py:529 reach=x/_lib/goal_pipeline_tier1.py:613
+  e1.prior_generator                             t=4   n=20640   TRAINED                            read=4/4 opt=x/_lib/goal_pipeline_tier1.py:529 reach=x/_lib/goal_pipeline_tier1.py:613
+  e2.self_transition                             t=6   n=25504   ORPHAN                             read=6/6 opt= reach=
+  e2.self_action_encoder                         t=2   n=30      ORPHAN                             read=2/2 opt= reach=
+  e2.world_transition                            t=4   n=8992    TRAINED                            read=4/4 opt=x/_lib/goal_pipeline_tier1.py:530 reach=x/_lib/goal_pipeline_tier1.py:593
+  e2.world_action_encoder                        t=2   n=30      TRAINED                            read=2/2 opt=x/_lib/goal_pipeline_tier1.py:530 reach=x/_lib/goal_pipeline_tier1.py:593
+  e2.action_object_head                          t=4   n=6928    ORPHAN                             read=4/4 opt= reach=
+  residue_field.rbf_field                        t=2   n=1056    NONGRAD-UPDATE                     read=2/2 opt= reach=
+  residue_field.neural_field                     t=6   n=6337    ORPHAN                             read=6/6 opt= reach=
+  e3.reality_scorer                              t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_cost_fallback_scorer                   t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_head                              t=4   n=2177    TRAINED                            read=4/4 opt=x/_lib/goal_pipeline_tier1.py:535 reach=x/_lib/goal_pipeline_tier1.py:606
+  e3.benefit_eval_head                           t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_z_harm_head                       t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  hippocampal.terrain_prior                      t=4   n=70368   ORPHAN                             read=4/4 opt= reach=
+  hippocampal.action_object_decoder              t=4   n=2821    ORPHAN                             read=4/4 opt= reach=
+  body_obs_encoder.0                             t=2   n=306     ORPHAN                             read=2/2 opt= reach=x/_lib/goal_pipeline_tier1.py:570
+  world_obs_encoder.0                            t=2   n=90300   ORPHAN                             read=2/2 opt= reach=x/_lib/goal_pipeline_tier1.py:570
+  numel by class: {'MIXED': '85601 (11.3%)', 'TRAINED': '442735 (58.5%)', 'DEAD-OPT': '16001 (2.1%)', 'ORPHAN': '211302 (27.9%)', 'NONGRAD-UPDATE': '1056 (0.1%)'}
+====================================================================================================
+recipe=allon sha=863d23d65a world_dim=32 self_dim=32 DR13=False act_err=None
+optimizers:
+   Adam ree_core/latent/zworld_p0.py:577 <- experiments/_lib/zworld_p0_warmup.py:255 n_params=17
+   Adam experiments/_lib/allon_training.py:572 <- census_probe.py:204 n_params=18
+   Adam experiments/_lib/allon_training.py:574 <- census_probe.py:204 n_params=4
+   Adam experiments/_lib/allon_training.py:578 <- census_probe.py:204 n_params=4
+backward sites: {'ree_core/latent/zworld_p0.py:620': 16, 'x/_lib/allon_training.py:165': 24, 'x/_lib/allon_training.py:813': 1, 'x/_lib/allon_training.py:823': 1}
+  latent_stack.split_encoder                     t=18  n=23066   MIXED(ORPHAN:11,TRAINED:7)         read=18/18 opt=ree_core/latent/zworld_p0.py:577 reach=ree_core/latent/zworld_p0.py:620
+  latent_stack.beta_encoder                      t=7   n=9472    ORPHAN                             read=7/7 opt= reach=
+  latent_stack.theta_encoder                     t=7   n=6816    ORPHAN                             read=7/7 opt= reach=
+  latent_stack.delta_encoder                     t=5   n=4224    ORPHAN                             read=5/5 opt= reach=
+  latent_stack.harm_encoder                      t=4   n=5408    ORPHAN                             read=0/4 opt= reach=
+  latent_stack.affective_harm_encoder            t=6   n=4961    ORPHAN                             read=0/6 opt= reach=
+  latent_stack.delta_to_theta                    t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  latent_stack.theta_to_beta                     t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  latent_stack.beta_to_split                     t=2   n=1040    ORPHAN                             read=2/2 opt= reach=
+  latent_stack.self_predictor                    t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.world_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.beta_predictor                    t=2   n=4160    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.theta_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.delta_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  e1.context_memory                              t=10  n=59840   ORPHAN                             read=8/10 opt= reach=
+  e1.transition_rnn                              t=12  n=363520  ORPHAN                             read=12/12 opt= reach=
+  e1.output_proj                                 t=4   n=24768   ORPHAN                             read=4/4 opt= reach=
+  e1.prior_generator                             t=4   n=20640   ORPHAN                             read=4/4 opt= reach=
+  e2.self_transition                             t=6   n=25504   DEAD-OPT                           read=6/6 opt=x/_lib/allon_training.py:572 reach=
+  e2.self_action_encoder                         t=2   n=30      DEAD-OPT                           read=2/2 opt=x/_lib/allon_training.py:572 reach=
+  e2.world_transition                            t=4   n=8992    TRAINED                            read=4/4 opt=x/_lib/allon_training.py:572 reach=x/_lib/allon_training.py:165
+  e2.world_action_encoder                        t=2   n=30      TRAINED                            read=2/2 opt=x/_lib/allon_training.py:572 reach=x/_lib/allon_training.py:165
+  e2.action_object_head                          t=4   n=6928    DEAD-OPT                           read=4/4 opt=x/_lib/allon_training.py:572 reach=
+  residue_field.rbf_field                        t=2   n=1056    ORPHAN                             read=2/2 opt= reach=
+  residue_field.neural_field                     t=6   n=6337    ORPHAN                             read=6/6 opt= reach=
+  e3.reality_scorer                              t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_cost_fallback_scorer                   t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_head                              t=4   n=2177    ORPHAN                             read=4/4 opt= reach=
+  e3.benefit_eval_head                           t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_z_harm_head                       t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  hippocampal.terrain_prior                      t=4   n=70368   ORPHAN                             read=4/4 opt= reach=
+  hippocampal.action_object_decoder              t=4   n=2821    ORPHAN                             read=4/4 opt= reach=
+  lateral_pfc.delta_proj                         t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  lateral_pfc.world_proj                         t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  lateral_pfc.discriminator_proj                 t=2   n=32      ORPHAN                             read=0/2 opt= reach=
+  lateral_pfc.rule_bias_head                     t=4   n=1601    DEAD-OPT                           read=4/4 opt=x/_lib/allon_training.py:574 reach=
+  ofc.world_proj                                 t=2   n=528     ORPHAN                             read=2/2 opt= reach=
+  ofc.outcome_proj                               t=2   n=528     ORPHAN                             read=0/2 opt= reach=
+  ofc.state_bias_head                            t=4   n=1601    ORPHAN                             read=4/4 opt= reach=
+  ofc.devaluation_bias_head                      t=4   n=1601    TRAINED                            read=0/4 opt=x/_lib/allon_training.py:578 reach=x/_lib/allon_training.py:823
+  gated_policy.head_0                            t=4   n=1089    ORPHAN                             read=4/4 opt= reach=
+  gated_policy.head_1                            t=4   n=1089    ORPHAN                             read=4/4 opt= reach=
+  gated_policy.discriminator                     t=4   n=1969    ORPHAN                             read=4/4 opt= reach=
+  body_obs_encoder.0                             t=2   n=156     ORPHAN                             read=2/2 opt= reach=
+  world_obs_encoder.0                            t=2   n=62750   ORPHAN                             read=2/2 opt= reach=
+  numel by class: {'MIXED': '23066 (3.1%)', 'ORPHAN': '672394 (90.8%)', 'DEAD-OPT': '34063 (4.6%)', 'TRAINED': '10623 (1.4%)'}
+====================================================================================================
+recipe=zselfp0 sha=863d23d65a world_dim=32 self_dim=32 DR13=True act_err=None
+optimizers:
+   Adam ree_core/latent/zself_p0.py:724 <- experiments/_lib/zself_p0_warmup.py:176 n_params=17
+backward sites: {'ree_core/latent/zself_p0.py:742': 8}
+  latent_stack.split_encoder                     t=14  n=22208   MIXED(ORPHAN:7,TRAINED:7)          read=14/14 opt=ree_core/latent/zself_p0.py:724 reach=ree_core/latent/zself_p0.py:742
+  latent_stack.self_recurrence                   t=4   n=6336    TRAINED                            read=4/4 opt=ree_core/latent/zself_p0.py:724 reach=ree_core/latent/zself_p0.py:742
+  latent_stack.beta_encoder                      t=7   n=9472    ORPHAN                             read=7/7 opt= reach=ree_core/latent/zself_p0.py:742
+  latent_stack.theta_encoder                     t=7   n=6816    ORPHAN                             read=7/7 opt= reach=ree_core/latent/zself_p0.py:742
+  latent_stack.delta_encoder                     t=5   n=4224    ORPHAN                             read=5/5 opt= reach=ree_core/latent/zself_p0.py:742
+  latent_stack.delta_to_theta                    t=2   n=528     ORPHAN                             read=2/2 opt= reach=ree_core/latent/zself_p0.py:742
+  latent_stack.theta_to_beta                     t=2   n=528     ORPHAN                             read=2/2 opt= reach=ree_core/latent/zself_p0.py:742
+  latent_stack.beta_to_split                     t=2   n=1040    ORPHAN                             read=2/2 opt= reach=ree_core/latent/zself_p0.py:742
+  latent_stack.self_predictor                    t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.world_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.beta_predictor                    t=2   n=4160    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.theta_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  latent_stack.delta_predictor                   t=2   n=1056    ORPHAN                             read=0/2 opt= reach=
+  e1.context_memory                              t=10  n=59840   ORPHAN                             read=8/10 opt= reach=
+  e1.transition_rnn                              t=12  n=363520  ORPHAN                             read=12/12 opt= reach=
+  e1.output_proj                                 t=4   n=24768   ORPHAN                             read=4/4 opt= reach=
+  e1.prior_generator                             t=4   n=20640   ORPHAN                             read=4/4 opt= reach=
+  e2.self_transition                             t=6   n=25504   ORPHAN                             read=6/6 opt= reach=
+  e2.self_action_encoder                         t=2   n=30      ORPHAN                             read=2/2 opt= reach=
+  e2.world_transition                            t=4   n=8992    ORPHAN                             read=4/4 opt= reach=
+  e2.world_action_encoder                        t=2   n=30      ORPHAN                             read=2/2 opt= reach=
+  e2.action_object_head                          t=4   n=6928    ORPHAN                             read=4/4 opt= reach=
+  residue_field.rbf_field                        t=2   n=1056    ORPHAN                             read=2/2 opt= reach=
+  residue_field.neural_field                     t=6   n=6337    ORPHAN                             read=6/6 opt= reach=
+  e3.reality_scorer                              t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_cost_fallback_scorer                   t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_head                              t=4   n=2177    ORPHAN                             read=4/4 opt= reach=
+  e3.benefit_eval_head                           t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  e3.harm_eval_z_harm_head                       t=4   n=2177    ORPHAN                             read=0/4 opt= reach=
+  hippocampal.terrain_prior                      t=4   n=70368   ORPHAN                             read=4/4 opt= reach=
+  hippocampal.action_object_decoder              t=4   n=2821    ORPHAN                             read=4/4 opt= reach=
+  body_obs_encoder.0                             t=2   n=156     TRAINED                            read=2/2 opt=ree_core/latent/zself_p0.py:724 reach=ree_core/latent/zself_p0.py:742
+  world_obs_encoder.0                            t=2   n=62750   ORPHAN                             read=2/2 opt= reach=ree_core/latent/zself_p0.py:742
+  numel by class: {'MIXED': '22208 (3.1%)', 'TRAINED': '6492 (0.9%)', 'ORPHAN': '695461 (96.0%)'}

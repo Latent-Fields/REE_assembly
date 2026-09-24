@@ -1,0 +1,1649 @@
+{
+ "recipe": "native",
+ "seed": 42,
+ "ree_v3_sha": "863d23d65a",
+ "world_dim": 32,
+ "self_dim": 32,
+ "use_self_recurrence": false,
+ "train_seconds": 12.7,
+ "act_error": null,
+ "meta": {
+  "native_loss_reach": {
+   "compute_prediction_loss": {
+    "status": "REACH",
+    "value": 0.010694243013858795,
+    "modules": {
+     "e1.context_memory": 8,
+     "e1.transition_rnn": 12,
+     "e1.output_proj": 4,
+     "e1.prior_generator": 4
+    }
+   },
+   "compute_e2_loss": {
+    "status": "REACH",
+    "value": 0.0034885923378169537,
+    "modules": {
+     "e2.self_transition": 6,
+     "e2.self_action_encoder": 2
+    }
+   },
+   "compute_e2_world_loss": {
+    "status": "REACH",
+    "value": 2.710214376449585,
+    "modules": {
+     "e2.world_transition": 4,
+     "e2.world_action_encoder": 2
+    }
+   },
+   "compute_self_maintenance_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_benefit_eval_loss": {
+    "status": "REACH",
+    "value": 0.00021790385653730482,
+    "modules": {
+     "e3.benefit_eval_head": 4
+    }
+   },
+   "compute_event_contrastive_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_resource_proximity_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_resource_field_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_resource_encoder_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_resource_identity_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_harm_nonredundancy_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_harm_accum_loss": {
+    "status": "REACH",
+    "value": 0.0,
+    "modules": {}
+   },
+   "compute_schema_readout_loss": {
+    "status": "NO_GRAD",
+    "value": 0.0
+   }
+  }
+ },
+ "optimizers": [],
+ "backward_sites": {
+  "census_probe.py:126 <- census_probe.py:149": 12
+ },
+ "act_module_calls": {
+  "body_obs_encoder.0": 12,
+  "body_obs_encoder.1": 12,
+  "body_obs_encoder": 12,
+  "world_obs_encoder.0": 12,
+  "world_obs_encoder.1": 12,
+  "world_obs_encoder": 12,
+  "latent_stack.split_encoder.self_encoder.0": 24,
+  "latent_stack.split_encoder.self_encoder.1": 24,
+  "latent_stack.split_encoder.self_encoder.2": 24,
+  "latent_stack.split_encoder.self_encoder": 24,
+  "latent_stack.split_encoder.world_encoder.0": 24,
+  "latent_stack.split_encoder.world_encoder.1": 24,
+  "latent_stack.split_encoder.world_encoder.2": 24,
+  "latent_stack.split_encoder.world_encoder": 24,
+  "latent_stack.split_encoder": 24,
+  "latent_stack.beta_encoder.encoder.0": 24,
+  "latent_stack.beta_encoder.encoder.1": 24,
+  "latent_stack.beta_encoder.encoder.2": 24,
+  "latent_stack.beta_encoder.encoder": 24,
+  "latent_stack.beta_encoder": 24,
+  "latent_stack.theta_encoder.encoder.0": 24,
+  "latent_stack.theta_encoder.encoder.1": 24,
+  "latent_stack.theta_encoder.encoder.2": 24,
+  "latent_stack.theta_encoder.encoder": 24,
+  "latent_stack.theta_encoder": 24,
+  "latent_stack.delta_encoder.encoder.0": 12,
+  "latent_stack.delta_encoder.encoder.1": 12,
+  "latent_stack.delta_encoder.encoder.2": 12,
+  "latent_stack.delta_encoder.encoder": 12,
+  "latent_stack.delta_encoder": 12,
+  "latent_stack.delta_to_theta": 12,
+  "latent_stack.theta_encoder.topdown_proj": 12,
+  "latent_stack.theta_to_beta": 12,
+  "latent_stack.beta_encoder.topdown_proj": 12,
+  "latent_stack.beta_to_split": 12,
+  "latent_stack.split_encoder.self_topdown": 12,
+  "latent_stack.split_encoder.world_topdown": 12,
+  "e1.context_memory.query_proj": 24,
+  "e1.context_memory.key_proj": 24,
+  "e1.context_memory.value_proj": 24,
+  "e1.context_memory.output_proj": 24,
+  "e1.prior_generator.0": 24,
+  "e1.prior_generator.1": 24,
+  "e1.prior_generator.2": 24,
+  "e1.prior_generator": 24,
+  "e1.transition_rnn": 240,
+  "e1.output_proj.0": 240,
+  "e1.output_proj.1": 240,
+  "e1.output_proj.2": 240,
+  "e1.output_proj": 240,
+  "e1": 12,
+  "residue_field.rbf_field": 387,
+  "residue_field.neural_field.0": 387,
+  "residue_field.neural_field.1": 387,
+  "residue_field.neural_field.2": 387,
+  "residue_field.neural_field.3": 387,
+  "residue_field.neural_field.4": 387,
+  "residue_field.neural_field.5": 387,
+  "residue_field.neural_field": 387,
+  "hippocampal.terrain_prior.0": 3,
+  "hippocampal.terrain_prior.1": 3,
+  "hippocampal.terrain_prior.2": 3,
+  "hippocampal.terrain_prior": 3,
+  "hippocampal.action_object_decoder.0": 291,
+  "hippocampal.action_object_decoder.1": 291,
+  "hippocampal.action_object_decoder.2": 291,
+  "hippocampal.action_object_decoder": 291,
+  "e2.action_object_head.0": 8640,
+  "e2.action_object_head.1": 8640,
+  "e2.action_object_head.2": 8640,
+  "e2.action_object_head": 8640,
+  "e2.self_action_encoder": 8640,
+  "e2.self_transition.0": 8640,
+  "e2.self_transition.1": 8640,
+  "e2.self_transition.2": 8640,
+  "e2.self_transition.3": 8640,
+  "e2.self_transition.4": 8640,
+  "e2.self_transition": 8640,
+  "e2.world_action_encoder": 8640,
+  "e2.world_transition.0": 8640,
+  "e2.world_transition.1": 8640,
+  "e2.world_transition.2": 8640,
+  "e2.world_transition": 8640,
+  "e3.harm_eval_head.0": 96,
+  "e3.harm_eval_head.1": 96,
+  "e3.harm_eval_head.2": 96,
+  "e3.harm_eval_head.3": 96,
+  "e3.harm_eval_head": 96
+ },
+ "rows": [
+  {
+   "name": "latent_stack.split_encoder.self_precision_logit",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_precision_logit",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.self_encoder.0.weight",
+   "numel": 768,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.self_encoder.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.self_encoder.2.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.self_encoder.2.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_encoder.0.weight",
+   "numel": 16000,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_encoder.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_encoder.2.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_encoder.2.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.self_topdown.weight",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.self_topdown.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_topdown.weight",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.split_encoder.world_topdown.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.precision_logit",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.encoder.0.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.encoder.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.encoder.2.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.encoder.2.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.topdown_proj.weight",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_encoder.topdown_proj.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.precision_logit",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.encoder.0.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.encoder.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.encoder.2.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.encoder.2.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.topdown_proj.weight",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_encoder.topdown_proj.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_encoder.precision_logit",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_encoder.encoder.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_encoder.encoder.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_encoder.encoder.2.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_encoder.encoder.2.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_to_theta.weight",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.delta_to_theta.bias",
+   "numel": 16,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_to_beta.weight",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.theta_to_beta.bias",
+   "numel": 16,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_to_split.weight",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.beta_to_split.bias",
+   "numel": 16,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "latent_stack.self_predictor.weight",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.self_predictor.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.world_predictor.weight",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.world_predictor.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.beta_predictor.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.beta_predictor.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.theta_predictor.weight",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.theta_predictor.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.delta_predictor.weight",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "latent_stack.delta_predictor.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e1.context_memory.memory",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.query_proj.weight",
+   "numel": 8192,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.query_proj.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.key_proj.weight",
+   "numel": 16384,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.value_proj.weight",
+   "numel": 16384,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.value_proj.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.output_proj.weight",
+   "numel": 8192,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.output_proj.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.context_memory.write_gate.0.weight",
+   "numel": 8192,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e1.context_memory.write_gate.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e1.transition_rnn.weight_ih_l0",
+   "numel": 32768,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.weight_hh_l0",
+   "numel": 65536,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.bias_ih_l0",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.bias_hh_l0",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.weight_ih_l1",
+   "numel": 65536,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.weight_hh_l1",
+   "numel": 65536,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.bias_ih_l1",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.bias_hh_l1",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.weight_ih_l2",
+   "numel": 65536,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.weight_hh_l2",
+   "numel": 65536,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.bias_ih_l2",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.transition_rnn.bias_hh_l2",
+   "numel": 512,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.output_proj.0.weight",
+   "numel": 16384,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.output_proj.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.output_proj.2.weight",
+   "numel": 8192,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.output_proj.2.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.prior_generator.0.weight",
+   "numel": 16384,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.prior_generator.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.prior_generator.2.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e1.prior_generator.2.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_transition.0.weight",
+   "numel": 4736,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_transition.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_transition.2.weight",
+   "numel": 16384,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_transition.2.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_transition.4.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_transition.4.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_action_encoder.weight",
+   "numel": 25,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.self_action_encoder.bias",
+   "numel": 5,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.world_transition.0.weight",
+   "numel": 4736,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.world_transition.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.world_transition.2.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.world_transition.2.bias",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.world_action_encoder.weight",
+   "numel": 25,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.world_action_encoder.bias",
+   "numel": 5,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.action_object_head.0.weight",
+   "numel": 4736,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.action_object_head.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.action_object_head.2.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e2.action_object_head.2.bias",
+   "numel": 16,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.rbf_field.centers",
+   "numel": 1024,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.3813403844833374,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.rbf_field.weights",
+   "numel": 32,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.2058333307504654,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.neural_field.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.neural_field.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.neural_field.2.weight",
+   "numel": 4096,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.neural_field.2.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.neural_field.4.weight",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "residue_field.neural_field.4.bias",
+   "numel": 1,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e3.reality_scorer.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.reality_scorer.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.reality_scorer.2.weight",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.reality_scorer.2.bias",
+   "numel": 1,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_cost_fallback_scorer.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_cost_fallback_scorer.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_cost_fallback_scorer.2.weight",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_cost_fallback_scorer.2.bias",
+   "numel": 1,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_eval_head.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e3.harm_eval_head.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e3.harm_eval_head.2.weight",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e3.harm_eval_head.2.bias",
+   "numel": 1,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "e3.benefit_eval_head.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.benefit_eval_head.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.benefit_eval_head.2.weight",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.benefit_eval_head.2.bias",
+   "numel": 1,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [
+    "census_probe.py:126 <- census_probe.py:149"
+   ],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_eval_z_harm_head.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_eval_z_harm_head.0.bias",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_eval_z_harm_head.2.weight",
+   "numel": 64,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "e3.harm_eval_z_harm_head.2.bias",
+   "numel": 1,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": false
+  },
+  {
+   "name": "hippocampal.terrain_prior.0.weight",
+   "numel": 8320,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.terrain_prior.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.terrain_prior.2.weight",
+   "numel": 61440,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.terrain_prior.2.bias",
+   "numel": 480,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.action_object_decoder.0.weight",
+   "numel": 2048,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.action_object_decoder.0.bias",
+   "numel": 128,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.action_object_decoder.2.weight",
+   "numel": 640,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "hippocampal.action_object_decoder.2.bias",
+   "numel": 5,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "body_obs_encoder.0.weight",
+   "numel": 144,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "body_obs_encoder.0.bias",
+   "numel": 12,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "world_obs_encoder.0.weight",
+   "numel": 62500,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  },
+  {
+   "name": "world_obs_encoder.0.bias",
+   "numel": 250,
+   "requires_grad": true,
+   "in_optimizers": [],
+   "step_status": {},
+   "backward_reach": [],
+   "param_delta_max": 0.0,
+   "read_at_act": true
+  }
+ ]
+}
