@@ -1104,6 +1104,10 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0609",
+      "blocked_by": [
+        "precision-weighted-residue-accumulation"
+      ],
+      "blocked_note": "REFUSED at /queue-experiment Step 4.5 red-team (fable, BLOCKING), verified from source. MECH-025b's DV -- residue accumulated per unit harm -- has NO precision input in its causal chain, so neither C1 nor C2 can discriminate under any outcome. ResidueField.accumulate (residue/field.py:697-704) is the only total_residue write site and computes |harm|*accumulation_rate with no precision/variance/commitment term; owned harm is the CONSTANT contaminated_harm=-0.4 (causal_grid_world.py:2647, and the driver's hazard_harm=0.02 is a different parameter applying to env_caused_hazard, which the owned filter excludes); the only other contributor is E3.post_action_update's hardcoded harm_magnitude=1.0 (e3_selector.py:4691-4694), which is binary, not graded. Per-window DV reduces exactly to 0.1 + 0.25*I/m (I = commit tick landed on owned harm, m = owned-harm count). A PASS would be a commit-tick timing coincidence; a null would record substrate absence, not claim falsification -- the same class as V3-EXQ-671's residue-pinned-at-0 defect, one level up. Owed first: precision-weighted residue accumulation. Within-seed Fisher-z driver was authored, passed validate_experiments --strict + smoke, and is preserved WITHHELD at REE_assembly/evidence/planning/mech025b_671c_withheld_driver_20260924.py. Full analysis: evidence/planning/mech025b_within_seed_fisherz_design_staged_20260924.md",
       "claim_id": "MECH-025b",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -1114,6 +1118,9 @@
       "priority": "high",
       "proposal_id": "EXP-1283",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "metaworker-science-20260924-orchb-mech025b-exq-671c",
+      "refused_utc": "2026-09-24T13:43:12Z",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -1126,7 +1133,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_025b",
       "target_repo": "ree-v3",
       "why_now": [
