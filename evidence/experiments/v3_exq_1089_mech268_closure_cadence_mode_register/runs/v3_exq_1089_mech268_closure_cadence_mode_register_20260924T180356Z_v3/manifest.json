@@ -1,0 +1,198 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1089_mech268_closure_cadence_mode_register",
+  "run_id": "v3_exq_1089_mech268_closure_cadence_mode_register_20260924T180356Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-24T18:03:56.084412Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "5bf2f0c7c4a3a11dd3524e607fe445e1db8a4255",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-268"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-268": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "n_seeds_ready_intended",
+        "measured": 2,
+        "threshold": 4,
+        "direction": "lower",
+        "control": "per-seed readiness: SATOFF argmax internal_planning occupancy >= 0.5 (positive control: something to release, same statistic as the DV), closures fire >= 5 per saturation arm, FIFO live-populated, reset flags correct per arm; denominated on the INTENDED seed count",
+        "met": false
+      },
+      {
+        "name": "headroom_s050_floor_releases",
+        "measured": 4,
+        "threshold": 4,
+        "direction": "lower",
+        "control": "seeds whose S050_KS_OFF release fraction >= 0.05 (the floor arm can move the DV at all); counted over every seed that ran",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "da77a7739280583509d50cf6d1bcd19b82263db4d49283966230bd39df12c5c0",
+  "substrate_commit": {
+    "commit": "5bf2f0c7c4a3a11dd3524e607fe445e1db8a4255",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_affective_harm_stream": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "heartbeat.beta_gate_bistable": true,
+    "use_dacc": true,
+    "use_salience_coordinator": true,
+    "use_lateral_pfc_analog": true,
+    "use_closure_operator": true,
+    "dacc_saturation_enabled": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 19977.489539109,
+  "config": {
+    "schedule": {
+      "p0_budget": 120,
+      "p0_steps": 200,
+      "eval_episodes": 6,
+      "eval_steps": 200
+    },
+    "arms": [
+      {
+        "name": "SATOFF",
+        "sat_enabled": false,
+        "strength": 0.5,
+        "stable_ticks": 6,
+        "reset_outcome_history": true
+      },
+      {
+        "name": "S050_KS_ON",
+        "sat_enabled": true,
+        "strength": 0.5,
+        "stable_ticks": 6,
+        "reset_outcome_history": true
+      },
+      {
+        "name": "S050_KS_OFF",
+        "sat_enabled": true,
+        "strength": 0.5,
+        "stable_ticks": 6,
+        "reset_outcome_history": false
+      },
+      {
+        "name": "S050_KL_ON",
+        "sat_enabled": true,
+        "strength": 0.5,
+        "stable_ticks": 24,
+        "reset_outcome_history": true
+      },
+      {
+        "name": "S050_KL_OFF",
+        "sat_enabled": true,
+        "strength": 0.5,
+        "stable_ticks": 24,
+        "reset_outcome_history": false
+      },
+      {
+        "name": "S030_KS_ON",
+        "sat_enabled": true,
+        "strength": 0.3,
+        "stable_ticks": 6,
+        "reset_outcome_history": true
+      },
+      {
+        "name": "S030_KS_OFF",
+        "sat_enabled": true,
+        "strength": 0.3,
+        "stable_ticks": 6,
+        "reset_outcome_history": false
+      },
+      {
+        "name": "S030_KL_ON",
+        "sat_enabled": true,
+        "strength": 0.3,
+        "stable_ticks": 24,
+        "reset_outcome_history": true
+      },
+      {
+        "name": "S030_KL_OFF",
+        "sat_enabled": true,
+        "strength": 0.3,
+        "stable_ticks": 24,
+        "reset_outcome_history": false
+      }
+    ],
+    "thresholds": {
+      "K_SD": 2.0,
+      "C1_ABS_FLOOR": 0.1,
+      "C2_ABS_FLOOR": 0.05,
+      "C3_ABS_FLOOR": 0.05,
+      "R_SATOFF_IP_FLOOR": 0.5,
+      "R_MIN_FIRES": 5,
+      "R_MIN_FRESH": 50,
+      "MIN_READY_SEEDS": 4,
+      "sat_window": 8,
+      "sat_grace": 2,
+      "strength_primary": 0.5,
+      "strength_repl": 0.3,
+      "K_SHORT": 6,
+      "K_LONG": 24,
+      "closure_signal_affinity_internal_planning": 0.0,
+      "contextual_safety_harm_threshold": 0.05
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 45,
+    "goal_state_present": false
+  }
+}
