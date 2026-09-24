@@ -316,3 +316,148 @@ and the bar is mis-denominated (stop 1); choose the same-rows form and the null 
 and the criterion is already answered (stop 2). The pre-flight rated this GREEN with "Unratified
 scientific choice: None found", which was wrong in both directions. That, rather than either
 individual bar question, is the finding worth carrying back into how fanout probes are specified.
+
+---
+
+# ADDENDUM 2 (2026-09-24, ~18:10Z): option B implemented; SECOND red-team BLOCKING; V3-EXQ-1092 still not queued
+
+**Status: AWAITING USER REVIEW. Nothing queued. The script is on `ree-v3` main, INERT, with an updated DO-NOT-QUEUE banner.**
+
+User decision "(2) then (1)" (rec-20260924-5812c302) was executed as instructed.
+
+## (2) DONE and LANDED -- the recoverable half is settled at zero compute
+
+`reanalysis_sdppb5_off_head_action_read_alpha09_live_battery_20260924T171654Z`
+(`REE_assembly/evidence/reanalysis/`, `compatibility=matched`). Derived in closed form from
+V3-EXQ-1082's landed ARM_OFF per-row errors: the OFF head **does** read its action at alpha 0.9
+on a live battery on **3/3 seeds** -- S/T 2.0371 / 1.5512 / 1.5858 (all > 1.0), skill
++0.3486 / +0.2194 / +0.2149 (all > 0.0), d_act CI lower > 0 on 3/3. Untrained head sits at the
+analytic null (0.0022 / -0.0016 / 0.0005); ridge positive control reads on 3/3.
+
+## (1) IMPLEMENTED, then BLOCKED
+
+The load-bearing criterion was re-pointed to the cross-battery ratio vs its action-blind null;
+V3-EXQ-1079's positive-control contrast and label split were added; the false label was fixed;
+the shuffle verdict was demoted to RECORDED; the readiness control was re-pointed to C1's own
+statistic. It validated clean (`--strict` 1 OK / 0 warnings; recording complete) and smoked
+clean (rc=0), with C1 discriminating as designed (FAIL at 0.3 on the skill clause, PASS at 0.9).
+
+**GOV-REUSE-1 was re-run against the NEW statistic first** -- the GFLAG-0475 lesson, and it
+passed: 1076 manifests scanned, 521 carrying `arm_results` (denominator recorded because a
+silent zero here is indistinguishable from a broken search); exactly ONE carries a cross-battery
+ratio together with an action-blind null (V3-EXQ-1079), and its rows are post-death. Not
+recoverable -> run. That check was correct.
+
+The second Step 4.5 red-team then returned **BLOCKING**. All findings re-verified here.
+
+### F2 (deepest): the action-blind null is 1 *in population*, so the re-point barely moved the bar
+
+The inverted map is a **bijection** (0<->1, 2<->3, 4 fixed) applied to **i.i.d.-uniform action
+indices**. So the executed MOVE sequence is i.i.d. uniform under both maps, the (z0, z1) law is
+**identical** across the two batteries, and only the action LABEL differs. Therefore
+`blind_null -> 1` in population, and `cross_ratio - blind_null > 0` reduces to *"the head
+predicts worse at the opposite-direction label than at the true one, on rows of the same law"*.
+
+Measured in the dry run:
+
+| cell | identity MSE orig | identity MSE inverted | blind_null |
+|---|---|---|---|
+| 0.3 s42 | 6.324e-06 | 5.882e-06 | 0.9301 |
+| 0.9 s42 | 6.012e-05 | 5.706e-05 | 0.9492 |
+| 0.3 s123 | 4.908e-06 | 4.613e-06 | 0.9399 |
+| 0.9 s123 | 4.596e-05 | 4.400e-05 | 0.9575 |
+
+All scattered about 1 -- realization noise, not a difficulty difference.
+
+**This retro-corrects the FIRST stop.** The 1.09-2.41 blind nulls in section 3 that motivated
+GFLAG-0470 were an artefact of V3-EXQ-1079's POST-DEATH batteries, where the law is *not*
+preserved (death timing diverges between the maps and post-death dynamics are unbounded). On a
+LIVE battery options A and B very nearly coincide. Section 3's caveat said the numbers would
+differ; the stronger and correct statement is that **on live rows the bar question is close to
+immaterial** -- and the ADDENDUM-1 "incidental result" (blind nulls ~0.95, both bars agreeing)
+was already pointing at this without following it through. Recorded as a correction rather than
+quietly dropped.
+
+It also means C1 is a **component of d_act**, not a new property: d_act averages over all four
+alternative labels, C1 uses the single opposite-direction one, and
+`(cross_ratio - blind_null)/(S/T - 1)` = 1.34 / 1.21 / 1.68 / 1.40 -- monotone tracking in every
+cell, including both alpha-0.3 cells where skill is negative.
+
+### F2c: a false premise this project introduced, now corrected
+
+The driver's docstring asserted that V3-EXQ-1073's sub-1 cross-battery ratios were measured "on
+a head that did read its action", and ADDENDUM 1 leaned on the same framing. **That is false.**
+The 1073 autopsy records `B5 (head ignores the action; copy-the-input)` and "the frame (an
+action-blind head) is wrong", and 1073's manifest carries **no** `d_act` or shuffle readout at
+all. So 1073 is not evidence that reading-the-action and being-contradicted-by-an-inversion
+dissociate, and `H-difficulty-only` has no supporting case on record. Corrected in the driver.
+
+### F1: the queued run's outcome is already determined
+
+Cells are pure functions of `(seed, alpha)`; `--dry-run` executes seeds 42 and 123 at FULL
+budget against `SEEDS_REQUIRED = 2`, so C1 and C2 are both satisfied before seed 456 runs. Only
+the non-load-bearing C2b split is open. This is the lineage's dry-run convention (inherited from
+1082), not specific to this driver -- but it binds here, and it is worth fixing lineage-wide
+(e.g. dry-run on a seed outside `SEEDS`, or a reduced budget).
+
+### F3: `POST_RESET_SKIP = 3` is an arm-asymmetric instrument constant -- *independent of the bar question*
+
+The driver never calls `REEAgent.reset()`, so z_world's EMA carries across env resets. After the
+3 skipped steps the residual weight on the previous episode is `(1-alpha)^3` = **0.343 at alpha
+0.3** but **0.001 at alpha 0.9**. With 28-33 resets per 512-row battery (~16-18 rows/episode), a
+large share of the 0.3 arm's rows carry cross-episode transients the 0.9 arm does not. The
+constant came from V3-EXQ-1082, which ran **only** at 0.9. C2's alpha contrast and C2b's
+attribution are both confounded by it.
+
+**This finding outlives the present design**: any alpha-contrast experiment on this collector
+needs an alpha-dependent skip (e.g. `ceil(3 * ln(0.1)/ln(1-alpha))`, giving ~19 steps at 0.3) or
+an explicit agent-EMA reset at episode boundaries. It is the most reusable result of this cycle.
+
+### F4 (owed, not applied) and F5 (fixed)
+
+F4: C1's per-row inputs (`e_head_c`, `e_id_o`, `e_id_c`) are not persisted, so the new
+load-bearing CI is not re-derivable post hoc -- the very zero-compute pattern this cycle just
+used on 1082 is foreclosed for it. Deliberately NOT patched: the driver is blocked, and shipping
+unsmoked code to it would be worse than recording the gap. F5: several manifest/docstring
+strings still described the superseded option-C design; those were text-only and are fixed.
+
+### Verified and NOT findings (second pass)
+
+The manipulation reaches the DV cleanly (only `config.latent.alpha_world` differs; both arms
+consume an identical env/action/batch stream; no shared warmup, no cache; encoder equality
+asserted and measured True). The two-sample bootstrap's dependence structure is right for two
+independent realizations of the same law. The ridge positive control on C1's own function is a
+reachability check on a *different* head, not circular. A failing control routes to
+`substrate_not_ready_requeue`, never to a substrate verdict. `rows_aligned` is correctly scoped
+to C2.
+
+## Where this leaves the scientific question
+
+The SD-PP-B5 question that remains genuinely open is **not** "does the head read its action"
+(settled, 3/3, by the reanalysis) and **not**, on live rows, "is the ratio above its blind null"
+(F2: nearly the same question, and the dry run already answers it affirmatively at 0.9 on 2/2).
+What is still unmeasured is whether the head is **sign-blind**: a head can be axis-aware while
+predicting the opposite direction as well as the true one, and that is exactly the property an
+inverted-map contradiction needs. F2's algebra makes that measurable **same-rows**, with an
+exact null of 1.0, a tighter paired CI, and **no second battery at all** --
+`head(z0, pi(acts))` against `head(z0, acts)` on the original rows.
+
+**Recommendation, for the user -- not chosen here:**
+1. **Replace the cross-battery collection with the same-rows opposite-label statistic** (paired,
+   exact null 1.0, no inverted-map battery needed), and pre-register it against the
+   mean-alternative form so "axis-aware but sign-blind" is separable from "reads its action".
+2. **Fix `POST_RESET_SKIP` to be alpha-dependent (F3) before any alpha contrast is run**, or drop
+   the alpha arm and run the sign-blindness question at 0.9 only.
+3. **Fix the dry-run/SEEDS_REQUIRED overlap (F1)** lineage-wide.
+4. Consider whether GFLAG-0470 should now be resolved as *superseded rather than acted on*: F2
+   shows the bar it disputed is immaterial on live batteries.
+
+## Governance record (updated)
+
+- **GFLAG-0470** (`contested_disposition`, open) -- stop 1's bar question; see F2, which
+  substantially weakens its premise on live rows.
+- **GFLAG-0475** (`evidence_discrepancy`, open) -- stop 2's recoverability finding. Its lesson
+  was applied this cycle and held.
+- **GFLAG-0476** (`evidence_discrepancy`, open) -- this addendum.
+- Script: `ree-v3` origin/main, INERT, DO-NOT-QUEUE banner. `V3-EXQ-1092` never queued; the slot
+  is free to reuse or release.
