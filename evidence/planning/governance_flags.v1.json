@@ -6516,6 +6516,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0455",
+      "claim_ids": [
+        "MECH-043"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "Pre-flight (orchestrate-20260924-0808, chip-20260918-mech043-precision-sweep) finds the ratified lever dacc_precision_scale (config.py:4061, consumed only at dacc.py:217) cannot move the ratified DV: pe reaches E3 only via uniform shifts (dacc.py:426-427 mode_ev; dacc.py:440 foraging_value), and the commit gate reads _running_variance directly (e3_selector.py:4046-4050), independent of dACC -- the sweep is structurally null. Needs governance re-ruling among R1 (E3 precision-scaled commit route + two-sided rv scale, entangles MECH-027), R2 (arm a non-uniform pe consumer, a build), or R3 (operationalise the DV comparator) before any author dispatch.",
+      "raised_by_session": "orch0924-redroute",
+      "raised_at": "2026-09-24T10:59:34Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
