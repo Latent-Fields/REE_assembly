@@ -172,3 +172,72 @@ Phase 2 is the only phase with a real regression risk and is the only one that m
 | 2026-09-14 | B2 (prior) | HELD for user review. Inputs ready: WI-A findings file (146 rows, survive-column filled, do-not-tone-down list) and the WI-I cache baseline. Recommended first commit: replace AGENTS.md with a pointer to CLAUDE.md + NEW_AGENT_START_HERE.md (fixes five live contradictions, not a tone change). Second: the archaeology-disclaimer convention (49 verbatim repeats in CLAUDE.md, 31 in failure-autopsy -> one stated convention). Then the chip-volume exhortations. One section per commit, GOV-HELDOUT-1 on each. Also pending from H: widening the "Hooks" rule from PreToolUse to any event. |
 | 2026-09-14 | F (later same day) | DONE, one step handed to the user. Root cause of the unreachable fleet: the Mac's `wg-gui` WireGuard tunnel had been DELETED from WireGuard.app (~2026-09-13T09Z; `scutil --nc status wg-gui` -> `No service`; watchdog bounced a non-existent service 223x). No import file existed (key lived in the app). Re-keyed: new Mac key `xe32t/+VDFlOkn3bsCEeECm+rAk4CRrky6LjEQlfoSc=` at `10.8.0.11` (`~/wireguard/wg-gui.conf`), hub `.11` peer swapped (backup `wg0.conf.bak-mac-rekey-20260914`); the user ran the hub step by hand (classifier denies remote writes), first with the `NEWPUB` placeholder left in (hub briefly had no `.11` peer), then corrected. Tunnel verified: hub 44 ms, coordinator `/health` ok, fresh handshake. Fleet versions: hub has no Claude (retired runner, by design); workers 2/3 powered off; **ree-cloud-4 2.1.251 -> 2.1.270 and ree-cloud-5 2.1.247 -> 2.1.270 via `claude update`** with zero live headless sessions (cloud-4's first attempt timed out downloading, second succeeded). Both were below the 2.1.259 parallel-session fix and the 2.1.267 resume-cache fix until now. Neither box uses `bypassPermissions`; both project settings carry only the SessionStart/PreToolUse detection hooks. **Worker settings installed (~10:10Z, same session):** `install_worker_claude_settings.py` refuses a DIFFERENT existing file by design and wants `--force`; on each box the installed file was first verified to be a strict subset of the new template (no installed-only keys or hooks), then `--force` run. Both `ree-cloud-4` and `ree-cloud-5` now report `installed and current` with `SessionStart`/`SessionEnd`/`PreToolUse`; the installer also refreshed their worktree copies. Bash-tool gotcha hit twice: zsh does not word-split `$h` in `for h in "name ip"; set -- $h`, producing an empty ssh host that reads as "Host key verification failed" -- use explicit addresses. |
 | 2026-09-14 | side-finding | Every subagent's claim open/close ran on the git fallback (hub unreachable) and each swept the others' uncommitted TASK_CLAIMS entries (remedy (a), preserved, named in completion notes). Separately, the umbrella shared checkout has been refusing ref convergence since 2026-09-13T18:09Z (35 ahead / 55 behind by the end of this run); pushes succeed via the throwaway-worktree retry, but the checkout's working copy no longer receives origin's changes. Already chipped: `chip-checkoutdiverged-dlaptop-ree-working-master-g5`. Operator work per `cloud5_stale_scripts_wedge_staged_20260814.md` sections 5-6. |
+
+### Re-measure (2026-09-24)
+
+chip `chip-20260915-token-split-remeasure-b2`, session `orchb0924-h3`. Window: sessions started
+2026-09-15..09-24 (the B2/B2-round-2 rewording landed 2026-09-14). Method:
+`REE_assembly/scripts/token_split_measure.py --report`, both `--since 2026-09-15` and trailing
+(no `--since`, 21-day mtime window); umbrella `CLAUDE.md` and the four large skills also checked
+by static `wc -c` against their WI-A pre-B2 baseline and their post-B2-round-2 landed size
+(`git show <landing-sha>:<path> | wc -c`), since the dynamic script has no per-skill breakdown
+(only `nested_memory` CLAUDE.md paths).
+
+**`--since 2026-09-15`: 294/1638 candidates fitted, 47,096 turns.** Per-turn R^2 median **0.9977**
+(p10 0.9925), residual 0.8% -- a real, non-vacuous fit (CLAUDE.md docstring's own trap: never read
+the summed-error check). Sample is not thin (>>30 fitted).
+
+| figure | WI-I baseline (since 2026-09-08, 2026-09-14) | this re-measure (since 2026-09-15) | delta |
+|---|---|---|---|
+| FIXED PROMPT share | 34.81% (section 7.2, context_budget_restructure_plan.md) | **35.19%** | +0.38 pp -- HELD, not a regression |
+| cache READ share | 97.18% | 97.06% | -0.12 pp -- HELD |
+| cache CREATION share | 2.81% | 2.94% | +0.13 pp |
+| median per-turn cache-read share | 99.05% | 99.31% | +0.26 pp -- improved |
+| cold-turn misses | 0/1,665 (0.00%) | 36/46,802 (0.08%) | small new nonzero rate, still low |
+
+Trailing (no `--since`, 1532/1638 fitted, 285,823 turns, pre-restructure-dominated -- context only
+per the section 7.2 convention): FIXED PROMPT 38.77%, cache READ 97.64%, median per-turn
+cache-read 99.47%. Consistent direction with the `--since` figures.
+
+**Static file-size check -- the leading indicator, and the actual finding of this re-measure.**
+The dynamic SHARE figures above read as flat/held, but the underlying FILES that feed the fixed
+prompt have regrown substantially in the 10 days since the B2-round-2 landing (`c4b3502e4` +
+siblings, 2026-09-14) -- three of five now exceed even the PRE-B2 bloated baseline the whole
+rewording effort was measured against:
+
+| file | pre-B2 (WI-A audit, 2026-09-14) | post-B2-round-2 landed | now (2026-09-24) | vs post-B2 | vs pre-B2 |
+|---|---|---|---|---|---|
+| `.claude/skills/queue-experiment/SKILL.md` | 154,138 | 147,839 (`b4a7ca8fa`) | 169,682 | **+14.8%** | **+10.1% (worse than before B2)** |
+| `.claude/skills/governance/SKILL.md` | 113,915 | 112,688 (`5353929cb`) | 128,712 | **+14.2%** | **+13.0% (worse than before B2)** |
+| `.claude/skills/failure-autopsy/SKILL.md` | 116,603 | 110,103 (`d119d519f`) | 119,946 | +9.0% | +2.9% (worse than before B2) |
+| `.claude/skills/metaworker-dispatch/SKILL.md` | 141,357 | 132,496 (`9102e5b4b`) | 143,666 | +8.4% | +1.6% (worse than before B2) |
+| `CLAUDE.md` (umbrella) | -- (not separately audited pre-B2 by this table) | 132,010 (`c4b3502e4`) | 139,030 | +5.3% | n/a |
+
+All five files have regrown past their B2-round-2 trimmed size within 10 days; queue-experiment
+and governance have regrown past their ORIGINAL pre-rewording size, i.e. the rewording's static
+gain on those two is already fully erased and reversed. This has not yet shown up as a SHARE
+regression in the dynamic measurement above (fixed-prompt share is flat) because the fitted
+window's session mix and other context (tool results, harness injections) also moved, diluting
+it -- but it is the mechanism section 6's "restful" framing warned about and is the reason this
+chip exists rather than a one-off check.
+
+**Regression check.** `grep -n "regression" WORKSPACE_STATE.md` since 2026-09-15 (14 hits):
+none concern the B2 rewording itself or a governance/queue-experiment rule content regression --
+they cover unrelated topics (EXP-id staleness fix, GOV-APPLY-1 override blindness, a negative
+instrument's own false positive, etc.). `grep -n "reworded\|rewording"` since 2026-09-15: the
+only hits are unrelated claim-content rewordings (ARC-094, MECH-013), not skill/CLAUDE.md rule
+content. **No governance or queue-experiment session has reported a rule regression from the B2
+wording changes in this window.**
+
+**Verdict.** The rewording HELD on every dynamic share/cache figure measured (fixed-prompt share
++0.38pp, cache-read share -0.12pp, both within noise; per-turn cache-read median and miss rate
+both fine) -- no evidence of the projected gain reversing YET in the numbers that actually gate
+governance's WI-I baseline, and no session has reported a content/rule regression. But the static
+file-size check (not part of the original WI-I instrument, added here because the dynamic SHARE
+is a lagging indicator of file growth) shows the underlying skills and CLAUDE.md regrowing fast
+enough that two of the four large skills are already net WORSE than before B2 ever ran, only 10
+days post-landing. **Recommend, do not build:** re-run this same check again in 2-3 weeks: if the
+fixed-prompt SHARE has by then moved materially off 34.8-35.2%, the file-size regrowth is the
+explanation, and the fix is a second, lighter B2-style trim pass -- not a change to the OLS
+instrument or the rewording rule itself (out of scope for a measurement chip; GOV-HELDOUT-1
+would apply to any rule-text change).
