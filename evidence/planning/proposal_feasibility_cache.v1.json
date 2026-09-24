@@ -222,6 +222,20 @@
     "ree_v3_sha": "21f80f54f46793ac5231b158fc75ab75de78e3b8",
     "substrate_queue_route": "ROUTE_UNDETERMINED_MULTIPLE",
     "verdict": "RED"
+   },
+   {
+    "chip_ref": "chip-proposal-exp-0860-paced",
+    "producer_paths": [
+     "ree_core/hippocampal/module.py",
+     "ree_core/heartbeat/beta_gate.py",
+     "ree_core/utils/config.py"
+    ],
+    "reason": "Re-confirmed 2026-09-24 at ree-v3 76dab48: compute_completion_signal=sigmoid(-best_score*0.5) (module.py:3277-3335) still reachable only (0.0,0.5]; completion_release_threshold still 0.75 default (beta_gate.py:33), still unreachable as identity. Prior cache entry was auto-released by unrelated commits (de12c2c MECH-365, config.py precision-provenance) touching listed producer_paths but not the threshold logic -- re-pinning.",
+    "recorded_by": "orchestrate-20260924-b",
+    "recorded_utc": "2026-09-24T11:10:46Z",
+    "ree_v3_sha": "76dab48b69129b16c06b3bdd7953be321f83e0ea",
+    "substrate_queue_route": null,
+    "verdict": "RED"
    }
   ],
   "MECH-107": [
