@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-23T17:45:22.748605Z",
+  "generated_at_utc": "2026-09-24T06:03:56.041444Z",
   "items": [
     {
       "acceptance_checks": [
@@ -4573,24 +4573,12 @@
       "exclude_broad_profile_sweeps": true,
       "gated_at_utc": "2026-09-24T02:47:18Z",
       "gated_by_session": "igw-241-proposal-for-mech-018",
-      "gating_history": [
-        {
-          "gated_at_utc": "2026-09-17T08:01:12Z",
-          "gated_by_session": "igw-235-proposal-for-mech-018",
-          "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
-          "superseded_note": "all three parts met 2026-09-23 (release_note_2026_09_23); re-gated 2026-09-24 on a new defect"
-        }
-      ],
       "gating_reason": "Refused at /queue-experiment Step 2.5d (falsifier-runnability trace), shape INERT, re-measured by IGW-241 2026-09-24 (duplicating eloquent-lichterman-824f74's 2026-09-23 refusal, which could only take route 2b and so left status=proposed). ResidueField.integrate() jitters samples by per-dimension std = kernel bandwidth, so at world_dim=32 targets sit ~5.6 widths off-support (target/peak 9.4e-06 vs 3.5e-02 at world_dim=8): neural_field is distilled to ~0 and the only effect is removing the untrained Softplus pedestal. Measured: evaluate() drop at harm vs harmless points 0.0651/0.0651; post specificity ratio 3.1389 == rbf-core ratio 3.1417 (pre 2.4666 -- a rise that is pure pedestal arithmetic). Readouts (ii) specificity and (iv) harmless-region rejection cannot move; readout (i) vs rbf core is structurally guaranteed (optimizer isolated from rbf_field) and would be vacuous in the integration arm. Node: complicated (buildable) for the sampling fix, but mystery (known data) for the objective question -- GFLAG-0442 argues even a correct distillation leaves (ii)/(iv) invariant (1.1x rbf rescaling).",
-      "governance_flag": "GFLAG-0442",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-018 with matched seeds and pre-registered thresholds.",
       "priority": "medium",
       "proposal_id": "EXP-0755",
       "proposal_type": "experimental",
-      "refusal_route": "governance",
-      "refused_by_session": "igw-241-proposal-for-mech-018",
-      "refused_utc": "2026-09-24T02:47:20Z",
       "release_condition": "BOTH, then re-run /queue-experiment for MECH-018: (1) integrate() samples targets from the harm field's support at world_dim=32 (chip-20260923-residue-integrate-sampling / GFLAG-0441), with a contract at world_dim=32 asserting mean target/peak above a floor; AND (2) /governance decides GFLAG-0442: either narrow MECH-018 to readouts (i) preservation-vs-naive-decay and (iii) approximation error at a declared budget (then a run is queueable, with (i) scored non_degenerate:false in the integration arm), or commission a contextualisation objective that reads harmless-context information. Pre-registration must still carry GFLAG-0356's pedestal-matched control for (ii).",
       "release_note_2026_09_23": "All three release_condition parts met: (1)+(2) integrate() gradient step and WRITEBACK call site (ree-v3 8997e243/5953f80; GFLAG-0306), (3) the narrowing (GFLAG-0366; MECH-018 readout (iii) scored as approximation error at a declared representation budget, user decision 2026-09-19). Pre-registration must carry GFLAG-0356's second finding: register readout (i) against the rbf core, not pre-integration evaluate(), and add a pedestal-matched control for readout (ii).",
       "require_pre_registered_thresholds": true,
@@ -4612,62 +4600,6 @@
         "active_conflict",
         "directional_conflict_alert",
         "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
-        "Use at least 2 matched seeds shared across both pair conditions.",
-        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
-        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1400",
-      "blocked_by": [
-        "MECH-284",
-        "MECH-287",
-        "MECH-288",
-        "SD-082",
-        "SD-E3-SCORER-COMPLETION"
-      ],
-      "blocked_note": "blocked at /queue-experiment Step 2.5a: MECH-284 staleness is not a viability map on the current substrate -- the write path is non-spatial (identical credit to anchors 200.0 apart in z_world, both attribution modes), is driven by latent-change magnitude rather than predicted-observed mismatch (pe_dict=None at the only production call site), and is constant across the life (1 region / 1 broadcast / spread 0.0 over 1500 steps x 3 seeds), which is this claim's own stated degeneracy condition; the E3 consequence readout is separately gated (untrained reality head; open corrupting SD-082 on e3_selector.py)",
-      "claim_id": "MECH-034",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "discriminative_pair",
-      "exclude_broad_profile_sweeps": true,
-      "gated_at_utc": "2026-09-18T03:02:16Z",
-      "gated_by_session": "igw-243-proposal-for-mech-034",
-      "gating_reason": "Blocked at /queue-experiment Step 2.5a (empirical probe, session igw-243-proposal-for-mech-034, 2026-09-18). MECH-034's falsifier is a DOUBLE DISSOCIATION between the residue field and a feasibility/viability surface, and claims.yaml names the MECH-284 StalenessAccumulator as the closest built candidate for that second surface (disposition 2026-09-16: 'testable now under the staleness reading'). A live probe shows the staleness reading does not support the falsifier's own NON-DEGENERACY PRECONDITION, for three independent reasons. (1) NOT SPATIALLY ADDRESSABLE -- the write path credits broadcast strength across the ACTIVE ANCHOR SET keyed on (scale, segment_id); BroadcastEvent carries no z_world/spatial field at all (fields: t, strength, posterior, targets, source_scale, source_segment_id_old/new, source_sources), and StalenessAccumulator.integrate() never reads Anchor.z_world. Measured: two anchors 200.0 apart in z_world, one broadcast explicitly sourced at segment A, receive IDENTICAL credit under both attribution modes (equal: A=0.500000 B=0.500000; stream_overlap: A=1.000000 B=1.000000). So the precondition 'mismatch-only must raise staleness AT THE PERTURBED REGION' has no mechanism, and the off-diagonal test (staleness at R_m but not R_h) is unconstructible. (2) NOT MISMATCH-DRIVEN -- the chain is MECH-288 EventSegmenter -> MECH-287 InvalidationTrigger (a pure BoundaryEvent subscriber with 'no independent comparator') -> MECH-284. The sole production call site (ree_core/agent.py:5551) passes pe_dict=None, so the segmenter falls back to agg(t)=sum_s||z_s(t)-z_s(t-1)||, a latent-CHANGE-magnitude detector, not predicted-observed mismatch. E2 world PE never reaches the surface, so Manipulation M has no wired path; worse, Manipulation H (harm) also moves z_harm/z_world and so also fires boundaries, manufacturing an off-diagonal that would read as the FALSIFYING 'the surfaces co-vary' verdict when it is an instrument artifact -- inverting the falsifier's meaning. (3) SURFACE IS CONSTANT ACROSS THE LIFE -- claims.yaml's own stated degeneracy condition. Measured over 1500 steps x 3 seeds x both attribution modes, a live agent with use_event_segmenter/use_invalidation_trigger/use_anchor_sets/use_staleness_accumulator/use_per_stream_vs/use_mech284_hysteresis all enabled produced exactly 1 boundary event, 1 broadcast, 1 active anchor, 1 staleness region, cross-region spread 0.0, on every run. There is no multi-region staleness map to test against. Corroborated from the other direction by V3-EXQ-758, the existing MECH-284 experiment, which is agent-free and action-free and had to HAND-AUTHOR BroadcastEvents with synthetic source_sources to exhibit region-locality at all -- matching this claim's 'synthetic_signals_only' why_now. The E3-consequence conjunct is independently unavailable: claims.yaml notes the E3 'viability' reality term reads an untrained head gated off by default (corroborated by open substrate entry SD-E3-SCORER-COMPLETION), and open CORRUPTING entry SD-082 (implemented_pending_validation) overlaps ree_core/predictors/e3_selector.py, which Step 2.5c blocks on independently. Not queued: on this substrate the run could only return a vacuous verdict -- a PASS driven by residue being spatial while staleness is a near-global scalar, or a FAIL driven by the shared latent-change detector -- neither of which bears on whether viability mapping and residue curvature carry different information.",
-      "min_shared_seeds": 2,
-      "objective": "Run a discriminative support-vs-ablation pair for MECH-034 with matched seeds and pre-registered thresholds.",
-      "priority": "medium",
-      "proposal_id": "EXP-0772",
-      "proposal_type": "experimental",
-      "release_condition": "claims.yaml already pre-authorises this route: 'If governance judges staleness not to be a viability map, this falsifier becomes substrate_conditional on a hippocampal navigability surface (a path-stability map over action-object space).' The probe above is the measurement that settles that judgement, so the release condition is that surface existing. Concretely, re-offer EVB-1400 (experimental) once EITHER (a) a hippocampal navigability / path-stability surface over action-object space is built and recorded IMPLEMENTED/VALIDATED in ree-v3/CLAUDE.md -- region-addressable in the same space the ResidueField is read in (z_world), and written from predicted-observed mismatch rather than raw latent-change magnitude; OR (b) MECH-284 is extended with a spatial credit-assignment path (BroadcastEvent gains a z_world provenance field and StalenessAccumulator.integrate() weights anchors by distance to it) AND the MECH-288 segmenter is fed a real pe_dict on the waking sense path, so that both the on-diagonal effects the falsifier pre-registers become constructible. Route via /implement-substrate, not another /queue-experiment iteration. The literature_review twin (LIT-0773, same backlog_id EVB-1400) is NOT blocked by this and stays proposed -- MECH-034's missing_literature_evidence why_now is independently addressable.",
-      "require_pre_registered_thresholds": true,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "matched_shared_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_034",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "active_conflict",
-        "directional_conflict_alert",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -5765,51 +5697,6 @@
       "suggested_experiment_type": "claim_probe_mech_028",
       "target_repo": "ree-v3",
       "why_now": [
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1404",
-      "blocked_note": "MECH-038 needs a two-agent environment with a discrete signalling action and a joint-attention-gated resource as the experimental frame, plus AF-analog routing from the theta packet into E2 affordances over those signalling actions as the IV. ree-v3 has one single-agent environment (causal_grid_world.py), zero signalling substrate, and no pre-commit self-correction hook; the theta-packet SOURCE exists but has no sink. The claim's own non-degeneracy precondition (the LESION arm must show some emergence without any channel) is unevaluable without a second agent, so even a FAIL would be uninterpretable. Same wall as the ARC-009 language cluster (EXP-0741/0743/0745/0747). Literature lane (LIT-0784) deliberately left 'proposed' -- lit evidence is still accruable for a substrate-blocked claim, and both 'missing_literature_evidence' and the claim's own request for a targeted lit-pull on dorsal-stream lesion effects on protolanguage BEFORE the build are why_now reasons a lit pull can genuinely discharge.",
-      "claim_id": "MECH-038",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "gated_at_utc": "2026-09-18T07:24:18Z",
-      "gated_by_session": "igw-245-proposal-for-mech-038",
-      "gating_reason": "EXP-0783 (MECH-038, 'Arcuate-like sequence-to-motor channel nudges language emergence.') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-245-proposal-for-mech-038, IGW-20260918-245). MECH-038 is a NUDGE claim: an AF-like fast routing from hippocampal rollout / E1 sequence summaries (the multi-content theta packet) into E2 affordances over SIGNALLING actions, plus a pre-commit self-correction loop, should raise the rate and lower the latency of emergent symbolic coordination between two agents without being required for it. Its three readouts -- referential consistency (mutual information between emitted signal and referent world state, above a shuffled-referent baseline), coordination success rate, and time-to-first-consistent-use -- are all defined over a SECOND agent, and its design demands a matched ON-vs-LESION pair where the signalling action is equally available in both arms and only the fast routing differs. None of that substrate exists in ree-v3. Verified directly against the tree this session (ree-v3 ea9d188): ree_core/environment/ contains exactly one environment, causal_grid_world.py (single-agent) -- there is no two-agent variant, no discrete signalling action, and no joint-attention-gated resource; greps over ree_core/ for multi_agent|multiagent|n_agents|num_agents|other_agent|signalling|signaling_action|utterance|symbol_channel|message_pass|joint_attention return exactly ONE non-pycache file, ree_core/policy/policy_decomposition.py:561, whose hit is the English phrase 'caller-signalling flag' in a docstring; greps for arcuate|articulat|protolanguage|dorsal_stream return one hit, the word 'articulation' in a Berridge & Kringelbach citation sentence at ree_core/regulators/mech295_liking_bridge.py:54; and greps for pre_commit|precommit_correct|self_correct|emitted_signal return zero files, so the pre-commit self-correction loop the ON arm requires has no substrate either. The SOURCE half of the claim's own build (2) DOES exist -- ree_core/latent/multi_content_theta_packet.py is present and ARC-018 hippocampal rollouts are active -- but the SINK does not: there are no signalling actions for E2 to hold affordances over, so there is nothing to route the packet INTO. This independently reproduces MECH-038's own what_would_answer ('SUBSTRATE: NOT BUILT', naming two builds in order: a two-agent CausalGridWorld variant with a signalling action and a joint-attention-gated resource, then the AF-analog routing) and its recorded 2026-09-16 disposition ('substrate_conditional -- do NOT mint an EXP; route to /implement-substrate scoping only after the plan-of-record decides whether V3 hosts a multi-agent environment at all'). The claim's NON-DEGENERACY PRECONDITION is the decisive point and is stronger than the usual missing-IV argument: the LESION arm must show demonstrable coordination attempts and at least occasional success WITHOUT any channel, or the result is uninterpretable (no pressure, not no nudge) -- and the CONFIRMING pattern explicitly requires LESION to still show some emergence, to distinguish a nudge from a required module. With zero multi-agent substrate there is no baseline arm at all, so the precondition cannot even be evaluated, let alone met. A commitment-free measurement-only variant was considered and REJECTED on mapping fidelity, not runnability: the encoder half alone (does a theta-packet sequence summary measurably bias E2 affordances over ordinary single-agent actions, and does a pre-commit PE hook change the committed action?) is buildable and would test ROUTING mechanics, but MECH-038's entire falsifiable content is the comparative social effect -- rate, latency and referential consistency of emergent coordination between two agents -- so a PASS would leave every one of the three readouts untested and could not attach to MECH-038 at defensible mapping fidelity. A claim_probe_mech_038 queued now would have no second agent to coordinate with, no signalling action to route into, and no LESION baseline -- a vacuous result that would only re-derive the known absence of a multi-agent environment, not a verdict. Classification is ALREADY routed to /governance as GFLAG-0298 (open, raised 2026-09-16), which names MECH-038 explicitly and asks for epistemic_category: substrate_conditional on exactly this ground ('no multi-agent env / signalling affordance / AF-analog routing'); no new flag raised this session. Note on why MECH-038 reached the IGW experiment lane at all despite the language cluster already being classified under GFLAG-0269: MECH-038 carries no epistemic_category, but unlike MECH-011..015 its depends_on set is MIXED -- ARC-009 is substrate_conditional while ARC-002, ARC-005 and ARC-018 are standard -- so it falls outside the 'ALL parents substrate_conditional' predicate that audit swept (12 claims on a re-run this session). That predicate should NOT simply be widened to 'ANY substrate_conditional parent': the widened set is 156 claims, and most are testable because the substrate_conditional parent does not carry the child's independent variable. MECH-038 is blocked because ARC-009 carries its IV specifically. The per-claim epistemic_category route GFLAG-0298 already asks for is the right fix here.",
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-038 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0783",
-      "proposal_type": "experimental",
-      "release_condition": "Release when ree-v3 has, in this order, the two builds MECH-038's own what_would_answer names: (1) a two-agent CausalGridWorld variant carrying a discrete low-cost signalling action available IDENTICALLY in both arms and a joint-attention-gated resource, with the non-degeneracy precondition demonstrated empirically first -- non-zero coordination attempts per episode and at least occasional success in the un-channelled baseline; and (2) the AF-analog routing itself -- fast delivery of hippocampal-rollout / E1 sequence summaries from ree_core/latent/multi_content_theta_packet.py into E2 affordances over the signalling actions, plus a pre-commit self-correction hook (E2 PE on the agent's own emitted signal, evaluated before commit and able to interrupt or refine it), severable to form the LESION arm. Both are gated behind the multi-agent-environment research-direction decision (ARC-047 SocialGridWorld, candidate, implementation_phase v5) which the plan-of-record has not taken -- that is a research-direction call, not a queue decision. The claim also asks that a targeted lit-pull on dorsal-stream lesion effects on protolanguage PRECEDE the build. Re-derive readiness from the tree, not from this note.",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
-      "suggested_experiment_type": "claim_probe_mech_038",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
         "lit_only_above_cap",
         "low_exp_conf",
         "missing_experimental_evidence",
@@ -7810,9 +7697,6 @@
       "priority": "medium",
       "proposal_id": "EXP-0361",
       "proposal_type": "experimental",
-      "refusal_route": "implement_substrate",
-      "refused_by_session": "igw-241-proposal-for-mech-154",
-      "refused_utc": "2026-09-24T03:55:07Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -9800,6 +9684,54 @@
       },
       "status": "proposed",
       "suggested_literature_type": "targeted_review_arc_149",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1810",
+      "claim_id": "ARC-150",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for ARC-150.",
+      "priority": "medium",
+      "proposal_id": "LIT-0365",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_arc_150",
       "target_repo": "REE_assembly",
       "why_now": [
         "missing_experimental_evidence",
@@ -14727,92 +14659,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1353",
-      "claim_id": "INV-069",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for INV-069 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0693",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_inv_069",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-1353",
-      "claim_id": "INV-069",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for INV-069.",
-      "priority": "medium",
-      "proposal_id": "LIT-0694",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_inv_069",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -17489,45 +17335,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1436",
-      "claim_id": "MECH-132",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-132 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0849",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_132",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-132 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-132 set epistemic_category substrate_conditional in the same pass."
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -17576,45 +17383,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1437",
-      "claim_id": "MECH-133",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-133 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0851",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_133",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-133 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-133 set epistemic_category substrate_conditional in the same pass."
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -17660,45 +17428,6 @@
         "missing_literature_evidence",
         "synthetic_signals_only"
       ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1438",
-      "claim_id": "MECH-134",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-134 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0853",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_134",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-134 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-134 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -18146,45 +17875,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1444",
-      "claim_id": "MECH-159",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-159 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0866",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_159",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-159 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-159 set epistemic_category substrate_conditional in the same pass."
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -18504,45 +18194,6 @@
         "missing_literature_evidence",
         "synthetic_signals_only"
       ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1450",
-      "claim_id": "MECH-190",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-190 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0874",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_190",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-190 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-190 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -19631,45 +19282,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1467",
-      "claim_id": "MECH-227",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-227 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0902",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_227",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-227 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-227 itself was set epistemic_category out_of_domain on 2026-09-23 (GFLAG-0285); only this EXP was left."
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -19805,45 +19417,6 @@
         "missing_literature_evidence",
         "synthetic_signals_only"
       ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1469",
-      "claim_id": "MECH-233",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-233 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0906",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_233",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-233 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-233 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -20555,45 +20128,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1479",
-      "claim_id": "MECH-246",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-246 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0924",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_246",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-246 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-246 set epistemic_category substrate_conditional in the same pass."
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -20639,45 +20173,6 @@
         "missing_literature_evidence",
         "synthetic_signals_only"
       ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1480",
-      "claim_id": "MECH-247",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-247 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0926",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_247",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-247 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-247 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -20774,45 +20269,6 @@
         "missing_literature_evidence",
         "synthetic_signals_only"
       ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-1482",
-      "claim_id": "MECH-249",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-249 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0930",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "withdrawn",
-      "suggested_experiment_type": "claim_probe_mech_249",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "missing_experimental_evidence",
-        "missing_literature_evidence",
-        "synthetic_signals_only"
-      ],
-      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-249 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-249 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [
@@ -33724,6 +33180,92 @@
         "Experiment Pack validates against v1 schema.",
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
+      "backlog_id": "EVB-1353",
+      "claim_id": "INV-069",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for INV-069 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0693",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_inv_069",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 1 structured literature entry linked to claim_ids_tested.",
+        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
+        "Confidence explicitly justified in confidence_rationale and confidence_components.",
+        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
+        "Preserve source wording, REE translation, and mapping caveat for each record."
+      ],
+      "backlog_id": "EVB-1353",
+      "claim_id": "INV-069",
+      "decision_deadline_utc": "",
+      "disconfirming_evidence_required": 1,
+      "mapping_quality_weighting_required": true,
+      "objective": "Improve literature grounding and confidence for INV-069.",
+      "priority": "medium",
+      "proposal_id": "LIT-0694",
+      "proposal_type": "literature_review",
+      "required_record_contract": {
+        "confidence_component_fields": [
+          "confidence_components.source_quality",
+          "confidence_components.mapping_fidelity",
+          "confidence_components.transfer_risk"
+        ],
+        "mapping_fields": [
+          "mapping.source_claim_statement",
+          "mapping.ree_translation",
+          "mapping.mapping_caveat"
+        ],
+        "record": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction",
+          "confidence",
+          "confidence_rationale",
+          "mapping",
+          "confidence_components"
+        ],
+        "summary": "include caveats, disconfirming evidence, and mapping limits"
+      },
+      "status": "proposed",
+      "suggested_literature_type": "targeted_review_inv_069",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "low_exp_conf",
+        "missing_literature_evidence"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
       "backlog_id": "EVB-1447",
       "claim_id": "MECH-162",
       "decision_deadline_utc": "",
@@ -37421,7 +36963,7 @@
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
       "gated_by_session": "build_experiment_indexes:claim_queue_gate",
-      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for SD-056 via targeted experiment runs.",
       "priority": "medium",
@@ -38705,6 +38247,7 @@
       "proposal_type": "experimental",
       "source": "manual",
       "status": "executed",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921.md): executed_by/executed_queue_id never set and no MECH-261 run executes this design -- V3-EXQ-446's docstring explicitly defers 'behavioural validation of MECH-261 (forward-propagation bias, EXP-0148)'. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping.",
       "target_repo": "ree-v3"
     },
     {
@@ -40029,6 +39572,7 @@
       "seed_policy": "matched_shared_seeds",
       "source": "manual",
       "status": "executed",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401): executed_by/executed_queue_id both null and no ARC-006-sparse-tagged run exists (V3-EXQ-658 tested persistent/bindable for MECH-045, not sparse). Proposed pending a real ARC-006 run.",
       "target_repo": "ree-v3"
     },
     {
@@ -40151,7 +39695,7 @@
       "design": "Re-run the original V3-EXQ-569e 8-arm Pathway A vs Pathway B mechanism probe (SP-CEM main-path ON, MECH-341 OFF, MECH-313 OFF, MECH-269 default) at behavioural-runtime P1 budget (50 episodes / 200 steps) on the amended substrate (multistep contrastive horizon + output-norm clamp, both now available), with the three script-side acceptance-criteria fixes from the 569e autopsy Section 6 applied: (i) a genuine per-tick NaN-fix gate for C1 rather than 'at least one finite value per seed'; (ii) a sanity ceiling on the C3 rollout-divergence gate so numeric overflow cannot register as 'operative' divergence; (iii) resolution of the acceptance_criteria-dict-vs-verdict_cell contradiction the autopsy flagged.",
       "dispatch_mode": "discriminative_pair",
       "gated_by_session": "build_experiment_indexes:claim_queue_gate",
-      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled -- true in zero runs, config.py:536; and e2_rollout_output_norm_clamp_enabled -- CORRECTED 2026-09-23, GFLAG-0401: this one IS armed in v3_exq_604b_q044_mech314_subflavour_ablation_authority_on.py:307, manifest 2026-06-07, so the earlier \"both true in zero runs as of 2026-09-01\" was wrong for it). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
+      "gating_reason": "gated on SD-056; release: EXP-0585 / EVB-0587 (569e-equivalent Pathway A vs B probe) is the ONLY run that moves this claim. Release when governance funds it explicitly and a /queue-experiment session applies the three 569e autopsy Section 6 script fixes AND arms both stability levers (e2_action_contrastive_multistep_enabled, e2_rollout_output_norm_clamp_enabled -- true in zero runs as of 2026-09-01). Do not mint a GOV-CONFIRM-1 confirmer: the t=1 representation signature is already measured (613, 569d, 569e). See GFLAG raised 2026-09-08 by clever-joliot-bb5a54.",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment. [2026-09-10 GFLAG-0231 registry repair] The 'executed' status and the executed_by link to 'v3_exq_210_mech156_theta_traversal_probe' were FALSE and are removed. That run's own manifest (evidence/experiments/v3_exq_210_mech156_theta_traversal_probe/v3_exq_210_mech156_theta_traversal_probe_1775168257.json) carries claim_ids ['MECH-156'] and timestamp 2026-04-02T22:17:37Z -- no SD-056 tag, and four months BEFORE this proposal was minted (added_utc 2026-08-07). No SD-056 queue entry has existed since minting and the 569e driver is unchanged since 2026-05-30 (pack_writer migration aside), so the run was never dispatched; ree-v3/experiment_queue.json holds 0 items for SD-056. Status restored to a live lifecycle value: this is GATED, not done. SD-056 carries a claims.yaml experiment_gate set 2026-09-08 by clever-joliot-bb5a54 (DO-NOT-QUEUE; W5-S4 item 1, REE_assembly 5819a55ae1, diagnostic_evidence_adjudicated true) -- the representation-level DV is already measured three times (V3-EXQ-613 synthetic; 569d and 569e real training, t=1 cand_world_pairwise_dist ~0.05 ON vs ~0.014 OFF) and the zero genuine_exp_count is a tagging fact, so the ONLY run that moves the claim is this pre-registered EXP-0585 / EVB-0587 569e-equivalent Pathway A vs B probe (8 arms x 5 seeds, P1 budget) with the three 569e autopsy Section 6 script fixes and BOTH stability levers armed (e2_action_contrastive_multistep_enabled + e2_rollout_output_norm_clamp_enabled, true in ZERO runs as of 2026-09-01). That is a wave-budget FUNDING decision for governance, not background fill. Do NOT mint a GOV-CONFIRM-1 confirmer. Because the claim is gated, build_experiment_indexes.py may re-derive this row to 'blocked' with a blocked_note on the next pass (chip-20260904-indexer-mints-gated-claims-as-blocked) -- that is correct and expected; it lifts back to 'proposed' automatically when the gate is removed from the claim. If governance declines to fund it this wave, write the DO-NOT-QUEUE marker via scripts/confirmer_verdict.py rather than reinstating a false 'executed'.",
       "objective": "Re-queue of the V3-EXQ-569e-equivalent Pathway A vs Pathway B mechanism probe SD-056's own evidence_quality_note names as its closing gate. The numerical-stability precondition (V3-EXQ-617, multi-step contrastive horizon h=5 + per-step output norm clamp) PASSED 2026-05-31, but the re-run itself was never queued -- ~7 weeks elapsed. The downstream target this was meant to unblock (ARC-065 GAP-A) closed 2026-06-17 via a DIFFERENT mechanism (V3-EXQ-569i, E3-side top-k shortlist conversion), which does NOT answer SD-056's own mechanism-attribution question (is it per-candidate z_world divergence from SD-056's contrastive training [Pathway A], or E2 rollout-landscape shift [Pathway B], or solely the independent shortlist fix, that produces the selected-action-entropy lift over the matched-noise control).",
       "priority": "medium",
@@ -41502,6 +41046,497 @@
       "source": "manual",
       "status": "blocked_substrate",
       "target_repo": "ree-v3"
+    },
+    {
+      "acceptance_checks": [
+        "Run exactly one claim-focused discriminative pair: primary condition vs explicit ablation/control.",
+        "Use at least 2 matched seeds shared across both pair conditions.",
+        "Pre-register metric thresholds and pass/fail criteria before execution, then report deltas against that registration.",
+        "Avoid broad profile sweeps for this dispatch item; emit only pair-comparison run packs.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1400",
+      "blocked_by": [
+        "MECH-284",
+        "MECH-287",
+        "MECH-288",
+        "SD-082",
+        "SD-E3-SCORER-COMPLETION"
+      ],
+      "blocked_note": "blocked at /queue-experiment Step 2.5a: MECH-284 staleness is not a viability map on the current substrate -- the write path is non-spatial (identical credit to anchors 200.0 apart in z_world, both attribution modes), is driven by latent-change magnitude rather than predicted-observed mismatch (pe_dict=None at the only production call site), and is constant across the life (1 region / 1 broadcast / spread 0.0 over 1500 steps x 3 seeds), which is this claim's own stated degeneracy condition; the E3 consequence readout is separately gated (untrained reality head; open corrupting SD-082 on e3_selector.py)",
+      "claim_id": "MECH-034",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "discriminative_pair",
+      "exclude_broad_profile_sweeps": true,
+      "gated_at_utc": "2026-09-18T03:02:16Z",
+      "gated_by_session": "igw-243-proposal-for-mech-034",
+      "gating_reason": "Blocked at /queue-experiment Step 2.5a (empirical probe, session igw-243-proposal-for-mech-034, 2026-09-18). MECH-034's falsifier is a DOUBLE DISSOCIATION between the residue field and a feasibility/viability surface, and claims.yaml names the MECH-284 StalenessAccumulator as the closest built candidate for that second surface (disposition 2026-09-16: 'testable now under the staleness reading'). A live probe shows the staleness reading does not support the falsifier's own NON-DEGENERACY PRECONDITION, for three independent reasons. (1) NOT SPATIALLY ADDRESSABLE -- the write path credits broadcast strength across the ACTIVE ANCHOR SET keyed on (scale, segment_id); BroadcastEvent carries no z_world/spatial field at all (fields: t, strength, posterior, targets, source_scale, source_segment_id_old/new, source_sources), and StalenessAccumulator.integrate() never reads Anchor.z_world. Measured: two anchors 200.0 apart in z_world, one broadcast explicitly sourced at segment A, receive IDENTICAL credit under both attribution modes (equal: A=0.500000 B=0.500000; stream_overlap: A=1.000000 B=1.000000). So the precondition 'mismatch-only must raise staleness AT THE PERTURBED REGION' has no mechanism, and the off-diagonal test (staleness at R_m but not R_h) is unconstructible. (2) NOT MISMATCH-DRIVEN -- the chain is MECH-288 EventSegmenter -> MECH-287 InvalidationTrigger (a pure BoundaryEvent subscriber with 'no independent comparator') -> MECH-284. The sole production call site (ree_core/agent.py:5551) passes pe_dict=None, so the segmenter falls back to agg(t)=sum_s||z_s(t)-z_s(t-1)||, a latent-CHANGE-magnitude detector, not predicted-observed mismatch. E2 world PE never reaches the surface, so Manipulation M has no wired path; worse, Manipulation H (harm) also moves z_harm/z_world and so also fires boundaries, manufacturing an off-diagonal that would read as the FALSIFYING 'the surfaces co-vary' verdict when it is an instrument artifact -- inverting the falsifier's meaning. (3) SURFACE IS CONSTANT ACROSS THE LIFE -- claims.yaml's own stated degeneracy condition. Measured over 1500 steps x 3 seeds x both attribution modes, a live agent with use_event_segmenter/use_invalidation_trigger/use_anchor_sets/use_staleness_accumulator/use_per_stream_vs/use_mech284_hysteresis all enabled produced exactly 1 boundary event, 1 broadcast, 1 active anchor, 1 staleness region, cross-region spread 0.0, on every run. There is no multi-region staleness map to test against. Corroborated from the other direction by V3-EXQ-758, the existing MECH-284 experiment, which is agent-free and action-free and had to HAND-AUTHOR BroadcastEvents with synthetic source_sources to exhibit region-locality at all -- matching this claim's 'synthetic_signals_only' why_now. The E3-consequence conjunct is independently unavailable: claims.yaml notes the E3 'viability' reality term reads an untrained head gated off by default (corroborated by open substrate entry SD-E3-SCORER-COMPLETION), and open CORRUPTING entry SD-082 (implemented_pending_validation) overlaps ree_core/predictors/e3_selector.py, which Step 2.5c blocks on independently. Not queued: on this substrate the run could only return a vacuous verdict -- a PASS driven by residue being spatial while staleness is a near-global scalar, or a FAIL driven by the shared latent-change detector -- neither of which bears on whether viability mapping and residue curvature carry different information.",
+      "min_shared_seeds": 2,
+      "objective": "Run a discriminative support-vs-ablation pair for MECH-034 with matched seeds and pre-registered thresholds.",
+      "priority": "medium",
+      "proposal_id": "EXP-0772",
+      "proposal_type": "experimental",
+      "release_condition": "claims.yaml already pre-authorises this route: 'If governance judges staleness not to be a viability map, this falsifier becomes substrate_conditional on a hippocampal navigability surface (a path-stability map over action-object space).' The probe above is the measurement that settles that judgement, so the release condition is that surface existing. Concretely, re-offer EVB-1400 (experimental) once EITHER (a) a hippocampal navigability / path-stability surface over action-object space is built and recorded IMPLEMENTED/VALIDATED in ree-v3/CLAUDE.md -- region-addressable in the same space the ResidueField is read in (z_world), and written from predicted-observed mismatch rather than raw latent-change magnitude; OR (b) MECH-284 is extended with a spatial credit-assignment path (BroadcastEvent gains a z_world provenance field and StalenessAccumulator.integrate() weights anchors by distance to it) AND the MECH-288 segmenter is fed a real pe_dict on the waking sense path, so that both the on-diagonal effects the falsifier pre-registers become constructible. Route via /implement-substrate, not another /queue-experiment iteration. The literature_review twin (LIT-0773, same backlog_id EVB-1400) is NOT blocked by this and stays proposed -- MECH-034's missing_literature_evidence why_now is independently addressable.",
+      "require_pre_registered_thresholds": true,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "matched_shared_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_034",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "active_conflict",
+        "directional_conflict_alert",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1404",
+      "blocked_note": "MECH-038 needs a two-agent environment with a discrete signalling action and a joint-attention-gated resource as the experimental frame, plus AF-analog routing from the theta packet into E2 affordances over those signalling actions as the IV. ree-v3 has one single-agent environment (causal_grid_world.py), zero signalling substrate, and no pre-commit self-correction hook; the theta-packet SOURCE exists but has no sink. The claim's own non-degeneracy precondition (the LESION arm must show some emergence without any channel) is unevaluable without a second agent, so even a FAIL would be uninterpretable. Same wall as the ARC-009 language cluster (EXP-0741/0743/0745/0747). Literature lane (LIT-0784) deliberately left 'proposed' -- lit evidence is still accruable for a substrate-blocked claim, and both 'missing_literature_evidence' and the claim's own request for a targeted lit-pull on dorsal-stream lesion effects on protolanguage BEFORE the build are why_now reasons a lit pull can genuinely discharge.",
+      "claim_id": "MECH-038",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "gated_at_utc": "2026-09-18T07:24:18Z",
+      "gated_by_session": "igw-245-proposal-for-mech-038",
+      "gating_reason": "EXP-0783 (MECH-038, 'Arcuate-like sequence-to-motor channel nudges language emergence.') DECLINED at the /queue-experiment substrate-readiness guardrail (session igw-245-proposal-for-mech-038, IGW-20260918-245). MECH-038 is a NUDGE claim: an AF-like fast routing from hippocampal rollout / E1 sequence summaries (the multi-content theta packet) into E2 affordances over SIGNALLING actions, plus a pre-commit self-correction loop, should raise the rate and lower the latency of emergent symbolic coordination between two agents without being required for it. Its three readouts -- referential consistency (mutual information between emitted signal and referent world state, above a shuffled-referent baseline), coordination success rate, and time-to-first-consistent-use -- are all defined over a SECOND agent, and its design demands a matched ON-vs-LESION pair where the signalling action is equally available in both arms and only the fast routing differs. None of that substrate exists in ree-v3. Verified directly against the tree this session (ree-v3 ea9d188): ree_core/environment/ contains exactly one environment, causal_grid_world.py (single-agent) -- there is no two-agent variant, no discrete signalling action, and no joint-attention-gated resource; greps over ree_core/ for multi_agent|multiagent|n_agents|num_agents|other_agent|signalling|signaling_action|utterance|symbol_channel|message_pass|joint_attention return exactly ONE non-pycache file, ree_core/policy/policy_decomposition.py:561, whose hit is the English phrase 'caller-signalling flag' in a docstring; greps for arcuate|articulat|protolanguage|dorsal_stream return one hit, the word 'articulation' in a Berridge & Kringelbach citation sentence at ree_core/regulators/mech295_liking_bridge.py:54; and greps for pre_commit|precommit_correct|self_correct|emitted_signal return zero files, so the pre-commit self-correction loop the ON arm requires has no substrate either. The SOURCE half of the claim's own build (2) DOES exist -- ree_core/latent/multi_content_theta_packet.py is present and ARC-018 hippocampal rollouts are active -- but the SINK does not: there are no signalling actions for E2 to hold affordances over, so there is nothing to route the packet INTO. This independently reproduces MECH-038's own what_would_answer ('SUBSTRATE: NOT BUILT', naming two builds in order: a two-agent CausalGridWorld variant with a signalling action and a joint-attention-gated resource, then the AF-analog routing) and its recorded 2026-09-16 disposition ('substrate_conditional -- do NOT mint an EXP; route to /implement-substrate scoping only after the plan-of-record decides whether V3 hosts a multi-agent environment at all'). The claim's NON-DEGENERACY PRECONDITION is the decisive point and is stronger than the usual missing-IV argument: the LESION arm must show demonstrable coordination attempts and at least occasional success WITHOUT any channel, or the result is uninterpretable (no pressure, not no nudge) -- and the CONFIRMING pattern explicitly requires LESION to still show some emergence, to distinguish a nudge from a required module. With zero multi-agent substrate there is no baseline arm at all, so the precondition cannot even be evaluated, let alone met. A commitment-free measurement-only variant was considered and REJECTED on mapping fidelity, not runnability: the encoder half alone (does a theta-packet sequence summary measurably bias E2 affordances over ordinary single-agent actions, and does a pre-commit PE hook change the committed action?) is buildable and would test ROUTING mechanics, but MECH-038's entire falsifiable content is the comparative social effect -- rate, latency and referential consistency of emergent coordination between two agents -- so a PASS would leave every one of the three readouts untested and could not attach to MECH-038 at defensible mapping fidelity. A claim_probe_mech_038 queued now would have no second agent to coordinate with, no signalling action to route into, and no LESION baseline -- a vacuous result that would only re-derive the known absence of a multi-agent environment, not a verdict. Classification is ALREADY routed to /governance as GFLAG-0298 (open, raised 2026-09-16), which names MECH-038 explicitly and asks for epistemic_category: substrate_conditional on exactly this ground ('no multi-agent env / signalling affordance / AF-analog routing'); no new flag raised this session. Note on why MECH-038 reached the IGW experiment lane at all despite the language cluster already being classified under GFLAG-0269: MECH-038 carries no epistemic_category, but unlike MECH-011..015 its depends_on set is MIXED -- ARC-009 is substrate_conditional while ARC-002, ARC-005 and ARC-018 are standard -- so it falls outside the 'ALL parents substrate_conditional' predicate that audit swept (12 claims on a re-run this session). That predicate should NOT simply be widened to 'ANY substrate_conditional parent': the widened set is 156 claims, and most are testable because the substrate_conditional parent does not carry the child's independent variable. MECH-038 is blocked because ARC-009 carries its IV specifically. The per-claim epistemic_category route GFLAG-0298 already asks for is the right fix here.",
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-038 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0783",
+      "proposal_type": "experimental",
+      "release_condition": "Release when ree-v3 has, in this order, the two builds MECH-038's own what_would_answer names: (1) a two-agent CausalGridWorld variant carrying a discrete low-cost signalling action available IDENTICALLY in both arms and a joint-attention-gated resource, with the non-degeneracy precondition demonstrated empirically first -- non-zero coordination attempts per episode and at least occasional success in the un-channelled baseline; and (2) the AF-analog routing itself -- fast delivery of hippocampal-rollout / E1 sequence summaries from ree_core/latent/multi_content_theta_packet.py into E2 affordances over the signalling actions, plus a pre-commit self-correction hook (E2 PE on the agent's own emitted signal, evaluated before commit and able to interrupt or refine it), severable to form the LESION arm. Both are gated behind the multi-agent-environment research-direction decision (ARC-047 SocialGridWorld, candidate, implementation_phase v5) which the plan-of-record has not taken -- that is a research-direction call, not a queue decision. The claim also asks that a targeted lit-pull on dorsal-stream lesion effects on protolanguage PRECEDE the build. Re-derive readiness from the tree, not from this note.",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "blocked_substrate",
+      "suggested_experiment_type": "claim_probe_mech_038",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1436",
+      "claim_id": "MECH-132",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-132 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0849",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_132",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-132 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-132 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1437",
+      "claim_id": "MECH-133",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-133 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0851",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_133",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-133 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-133 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1438",
+      "claim_id": "MECH-134",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-134 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0853",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_134",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-134 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-134 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1444",
+      "claim_id": "MECH-159",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-159 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0866",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_159",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-159 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-159 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1450",
+      "claim_id": "MECH-190",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-190 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0874",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_190",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-190 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-190 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1467",
+      "claim_id": "MECH-227",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-227 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0902",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_227",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-227 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-227 itself was set epistemic_category out_of_domain on 2026-09-23 (GFLAG-0285); only this EXP was left."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1469",
+      "claim_id": "MECH-233",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-233 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0906",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_233",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-233 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-233 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1479",
+      "claim_id": "MECH-246",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-246 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0924",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_246",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-246 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-246 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1480",
+      "claim_id": "MECH-247",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-247 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0926",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_247",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-247 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-247 set epistemic_category substrate_conditional in the same pass."
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-1482",
+      "claim_id": "MECH-249",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-249 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0930",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "withdrawn",
+      "suggested_experiment_type": "claim_probe_mech_249",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ],
+      "withdrawn_note": "Withdrawn 2026-09-23 (GFLAG-0318, user-accepted option A): MECH-249 has no runnable substrate (metaworker-orchestrate batch pre-flight 2026-09-17, RED), so this proposal only invites a /queue-experiment session that would refuse. Same disposition as the 2026-09-17 MECH-234/248/250/327 precedent; the paired LIT proposal stays proposed. MECH-249 set epistemic_category substrate_conditional in the same pass."
     },
     {
       "acceptance_checks": [

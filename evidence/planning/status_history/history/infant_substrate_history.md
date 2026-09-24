@@ -92,7 +92,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-2`
 
@@ -182,7 +183,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-3`
 
@@ -272,7 +274,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-4`
 
@@ -362,7 +365,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-5`
 
@@ -452,7 +456,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-6`
 
@@ -542,7 +547,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-7`
 
@@ -632,7 +638,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-8`
 
@@ -722,7 +729,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-9`
 
@@ -812,7 +820,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-10`
 
@@ -902,7 +911,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-11`
 
@@ -992,7 +1002,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-11b`
 
@@ -1082,7 +1093,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-12`
 
@@ -1172,7 +1184,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-13`
 
@@ -1262,7 +1275,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-14`
 
@@ -1354,7 +1368,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-04T14:20Z` [autopsy] `failure_autopsy_V3-EXQ-996_2026-09-04` -> [`evidence/planning/failure_autopsy_V3-EXQ-996_2026-09-04.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-996_2026-09-04.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-14-c2`
 
@@ -1444,7 +1459,8 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 
 ## `infant_substrate:GAP-15`
 
@@ -1534,5 +1550,6 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-09-02T05:04Z` [autopsy] `failure_autopsy_substrate-readiness-cluster_2026-09-02` -> [`evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json`](../../../../evidence/planning/failure_autopsy_substrate-readiness-cluster_2026-09-02.json) :: autopsy non_contributory/standard routing=implement-substrate
 - `2026-09-15T00:09Z` [autopsy] `failure_autopsy_V3-EXQ-1038_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1038_2026-09-14.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-15T00:35Z` [autopsy] `failure_autopsy_V3-EXQ-1012a_2026-09-14` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012a_2026-09-14.json) :: autopsy non_contributory/standard routing=implement-substrate
-- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
+- `2026-09-23T19:41Z` [autopsy] `failure_autopsy_MECH-320-defect-cluster_2026-09-23#V3-EXQ-544a` -> [`evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json`](../../../../evidence/planning/failure_autopsy_MECH-320-defect-cluster_2026-09-23.json) :: autopsy supports/standard routing=governance-reclassify (no-op: stands) **<- live head**
 

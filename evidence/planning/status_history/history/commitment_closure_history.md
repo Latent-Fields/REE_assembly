@@ -173,6 +173,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-2`
 
@@ -343,6 +344,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-3`
 
@@ -513,6 +515,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-4`
 
@@ -683,6 +686,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-4-battery`
 
@@ -853,6 +857,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-5`
 
@@ -1023,6 +1028,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-6`
 
@@ -1193,6 +1199,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-7`
 
@@ -1363,6 +1370,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-8`
 
@@ -1533,6 +1541,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-9`
 
@@ -1703,6 +1712,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-10`
 
@@ -1873,6 +1883,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 
 ## `commitment_closure:GAP-11`
 
@@ -2043,4 +2054,5 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-20T14:14Z` [decision] `decision:MECH-091@2026-09-20T14:14:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L532`](../../../../evidence/decisions/decision_log.v1.jsonl#L532) :: decision decide_blocker_generation_then_route (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033c@2026-09-23T09:24:24.832431Z` -> [`evidence/decisions/decision_log.v1.jsonl#L571`](../../../../evidence/decisions/decision_log.v1.jsonl#L571) :: decision hold_pending_v3_substrate (applied)
 - `2026-09-23T09:24Z` [decision] `decision:SD-033d@2026-09-23T09:24:24.887020Z` -> [`evidence/decisions/decision_log.v1.jsonl#L572`](../../../../evidence/decisions/decision_log.v1.jsonl#L572) :: decision hold_pending_v3_substrate (applied)
+- `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 

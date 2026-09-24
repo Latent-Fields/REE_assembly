@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-09-23T17:47:47Z",
+  "generated_at": "2026-09-24T06:04:49Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 245,
-      "built_modules": 155,
-      "fraction_built": 0.6327,
+      "total_modules": 249,
+      "built_modules": 156,
+      "fraction_built": 0.6265,
       "state_counts": {
-        "proposed": 90,
+        "proposed": 93,
         "implemented": 98,
         "implemented_pending_validation": 29,
-        "validated": 28
+        "validated": 29
       },
       "build_proof_gap": 127,
-      "build_proof_gap_note": "155 modules built, 127 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap_note": "156 modules built, 127 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,17 +31,17 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 142,
-      "total_initial": 239,
-      "total_initial_at_registration": 194,
+      "total_surviving": 143,
+      "total_initial": 241,
+      "total_initial_at_registration": 196,
       "total_fanout_added": 45,
       "total_resolved_out": 73,
       "total_confirmed": 49,
-      "total_superseded": 3,
-      "reduction_pct_vs_current": 30.5,
-      "net_narrowing_pct": 26.8,
+      "total_superseded": 4,
+      "reduction_pct_vs_current": 30.3,
+      "net_narrowing_pct": 27.0,
       "convergence_classes": {
-        "static": 30,
+        "static": 31,
         "narrowing": 26,
         "circling": 5,
         "refining": 3,
@@ -49,243 +49,249 @@
         "mixed": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "142 alive against 194 originally enumerated, and against 239 including 45 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 67
+      "honest_pair_note": "143 alive against 196 originally enumerated, and against 241 including 45 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 68
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 24,
-      "open_questions": 67
+      "open_questions": 68
     }
   },
   "hero_series": [
     {
       "date": "2026-05-06",
-      "surviving": 238,
+      "surviving": 240,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-11",
-      "surviving": 237,
+      "surviving": 239,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-13",
-      "surviving": 235,
+      "surviving": 237,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-15",
-      "surviving": 231,
+      "surviving": 233,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-16",
-      "surviving": 230,
+      "surviving": 232,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-17",
-      "surviving": 227,
+      "surviving": 229,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-18",
-      "surviving": 221,
+      "surviving": 223,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-19",
-      "surviving": 217,
+      "surviving": 219,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-20",
-      "surviving": 216,
+      "surviving": 218,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-24",
-      "surviving": 215,
+      "surviving": 217,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-27",
-      "surviving": 213,
+      "surviving": 215,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-29",
-      "surviving": 212,
+      "surviving": 214,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-07-31",
-      "surviving": 211,
+      "surviving": 213,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-01",
-      "surviving": 209,
+      "surviving": 211,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-02",
-      "surviving": 203,
+      "surviving": 205,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-04",
-      "surviving": 202,
+      "surviving": 204,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-06",
-      "surviving": 201,
+      "surviving": 203,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-08",
-      "surviving": 199,
+      "surviving": 201,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-09",
-      "surviving": 197,
+      "surviving": 199,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-10",
-      "surviving": 196,
+      "surviving": 198,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-11",
-      "surviving": 195,
+      "surviving": 197,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-12",
-      "surviving": 194,
+      "surviving": 196,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-14",
-      "surviving": 192,
+      "surviving": 194,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-17",
-      "surviving": 191,
+      "surviving": 193,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-20",
-      "surviving": 190,
+      "surviving": 192,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-24",
-      "surviving": 189,
+      "surviving": 191,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-29",
-      "surviving": 186,
+      "surviving": 188,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-08-30",
-      "surviving": 184,
+      "surviving": 186,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-02",
-      "surviving": 183,
+      "surviving": 185,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-05",
-      "surviving": 182,
+      "surviving": 184,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-07",
-      "surviving": 178,
+      "surviving": 180,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-08",
-      "surviving": 177,
+      "surviving": 179,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-09",
-      "surviving": 176,
+      "surviving": 178,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-14",
-      "surviving": 175,
+      "surviving": 177,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-15",
-      "surviving": 172,
+      "surviving": 174,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-17",
-      "surviving": 168,
+      "surviving": 170,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-22",
-      "surviving": 167,
+      "surviving": 169,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
     },
     {
       "date": "2026-09-23",
-      "surviving": 142,
+      "surviving": 168,
       "closure_pct": 72.4,
-      "build_pct": 63.3
+      "build_pct": 62.6
+    },
+    {
+      "date": "2026-09-24",
+      "surviving": 143,
+      "closure_pct": 72.4,
+      "build_pct": 62.6
     }
   ],
   "questions": [
@@ -4942,17 +4948,43 @@
         },
         {
           "recorded_utc": "2026-09-16T12:18:33Z",
-          "pre_registered_utc": "2026-09-15T20:33:32Z",
-          "fanout_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
-          "fanout_source_note": "Git witness: ree-v3 febce39, first commit of this path at 2026-09-15T21:33:32+01:00 = 2026-09-15T20:33:32Z, which precedes the adjudicating run's timestamp_utc 2026-09-15T20:37:43Z. The driver's docstring pre-registers all four legs -- the three attributable outcomes as its own INTERPRETATION GRID, and the anchor-distribution finding under '=== THE ANCHOR IS NOT REPRODUCIBLE ON THIS DISTRIBUTION -- measured while authoring ==='. Three of the four (metric / budget / mechanism-defect) additionally carry an EARLIER witness: the CONFIRMED failure_autopsy_V3-EXQ-1023_2026-09-14.json, committed REE_assembly 8418b0ed762 at 2026-09-14T17:13:28Z, whose routing enumerated them. The driver is cited as the single source because it is the one document that witnesses all four.",
+          "pre_registered_utc": "2026-09-14T17:13:28Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-1023_2026-09-14.json",
+          "fanout_source_note": "REE_assembly 8418b0ed762, first commit 2026-09-14T17:13:28Z, routing enumerates the three attributable outcomes these legs register.",
           "added_hids": [
             "H-metric-mismatch",
             "H-under-budgeted-p0a",
-            "H-mechanism-defect",
+            "H-mechanism-defect"
+          ],
+          "delta": 3,
+          "note": "Third fan-out growth event on this question. V3-EXQ-1010's H-F leg (content discarded at encode) is CONFIRMED and SD-106 is the build that diagnosis named; this portfolio opens the next layer -- why SD-106's own preservation readout falls short of the achievable ceiling. Registered retrospectively-but-witnessed: all four legs were pre-registered in a committed driver before the adjudicating run, and the run adjudicated them in the same cycle.",
+          "correction_note": "Split 2026-09-23T19:53:37Z by failure_autopsy_zworld_actor_adequacy_locus_repose_2026-09-23.json (GFLAG-0329): the original single event (fanout_source = the ree-v3 driver, 4 legs) is now two events, each citing the EARLIEST durable witness of its legs. One fan-out DESIGN (the V3-EXQ-1041 driver's grid, from the V3-EXQ-1023 routing) is therefore counted as TWO artifact-keyed portfolios by the recurrence overlay -- read the portfolio count with that in mind. Total delta unchanged (4); initial_frozen_count and initial_frozen_count_at_registration unchanged. Original event preserved verbatim under `split_from`.",
+          "split_from": {
+            "recorded_utc": "2026-09-16T12:18:33Z",
+            "pre_registered_utc": "2026-09-15T20:33:32Z",
+            "fanout_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+            "fanout_source_note": "Git witness: ree-v3 febce39, first commit of this path at 2026-09-15T21:33:32+01:00 = 2026-09-15T20:33:32Z, which precedes the adjudicating run's timestamp_utc 2026-09-15T20:37:43Z. The driver's docstring pre-registers all four legs -- the three attributable outcomes as its own INTERPRETATION GRID, and the anchor-distribution finding under '=== THE ANCHOR IS NOT REPRODUCIBLE ON THIS DISTRIBUTION -- measured while authoring ==='. Three of the four (metric / budget / mechanism-defect) additionally carry an EARLIER witness: the CONFIRMED failure_autopsy_V3-EXQ-1023_2026-09-14.json, committed REE_assembly 8418b0ed762 at 2026-09-14T17:13:28Z, whose routing enumerated them. The driver is cited as the single source because it is the one document that witnesses all four.",
+            "added_hids": [
+              "H-metric-mismatch",
+              "H-under-budgeted-p0a",
+              "H-mechanism-defect",
+              "H-anchor-off-distribution"
+            ],
+            "delta": 4,
+            "note": "Third fan-out growth event on this question. V3-EXQ-1010's H-F leg (content discarded at encode) is CONFIRMED and SD-106 is the build that diagnosis named; this portfolio opens the next layer -- why SD-106's own preservation readout falls short of the achievable ceiling. Registered retrospectively-but-witnessed: all four legs were pre-registered in a committed driver before the adjudicating run, and the run adjudicated them in the same cycle."
+          }
+        },
+        {
+          "recorded_utc": "2026-09-16T12:18:33Z",
+          "pre_registered_utc": "2026-09-15T20:33:32Z",
+          "fanout_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+          "fanout_source_note": "ree-v3 febce39 (only commit of the path), 2026-09-15T20:33:32Z; the '=== THE ANCHOR IS NOT REPRODUCIBLE ON THIS DISTRIBUTION -- measured while authoring ===' block, driver line 94.",
+          "added_hids": [
             "H-anchor-off-distribution"
           ],
-          "delta": 4,
-          "note": "Third fan-out growth event on this question. V3-EXQ-1010's H-F leg (content discarded at encode) is CONFIRMED and SD-106 is the build that diagnosis named; this portfolio opens the next layer -- why SD-106's own preservation readout falls short of the achievable ceiling. Registered retrospectively-but-witnessed: all four legs were pre-registered in a committed driver before the adjudicating run, and the run adjudicated them in the same cycle."
+          "delta": 1,
+          "note": "Third fan-out growth event on this question. V3-EXQ-1010's H-F leg (content discarded at encode) is CONFIRMED and SD-106 is the build that diagnosis named; this portfolio opens the next layer -- why SD-106's own preservation readout falls short of the achievable ceiling. Registered retrospectively-but-witnessed: all four legs were pre-registered in a committed driver before the adjudicating run, and the run adjudicated them in the same cycle.",
+          "correction_note": "Split 2026-09-23T19:53:37Z by failure_autopsy_zworld_actor_adequacy_locus_repose_2026-09-23.json (GFLAG-0329): the original single event (fanout_source = the ree-v3 driver, 4 legs) is now two events, each citing the EARLIEST durable witness of its legs. One fan-out DESIGN (the V3-EXQ-1041 driver's grid, from the V3-EXQ-1023 routing) is therefore counted as TWO artifact-keyed portfolios by the recurrence overlay -- read the portfolio count with that in mind. Total delta unchanged (4); initial_frozen_count and initial_frozen_count_at_registration unchanged. Original event preserved verbatim under `split_from`."
         },
         {
           "recorded_utc": "2026-09-16T12:18:33Z",
@@ -4966,16 +4998,17 @@
           "note": "Fourth fan-out growth event on this question, and a GOV-FANOUT-1 portfolio in the strict sense: these two legs are the live discrimination V3-EXQ-1041 leaves behind, pre-registered BEFORE their adjudicating run exists (Mode A). Their discriminator is the v3_exq_1010 sweep unchanged against an SD-106-ON warmup at P0a epochs=40, with declared nulls ~0.8068 and ~0.7192. See circling_check for why H-transfer-amplification is not the eliminated H-B-consumer-learning under a new name."
         }
       ],
-      "fanout_growth_note": "Third and fourth fan-out growth events (2026-09-16, V3-EXQ-1041). This question has not converged: its denominator has now moved 2 -> 5 -> 11 across four events, so its headline narrowing ratio is deflated precisely now, and one leg in each of two families re-enters territory that already holds an eliminated leg (justified per the autopsy's circling_check, not silently). Read convergence_class alongside h_fanout_recurrence.",
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "fanout_growth_note": "CLOSED 2026-09-23 (failure_autopsy_zworld_actor_adequacy_locus_repose_2026-09-23.json): see growth_restriction. Denominator 2 -> 11 across 4 fan-out designs, counted as 5 artifact-keyed portfolios after the GFLAG-0329 split of the V3-EXQ-1041-driver event into its 1023-autopsy and driver witnesses. Reduction ratio: report BOTH ways; 6 of the 9 grown legs belong to the two SD-106 questions, not to the registered locus question.",
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
           "instrumentation",
-          "process"
+          "process",
+          "representation"
         ],
         "families_touched": [
           "constitution",
@@ -5028,7 +5061,7 @@
           },
           {
             "recorded_utc": "2026-09-16T12:18:33Z",
-            "fanout_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+            "fanout_source": "failure_autopsy_V3-EXQ-1023_2026-09-14.json",
             "event_class": "partial_re_entry",
             "added": [
               {
@@ -5042,7 +5075,24 @@
               {
                 "hid": "H-mechanism-defect",
                 "family": "constitution"
-              },
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-metric-mismatch",
+                "family": "instrumentation"
+              }
+            ],
+            "families_already_dead": [
+              "instrumentation",
+              "representation"
+            ]
+          },
+          {
+            "recorded_utc": "2026-09-16T12:18:33Z",
+            "fanout_source": "ree-v3/experiments/v3_exq_1041_sd106_preservation_step_budget_metric_diagnostic.py",
+            "event_class": "circling",
+            "added": [
               {
                 "hid": "H-anchor-off-distribution",
                 "family": "instrumentation"
@@ -5050,15 +5100,12 @@
             ],
             "re_entered": [
               {
-                "hid": "H-metric-mismatch",
-                "family": "instrumentation"
-              },
-              {
                 "hid": "H-anchor-off-distribution",
                 "family": "instrumentation"
               }
             ],
             "families_already_dead": [
+              "constitution",
               "instrumentation",
               "representation"
             ]
@@ -5095,18 +5142,18 @@
           }
         ]
       },
-      "surviving": 2,
-      "alive": 1,
+      "surviving": 1,
+      "alive": 0,
       "resolved_out": 6,
       "confirmed": 4,
-      "superseded": 0,
+      "superseded": 1,
       "reduction_numerator": 6,
       "reduction_ratio": 0.5455,
-      "bits_removed": 2.46,
+      "bits_removed": 3.46,
       "synthesis": {
-        "surviving_label": "H-F content-discarded-at-encode (CONFIRMED, V3-EXQ-1010) + H-C geometry-mismatch (split: linear re-basis eliminated, a real-but-insufficient geometry contribution confirmed) + H-D warmup-not-the-locus (confirmed, one run); H-B consumer-learning and H-E channel-input capacity both ELIMINATED. All five legs resolved.",
-        "text": "As of V3-EXQ-1010 the question is fully resolved and the locus is named. The actor-adequacy deficit is not in the consumer (H-B eliminated, V3-EXQ-1002), not in a 250 -> 32 channel-INPUT bound (H-E eliminated, V3-EXQ-1008: a task-agnostic PCA-32 of the encoder's own input clears the bar at the consumer's exact width), and not in what the SD-018/P0a warmup wrote (H-D confirmed, still on one run). Geometry contributes but falls far short of the gap (H-C split, V3-EXQ-1008). What remains, and what V3-EXQ-1010 CONFIRMS, is that the observation->z_world encoding DISCARDS the decision-relevant content of its own input: across five decoder capacity rungs spanning ~77,000x in parameters, no decoder recovers the oracle above the bar from the frozen latent (best 0.6780 mean, 0/3 seeds) while the same ladder memorises that latent's training split at 0.9996+ and the same-width PCA anchor clears both thresholds 3/3 at 0.8776. The decisive comparison is the negative control: the SAME ARCHITECTURE AT RANDOM INITIALISATION scores 0.7045, at or above the trained latent on 3/3 seeds -- training moves the representation nowhere positive on this axis. Computed inside V3-EXQ-1008's own consumer-rung cells, the 0.1998 PCA-to-trained gap decomposes as -0.0959 (what fitting a projection FOR VARIANCE PRESERVATION buys) / -0.0779 (what the nonlinear architecture costs at random init) / -0.0260 (what REE's objective costs on top), so the largest single term is a preservation pressure NEITHER the architecture NOR the objective contains. Biologically this is a missing prerequisite rather than a falsification: DiCarlo-style untangling says a trained sensory cascade should make a behaviourally relevant variable MORE linearly accessible than its own input statistics would, and REE's does not do so relative to its own random initialisation. The named repair is a bottleneck preservation pressure on the observation->z_world path, with an acceptance target set by an in-run control rather than by judgement: PCA-32 parity, >= 0.85 held-out oracle-action agreement at the consumer rung, re-measured by re-running experiments/v3_exq_1010_zworld_overcapacity_decoder_sweep.py unchanged. Routed to /implement-substrate against SD-018 (amend), flagged as a NEW shape rather than SD-018's implemented targeted-feature shape (a), which V3-EXQ-978 already returned NULL.",
-        "under_test": "Nothing further on this question -- all five legs are resolved and decidable is true. The remaining work is a BUILD, not a probe. A layer-wise decode profile along the observation->z_world path (decision.observation_bottleneck) remains a legitimate later refinement that would localise the loss to a named layer, but it is not a blocker on the named build and is not owed before it."
+        "surviving_label": "LOCUS ANSWERED at V3-EXQ-1010 (H-F content-discarded-at-encode confirmed; H-C split; H-D confirmed; H-B, H-E eliminated). SD-106 follow-on legs: readout-comparability grid resolved (V3-EXQ-1041, V3-EXQ-1023a); transfer leg H-which-directions SUPERSEDED here and carried to sd106_objective_consumer_transfer. Closed to further fan-out.",
+        "text": "The registered locus question is answered. The actor-adequacy deficit of the SHIPPED encoder is not in the consumer (H-B eliminated, V3-EXQ-1002), not a 250 -> 32 channel-input bound (H-E eliminated, V3-EXQ-1008), not what the warmup wrote (H-D confirmed, V3-EXQ-1002), and only about a third geometry (H-C split, V3-EXQ-1008); V3-EXQ-1010 confirmed that the observation->z_world encoding discards the decision-relevant content (H-F: no decoder across ~77,000x capacity clears the bar from the frozen latent, while the same-width PCA-32 anchor clears 3/3 and the untrained architecture scores at or above the trained one). That diagnosis named SD-106, a bottleneck preservation pressure, as the repair. What followed asked about SD-106, not about the locus: V3-EXQ-1041 showed the shipped preservation readout under-reads the code (H-metric-mismatch confirmed, narrow form), that the preservation term is not inert (H-mechanism-defect split), and that the design-time anchor was measured on another distribution (H-anchor-off-distribution, a measured fact); V3-EXQ-1023a falsified both budget and steep-transfer readings (H-under-budgeted-p0a, H-transfer-amplification eliminated): 3.3x the P0a steps buys +0.1184 held-out R^2 but only +0.0081 consumer agreement. That transfer failure is the phenomenon no locus leg can carry (h_other_events[0]); V3-EXQ-1065 then narrowed MECH-566 (ZCA re-conditioning: +0.077 train, zero held-out lift) without opening a leg. The transfer question now lives in its own qid, sd106_objective_consumer_transfer, whose first discriminating run is the MECH-567 target-carrying-head experiment.",
+        "under_test": "Nothing further on this qid: every leg is resolved or superseded and the qid is closed (growth_restriction). The one sanctioned growth is a layer-wise decode profile localising H-F's loss; transfer work lives under sd106_objective_consumer_transfer."
       },
       "hypotheses": [
         {
@@ -5265,11 +5312,11 @@
           "label": "The code retains as much generic variance as PCA-32 but not the same directions",
           "desc": "SD-106's generic variance preservation nearly matches a variance-optimal code on generic variance while falling far short of it downstream, because the retained subspace is not the decision-relevant one. The registry analogue H-F-content-discarded-at-encode is CONFIRMED on this question, but for the SHIPPED pre-SD-106 encoder -- SD-106 is the build H-F's diagnosis motivated -- so H-F does not by itself confirm this leg for the SD-106 encoder.",
           "axis": "representation",
-          "state": "alive",
+          "state": "superseded",
           "evidence_runs": [
-            "V3-EXQ-1065"
+            "the owed v3_exq_1010 re-run at P0a epochs=40"
           ],
-          "basis": "SURVIVING leg after V3-EXQ-1023a. Observed 0.727289 sits 0.0083 from this leg's pre-registered null of 0.719 against a 0.087 separation, and its two rivals on that block are falsified. Deliberately left ALIVE rather than confirmed: a point-prediction match plus elimination of rivals is not positive confirmation, and the elimination bar for a CONFIRMED state is not met by this run. The already-chipped lit-pull (chip-20260916-sd106-compression-litpull) on generic vs task-relevant compression is what failure_autopsy_V3-EXQ-1041_2026-09-16 commissioned to ground exactly this reading. | 2026-09-20: V3-EXQ-1065 Half A probed this leg on the encoder plane (opening no leg): PC-recoverability 0.835, INDETERMINATE on 3/3 seeds, pre-registered as 'recorded, no routing'; the statistic's HIGH band has no reachability evidence. State unchanged (failure_autopsy_V3-EXQ-1065_2026-09-20.json).",
+          "basis": "RATIFIED DISPOSITION 2026-09-23 (user, /failure-autopsy Step 8 gate, GFLAG-0312 re-pose): SUPERSEDED / not this question's leg to adjudicate -- whatever its truth value. This qid's registered LOCUS question (where is the SHIPPED encoder's actor-adequacy deficit?) was answered at V3-EXQ-1010. This leg asks why SD-106 -- the repair H-F motivated -- retains generic variance but not the decision-relevant directions, which is the OBJECTIVE-TO-CONSUMER TRANSFER question, now registered as its own qid `sd106_objective_consumer_transfer`, where it is carried forward as H-which-directions-sd106 (alive). control_passed stays true: it records the last run that read this leg (V3-EXQ-1023a: raw-field ceiling control 0.9735 vs floor 0.60, PCA-32 anchor cleared 0.85 on 3/3), not a new adjudication. met_elimination_bar false: nothing was eliminated. Prior resolution preserved under `prior_resolution`.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -5277,10 +5324,10 @@
       "decision": {
         "readiness_state": "decidable_now",
         "evidence_decile": 9,
-        "decision_question": "Is the z_world actor-adequacy deficit located in the consumer's learning of a representation-to-action mapping (H-B, ELIMINATED 2026-09-05), in the accessibility of the required structure within z_world's learned geometry (H-C, SPLIT 2026-09-08 by its own owed corroborator -- the linear-re-basis reading ELIMINATED, a real-but-insufficient geometry contribution CONFIRMED at about a third of the gap), in a 250 -> 32 channel-INPUT bound (H-E, ELIMINATED 2026-09-08 -- a task-agnostic PCA-32 of the encoder's own input clears the bar at the consumer's exact width), upstream of anything the warmup wrote (H-D, CONFIRMED), or in the observation->z_world encoding DISCARDING the decision-relevant content of its own input (H-F, ALIVE)?",
-        "distance_phrase": "Decided on the registered question and on both legs of the 2026-09-05 portfolio (H-B, H-E eliminated; H-C split; H-D confirmed); ONE banked-data capacity sweep away from choosing between an encoder-objective build and an interface-reformat build, whose costs differ by more than an order of magnitude.",
-        "live_gate": "AN OVER-CAPACITY DECODER SWEEP ON THE ALREADY-BANKED FROZEN LATENTS (adjudicates H-F). Same V3-EXQ-1002/1008 dataset, seeds, held-out episode split and standardiser; the ONLY thing varied is the decoder's capacity -- sweep from the consumer's exact x734.PPOPolicyNet (32->128, known 0.6686) up through progressively wider/deeper MLPs to a deliberately over-parameterised decoder, reporting BOTH oracle-action agreement AND a direct NONLINEAR decode of the five DECISION_WORLD_STATE_INDICES {232,236,237,238,242}. Anchor every rung against the SAME sweep applied to ws250_pca (known 0.8684) so the capacity axis is calibrated on a representation known to carry the content. DECLARED NULL: even the over-parameterised decoder stays below the 0.80 bar on the seed majority -> H-F CONFIRMED, the content is destroyed at encode time, and the next move is a BUILD at the encoder's objective, not a sixth diagnostic. CLEARS -> H-F ELIMINATED, the block is consumer-side capacity/format and the repair is interface reformatting. NOT a lettered V3-EXQ-1008b: 1008 held capacity FIXED and varied the input representation; this holds the representation fixed and varies capacity, which no run in the lineage has done. NOT YET QUEUED -- new EXQ number.",
-        "observation_bottleneck": "NO RUN IN THIS LINEAGE VARIES THE READER'S CAPACITY -- every one holds it at the consumer's exact width by design (the capacity_match requirement inherited from V3-EXQ-1002) -- so 'the content is discarded at encode time' and 'the content is present but inaccessible at the consumer's capacity/format' remain confounded. Secondary: no run localises WHERE in the observation->z_world path the content is lost; a layer-wise decode profile would convert a confirmed H-F from probe-gated to buildable at a named layer. Supersedes the 2026-09-05 bottleneck, which named the missing 32-dim reference of the 250-dim input -- V3-EXQ-1008 supplied it (ws250_pca 0.8684, clears) and that debt is DISCHARGED."
+        "decision_question": "Where is the SHIPPED z_world's actor-adequacy deficit located: in the consumer's learning (H-B, ELIMINATED 2026-09-05), the geometry of the learned code (H-C, SPLIT 2026-09-08: linear re-basis eliminated, about a third of the gap is geometry), a 250 -> 32 channel-input bound (H-E, ELIMINATED 2026-09-08), what the warmup wrote (H-D, CONFIRMED not the locus), or content discarded at encode (H-F, CONFIRMED 2026-09-09 by V3-EXQ-1010)? Answered. Legs added after V3-EXQ-1010 concern SD-106 and are either resolved or carried to sd106_objective_consumer_transfer.",
+        "distance_phrase": "Decidable: the locus question is answered on the registered legs; awaiting a human decision_log entry. Transfer follow-on moved to sd106_objective_consumer_transfer.",
+        "live_gate": "None owed. The V3-EXQ-1010 over-capacity decoder sweep this field used to name RAN and confirmed H-F. The only sanctioned growth is a layer-wise decode profile along the shipped observation->z_world path (observation_bottleneck).",
+        "observation_bottleneck": "Discharged for the locus question: V3-EXQ-1010 varied reader capacity and confirmed content loss at encode. Remaining, and the one sanctioned growth path: no run LOCALISES where on the observation->z_world path the content is lost; a layer-wise decode profile would name the layer."
       }
     },
     {
@@ -5344,7 +5391,7 @@
           "evidence_runs": [
             "V3-EXQ-1006"
           ],
-          "basis": "V3-EXQ-1006 RAN THIS LEG BUT DOES NOT ADJUDICATE IT -- the verdict INVERTS with the denominator, and both denominators are recorded in the manifest. Declared null: 'real-endpoint goal_proximity variance >= 0.002 on a majority of seeds'. On the FROM-RESET (Phase 4b) set, real_goal_prox_var_h1 = 0.0047-0.0196, 6/6 seeds clear 0.002 -> null MET -> leg would be ELIMINATED. On the SAME-START (Phase 4d) set the driver adopted, branched_endpoint_goal_prox_var_h1 = 0.001736/0.002262/0.023916/0.000033/0.000200/0.001071, 4/6 below -> null NOT met -> leg supported. The driver's geometric argument for same-start is sound (at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so same-start isolates rollout-attributable variance); note its EMPIRICAL form is false -- on seed7 same-start EXCEEDS from-reset (0.0239158 vs 0.0196255), holding 5/6. UNEXPLAINED ASYMMETRY for governance: interpretation.branched_same_start_note says 'the registered legs read Phase 4b', yet the substitution was applied to Leg B ONLY -- the one leg whose verdict it changes (checked: not results-driven; Leg C is unaffected either way). Settling this needs NO new run -- complex (probe-gated) / mystery (known data). User gate 2026-09-07: LEAVE ALIVE, record both. || DECIDED 2026-09-08T19:50:33Z (user, /dual-insights 2026-09-08 rec 1; decision_log.v1.jsonl#2026-09-08T19:50:33Z): the SAME-START (Phase 4d) denominator settles Leg B. The geometric argument stands -- at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so the same-start set isolates rollout-attributable variance while from-reset adds start dispersion; the empirical 'upper bound' form is NOT relied on (seed7 inverts it). On that denominator 4/6 seeds sit below 0.002 -> declared null NOT met -> hypothesis SUPPORTED -> CONFIRMED: the 0.002 e1coe_score_var bar, through the bounded goal-proximity readout, is an INSTRUMENT target relative to real same-start spread, not a substrate target as registered by V3-EXQ-1000. Consequence carried to substrate_queue f_dominance_conversion_ceiling depends_on_unresolved item 2: re-register the bar relative to same-start real-endpoint variance (per-seed) before any further SD-e1 var-bar run; the Leg-B-only substitution asymmetry is recorded and is immaterial to Leg C's verdict (unchanged on either denominator).",
+          "basis": "V3-EXQ-1006 RAN THIS LEG BUT DOES NOT ADJUDICATE IT -- the verdict INVERTS with the denominator, and both denominators are recorded in the manifest. Declared null: 'real-endpoint goal_proximity variance >= 0.002 on a majority of seeds'. On the FROM-RESET (Phase 4b) set, real_goal_prox_var_h1 = 0.0047-0.0196, 6/6 seeds clear 0.002 -> null MET -> leg would be ELIMINATED. On the SAME-START (Phase 4d) set the driver adopted, branched_endpoint_goal_prox_var_h1 = 0.001736/0.002262/0.023916/0.000033/0.000200/0.001071, 4/6 below -> null NOT met -> leg supported. The driver's geometric argument for same-start is sound (at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so same-start isolates rollout-attributable variance); note its EMPIRICAL form is false -- on seed7 same-start EXCEEDS from-reset (0.0239158 vs 0.0196255), holding 5/6. UNEXPLAINED ASYMMETRY for governance: interpretation.branched_same_start_note says 'the registered legs read Phase 4b', yet the substitution was applied to Leg B ONLY -- the one leg whose verdict it changes (checked: not results-driven; Leg C is unaffected either way). Settling this needs NO new run -- complex (probe-gated) / mystery (known data). User gate 2026-09-07: LEAVE ALIVE, record both. || DECIDED 2026-09-08T19:50:33Z (user, /dual-insights 2026-09-08 rec 1; decision_log.v1.jsonl#2026-09-08T19:50:33Z): the SAME-START (Phase 4d) denominator settles Leg B. The geometric argument stands -- at h=1, 40 rollouts from one start reach at most n_actions distinct endpoints, so the same-start set isolates rollout-attributable variance while from-reset adds start dispersion; the empirical 'upper bound' form is NOT relied on (seed7 inverts it). On that denominator 4/6 seeds sit below 0.002 -> declared null NOT met -> hypothesis SUPPORTED -> CONFIRMED: the 0.002 e1coe_score_var bar, through the bounded goal-proximity readout, is an INSTRUMENT target relative to real same-start spread, not a substrate target as registered by V3-EXQ-1000. Consequence carried to substrate_queue f_dominance_conversion_ceiling depends_on_unresolved item 2: re-register the bar relative to same-start real-endpoint variance (per-seed) before any further SD-e1 var-bar run; the Leg-B-only substitution asymmetry is recorded and is immaterial to Leg C's verdict (unchanged on either denominator). || CORRECTED 2026-09-23T19:43:08Z (failure_autopsy_GFLAG-0404-govfrozen-control_2026-09-23.json, user-confirmed): control_passed false -> true as a RECORDING ERROR (see control_passed_correction, probe_amendments). The Leg-B-only same-start substitution is EXPLAINED, not owed: (1) pre-run -- git-witnessed in the driver's only commit ree-v3 790e95a before the run started; (2) leg-specific -- Leg B's DV is the real set's absolute variance against an absolute bar computed over rollouts from one start, whereas Legs A and C use the real set as a ratio normaliser and their MAJORITY verdicts do not move with the denominator on this run (Leg A centroid-in-band 6/6 on both sets for both anchor arms; Leg C rsd_goal_orthogonal on both), though per-seed values do (Leg C seed2024 r 0.036 on 4b vs 5.24 on 4d); (3) interpretation.branched_same_start_note is a stale sentence contradicted by the same driver's C3.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -7590,6 +7637,81 @@
         "live_gate": "one lever setting where the inverted-action-map battery is harder than the original by a MARGIN excluding the degenerate ratio ~1.0, on >= 2/3 seeds, with battery MSE no worse than 2x the OFF arm and the head no worse than OFF against the identity predictor",
         "observation_bottleneck": "z_world's per-step displacement (SD-PP-B5) bounds every objective on this head; and the action-sensitivity gate itself has no head-health guard, so a destroyed head currently scores as action-sensitive."
       }
+    },
+    {
+      "qid": "sd106_objective_consumer_transfer",
+      "title": "Why does SD-106's preservation objective train hard yet transfer almost none of its gain to the action consumer?",
+      "short_title": "SD-106 objective->consumer transfer",
+      "claims": [
+        "SD-106",
+        "MECH-567",
+        "MECH-566"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "representation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "superseded": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-which-directions-sd106",
+          "label": "SD-106 retains generic variance but not the decision-relevant directions",
+          "desc": "SD-106's variance preservation nearly matches a variance-optimal code on generic variance but retains a subspace that is not the decision-relevant one, so its gains do not reach the consumer. Carried from zworld_actor_adequacy_locus/H-which-directions (superseded there). Predicts: supervising the consumer's target into the latent (MECH-567's head) lifts consumer agreement without more preservation.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [
+            "the MECH-567 target-carrying-head experiment (not yet queued)"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-target-absent-mech567",
+          "label": "The objective carries no term whose target is the consumer's target (MECH-567)",
+          "desc": "Task-agnostic preservation contains no consumer-target term, so extra budget moves the encoder along directions the consumer does not use. DECLARED per MECH-567 what_would_answer -- CONFIRMED if an oracle-action (or reward/RPE) CE head on the same latent during P0a raises held-out oracle-action agreement toward 0.85 WHILE preservation R^2 is held at or below V3-EXQ-1023a's 0.8501; ELIMINATED if agreement stays in the 0.72-0.74 band with the head verified well-trained (held-out head accuracy high). Either reading requires the grounding heads' held-out lift reported alongside the DV (z_world is shared) and, for a co-train arm, a participation-ratio degeneracy pre-check. An oracle-action head scored on oracle-action agreement is close to training on the DV: the read must be on held-out episodes.",
+          "axis": "learning-signal",
+          "state": "alive",
+          "evidence_runs": [
+            "the MECH-567 target-carrying-head experiment (not yet queued)"
+          ],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Does supervising the consumer's target into z_world during P0a transfer to the consumer where task-agnostic preservation does not -- i.e. is SD-106's transfer failure a missing target term (MECH-567) acting on the wrong retained directions?",
+        "distance_phrase": "One build plus one discriminating run away; the build is registered but not authorised.",
+        "live_gate": "The MECH-567 target-carrying-head experiment (build: substrate_queue mech567-oracle-action-ce-head-on-zworld-p0a). Nulls per the H-target-absent-mech567 desc. Queue via /queue-experiment; its interpretation grid must name both legs.",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
@@ -9358,21 +9480,6 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-1065",
-      "all_runs": [
-        "V3-EXQ-1065"
-      ],
-      "momentum_class": "inconclusive",
-      "qid": "zworld_actor_adequacy_locus",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "SURVIVING leg after V3-EXQ-1023a. Observed 0.727289 sits 0.0083 from this leg's pre-registered null of 0.719 against a 0.087 separation, and its two rivals on that block are falsified. Deliberately left ALIVE rather than confirmed: a point-prediction match plus elimination of rivals is not positive confirmation, and the elimination bar for a CONFIRMED state is not met by this run. The already-chipped lit-pull (chip-20260916-sd106-compression-litpull) on generic vs task-relevant compression is what failure_autopsy_V3-EXQ-1041_2026-09-16 commissioned to ground exactly this reading. | 2026-09-20: V3-EXQ-1065 Half A probed this leg on the encoder plane (opening no leg): PC-recoverability 0.835, INDETERMINATE on 3/3 seeds, pre-registered as 'recorded, no routing'; the statistic's HIGH band has no reachability evidence. State unchanged (failure_autopsy_V3-EXQ-1065_2026-09-20.json).",
-      "resolved_utc": null,
-      "evidence_direction": "pending"
-    },
-    {
       "run": "V3-EXQ-1057b",
       "all_runs": [
         "V3-EXQ-1057b"
@@ -9495,9 +9602,9 @@
       "evidence_direction": "pending"
     },
     {
-      "run": "Nothing further on this question -- all five legs are resolved and decidable is true. The remaining work is a BUILD, not a probe. A layer-wise decode profile along the observation->z_world path (decision.observation_bottleneck) remains a legitimate later refinement that would localise the loss to a named layer, but it is not a blocker on the named build and is not owed before it.",
+      "run": "Nothing further on this qid: every leg is resolved or superseded and the qid is closed (growth_restriction). The one sanctioned growth is a layer-wise decode profile localising H-F's loss; transfer work lives under sd106_objective_consumer_transfer.",
       "all_runs": [
-        "Nothing further on this question -- all five legs are resolved and decidable is true. The remaining work is a BUILD, not a probe. A layer-wise decode profile along the observation->z_world path (decision.observation_bottleneck) remains a legitimate later refinement that would localise the loss to a named layer, but it is not a blocker on the named build and is not owed before it."
+        "Nothing further on this qid: every leg is resolved or superseded and the qid is closed (growth_restriction). The one sanctioned growth is a layer-wise decode profile localising H-F's loss; transfer work lives under sd106_objective_consumer_transfer."
       ],
       "momentum_class": "implementation_completed",
       "qid": "zworld_actor_adequacy_locus",
@@ -9505,7 +9612,7 @@
         "MECH-457",
         "INV-088"
       ],
-      "moved": "Composed build under test: H-F content-discarded-at-encode (CONFIRMED, V3-EXQ-1010) + H-C geometry-mismatch (split: linear re-basis eliminated, a real-but-insufficient geometry contribution confirmed) + H-D warmup-not-the-locus (confirmed, one run); H-B consumer-learning and H-E channel-input capacity both ELIMINATED. All five legs resolved. (substrate landed, proof pending).",
+      "moved": "Composed build under test: LOCUS ANSWERED at V3-EXQ-1010 (H-F content-discarded-at-encode confirmed; H-C split; H-D confirmed; H-B, H-E eliminated). SD-106 follow-on legs: readout-comparability grid resolved (V3-EXQ-1041, V3-EXQ-1023a); transfer leg H-which-directions SUPERSEDED here and carried to sd106_objective_consumer_transfer. Closed to further fan-out. (substrate landed, proof pending).",
       "resolved_utc": null,
       "evidence_direction": "pending"
     },

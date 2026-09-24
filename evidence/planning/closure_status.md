@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-23T17:47:44Z
+Generated: 2026-09-24T06:04:48Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -85,7 +85,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=queue-experiment | blocked_on_upstream |  | 2026-08-12 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=governance-reclassify (no-op: stands) | blocked_on_upstream |  | 2026-08-12 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | {'kind': 'SAME-QUESTION lineage, sequenced: first a zero-com | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
@@ -235,7 +235,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v6 | language_trust_deception_institutions_v6_plan.md | `language_trust_deception_institutions_v6:LTI-1` | Language-cannot-override-harm as an explicit GUARD mechanism (operatio | done | load-bearing | INV-007 ('Language cannot override embodied harm sensing') is an ACTIVE universal invarian | 2026-06-13 |
 | v5 | loveability_ethical_agency_v5_plan.md | `loveability_ethical_agency_v5:LOVE-1` | Caregiver/multi-agent substrate exists (ARC-047 SocialGridWorld) -- th | blocked | load-bearing | MECH-163 multi-step hippocampal planning PASS (V3 full-completion; the V4-entry gate share | 2026-06-10 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-1` | Allocation-gate decision stage on MECH-261 (integrate / partial_overla | done | load-bearing | V3 OWNS THE GATES already: MECH-094 (hypothesis tag = categorical write gate, stable), MEC | 2026-06-14 |
-| v5 | mirror_modelling_other_self_v5_plan.md | `mirror_modelling_other_self_v5:MIRROR-1` | Otherness inference: tag an entity OTHER_SELFLIKE without symbolic ide | blocked | load-bearing | object_representation_v4:OBJ-5 (others-as-object: per-agent token-keyed slot) -- the slot  | 2026-06-10 |
+| v5 | mirror_modelling_other_self_v5_plan.md | `mirror_modelling_other_self_v5:MIRROR-1` | Otherness inference: tag an entity OTHER_SELFLIKE without symbolic ide | blocked | load-bearing | object_representation_v4:OBJ-5 (others-as-object: per-agent token-keyed slot) -- the slot  | 2026-09-23 |
 | v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-1` | Multi-agent substrate: MultiAgentCausalGridWorldV4 + per-agent REEAgen | blocked | load-bearing | v4_spec V4-1 names the implementation surface: a NEW env class MultiAgentCausalGridWorldV4 | 2026-06-10 |
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-1` | Substrate-vocabulary expansion is the gating fork (atomic-only V3 has  | blocked_pending_substrate | load-bearing | V3 substrate vocabulary is FIXED at z_world + atomic actions (per MECH-299 notes: no secon | 2026-06-14 |
 | v4 | object_representation_v4_plan.md | `object_representation_v4:OBJ-1` | Type-vs-token-vs-anchor representational fork (the first design decisi | done | load-bearing | V3 LIVE object work is TYPE-level: SD-049 per-type tag + classifier head; SD-015 location- | 2026-06-14 |
@@ -447,7 +447,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-8` | Developmental sparsification of the affect/memory substrate (MECH-362, | deferred | low | MECH-362 amends ARC-019 (staged developmental curriculum) by adding a subtractive pruning  | 2026-06-10 |
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-6` | Attention (distributed precision-selection) grounding -- containment,  | blocked | low | Reuse-before-duplicate guardrail (G2): attention functions are already implemented; ground | 2026-06-20 |
 | process | explorer_ui_improvement_plan.md | `explorer_ui_improvement:CLOSURE-PAGE-AUDIT` | Extend the same 'grep serve.py's computed dicts against what the front | open | low |  | 2026-08-02 |
-| v5 | mirror_modelling_other_self_v5_plan.md | `mirror_modelling_other_self_v5:MIRROR-7` | Care persistence + counterfactual empathic activation: love/cooperatio | blocked | high | MECH-163 multi-step hippocampal planning (V3-completion gate): INV-029 'sharing joys and s | 2026-06-10 |
+| v5 | mirror_modelling_other_self_v5_plan.md | `mirror_modelling_other_self_v5:MIRROR-7` | Care persistence + counterfactual empathic activation: love/cooperatio | blocked | high | MECH-163 multi-step hippocampal planning (V3-completion gate): INV-029 'sharing joys and s | 2026-09-23 |
 | v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-7` | ARC-010 mirror-modelling cutover: other-agent state re-represented thr | blocked | high | ARC-010 (social cognition uses mirror modelling and coupling) is status active but UNIMPLE | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-7` | Switchable episodic perspective tag (MECH-366): participant/observer v | blocked | medium | SD-005 (z_self/z_world split) -- nearest existing substrate, but represents self-vs-world  | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-8` | Consolidation write-paths the store must respect (MECH-252 / MECH-253  | deferred | medium | MECH-252 (SWS consolidates goal-value PE into stored goal-representation CONTENT, not atte | 2026-06-10 |

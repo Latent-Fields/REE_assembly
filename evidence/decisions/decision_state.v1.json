@@ -191,21 +191,21 @@
     },
     "ARC-053": {
       "actor": "user",
-      "decision_needed": "Hold - V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Whether the 2026-09-11 hold_pending_v3_substrate (gov-20260911-1612) still applies now that D-001 (ecd247a2db, 2026-09-16) relabelled this claim implementation_phase v4 with v3_pending removed (GFLAG-0303 item 1).",
       "decision_status": "applied",
-      "rationale": "Governance cycle gov-20260911-1612: user accepted all 10 pending_user hold recommendations as recommended. No claim status moves; the V3-pending gate stands.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Accept as recommended",
-      "timestamp_utc": "2026-09-11T16:54:08.188352Z"
+      "rationale": "Claim is v4-deferred, not v3-pending; the 09-11 hold rationale predates the relabel. Hold superseded as moot, not reversed -- no promotion/demotion, no status change. Governance cycle governance-flags-20260923, rec-20260923-1fee5e56.",
+      "recommendation": "supersede_stale_hold_no_status_change",
+      "selected_option": "Supersede hold, accept advisory (Recommended)",
+      "timestamp_utc": "2026-09-23T17:51:48.806814Z"
     },
     "ARC-054": {
-      "actor": "user (governance cycle governance-20260918 Step 3)",
-      "decision_needed": "Conflict resolution before promotion",
+      "actor": "user",
+      "decision_needed": "Whether the 2026-09-11 hold_pending_v3_substrate (gov-20260911-1612) still applies now that D-001 (ecd247a2db, 2026-09-16) relabelled this claim implementation_phase v4 with v3_pending removed (GFLAG-0303 item 1).",
       "decision_status": "applied",
-      "rationale": "Governance cycle governance-20260918: user accepted the hold_candidate_resolve_conflict recommendation as recommended. No claim status moves. HOLD RECORDED so this stops re-flagging pending_user.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Hold; conflict gate stands",
-      "timestamp_utc": "2026-09-18T19:04:17.348743Z"
+      "rationale": "Claim is v4-deferred, not v3-pending; the 09-11 hold rationale predates the relabel. Hold superseded as moot, not reversed -- no promotion/demotion, no status change. Governance cycle governance-flags-20260923, rec-20260923-1fee5e56.",
+      "recommendation": "supersede_stale_hold_no_status_change",
+      "selected_option": "Supersede hold, accept advisory (Recommended)",
+      "timestamp_utc": "2026-09-23T17:51:48.864696Z"
     },
     "ARC-057": {
       "actor": "failure-autopsy-h-mode-755",
@@ -1675,13 +1675,13 @@
       "timestamp_utc": "2026-04-25T15:42:09.107851Z"
     },
     "MECH-268": {
-      "actor": "governance-2026-04-25T15:15",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Apply hold (no status change)",
-      "timestamp_utc": "2026-04-25T15:42:09.107854Z"
+      "actor": "dgolden",
+      "decision_needed": "Which calibration route should MECH-268's dACC saturation use so it actually releases the SD-032a mode register? Decide AFTER the closure-cadence successor experiment (chip-20260917-mech268-closure-cadence-dose) has replicated the strength-0.5 effect across seeds.",
+      "decision_status": "proposed",
+      "rationale": "None",
+      "recommendation": "Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330).",
+      "selected_option": "None",
+      "timestamp_utc": "2026-09-23T18:58:04Z"
     },
     "MECH-269": {
       "actor": "governance-2026-04-25T15:15",
@@ -3547,7 +3547,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-23T17:45:22.748605Z",
+  "generated_at_utc": "2026-09-24T05:09:57.614073Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

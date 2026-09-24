@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-23T17:47:47Z",
+  "generated_at": "2026-09-24T06:04:49Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -703,6 +703,19 @@
         "is_hero": false
       },
       {
+        "id": "sd106_objective_consumer_transfer",
+        "title": "SD-106 objective->consumer transfer",
+        "claims": [
+          "SD-106",
+          "MECH-567",
+          "MECH-566"
+        ],
+        "surviving": 2,
+        "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "sd_e1_residual_crush_locus",
         "title": "E1 residual crush locus (post-ITEM-1)",
         "claims": [
@@ -778,7 +791,7 @@
           "MECH-457",
           "INV-088"
         ],
-        "surviving": 2,
+        "surviving": 1,
         "initial": 11,
         "convergence": "circling",
         "is_hero": false
@@ -800,7 +813,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "155 / 245",
+      "value": "156 / 249",
       "detail": "modules recorded as built"
     },
     {
@@ -810,7 +823,7 @@
     },
     {
       "label": "Narrow",
-      "value": "142 / 194",
+      "value": "143 / 196",
       "detail": "rival explanations still standing"
     },
     {
@@ -1202,13 +1215,13 @@
       "id": "architecture",
       "title": "Architecture",
       "summary": "System commitments and mechanism-level design.",
-      "total": 265,
+      "total": 254,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 74,
-          "more_count": 64,
+          "count": 73,
+          "more_count": 63,
           "nodes": [
             {
               "id": "ARC-005",
@@ -1548,8 +1561,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 165,
-          "more_count": 155,
+          "count": 155,
+          "more_count": 145,
           "nodes": [
             {
               "id": "MECH-062",
@@ -1720,13 +1733,13 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 254,
+      "total": 265,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 23,
-          "more_count": 13,
+          "count": 24,
+          "more_count": 14,
           "nodes": [
             {
               "id": "SD-005",
@@ -1971,8 +1984,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 226,
-          "more_count": 216,
+          "count": 236,
+          "more_count": 226,
           "nodes": [
             {
               "id": "INV-049",
@@ -2681,7 +2694,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 284,
+      "total": 285,
       "buckets": [
         {
           "key": "active",
@@ -2697,7 +2710,7 @@
               "claim_class": "horizon_v5",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 37,
+              "incoming_dependencies": 38,
               "depends_on": [
                 "INV-005",
                 "ARC-004",
@@ -2736,8 +2749,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 282,
-          "more_count": 272,
+          "count": 283,
+          "more_count": 273,
           "nodes": [
             {
               "id": "ARC-053",
@@ -2791,7 +2804,7 @@
             },
             {
               "id": "ARC-094",
-              "title": "No empathy module / no empathy scalar: fast empathy must emerge from binding existing motivational-affective streams across self -> object -> other, never as an empathy_enabled flag or empathy_score primitive.",
+              "title": "No empathy module / no empathy scalar: fast empathy must emerge developmentally from existing motivational-affective streams -- the fast affective route scaffolds the slower self -> object -> other mentalizing route, which then differentiates from it -- never as an empathy_enabled flag or empathy_score primitive.",
               "status": "candidate",
               "phase": "v5",
               "claim_class": "horizon_v5",
@@ -2914,7 +2927,7 @@
   "record_counts": {
     "active": 179,
     "closed": 50,
-    "planned": 956
+    "planned": 957
   },
   "archive": {
     "snapshot_count": 114,
