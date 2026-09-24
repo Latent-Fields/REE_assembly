@@ -6308,9 +6308,9 @@
       "summary": "EXP-0755 (MECH-018) was released to status proposed in f578fcdb7c (GFLAG-0366) but still carries release_condition / blocked_by / blocked_note, and scripts/proposal_feasibility.py FILTER G reads a recorded release_condition on a non-ran row as a live do-not-mint block: registry_block_verdict('MECH-018') returns 'recorded ... EXP-0755 (release_condition recorded)' right now, so the release has no effect on the minter. The next build_experiment_indexes regen drops those three fields from a proposed row (by design, before and after REE_assembly 16a08a789e6), which clears it; if the release should take effect sooner, remove the three fields from EXP-0755 by hand (the release_note_2026_09_23 annotation already records the history). Found by chip-20260923-proposal-regen-audit-gap.",
       "raised_by_session": "serene-villani-fe3fc7",
       "raised_at": "2026-09-23T20:04:08Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:14:15Z",
+      "resolution_note": "Discharged by REE_assembly 6debff15f09 (IGW-241, 2026-09-24T02:48Z). EXP-0755 is now status=blocked_substrate with a NEW, live release_condition: the GFLAG-0441 sampling fix AND a /governance decision on GFLAG-0442. The stale 2026-09-23 release_condition was moved to gating_history. FILTER G re-measured 2026-09-24 (governance-20260924 triage): registry_block_verdict('MECH-018') reports EXP-0755 (status=blocked_substrate), which is the intended block. Nothing to strip."
     },
     {
       "flag_id": "GFLAG-0441",
