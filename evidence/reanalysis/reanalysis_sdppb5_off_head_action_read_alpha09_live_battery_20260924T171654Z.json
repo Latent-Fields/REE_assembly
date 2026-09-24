@@ -1,0 +1,77 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_sdppb5_off_head_action_read_alpha09_live_battery_20260924T171654Z",
+  "generated_utc": "2026-09-24T17:16:54Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "Does the untouched OFF-arm e2.world_forward head READ ITS ACTION at alpha_world 0.9 on a LIVE reset-on-done battery, on all 3 seeds -- i.e. does the same-rows action-shuffle readiness form return 'ready' (ratio > 1.0 AND skill > 0.0 vs the copy-the-input predictor)?",
+  "claim_ids": [
+    "MECH-573",
+    "SD-PP-B5-z-world-per-step-displacement-range",
+    "SD-008"
+  ],
+  "decisive_readout": "action_sensitivity_gate same-rows action_shuffle readiness verdict (ratio = sum(per_row_se_swap_mean)/sum(per_row_se_true), floor 1.0; skill = skill_vs_identity, floor 0.0)",
+  "source_run_ids": [
+    "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3": "17e203f3353878806e19840fe2cbed23d89e374ba31788e15a690f6c5d9e6480"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "verdict": "YES -- 3/3 seeds READY",
+    "n_seeds_ready": 3,
+    "n_seeds": 3,
+    "ratio_floor": 1.0,
+    "skill_floor": 0.0,
+    "per_seed": {
+      "42": {
+        "shuffle_form_ratio_S_over_T": 2.037066,
+        "skill_vs_identity": 0.34857,
+        "d_act": 0.34147,
+        "d_act_ci": [
+          0.322953,
+          0.359792
+        ],
+        "ready": true
+      },
+      "123": {
+        "shuffle_form_ratio_S_over_T": 1.55116,
+        "skill_vs_identity": 0.219351,
+        "d_act": 0.216043,
+        "d_act_ci": [
+          0.202626,
+          0.228926
+        ],
+        "ready": true
+      },
+      "456": {
+        "shuffle_form_ratio_S_over_T": 1.585839,
+        "skill_vs_identity": 0.214881,
+        "d_act": 0.226557,
+        "d_act_ci": [
+          0.215649,
+          0.238109
+        ],
+        "ready": true
+      }
+    },
+    "preconditions_from_source": {
+      "battery_rows": 512,
+      "distinct_actions": 5,
+      "postdeath_rows": 0,
+      "positive_control": "reads_action 3/3",
+      "untrained_head_d_act": {
+        "42": 0.002191,
+        "123": -0.001574,
+        "456": 0.000547
+      }
+    }
+  },
+  "method_note": "Derived in closed form from V3-EXQ-1082's landed ARM_OFF cells (alpha_world 0.9, LIVE reset-on-done battery, 512 rows, 5 distinct actions, 0 post-death rows per cell). The gate's shuffle ratio is sum(e_shuffled)/sum(e_true) under a derangement of the action column; because the battery's actions are i.i.d. uniform over 5, that derangement draws each row's replacement ~uniformly from the 4 alternatives and therefore ESTIMATES sum(per_row_se_swap_mean)/sum(per_row_se_true) = S/T, which 1082 stores per row for every ARM_OFF cell. S/T is also exactly (1+d_act)/(1-d_act), since d_act := (S-T)/(S+T) -- so the ratio clause is algebraically equivalent to d_act > 0. Verified empirically in the V3-EXQ-1092 dry run: the 16-draw derangement mean tracks S/T within ~1% in every cell (e.g. 2.0473 vs 2.0371, 1.5397 vs 1.5512). skill_vs_identity is read directly from 1082. ZERO new compute.",
+  "verdict": "supports",
+  "notes": "GOV-REUSE-1 consumer-half result. Settles the recoverable half of the SD-PP-B5 inverted-map probe (chip-20260924-sdppb5-inverted-map-probe) at zero compute, per USER decision '(2) then (1)' on chip-20260924-sdppb5-invmap-loadbearing-recoverable (rec-20260924-5812c302). ANSWER: yes on 3/3 seeds -- S/T 2.0371/1.5512/1.5858 all > 1.0, skill +0.3486/+0.2194/+0.2149 all > 0.0, d_act CI lower bound > 0 on 3/3 (0.3230/0.2026/0.2156). Supporting context from the same source: the ridge positive control reads its action on 3/3; the UNTRAINED head's d_act sits at the analytic null (0.0022 / -0.0016 / 0.0005), which is the empirical floor; model_r2 0.5569/0.4788/0.4865 is recorded beside every persistence-relative number per the 1082 design. SCOPE -- what this does NOT answer: the INVERTED-ACTION-MAP (cross-battery) ratio and its action-blind null remain unmeasured at every alpha on a live battery, because 1082 collected no inverted-map battery at all; that is the genuinely new quantity and is what V3-EXQ-1092 is being re-pointed at (option B). This artifact exists because V3-EXQ-1092 as first written would have re-derived exactly the numbers above -- its alpha-0.9 arm reproduced 1082's ARM_OFF bit-for-bit (identical battery_hash, d_act equal to 17 digits, identical per-row errors). See GFLAG-0475 and REE_assembly evidence/planning/sdppb5_inverted_map_ratio_criterion_aliasing_staged_20260924.md.",
+  "caveat": ""
+}
