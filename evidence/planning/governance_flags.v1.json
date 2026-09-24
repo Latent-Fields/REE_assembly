@@ -6361,9 +6361,9 @@
       "summary": "EVB-0114/EXP-0361 (MECH-154) refused at /queue-experiment Step 2.5c+2.5d and marked blocked_substrate (REE_assembly d3074a511d): MECH-154's own non-degeneracy precondition (ContextMemory slot differentiation under online writes) is the open corrupting content half of substrate_queue contextmemory-write-path-addressing-degeneracy (436g: online writes collapse bank to cosine 0.9993). MISSING EDGE: add MECH-154 to that entry's unblocks_claims (currently SD-017/ARC-045/MECH-166/MECH-152/ARC-021) and set pending_retest_after_substrate on MECH-154.",
       "raised_by_session": "igw-241-proposal-for-mech-154",
       "raised_at": "2026-09-24T03:58:08Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:17:20Z",
+      "resolution_note": "MECH-154 added to substrate_queue contextmemory-write-path-addressing-degeneracy.unblocks_claims with a governance_2026_09_24_mech154_edge audit key, and pending_retest_after_substrate: true set on MECH-154 (REE_assembly 1cd4f1c9e5). Entry still implemented_pending_validation / corrupting; EXP-0361 stays blocked_substrate (row side already landed in d3074a511d)."
     },
     {
       "flag_id": "GFLAG-0445",
