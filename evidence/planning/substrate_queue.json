@@ -13260,8 +13260,8 @@
       "sd_id": "residue-integrate-sampling-collapse-world-dim-32",
       "title": "residue_field.integrate() samples its distillation targets ~sqrt(world_dim) kernel widths off harm support at world_dim=32, so integration learns nothing at production dimension (target/peak ~9.4e-06) while integration_loss still falls",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "status_phase": "build_owed",
+      "status": "implemented_pending_validation",
+      "status_phase": "validation_owed",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -13279,8 +13279,10 @@
       "source_audit": "GFLAG-0441; USER DECISION 2026-09-24 GFLAG-0442 option B (rec-20260924-a2275588): build authorised",
       "added_session": "governance-20260924",
       "added_utc": "2026-09-24T08:34:13Z",
-      "last_seen_session": "governance-20260924",
-      "experiment_queued": false
+      "last_seen_session": "metaworker-campaign-20260924-orchb-residue-integrate-build",
+      "experiment_queued": false,
+      "implemented_session": "metaworker-campaign-20260924-orchb-residue-integrate-build",
+      "implementation_note": "IMPLEMENTED 2026-09-24, ree-v3 origin/main 3230cd56 (base fa0a9046): ResidueConfig.use_dim_scaled_integrate_sampling (default False, bit-identical OFF) rescales integrate()'s per-dimension distillation sampling std by 1/sqrt(world_dim), fixing the isotropic-Gaussian sampling collapse described in this entry's implementation_hint. Contracts C9-C11 added to tests/contracts/test_mech018_residue_integrate_gradient.py: C9 flag surface + from_dims reachability; C10 the world_dim=32 contract itself -- mean target/peak (measured via a forward hook on the live rbf_field, single-harm-event fixture) stays below 1e-3 OFF and clears 0.3 ON (vs the documented ~1.5e-05 collapse), plus C10b re-confirming the untouched world_dim=8 fixture; C11 bit-identical RNG consumption ON vs OFF. Blind-spot measured: C9/C10/C11 FAIL against the pre-fix code (AttributeError/TypeError), C10b passes unchanged either way. Flag registered in tests/test_flag_inertness.py KNOWN_UNPROBED_NESTED. Local gate (ree-cloud-5): test_mech018_residue_integrate_gradient.py + test_flag_inertness.py, 79 passed. Full suite via scripts/remote_pytest.sh (ree-worker-4): 6727 passed, 42 skipped, 1 xfailed, 228 subtests; 4 pre-existing failures unrelated to residue (test_runner_merge_peer_status_source.py / test_validate_queue_burned_id_source.py, both needing 'the real REE_assembly evidence tree'). SCOPE, stated per GFLAG-0442: this is a D1 instrument fix establishing target geometry only. It does NOT establish that repaired residue is read by, or changes, any native consumer -- GFLAG-0442 already records that even a correctly-distilled integrate() cannot move MECH-018 readouts (ii)/(iv) under the current objective. MECH-018 is NOT closed by this entry. No MECH-018 experiment queued here per the owning chip's SCOPE NOTE. Consumer-reach validation is a separate, not-yet-done measurement (owned elsewhere, per orchestrator instruction -- not started by this session)."
     },
     {
       "sd_id": "mech018-contextualisation-objective",
