@@ -3128,6 +3128,7 @@
       "proposal_id": "EXP-0040",
       "proposal_type": "experimental",
       "release_condition": "Release when the P0a OBJECTIVE-DECOMPOSITION SEAM exists. Route via /implement-substrate, NOT via another lettered experiment here. Concretely, three backwards-compatible pass-throughs: (a) run_zworld_p0 forwards presence_weight, distance_weight, proximity_weight, reconstruction_weight, variance_weight and covariance_weight to ZWorldP0Config, each defaulting to the current ZWorldP0Config default so every existing caller stays bit-identical; (b) run_zworld_p0 accepts a caller-supplied proximity-target callable defaulting to the existing resource_prox_target, which is what makes the GOV-MATCHAUX-1 matched-arbitrary arm constructible at equal head capacity, loss budget, update frequency and example count; (c) _train_all_on_agent forwards the same set. Note for whoever builds it: experiments/_lib/** is folded into substrate_hash, so this edit correctly busts existing arm-reuse fingerprints (a false MISS, which only costs compute) -- that is expected, and is not a reason to route the change around _lib.\n\nWHAT BECOMES RUNNABLE THE MOMENT THE SEAM LANDS: the measurement-only preservation ladder, 5 arms x >=3 seeds, no action-commitment substrate required and therefore NOT gated on the conversion / F-dominance ceiling -- A0 rawfield_ceiling (NDP-3), A1 untrained projection (NDP-4 floor), A2 generic-only (variance/covariance/reconstruction only, all four class-1 weights at 0.0) as the F1 verdict arm, A3 generic + class-1 scaffold, A4 generic + matched-arbitrary target through the new callable. Verdict statistic R_1 = (agreement_arm - agreement_A1) / (agreement_A0 - agreement_A1) via the V3-EXQ-1002 oracle adapter at its pinned 2x128 capacity. Pre-registered readings: F1 fires at R_1(A2) >= 0.75; condition (i) is already discharged (see gating_reason) and A2/A3 only need to replicate it; the R_k leg of (iii) is R_1(A3) - R_1(A2) >= 0.20 absolute; the GOV-MATCHAUX-1 discrimination of (iv) is R_1(A3) - R_1(A4) >= 2x SD of the seed-matched delta; condition (ii) losses-blind is delta world_obs reconstruction loss and delta E2 one-step prediction MSE between A3 and A2, each within 1 SD of the within-arm seed spread. Route F3 (scaffold dependence) is structurally non-applicable and should be reported as such rather than tested: SD-070's auxiliary heads belong to the TRAINER, not the substrate, and are discarded when train() returns, so NDP-6(ii) 'evaluation with the auxiliary head REMOVED' holds by construction.\n\nDO NOT queue the organism-level legs with that ladder. Conditions (iii)/(iv) read at the resources/episode DV, and route F2, stay blocked on NDP-5 until the competence floor is cleared -- the agent sits at ~0.27 res/ep against a 1.0 floor with the demonstrator anchor at 45.75, so a flat organism-level DV there is uninterpretable rather than negative, which is precisely the vacuous re-derivation of the known conversion ceiling. Split them into a separate proposal gated on the competence floor.\n\nTWO CHECKS TO RE-RUN AT QUEUE TIME rather than trusting this note: (1) Step 2.5c substrate-path overlap -- this session stopped at Step 2.5a and never reached a queue decision, and there are open corrupting entries (mode-governance-engagement, status implemented_pending_validation; SD-082) whose substrate_paths include ree_core/agent.py and ree_core/utils/config.py. They are almost certainly off a measurement-only driver's path (the ladder never runs the agent's decision loop -- no select_action, no sense(); the agent is an encoder container and the rollouts are oracle- or random-driven), but that is a judgement to make against the driver as actually written, not in advance. (2) V3-EXQ-1010's result: if the over-capacity decoder sweep recovers the oracle mapping at higher decoder capacity, R_1 at INV-104's own pinned adapter capacity remains the defined statistic, but its reading as content destruction rather than capacity limitation is contested, and the ladder's framing should say so explicitly.",
+      "release_condition_note_2026_09_23": "The release_condition below (the P0a seam) is MET; do not read that as release. Operative release: the INV-104 adapter DV re-gated on the objective-choice contrast (C0 responds) and the sense-path probe refit on its evaluation path (GFLAG-0401).",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -3147,8 +3148,7 @@
         "active_conflict",
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ],
-      "release_condition_note_2026_09_23": "The release_condition below (the P0a seam) is MET; do not read that as release. Operative release: the INV-104 adapter DV re-gated on the objective-choice contrast (C0 responds) and the sense-path probe refit on its evaluation path (GFLAG-0401)."
+      ]
     },
     {
       "acceptance_checks": [
@@ -3294,6 +3294,7 @@
       "executed_by": "V3-EXQ-887",
       "executed_queue_id": "V3-EXQ-887",
       "gating_reason": "blocked_substrate (IGW-20260730-214, session igw-214-proposal-for-sd-014, 2026-07-30). SD-014's core mechanism is unbuilt AND every adjacent measurement path is a documented substrate ceiling, so a fresh run can only re-derive the known conversion/dissociation ceiling (vacuous FAIL). Three independent blocks: (1) NODE-VALENCE-VECTOR ABSENT -- no per-hippocampal-node 4-component vector V=[w,l,h,s] exists in ree_core (grep of ree_core/hippocampal/ finds no per-node wanting/liking/surprise storage; only a residue-field VALENCE_WANTING channel via residue_field.evaluate_valence, which is field-level not node-level). (2) REPLAY-GATE HALF BLOCKED -- V3-EXQ-432 (the SD-014 replay-gate prioritization test) already ran and is non_contributory: n_surprise_writes_d2=0 across all seeds; surprise signal does not propagate to the replay gate. The surprise-write substrate is not operational, so priority(node)=dot(V,d) cannot be exercised. (3) APPROACH-BEHAVIOUR HALF BLOCKED -- the EXP-0098 w/l dissociation DV needs object-bound incentive salience + drive-scaled wanting. The whole family (V3-EXQ-514k/l/n/p/q/r, MECH-229/MECH-295/SD-049) is a wall of non_contributory reclassifications; the drive-coupled dissociation criterion returned EXACTLY 0.0 (WL_drive==WL_nodrive) on all guard-passing seeds (514q), autopsied as missing object-bound incentive-salience substrate + SP-CEM (GAP-2) confound. The suggested_experiment_type (v3_exq_493 liking bridge) is MECH-295, not the SD-014 node/replay mechanism. This is /implement-substrate work (build the node valence vector + surprise-write path), not /queue-experiment work.",
+      "governance_note_2026_09_23": "[GFLAG-0401] gating_reason block (1) 'NODE-VALENCE-VECTOR ABSENT' is FALSE as of the 2026-09-21 audit (see release_condition) and block (3) is discharged by 887b; only block (2) remains. Status left as recorded (executed by V3-EXQ-887); the release_condition directory and block accounting are corrected.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for SD-014 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -3318,8 +3319,7 @@
       "why_now": [
         "active_conflict",
         "low_exp_conf"
-      ],
-      "governance_note_2026_09_23": "[GFLAG-0401] gating_reason block (1) 'NODE-VALENCE-VECTOR ABSENT' is FALSE as of the 2026-09-21 audit (see release_condition) and block (3) is discharged by 887b; only block (2) remains. Status left as recorded (executed by V3-EXQ-887); the release_condition directory and block accounting are corrected."
+      ]
     },
     {
       "acceptance_checks": [
@@ -4562,25 +4562,29 @@
       ],
       "backlog_id": "EVB-1391",
       "blocked_by": [
-        "MECH-018",
-        "ARC-011",
-        "ARC-007"
+        "residue-integrate-sampling-collapse-world-dim-32",
+        "mech018-contextualisation-objective"
       ],
-      "blocked_note": "ResidueField.integrate() performs NO gradient step, and is never called from the sleep cycle -- MECH-018's four readouts are all structurally pinned, so a run today returns its own FALSIFYING branch by construction.",
+      "blocked_note": "Step 2.5d INERT (re-measured 2026-09-24, IGW-241): at production world_dim=32 ResidueField.integrate() samples targets ~sqrt(32) kernel widths off the harm locations (target/peak 9.4e-06), so it only erases the neural head's constant pedestal -- evaluate() drop at harm vs harmless points 0.0651 vs 0.0651 and post-integration specificity ratio 3.1389 == rbf-core ratio 3.1417. Readouts (ii)/(iv) cannot move for a substrate reason; any run returns MECH-018's FALSIFYING branch by construction. Owed: sampling fix (chip-20260923-residue-integrate-sampling, GFLAG-0441) AND a governance decision on whether integrate()'s distillation objective can contextualise at all (GFLAG-0442).",
       "claim_id": "MECH-018",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
-      "gated_at_utc": "2026-09-17T08:01:12Z",
-      "gated_by_session": "igw-235-proposal-for-mech-018",
-      "gating_reason": "EXP-0755 REFUSED at the /queue-experiment Step 2.5 / 2.5a substrate gate (session igw-235-proposal-for-mech-018, IGW-20260917-235, 2026-09-17). Node is `complicated (buildable)`, NOT `complex (probe-gated)`: the correct route is /implement-substrate, not an experiment.\n\nMECH-018's own claims.yaml what_would_answer already carries the disposition (2026-09-16): 'substrate_conditional on the WRITEBACK wiring (and possibly a centre-merge op) ... Do not mint an EXP for this until the call site lands.' This session CONFIRMED that independently and found the gap to be STRICTLY WIDER than that note records -- there are THREE blockers, not one, and the extra one is the decisive one.\n\n(B1) THE OPERATION IS INERT BY CONSTRUCTION -- NOT MERELY UNWIRED. This is the blocker the claims.yaml SUBSTRATE note does not have. ResidueField.integrate() (ree-v3/ree_core/residue/field.py:1122-1144, last touched 00449c7 2026-08-11) computes F.mse_loss(neural_field(sample_points), rbf_field(sample_points)) in a num_steps loop and accumulates .item() -- but it never calls loss.backward(), and the module declares no optimizer at all (grep for 'optim|backward()' over the whole 1259-line file returns nothing). It is a METRIC loop wearing the shape of a training loop, and the 'integration_loss' it returns reads as training progress while nothing trains. Verified EMPIRICALLY this session by a throwaway one-tick probe (Step 2.5a), 6 harm events, num_steps=25: rbf weights changed False / active_mask changed False / active_centers 6 -> 6 / neural_field params changed False / evaluate() at the recorded harm locations changed False / any neural_field param has .grad False. Consistent with V3-EXQ-996's ISEF-005 finding (autopsy failure_autopsy_V3-EXQ-996_2026-09-04.json, status=confirmed), which recorded agent.residue_field.integrate() as 'confirmed to train nothing' -- but that autopsy left recommended_substrate_queue_entry NULL, so the defect has sat unowned since.\n\n(B2) NO CALL SITE IN THE SLEEP CYCLE (the blocker claims.yaml names). ree_core/sleep/phase_manager.py (63e70d6 2026-08-26) contains no residue_field / ResidueField reference in code at all -- only comments about the WAKING update_residue path -- and the WRITEBACK phase runs self_model_aggregator.offline_gradient_pass + the MECH-204 serotonin recalibration, nothing residue-side. The only wrapper, REEAgent.offline_integration() (ree_core/agent.py:12248-12271), is called by NOTHING in ree_core/; every live caller is an experiment driver.\n\n(B3) NO CENTRE-MERGE OPERATION EXISTS, so readout (iii) COMPRESSION has no mechanism that could move active_centers even after B1+B2 land. integrate() approximates the RBF field with the neural field; it never merges centres. claims.yaml flags this as an open question ('may need a centre-merging step the claim implies but no module provides'); this session confirms no such module exists.\n\nWHY THIS MAKES A RUN VACUOUS RATHER THAN MERELY WEAK -- the decisive point. MECH-018 lists 'the operation is geometrically inert (no change on any of the four readouts while the cycle is live)' as an explicit FALSIFYING outcome. B1 guarantees exactly that outcome with probability 1, from a missing optimizer step. So the experiment would not fail to answer its question -- it would return a CONFIDENT FALSE FALSIFICATION of the mechanism, attributable entirely to a substrate defect, and it would do so while satisfying readout (i) PRESERVATION vacuously (residue at harm contexts cannot fall if nothing changes). A naive-decay comparator arm would move and the integration arm would not, which reads as clean discriminative evidence against MECH-018. That is worse than a null result: it is a vacuous PASS on (i) fused to a spurious FAIL on (ii)/(iii)/(iv), and it would land in claim_evidence as a genuine weakens.\n\nNO COMMITMENT-FREE DIAGNOSTIC SUBSTITUTE WAS QUEUED EITHER, and that was considered rather than skipped. The one measurement-only thing runnable today is MECH-018's own NON-DEGENERACY PRECONDITION (the pre-sleep specificity ratio -- residue at harm contexts vs at equidistant matched non-harm contexts), which needs no integration call and no sleep cycle. Rejected as a separate queue slot: it yields no PASS-or-FAIL on MECH-018 (it is a precondition the claim requires BEFORE its test, not a verdict on it), and it is a handful of lines that the post-release experiment must run in its own setup anyway, so queuing it separately buys a queue slot's worth of nothing and mints an EXQ id that later reads as MECH-018 having been tested.\n\nOWNERSHIP CHECKED, AND THE BUILD IS GENUINELY UNOWNED: evidence/planning/substrate_queue.json (185 entries) has no row for the sleep-residue wiring or the missing optimizer step -- the only residue row is SD-RESIDUE-VALENCE-BOUND (implemented, unrelated: valence-accumulator clamping); no open chip in TASK_CHIPS.json covers it; the V3-EXQ-996 autopsy that FOUND B1 recorded recommended_substrate_queue_entry=null. This session runs HEADLESS with no spawn_task tool, so it could not chip /implement-substrate directly; instead it raised a governance_flag.py evidence_discrepancy flag on MECH-018 (evidence/planning/governance_flags.v1.json, 2026-09-17), which /governance re-derives into its worklist and is explicitly authorised to convert into an /implement-substrate chip plus a substrate_queue.json row. The release_condition below is the build spec.",
+      "gated_at_utc": "2026-09-24T02:47:18Z",
+      "gated_by_session": "igw-241-proposal-for-mech-018",
+      "gating_reason": "Refused at /queue-experiment Step 2.5d (falsifier-runnability trace), shape INERT, re-measured by IGW-241 2026-09-24 (duplicating eloquent-lichterman-824f74's 2026-09-23 refusal, which could only take route 2b and so left status=proposed). ResidueField.integrate() jitters samples by per-dimension std = kernel bandwidth, so at world_dim=32 targets sit ~5.6 widths off-support (target/peak 9.4e-06 vs 3.5e-02 at world_dim=8): neural_field is distilled to ~0 and the only effect is removing the untrained Softplus pedestal. Measured: evaluate() drop at harm vs harmless points 0.0651/0.0651; post specificity ratio 3.1389 == rbf-core ratio 3.1417 (pre 2.4666 -- a rise that is pure pedestal arithmetic). Readouts (ii) specificity and (iv) harmless-region rejection cannot move; readout (i) vs rbf core is structurally guaranteed (optimizer isolated from rbf_field) and would be vacuous in the integration arm. Node: complicated (buildable) for the sampling fix, but mystery (known data) for the objective question -- GFLAG-0442 argues even a correct distillation leaves (ii)/(iv) invariant (1.1x rbf rescaling).",
+      "governance_flag": "GFLAG-0442",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-018 with matched seeds and pre-registered thresholds.",
       "priority": "medium",
       "proposal_id": "EXP-0755",
       "proposal_type": "experimental",
-      "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
+      "refusal_route": "governance",
+      "refused_by_session": "igw-241-proposal-for-mech-018",
+      "refused_utc": "2026-09-24T02:47:20Z",
+      "release_condition": "BOTH, then re-run /queue-experiment for MECH-018: (1) integrate() samples targets from the harm field's support at world_dim=32 (chip-20260923-residue-integrate-sampling / GFLAG-0441), with a contract at world_dim=32 asserting mean target/peak above a floor; AND (2) /governance decides GFLAG-0442: either narrow MECH-018 to readouts (i) preservation-vs-naive-decay and (iii) approximation error at a declared budget (then a run is queueable, with (i) scored non_degenerate:false in the integration arm), or commission a contextualisation objective that reads harmless-context information. Pre-registration must still carry GFLAG-0356's pedestal-matched control for (ii).",
+      "release_note_2026_09_23": "All three release_condition parts met: (1)+(2) integrate() gradient step and WRITEBACK call site (ree-v3 8997e243/5953f80; GFLAG-0306), (3) the narrowing (GFLAG-0366; MECH-018 readout (iii) scored as approximation error at a declared representation budget, user decision 2026-09-19). Pre-registration must carry GFLAG-0356's second finding: register readout (i) against the rbf core, not pre-integration evaluate(), and add a pedestal-matched control for readout (ii).",
       "require_pre_registered_thresholds": true,
       "required_pack_contract": {
         "manifest": [
@@ -4593,7 +4597,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_018",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4605,7 +4609,14 @@
         "missing_experimental_evidence",
         "synthetic_signals_only"
       ],
-      "release_note_2026_09_23": "All three release_condition parts met: (1)+(2) integrate() gradient step and WRITEBACK call site (ree-v3 8997e243/5953f80; GFLAG-0306), (3) the narrowing (GFLAG-0366; MECH-018 readout (iii) scored as approximation error at a declared representation budget, user decision 2026-09-19). Pre-registration must carry GFLAG-0356's second finding: register readout (i) against the rbf core, not pre-integration evaluate(), and add a pedestal-matched control for readout (ii)."
+      "gating_history": [
+        {
+          "gated_at_utc": "2026-09-17T08:01:12Z",
+          "gated_by_session": "igw-235-proposal-for-mech-018",
+          "release_condition": "ALL THREE land, then re-run /queue-experiment for MECH-018: (1) ResidueField.integrate() actually optimises -- add an optimizer over self.neural_field.parameters() and a loss.backward()/step() per iteration (ree-v3/ree_core/residue/field.py:1122-1144), with a contract test asserting neural_field params MOVE and rbf_field weights at the recorded _harm_history locations DO NOT fall below the 'cannot be erased' floor; (2) one flag-gated call site in SleepLoopManager._run_cycle's WRITEBACK phase (ree-v3/ree_core/sleep/phase_manager.py), so the operation fires inside the sleep cycle rather than only from experiment drivers; (3) an explicit decision on centre-merging -- either implement a merge op so readout (iii) COMPRESSION (active_centers falls) is reachable, or narrow MECH-018's (iii) to the 'lower integration_loss at fewer parameters' disjunct it already offers and record that narrowing on the claim. Until (1) lands, ANY MECH-018 run returns the claim's own geometrically-inert FALSIFYING branch by construction.",
+          "superseded_note": "all three parts met 2026-09-23 (release_note_2026_09_23); re-gated 2026-09-24 on a new defect"
+        }
+      ]
     },
     {
       "acceptance_checks": [
@@ -7789,6 +7800,7 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "executed_by_retracted_2026_09_23": "V3-EXQ-395",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-154 via targeted experiment runs.",
       "priority": "medium",
@@ -7807,6 +7819,7 @@
       },
       "seed_policy": "distinct_seeds",
       "status": "proposed",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): claim_evidence.v1.json carries zero experimental rows for MECH-154, so no run was ever tagged to this claim. The audit classes it R1: ContextMemory, the diversification knob and a slot-diversity metric exist, but the driver is missing (a degraded-cue retrieval task with a completion readout taken at ContextMemory.read; the only pattern-completion readout in tree scores the SHY store). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping.",
       "suggested_experiment_type": "claim_probe_mech_154",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7815,9 +7828,7 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ],
-      "executed_by_retracted_2026_09_23": "V3-EXQ-395",
-      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): claim_evidence.v1.json carries zero experimental rows for MECH-154, so no run was ever tagged to this claim. The audit classes it R1: ContextMemory, the diversification knob and a slot-diversity metric exist, but the driver is missing (a degraded-cue retrieval task with a completion readout taken at ContextMemory.read; the only pattern-completion readout in tree scores the SHY store). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
+      ]
     },
     {
       "acceptance_checks": [
@@ -16500,16 +16511,20 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1422",
+      "blocked_by": "MECH-081 E2->E1 attentional-sampling channel has zero code representation in ree-v3: zero hits for attentional_sampling / e2_to_e1 / MECH-081 anywhere in ree_core (re-verified 2026-09-23)",
       "claim_id": "MECH-082",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gating_reason": "MECH-082 asserts distortion PROPAGATES through E2 to bias E1 attentional sampling. The propagation channel it names is its own dependency MECH-081, which does not exist in code, so the manipulation has no route to the DV.",
+      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-082 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0822",
       "proposal_type": "experimental",
+      "release_condition": "The MECH-081 E2->E1 attentional-sampling channel is implemented in ree_core so that an E2-side hippocampal map distortion can be shown to reach E1 sampling; at that point MECH-082's without-explicit-E1-retraining falsifier becomes runnable and this proposal returns to status proposed.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -16529,11 +16544,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_by": "MECH-081 E2->E1 attentional-sampling channel has zero code representation in ree-v3: zero hits for attentional_sampling / e2_to_e1 / MECH-081 anywhere in ree_core (re-verified 2026-09-23)",
-      "release_condition": "The MECH-081 E2->E1 attentional-sampling channel is implemented in ree_core so that an E2-side hippocampal map distortion can be shown to reach E1 sampling; at that point MECH-082's without-explicit-E1-retraining falsifier becomes runnable and this proposal returns to status proposed.",
-      "gating_reason": "MECH-082 asserts distortion PROPAGATES through E2 to bias E1 attentional sampling. The propagation channel it names is its own dependency MECH-081, which does not exist in code, so the manipulation has no route to the DV.",
-      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated."
+      ]
     },
     {
       "acceptance_checks": [
@@ -22366,16 +22377,20 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1506",
+      "blocked_by": "play-mode subsystem absent from ree-v3: zero hits for z_goal_synthetic / play_to_real / PlayMode anywhere in ree_core (re-verified 2026-09-23), and no play-mode entry exists in substrate_queue.json (the 10 'play' substring hits there are all REPLAY entries)",
       "claim_id": "MECH-328",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gating_reason": "MECH-328 asserts synthetic and real z_goal must share a latent manifold for play-to-real transfer. With no play mode there is no synthetic z_goal to compare, so the falsifier has no second population and any run would measure nothing.",
+      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-328 via targeted experiment runs.",
       "priority": "medium",
       "proposal_id": "EXP-0971",
       "proposal_type": "experimental",
+      "release_condition": "A play-mode substrate entry exists in substrate_queue.json AND a synthetic-z_goal generator is landed in ree_core such that synthetic and real z_goal vectors can both be emitted and compared in one run; at that point MECH-328's manifold-overlap falsifier becomes runnable and this proposal returns to status proposed.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -22395,11 +22410,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "blocked_by": "play-mode subsystem absent from ree-v3: zero hits for z_goal_synthetic / play_to_real / PlayMode anywhere in ree_core (re-verified 2026-09-23), and no play-mode entry exists in substrate_queue.json (the 10 'play' substring hits there are all REPLAY entries)",
-      "release_condition": "A play-mode substrate entry exists in substrate_queue.json AND a synthetic-z_goal generator is landed in ree_core such that synthetic and real z_goal vectors can both be emitted and compared in one run; at that point MECH-328's manifold-overlap falsifier becomes runnable and this proposal returns to status proposed.",
-      "gating_reason": "MECH-328 asserts synthetic and real z_goal must share a latent manifold for play-to-real transfer. With no play mode there is no synthetic z_goal to compare, so the falsifier has no second population and any run would measure nothing.",
-      "governance_note": "[2026-09-23 governance cycle governance-pause-20260923-1741, GFLAG-0317] status proposed -> blocked_substrate. Premise re-verified at source this cycle, not taken on report. Written WITH a release_condition and a gating_reason deliberately: GFLAG-0424 (same cycle) records that 14 registry-blocked rows carry a blocking status with NO release predicate and are therefore invisible to audit_blocked_proposal_unblockers.py, which reasons over NAMED unblockers -- a row that names nothing can never be released. This row names one. The LIT twin stays proposed: the literature question is answerable now and is not substrate-gated."
+      ]
     },
     {
       "acceptance_checks": [
@@ -37359,6 +37370,7 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "executed_by_retracted_2026_09_23": "V3-EXQ-870a",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-480 via targeted experiment runs.",
       "priority": "medium",
@@ -37377,14 +37389,13 @@
       },
       "seed_policy": "distinct_seeds",
       "status": "proposed",
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): the only runs are V3-EXQ-870 (ERROR) and V3-EXQ-870a (measurement-defect FAIL, non_contributory). The routed 870b redesign was never queued (no script, queue entry or manifest), so no run has produced a scorable MECH-480 dissociation test. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping.",
       "suggested_experiment_type": "claim_probe_mech_480",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ],
-      "executed_by_retracted_2026_09_23": "V3-EXQ-870a",
-      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): the only runs are V3-EXQ-870 (ERROR) and V3-EXQ-870a (measurement-defect FAIL, non_contributory). The routed 870b redesign was never queued (no script, queue entry or manifest), so no run has produced a scorable MECH-480 dissociation test. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
+      ]
     },
     {
       "acceptance_checks": [
@@ -38700,6 +38711,7 @@
       ],
       "design": "Four-arm per-subdivision write-gate manipulation on a fixed task that includes scheduled internal_replay windows (MECH-092) and explicit internal_planning rollouts (E2) in addition to external_task action selection. Arm A (intact): all SD-033 write-gates obey their MECH-261 mode profile normally. Arm B (SD-033a write-gate forced open during internal_replay): the lateral-PFC-analog rule substrate becomes writeable from replay content during quiescence -- replay can overwrite the rule substrate. Predicted signature: rule drift / forgetting after replay events. Arm C (SD-033b write-gate forced closed during internal_planning): the OFC-analog outcome-prediction substrate cannot accept writes during E2 rollouts -- planning cannot deposit speculative outcome predictions. Predicted signature: degraded counterfactual rollout quality (E2 outcome predictions lose calibration against held-out rollout-realisation pairs). Arm D (null: no mode gating at all): all SD-033 substrates are write-open in every mode. Predicted signature: cross-mode contamination in BOTH the rule substrate (rule drift) AND the outcome substrate (replay content bleeding into external-task outcome predictions). Per arm, measure: (i) rule-representation drift across replay events -- cosine distance of SD-033a activity for the same rule cue pre vs post a replay window; (ii) counterfactual rollout quality -- E2 / SD-033b prediction accuracy against held-out (state, action) -> outcome pairs after planning episodes; (iii) cross-mode content leakage -- decoder probe testing whether internal_replay content (replayed trajectory embeddings) is detectable in SD-033b representations during external_task commitment. Success criterion (MECH-261 per-subdivision profile supported): per-arm signatures dissociate in the predicted direction with pairwise Cohen's d >= 0.8 between Arm A and each manipulated arm on at least 5 seeds, AND Arm A is statistically distinguishable from Arm D on both rule drift and rollout quality. FAIL-route-A (rule substrate not protected by mode gating): Arm B == Arm A on rule drift -- forced-open SD-033a write-gate produces no rule drift, suggesting the mode profile is not load-bearing for the rule substrate specifically. FAIL-route-B (planning substrate write-gate redundant): Arm C == Arm A on rollout quality -- closing SD-033b during planning does not degrade rollouts, suggesting writes were not landing there during planning anyway. FAIL-cluster (mode gating per se unnecessary): Arm D == Arm A on all three metrics -- even fully open gates produce no contamination, mode-conditioned write gating is over-specified.",
       "dispatch_mode": "new_run",
+      "executed_by_retracted_2026_09_23": "V3-EXQ-453",
       "notes": "Sibling experiment to EXP-0148, NOT a replacement. EXP-0148 tests the coordinator overlay (does SD-032a-clamping abolish aggregate forward-propagation bias?); EXP-0149 tests per-subdivision write-landing under each mode (do writes actually land in the correct SD-033 subdivision?). Both tests are needed to fully characterise MECH-261: EXP-0148 establishes that the coordinator is load-bearing at all; EXP-0149 establishes that the per-subdivision routing inside the MECH-261 family is functionally specific (not just one coarse on/off gate dressed up as a vector). A coordinator could pass EXP-0148 while failing EXP-0149 by producing the right aggregate bias with mis-routed internal writes; that pattern would force a refinement of MECH-261's specification. Cannot run until SD-032a + SD-033a + SD-033b + MECH-261 + MECH-092 are all implemented in V3 -- proposal-only at registration time. Do not queue in ree-v3/experiment_queue.json until those substrates exist.",
       "objective": "Test whether MECH-261's per-subdivision write-landing profile is correctly mode-routed -- distinct from the coordinator-level test in EXP-0148. EXP-0148 asks whether the coordinator overlay produces the right aggregate forward-propagation bias; EXP-0149 asks whether writes actually land in the correct PFC subdivision (SD-033a vs SD-033b) under each mode. A coordinator could pass EXP-0148 by producing the right aggregate bias while writes are mis-routed internally between subdivisions; only a per-subdivision lesion design can dissociate that.",
       "prerequisites": [
@@ -38714,9 +38726,8 @@
       "proposal_type": "experimental",
       "source": "manual",
       "status": "proposed",
-      "target_repo": "ree-v3",
-      "executed_by_retracted_2026_09_23": "V3-EXQ-453",
-      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): no run implements this per-subdivision write-landing design. V3-EXQ-453 validated the MECH-261 write-gate landing, not this design, and MECH-261's indexed evidence (V3-EXQ-455 gate-value modulation, V3-EXQ-484 SD-033a distractor resistance) is not this contrast either. Mirror of the EXP-0148 correction (56fcfde). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): no run implements this per-subdivision write-landing design. V3-EXQ-453 validated the MECH-261 write-gate landing, not this design, and MECH-261's indexed evidence (V3-EXQ-455 gate-value modulation, V3-EXQ-484 SD-033a distractor resistance) is not this contrast either. Mirror of the EXP-0148 correction (56fcfde). If a run is later identified, set executed_by/executed_queue_id instead of re-flipping.",
+      "target_repo": "ree-v3"
     },
     {
       "added_utc": "2026-04-20",
@@ -39083,9 +39094,9 @@
       "claims_tested": [
         "MECH-285"
       ],
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "dispatch_mode": "discriminative_pair",
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
       "prerequisites": [
         "MECH-285 offline-arm substrate wired (ree_core/hippocampal/sleep_replay_sampler.py or equivalent; HippocampalConfig.use_mech285_sleep_priority flag)",
@@ -39226,6 +39237,8 @@
       "design": "DEFERRED -- do not pre-author. The original V3-EXQ-455a Full-implementation TODO is now stale (V_s flags landed as main-path defaults; SD-037 + consumer-cascade landed and being validated). Re-design when gate clears, against the substrate state at that moment.",
       "dispatch_mode": "discriminative_pair",
       "estimated_minutes": 120,
+      "gating_reason": "Release condition (a)+(b) met 2026-05-31, but V3-EXQ-483e is a FAIL (outcome FAIL; confirmed failure_autopsy_V3-EXQ-483e_2026-05-31, substrate_ceiling: consumer outputs zero, action_counts bit-identical across all 4 arms). Per this proposal's own interpretation_grid_on_release branch 3, SD-032a behavioural validation stays gated until the upstream cluster resolves (GFLAG-0313).",
+      "governance_note_2026_09_23": "[governance-flags-mid-20260923, GFLAG-0313] The flag's premise that both gating runs PASSed is false: 483e FAILed (substrate_ceiling), so the pre-registered grid branch 3 applies. Stays gated; release_condition re-pointed at the SD-037 consumer cascade. V3-EXQ-455b is not queued. Previous release_condition: BOTH 614a and 483e manifests landed and reviewed (met 2026-05-31).",
       "interpretation_grid_on_release": [
         "If V3-EXQ-614a PASS and V3-EXQ-483e PASS with diverse behavioural lift on the relevant arms -> SD-032a-coordinator-specific question is likely absorbed by the cluster; close EXP-0175 as superseded_by_cluster, NOT queued.",
         "If both PASS but neither isolates a 'coordinator-mediated structure beyond V_s diversity' signal -> the SD-032a-specific question survives; queue V3-EXQ-455b via /queue-experiment with a fresh design pass (likely a 3-arm V_s_ON_coord_OFF vs V_s_ON_coord_ON vs V_s_ON_coord_ON_consumer_cascade_OFF, or similar against the matured substrate).",
@@ -39245,9 +39258,7 @@
       "release_condition": "A validated run in which the SD-037/MECH-281 consumer cascade produces non-zero consumer output (lifting 483e's substrate_ceiling; SD-037 substrate_queue row), then re-read interpretation_grid_on_release branches 1/2 against the arm-level data.",
       "source": "manual",
       "status": "gated",
-      "target_repo": "ree-v3",
-      "gating_reason": "Release condition (a)+(b) met 2026-05-31, but V3-EXQ-483e is a FAIL (outcome FAIL; confirmed failure_autopsy_V3-EXQ-483e_2026-05-31, substrate_ceiling: consumer outputs zero, action_counts bit-identical across all 4 arms). Per this proposal's own interpretation_grid_on_release branch 3, SD-032a behavioural validation stays gated until the upstream cluster resolves (GFLAG-0313).",
-      "governance_note_2026_09_23": "[governance-flags-mid-20260923, GFLAG-0313] The flag's premise that both gating runs PASSed is false: 483e FAILed (substrate_ceiling), so the pre-registered grid branch 3 applies. Stays gated; release_condition re-pointed at the SD-037 consumer cascade. V3-EXQ-455b is not queued. Previous release_condition: BOTH 614a and 483e manifests landed and reviewed (met 2026-05-31)."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -39393,6 +39404,7 @@
         "DIRECTION CAVEAT: read PASS/FAIL in the effort-regulation (coasting) direction. A design that rewards same-goal commitment for positive progress inverts Carver&Scheier and is mis-specified."
       ],
       "backlog_id": "EVB-0555",
+      "blocked_note": "[Re-pointed 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: MECH-426 R5] NOT a substrate block: SD-093/MECH-426 is complete (18 contracts) and the driver is written. The block is BEHAVIOURAL -- the agent's foraging competence (goal_pipeline:GAP-2 / MECH-457 competence floor): no agent on this env family forages above random, so the maintenance DV sits at its floor. BOTH named release conditions have RETURNED NEGATIVE: V3-EXQ-866a FAIL/non_contributory (resource_visit_rate FULL 0.00331 vs RANDOM 0.01033) and V3-EXQ-978 FAIL on the 1.0 D3 foraging-competence floor. The release owner therefore no longer exists; the live owner is whichever competence-floor route next clears D3 foraging above random. Status label blocked_substrate retained for tooling (it suppresses re-spawn).",
       "claim_id": "MECH-426",
       "design": "2x2 multi-arm ablation in a long-horizon task tuned so MECH-116 working-memory goal-maintenance has measurably DECAYED (distractor load / extended horizon -- the regime INV-086 is scoped to). Factor 1: VELOCITY-ON (progress-derivative modulates commitment/effort) vs VELOCITY-OFF (signal ablated, goal representation + proxy-wanting landscape held intact). Factor 2: SPARSE-confirmation vs DENSE-confirmation. Metric: superordinate-goal completion rate + z_goal commitment-persistence. Prediction: VELOCITY-OFF degrades maintenance in the SPARSE arm but not the DENSE arm (where velocity adds no information). Model velocity as EFFORT-REGULATION (Carver&Scheier coasting), NOT same-goal reinforcement.",
       "dispatch_mode": "multi_arm_ablation",
@@ -39419,8 +39431,7 @@
       "script_path": null,
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3",
-      "blocked_note": "[Re-pointed 2026-09-23, GFLAG-0401, per falsifier_completion_and_runnability_audit_20260921: MECH-426 R5] NOT a substrate block: SD-093/MECH-426 is complete (18 contracts) and the driver is written. The block is BEHAVIOURAL -- the agent's foraging competence (goal_pipeline:GAP-2 / MECH-457 competence floor): no agent on this env family forages above random, so the maintenance DV sits at its floor. BOTH named release conditions have RETURNED NEGATIVE: V3-EXQ-866a FAIL/non_contributory (resource_visit_rate FULL 0.00331 vs RANDOM 0.01033) and V3-EXQ-978 FAIL on the 1.0 D3 foraging-competence floor. The release owner therefore no longer exists; the live owner is whichever competence-floor route next clears D3 foraging above random. Status label blocked_substrate retained for tooling (it suppresses re-spawn)."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -39924,6 +39935,7 @@
       "design": "Two-arm ablation on an existing REE task with a reward-contingency change mid-episode (reuse an existing SD-032b/MECH-445-series env if one already has a contingency-switch phase; otherwise the smallest addition to the current fishtank_viz-style env that adds one). Arm A (dacc_weight=0, SD-032b OFF): baseline. Arm B (dacc_weight>0, SD-032b ON, as currently configured): dACC-analog active. PRIMARY DVs per arm, per seed: (i) outcome-sensitivity -- does the agent's trajectory selection shift toward the newly-favoured option within N ticks of the contingency change (an authority metric); (ii) execution strength -- softmax logit margin / selection confidence of the committed action at steady state (a gain metric, NOT action-class entropy). STEP 0, MANDATORY: confirm execution strength (logit margin) shows non-zero cross-arm and cross-seed variance in Arm A before treating any cross-arm comparison as a verdict -- if it is pinned near ceiling/floor in both arms, self-route substrate_not_ready_requeue.",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 180,
+      "executed_by_retracted_2026_09_23": "V3-EXQ-870",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion registration 2026-08-02 from docs/thoughts/2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md via MECH-480. Uses SD-032b's existing dacc_weight config flag -- no new substrate needed. Source paper cited in the raw intake only as 'a recent Nature Communications paper'; exact citation not yet pulled (flag for /lit-pull before finalizing the driver's docstring citation). Author via /queue-experiment per the mandatory skill path; do not write the driver directly from this proposal.",
       "objective": "Test whether SD-032b's dACC-analog output conflates two separable channels -- strategy authority (does accumulated action-outcome evidence retain control) and execution gain (how strongly the persisting policy is expressed) -- as MECH-480 proposes from an ACC/LOFC causal-dissociation paper. Deliberately uses a logit-margin/confidence execution-strength DV rather than action-class entropy, so the test does NOT require committed-action diversity and is not blocked by the F-dominance/committed-action floor-lock that has stalled MECH-260's own c2 retest (see MECH-260 notes, GOV-CEIL-1).",
@@ -39939,9 +39951,8 @@
       ],
       "source": "manual",
       "status": "proposed",
-      "target_repo": "ree-v3",
-      "executed_by_retracted_2026_09_23": "V3-EXQ-870",
-      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): the only runs are V3-EXQ-870 (ERROR) and V3-EXQ-870a (measurement-defect FAIL, non_contributory: half the cells ended before the contingency switch, so execution_strength was NaN where it had to be read). The routed 870b redesign was never queued (no script, queue entry or manifest), so no run has produced a scorable MECH-480 dissociation test. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping."
+      "status_correction_note_2026_09_23": "Reverted from 'executed' (GFLAG-0401; falsifier_completion_and_runnability_audit_20260921): the only runs are V3-EXQ-870 (ERROR) and V3-EXQ-870a (measurement-defect FAIL, non_contributory: half the cells ended before the contingency switch, so execution_strength was NaN where it had to be read). The routed 870b redesign was never queued (no script, queue entry or manifest), so no run has produced a scorable MECH-480 dissociation test. If a run is later identified, set executed_by/executed_queue_id instead of re-flipping.",
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -40761,6 +40772,7 @@
       "claim_id": "MECH-341",
       "design": "- title: `V3-EXQ-660c -- MECH-341 scoring-layer class-diversity preservation at an ARMED (raised-P1) candidate pool`\n  (note: the retired \"660c\" label was for the *graded-in-K* successor, which stays retired; if the\n  collision is judged confusing, mint a fresh number rather than a letter -- flagging it here rather\n  than deciding it, per the EXQ versioning policy's \"when in doubt, new number\".)\n- related_claims: `MECH-341` (primary), `ARC-065` (precondition owner + parent pathway),\n  `MECH-442` (consumer of the preserved diversity -- reads the same class statistic downstream),\n  `INV-076`, `MECH-257`\n- acceptance_checks:\n  - R1 measured `mean_distinct_first_action_classes >= 4.5` (of 5) in every arm, pre-scoring.\n  - R2 `n_stratified_fired > 0` on every ON arm and seed; `entropy_bonus_max_abs` recorded against\n    the measured `mean_top2_class_gap`.\n  - R3 fresh-select denominator; `n_latched` / `replication_factor` per cell.\n  - R4 `use_e3_score_diversity = False` control arm, bit-identical baseline asserted from the\n    substrate hash.\n  - C1 post-scoring distinct-class count strict-above the OFF control on >= 2/3 seeds.\n  - C2 `H(rep_signature | committed_class)` lift over legacy-argmin exceeding\n    `max(absolute_floor, k * SD(delta))` -- i.e. re-run 660's C2 with an SD-scaled gate rather than\n    the bare 0.05 that the original cleared by 0.031.\n  - Negative control (declare explicitly, so a null is interpretable): committed-CLASS entropy is\n    expected to stay flat -- it is the EXPECTED negative control per the 660 interpretation grid,\n    NOT a gate, and must not be read as a MECH-341 failure.\n  - Arms: 2x2 over {P1 clamp 2, P1 clamp `action_dim`} x {`use_e3_score_diversity` OFF, ON} so the\n    clamp's own contribution is dissociated from the preserver's.\n- Value if it PASSES: converts MECH-341's supports from \"stack-only / single-pathway\"\n  (`narrow_supports_flag`, recorded 2026-06-11 and still standing) to a result established at a\n  non-degenerate pool, which is the outstanding condition on any future promotion above\n  `provisional`.",
       "dispatch_mode": "multi_arm_ablation",
+      "governance_note_2026_09_23": "[GFLAG-0401] The retired label V3-EXQ-660c (it belonged to the graded-in-K successor) is removed from the proposed title; the queue id is assigned at queue time. The audit classes MECH-341 R0 (runnable now; V3-EXQ-949 showed the precondition reachable), so this proposal is the highest-readiness item in its batch.",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-341 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
       "objective": "Test MECH-341 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: `V3-EXQ-<next free letter at queue time; 660c is RETIRED, do not reuse> -- MECH-341 scoring-layer class-diversity preservation at an ARMED (raised-P1) candidate pool`\n  (note: the retired \"660c\" label was for the *graded-in-K* successor, which stays retired; if the\n  collision is judged confusing, mint a fresh number rather than a letter -- flagging it here rather\n  than deciding it, per the EXQ versioning policy's \"when in doubt, new number\".)\n- related_claims: `MECH-341` (primary), `ARC-065` (precondition owner + parent pathway),\n  `MECH-442` (consumer of the preserved diversity -- reads the same class statistic downstream),\n  `INV-076`, `MECH-257`\n- acceptance_checks:\n  - R1 measured `mean_distinct_first_action_classes >= 4.5` (of 5) in ",
@@ -40776,8 +40788,7 @@
       ],
       "source": "manual",
       "status": "proposed",
-      "target_repo": "ree-v3",
-      "governance_note_2026_09_23": "[GFLAG-0401] The retired label V3-EXQ-660c (it belonged to the graded-in-K successor) is removed from the proposed title; the queue id is assigned at queue time. The audit classes MECH-341 R0 (runnable now; V3-EXQ-949 showed the precondition reachable), so this proposal is the highest-readiness item in its batch."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -41124,10 +41135,10 @@
         "MECH-430"
       ],
       "release_condition": "Release when the P0a OBJECTIVE-DECOMPOSITION SEAM exists. Route via /implement-substrate, NOT via another lettered experiment here. Concretely, three backwards-compatible pass-throughs: (a) run_zworld_p0 forwards presence_weight, distance_weight, proximity_weight, reconstruction_weight, variance_weight and covariance_weight to ZWorldP0Config, each defaulting to the current ZWorldP0Config default so every existing caller stays bit-identical; (b) run_zworld_p0 accepts a caller-supplied proximity-target callable defaulting to the existing resource_prox_target, which is what makes the GOV-MATCHAUX-1 matched-arbitrary arm constructible at equal head capacity, loss budget, update frequency and example count; (c) _train_all_on_agent forwards the same set. Note for whoever builds it: experiments/_lib/** is folded into substrate_hash, so this edit correctly busts existing arm-reuse fingerprints (a false MISS, which only costs compute) -- that is expected, and is not a reason to route the change around _lib.\n\nWHAT BECOMES RUNNABLE THE MOMENT THE SEAM LANDS: the measurement-only preservation ladder, 5 arms x >=3 seeds, no action-commitment substrate required and therefore NOT gated on the conversion / F-dominance ceiling -- A0 rawfield_ceiling (NDP-3), A1 untrained projection (NDP-4 floor), A2 generic-only (variance/covariance/reconstruction only, all four class-1 weights at 0.0) as the F1 verdict arm, A3 generic + class-1 scaffold, A4 generic + matched-arbitrary target through the new callable. Verdict statistic R_1 = (agreement_arm - agreement_A1) / (agreement_A0 - agreement_A1) via the V3-EXQ-1002 oracle adapter at its pinned 2x128 capacity. Pre-registered readings: F1 fires at R_1(A2) >= 0.75; condition (i) is already discharged (see gating_reason) and A2/A3 only need to replicate it; the R_k leg of (iii) is R_1(A3) - R_1(A2) >= 0.20 absolute; the GOV-MATCHAUX-1 discrimination of (iv) is R_1(A3) - R_1(A4) >= 2x SD of the seed-matched delta; condition (ii) losses-blind is delta world_obs reconstruction loss and delta E2 one-step prediction MSE between A3 and A2, each within 1 SD of the within-arm seed spread. Route F3 (scaffold dependence) is structurally non-applicable and should be reported as such rather than tested: SD-070's auxiliary heads belong to the TRAINER, not the substrate, and are discarded when train() returns, so NDP-6(ii) 'evaluation with the auxiliary head REMOVED' holds by construction.\n\nDO NOT queue the organism-level legs with that ladder. Conditions (iii)/(iv) read at the resources/episode DV, and route F2, stay blocked on NDP-5 until the competence floor is cleared -- the agent sits at ~0.27 res/ep against a 1.0 floor with the demonstrator anchor at 45.75, so a flat organism-level DV there is uninterpretable rather than negative, which is precisely the vacuous re-derivation of the known conversion ceiling. Split them into a separate proposal gated on the competence floor.\n\nTWO CHECKS TO RE-RUN AT QUEUE TIME rather than trusting this note: (1) Step 2.5c substrate-path overlap -- this session stopped at Step 2.5a and never reached a queue decision, and there are open corrupting entries (mode-governance-engagement, status implemented_pending_validation; SD-082) whose substrate_paths include ree_core/agent.py and ree_core/utils/config.py. They are almost certainly off a measurement-only driver's path (the ladder never runs the agent's decision loop -- no select_action, no sense(); the agent is an encoder container and the rollouts are oracle- or random-driven), but that is a judgement to make against the driver as actually written, not in advance. (2) V3-EXQ-1010's result: if the over-capacity decoder sweep recovers the oracle mapping at higher decoder capacity, R_1 at INV-104's own pinned adapter capacity remains the defined statistic, but its reading as content destruction rather than capacity limitation is contested, and the ladder's framing should say so explicitly.",
+      "release_condition_note_2026_09_23": "The release_condition below (the P0a seam) is MET; do not read that as release. Operative release: the INV-104 adapter DV re-gated on the objective-choice contrast (C0 responds) and the sense-path probe refit on its evaluation path (GFLAG-0401).",
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3",
-      "release_condition_note_2026_09_23": "The release_condition below (the P0a seam) is MET; do not read that as release. Operative release: the INV-104 adapter DV re-gated on the objective-choice contrast (C0 responds) and the sense-path probe refit on its evaluation path (GFLAG-0401)."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
@@ -41222,9 +41233,14 @@
       ],
       "added_utc": "2026-09-06",
       "backlog_id": null,
+      "blocked_by": [
+        "SD-063"
+      ],
+      "blocked_note": "GFLAG-0401 (falsifier_completion_and_runnability_audit_20260921, SD-063 R4 / INV-022 R4): conditional_predictive_variance is never passed to e3.select() -- agent.py's _e3_select_kwargs carries no such key (re-verified 2026-09-23: zero hits in ree_core/agent.py), so select() always receives None and falls back to the EMA even with the flag True. A run setting only the flag would measure the EMA arm TWICE.",
       "claim_id": "SD-063",
       "design": "- *title:* \"V3-EXQ-XXX -- SD-063 conditional-uncertainty head: nominal-interval calibration and E3\n  commit-gate consumption\" (two-part: a calibration arm reusing 716a's phased P0/P1/P2 protocol with\n  `encoders_trained: true`, and a yoked commit-gate arm that is the first ever exercise of\n  `use_conditional_precision_gate`).\n- *related_claims:* SD-063 (primary), MECH-059 (the confidence channel this realizes), SD-031 (the agency\n  residual guard, F4), IMPL-022 (the contract field `latent_uncertainty_calibration_error` this run would\n  be the first to emit). Report-only cross-references, no claim_ids beyond SD-063 unless the driver\n  genuinely scores them.\n- *acceptance_checks:* preconditions (i)-(iv) above as gating readiness checks; C1/C2/C3 as the\n  calibration arm's scored criteria (per-seed majority of 5); C4 as the commit-gate arm's scored criterion\n  with F3 pre-registered as its own off-ramp label (`head_computed_never_consumed_at_commit_gate`), so an\n  inert result is a recorded finding rather than an ambiguous FAIL; F4 as a hard guard on both arms.\n  Emit `coverage_80` / `coverage_err_80` per arm per seed (lift the instrument verbatim from\n  `v3_exq_977_arc052_harm_stream_conditional_precision.py`) and `latent_uncertainty_calibration_error`\n  under IMPL-022's stable key.\n- *cheap first move, before queueing anything:* re-run 977's coverage instrument over 716a's already-banked\n  configuration. If the deficit survives a trained encoder, F1 fires on existing evidence and the\n  calibration arm can be skipped in favour of a narrowing.",
       "dispatch_mode": "multi_arm_ablation",
+      "gating_reason": "The two-arm design's conditional arm is unreachable: the commit-gate consumer (e3_selector.py) exists, but nothing produces its input in the live loop. The fix is one kwarg in agent.py's _e3_select_kwargs (read head.predictive_variance for the leading candidate's (z_world, a) and pass it), not a new mechanism.",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on SD-063 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
       "objective": "Test SD-063 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - *title:* \"V3-EXQ-XXX -- SD-063 conditional-uncertainty head: nominal-interval calibration and E3\n  commit-gate consumption\" (two-part: a calibration arm reusing 716a's phased P0/P1/P2 protocol with\n  `encoders_trained: true`, and a yoked commit-gate arm that is the first ever exercise of\n  `use_conditional_precision_gate`).\n- *related_claims:* SD-063 (primary), MECH-059 (the confidence channel this realizes), SD-031 (the agency\n  residual guard, F4), IMPL-022 (the contract field `latent_uncertainty_calibration_error` this run would\n  be the first to emit). Report-only cross-references, no claim_ids beyond SD-063 unless the driver\n  genuinely scores them.\n- *acceptance_checks:* precondition",
@@ -41237,15 +41253,10 @@
         "MECH-059",
         "SD-031"
       ],
+      "release_condition": "agent.py passes conditional_predictive_variance into e3.select() on the live path, with a contract test asserting the conditional arm differs from the EMA arm; then this proposal returns to proposed with the plumbing stated as a precondition.",
       "source": "manual",
       "status": "blocked_substrate",
-      "target_repo": "ree-v3",
-      "blocked_by": [
-        "SD-063"
-      ],
-      "blocked_note": "GFLAG-0401 (falsifier_completion_and_runnability_audit_20260921, SD-063 R4 / INV-022 R4): conditional_predictive_variance is never passed to e3.select() -- agent.py's _e3_select_kwargs carries no such key (re-verified 2026-09-23: zero hits in ree_core/agent.py), so select() always receives None and falls back to the EMA even with the flag True. A run setting only the flag would measure the EMA arm TWICE.",
-      "gating_reason": "The two-arm design's conditional arm is unreachable: the commit-gate consumer (e3_selector.py) exists, but nothing produces its input in the live loop. The fix is one kwarg in agent.py's _e3_select_kwargs (read head.predictive_variance for the leading candidate's (z_world, a) and pass it), not a new mechanism.",
-      "release_condition": "agent.py passes conditional_predictive_variance into e3.select() on the live path, with a contract test asserting the conditional arm differs from the EMA arm; then this proposal returns to proposed with the plumbing stated as a precondition."
+      "target_repo": "ree-v3"
     },
     {
       "acceptance_checks": [
