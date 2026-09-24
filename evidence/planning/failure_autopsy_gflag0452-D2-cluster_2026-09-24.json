@@ -1,0 +1,784 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-24T09:11:28Z",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "producer_session": "governance-20260924-autopsy-d2 (subagent of /governance session governance-20260924)",
+  "source_flag": "GFLAG-0452 (user decision rec-20260924-34e4e088)",
+  "skim_source": "REE_assembly/evidence/planning/gflag0250_pass_driver_skim_20260924.json",
+  "dry_run_checked": true,
+  "dry_run_check_note": "scripts/check_dry_run_citations.py run over all 6 targets plus the sibling manifests v3_exq_171_..._20260330T070404Z_v3 (clean, already superseded) and v3_exq_615_..._20260531T082211Z_v3 (DRY -- excluded; never cited as evidence).",
+  "excluded_dry_run_ids": [
+    "v3_exq_615_arc065_rung1_matched_entropy_20260531T082211Z_v3"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_501_sd035_amygdala_analog_vs_binary_20260429T192730Z_v3",
+      "queue_id": "V3-EXQ-501",
+      "claim_ids": [
+        "SD-035"
+      ],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "PASS",
+      "failed_criterion": "none (PASS) -- re-adjudicated: contrast by construction (D2_contrast_by_construction)",
+      "skim_verdict": "D2_contrast_by_construction",
+      "skim_verified": "CONFIRMED with one refinement: the CeA/BLA substrate modules ARE called (ree_core.amygdala), but only on the negative-valence half; on the positive half harm_level=0 so mode_prior=fast_prime=0 and the readout is pure driver arithmetic logit=3*v (manifest rows confirm mode_prior 0.0, encoding_gain 1.0). BINARY_SIGN_ONLY (:53-56) feeds a constant 1.0 to every same-sign input. Half-split recompute: the PASS margin comes entirely from the positive half (ANALOG RMSE ~0.048 vs BINARY ~0.183) where the substrate is not engaged; on the substrate-engaged negative half ANALOG is slightly worse (0.155 vs 0.148-0.153, 3/3 seeds).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- SD-035's registered falsifiers are CeA ON-vs-OFF on mode-switch latency and a live-loop BLA recall task; 501 substitutes an input-quantisation contrast that does not remove the substrate",
+        "biological_reference": "clear -- BLA/CeA graded valence coding (targeted_review_sd_035, targeted_review_amygdala_analog present)",
+        "prerequisites": "present (BLAAnalog/CeAAnalog built; 473/474 readiness PASS)",
+        "implementation": "complete for the substrate; the test harness is a driver-authored readout (logit weights :68-73) with no agent, no environment, no training",
+        "environment": "absent -- synthetic valence sweep of 24 points, no environment",
+        "measurement": "misleading -- the ablation destroys input information the target sigmoid(4*valence) is a function of; the analog arm wins by information content, by construction",
+        "integration": "isolated (single tick() calls, no loop)",
+        "scale": "n/a -- 3 seeds are pseudo-replicates (grid + +/-0.015 jitter; rmse_reduction 0.308/0.314/0.316)"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (contrast by construction) + ENVIRONMENT absent -- not chargeable to REE; PASS carries no information about SD-035"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BLA/CeA graded salience and mode priors",
+        "dependencies": [
+          "z_harm_a affective stream (SD-011)",
+          "salience coordinator"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present (targeted_review_sd_035; targeted_review_amygdala_analog)"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-035": "non_contributory"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (contrast by construction on a driver-authored readout). No ceiling asserted.",
+      "recommended_evidence_quality_note": "2026-09-24 D2 cluster autopsy (failure_autopsy_gflag0452-D2-cluster_2026-09-24, GFLAG-0452, staging): V3-EXQ-501 is re-read non_contributory. It is arithmetic on a driver-authored readout (logit weights hand-set at driver :68-73, target sigmoid(4*valence) :75), no agent/environment/training; the BINARY_SIGN_ONLY arm feeds constant 1.0 to every same-sign input (:53-56), discarding the magnitude the target is a function of, so the ANALOG arm wins by information content, by construction. Split by half (recomputed from condition_results): on the positive half, where the substrate is NOT engaged (harm_level=0 -> mode_prior=fast_prime=0, logit=3*v is driver arithmetic), ANALOG RMSE ~0.048 vs BINARY ~0.183; on the negative half, where CeA/BLA ARE engaged, ANALOG is slightly WORSE (0.155-0.156 vs 0.148-0.153, all 3 seeds; CeA mode_prior is 0.0 below harm ~0.5, a dead zone). The whole PASS margin is substrate-free. The 3 seeds differ only by +/-0.015 valence jitter (pseudo-replicates). SD-035's own registered falsifiers (CeA ON-vs-OFF mode-switch latency; live-loop BLA threat-vs-neutral recall) remain unexecuted as literally worded. SD-035's stable status rests on V3-EXQ-473/474 (readiness), 659, 762, 888, not on 501; live_status.evidence.from currently cites 501 and should be re-pointed. The what_would_answer text listing 501 as 'behavioral discrimination that the analog form is load-bearing' should be corrected.",
+      "per_claim_recommendation": {
+        "SD-035": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "status_change": "none -- stays stable (status rests on 473/474/659/762/888, not on 501)",
+          "change": "501 direction supports -> non_contributory; re-point live_status.evidence.from off the 501 run; SD-035 currently carries NO epistemic_category, so set one -> epistemic_category: standard"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "note": "No ceiling reading. granularity_debt_cluster.py SD-035: 0 tagging targets."
+      },
+      "learning_extracted": [
+        "An ablation that quantises the INPUT rather than removing the SUBSTRATE tests information content, not the substrate.",
+        "Seeds that only jitter a deterministic grid are pseudo-replicates; 3/3 seed passes carry the weight of one."
+      ],
+      "routing": "governance-reclassification (direction non_contributory). Optional, not owed by this autopsy: the literal EXQ-A (CeA ON-vs-OFF mode-switch latency with zeroed-prior control) via /queue-experiment if governance wants the letter of SD-035's registration closed."
+    },
+    {
+      "run_id": "v3_exq_615_arc065_rung1_matched_entropy_20260531T093116Z_v3",
+      "queue_id": "V3-EXQ-615",
+      "claim_ids": [
+        "ARC-065"
+      ],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "PASS",
+      "readjudication_of": "failure_autopsy_MECH-341-cluster_2026-05-31 (confirmed; read in full)",
+      "failed_criterion": "none (PASS) -- re-adjudicated: control not matched (D2_control_not_matched)",
+      "skim_verdict": "D2_control_not_matched",
+      "skim_verified": "CONFIRMED and EXTENDED. ARM_1 entropy 0.0 in all 3 seeds (n_unique_classes 1), identical to ARM_0; MATCHED_NOISE_ALPHA=0.3 was never tuned (driver :150-155 'may need tuning'), so C2 (:504-506) collapses into ARM_2 - 0. Additionally: (a) the prior autopsy's own mechanism note (MECH-313 needs a multi-class candidate pool; the non-SP-CEM proposer yields single-class pools) means ARM_1 is STRUCTURALLY unable to produce entropy at any alpha -- the matched-entropy question was unaskable in this design, not merely mistuned; (b) NEW: an episode-length confound -- ARM_2 selected-action totals 1571/1254/687 over 60 P1 episodes (~26/21/11 steps per episode) vs ARM_0/ARM_1 11040-11806 (~184-197 steps) on seeds 42/44; done = health depleted or step cap (causal_grid_world.py:3356), so the ALL_ON agent dies ~7-17x faster and its 'diversity' is measured over short harm-terminated episodes. Seed 43 ARM_0/ARM_1 record only 359 actions (~6 steps per episode), itself anomalous.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the FP-2 matched-entropy control that was the experiment's stated purpose (structured diversity vs entropy-matched noise) was not tested; only ALL_ON-vs-nothing (C1/C3) was",
+        "biological_reference": "partial -- distributed motor-variability channels (LC-NE tonic, frontopolar, striatal novelty, hippocampal sampling); targeted_review_arc_065 present",
+        "prerequisites": "present for ARM_2; ARM_1's noise lever lacks its own prerequisite (a multi-class candidate pool)",
+        "implementation": "partial -- ARM_1's MECH-313 noise floor is inert by DEFECT in this configuration (neutralising default: the non-SP-CEM proposer emits single-class pools, so noise has nothing to randomise over)",
+        "environment": "partial -- survival differs ~10x between arms, so entropy is measured over non-comparable episode populations",
+        "measurement": "misleading -- zero-entropy control makes C2 = C1; no precondition gate on control entropy; no episode-length normalisation",
+        "integration": "coupled but inert (ARM_1 noise floor: neutralising guard/default -- fix: inject noise at the final selection AFTER candidate generation, or give ARM_1 SP-CEM with the structured channels off, and verify |H_ARM1 - H_ARM2| <= 0.15 as a precondition)",
+        "scale": "adequate"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (control not matched) + MECHANISM partial (ARM_1 inert by defect) + ENVIRONMENT partial (survival confound) -- MIXED, not chargeable to REE"
+      },
+      "biological_reference": {
+        "closest_mechanism": "distributed behavioural-variability generation (LC-NE tonic noise + structured curiosity + hippocampal sampling)",
+        "dependencies": [
+          "SP-CEM",
+          "MECH-313",
+          "MECH-341",
+          "V_s"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present (targeted_review_arc_065_behavioral_diversity_generation)"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-065": "non_contributory"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (unmatched, structurally-inert noise control; episode-length confound). Interpretable signal retained at the implementation layer: MECH-313 alone cannot generate selected-action diversity without a multi-class proposer.",
+      "recommended_evidence_quality_note": "2026-09-24 D2 cluster autopsy (failure_autopsy_gflag0452-D2-cluster_2026-09-24, GFLAG-0452, staging) RE-ADJUDICATES V3-EXQ-615 (supersedes the 615 disposition in failure_autopsy_MECH-341-cluster_2026-05-31): supports -> non_contributory. The FP-2 'matched-entropy' control ARM_1 produced 0.0 nats in all 3 seeds (identical to BASE_OFF); noise_floor_alpha was never tuned to match ARM_2 and, per the prior autopsy's own mechanism note, MECH-313 cannot generate class diversity without a multi-class proposer, so the control was structurally unable to match. C2 therefore reduces to C1 and the structured-vs-noise question the run existed to answer was not tested. Separately, ARM_2 episodes ended ~7-17x sooner than ARM_0/ARM_1 (~11-26 vs ~184-197 steps; done = health depleted), so ALL_ON 'diversity' is measured over short harm-terminated episodes. Interpretable signal: an implementation-layer finding (MECH-313 inert without SP-CEM), not ARC-065 evidence. The discrimination ARC-065 needs (structured diversity vs entropy-matched unstructured noise, at matched survival) remains owed.",
+      "per_claim_recommendation": {
+        "ARC-065": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "status_change": "none now -- stays stable PENDING the V3-EXQ-569i read-across (see read_across_not_adjudicated); if 569i's matched-noise control is confirmed inert, ARC-065 has no run discriminating structured diversity from noise and should be reviewed for stable -> provisional",
+          "change": "615 direction supports -> non_contributory (supersedes the 615 disposition in failure_autopsy_MECH-341-cluster_2026-05-31); ARC-065 already carries epistemic_category standard, so no category write -> stamp this cluster artifact"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "supersedes_autopsy": "failure_autopsy_MECH-341-cluster_2026-05-31",
+        "note": "Direction supports -> non_contributory with category standard + instrument marker in note: R3 step 2, does not count. ARC-065 granularity cluster: 16 targets, alignment intact=9 unclear=4 strengthened=2 coarse=1, no 'weakened' -> trigger does not fire."
+      },
+      "learning_extracted": [
+        "A matched control needs a precondition gate on the matched quantity; a zero-entropy 'matched' control should have been precondition_unmet, not PASS.",
+        "A noise lever acting on selection over a single-class pool is inert by construction; inject control noise downstream of candidate generation.",
+        "Entropy over arms with ~10x different survival is not comparable; normalise per step window or match survival."
+      ],
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1-structured: the full ARC-065 stack produces selected-action diversity with structure (context-dependence) beyond entropy-matched unstructured noise",
+          "H2-entropy-equivalent: ALL_ON diversity is indistinguishable from unstructured noise at matched entropy",
+          "H3-survival-artefact: ALL_ON diversity is an artefact of short harm-terminated episodes (early-episode thrash)"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H1 vs H2",
+            "axis": "measurement",
+            "sketch": "structure readout at matched entropy: mutual information between selected action class and local context (hazard/resource field bins) for ALL_ON vs a noise control injected at FINAL selection, with a precondition gate |H_noise - H_ALL_ON| <= 0.15 nats else precondition_unmet. Null: MI(ALL_ON) - MI(noise) <= 0."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "algorithm",
+            "sketch": "noise control = SP-CEM ON with structured channels (MECH-341, V_s, MECH-314) OFF and temperature tuned per seed to match ALL_ON entropy; tests whether the proposer alone plus noise reproduces ALL_ON behaviour. Null: behavioural readouts (harm, resource rate, MI) not different from ALL_ON."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "environment",
+            "sketch": "survival-matched measurement: compute entropy over the first N steps of every episode (N = min survival across arms) or in a harm-free reef variant; null: ALL_ON entropy advantage vanishes under survival matching."
+          }
+        ],
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage + aliasing before queuing) instead of one sequential 615a. Check first that the V3-EXQ-569i read-across does not already change the question."
+      },
+      "read_across_not_adjudicated": [
+        {
+          "run_id": "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier_20260616T224009Z_v3",
+          "bears_on": "ARC-065 stable status (claims.yaml evidence_quality_note cites 569i as lifting substrate_ceiling via 'C_R1B strict-above BOTH matched-noise AND the proposer')",
+          "observation": "569i's ARM_2_MATCHED_NOISE (proposer @ T=2.5) records selected_action_class_entropy BIT-IDENTICAL to ARM_0_PROPOSER in all 3 seeds (1.129161 / 0.004701 / 0.817179, identical n_p1_ticks 499/3616/341): the temperature knob did not change a single selection, so 'strict above both' reduces to 'strict above the proposer'. Mechanism (red-team source read): proposer-summary arms have route_range 0.0, so the top-k pick softmax(-mod_eligible/T) (ree_core/predictors/e3_selector.py:4344-4347) is uniform at any T on the same RNG stream; 569i's own summary.negative_control note says the control does not gate the verdict. Same D2_control_not_matched shape. ARM_1 beat ARM_0 in 2 of 3 seeds by ~0.08-0.10 nats and scored 0.0 on seed 43.",
+          "recommended_action": "add 569i to the GFLAG-0452 D2 population and adjudicate before relying on it for ARC-065's stable status. NOT adjudicated here (out of target scope)."
+        }
+      ],
+      "routing": "queue-experiment (GOV-FANOUT-1 portfolio, routed by /governance after ratification) + governance-reclassification of 615"
+    },
+    {
+      "run_id": "v3_exq_171_mech033_kernel_chain_pair_20260329T213946Z_v3",
+      "queue_id": "V3-EXQ-171",
+      "claim_ids": [
+        "MECH-033"
+      ],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "PASS",
+      "failed_criterion": "none (PASS) -- re-adjudicated: ablation-contrast confound (D2_ablation_confound)",
+      "skim_verdict": "D2_ablation_confound",
+      "skim_verified": "CONFIRMED (driver :342; manifest per_seed_results)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the claim could not express itself: no hippocampal module exists in the inline architecture, and the contrast (planner+HarmHead+E2 vs uniform random) cannot attribute the delta to E2 seeding",
+        "biological_reference": "clear -- hippocampal forward sweeps / preplay (Johnson & Redish 2007; Pfeiffer & Foster 2013) seeded by cortical/cerebellar forward models; targeted_review_connectome_mech_033 present",
+        "prerequisites": "present (E2 world_forward trained, r2 0.95-0.99 recorded per seed)",
+        "implementation": "partial -- symbol of the mechanism, not its role: no HippocampalModule; 'k=3 chain' = one action then two forced STAY steps",
+        "environment": "adequate for harm avoidance (random-arm 4000+ harm events per seed)",
+        "measurement": "misleading -- the ablation comparator is uniform random, removing HarmHead and planner together with E2 seeding; the comparator is a fixed env+seed constant shared across all four runs",
+        "integration": "isolated (inline toy architecture, not the REEAgent pipeline)",
+        "scale": "adequate for what was measured"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (ablation confound) + MECHANISM partial (no hippocampal module) -- not chargeable to REE; the PASS is not evidence FOR the claim either"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal forward sweeps seeded by action-conditioned cortical/cerebellar forward models",
+        "dependencies": [
+          "hippocampal rollout generator",
+          "E2 action-conditioned forward model",
+          "harm/value readout (E3)"
+        ],
+        "is_formal_import": false,
+        "divergence": "the runs implement a greedy one-action lookahead over a linear forward model; no hippocampal stage exists to be seeded",
+        "lit_status": "present (targeted_review_connectome_mech_033)"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-033": "non_contributory"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (ablation confound: random-action comparator removes HarmHead + planner, not only E2 seeding). No substrate ceiling asserted; standard is the behaviour-preserving mapping.",
+      "recommended_evidence_quality_note": "2026-09-24 D2 cluster autopsy (failure_autopsy_gflag0452-D2-cluster_2026-09-24, GFLAG-0452, staging): V3-EXQ-171 / V3-EXQ-184 (x2 manifests) / V3-EXQ-308 PASSes do not isolate the MECH-033 mechanism. The ablation arm (ABLATED / NO_CHAIN) is uniform random action (drivers :342 / :346 / :529), which removes the trained HarmHead AND the planner, not only E2-kernel seeding; any harm-aware selector would beat it. The random arm is a fixed property of env+seed, independent of every trained module: seed 42 = 0.061516023781776445 harm_rate / 4179 events, bit-identical in 171 / 184-0401 / 184-0404 and equal to within 1e-16 in 308 (seeds 7/13 likewise across 184 x2 and 308), so the four 'supports' share one comparator. There is no hippocampal module (inline Linear encoders), and the k=3 'chain' is one action followed by two forced STAY steps, i.e. a one-action lookahead with persistence, not a seeded multi-step rollout. The claim's own manipulation spec ('ablate the E2-kernel-to-hippocampal handoff while leaving rollouts and E3 scoring otherwise intact') is the opposite of what these runs did. Direction: non_contributory (171, 184-0401, 308); 184-0404 is a same-design same-seed duplicate -> superseded. The only MECH-033 run with a real HippocampalModule and a matched-budget non-random comparator is V3-EXQ-055 (AO_CHAIN vs SELF_CHAIN); 055 is a single seed (driver --seed default=0) and its SELF_CHAIN comparator sits near random (harm 0.0684 = 91% of RANDOM 0.0754; cal_gap_self 0.021 below 055's own C4 floor 0.03), so even 055 is a weak discrimination. The 'measured four times' / 'fired four times' wording in what_would_answer, and the 'replicated 4x PASS' reading carried by the live_status source (failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08), are inaccurate and should be corrected. A discriminating portfolio (k=0 HarmHead-greedy, E2-scrambled, k=1 vs k=3 non-STAY continuation, E2-seeded vs random-seeded hippocampal rollout) is owed. 171 is the 2-seed (42,123) predecessor; its duplicate manifest 20260330T070404Z is already superseded (precedent for the 184 disposition).",
+      "per_claim_recommendation": {
+        "MECH-033": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "status_change": "active -> provisional (evidence-weight correction, NOT falsification; see cluster status_recommendations) -- user decision at Step 8",
+          "change": "171 direction supports -> non_contributory"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "note": "No substrate_ceiling reading; instrument/test-design defect owing no build. granularity_debt_cluster.py MECH-033: 0 tagging targets (+2 superseded)."
+      },
+      "learning_extracted": [
+        "A random-action ablation removes every learned component at once; it cannot isolate one link in the chain (E2 seeding).",
+        "The random comparator is a deterministic env+seed constant: re-running it adds no information, so N runs sharing it are one comparison, not N.",
+        "'k-step chain' with STAY continuation is a one-action lookahead; it does not exercise multi-step kernel chaining."
+      ],
+      "routing": "queue-experiment (GOV-FANOUT-1 discrimination portfolio; routed by /governance after Step 2b ratification, not chipped here)"
+    },
+    {
+      "run_id": "v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3",
+      "queue_id": "V3-EXQ-184",
+      "claim_ids": [
+        "MECH-033"
+      ],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "PASS",
+      "failed_criterion": "none (PASS) -- re-adjudicated: ablation-contrast confound (D2_ablation_confound)",
+      "skim_verdict": "D2_ablation_confound",
+      "skim_verified": "CONFIRMED (driver :346; manifest per_seed_results)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the claim could not express itself: no hippocampal module exists in the inline architecture, and the contrast (planner+HarmHead+E2 vs uniform random) cannot attribute the delta to E2 seeding",
+        "biological_reference": "clear -- hippocampal forward sweeps / preplay (Johnson & Redish 2007; Pfeiffer & Foster 2013) seeded by cortical/cerebellar forward models; targeted_review_connectome_mech_033 present",
+        "prerequisites": "present (E2 world_forward trained, r2 0.95-0.99 recorded per seed)",
+        "implementation": "partial -- symbol of the mechanism, not its role: no HippocampalModule; 'k=3 chain' = one action then two forced STAY steps",
+        "environment": "adequate for harm avoidance (random-arm 4000+ harm events per seed)",
+        "measurement": "misleading -- the ablation comparator is uniform random, removing HarmHead and planner together with E2 seeding; the comparator is a fixed env+seed constant shared across all four runs",
+        "integration": "isolated (inline toy architecture, not the REEAgent pipeline)",
+        "scale": "adequate for what was measured"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (ablation confound) + MECHANISM partial (no hippocampal module) -- not chargeable to REE; the PASS is not evidence FOR the claim either"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal forward sweeps seeded by action-conditioned cortical/cerebellar forward models",
+        "dependencies": [
+          "hippocampal rollout generator",
+          "E2 action-conditioned forward model",
+          "harm/value readout (E3)"
+        ],
+        "is_formal_import": false,
+        "divergence": "the runs implement a greedy one-action lookahead over a linear forward model; no hippocampal stage exists to be seeded",
+        "lit_status": "present (targeted_review_connectome_mech_033)"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-033": "non_contributory"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (ablation confound: random-action comparator removes HarmHead + planner, not only E2 seeding). No substrate ceiling asserted; standard is the behaviour-preserving mapping.",
+      "recommended_evidence_quality_note": "2026-09-24 D2 cluster autopsy (failure_autopsy_gflag0452-D2-cluster_2026-09-24, GFLAG-0452, staging): V3-EXQ-171 / V3-EXQ-184 (x2 manifests) / V3-EXQ-308 PASSes do not isolate the MECH-033 mechanism. The ablation arm (ABLATED / NO_CHAIN) is uniform random action (drivers :342 / :346 / :529), which removes the trained HarmHead AND the planner, not only E2-kernel seeding; any harm-aware selector would beat it. The random arm is a fixed property of env+seed, independent of every trained module: seed 42 = 0.061516023781776445 harm_rate / 4179 events, bit-identical in 171 / 184-0401 / 184-0404 and equal to within 1e-16 in 308 (seeds 7/13 likewise across 184 x2 and 308), so the four 'supports' share one comparator. There is no hippocampal module (inline Linear encoders), and the k=3 'chain' is one action followed by two forced STAY steps, i.e. a one-action lookahead with persistence, not a seeded multi-step rollout. The claim's own manipulation spec ('ablate the E2-kernel-to-hippocampal handoff while leaving rollouts and E3 scoring otherwise intact') is the opposite of what these runs did. Direction: non_contributory (171, 184-0401, 308); 184-0404 is a same-design same-seed duplicate -> superseded. The only MECH-033 run with a real HippocampalModule and a matched-budget non-random comparator is V3-EXQ-055 (AO_CHAIN vs SELF_CHAIN); 055 is a single seed (driver --seed default=0) and its SELF_CHAIN comparator sits near random (harm 0.0684 = 91% of RANDOM 0.0754; cal_gap_self 0.021 below 055's own C4 floor 0.03), so even 055 is a weak discrimination. The 'measured four times' / 'fired four times' wording in what_would_answer, and the 'replicated 4x PASS' reading carried by the live_status source (failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08), are inaccurate and should be corrected. A discriminating portfolio (k=0 HarmHead-greedy, E2-scrambled, k=1 vs k=3 non-STAY continuation, E2-seeded vs random-seeded hippocampal rollout) is owed. 184 is double-manifested (0401 and 0404, same driver, same seeds 42/7/13, NO_CHAIN arm bit-identical); the 0401 original keeps the (now non_contributory) weight and 0404 -> superseded, following the 171 precedent.",
+      "per_claim_recommendation": {
+        "MECH-033": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "status_change": "active -> provisional (evidence-weight correction, NOT falsification; see cluster status_recommendations) -- user decision at Step 8",
+          "change": "184-0401 is the canonical 184 manifest and keeps the weight; direction supports -> non_contributory"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "note": "No substrate_ceiling reading; instrument/test-design defect owing no build. granularity_debt_cluster.py MECH-033: 0 tagging targets (+2 superseded)."
+      },
+      "learning_extracted": [
+        "A random-action ablation removes every learned component at once; it cannot isolate one link in the chain (E2 seeding).",
+        "The random comparator is a deterministic env+seed constant: re-running it adds no information, so N runs sharing it are one comparison, not N.",
+        "'k-step chain' with STAY continuation is a one-action lookahead; it does not exercise multi-step kernel chaining."
+      ],
+      "routing": "queue-experiment (GOV-FANOUT-1 discrimination portfolio; routed by /governance after Step 2b ratification, not chipped here)",
+      "double_count": {
+        "canonical": "v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3",
+        "duplicate": "v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3",
+        "rule": "earliest manifest keeps weight; later same-design same-seed re-run -> superseded (matches 171's existing 0329 kept / 0330 superseded)"
+      }
+    },
+    {
+      "run_id": "v3_exq_184_mech033_kernel_chain_pair_20260404T161554Z_v3",
+      "queue_id": "V3-EXQ-184 (rerun)",
+      "claim_ids": [
+        "MECH-033"
+      ],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "PASS",
+      "failed_criterion": "none (PASS) -- re-adjudicated: ablation-contrast confound (D2_ablation_confound)",
+      "skim_verdict": "D2_ablation_confound",
+      "skim_verified": "CONFIRMED (driver :346; manifest per_seed_results)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the claim could not express itself: no hippocampal module exists in the inline architecture, and the contrast (planner+HarmHead+E2 vs uniform random) cannot attribute the delta to E2 seeding",
+        "biological_reference": "clear -- hippocampal forward sweeps / preplay (Johnson & Redish 2007; Pfeiffer & Foster 2013) seeded by cortical/cerebellar forward models; targeted_review_connectome_mech_033 present",
+        "prerequisites": "present (E2 world_forward trained, r2 0.95-0.99 recorded per seed)",
+        "implementation": "partial -- symbol of the mechanism, not its role: no HippocampalModule; 'k=3 chain' = one action then two forced STAY steps",
+        "environment": "adequate for harm avoidance (random-arm 4000+ harm events per seed)",
+        "measurement": "misleading -- the ablation comparator is uniform random, removing HarmHead and planner together with E2 seeding; the comparator is a fixed env+seed constant shared across all four runs",
+        "integration": "isolated (inline toy architecture, not the REEAgent pipeline)",
+        "scale": "adequate for what was measured"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (ablation confound) + MECHANISM partial (no hippocampal module) -- not chargeable to REE; the PASS is not evidence FOR the claim either"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal forward sweeps seeded by action-conditioned cortical/cerebellar forward models",
+        "dependencies": [
+          "hippocampal rollout generator",
+          "E2 action-conditioned forward model",
+          "harm/value readout (E3)"
+        ],
+        "is_formal_import": false,
+        "divergence": "the runs implement a greedy one-action lookahead over a linear forward model; no hippocampal stage exists to be seeded",
+        "lit_status": "present (targeted_review_connectome_mech_033)"
+      },
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-033": "superseded"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "same-ID re-run (pseudo-replicate of 184-0401, training-nondeterminism differences only) + measurement_test_design_defect (ablation confound). standard: no ceiling asserted.",
+      "recommended_evidence_quality_note": "2026-09-24 D2 cluster autopsy (failure_autopsy_gflag0452-D2-cluster_2026-09-24, GFLAG-0452, staging): V3-EXQ-171 / V3-EXQ-184 (x2 manifests) / V3-EXQ-308 PASSes do not isolate the MECH-033 mechanism. The ablation arm (ABLATED / NO_CHAIN) is uniform random action (drivers :342 / :346 / :529), which removes the trained HarmHead AND the planner, not only E2-kernel seeding; any harm-aware selector would beat it. The random arm is a fixed property of env+seed, independent of every trained module: seed 42 = 0.061516023781776445 harm_rate / 4179 events, bit-identical in 171 / 184-0401 / 184-0404 and equal to within 1e-16 in 308 (seeds 7/13 likewise across 184 x2 and 308), so the four 'supports' share one comparator. There is no hippocampal module (inline Linear encoders), and the k=3 'chain' is one action followed by two forced STAY steps, i.e. a one-action lookahead with persistence, not a seeded multi-step rollout. The claim's own manipulation spec ('ablate the E2-kernel-to-hippocampal handoff while leaving rollouts and E3 scoring otherwise intact') is the opposite of what these runs did. Direction: non_contributory (171, 184-0401, 308); 184-0404 is a same-design same-seed duplicate -> superseded. The only MECH-033 run with a real HippocampalModule and a matched-budget non-random comparator is V3-EXQ-055 (AO_CHAIN vs SELF_CHAIN); 055 is a single seed (driver --seed default=0) and its SELF_CHAIN comparator sits near random (harm 0.0684 = 91% of RANDOM 0.0754; cal_gap_self 0.021 below 055's own C4 floor 0.03), so even 055 is a weak discrimination. The 'measured four times' / 'fired four times' wording in what_would_answer, and the 'replicated 4x PASS' reading carried by the live_status source (failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08), are inaccurate and should be corrected. A discriminating portfolio (k=0 HarmHead-greedy, E2-scrambled, k=1 vs k=3 non-STAY continuation, E2-seeded vs random-seeded hippocampal rollout) is owed. Same-queue_id re-run of the identical design and seed set 42/7/13 (NOT a byte duplicate, unlike the 171 0330 pair: KERNEL_CHAIN cells differ by training nondeterminism, e.g. seed 7 13 vs 21 events, r2 0.9852 vs 0.9895; NO_CHAIN comparator bit-identical). One design x seed set is one weight unit and the EXQ versioning policy does not recognise a same-ID re-run as a new replicate, so superseded by the 0401 canonical manifest. Red-team alternative recorded for the Step 8 gate: non_contributory for both.",
+      "per_claim_recommendation": {
+        "MECH-033": {
+          "recommended_evidence_direction": "superseded",
+          "recommended_epistemic_category": "standard",
+          "status_change": "active -> provisional (evidence-weight correction, NOT falsification; see cluster status_recommendations) -- user decision at Step 8",
+          "change": "184-0404 direction supports -> superseded"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "note": "No substrate_ceiling reading; instrument/test-design defect owing no build. granularity_debt_cluster.py MECH-033: 0 tagging targets (+2 superseded)."
+      },
+      "learning_extracted": [
+        "A random-action ablation removes every learned component at once; it cannot isolate one link in the chain (E2 seeding).",
+        "The random comparator is a deterministic env+seed constant: re-running it adds no information, so N runs sharing it are one comparison, not N.",
+        "'k-step chain' with STAY continuation is a one-action lookahead; it does not exercise multi-step kernel chaining."
+      ],
+      "routing": "queue-experiment (GOV-FANOUT-1 discrimination portfolio; routed by /governance after Step 2b ratification, not chipped here)",
+      "supersedes_or_superseded_by": "superseded_by v3_exq_184_mech033_kernel_chain_pair_20260401T185611Z_v3"
+    },
+    {
+      "run_id": "v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3",
+      "queue_id": "V3-EXQ-308",
+      "claim_ids": [
+        "MECH-033"
+      ],
+      "experiment_purpose": "evidence",
+      "manifest_outcome": "PASS",
+      "failed_criterion": "none (PASS) -- re-adjudicated: ablation-contrast confound (D2_ablation_confound)",
+      "skim_verdict": "D2_ablation_confound",
+      "skim_verified": "CONFIRMED (driver :529; manifest per_seed_results)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the claim could not express itself: no hippocampal module exists in the inline architecture, and the contrast (planner+HarmHead+E2 vs uniform random) cannot attribute the delta to E2 seeding",
+        "biological_reference": "clear -- hippocampal forward sweeps / preplay (Johnson & Redish 2007; Pfeiffer & Foster 2013) seeded by cortical/cerebellar forward models; targeted_review_connectome_mech_033 present",
+        "prerequisites": "present (E2 world_forward trained, r2 0.95-0.99 recorded per seed)",
+        "implementation": "partial -- symbol of the mechanism, not its role: no HippocampalModule; 'k=3 chain' = one action then two forced STAY steps",
+        "environment": "adequate for harm avoidance (random-arm 4000+ harm events per seed)",
+        "measurement": "misleading -- the ablation comparator is uniform random, removing HarmHead and planner together with E2 seeding; the comparator is a fixed env+seed constant shared across all four runs",
+        "integration": "isolated (inline toy architecture, not the REEAgent pipeline)",
+        "scale": "adequate for what was measured"
+      },
+      "failure_location": {
+        "mechanism": "partial",
+        "measures": "not_established",
+        "environment": "partial",
+        "ree": false,
+        "net_classification": "MEASURES (ablation confound) + MECHANISM partial (no hippocampal module) -- not chargeable to REE; the PASS is not evidence FOR the claim either"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal forward sweeps seeded by action-conditioned cortical/cerebellar forward models",
+        "dependencies": [
+          "hippocampal rollout generator",
+          "E2 action-conditioned forward model",
+          "harm/value readout (E3)"
+        ],
+        "is_formal_import": false,
+        "divergence": "the runs implement a greedy one-action lookahead over a linear forward model; no hippocampal stage exists to be seeded",
+        "lit_status": "present (targeted_review_connectome_mech_033)"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-033": "non_contributory"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "measurement_test_design_defect (ablation confound: random-action comparator removes HarmHead + planner, not only E2 seeding). No substrate ceiling asserted; standard is the behaviour-preserving mapping.",
+      "recommended_evidence_quality_note": "2026-09-24 D2 cluster autopsy (failure_autopsy_gflag0452-D2-cluster_2026-09-24, GFLAG-0452, staging): V3-EXQ-171 / V3-EXQ-184 (x2 manifests) / V3-EXQ-308 PASSes do not isolate the MECH-033 mechanism. The ablation arm (ABLATED / NO_CHAIN) is uniform random action (drivers :342 / :346 / :529), which removes the trained HarmHead AND the planner, not only E2-kernel seeding; any harm-aware selector would beat it. The random arm is a fixed property of env+seed, independent of every trained module: seed 42 = 0.061516023781776445 harm_rate / 4179 events, bit-identical in 171 / 184-0401 / 184-0404 and equal to within 1e-16 in 308 (seeds 7/13 likewise across 184 x2 and 308), so the four 'supports' share one comparator. There is no hippocampal module (inline Linear encoders), and the k=3 'chain' is one action followed by two forced STAY steps, i.e. a one-action lookahead with persistence, not a seeded multi-step rollout. The claim's own manipulation spec ('ablate the E2-kernel-to-hippocampal handoff while leaving rollouts and E3 scoring otherwise intact') is the opposite of what these runs did. Direction: non_contributory (171, 184-0401, 308); 184-0404 is a same-design same-seed duplicate -> superseded. The only MECH-033 run with a real HippocampalModule and a matched-budget non-random comparator is V3-EXQ-055 (AO_CHAIN vs SELF_CHAIN); 055 is a single seed (driver --seed default=0) and its SELF_CHAIN comparator sits near random (harm 0.0684 = 91% of RANDOM 0.0754; cal_gap_self 0.021 below 055's own C4 floor 0.03), so even 055 is a weak discrimination. The 'measured four times' / 'fired four times' wording in what_would_answer, and the 'replicated 4x PASS' reading carried by the live_status source (failure_autopsy_grandfathered-r5-batch01-mixed-findings_2026-08-08), are inaccurate and should be corrected. A discriminating portfolio (k=0 HarmHead-greedy, E2-scrambled, k=1 vs k=3 non-STAY continuation, E2-seeded vs random-seeded hippocampal rollout) is owed. 308 adds an SD-018 ResourceProximityHead and ReLU encoders but keeps the uniform-random NO_CHAIN arm; its NO_CHAIN harm rates equal 184's to ~1e-16 (0.06151602378177612 vs 0.061516023781776445 at seed 42; 4179/4125/4205 events identical), i.e. the same seeded random baseline.",
+      "per_claim_recommendation": {
+        "MECH-033": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "status_change": "active -> provisional (evidence-weight correction, NOT falsification; see cluster status_recommendations) -- user decision at Step 8",
+          "change": "308 direction supports -> non_contributory; MECH-033 currently carries NO epistemic_category, so set one -> epistemic_category: standard"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "literal_count_meets_threshold": false,
+        "note": "No substrate_ceiling reading; instrument/test-design defect owing no build. granularity_debt_cluster.py MECH-033: 0 tagging targets (+2 superseded)."
+      },
+      "learning_extracted": [
+        "A random-action ablation removes every learned component at once; it cannot isolate one link in the chain (E2 seeding).",
+        "The random comparator is a deterministic env+seed constant: re-running it adds no information, so N runs sharing it are one comparison, not N.",
+        "'k-step chain' with STAY continuation is a one-action lookahead; it does not exercise multi-step kernel chaining."
+      ],
+      "routing": "queue-experiment (GOV-FANOUT-1 discrimination portfolio; routed by /governance after Step 2b ratification, not chipped here)",
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1-chaining: multi-step E2 rollouts seeding a hippocampal/rollout stage carry harm avoidance beyond one-step lookahead (the claim)",
+          "H2-one-step: harm avoidance is carried by HarmHead + a single E2 forward step; chaining adds nothing",
+          "H3-no-E2: harm avoidance is carried by the HarmHead reading the current state; E2 adds nothing"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H3",
+            "axis": "representation",
+            "sketch": "k=0 arm: HarmHead-greedy over current z_world/z_self (no E2) at matched training vs KERNEL_CHAIN; null: KERNEL_CHAIN harm_rate not below k=0 by the 0.01 bar."
+          },
+          {
+            "hypothesis": "H2 vs H1",
+            "axis": "algorithm",
+            "sketch": "k=1 vs k=3 with policy-driven (not forced STAY) continuation, same HarmHead; null: k=3 not below k=1."
+          },
+          {
+            "hypothesis": "H1 vs H3",
+            "axis": "integration",
+            "sketch": "E2-scrambled arm (E2 weights shuffled or untrained, HarmHead and planner intact) -- the claim's own specified manipulation; null: scrambled-E2 harm_rate within 0.01 of intact."
+          },
+          {
+            "hypothesis": "H1",
+            "axis": "instrumentation",
+            "sketch": "full REEAgent with HippocampalModule: rollouts seeded by E2 action-conditioned kernels vs seeded by random kernels at matched CEM budget (the V3-EXQ-055 AO_CHAIN vs SELF_CHAIN design, with SELF_CHAIN first checked for random-level degeneracy); null: no harm difference."
+          }
+        ],
+        "note": "GOV-FANOUT-1: the four MECH-033 PASSes share one confounded contrast; a single re-letter would inherit it. Portfolio legs each declare their null; design-audit coverage + aliasing before queuing. Routed by /governance, not chipped here."
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Evidence-purpose PASS whose decisive contrast cannot discriminate the claimed mechanism: the comparator arm removes information or components other than the one the claim names (501 input quantisation; 171/184/308 uniform-random ablation) or the matched control never reached the matched value (615 zero-entropy noise control).",
+    "is_independent_bugs": false,
+    "structural_property": "Design-review gap, not substrate: no pre-registered precondition asserted that the control/ablation arm differs from the treatment ONLY in the named mechanism (or reached its matched value). Each PASS was then read as mechanism support. Three claims, three design shapes, one missing gate.",
+    "readings": [
+      "test_design_ceiling (control-adequacy precondition absent from the /queue-experiment review for these drivers)",
+      "evidence double-counting (184 same-ID re-run with identical design+seeds; MECH-033's 4 runs share one seeded random comparator)"
+    ],
+    "planning_decision": "Evidence-weight correction for SD-035 / ARC-065 / MECH-033, plus a design-review rule candidate: a matched/ablation control must carry a precondition gate (e.g. |H_control - H_treatment| <= tol; ablation removes only the named link) or the run self-routes precondition_unmet."
+  },
+  "status_recommendations": {
+    "SD-035": "stays stable -- 501 was never load-bearing for status (473/474/659/762/888 carry it); re-point live_status.evidence.from.",
+    "ARC-065": "stays stable NOW, but flag for review: with 615 non_contributory, the remaining matched-noise discrimination (569i) shows the same inert-control shape (read-across). If 569i is confirmed D2, recommend stable -> provisional.",
+    "MECH-033": "RECOMMEND active -> provisional (user decision). With 171/184/308 non_contributory and 184-0404 superseded, the only discriminating support is V3-EXQ-055 (one run, real HippocampalModule, matched-budget SELF_CHAIN comparator whose harm 0.0684 sits at random level and should itself be checked). This is an evidence-weight correction, not falsification; alternative: hold active with live_status.needs_review=true until the fan-out portfolio reports."
+  },
+  "claim_text_corrections_recommended": {
+    "MECH-033.what_would_answer": "'as measured four times' / 'fired four times with the training-adequacy precondition explicitly gated' is inaccurate: the four runs share one random comparator that does not isolate the handoff; the confirming arm has been measured once (V3-EXQ-055). Candidate for governance_flag.py raise --flag-type stale_note (parent session's call).",
+    "MECH-033.evidence_quality_note": "'EXQ-171 PASS 4/4 x2 (two independent runs)' -- the two 171 manifests are one design and seeds; the 0330 duplicate is already superseded.",
+    "SD-035.what_would_answer": "501 is listed as 'behavioral discrimination that the analog form is load-bearing'; it is contrast-by-construction."
+  },
+  "hypothesis_space_ledger_pending": {
+    "note": "STAGING MODE: not written to hypothesis_space_registry.v1.json. None of these 6 runs is a registered leg (registry scanned 2026-09-24: no question lists V3-EXQ-171/184/308/501/615; ARC-065 appears in conversion_ceiling_root / curiosity_* questions, which ask different questions). Both blocks below are Mode A NEW questions; no growth_restriction check needed (no existing qid attached). Axis values used (representation, algorithm, integration, instrumentation, measurement, environment) are all already in axis_families.map.",
+    "mode_a_new_questions": [
+      {
+        "qid": "mech033_kernel_chaining_isolation",
+        "title": "Is MECH-033 harm avoidance carried by E2 multi-step kernel chaining, one-step lookahead, or the HarmHead alone?",
+        "short_title": "MECH-033 chaining isolation",
+        "claims": [
+          "MECH-033"
+        ],
+        "registered_utc": "<apply-time date -u>",
+        "fanout_sources": [
+          "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json"
+        ],
+        "is_hero": false,
+        "initial_frozen_count": 3,
+        "initial_frozen_count_at_registration": 3,
+        "hypotheses": [
+          {
+            "hid": "H1-chaining",
+            "label": "multi-step E2 chaining load-bearing",
+            "axis": "integration",
+            "basis": "claim as registered; untested by 171/184/308 (random ablation)",
+            "pre_registered_utc": "<apply-time>",
+            "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+            "adjudicating_runs": [
+              "<future E2-scrambled + HippocampalModule legs>"
+            ],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": [],
+              "evidence_direction": "pending",
+              "resolved_utc": null,
+              "control_passed": false,
+              "non_degenerate": null,
+              "met_elimination_bar": false
+            }
+          },
+          {
+            "hid": "H2-one-step",
+            "label": "one-step E2 lookahead suffices",
+            "axis": "algorithm",
+            "basis": "the 'k=3' chain is one action + two forced STAYs",
+            "pre_registered_utc": "<apply-time>",
+            "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+            "adjudicating_runs": [
+              "<future k=1 vs k=3 leg>"
+            ],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": [],
+              "evidence_direction": "pending",
+              "resolved_utc": null,
+              "control_passed": false,
+              "non_degenerate": null,
+              "met_elimination_bar": false
+            }
+          },
+          {
+            "hid": "H3-no-E2",
+            "label": "HarmHead on current state suffices",
+            "axis": "representation",
+            "basis": "random ablation removed HarmHead too; no k=0 arm run",
+            "pre_registered_utc": "<apply-time>",
+            "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+            "adjudicating_runs": [
+              "<future k=0 leg>"
+            ],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": [],
+              "evidence_direction": "pending",
+              "resolved_utc": null,
+              "control_passed": false,
+              "non_degenerate": null,
+              "met_elimination_bar": false
+            }
+          }
+        ],
+        "synthesis": null,
+        "decision": {
+          "decision_question": "Should MECH-033 keep active status on chaining-specific evidence?",
+          "live_gate": "E2-scrambled vs intact at matched HarmHead/planner",
+          "decidable": false,
+          "decision_log_ref": null,
+          "distance_phrase": "no discriminating run yet"
+        }
+      },
+      {
+        "qid": "arc065_structured_vs_noise_diversity",
+        "title": "Is ARC-065 full-stack behavioural diversity structured beyond entropy-matched unstructured noise at matched survival?",
+        "short_title": "ARC-065 structured vs noise",
+        "claims": [
+          "ARC-065"
+        ],
+        "registered_utc": "<apply-time date -u>",
+        "fanout_sources": [
+          "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json"
+        ],
+        "is_hero": false,
+        "initial_frozen_count": 3,
+        "initial_frozen_count_at_registration": 3,
+        "hypotheses": [
+          {
+            "hid": "H1-structured",
+            "label": "structured diversity beyond matched noise",
+            "axis": "measurement",
+            "basis": "615 C2 untested (zero-entropy control); 569i matched-noise control inert (read-across)",
+            "pre_registered_utc": "<apply-time>",
+            "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+            "adjudicating_runs": [
+              "<future MI-at-matched-entropy leg>"
+            ],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": [],
+              "evidence_direction": "pending",
+              "resolved_utc": null,
+              "control_passed": false,
+              "non_degenerate": null,
+              "met_elimination_bar": false
+            }
+          },
+          {
+            "hid": "H2-entropy-equivalent",
+            "label": "indistinguishable from matched noise",
+            "axis": "algorithm",
+            "basis": "no properly matched noise control has run",
+            "pre_registered_utc": "<apply-time>",
+            "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+            "adjudicating_runs": [
+              "<future SP-CEM+tuned-temperature leg>"
+            ],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": [],
+              "evidence_direction": "pending",
+              "resolved_utc": null,
+              "control_passed": false,
+              "non_degenerate": null,
+              "met_elimination_bar": false
+            }
+          },
+          {
+            "hid": "H3-survival-artefact",
+            "label": "diversity is short-episode thrash",
+            "axis": "environment",
+            "basis": "615 ARM_2 episodes ~7-17x shorter than ARM_0/1",
+            "pre_registered_utc": "<apply-time>",
+            "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+            "adjudicating_runs": [
+              "<future survival-matched leg>"
+            ],
+            "resolution": {
+              "state": "alive",
+              "resolving_runs": [],
+              "evidence_direction": "pending",
+              "resolved_utc": null,
+              "control_passed": false,
+              "non_degenerate": null,
+              "met_elimination_bar": false
+            }
+          }
+        ],
+        "synthesis": null,
+        "decision": {
+          "decision_question": "Does ARC-065 stable status rest on a run that discriminates structured diversity from noise?",
+          "live_gate": "matched-entropy control with precondition gate",
+          "decidable": false,
+          "decision_log_ref": null,
+          "distance_phrase": "no discriminating run yet"
+        }
+      }
+    ],
+    "mode_b_resolutions": "none -- the 6 adjudicated runs are not registered legs; their non_contributory readings discriminate nothing (would be left alive anyway)."
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "routing": null,
+    "basis": "granularity_debt_cluster.py: MECH-033 0 tagging targets (+2 superseded); SD-035 0; ARC-065 16 targets, alignment intact=9 unclear=4 strengthened=2 coarse/under-specified=1, none 'weakened'. No target in this cluster reads 'weakened' either."
+  },
+  "prior_record_corrections": [
+    "failure_autopsy_MECH-341-cluster_2026-05-31 describes the 615 08:22Z sibling as a real FAIL with 1/3 seeds; check_dry_run_citations.py and the manifest (dry_run true, seeds [42], p1=1, steps=10) show it is a dry-run smoke. It is correctly direction-superseded; the prior prose was wrong."
+  ],
+  "step7b_pre_routing_checks": {
+    "fire_count": 2,
+    "fires": [
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-501",
+        "names": [
+          "item-level-recall-probe-central-vs-peripheral"
+        ],
+        "disposition": "DISMISSED for routing (this autopsy owes no build: the defect is test design), but POINTER RECORDED: that entry may be the instrument for SD-035's unexecuted literal EXQ-B (live-loop threat-vs-neutral recall); governance should check before queuing any SD-035 literal-falsifier run."
+      },
+      {
+        "check": "C2",
+        "queue_id": "V3-EXQ-615",
+        "names": [
+          "MECH-314a-Phase-2-impl",
+          "INF-ENV-002",
+          "SD-056",
+          "q092-behavioural-discriminability-umpire-harness"
+        ],
+        "disposition": "DISMISSED: none of the four addresses the missing piece (a matched-entropy noise control with a precondition gate, survival-matched measurement); they are ARC-065-adjacent builds on other gaps. q092 umpire harness is the nearest -- worth a look when designing the fan-out measurement leg."
+      }
+    ],
+    "inapplicable": [
+      "C5 (no sibling .md at check time)",
+      "C7 (no >=2-arm >=2-seed arm array in the target manifests' shape)"
+    ]
+  },
+  "step7c_red_team": {
+    "model": "fable (cross-model; drafting session on Opus 5.5)",
+    "verdict": "CONTESTED (narrow)",
+    "contest": "184-0404 'duplicate manifest' rationale false: KERNEL_CHAIN cells differ by training nondeterminism (seed 7 13 vs 21 events); only the deterministic random arm coincides. Confirmer: diff per_seed_results.KERNEL_CHAIN across the two 184 manifests -- confirmed.",
+    "disposition": "Rationale corrected in the artifact (same-ID re-run of identical design+seeds, not a byte duplicate). Superseded disposition RETAINED (one design x seed set = one weight unit; parent brief asked for a keep/supersede call); red-team alternative (non_contributory for both) surfaced for the Step 8 gate. Weight effect nil either way.",
+    "accepted_hygiene": [
+      "501 half-split finding added (strengthens verdict: substrate-engaged half anti-supporting)",
+      "615 ratio corrected to ~7-17x",
+      "308 random arm equal to 1e-16, not bit-identical -- wording fixed",
+      "184-0401 change tail trimmed to a storable tail",
+      "MECH-033 category-set tail added on the 308 target",
+      "055 n=1 seed and near-random SELF_CHAIN stated",
+      "second stale-note site named (r5 autopsy live_status source)",
+      "615 0822Z sibling is a dry-run, prior autopsy misdescribed it"
+    ],
+    "confirmed_items": [
+      "501/615/171/184/308 D2 verdicts",
+      "615 episode-length confound (causal_grid_world.py:3354-3356; ARM_2 ends by health depletion)",
+      "569i read-across (selected_class_counts identical) with mechanism",
+      "MECH-033 active -> provisional neither over- nor under-reaching"
+    ],
+    "file": "scratchpad redteam.md (not committed; summarised here)"
+  },
+  "recording_provenance": "None of the 6 manifests carries a top-level substrate_hash or recording_schema (all predate the 2026-07-12 Experimental Recording Standard); 615 also lacks config. Not adjudication-blocking: every defect here is visible in the driver source and the recorded per-seed cells.",
+  "step8_gate": "HELD BY PARENT (/governance governance-20260924). Routing not finalised; no chips spawned; claims.yaml / manifests / review_tracker / substrate_queue / governance flags / hypothesis registry untouched."
+}
