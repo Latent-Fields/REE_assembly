@@ -1,6 +1,6 @@
 # E2 world-rollout divergence and proposal state-invariance: undertraining artefact or structural defect?
 
-- **STATUS: FINAL for this pass** (interim versions 18:15Z-18:45Z; final 2026-09-24T18:57:06Z). Limits in "Done / not done".
+- **STATUS: FINAL for this pass + ADDENDUM (encoding vs E2 objective discriminator, end of file)** (interim versions 18:15Z-18:45Z; final 2026-09-24T18:57:06Z). Limits in "Done / not done".
 - Session: `bt0924-rollout` (Worker D, breakthrough integration pass `orchestrate-20260924-breakthrough`), chip_ref `chip-20260924-e2-rollout-divergence-remeasure`
 - Re-measures: Worker B `residue_consumer_reach_world_dim32_20260924.md` ("E2 world rollout diverges x1.2/step, 0.49 -> 327") and Worker C `monostrategy_type_a_vs_b_discrimination_20260924.md` ("proposal majority class identical at all 40 states").
 - Code under test: ree-v3 `origin/main` @ `86594ec5eb`, private detached worktree. All file:line citations are against that commit.
@@ -147,3 +147,60 @@ Every recorded E3 candidate set (42-180 selects per cell, up to 60 re-scored) re
 - DONE: step 1 (no checkpoint on the current substrate; dose series used); step 2 canary; steps 3-5 in 11 cells (regime B: untrained head 600 steps; trained 600 / 3000 / 10000; clamp on untrained 600 and trained 3000; seed 42 at 3000; C's recipe at world_dim 32, 20 and 100 episodes; random-policy fidelity on four of them); step 6.
 - NOT DONE: D3 (closed loop); a larger random-policy sample (n 11-28 starts per cell -- the k values under random actions are indicative, not tight); more seeds (seed 43 and 42 disagree on random-policy k); the discriminating tests in step 6.
 - Run log (all from `/Users/dgolden/REE_Working/.scratch/breakthrough-20260924/rollout/`, worktree `ree-v3-wt` @ `86594ec5eb`): `rollout_fidelity_probe.py --regime B --recipe {B,BWF} --dose {600,3000,10000} --seed {43,42} [--clamp]` and `--regime C --dose {20,100} --seed 11`; defaults wake 300, H 30, n-starts 150, max-selects 60, n-states 30, depths 1,2,3,5,10. `_v2` cells are re-runs of the same config with the M2b/M2c/M2R readouts (bit-identical on the shared metrics). Wall 48-830 s per cell.
+
+## ADDENDUM (2026-09-24, session `bt0924-rollout-b`): encoding or E2 objective? The discriminator
+
+- Commissioned by the orchestrator as the follow-on this record proposed. Code: ree-v3 `origin/main` @ `07de5a282e`, a fresh private worktree. Its only ree_core difference from `86594ec5eb` is two E3 kwargs guards in `agent.py`, which this probe does not reach. `e2_fast.py` and `latent/` are unchanged.
+- Probe: `probes/rollout/encoding_vs_objective_probe.py` (reuses `build_B` / `warm_B` from `rollout_fidelity_probe.py` verbatim). Results: `probes/rollout/results/ENC_*.json`. Regime B: CausalGridWorldV2 8x8, world_dim 32, seeds 43 and 42. Wall 5-75 s per cell after warmup.
+- **Design.** All data use **uniform-random one-hot actions**, so the action is independent of state by construction. Train: ~7,600 transitions (~390 episodes, median length 19). Test: ~2,850 transitions from different episodes.
+  - **Step 1 (ceiling).** Action signal per step is measured two ways: eta-squared of the displacement by action, and held-out accuracy of a linear softmax decoder that reads the action from the displacement (chance 0.20). It is measured in three latents: the RAW world observation (250-d); a FIXED PCA-32 of RAW (fit on 3,000 random-policy steps from a different env seed, then frozen; 86% of variance; rescaled to z_world's mean norm); and z_world from `agent.sense`.
+  - **Step 2.** A fresh `E2FastPredictor` world head (same architecture) is trained with the dose series' optimiser (Adam 3e-4, batch 32, clip 1.0, single-step MSE) for 3,000 and 10,000 steps on each latent. It is evaluated on held-out episodes with the native `rollout_with_world`: fidelity k (H = 10, or 20 in one cell), and action discrimination (executed first action closest to outcome, chance 0.20).
+  - **Added control.** The same transitions, but each training batch drawn 95% or 99% from ONE action class. That is the distribution the monostrategy agent generates for itself: 88-99% of waking steps were one class in the main record's cells.
+
+### A correction first: in regime B, "z_world at the dose points" is ONE encoder, the random-init one
+
+Encoder (`latent_stack`) parameter delta after B's 600-step warmup is **0.0000**, and after BWF 3,000 it is also **0.0000**. Neither recipe reaches the encoder: E1 and world_forward train on detached z_world. So the main record's dose series varied only the E2 head, and every cell in it scored a **frozen random projection** as z_world. This is the same defect `experiments/_lib/zworld_p0_warmup.py` documents for the x728/x737 driver family ("z_world stays a FROZEN RANDOM PROJECTION"). Encoder-trained arms were therefore added with SD-070's own recipe (`run_zworld_p0`, RandomPolicy): 20x50 steps at preservation 1000 (V3-EXQ-1093's setting), and 60x50 at the default config. Encoder deltas were 2.66 and 5.59 (encoder norm 17.7). Not measured: whether V3-EXQ-1061's recipe trains the encoder.
+
+### Step 1: the ceiling (uniform-random actions)
+
+| latent | eta-squared (dz by action) | linear action decode, held-out (chance 0.20) | step / state norm |
+|---|---|---|---|
+| RAW world obs | 0.072-0.073 | **0.86-0.88** | 3.4 / 6.3 |
+| PCA-32 (fixed) | 0.099-0.103 | **0.78-0.80** | 0.33 / 0.44 |
+| z_world, random-init encoder (all regime-B dose points; seeds 43, 42) | 0.011-0.012 | **0.51-0.52** | 0.016 / 0.48 |
+| z_world, SD-070 P0 20x50 (pres 1000) | 0.011 | 0.52 | 0.031 / 0.92 |
+| z_world, SD-070 P0 60x50 (default) | 0.034 | 0.52 | 0.082 / 1.36 |
+
+**The observation is not action-blind**, so the stop condition does not fire. **The encoding loses a large share of the action signal:** linear decodability drops from 0.79 (PCA) to 0.51-0.52 (z_world), and eta-squared drops about 9x. The SD-070 encoder training at these budgets does not recover it (decode 0.52 in both arms).
+
+### Step 2: a fresh E2 world head on each latent
+
+| latent (cell) | budget, batch distribution | **k** (H cap) | err/persistence h=1 / 5 / 10 | cos h=1 | **executed action closest, h = 1 / 3 / 5** (chance 0.20) |
+|---|---|---|---|---|---|
+| PCA-32 (s43) | 3000 uniform | >=10 (**20** at H=20) | 0.50-0.52 / 0.52-0.53 / 0.54-0.56 | 0.87-0.88 | **0.77-0.78 / 0.62-0.63 / 0.51-0.52** |
+| PCA-32 (s43) | 10000 uniform | >=10 | 0.42 / 0.48 / 0.51 | 0.91 | **0.82 / 0.67 / 0.54** |
+| PCA-32 (s42) | 3000 / 10000 uniform | >=10 | 0.50 / 0.42 at h=1 | 0.87 / 0.90 | 0.74 / 0.79 at h=1; 0.49 at h=5 |
+| z_world random enc (s43 x4 cells, s42) | 3000 uniform | 9 to >=10 (**16** at H=20) | 0.43-0.71 / 0.46-0.71 / 0.63-1.01 | 0.63-0.90 | **0.36-0.49 / 0.35-0.42 / 0.29-0.36** |
+| z_world random enc (s43 x3, s42) | 10000 uniform | >=10 | 0.58-0.64 / 0.55-0.62 / 0.64-0.69 | 0.71-0.81 | **0.46-0.53 / 0.44-0.48 / 0.37-0.44** |
+| z_world SD-070 P0 (20x50; 60x50) | 10000 uniform | >=10 | 0.56; 0.65 at h=1 | 0.84; 0.74 | 0.43; 0.48 at h=1 |
+| PCA-32 (s43, s42) | 3000, **95% one class** | >=10 (20) | 0.66-0.67 at h=1 | 0.56-0.58 | 0.69-0.75 / 0.49-0.51 / 0.37-0.40 |
+| z_world (s43 x2, s42, P0) | 3000, **95% one class** | 8-13 | 0.47-0.75 at h=1 | 0.62-0.89 | 0.31-0.35 / 0.25-0.35 / 0.24-0.33 |
+| PCA-32 (s43, s42) | 3000, **99% one class** | **0** | **1.28-1.41 / 1.35-1.69** | 0.11-0.15 | **0.25-0.29 / 0.20-0.23 / 0.20-0.21** |
+| z_world (s43, s42, P0) | 3000, **99% one class** | **0** | **3.75-5.52 / 4.67-9.33** | 0.20-0.36 | **0.17-0.23 / 0.16-0.23 / 0.16-0.23** |
+
+### Read-out: none of the three pre-registered cases fits cleanly, and the evidence points to a fourth
+
+1. **E2's objective and architecture work** when given action-diverse data. On BOTH latents the unchanged single-step-MSE head beats persistence out to k >= 9-20 (vs k = 0 in the main record), with cos 0.7-0.9. It discriminates the executed action well above chance on both: 0.74-0.82 on PCA-32 and 0.36-0.53 on z_world at h = 1, still 0.29-0.54 at h = 5. So it is not "bad on both", and R1/R3 (a new E2 objective) is **not** where the earliest defect lies.
+2. **The encoding is a real, secondary loss.** On identical data and budget, E2 on z_world discriminates actions at roughly half the rate it achieves on PCA-32 (0.36-0.53 vs 0.74-0.82 at h = 1), matching the step-1 ceiling (decode 0.51 vs 0.79). That is "worse on z_world", not "bad on z_world". The observation -> z_world encoder (a frozen random projection in every regime-B cell; SD-070 training at these budgets does not recover the signal) roughly halves the attainable action discrimination. It is not what makes E2 action-blind.
+3. **What reproduces the main record's failure is the TRAINING DISTRIBUTION.** Draw the same transitions 99% from one action class and E2 collapses on BOTH latents to exactly the main record's signature: k = 0, worse than persistence (1.3-5.5x at h = 1), cos 0.11-0.36, discrimination at chance (0.16-0.29). At 95% it survives (above chance, k >= 8). The waking agent's own data is 88-99% one class. Main-record cell recipes BWF and C trained E2 on that data, and both came out action-blind with k = 0 on-policy.
+4. **So the earliest broken edge for "prediction of alternatives" is the monostrategy loop, not E2 and not (primarily) the encoder.** The state-invariant proposal (main record, step 5) makes the agent act one way; E2 trains on that one action, so it never learns the others; its alternatives are then uninformative, and E3 ranks candidates on uninformative deep steps (step 4). The self-imitating terrain_prior in V3-EXQ-1061's recipe closes the loop. The encoder loss is an independent ceiling that halves what a fix could reach.
+5. **Domain: D1 only.** These are prediction-quality measurements of freshly trained heads. None of these heads was put back in front of E3, and no behaviour was measured. The causal claim "monostrategy data -> action-blind E2" is an intervention on the training distribution (D2-shaped for E2 as consumer of its training data); "-> E3 choice" is inferred from the main record's step 4, not re-measured with these heads.
+
+Limits: H capped at 10 (20 in one cell) because random-policy episodes are short (median 19), so "k >= 10" is a floor, not a value. There are two seeds. PCA-32 was rescaled to z_world's norm, but its per-step displacement is 75% of its norm against 3% for z_world, and the MSE objective sees that difference; the ratio metrics are scale-free, the learning dynamics are not. The skew control uses action class 1 only. V3-EXQ-1061's recipe was not re-tested here.
+
+**What this changes in step 6 (repair ranking, none built).**
+- (R6, new, first): **action-diverse data for E2's world head.** Options are an exploration or random-action fraction in its training buffer, class-balanced replay (the sleep trainer `compute_e2_world_loss`, `agent.py:12859` (`min_batch_classes=1` at `:12941`) @ `07de5a282e`, replays distinct transitions but deliberately sets `min_batch_classes=1` and does not balance action classes, so it would inherit the skew), or training in a phase before commitment. The discriminating test: re-run the main record's step 3/4 with the head trained on class-balanced replay of the agent's own buffer. If E3's truncation sensitivity then drops (steps <= k start carrying J's variance), the loop is confirmed at D2.
+- R5 (state-conditioned proposal) is upstream of R6 and would remove the cause rather than compensate for it.
+- R1 (native waking world-head objective) is still needed, since up to half of recent drivers never train the head. It must come with R6, or it will reproduce the 99%-skew failure.
+- The encoder (SD-070 / representation) is a real but second-order ceiling. R3/R4 are demoted: the objective works when fed diverse data, and the clamp addresses only the norm.
+
