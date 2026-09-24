@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-20260924",
-  "last_updated_utc": "2026-09-24T07:33:28Z",
+  "last_updated_utc": "2026-09-24T08:34:13Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -11920,7 +11920,8 @@
       "title": "Residue kernel_bandwidth is ~8x the whole reachable z_world manifold, making the field spatially near-uniform and therefore argmin-invariant",
       "unblocks_claims": [
         "MECH-023",
-        "INV-023"
+        "INV-023",
+        "MECH-018"
       ],
       "source_audit": "GFLAG-0337",
       "implementation_hint": "MEASURED 2026-09-17 (igw-242). kernel_bandwidth = 1.0 while the visited z_world cloud has max pairwise distance 0.1249 (median 0.0648). The two most distant REACHABLE points therefore read exp(-0.1249^2/2) = 0.9922 -- 0.8% apart. A field that is near-constant across everywhere the agent can actually go is a near-broadcast constant, which is argmin-invariant and cannot carry geometry. SCOPE NOTE: SD-067 already asks for a tighter bandwidth, but ONLY for the MECH-303 safety terrain; the residue harm-geometry case is unowned, which is precisely this gap -- do not close this entry by pointing at SD-067. NOTE from_dims silently swallows unknown kwargs (config.py:8252); a bandwidth knob needs wiring at THREE sites. DO NOT CITE V3-EXQ-936's component_variance_fractions.residue_weighted (1.5e-14 .. 1.2e-40) as evidence that F-dominance swamps residue. That run's field was effectively EMPTY (p1_mean_abs_harm 0.003-0.098) -- it measures an ABSENT field, not a dominated one. V3-EXQ-697, with a POPULATED field, is the correct reference: flip_intact_vs_zeroed = 0.0596 / 0.2986 / 0.885 / 0.8986 / 0.9964 (mean 0.628, 5 seeds, 160k rows). Residue DOES move the pre-sampling argmin on most decisions, so this is NOT the f_dominance_conversion_ceiling, which is a COMMITTED-action conversion defect downstream of a pre-sampling read.",
@@ -13185,6 +13186,56 @@
       "source_autopsy": "failure_autopsy_V3-EXQ-1078_2026-09-24",
       "added_session": "governance-20260924",
       "added_utc": "2026-09-24T07:33:28Z",
+      "last_seen_session": "governance-20260924",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "residue-integrate-sampling-collapse-world-dim-32",
+      "title": "residue_field.integrate() samples its distillation targets ~sqrt(world_dim) kernel widths off harm support at world_dim=32, so integration learns nothing at production dimension (target/peak ~9.4e-06) while integration_loss still falls",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-018"
+      ],
+      "failure_record": [],
+      "implementation_hint": "Sample integrate() targets from the harm field's SUPPORT, e.g. per-dim std = bandwidth/sqrt(world_dim), or draw from recorded visited z_world; add a contract at world_dim=32 asserting mean target/peak clears a floor. Default-off / bit-identical OFF. Defect re-verified 2026-09-24 in ree-v3 ree_core/residue/field.py integrate() (~l.1250) after 58ac5de (per-dim std = effective_harm_bandwidth; still off-support). Source GFLAG-0441: EXP-0755 (EVB-1391, MECH-018): refused at /queue-experiment Step 2.5d (falsifier-runnability trace), shape ABSENT+INERT -- registry left status=proposed because experiment_proposals.v1.json is owned by active claim governance-flags-mid-20260923-apply (route 2b). SUBSTRATE DEFECT, unowned, complicated (buildable): ResidueField.integrate() (ree-v3 ree_core/residue/field.py, the loop after 'noise = torch.randn_like(harm_locations) * self.effective_harm_bandwidth') jitters each sample by an isotropic Gaussian whose PER-DIMENSION std is the kernel bandwidth, so in the production world_dim=32 the sample lies ~sqrt(32)=5.6 kernel widths from its harm location, where the RBF target reads exp(-16): MEASURED target/peak = 4.5e-06 (bw 1.0) and 8.8e-06 (bw 0.15); at world_dim 8 it is 4e-02 and at 2 it is 0.45, so the ratio is bandwidth-invariant and grows with dimension. Consequence: neural_field is distilled toward ~0 everywhere and integrate() does NOTHING except erase the untrained Softplus head's ~0.07 pedestal from evaluate() -- which is exactly GFLAG-0356's 'evaluate() lands on the rbf core to 4 decimals', now explained. MEASURED in a live agent (CausalGridWorldV2 8x8, 400 waking steps, forced sleep cycle through WRITEBACK, mech018_residue_integration_fired=1, trains=1; seeds 42/43 x harm_field_bandwidth None/0.15): evaluate() drop at harm centres vs visited harmless states 0.06296 vs 0.06297, 0.07107 vs 0.07125, 0.05153 vs 0.05161, 0.06263 vs 0.06282 -- identical to 4 decimals, i.",
+      "priority": 2,
+      "severity": "degrading",
+      "substrate_paths": [
+        "ree_core/residue/field.py::integrate"
+      ],
+      "owner_chip": "chip-20260923-residue-integrate-sampling",
+      "source_audit": "GFLAG-0441; USER DECISION 2026-09-24 GFLAG-0442 option B (rec-20260924-a2275588): build authorised",
+      "added_session": "governance-20260924",
+      "added_utc": "2026-09-24T08:34:13Z",
+      "last_seen_session": "governance-20260924",
+      "experiment_queued": false
+    },
+    {
+      "sd_id": "mech018-contextualisation-objective",
+      "title": "No residue-integration objective can contextualise harm residue: integrate() carries no harmless-context signal, so MECH-018 readouts (ii) harm/harmless specificity and (iv) harmless-region proposal rejection cannot move by design",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "registration_is_not_build_authorisation": true,
+      "ready": false,
+      "design_doc": "docs/architecture/sleep/residue_integration.md",
+      "depends_on_unresolved": [
+        "residue-integrate-sampling-collapse-world-dim-32"
+      ],
+      "unblocks_claims": [
+        "MECH-018"
+      ],
+      "failure_record": [],
+      "implementation_hint": "integrate() carries no harmless-context signal; any objective that reduces over-generalisation must read visited harmless z_world. DESIGN CONSTRAINT: neural_field ends in Softplus>=0 and the consumer adds 0.1*neural to rbf, so an additive residual head can only RAISE residue and can never subtract rbf spill-over into harmless contexts. A working design needs a signed head, a multiplicative or gating combination on the rbf core, or a write to the rbf core under the no-erasure constraint at harm locations. Also carry forward: readout (i) must be registered against the rbf core, and readout (ii) needs a pedestal-matched control (GFLAG-0356).",
+      "owner_route": "/governance adjudication before any /implement-substrate",
+      "source_audit": "GFLAG-0442; USER DECISION 2026-09-24 option B (rec-20260924-a2275588)",
+      "priority": 2,
+      "added_session": "governance-20260924",
+      "added_utc": "2026-09-24T08:34:13Z",
       "last_seen_session": "governance-20260924",
       "experiment_queued": false
     }
