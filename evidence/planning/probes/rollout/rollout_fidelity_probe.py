@@ -247,6 +247,31 @@ def waking(agent, env, steps, seed):
     return rec, traj_log, harm
 
 
+@torch.no_grad()
+def random_policy_log(agent, env, steps, seed):
+    """Encoded z_world along a UNIFORM-RANDOM one-hot action stream (agent.sense only,
+    no selection), so the ground truth actually moves. Used for M2R fidelity."""
+    g = np.random.default_rng(seed + 99)
+    _f, obs = env.reset()
+    agent.reset()
+    A = int(agent.e2.config.action_dim)
+    log = []
+    ep = 0
+    for _ in range(steps):
+        lat = agent.sense(obs["body_state"], obs["world_state"], obs_harm=obs.get("harm_obs"),
+                          obs_harm_a=obs.get("harm_obs_a"), obs_harm_history=obs.get("harm_history"))
+        a = int(g.integers(0, A))
+        oh = torch.zeros(1, A)
+        oh[0, a] = 1.0
+        log.append((ep, lat.z_world.detach().clone(), lat.z_self.detach().clone(), oh))
+        _f, _h, done, _i, obs = env.step(a)
+        if done:
+            _f, obs = env.reset()
+            agent.reset()
+            ep += 1
+    return log
+
+
 def pct(x):
     x = np.asarray(x, dtype=float)
     if x.size == 0:
@@ -349,8 +374,8 @@ def m2_fidelity(agent, traj_log, H, n_starts, seed):
             z0, s0 = traj_log[t0][1], traj_log[t0][2]
             acts = torch.cat([traj_log[t0 + j][3] for j in range(h)]).unsqueeze(0)
             ex = int(acts[0, 0].argmax())
-            if float(acts[0, 0].max()) < 0.5:
-                continue
+            # executed action may be the continuous decoded CEM vector; all classes are
+            # compared as one-hots (executed class = its argmax), rest of sequence executed.
             errs = []
             for c in range(A):
                 a2 = acts.clone()
@@ -564,6 +589,10 @@ def main():
     m2 = m2_fidelity(agent, traj_log, a.H, a.n_starts, a.seed)
     if m2:
         print("M2 k_pers=%d k_chance=%d n=%d" % (m2["k_beats_persistence"], m2["k_beats_chance"], m2["n_starts"]), flush=True)
+    rlog = random_policy_log(agent, env, a.wake, a.seed)
+    m2r = m2_fidelity(agent, rlog, a.H, a.n_starts, a.seed)
+    if m2r:
+        print("M2R(random policy) k_pers=%d k_chance=%d n=%d" % (m2r["k_beats_persistence"], m2r["k_beats_chance"], m2r["n_starts"]), flush=True)
     m3 = m3_consumer(agent, rec, depths, a.max_selects, a.seed)
     print("M3 %s" % json.dumps({d: m3["by_depth"][d] for d in depths}), flush=True)
     m4 = None if a.skip_m4 else m4_proposal(agent, traj_log, a.n_states, depths, a.seed)
@@ -575,7 +604,7 @@ def main():
            "hip_horizon_cfg": int(agent.hippocampal.config.horizon),
            "clamp": bool(agent.e2.config.e2_rollout_output_norm_clamp_enabled),
            "warm": winfo, "harm_ticks_wake": harm, "n_selects": len(rec.selects),
-           "M1_by_step": m1, "M1_growth_per_step_late": growth, "M2": m2, "M3": m3, "M4": m4,
+           "M1_by_step": m1, "M1_growth_per_step_late": growth, "M2": m2, "M2R_random_policy": m2r, "M3": m3, "M4": m4,
            "t_total_s": round(time.time() - t0, 1)}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     with open(a.out, "w") as f:

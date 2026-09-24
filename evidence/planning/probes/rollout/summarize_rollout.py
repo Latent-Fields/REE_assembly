@@ -21,8 +21,9 @@ for f in files:
     print("  M1 cand znorm p50: " + " ".join("t%s=%.3g" % (k, m1[k]["norm_p50"]) for k in ks)
           + "  late growth/step=%s" % (None if d["M1_growth_per_step_late"] is None else "%.3f" % d["M1_growth_per_step_late"]))
     print("  M1 rel pairwise spread: " + " ".join("t%s=%.3g" % (k, m1[k]["rel_pairwise_spread_p50"] or 0) for k in ks))
-    m2 = d["M2"]
-    if m2:
+    for lab, m2 in (("M2", d["M2"]), ("M2R(random policy)", d.get("M2R_random_policy"))):
+      if m2:
+        print("  --", lab)
         print("  M2 n=%d k_pers=%d k_chance=%d visited_norm=%.3f" % (m2["n_starts"], m2["k_beats_persistence"],
                                                                      m2["k_beats_chance"], m2["visited_norm_p50"]))
         for h in ("1", "2", "3", "5", "10", "20", "30"):
