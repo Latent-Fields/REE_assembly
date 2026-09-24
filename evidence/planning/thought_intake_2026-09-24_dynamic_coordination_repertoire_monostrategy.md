@@ -22,7 +22,8 @@ This thought substantially overlaps and synthesises already-owned material:
 - dynamic routing / causal privilege;
 - phase-as-address / communication subspaces;
 - V3/V4 phase-substrate boundary;
-- monostrategy developmental analysis.
+- monostrategy developmental analysis;
+- dynamic consensus / post-translation integration (MECH-578/579).
 
 It should not create a duplicate "ephaptic coordinator" claim.
 
@@ -31,7 +32,34 @@ The novel synthesis is:
 1. explicitly distinguish **repertoire absence** from **repertoire-access collapse**;
 2. connect anaesthetic dynamical-repertoire collapse to the second failure mode;
 3. define an experiment that can decide whether the V3 synaptic approximation is functionally insufficient;
-4. require promotion based on endogenous dynamic-routing rescue under matched controls, not biological resemblance.
+4. require promotion based on endogenous dynamic-routing rescue under matched controls, not biological resemblance;
+5. connect mutual legibility to monostrategy through reciprocal consensus dynamics, adding a third failure class: **consensus collapse / over-stabilisation**.
+
+## Mutual-legibility / consensus bridge
+
+Javadzadeh et al. (2026) provide the missing bridge between the mutual-legibility programme and the monostrategy/dynamic-coordination programme. Reciprocal V1-LM coupling generated slower congruent than incongruent joint modes, suggesting that once systems can exchange appropriately matched information, reciprocal dynamics can make some joint states more persistent than others.
+
+- Javadzadeh M et al. 2026, *Nature Neuroscience*, DOI 10.1038/s41593-026-02437-3 — reciprocal connections dynamically build consensus between neocortical areas.
+
+REE already owns this result under `docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md` and `docs/architecture/dynamic_consensus_integration.md`. The new intake synthesis is that this mechanism may sit **between mutual legibility and strategy expression**.
+
+Candidate chain:
+
+```
+mutual legibility
+-> dynamic routing / causal access
+-> selective reciprocal coupling
+-> defeasible consensus
+-> behavioural authority / strategy expression
+```
+
+This adds a third monostrategy class:
+
+- **Type A repertoire absence** — alternative never learned/represented;
+- **Type B repertoire-access collapse** — alternative exists but cannot reach the relevant consumer;
+- **Type C consensus collapse** — alternative reaches the system but recurrent distributed dynamics pull the organism back to the same joint attractor.
+
+The coordination target should therefore be decomposed into **routing, reconciliation, and escape**.
 
 ## Literature anchors
 
@@ -63,9 +91,11 @@ Then compare:
 4. endogenous state-dependent dynamic routing;
 5. closed-loop activity↔coordination feedback only if arm 4 is insufficient.
 
-Primary question:
+Primary questions:
 
 > Does endogenous dynamic coordination allow already-present alternative competence to gain causal authority when context changes?
+
+> Once mutually legible alternatives have access, can the coupled system form a new evidence-supported consensus and escape an obsolete one rather than returning automatically to the historical attractor?
 
 Promotion trigger for phase/dynamic-coordination substrate should require:
 
@@ -75,7 +105,8 @@ Promotion trigger for phase/dynamic-coordination substrate should require:
 - rescue from endogenous state-dependent routing;
 - causal loss of rescue under routing shuffle/intervention;
 - replication across seeds/ecology;
-- no new privileged content entering through the coordinator.
+- no new privileged content entering through the coordinator;
+- for the consensus branch, an interpretable agreement/disagreement timescale or perturbation-recovery signature that depends on selective reciprocal coupling and remains defeasible under strong counterevidence.
 
 ## Boundary discipline
 
@@ -89,6 +120,6 @@ The thought makes that insufficiency operationally testable.
 
 ## Possible downstream action after digestion
 
-- Map the synthesis onto MECH-560/561, MECH-534, ARC-053, existing monostrategy claims, and the held V4 cluster.
+- Map the synthesis onto MECH-560/561, MECH-578/579, MECH-534, ARC-053, existing monostrategy claims, and the held V4 cluster.
 - Decide whether the repertoire-absence vs repertoire-access-collapse distinction warrants a new diagnostic claim or only an assay taxonomy.
 - If V3 later satisfies prerequisites, register one matched dynamic-routing discriminator before any literal oscillator/ephaptic implementation.
