@@ -166,11 +166,26 @@ def analyze(path):
     nested = []          # (displayPath, chars) injections
     substrate_reads = 0  # negative control: reads of the split-out per-feature files
 
+    # READ-CHANNEL COUNT (chip-20260914-token-split-read-channel-count). A CLAUDE.md
+    # loads into the session's readFileState -- and so gets NO nested_memory
+    # attachment -- once a successful Read tool call has put it there (see
+    # evidence/planning/reev3_nested_memory_trigger_drop_20260914.md). Counting
+    # nested_memory alone therefore undercounts "loaded": a session that Reads
+    # ree-v3/CLAUDE.md (small enough to Read since the WI-1 split) shows 0
+    # nested_memory injections even though the instructions loaded. Pair each
+    # Read tool_use with its tool_result by tool_use_id so only a SUCCESSFUL
+    # (non-is_error) Read counts. isSidechain records (subagent transcripts
+    # embedded inline) are skipped -- a subagent's own Read is not this session's
+    # main-thread context loading.
+    pending_claude_reads = {}   # tool_use_id -> real repo-relative path
+    read_via_tool = set()       # real paths successfully Read this session
+
     for rec in recs:
         if started is None and rec.get("timestamp"):
             started = rec["timestamp"]
         if entrypoint is None and rec.get("entrypoint"):
             entrypoint = rec["entrypoint"]
+        is_sidechain = bool(rec.get("isSidechain"))
         a = rec.get("attachment") or {}
         if a.get("type") == "nested_memory":
             # Key by the REAL path, never displayPath: displayPath is relative to the
@@ -204,13 +219,39 @@ def analyze(path):
                 if isinstance(b, dict) and b.get("type") == "tool_use":
                     if "docs/substrate/" in json.dumps(b.get("input") or {}):
                         substrate_reads += 1
+                    if not is_sidechain and b.get("name") == "Read":
+                        fp = (b.get("input") or {}).get("file_path") or ""
+                        if fp.endswith("CLAUDE.md"):
+                            real = fp
+                            try:
+                                real = os.path.relpath(real, os.path.expanduser("~/REE_Working"))
+                            except Exception:
+                                pass
+                            tuid = b.get("id")
+                            if tuid:
+                                pending_claude_reads[tuid] = real
+        elif rec.get("type") == "user" and not is_sidechain and pending_claude_reads:
+            content = rec.get("message", {}).get("content")
+            for b in (content if isinstance(content, list) else [content]):
+                if isinstance(b, dict) and b.get("type") == "tool_result":
+                    tuid = b.get("tool_use_id")
+                    real = pending_claude_reads.pop(tuid, None)
+                    if real is not None and not b.get("is_error"):
+                        read_via_tool.add(real)
         for cat, ch in categorize(rec):
             running[cat] += ch
 
     # A session the fit rejects still returns its fit-free observations, so the negative
     # control can cover every session (see "BASELINE DOUBLE-COUNT" in the docstring).
+    # `nested` and `read_via_tool` are included here too (not just in the fitted return
+    # below) so the Read-channel report can cover every in-window session, fitted or
+    # not -- exactly the fit-independent scope the negative control already uses, and
+    # for the same reason: a short/headless session (e.g. a scheduled task) is likelier
+    # to fail the `len(xs) < 3` or baseline<=0 fit gate, and that is precisely the
+    # population this chip is about (nightly-documentation-update sessions).
     unfitted = {"fitted": False, "path": path, "entrypoint": entrypoint, "started": started,
-                "substrate_reads": substrate_reads}
+                "substrate_reads": substrate_reads, "nested": nested,
+                "read_via_tool": sorted(read_via_tool)}
     if len(xs) < 3:
         return unfitted
     fit = lstsq2(xs, ys)
@@ -235,6 +276,7 @@ def analyze(path):
         "billed_total_measured": sum(ys),
         "output_tokens": out_tokens,
         "nested": nested, "substrate_reads": substrate_reads,
+        "read_via_tool": sorted(read_via_tool),
         # --- prompt-cache behaviour (WI-I). Realized cache performance, measured
         # from the same usage blocks the OLS fit above already consumes. Independent
         # of the fit: these are raw API counters, not estimates.
@@ -368,6 +410,31 @@ def main():
         for dp, ns in sorted(agg.items(), key=lambda x: -sum(x[1])):
             print(f"  {dp:34s} n={len(ns):>3}  mean {sum(ns)//len(ns):>10,} chars "
                   f"(~{sum(ns)//len(ns)//4:>8,} tok)")
+    else:
+        print("  (none observed)")
+
+    print("\n--- Read-channel CLAUDE.md loads (chip-20260914-token-split-read-channel-count) ---")
+    print("  A CLAUDE.md loads into readFileState -- and so gets NO nested_memory")
+    print("  attachment -- once a successful Read tool call has put it there. The")
+    print("  nested_memory count above therefore undercounts 'loaded'; this adds the")
+    print("  Read channel and the union. Scope: ALL in-window sessions (fitted or not,")
+    print("  same fit-independent scope as the negative control below), since a short")
+    print("  headless session is likelier to fail the OLS fit gate.")
+    nested_paths = collections.defaultdict(set)
+    read_paths = collections.defaultdict(set)
+    for r in observed:
+        for dp, _ in r["nested"]:
+            nested_paths[dp].add(r["path"])
+        for dp in r["read_via_tool"]:
+            read_paths[dp].add(r["path"])
+    all_claude_paths = set(nested_paths) | set(read_paths)
+    if all_claude_paths:
+        for dp in sorted(all_claude_paths):
+            n_nested = len(nested_paths[dp])
+            n_read = len(read_paths[dp])
+            n_union = len(nested_paths[dp] | read_paths[dp])
+            print(f"  {dp:34s} nested_memory={n_nested:>3}  read={n_read:>3}  "
+                  f"union={n_union:>3}  (of {len(observed)} in-window sessions)")
     else:
         print("  (none observed)")
 

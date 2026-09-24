@@ -253,6 +253,129 @@ def test_unfitted_session_still_returns_its_fit_free_observations():
     r = tsm.analyze(write_unfittable_substrate_reader(os.path.join(d, "u.jsonl")))
     assert r is not None and r["fitted"] is False
     assert r["substrate_reads"] == 2
+    assert r["read_via_tool"] == []   # no CLAUDE.md Read in this fixture
+
+
+# --- Read-channel CLAUDE.md loads (chip-20260914-token-split-read-channel-count) ---
+def _read_tool_use(tool_use_id, file_path):
+    return {"type": "tool_use", "id": tool_use_id, "name": "Read",
+            "input": {"file_path": file_path}}
+
+
+def _read_tool_result(tool_use_id, is_error=False):
+    return {"type": "tool_result", "tool_use_id": tool_use_id, "is_error": is_error}
+
+
+def write_claude_read_fixture(path, ts="2026-09-10T12:00:00.000Z",
+                              file_path="/Users/dgolden/REE_Working/ree-v3/CLAUDE.md",
+                              is_error=False, is_sidechain=False, no_result=False):
+    """< 3 turns on purpose (unfitted) -- isolates the Read-channel fields from the OLS fit."""
+    tuid = "toolu_fixture001"
+    recs = [
+        {"type": "user", "timestamp": ts, "isSidechain": is_sidechain,
+         "message": {"role": "user", "content": "read the CLAUDE.md please"}},
+        {"type": "assistant", "timestamp": ts, "entrypoint": "cli", "isSidechain": is_sidechain,
+         "message": {"role": "assistant", "usage": {"input_tokens": 100, "output_tokens": 5},
+                     "content": [_read_tool_use(tuid, file_path)]}},
+    ]
+    if not no_result:
+        recs.append({"type": "user", "timestamp": ts, "isSidechain": is_sidechain,
+                     "message": {"role": "user", "content": [_read_tool_result(tuid, is_error)]}})
+    with open(path, "w") as fh:
+        for r in recs:
+            fh.write(json.dumps(r) + "\n")
+    return path
+
+
+def test_successful_claude_md_read_is_counted():
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_claude_read_fixture(os.path.join(d, "r.jsonl")))
+    assert r is not None and r["fitted"] is False   # 2 turns, below the fit floor
+    assert r["read_via_tool"] == ["ree-v3/CLAUDE.md"]
+
+
+def test_errored_read_is_not_counted():
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_claude_read_fixture(os.path.join(d, "r.jsonl"), is_error=True))
+    assert r["read_via_tool"] == []
+
+
+def test_sidechain_read_is_not_counted():
+    """A subagent's own Read is not this session's main-thread context loading."""
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_claude_read_fixture(os.path.join(d, "r.jsonl"), is_sidechain=True))
+    assert r["read_via_tool"] == []
+
+
+def test_read_with_no_paired_result_is_not_counted():
+    """Guards against a false positive if the tool_use is issued but never resolves
+    (e.g. a truncated transcript) -- only a PAIRED, successful result counts."""
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_claude_read_fixture(os.path.join(d, "r.jsonl"), no_result=True))
+    assert r["read_via_tool"] == []
+
+
+def test_non_claude_md_read_is_not_counted():
+    d = tempfile.mkdtemp()
+    r = tsm.analyze(write_claude_read_fixture(
+        os.path.join(d, "r.jsonl"), file_path="/Users/dgolden/REE_Working/ree-v3/ree_core/agent.py"))
+    assert r["read_via_tool"] == []
+
+
+def _report_with_read_and_nested(min_bytes=0):
+    """A fitted 3-turn session that ALSO Reads REE_assembly/CLAUDE.md (no nested_memory
+    for it), plus the standard nested-memory-injecting fixture, so both channels and
+    their union are exercised in one --report run."""
+    home = tempfile.mkdtemp()
+    proj = os.path.join(home, ".claude", "projects", "-Users-dgolden-REE-Working")
+    os.makedirs(proj)
+    ts = "2026-09-10T12:00:00.000Z"
+    tuid = "toolu_readfixture"
+    recs = []
+    for i, (pad, u) in enumerate(zip([4000, 3998, 3998], USAGE)):
+        content = [{"type": "text", "text": "ok"}]
+        if i == 0:
+            content = [_read_tool_use(tuid, "/Users/dgolden/REE_Working/REE_assembly/CLAUDE.md")]
+        recs.append({"type": "user", "timestamp": ts, "message": {"role": "user", "content": "u" * pad}})
+        recs.append({"type": "assistant", "timestamp": ts, "entrypoint": "cli",
+                     "message": {"role": "assistant", "usage": u, "content": content}})
+        if i == 0:
+            recs.append({"type": "user", "timestamp": ts,
+                        "message": {"role": "user", "content": [_read_tool_result(tuid)]}})
+    with open(os.path.join(proj, "readsess.jsonl"), "w") as fh:
+        for r in recs:
+            fh.write(json.dumps(r) + "\n")
+    nested_attach = {"type": "attachment", "timestamp": ts,
+                     "attachment": {"type": "nested_memory",
+                                    "path": "/Users/dgolden/REE_Working/ree-v3/CLAUDE.md",
+                                    "content": "z" * 5000}}
+    write_fixture(os.path.join(proj, "nestedsess.jsonl"), prefix=[nested_attach])
+    env = dict(os.environ, HOME=home)
+    env.pop("USERPROFILE", None)
+    p = subprocess.run([sys.executable, TARGET, "--report", "--min-bytes", str(min_bytes)],
+                       stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env, timeout=120)
+    return p.returncode, p.stdout.decode("utf-8", "replace"), p.stderr.decode("utf-8", "replace")
+
+
+def test_report_prints_read_channel_section_with_nested_and_read_and_union():
+    rc, out, err = _report_with_read_and_nested()
+    assert rc == 0, err
+    assert "--- Read-channel CLAUDE.md loads (chip-20260914-token-split-read-channel-count) ---" in out
+    # REE_assembly/CLAUDE.md: Read only (no nested_memory attachment in this fixture).
+    assert "REE_assembly/CLAUDE.md" in out
+    # ree-v3/CLAUDE.md: nested_memory only (no Read in this fixture).
+    assert "ree-v3/CLAUDE.md" in out
+    # Relative-path resolution depends on a real ~/REE_Working prefix match, which this
+    # test's fake HOME cannot provide -- match on the trailing repo-relative substring
+    # rather than a line prefix (production, with a real HOME, prints the clean path).
+    assembly_line = [l for l in out.splitlines()
+                     if "REE_assembly/CLAUDE.md" in l and "nested_memory=" in l][0]
+    assert "nested_memory=  0" in assembly_line and "read=  1" in assembly_line and "union=  1" in assembly_line
+    ree_v3_line = [l for l in out.splitlines()
+                   if "ree-v3/CLAUDE.md" in l and "nested_memory=" in l][0]
+    assert "nested_memory=  1" in ree_v3_line and "read=  0" in ree_v3_line and "union=  1" in ree_v3_line
+    # section stays before the negative control, matching the doc-required ordering.
+    assert out.index("--- Read-channel CLAUDE.md loads") < out.index("--- NEGATIVE CONTROL")
 
 
 def test_negative_control_covers_unfitted_sessions():
