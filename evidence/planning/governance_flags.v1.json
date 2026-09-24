@@ -6865,6 +6865,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0481",
+      "claim_ids": [
+        "INV-069",
+        "MECH-113"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "Causal-reach trace (REE_assembly/evidence/planning/zself_causal_reach_trace_20260924.md, 884a6b1ca3): z_self has NO reach into action selection -- 0/68 E3 ticks and 0/12 whole episodes changed action under swap/zero/noise/permute of z_self (z_world canary in the same harness: 4-30% of ticks, closed-loop divergence by tick 0-6), because E3 scores world rollouts only, z_self rollouts are computed and discarded, E1's z_self response reaches selection only via hippocampal.terrain_prior (no loss trains it), and DR-10 is default-off with no z_self-derived producer. The sd_zself_training_path build (released with a body-forward-model objective) can therefore reach D2-at-E1 only; INV-069/MECH-113 retests will measure self-state quality, not behavioural consequence. Owed: /governance to register a separate substrate_queue row for a z_self-reading per-candidate valuation (self-viability) consumer, and to note on INV-069/MECH-113 that D3 is structurally unreachable until it exists.",
+      "raised_by_session": "orchestrate-20260924-breakthrough",
+      "raised_at": "2026-09-24T18:15:20Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
