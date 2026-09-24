@@ -1,6 +1,16 @@
-# MECH-025b within-seed Fisher-z re-estimator (EXP-1283) -- design findings, BLOCKED on one decision
+# MECH-025b within-seed Fisher-z re-estimator (EXP-1283) -- REFUSED at red-team; substrate gap, not an estimator gap
 
 **Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml (or whichever registry).**
+
+> **OUTCOME (2026-09-24, second pass).** The user answered the section-5 decision (option A,
+> `C1_BAR = 0.10`) and the driver was built, validated and smoke-tested. It was then **REFUSED at
+> /queue-experiment Step 4.5 (adversarial red-team, fable, BLOCKING)** on a finding that is about
+> the SUBSTRATE and not the estimator: **MECH-025b's dependent variable has no precision input at
+> all.** Sections 9-11 below carry the verification. `EXP-1283` is now
+> `status: blocked_substrate`, `blocked_by: precision-weighted-residue-accumulation`,
+> `route: implement_substrate` (REE_assembly `2ecc8c7b76`). Nothing was queued. Sections 1-8 are
+> left exactly as first written -- they are the record of the decision that was asked and answered,
+> and section 3's power analysis stays correct on its own terms.
 
 Produced by headless science worker `science-20260924-orchb-mech025b-within-seed-fisherz`
 (chip `chip-proposal-exp-1283`, orchestrator `orchestrate-20260924-b`, pre-flight AMBER).
@@ -184,3 +194,149 @@ precision variance) unchanged, and replacing **only** the statistics layer
 (`pooled_precision.extend(...)` at `:699-715`) with the within-seed Fisher-z estimator. Nothing
 in the warmup/eval pipeline needs to change except recording
 `last_score_diagnostics["precision_margin_norm"]` alongside `current_precision` at `:445`.
+
+
+---
+
+# SECOND PASS (2026-09-24, after the user's option-A decision)
+
+## 9. The decision was answered, and the driver was built
+
+User decision (orchestrator decision lane, chip `chip-20260924-mech025b-c1-bar`): **option A** --
+`C1_BAR = 0.10` pre-registered as a stated minimum practically-relevant effect
+(what_would_answer P4 route 2); the 95%-CI-excludes-0 requirement stays as the separate
+significance test; C2 stays 1.1 on >= 4/5 qualifying seeds; the three worker decisions in
+section 7 stand as taken.
+
+Built as `V3-EXQ-671c` (slot reserved, `supersedes` V3-EXQ-671b). It passed
+`validate_experiments.py --strict` (0 warnings, after fixing the two it initially raised) and a
+`--dry-run` smoke (rc=0, manifest + runner sentinel written, all six criteria evaluated,
+`margin_availability = 1.0`). Beyond WWA P1-P4 it also fixed two instrument defects found by
+source-tracing while authoring:
+
+- **Commit-time capture.** `REEAgent.update_residue()` -- which 671b calls after every
+  `env.step()` -- reaches `E3.post_action_update` (`agent.py:11070`) and thence
+  `update_running_variance`, so `current_precision` moves on EVERY env tick while `select()`
+  fires only on an E3 tick (~1 in 10; `config.py:1281` states the asymmetry, and it measured
+  10.5 steps/selection here). 671b therefore read its regressor up to ~10 ticks AFTER the commit
+  decision and AFTER the harm's own prediction error had been folded into the EMA -- and since
+  harm raises prediction error, raises variance and so LOWERS precision, that contamination has a
+  negative sign, which is the direction 671b's pooled estimate reported.
+- **Commit-window sampling.** 671b's `held_committed` latch persists across the ~10 steps between
+  E3 ticks, so two harm events in one window counted as two independent observations of one
+  selection. 671c emits one observation per fresh committed selection and records
+  `n_selections` / `n_commit_windows` / `n_latched_ticks` so the denominator is auditable.
+
+A derived joint-satisfiability bound was added: C1's two halves are simultaneously reachable only
+above `W = (1.96/atanh(C1_BAR))^2 = 382` total Fisher weight, gated as a `dv_headroom` precondition.
+
+## 10. THE BLOCKING FINDING -- the DV has no precision input (verified from source)
+
+Red-team verdict **BLOCKING**. Every load-bearing claim was re-verified directly against
+`ree_core` before being accepted:
+
+| Fact | Source | Verified |
+|---|---|---|
+| `ResidueField.accumulate` computes `magnitude = abs(harm_magnitude) * accumulation_rate`, optionally `* world_delta`. No precision, variance or commitment term. It is the ONLY write site for `total_residue`. | `ree_core/residue/field.py:697-704` | yes (first pass, section 2) |
+| Owned harm is a CONSTANT. `agent_caused_hazard` sets `harm_signal = -self.contaminated_harm`, default **0.4**. The driver's `hazard_harm=0.02` is a DIFFERENT parameter, applying to `env_caused_hazard`, which the `owned` filter excludes. | `ree_core/environment/causal_grid_world.py:2647`, `:274` | yes |
+| The only other contributor accumulates a **hardcoded** `harm_magnitude=1.0`, gated on a held committed trajectory -- binary, never graded by precision. | `ree_core/predictors/e3_selector.py:4691-4694` | yes |
+| `accumulation_rate` default `0.1` | `ree_core/utils/config.py:3379` | yes |
+
+With `world_delta=None` (the driver passes it), the per-window DV therefore reduces **exactly** to
+
+```
+dv = w_residue / w_harm = (0.04*m + 0.10*I) / (0.4*m) = 0.1 + 0.25 * I/m
+```
+
+where `I in {0,1}` is whether the commit tick itself landed on an owned-harm step and `m` is the
+owned-harm count in the window. **Precision cannot enter this expression.**
+
+Consequences, and why this is BLOCKING rather than a caveat:
+
+- **A PASS would be unattributable.** `dv` varies only through `I` and `m`, i.e. through the
+  timing of the commit tick relative to harm and the harm density of the window. Precision
+  influences behaviour and therefore influences `m`, so a nonzero within-seed `r` is reachable --
+  but it would record a commit-tick timing coincidence, not "precision scales residue weight".
+  The verdict grid would nonetheless stamp it `supports` /
+  `precision_scales_residue_weight_within_seed`.
+- **A null would not be claim pressure.** It would record that the substrate has no
+  precision-weighted residue path -- the same class as V3-EXQ-671's original
+  `residue pinned at 0` defect, which governance correctly ruled `non_contributory`. The grid
+  would stamp it `weakens`, which is what the FALSIFYING clause says should narrow or retire
+  MECH-025b.
+- This also **re-reads section 3**: 671b's per-seed `r` of +0.05/+0.10/+0.07 and ratios of
+  0.92/1.13/1.15 are what a two-valued `{0.04, 0.14}` per-step DV produces. The within-seed
+  re-estimate of +0.0778 in section 3 is arithmetically correct and remains the right way to read
+  671b's numbers, but it is a re-estimate of a quantity with no mechanism behind it. **The pooled
+  vs within-seed confound (GFLAG-0151) is real and is NOT the whole story** -- fixing the
+  estimator alone could never have answered this claim.
+
+## 11. Secondary red-team findings (recorded; not independently re-verified in full)
+
+Dispositions, since they matter to whoever picks this up:
+
+1. **Episode length (CONTESTED, independently corroborated).** The reviewer measured episodes
+   dying in 1-3 steps under this env config. This session's own cadence probe saw the same thing
+   before the red-team ran -- 21 env steps across 10 episodes on an untrained agent -- and the
+   shipped smoke shows 38 of 100 configured steps. The docstring's "~1000 selections per seed"
+   was `200/10` arithmetic, not a measurement. **Any successor needs an episode-length readiness
+   gate**; without one the run cannot distinguish "no effect" from "no episodes".
+2. **Verdict-grid over-reach (CONTESTED, accepted).** The `else -> weakens` branch fires on ANY of
+   {C1a fail, C1b fail, C2 fail}, but the registered FALSIFYING clause requires a null/negative
+   correlation AND a majority ratio failure. Worse, at the effect the design is powered for
+   (r = +0.078, W ~ 632) the CI excludes 0 while r < 0.10 -- so the run would label a
+   **significantly positive** correlation `weakens`. That is a real design defect independent of
+   finding 10 and must be fixed before any re-run.
+3. **The W >= 382 gate out-ranks the falsifier's own minimum (CONTESTED, accepted).** The
+   registered FALSIFYING precondition is >= 5 seeds x >= 20 events, i.e. W = 85. The gate would
+   route a clean null meeting the claim's own stated sufficiency to `non_contributory`. The gate's
+   premise ("cannot PASS below W=382") also holds only at r ~ C1_BAR: at r = 0.30, W = 100 passes
+   both halves. Needs re-scoping, not deletion.
+4. **`precision_margin_norm` is affine in `rv` within a seed (NOTE, correct).**
+   `margin = 1 - rv/0.40`, and Pearson is affine-invariant, so within a seed
+   `r(margin, dv) = -r(rv, dv)` exactly. The scale-free fix buys comparability ACROSS seeds (real,
+   and the point of P3) but changes nothing within-seed. Section 4's ceiling-compression concern
+   is the same observation from the other side.
+5. **Window autocorrelation (NOTE, plausible, unverified).** `precision_ema_alpha = 0.05` against
+   ~10-step windows leaves consecutive windows correlated, so the `(n-3)` Fisher weights, the CI
+   and the permutation null all assume more independence than the data have. Would need an
+   effective-n correction.
+6. **`agent.eval()` dropped (verified).** 671b calls it at its line 392; the 671c eval loop as
+   written does not. A genuine regression introduced in this rewrite, and it breaks the
+   "comparability with 671b" claim for the legacy per-step diagnostic. Noted in the withheld
+   driver's header.
+
+## 12. What is owed, in order
+
+1. **A substrate item: precision-weighted residue accumulation.** Registered as the blocker on
+   EXP-1283 (`blocked_by: precision-weighted-residue-accumulation`, `route: implement_substrate`).
+   It has **no `substrate_queue.json` entry yet** -- deliberately named anyway so it lands in the
+   standing audit's `UNOWNED` bucket, which is the signal to register it. Note this is a
+   design question, not a mechanical build: making residue depend on commit precision is exactly
+   what MECH-025b asserts, so the mechanism must be motivated independently of the claim it would
+   then be used to test, or the test becomes circular. That is a `/governance` + `/implement-substrate`
+   conversation, not a queue-experiment one.
+2. **An episode-length readiness gate** for this env config (finding 11.1).
+3. **Only then** the within-seed estimator, which is preserved and reusable at
+   `REE_assembly/evidence/planning/mech025b_671c_withheld_driver_20260924.py` -- with fixes for
+   findings 11.2, 11.3 and 11.6 applied first.
+
+## 13. Gate dispositions recorded on the way (all cleared, all measured)
+
+- **Step 2.4 (GOV-REUSE-1):** NOT RECOVERABLE. Three prior runs carry
+  `precision_residue_correlation`, but all predate `precision_margin_norm` (landed 2026-09-02) and
+  none persisted raw per-sample values, so the within-seed estimate on the correct regressor is not
+  derivable post-hoc.
+- **Step 2.5b (re-derive brake):** count 1 against a threshold of 2 -- not braked. (551 autopsy
+  artifacts scanned, 3 targets found for MECH-025b.)
+- **Step 2.5c (substrate-path overlap):** two OPEN `corrupting` entries name files this driver
+  imports; both were measured unreachable rather than argued away.
+  `contextmemory-write-path-addressing-degeneracy` needs `sd016_writepath_mode`, which defaults
+  `"off"` and is never set here -- measured 0 of 16 slots occupied across 3 seeds x 1200 `sense()`
+  calls. `SD-PP-B5` names `compute_world_interventional_loss`, which has zero callers anywhere in
+  `ree_core`. Several `degrading` entries overlap and were to be noted in the queue entry.
+- **Step 2.5a:** `precision_margin_norm` is populated without `e3_score_decomp_enabled` and takes
+  7 distinct values in (0,1] across the commit boundary; `margin = 1 - rv/0.40` matched the
+  analytic prediction exactly at every probed point.
+- **Step 2.6 (ethics preflight):** all flags false, `decision: allow` (SENT-0, V3 pre-ethical
+  instrumentation).
