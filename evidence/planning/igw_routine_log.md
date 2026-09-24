@@ -3589,3 +3589,9 @@ One line per hourly tick. ASCII only.
 2026-09-24T05:00:01Z workset published (regen -- 260 items, 33 ready, 0 in flight)
 2026-09-24T05:00:01Z workset committed (regen -- 260 items, 33 ready, 0 in flight)
 2026-09-24T04:55:49Z SPAWN IGW-20260924-241 skill=/queue-experiment prio=40 uuid=4f0ad700-2596-44e1-bd4b-34cf820fe797 pid=96893 worktree=igw-241-proposal-for-sd-081
+2026-09-24T06:04:56Z skip: paused (.igw_routine_pause present)
+2026-09-24T07:05:04Z skip: paused (.igw_routine_pause present)
+2026-09-24T08:05:09Z skip: paused (.igw_routine_pause present)
+2026-09-24T09:05:12Z skip: paused (.igw_routine_pause present)
+2026-09-24T10:05:15Z skip: paused (.igw_routine_pause present)
+2026-09-24T10:58:58Z auto-defer igw-241-proposal-for-sd-081 hash=c61f1483121c for 48h (complete)
