@@ -20,7 +20,7 @@
   },
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
-    "INV-089"
+    "INV-090"
   ],
   "evidence_class": "simulation",
   "evidence_direction": "weakens",
@@ -115,5 +115,11 @@
     101
   ],
   "substrate_hash": "c8071155c3dc08d0e8cbdfaffad42b2fca1f080e36a6a3d4e6708a1ea32fea29",
-  "machine_class": "linux-x86_64-py3.10"
+  "machine_class": "linux-x86_64-py3.10",
+  "claim_ids_prior_2026_09_24": {
+    "claim_ids_tested": [
+      "INV-089"
+    ]
+  },
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G5 A rec-20260924-17c7e199)]: claim tag re-assigned INV-089 -> INV-090 per the 2026-07-16 re-assignment of the 746-lineage (failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16), which never reached the index; flagged as a precondition by confirmed failure_autopsy_gflag0452-D3D4-cluster_2026-09-24.json (V3-EXQ-743 bears_on_note). evidence_direction weakens unchanged; prior claim ids preserved in claim_ids_prior_2026_09_24."
 }

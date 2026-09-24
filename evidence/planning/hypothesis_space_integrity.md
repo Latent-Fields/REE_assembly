@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-09-24T08:36:21Z
+Generated: 2026-09-24T10:19:07Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **69** open question(s) across **55** time-series snapshot(s). **2** flag(s) raised, **75** advisory note(s), **33** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **2** acknowledged (worked) recurrence(s), **4** possibly-stale synthesis note(s).
+Audited **71** open question(s) across **55** time-series snapshot(s). **2** flag(s) raised, **75** advisory note(s), **33** git-witnessed pre-registration(s), **0** unverifiable, **0** fan-out recurrence overlay(s), **4** discovery-growth note(s), **0** discovery-recurrence overlay(s), **2** acknowledged (worked) recurrence(s), **4** possibly-stale synthesis note(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -111,7 +111,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-09-18 -> 2026-09-20: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
 - time series 2026-09-21 -> 2026-09-22: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
 - time series 2026-09-22 -> 2026-09-23: total_initial grew by 12, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 12 leg(s)) -- advisory, not a violation.
-- time series 2026-09-23 -> 2026-09-24: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
+- time series 2026-09-23 -> 2026-09-24: total_initial grew by 9, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 9 leg(s)) -- advisory, not a violation.
 
 ## Advisory -- surviving-count drop backed by confirmation/supersession (2 backed, 3 unverifiable, NOT violations)
 

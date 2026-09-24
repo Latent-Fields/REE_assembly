@@ -3,7 +3,11 @@
   "generated_utc": "2026-09-24T09:13:39Z",
   "generated_by": "governance-20260924 subagent (staging mode), session governance-20260924-autopsy-d1",
   "scope": "cluster",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
+  "status_prior": "awaiting_human_confirmation",
+  "confirmed_utc": "2026-09-24T10:18:00Z",
+  "confirmed_by": "user at /governance gate, session governance-20260924",
+  "confirmation_note": "G1 A rec-20260924-aa33086a (per-run directions as drafted except G3); G2 A rec-20260924-a796e485 (MECH-302/288/287/092 provisional->candidate, MECH-033 active->provisional as evidence-weight correction; all other statuses unchanged); G3 B rec-20260924-d7d2fb40: SD-050 on V3-EXQ-517d = non_contributory (NOT the draft default supports), per SD-050's own what_would_answer (excludes scheduled damage, needs both reuse sites) -> 517d is run-level non_contributory for MECH-302 and SD-050; SD-050 scoring exp support from 517c/517d is now 0, status stays provisional with a re-review note. G6 (parent): the 517d refractory substrate_queue amend (MECH-302) and the V3-EXQ-499 read-across are held by the parent session, not applied here.",
   "trigger": "GFLAG-0452 / user decision rec-20260924-34e4e088: D1_impl_verification_by_construction cluster from the GFLAG-0250 PASS driver skim",
   "source_skim": "REE_assembly/evidence/planning/gflag0250_pass_driver_skim_20260924.md",
   "dry_run_checked": true,
@@ -422,10 +426,10 @@
         "SD-050": "standard"
       },
       "recommended_epistemic_category_per_claim_note": "Run-reading for the R3 counter ONLY -- NOT a claims.yaml write (both claims already carry standard).",
-      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_direction_per_claim": {
         "MECH-302": "non_contributory",
-        "SD-050": "supports"
+        "SD-050": "non_contributory"
       },
       "recommended_evidence_direction_note": "Target-level 'supports' is the SD-050 reading; the manifest must carry evidence_direction_per_claim {MECH-302: non_contributory, SD-050: supports} (today it lists MECH-302 only; SD-050 was retro-tagged into CLAIM_IDS in 8891dad and inherits the blanket).",
       "recommended_evidence_quality_note": "2026-09-24 (failure_autopsy_gflag0452-D1-cluster, GFLAG-0452 D1): V3-EXQ-517d is a comparator-wiring check. ARM_B disables both the comparator and valence_liking, so its zeros are guaranteed; C2 duplicates C1 (the counted write is the relief block's own update_valence, agent.py:7389-7407); the ARM_A floor of 3 events is an env-dependent liveness leg (the identical 517c failed it on one seed). The comparator has no refractory and fires every tick of a descent (~9-17 events per scheduled injection). MECH-302: its content (relief REUSES goal-achievement completion machinery) is hand-coded, not tested, and its own what_would_answer D2 already rules a scheduled-injection-only run a vacuous MECH-302 test -> non_contributory. SD-050: [USER CALL] draft reading = supports stands as implementation verification of the detector in the closed loop (MECH-302 D2's framing); but SD-050's own what_would_answer requires natural, non-scheduled descents and both reuse sites, which 517d does not meet -- the alternative is non_contributory.",
@@ -438,13 +442,19 @@
           "status_change": "provisional -> candidate (revert the 2026-07-12 IGW-20260712-001 promotion, whose rationale was 517d + 517c; lit_conf 0.875 is unchanged)"
         },
         "SD-050": {
-          "recommended_evidence_direction": "supports",
+          "recommended_evidence_direction": "non_contributory",
           "recommended_evidence_direction_alternative": "non_contributory",
-          "user_decision_owed": true,
+          "user_decision_owed": false,
           "user_decision_note": "Two registered texts disagree. MECH-302 what_would_answer D2: a scheduled-injection-only run 'is a valid SD-050 test'. SD-050 what_would_answer CONFIRMING: requires a descent 'produced by the agent's own trajectory (not scheduled injection)' and BOTH reuse sites per fire; 517d uses scheduled injection and measures only update_valence. Draft default = supports as detector implementation verification, because the D1 gloss and MECH-302 D2 both endorse it; choose non_contributory if SD-050's own falsifier governs, in which case SD-050 keeps no scoring exp support and its 2026-08-29 promotion should be re-reviewed.",
           "recommended_epistemic_category": null,
-          "change": "[user call] supports stands as detector implementation verification, scheduled descents only, one of two reuse sites measured, no-refractory caveat; stamp this cluster artifact",
-          "status_change": "none -- stays provisional under the default reading (the 2026-08-29 rationale cited '2 supporting runs'; after 517c supersession the scoring count is 1). Under the alternative reading: re-review provisional."
+          "change": "[user call G3 B, rec-20260924-d7d2fb40] SD-050's own what_would_answer governs (scheduled injection excluded, both reuse sites required; 517d meets neither); scoring exp support from 517c/517d becomes 0 -> non_contributory; stamp this cluster artifact",
+          "status_change": "none -- stays provisional this cycle; evidence_quality_note records that provisional rests on no scoring exp support -- re-review",
+          "draft_before_gate": {
+            "recommended_evidence_direction": "supports",
+            "change": "[user call] supports stands as detector implementation verification, scheduled descents only, one of two reuse sites measured, no-refractory caveat; stamp this cluster artifact",
+            "status_change": "none -- stays provisional under the default reading (the 2026-08-29 rationale cited '2 supporting runs'; after 517c supersession the scoring count is 1). Under the alternative reading: re-review provisional."
+          },
+          "user_decision": "G3 B rec-20260924-d7d2fb40: SD-050's own what_would_answer governs -> non_contributory"
         }
       },
       "recommended_substrate_queue_entry": {
@@ -492,7 +502,12 @@
         "design_decision vs mechanism split: the same run legitimately verifies SD-050 (the comparator is built and live in the loop) while carrying no evidence for MECH-302"
       ],
       "routing": "governance-demotion",
-      "followon_not_chipped": "(1) the MECH-302 status revert above; (2) the optional comparator-refractory amend (user decision); (3) a MECH-302 reuse test -- a new EXQ number, not a 517 letter (brake live) -- for governance to chip after Step 8"
+      "followon_not_chipped": "(1) the MECH-302 status revert above; (2) the optional comparator-refractory amend (user decision); (3) a MECH-302 reuse test -- a new EXQ number, not a 517 letter (brake live) -- for governance to chip after Step 8",
+      "recommended_evidence_direction_draft_before_gate": "supports",
+      "recommended_evidence_direction_per_claim_draft_before_gate": {
+        "MECH-302": "non_contributory",
+        "SD-050": "supports"
+      }
     },
     {
       "run_id": "v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3",
@@ -769,7 +784,8 @@
     "MECH-094": "none -- stays stable (lit-carried)",
     "SD-017": "none -- stays stable (genuine exp 691 supports vs 436c weakens; lit 0.903)",
     "SD-050": "[user call] default: none -- stays provisional (517d supports stands as detector implementation verification; scoring count 2 -> 1). Alternative: 517d non_contributory per SD-050's own what_would_answer, then re-review the 2026-08-29 promotion.",
-    "alternative_reading_for_user": "Keep MECH-092/287/288/302 at provisional, reading 'provisional' as 'substrate implemented and verified + literature'. The original pre-registered promotion bars for MECH-287 and MECH-288 named integration tests beyond implementation, which is why this draft recommends the revert."
+    "alternative_reading_for_user": "Keep MECH-092/287/288/302 at provisional, reading 'provisional' as 'substrate implemented and verified + literature'. The original pre-registered promotion bars for MECH-287 and MECH-288 named integration tests beyond implementation, which is why this draft recommends the revert.",
+    "SD-050_confirmed": "G3 B: 517d non_contributory for SD-050; stays provisional this cycle; provisional rests on no scoring exp support -- re-review"
   },
   "manifest_writes_recommended": {
     "V3-EXQ-500a": {
@@ -798,10 +814,17 @@
       }
     },
     "V3-EXQ-517d": {
-      "evidence_direction": "supports",
+      "evidence_direction": "non_contributory",
       "evidence_direction_per_claim": {
         "MECH-302": "non_contributory",
-        "SD-050": "supports"
+        "SD-050": "non_contributory"
+      },
+      "draft_before_gate": {
+        "evidence_direction": "supports",
+        "evidence_direction_per_claim": {
+          "MECH-302": "non_contributory",
+          "SD-050": "supports"
+        }
       }
     },
     "V3-EXQ-757": {

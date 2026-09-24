@@ -23,8 +23,10 @@
     "Q-004"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-004": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -133,5 +135,6 @@
   "seeds": [
     42,
     123
-  ]
+  ],
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G5 A rec-20260924-17c7e199)]: evidence_direction reclassified supports -> non_contributory (per claim: Q-004 non_contributory) per confirmed failure_autopsy_gflag0452-D3D4-cluster_2026-09-24.json (V3-EXQ-149b, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis."
 }

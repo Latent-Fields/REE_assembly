@@ -1,6 +1,7 @@
 # Failure autopsy (STAGING) -- GFLAG-0452 D2 cluster: 6 PASS manifests whose contrast or control cannot discriminate the claimed mechanism
 
 - **Status:** `awaiting_human_confirmation` (staging mode; the Step 8 gate is held by the parent `/governance` session `governance-20260924`)
+- **CONFIRMED 2026-09-24T10:18:00Z** by the user at the /governance gate (session governance-20260924); decisions G1 A rec-20260924-aa33086a, G2 A rec-20260924-a796e485, G3 B rec-20260924-d7d2fb40, G4 A rec-20260924-823fac58, G5 A rec-20260924-17c7e199 (as they apply here). MECH-033 active -> provisional (evidence-weight correction, not falsification); SD-035 / ARC-065 stay stable; the 569i read-across and the fan-out portfolios are held by the parent session.
 - **Generated:** 2026-09-24T09:11:28Z
 - **Source:** GFLAG-0452, user decision rec-20260924-34e4e088. Skim input: `gflag0250_pass_driver_skim_20260924.{md,json}` (key `runs`)
 - **Claims:** SD-035 (stable), ARC-065 (stable), MECH-033 (active)

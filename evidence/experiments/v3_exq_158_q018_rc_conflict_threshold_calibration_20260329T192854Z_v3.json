@@ -47,7 +47,7 @@
   },
   "outcome": "PASS",
   "evidence_class": "experimental",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "summary": "Outcome=PASS. Q-018: RC-conflict threshold calibration. Conditions: LOW_THRESH (rc=0.05), HIGH_THRESH (rc=0.4), ADAPTIVE_THRESH (EMA+2.0*sigma). C1 ADAPTIVE disc_gap>=0.1: True. C2 ADAPTIVE lower over-suppression than LOW: True. C3 ADAPTIVE harm <= HIGH + 0.02: True. C4 enough spoofing events: True. C5 LOW_THRESH sanity: True. PASS => EMA+sigma adaptive threshold blocks spoofing and avoids chronic over-suppression; Q-018 partially resolved. PARTIAL_ADAPTIVE_DISC => ADAPTIVE discriminates well but still over-suppresses; sigma multiplier needs calibration. PARTIAL_TRADEOFF => no single condition achieves both goals; fundamental tension confirmed. FAIL => insufficient spoofing events or mechanism broken.",
   "cells": [
     {
@@ -252,5 +252,9 @@
       "adaptive_vs_low_clean_delta": -0.0784,
       "adaptive_vs_high_harm_delta": 0.0
     }
-  ]
+  ],
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G5 A rec-20260924-17c7e199)]: evidence_direction reclassified supports -> non_contributory (per claim: Q-018 non_contributory) per confirmed failure_autopsy_gflag0452-D3D4-cluster_2026-09-24.json (V3-EXQ-158, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis.",
+  "evidence_direction_per_claim": {
+    "Q-018": "non_contributory"
+  }
 }

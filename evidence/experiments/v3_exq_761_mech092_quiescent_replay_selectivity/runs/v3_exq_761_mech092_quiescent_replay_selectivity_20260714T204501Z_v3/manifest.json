@@ -23,8 +23,10 @@
     "MECH-092"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-092": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -139,5 +141,6 @@
     4
   ],
   "substrate_hash": "fa87a955e9cd77f78bb88969077e17d8bb119c5836b34fe4208d67ad22666078",
-  "machine_class": "linux-x86_64-py3.10"
+  "machine_class": "linux-x86_64-py3.10",
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G3 B rec-20260924-d7d2fb40)]: evidence_direction reclassified supports -> non_contributory (per claim: MECH-092 non_contributory) per confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24.json (V3-EXQ-761, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis."
 }

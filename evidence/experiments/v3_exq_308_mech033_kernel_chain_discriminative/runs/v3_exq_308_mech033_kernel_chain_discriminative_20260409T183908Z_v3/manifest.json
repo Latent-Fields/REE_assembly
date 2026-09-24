@@ -23,8 +23,10 @@
     "MECH-033"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-033": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -45,5 +47,6 @@
     42,
     7,
     13
-  ]
+  ],
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a)]: evidence_direction reclassified supports -> non_contributory (per claim: MECH-033 non_contributory) per confirmed failure_autopsy_gflag0452-D2-cluster_2026-09-24.json (V3-EXQ-308, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis."
 }

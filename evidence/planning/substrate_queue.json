@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "governance-20260924",
-  "last_updated_utc": "2026-09-24T09:39:51Z",
+  "last_updated_utc": "2026-09-24T10:22:20Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -11393,7 +11393,16 @@
         "MECH-062",
         "Q-037"
       ],
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_158_q018_rc_conflict_threshold_calibration_20260329T192854Z_v3",
+          "experiment_type": "v3_exq_158_q018_rc_conflict_threshold_calibration",
+          "metric": "driver-local RC gate had no consumer (action = policy multinomial) and harm_rate was a phantom-key 0.0 in all 6 cells; the entry's falsifier_requirement note assumes 158 is a valid driver-local calibration -- it is not even that",
+          "target": "a gate whose state modulates the committed action, harm read from the env step return, provenance mismatch at matched content, and a benign-novelty control so over-suppression has a measured cost",
+          "resolved": "open",
+          "source": "failure_autopsy_gflag0452-D3D4-cluster_2026-09-24"
+        }
+      ],
       "priority": "medium",
       "added_session": "falsifier-runnability-audit-resume-20260922",
       "added_utc": "2026-09-22T04:10:21Z",
@@ -11401,7 +11410,7 @@
       "source_audit": "evidence/planning/falsifier_completion_and_runnability_audit_20260921.json",
       "owner_route": "/governance adjudication before any /implement-substrate or /queue-experiment commission",
       "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Scientific use remains gated by the carrier claim(s) own non-degeneracy preconditions recorded in their what_would_answer; this row does not clear them.",
-      "falsifier_requirement_satisfied": "Q-018's falsifier needs organic provenance conflict and a gate in the agent; both are absent, so no calibration measured in V3 today can generalise past the driver-local simulation EXQ-158 already ran. // An explicit, independently readable RC_conflict channel plus an authority/provenance-mismatch event at matched surface content, so that a pre-commit threshold shift can be attributed to reality-coherence conflict rather than to generic surprise.",
+      "falsifier_requirement_satisfied": "Q-018's falsifier needs organic provenance conflict and a gate in the agent; both are absent, so no calibration measured in V3 today can generalise past the driver-local simulation EXQ-158 already ran. // An explicit, independently readable RC_conflict channel plus an authority/provenance-mismatch event at matched surface content, so that a pre-commit threshold shift can be attributed to reality-coherence conflict rather than to generic surprise. // CORRECTION 2026-09-24 (failure_autopsy_gflag0452-D3D4-cluster_2026-09-24, confirmed at /governance 2026-09-24, G5 A rec-20260924-17c7e199): EXQ-158 did NOT validly measure even the driver-local calibration -- its RC gate had no consumer (action = policy multinomial) and harm_rate was a phantom-key 0.0 in all 6 cells; 158 is non_contributory to Q-018. This registered instrument, not a 158a re-run, is Q-018's route.",
       "event_or_manipulation_produced": "An environment-level provenance/authority marking on observations (source tag plus a mis-marking mode that lets an internally generated signal arrive with external provenance), so authority-spoofing events arise from the event stream rather than being synthesised by a driver. // Observations carrying a provenance or authority tag that can be spoofed or verified while the content is held bit-identical, giving RC_conflict measurable non-zero variance.",
       "dv_or_instrument_exposed": "Per-tick records of provenance-conflict magnitude, gate state (armed / held / released), hold duration against tau_rc_recovery, and the realised precision floor -- enough to read spoof detection and legitimate-switch suppression as two separate error directions from one run. // A per-tick RC_conflict scalar recorded alongside the already-measurable commit_threshold, with a benign-novelty control channel so the lane can be separated from S1/S3 conflict.",
       "why_no_existing_owner": "MECH-065 names the RC-conflict lane conceptually but no substrate_queue entry, closure-plan node or governance flag registers building it; a scan of all 189 substrate_queue entries returns nothing on spoofing, provenance, rc_conflict or authority. // No substrate_queue entry, closure-plan node or governance flag covers reality-coherence conflict, provenance tagging or authority spoofing; the 2026-09-04 authority-field intake cross-references MECH-065 only as a predicted benefit of MECH-534, not as an owner. The control-plane doc still lists the S5 update equations as its own TODO. // COORDINATOR: ree_core has zero occurrences of rc_conflict / theta_high / pi_rc_floor / MECH-065 / provenance; V3-EXQ-158 built its own encoders inside the driver; MECH-065 is candidate with no substrate.",
@@ -11409,7 +11418,10 @@
       "registration_is_not_build_authorisation": true,
       "experiment_queued": false,
       "phase_verdict": "V3-NATIVE",
-      "authority": "ree_core has zero occurrences of rc_conflict / theta_high / pi_rc_floor / MECH-065 / provenance; V3-EXQ-158 built its own encoders inside the driver; MECH-065 is candidate with no substrate."
+      "authority": "ree_core has zero occurrences of rc_conflict / theta_high / pi_rc_floor / MECH-065 / provenance; V3-EXQ-158 built its own encoders inside the driver; MECH-065 is candidate with no substrate.",
+      "falsifier_requirement_satisfied_prior_2026_09_24": "Q-018's falsifier needs organic provenance conflict and a gate in the agent; both are absent, so no calibration measured in V3 today can generalise past the driver-local simulation EXQ-158 already ran. // An explicit, independently readable RC_conflict channel plus an authority/provenance-mismatch event at matched surface content, so that a pre-commit threshold shift can be attributed to reality-coherence conflict rather than to generic surprise.",
+      "last_amend_session": "governance-20260924-apply0452",
+      "amend_note_2026_09_24": "Registration-only entry; amending adds the failure record and corrects the entry's premise that 158 already measured the driver-local calibration. severity left unset (not a build defect in ree_core). Applied at /governance 2026-09-24 (session governance-20260924, G5 A rec-20260924-17c7e199); status unchanged (registration only)."
     },
     {
       "sd_id": "q092-behavioural-discriminability-umpire-harness",
@@ -13284,6 +13296,45 @@
       "authority": "REGISTRATION ONLY from /governance session governance-20260924 via subagent governance-20260924-mech365; the user's build authorisation is still required.",
       "ready_blocked_by": "User build authorisation owed (registration only). Latent: both reaching flags default OFF.",
       "last_seen_session": "governance-20260924"
+    },
+    {
+      "sd_id": "mech001-astrocytic-regulatory-field-registration",
+      "title": "REGISTRATION ONLY: a slow regulatory field R(x,t) with an explicit decay constant tau_R, wired into precision routing (MECH-001), so Q-004 has an object to calibrate",
+      "node_class": "measurement prerequisite (registration only)",
+      "status": "proposed_REGISTRATION_ONLY_not_a_build_authorisation",
+      "ready": false,
+      "registration_is_not_build_authorisation": true,
+      "priority": "medium",
+      "priority_suggested": 3,
+      "added_session": "governance-20260924-apply0452",
+      "added_utc": "2026-09-24T10:22:20Z",
+      "last_seen_session": "governance-20260924-apply0452",
+      "source_autopsy": "evidence/planning/failure_autopsy_gflag0452-D3D4-cluster_2026-09-24.json",
+      "owner_route": "/governance adjudication (MECH-001 design decision) before any /implement-substrate commission",
+      "ready_blocked_by": "REGISTRATION ONLY, not a build authorisation. Building a RegulatoryField R(x,t) is a MECH-001 design decision for governance; this row only makes the Q-004 gap visible.",
+      "implementation_hint": "Q-004 asks how to calibrate tau_R, the decay constant of the astrocytic regulatory field in dR/dt = -R/tau_R + f_mono + f_local + f_meta + diffusion; ree_core has no such module, and the V3-EXQ-149/149b stand-in (ResidueField accumulation_rate x kernel_bandwidth) has no time constant. Register the gap so it is visible; building it is a MECH-001 design decision for governance, not authorised by this entry.",
+      "unblocks_claims": [
+        "Q-004",
+        "MECH-001"
+      ],
+      "depends_on_unresolved": [
+        "MECH-001 (candidate, substrate_conditional)"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3",
+          "experiment_type": "v3_exq_149b_q004_tau_r_calibration_largebudget",
+          "metric": "manipulation varied residue deposit gain x kernel bandwidth (no time constant); winning arm residue_contrast 0.0/0.0095; FAST field contrast 0.05-0.16% of level",
+          "target": "an R(x,t) module whose tau_R can be set and whose lag against a monoamine-like step is measurable, read by a precision-routing consumer",
+          "resolved": "open",
+          "source": "failure_autopsy_gflag0452-D3D4-cluster_2026-09-24"
+        }
+      ],
+      "why_no_existing_owner": "status should be proposed_REGISTRATION_ONLY_not_a_build_authorisation, matching the convention for unowned gaps. The residue-field geometry entries (residue-field-ring-capacity, residue-field-kernel-resolution) explain point (3) but are NOT the Q-004 route: fixing residue geometry would still leave no tau_R.",
+      "version_scope": "V3-native",
+      "phase_verdict": "V3-NATIVE",
+      "experiment_queued": false,
+      "ratified": "user at /governance gate 2026-09-24, session governance-20260924, G4 A rec-20260924-823fac58"
     }
   ],
   "schema_version": "substrate_queue/v2",

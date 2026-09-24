@@ -12,9 +12,9 @@
   ],
   "outcome": "PASS",
   "result": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-017": "supports"
+    "SD-017": "non_contributory"
   },
   "criteria": {
     "n_seeds": 3,
@@ -210,5 +210,6 @@
     }
   ],
   "elapsed_seconds": 8.056741952896118,
-  "notes": "Phase 2 retest of EXP-0171 SD-017 readiness probe. Successor to V3-EXQ-500 under the validated 5-flag substrate template (SD-016 div loss + MECH-269 per-stream V_s + anchor sets + SD-039 payload + SD-017 sleep loop). Single-claim, single-arm readiness probe; C1/C2/C3 acceptance preserved from EXQ-500."
+  "notes": "Phase 2 retest of EXP-0171 SD-017 readiness probe. Successor to V3-EXQ-500 under the validated 5-flag substrate template (SD-016 div loss + MECH-269 per-stream V_s + anchor sets + SD-039 payload + SD-017 sleep loop). Single-claim, single-arm readiness probe; C1/C2/C3 acceptance preserved from EXQ-500.",
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G3 B rec-20260924-d7d2fb40)]: evidence_direction reclassified supports -> non_contributory (per claim: SD-017 non_contributory) per confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24.json (V3-EXQ-500a, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis."
 }

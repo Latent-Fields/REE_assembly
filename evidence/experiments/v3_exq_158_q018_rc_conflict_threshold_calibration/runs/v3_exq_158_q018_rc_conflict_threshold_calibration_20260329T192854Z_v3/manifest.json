@@ -23,7 +23,7 @@
     "Q-018"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -64,5 +64,9 @@
     "base_commit_thresh": 0.1,
     "suppression_weight": 2.0,
     "gate_fire_thresh": 0.15
+  },
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G5 A rec-20260924-17c7e199)]: evidence_direction reclassified supports -> non_contributory (per claim: Q-018 non_contributory) per confirmed failure_autopsy_gflag0452-D3D4-cluster_2026-09-24.json (V3-EXQ-158, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis.",
+  "evidence_direction_per_claim": {
+    "Q-018": "non_contributory"
   }
 }

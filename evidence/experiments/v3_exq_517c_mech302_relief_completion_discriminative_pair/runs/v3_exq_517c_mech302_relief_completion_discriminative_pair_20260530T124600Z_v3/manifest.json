@@ -24,9 +24,10 @@
     "SD-050"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "MECH-302": "supports"
+    "MECH-302": "superseded",
+    "SD-050": "superseded"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -70,5 +71,6 @@
       44
     ],
     "dry_run": false
-  }
+  },
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G3 B rec-20260924-d7d2fb40)]: evidence_direction reclassified supports -> superseded (per claim: MECH-302 superseded, SD-050 superseded) per confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24.json (V3-EXQ-517c, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis."
 }

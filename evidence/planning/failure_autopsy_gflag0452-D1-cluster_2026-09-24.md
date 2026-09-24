@@ -1,6 +1,7 @@
 # Failure autopsy (staging) -- GFLAG-0452 D1 cluster: 8 PASSes that verify implementation by construction
 
 - **Status:** `awaiting_human_confirmation`. This is a STAGING draft. Routing is not final, and nothing here has been applied to claims.yaml, manifests, review_tracker, substrate_queue or the hypothesis registry.
+- **CONFIRMED 2026-09-24T10:18:00Z** by the user at the /governance gate (session governance-20260924); decisions G1 A rec-20260924-aa33086a, G2 A rec-20260924-a796e485, G3 B rec-20260924-d7d2fb40, G4 A rec-20260924-823fac58, G5 A rec-20260924-17c7e199 (as they apply here). G3 B: V3-EXQ-517d is non_contributory for SD-050 as well as MECH-302 (SD-050's own what_would_answer governs); SD-050 stays provisional with a re-review note. The 517d refractory amend and the 499 read-across are held by the parent session.
 - **Generated:** 2026-09-24T09:13:39Z, by a governance-20260924 subagent (session `governance-20260924-autopsy-d1`).
 - **Trigger:** GFLAG-0452 / user decision `rec-20260924-34e4e088`. The input is the D1 rows of `REE_assembly/evidence/planning/gflag0250_pass_driver_skim_20260924.{md,json}`.
 - **Machine-readable twin:** `failure_autopsy_gflag0452-D1-cluster_2026-09-24.json`. It holds the full per-target `per_claim_recommendation` blocks.

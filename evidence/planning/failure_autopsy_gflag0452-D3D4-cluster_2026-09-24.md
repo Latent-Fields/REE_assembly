@@ -5,6 +5,8 @@
 session holds the Step 8 gate. Nothing here has been applied: claims.yaml, the manifests,
 review_tracker, substrate_queue, governance flags and the hypothesis registry are all untouched.
 
+- **CONFIRMED 2026-09-24T10:18:00Z** by the user at the /governance gate (session governance-20260924); decisions G1 A rec-20260924-aa33086a, G2 A rec-20260924-a796e485, G3 B rec-20260924-d7d2fb40, G4 A rec-20260924-823fac58, G5 A rec-20260924-17c7e199 (as they apply here). G4 A: Q-004 -> substrate_conditional + registration-only R(x,t) substrate_queue entry. G5 A: 763/743 supports (narrow) kept; 917 -> non_contributory; Q-018 routed to the registered instrument; 746a re-tagged INV-090.
+
 - Generated: 2026-09-24T09:16:44Z (draft); red-team pass completed 2026-09-24T09:28Z.
 - Trigger: GFLAG-0452, user decision rec-20260924-34e4e088. Five PASS manifests that the governance
   driver skim (`evidence/planning/gflag0250_pass_driver_skim_20260924.{md,json}`) marked as defects

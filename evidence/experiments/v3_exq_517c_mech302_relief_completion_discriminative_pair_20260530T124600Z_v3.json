@@ -11,9 +11,10 @@
   ],
   "supersedes": "v3_exq_517b_mech302_relief_completion_discriminative_pair",
   "outcome": "PASS",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "MECH-302": "supports"
+    "MECH-302": "superseded",
+    "SD-050": "superseded"
   },
   "registered_thresholds": {
     "C1_MIN_EVENTS_PER_SEED": 3,
@@ -151,5 +152,6 @@
     }
   ],
   "elapsed_seconds": 6298.569206237793,
-  "notes": "MECH-302 relief-completion discriminative pair -- env curriculum. Supersedes EXQ-517b per failure_autopsy_V3-EXQ-517b_2026-05-30. Predecessor 517 / 517a / 517b series ruled out parameter tuning (517a 0.33 events/seed -> 517b 0.00 events/seed across the 150 -> 300 steps/episode extension); trained avoidance policy filters out hazard-contact -> heal trajectories the comparator needs. Fix: env-side scheduled-suffering curriculum (SD-022 extension). Direct limb-damage injection via scheduled_limb_damage_* env kwargs supplies detectable damage->heal trajectories regardless of policy. Curriculum is identical across both arms; only the comparator (ON/OFF) varies. Comparator parameters and acceptance criteria unchanged from 517a/517b. ARM_A (ON): use_suffering_derivative_comparator=True + valence_liking_enabled=True; ARM_B (OFF): both False. Curriculum: interval=50, prob=0.5, magnitude=0.4 (heals in ~200 steps at heal_rate=0.002/step), limb_selection=random. Expected ~3 injections per 300-step episode x 40 P1 episodes = ~120 damage events per seed in each arm. C1: ARM_A events >= 3/seed. C2: ARM_A writes >= 2/seed. C3: ARM_B events == 0. C4: ARM_B writes == 0. PASS clears MECH-302 v3_pending gate AND lifts gate (c) for MECH-304 conditioned-inhibition experiment."
+  "notes": "MECH-302 relief-completion discriminative pair -- env curriculum. Supersedes EXQ-517b per failure_autopsy_V3-EXQ-517b_2026-05-30. Predecessor 517 / 517a / 517b series ruled out parameter tuning (517a 0.33 events/seed -> 517b 0.00 events/seed across the 150 -> 300 steps/episode extension); trained avoidance policy filters out hazard-contact -> heal trajectories the comparator needs. Fix: env-side scheduled-suffering curriculum (SD-022 extension). Direct limb-damage injection via scheduled_limb_damage_* env kwargs supplies detectable damage->heal trajectories regardless of policy. Curriculum is identical across both arms; only the comparator (ON/OFF) varies. Comparator parameters and acceptance criteria unchanged from 517a/517b. ARM_A (ON): use_suffering_derivative_comparator=True + valence_liking_enabled=True; ARM_B (OFF): both False. Curriculum: interval=50, prob=0.5, magnitude=0.4 (heals in ~200 steps at heal_rate=0.002/step), limb_selection=random. Expected ~3 injections per 300-step episode x 40 P1 episodes = ~120 damage events per seed in each arm. C1: ARM_A events >= 3/seed. C2: ARM_A writes >= 2/seed. C3: ARM_B events == 0. C4: ARM_B writes == 0. PASS clears MECH-302 v3_pending gate AND lifts gate (c) for MECH-304 conditioned-inhibition experiment.",
+  "evidence_direction_note": "[2026-09-24 /governance, session governance-20260924; confirmed at /governance 2026-09-24 (G1 A rec-20260924-aa33086a; G3 B rec-20260924-d7d2fb40)]: evidence_direction reclassified supports -> superseded (per claim: MECH-302 superseded, SD-050 superseded) per confirmed failure_autopsy_gflag0452-D1-cluster_2026-09-24.json (V3-EXQ-517c, GFLAG-0452). See the artifact's recommended_evidence_quality_note for the diagnosis."
 }

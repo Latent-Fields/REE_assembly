@@ -1150,7 +1150,9 @@
      "adjudicating_runs": [],
      "resolution": {
       "state": "alive",
-      "resolving_runs": [],
+      "resolving_runs": [
+       "V3-EXQ-743"
+      ],
       "evidence_direction": "pending",
       "epistemic_category": null,
       "self_route_label": null,
@@ -1158,7 +1160,7 @@
       "non_degenerate": null,
       "met_elimination_bar": false,
       "resolved_utc": null,
-      "basis": "theory is sharp (ceiling reading) but no clean discriminating experiment has separated ceiling from driver."
+      "basis": "theory is sharp (ceiling reading) but no clean discriminating experiment has separated ceiling from driver. | 2026-09-24 record-only (failure_autopsy_gflag0452-D3D4-cluster_2026-09-24.json, confirmed at /governance 2026-09-24): V3-EXQ-743 (2026-07-12) establishes the premise (harm decodable from frozen z_harm, C1 0.083-0.169) but does not separate ceiling from driver; state unchanged (743 predates this question's 2026-07-14 registration; no state change, so invariant b2 is not engaged)."
      }
     },
     {
@@ -8784,6 +8786,202 @@
     "decision_log_ref": null,
     "distance_phrase": "blocked on measurement redesign and a z_self objective",
     "observation_bottleneck": "arm (b) DV annihilated by freeze; arm (a) run on an untrained recurrence"
+   },
+   "growth_restriction": ""
+  },
+  {
+   "qid": "mech033_kernel_chaining_isolation",
+   "title": "Is MECH-033 harm avoidance carried by E2 multi-step kernel chaining, one-step lookahead, or the HarmHead alone?",
+   "short_title": "MECH-033 chaining isolation",
+   "claims": [
+    "MECH-033"
+   ],
+   "registered_utc": "2026-09-24T10:18:00Z",
+   "fanout_sources": [
+    "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 3,
+   "initial_frozen_count_at_registration": 3,
+   "hypotheses": [
+    {
+     "hid": "H1-chaining",
+     "label": "multi-step E2 chaining load-bearing",
+     "desc": "MECH-033 as registered: E2 forward-prediction kernels seeding a multi-step hippocampal rollout carry the harm-avoidance benefit, over and above one-step lookahead and a current-state HarmHead",
+     "axis": "integration",
+     "basis": "claim as registered; untested by 171/184/308 (random ablation)",
+     "pre_registered_utc": "2026-09-24T10:18:00Z",
+     "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+     "adjudicating_runs": [
+      "(future leg, not yet queued: E2-scrambled + HippocampalModule legs)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "epistemic_category": null,
+      "self_route_label": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "pre-registered (Mode A) at confirmation of failure_autopsy_gflag0452-D2-cluster_2026-09-24.json on /governance 2026-09-24; no adjudicating run yet"
+     }
+    },
+    {
+     "hid": "H2-one-step",
+     "label": "one-step E2 lookahead suffices",
+     "desc": "the benefit is carried by a one-step E2 lookahead; the k=3 chain in 171/184/308 is one action followed by two forced STAY steps, so a seeded multi-step rollout adds nothing",
+     "axis": "algorithm",
+     "basis": "the 'k=3' chain is one action + two forced STAYs",
+     "pre_registered_utc": "2026-09-24T10:18:00Z",
+     "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+     "adjudicating_runs": [
+      "(future leg, not yet queued: k=1 vs k=3 leg)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "epistemic_category": null,
+      "self_route_label": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "pre-registered (Mode A) at confirmation of failure_autopsy_gflag0452-D2-cluster_2026-09-24.json on /governance 2026-09-24; no adjudicating run yet"
+     }
+    },
+    {
+     "hid": "H3-no-E2",
+     "label": "HarmHead on current state suffices",
+     "desc": "the benefit is carried by the trained HarmHead on the current state alone; the random ablation arm removed the HarmHead and planner too, and no k=0 arm has run",
+     "axis": "representation",
+     "basis": "random ablation removed HarmHead too; no k=0 arm run",
+     "pre_registered_utc": "2026-09-24T10:18:00Z",
+     "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+     "adjudicating_runs": [
+      "(future leg, not yet queued: k=0 leg)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "epistemic_category": null,
+      "self_route_label": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "pre-registered (Mode A) at confirmation of failure_autopsy_gflag0452-D2-cluster_2026-09-24.json on /governance 2026-09-24; no adjudicating run yet"
+     }
+    }
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Should MECH-033 keep active status on chaining-specific evidence?",
+    "live_gate": "E2-scrambled vs intact at matched HarmHead/planner",
+    "decidable": false,
+    "decision_log_ref": null,
+    "distance_phrase": "no discriminating run yet"
+   },
+   "growth_restriction": ""
+  },
+  {
+   "qid": "arc065_structured_vs_noise_diversity",
+   "title": "Is ARC-065 full-stack behavioural diversity structured beyond entropy-matched unstructured noise at matched survival?",
+   "short_title": "ARC-065 structured vs noise",
+   "claims": [
+    "ARC-065"
+   ],
+   "registered_utc": "2026-09-24T10:18:00Z",
+   "fanout_sources": [
+    "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json"
+   ],
+   "is_hero": false,
+   "initial_frozen_count": 3,
+   "initial_frozen_count_at_registration": 3,
+   "hypotheses": [
+    {
+     "hid": "H1-structured",
+     "label": "structured diversity beyond matched noise",
+     "desc": "ARC-065 full-stack behavioural diversity carries structure beyond entropy-matched unstructured noise at matched survival",
+     "axis": "measurement",
+     "basis": "615 C2 untested (zero-entropy control); 569i matched-noise control inert (read-across)",
+     "pre_registered_utc": "2026-09-24T10:18:00Z",
+     "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+     "adjudicating_runs": [
+      "(future leg, not yet queued: MI-at-matched-entropy leg)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "epistemic_category": null,
+      "self_route_label": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "pre-registered (Mode A) at confirmation of failure_autopsy_gflag0452-D2-cluster_2026-09-24.json on /governance 2026-09-24; no adjudicating run yet"
+     }
+    },
+    {
+     "hid": "H2-entropy-equivalent",
+     "label": "indistinguishable from matched noise",
+     "desc": "the full-stack diversity is indistinguishable from entropy-matched unstructured noise once a properly matched noise control exists",
+     "axis": "algorithm",
+     "basis": "no properly matched noise control has run",
+     "pre_registered_utc": "2026-09-24T10:18:00Z",
+     "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+     "adjudicating_runs": [
+      "(future leg, not yet queued: SP-CEM+tuned-temperature leg)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "epistemic_category": null,
+      "self_route_label": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "pre-registered (Mode A) at confirmation of failure_autopsy_gflag0452-D2-cluster_2026-09-24.json on /governance 2026-09-24; no adjudicating run yet"
+     }
+    },
+    {
+     "hid": "H3-survival-artefact",
+     "label": "diversity is short-episode thrash",
+     "desc": "the measured diversity is short-episode thrash: 615 ARM_2 episodes ended ~7-17x sooner (harm-terminated), so diversity is measured over different survival regimes",
+     "axis": "environment",
+     "basis": "615 ARM_2 episodes ~7-17x shorter than ARM_0/1",
+     "pre_registered_utc": "2026-09-24T10:18:00Z",
+     "pre_registration_source": "failure_autopsy_gflag0452-D2-cluster_2026-09-24.json",
+     "adjudicating_runs": [
+      "(future leg, not yet queued: survival-matched leg)"
+     ],
+     "resolution": {
+      "state": "alive",
+      "resolving_runs": [],
+      "evidence_direction": "pending",
+      "epistemic_category": null,
+      "self_route_label": null,
+      "control_passed": false,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "pre-registered (Mode A) at confirmation of failure_autopsy_gflag0452-D2-cluster_2026-09-24.json on /governance 2026-09-24; no adjudicating run yet"
+     }
+    }
+   ],
+   "synthesis": null,
+   "decision": {
+    "decision_question": "Does ARC-065 stable status rest on a run that discriminates structured diversity from noise?",
+    "live_gate": "matched-entropy control with precondition gate",
+    "decidable": false,
+    "decision_log_ref": null,
+    "distance_phrase": "no discriminating run yet"
    },
    "growth_restriction": ""
   }
