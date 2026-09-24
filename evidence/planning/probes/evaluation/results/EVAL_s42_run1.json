@@ -1,0 +1,384 @@
+{
+ "args": {
+  "seed": 42,
+  "wake": 600,
+  "probe_steps": 200,
+  "label_steps": 1500,
+  "eval_steps": 1500,
+  "force_gate": 1,
+  "out": "results/EVAL_s42.json"
+ },
+ "heads": {
+  "A": {
+   "loss_last200": 9.330530697297944e-06,
+   "identity_mse": 0.00015095881826709956
+  },
+  "D": {
+   "loss_last200": 2.5486426093266345e-05,
+   "identity_mse": 0.0001406008523190394
+  }
+ },
+ "label_counts": {
+  "native": {
+   "n": 1500,
+   "harm_neg_reward": 1043,
+   "benefit_pos_reward": 4,
+   "harm_contacts": 317,
+   "benefit_contacts": 4,
+   "transition_types": {
+    "hazard_approach": 726,
+    "agent_caused_hazard": 310,
+    "resource": 4,
+    "env_caused_hazard": 7,
+    "none": 453
+   }
+  },
+  "random": {
+   "n": 1500,
+   "harm_neg_reward": 1259,
+   "benefit_pos_reward": 37,
+   "harm_contacts": 109,
+   "benefit_contacts": 37,
+   "transition_types": {
+    "hazard_approach": 1150,
+    "resource": 37,
+    "env_caused_hazard": 47,
+    "none": 204,
+    "agent_caused_hazard": 62
+   }
+  }
+ },
+ "evaluators": {
+  "trained": {
+   "harm": {
+    "trained": true,
+    "npos": 1821,
+    "nneg": 579,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.5522304573655128,
+    "heldout_auc": 0.8195810548751725,
+    "heldout_npos": 481,
+    "out_mean_pos_neg": [
+     0.6562590003013611,
+     0.4068489670753479
+    ]
+   },
+   "benefit": {
+    "trained": true,
+    "npos": 37,
+    "nneg": 2363,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.6033199435472488,
+    "heldout_auc": 0.8326342281879194,
+    "heldout_npos": 4,
+    "out_mean_pos_neg": [
+     0.635211706161499,
+     0.4328717291355133
+    ]
+   },
+   "n_benefit_pos_train": 37
+  },
+  "shuffled": {
+   "harm": {
+    "trained": true,
+    "npos": 1821,
+    "nneg": 579,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.6917175656557083,
+    "heldout_auc": 0.4760215936686525,
+    "heldout_npos": 481,
+    "out_mean_pos_neg": [
+     0.5018061399459839,
+     0.5041853189468384
+    ]
+   },
+   "benefit": {
+    "trained": true,
+    "npos": 37,
+    "nneg": 2363,
+    "k": 16,
+    "steps": 1500,
+    "loss_last100": 0.6316011017560959,
+    "heldout_auc": 0.29697986577181207,
+    "heldout_npos": 4,
+    "out_mean_pos_neg": [
+     0.39130404591560364,
+     0.4467155933380127
+    ]
+   },
+   "n_benefit_pos_train": 37
+  }
+ },
+ "native_gate_open": false,
+ "gate_used": 50,
+ "choice_quality": {
+  "E1_FULL": {
+   "n_states": 49,
+   "n_informative": 49,
+   "pick_is_Qbest": 0.20408163265306123,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 7,
+    "1": 18,
+    "2": 11,
+    "4": 13
+   }
+  },
+  "E2_FULL_EVAL": {
+   "n_states": 49,
+   "n_informative": 49,
+   "pick_is_Qbest": 0.1836734693877551,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 10,
+    "1": 12,
+    "2": 16,
+    "3": 1,
+    "4": 10
+   }
+  },
+  "E3_EVAL_only": {
+   "n_states": 49,
+   "n_informative": 49,
+   "pick_is_Qbest": 0.24489795918367346,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "2": 49
+   }
+  },
+  "E4_FULL_SHUF": {
+   "n_states": 49,
+   "n_informative": 49,
+   "pick_is_Qbest": 0.24489795918367346,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "0": 4,
+    "1": 11,
+    "2": 23,
+    "4": 11
+   }
+  },
+  "E0_NATIVE": {
+   "n_states": 49,
+   "n_informative": 49,
+   "pick_is_Qbest": 0.24489795918367346,
+   "chance": 0.19999999999999998,
+   "pick_counts": {
+    "2": 49
+   }
+  }
+ },
+ "arms": {
+  "E0_NATIVE": {
+   "steps": 600,
+   "episodes_ended": 45,
+   "reward_per_100": -8.762314240882795,
+   "harm_events_per_100": 68.5,
+   "benefit_events_per_100": 0.6666666666666666,
+   "harm_sum_per_100": -8.998921384165685,
+   "benefit_sum_per_100": 0.23660714328289031,
+   "harm_contacts": 107,
+   "benefit_contacts": 4,
+   "transition_types": {
+    "hazard_approach": 304,
+    "agent_caused_hazard": 104,
+    "none": 185,
+    "env_caused_hazard": 3,
+    "resource": 4
+   },
+   "action_counts": {
+    "0": 241,
+    "1": 3,
+    "4": 356
+   },
+   "action_entropy": 0.702584258515188,
+   "majority_share": 0.5933333333333334,
+   "scorer_calls": {
+    "harm_fallback": 13920
+   },
+   "benefit_gate_open": false,
+   "choice_quality": {
+    "n_states": 49,
+    "n_informative": 49,
+    "pick_is_Qbest": 0.24489795918367346,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "2": 49
+    }
+   }
+  },
+  "E1_FULL": {
+   "steps": 600,
+   "episodes_ended": 5,
+   "reward_per_100": -0.778380234539509,
+   "harm_events_per_100": 8.5,
+   "benefit_events_per_100": 0.0,
+   "harm_sum_per_100": -0.778380234539509,
+   "benefit_sum_per_100": 0.0,
+   "harm_contacts": 8,
+   "benefit_contacts": 0,
+   "transition_types": {
+    "hazard_approach": 43,
+    "none": 549,
+    "agent_caused_hazard": 8
+   },
+   "action_counts": {
+    "0": 59,
+    "1": 16,
+    "2": 483,
+    "3": 10,
+    "4": 32
+   },
+   "action_entropy": 0.7239070347494827,
+   "majority_share": 0.805,
+   "scorer_calls": {
+    "harm_fallback": 3904
+   },
+   "benefit_gate_open": false,
+   "choice_quality": {
+    "n_states": 49,
+    "n_informative": 49,
+    "pick_is_Qbest": 0.20408163265306123,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 7,
+     "1": 18,
+     "2": 11,
+     "4": 13
+    }
+   }
+  },
+  "E2_FULL_EVAL": {
+   "steps": 600,
+   "episodes_ended": 9,
+   "reward_per_100": -1.6202068390945594,
+   "harm_events_per_100": 17.833333333333332,
+   "benefit_events_per_100": 0.5,
+   "harm_sum_per_100": -1.796159219990174,
+   "benefit_sum_per_100": 0.17595238089561466,
+   "harm_contacts": 17,
+   "benefit_contacts": 3,
+   "transition_types": {
+    "hazard_approach": 90,
+    "none": 490,
+    "env_caused_hazard": 2,
+    "resource": 3,
+    "agent_caused_hazard": 15
+   },
+   "action_counts": {
+    "0": 377,
+    "1": 12,
+    "2": 23,
+    "3": 126,
+    "4": 62
+   },
+   "action_entropy": 1.0575204309154658,
+   "majority_share": 0.6283333333333333,
+   "scorer_calls": {
+    "harm_fallback": 5472,
+    "benefit": 5472
+   },
+   "benefit_gate_open": true,
+   "choice_quality": {
+    "n_states": 49,
+    "n_informative": 49,
+    "pick_is_Qbest": 0.1836734693877551,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 10,
+     "1": 12,
+     "2": 16,
+     "3": 1,
+     "4": 10
+    }
+   }
+  },
+  "E3_EVAL_only": {
+   "steps": 600,
+   "episodes_ended": 45,
+   "reward_per_100": -8.722551135023437,
+   "harm_events_per_100": 67.16666666666667,
+   "benefit_events_per_100": 0.6666666666666666,
+   "harm_sum_per_100": -8.958979706962904,
+   "benefit_sum_per_100": 0.2364285719394684,
+   "harm_contacts": 106,
+   "benefit_contacts": 4,
+   "transition_types": {
+    "hazard_approach": 297,
+    "agent_caused_hazard": 105,
+    "none": 193,
+    "resource": 4,
+    "env_caused_hazard": 1
+   },
+   "action_counts": {
+    "0": 251,
+    "1": 3,
+    "2": 1,
+    "4": 345
+   },
+   "action_entropy": 0.7199174077763111,
+   "majority_share": 0.575,
+   "scorer_calls": {
+    "harm_fallback": 13728,
+    "benefit": 13728
+   },
+   "benefit_gate_open": true,
+   "choice_quality": {
+    "n_states": 49,
+    "n_informative": 49,
+    "pick_is_Qbest": 0.24489795918367346,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "2": 49
+    }
+   }
+  },
+  "E4_FULL_SHUF": {
+   "steps": 600,
+   "episodes_ended": 33,
+   "reward_per_100": -6.529804025093715,
+   "harm_events_per_100": 52.833333333333336,
+   "benefit_events_per_100": 0.5,
+   "harm_sum_per_100": -6.705399263898531,
+   "benefit_sum_per_100": 0.1755952388048172,
+   "harm_contacts": 75,
+   "benefit_contacts": 3,
+   "transition_types": {
+    "hazard_approach": 242,
+    "none": 280,
+    "agent_caused_hazard": 71,
+    "env_caused_hazard": 4,
+    "resource": 3
+   },
+   "action_counts": {
+    "0": 343,
+    "1": 10,
+    "2": 2,
+    "4": 245
+   },
+   "action_entropy": 0.7726597381287532,
+   "majority_share": 0.5716666666666667,
+   "scorer_calls": {
+    "harm_fallback": 11328,
+    "benefit": 11328
+   },
+   "benefit_gate_open": true,
+   "choice_quality": {
+    "n_states": 49,
+    "n_informative": 49,
+    "pick_is_Qbest": 0.24489795918367346,
+    "chance": 0.19999999999999998,
+    "pick_counts": {
+     "0": 4,
+     "1": 11,
+     "2": 23,
+     "4": 11
+    }
+   }
+  }
+ },
+ "t_total_s": 760.7
+}
