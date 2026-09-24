@@ -574,6 +574,26 @@ This creates a possible bridge:
 
 That is a much stronger and more testable proposition than "ephaptic coupling produces ethics".
 
+
+## Conjectural downstream implication: a functional niche for conscious access
+
+The architecture above suggests a further possibility that should **not** be folded into the core coordination claim.
+
+A separate conjecture note asks whether a regime combining:
+
+```
+access -> reconciliation -> settlement -> escape
+```
+
+could provide a functional niche for conscious access: specialised systems become mutually available, recursively constrain one another, reach a temporary organism-level settlement, and retain the ability to replace that settlement when evidence changes.
+
+This is kept deliberately separate in:
+
+`docs/thoughts/2026-09-24_consciousness_as_defeasible_coordination_regime.md`
+
+The conjecture is about a possible **functional/access-consciousness role** only. It does not attribute consciousness to REE and does not explain phenomenal experience. No phase/ephaptic/coordination substrate should be promoted on the basis of this interpretation.
+
+
 ## Frontier status
 
 The literature is rich enough to support the biological plausibility of dynamic coordination, but sparse on the exact artificial-organism problem REE poses:
