@@ -6075,9 +6075,9 @@
       "summary": "These 14 claims' experimental proposal rows in experiment_proposals.v1.json carry a blocking status (blocked_substrate / deferred_substrate_not_ready / proposed_blocked_substrate) with NO release_condition, NO blocked_note and NO gating_reason -- no recorded reason and no release predicate. Because FILTER G (proposal_feasibility.registry_block_reason) blocks on status alone, each row silently suppresses proposal minting for its claim indefinitely, and audit_blocked_proposal_unblockers.py reasons over NAMED unblockers so a row naming none is invisible to it -- nothing any readiness audit can check will ever release them. Q-019 is the sharpest case: status blocked_substrate with blocked_by literally []. Found by reading all 104 previously-unread registry-blocked rows for half A of rec-20260923-4e4795c2 (record: REE_assembly/evidence/planning/permanent_gate_residual_read_20260923.md, commit cec32566a3); the other 90 rows all name a releasing condition. OWED: give each of the 14 either a recorded release condition or an explicit permanent disposition. Do NOT resolve this by writing claims.yaml experiment_gate -- gating a row that names nothing gates on the ABSENCE of information and would convert an unaudited suppression into a permanent one; MECH-343 in particular is releasable by build (blocked_by names modulatory-bias-selection-authority and SD-061).",
       "raised_by_session": "exciting-morse-761f4a",
       "raised_at": "2026-09-23T06:41:56Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-24T08:17:29Z",
+      "resolution_note": "All 14 reasonless blocking rows given a recorded release_condition + blocked_note, transcribed (not re-adjudicated) from falsifier_completion_and_runnability_audit_20260921 (12 rows: R1-R5 blocking_reason) and implementation_phase (INV-056 v4, MECH-183 v5) (REE_assembly 1cd4f1c9e5); manual rows EXP-0176/EXP-0356 written in both proposal files; Q-019 blocked_by [] -> [v4_loop_segregation]. No status changed, no experiment_gate written."
     },
     {
       "flag_id": "GFLAG-0425",
