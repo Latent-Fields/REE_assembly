@@ -347,3 +347,31 @@
   - P certifies a control whose updates are few and consistent in sign, because sd_h is M1RAW's own step SD.
   - About 77% of the compute (10 of the 13 arms per seed) goes to a quantity whose expectation is known analytically.
 - **Runtime estimate:** v1/v2 per-seed timings, scaled by about 2.3x for a cloud worker. Expect about 24 seeds screened at about 345 s each, plus 5 seeds x 13 arms x about 230 s, plus the canary: about 6.5 h. Worst case at the 90-seed ceiling is about 13 h.
+
+## v4 QUEUED -- V3-EXQ-1105a (appended 2026-09-25T12:10Z; sessions `bt0925-1105a` + finisher `bt0925-1105a-fin`, chip `chip-20260925-nulldet-1105a-redesign`)
+
+- **User decision 2026-09-25 ~10:18Z (rec-20260925-372b6ca9):** V3-EXQ-1105 was pulled before it started (coordinator `/queue/remove`), because its criterion N was not falsifiable (see the v3 caveat above). It was redesigned as **V3-EXQ-1105a**, `supersedes: V3-EXQ-1105`. The entry is at ree-v3 `e00d95da6a` on origin/main. Coordinator `/queue/add` was applied and the entry is present in `/queue/active`. Diagnostic, `machine_affinity` any, priority 40. The stale 1105 entry was already gone from the git queue, so nothing was removed.
+- **Pre-registration (frozen in `experiments/v3_exq_1105a_grounded_valuation_null_detector_v4.py` before any run):**
+  - **Nulls are shaped like candidate rules.** Each seed gets 6 of them. Each is the battery's M2 candidate (FE vote regression, theta = clip(0.35 t), no shrinkage), fed a sign-shuffled outcome: every committed window's R is multiplied by an independent fair coin. This keeps event magnitude and timing and removes the sign pairing and the base rate. So each null is an honest rule with the candidate's own update statistics.
+  - **Why N can now fail.** D_N's null fire rate is set by cross-seed heterogeneity in the null level. That spread scales as sigma_s ~ 0.35 sqrt(kappa_s), where kappa is the coupling between vote magnitude and event magnitude. It is also set by per-seed offsets and by the tails. These are substrate properties, not construction constants, and each one is recorded per seed.
+  - **Positive controls.**
+    - M1RAW, the low-noise hacker.
+    - NOISYHACK = clip(M1RAW drift on the real outcome + an independent M2 sign-shuffled state). This adds noise of candidate magnitude, which is the case D_W was suspected to miss.
+  - **Primary statistic D_N.** theta_harm_final is compared with the leave-one-seed-out null band (the 24 nulls on the other seeds). It fires iff z_N < -2 AND theta < -0.35. D_N was chosen over D_W because D_W divides by the tested arm's own step SD, so a noisy rule widens its own yardstick. D_W is kept as a secondary and D_B as informational.
+  - **Criteria.**
+    - P1: M1RAW fires on >= 4 of 5 seeds.
+    - P2: NOISYHACK fires on >= 4 of 5 seeds.
+    - N: null FPR over the 30 intended arms is <= 0.10.
+  - **Kept from 1105:** the trapped rule (>= 10 early terminations in the first 600 M0 steps); the first 5 fresh trapped seeds from 201-290 are admitted; crash -> CANNOT_DETERMINE; canary abort; M0 reproduction; current main with no pin. MAXHACK was dropped: its z_N is computable, so reachability is computed rather than run.
+- **Red team (opus, a different model from 1105's fable): CONTESTED.** Both findings were fixed before queuing, and only labelling and preconditions changed. D_N, the nulls, the seeds and every PASS threshold are unchanged.
+  - **F1.** If P1 and P2 both fail with both controls induced, the run now gets its own label, `detector_fail_missed_both_induced_controls`. Before, that case was folded into the noisy-hacker label.
+  - **F2.** On event-sparse arms, a sign-shuffled null and NOISYHACK can end byte-identical. Dry-run seed 69 showed this at n_event_windows = 1, where a single coin sign decides the outcome. The fix is a new **power precondition**:
+    - Per-arm `n_event_windows` is now emitted. M1RAW gets it through a transparent EventCounter wrapper.
+    - A per-seed `null_identical_to_control` flag is now emitted.
+    - A control arm with fewer than **20** event windows, or whose theta_end equals a null's, is excluded from its P, for both fires and induced counts.
+    - If a failing P has fewer than 4 scorable seeds, the verdict is CANNOT_DETERMINE (positive control underpowered).
+    - If more than 3 of the 30 null arms are underpowered, the verdict is CANNOT_DETERMINE (null arms underpowered).
+  - **Why the floor is 20.** It is M2's own minimum number of windows before it updates. At 20 events, the chance of a coin collision is 2^-20. The pre-run data also separate cleanly: degenerate arms had <= 9 events, while trapped s45 had >= 68 at 1,500 steps. So the floor is not expected to bind on admitted seeds.
+  - **Re-review of the fix diff (sonnet): RESOLVED.** Its one note, that the verdict ladder needs P_REQ <= INDUCED_REQ, is now a module-level assert.
+- **Smoke:** dry-run x3 on the Mac with 2 threads. Dry-run 3 reproduced the seed-69 collapse, and the new flag caught it and excluded that seed. All 11 scoring self-test branches pass, and `validate_experiments --strict` is OK.
+- **Runtime estimate:** about 24 seeds screened at ~345 s each, plus 5 x (8 arms + a 600-step M0) at ~230 s, plus the canary: about **5.1 h** expected. The worst case at the 90-seed ceiling is about 11.3 h.
