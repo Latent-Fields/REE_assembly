@@ -1,0 +1,140 @@
+{
+ "case": "allon",
+ "seed": 42,
+ "ree_v3_sha": "863d23d65a",
+ "groups": [
+  {
+   "group": "ree_core/latent/zworld_p0.py:577",
+   "status": "PASS",
+   "steps": 16,
+   "min_steps": 1,
+   "n_params": 17,
+   "n_checked": 17,
+   "n_allowlisted": 0,
+   "dead": [],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [],
+   "dead_by_module": {},
+   "naive_optimizer_moved": "PASS"
+  },
+  {
+   "group": "experiments/_lib/allon_training.py:572",
+   "status": "FAIL",
+   "steps": 24,
+   "min_steps": 1,
+   "n_params": 18,
+   "n_checked": 18,
+   "n_allowlisted": 0,
+   "dead": [
+    "e2.self_transition.0.weight",
+    "e2.self_transition.0.bias",
+    "e2.self_transition.2.weight",
+    "e2.self_transition.2.bias",
+    "e2.self_transition.4.weight",
+    "e2.self_transition.4.bias",
+    "e2.self_action_encoder.weight",
+    "e2.self_action_encoder.bias",
+    "e2.action_object_head.0.weight",
+    "e2.action_object_head.0.bias",
+    "e2.action_object_head.2.weight",
+    "e2.action_object_head.2.bias"
+   ],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [
+    "latent_stack.split_encoder.resource_proximity_head.0.bias",
+    "latent_stack.split_encoder.resource_proximity_head.0.weight",
+    "latent_stack.split_encoder.world_encoder.0.bias",
+    "latent_stack.split_encoder.world_encoder.0.weight",
+    "latent_stack.split_encoder.world_encoder.2.bias",
+    "latent_stack.split_encoder.world_encoder.2.weight",
+    "latent_stack.split_encoder.world_precision_logit"
+   ],
+   "dead_by_module": {
+    "e2.self_transition": {
+     "tensors": 6,
+     "params": 25504
+    },
+    "e2.self_action_encoder": {
+     "tensors": 2,
+     "params": 30
+    },
+    "e2.action_object_head": {
+     "tensors": 4,
+     "params": 6928
+    }
+   },
+   "naive_optimizer_moved": "PASS",
+   "canary_e2_self_caught": true
+  },
+  {
+   "group": "experiments/_lib/allon_training.py:574",
+   "status": "FAIL",
+   "steps": 1,
+   "min_steps": 1,
+   "n_params": 4,
+   "n_checked": 4,
+   "n_allowlisted": 0,
+   "dead": [
+    "lateral_pfc.rule_bias_head.0.weight",
+    "lateral_pfc.rule_bias_head.0.bias",
+    "lateral_pfc.rule_bias_head.2.weight",
+    "lateral_pfc.rule_bias_head.2.bias"
+   ],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [
+    "e2.world_action_encoder.bias",
+    "e2.world_action_encoder.weight",
+    "e2.world_transition.0.bias",
+    "e2.world_transition.0.weight",
+    "e2.world_transition.2.bias",
+    "e2.world_transition.2.weight",
+    "latent_stack.split_encoder.resource_proximity_head.0.bias",
+    "latent_stack.split_encoder.resource_proximity_head.0.weight",
+    "latent_stack.split_encoder.world_encoder.0.bias",
+    "latent_stack.split_encoder.world_encoder.0.weight",
+    "latent_stack.split_encoder.world_encoder.2.bias",
+    "latent_stack.split_encoder.world_encoder.2.weight",
+    "latent_stack.split_encoder.world_precision_logit"
+   ],
+   "dead_by_module": {
+    "lateral_pfc.rule_bias_head": {
+     "tensors": 4,
+     "params": 1601
+    }
+   },
+   "naive_optimizer_moved": "FAIL"
+  },
+  {
+   "group": "experiments/_lib/allon_training.py:578",
+   "status": "PASS",
+   "steps": 1,
+   "min_steps": 1,
+   "n_params": 4,
+   "n_checked": 4,
+   "n_allowlisted": 0,
+   "dead": [],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [
+    "e2.world_action_encoder.bias",
+    "e2.world_action_encoder.weight",
+    "e2.world_transition.0.bias",
+    "e2.world_transition.0.weight",
+    "e2.world_transition.2.bias",
+    "e2.world_transition.2.weight",
+    "latent_stack.split_encoder.resource_proximity_head.0.bias",
+    "latent_stack.split_encoder.resource_proximity_head.0.weight",
+    "latent_stack.split_encoder.world_encoder.0.bias",
+    "latent_stack.split_encoder.world_encoder.0.weight",
+    "latent_stack.split_encoder.world_encoder.2.bias",
+    "latent_stack.split_encoder.world_encoder.2.weight",
+    "latent_stack.split_encoder.world_precision_logit"
+   ],
+   "dead_by_module": {},
+   "naive_optimizer_moved": "PASS"
+  }
+ ]
+}

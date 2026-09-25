@@ -1,0 +1,231 @@
+{
+ "case": "A_all",
+ "seed": 43,
+ "ree_v3_sha": "863d23d65a",
+ "groups": [
+  {
+   "group": "A_all:Adam(agent.parameters())",
+   "status": "FAIL",
+   "steps": 80,
+   "min_steps": 8,
+   "n_params": 141,
+   "n_checked": 137,
+   "n_allowlisted": 4,
+   "dead": [
+    "latent_stack.split_encoder.self_precision_logit",
+    "latent_stack.split_encoder.world_precision_logit",
+    "latent_stack.split_encoder.self_encoder.0.weight",
+    "latent_stack.split_encoder.self_encoder.0.bias",
+    "latent_stack.split_encoder.self_encoder.2.weight",
+    "latent_stack.split_encoder.self_encoder.2.bias",
+    "latent_stack.split_encoder.world_encoder.0.weight",
+    "latent_stack.split_encoder.world_encoder.0.bias",
+    "latent_stack.split_encoder.world_encoder.2.weight",
+    "latent_stack.split_encoder.world_encoder.2.bias",
+    "latent_stack.split_encoder.self_topdown.weight",
+    "latent_stack.split_encoder.self_topdown.bias",
+    "latent_stack.split_encoder.world_topdown.weight",
+    "latent_stack.split_encoder.world_topdown.bias",
+    "latent_stack.self_recurrence.cell.weight_ih",
+    "latent_stack.self_recurrence.cell.weight_hh",
+    "latent_stack.self_recurrence.cell.bias_ih",
+    "latent_stack.self_recurrence.cell.bias_hh",
+    "latent_stack.beta_encoder.precision_logit",
+    "latent_stack.beta_encoder.encoder.0.weight",
+    "latent_stack.beta_encoder.encoder.0.bias",
+    "latent_stack.beta_encoder.encoder.2.weight",
+    "latent_stack.beta_encoder.encoder.2.bias",
+    "latent_stack.beta_encoder.topdown_proj.weight",
+    "latent_stack.beta_encoder.topdown_proj.bias",
+    "latent_stack.theta_encoder.precision_logit",
+    "latent_stack.theta_encoder.encoder.0.weight",
+    "latent_stack.theta_encoder.encoder.0.bias",
+    "latent_stack.theta_encoder.encoder.2.weight",
+    "latent_stack.theta_encoder.encoder.2.bias",
+    "latent_stack.theta_encoder.topdown_proj.weight",
+    "latent_stack.theta_encoder.topdown_proj.bias",
+    "latent_stack.delta_encoder.precision_logit",
+    "latent_stack.delta_encoder.encoder.0.weight",
+    "latent_stack.delta_encoder.encoder.0.bias",
+    "latent_stack.delta_encoder.encoder.2.weight",
+    "latent_stack.delta_encoder.encoder.2.bias",
+    "latent_stack.delta_to_theta.weight",
+    "latent_stack.delta_to_theta.bias",
+    "latent_stack.theta_to_beta.weight",
+    "latent_stack.theta_to_beta.bias",
+    "latent_stack.beta_to_split.weight",
+    "latent_stack.beta_to_split.bias",
+    "latent_stack.self_predictor.weight",
+    "latent_stack.self_predictor.bias",
+    "latent_stack.world_predictor.weight",
+    "latent_stack.world_predictor.bias",
+    "latent_stack.beta_predictor.weight",
+    "latent_stack.beta_predictor.bias",
+    "latent_stack.theta_predictor.weight",
+    "latent_stack.theta_predictor.bias",
+    "latent_stack.delta_predictor.weight",
+    "latent_stack.delta_predictor.bias",
+    "e2.world_transition.0.weight",
+    "e2.world_transition.0.bias",
+    "e2.world_transition.2.weight",
+    "e2.world_transition.2.bias",
+    "e2.world_action_encoder.weight",
+    "e2.world_action_encoder.bias",
+    "e2.action_object_head.0.weight",
+    "e2.action_object_head.0.bias",
+    "e2.action_object_head.2.weight",
+    "e2.action_object_head.2.bias",
+    "residue_field.neural_field.0.weight",
+    "residue_field.neural_field.0.bias",
+    "residue_field.neural_field.2.weight",
+    "residue_field.neural_field.2.bias",
+    "residue_field.neural_field.4.weight",
+    "residue_field.neural_field.4.bias",
+    "e3.reality_scorer.0.weight",
+    "e3.reality_scorer.0.bias",
+    "e3.reality_scorer.2.weight",
+    "e3.reality_scorer.2.bias",
+    "e3.harm_cost_fallback_scorer.0.weight",
+    "e3.harm_cost_fallback_scorer.0.bias",
+    "e3.harm_cost_fallback_scorer.2.weight",
+    "e3.harm_cost_fallback_scorer.2.bias",
+    "e3.harm_eval_head.0.weight",
+    "e3.harm_eval_head.0.bias",
+    "e3.harm_eval_head.2.weight",
+    "e3.harm_eval_head.2.bias",
+    "e3.benefit_eval_head.0.weight",
+    "e3.benefit_eval_head.0.bias",
+    "e3.benefit_eval_head.2.weight",
+    "e3.benefit_eval_head.2.bias",
+    "e3.harm_eval_z_harm_head.0.weight",
+    "e3.harm_eval_z_harm_head.0.bias",
+    "e3.harm_eval_z_harm_head.2.weight",
+    "e3.harm_eval_z_harm_head.2.bias",
+    "hippocampal.terrain_prior.0.weight",
+    "hippocampal.terrain_prior.0.bias",
+    "hippocampal.terrain_prior.2.weight",
+    "hippocampal.terrain_prior.2.bias",
+    "hippocampal.action_object_decoder.0.weight",
+    "hippocampal.action_object_decoder.0.bias",
+    "hippocampal.action_object_decoder.2.weight",
+    "hippocampal.action_object_decoder.2.bias",
+    "body_obs_encoder.0.weight",
+    "body_obs_encoder.0.bias",
+    "world_obs_encoder.0.weight",
+    "world_obs_encoder.0.bias"
+   ],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [],
+   "dead_by_module": {
+    "latent_stack.split_encoder": {
+     "tensors": 14,
+     "params": 22208
+    },
+    "latent_stack.self_recurrence": {
+     "tensors": 4,
+     "params": 6336
+    },
+    "latent_stack.beta_encoder": {
+     "tensors": 7,
+     "params": 9472
+    },
+    "latent_stack.theta_encoder": {
+     "tensors": 7,
+     "params": 6816
+    },
+    "latent_stack.delta_encoder": {
+     "tensors": 5,
+     "params": 4224
+    },
+    "latent_stack.delta_to_theta": {
+     "tensors": 2,
+     "params": 528
+    },
+    "latent_stack.theta_to_beta": {
+     "tensors": 2,
+     "params": 528
+    },
+    "latent_stack.beta_to_split": {
+     "tensors": 2,
+     "params": 1040
+    },
+    "latent_stack.self_predictor": {
+     "tensors": 2,
+     "params": 1056
+    },
+    "latent_stack.world_predictor": {
+     "tensors": 2,
+     "params": 1056
+    },
+    "latent_stack.beta_predictor": {
+     "tensors": 2,
+     "params": 4160
+    },
+    "latent_stack.theta_predictor": {
+     "tensors": 2,
+     "params": 1056
+    },
+    "latent_stack.delta_predictor": {
+     "tensors": 2,
+     "params": 1056
+    },
+    "e2.world_transition": {
+     "tensors": 4,
+     "params": 8992
+    },
+    "e2.world_action_encoder": {
+     "tensors": 2,
+     "params": 30
+    },
+    "e2.action_object_head": {
+     "tensors": 4,
+     "params": 6928
+    },
+    "residue_field.neural_field": {
+     "tensors": 6,
+     "params": 6337
+    },
+    "e3.reality_scorer": {
+     "tensors": 4,
+     "params": 2177
+    },
+    "e3.harm_cost_fallback_scorer": {
+     "tensors": 4,
+     "params": 2177
+    },
+    "e3.harm_eval_head": {
+     "tensors": 4,
+     "params": 2177
+    },
+    "e3.benefit_eval_head": {
+     "tensors": 4,
+     "params": 2177
+    },
+    "e3.harm_eval_z_harm_head": {
+     "tensors": 4,
+     "params": 2177
+    },
+    "hippocampal.terrain_prior": {
+     "tensors": 4,
+     "params": 70368
+    },
+    "hippocampal.action_object_decoder": {
+     "tensors": 4,
+     "params": 2821
+    },
+    "body_obs_encoder.0": {
+     "tensors": 2,
+     "params": 156
+    },
+    "world_obs_encoder.0": {
+     "tensors": 2,
+     "params": 62750
+    }
+   },
+   "canary_decoder_caught": true,
+   "naive_optimizer_moved": "PASS",
+   "naive_none_any_step": "FAIL"
+  }
+ ]
+}

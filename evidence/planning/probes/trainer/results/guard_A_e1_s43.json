@@ -1,0 +1,76 @@
+{
+ "case": "A_e1",
+ "seed": 43,
+ "ree_v3_sha": "863d23d65a",
+ "groups": [
+  {
+   "group": "A_e1:Adam(e1)",
+   "status": "PASS",
+   "steps": 80,
+   "min_steps": 8,
+   "n_params": 30,
+   "n_checked": 28,
+   "n_allowlisted": 2,
+   "dead": [],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [],
+   "dead_by_module": {},
+   "naive_none_any_step": "FAIL",
+   "naive_none_any_step_flagged": [
+    "e1.context_memory.memory",
+    "e1.context_memory.query_proj.weight",
+    "e1.context_memory.query_proj.bias",
+    "e1.context_memory.key_proj.weight",
+    "e1.context_memory.value_proj.weight",
+    "e1.context_memory.value_proj.bias",
+    "e1.context_memory.output_proj.weight",
+    "e1.context_memory.output_proj.bias",
+    "e1.context_memory.write_gate.0.weight",
+    "e1.context_memory.write_gate.0.bias",
+    "e1.transition_rnn.weight_ih_l0",
+    "e1.transition_rnn.weight_hh_l0",
+    "e1.transition_rnn.bias_ih_l0",
+    "e1.transition_rnn.bias_hh_l0",
+    "e1.transition_rnn.weight_ih_l1",
+    "e1.transition_rnn.weight_hh_l1",
+    "e1.transition_rnn.bias_ih_l1",
+    "e1.transition_rnn.bias_hh_l1",
+    "e1.transition_rnn.weight_ih_l2",
+    "e1.transition_rnn.weight_hh_l2",
+    "e1.transition_rnn.bias_ih_l2",
+    "e1.transition_rnn.bias_hh_l2",
+    "e1.output_proj.0.weight",
+    "e1.output_proj.0.bias",
+    "e1.output_proj.2.weight",
+    "e1.output_proj.2.bias",
+    "e1.prior_generator.0.weight",
+    "e1.prior_generator.0.bias",
+    "e1.prior_generator.2.weight",
+    "e1.prior_generator.2.bias"
+   ]
+  },
+  {
+   "group": "A_e1:Adam(e1) NO allowlist",
+   "status": "FAIL",
+   "steps": 80,
+   "min_steps": 8,
+   "n_params": 30,
+   "n_checked": 30,
+   "n_allowlisted": 0,
+   "dead": [
+    "e1.context_memory.write_gate.0.weight",
+    "e1.context_memory.write_gate.0.bias"
+   ],
+   "reached_not_moved": [],
+   "stale_allowlist": [],
+   "leak_outside_group": [],
+   "dead_by_module": {
+    "e1.context_memory": {
+     "tensors": 2,
+     "params": 8320
+    }
+   }
+  }
+ ]
+}
