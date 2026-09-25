@@ -3658,3 +3658,4 @@ One line per hourly tick. ASCII only.
 2026-09-25T06:18:32Z LAUNCH (manual interactive) IGW-20260923-222 worktree=igw-222-substrate-ready-sd032b-candidate
 2026-09-25T06:28:11Z workset published (regen -- 256 items, 31 ready, 0 in flight)
 2026-09-25T06:28:11Z workset committed (regen -- 256 items, 31 ready, 0 in flight)
+2026-09-25T06:28:34Z disposition IGW-20260925-229 hash=2b4c3b827f61 decision=REJECT: user 2026-09-25: off MECH-287 path under DV re-scope C (rec-20260925-ced5d392)
