@@ -106,3 +106,18 @@ Consequence for the coupled campaign (Q2) and the WakingTrainer (Q4a):
 - /governance should consider whether MECH-398 (and MECH-207's destabilisation rule) should be re-phased from v4 to v3 now that a v3 host exists (GFLAG raised).
 
 Evidence domain: D0 (mapping) plus interim D1 (babbling probe). No ACh mechanism has been built or tested.
+
+### 7d. Babbling verdict and user adoption (2026-09-25 ~10:20Z)
+
+Final record: babbling_e2_action_coverage_probe_20260925.md (REE_assembly 0ac69c87446; pre-registration a9f323c92b1, amendment b47b019063, both before any registered seed).
+- Existing Phase 0 is NOT babbling. It uses the agent's own action selection (`act_with_split_obs`), emits only 4 of 5 actions and trains nothing. It was less diverse than on-policy behaviour on 4/5 seeds. The `experiments/_lib/infant_warmup.py:14` docstring ("random-policy stepping") is wrong and owes a correction.
+- S FAIL (1/5). DR FAIL (0/5). R and R3 CANNOT_DETERMINE. BEH null (predicted reward order held 0/5), so under the pre-registered rule the developmental dose-response claim is NOT supported at this scale.
+- Structured babbling (class-balanced, persistent runs) beats on-policy data on 5/5 seeds before the post phase (+0.10 to +0.16 discrimination). It is not durable as a one-off (>= half the gain kept on only 2/5). With ~25% retained replay (L2R) it is kept on 5/5 seeds (ratios 1.31-1.53), in both strata.
+- Domain: D1 (discrimination). D2 reach was measured but did not discriminate (the shuffled control moves E3 as often as the real head).
+
+USER DECISION (rec-20260925-0ad0f56b): ADOPT, with L2R as the acceptance bar.
+- The coupled campaign's WakingTrainer E2 world-head member uses a NEW structured babbling generator plus ~25% retained babbling replay.
+- The retention mechanism to build is the ACh-gated freeze/unfreeze of section 7c.
+- The L2R numbers are the member's acceptance bar.
+
+USER DECISION (rec-20260925-372b6ca9): V3-EXQ-1105 PULLED before it started (coordinator /queue/remove, 10:2xZ, status pending -> removed, reason recorded). Its criterion N was non-falsifiable by construction: each null is a random walk scaled by D_W's own divisor sd_h, so every null's z is ~N(0,1). A noisy candidate rule would shield itself the same way. It is to be redesigned as V3-EXQ-1105a, with candidate-shaped nulls and a noisy-hacker positive control. The orchestrator's earlier option-B recommendation missed this; the flaw was caught by the queueing worker's red-team.
