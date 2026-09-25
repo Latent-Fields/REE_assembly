@@ -6646,9 +6646,9 @@
       "summary": "SD-092's residual E3 consumer has LANDED (ree-v3 52096b7): default-off E3Config.parent_goal_weight, an additive E3 term over GoalState._z_goal_parent, plus a from_dims passthrough of use_hierarchical_goal_credit/parent_goal_alpha/parent_goal_decay/subgoal_credit_min; contract tests/contracts/test_sd092_parent_goal_e3_consumer.py. Owed at /governance: (1) append the landing note to substrate_queue.json's SD-092 entry; (2) release EXP-0710 (INV-086) build (b) from blocked_substrate, and check EXP-0381, which names the same gap. Untrained-agent probe: the term reorders E3 scores but does not change the chosen action; a trained-agent validation is owed.",
       "raised_by_session": "orchestrate-20260924-0808",
       "raised_at": "2026-09-24T12:00:01Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T06:15:58Z",
+      "resolution_note": "Applied (REE_assembly 46e1b32ce8, /governance 2026-09-25 governance-20260925-0548 (rec-20260925-1797c758)): SD-092 substrate_queue implementation_progress records the ree-v3 52096b7 E3 consumer; EXP-0710 drops SD-092 from blocked_by but STAYS blocked_substrate on its other two builds (waypoint proximity field; wanting-driven residue-centre allocation), so the flag's 'release' premise holds only for build (b). EXP-0381 was not found under that id in experiment_proposals.v1.json (chip-proposal-exp-0381 already done). A trained-agent validation is still owed."
     },
     {
       "flag_id": "GFLAG-0465",
