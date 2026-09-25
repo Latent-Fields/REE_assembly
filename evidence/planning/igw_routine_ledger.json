@@ -7116,7 +7116,11 @@
       "task_claim_session_id": "igw-auto-igw-243-proposal-for-mech-109-20260925T210721Z",
       "task_claim_claimed_at": "2026-09-25T21:07:21Z",
       "assigned_at": "2026-09-25T21:04:24Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-25T21:11:30Z",
+      "completion_summary": "marked EXP-0832/EVB-1428 (MECH-109) blocked_substrate: falsifier ABSENT, no voluntary breath controller in V3 (REE_assembly d0e11a118e, 6acc76f782)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EXP-0832/EVB-1428 (MECH-109) blocked_substrate: falsifier ABSENT, no voluntary breath controller in V3 (REE_assembly d0e11a118e, 6acc76f782)"
     }
   ],
   "dispositions": [
@@ -10310,6 +10314,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-25T20:05:49Z",
       "re_eligible_after": "2026-09-27T20:05:49Z"
+    },
+    {
+      "stable_hash": "3a7d76882152",
+      "igw_id_at_disposition": "IGW-20260925-243",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-109"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-109",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-25T21:11:32Z",
+      "re_eligible_after": "2026-09-27T21:11:32Z"
     }
   ]
 }
