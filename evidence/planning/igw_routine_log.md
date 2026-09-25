@@ -3537,10 +3537,7 @@ One line per hourly tick. ASCII only.
 2026-09-23T09:53:07Z WARN workset materially changed vs HEAD and origin but _ree_commit made no commit -- CAS no-op or a degraded git path that found nothing to do; the published copy may be stale (regen -- 266 items, 33 ready, 0 in flight)
 2026-09-23T09:49:56Z STAGE IGW-20260923-228 skill=/implement-substrate prio=25 worktree=igw-228-substrate-ready-sd-pp-b9-harm-fo (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-23T14:34:52Z auto-defer IGW-20260923-228 hash=2d055171fb2e for 48h (complete)
-<<<<<<< Updated upstream
-=======
 2026-09-23T14:35:24Z complete IGW-20260923-228 staged->completed outcome=DUPLICATE: Superseded by ungated dispatched session zworld-b9-20260923 (fleet Orchestrator
->>>>>>> Stashed changes
 2026-09-23T15:27:13Z GC removed worktree igw-228-substrate-ready-sd-pp-b9-harm-fo (removed; branch deleted)
 2026-09-23T15:25:19Z GC sweep removed 1 orphan worktree(s), kept 18
 2026-09-23T15:30:22Z workset published (regen -- 266 items, 33 ready, 0 in flight)
