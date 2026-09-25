@@ -6580,9 +6580,9 @@
       "summary": "Pre-flight (chip-20260919-mech561-release-after-1043a) finds EXP-1404's release condition fails against the landed V3-EXQ-1043a manifest (C2 permutation p=1.0, 6/6 seeds, need 4/6), and 1043a is itself superseded by 1043b (UNDETERMINED, autopsied failure_autopsy_V3-EXQ-1043b_2026-09-23), yet both experiment_proposals.v1.json and manual_proposals.v1.json still carry the original 2026-09-19 gating_reason text ('1043a status=claimed') with no re-block reflecting either manifest (EXP-0209 shares the same stale text). Needs a re-block edit citing 1043a's FAIL + 1043b's UNDETERMINED/autopsy numbers and re-keying release_condition to a MECH-537 successor (1043c) and 1043b's random-subspace reference -- currently BLOCKED, a live /governance session holds both proposal files.",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T11:01:01Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T12:01:37Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): EXP-1404 (manual_proposals + experiment_proposals) and EXP-0209 (experiment_proposals) release_condition re-blocked -- V3-EXQ-1043a FAILED its release condition (C4b 2/6, p=1.0 x6) and successor 1043b FAILED/undetermined (both confirmed autopsies); release re-keyed to a lettered successor V3-EXQ-1043c at the MECH-537 locus, per the 1043b autopsy's routing ratified here. Prior text kept in release_condition_prior. REE_assembly 70071437d5. chip-20260919-mech561-release-after-1043a is now stale (its trigger fired as a FAIL)."
     },
     {
       "flag_id": "GFLAG-0460",
@@ -6673,9 +6673,9 @@
       "summary": "While piloting V3-EXQ-1089 (MECH-268, ree-v3 ae57bfd7dc; pilot .scratch/orch-20260924/orch0924-mech268/pilot2_seed42.json), the DISCRETE mode register sat in internal_planning in EVERY arm, including saturation-off, and mode_switch rate was pinned. The exit condition needs salience > 1 while the top mode is external_task, and at near-zero drive both cannot hold at once, so the discrete register cannot show release in this regime whatever the saturation. That is an SD-032a exit-path defect, not a MECH-268 result; 1089 therefore reads the soft-vector top-mode occupancy instead. Route to the mode-governance-engagement work or an SD-032a substrate_queue item; read alongside open GFLAG-0457.",
       "raised_by_session": "orchestrate-20260924-0808",
       "raised_at": "2026-09-24T12:29:34Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T12:01:38Z",
+      "resolution_note": "governance-20260925: corroborated by the confirmed V3-EXQ-1089 autopsy (9994eea01e: discrete register pinned in every arm) and already routed -- user decision dec-20260923T185804-MECH-268 (normalise dacc_pe at source) is registered as substrate_queue dacc-pe-scale-normalisation (pending_implementation, ready true, design_first); V3-EXQ-1089a waits on it. IGW-20260925-219 has staged the build. No further governance action."
     },
     {
       "flag_id": "GFLAG-0467",
@@ -7195,9 +7195,9 @@
       "summary": "ARC-074 (Phase-0 reward-free motor babbling establishes sensorimotor mappings before E3 scoring) has no training behind it as implemented: Phase 0 lives only in ree-v3/experiments/infant_curriculum.py + _lib/infant_warmup.py as random-policy stepping 'with no training of any kind', so the action-diverse experience it generates is never learned from (same dead-loop shape as the gradient-reach census 940c690c9dd). User direction 2026-09-25T07:29Z: Phase-0 babbling is to be the developmental source of action-diverse experience training E2's world head in the coupled campaign (REE_assembly breakthrough_pass_synthesis_20260925.md section 7b); retention under later one-action behaviour is being probed (campaign-20260925-bt0925-babble).",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-25T07:29:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T12:01:38Z",
+      "resolution_note": "governance-20260925: registration ask addressed -- Phase-0 babbling as the developmental source of action-diverse experience is coupled_loop_repair_campaign_plan.md node W2a, backed by babbling_e2_action_coverage_probe_20260925.md (0ac69c87446) and the user ADOPT decision rec-20260925-0ad0f56b (L2R). ARC-074's evidence_quality_note and the infant_warmup.py docstring correction are deferred to the W2a build (option b: the substrate is about to change under the claim)."
     },
     {
       "flag_id": "GFLAG-0505",
