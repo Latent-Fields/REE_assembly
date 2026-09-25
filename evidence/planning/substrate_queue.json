@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "gov-20260925-orch1707",
-  "last_updated_utc": "2026-09-25T07:34:03Z",
+  "last_updated_utc": "2026-09-25T08:14:42Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -13672,6 +13672,38 @@
       "added_utc": "2026-09-25T06:22:44Z",
       "last_seen_session": "gov2-20260925-answers",
       "version_scope": "V3-native"
+    },
+    {
+      "sd_id": "sd032b-payoff-self-feedback-integrator",
+      "title": "SD-032b dACC payoff proxy is E3's own previous score: payoffs = -e3.last_scores (agent.py select_action) and DACCtoE3Adapter adds -mode_ev = last_scores_{t-1} + control_required*effort back onto the E3 scores, so e3.last_scores feeds back into itself with gain dacc_weight. At dacc_weight >= 1.0 it is an undamped integrator (|last_scores| max 2553 -> 11833 -> 23404 over one 1500-step run); below 1.0 it converges but still double-counts E3's score into the dACC's 'benefit' term.",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": false,
+      "ready_blocked_by": "design decision: which quantity the dACC payoff should read (E3 pre-bias base score, a benefit estimate, or a bounded/normalised last_scores) -- a /governance or SD-032b design call, not a mechanical fix",
+      "severity": "degrading",
+      "severity_rationale": "Blast radius is use_dacc=True with dacc_weight > 0 and the dACC bias reaching E3 (DACCtoE3Adapter); corrupting for runs at dacc_weight >= 1.0 with no dacc_bias_max_abs cap whose DV reads E3 scores/argmin (15 such drivers -- see GFLAG-0507), degrading otherwise. Not listed as corrupting on agent.py because that would stop every driver at Step 2.5c.",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-032b"
+      ],
+      "failure_record": [
+        {
+          "run_id": "V3-EXQ-1104 red-team measurement (no queued run; igw-222-substrate-ready-sd032b-candidate, 2026-09-25)",
+          "experiment_type": "v3_exq_1104_sd032b_effort_proxy_validation (design review)",
+          "metric": "|e3.last_scores| max at 10%/50%/100% of a 1500-step run: 2553/11833/23404 at dacc_weight 1.0; 268/264/266 at 0.5; 131/125/135 at 0.0 (seed 42, CausalGridWorldV2 8x8 / 8 hazards, use_dacc + affective harm + salience + lateral PFC + saturation + use_e2_harm_a). spearman(dacc_bias, previous last_scores) = 1.0 on 26/26 fresh ticks (red-team, fable).",
+          "target": "|e3.last_scores| stationary over an agent lifetime at every dacc_weight a driver uses; the dACC payoff term not a copy of E3's own previous output.",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "agent.py select_action builds payoffs = -self.e3.last_scores (post-bias, post-arbitration). Options: (a) read E3's PRE-bias base score for the payoff; (b) normalise/centre payoffs per tick; (c) make the adapter emit only the pe-dependent part (control_required*effort) plus the other sub-terms, not -payoff. Whichever is chosen: default-off lever, bit-identical when off, contract pinning |last_scores| stationarity at dacc_weight 1.0. V3-EXQ-1104 runs at dacc_weight 0.5 to sidestep it.",
+      "priority": 2,
+      "substrate_paths": [
+        "ree_core/cingulate/dacc.py::DACCtoE3Adapter.forward"
+      ],
+      "added_session": "igw-222-substrate-ready-sd032b-candidate",
+      "added_utc": "2026-09-25T08:14:42Z",
+      "last_seen_session": "igw-222-substrate-ready-sd032b-candidate",
+      "provenance": "V3-EXQ-1104 Step 4.5 red-team (fable) finding 1, independently re-measured; GFLAG-0507 carries the evidence-contamination question."
     }
   ],
   "schema_version": "substrate_queue/v2",
