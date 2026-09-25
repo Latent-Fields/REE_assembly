@@ -3655,3 +3655,6 @@ One line per hourly tick. ASCII only.
 2026-09-25T05:33:07Z workset published via the coordinator (no local commit; verified on origin/master a2bf847ad6) (regen -- 266 items, 33 ready, 0 in flight)
 2026-09-25T05:33:07Z workset committed (regen -- 266 items, 33 ready, 0 in flight)
 2026-09-25T05:29:38Z no eligible item (skipped 266): IGW-20260925-001:skill /governance not allowed; IGW-20260925-009:skill /governance not allowed; IGW-20260925-011:skill /governance not allowed
+2026-09-25T06:18:32Z LAUNCH (manual interactive) IGW-20260923-222 worktree=igw-222-substrate-ready-sd032b-candidate
+2026-09-25T06:28:11Z workset published (regen -- 256 items, 31 ready, 0 in flight)
+2026-09-25T06:28:11Z workset committed (regen -- 256 items, 31 ready, 0 in flight)
