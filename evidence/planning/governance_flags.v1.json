@@ -6836,9 +6836,9 @@
       "summary": "MECH-449 now has an ENDOGENOUS safety producer (ree-v3 da9221c): default-off E3Config.use_gng_endogenous_safety scores candidates with the harm head against a per-seed running z-score (veto > +2 SD, sd floor 0.01) and feeds the existing safety No-Go, accumulating n_safety_nogo_applied. Contract tests/contracts/test_mech449_endogenous_safety_producer.py. Validation V3-EXQ-1090 is queued (non_contributory substrate diagnostic). A PASS satisfies EVB-1409/EXP-0796 (MECH-049) release condition (b) ONLY; re-setting that proposal's status is /governance's call. claims.yaml MECH-449 notes should stop saying only perseveration reaches the gate.",
       "raised_by_session": "orchestrate-20260924-0808",
       "raised_at": "2026-09-24T16:52:03Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T06:16:07Z",
+      "resolution_note": "Applied (REE_assembly 46e1b32ce8, /governance 2026-09-25 governance-20260925-0548 (rec-20260925-1797c758)): MECH-449 implementation_note records the da9221c endogenous safety producer (default-off), superseding 'only perseveration has a native producer' for safety. EXP-0796 was NOT re-set: its release condition (b) waits on V3-EXQ-1090 (queued, not yet run)."
     },
     {
       "flag_id": "GFLAG-0479",
