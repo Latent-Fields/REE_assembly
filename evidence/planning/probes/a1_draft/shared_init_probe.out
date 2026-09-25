@@ -1,0 +1,15 @@
+NATIVE: 137 params tensors, 200 state_dict keys
+control NATIVE vs NATIVE same seed: 0 differing shared keys
+[e2_world_uncertainty] naive same-seed: INT-only param tensors=6 first at index 133 of 143; native tensors after it=4; shared keys=200, shape-mismatch=0, DIFFERING shared=4
+   first differing shared keys: body_obs_encoder.0.weight, body_obs_encoder.0.bias, world_obs_encoder.0.weight, world_obs_encoder.0.bias
+   harness copy: copied=200, differing shared after copy=0, INT-only keys=7 (from separate gen: 7/7)
+[e2_harm_a] naive same-seed: INT-only param tensors=6 first at index 133 of 143; native tensors after it=4; shared keys=200, shape-mismatch=0, DIFFERING shared=4
+   first differing shared keys: body_obs_encoder.0.weight, body_obs_encoder.0.bias, world_obs_encoder.0.weight, world_obs_encoder.0.bias
+   harness copy: copied=200, differing shared after copy=0, INT-only keys=6 (from separate gen: 6/6)
+[e2_harm_s_forward] naive same-seed: INT-only param tensors=6 first at index 133 of 143; native tensors after it=4; shared keys=200, shape-mismatch=0, DIFFERING shared=4
+   first differing shared keys: body_obs_encoder.0.weight, body_obs_encoder.0.bias, world_obs_encoder.0.weight, world_obs_encoder.0.bias
+   harness copy: copied=200, differing shared after copy=0, INT-only keys=6 (from separate gen: 6/6)
+[all_three] naive same-seed: INT-only param tensors=18 first at index 133 of 155; native tensors after it=4; shared keys=200, shape-mismatch=0, DIFFERING shared=4
+   first differing shared keys: body_obs_encoder.0.weight, body_obs_encoder.0.bias, world_obs_encoder.0.weight, world_obs_encoder.0.bias
+   harness copy: copied=200, differing shared after copy=0, INT-only keys=19 (from separate gen: 19/19)
+DONE
