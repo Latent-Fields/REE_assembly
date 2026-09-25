@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-09-25T05:12:42.750338Z`
+Generated: `2026-09-25T05:49:21.599433Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -2876,7 +2876,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-321
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=3, mixed=3, unknown=1, conflict_ratio=0.5
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=9, weakens=2, mixed=3, unknown=1, conflict_ratio=0.364
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -5583,7 +5583,6 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-118` | `candidate` | 0.5 |
 | `MECH-144` | `candidate` | 0.5 |
 | `MECH-188` | `candidate` | 0.5 |
-| `MECH-321` | `candidate` | 0.5 |
 | `MECH-501` | `candidate` | 0.5 |
 | `Q-089` | `candidate` | 0.5 |
 | `Q-093` | `open` | 0.5 |
@@ -5618,6 +5617,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `SD-097` | `candidate` | 0.4 |
 | `Q-019` | `open` | 0.381 |
 | `MECH-112` | `candidate` | 0.375 |
+| `MECH-321` | `candidate` | 0.364 |
 | `ARC-038` | `candidate` | 0.333 |
 | `ARC-055` | `candidate` | 0.333 |
 | `ARC-066` | `candidate` | 0.333 |

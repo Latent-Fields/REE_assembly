@@ -1,6 +1,6 @@
 # Pending Experiment Review
 
-Generated: `2026-09-25T05:21:43Z`  
+Generated: `2026-09-25T05:49:47Z`  
 Last review: `2026-09-25T05:21:26Z`  
 Scanned: 2991 claim_evidence entries considered (3015 already reviewed), 4887 manifest file(s) on disk.  
 Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)

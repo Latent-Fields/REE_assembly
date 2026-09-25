@@ -124,7 +124,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 
 ## `conversion_ceiling_campaign:P-comp`
 
@@ -246,7 +247,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 
 ## `conversion_ceiling_campaign:P2-rootC`
 
@@ -368,7 +370,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 
 ## `conversion_ceiling_campaign:P3-ofc`
 
@@ -490,7 +493,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 
 ## `conversion_ceiling_campaign:FULLSTACK`
 
@@ -612,7 +616,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 
 ## `conversion_ceiling_campaign:P4-learned-gating`
 
@@ -734,7 +739,8 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 
 ## `conversion_ceiling_campaign:GENERATION`
 
@@ -856,5 +862,6 @@ Source plan: `evidence/planning/conversion_ceiling_campaign_plan.md`
 - `2026-09-16T12:21Z` [autopsy] `failure_autopsy_V3-EXQ-1039_2026-09-16` -> [`evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1039_2026-09-16.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-09-17T18:27Z` [decision] `decision:ARC-107@2026-09-17T18:27:47.968656Z` -> [`evidence/decisions/decision_log.v1.jsonl#L500`](../../../../evidence/decisions/decision_log.v1.jsonl#L500) :: decision promote_to_provisional (applied)
 - `2026-09-23T21:53Z` [manifest] `v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3` -> [`evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json`](../../../../evidence/experiments/v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3.json) :: PASS manifest non_contributory
-- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance **<- live head**
+- `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
+- `2026-09-25T05:20Z` [autopsy] `failure_autopsy_V3-EXQ-1095_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1095_2026-09-25.json) :: autopsy non_contributory/standard routing=governance **<- live head**
 

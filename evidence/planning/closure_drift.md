@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-09-25T05:22:48Z
+Generated: 2026-09-25T05:50:18Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -27,7 +27,7 @@ Non-terminal nodes (including ones Suppressed above) where newer evidence landed
 
 | plan | node | status | owner_exq | node last_updated | why |
 |------|------|--------|-----------|-------------------|-----|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | in-progress | _none_ | 2026-09-16 | failure_autopsy_V3-EXQ-1012c_2026-09-24.json (2026-09-24) reclassified MECH-439 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | in-progress | _none_ | 2026-09-16 | failure_autopsy_V3-EXQ-1012c_2026-09-24.json (2026-09-24) reclassified MECH-439; failure_autopsy_V3-EXQ-1095_2026-09-25.json (2026-09-25) reclassified MECH-439 |
 
 ## Assembly frontier -- resting, not drift (12)
 
