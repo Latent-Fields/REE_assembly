@@ -55,6 +55,21 @@ Does a gate that reads `s_t = mean|z_harm_a|` (the CeA `low_freq` input, unchang
 
 ~75 min Mac wall. Mac CPU lock (`mac_probe.lock`) per process; one process at a time. If one seed takes > 10 min, TRAIN shrinks to 1000 and EVAL to 600, and I say so.
 
+### PRE-REGISTRATION AMENDMENT 1 (2026-09-25T15:05Z, before any gate readout was computed)
+
+A 60-step timing smoke (seed 11 EVAL) recorded only the ground-truth channels. It showed that the pre-registered ground truth is **degenerate**. `hazard_field[agent cell] >= 0.15` held on **60/60** steps; recorded values were 0.74-1.0.
+
+- **Why.** The field is `sum over hazards of 1/(1 + 0.5 x ManhattanDist)` (`causal_grid_world.py:4746-4750`). On a 10x10 grid with 3 hazards, each hazard contributes >= 0.1 anywhere, so the field is >= ~0.3 everywhere and clips to 1.0 near any hazard. The `hazard_approach` transition (threshold 0.15, `:2720-2740`) therefore fires on almost every non-contact step.
+- **Consequence for the input.** The same saturated scalar is what `harm_obs_a[:25]` EMAs (`:3035-3037`). The result section reports this as a finding about the input itself.
+- **The smoke also showed** that `harm_obs_a_ema` starts at 0 on a fresh env and warms up over ~100 steps, so `s_t` is warm-up-dominated at first.
+
+Amended, in place of the ground-truth bullets above. Everything else stands.
+
+- **Hazard step:** Manhattan distance from the agent cell to the nearest `env.hazards` entry `d_min <= 1`, OR `transition_type == "env_caused_hazard"` (contact). **ONSET:** a hazard step whose previous 3 steps, all in the same episode, have `d_min >= 2`. Window N = 5 as before. FA pool: steps with `d_min >= 2` outside every onset window, excluding the first 3 steps of each episode.
+- **Burn-in:** EVAL records 1100 steps. The first 100 run the gate statistics but are not scored.
+- **Added control (v), input ceiling:** the same four gates applied to the raw input scalar `x_t = harm_obs_a[0]`, with no encoder. This bounds what any gate reading this input can do, and separates an encoder limit from an input limit. Its thresholds are the same as (i)-(iv), except that (i) on the raw input uses 0.5 as well, which is purely descriptive.
+- P1-P4 and the decision rule are unchanged.
+
 ## RESULTS
 
 (pending -- filled after the runs)
