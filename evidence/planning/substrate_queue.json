@@ -81,8 +81,8 @@
       "populated_by": "scripts/backfill_failure_record_run_role.py backfilled all 281 items 2026-08-15 and records its per-item derivation in the sibling `run_role_basis` field (re-runnable; `--apply` to write). /failure-autopsy Step 7 and /governance Step 6a-iii should set it explicitly on any NEW failure_record item -- an autopsy's own gap-characterisation run is pre_build; a validation run queued after a build lands is post_build. An item whose `run_role_basis` is prose rather than one of the script's own \"R<n> ...\" derivation tags is read as an EXPLICIT label (R0, 2026-09-16) and is never re-derived or overwritten by a later `--apply` -- e.g. SD-018's v3_exq_1008, deliberately `unknown` (REE_assembly 441f3ec099d)."
     }
   },
-  "last_seen_session": "metaworker-science-20260925-orchc-benefit-bw-build",
-  "last_updated_utc": "2026-09-25T03:25:18Z",
+  "last_seen_session": "gov-20260925-orch1707",
+  "last_updated_utc": "2026-09-25T05:20:12Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -8065,10 +8065,12 @@
       "sd_id": "SD-hazard-aware-policy-decomposition",
       "title": "Harm-valence-weighted selection in mid-execution policy redecomposition",
       "node_class": "complicated (buildable)",
-      "status": "implemented",
-      "ready": true,
+      "status": "amend_pending_implementation",
+      "ready": false,
       "design_doc": "docs/architecture/sd_hazard_aware_policy_decomposition.md",
-      "depends_on_unresolved": [],
+      "depends_on_unresolved": [
+        "native waking trainer / E2 world-head objective (GFLAG-0485, GFLAG-0491 -- governance-owned row not yet registered)"
+      ],
       "unblocks_claims": [
         "MECH-321"
       ],
@@ -8086,13 +8088,21 @@
           "experiment_type": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode",
           "metric": "harm_delta_mean_unconditional = -0.003728 (n=40, SE 0.02292); engagement-outcome Spearman rho = -0.28563",
           "target": "C1 requires harm_delta_mean > 1.0*SE with rel_improvement >= 0; magnitude-only harm-aware selection does not clear it",
+          "resolved": "superseded",
+          "resolved_note": "V3-EXQ-1087 (2026-09-24) shows 919's harm-aware selection consumed a per-leaf harm input that anti-tracks ground truth. 919's harm_delta therefore does not measure harm-aware selection, and its failure item is replaced by the 1087 item. Nothing was fixed."
+        },
+        {
+          "run_id": "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
+          "experiment_type": "v3_exq_1087_mech321_perleaf_harm_discriminability",
+          "metric": "Stage-2 tolerance-tie rate 0.078 (discriminative) but harm tracking excess -0.070 (z -2.23, n=223), -0.197 vs best-constant-index null, median Spearman(penalty, GT) -0.5; Stage-1 clamp saturated 99.2%; kept-leaf-executed rate 0.29",
+          "target": "chosen leaf is a ground-truth-best leaf more often than chance by >= 0.05 with z >= 2 over BOTH nulls, >= 2 distinct chosen indices",
           "resolved": "open"
         }
       ],
       "implementation_hint": "Extend SD-039's AnchorGoalPayload/build_goal_payload with a signed harm-valence field sourced from z_harm_a/BLA threat_scale (a VALENCE_HARM_DISCRIMINATIVE residue-field channel already exists elsewhere but is not captured here). Build an actual ranked-selection step in _apply_policy_decomposition (ree_core/hippocampal/module.py:896-983) -- currently absent; all surviving tiles are additively recombined with no choice among them. Prerequisite: commission a targeted /lit-pull on threat-modulated defensive path-selection (e.g. Fanselow's predatory-imminence continuum, or comparable graded-defensive-response literature) before fixing the exact functional form, per biology-before-formal-definitions.",
-      "priority": 2,
+      "priority": 1,
       "added_session": "session-startup-checklist-28b0bd",
-      "last_seen_session": "governance-flags-mid-20260923",
+      "last_seen_session": "gov-20260925-orch1707",
       "lit_pull_ref": "targeted_review_threat_modulated_defensive_path_selection (lit-pull DONE 2026-08-01, 9 entries: Fanselow PIC lineage x4, Mobbs x3 incl. 2007 Science categorical PFC-PAG imminence shift + 2020 TICS MF/MB reframing, Evans/Branco 2018 Nature synaptic-threshold escape-decision mechanism, Cooper 2016 economic escapability model, Blanchard & Blanchard 1989 predictability/risk-assessment). Verdict: recommend a two-stage functional form -- (1) a continuously graded harm-valence bias term on candidate-tile scores (sigmoidal, not linear, per Cooper 2016), PLUS (2) a threshold-gated categorical override near high imminence that restricts selection to the lowest-harm candidate, overriding ordinary structural scoring (per Mobbs 2007's categorical vmPFC->PAG shift and Evans 2018's synaptic-threshold escape mechanism) -- with the existing harm-blind additive recombination preserved as the below-threshold default (Evans 2018's freeze-as-fallback finding). Escapability (Cooper 2016) and predictability (Fanselow 2022 BST; Blanchard 1989) flagged as real but secondary/deferred second-input gaps, not blocking a first buildable version. Full functional-form recommendation: SYNTHESIS.md in that directory. REE_assembly/evidence/literature/targeted_review_threat_modulated_defensive_path_selection/SYNTHESIS.md",
       "implementation_status": "implemented",
       "implemented_utc": "2026-08-01T19:52:58Z",
@@ -8109,6 +8119,28 @@
           "ree_core/hippocampal/module.py"
         ],
         "note": "Entry status stays implemented for the magnitude-only two-stage build; this amendment (escapability / threat-predictability input channels) is OWED before MECH-321 is re-tested. Successor runs must also record per-leaf harm_penalty spread and the Stage-2 argmin tie rate (MECH-320-defect-cluster autopsy)."
+      },
+      "severity": "corrupting",
+      "severity_note": "The selection fires on ~98% of decompositions and passes every 'engaged' readiness check, yet its harm input is not harm-informed. Any run reading harm-aware selection as harm-informed produces evidence that looks valid and is not. Blast radius: runs with decomposition_use_harm_aware_selection=True (default-off; the 844/867-lineage/919/1087 drivers).",
+      "substrate_paths": [
+        "ree_core/hippocampal/module.py::_decomposition_harm_penalty",
+        "ree_core/policy/policy_decomposition.py::harm_bias",
+        "ree_core/policy/policy_decomposition.py::select_harm_aware_leaves"
+      ],
+      "status_phase": "build_owed",
+      "amend_2026_09_25": {
+        "source_autopsy": "failure_autopsy_V3-EXQ-1087_2026-09-25 (REE_assembly f8fe743025)",
+        "title": "Make the per-leaf harm_penalty harm-informed before any harm-aware-selection re-test",
+        "implementation_hint": "V3-EXQ-1087 shows the built two-stage selection's per-leaf input discriminates the leaves but anti-tracks realised harm. (1) Read _decomposition_harm_penalty over the leaf-controlled rollout steps only, or roll leaves as multi-step sequences, not over zero-action-padded horizon states. (2) Require a harm/threat estimate that is trained or grounded in harm outcomes: the residue harm channel is written from z_harm.norm() on every tick, and E2's world head has no waking objective (GFLAG-0485/0491). (3) Enable or require valence bounding so Stage 1 does not sit at its clamp. This supersedes the 2026-08-13 amend's order of work: escapability or predictability channels added onto a non-harm-informed penalty would not be testable.",
+        "prior_values": {
+          "status": "implemented",
+          "ready": true,
+          "severity": null,
+          "substrate_paths": null,
+          "priority": 2,
+          "status_phase": null
+        },
+        "governance_note": "Applied 2026-09-25 by /governance gov-20260925-orch1707 under the user's standing delegation (orchestrate-20260924-1707). The as-built harm-aware selection (implemented 2026-08-01) stays in place; this amend records a NEW build owed before any harm-aware-selection re-test. ready=false: gated on the native waking trainer / E2 world-head objective (GFLAG-0485/0491), HELD for the user."
       }
     },
     {
@@ -13552,6 +13584,50 @@
       "severity_note": "The field the 2026-09-25 build ships is correctly NAMED staleness_at_episode_end_*, so nothing currently misreads it. This entry exists so the quantity the analysis doc actually cites (the within-episode peak) becomes available rather than staying permanently unmeasurable.",
       "source": "chip-20260924-mech287-pag-recommit-readout-build red-team F2 / decision chip-20260925-mech287-dv-choice",
       "registered_utc": "2026-09-25T02:56:14Z"
+    },
+    {
+      "sd_id": "e3-outcome-informative-planned-pathway",
+      "title": "Make E3's planned (full-horizon) pathway outcome-informative: an action-conditional E2 world prediction reachable by E3's full-horizon score, without collapsing SD-081's planned/habit depth contrast",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "build_owed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "GFLAG-0485 governance disposition (E2 world head: no ree_core waking objective; action-blind even when trained)",
+        "SD-PP-B10-zworld-encoder-action-displacement (registration-only): z_world carries ~2-3% action-explained displacement",
+        "e2-world-forward-sleep-trainer (implemented_pending_validation) -- adjacent, not covering",
+        "SD-PP-B5-z-world-per-step-displacement-range (implemented_validated_negative) -- adjacent, not covering",
+        "GFLAG-0454 practice-retaining familiarity read (familiarity half of SD-081, separate)"
+      ],
+      "unblocks_claims": [
+        "SD-081"
+      ],
+      "unblocks_claims_note": "MECH-477 is a beneficiary only: its CONFIRMING (differential recruitment) is already scored by 811a.",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_1083_sd081_adaptive_vs_fixed_allocation_20260924T172346Z_v3",
+          "experiment_type": "v3_exq_1083_sd081_adaptive_vs_fixed_allocation",
+          "metric": "single_path_outcome_separation (max cell |return planned_only - return habit_only|) = 0.035; all 5 arms' returns within 0.035 (-0.875..-0.910); benefit contacts 0-1 per episode",
+          "target": ">= 0.2 in at least one cell",
+          "resolved": "open"
+        }
+      ],
+      "implementation_hint": "DEDUPE FIRST: if governance registers a row from GFLAG-0485 (open evidence_discrepancy on SD-056/SD-063; it does not itself name a row) before applying this autopsy, treat this as action amend on that row. Adjacent existing rows, neither covering this consumer: e2-world-forward-sleep-trainer (implemented_pending_validation; an E2 world-head training pathway -- overlaps leg (i)'s target, not its mechanism) and SD-PP-B5-z-world-per-step-displacement-range (implemented_validated_negative; the head barely reads the action -- the same defect leg (i) targets); no row covers score depth / horizon aggregation. Leg (i): E2 world head trained so it predicts ACTION-CONDITIONAL consequences (the 2d848ca2d3 addenda: action-diverse / balanced data; monostrategy 88-99%-one-class data reproduces the action-blind k=0 signature), with a ree_core-owned waking objective (R1; today only experiment-lib warmup_train trains it). Leg (ii) is NOT 'match the scored horizon' alone: V3-EXQ-1083's habit_only arm IS the R2 depth-2 selection (e3_selector.py:1928-1931, _score_depth_limit = max(2, habit_depth)) and it did not separate from full-horizon selection on return (0.035), so depth-matching alone is measured inert on this row's validation statistic. Any depth change must keep the planned scored depth strictly greater than dualsystem_habit_depth (or add a separate planned-depth knob), or SD-081's non-degeneracy precondition P1 fails by construction. ADDENDUM 3's working pair was R5 + R2 with COV not necessary, in a regime with no benefit channel and an untrained harm head -- neither holds on the 811a lineage. Validation for THIS consumer: planned_only vs habit_only episode-return separation >= 0.2 in >= 1 cell on the 811a lineage (the V3-EXQ-1083 P5 statistic); note 0.2 is about the largest return shift any manipulation produced here (~0.15-0.20), so it doubles as a competence probe.",
+      "priority": 1,
+      "severity": "degrading",
+      "severity_note": "degrading, not corrupting, for THIS consumer: 1083's P5 gate caught it and vacated C3 visibly. GFLAG-0485 may warrant corrupting for consumers whose DV assumes consequence-driven choice without such a gate -- governance's call there.",
+      "substrate_paths": [
+        "ree_core/predictors/e2_fast.py",
+        "ree_core/predictors/e3_selector.py",
+        "experiments/_lib/goal_pipeline_tier1.py::warmup_train"
+      ],
+      "substrate_paths_note": "warmup_train is an experiment-lib trainer; it is listed because ree_core has no waking objective for the E2 world head (GFLAG-0485 item 1), so it is the only place the head is trained today.",
+      "source_autopsy": "failure_autopsy_V3-EXQ-1083_2026-09-25 (REE_assembly 8c30279753)",
+      "governance_note": "Created 2026-09-25 by /governance gov-20260925-orch1707 under the user's standing delegation (orchestrate-20260924-1707). ready=false: gated on the GFLAG-0485 disposition (E2 world head has no ree_core waking objective), which is HELD for the user (breakthrough-20260924 Q4 native waking trainer). No GFLAG-0485 row existed at create time, so this is a create, not an amend; if the GFLAG-0485 disposition registers a row, merge this entry into it.",
+      "added_session": "gov-20260925-orch1707",
+      "last_seen_session": "gov-20260925-orch1707",
+      "added_utc": "2026-09-25T05:20:12Z"
     }
   ],
   "schema_version": "substrate_queue/v2",

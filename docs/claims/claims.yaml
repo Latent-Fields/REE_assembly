@@ -44531,6 +44531,25 @@
     contextual_safety_harm_threshold' follow-up suggested in the paragraph above. The live
     successor design (closure inter-fire interval as the dose) is owned by
     chip-20260917-mech268-closure-cadence-dose. Status and confidence unchanged.
+
+    [2026-09-25 /governance gov-20260925-orch1707, ratified under the user's standing delegation
+    (orchestrate-20260924-1707)]: V3-EXQ-1089 (2026-09-24, ree-worker-3, 5 seeds) -- closure-cadence
+    dose, mode-register DV, reset ON/OFF bracket -- is non_contributory (substrate_not_ready_requeue):
+    only 2/5 seeds were ready (4 required). Seeds 43/45/46 were latch-dominated (E3 fresh ticks on
+    11-27% of steps), so closures fired 0-2 times in the K_LONG arms and the closure -> FIFO bracket was
+    never exercised; ready seed 44 had no headroom (pe_unsat p50 5.61, so the s=0.5 floor leaves pe 1.40
+    above the ~1.0 critical value). On the one informative seed (42) the bracket moved internal_planning
+    occupancy by 0.176, matching the 1-seed pilot. The discrete register was pinned in every arm on
+    every seed (GFLAG-0466, SD-032a exit deadlock). Post-hoc and NOT pre-registered: post-hoc floor-arm
+    boundary (release S050_KS_OFF vs S030_KS_OFF, needs no closure fire): 3/5 replicate (42: 0.239 vs
+    0.000; 45: 0.861 vs 0.139; 46: 0.867 vs 0.040), 1/5 both-release (43: 0.790 vs 0.732, pe_unsat
+    2.12), 1/5 neither-release (44, pe_unsat 5.61); the two exceptions are the pe-scale dependence;
+    pe_unsat p50 spans 2.1-5.6 across trained seeds, so any fixed saturation floor is seed-fragile --
+    evidence bearing on dec-20260923T185804-MECH-268, not a pre-registered replication. Re-test via a
+    same-question re-run whose readiness is denominated on fresh E3 ticks and whose headroom is a
+    per-seed readiness condition. failure_autopsy_V3-EXQ-1089_2026-09-25. NOTE: the
+    dec-20260923T185804-MECH-268 floor decision is HELD for the user and is NOT decided by this cycle;
+    the same-question re-run (1089a) is not to be queued until it is.
   location: evidence/planning/sd033_governance_plan.md
 
   what_would_answer: >
@@ -61189,6 +61208,37 @@
     (governance-flags-mid-20260923, rec-20260924-b52804ea).
 
     [2026-09-23 failure-autopsy MECH-320-defect-cluster, GFLAG-0403]: V3-EXQ-919 is NOT touched by the MECH-320 defect (no tonic_vigor or diversity-bias flag enabled). A different, unmeasured exposure is recorded: both stages of harm-aware selection consume one per-leaf harm_penalty read off each leaf's E2-predicted world states (hippocampal/module.py:1263-1275), so if E2 world-forward collapsed per-leaf predictions (the corrected V3-EXQ-571 root cause) Stage 1 would be a constant offset and Stage 2 (97.9% firing rate) a harm-blind tie-break. Contemporaneous August trained-agent runs show nonzero per-candidate spread (0.02-0.16, vs 0.0000 in May), so the collapse is not shown live, but no 867/919-lineage run recorded per-leaf penalty spread. The weakens therefore reads on the as-built mechanism CONDITIONAL on its harm input having been discriminative; a successor must record per-leaf harm_penalty spread and the Stage-2 argmin tie rate, and if the tie rate is high this run re-adjudicates to non_contributory. [Applied 2026-09-24 by /governance session governance-20260924, GOV-APPLY-1 unapplied_disposition; user decision rec-20260924-d981b105.]
+
+    [2026-09-25 /governance gov-20260925-orch1707, ratified under the user's standing delegation
+    (orchestrate-20260924-1707)]: [2026-09-25 failure-autopsy V3-EXQ-1087, confirmed
+    failure_autopsy_V3-EXQ-1087_2026-09-25 (orchestrate-20260924-1707, user standing delegation)]:
+    V3-EXQ-1087 (diagnostic, excluded from scoring) is the successor the 2026-09-23 conditional
+    required. It replays V3-EXQ-919's untrained ARM_SELECTION_ON regime (5 seeds, config asserted equal,
+    probe-OFF control action mismatch 0) and records every Stage-2 call's per-leaf harm_penalty with a
+    ground truth from executing each leaf in a deep-copied env. RESULT: the harm input is DISCRIMINATIVE
+    but NOT HARM-INFORMED. The Stage-2 tolerance-tie rate is 0.078 (n=243; the high-tie route did not
+    fire). But the kept leaf is a ground-truth-best leaf LESS often than chance: pooled excess -0.070, z
+    -2.23 (marginal-preserving permutation z -2.76), n=223; -0.197 below the best-constant-index null.
+    The anti signal is carried by 2 of 5 seeds. It tracks harm on no seed. Stage 1 sits at its clamp on
+    99.2% of leaves (a constant offset). The kept leaf's first action was the executed action on only
+    29% of Stage-2-active units. Cause, from the code: _decomposition_harm_penalty averages the residue
+    harm valence over all rollout_horizon predicted states of a single-primitive leaf, and all but the
+    first step are zero-action padding through an untrained E2 world head (GFLAG-0485: E2 has no waking
+    world objective). The harm channel is written with z_harm.norm() on every tick, so it partly tracks
+    occupancy. Under the driver's pre-registered refinement (T <= 0.20 and not harm-tracking ->
+    non_contributory; queue-time CHANGE 3), V3-EXQ-919's weakens re-adjudicates to NON_CONTRIBUTORY.
+    This REFINES the 2026-09-24 ratified two-branch rule, under which a low tie rate alone would have
+    satisfied the condition. It closes the premise that rule left implicit, that a discriminative input
+    is a harm-informed one, which this run measures false. This is independent of GFLAG-0462 (919's DV
+    is 87% post-death harm), which by itself would bar an unconditional reading. MECH-321's
+    harm-aware-selection leg therefore has NO valid negative test. 844's weakens (a
+    competence_implementation_gap reading) is the only remaining one. A re-test is meaningful only after
+    the per-leaf harm input is made harm-informed (see the SD-hazard-aware-policy-decomposition amend).
+    RATIFICATION: this cycle ratifies the driver's pre-registered refinement ('T <= 0.20 and not
+    harm-tracking -> 919 non_contributory') over the literal 2026-09-24 two-branch rule, because the
+    premise that rule left implicit (a discriminative input is a harm-informed one) is measured false
+    here, and GFLAG-0462 (919's DV 87% post-death harm) independently bars an unconditional reading.
+    V3-EXQ-919's manifest evidence_direction is re-written weakens -> non_contributory in the same pass.
   digestion_note: >
     [2026-08-07, thought-digestion] The falsifier this claim needs (C1_TASK_OUTCOME_IMPROVES on
     harm-aware vs baseline redecomposition, matched at SD-029 hazard-tuned engagement) is not in
@@ -69753,6 +69803,21 @@
     complicated (buildable). The one-way leg has a known latent non-conformance at MECH-290 --
     complicated (buildable).
     REGISTERED 2026-09-24 by /governance session governance-20260924 (user: 'progress MECH-365 now'); drafted by its subagent, design doc: evidence/planning/mech365_wwa_and_lesion_design_20260924.md (section 2 carries arms/DVs/criteria and the three default-OFF substrate edits E1-E3).
+  evidence_quality_note: >
+    V3-EXQ-1085 (2026-09-24, ree-cloud-2, 5 seeds; evidence PASS -> supports; reviewed by /governance
+    gov-20260925-orch1707): the provenance gate HOLDS (imagined mass accepted with the label intact,
+    M_img(A1) = 0 on every seed; committed VALENCE_WANTING map bit-identical to the unrouted reference)
+    and the BOUNDARY LESION (label dropped in the translation into update_valence while the sender
+    Trajectory keeps it) CONTAMINATES committed history (imagined-sourced share D_img(A2) min 1.76 vs
+    theta 0.05, 5/5 seeds); the sham is inert (D(A3) = 0) and the source-side canary detects label loss
+    (M_img(A4) >= 100 every seed). AUDIT-STRENGTH evidence, as the driver itself declares: C1a/C1b/C3
+    are structurally determined once the label is stamped and honoured, C2 is near-guaranteed given P3,
+    and S4 was correctly demoted to a recorded structural audit; the informative content is the canary
+    and the recorded magnitudes. Scope: ONE relation (reality-status) lesioned at ONE boundary
+    (MECH-217's spread_reverse_replay_wanting writer, with forward replay routed to it by a default-OFF
+    knob); NOT MECH-545's five-way contract-lesion assay and NOT MECH-271's differential-routing test.
+    Governance PASS skim: criteria combine by AND on every seed, the C2 bar is attainable in both
+    directions (floor 0.05, sham SD 0), no defect found.
   notes: "Assembles into one concrete token schema the provenance fields that REE already enforces in pieces -- MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation), MECH-037 (Papez-like provenance gating / reality filtering), INV-011 (imagination must be possible without belief update). This claim does NOT re-assert that safety property (already owned by those three); it specifies the DATA STRUCTURE that carries it on the ARC-085 unified event substrate and makes the committed_vs_imagined label a first-class, load-bearing field rather than an implicit mode bit. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094; SD-026 (prospective precision-template write channel) is the nearest existing write-side mechanism. V4/V5; off the V3 critical path. substrate_conditional on the ARC-085 event-token store not yet built. DO NOT build in V3 until routed by experiment."
   phase_leak_resolution_2026_09_24: >
     [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-ce7aa5a8] SPLIT (resolution (b), CONFLICT with phase_locked ARC-085): MECH-545 needs only the committed_vs_imagined gate, which already exists in V3, not the ARC-085 unified store. This id keeps the V3 gate half (depends_on ARC-085 removed; epistemic_category substrate_conditional -> standard, since its substrate_conditional reading was 'on the ARC-085 store not yet built'; version_relevance v4_v5 -> v3). The full event-token schema on the unified store -- including the prior notes' 'V4/V5; off the V3 critical path; DO NOT build in V3' guidance -- moves to child MECH-365a (v4). Prior title preserved in title_prior_2026_09_24.
@@ -78296,7 +78361,7 @@
     CONFIRMING: Under swept parent_goal_alpha / event rate, the correctly-nulled parent statistic separates from its own re-constructed null on a majority of seeds with non-zero attainment and a working forced-seed control, and a live consumer of the parent attractor yields goal-directed behaviour above the no-subgoal arm. Manipulation: Enable use_hierarchical_goal_credit so REEAgent.notify_subgoal_attainment routes attainment events into GoalState.credit_subgoal_attainment, against a no-subgoal arm and a forced-seed positive control; sweep parent_goal_alpha and inter-event rate as the independent variable. Control: NO-SUBGOAL arm (credit path off), a credited-partition-scored random-credit null (the CREDIT_RANDOM_TICKS control scored against its OWN credited partition, not the attainment partition), and the 626b forced-seed positive control. Required event: Repeated attained subgoal events (waypoint / sequence_complete transitions in causal_grid_world subgoal_mode) in a regime where direct superordinate seeding is sparse. DV: A parent-attractor statistic whose null re-runs parent construction (not a fixed-parent permutation), plus a downstream behavioural readout that some live consumer of the bootstrapped attractor produces -- goal-directed action rate that the no-subgoal control does not produce.
     FALSIFYING: With attainment non-zero and the forced-seed control structured, no sweep point yields parent-statistic separation from a null that re-runs parent building, i.e. subgoal credit builds no content the parent did not already contain. A failure under unmet preconditions is not evidence against the claim.
     SUBSTRATE / INSTRUMENT REQUIREMENT: credit_subgoal_attainment returns n_subgoal_credits / parent_goal_norm / credit_applied and parent_goal_norm()/z_goal_parent expose state (ree-v3/ree_core/goal.py); the 884c driver plus four probes measure cosine statistics. No instrument records a parent-attractor effect on behaviour, because nothing reads _z_goal_parent. Consumer / boundary: GoalState._z_goal_parent, the superordinate attractor. The claim asserts this bootstrapped attractor then drives goal-directed behaviour, which requires a consumer at E1/E2/E3 or the policy; there is none. Existing ownership: SD-092, GFLAG-0294, GFLAG-0227, EXP-0390, MECH-427.
-    DISPOSITION: R5 (primary); Two blockers. The parent statistic is degenerate at registered defaults (norm criterion analytically guaranteed; content statistic artifact-biased; correctly-nulled form at chance because the EMA effective sample size is ~20). And _z_goal_parent has NO downstream consumer in ree_core -- only accessors and state_dict -- so the behavioural half of the claim cannot reach any locus. Secondary classes: R4, R2. Gap disposition: EXISTING NODE, MISSING EDGE. Scope: v3_native. Stale-falsifier correction: The WWA's DV (z_goal_norm/parent norm rising materially above the unscaffolded baseline) has since been measured degenerate twice: GFLAG-0227 showed the norm/lift criterion is a closed form in fixed GoalConfig alpha/decay and cannot fail, and GFLAG-0294 showed the replacement content statistic is positively biased by parent-EMA self-overlap while the correctly-nulled form reads at chance at parent_goal_alpha=0.05. The WWA also promises goal-directed BEHAVIOUR, but _z_goal_parent has no downstream consumer in ree_core. Audit disposition only; status/confidence/phase unchanged. Registration is not build authorisation. No experiment queued. History and evidence: evidence/planning/falsifier_completion_and_runnability_audit_20260921.json (resumed 2026-09-22).
+    DISPOSITION: R5 (primary); Two blockers. Two of the three parent-statistic forms are degenerate at registered defaults (norm criterion analytically guaranteed; content statistic artifact-biased). The correctly-nulled form separates from its re-constructed null on 4/5 seeds at the default operating point once controls are K-averaged and time-local and the null is a circular time-shift (V3-EXQ-1093), so 884c's at-chance reading was mainly an instrument limitation. Separation is still ordered by the EMA effective sample size: the crossover is ESS ~15-24 and strongly seed-dependent, so the default (ESS ~24) is marginal. And _z_goal_parent has NO downstream consumer in ree_core -- only accessors and state_dict -- so the behavioural half of the claim cannot reach any locus. Secondary classes: R4, R2. Gap disposition: EXISTING NODE, MISSING EDGE. Scope: v3_native. Stale-falsifier correction: The WWA's DV (z_goal_norm/parent norm rising materially above the unscaffolded baseline) has since been measured degenerate twice: GFLAG-0227 showed the norm/lift criterion is a closed form in fixed GoalConfig alpha/decay and cannot fail, and GFLAG-0294 showed the replacement content statistic is positively biased by parent-EMA self-overlap while the correctly-nulled form read at chance at parent_goal_alpha=0.05 under the 884c K=1 / unmatched-null instrument, and separates on 4/5 seeds under the matched instrument (V3-EXQ-1093). The WWA also promises goal-directed BEHAVIOUR, but _z_goal_parent has no downstream consumer in ree_core. Audit disposition only; status/confidence/phase unchanged. Registration is not build authorisation. No experiment queued. History and evidence: evidence/planning/falsifier_completion_and_runnability_audit_20260921.json (resumed 2026-09-22).
   title: subgoal_bootstrapped_goal_seeding
   claim_type: mechanism
   status: candidate
@@ -78424,6 +78489,36 @@
     0-3 of 400 actions (B2), consistent with SD-082's open V3-EXQ-1029 finding that the read-out is argmin-inert at native
     magnitude even with the consumer ON. H1 (objective sparsity) of waypoint_field_consumer_reach is UNRESOLVED and is
     gated on SD-082's open authority question, not on a recipe tweak. failure_autopsy_V3-EXQ-1039a_2026-09-20.
+
+    [2026-09-25 /governance gov-20260925-orch1707, ratified under the user's standing delegation
+    (orchestrate-20260924-1707)]: [2026-09-25 failure-autopsy V3-EXQ-1093, confirmed
+    failure_autopsy_V3-EXQ-1093_2026-09-25 (orchestrate-20260924-1707, user standing delegation)]:
+    V3-EXQ-1093 (diagnostic PASS, non_contributory on every branch by construction; user design decision
+    (b), rec-20260924-701216a5) sweeps SD-092's parent_goal_alpha {0.2..0.005} x parent_goal_decay
+    {0.005, 0} x event count N {400, 1600} over 5 seeds. It asks whether the parent statistic S = 1 -
+    cos(parent_credited, parent_control) separates from a null that re-runs parent construction, using
+    K=32-averaged time-local controls and a circular time-shift null. All preconditions and controls
+    hold: sense path exact (0.0), attainment >= 58 credits by N=400, replay equals a real GoalState (cos
+    >= 0.99999982), uniform-ceiling positive control 5/5, random-credit negative control 0/5 on all 26
+    cell x N combinations. C1 (sub-ceiling cells only, ESS <= 0.5 x n_att) PASSES. It is 0.8 at two
+    N=400 cells (ESS 18.9 and 23.7) and 1.0 at its binding cell (alpha 0.025, decay 0, N=1600, ESS 78.7,
+    which at that N is close to the uniform ceiling). So the WWA NON-DEGENERACY PRECONDITION's
+    achievable-range clause is SATISFIABLE in this harness, and its attainment clause is met. The
+    forced-seed clause and the CONFIRMING clause's live consumer remain untested (parent_goal_weight 0,
+    scripted policy): owed by EXP-0710 / GFLAG-0464 and the still-unrun V3-EXQ-884a retest. CORRECTION
+    to the DISPOSITION ('correctly-nulled form at chance because the EMA effective sample size is ~20'):
+    the default operating point (0.05, 0.005, N=400, ESS ~24) separates on 4/5 seeds under the matched
+    instrument, against 1/5 under 884c's unmatched form. 884c's at-chance reading was therefore mainly
+    an instrument limitation (single control draw, temporally confounded null). But separation IS
+    ordered by ESS (Spearman 0.96): cells below ESS ~15 separate on 2/5 seeds, and the crossover sits at
+    ESS ~15-24, so the default is marginal rather than safely above it (0.6 at N=1600). At the default
+    alpha 0.05 and decay 0.005, ESS does not grow with event count (23.7 at N=400, 23.8 at N=1600). With
+    decay 0 it does. The crossover is strongly seed-dependent: one seed of five clears only at ESS >=
+    ~36. The effect is small in absolute terms: S ~0.001-0.006, with the two parents ~0.998
+    cosine-similar. And z_world is read through an untrained pre-projection
+    (SD-ZWORLD-SENSE-PATH-PARITY), so this establishes statistical separability, not semantic parent
+    content. Any consumer test should run at an operating point with ESS >= ~36 (e.g. decay 0 with alpha
+    <= 0.05) and report ESS.
   pending_retest_after_substrate: true
   implementation_note: >
     SD-092 (2026-08-02): inherits MECH-427's primitive directly -- the SAME
@@ -87702,7 +87797,9 @@
       from: "decision:SD-081@2026-09-23T09:24:24.993828Z"
       as_of: 2026-09-23
       verdict: hold_pending_v3_substrate/applied
+  epistemic_category: standard
   implementation_phase: v3
+  pending_retest_after_substrate: true
   claim_level: architectural
   registered_utc: "2026-07-22"
   depends_on: [ARC-007, ARC-016, SD-005, MECH-112]
@@ -87783,6 +87880,23 @@
     pathways WITHOUT an arbitrator produce a FLAT recruitment response" -- is not
     established by 786a on this reading, because a DV measuring tie-break noise returns a
     flat between-condition delta BY CONSTRUCTION whether or not an arbitrator exists.
+
+    [2026-09-25 /governance gov-20260925-orch1707, ratified under the user's standing delegation
+    (orchestrate-20260924-1707)]: V3-EXQ-1083 (2026-09-24, ree-cloud-2, 8 seeds, substrate cb6e158c)
+    tested the MODEL-UNCERTAINTY half of SD-081's what_would_answer only (familiarity half untestable on
+    this substrate, GFLAG-0454). Core readiness gate green. REACH CONFIRMED: C1 the arbitration weight
+    tracks an E2 world_transition perturbation (w intact-perturbed, mean-SEM 0.131 > 0.02, 7/8 seeds)
+    and C2 the adaptive rule moves committed selection toward the planned argmin beyond a matched fixed
+    mixture (DID mean-SEM 0.139 > 0.03, 7/8 seeds). BENEFIT UNTESTABLE: the pure planned-only and
+    habit-only pathways, on identical weights, did not separate on episode return (max cell |diff| 0.035
+    vs the 0.2 bar), so C3 benefit-over-fixed was vacated -> non_contributory. The agent sits at a
+    foraging competence floor (0-1 benefit contacts per episode, returns -0.88 to -0.91 in every arm),
+    and per GFLAG-0485 E3's full-horizon score is not consequence-informative in the measured regimes,
+    so SD-081's CONFIRMING precondition 'both pathways informative' is unmet. The FALSIFYING clause's
+    'does not reach committed selection' arm is NOT met (reach shown); its 'no benefit' arm is untested.
+    Reach shows the plumbing, not appropriate recruitment: the planned argmin the weight recruits is
+    itself uninformative here. Re-test the benefit leg only after a cheap P5 pilot shows planned-only vs
+    habit-only return separation >= 0.2 in at least one cell. failure_autopsy_V3-EXQ-1083_2026-09-25.
   notes: >
     DISTINCT FROM ARC-071, which remains unbuilt and is NOT a prerequisite for this SD.
     ARC-071 is the TRANSFER mechanism (planned -> habitual chunking; slow,
