@@ -46,3 +46,20 @@ Held questions with options: .scratch/breakthrough-20260924/QUESTIONS.md (umbrel
 - Decisions taken under the user's standing delegation (rec-20260924-fb429c72), reasons recorded: z_self objective = body forward model; the valuation smoke and detector re-validation; every probe above. Decisions held: see Section 5.
 - Two parallel orchestrators ran overnight on a split (this one: causal edges; orchestrate-20260924-1707: decision lane + cloud science), mutual restarters; one overnight window reconciled to 6 cycles/box.
 - Harness hazards seen: a push-retry repeatedly left a staged revert on evidence/planning/igw_routine_log.md (cleared index-only each time); one task_claim open silently failed to register; two workers created worktrees at a relative path inside ree-v3 (cleaned up).
+
+## 7. User decisions on the held questions (2026-09-25T06:15Z, live; addendum 06:22Z)
+
+The user answered the four held questions from Section 5 and `.scratch/breakthrough-20260924/QUESTIONS.md` in a live AskUserQuestion. All four took the recommended option. The recommendation ledger records them as rec-20260925-3677487d, rec-20260925-6eb5db00, rec-20260925-35999055 and rec-20260925-713b2cb7.
+
+| Q | Question | User decision | Consequence for /governance |
+|---|---|---|---|
+| Q4a | Native waking trainer architecture | **Hybrid WakingTrainer.** Existing phased trainers (SD-070 P0, ZSelfP0) become scheduled members, with per-tick online losses only for the REINFORCE heads. It is stepped from `update_residue()` every K ticks, so every StepHarness driver gets it with no driver edit. | GFLAG-0491 (MECH-523): the owed substrate_queue row is the WakingTrainer per native_waking_trainer_design_20260925.md (0c0f5b76ec). |
+| Q4b | Sequencing | **Skeleton + a harm_eval_head loss on ree-v3 main, default-OFF, first.** Then the coupled repair on an `integration/<slug>` branch, gated by the pre-registered closed-loop criterion (design section 4c: env reward, shuffled controls, hazard-trapped/benign stratification). | The main-branch step is in progress (campaign-20260925-bt0925-wtrainer). The guard itself is landing as a pure instrument first (campaign-20260925-bt0925-guard). |
+| Q2 | Repair organisation | **One coupled campaign:** codec repair + E2 world-head action coverage + grounded main-channel valuation + trainer ON, together on one ree-v3 integration branch, validated only as an integrated loop. The user accepts that single-factor probes cannot validate its parts in isolation. | GFLAG-0488/0490 (SD-080, ARC-018): fold the decoder/codec rows into the coupled campaign, not a decoder-only row (the decoder-only probe FAILED, a369f411ff8). GFLAG-0485 (E2 world objective) belongs in the same campaign. |
+| Q1 | Grounded valuation | **The 5-seed cloud battery** (~5 CPU-h; M2 regression-credit rule first, against the M4 null plus a raw-rule control), **conditional on the relative-to-null detector validating** (campaign-20260925-bt0925-nulldet, in flight). | GFLAG-0487 (INV-054, MECH-523): route to /queue-experiment only if the detector passes its pre-registration. If it fails, park. |
+
+Decided by the orchestrator under the standing delegation (rec-20260924-fb429c72), with reasons. These two were NOT put to the user; both complete the accepted recommended set and are default-OFF and reversible:
+- **Q4c:** world_obs_encoder is trained through the agent's actual read path (it is not allowlisted). This is relevant only to the coupled campaign.
+- **Q4d:** the grad-reach guard RAISES when the trainer is ON; the existing drivers get a warn-only retro-audit.
+
+**Unchanged by these decisions** (still open, for /governance on the evidence alone): GFLAG-0479 (residue D1-only), GFLAG-0481 (no z_self valuation consumer), GFLAG-0484 (relational dumps have no callers), GFLAG-0486 (commit-gate caveat) and GFLAG-0489 (correction to 0487). Q3 was resolved by evidence: do not adopt R5b+R2 as a default regime.
