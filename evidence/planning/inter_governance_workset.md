@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-25T22:11:56Z`
+Generated: `2026-09-25T23:18:40Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -14,7 +14,7 @@ UI: http://localhost:8000/workset
 - Pending review: **0**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-1090, V3-EXQ-906c
+- Live EXQs: V3-EXQ-906c
 
 - Evidence-covered retests (already ran post-substrate; held for a /governance disposition, NOT re-queued): MECH-162 -> v3_exq_997_mech162_zresource_zworld_planning_reconvergence_20260904T032212Z_v3
 
@@ -5812,7 +5812,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-252 -- Confirm evidence: ARC-023 (lit 0.80, exp ~0)
+### IGW-20260925-252 -- Confirm evidence: ARC-023 (lit 0.79, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 55 | **Generation:** v3
 - **Blocked by:** experiment_proposals.v1.json EXP-0548 status=blocked_on_gate: blocked by residue-completion-signal-threshold-unreachable, mech005-endogenous-arousal-dynamic-range
@@ -5822,7 +5822,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260925-252
-Title: Confirm evidence: ARC-023 (lit 0.80, exp ~0)
+Title: Confirm evidence: ARC-023 (lit 0.79, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: ARC-023
