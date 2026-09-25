@@ -1,6 +1,6 @@
 # STAGED (not applied): `/thought-digestion` drafts for the registry backlog (2026-09-25)
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml.**
+**Status: APPLIED 2026-09-25.** The user reviewed and approved it: all routine drafts as written, the 3 (a) proposals, the 5 category changes, and MECH-070's retirement. It landed as REE_assembly d95f7e37be, verified on origin/master: 241 what_would_answer blocks (each byte-identical to the text here), 59 category fills, 5 category changes, 9 digestion_notes, MECH-070 superseded, and EXP-1405 (SD-002), EXP-1406 (EXT-002) and EXP-1407 (MECH-224). The 28 substantive findings were raised as GFLAG-0510..0537, with the (g) merges among them. The stale-note corrections are carried in the applied what_would_answer text. The suggested depends_on additions were NOT applied because they were not separately approved; they remain listed per claim below. The registry is now authoritative, and this file is the archival record of the drafts.
 
 - **Session:** `thought-digest-registry-backlog-20260925` (Mac, main checkout, interactive)
 - **Scope:** every live claim whose `epistemic_stance` is `believed` or `asked` and that carries no
