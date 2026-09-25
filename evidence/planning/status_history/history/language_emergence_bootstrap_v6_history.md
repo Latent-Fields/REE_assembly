@@ -6,33 +6,41 @@ Source plan: `evidence/planning/language_emergence_bootstrap_v6_plan.md`
 
 ## `language_emergence_bootstrap_v6:LANG-1`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-2`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-3`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-4`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-5`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-6`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-7`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 
 ## `language_emergence_bootstrap_v6:LANG-8`
 
-- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:MECH-308@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L280`](../../../../evidence/decisions/decision_log.v1.jsonl#L280) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-09-25T06:05Z` [decision] `decision:MECH-308@2026-09-25T06:05:21.991712Z` -> [`evidence/decisions/decision_log.v1.jsonl#L592`](../../../../evidence/decisions/decision_log.v1.jsonl#L592) :: decision hold_pending_v3_substrate (applied) **<- live head**
 

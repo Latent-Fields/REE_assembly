@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-25T05:50:22Z
+Generated: 2026-09-25T11:32:26Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -60,7 +60,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-6` | SD-031 z_world causal-footprint comparator: V3 discriminative validation | blocked | 6 | medium |  | Both halves of the claims.yaml SD-031 evidence_quality_note gate must hold before the disc | 2026-09-04 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress |  | load-bearing |  | V3-EXQ-654h RAN TERMINAL FAIL/non_contributory 2026-06-21T17:57Z (manifest v3_exq_654h_... | 2026-09-01 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial |  | load-bearing |  | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-08-01 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-09-16 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress |  | load-bearing |  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-09-25 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:A` | Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space | blocked |  | load-bearing |  | ext: observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_ | 2026-07-10 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
 | policy_decomposition_trigger_plan.md | `policy_decomposition_trigger:REPOSE` | Re-pose ARC-070's prediction-failure decomposition trigger off the saturated reg | blocked |  | load-bearing | V3-EXQ-938 | 2026-08-21 governance applied confirmed failure_autopsy_V3-EXQ-938_2026-08-20: non_contrib | 2026-09-25 |
@@ -181,12 +181,13 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-9` -- Sleep trigger is boundary-only -- SleepLoopManager.notify_episode_end() (the sole K-episod
 
-## Plans WITHOUT closure_plan frontmatter (4)
+## Plans WITHOUT closure_plan frontmatter (5)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 - `evidence/planning/claude_code_update_integration_plan.md`
 - `evidence/planning/context_budget_restructure_plan.md`
+- `evidence/planning/coupled_loop_repair_campaign_plan.md`
 - `evidence/planning/igw_governance_flag_coordinator_migration_plan.md`
 - `evidence/planning/unwritten_edge_discovery_plan.md`
 

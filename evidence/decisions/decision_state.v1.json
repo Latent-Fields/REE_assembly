@@ -495,6 +495,24 @@
       "selected_option": "Promote ARC-107 to provisional",
       "timestamp_utc": "2026-09-17T18:27:47.968656Z"
     },
+    "ARC-109": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:21.765066Z"
+    },
+    "ARC-111": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:21.818055Z"
+    },
     "ARC-112": {
       "actor": "user",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -567,6 +585,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path).",
       "timestamp_utc": "2026-09-05T10:18:38.788976Z"
     },
+    "ARC-139": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:21.866351Z"
+    },
     "ARC-140": {
       "actor": "user",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -584,6 +611,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Keep candidate; V3-pending gate stands",
       "timestamp_utc": "2026-09-23T09:24:23.555500Z"
+    },
+    "ARC-144": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:21.907721Z"
     },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
@@ -629,6 +665,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate; hold recorded",
       "timestamp_utc": "2026-09-03T20:44:11.976886Z"
+    },
+    "GOV-CONTRACT-3": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:21.946500Z"
     },
     "GOV-PHASE-LEAK-BACKLOG": {
       "actor": "dgolden",
@@ -1677,11 +1722,11 @@
     "MECH-268": {
       "actor": "dgolden",
       "decision_needed": "Which calibration route should MECH-268's dACC saturation use so it actually releases the SD-032a mode register? Decide AFTER the closure-cadence successor experiment (chip-20260917-mech268-closure-cadence-dose) has replicated the strength-0.5 effect across seeds.",
-      "decision_status": "proposed",
-      "rationale": "None",
+      "decision_status": "approved",
+      "rationale": "User decision 2026-09-25 (live run-through via orchestrate-20260924-1707, rec-20260925-02281b11): option 2/B. The multi-seed replication this decision waited on did NOT land pre-registered; the confirmed V3-EXQ-1089 autopsy (REE_assembly 402ea96099) measured the post-hoc floor-arm boundary on all 5 seeds: 3/5 replicate, 1/5 both-release, 1/5 neither, and pe_unsat p50 spans 2.1-5.6 across trained seeds -- so any FIXED floor (including raising the default to 0.5) is seed-fragile. Normalising dacc_pe at source removes the scale drift the floor cannot track. Default dacc_saturation_strength stays 0.3 (no fleet-wide default change). Build is design-first: substrate_queue entry dacc-pe-scale-normalisation. V3-EXQ-1089a waits on it and is to be designed against the normalised signal. Applied by governance pass gov2-20260925-answers.",
       "recommendation": "Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330).",
-      "selected_option": "None",
-      "timestamp_utc": "2026-09-23T18:58:04Z"
+      "selected_option": "Leave the default at 0.3 and normalise dacc_pe instead, fixing the scale drift at its source (needs a design and a substrate_queue entry).",
+      "timestamp_utc": "2026-09-25T06:17:26Z"
     },
     "MECH-269": {
       "actor": "governance-2026-04-25T15:15",
@@ -1927,13 +1972,13 @@
       "timestamp_utc": "2026-05-08T22:34:09Z"
     },
     "MECH-308": {
-      "actor": "dgolden",
-      "decision_needed": "Held by V4 architectural commitment (no V3-substrate decision required)",
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "2026-06-06 insights-recs reclassification: claim is v3_pending AND implementation_phase=v4 -> deliberately V4-deferred by architectural commitment, not awaiting V3 substrate. Routed off hold_pending_v3_substrate/pending_user to held_v4_by_architectural_commitment (applied) per the 2026-04-27 misclassification fix. No claim status changes; promotion/demotion stays suppressed.",
-      "recommendation": "held_v4_by_architectural_commitment",
-      "selected_option": "Keep held under the V4 architectural commitment (correct path).",
-      "timestamp_utc": "2026-06-06T07:53:48.739107Z"
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:21.991712Z"
     },
     "MECH-309": {
       "actor": "user",
@@ -2421,6 +2466,15 @@
       "selected_option": "Promote MECH-449 only (leave ARC-107 candidate)",
       "timestamp_utc": "2026-06-22T05:31:51.724472Z"
     },
+    "MECH-452": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:22.036087Z"
+    },
     "MECH-454": {
       "actor": "governance-cycle-20260624T2142Z",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -2519,6 +2573,15 @@
       "recommendation": "clear_v3_pending",
       "selected_option": "v3_pending true->false, evaluate normally",
       "timestamp_utc": "2026-07-25T16:55:22.964934Z"
+    },
+    "MECH-479": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Literature conflict noted; claim stays gated pending upstream probe/substrate",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef).",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:22.131286Z"
     },
     "MECH-480": {
       "actor": "governance",
@@ -2717,6 +2780,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Keep candidate; V3-pending gate stands",
       "timestamp_utc": "2026-09-23T09:24:24.675382Z"
+    },
+    "MECH-585": {
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User-approved in /governance 2026-09-25 (rec-20260925-f8ad93ef): routine V3-substrate hold.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Hold",
+      "timestamp_utc": "2026-09-25T06:05:22.089943Z"
     },
     "Q-006": {
       "actor": "user",
@@ -3394,13 +3466,13 @@
       "timestamp_utc": "2026-05-07T04:14:02Z"
     },
     "SD-050": {
-      "actor": "governance-20260829-mac",
-      "decision_needed": "Promotion review: candidate -> provisional",
+      "actor": "governance-20260925-0548",
+      "decision_needed": "Demotion review: provisional -> candidate",
       "decision_status": "applied",
-      "rationale": "exp_conf=0.717, 2 supporting runs (V3-EXQ-515 comparator-logic diagnostic PASS; 5/5 smoke), conflict_ratio=0, category standard, v3_pending false. User-approved in /governance 2026-08-29 (session governance-20260829-mac).",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Promote now",
-      "timestamp_utc": "2026-08-29T14:13:18.599275Z"
+      "rationale": "exp_conf 0 after 517c superseded + 517d non_contributory (GFLAG-0452 D1, governance 2026-09-24); 2026-08-29 promotion's 2 supporting runs no longer score. User-approved /governance 2026-09-25 (rec-20260925-f8ad93ef). Re-gates on agent-trajectory descent test covering both reuse sites.",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "Demote now",
+      "timestamp_utc": "2026-09-25T06:05:22.173208Z"
     },
     "SD-054": {
       "actor": "user",
@@ -3556,7 +3628,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-24T10:26:33.986646Z",
+  "generated_at_utc": "2026-09-25T07:45:47.573744Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

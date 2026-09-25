@@ -176,6 +176,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-2`
 
@@ -349,6 +350,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-3`
 
@@ -522,6 +524,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-4`
 
@@ -695,6 +698,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-4-battery`
 
@@ -868,6 +872,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-5`
 
@@ -1041,6 +1046,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-6`
 
@@ -1214,6 +1220,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-7`
 
@@ -1387,6 +1394,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-8`
 
@@ -1560,6 +1568,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-9`
 
@@ -1733,6 +1742,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-10`
 
@@ -1906,6 +1916,7 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 
 ## `commitment_closure:GAP-11`
 
@@ -2079,4 +2090,5 @@ Source plan: `evidence/planning/commitment_closure_plan.md`
 - `2026-09-23T18:58Z` [decision] `decision:MECH-268@2026-09-23T18:58:04Z` -> [`evidence/decisions/decision_log.v1.jsonl#L580`](../../../../evidence/decisions/decision_log.v1.jsonl#L580) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (proposed)
 - `2026-09-24T06:07Z` [autopsy] `failure_autopsy_V3-EXQ-1012c_2026-09-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1012c_2026-09-24.json) :: autopsy non_contributory/standard routing=governance
 - `2026-09-25T01:54Z` [autopsy] `failure_autopsy_V3-EXQ-1089_2026-09-25` -> [`evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-1089_2026-09-25.json) :: autopsy non_contributory/standard routing=queue-experiment **<- live head**
+- `2026-09-25T06:17Z` [decision] `decision:MECH-268@2026-09-25T06:17:26Z` -> [`evidence/decisions/decision_log.v1.jsonl#L597`](../../../../evidence/decisions/decision_log.v1.jsonl#L597) :: decision Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330). (approved)
 

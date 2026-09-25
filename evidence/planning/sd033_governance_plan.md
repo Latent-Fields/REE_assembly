@@ -17,7 +17,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -34,7 +35,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -51,7 +53,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -68,7 +71,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -85,7 +89,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -102,7 +107,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -119,7 +125,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -136,7 +143,8 @@ closure_plan:
         verdict: "non_contributory/standard"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: false
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
       join:
         bears_on: ["arc131_installability:coalition_endogenous_recruitment", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1", "waypoint_field_consumer_reach:H-wpfield-objective-sparsity"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
