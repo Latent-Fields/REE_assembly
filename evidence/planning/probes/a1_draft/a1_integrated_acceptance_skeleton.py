@@ -105,13 +105,21 @@ SHUF_TARGETS = {
 # Pre-A1 member gates (user decisions rec-20260925-38b81685 hold-for-both, -b9652a9b consumer leg on
 # both; orchestrator decision log 2026-09-25T14:19Z for W4). A1 is QUEUEABLE only when every one is True.
 # W4 (b) is NOT here: it moved after W5 (N3-pre: E3's valuation caps pick-in-Q-best at chance).
+# v2b (user decision rec-20260925-a16786f5): the consumer-mediated (e) legs of BOTH variants moved after
+# W5 too, for the same reason. Before W5 the hold clears on (a)-(d) + containment + (f); the (e) legs and
+# W4 (b) are REPORTED (REPORTED_UNTIL_W5), never gating. A1 stays runnable in GROUNDED and ABSENT modes.
 REQUIRED_GATES = {
     "shared": ("C2_verdict_recorded", "I1_on_main", "W3_L2R_bar", "W4_a_spearman", "W4_c_vs_trained_action_blind",
                "W6_guard_green", "N0_pin_fetch"),
     "CODEC": ("W1_a_guard", "W1_b_roundtrip", "W1_c_decoded_norm", "W1_d_iter0_range",
-              "W1_e_containment_vs_shuffled", "W1_e_consumer_mediated"),
+              "W1_e_containment_vs_shuffled"),
     "ACT": ("GASP_a_guard", "GASP_b_valid_onehots", "GASP_c_bounded_rollouts", "GASP_d_coverage",
-            "GASP_e_consumer_mediated", "GASP_f_not_state_invariant"),
+            "GASP_f_not_state_invariant"),
+}
+REPORTED_UNTIL_W5 = {
+    "shared": ("W4_b_pick_in_qbest",),
+    "CODEC": ("W1_e_consumer_mediated",),
+    "ACT": ("GASP_e_consumer_mediated",),
 }
 VALUATION_MODES = ("GROUNDED", "ABSENT")  # fixed from C2 (V3-EXQ-1105a) verdict BEFORE any admitted seed runs
 
@@ -381,8 +389,9 @@ def attribution(v: str, benign: List[Dict[str, Any]], sup_b: float) -> Dict[str,
 
 def a1_queueable(gates: Dict[str, Dict[str, bool]], valuation_mode: Optional[str]) -> Dict[str, Any]:
     """Pre-A1 hold (user decision rec-20260925-38b81685): A1 queues only when BOTH variants pass their
-    member gates, each including the consumer-mediated (e) leg (rec-20260925-b9652a9b), plus the shared
-    gates, and only once valuation_mode is fixed. Any missing or False gate -> HOLD, naming it."""
+    member gates plus the shared gates, and only once valuation_mode is fixed. Any missing or False gate
+    -> HOLD, naming it. v2b (rec-20260925-a16786f5): the consumer-mediated (e) legs and W4 (b) are in
+    REPORTED_UNTIL_W5 -- their values are passed through as `reported`, and they never cause a HOLD."""
     missing = []
     if valuation_mode not in VALUATION_MODES:
         missing.append("valuation_mode not fixed (C2 verdict)")
@@ -390,7 +399,36 @@ def a1_queueable(gates: Dict[str, Dict[str, bool]], valuation_mode: Optional[str
         for n in names:
             if not gates.get(grp, {}).get(n, False):
                 missing.append("%s:%s" % (grp, n))
-    return {"verdict": "QUEUEABLE" if not missing else "HOLD", "missing": missing}
+    reported = {"%s:%s" % (grp, n): gates.get(grp, {}).get(n, "not_run")
+                for grp, names in REPORTED_UNTIL_W5.items() for n in names}
+    return {"verdict": "QUEUEABLE" if not missing else "HOLD", "missing": missing, "reported": reported}
+
+
+def oracle_diagnostic(states: List[Dict[str, Any]], pools: Sequence[str] = ("INT-CODEC", "INT-ACT", "NATIVE-POOL")
+                      ) -> Dict[str, Any]:
+    """REPORT-ONLY oracle diagnostic (user decision rec-20260925-a16786f5). Each probe state carries env-Q per
+    first-action class (`q`: {class: value}, the ADDENDUM 3 estimator) and each pool's first-action classes
+    (`pools`: {pool_name: [class, ...]}). env-Q stands in for E3's valuation: the oracle picks the pool's
+    best class. Per pool: the fraction of states where that pick is in the env-Q-best set (within 1e-9 of the
+    max over ALL classes), and the mean regret max_all Q - max_pool Q. It answers "does the pool itself carry
+    better options?", independently of E3's (pre-W5, chance-level) valuation. It feeds no criterion, no
+    precondition and no hold. NOTE: a stratified INT-ACT pool contains every class, so its value is 1.0 / 0.0
+    by construction -- reported as such; the informative comparison is INT-CODEC vs NATIVE-POOL."""
+    out: Dict[str, Any] = {"report_only": True}
+    for p in pools:
+        hit, regret, n = 0, 0.0, 0
+        for st in states:
+            if p not in st["pools"] or not st["pools"][p]:
+                continue
+            q = st["q"]
+            qmax = max(q.values())
+            best_in_pool = max(q[c] for c in st["pools"][p])
+            hit += int(best_in_pool >= qmax - 1e-9)
+            regret += qmax - best_in_pool
+            n += 1
+        out[p] = ({"n_states": n, "oracle_pick_in_qbest": hit / n, "mean_regret": regret / n} if n
+                  else {"n_states": 0, "verdict": CD})
+    return out
 
 
 # ----------------------------------------------------------------------------- self-test (synthetic)
@@ -436,7 +474,8 @@ def _all_gates(**off) -> Dict[str, Dict[str, bool]]:
 
 def _cases() -> List[Any]:
     """(name, kind, thunk, want). kind: 'score' -> score_variant verdict; 'h2h' -> (verdict, winner);
-    'attr' -> (verdict, attribution label); 'queue' -> a1_queueable verdict; 'sig' -> named FAIL signature present."""
+    'attr' -> (verdict, attribution label); 'queue' -> a1_queueable verdict; 'sig' -> named FAIL signature present;
+    'oracle' -> oracle_diagnostic values."""
     B, T = BENIGN, TRAPPED
     sv = lambda strata: score_variant("CODEC", strata)["verdict"]  # noqa: E731
     C = []
@@ -498,10 +537,29 @@ def _cases() -> List[Any]:
     add("attr ABSENT mode -> not run", "attr", lambda: attr(_good(B)), (PASS, "not_run (ABSENT mode)"))
     # v2: pre-A1 hold (rec-20260925-38b81685, -b9652a9b)
     add("queue: every gate green, mode fixed", "queue", lambda: a1_queueable(_all_gates(), "GROUNDED")["verdict"], "QUEUEABLE")
-    add("queue: CODEC lacks consumer-mediated (e) leg -> HOLD", "queue",
-        lambda: a1_queueable(_all_gates(CODEC__W1_e_consumer_mediated=False), "ABSENT")["verdict"], "HOLD")
-    add("queue: ACT gate (e) not passed -> HOLD", "queue",
-        lambda: a1_queueable(_all_gates(ACT__GASP_e_consumer_mediated=False), "ABSENT")["verdict"], "HOLD")
+    # v2b (rec-20260925-a16786f5): the consumer-mediated (e) legs no longer gate; they are reported.
+    def _q_no_e(mode):
+        g = _all_gates()
+        g["CODEC"]["W1_e_consumer_mediated"] = False
+        g["ACT"] = dict(g["ACT"], GASP_e_consumer_mediated=False)
+        r = a1_queueable(g, mode)
+        return (r["verdict"], r["reported"]["CODEC:W1_e_consumer_mediated"], r["reported"]["ACT:GASP_e_consumer_mediated"])
+    add("queue v2b: (e) consumer legs FAIL pre-W5 -> still QUEUEABLE, reported", "queue",
+        lambda: _q_no_e("ABSENT"), ("QUEUEABLE", False, False))
+    add("queue v2b: CODEC containment fails -> HOLD", "queue",
+        lambda: a1_queueable(_all_gates(CODEC__W1_e_containment_vs_shuffled=False), "ABSENT")["verdict"], "HOLD")
+    add("queue v2b: ACT (f) fails -> HOLD", "queue",
+        lambda: a1_queueable(_all_gates(ACT__GASP_f_not_state_invariant=False), "GROUNDED")["verdict"], "HOLD")
+    # v2b: oracle diagnostic (report-only) computes, and the variant verdict does not read it
+    def _oracle():
+        st = [{"q": {0: 0.1, 1: 0.5, 2: -0.2, 3: 0.0, 4: 0.0},
+               "pools": {"INT-CODEC": [0, 1], "INT-ACT": [0, 1, 2, 3, 4], "NATIVE-POOL": [2]}},
+              {"q": {0: 0.3, 1: 0.1, 2: 0.0, 3: 0.3, 4: -0.1},
+               "pools": {"INT-CODEC": [1, 2], "INT-ACT": [0, 1, 2, 3, 4], "NATIVE-POOL": [3]}}]
+        o = oracle_diagnostic(st)
+        return (o["report_only"], o["INT-ACT"]["oracle_pick_in_qbest"], o["INT-CODEC"]["oracle_pick_in_qbest"],
+                o["NATIVE-POOL"]["oracle_pick_in_qbest"])
+    add("oracle diagnostic (report-only) values", "oracle", _oracle, (True, 1.0, 0.5, 0.5))
     add("queue: valuation_mode not fixed -> HOLD", "queue", lambda: a1_queueable(_all_gates(), None)["verdict"], "HOLD")
     return C
 
@@ -524,9 +582,9 @@ MUTATIONS = [
      lambda g: g.__setitem__("P1G_STRICT", False)),
     ("balloon guard off (pre-RT-2)", "RT-2 non-inferiority margin balloons -> CD",
      lambda g: g.__setitem__("BALLOON_FACTOR", float("inf"))),
-    ("CODEC gate without the consumer-mediated leg", "queue: CODEC lacks consumer-mediated (e) leg -> HOLD",
-     lambda g: g["REQUIRED_GATES"].__setitem__("CODEC", tuple(n for n in g["REQUIRED_GATES"]["CODEC"]
-                                                              if n != "W1_e_consumer_mediated"))),
+    ("old gating: (e) consumer legs gate A1 (pre-v2b)", "queue v2b: (e) consumer legs FAIL pre-W5 -> still QUEUEABLE, reported",
+     lambda g: (g["REQUIRED_GATES"].__setitem__("CODEC", g["REQUIRED_GATES"]["CODEC"] + ("W1_e_consumer_mediated",)),
+                g["REQUIRED_GATES"].__setitem__("ACT", g["REQUIRED_GATES"]["ACT"] + ("GASP_e_consumer_mediated",)))),
     ("tie winner back to the v1 name 'ASP'", "h2h both PASS within margin -> tie rule (ACT)",
      lambda g: g.__setitem__("SIMPLER_VARIANT", "ASP")),
 ]
@@ -576,6 +634,8 @@ def describe() -> None:
     for v in VARIANTS:
         print("SHUF targets %-5s: %s" % (v, ", ".join(SHUF_TARGETS[v])))
     print("pre-A1 gates (all must be green to queue): %s" % json.dumps(REQUIRED_GATES))
+    print("reported until W5 (never gating; rec-20260925-a16786f5): %s" % json.dumps(REPORTED_UNTIL_W5))
+    print("oracle diagnostic (report-only): env-Q stands in for E3's valuation on each variant's pool")
 
 
 if __name__ == "__main__":
