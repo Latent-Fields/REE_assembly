@@ -7091,7 +7091,11 @@
       "task_claim_session_id": "igw-auto-igw-240-proposal-for-mech-084-20260925T200234Z",
       "task_claim_claimed_at": "2026-09-25T20:02:34Z",
       "assigned_at": "2026-09-25T20:00:03Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-09-25T20:05:46Z",
+      "completion_summary": "marked EXP-0825/EVB-1424 (MECH-084) blocked_substrate: no NA->E1/E2 sampling-allocation consumer or ratio recorder (REE_assembly 26bd1ce083)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EXP-0825/EVB-1424 (MECH-084) blocked_substrate: no NA->E1/E2 sampling-allocation consumer or ratio recorder (REE_assembly 26bd1ce083)"
     }
   ],
   "dispositions": [
@@ -10271,6 +10275,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-09-25T11:29:25Z",
       "re_eligible_after": "2026-09-27T11:29:25Z"
+    },
+    {
+      "stable_hash": "f881af718bd3",
+      "igw_id_at_disposition": "IGW-20260925-240",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-084"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-084",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-09-25T20:05:49Z",
+      "re_eligible_after": "2026-09-27T20:05:49Z"
     }
   ]
 }
