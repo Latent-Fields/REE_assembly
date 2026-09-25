@@ -299,3 +299,142 @@ MODEL; none inspected the BEHAVIOUR).
   rests on ~10 hazard layouts with no error bars. Inherited from 308.
 - `C1`-passes-`C2`-fails is routed to `weakens` with a note asserting the null
   HOLDS, which would contradict its own printed mean delta. Split that branch.
+
+---
+
+# ADDENDUM 3, 2026-09-25 -- THE DV HAS NO HEADROOM ABOVE A CONSTANT ACTION. Leg 4's gate FAILS. Nothing queued.
+
+**Status: AWAITING USER REVIEW. Nothing is queued. All three scripts are landed on
+`ree-v3` `main` with no `experiment_queue.json` entry.** Reporting rather than
+asking, per the brief's "two stops means stop" -- no third decision chip.
+
+The 2026-09-25 go-ahead was (N-iii) + (N-i): queue leg 4 now, rebuild legs 2 and
+3 with a nonlinearity plus behavioural gates. It carried an explicit gate:
+*"Before queuing, confirm that the independent C1-bar finding does NOT apply to
+leg 4's own criteria. If leg 4 also has an absolute bar that is unreachable by
+construction in its regime, STOP and report."*
+
+**The rebuild was done. The gate was checked. It FAILS**, and it fails for a
+deeper reason than the bar.
+
+## 1. The rebuild (done, landed, unqueued)
+
+`ree-v3` `main`: legs `V3-EXQ-1103` and `V3-EXQ-1101` now carry a
+Linear->ReLU->Linear `HarmHead` and `E2WorldForward` (verified: the chosen action
+and the continuation action are both state-dependent again), C7/C8 behavioural
+gates (executed-action entropy >= 0.50 bits; distinct cells >= 10; gating, checked
+FIRST), a best-fixed-single-action competence floor, a RELATIVE C1 bar with its
+0.10 coefficient pre-registered from held-out seeds `[101, 202]`, an
+action-consequence ACCURACY canary replacing the spread measure, an on-policy
+disagreement instrument on the eval env, per-reset harm series with SD, a
+`mixed` branch for C1-pass/C2-fail, and `None` instead of `NaN`. The behavioural
+gates were smoke-verified to fire on a degenerate arm (entropy 0.000) and route to
+`inconclusive` rather than `weakens`.
+
+That work stands and is worth keeping. But the instruments it added are what
+found the following.
+
+## 2. The blocking finding: a CONSTANT ACTION is already near-optimal on this DV
+
+The new best-fixed-single-action floor was measured at FULL eval scale (5000
+steps, `env.reset()` on `done`) in the inline legs' 8x8 environment:
+
+| seed | best fixed action | its harm_rate | uniform random | STAY (action 4) |
+|---|---|---|---|---|
+| 42 | 2 | **0.000214** | 0.06479 | 0.18187 |
+| 7 | 0 | **0.000158** | 0.06020 | 0.18175 |
+| 13 | 2 | **0.000190** | 0.06945 | 0.18306 |
+| 101 | 0 | **0.000269** | -- | 0.18308 |
+| 202 | 0 | **0.000199** | -- | 0.18272 |
+
+Every constant MOVE action lands at harm_rate ~2e-4. Uniform random is ~6e-2 --
+**300x worse**. STAY is ~1.8e-1, the worst of all.
+
+So the DV separates exactly three things: *don't act randomly*, *don't STAY*, and
+everything else. The band between "trivially competent" (2e-4) and "perfect" (0)
+is ~300x narrower than the band between "trivially competent" and "random". **No
+planner can demonstrate harm-avoidance value here**, because a policy with no
+model, no planner and no state input already occupies the optimum to within 2e-4.
+C1's relative bar becomes 0.10 x (2e-4 - harm_arm) -- a test of noise. C4's
+`0.85 x floor` requires beating 2e-4 by 15%.
+
+## 3. It applies to LEG 4 as well -- so the gate fails
+
+Leg 4 uses a different environment (V3-EXQ-055's: size 12, 4 hazards, 5
+resources, proximity scales, `hazard_field_decay`), so this had to be measured
+separately rather than assumed. Measured, 20 x 200 steps:
+
+| seed | best fixed action | uniform random | random/best |
+|---|---|---|---|
+| 0 | 0.001331 | 0.073610 | 55.3x |
+| 7 | 0.001062 | 0.069386 | 65.4x |
+| 13 | 0.001343 | 0.071559 | 53.3x |
+| 101 | 0.001239 | 0.063519 | 51.3x |
+
+**V3-EXQ-055's own recorded `harm_per_step_ao` is 0.001467** -- i.e. **1.09x to
+1.38x the best constant action. The full hippocampal CEM planner, at the full
+600-episode budget, did not beat a constant action.** Its headline 67x advantage
+over SELF_CHAIN and 51x over RANDOM is precisely the constant-action advantage.
+This is measured against 055's landed manifest at its own budget, so it is not a
+pilot artefact.
+
+And the live pilot on HELD-OUT seed 101 (150 warmup eps, E2 well trained,
+`world_forward_r2 = 0.9787`):
+
+| arm | harm_rate |
+|---|---|
+| AO_CHAIN (the real pipeline) | **0.070055** |
+| UNTRAINED_E2_CHAIN (the null's arm) | **0.047303** |
+| SELF_CHAIN (informational) | 0.064573 |
+| RANDOM_REF (informational) | 0.063792 |
+| best fixed action (measured separately) | 0.001239 |
+
+- AO_CHAIN is **worse than uniform random**, and **56x worse than a constant action**.
+- The **UNTRAINED-E2 arm BEATS the trained one**, so C1's quantity is **-0.0228** -- the wrong sign.
+- The achievable range `(RANDOM - AO)` is **negative**, so the relative bar is undefined.
+
+**Honest bound on the pilot:** 150 warmup episodes, not 600, so AO could improve
+materially at full budget -- 055 reached 0.001467 at 600. That single number is
+budget-limited and I am not claiming otherwise. **The load-bearing fact is not
+budget-limited**: at 055's own full budget, its AO arm still did not beat a
+constant action (row above). Leg 4 therefore cannot demonstrate what MECH-033
+needs on this DV even in the best recorded case, and a competence floor against
+the best fixed action -- which addendum 2 established is the correct floor --
+fails for leg 4 using 055's own landed numbers.
+
+## 4. What this means for MECH-033's evidence base
+
+Every arm ever run for this claim -- the four PASSes (171 / 184 / 184-rerun / 308)
+and 055 -- was scored against uniform random or against SELF_CHAIN, both of which
+sit ~50-300x above a constant action. So the entire evidence base measures **"is
+the agent doing something other than acting randomly or standing still"**, a
+property a zero-parameter constant policy satisfies. It has never measured whether
+E2 kernel chaining contributes anything. This subsumes both prior diagnoses: the
+autopsy's ablation confound, and addendum 2's affine collapse.
+
+Raised for `/governance` alongside GFLAG-0499.
+
+## 5. What I recommend (reporting, not asking)
+
+The portfolio cannot be rescued by changing comparators or criteria, because the
+**DV and environment** are what lack discriminating power. Options, for the user:
+
+- **(E-i) Change the DV to one with headroom.** `contact_rate` and
+  `cal_gap_approach` are already recorded and are not obviously saturated by a
+  constant policy; a hazard-proximity-weighted cost, or harm under FORCED
+  traversal (the agent must cross the grid, so pinning at a wall is not
+  available), would restore a measurable range. This is the option I would take.
+- **(E-ii) Change the environment** so standing at a wall is not safe -- hazards
+  that pursue, or a resource requirement that forces movement. `CausalGridWorldV2`
+  already has drift; it needs pressure.
+- **(E-iii) Accept that MECH-033 is not testable on this substrate** and record it
+  as `complex (probe-gated)` pending an environment that can express the claim,
+  rather than continuing to accumulate runs that measure not-random.
+
+Whichever is chosen, the three landed scripts are reusable: the arms, the
+manipulation self-checks, the scramble/ablation machinery and the behavioural
+gates are all DV-agnostic. Only the criteria block and `_make_env` would change.
+
+**Do not queue any of the three legs as they stand.** `V3-EXQ-1101`, `V3-EXQ-1102`
+and `V3-EXQ-1103` are landed, smoke-passing, and deliberately absent from
+`experiment_queue.json`.
