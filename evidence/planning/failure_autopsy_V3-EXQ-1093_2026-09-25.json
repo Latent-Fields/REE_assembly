@@ -1,0 +1,284 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-25T01:55:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmation_note": "confirmed under the user's standing delegation via orchestrate-20260924-1707 (session orchc0925-autopsyB-1093). The design, including the user-chosen sub-ceiling C1 (option (b), rec-20260924-701216a5), was decided by the user before data. Every branch is non_contributory for MECH-428 by construction, and every readiness precondition and control is met. The residual judgements (where the crossover lies; how the WWA DISPOSITION text should be corrected) change no claim status or scope.",
+  "session_id": "orchc0925-autopsyB-1093",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over the 1093 run and the v3_exq_1093 family: 0 dry, 1 real. The pilot (seeds 101/102) wrote no manifest and is cited only as the driver's pre-data reference.",
+  "coordination_note": "The autopsy-pause claim was not opened: the coordination-plane paths are held by an orchestrator science worker (NOT OWNER). This autopsy writes none of them. hypothesis_space_registry.v1.json is held by orchc0925-autopsyA-1083, so Step 9b is recorded under hypothesis_space_ledger_pending.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3",
+      "queue_id": "V3-EXQ-1093",
+      "claim_ids": [
+        "MECH-428"
+      ],
+      "bears_on": [
+        "MECH-428",
+        "SD-092",
+        "EXP-0710",
+        "GFLAG-0476"
+      ],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "parent_statistic_achievable_range_exists",
+      "indexer_adjudication": "none flagged",
+      "failed_criterion": "none (diagnostic PASS)",
+      "facts": {
+        "PR0_sense_act_max_abs_diff": 0.0,
+        "PR1_min_credits_N400": 58,
+        "PR2_c0_min_cos": 0.9999998211860657,
+        "PR3_uniform_ceiling_sep_frac": 1.0,
+        "PR4_negative_control_max_sep_frac": 0.0,
+        "C1_max_sep_frac_subceiling": 1.0,
+        "C1_binding_cell": "a0.025_d0.0_N1600 (ESS 78.7, cap 122.5)",
+        "C1_n_cells_in_set": 15,
+        "C1_min_separating_ess_in_set": 18.95,
+        "C1_N400_eligible_cells_at_or_above_0.6": [
+          "a0.1_d0.0_N400 (ESS 18.9, 0.8)",
+          "a0.05_d0.005_N400 (ESS 23.7, 0.8)"
+        ],
+        "C2_default_cell_sep_frac_N400": 0.8,
+        "C2_default_cell_per_seed_pct": {
+          "42": 100.0,
+          "43": 86.5,
+          "44": 100.0,
+          "45": 99.0,
+          "46": 96.25
+        },
+        "default_cell_sep_frac_N1600": 0.6,
+        "C3_spearman_ess_pct": 0.9612876072494455,
+        "low_ess_cells_sep_frac": {
+          "a0.2_d0.005_N400 (ESS 7.9)": 0.4,
+          "a0.2_d0.0_N400 (ESS 9.0)": 0.4,
+          "a0.1_d0.005_N400 (ESS 14.6)": 0.4,
+          "a0.1_d0.005_N1600 (ESS 14.5)": 0.4,
+          "a0.1_d0.0_N1600 (ESS 19.0)": 0.6,
+          "a0.05_d0.005_N1600 (ESS 23.8)": 0.6
+        },
+        "unmatched_884c_form_default_cell_true_sep_frac": 0.2,
+        "unmatched_884c_form_nc_max_sep_frac": 0.4,
+        "effect_magnitude": "S = 1 - cos(parent_credited, parent_control) is 0.0014-0.0057 in every cell, against null p95 0.0003-0.0065. Separation is statistical; the credited and control parents are ~0.998 cosine-similar.",
+        "decay_caps_ess": "At the default decay 0.005, ESS barely grows with event count at alpha >= 0.05 (a0.05: 23.7 at N=400, 23.8 at N=1600; a0.1: 14.6 -> 14.5). It grows modestly at alpha <= 0.025 (32.9 -> 34.8, 41.2 -> 47.8, 44.4 -> 54.4). At decay 0 it grows (a0.025: 52.2 -> 78.7).",
+        "p0a_holdout_mean_lift": "0.0 on all 5 seeds (SD-070 P0 head held-out balanced-accuracy lift over chance). Not load-bearing for S. Likely a single scored class in the hazard-free scripted regime; not investigated further.",
+        "substrate_stable_across_run": true,
+        "recording": "validate_recording OK; substrate_hash 83ca4d44, commit bf16cd23, elapsed 78.7 s",
+        "seed_heterogeneity": "Per-seed crossover varies widely (red-team recompute). Seeds 42/44 separate down to ESS ~7.8. Seed 43 clears only at ESS >= ~36 and fails 15 of 24 cells. The ESS >= ~36 operating-point guidance is set by the weakest seed.",
+        "C1_binding_cell_note": "The binding N=1600 cell (ESS 78.7) exceeds the whole N=400 uniform ceiling (58-68), so at N=1600 C1 is close to PR3. The PASS does not depend on it: two N=400 eligible cells (ESS 18.9, 23.7) clear 0.6 at 0.8."
+      },
+      "prediction_scorecard": {
+        "P1_every_subceiling_cell_ESS_ge_14_separates_ge_4of5": "FAILED as stated -- a0.1_d0.005 (ESS 14.5-14.6) separates 2/5 at both N; a0.1_d0.0_N1600 (19.0) and a0.05_d0.005_N1600 (23.8) separate 3/5",
+        "P2_crossover_in_ESS_8_to_15": "FAILED on the range; the directional part holds (alpha 0.2 cells 0.4 <= alpha <= 0.1 cells). The measured crossover is ESS ~15-19 at N=400 (0.4 -> 0.8) and ~19-39 at N=1600 (0.6 -> 0.8).",
+        "P3_default_cell_separates_majority": "HELD -- 0.8 (4/5) at N=400; the default cell at N=1600 is 0.6 (3/5)",
+        "P4_negative_control_never_majority": "HELD -- 0.0 on every cell and N"
+      },
+      "hypotheses_read": {
+        "H1_ESS_bound_default_at_chance": "specific prediction REFUTED (default cell 0.8 at N=400). The ESS-ordering half survives: C3 rho 0.96, and cells below ESS ~15 separate on 2/5 seeds.",
+        "H2_instrument_bound_884c_at_chance_was_single_draw": "SUPPORTED on its main point. Under the 884c unmatched form the default cell separates 1/5 (true) with the negative control reaching 2/5; under the matched K=32 time-shift form it separates 4/5 with the negative control at 0. The crossover band H2 predicted (ESS 8-15) is too low: the measured band is ESS ~15-24.",
+        "H3_no_content_even_at_ceiling": "REFUTED -- the uniform ceiling separates 5/5 (PR3)."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact / not exercised -- a non-degeneracy (instrument) diagnostic by design, with no consumer (parent_goal_weight 0), a scripted policy, and no NO-SUBGOAL or forced-seed arm. It satisfies two of the three WWA NON-DEGENERACY PRECONDITION clauses (non-zero attainment; an achievable range that separates from a re-constructed null under swept alpha / event count). It does NOT address the third (a 626b forced-seed control in the same harness) or the CONFIRMING clause's live consumer.",
+        "biological_reference": "partial -- cumulative, recency-weighted credit onto a superordinate goal representation (hierarchical RL / prefrontal rostro-caudal abstraction; hippocampal-prefrontal schema accumulation). Formally the EMA is an engineering choice. The biology does not constrain the effective sample size, so this is an instrument question, not a translation question.",
+        "prerequisites": "partial -- SD-094 env fixes ON; SD-070 P0 z_world warmup ran (144 steps). z_world is read through the untrained agent-level world_obs_encoder pre-projection (open cosmetic item SD-ZWORLD-SENSE-PATH-PARITY) and is not trained by any waking objective (GFLAG-0491). What separates is therefore the content of a largely untrained representation. The run shows statistical separability, not semantic content.",
+        "implementation": "complete for what is measured -- PR2 proves the linear-algebra replay equals a real GoalState parent in every cell (min cos 0.99999982); PR0 proves sense_flat equals act() on z_world (0.0). No consumer, by design (EXP-0710 / GFLAG-0464 owns that).",
+        "environment": "adequate for the instrument question -- 58-68 credits by N=400 and 232-258 by N=1600 per seed from the scripted waypoint walk",
+        "measurement": "adequate -- matched K=32-averaged time-local controls plus a circular time-shift null. Random-credit negative control 0/5 on every one of 26 cell x N combinations. The uniform-ceiling positive control is 5/5. C1 (option (b)) can fail with PR3 met, so it is not implied by the positive control, and it passes at N=400 on two eligible cells (ESS 18.9 and 23.7, both 0.8) as well as at its binding N=1600 cell. Known conservative bias (red-team pass 1 F2, null bump rule) biases toward non-separation only.",
+        "integration": "coupled but inert BY DESIGN -- the parent is built and nothing reads it (parent_goal_weight 0). The coupling is owed by EXP-0710 / GFLAG-0464 (SD-092 residual E3 consumer landed at ree-v3 52096b7, default-off).",
+        "scale": "adequate for separability (5 seeds, 400 null permutations per seed-cell). The separation margin is small in absolute terms (S ~0.002 vs null p95 ~0.001-0.002 at default)."
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "n/a -- a PASS on an instrument / non-degeneracy question. No REE failure is asserted, and no claim-level competence was tested (no consumer)."
+      },
+      "biological_reference_block": {
+        "closest_mechanism": "recency-weighted accumulation of subgoal-completion credit onto a superordinate goal representation (PFC abstraction hierarchy; hippocampal-prefrontal schema building)",
+        "dependencies": [
+          "a representation in which attained-subgoal states differ from non-attained states",
+          "an accumulation window long enough to average out single-event noise",
+          "a downstream reader of the superordinate representation"
+        ],
+        "is_formal_import": true,
+        "divergence": "the EMA with per-tick decay is an engineering form. Its effective sample size is the relevant knob, and at the default decay it is capped near ~24 events however long the run.",
+        "lit_status": "partial (MECH-428 lit entries cover subgoal-to-goal bootstrapping, not the accumulation window)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No category change; MECH-428 already carries standard. Instrumentation / non-degeneracy diagnostic PASS: the achievable-range clause of the WWA precondition is satisfiable. No substrate build is owed and no ceiling is asserted.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-09-25 failure-autopsy V3-EXQ-1093, confirmed failure_autopsy_V3-EXQ-1093_2026-09-25 (orchestrate-20260924-1707, user standing delegation)]: V3-EXQ-1093 (diagnostic PASS, non_contributory on every branch by construction; user design decision (b), rec-20260924-701216a5) sweeps SD-092's parent_goal_alpha {0.2..0.005} x parent_goal_decay {0.005, 0} x event count N {400, 1600} over 5 seeds. It asks whether the parent statistic S = 1 - cos(parent_credited, parent_control) separates from a null that re-runs parent construction, using K=32-averaged time-local controls and a circular time-shift null. All preconditions and controls hold: sense path exact (0.0), attainment >= 58 credits by N=400, replay equals a real GoalState (cos >= 0.99999982), uniform-ceiling positive control 5/5, random-credit negative control 0/5 on all 26 cell x N combinations. C1 (sub-ceiling cells only, ESS <= 0.5 x n_att) PASSES. It is 0.8 at two N=400 cells (ESS 18.9 and 23.7) and 1.0 at its binding cell (alpha 0.025, decay 0, N=1600, ESS 78.7, which at that N is close to the uniform ceiling). So the WWA NON-DEGENERACY PRECONDITION's achievable-range clause is SATISFIABLE in this harness, and its attainment clause is met. The forced-seed clause and the CONFIRMING clause's live consumer remain untested (parent_goal_weight 0, scripted policy): owed by EXP-0710 / GFLAG-0464 and the still-unrun V3-EXQ-884a retest. CORRECTION to the DISPOSITION ('correctly-nulled form at chance because the EMA effective sample size is ~20'): the default operating point (0.05, 0.005, N=400, ESS ~24) separates on 4/5 seeds under the matched instrument, against 1/5 under 884c's unmatched form. 884c's at-chance reading was therefore mainly an instrument limitation (single control draw, temporally confounded null). But separation IS ordered by ESS (Spearman 0.96): cells below ESS ~15 separate on 2/5 seeds, and the crossover sits at ESS ~15-24, so the default is marginal rather than safely above it (0.6 at N=1600). At the default alpha 0.05 and decay 0.005, ESS does not grow with event count (23.7 at N=400, 23.8 at N=1600). With decay 0 it does. The crossover is strongly seed-dependent: one seed of five clears only at ESS >= ~36. The effect is small in absolute terms: S ~0.001-0.006, with the two parents ~0.998 cosine-similar. And z_world is read through an untrained pre-projection (SD-ZWORLD-SENSE-PATH-PARITY), so this establishes statistical separability, not semantic parent content. Any consumer test should run at an operating point with ESS >= ~36 (e.g. decay 0 with alpha <= 0.05) and report ESS.",
+      "per_claim_recommendation": {
+        "MECH-428": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "append the V3-EXQ-1093 note; apply the two what_would_answer replacements in recommended_wwa_disposition_correction (head clause and stale-falsifier sentence); advance live_status.evidence.from from failure_autopsy_V3-EXQ-1039a_2026-09-20 -> stamp this artifact",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_wwa_disposition_correction": {
+        "note": "MECH-428 what_would_answer says 'at chance' twice, and its head clause asserts degeneracy for all three statistic forms. All three edits are needed, or the WWA contradicts itself (red-team 7c F1).",
+        "replacements": [
+          {
+            "find": "The parent statistic is degenerate at registered defaults (norm criterion analytically guaranteed; content statistic artifact-biased; correctly-nulled form at chance because the EMA effective sample size is ~20).",
+            "replace": "Two of the three parent-statistic forms are degenerate at registered defaults (norm criterion analytically guaranteed; content statistic artifact-biased). The correctly-nulled form separates from its re-constructed null on 4/5 seeds at the default operating point once controls are K-averaged and time-local and the null is a circular time-shift (V3-EXQ-1093), so 884c's at-chance reading was mainly an instrument limitation. Separation is still ordered by the EMA effective sample size: the crossover is ESS ~15-24 and strongly seed-dependent, so the default (ESS ~24) is marginal."
+          },
+          {
+            "find": "while the correctly-nulled form reads at chance at parent_goal_alpha=0.05.",
+            "replace": "while the correctly-nulled form read at chance at parent_goal_alpha=0.05 under the 884c K=1 / unmatched-null instrument, and separates on 4/5 seeds under the matched instrument (V3-EXQ-1093)."
+          }
+        ],
+        "bears_on_not_adjudicated": "The same DISPOSITION says _z_goal_parent has NO downstream consumer in ree_core. That is stale since ree-v3 52096b7 (default-off E3Config.parent_goal_weight, GFLAG-0464). GFLAG-0464 owns that correction; this autopsy does not draft it."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No build owed. SD-092's residual E3 consumer has landed (ree-v3 52096b7, GFLAG-0464). The next step is experimental (EXP-0710 behavioural leg; V3-EXQ-884a retest), not substrate."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-884_2026-08-03"
+        ],
+        "literal_count_meets_threshold": true,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "Explicit producer release. This target is a non_contributory instrumentation PASS that owes no build and asserts no ceiling. Counting it by the direction fallback would make MECH-428's literal count 2 and wrongly brake the behavioural leg this PASS unblocks."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": "none",
+        "note": "No target on MECH-428 reads weakened (884 precondition_unmet; 1004/1030/1039/1039a instrument or build; 1093 PASS). This is measurement and implementation debt, not granularity debt."
+      },
+      "learning_extracted": [
+        "measurement gap closed: the 884c-lineage parent statistic's at-chance reading at the default operating point was mainly an instrument artefact (K=1 control, temporally confounded unmatched null). The matched instrument separates 4/5 there.",
+        "new dependency surfaced (parameterisation, not a build): separation is ESS-ordered with a crossover near ESS 15-24 that is strongly seed-dependent (one seed needs ESS >= ~36). At the default alpha 0.05, SD-092's default decay 0.005 caps ESS near 24 however many events accrue, so the default sits on the crossover.",
+        "scope: separation is statistical and small (parents ~0.998 cosine-similar) in a z_world read through an untrained pre-projection. It does not show semantic parent content or any behavioural effect.",
+        "prediction audit: the driver's own P1/P2 (crossover ESS 8-15, every ESS >= 14 cell separates 4/5) failed on held-out seeds. The two-seed pilot was optimistic, so pilot-derived crossover bands should be treated as leads."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "No same-question re-run is owed. The instrument question is answered. Governance: (1) apply the MECH-428 note and BOTH what_would_answer replacements. (2) Resolve GFLAG-0476 with the correction: its 'more likely instrument than ESS ceiling' is right on the default cell but overstates it, because ESS still orders separation and the default is marginal. (3) Carry the operating-point guidance (ESS >= ~36; report ESS) into the EXP-0710 behavioural leg and the V3-EXQ-884a retest when they are queued. (4) Apply the hypothesis_space_ledger_pending block. Follow-on is NOT chipped by this autopsy: governance chips after ratification. (chip-20260917-mech428-parent-goal-alpha-sweep is already resolved done, 2026-09-24T17:36:13Z.)",
+      "step_7b": {
+        "fire_count_on_first_draft": 1,
+        "fire_count_on_final_draft": 0,
+        "fires": [
+          {
+            "check": "C2",
+            "names": [
+              "waypoint-proximity-field-observable"
+            ],
+            "disposition": "fired on the first draft and no longer fires on the final draft. Dismissal recorded anyway: this run scripts the walk, so the waypoint field is not on its path. The entry belongs to the behavioural leg (EXP-0710), where SD-WAYPOINT-FIELD is built and reader-validated (V3-EXQ-1004); qid waypoint_field_consumer_reach owns that question."
+          }
+        ],
+        "inapplicable": [
+          "C5 (first draft: no .md)",
+          "C7 (single-arm cell sweep)"
+        ]
+      },
+      "redteam_7c": {
+        "model": "fable (cross-model; session model Opus 5.5)",
+        "verdict": "CONTESTED",
+        "findings": {
+          "F1": "accepted -- the WWA has 'at chance' twice, and the head clause covers all three forms. The correction now carries two replacements and softens the head clause to 'two of the three forms'.",
+          "hygiene": "decay-caps-ESS scoped to alpha >= 0.05; seed heterogeneity stated (seed 43 needs ESS >= ~36); stale 7b block corrected (0 fires on the final draft); per-leg pre_registration_source added; C1 lead reordered to the N=400 cells; routing item on the alpha-sweep chip corrected (already done); axis families confirmed present"
+        },
+        "recomputed": "C1 set 15, max 1.0 at a0.025_d0_N1600 (ESS 78.67), min separating ESS 18.95, Spearman 0.9613, default cell 0.8 / 0.6, brake count 1, e942c9b 17:33:14Z",
+        "record": ".scratch/orch-20260924-1707/autopsy/redteam_1093.md (not committed)"
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "action": "register a NEW question (Mode B same-cycle: pre-register and resolve in one edit; pre_registered_utc <= resolved_utc). The three hypotheses were written before data in the V3-EXQ-1093 queue entry (ree-v3 e942c9b).",
+    "qid": "mech428_parent_statistic_achievable_range",
+    "title": "Does SD-092's parent-level statistic have an achievable range that separates from a re-constructed null at a non-ceiling setting (MECH-428 WWA precondition, achievable-range clause), and what bounds it?",
+    "claims": [
+      "MECH-428"
+    ],
+    "growth_restriction": null,
+    "related_qid_note": "Distinct from mech428_subgoal_bootstrap_seeding (H-mech428-bootstrap-v1 stays alive and is not adjudicated here).",
+    "hypotheses": [
+      {
+        "hid": "H-parentstat-ess-bound",
+        "label": "H1: S separates only near the ESS ceiling; the default cell is at chance",
+        "axis": "process",
+        "pre_registered_utc": "2026-09-24T17:33:14Z",
+        "adjudicating_runs": [
+          "V3-EXQ-1093"
+        ],
+        "resolution": {
+          "state": "eliminated",
+          "resolving_runs": [
+            "V3-EXQ-1093"
+          ],
+          "evidence_direction": "non_contributory",
+          "epistemic_category": "standard",
+          "self_route_label": "parent_statistic_achievable_range_exists",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true,
+          "resolved_utc": "2026-09-24T18:07:39Z",
+          "basis": "The default cell separates 4/5 at N=400 and sub-ceiling cells at ESS 18.9 / 23.7 separate 4/5. Its weaker ESS-ordering half survives inside H2's reading (C3 rho 0.96)."
+        },
+        "pre_registration_source": "ree-v3 e942c9b experiment_queue.json V3-EXQ-1093 note (committed 2026-09-24T17:33:14Z)"
+      },
+      {
+        "hid": "H-parentstat-instrument-bound",
+        "label": "H2: 884c's at-chance reading was a single-control-draw / confounded-null instrument limitation",
+        "axis": "instrumentation",
+        "pre_registered_utc": "2026-09-24T17:33:14Z",
+        "adjudicating_runs": [
+          "V3-EXQ-1093"
+        ],
+        "resolution": {
+          "state": "confirmed",
+          "resolving_runs": [
+            "V3-EXQ-1093"
+          ],
+          "evidence_direction": "non_contributory",
+          "epistemic_category": "standard",
+          "self_route_label": "parent_statistic_achievable_range_exists",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": false,
+          "resolved_utc": "2026-09-24T18:07:39Z",
+          "basis": "Matched instrument 4/5 vs unmatched 884c form 1/5 at the default cell, with the negative control 0 vs 2/5. H2's predicted crossover band (ESS 8-15) was too low: the measured band is ESS ~15-24."
+        },
+        "pre_registration_source": "ree-v3 e942c9b experiment_queue.json V3-EXQ-1093 note (committed 2026-09-24T17:33:14Z)"
+      },
+      {
+        "hid": "H-parentstat-no-content",
+        "label": "H3: S cannot separate even at the uniform ceiling",
+        "axis": "representation",
+        "pre_registered_utc": "2026-09-24T17:33:14Z",
+        "adjudicating_runs": [
+          "V3-EXQ-1093"
+        ],
+        "resolution": {
+          "state": "eliminated",
+          "resolving_runs": [
+            "V3-EXQ-1093"
+          ],
+          "evidence_direction": "non_contributory",
+          "epistemic_category": "standard",
+          "self_route_label": "parent_statistic_achievable_range_exists",
+          "control_passed": true,
+          "non_degenerate": true,
+          "met_elimination_bar": true,
+          "resolved_utc": "2026-09-24T18:07:39Z",
+          "basis": "Uniform ceiling separates 5/5 (PR3)."
+        },
+        "pre_registration_source": "ree-v3 e942c9b experiment_queue.json V3-EXQ-1093 note (committed 2026-09-24T17:33:14Z)"
+      }
+    ],
+    "axis_family_note": "instrumentation, process and representation all already exist in axis_families.map (red-team verified).",
+    "why_pending": "hypothesis_space_registry.v1.json is claimed by the parallel autopsy session orchc0925-autopsyA-1083.",
+    "pre_registered_utc_note": "2026-09-24T17:33:14Z = committer date of the V3-EXQ-1093 queue commit ree-v3 e942c9b, which carries the three hypotheses (git-witnessed, before the 18:07:39Z run)."
+  }
+}
