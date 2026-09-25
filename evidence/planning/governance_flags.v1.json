@@ -7032,6 +7032,21 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0493",
+      "claim_ids": [
+        "MECH-080",
+        "MECH-434",
+        "MECH-497"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "MECH-080 arm mapping was re-derived under delegation (REE_assembly 16fa199c35): extension arm anxiety -> compulsivity/OCD, ADHD arm and arm-3 mechanism contested, anxiety unassigned; seven questions remain for the user in evidence/planning/claim_synthesis_mech080_20260923.md section 7 -- notably Q1 strategy/assignment split (recommend no), Q2 anxiety placement, and Q4 arm-2 ownership overlap with MECH-434 (already cites Hauser 2017 OCD over-gathering as its epistemic-freezing pole) and MECH-497.",
+      "raised_by_session": "orchc0925-mech080",
+      "raised_at": "2026-09-25T01:34:34Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
