@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "gov-20260925-orch1707",
-  "last_updated_utc": "2026-09-25T08:14:42Z",
+  "last_updated_utc": "2026-09-25T11:51:11Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -12916,6 +12916,7 @@
         "ree_core/hippocampal/module.py"
       ],
       "implementation_hint": "FILTER F (scripts/proposal_feasibility.py) pins MECH-019 with the verbatim reason: \"operating_mode has no ENABLED consumer at any production config: salience_apply_to_dacc_bias (config.py:4075) and mode_conditioning_enabled (config.py:2785) both default False; their consumer branches (agent.py:7898; hippocampal/module.py:1829/2001/2027/2171) never run. Open chip-20260917-sd032a-operating-mode-no-consumer is the tracked unblock.\" Its own release condition is 'not re-mintable until a substrate_queue entry unblocking it lands' -- this entry is that valve. Registered under the 2026-09-23 human ruling on chip-20260923-decision-conversion-writeback-registration (rec-20260923-289f1ca5, item 3), applied by /governance Step 6a as the hand-back chip-20260923-filterf-registration-handback. The claim remains complex (probe-gated): a scoping spike must say whether the build is reachable before anything is built. Registration is NOT build authorisation and does not consume research direction.",
+      "governance_adjudication_20260925": "GOVERNANCE DECISION (governance-20260925, rec-20260925-deedce42, GFLAG-0457): of the two named candidate consumers, (a) salience_apply_to_dacc_bias (agent.py:8059-8065) is REJECTED -- already measured behaviourally inert in landed V3-EXQ-799 (visitation-entropy DiD 7.0e-4 vs floor 0.02). (b) mode_conditioning_enabled is SCOPED for a probe-gated spike (per this entry's own owner_route) before any production wiring is built at its call site (agent.py:6463 propose_trajectories, which currently passes no operating_mode) -- the spike is the immediate next action, not the build. See claims.yaml MECH-019 what_would_answer for the identical note.",
       "priority": "medium",
       "phase_verdict": "UNSTATED (claim carries no implementation_phase)",
       "source_audit": "evidence/planning/daemondrift_queuefloor_rootcause_staged_20260923.md section 2.3 + proposal_feasibility_cache.v1.json substrate_queue_route=ROUTE_NONE_NO_ENTRY (REE_assembly ce6467800d)",
@@ -13705,6 +13706,73 @@
       "added_utc": "2026-09-25T08:14:42Z",
       "last_seen_session": "igw-222-substrate-ready-sd032b-candidate",
       "provenance": "V3-EXQ-1104 Step 4.5 red-team (fable) finding 1, independently re-measured; GFLAG-0507 carries the evidence-contamination question."
+    },
+    {
+      "sd_id": "MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE",
+      "title": "MECH-288's slow-scale BOCPD rail (z_goal, absolute ~6.18 one-tick norm-jump trigger) cannot fire on the in-agent z_goal stream: GoalState.update moves ||z_goal|| by at most 0.005*||z_goal||+0.05*||z_world-0.995*z_goal|| per tick, measured live norm max 0.305, ~20x short of the required jump",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "design_first",
+      "ready": true,
+      "ready_note": "ready true per the user's decision (rec-20260925-deedce42, GFLAG-0474, option (a)): redesign the detector side with a magnitude-relative trigger (not the absolute ~6.18 jump) so it can fire in the measured 0.1-0.3 z_goal-norm regime. Design-first: an /implement-substrate session must write and red-team the trigger redesign (prior_var/hazard/posterior_threshold or a relative-magnitude reformulation, default-off lever, contract tests) before any ree_core edit.",
+      "priority": 2,
+      "unblocks_claims": [
+        "MECH-288",
+        "MECH-287"
+      ],
+      "depends_on_unresolved": [],
+      "design_doc": "evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md",
+      "design_context": "MECH-288's default slow-scale trigger is BOCPD-Gaussian latent change-point on z_goal, hazard=1/40, posterior_threshold=0.5 (claims.yaml MECH-288 Verdict 4); the rail's absolute-jump-based trigger geometry does not fit the measured GoalState.update step-size regime.",
+      "failure_record": [
+        {
+          "run_id": "mech288_slow_scale_bocpd_rail_unreachable_20260924.md (design review, no experiment queued)",
+          "experiment_type": "arithmetic/red-team analysis, EXP-1388 refusal at /queue-experiment Step 4.5",
+          "metric": "GoalState.update per-tick ||z_goal|| displacement bound 0.005*||z_goal||+0.05*||z_world-0.995*z_goal||; measured live norm max 0.305; required one-tick jump for the absolute trigger ~6.1775",
+          "target": "a one-tick ||z_goal|| jump exceeding ~6.1775 to fire the slow-scale rail as currently specified",
+          "resolved": "open -- GOVERNANCE DECISION 2026-09-25 (rec-20260925-deedce42, option (a)): redesign detector-side with a magnitude-relative trigger"
+        }
+      ],
+      "implementation_hint": "The rail is unreachable by construction, not by tuning: even the measured live maximum z_goal norm (0.305) is ~20x short of the one-tick jump the current absolute-6.18 trigger needs. Redesign the trigger to be magnitude-relative to the CURRENT z_goal norm/scale (e.g. a jump threshold scaled by ||z_goal(t-1)|| or by a running estimate of typical per-tick displacement) rather than an absolute Euclidean-norm-jump constant, so BOCPD's hazard/posterior_threshold machinery can fire in the measured 0.1-0.3 regime. Any successor to EXP-1388 must also re-derive: (1) the fast/inner PE-threshold scale's construction floor, which is STALE at ~15% in MECH-288's what_would_answer -- in-agent measurement finds 0.4% (GFLAG-0468); (2) the false-positive-rate ceiling anchor, which currently cites V3-EXQ-757's C288_silence result, but that run is non_contributory/standard per the confirmed D1 cluster autopsy (failure_autopsy_gflag0452-D1-cluster_2026-09-24#V3-EXQ-757) and is not a valid anchor.",
+      "added_session": "governance-20260925",
+      "added_utc": "2026-09-25T11:45:21Z",
+      "last_seen_session": "governance-20260925",
+      "source_audit": "GFLAG-0474 (evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md, REE_assembly d46c032239); GFLAG-0468 Parts 2/3 folded in (fast/inner construction-floor and FP-ceiling-anchor corrections)",
+      "owner_route": "/implement-substrate",
+      "registration_is_not_build_authorisation": false,
+      "authority": "User decision at governance-20260925 (rec-20260925-deedce42), option (a): redesign the slow-scale BOCPD rail detector-side with a magnitude-relative trigger.",
+      "blocking_note": "EXP-1388 (MECH-288 slow-scale in-agent liveness) is blocked_by this exact gap and cannot be authored until the rail is either redesigned or the claim is narrowed; MECH-287's broadcast trigger (Verdict 3, downstream of MECH-288 boundaries) has no live slow-scale boundary source in the meantime."
+    },
+    {
+      "sd_id": "sd036-eval-replicate-determinism",
+      "title": "SD-036's eval path is near-deterministic under E3 gating: seeded replicates are bit-identical (9/10 in V3-EXQ-1068's dry run) because RNG-driven candidate noise only reaches the executed action when E3 selection is live, and non-E3/committed ticks return the held/committed action regardless of the RNG draw -- so the noise floor SD-036's scoring gate depends on cannot be measured",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "status_phase": "design_first",
+      "ready": true,
+      "ready_note": "ready true per the user's decision (rec-20260925-deedce42, GFLAG-0456, Option 1): build a sanctioned per-replicate eval variation that reaches the action even on non-committed ticks (agent.py:6845, MECH-090 gate). Design-first: an /implement-substrate session must write and red-team the design (which knob makes non-committed ticks action-sensitive to the seed, default-off lever, contract tests) before any ree_core edit.",
+      "priority": 2,
+      "unblocks_claims": [
+        "SD-036"
+      ],
+      "depends_on_unresolved": [],
+      "design_doc": null,
+      "failure_record": [
+        {
+          "run_id": "V3-EXQ-1068 dry run (refused three times at /queue-experiment red-team gate, never queued)",
+          "experiment_type": "v3_exq_1068_sd036_observable3_regime_matrix (design review / dry run)",
+          "metric": "9 of 10 seeded no-tone-change replicates bit-identical (n_distinct_trajectories 2 of 10 on all three streams); the only RNG consumer reached is hippocampal/module.py:2276, gated by E3 (non-E3 ticks return the held action, agent.py:7381; committed ticks step the committed trajectory, agent.py:6685-6686)",
+          "target": "a measurable closed-loop noise floor from seeded replicates (n_distinct_trajectories >= 8) so a stream's gaba_tone effect can be tested against it",
+          "resolved": "open -- GOVERNANCE DECISION 2026-09-25 (GFLAG-0456, rec-20260925-deedce42, Option 1): build a per-replicate eval variation reaching the action on non-committed ticks"
+        }
+      ],
+      "implementation_hint": "GFLAG-0380 (resolved 2026-09-23) already ruled that 'reviving the observable-#3 line needs a substrate fix to eval-replicate determinism, which is new work' and that the proposed n_distinct_trajectories>=8 patch alone is not a fix (the gate is structurally inert, not merely undercounted). This entry registers that owed row. The fix must make non-committed ticks (agent.py:6845, MECH-090 gate) sensitive to the eval seed -- e.g. a sanctioned per-replicate eval variation source that reaches the executed action independent of E3 commit state -- rather than merely seeding more replicates under the current gating.",
+      "added_session": "governance-20260925",
+      "added_utc": "2026-09-25T11:45:21Z",
+      "last_seen_session": "governance-20260925",
+      "source_audit": "GFLAG-0456 (research cluster B_preflight_lever_inert); GFLAG-0380 resolved 2026-09-23",
+      "owner_route": "/implement-substrate",
+      "registration_is_not_build_authorisation": false,
+      "authority": "User decision at governance-20260925 (rec-20260925-deedce42), GFLAG-0456, Option 1."
     }
   ],
   "schema_version": "substrate_queue/v2",
