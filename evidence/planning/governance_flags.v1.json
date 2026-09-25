@@ -7915,6 +7915,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0556",
+      "claim_ids": [
+        "MECH-046",
+        "MECH-039"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Refines GFLAG-0554's Q2 routing. Per REE_assembly dfe73c29b7d evidence/planning/cea_gate_calibration_probe_20260925.md (pre-registered, 3 seeds, D1), a relative/onset gate on CeA's input mean|z_harm_a| does NOT fix the MECH-046 fast route. Running z-score, rate-of-change and slow-baseline ratio gates all score hit <= 7/106 onsets (d' <= 0.43) in both the untrained and the harm_accum-trained regimes, and so does the raw harm_obs_a input. The reason: harm_obs_a is an alpha=0.05 EMA of a saturated hazard field, which leaves a per-step onset shift of 0.1-0.4 SD. The pre-EMA hazard_at_agent does carry adjacency (corr with nearest-hazard distance -0.75 to -0.82). So the SD-035/MECH-046 build needs an onset-bearing CeA input first (z_harm_s, or a fast hazard-proximity channel, default-off), and only then a relative gate.",
+      "raised_by_session": "bt0925-ceacal",
+      "raised_at": "2026-09-25T16:26:25Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
