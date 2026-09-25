@@ -63,3 +63,20 @@ Decided by the orchestrator under the standing delegation (rec-20260924-fb429c72
 - **Q4d:** the grad-reach guard RAISES when the trainer is ON; the existing drivers get a warn-only retro-audit.
 
 **Unchanged by these decisions** (still open, for /governance on the evidence alone): GFLAG-0479 (residue D1-only), GFLAG-0481 (no z_self valuation consumer), GFLAG-0484 (relational dumps have no callers), GFLAG-0486 (commit-gate caveat) and GFLAG-0489 (correction to 0487). Q3 was resolved by evidence: do not adopt R5b+R2 as a default regime.
+
+### 7b. User direction, 2026-09-25T07:29Z: Phase-0 babbling as the developmental source of action-diverse experience
+
+The user directed that **Phase-0 babbling be incorporated as the developmental source (possibly THE source) of the action-diverse experience that trains the native world model (E2's world head)** in the coupled campaign (Q2).
+
+Why this fits the evidence: E2's world head is action-blind because the agent's own one-action behaviour starves it of action coverage. A fresh head on action-diverse data discriminates actions (k>=10, executed-action pick 0.74-0.82 on PCA-32; f300ebf64d + addenda). Exploration coverage works; class-balanced replay cannot create missing classes. ARC-074 (candidate) already commits to a reward-free Phase-0 motor-babbling epoch, before any E3 scoring, that builds sensorimotor mappings.
+
+Gap found (D0 code read, 07:29Z):
+- Phase 0 exists only in the experiment drivers: `ree-v3/experiments/infant_curriculum.py` (InfantCurriculumScheduler, episodes 0-99 plus the H_pos exit gate) and `experiments/_lib/infant_warmup.py`. Neither is in ree_core.
+- Per `infant_warmup.py`'s docstring, it is "plain random-policy stepping with no training of any kind"; the scheduler varies only novelty_bonus_weight, residue_scale_factor and offline_integration_frequency.
+- So the action-diverse experience ARC-074 describes is generated at Phase 0, and nothing learns from it. It is the same dead-loop shape as the census (940c690c9dd).
+- MECH-277 (action-space discovery) is a different, V4-scoped mechanism and is not implied here.
+
+Consequences for the coupled campaign:
+1. The WakingTrainer's E2-world member takes its developmental training data from a Phase-0 babbling epoch.
+2. The babbling epoch becomes a ree_core-owned developmental stage (or at minimum a trainer-consumed source), not a driver-only scheduler setting.
+3. OPEN puzzle, being measured now (campaign-20260925-bt0925-babble): does a babbling-trained E2 head STAY action-discriminative once the agent's own on-policy behaviour collapses to one action? The answer decides between a one-off developmental epoch, a retained babbling replay (developmental memory), or a standing babbling floor.
