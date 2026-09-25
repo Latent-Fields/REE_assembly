@@ -6526,9 +6526,9 @@
       "summary": "Pre-flight (orchestrate-20260924-0808, chip-20260918-mech043-precision-sweep) finds the ratified lever dacc_precision_scale (config.py:4061, consumed only at dacc.py:217) cannot move the ratified DV: pe reaches E3 only via uniform shifts (dacc.py:426-427 mode_ev; dacc.py:440 foraging_value), and the commit gate reads _running_variance directly (e3_selector.py:4046-4050), independent of dACC -- the sweep is structurally null. Needs governance re-ruling among R1 (E3 precision-scaled commit route + two-sided rv scale, entangles MECH-027), R2 (arm a non-uniform pe consumer, a build), or R3 (operationalise the DV comparator) before any author dispatch.",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T10:59:34Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:17Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): R1 selected -- E3 precision-scaled commit route (use_precision_scaled_commit_temperature=True + per-seed commit-threshold calibration) plus a two-sided _running_variance sweep and an explicit MECH-027 dissociation control, superseding the 2026-09-23 dacc_precision_scale lever ruling (lever is structurally null). Applied to claims.yaml MECH-043 what_would_answer (60c8df37d8); releases chip-20260918-mech043-precision-sweep for redesign."
     },
     {
       "flag_id": "GFLAG-0456",
@@ -6539,9 +6539,9 @@
       "summary": "Pre-flight (chip-20260919-sd036-observable3-regime-matrix) finds the eval-replicate noise-floor test is degenerate: V3-EXQ-1068 dry run shows 9/10 seeded replicates bit-identical (n_distinct_trajectories=2/10; driver experiments/v3_exq_1068_sd036_observable3_regime_matrix.py:126), because eval-time RNG only reaches the action when uncommitted (agent.py:6845 MECH-090; hippocampal/module.py:2276 torch.randn_like), so any non-zero z_harm spread would falsely admit the stream (a false falsification). GFLAG-0380's ruled substrate fix (eval-replicate determinism) has no substrate_queue.json entry and no open chip -- unowned. Needs a user choice between Option 1 (/implement-substrate: sanctioned per-replicate eval variation reaching the action) or Option 2 (redesign the null off env/training-seed variation) before this chip's prompt is rewritten.",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T11:00:21Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:17Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): Option 1 selected -- build a sanctioned per-replicate eval variation reaching the action on non-committed ticks. Applied to claims.yaml SD-036 what_would_answer (60c8df37d8); substrate_queue.json entry sd036-eval-replicate-determinism registered (see w2.other_edits.md), discharging GFLAG-0380's previously-unowned ruled fix. chip-20260919-sd036-observable3-regime-matrix to be rewritten once this lands."
     },
     {
       "flag_id": "GFLAG-0457",
@@ -6553,9 +6553,9 @@
       "summary": "Pre-flight (chip-20260917-sd032a-operating-mode-no-consumer) finds substrate_queue.json's mech019-operating-mode-enabled-consumer row (added governance-20260923-0717) is status proposed_REGISTRATION_ONLY_not_a_build_authorisation, predating this 2026-09-17 chip; candidate (a) salience_apply_to_dacc_bias (agent.py:8059-8065) is already measured behaviourally inert in landed V3-EXQ-799 (visitation-entropy DiD mean 7.0e-4 vs floor 0.02), and candidate (b) is not wired at the only production call site (agent.py:6463 propose_trajectories passes no operating_mode). Needs /governance adjudication of which consumer (a/b-with-new-wiring/c) plus the non-degeneracy floor, then a scoping spike (not the /implement-substrate build the chip specifies).",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T11:00:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:18Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): candidate (a) salience_apply_to_dacc_bias REJECTED (inert, V3-EXQ-799); candidate (b) mode_conditioning_enabled scoped for a probe-gated spike before any production wiring. Applied to claims.yaml MECH-019 what_would_answer (60c8df37d8) and substrate_queue.json mech019-operating-mode-enabled-consumer (new governance_adjudication_20260925 field, see w2.other_edits.md)."
     },
     {
       "flag_id": "GFLAG-0458",
@@ -6566,9 +6566,9 @@
       "summary": "Pre-flight (chip-20260910-implement-mech330-substrate) finds a substrate_queue.json row added 2026-09-22 (arc067-engagement-rate-estimator-discharge-marker, ~L11300) status proposed_REGISTRATION_ONLY_not_a_build_authorisation now owns this chip's step 1 (the estimator), and step 3's boredom->E3 routing rests on an unratified design choice: z_harm_a is a 16-dim learned latent with 162 agent.py consumers, and the two live E3 read paths (e3_selector.py:1668-1670 lambda_eff amplification; :3992-3995 urgency, both default-off) push toward MORE harm-avoidance/no-op, not the claim's predicted action-vs-no-op asymmetry. Needs /governance to ratify the substrate_queue row plus a kind:decision on the z_harm_a-latent-write-vs-side-channel choice before dispatch.",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T11:00:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:18Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): the boredom -> E3 routing choice (z_harm_a latent write vs side-channel) is DEFERRED until the arc067-engagement-rate-estimator-discharge-marker entry produces real engagement-rate numbers. Applied to claims.yaml MECH-330 notes (60c8df37d8) as a dated deferral note; no substrate edit made."
     },
     {
       "flag_id": "GFLAG-0459",
@@ -6699,9 +6699,9 @@
       "summary": "MECH-288's what_would_answer non-degeneracy preconditions are stale in two places and the claim cannot be tested in-agent as written. (1) Precondition (1) requires boundary fires > 0 on BOTH scales; MEASURED 2026-09-24 on ree-cloud-4, the slow/outer BOCPD scale -- the only specificity-bearing scale, and the one primary criterion C1 is defined on -- fires ZERO times on the agent observation path, in both the default config (goal.z_goal_enabled defaults False at ree_core/goal.py:88, so agent.goal_state is None at agent.py:3522-3525 and latent_dict['z_goal'] is None every tick, 0/236) and with z_goal_enabled=True (z_goal supplied 499/499 ticks but identically the zero vector, zgoal_norm_std 0.0, because GoalState's benefit gate never opened; 0 slow fires). This converges with V3-EXQ-830, which got zero slow fires on a LIVE varying z_goal stream at zgoal_norm_std 0.070, and with V3-EXQ-757 needing hand-planted gaps >= 10 to fire the rail. (2) Precondition (3)'s '~15% construction floor' for the fast/inner scale, which C3 is told to use as its chance baseline, measures 0.4% in-agent (2 fires / 499 ticks) -- it is a property of 757's synthetic stream, not the observation stream. SEPARATELY, CONFIRMING (b) still cites V3-EXQ-757's C288_silence (27 A-slow vs 0 B-slow) as C2's pre-registered FP ceiling, but the confirmed D1 cluster autopsy applied in 2e6fe97c4b (2026-09-24T10:23:06Z) found that silence to be by construction ('smooth-arm silence follows from 0.02 noise far below the rail'; verified: GOAL_NOISE=0.02 vs planted gaps >= 10), so the ceiling has no valid anchor. Full measurement record: evidence/planning/mech288_exp1388_inagent_slow_scale_liveness_20260924.md. Consequence: proposal EXP-1388 as designed cannot measure its own primary criterion; it is left at status proposed pending decision chip chip-20260924-mech288-slow-scale-inert.",
       "raised_by_session": "metaworker-science-20260924-orchb-mech288-boundary-anchor",
       "raised_at": "2026-09-24T12:37:50Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-25T11:52:15Z",
+      "resolution_note": "Part 1 (dead/non-live z_goal stream causal story) superseded by GFLAG-0474's arithmetic proof that the rail is unreachable even on a fully live stream. Parts 2/3 (C3's stale ~15% construction floor vs 0.4% measured; C2's invalid V3-EXQ-757 FP-ceiling anchor) are folded into the same GFLAG-0474 redesign decision and recorded in the same claims.yaml MECH-288 append (60c8df37d8) rather than adjudicated separately."
     },
     {
       "flag_id": "GFLAG-0469",
@@ -6780,9 +6780,9 @@
       "summary": "MECH-288's slow/outer BOCPD scale has NO REACHABLE FIRING ROUTE on the in-agent observation path, by arithmetic -- not by z_goal liveness, warmup or benefit-gate state. Verified against source (full record: evidence/planning/mech288_slow_scale_bocpd_rail_unreachable_20260924.md, REE_assembly d46c032239). (1) The Bayesian posterior route cannot fire at all: in _BOCPDGaussianDetector.step the likelihood weights cancel exactly in normalisation (growth_i = P_i*L_i*(1-hazard), cp_prob = sum_i P_i*L_i*hazard, total = S), so p(r=0) == hazard == 1/40 == 0.025 IDENTICALLY for every observation, against posterior_threshold 0.5 (event_segmenter.py:315-323,343-352,378-384; config.py:2283,2307). Top-k pruning cannot rescue it. (2) The only live route is the implausibility fast path max(pred_log) < -20.0 (:303-312), which via the always-present n<2 run at var=prior_var=1.0 (:257-260) REQUIRES a one-tick change in ||z_goal|| greater than sqrt(40 - ln 2pi) = 6.1775. The detector reads the SCALAR NORM, not the vector (:282). (3) GoalState.update -- the sole writer -- can change that norm by at most 0.005*||z_goal|| + 0.05*||z_world - 0.995*z_goal|| per tick (goal.py:29,33,871,912-919), so a one-tick crossing needs ||z_world|| around 124. (4) Measured live z_goal is 0.110-0.163 mean / 0.209-0.305 max across 5 seeds (V3-EXQ-830 manifest) -- the required jump is ~20x the largest value the norm ever attains. (5) Corroboration: V3-EXQ-757, the only run that has ever fired this scale, used GOAL_LEVELS [5,15,25,10,20,30], every consecutive gap 10-25 and none below 6.1775 (driver:154, comment says the gaps were 'chosen to hit BOCPD's decisive rail'); this also explains the GFLAG-0452 D1 finding that its smooth arm's silence at GOAL_NOISE 0.02 was by construction. CONSEQUENCES: MECH-288's own precondition (1) ('boundary fires > 0 on BOTH scales') is unsatisfiable in-agent, so proposal EXP-1388 is unrunnable as designed and is recorded refused; the two-scale hierarchy reduces to the fast scale alone in-agent, so every in-agent segment id has outer=0, which bears on the (scale, segment_id)-keyed consumers MECH-269, MECH-284 and MECH-287's broadcast trigger -- NOT adjudicated here. Also corrects GFLAG-0468/Part-1, which attributed the zero to a dead z_goal stream: the measurements stand but the causal story was one layer too shallow, since even a fully live stream at the measured scale cannot fire this detector. NO REMEDY CHOSEN: changing the stream, prior_var/hazard/posterior_threshold, or alpha_goal each changes what MECH-288 IS (the claim commits to 'BOCPD-Gaussian latent change-point on the slow scale (z_goal)') -- a claim-level governance + /implement-substrate decision.",
       "raised_by_session": "metaworker-science-20260924-orchb-mech288-boundary-anchor",
       "raised_at": "2026-09-24T13:36:29Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:14Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): option (a) -- redesign MECH-288's slow-scale BOCPD rail detector-side with a magnitude-relative trigger, via /implement-substrate. Applied to claims.yaml MECH-288 what_would_answer (60c8df37d8); substrate_queue.json entry MECH288-SLOW-SCALE-BOCPD-RAIL-UNREACHABLE registered (unblocks MECH-288, MECH-287)."
     },
     {
       "flag_id": "GFLAG-0475",
@@ -6892,9 +6892,9 @@
       "summary": "V3-EXQ-1092 REFUSED a SECOND time at /queue-experiment Step 4.5 and still NOT queued (no queue entry ever written; the slot is free). The user's decision '(2) then (1)' (rec-20260924-5812c302) was executed: (2) LANDED as reanalysis_sdppb5_off_head_action_read_alpha09_live_battery_20260924T171654Z -- the OFF head DOES read its action at alpha 0.9 on a live battery, 3/3 seeds, zero compute, compatibility=matched. (1) was implemented (load-bearing re-pointed to the cross-battery ratio vs its action-blind null, V3-EXQ-1079's PC contrast + label split added, false label fixed, shuffle verdict demoted to RECORDED, readiness control re-pointed to C1's own statistic), validated clean and smoked clean (rc=0, C1 discriminating: FAIL at 0.3 on the skill clause, PASS at 0.9) -- and the second red-team then returned BLOCKING. Findings, all re-verified against source. F2 (deepest, and it RETRO-CORRECTS GFLAG-0470's premise): the inverted action map is a BIJECTION (0<->1, 2<->3, 4 fixed) applied to i.i.d.-uniform action INDICES, so the executed move sequence is i.i.d. uniform under both maps, the (z0,z1) law is IDENTICAL across the two batteries, and only the action LABEL differs -- hence the action-blind null is 1 IN POPULATION. Measured: blind_null 0.930/0.949/0.940/0.958, identity-MSE ratios 1.075/1.053/1.064/1.044, all realization noise about 1. The 1.09-2.41 blind nulls that motivated GFLAG-0470 were an artefact of V3-EXQ-1079's POST-DEATH batteries, where the law is NOT preserved; on LIVE rows options A and B nearly coincide and the bar question is close to immaterial. C1 is therefore also a COMPONENT of d_act rather than a new property -- d_act averages over all four alternative labels, C1 uses the single opposite-direction one, and (cross_ratio-blind_null)/(S/T-1) = 1.34/1.21/1.68/1.40, monotone in every cell. F2c: a FALSE premise this project itself introduced, now corrected in the driver -- the docstring claimed V3-EXQ-1073's sub-1 cross-battery ratios were measured 'on a head that did read its action'; the 1073 autopsy records the opposite ('B5 (head ignores the action; copy-the-input)', 'the frame (an action-blind head) is wrong') and 1073's manifest carries NO d_act or shuffle readout, so H-difficulty-only has no supporting case on record. F1: the queued run's outcome is already determined -- cells are pure functions of (seed, alpha) and --dry-run executes seeds 42+123 at FULL budget against SEEDS_REQUIRED=2, so C1 and C2 are satisfied before seed 456 runs; only the non-load-bearing C2b split is open. This is the lineage's dry-run convention inherited from V3-EXQ-1082 and is worth fixing lineage-wide. F3 (MOST REUSABLE, and independent of the bar question): POST_RESET_SKIP=3 is an ARM-ASYMMETRIC instrument constant -- the driver never calls REEAgent.reset(), so z_world's EMA carries across env resets and the residual weight on the previous episode is (1-alpha)^3 = 0.343 at alpha 0.3 versus 0.001 at alpha 0.9, over 28-33 resets per 512-row battery; the constant came from V3-EXQ-1082, which ran ONLY at 0.9. Any alpha-contrast experiment on this collector needs an alpha-dependent skip (e.g. ceil(3*ln(0.1)/ln(1-alpha)), ~19 steps at 0.3) or an explicit agent-EMA reset at episode boundaries. F4 owed (C1's per-row inputs unpersisted, so its CI is not re-derivable post hoc; deliberately not patched on a blocked driver). NOTE GOV-REUSE-1 WAS re-run against the NEW statistic before implementing, per the GFLAG-0475 lesson, and it PASSED (1076 manifests scanned, 521 with arm_results, exactly 1 carrier and its rows post-death -> not recoverable); the lesson held, the design failed for a different reason. OWED at /governance: (a) decide whether GFLAG-0470 should be resolved as SUPERSEDED rather than acted on, since F2 shows the bar it disputed is immaterial on live batteries; (b) decide the redesign -- recommended and NOT chosen here: replace the cross-battery collection with the SAME-ROWS opposite-label statistic head(z0, pi(acts)) vs head(z0, acts), which is paired, has an exact null of 1.0, needs no second battery, and separates 'axis-aware but SIGN-BLIND' (the property an inverted-map contradiction actually needs, and the one thing still genuinely unmeasured) from 'reads its action' (settled); (c) fix F3 before any alpha contrast; (d) fix F1's dry-run/SEEDS_REQUIRED overlap lineage-wide. Script on ree-v3 origin/main INERT with a DO-NOT-QUEUE banner; full verification tables in REE_assembly evidence/planning/sdppb5_inverted_map_ratio_criterion_aliasing_staged_20260924.md (ADDENDUM 2). Read alongside GFLAG-0470 and GFLAG-0475.",
       "raised_by_session": "metaworker-science-20260924-orchb-sdppb5-inverted-map",
       "raised_at": "2026-09-24T18:17:07Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:15Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): option (b) -- replace the cross-battery ratio collector with the same-rows opposite-label statistic head(z0, pi(acts)) vs head(z0, acts), exact null 1.0. Applied to claims.yaml MECH-573 what_would_answer (60c8df37d8); V3-EXQ-1092 to be re-authored via /queue-experiment; this decision also resolves GFLAG-0470 as superseded (F2 retro-correction, recorded in the same append). Lineage driver defects F1/F3 are follow-on chip work for /queue-experiment, not applied here."
     },
     {
       "flag_id": "GFLAG-0483",
@@ -7057,9 +7057,9 @@
       "summary": "ARC-023's 2026-09-24 TIGHTENED FALSIFYING leg (GFLAG-0443 option A) is measured to be effectively unreachable, so the tightening did not cure the defect it was raised for. The leg needs clock-driven + ONSET-GATED reset-driven E3 share >= 1/3, but clock.update_e3_rate_from_beta clamps new_steps >= beta_rate_min_steps=5, capping clock-driven share at 0.20 (0.125 at the measured endogenous ||z_beta|| max 0.743), so onset-gated resets must supply >= 0.208 -- and they measure 0.0075-0.0125 per step (17-28x short; completion and NCL re-assert contribute 0 at every reachable config). The only trigger with that volume is harm (0.113-0.265 alone), which the leg explicitly excludes and routes to PARTIAL/MECH-091 -- i.e. option A moved the bar from share 1.0 to 1/3 while removing the very signal (V3-EXQ-942 seed 37, 0.394, harm-driven) that made 1/3 look reachable. Consequence: any recording-complete run discriminates CONFIRMING vs PARTIAL, not CONFIRMING vs FALSIFYING, so a CONFIRM is weaker than it reads on an architectural_commitment claim. Measurements and method: REE_assembly/evidence/planning/arc023_recording_design_preflight_staged_20260925.md section 4 (REE_assembly 3261fe9d31, on origin/master); probe on ree-cloud-4, 400 steps, V3-EXQ-942 ecological-load config. Raised by the science session that reserved V3-EXQ-1098; not decided here.",
       "raised_by_session": "metaworker-science-20260925-orchc-arc023-recording",
       "raised_at": "2026-09-25T01:46:34Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:16Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): option (A) -- ARC-023 CONFIRMING leg (i) rescoped to clock_tracking_ratio_clock_terminated_only, with an honest scope note that under current defaults this design discriminates CONFIRMING vs PARTIAL only. Applied to claims.yaml ARC-023 what_would_answer (60c8df37d8); V3-EXQ-1098 is released to queue as-is; the EXP-0548 proposal-gate update and the queueing are routed to a /queue-experiment chip citing this decision."
     },
     {
       "flag_id": "GFLAG-0495",
@@ -7071,9 +7071,9 @@
       "summary": "EXP-1401 refused at /queue-experiment (2026-09-25, ree-v3 5e18e979): MECH-181 leg (i)'s CONFIRMING criterion -- 'cumulative offline-phase work (sws_n_writes + rem_n_rollouts) is monotone in MEASURED MEL' -- is a monotone non-decreasing function of measured MEL BY CONSTRUCTION, because that composition IS the SD-MEL-CONSUMER implementation (mel_consumer.py:253-283 duration_factor/scale_steps -> phase_manager.py:572-582 -> agent.py:13190-13197, :13315-13323, :13400, :13504). Its matching FALSIFYING clause (i) ('flat or non-monotone in MEASURED MEL') is therefore unreachable except via the [0.5,3.0] clamp, which gate (4) separately requires excluding; confirmed numerically in V3-EXQ-861i (mean_duration_factor 1.007 -> 31 writes over 6 cycles; 0.884 -> 27, i.e. round(5 x factor)). GOVERNANCE OWES a re-denomination of leg (i)'s CONFIRMING DV onto a non-identity readout (candidates already instrumented: the across-sleep frozen-battery delta V3-EXQ-1071 B1_infonce_delta/mse_delta; sws_slot_diversity / n_touched_slots under a non-degenerate write path; the cross_module_consolidation_* readouts). Until then leg (i) must not be scored as confirming MECH-181. Gate (1), the only empirical leg, is already recorded monotone 3/3 seeds by V3-EXQ-1069 (GOV-REUSE-1). Full measurement record: REE_assembly/evidence/planning/mech181_leg_i_dv_arithmetic_refusal_20260925.md (origin/master b006b7642b).",
       "raised_by_session": "metaworker-science-20260925-orchc-mech181-maintenance",
       "raised_at": "2026-09-25T02:22:26Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:16Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): DV candidate (a) selected -- MECH-181 leg (i) re-denominated to V3-EXQ-1071's B1_infonce_delta / mse_delta moving monotonically with measured MEL. Applied as a dated append to claims.yaml MECH-181 what_would_answer (60c8df37d8), arithmetic-identity text kept verbatim per file convention. chip-20260925-mech181-legii-harness-design unblocked."
     },
     {
       "flag_id": "GFLAG-0496",
@@ -7098,9 +7098,9 @@
       "summary": "ARC-023's CONFIRMING leg (i) does not measure what it is registered to measure: 'clock-driven E3 updates track the arousal-set expected count sum_t 1/_current_e3_steps(t) within +/-15%' is a deterministic transform of MECH-091 reset VOLUME and CLUSTERING, not of whether the clock honours its arousal-set period. Mechanism: MultiRateClock.advance() zeroes _e3_phase_step on a reset-driven tick, so every step inside a reset-terminated cycle contributes 1/K to the expectation while being structurally incapable of producing a clock-driven tick. MEASURED with the real MultiRateClock at a FIXED period of 10 -- tracking perfect by construction, MECH-093 not involved at all -- the ratio is 0.878 at reset share 0.02, 0.702 at 0.057, 0.520 at 0.102 and 0.149 at 0.253 with independent resets; clustering shifts it up (0.860 at 0.051 for bursts of 3, 0.911 for bursts of 6). Consequence: C1 passes only at reset share roughly <= 0.02-0.08, so CONFIRMING (which needs C1) is gated on the MECH-091 harm trigger being nearly SILENT -- in an ecological-load environment deliberately configured with num_hazards > 0 to LOAD that trigger. Together with GFLAG-0494 (FALSIFYING leg unreachable) and the 2-of-4 live REQUIRED RECORDING trigger classes (completion release threshold 0.75 exceeds compute_completion_signal's achievable max of 0.5, substrate_queue residue-completion-signal-threshold-unreachable; NCL latch never arms), the tightened falsifier leaves essentially ONE reachable verdict cell (PARTIAL), so V3-EXQ-1098 was authored, red-teamed, landed complete and validator-clean at ree-v3 d7220bc8 but deliberately NOT QUEUED pending falsifier repair. Suggested repair direction for governance, not applied: define leg (i) over clock-terminated cycles only (the driver already records expected_in_clock_terminated_cycles and clock_tracking_ratio_clock_terminated_only as non-gating contrasts), or drop leg (i) and score CONFIRMING on (ii)+(iii). Found by the /queue-experiment Step 4.5 red-team pass (model fable) and independently reproduced.",
       "raised_by_session": "metaworker-science-20260925-orchc-arc023-recording",
       "raised_at": "2026-09-25T02:51:18Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:16Z",
+      "resolution_note": "Same falsifier and same governance answer as GFLAG-0494 (option A): ARC-023 what_would_answer leg (i)/FALSIFYING reworded per this flag's own suggested repair, applied in the same claims.yaml edit (60c8df37d8). V3-EXQ-1098 released to queue (queueing + EXP-0548 gate update via /queue-experiment chip)."
     },
     {
       "flag_id": "GFLAG-0498",
@@ -7222,9 +7222,9 @@
       "summary": "MECH-287 option-C lock DV (rec-20260925-b23d15b9) REFUSED at /queue-experiment Step 2.5d as INERT: PAG exit reads only ||z_harm_a|| (env-observation encoder), constant gaba_tone and a never-built SD-037 override, and the frozen action is forced to the no-op class after E3 selection, so trigger/accumulator/anchor-reset has no path to freeze duration/lock persistence/time-to-first-release; a user decision is owed (re-anchor the DV on commitment/avoid-mode, build a broadcast->PAG-exit path, or withdraw the 475-unlock falsifier). Separately for MECH-279: pag_freeze_noop_action_class defaults to 0 = UP in CausalGridWorldV2 (stay is 4), so every default freeze drives the agent up into the top wall (V3-EXQ-475 eval log shows exactly this), which bears on how any freeze/catatonic-lock result is read. Analysis: REE_assembly evidence/planning/mech287_lock_dv_inert_pag_path_20260925.md (dd0a0ef864); EXP-0371 write-back 7adafa4286.",
       "raised_by_session": "orch0925-mech287-lockdv",
       "raised_at": "2026-09-25T07:54:16Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:17Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): option (A) of chip-20260925-mech287-lock-dv-path-decision -- re-anchor MECH-287's lock DV on E3 commitment perseveration or avoid-mode monostrategy in the EXQ-471 regime. Applied to claims.yaml MECH-287 what_would_answer (60c8df37d8); MECH-279's pag_freeze_noop_action_class secondary finding noted as already fixed (ree-v3 1fc881692d) with a one-line claims.yaml MECH-279 note (60c8df37d8)."
     },
     {
       "flag_id": "GFLAG-0507",
@@ -7273,9 +7273,9 @@
       "summary": "Re-phasing question: MECH-398 (ACh-analog plasticity-gain gate; implementation_phase v4, v3_pending, not implemented in ree_core) and MECH-207's ACh-gated destabilisation now have a native v3 host -- the ree_core WakingTrainer (user decisions Q4a/Q4b 2026-09-25, skeleton building) owns learning rates. User direction 2026-09-25 ~09:37Z (REE_assembly breakthrough_pass_synthesis_20260925.md section 7c): retained developmental (babbling) replay must be FROZEN against overwrite by later one-action experience yet UNFREEZABLE under an ACh-analog gate to update; interim babbling-probe data show retention needs the replay (L2R) while plain continuation forgets. Decide whether to re-phase MECH-398/MECH-207 to v3 as a coupled-campaign requirement.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-25T09:40:51Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:19Z",
+      "resolution_note": "Decided-deferred at governance-20260925 (rec-20260925-deedce42): re-phasing MECH-398/MECH-207 to v3 is DEFERRED (option (c) then (a)) until the WakingTrainer substrate_queue row is registered (GFLAG-0491, still owed), at which point both claims re-phase to implementation_phase v3, phase_provenance derived, phase_derived_from pointing at that row. Applied as a dated deferral note to claims.yaml MECH-398 notes and MECH-207 notes (60c8df37d8, 60c8df37d8); MECH-083 stays at v4. No phase fields changed yet -- that is the point of the deferral."
     },
     {
       "flag_id": "GFLAG-0510",
@@ -7715,9 +7715,9 @@
       "summary": "MECH-083's CONFIRMING clause predicts a MONOTONIC dose-response of map-update magnitude on ACh gain, but targeted_review_gated_plasticity_biology (2026-09-19) records Bolognani et al. 2006 (PMID 17185008): HuD rises with learning yet constitutive elevation IMPAIRS learning -- a non-monotonic, interior-optimum gain, now registered as MECH-592. Governance to decide whether MECH-083's falsifier should admit an interior optimum (GFLAG-0509 is a separate re-phasing question on the same cluster).",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:08:59Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:18Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): option (a) -- MECH-083's CONFIRMING clause widened to admit 'monotonic OR interior-optimum (peak-then-decline)', cross-referencing MECH-592; FALSIFYING correspondingly widened to 'flat/no dose-response, or a shape inconsistent with either'. Applied as two targeted replace edits to claims.yaml MECH-083 what_would_answer (60c8df37d8), pre-build so no experiment mis-scores a genuine interior-optimum result."
     },
     {
       "flag_id": "GFLAG-0542",
@@ -7770,9 +7770,9 @@
       "summary": "Demotion-direction review under GOV-MATCHAUX-1 (first audit, thought-digestion 2026-09-25 draft D3): MECH-100 (status stable, 'z_world encoder requires event-type cross-entropy auxiliary loss') appears to have been promoted on the auxiliary objective's own probe accuracy with no matched-auxiliary control and no scaffold-removal evaluation, and the one re-measure since the SD-070 fix (V3-EXQ-897) reads the other way. Governance to check MECH-100's promotion evidence against GOV-MATCHAUX-1 conditions (1)-(2). Softer candidates under the offline-mechanism clause: MECH-205 (promoted on the mechanism firing) and SD-017 (V3-EXQ-691 shows sleep-OFF ending with higher policy diversity).",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:21Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:52:19Z",
+      "resolution_note": "User decision at governance-20260925 (rec-20260925-deedce42): option (a) -- adopt MECH-100 as GOV-MATCHAUX-1's held-out case (ii) (confirmed non-degenerate) and demote MECH-100 status stable -> provisional as an immediate consequence (no matched-auxiliary control, no scaffold-removal eval; V3-EXQ-897 reads the other way). Applied: claims.yaml MECH-100 status set + dated evidence_quality_note append (60c8df37d8); GOV-MATCHAUX-1 notes append recording case (ii) adjudicated, rule itself stays status: candidate (60c8df37d8)."
     },
     {
       "flag_id": "GFLAG-0546",
