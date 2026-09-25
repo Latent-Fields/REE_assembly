@@ -325,6 +325,12 @@ def score_variant(v: str, strata: Dict[str, List[Dict[str, Any]]]) -> Dict[str, 
             sig.append("architecture helps, waking learning does not")
         if (not held["P1b"]) and held["P1g"] and held["P2b"] and held["P2t"] and held["P3b"] and held["P3t"]:
             sig.append("gain too small for the margin (6.4)")
+        # v2 (prereg 6.4 / 8.1): P4 is the only missing criterion and INT's FIRST window sits near NATIVE's
+        # -> the 1.44 change floor may be out of reach by construction; reported, never re-scored.
+        others = [k for k in held if k != "P4"]
+        near = _count(b, lambda s: abs(W(s, T)["reward_FIRST"] - W(s, "NATIVE")["reward_FIRST"]) <= mb["reward"]["margin"])
+        if (not held["P4"]) and all(held[k] for k in others) and near >= FRAC_REQUIRED:
+            sig.append("P4 headroom-limited (6.4)")
         res["fail_signatures"] = sig
     return res
 
@@ -430,7 +436,7 @@ def _all_gates(**off) -> Dict[str, Dict[str, bool]]:
 
 def _cases() -> List[Any]:
     """(name, kind, thunk, want). kind: 'score' -> score_variant verdict; 'h2h' -> (verdict, winner);
-    'attr' -> (verdict, attribution label); 'queue' -> a1_queueable verdict."""
+    'attr' -> (verdict, attribution label); 'queue' -> a1_queueable verdict; 'sig' -> named FAIL signature present."""
     B, T = BENIGN, TRAPPED
     sv = lambda strata: score_variant("CODEC", strata)["verdict"]  # noqa: E731
     C = []
@@ -464,6 +470,9 @@ def _cases() -> List[Any]:
     # v2: the 1.44 change floor (rec-20260925-aa066e96). Learning gain over FROZEN = 1.2: above 0.92, below 1.44.
     add("v2 P4 change 1.2 < floor 1.44 fails", "score",
         lambda: sv({B: [_synthetic(B, s, 1.5, shuf_gain=0.0, frozen_learn=0.3) for s in range(5)], T: _good(T)}), FAIL)
+    add("v2 P4-only FAIL, FIRST near NATIVE -> headroom signature", "sig",
+        lambda: "P4 headroom-limited (6.4)" in score_variant("CODEC", {B: [_synthetic(B, s, 1.5, shuf_gain=0.0, frozen_learn=0.3)
+                                                                          for s in range(5)], T: _good(T)}).get("fail_signatures", []), True)
     # v2: head-to-head (8.3) -- previously untested
     def h2h(rc, ra, gc=2.0, ga=1.2, m=0.9):
         r = {"CODEC": {"verdict": rc, "gain_P1b_mean": gc, "superiority_margins": {"benign_reward": m}},

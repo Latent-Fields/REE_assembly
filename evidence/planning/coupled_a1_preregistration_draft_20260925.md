@@ -5,13 +5,13 @@
 - **Evidence domain of this document: D0 + one re-analysis.** The design is D0. The absolute floors in sec 6 come from a new re-analysis of existing raw probe data (`probes/a1_draft/floor_grounding.py`). No new agent run was made.
 - **Refs at writing:** ree-v3 `origin/main` @ `23714f0562`; `origin/integration/coupled-loop-repair` @ `cc20be5663` (= BR0, no branch commits yet). REE_assembly `origin/master` @ `eecdfe2e4d0`. **v2 re-measure (14:27Z):** ree-v3 `origin/main` @ `1a61800c0c`; the branch is still `cc20be5663`; REE_assembly `origin/master` @ `2ba75b0f60`.
 - **Parent:** `coupled_loop_repair_campaign_plan.md` sec 5 (the A1 draft this refines), sec 6 (sequencing, merge gate), sec 9 and "User decisions on this plan". Where this document differs from plan sec 5, the difference is listed in sec 13 with its reason.
-- **Skeleton:** `probes/a1_draft/a1_integrated_acceptance_skeleton.py`. It has the arm wiring and I1 call sites, and it implements the whole scoring half (margins, criteria, verdict ladder, head-to-head, NOVAL attribution, the pre-A1 hold). `--selftest` (v2: 29 cases plus 5 mutations) shows that every criterion can FAIL, that every CANNOT_DETERMINE and INVALID branch can be reached, and that each head-to-head, attribution and hold branch gives its pre-registered answer.
+- **Skeleton:** `probes/a1_draft/a1_integrated_acceptance_skeleton.py`. It has the arm wiring and I1 call sites, and it implements the whole scoring half (margins, criteria, verdict ladder, head-to-head, NOVAL attribution, the pre-A1 hold). `--selftest` (v2: 30 cases plus 5 mutations) shows that every criterion can FAIL, that every CANNOT_DETERMINE and INVALID branch can be reached, and that each head-to-head, attribution and hold branch gives its pre-registered answer.
   - The two red-team cases (RT-1, RT-2) were mutation-checked. With the pre-red-team rules restored (`>= 0` P1g, no balloon guard), both flip to BAD (sec 15).
 - **Red-team: CONTESTED.** An independent sonnet subagent reviewed it read-only. Its findings RT-1 through RT-4 and RT-6 are folded in; RT-5 stays open (sec 15).
 
 ## v2 changes (2026-09-25, `bt0925-a1v2`)
 
-**Sources:** the user decisions in `coupled_loop_repair_campaign_plan.md` "User decisions on this plan" (rows through rec-20260925-b9652a9b); the plan's Decision log entry 2026-09-25T14:19Z (`2ba75b0f60`); the action-space design's A1 edits E1-E9 (`action_space_proposals_design_20260925.md` sec 5.2, `412882b845`); probe N3-pre (`n3_pre_e3_aggregation_probe_20260925.md`, `d4bb6449b3`). Skeleton v2: REE_assembly `6d1face27d`.
+**Sources:** the user decisions in `coupled_loop_repair_campaign_plan.md` "User decisions on this plan" (rows through rec-20260925-b9652a9b); the plan's Decision log entry 2026-09-25T14:19Z (`2ba75b0f60`); the action-space design's A1 edits E1-E9 (`action_space_proposals_design_20260925.md` sec 5.2, `412882b845`); probe N3-pre (`n3_pre_e3_aggregation_probe_20260925.md`, `d4bb6449b3`). Skeleton v2: REE_assembly `6d1face27d`, plus the "P4 headroom-limited" signature landed with this text.
 
 | # | change | where | source |
 |---|---|---|---|
@@ -33,7 +33,7 @@
 | V16 | R3 is **re-referenced**: W4(c)'s pick-flip is measured against a trained action-blind head, not the untrained init head. W4(b) moves after W5 and is reported in A1, not gated | sec 7, 7.1 | Decision log 14:19Z |
 | V17 | Kept unchanged, as the brief requires: the per-variant INT-v-R1 reseed arms and the 3 x floor balloon guard (RT-2) | sec 5.1, 6.2 | red-team |
 | V18 | Cost re-estimated with the trainer overhead applied to INT arms only and the NOVAL arms required: **~28 CPU-h (ABSENT) / ~33 CPU-h (GROUNDED)** for 10 admitted seeds, before screen and reserves | sec 11 | this revision |
-| V19 | The skeleton is updated to match: arm table, floors, P1g strict flag, parity constants, the `a1_queueable` hold, `attribution`, head-to-head cases. `--selftest`: 29 cases plus 5 mutations, each of which restores one retired rule and must flip its case | skeleton | this revision |
+| V19 | The skeleton is updated to match: arm table, floors, P1g strict flag, parity constants, the `a1_queueable` hold, `attribution`, head-to-head cases. `--selftest`: 30 cases plus 5 mutations, each of which restores one retired rule and must flip its case | skeleton | this revision |
 | V20 | **New open item (from N3-pre):** pick-in-Q-best readouts are capped by E3's valuation until W5. That covers W4(b), and also the **consumer-mediated (e) leg that both member gates now carry** (sec 14, O3) | sec 14 | N3-pre `d4bb6449b3` |
 
 ## 0. Decisions already taken (implemented here, not reopened)
@@ -301,7 +301,8 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
    - P1b holds without P1g: the gain is carried by approach shaping;
    - P1b holds without P3: grounding does not matter;
    - P1b holds without P4: the architecture helps, but waking learning does not;
-   - P1b fails while P1g, P2 and P3 hold: the gain is too small for the margin (6.4).
+   - P1b fails while P1g, P2 and P3 hold: the gain is too small for the margin (6.4);
+   - (v2) P4 is the only criterion missing and INT-v's FIRST reward is within m_reward(benign) of NATIVE's on >= 4/5 benign seeds: **P4 headroom-limited** (6.4). It is reported next to "architecture helps, waking learning does not" and is not read as evidence that waking learning is absent.
 
 ### 8.2 The FAIL path
 
@@ -311,10 +312,28 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 
 ### 8.3 Head-to-head (codec vs action-space proposals; rec-20260925-6a675285)
 
+- **Precondition (v2, rec-20260925-38b81685):** A1 runs only after both variants have passed their member gates (7.1), on one pinned sha, with the same seeds. Running INT-ACT first under a lettered id (design U3 option b) is not taken.
 - Either variant INVALID -> **A1 INVALID**. The other variant's result is reported but not acted on, because a merge decision needs both arms of the comparison valid.
 - Exactly one variant PASS -> **A1 PASS; that variant wins.**
-- Both PASS -> the larger mean benign P1b gain wins if the difference exceeds m_reward(benign). Otherwise **ASP wins**, because it is simpler (it deletes the codec). The user may override at merge time.
+- Both PASS -> the larger mean benign P1b gain wins if the difference exceeds m_reward(benign) (the larger of the two variants' benign superiority margins). Otherwise, under the **DRAFT tie rule, INT-ACT wins**, because it is simpler: it removes the decoder and `terrain_prior` from the act path (they remain constructed but unused) and it adds no trainable parameters (E9). **The tie rule is open: its owner is the user, at A1 time** (sec 14, O2). The user may also override at merge time.
 - Neither PASS -> FAIL if either variant FAILs, CANNOT_DETERMINE if both are CANNOT_DETERMINE.
+- The head-to-head reads P1b only. It does not involve SHUF, so the SHUF asymmetry (5.3) cannot tilt it.
+
+### 8.4 NOVAL attribution (v2, GROUNDED mode only; reported, never a verdict)
+
+User decision rec-20260925-c2519d92 added the NOVAL arms "so a PASS or FAIL can be attributed between grounded valuation and the other repairs". The attribution rule is fixed here, before the run. sup_b is the variant's benign superiority margin (6.2).
+
+| label | rule (on >= 4/5 benign seeds) | reading |
+|---|---|---|
+| `valuation_carries` | reward_LAST(INT-v) - reward_LAST(INT-v-NOVAL) > sup_b, **and** INT-v-NOVAL does not itself beat NATIVE by > sup_b | the gain needs grounded valuation |
+| `other_repairs_carry` | INT-v-NOVAL beats NATIVE by > sup_b, **and** INT-v does not beat INT-v-NOVAL by > sup_b | the gain survives without valuation |
+| `both` | both counts reach 4/5 | both contribute |
+| `undetermined` | neither count reaches 4/5 | no attribution at this noise |
+| CANNOT_DETERMINE | a NOVAL arm is missing on any admitted benign seed | - |
+| `not_run` | ABSENT mode (no NOVAL arm) | - |
+
+- The label never changes the variant's verdict or the head-to-head. It is computed for FAIL runs too, where it localises the failure.
+- It is benign-only because P1b is.
 
 ## 9. Screening, admission and sidecar mechanics
 
@@ -353,14 +372,16 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
   - benign seeds 424-606 s per seed -> about 0.015-0.03 s per step;
   - trapped seeds 2,313-3,117 s -> about 0.18-0.24 s per step, since episode resets and gated ticks dominate there.
 - **Trainer overhead:** 0.07x an act tick at K = 1 for the design's members (`native_waking_trainer_design_20260925.md` sec 2). The W6 preset has more members (codec, prior, E2-world, encoder, valuation), so assume 0.2-0.4x on INT arms. DRAFT, ungrounded.
-- **Per seed:**
-  - about 6.4k steps per arm (2,400 dev + about 1,000 warmup + 3,000 closed loop), x 12 arms (ABSENT) or 14 (GROUNDED + NOVAL; the INT-R1 arms add 2);
-  - benign: about 64-77k steps x 0.02 s x 1.2, i.e. roughly 0.5 h;
-  - trapped: the same steps x 0.2 s x 1.2, i.e. roughly 4-5 h.
-- **10 admitted seeds:** about 3 CPU-h benign + about 26 CPU-h trapped, so **~30 CPU-h (ABSENT) to ~35 CPU-h (GROUNDED + NOVAL)**. Reserves add up to about 40% more if all four are used.
-- **Screen:** about 33 NATIVE-only seeds x about 5-10 min = **3-6 h**.
-- **Total:** about 35-50 CPU-h. That is at or slightly above plan sec 5's 35-45 CPU-h, and dominated by the trapped seeds.
-- Per-seed items on the fleet, affinity "any". A trapped item at about 5 h fits the fleet's item budget but is long enough that `/queue-experiment` should set `estimated_minutes` from the smoke.
+- **INT-ACT vs INT-CODEC per step (v2):** INT-ACT runs the same K x I = 96 rollouts per E3 tick as the codec CEM, with no decoder calls and no codec or prior trainer groups (design sec 2.1). It is assumed to cost at most INT-CODEC's per step. DRAFT, not measured.
+- **Per seed (v2 arithmetic).** About 6.4k steps per arm (2,400 dev + about 1,000 warmup + 3,000 closed loop). The trainer overhead (x1.2-1.4) is applied to INT arms only; v1 applied x1.2 to every arm.
+  - Arm counts: 4 NATIVE-family arms in both modes. INT arms: 8 in ABSENT mode (2 variants x T, SHUF, FROZEN, R1); 10 in GROUNDED mode (+2 NOVAL, now required).
+  - Benign, at 0.02 s per step: 4 x 6.4k x 0.02 = 512 s, plus INT arms of 1,229-1,434 s (ABSENT) or 1,536-1,792 s (GROUNDED). That is **0.48-0.54 h (ABSENT) and 0.57-0.64 h (GROUNDED)** per seed.
+  - Trapped, at 0.2 s per step: 5,120 s, plus INT arms of 12,288-14,336 s (ABSENT) or 15,360-17,920 s (GROUNDED). That is **4.8-5.4 h (ABSENT) and 5.7-6.4 h (GROUNDED)** per seed. At the measured 0.18-0.24 s per step the range widens to about 4.4-6.5 h (ABSENT) and 5.1-7.7 h (GROUNDED).
+- **10 admitted seeds:** **~28 CPU-h (ABSENT; 27-30) and ~33 CPU-h (GROUNDED; 31-35)**, about 90% of it in the trapped seeds. v1 gave ~30 / ~35; the difference is the trainer overhead now applying to INT arms only.
+- **Screen:** about 33 NATIVE-only seeds x about 5-10 min = **3-6 h** (unchanged).
+- **Reserves:** up to 2 per stratum. Using both trapped reserves adds about 10-13 h.
+- **Total:** about **31-34 CPU-h (ABSENT) and 36-41 CPU-h (GROUNDED)** without reserves, and up to about 47 / 54 with every reserve used. Plan sec 5 estimated 35-45 CPU-h.
+- **Per-item wall:** per-seed items on the fleet, affinity "any". A trapped GROUNDED item is now about 6 h (up to about 7.7 h), which is longer than v1's 4-5 h. `/queue-experiment` sets `estimated_minutes` from the smoke. If an item exceeds the fleet's item budget, split each trapped seed into two items: (NATIVE + reseeds + INT-CODEC set) and (INT-ACT set). This works only if the NATIVE sidecar is carried to the second item, e.g. committed with the first item's manifest. It is open item O8 for `/queue-experiment` (sec 14).
 
 ## 12. Stop rules
 
@@ -377,11 +398,12 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 
 | item | plan sec 5 | this draft | reason |
 |---|---|---|---|
-| floors | reward 0.25 / 1.0, contacts 1.0, change 0.25 | 0.90 / 2.4, 1.6 / 4.8, 0.92 | derived from measured replicate spread (6.3, RT-3/RT-4). The plan's P4 floor was below the measured noise |
+| floors | reward 0.25 / 1.0, contacts 1.0, change 0.25 | 0.90 / 2.4, 1.6 / 4.8, **1.44** (v2) | derived from measured replicate spread (6.3, RT-3/RT-4); accepted by the user (rec-20260925-5fc6c256, -aa066e96). The plan's P4 floor was below the measured noise |
 | margins | one NATIVE-reseed margin for every criterion | superiority uses max(NATIVE, INT-reseed); non-inferiority has a balloon guard; INT-v-R1 arms added | RT-2 |
 | grounded-component guard | absent | P1g added (strict > 0, RT-1) | env reward includes approach shaping with tie-break ON (Q7). K5/V2 excludes approach steps as evidence of benefit |
-| tested arms | one INTEGRATED | INT-CODEC and INT-ASP, each with SHUF and FROZEN | user decision rec-20260925-6a675285 |
-| valuation | "R4 only if W5 in preset" | explicit `valuation_mode`, fixed before admission; optional NOVAL diagnostics | user decision rec-20260925-805f605c |
+| tested arms | one INTEGRATED | INT-CODEC and INT-ACT, each with SHUF, FROZEN and R1; one shared CEM scoring window and one W3 buffer format (5.4) | user decision rec-20260925-6a675285; design E1, E6, E7 |
+| valuation | "R4 only if W5 in preset" | explicit `valuation_mode`, fixed before admission; **required** NOVAL arms in GROUNDED mode with a pre-registered attribution readout (8.4) | user decisions rec-20260925-805f605c, -c2519d92 |
+| queue precondition | A1 blocked on W6, N0, I1 | also held until both variants pass their member gates, each with the consumer-mediated (e) leg (7.1) | user decisions rec-20260925-38b81685, -b9652a9b |
 | env/agent seed | not stated | split (sec 3) | NATIVE-Rk must vary the agent only (Q6) |
 | screening | "admit the first 5+5" | separate NATIVE-only screen stage + in-run authoritative classification + 2 reserves per stratum | trapped rate 0.21; cross-machine multinomial divergence |
 | FROZEN | "trainer OFF after warmup" | trainer OFF for the whole closed-loop phase | makes P4 isolate closed-loop waking learning |
@@ -390,19 +412,35 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 
 Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the warmup budget under W6a; the trainer-ON cost multiplier.
 
-## 14. Decisions left for the user
+## 14. Decisions: resolved in v2, and what remains open
 
-1. **Floors:** accept the re-derived floors in sec 6.3, or keep the plan's lower drafts. Keeping the drafts makes P1 and P3 easier to pass and P2 and P1t harder to pass wherever the floor binds.
-   - Sub-choice: the P4 change floor is 0.92 (pooled) vs 1.44 (harm-bearing seeds only). 1.44 would be consistent with RT-3's treatment of the reward floor.
-2. **P1g:** accept the grounded-component sign guard (recommended). The alternative is to score raw env reward alone and let approach shaping count.
-3. **ASP build path (Q5):** the head-to-head needs an ASP build row and an ASP member gate (the R1 analog). Until they exist, the options are:
-   - (a) hold A1 until both exist; or
-   - (b) run A1 with CODEC only and record the head-to-head as not run.
-   Neither is recommended here, because the user asked for both in parallel. This is a planning gap for the orchestrator or `/governance` to route.
-4. **NOVAL diagnostics** in GROUNDED mode: +2 arms (about +20% cost) in exchange for a reported measure of what valuation contributes. Recommended, because it localises a FAIL.
-5. **Head-to-head tie rule:** "ASP wins within margin" (simplicity) vs "the user decides at merge".
-6. **INT reseed arms (RT-2, now in the design):** INT-v-R1 per seed adds 2 arms (about +17% cost). The user may remove them. Superiority margins would then fall back to NATIVE noise only, which RT-2 showed can make P1b and P3 too easy.
-7. **Balloon factor:** 3 x floor (DRAFT constant).
+**Resolved (v1 sec 14 items), with where each is implemented:**
+
+| v1 item | resolution | ledger | implemented in |
+|---|---|---|---|
+| 1. floors | measured floors accepted: 0.90 / 2.4, 1.6 / 4.8 | rec-20260925-5fc6c256 | 6.3, skeleton `FLOORS` |
+| 1. sub-choice, P4 change floor | 1.44 | rec-20260925-aa066e96 | 6.3, skeleton `FLOORS` |
+| 2. P1g | accepted, strict | rec-20260925-5fc6c256 | 8, skeleton `P1G_STRICT` |
+| 3. ASP build path | design + plan row W1-alt exist; **hold A1 until both variants pass their gates** | rec-20260925-38b81685 | 1 (Q5), 7.1, 8.3, skeleton `a1_queueable` |
+| 4. NOVAL arms | added, required in GROUNDED mode | rec-20260925-c2519d92 | 5.1, 8.4, skeleton `attribution` |
+| 6. INT reseed arms | kept (the brief keeps the red-team fix) | - | 5.1, 6.2 |
+| 7. balloon factor | kept at 3 x floor (the brief keeps the red-team fix); still a DRAFT constant | - | 6.2 |
+| (design U1) gate parity | the consumer-mediated leg is on both variants' gates | rec-20260925-b9652a9b | 7.1 |
+
+**Open items (owner named; none blocks editing this draft, and all must close before A1 is queued):**
+
+| id | item | owner | note |
+|---|---|---|---|
+| O1 | **RT-5**: the floors come from a T2 weight-walk analog, not from NATIVE reseeded with tie-break ON | orchestrator: route the cheap pre-A1 probe (sec 15) | the runtime 2 x SD term, the INT reseed term and the balloon guard are partial mitigations only |
+| O2 | **Head-to-head tie rule when both variants PASS within margin** (v1 item 5) | **the user, at A1 time** | the DRAFT default is "INT-ACT wins (simpler)" (8.3, skeleton `SIMPLER_VARIANT`). Alternative: the user decides at merge |
+| O3 | **The E3-valuation finding from N3-pre.** With E3 scoring the TRUE next state, its pick lands in the env-Q-best set only 0.09-0.22 of the time (chance 0.20; `d4bb6449b3`). So **gate (b)-style readouts, i.e. E3's pick-in-Q-best, wait on W5.** This is why W4(b) moved after W5 (Decision log 14:19Z). **It also applies to the consumer-mediated (e) leg that both variants' member gates now carry** (7.1), because that leg is the same readout: E3's pick-in-Q-best, variant pool vs native pool. D0 inference, not measured: if E3's valuation is at chance, the pool mostly changes *which* chance pick is made, so a > 0.10 margin over the native pool may not be reachable until W5 lands. In ABSENT mode it may never be reachable, and the hold (7.1) would then never clear | orchestrator / user (gate definitions, like the 14:19Z decisions) | options: (a) keep (e) as defined and accept that A1 waits for W5 (and cannot run in ABSENT mode); (b) move both variants' consumer-mediated legs after W5, like W4(b), and hold A1 on (a)-(d) + containment + (f) only; (c) score the (e) legs with E3's oracle valuation replaced by env-Q as a diagnostic. No option is taken here: it changes a gate definition |
+| O4 | design **U4**: the value of `CEM_SCORE_WINDOW` (full horizon vs W4's aggregation, for both variants) | user (design sec 7) | the parity rule itself is fixed (5.4); only the value is open. W1 must expose the window |
+| O5 | design **U2**: ASP-E vs ASP-0 if (e1) passes with ACT ~ RANDOM-POOL | user, at gate time | it changes INT-ACT's config, so it must be fixed before the pin |
+| O6 | **P4 headroom at 1.44** (6.4): P4 is reachable only if INT-v starts below NATIVE, FROZEN degrades, or shaping contributes well beyond the measured analog | recorded; user informed | the floor is not reopened. The reading rule "P4 headroom-limited" is fixed in 8.1 |
+| O7 | the W3 buffer action format (5.4): "executed as fed to E2" in both is the DRAFT; "argmax in both" is the fair alternative | W3 owner, before the pin | both variants always use the same format |
+| O8 | per-item wall: a trapped GROUNDED item is about 6 h (up to about 7.7 h) (11) | `/queue-experiment` | split per variant only if the NATIVE sidecar is carried to the second item |
+| O9 | ungrounded DRAFT constants: the 2,400-step developmental epoch, the warmup under W6a, the trainer-ON cost multiplier, the balloon factor 3, the R3 action-blind reference head's placement | `/queue-experiment` smoke; the W6a and W4 owners | unchanged from v1 |
+| O10 | I1 is still not on main (Q10), and the ASP propose trace plus the E3-mediated pick-in-Q-best instrument are still to be built (design sec 6 rows 12-13) | I1 owner | the skeleton's I1 names are a guide |
 
 ## 15. Red-team pass
 
@@ -420,12 +458,15 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
 | RT-1 | MAJOR | P1g `>= 0` is vacuous on benign seeds where both arms have 0 contacts and 0 consumptions (seeds 61-63 pattern). A gain carried only by shaping passes | **FIXED.** Strict `> 0`; ties, 0 = 0 included, do not hold. Selftest case added; mutation-checked (the old rule makes it PASS) |
 | RT-2 | MAJOR | one NATIVE-reseed margin serves both non-inferiority (P1t, P2) and superiority (P1b, P3). Large noise makes P1t/P2 near-unfalsifiable; INT-vs-INT noise may exceed NATIVE's. The INT reseed arm was only a sec-14 suggestion | **FIXED.** INT-v-R1 arms implemented; superiority uses max(NATIVE, INT) noise; non-inferiority gets the balloon guard (CD, never PASS). Two selftest cases added; the balloon case is mutation-checked |
 | RT-3 | MAJOR | the benign reward floor 0.57 was pooled over seeds where 10/25 replicate deltas were exactly zero. The harm-bearing seeds give 0.90 | **FIXED.** Floor 0.90 |
-| RT-4 | MINOR | 2 x 0.411 x sqrt(1.25) = 0.919, i.e. 0.92, not 0.90 | **FIXED.** 0.92 (the consistent harm-bearing alternative, 1.44, goes to the user, sec 14) |
+| RT-4 | MINOR | 2 x 0.411 x sqrt(1.25) = 0.919, i.e. 0.92, not 0.90 | **FIXED.** 0.92 (the consistent harm-bearing alternative, 1.44, went to the user). **v2: the user chose 1.44** (rec-20260925-aa066e96) |
 | RT-5 | RISK | the floor noise comes from a T2 agent with a 4-channel weight walk, not NATIVE reseeded with tie-break ON; "lower bound" is asserted, not shown; a floor can bind exactly when most needed | **OPEN.** Disclosed in 6.3. Mitigations: the runtime 2 x SD term, the INT reseed term, the balloon guard. Closing it needs a measured NATIVE-reseed spread with tie-break ON. That is a cheap pre-A1 probe (5 seeds x 4 NATIVE agent seeds x 3,000 steps, NATIVE only), which could also serve as the Stage-S screen if run on the pinned sha |
 | RT-6 | MINOR | 16 tests with no named multiplicity control | **FIXED.** The AND-of-all-8-per-variant conjunction is stated as the adopted control (sec 8) |
 
 **Unresolved beyond RT-5 (this author's own open items, not raised by the reviewer):**
-- the ASP build path (Q5);
+- ~~the ASP build path (Q5)~~: closed in v2 (design `412882b845`, plan row W1-alt);
 - the 2,400-step developmental epoch and the warmup budget under W6a are ungrounded;
 - the trainer-ON cost multiplier is ungrounded;
 - the balloon factor of 3 is a DRAFT constant.
+- v2 adds: O3 (the (e) legs are valuation-capped), O6 (P4 headroom), O8 (per-item wall). See sec 14.
+
+**v2 was not re-red-teamed.** The v2 changes apply decisions made by the user and the orchestrator, and design edits already reviewed in `412882b845`. The new scoring branches (head-to-head, attribution, hold) are covered by selftest cases and a mutation check, not by an independent reviewer.
