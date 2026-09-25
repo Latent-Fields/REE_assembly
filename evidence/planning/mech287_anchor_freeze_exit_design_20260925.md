@@ -130,6 +130,19 @@ trace.
 `_pag_desc_n_h_events`. `_pag_desc_n_drive_steps_while_frozen` is the reach-in-regime
 instrument. The accessor is `REEAgent.pag_descending_release_diagnostics()`.
 
+**Build-time measurement (2026-09-25, added after the build): T3 is effectively redundant.**
+A boundary's own dual-trace remap in `tick_anchor_set` deactivates the `segment_id_old` anchor
+BEFORE `apply_invalidation_broadcasts_to_regions` runs. The broadcast born from that same boundary
+therefore finds no active target. This was observed directly: broadcast `('fast', '0.0')` arrived
+while the only active anchor was `('fast', '0.1')`. So the live reach is broadcast -> MECH-284
+staleness -> hysteresis reset (H), which is the claim's own "trigger -> accumulator -> anchor
+reset" chain. It is not the T3 shortcut. This is why "invalidation" (T3 + H) is the default source,
+and why "broadcast" alone is expected to be near-silent. It also means the trigger-lesioned arms
+still carry passive-proxy H resets, so P2 below is an interaction, not a contrast that is true by
+construction. A short untrained V3-EXQ-1097 `D_BOTH_ON` rollout (2 x 200 steps, about 0.65 s per
+step on the Mac) produced 0 T3 resets, 0 H resets and 0 freeze commits. Reach in the trained lock
+regime is therefore wholly unmeasured.
+
 ## 5. Contracts (build gate)
 
 - **C1 bit-identity OFF.** A fixed-seed rollout with the full MECH-287 lineage flags plus the
