@@ -1,12 +1,16 @@
 # MECH-287 PAG re-commit readout: built, landed, then REFUSED by red-team
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml. The
-MECH-287 experiment was NOT queued. EXP-0371 was NOT released.**
+**Status: ROUND 1 RESOLVED (DV decision applied). ROUND 2 AWAITING USER REVIEW -- see section 10.
+Nothing in this file has been written to claims.yaml. The MECH-287 experiment was NOT queued.
+EXP-0371 was NOT released.**
 
 - Session: `metaworker-science-20260925-orchc-mech287-readout-build`
 - Campaign: `science-20260925-orchc-mech287-readout-build` (orchestrate-20260924-1707)
 - Chip: `chip-20260924-mech287-pag-recommit-readout-build` (/implement-substrate)
-- Decision chip raised: `chip-20260925-mech287-dv-choice`
+- Round-1 decision chip: `chip-20260925-mech287-dv-choice` -- ANSWERED 2026-09-25 (option A,
+  `recommits_per_episode`), by orchestrate-20260924-1707 under standing delegation
+  rec-20260924-fb429c72. Applied in `ree-v3` 60582c80c3.
+- Round-2 decision chip: `chip-20260925-mech287-recommit-opportunity` (see section 10)
 - Landed: `ree-v3` `7181ac2d6c` (build) + the annotation commit that follows it
 - Written: 2026-09-25
 
@@ -189,3 +193,108 @@ an amendment to the same two fields for the original confound).
 
 All of F3-F8 are ordinary defects with unambiguous fixes; they were left unfixed only because
 they are cheaper to land in one pass with whichever DV the decision picks.
+
+---
+
+# ROUND 2 (2026-09-25): the ratified DV is ALSO structurally pinned in the comparator arm
+
+The round-1 decision (option A, `recommits_per_episode`) was applied in `ree-v3` 60582c80c3,
+together with fixes for F2-F10/F12. A second adversarial red-team then returned **BLOCKING**
+again, and this session re-verified the decisive finding at source.
+
+## 10. R2-F1 (BLOCKING, verified at source): the DV reads exactly 0.0 in V3-EXQ-475's eval
+
+Round 1 rejected `recommits_per_release` because it is pinned at **1.0** in the sustained-lock
+regime. `recommits_per_episode` is pinned at **0.0** in the same regime, for a more basic reason:
+
+**a re-commit requires a within-episode release first, and V3-EXQ-475's eval contains none.**
+
+Verified in the landed manifest
+`evidence/experiments/v3_exq_475_sd036_decay_unlocks_exq471/..._20260422T173839Z.json`:
+
+| seed | `freeze_active_steps` | eval steps | `pag_n_commits` | `pag_n_releases` |
+|---|---|---|---|---|
+| 0 | **1000.0** | 1000 (5 x 200) | 71 | 6 |
+| 1 | **1000.0** | 1000 | 70 | 5 |
+| 2 | **1000.0** | 1000 | 64 | 5 |
+
+`freeze_active_steps == 1000` over a 1000-step eval means the agent was freeze-active on EVERY
+eval step in all three seeds. A release leaves `freeze_active` False for at least the tick it
+fires on (commit and release cannot co-occur -- the entry check runs only when inactive and the
+exit check only when active and not just committed), so **the eval phase holds zero releases**.
+The 6/5/5 cumulative releases are warmup. Zero eval releases -> zero possible re-commits ->
+`recommits_per_episode(phase="eval") == 0.0`, exactly, every seed, whatever the manipulation does.
+
+This collides with MECH-287's own registered non-degeneracy precondition, which asks the
+comparator arm to reproduce the EXQ-471/475 catatonic-lock regime with *"freeze re-commit count
+well above floor"*. The DV **is** the re-commit count, and the lock regime is precisely where it
+cannot be non-zero. The precondition as written is unsatisfiable against the run it cites.
+(V3-EXQ-478's `off_freeze_recommit=1` / `on_freeze_recommit=1` is the other existing measurement,
+already recorded in the claim as floor-pinned.)
+
+**This changes what gets measured, so it is a second STOP.** What was fixed in code instead, and
+is not a redesign, is the missing cannot-determine category: `recommit_opportunity_present`
+(`releases > 0`) now distinguishes "the DV had no occasion to be non-zero" from a measured null.
+Round 1's `dv_measurable` had been weakened to `n_episodes > 0`, which is true of any run that
+observed an episode -- that weakening is reversed in effect by the new flag and both are reported.
+
+## 11. Round-2 findings FIXED in code (ordinary defects, no measurement change)
+
+- **R2-F2** `frac_episodes_ending_frozen` divided a finalised-only numerator by an
+  include-current denominator -- **0.8 where the truth was 1.0**, under RESET-AT-START, the very
+  driver shape the F3 fix exists to support. A regression introduced by round 1's F10 fix. The
+  in-progress episode is now folded into the numerator like every other field, and
+  `current_episode_frozen` reports it separately.
+- **R2-F3** `records_truncated` compared a phase-scoped count against the GLOBAL deque maxlen, so
+  it could never detect the phase-filtered eviction it was added for (measured: 7692 of 8000
+  warmup rows returned, flag False). It now compares against the rows actually returned, which
+  also removes the maxlen+1-in-progress false positive (R2-F8).
+- **R2-F4** `recommits_per_release` still fabricated `0.0` on 0/0 with no flag; now carries
+  `recommits_per_release_measurable`.
+- **R2-F5** the agent readout counts FINALISED episodes only while the gate folds the in-progress
+  one -- measured 4 vs 5, i.e. every agent-side per-episode rate over n-1 (20% at a 5-episode
+  eval). Now flagged as `pending_uncaptured_episode`.
+- **R2-F6** the gate's "episode started" predicate is the first E3 tick, the agent's was
+  `_step_count > 0`; between an env step and the first E3 tick one `set_mech287_phase()` call
+  could label the same episode two ways. Both now use one shared predicate.
+- **R2-F7** `reset_diagnostics()` became behavioural when it started delegating to `reset()` (it
+  lifts a live freeze and re-arms the run-up accumulator, so a mid-episode call can inject a
+  commit). Documented as behavioural and boundary-only rather than silently changed back.
+- **R2-F9** `frac_releases_forced_by_cap` added alongside the all-or-nothing flag.
+- **R2-F10** the DV is not exposure-normalised (identical dynamics at episode lengths
+  250/500/1000/2000 give 61/124/249/499 while `recommits / e3_ticks` is flat at ~0.244-0.2495),
+  and `e3_ticks` is itself arm-dependent because `MultiRateClock.advance()` fires an extra E3 tick
+  on `phase_reset()`, which MECH-091 triggers on harm. Both stated at the definition site.
+- **R2-F11** every cannot-determine field was a `bool`, and `build_experiment_indexes.py`'s
+  `_is_number` excludes bool -- so a flat metrics dump silently dropped the entire
+  negative-instrument surface. `*_int` companions added on both the gate and the agent.
+- **R2-F13/F14** a dangling key reference and a test name that described a different property.
+
+Round-2 findings accepted but NOT fixed: R2-F12 (the agent-side tests still hand-set
+`trig._n_broadcast` / `agent._step_count`; no test drives a real `act()`).
+
+## 12. The decision owed (round 2)
+
+`recommit_opportunity_present` makes the pinning VISIBLE rather than silent, which is the
+honest minimum. It does not make MECH-287's falsifier runnable. Options:
+
+- **A. Keep the DV and add a runnable precondition.** Pre-register `releases_per_episode > 0` (or
+  a registered floor) as a gating check the comparator arm must pass, and treat a run that lands
+  back in the sustained lock as PRECONDITION-FAILED rather than as four measured zeros. Cheapest,
+  and honest -- but on 475's own configuration the precondition fails, so the experiment cannot
+  run until the comparator config changes.
+- **B. Change the comparator configuration so releases occur in eval** (e.g. tune gaba_tone /
+  theta_freeze so z_harm falls below the exit threshold within an episode). Makes the DV movable,
+  but it is no longer V3-EXQ-475's regime, so the lineage comparison is broken and the
+  non-degeneracy precondition needs rewording anyway. Note the obvious lever,
+  `max_freeze_duration`, is NOT usable: it turns the DV into a measurement of the cap period.
+- **C. Re-scope MECH-287's DV onto a quantity the lock regime actually exhibits** -- freeze
+  duration / lock persistence / time-to-first-release -- which is what V3-EXQ-475 measured
+  (1000/1000 freeze-active steps). Largest claim change, and the only option under which the
+  comparator arm and the DV are compatible as recorded.
+
+**Recommendation: C**, with A's precondition check landed regardless. The evidence is that the
+phenotype MECH-287 names ("re-commits after release") does not occur in the regime it cites; a DV
+that can only move outside that regime is measuring a different situation. B is viable if the
+scientific interest really is re-commit dynamics rather than the lock, but then the claim should
+stop citing 475 as its comparator.
