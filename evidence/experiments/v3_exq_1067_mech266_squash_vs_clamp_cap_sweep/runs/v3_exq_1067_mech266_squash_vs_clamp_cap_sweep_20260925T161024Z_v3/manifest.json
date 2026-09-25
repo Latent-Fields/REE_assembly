@@ -1,0 +1,320 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep",
+  "run_id": "v3_exq_1067_mech266_squash_vs_clamp_cap_sweep_20260925T161024Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-25T16:10:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "0a3169c9441204ff09008d369c34e7eb4f3ee84a",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "occupancy_responds_but_never_grades_bang_bang_persists",
+    "readiness_route": "occupancy_responds_but_never_grades_bang_bang_persists",
+    "route_reason": "no_arm_graded_but_occupancy_shifts_between_arms",
+    "hypothesis": "A bounded-but-GRADED affinity input (the saturating squash, sigma = cap) admits the mixed external_task occupancy regime that the bang-bang box clamp could not, at some cap in the swept band.",
+    "null": "No >= 2 CONSECUTIVE cap values yield ARM_SYMMETRIC occupancy in (0.1, 0.9) on >= 2/3 seeds under the squash -- i.e. the graded operator alone does not make the mode register graded.",
+    "null_meaning": "A null here is INFORMATIVE and pre-registered as such. The mode-governance-engagement entry predicts it in writing: item (2)'s _et_commit = commit_w * float(beta_gate.is_elevated) is a boolean latch and a cap- AND operator-INDEPENDENT discreteness source, so 'a graded bounding operator alone does NOT make the register graded end-to-end'. With the operator manipulation demonstrably landing on the continuous margin (operator_manipulation_landed), a null ISOLATES that residual source rather than leaving the operator under suspicion. It does NOT license any claim promotion or demotion.",
+    "combination_rule": "OUTCOME: PASS iff the single load-bearing criterion H_squash_symmetric_arm_graded_regime_reachable passes, AND both readiness preconditions are met, AND the operator manipulation demonstrably landed on the continuous margin of PAIRED cells. That criterion is unchanged from the ratified design. ATTRIBUTION (separate from the outcome, pre-registered in the module docstring's three-arm table): the two NON-load-bearing arms decide what a PASS or a null MEANS, and they drive evidence_direction_per_claim. A PASS with the gain-matched clamp control ALSO graded is attributed to drive GAIN, not gradedness, and records SD-032a non_contributory despite the PASS. A PASS with that control NOT graded is attributed to gradedness and records supports. A null with occupancy static across all three arms isolates the item-(2) commitment latch; a null with occupancy shifting but never grading records bang-bang persistence. A graded clamp BASELINE arm pre-empts every branch: the contrast is not interpretable, direction non_contributory.",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "kind": "readiness",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds. A curriculum that never became foraging-competent makes every occupancy reading meaningless.",
+        "control": "fraction of seeds with P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4. Cleared 3/3 by V3-EXQ-934 on this exact curriculum.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "external_task_drive_engages",
+        "kind": "readiness",
+        "description": "the external_task drive must ENGAGE at SOME swept (operator, cap) cell -- per-seed max-over-cells of the CONTINUOUS operating_mode['external_task'] margin > MARGIN_FLOOR -- on >= 2/3 guard-passing seeds. This is the readiness form of the SAME arbitration signal the occupancy DV routes on: if the margin is ~0 in every cell the drive is not producing the signal (a substrate/wiring failure, e.g. a goal_state drop), which must self-route substrate_not_ready_requeue and NOT be read as gradedness evidence either way.",
+        "control": "fraction of guard-passing seeds whose best cell's ext_margin_mean clears MARGIN_FLOOR. NOTE its real scope: this asserts that ARBITRATION produces an external_task signal, NOT that the DRIVE does -- see the next precondition, which is the one that can see a dead drive.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "external_task_drive_signal_nonzero",
+        "kind": "readiness",
+        "description": "The external_task_drive SIGNAL must itself be nonzero on >= 2/3 guard-passing seeds. This exists because the margin precondition above CANNOT detect a dead drive: measured on the real coordinator, with the drive signal at EXACTLY 0.0 the external_task margin still reads 0.3287-0.4950 across the swept caps -- 6.6x to 9.9x the 0.05 floor -- because the margin is floored by external_task_bias = 1.0, not by the drive. The margin precondition therefore passes through the very failure its own description names (a goal_state drop hard-gating engagement to 0.0, the V3-EXQ-464d signature). This is the same-statistic fix: the drive's own value is what is asserted. Inherited defect -- V3-EXQ-934 carries the margin precondition alone.",
+        "control": "fraction of guard-passing seeds whose best cell has et_drive_mean > 0. A zero-test, not a tuned threshold: a drive that is never nonzero anywhere cannot be engaging.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "H_squash_symmetric_arm_graded_regime_reachable",
+        "load_bearing": true,
+        "passed": false,
+        "description": "SQUASH x ARM_SYMMETRIC: >= 2 CONSECUTIVE swept cap values each with occupancy in (0.1, 0.9) on >= 2/3 of the seeds measured at that value. Bar transcribed from the mode-governance-engagement failure_record target for V3-EXQ-934; evaluated by experiments/_lib/regime_occupancy_gate.py, not re-derived here.",
+        "measured": 1,
+        "threshold": 2,
+        "direction": "lower"
+      },
+      {
+        "name": "gain_matched_clamp_arm_not_graded_attribution_control",
+        "load_bearing": false,
+        "passed": true,
+        "description": "REPORTED, NOT LOAD-BEARING -- THE ATTRIBUTION CONTROL (user decision 2026-09-19T23:52:40Z, option A). Clamp operator with the external_task_drive weight cut to match the squash arm's gain at engagement 1.0. If THIS arm also grades, the mixed regime is reachable with a DEGENERATE bound once the drive gain is cut, so a squash PASS is attributable to GAIN, not gradedness -- and the run records SD-032a non_contributory rather than supports. See the pre-registered attribution table in the module docstring.",
+        "measured": 0,
+        "threshold": 2,
+        "direction": "upper"
+      },
+      {
+        "name": "clamp_symmetric_arm_baseline_934_reproduction",
+        "load_bearing": false,
+        "passed": true,
+        "description": "REPORTED, NOT LOAD-BEARING. V3-EXQ-934 recorded no common cap on the clamp; a graded clamp arm here would be a baseline divergence that makes the contrast uninterpretable, and is routed as such.",
+        "measured": 0,
+        "threshold": 2,
+        "direction": "upper"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "H_squash_symmetric_arm_graded_regime_reachable": true,
+      "clamp_symmetric_arm_baseline_934_reproduction": true
+    },
+    "occupancy_gate": {
+      "definition": "ONE evaluate_regime_occupancy_gate call per (bound_arm, rail_arm) over ALL (seed, cap) cells, with seed AND sweep_value populated. GRADED iff >= min_adjacent (2) CONSECUTIVE swept cap values each read mixed on >= min_seed_fraction (2/3) of the seeds measured at that value. The bar is TRANSCRIBED from mode-governance-engagement's own failure_record target for V3-EXQ-934 and implemented in experiments/_lib/regime_occupancy_gate.py -- never re-derived, and never a min-across-the-sweep statistic. V3-EXQ-934's per-seed call shape (no seed, no sweep_value, booleans counted afterwards) is deliberately NOT inherited: it is what produced that run's false 'graded' routing.",
+      "load_bearing_slice": "squash|ARM_SYMMETRIC",
+      "baseline_slice": "clamp_baseline|ARM_SYMMETRIC",
+      "attribution_control_slice": "clamp_gain_matched|ARM_SYMMETRIC",
+      "occupancy_floor": 0.1,
+      "occupancy_ceiling": 0.9,
+      "min_seed_fraction": 0.6666666666666666,
+      "min_adjacent": 2,
+      "min_seeds": 2,
+      "margin_floor": 0.05,
+      "cap_sweep": [
+        0.75,
+        1.0,
+        1.25,
+        1.5,
+        1.75
+      ],
+      "bound_arms": [
+        "clamp_baseline",
+        "squash",
+        "clamp_gain_matched"
+      ],
+      "primary_arm": "ARM_SYMMETRIC"
+    },
+    "three_arm_attribution": {
+      "status": "PRE-REGISTERED (user decision 2026-09-19T23:52:40Z, option A). Fixed BEFORE the run; the outcome follows the ratified occupancy criterion, the ATTRIBUTION follows this table and drives evidence_direction_per_claim.",
+      "resolved_verdict": "mixed_gain_and_gradedness_insufficient",
+      "table": [
+        "squash graded + gain_matched NOT graded -> GRADEDNESS (SD-032a supports)",
+        "squash graded + gain_matched ALSO graded -> GAIN, not gradedness; PASS but SD-032a non_contributory",
+        "neither graded + occupancy static across all three arms -> cap/operator/gain-INDEPENDENT residual, isolates the item-(2) commitment latch (SD-032a weakens)",
+        "neither graded + occupancy shifts between arms -> bang-bang persists (SD-032a weakens)",
+        "clamp BASELINE graded -> divergence from V3-EXQ-934, contrast not interpretable (SD-032a non_contributory)"
+      ],
+      "gain_matched_drive_weight_rule": "w'(cap) = 3.0 * (cap/(cap+1)) / min(1.0, cap); matches the squash arm's external_task_drive logit contribution at engagement e = 1.0. Equals the decision's literal 3*cap/(cap+1) at every cap >= 1.0; the min() term corrects only cap = 0.75, where the clamp itself attenuates e = 1.0 to 0.75.",
+      "gain_matched_drive_weight_by_cap": {
+        "0.75": 1.714286,
+        "1.0": 1.5,
+        "1.25": 1.666667,
+        "1.5": 1.8,
+        "1.75": 1.909091
+      },
+      "literal_decision_formula_by_cap": {
+        "0.75": 1.285714,
+        "1.0": 1.5,
+        "1.25": 1.666667,
+        "1.5": 1.8,
+        "1.75": 1.909091
+      },
+      "residual": "The gain match is exact only at engagement e = 1.0. Where engagement is UNLATCHED (e < 1) the squash and the gain-matched clamp diverge slightly; et_drive_saturated_frac records how dominant e = 1.0 actually was."
+    },
+    "cell_pairing": {
+      "status": "Cells are RNG- AND ENV-PAIRED across bound arms (red-team findings 2 and 3, fixed under option A).",
+      "rule": "The per-cell seed is derived from (seed, cap, rail_arm) ONLY -- never the bound arm -- and drives both reset_all_rng() at cell entry and the cell's OWN freshly built env. So the three bound arms at one (seed, cap, rail_arm) start from bit-identical RNG state and an identical env layout.",
+      "why_it_matters": "Without it the 1e-6 operator_manipulation_landed guard is vacuous -- banked V3-EXQ-934 cells differing only in rails already differed by 1.7e-3 -- and the occupancy decomposition would measure run-to-run noise. It also removes the bound-arm-order confound: V3-EXQ-934 shared one never-rebuilt stateful env across all cells.",
+      "departs_from_934": "934 used an OS-entropy eval env shared across its cells. The clamp baseline arm here reproduces 934's DESIGN (same operator, weight, cap band, seeds, rails) but is NOT expected to reproduce its cell values bit-for-bit, and nothing compares against them numerically."
+    },
+    "continuous_margin_telemetry": {
+      "status": "RECORDED WITH NO THRESHOLD -- deliberate (user decision 2026-09-19T22:12:50Z). Occupancy is the load-bearing criterion; the continuous margin is recorded so that a null is ATTRIBUTABLE to the cap-independent commitment latch rather than to the operator. No numeric threshold for the squash-vs-clamp contrast is registered anywhere, and none is invented here.",
+      "clamp_era_reference": "V3-EXQ-935a recorded ext_margin_mean LINEAR in cap at R^2 0.9996-0.9999 under the clamp (the at-cap degeneracy signature).",
+      "margin_cap_linearity_r2_clamp_symmetric": 0.997964,
+      "margin_cap_linearity_r2_squash_symmetric": 0.996355,
+      "margin_cap_linearity_r2_gain_matched_symmetric": 0.99796
+    },
+    "commitment_latch_attribution": {
+      "status": "RECORDED WITH NO THRESHOLD. mode-governance-engagement item (2) is OPEN and untouched by this run.",
+      "mechanism": "ree_core/agent.py:7870 _et_commit = _et_commit_w * (1.0 if self.beta_gate.is_elevated else 0.0); :7881 _et_engagement = max(0.0, min(1.0, _et_commit + _et_prox)). At the default external_task_drive_commit_weight = 1.0 ANY beta elevation saturates engagement to exactly 1.0 regardless of goal proximity.",
+      "et_drive_saturated_frac_mean": 0.0,
+      "et_drive_saturated_frac_max": 0.0,
+      "et_drive_mean": 0.000533,
+      "gain_match_quality_note": "The gain match is EXACT at engagement e = 1.0 and degrades below it (at cap 1.0 the squash delivers 3e/(1+e) while the gain-matched clamp delivers 1.5e, so at e = 0.5 they are 1.00 vs 0.75). CORRECTION, from the second red-team pass: an earlier version of this note called that residual 'conservative'. It is not. For every cap >= 1.0 at e < 1 the control carries LESS external_task gain than the squash, so 'the control did not grade' can be caused by the control OVER-cutting rather than by gradedness mattering -- a false-positive path to the supports branch, which is the opposite of conservative. That is why the gradedness attribution is now gated on gain_match_valid: the residual mismatch, measured on the realized engagement trace, must be smaller than the gain cut the control exists to reproduce. The 1.0 boundary is definitional, not tuned.",
+      "operator_bite_note": "external_task_drive is already bounded to [0,1], so at any cap >= 1.0 BOTH operators are no-ops on it (V3-EXQ-934 failure_record). The operator bites on dacc_pe; dacc_pe_over_cap_frac records how often.",
+      "dacc_pe_over_cap_frac_mean": 1.0,
+      "dacc_pe_abs_max": 11.1701
+    },
+    "contact_guard": {
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "scope": "Validates mode-governance-engagement ITEM (1) (the bounding operator) ONLY. Items (2) (commitment-term grading) and (3) (production default) remain OPEN and are untouched: salience_affinity_input_cap and use_external_task_drive are set explicitly by this driver and the PRODUCTION defaults are NOT flipped. PROMOTES NOTHING -- MECH-266 / SD-032a pending_retest_after_substrate holds, and the Stage-H nav-competence dependency gating v3_exq_464d / v3_exq_467d is untouched."
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "102611a7d9aff7aad97d1d87054b9022072f031358844362ffcf9ceef46c4f89",
+  "substrate_commit": {
+    "commit": "0a3169c9441204ff09008d369c34e7eb4f3ee84a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_resource_encoder": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "heartbeat.beta_gate_bistable": true,
+    "goal.drive_floor": 0.9,
+    "goal.z_goal_enabled": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.use_cue_recall": true,
+    "use_dacc": true,
+    "use_salience_coordinator": true,
+    "use_external_task_drive": true,
+    "use_lateral_pfc_analog": true,
+    "use_instrumental_avoidance": true,
+    "use_pag_freeze_gate": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_split_surprise": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_conjunction": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 441614.98302237503,
+  "config": {
+    "bound_arms": [
+      "clamp_baseline",
+      "squash",
+      "clamp_gain_matched"
+    ],
+    "bound_arm_operator": {
+      "clamp_baseline": "clamp",
+      "squash": "squash",
+      "clamp_gain_matched": "clamp"
+    },
+    "external_task_drive_affinity_weight": 3.0,
+    "gain_matched_drive_weight_by_cap": {
+      "0.75": 1.714286,
+      "1.0": 1.5,
+      "1.25": 1.666667,
+      "1.5": 1.8,
+      "1.75": 1.909091
+    },
+    "affinity_squash_sigma": null,
+    "affinity_squash_sigma_rule": "None MEANS sigma = affinity_input_cap (landed default, user decision 2026-09-19T09:45Z). Slope at the origin is then exactly 1, so every SUB-cap signal passes through as the legacy clamp passed it and the only behavioural change is at the top end.",
+    "cap_sweep": [
+      0.75,
+      1.0,
+      1.25,
+      1.5,
+      1.75
+    ],
+    "affinity_input_cap_train": 2.0,
+    "affinity_bound_mode_train": "clamp",
+    "occupancy_floor": 0.1,
+    "occupancy_ceiling": 0.9,
+    "gate_min_seed_fraction": 0.6666666666666666,
+    "gate_min_adjacent": 2,
+    "gate_min_seeds": 2,
+    "margin_floor": 0.05,
+    "manipulation_eps": 1e-06,
+    "arms": [
+      "ARM_SYMMETRIC",
+      "ARM_ASYM_STICKY_TASK"
+    ],
+    "primary_arm": "ARM_SYMMETRIC",
+    "sticky_exit": 0.05,
+    "loose_exit": 0.9,
+    "mode_eval_episodes_per_cell": 15,
+    "train_steps": 200,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "min_fraction": 0.6666666666666666,
+    "p2_zgoal_gate": 0.4,
+    "contact_gate": 0.0,
+    "scaffold_curriculum": {
+      "stage0_budget": 20,
+      "stage0b_budget": 10,
+      "p0_budget": 100,
+      "hazard_stage_budget": 40,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "n_resource_types": 3,
+      "config_basis": "V3-EXQ-603n"
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "z_goal_stream": {
+    "ticks_total": 300520,
+    "ticks_active": 300517,
+    "writer_calls": 33728,
+    "active_frac": 0.9999900173033409,
+    "writer_defect": false,
+    "n_agents": 93,
+    "goal_state_present": true
+  }
+}
