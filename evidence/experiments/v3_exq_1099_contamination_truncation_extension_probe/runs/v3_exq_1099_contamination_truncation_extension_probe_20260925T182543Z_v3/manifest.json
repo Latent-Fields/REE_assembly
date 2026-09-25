@@ -1,0 +1,522 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1099_contamination_truncation_extension_probe",
+  "run_id": "v3_exq_1099_contamination_truncation_extension_probe_20260925T182543Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-25T18:25:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "f0331054133ab321fcce47db93dab25fcf3d3198",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "historical_verdicts_not_reproduced_adjudicate_drift_first",
+    "preconditions": [
+      {
+        "name": "control::stock_death_frac_supra_floor",
+        "description": "Random walker on 278/435's LOW_HARM geometry dies of contamination at stock settings",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "kind": "readiness",
+        "control": "random walk, 20x150 steps, size-8 0-hazard V2 LOW_HARM env; 1.000 measured 2026-09-25 at design time",
+        "met": true
+      },
+      {
+        "name": "control::gated_death_frac_zero",
+        "description": "The same walker with hazard_free_contamination_gate=True never dies",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "same walker, gate on; 0.000 measured 2026-09-25",
+        "met": true
+      },
+      {
+        "name": "control::episodes_match_intended",
+        "description": "Both control arms recorded exactly 20 episodes",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "loop bound CONTROL_EPISODES",
+        "met": true
+      },
+      {
+        "name": "278::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "278::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "278::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (900); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own unconditional loop bounds",
+        "met": true
+      },
+      {
+        "name": "278::hazarded_env_spread_untouched",
+        "description": "Gate left num_hazards>0 envs at their stock contamination_spread",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "435::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "435::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "435::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (900); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own unconditional loop bounds",
+        "met": true
+      },
+      {
+        "name": "435::hazarded_env_spread_untouched",
+        "description": "Gate left num_hazards>0 envs at their stock contamination_spread",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "883::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "883::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "883::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (6); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own unconditional loop bounds",
+        "met": true
+      },
+      {
+        "name": "231a::optout_hf_spread_zero",
+        "description": "ARM_OPTOUT: every hazard-free env had contamination_spread 0 (gate took)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "231a::optout_hf_contacts_zero",
+        "description": "ARM_OPTOUT: zero contaminated-cell contacts in hazard-free envs",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      },
+      {
+        "name": "231a::dv_units_match_intended",
+        "description": "Both arms recorded exactly the intended number of DV-window units (200); |n_stock - intended| + |n_optout - intended|",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "readiness",
+        "control": "intended count derived from the target's own unconditional loop bounds",
+        "met": true
+      },
+      {
+        "name": "231a::hazarded_env_spread_untouched",
+        "description": "Gate left num_hazards>0 envs at their stock contamination_spread",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "kind": "manipulation",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_PREV_no_verdict_sensitive_target": false,
+      "278::stock_dv_death_frac_below_material": true,
+      "278::verdict_unchanged_stock_vs_optout": true,
+      "435::stock_dv_death_frac_below_material": true,
+      "435::verdict_unchanged_stock_vs_optout": true,
+      "883::stock_dv_death_frac_below_material": false,
+      "883::verdict_unchanged_stock_vs_optout": false,
+      "231a::stock_dv_death_frac_below_material": true,
+      "231a::verdict_unchanged_stock_vs_optout": true
+    },
+    "reruns_owed_for_claims": [],
+    "family_reruns_recommended_unmeasured": [],
+    "direct_claims_measured": [
+      "INV-054"
+    ],
+    "direct_claims_cleared_no_rerun_owed": [],
+    "direct_claims_clearance_scope": {},
+    "clearance_scope_note": "A claim listed in direct_claims_cleared_no_rerun_owed that ALSO appears in direct_claims_clearance_scope is cleared ONLY within the stated scope. INV-054 is pre-registered phase-2-only and is explicitly NOT cleared on phase-1 grounds: its depression is established in 278/435's 3-hazard LONG_HORIZON phase, where the gate is inert by design.",
+    "insensitive_by_construction_targets": [
+      "V3-EXQ-883"
+    ],
+    "insensitive_by_construction_note": "The exposure fired materially AND the verdict held, but every exposed cell's DV is structurally invariant, so the verdict could not have moved either way. This is an informative NEGATIVE, not an instrument failure, and NOT a passed sensitivity test: such a target never clears its claim and never counts toward readiness. Added 2026-09-25 (orchestrator decision B) because V3-EXQ-1080's taxonomy had no class for it and would have emitted truncated_verdict_robust -- the same gap its own autopsy named for V3-EXQ-904.",
+    "fidelity_unverifiable": [],
+    "sensitivity_attribution": {
+      "attributable": [
+        "V3-EXQ-231a"
+      ],
+      "confounded": [],
+      "rule": "a verdict-sensitive target is attributable to contamination only if its STOCK verdict reproduced its DRIVER-DERIVED baseline AND it is not monostrategy_suspect; otherwise drift or action-collapse is a live alternative explanation and the owed work is that adjudication first"
+    },
+    "baseline_derivation_note": "Each target's baseline is derived from its DRIVER's own _aggregate over the landed per-seed rows where the driver exposes one, else from a manifest carrying NO amendment note; otherwise it is UNKNOWN and stock_reproduces_original is None rather than False. A landed manifest's evidence_direction is not necessarily the driver's verdict -- V3-EXQ-435's is a hand-applied 2026-04-22 reclassification, which made the fidelity check fail by construction before this was fixed.",
+    "family_claims_not_cleared_caveat_stands": [],
+    "claims_not_covered": {
+      "MECH-074d": "V3-EXQ-894/894a/894b/894c -- family caveat left standing (see SCOPE)",
+      "SD-077": "V3-EXQ-1040 -- family caveat left standing (1080)",
+      "SD-079": "V3-EXQ-807/823 (32-step episodes) -- family caveat left standing (see SCOPE)",
+      "MECH-106": "no target able to clear it (V3-EXQ-231a (verdict_sensitive_truncation)); undecided",
+      "MECH-427": "NOT ANSWERABLE BY THIS INSTRUMENT -- V3-EXQ-883 is insensitive_by_construction: the contamination exposure lands only on cells whose DV is structurally invariant, so the verdict could not have moved either way. Undecided, and a re-run of the same design would not decide it. Targets: V3-EXQ-883 (insensitive_by_construction)",
+      "INV-054": "measured but reached no run-level bucket -- see per_claim_disposition"
+    },
+    "historical_verdict_not_reproduced": [
+      {
+        "queue_id": "V3-EXQ-231a",
+        "claims": [
+          "MECH-106"
+        ],
+        "original": {
+          "outcome": "PASS",
+          "evidence_direction": "supports"
+        },
+        "stock_today": {
+          "outcome": "FAIL",
+          "evidence_direction": "weakens"
+        }
+      }
+    ],
+    "per_claim_disposition": {
+      "INV-054": {
+        "disposition": "truncation_present_verdict_robust_no_rerun_owed",
+        "scope": "PHASE 2 ONLY -- explicitly NOT cleared on phase-1 grounds. INV-054's depression is established in 278/435's PHASE 1 (LONG_HORIZON, num_hazards=3), where the gate is INERT BY DESIGN and the agent dies in 2-7 steps from proximity harm, so this probe can say nothing about it. What it measures is the hazard-free PHASE 2 recovery window (300 eps x 150 steps), which is heavily exposed: a random walker dies in 20/20 episodes of that exact geometry (this probe's own positive control). Also: 278's recovery latency is already at its floor of 1 and the gate can only RAISE benefit exposure, so the >50 flip that would change 278's verdict is unreachable in practice -- 435's sustained-onset DV is the wider of the two.",
+        "coupling_by_target": {
+          "V3-EXQ-278": "unknown",
+          "V3-EXQ-435": "unknown"
+        },
+        "insensitive_by_construction_targets": [],
+        "attribution": {},
+        "baseline_sources": {
+          "V3-EXQ-278": "driver_aggregate",
+          "V3-EXQ-435": "driver_aggregate"
+        },
+        "targets": {
+          "V3-EXQ-278": "truncated_verdict_robust",
+          "V3-EXQ-435": "truncated_verdict_robust"
+        },
+        "determinable_targets": [
+          "V3-EXQ-278",
+          "V3-EXQ-435"
+        ],
+        "verdict_sensitive_targets": [],
+        "max_stock_dv_death_frac": 1.0,
+        "monostrategy_confounded": false,
+        "historical_verdict_reproduced": [
+          "V3-EXQ-278",
+          "V3-EXQ-435"
+        ],
+        "fidelity_unverifiable_targets": []
+      },
+      "MECH-106": {
+        "disposition": "verdict_sensitive_rerun_owed",
+        "scope": null,
+        "coupling_by_target": {
+          "V3-EXQ-231a": "unknown"
+        },
+        "insensitive_by_construction_targets": [],
+        "attribution": {
+          "V3-EXQ-231a": "attributable_to_contamination"
+        },
+        "baseline_sources": {
+          "V3-EXQ-231a": "manifest_unreclassified"
+        },
+        "targets": {
+          "V3-EXQ-231a": "verdict_sensitive_truncation"
+        },
+        "determinable_targets": [
+          "V3-EXQ-231a"
+        ],
+        "verdict_sensitive_targets": [
+          "V3-EXQ-231a"
+        ],
+        "max_stock_dv_death_frac": 1.0,
+        "monostrategy_confounded": false,
+        "historical_verdict_reproduced": [],
+        "fidelity_unverifiable_targets": []
+      },
+      "MECH-427": {
+        "disposition": "not_answerable_by_this_instrument",
+        "scope": null,
+        "coupling_by_target": {
+          "V3-EXQ-883": "decoupled"
+        },
+        "insensitive_by_construction_targets": [
+          "V3-EXQ-883"
+        ],
+        "attribution": {},
+        "baseline_sources": {
+          "V3-EXQ-883": "manifest_unreclassified"
+        },
+        "targets": {
+          "V3-EXQ-883": "insensitive_by_construction"
+        },
+        "determinable_targets": [
+          "V3-EXQ-883"
+        ],
+        "verdict_sensitive_targets": [],
+        "max_stock_dv_death_frac": 0.5,
+        "monostrategy_confounded": false,
+        "historical_verdict_reproduced": [
+          "V3-EXQ-883"
+        ],
+        "fidelity_unverifiable_targets": []
+      }
+    },
+    "claims_determinable_targets": {
+      "INV-054": [
+        "V3-EXQ-278",
+        "V3-EXQ-435"
+      ],
+      "MECH-106": [],
+      "MECH-427": []
+    },
+    "claims_answerable_on_this_instrument": [
+      "INV-054",
+      "MECH-106"
+    ],
+    "claims_unanswerable_on_this_instrument": [
+      "MECH-427"
+    ],
+    "readiness_scoping_note": "A claim every one of whose targets is insensitive_by_construction is SCOPED OUT of the readiness denominator rather than failing it -- the exposure could not have moved its verdict either way, so requiring it would make readiness unreachable by construction (the V3-EXQ-785 whole-run-AND defect). The gate stays falsifiable: ready needs >= 2 answerable claims AND every answerable one covered, so it cannot pass by declaring everything unanswerable. Scoped-out claims appear in claims_not_covered with their reason, never silently dropped.",
+    "per_claim_disposition_note": "populated from each claim's OWN determinable targets whatever the run-level readiness verdict, so one target's degeneracy cannot vacate another's measured result (V3-EXQ-785). A RECORD, not a route: outcome, label and reruns_owed_for_claims follow 1080's pre-registered routing unchanged.",
+    "claims_run_level_bucket": {
+      "INV-054": "not_covered",
+      "MECH-106": "not_covered",
+      "MECH-427": "not_covered"
+    },
+    "claims_unbucketed_before_repair": [
+      "INV-054"
+    ],
+    "optout_restores_historical_verdict_targets": [
+      "V3-EXQ-231a"
+    ],
+    "clearance_requires_reproduction_note": "A target may CLEAR its claim only if its STOCK arm reproduced the DRIVER-DERIVED baseline and it is not monostrategy-collapsed. Asserting a claim's historical evidence is contamination-safe is unsupportable when that historical verdict did not reproduce at all -- red-team pass-2 P2-1. Attribution of a SENSITIVITY is deliberately weaker (EITHER arm reproducing anchors it), because STOCK failing while OPTOUT reproduces means the gate RESTORED the historical verdict, which is the strongest contamination attribution available (P2-2).",
+    "residual_caveats_pass2": {
+      "coupling_unknown_for_load_bearing_target": "P2-6/attack-3: dv_exposure_coupling is measurable only for 883. It is UNKNOWN for 231a, the sole load-bearing input to C_PREV, so the F2-style vacuity cannot be positively ruled out there. Accepted as a STATED LIMITATION, not silently: 231a's coupling is derivable in principle (per-seed da_pos plus the same per-cell episode tagging 883 uses) and building that detector is named follow-on. What bounds the risk meanwhile is P2-1: 231a cannot clear MECH-106 unless it also reproduced its baseline.",
+      "coupling_tests_dv_movement_not_reach_to_criterion": "P2-6: `coupled` is exact float inequality on the per-cell DV, so a cell whose DV moves only in the 4th-5th decimal from the observation channel still reads coupled. On this target set that is right for the right reason (883's exposed cells sit at exactly 0.0), but a tiny movement on an exposed cell would re-admit the F2 shape under the truncated_verdict_robust label.",
+      "inv054_clearance_may_rest_on_a_pinned_criterion": "P2-4: if 435 is cannot_determine, INV-054's clearance rests on 278 alone, whose recovery-latency criterion is pinned at its floor of 1 -- CLAIM_SCOPE says so explicitly. Read any INV-054 clearance together with its scope string and with claims_determinable_targets to see how many targets carried it."
+    },
+    "monostrategy_confounded_targets": [],
+    "monostrategy_caveat": "REPORT-ONLY (GFLAG-0487/0489). A target listed in monostrategy_confounded_targets had >= 0.88 of its hazard-free ticks in one action class, so its result is confounded by monostrategy collapse INDEPENDENTLY of the contamination gate: a clean-contamination reading there must NOT be taken as dispositive for the claim. This never changes outcome or any criterion. V3-EXQ-883 is excluded by construction (scripted actions).",
+    "fidelity_caveat": "targets re-run on the CURRENT substrate (278/435/231a are April-2026 runs); a determinable target whose STOCK verdict differs from its historical manifest is listed in historical_verdict_not_reproduced for /governance as a substrate-drift finding, not a contamination result",
+    "verdict_tuple_coarseness_caveat": "278, 435 and 231a emit no evidence_direction_per_claim and no interpretation label, so their verdict tuple is effectively (outcome, evidence_direction) -- coarser than the four-field tuple 1080 compared. A verdict-unchanged reading on those three is therefore weaker evidence than the same reading on 883."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "e98e531b6efca515db8808f2393c4ac5fc89617277adac63a3c235e808148cdf",
+  "substrate_commit": {
+    "commit": "f0331054133ab321fcce47db93dab25fcf3d3198",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_resource_proximity_head": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "goal.z_goal_enabled": true,
+    "goal.use_hierarchical_goal_credit": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 49196.377281586,
+  "config": {
+    "targets": [
+      {
+        "key": "278",
+        "queue_id": "V3-EXQ-278",
+        "script": "experiments/v3_exq_278_inv054_depression_recovery_phase_transition.py",
+        "direct_claims": [
+          "INV-054"
+        ],
+        "family_claims": [],
+        "original": {
+          "outcome": "FAIL",
+          "evidence_direction": "does_not_support",
+          "run_id": "v3_exq_278_inv054_depression_recovery_phase_transition_1775764609_v3"
+        },
+        "action_diversity_interpretable": true,
+        "hf_step_budget": 150,
+        "intended_dv_units": 900,
+        "n_target_cells": 3
+      },
+      {
+        "key": "435",
+        "queue_id": "V3-EXQ-435",
+        "script": "experiments/v3_exq_435_inv054_phase_transition_sustained_recovery.py",
+        "direct_claims": [
+          "INV-054"
+        ],
+        "family_claims": [],
+        "original": {
+          "outcome": "FAIL",
+          "evidence_direction": "non_contributory",
+          "run_id": "v3_exq_435_inv054_phase_transition_sustained_recovery_1776660122_v3"
+        },
+        "action_diversity_interpretable": true,
+        "hf_step_budget": 150,
+        "intended_dv_units": 900,
+        "n_target_cells": 3
+      },
+      {
+        "key": "883",
+        "queue_id": "V3-EXQ-883",
+        "script": "experiments/v3_exq_883_mech427_cross_level_subgoal_credit.py",
+        "direct_claims": [
+          "MECH-427"
+        ],
+        "family_claims": [],
+        "original": {
+          "outcome": "PASS",
+          "evidence_direction": "supports",
+          "run_id": "v3_exq_883_mech427_cross_level_subgoal_credit_20260803T022051Z_v3"
+        },
+        "action_diversity_interpretable": false,
+        "hf_step_budget": 40,
+        "intended_dv_units": 6,
+        "n_target_cells": 6
+      },
+      {
+        "key": "231a",
+        "queue_id": "V3-EXQ-231a",
+        "script": "experiments/v3_exq_231a_mech106_bg_hysteresis_redesign.py",
+        "direct_claims": [
+          "MECH-106"
+        ],
+        "family_claims": [],
+        "original": {
+          "outcome": "PASS",
+          "evidence_direction": "supports",
+          "run_id": "v3_exq_231a_mech106_bg_hysteresis_redesign_20260404T231335Z_v3"
+        },
+        "action_diversity_interpretable": true,
+        "hf_step_budget": 200,
+        "intended_dv_units": 200,
+        "n_target_cells": 5
+      }
+    ],
+    "arms": [
+      "ARM_STOCK",
+      "ARM_OPTOUT"
+    ],
+    "material_death_frac": 0.1,
+    "min_answerable_claims": 2,
+    "audited_claim_ids": [
+      "INV-054",
+      "MECH-106",
+      "MECH-427"
+    ],
+    "monostrategy_modal_share": 0.88,
+    "control": {
+      "episodes": 20,
+      "steps": 150,
+      "stock_floor": 0.5,
+      "gated_ceiling": 0.0,
+      "geometry": "278/435 LOW_HARM (size 8, 1 resource, 0 hazards)"
+    }
+  },
+  "seeds": [
+    0
+  ],
+  "z_goal_stream": {
+    "ticks_total": 393,
+    "ticks_active": 0,
+    "writer_calls": 358609,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 34,
+    "goal_state_present": true
+  }
+}
