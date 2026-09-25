@@ -1,0 +1,11 @@
+# Kean et al. (2026) -- The language of thought is not natural language
+
+**What they did.** This is the MIT paper ARC-114 already cites as provenance ("Separating Logic and Language"), now pulled in as evidence. Kean, Fedorenko and colleagues used two methods together. First, fMRI in healthy adults with individually localised language and multiple-demand (MD) networks while they did inductive and deductive logic problems. Second, behavioural testing of people with extensive lesions to the language areas and severe aphasia on the same kinds of problem.
+
+**What they found.** The language network did not engage during logical reasoning. Inductive reasoning recruited the domain-general MD network. Deductive reasoning drew on regions distinct from both the language network and the MD network. The patients with severe aphasia, who can barely parse a sentence, performed the logic tasks intactly. The authors conclude that linguistic representations are neither used nor needed for inductive or deductive logic.
+
+**What it means for ARC-114.** ARC-114 is a positioning claim. Its notes admit that the objection "LLMs reason, so language suffices" had no registered answer. This paper supplies the empirical half of one: in the only system we know reasons in the full sense, the reasoning machinery is not the language machinery. Language and logic doubly dissociate across imaging and lesion evidence. If language were the native substrate of reasoning, global aphasia should take logic down with it. It does not.
+
+**What it does not do.** It does not touch the compensation leg, which ARC-114's own notes call the testable part. That leg predicts that a weakened non-linguistic reasoning stage should lean more on linguistic scaffolding, not just perform worse. A dissociation study cannot show that. The task set is also narrow. Formal logic is not long-horizon planning, rule apprehension or explanation, and those are the functions ARC-114 assigns to language as an interface. It is also a 2026 paper without independent replication yet.
+
+**Confidence.** 0.78: high source quality and direct mapping for the "not the substrate" half, discounted because the "interface/compensator" half is left untouched.

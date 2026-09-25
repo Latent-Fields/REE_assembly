@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_115",
+  "entry_id": "2026-09-25_arc_115_social_info_reliability_weighted_confidence_demartino2017",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-115"
+  ],
+  "source": {
+    "title": "Social Information Is Integrated into Value and Confidence Judgments According to Its Reliability",
+    "authors": [
+      "De Martino, Benedetto",
+      "Bobadilla-Suarez, Sebastian",
+      "Nouguchi, Takao",
+      "Sharot, Tali",
+      "Love, Bradley C."
+    ],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3880-16.2017",
+    "pmid": "28566360",
+    "pmc": "PMC5481942",
+    "volume": "37",
+    "issue": "25",
+    "pages": "6066-6074"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Social information (online reviews) is integrated into BOTH value and confidence in a Bayesian, reliability-weighted way, and dorsomedial PFC tracks the size of the socially driven belief update. Integration into confidence is the collapse ARC-115 warns against, but it is reliability-gated and the update has its own neural signature, which suggests the social contribution stays separable at the computational level even after it is merged into the report. Coded mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Participants updated their confidence judgments using social information, i.e. socially supplied agreement does enter the human confidence readout rather than staying in a separate channel.",
+    "Because the integration is reliability-weighted and Bayes-consistent, a merged accumulator can be normatively correct when the social source is informative; ARC-115 must say why the separate channel is needed even when social evidence is reliable (e.g. to keep provenance for later discounting), or it risks forbidding rational updating."
+  ],
+  "tags": [
+    "arc_115",
+    "confidence",
+    "social_information",
+    "bayesian_integration",
+    "dmpfc",
+    "reliability_weighting"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants updated initial value and confidence judgments in a Bayesian fashion, taking account of both the uncertainty of their initial beliefs and the reliability of the social information; dorsomedial prefrontal cortex activity tracked the degree of belief update.",
+    "ree_translation": "Relevant to ARC-115 in two ways. (1) The human confidence readout is not socially sealed, so the collapse is real. (2) The dmPFC update signal is a candidate neural analogue of a distinct social-agreement channel whose output is then combined, which is the architecture ARC-115 recommends: keep the social term separately represented, with its own provenance and reliability, before any combination.",
+    "mapping_caveat": "Value judgments of consumer goods are not propositional belief or commit-readiness. The dmPFC signal tracks the update magnitude; that is not proof of a separate accumulator. Reliability-weighted integration is normatively rational, so the paper also questions how strict ARC-115's 'must not enter' should be.",
+    "source_context": "Healthy adults rating consumer goods before and after seeing online reviews of varying mean and dispersion; fMRI with Bayesian model-based analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Solid design and venue. Mapping moderate: value, not propositional confidence. The normative-rationality point is the most important thing it adds to ARC-115."
+  }
+}

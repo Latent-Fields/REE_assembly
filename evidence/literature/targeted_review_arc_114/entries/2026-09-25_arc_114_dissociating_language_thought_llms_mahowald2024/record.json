@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_114",
+  "entry_id": "2026-09-25_arc_114_dissociating_language_thought_llms_mahowald2024",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-114"
+  ],
+  "source": {
+    "title": "Dissociating language and thought in large language models",
+    "authors": [
+      "Mahowald, Kyle",
+      "Ivanova, Anna A.",
+      "Blank, Idan A.",
+      "Kanwisher, Nancy",
+      "Tenenbaum, Joshua B.",
+      "Fedorenko, Evelina"
+    ],
+    "year": 2024,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2024.01.011",
+    "pmid": "38508911",
+    "pmc": "PMC11416727",
+    "volume": "28",
+    "issue": "6",
+    "pages": "517-540"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "The only source in this pull that takes the LLM objection head-on. It separates formal linguistic competence (which LLMs largely have) from functional competence (reasoning, world knowledge, situation modelling, social reasoning), which in humans relies on separate non-language networks, and finds LLM functional competence patchy and often reliant on fine-tuning or external modules. That is ARC-114's point about the LLM case in cognitive-science terms. Discounted because the empirical state of LLMs moves quickly and the review predates later reasoning-model gains.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LLM capabilities have moved fast since early 2024 (chain-of-thought and reasoning-trained models); functional-competence gaps catalogued in the review may have narrowed, so the argument cannot rest on current LLM failures.",
+    "If later LLMs close functional-competence gaps without adding separate modules, this would count against the review's prediction that separate mechanisms are needed, though not directly against ARC-114's claim about the human substrate."
+  ],
+  "tags": [
+    "arc_114",
+    "large_language_models",
+    "formal_vs_functional_competence",
+    "language_and_thought",
+    "review",
+    "llm_objection"
+  ],
+  "mapping": {
+    "source_claim_statement": "LLMs are good at formal linguistic competence but their functional linguistic competence (using language in the world, which in humans relies on non-language networks) is spotty and often requires fine-tuning or external modules; human-like language use likely needs separate mechanisms for the two.",
+    "ree_translation": "Directly supports ARC-114's reply to 'LLMs reason, so language suffices': reasoning-like behaviour from text alone reflects formal competence plus reasoning traces absorbed from language, and where functional reasoning is needed, LLMs need added machinery. In human cognitive science terms, this is the 'language as interface, not substrate' split REE bets on.",
+    "mapping_caveat": "This is about LLMs and human neuroscience, not REE. It shows LLM reasoning is not evidence that language is the substrate; it does not show that REE's non-linguistic substrate will outperform. Findings on LLM competence are time-sensitive.",
+    "source_context": "Trends in Cognitive Sciences review combining human neuroscience (language vs MD vs ToM vs default network dissociations) with a survey of 2020-2023 LLM benchmark behaviour."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.45,
+    "notes": "High mapping to the LLM-objection framing; transfer risk elevated because the LLM half ages quickly."
+  }
+}

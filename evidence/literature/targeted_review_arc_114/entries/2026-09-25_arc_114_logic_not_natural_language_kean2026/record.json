@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_114",
+  "entry_id": "2026-09-25_arc_114_logic_not_natural_language_kean2026",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-114"
+  ],
+  "source": {
+    "title": "Evidence from formal logical reasoning reveals that the language of thought is not natural language",
+    "authors": [
+      "Kean, Hope",
+      "Fung, Alexander",
+      "Jaggers, Paris",
+      "Chen, Jason",
+      "Rule, Joshua S.",
+      "Benn, Yael",
+      "Tenenbaum, Joshua B.",
+      "Piantadosi, Steven T.",
+      "Varley, Rosemary A.",
+      "Fedorenko, Evelina"
+    ],
+    "year": 2026,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.2520095123",
+    "pmid": "42406951",
+    "pmc": "PMC13367833",
+    "volume": "123",
+    "issue": "28",
+    "pages": "e2520095123"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct double-method test (fMRI in healthy adults plus behavioural testing of patients with severe aphasia) of whether logical reasoning uses linguistic representations. The language network is not engaged during inductive or deductive reasoning, and severe aphasia leaves logic performance intact. This is the external anchor ARC-114 names (MIT BCS, logic/language separation). It carries the NEGATIVE half of the claim (language is not the native substrate of reasoning) well. It says nothing about the compensation leg.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The result is confined to formal inductive and deductive logic tasks; it does not show that long-horizon planning, explanation or rule apprehension are language-independent, which are the functions ARC-114 assigns to language as an interface.",
+    "Intact logic in aphasia is a dissociation, not a compensation measure: it cannot test ARC-114's directional prediction that a weakened non-linguistic stage increases reliance on linguistic scaffolding."
+  ],
+  "tags": [
+    "arc_114",
+    "language_and_thought",
+    "logical_reasoning",
+    "aphasia",
+    "multiple_demand_network",
+    "fmri",
+    "external_anchor"
+  ],
+  "mapping": {
+    "source_claim_statement": "The language brain network is not engaged during logical reasoning, and patients with severe aphasia perform logic tasks intactly; inductive reasoning recruits the domain-general multiple demand network while deductive reasoning uses regions distinct from both language and MD networks. Linguistic representations are neither used nor required for inductive or deductive logical reasoning.",
+    "ree_translation": "Supports ARC-114's core assertion that reasoning has a non-linguistic native substrate, which is REE's bet (E1/E2/E3 over z_world, with no language stream). It gives a registered, empirical answer to the objection that LLM reasoning shows language suffices: in the one system known to reason, the reasoning machinery sits outside the language machinery.",
+    "mapping_caveat": "Human cortex is not REE: showing that human logic does not route through the language network does not show that REE's substrate is the right non-linguistic one. The task set is formal logic; ARC-114's interface functions (compression, coordination, long-horizon scaffolding, explanation) are untested here. The paper is a 2026 publication and has not yet accumulated independent replication.",
+    "source_context": "Healthy human adults (fMRI, individual-subject functional localisation of language and MD networks) plus behavioural testing of individuals with extensive left-hemisphere language-area lesions and severe aphasia."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "Converging fMRI + lesion design in PNAS from the lab that established the language network localiser. Mapping high for the substrate leg, absent for the compensation leg, hence 0.78 rather than higher."
+  }
+}

@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-09-25T04:02:21.015619Z`
+Generated: `2026-09-25T06:14:21.657611Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -71,6 +71,8 @@ Generated: `2026-09-25T04:02:21.015619Z`
 | `targeted_review_arc_104` | [`2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026`](targeted_review_arc_104/entries/2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026/record.json) | 6 | [`summary`](targeted_review_arc_104/entries/2026-09-20_arc_104_verbal_vs_conditioned_placebo_spisak2026/summary.md) |
 | `targeted_review_arc_112` | [`2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/record.json) | 3 | [`summary`](targeted_review_arc_112/entries/2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015/summary.md) |
 | `targeted_review_arc_113` | [`2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/record.json) | 5 | [`summary`](targeted_review_arc_113/entries/2026-09-02_arc_113_stage_isolation_bottleneck_induction_zhu2026/summary.md) |
+| `targeted_review_arc_114` | [`2026-09-25_arc_114_logic_not_natural_language_kean2026`](targeted_review_arc_114/entries/2026-09-25_arc_114_logic_not_natural_language_kean2026/record.json) | 4 | [`summary`](targeted_review_arc_114/entries/2026-09-25_arc_114_logic_not_natural_language_kean2026/summary.md) |
+| `targeted_review_arc_115` | [`2026-09-25_arc_115_social_info_reliability_weighted_confidence_demartino2017`](targeted_review_arc_115/entries/2026-09-25_arc_115_social_info_reliability_weighted_confidence_demartino2017/record.json) | 4 | [`summary`](targeted_review_arc_115/entries/2026-09-25_arc_115_social_info_reliability_weighted_confidence_demartino2017/summary.md) |
 | `targeted_review_arc_120` | [`2026-09-02_arc_120_uncertainty_arbitration_daw2005`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/record.json) | 5 | [`summary`](targeted_review_arc_120/entries/2026-09-02_arc_120_uncertainty_arbitration_daw2005/summary.md) |
 | `targeted_review_arc_121` | [`2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007`](targeted_review_arc_121/entries/2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007/record.json) | 9 | [`summary`](targeted_review_arc_121/entries/2026-09-04_arc_121_vmpfc_lesion_moral_judgment_koenigs2007/summary.md) |
 | `targeted_review_arc_122` | [`2026-09-24_arc_122_sensitive_periods_institutional_rearing_review_zeanah2011`](targeted_review_arc_122/entries/2026-09-24_arc_122_sensitive_periods_institutional_rearing_review_zeanah2011/record.json) | 5 | [`summary`](targeted_review_arc_122/entries/2026-09-24_arc_122_sensitive_periods_institutional_rearing_review_zeanah2011/summary.md) |

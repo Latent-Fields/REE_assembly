@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_115",
+  "entry_id": "2026-09-25_arc_115_amygdala_hippocampus_persistent_memory_conformity_edelson2011",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-115"
+  ],
+  "source": {
+    "title": "Following the crowd: brain substrates of long-term memory conformity",
+    "authors": [
+      "Edelson, Micah",
+      "Sharot, Tali",
+      "Dolan, Raymond J.",
+      "Dudai, Yadin"
+    ],
+    "year": 2011,
+    "venue": "Science",
+    "doi": "10.1126/science.1203557",
+    "pmid": "21719681",
+    "pmc": "PMC3284232",
+    "volume": "333",
+    "issue": "6038",
+    "pages": "108-111"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Shows that socially induced memory errors come in two kinds, temporary (public compliance, reversed when the social source is revealed as unreliable) and long-lasting (the internal memory itself rewritten), with a separate neural signature (enhanced amygdala activity and amygdala-hippocampal coupling) predicting only the long-lasting kind. So social agreement can stay in a separable, retractable channel OR cross into internal representation, and the crossing is neurally marked. That is ARC-115's distinction and its failure mode. Discounted for mapping: memory, not confidence readouts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Participants conformed to erroneous group recollections even when their initial memory was strong and accurate, showing socially supplied content can overwrite internally derived content.",
+    "The dissociation is between two outcomes (transient vs persistent error), not between two concurrently live readout channels, so it bears on ARC-115's cost claim more directly than on its channel architecture."
+  ],
+  "tags": [
+    "arc_115",
+    "memory_conformity",
+    "amygdala",
+    "hippocampus",
+    "social_influence",
+    "provenance_loss"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants conformed to erroneous recollections of a group, producing both temporary and long-lasting memory errors even when their original memory was strong and accurate; enhanced amygdala activity and amygdala-hippocampus connectivity predicted the long-lasting but not the temporary alterations.",
+    "ree_translation": "Temporary conformity is social agreement held in a separate, retractable channel (it disappears once the source is discredited); persistent conformity is social agreement that has entered the internal store and lost its provenance. ARC-115 says an agent must be built so that the first stays the norm. The paper shows both routes exist in humans and that the crossing has a distinct neural signature: a biological precedent for keeping the channels distinguishable.",
+    "mapping_caveat": "Episodic memory for a film, not confidence readouts or commit-readiness. The amygdala finding points to an affective gate on when social content is internalised, which links to MECH-192 (z_beta leakage) more than to propositional confidence. Separate channels are inferred from separable outcomes, not observed as parallel readouts.",
+    "source_context": "Healthy adults watched a documentary, then answered memory questions after seeing manipulated answers from co-viewers; fMRI during the social manipulation; retest after the manipulation was revealed."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Science, strong design with a reveal-and-retest dissociation. Mapping moderate-low (memory not confidence), which keeps confidence near 0.55."
+  }
+}

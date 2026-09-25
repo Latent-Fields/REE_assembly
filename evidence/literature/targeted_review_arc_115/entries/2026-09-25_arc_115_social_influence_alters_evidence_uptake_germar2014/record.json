@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_115",
+  "entry_id": "2026-09-25_arc_115_social_influence_alters_evidence_uptake_germar2014",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-115"
+  ],
+  "source": {
+    "title": "Social influence and perceptual decision making: a diffusion model analysis",
+    "authors": [
+      "Germar, Markus",
+      "Schlemmer, Alexander",
+      "Krug, Kristine",
+      "Voss, Andreas",
+      "Mojzisch, Andreas"
+    ],
+    "year": 2014,
+    "venue": "Personality and Social Psychology Bulletin",
+    "doi": "10.1177/0146167213508985",
+    "pmid": "24154917",
+    "volume": "40",
+    "issue": "2",
+    "pages": "217-231"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Diffusion-model decomposition of majority influence on a perceptual task: social information shifts the drift rate (uptake of sensory evidence), not the decision criterion. In accumulator terms, in humans the socially supplied signal enters the SAME evidence accumulator as the percept, which is exactly the collapse ARC-115 says an architecture must not have. So it weakens any reading of ARC-115 as a description of biology, while supporting ARC-115's predicted cost (being told becomes indistinguishable from seeing). Coded mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Social influence altered the drift rate (evidence uptake) rather than the decision threshold, i.e. in humans socially supplied agreement enters the same accumulator as perceptual evidence; biology does not implement the separation ARC-115 requires.",
+    "If the collapse is the normal human design, ARC-115 must be framed as a normative architectural constraint (and a candidate account of conformity pathology) rather than a claim about how brains are built."
+  ],
+  "tags": [
+    "arc_115",
+    "social_conformity",
+    "drift_diffusion",
+    "evidence_accumulation",
+    "perceptual_decision",
+    "collapse_observed"
+  ],
+  "mapping": {
+    "source_claim_statement": "In two experiments, diffusion-model analysis showed social influence on perceptual decisions alters the uptake of available sensory evidence (drift rate), while participants did not adjust their decision criteria.",
+    "ree_translation": "In REE terms, a social-assertion signal feeding the same accumulator that integrates E1/E2 evidence toward commit. That is the collapsed control condition in ARC-115's falsifier, and here it is shown in humans, together with the behavioural consequence (conformity in simple perception).",
+    "mapping_caveat": "Drift-rate change is a model-level inference from RT distributions; it does not prove a single neural accumulator. The task is perceptual, not propositional, and measures choice, not confidence readouts. ARC-115 is about an artificial agent's architecture; a biological collapse is evidence about the cost of collapse, not against the design recommendation.",
+    "source_context": "Healthy adults, colour-judgment perceptual task with majority-opinion cues; hierarchical diffusion modelling of RT and accuracy."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Replicated by the same group (Germar 2016 SCAN with ERPs; Germar 2023 Cognition; Duderstadt 2024). Mapping moderate: choice not confidence, perceptual not propositional."
+  }
+}

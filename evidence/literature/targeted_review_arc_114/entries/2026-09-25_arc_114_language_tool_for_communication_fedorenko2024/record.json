@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_114",
+  "entry_id": "2026-09-25_arc_114_language_tool_for_communication_fedorenko2024",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-114"
+  ],
+  "source": {
+    "title": "Language is primarily a tool for communication rather than thought",
+    "authors": [
+      "Fedorenko, Evelina",
+      "Piantadosi, Steven T.",
+      "Gibson, Edward A. F."
+    ],
+    "year": 2024,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-024-07522-w",
+    "pmid": "38898296",
+    "volume": "630",
+    "issue": "8017",
+    "pages": "575-586"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High-profile Nature Perspective synthesising the double-dissociation evidence (aphasia with preserved thought; thought tasks that do not engage the language network) and arguing that language is optimised for communication. It matches ARC-114's substrate/interface split closely. Discounted because it is an argued perspective, not new data, and because its 'primarily communication' framing is narrower than ARC-114's interface list (it plays down the working-memory and scaffolding roles ARC-114 keeps).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review argues language is 'primarily' for communication and plays down its role in thought; ARC-114 keeps scaffolding, working-memory support and compensation roles, so the paper supports the negative half of ARC-114 more strongly than the positive interface list.",
+    "Perspective pieces select evidence; critics (e.g. inner-speech and Vygotskian accounts) argue the double dissociation is incomplete for complex, multi-step reasoning."
+  ],
+  "tags": [
+    "arc_114",
+    "language_and_thought",
+    "double_dissociation",
+    "communication",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "In modern humans language is a tool for communication, not a prerequisite for complex thought including symbolic thought; evidence from a double dissociation between language and thought and from properties of language that look optimised for communication. Language transmits cultural knowledge and reflects, rather than gives rise to, the sophistication of human cognition.",
+    "ree_translation": "Supports ARC-114's statement that language is an INTERFACE (compression, communication, coordination) sitting on a non-linguistic reasoning substrate. In REE terms, a future language stream would be an I/O and coordination layer over E1/E2/E3, not the place where inference happens.",
+    "mapping_caveat": "The paper argues language is 'primarily' communicative; ARC-114 also claims language is a working-memory aid and long-horizon scaffold that can compensate for weak reasoning. Those roles are compatible with the paper but not defended by it. It is a perspective, not a primary study, so its weight is argumentative.",
+    "source_context": "Nature Perspective reviewing human neuroimaging (language network localiser), aphasia and developmental evidence, and linguistic-typology/information-theoretic arguments."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Venue high, but a perspective. Mapping good for the substrate half; partial for the interface/compensation half."
+  }
+}

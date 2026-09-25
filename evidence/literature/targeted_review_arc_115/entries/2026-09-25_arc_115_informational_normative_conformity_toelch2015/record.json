@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_115",
+  "entry_id": "2026-09-25_arc_115_informational_normative_conformity_toelch2015",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-115"
+  ],
+  "source": {
+    "title": "Informational and Normative Influences in Conformity from a Neurocomputational Perspective",
+    "authors": [
+      "Toelch, Ulf",
+      "Dolan, Raymond J."
+    ],
+    "year": 2015,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2015.07.007",
+    "pmid": "26412096",
+    "volume": "19",
+    "issue": "10",
+    "pages": "579-589"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Review arguing that conformity has two distinct drivers, informational (others' choices as evidence, which helps accuracy) and normative (bias toward social acceptance), that should be modelled separately within perceptual and value-based decision frameworks, and that the neuroscience literature has so far FAILED to segregate them. That matches ARC-115's non-collapse stance, and its complaint about the field is ARC-115's complaint about scalar confidence. Moderate confidence: theory, not data, and its split (informational vs normative) is a different cut from ARC-115's (internal vs socially supplied).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes the neurobiological literature has largely failed to segregate informational from normative influences, so the empirical basis for separate channels is thin; ARC-115 cannot yet cite a clean neural double dissociation.",
+    "An informational account predicts a surprising tendency to conform even for a rational agent, so some social-agreement effect on internal confidence is expected under normative Bayesian inference and does not by itself show a collapsed architecture."
+  ],
+  "tags": [
+    "arc_115",
+    "conformity",
+    "informational_influence",
+    "normative_influence",
+    "decision_models",
+    "review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Conformity is driven by two distinct influences: informational influences that support accurate responses and normative influences that bias decisions toward social acceptance. Both can be expressed within perceptual and value-based decision models, and existing neurobiological work has failed to segregate them.",
+    "ree_translation": "Supports ARC-115's non-collapse principle one level down: even inside 'social agreement', informational and normative components are different signals and should not share a scalar. In REE this suggests the future external-assertion channel should itself be at least two-dimensional (evidential content vs acceptance/affiliation pressure), with only the former eligible, reliability-weighted, for combination with internal evidence.",
+    "mapping_caveat": "ARC-115 separates internal from socially supplied confidence; Toelch & Dolan separate two kinds of social influence. The cuts are related but not identical. As a theory review it offers argument and models, not a measured dissociation.",
+    "source_context": "Trends in Cognitive Sciences review applying drift-diffusion and reinforcement-learning decision models to classic conformity paradigms (Asch, Sherif) and surveying fMRI studies of social influence."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Useful framing source; confidence limited by theory-only status and the partial overlap of the two cuts."
+  }
+}

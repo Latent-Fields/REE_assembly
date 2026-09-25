@@ -1,0 +1,11 @@
+# Edelson, Sharot, Dolan & Dudai (2011) -- Following the crowd: brain substrates of long-term memory conformity
+
+**What they did.** Participants watched a documentary. Days later they answered memory questions, first alone and then after seeing (fabricated) answers from fellow viewers, some of them wrong. Later still they were told the co-viewers' answers had been random, and they were tested again. fMRI was acquired during the social manipulation.
+
+**What they found.** People conformed heavily to the group's errors, even on items they had first remembered strongly and correctly. After the reveal, some errors reverted. Those were public compliance, social agreement held apart from the underlying memory. Others persisted, because the memory itself had been rewritten. The two kinds had different neural signatures. Enhanced amygdala activity and stronger amygdala-hippocampal coupling during the manipulation predicted the persistent errors and not the transient ones.
+
+**What it means for ARC-115.** This is the cleanest biological picture in this pull of the distinction ARC-115 draws. There is a state where "they said so" stays labelled and retractable: reveal the source as unreliable and the belief snaps back. There is also a state where it has crossed into "I remember it" and lost its provenance. ARC-115's worry, being told becoming indistinguishable from having found, is precisely the second state. The paper shows both states exist, that the transition is neurally marked, and that it can overwrite a strong, accurate internal trace. For an agent designer that is a strong argument for keeping the channels distinguishable. Humans manage it only some of the time, and the failures are durable.
+
+**Caveats.** This is episodic memory, not confidence readouts or readiness to commit. The two "channels" are inferred from two outcomes, not measured as concurrent readouts. The amygdala finding suggests that whether social content gets internalised is gated affectively. In REE that points at MECH-192 (z_beta leakage, which ARC-115's notes already name as the nearest live analogue) more than at propositional confidence. That is a useful cross-link for whoever eventually designs the substrate.
+
+**Confidence.** 0.55, supportive: a strong source with an elegant reveal design, discounted for the memory-vs-confidence mapping gap.

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_114",
+  "entry_id": "2026-09-25_arc_114_language_impairment_impairs_reasoning_baldo2015",
+  "timestamp_utc": "2026-09-25T06:11:13Z",
+  "claim_ids_tested": [
+    "ARC-114"
+  ],
+  "source": {
+    "title": "Impaired reasoning and problem-solving in individuals with language impairment due to aphasia or language delay",
+    "authors": [
+      "Baldo, Juliana V.",
+      "Paulraj, Selvi R.",
+      "Curran, Brian C.",
+      "Dronkers, Nina F."
+    ],
+    "year": 2015,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2015.01523",
+    "pmid": "26578991",
+    "pmc": "PMC4620683",
+    "volume": "6",
+    "pages": "1523"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "The main counterweight in this pull. In a large aphasia cohort and in the language-deprived adult 'Chelsea', core language impairment tracks impairment on complex reasoning (WCST, Raven's, WAIS Picture Arrangement) but not on simpler visuospatial tasks. The authors read this as language SUPPORTING complex reasoning via verbal working memory and inner speech. That is compatible with ARC-114's scaffolding/working-memory interface role but in tension with a strong 'reasoning is language-independent' reading, and it sits awkwardly beside Kean 2026's intact logic in severe aphasia. Coded mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Severity of core language deficit correlates with impaired performance on WCST and Raven's Matrices in aphasia, so some complex reasoning degrades when language is lost; a strict 'language is only an interface' reading must explain this as loss of scaffolding rather than loss of substrate.",
+    "Lesion co-localisation is a confound: large left-hemisphere lesions that cause severe aphasia also damage adjacent frontoparietal regions, so the language-reasoning correlation may be anatomical rather than functional.",
+    "The data show worse performance, not increased reliance on language under weakness, so they do not test ARC-114's directional compensation prediction either way."
+  ],
+  "tags": [
+    "arc_114",
+    "aphasia",
+    "inner_speech",
+    "verbal_working_memory",
+    "problem_solving",
+    "language_deprivation",
+    "counterevidence"
+  ],
+  "mapping": {
+    "source_claim_statement": "In individuals with aphasia, the severity of core language impairment is associated with impairment on complex reasoning tasks (WCST, Raven's) and on WAIS Picture Arrangement but not Picture Completion; a language-deprived adult performed well visuospatially but was disproportionately impaired on reasoning tasks. Language appears to support complex reasoning, possibly through verbal working memory and inner speech.",
+    "ree_translation": "Maps onto ARC-114's interface functions of working-memory support and long-horizon scaffolding: removing language hurts multi-step reasoning even if the reasoning machinery is non-linguistic. The pattern (simple visuospatial intact, sequential/multi-step reasoning impaired) is what a scaffold account predicts, and is a boundary on how strongly ARC-114 can say reasoning is language-independent.",
+    "mapping_caveat": "Correlational lesion data with a strong anatomical confound. The same data are also compatible with language being part of the substrate for some reasoning, which ARC-114 denies. Chelsea is a single case with many other developmental differences. Kean 2026 finds intact formal logic in severe aphasia, so task type (formal logic vs set-shifting/sequencing) may be what separates the findings.",
+    "source_context": "Large cohort of stroke patients with aphasia (WAIS subtests, WCST) and a single case of an adult with congenital hearing loss and minimal language exposure until age 32."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Moderate venue and correlational design. Kept at 0.5 because it is the key boundary condition: it shows what the interface/scaffold role costs when it is lost."
+  }
+}

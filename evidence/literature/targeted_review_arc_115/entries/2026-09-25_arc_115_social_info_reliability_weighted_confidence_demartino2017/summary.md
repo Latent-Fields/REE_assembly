@@ -1,0 +1,11 @@
+# De Martino et al. (2017) -- Social information is integrated into value and confidence according to its reliability
+
+**What they did.** Participants rated how much they valued consumer goods, and how confident they were, before and after seeing online reviews. The reviews varied in mean and in spread, so the social evidence had measurable reliability. A Bayesian model predicted how much each person should update, and fMRI looked for neural correlates of the update.
+
+**What they found.** People updated both value and confidence in a roughly Bayes-optimal way. They moved more when their own prior was uncertain and when the reviews were consistent. Dorsomedial prefrontal cortex tracked the size of the socially driven update. The authors draw an analogy with cue integration in perception: the brain weights social evidence by its reliability, as it weights sensory cues.
+
+**What it means for ARC-115.** First, the unwelcome part. Socially supplied agreement plainly enters the human confidence readout. People are more confident after others agree, so the collapse ARC-115 forbids is ordinary human behaviour. Second, the subtler part. The update has its own neural signature, and it is gated by reliability rather than dumped in. At the computational level the social term stays identifiable before it is combined. That is close to what ARC-115 actually needs: not that social evidence is ignored, but that it keeps its provenance, so a system can tell "I found this" from "I was told this" when later deciding what to discount.
+
+**The challenge it raises.** If the social source is reliable, merging it into confidence is simply good inference. A strict reading of ARC-115 ("must not enter the same accumulator") would forbid rational updating. The claim is stronger if restated as a *provenance-preservation* constraint: separate channels upstream, combination permitted downstream, with the social contribution still recoverable. That is also what makes ARC-115's falsifier (distinguishable readout profiles for assertion-only and evidence-only manipulations) the right test. This is worth a note for governance.
+
+**Confidence.** 0.52, mixed: it supports provenance-preserving separation and undercuts a strict no-merge reading.
