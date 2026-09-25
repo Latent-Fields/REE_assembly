@@ -7556,6 +7556,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0530",
+      "claim_ids": [
+        "GOV-FAILLOC-1"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "GOV-FAILLOC-1's own promotion precondition (exercised in >=1 real autopsy) is met: 151 autopsy files carry failure_location (2026-08-10 to 2026-09-24). Nobody has recorded whether it ever changed a verdict -- that record is the evidence governance needs.",
+      "raised_by_session": "thought-digest-registry-backlog-20260925",
+      "raised_at": "2026-09-25T10:58:33Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
