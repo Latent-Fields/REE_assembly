@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-25T05:21:26Z",
+  "last_review_utc": "2026-09-25T06:06:12Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1355,7 +1355,8 @@
     "v3_exq_1089_mech268_closure_cadence_mode_register",
     "v3_exq_1085_mech365_provenance_gate_boundary_lesion",
     "v3_exq_1087_mech321_perleaf_harm_discriminability",
-    "v3_exq_1093_mech428_parent_stat_ess_sweep"
+    "v3_exq_1093_mech428_parent_stat_ess_sweep",
+    "v3_exq_1095_mech439_operator_on_conversion_falsifier"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4372,7 +4373,8 @@
     "v3_exq_1089_mech268_closure_cadence_mode_register_20260924T180356Z_v3",
     "v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3",
     "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
-    "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3"
+    "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3",
+    "v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7287,6 +7289,22 @@
           "why": "landed 2026-09-25T04:03Z during this cycle; OUT OF SCOPE for this bounded pass; FAIL with no confirmed autopsy (staging autopsy chip chip-autopsy-v3-exq-1095 open)."
         }
       ]
+    },
+    {
+      "utc": "2026-09-25T06:06:12Z",
+      "session": "governance-20260925-0548",
+      "cycle": "governance 2026-09-25 AM (after fa-1095-20260925 autopsy)",
+      "runs_reviewed": [
+        "v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3"
+      ],
+      "skim_outcome": "No evidence PASS this cycle, so no driver skim owed. V3-EXQ-1095 is an evidence FAIL (manifest non_degenerate=false, scoring_excluded degenerate) covered by confirmed failure_autopsy_V3-EXQ-1095_2026-09-25 (dry_run_checked true; dry-run check clean).",
+      "dispositions": {
+        "V3-EXQ-1095": "non_contributory/standard (MECH-439); autopsy applied (flat + pack manifests, EQN, live_status citation); MECH-439 what_would_answer ADDENDUM (operator-ON restatement + DV-conditional control set); GFLAG-0471 + GFLAG-0480 resolved"
+      },
+      "commits": [
+        "REE_assembly d0c144e89a (regen)"
+      ],
+      "still_pending": []
     }
   ]
 }
