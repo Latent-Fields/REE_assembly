@@ -399,3 +399,14 @@ Decision log entries are appended below, newest last.
 ### Decision log
 
 - 2026-09-25T10:31Z: plan v1 written (bt0925-campaignplan). Implements Q2, Q4a-d, 7b-7d and Q1 as recorded in the synthesis. P2 corrected: C1 was not on origin/main at `276d9a51a9`.
+
+## User decisions on this plan (2026-09-25T10:41:23Z; answered live in orchestrate-20260924-breakthrough)
+
+| Plan question | User decision | Ledger |
+|---|---|---|
+| Env tie-break flag in the acceptance runs | **ON in every arm**, so benefit reward is attainable and the acceptance test can detect benefit-seeking, not only harm avoidance | rec-20260925-b4355023 |
+| If the whole-codec repair cannot meet its gates | **Pursue BOTH action-space proposals and the codec repair in parallel, and let the evidence decide** (the user's own wording). The proposal workstream therefore carries two arms with a pre-registered head-to-head against the same acceptance criterion; neither is a fallback. | rec-20260925-6a675285 |
+| If V3-EXQ-1105a fails validation | **Run the acceptance without grounded valuation**, recording that any reward gain is uncalibrated. The grounding-shuffled control still guards against spurious gains. | rec-20260925-805f605c |
+| Draft acceptance numbers (5 trapped + 5 benign seeds; margins 2x SD of NATIVE-vs-reseeded-NATIVE deltas with absolute floors; 3,000 closed-loop steps per arm) | **Accepted as drafted.** Lock them into the pre-registration when the acceptance run is designed; the /queue-experiment smoke re-measures cost first. | rec-20260925-7e7e9825 |
+
+Still open: whether the integrated preset ever goes default-ON after merge. Decide at merge time.
