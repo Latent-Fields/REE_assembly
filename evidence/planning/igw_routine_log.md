@@ -3680,3 +3680,7 @@ One line per hourly tick. ASCII only.
 2026-09-25T11:10:45Z workset committed (regen -- 254 items, 29 ready, 0 in flight)
 2026-09-25T11:05:39Z SPAWN IGW-20260925-240 skill=/lit-pull prio=40 uuid=5e2871ed-7585-4246-975a-522e3c3d202d pid=71067 worktree=igw-240-literature-proposal-for-mech-084
 2026-09-25T11:29:25Z auto-defer igw-240-literature-proposal-for-mech-084 hash=958f1c201af4 for 48h (complete)
+2026-09-25T12:23:09Z GC removed worktree igw-240-literature-proposal-for-mech-084 (removed; branch deleted)
+2026-09-25T12:20:34Z GC sweep removed 1 orphan worktree(s), kept 23
+2026-09-25T12:24:34Z workset published via the coordinator (no local commit; verified on origin/master 774661bb43) (regen -- 257 items, 32 ready, 0 in flight)
+2026-09-25T12:24:34Z workset committed (regen -- 257 items, 32 ready, 0 in flight)
