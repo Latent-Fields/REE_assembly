@@ -3703,3 +3703,8 @@ One line per hourly tick. ASCII only.
 2026-09-25T18:56:06Z no eligible item (skipped 258): IGW-20260925-001:skill /governance not allowed; IGW-20260925-003:skill /governance not allowed; IGW-20260925-225:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
 2026-09-25T20:00:03Z SPAWN IGW-20260925-240 skill=/queue-experiment prio=40 uuid=3caf11a1-9393-4759-843c-960cf076fa94 pid=63797 worktree=igw-240-proposal-for-mech-084
 2026-09-25T20:05:49Z auto-defer igw-240-proposal-for-mech-084 hash=f881af718bd3 for 48h (complete)
+2026-09-25T20:06:56Z complete igw-240-proposal-for-mech-084 spawned->completed outcome=USEFUL_LANDED: marked EXP-0825/EVB-1424 (MECH-084) blocked_substrate: no NA->E1/E2 sampling-all
+2026-09-25T21:06:04Z GC removed worktree igw-240-proposal-for-mech-084 (removed; branch deleted)
+2026-09-25T21:04:24Z GC sweep removed 1 orphan worktree(s), kept 25
+2026-09-25T21:06:58Z workset published (regen -- 258 items, 32 ready, 0 in flight)
+2026-09-25T21:06:59Z workset committed (regen -- 258 items, 32 ready, 0 in flight)
