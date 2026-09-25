@@ -7902,6 +7902,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0555",
+      "claim_ids": [
+        "ARC-065"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Default-ON SP-CEM floor tokens (one-hot t=0 + exact-zero t=1..29, hippocampal/module.py:1361-1398 via :1627) rank LAST of 32 in E3 at 85/85 states on 3 seeds in the V3-EXQ-1061 regime, and a majority-class token built the same way is also last. So the loss is construction-driven (off-manifold head and tail), not the order-statistic/imbalance effect that monostrategy_type_a_vs_b_discrimination_20260924.md sec 2.3 records. An on-manifold class-c variant ranks 0/7.5/2.1. SP-CEM 'pool support 2.0 classes' is therefore unselectable by construction. Evidence: evidence/planning/spcem_zero_continuation_check_20260925.md (D2, toy dims 16, no D3).",
+      "raised_by_session": "bt0925-spcem",
+      "raised_at": "2026-09-25T14:40:30Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
