@@ -6632,9 +6632,9 @@
       "summary": "MECH-064 principle-vs-mechanism (chip-20260919-mech064-principle-not-mechanism; lit REE_assembly 94286de2a93, targeted_review_mech_064): Beurer-Kellner 2025 lists six inequivalent patterns that all satisfy MECH-064's authority-separation principle with different guarantees, so the title/prose can be met by the weakest one; Wallace 2024 shows channel-derived ORDERING and its ENFORCEMENT separate (trained ordering = probabilistic prior, not a denial), so 'runtime-enforced' is load-bearing; Zhan 2025 breaks 8 content-derived defences at >50% ASR under adaptive attack while MECH-064 itself has never been adversarially evaluated; and its allowed/forbidden path table (docs/architecture/control_plane_signal_map.md#mech-064) is unchecked prose. Premise re-measured: the current what_would_answer ALREADY names one mechanism family (runtime denial at a typed POL/ID/CAPS store-write boundary, spoofed-label vs trusted-channel manipulation, DV unauthorised durable writes) but the title does not, it has no adaptive-attack clause, and it states the guarantee as absolute. RECOMMENDATION (A): narrow MECH-064 IN PLACE, no split -- commit the title to runtime provenance-keyed denial at the store-write boundary (capability-propagation family, CaMeL-shaped), keep 'runtime-enforced' explicit, restate the guarantee as conditional on the boundary enumeration being correct, add an adaptive-attack falsifier (attacker optimises against the deployed gate; any unauthorised durable write falsifies) plus an owed competence-cost measurement (reachable behaviours removed), and record that the path table becomes a checked artifact only once the typed stores exist (EXP-0804 blocked_substrate; ree_core has no POL/ID/CAPS vocabulary per V3-EXQ-1052). Alternatives: (B) split into a principle claim and a mechanism claim; (C) leave as-is with the under-specification stated in notes. No status change; no experiment.",
       "raised_by_session": "orch0924-claims-7",
       "raised_at": "2026-09-24T11:15:39Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:33Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-064 narrowed in place per option A (defbca52fd) -- title retitled to runtime provenance-keyed denial at the store-write boundary, conditional on complete boundary enumeration; what_would_answer gains an adaptive-attack falsifier + competence-cost measurement note; notes gains a path-table-is-unchecked-prose-until-typed-stores-exist note. No new claim id minted."
     },
     {
       "flag_id": "GFLAG-0464",
@@ -7287,9 +7287,9 @@
       "summary": "Merge proposal (thought-digestion 2026-09-25, G045): fold SD-045 (action-chunk cache) into the already-built ARC-071/MECH-323/MECH-324 chunk-cache substrate; the OCD/SD-034 residual is genuine new content to carry into ARC-071. Reverse-deps to repoint: MECH-370, MECH-299. Detail: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md (G045).",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:56:59Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:33Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): SD-045 merged into ARC-071 (defbca52fd) -- status retired, lifecycle_stage superseded, superseded_by ARC-071; ARC-071 notes gain the OCD/SD-034 runaway-chunking falsifier residual SD-045 proposed. Reverse-deps MECH-370 (line deleted, ARC-071 already listed) and MECH-299 (SD-045 line replaced by an ARC-071 edge) repointed."
     },
     {
       "flag_id": "GFLAG-0511",
@@ -7301,9 +7301,9 @@
       "summary": "Merge proposal (thought-digestion 2026-09-25, G046): MECH-372 duplicates ARC-087's PA-1 depth-continuum content (ARC-087's what_would_answer already tests it on shared runs); residual developmental-ordering corollary is already owned by MECH-397. Reverse-deps Q-065, MECH-396, MECH-397 already list ARC-087, so repointing is edge deletion only.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:04Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:33Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-372 merged into ARC-087 (defbca52fd) -- ARC-087's 2026-06-14 PA-1 resolution already carries MECH-372's content. Reverse-deps Q-065, MECH-396, MECH-397 all already list ARC-087 independently; the MECH-372 depends_on line deleted from each (pure edge deletion, no new edge)."
     },
     {
       "flag_id": "GFLAG-0512",
@@ -7322,9 +7322,9 @@
       "summary": "Class-level ruling requested (thought-digestion 2026-09-25): the ~25-member implementation_note class carries no falsifiable content (registry/navigation/process docs); 9 were deferred with digestion_notes. Recommend one governance ruling (experiment_gate like the 2026-09-05 C5 decision on IMPL-026/027, a registry_process_note type, or a convention exempting repo.*/docs.*/conflicts.* subjects from the digestion backlog) instead of 25 individual falsifiers.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:09Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:33Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): 8 of the 9 named IMPL claims (IMPL-005/008/013/014/016/017/018/025) stamped experiment_gate.gated=true per the IMPL-026/027 C5 convention (defbca52fd), digestion_note shortened to a one-line pointer on each. IMPL-023 EXCLUDED: it already carries a more specific experiment_gate (stamped 2026-09-23, a different prior cycle) and claims_patch.py's set op refuses to overwrite a multi-line field -- stale premise in the raising flag, not applied; IMPL-023's digestion_note also raises separate unflagged findings (legacy-status trigger, MECH-069 edge) left for a future pass, see W3.other_edits.md #7."
     },
     {
       "flag_id": "GFLAG-0513",
@@ -7402,9 +7402,9 @@
       "summary": "MECH-270's v3 phase label derives from MECH-456 (commit 9573e0342e), an edge that looks like lineage only -- the same kind of phase leak reverted for MECH-147 and MECH-228 on 2026-09-24. Its own notes call it biological grounding; digestion drafted it (c2) out_of_domain with a substrate_conditional REE leg.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:37Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:35Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-270 split per option (c), precedent MECH-365/365a (defbca52fd) -- MECH-270 reverts to implementation_phase v4/phase_provenance assigned, keeps only the biological (ephaptic) content; its in-silico V_s-computation LEG 2 moves to a NEW claim MECH-270a (v3, phase_derived_from MECH-456); MECH-456's depends_on repointed from MECH-270 to MECH-270a. CAVEAT: the MECH-270a block itself cannot be expressed as a claims_patch.py op (no insert-new-claim primitive) -- full YAML text is drafted in W3.other_edits.md #1 for manual insertion; check_claim_phase_consistency.py must be re-run after landing to confirm 0 CONFLICT/ROOT (the new graph should have no v3->v4 edge, MECH-456 v3 -> MECH-270a v3). MECH-270a lists MECH-270 (lineage) and MECH-456 (consumer) under related_claims, not depends_on; check_claim_phase_consistency after the edit: 0 ROOT / 0 CONFLICT / 0 cycles."
     },
     {
       "flag_id": "GFLAG-0519",
@@ -7416,9 +7416,9 @@
       "summary": "GOV-OPACITY-1's drift condition is live: Q-087 names the V3 closure boundary event but no date is recorded anywhere (no V3-closure decision_log entry; no target date since 2026-07-19 slipped). GOV-V4CUT-1 depends on this claim. Also Q-087's 2026-08-01 user decision has no user-actor decision_log row (only the 2026-08-08 governance restatement).",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:35Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): two distinct gaps handled. (1) V3-closure date: left DEFERRED (governance did not declare closure this cycle) -- GOV-OPACITY-1's what_would_answer gains a dated confirmation of the deferred/event-ready-date-not-ready state (defbca52fd). (2) bookkeeping gap: Q-087's original 2026-08-01 decision lacked an actor=user decision_log row (only the 2026-08-08 governance restatement existed) -- a backfill row is drafted in W3.other_edits.md #5, mirroring the existing actor=user row schema exactly; exact intraday timestamp is unrecoverable and the draft uses a date-only 00:00:00Z placeholder, flagged for correction if the real time is found."
     },
     {
       "flag_id": "GFLAG-0520",
@@ -7430,9 +7430,9 @@
       "summary": "Direct premise tension: taken literally, MECH-410's scale-other-weight-down-on-low-confidence is the dehumanisation channel EXT-009 describes. The digestion draft reads MECH-410's confidence as confidence about the other's wants/fears (not mind-status) and adds a care floor; governance should ratify or reject that reading.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:46Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:33Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-410's adopted reading ratified (defbca52fd) -- 'READING ADOPTED (pending governance...)' changed to 'READING RATIFIED 2026-09-25 (governance-20260925, GFLAG-0520)'. Option (a); EXT-009's failure mode was already self-named as MECH-410's own falsifier (3), unchanged."
     },
     {
       "flag_id": "GFLAG-0521",
@@ -7540,9 +7540,9 @@
       "summary": "ARC-095 was registered substrate_conditional / v3_pending / v5, but its content is a registry-openness commitment checkable now by doc/code audit (the Extension Register was already extended additively 2026-06-05). User approved changing epistemic_category to derivational in thought-digestion 2026-09-25; governance should confirm the phase fields.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:24Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:34Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): ARC-095 reclassified implementation_phase v5 -> v3 for the register-openness AUDIT, version_relevance set to v3_v4_v5 (defbca52fd) -- the audit is answerable now by doc/code inspection and already carries partial CONFIRMING evidence (2026-06-05 Extension Register addition); a notes append states the taxonomy's fast-empathy USE stays v5-scoped, DO NOT build in V3. epistemic_category: derivational was already applied 2026-09-25 (REE_assembly d95f7e37be4), unchanged here."
     },
     {
       "flag_id": "GFLAG-0529",
@@ -7566,9 +7566,9 @@
       "summary": "GOV-FAILLOC-1's own promotion precondition (exercised in >=1 real autopsy) is met: 151 autopsy files carry failure_location (2026-08-10 to 2026-09-24). Nobody has recorded whether it ever changed a verdict -- that record is the evidence governance needs.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:36Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): GOV-FAILLOC-1 status HELD at candidate. A notes append confirms the exercise-count precondition is met (151 failure_autopsy_*.json files carry failure_location as of 2026-09-25, 2026-08-10 through 2026-09-24) (defbca52fd); the 'record whether it changed anything' half stays undone. Chip to be spawned: sample a subset of the 151 autopsies for a verdict-change record before any promotion is reconsidered."
     },
     {
       "flag_id": "GFLAG-0531",
@@ -7634,9 +7634,9 @@
       "summary": "MECH-224 has a V3-testable output-shape leg (harm_eval multimodality; proposal minted 2026-09-25) and a V4 behavioural-strategy leg with no substrate; recommend splitting into a v3-scoped and a v4-scoped claim rather than carrying one implementation_phase (v4) for both.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:56Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:34Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-224 split question DEFERRED until EXP-1407's result, recorded via a notes append (defbca52fd) -- the queue-experiment ask is already chipped (chip-20260925-queue-exp1407-mech224, open, unclaimed), no duplicate chip spawned."
     },
     {
       "flag_id": "GFLAG-0536",
@@ -7661,9 +7661,9 @@
       "summary": "Composition gap: GOV-V3FREEZE-1's 'substantial V4 expansion' threshold is undefined. Proposal: make it the earlier of the GOV-V4CUT-1 cutover-review entry or the first V4 capability-code commit, with that review also recording the Q-087 V3-closure decision. GOV-UMPIRE-1's detector landed c87c2e56817 (2026-09-01) but is not wired into governance.sh.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:59:08Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:35Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): GOV-V3FREEZE-1's 'substantial V4 expansion' leg threshold ADOPTED VERBATIM -- 'the earlier of the GOV-V4CUT-1 cutover-review entry or the first commit of V4-labelled capability code', leg marked definition_ready via a what_would_answer replace (defbca52fd). Both legs (V3-closure via Q-087, V4-expansion via this threshold) are now definition_ready. GOV-UMPIRE-1's governance.sh wiring gap (detector built 2026-09-01, c87c2e56817, never wired in, not re-run since) is confirmed still open and separately named as a chip target (chip to be spawned: wire GOV-UMPIRE-1's detector, scripts/generate_canonical_readiness.py, into scripts/governance.sh with escalate-on-transition-only semantics, and re-run against current-corpus state) -- per the OPS_BRIEF's own routing note, spawned by the orchestrator."
     },
     {
       "flag_id": "GFLAG-0538",
@@ -7675,9 +7675,9 @@
       "summary": "IMPL-022 is status legacy / lifecycle_stage retired ('Historical interoperability contract only'), but REE_assembly af29d2a2d80 (2026-09-08) added a LIVE required metric (latent_uncertainty_horizon_dissipation_rate) and a required uncertainty non-dissipation check to docs/architecture/jepa_e1e2_integration_contract.md (whose header still says Status: stable), so a retired contract is the only home of that requirement; no ree-v3 code references it and the SD-063 producer cross-reference recommended by the user-approved v3-closure digestion was never added to SD-063's notes. Governance to choose: re-home the metric/check beside its producer (SD-063 / MECH-510), or record that a legacy contract may carry live required checks and fix the doc header.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:08:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:35Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): both halves applied (option c) -- SD-063's what_would_answer gains a cross-reference to the latent_uncertainty_horizon_dissipation_rate metric/check in jepa_e1e2_integration_contract.md, noting zero current ree-v3 consumers (defbca52fd); the contract doc's own header Status line changes from 'stable' to 'legacy-with-live-requirement' (non-claims.yaml edit, drafted in W3.other_edits.md #2)."
     },
     {
       "flag_id": "GFLAG-0539",
@@ -7701,9 +7701,9 @@
       "summary": "ROUTING confirmation, not a promotion (same shape as GFLAG-0129 for sibling ARC-137): MECH-533 (developmental co-maturation of offline scheduling and offline competence) was registered 2026-09-03 at implementation_phase v4 / version_relevance v3_v4 with 'flagged for governance' in its notes and source intake, but no flag was ever raised. Frequency axis is manipulable in V3 (K-cadence); competence axis is not (no replay-fidelity knob; SD-016 write path unvalidated). Governance to confirm the v4 park or re-route.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:08:54Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:34Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-533's v4/v3_v4 park CONFIRMED as registered via a what_would_answer append (defbca52fd) -- the claim's own analysis already argues against a frequency-only split; same shape as the ARC-137/GFLAG-0129 precedent. This ruling is itself the missing flag the claim's own notes referenced but that was never raised."
     },
     {
       "flag_id": "GFLAG-0541",
@@ -7741,9 +7741,9 @@
       "summary": "ROUTING confirmation, not a promotion: MECH-588 (monostrategy Type A repertoire absence vs Type B access collapse; admissibility gate for any coordination remedy) was registered 2026-09-25 at implementation_phase v3 / v3_v4, substrate_conditional, with the V3 route explicitly flagged for /governance. Its assay (monostrategy_type_a_vs_b_discrimination_20260924.md) is RED today (no P1+P5 ecology; Q-080 corridor entry 0.333 < 0.5; generation-stage Type A root open under GFLAG-0487/0488). Confirm v3, or park at v4 until Stage 0 passes.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:10Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:35Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-588's v3/v3_v4 routing CONFIRMED as registered via a what_would_answer append (defbca52fd) -- matches the ARC-137/GOV-CONTRACT-2 precedent the claim's own notes cite; DO NOT BUILD/QUEUE stays in force until Stage 0 (Q-080 + GFLAG-0487/0488) clears."
     },
     {
       "flag_id": "GFLAG-0544",
@@ -7756,9 +7756,9 @@
       "summary": "Two routing questions and one class ruling from the 2026-09-25 plasticity-cluster registration (REE_assembly 09fa012a89, staging doc thought_intake_hygiene_staged_2026-09-04.md 'Section 5 registration'), none decided by ingestion: (1) should a MECH-453 TAN-pause window on the V3-live ARC-108 learned-gating update pull MECH-453 / ARC-154 earlier than v4? (2) should an INV-093-panel measurement of harm-sensitivity erosion under ordinary refinement test ARC-153's premise on existing substrate? (3) ARC-153 (ethics governs self-modification) was registered as architectural_commitment; the 2026-09-04 staging doc asked governance to choose invariant vs governance_rule vs ARC -- recommendation ARC.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:15Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:34Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): three routing questions ruled on ARC-153/ARC-154/MECH-453 notes (defbca52fd) -- (1) MECH-453/ARC-154 stay v4, no pull-forward this cycle; (2) whether an existing INV-093-panel measurement already tests ARC-153's leg-(a) premise recorded OPEN, investigation owed (chip to be spawned: check INV-093 panel coverage against ARC-153's erosion-under-refinement premise); (3) ARC-153's claim_type architectural_commitment ratified (it was already registered that way; the 2026-09-04 staging doc's open class-ruling question is now closed)."
     },
     {
       "flag_id": "GFLAG-0545",
@@ -7785,9 +7785,9 @@
       "summary": "INV-011 ('imagination must be possible without belief update') audit text treats EVERY write channel, policy chunking included, as protected from imagined content -- the 'learning off' reading that MECH-542 (source-sensitive selective permeability) rejects and that now conflicts with MECH-066's narrowing (GFLAG-0361, 2026-09-23). Proposal (thought-digestion 2026-09-25 draft D6): narrow INV-011's AUDIT scope to belief/world-model stores, leaving MECH-542's graded source-frame permeability as the account of what imagined content may legitimately shape; not a merge.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:26Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:34Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): INV-011's AUDIT scope narrowed to belief/world-model stores via a dated SCOPE RULING appended to what_would_answer (defbca52fd, text preserved, nothing deleted) -- adopts thought-digestion draft D6, consistent with MECH-066's 2026-09-23 GFLAG-0361 narrowing of the same question. MECH-542's graded source-frame permeability recorded as the account of what else simulated content may shape; not a merge, MECH-542 stays a separate claim."
     },
     {
       "flag_id": "GFLAG-0547",
@@ -7798,9 +7798,9 @@
       "summary": "MECH-544 (permeability pathology via source-tag decay) assumes a STORED source tag that decays faster than content; the banked Johnson et al. 1993 entry (targeted_review_source_sensitive_permeability) models source as RECONSTRUCTED at retrieval (source-monitoring framework). The two predict different failure signatures (decay with age vs retrieval-context-dependent misattribution); a discriminating test is drafted in thought-digestion 2026-09-25 draft D6. Governance to choose which mechanism the claim asserts before its what_would_answer is relied on.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:30Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:34Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): MECH-544 title generalised from 'source-tag decay' to 'source-fidelity loss' (defbca52fd), staying agnostic between stored-decay and reconstructed-at-retrieval (Johnson, Hashtroudi and Lindsay 1993) pending the drafted D6 discriminating test; notes gain a dated pointer explaining the generalisation."
     },
     {
       "flag_id": "GFLAG-0548",
@@ -7839,9 +7839,9 @@
       "summary": "MECH-570, MECH-408 and fast_empathy_v5_plan.md EMP-6 describe INV-064 as a 'stable self before social' gate, but INV-064 is the E1 -> E2 -> E3 maturational-sequence necessity claim (title e1_e2_e3_maturational_sequence_necessity); the stable-self-before-social gate is the SELF-7 plan node. Repoint those references.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:50Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:35Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): root fix applied to SELF-7's own plan-node definition (self_model_v4_plan.md title + completion_note, drafted in W3.other_edits.md #3 -- SELF-7 no longer equates itself to INV-064, aligned with the 2026-09-23 GFLAG-0309 narrowing) and to EMP-6's readiness_gate (fast_empathy_v5_plan.md, W3.other_edits.md #4). claims.yaml side: MECH-570 and MECH-408's INV-064 depends_on comments and prose repointed to cite self_model_v4:SELF-7 for the self-before-social ordering, leaving INV-064 itself scoped to its own E1->E2->E3 content (defbca52fd). Residual not addressed: SELF-7's own unblocks_claims/join.scope_claims fields still name INV-064 -- flagged, not fixed (deeper structural question, out of this flag's stated scope)."
     },
     {
       "flag_id": "GFLAG-0551",
@@ -7854,9 +7854,9 @@
       "summary": "Three mechanised autopsy-recurrence rules have operational gaps (thought-digestion 2026-09-25 draft D1): GOV-GRAN-1 points at /governance step 6a-v-quater, which is GOV-FANOUT-1's step (no step consumes GRAN-1), fires at N=2 and its own self-check says 45 of its 50 flagged claims are measurement debt not granularity debt, and it has no test file; GOV-SKILL-1's output is read by no skill, and an N=2 candidate has only its two motivating cases so it can never pass GOV-HELDOUT-1 on its own evidence; GOV-SUBPATH-1 scored 0/19 on its only adjudicated batch, all 17 current flags come from one entry whose footprint includes config.py, and it silently skips 3 open corrupting entries with no code footprint.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:09:56Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:36Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): confirmed live-but-unconsumed operational gaps on GOV-GRAN-1 (no governance.sh/SKILL.md consumer step, no test file), GOV-SKILL-1 (output consumed by no skill), and GOV-SUBPATH-1 (active backlog dominated by one substrate_queue entry, one added_utc coverage gap) -- each gains a dated notes append recording the confirmed gap (defbca52fd). All three are warn-only, exit 0, and do not currently gate or mislead anything. Chip to be spawned: one shared process-tooling task covering all three (wire a real GOV-GRAN-1 consumer step + test file; point GOV-SKILL-1's ACTIONABLE bucket at a skill checklist step; backfill SD-hazard-aware-policy-decomposition's added_utc and re-review GOV-SUBPATH-1's matching for false positives), per the user's option (a)."
     },
     {
       "flag_id": "GFLAG-0552",
@@ -7870,9 +7870,9 @@
       "summary": "GOV-ECOL-1 / GOV-JURIS-1 are live at the summary layer but not at promotion (thought-digestion 2026-09-25 draft D4): none of the 42 manifests since adoption carries world_family, /queue-experiment never asks for it, and SD-071 was promoted on '8/8 seeds' alone; the ARC-107 (2026-09-17) and SD-071 (2026-09-20) promotions carry no GOV-JURIS-1 evidence-domain stamp. Governance to decide whether claim-status promotions fall under GOV-JURIS-1, and whether MECH-117 / INV-053 / ARC-107 / SD-071 need a world-family qualifier.",
       "raised_by_session": "thought-backlog-20260925",
       "raised_at": "2026-09-25T11:10:02Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:59:36Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): GOV-JURIS-1 and GOV-ECOL-1's scope extended -- claim-status PROMOTION decision_log entries now explicitly fall under GOV-JURIS-1's evidence-domain stamp and GOV-ECOL-1's world-family replication requirement (append-only notes edits on both claims per the constraint that GOV-JURIS-1 may only be appended to in this pass, never replaced -- defbca52fd). ARC-107 and SD-071 confirmed promoted without either stamp. Chip to be spawned: retro-stamp MECH-117 / INV-053 / ARC-107 / SD-071's promotion decision_log entries. GOV-JURIS-1's own promotion to provisional stays HELD at candidate per GFLAG-0517 (no live over-claim catch yet, only retrospective analogues)."
     },
     {
       "flag_id": "GFLAG-0553",
