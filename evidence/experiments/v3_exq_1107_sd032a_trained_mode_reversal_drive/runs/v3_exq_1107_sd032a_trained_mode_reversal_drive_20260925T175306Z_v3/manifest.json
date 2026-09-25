@@ -1,0 +1,228 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1107_sd032a_trained_mode_reversal_drive",
+  "run_id": "v3_exq_1107_sd032a_trained_mode_reversal_drive_20260925T175306Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-25T17:53:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "17bb43a2c875201f7d6e17a495ec0cd747f34361",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-032a",
+    "MECH-157"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-032a": "non_contributory",
+    "MECH-157": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "route_reason": "contact_guard_unmet",
+    "shared_upstream_label": "shared_upstream_not_measurable",
+    "combination_rule": "PASS iff C1_reversals_survive_training_with_drive (single load-bearing criterion). C2_drive_off_stays_one_way is a STRUCTURAL CONTROL (load_bearing False): it is informative only when off_return_reachable (the OFF arm's argmax ever returned to external_task while the register was away); otherwise it is arithmetic and criteria_non_degenerate marks it false. C3_shared_upstream is a separate hypothesis (H-SHARED), not in the PASS gate, routing its own label.",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "kind": "readiness",
+        "description": "935a's P2 contact guard (contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4) on >= 2/3 seeds; an agent that never became foraging-competent has no active goal and the goal-gated drive cannot engage.",
+        "control": "cleared 5/5 by V3-EXQ-935a on this curriculum (seeds 47-51).",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "drive_engages_on_arm",
+        "kind": "readiness",
+        "description": "mean external_task_drive input in ARM_DRIVE_ON final eval > floor on >= 2/3 guard seeds. C1 routes on ON-arm reversals, which need the drive input live; a zero drive starves C1 rather than falsifying it.",
+        "control": "935a ARM cells at the same config: external_task margins 0.32-0.81 on 5/5 seeds.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "dacc_salience_live",
+        "kind": "readiness",
+        "description": "mean dacc_pe in ARM_DRIVE_OFF final eval > floor on >= 2/3 guard seeds. The dACC alarm is the only default salience source; without it neither arm can switch (the dACC-off wiring failure), which is not the question here.",
+        "control": "untrained modetrace A1: dacc_pe 0.19-1.27 on 3/3 seeds.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_reversals_survive_training_with_drive",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "comparator": ">=",
+        "per_seed_statistic": "ARM_DRIVE_ON n_into_external >= 3 over 15 lives"
+      },
+      {
+        "name": "C2_drive_off_stays_one_way",
+        "load_bearing": false,
+        "passed": false,
+        "role": "structural control; informative only if off_return_reachable",
+        "off_return_reachable": false,
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "comparator": ">=",
+        "per_seed_statistic": "ARM_DRIVE_OFF n_into_external <= 1 AND n_out_of_external >= 0.5 x lives"
+      },
+      {
+        "name": "C3_shared_upstream",
+        "load_bearing": false,
+        "passed": false,
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "comparator": ">=",
+        "per_seed_statistic": "corr(dacc_pe, ||z_harm_a||_2) >= 0.8 AND dacc_pe and ||z_harm_a||_2 mean growth init->final >= 3.0x"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_reversals_survive_training_with_drive": false,
+      "C2_drive_off_stays_one_way": false,
+      "C3_shared_upstream": false
+    },
+    "arms_differ": false,
+    "dv_symmetry": {
+      "dv": "register switch sequence (argmax(operating_mode) changes gated by salience_aggregate > threshold)",
+      "ARM_DRIVE_OFF_vs_ON": "NOT INVARIANT: removes a signed external_task-only logit term and a salience term -- changes logit differences, not a common offset; untrained D2 moved 0/0/0 -> 2/16/25."
+    },
+    "premise_corrected": "935a's config already had use_external_task_drive=True; the new arm is the drive-OFF lesion of the same trained weights."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "19bda88156ae5aa1b452b1b9e900e8d455b271372285c5df13d1c10eda2509f4",
+  "substrate_commit": {
+    "commit": "17bb43a2c875201f7d6e17a495ec0cd747f34361",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_resource_encoder": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "heartbeat.beta_gate_bistable": true,
+    "goal.drive_floor": 0.9,
+    "goal.z_goal_enabled": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.use_cue_recall": true,
+    "use_dacc": true,
+    "use_salience_coordinator": true,
+    "use_external_task_drive": true,
+    "use_lateral_pfc_analog": true,
+    "use_instrumental_avoidance": true,
+    "use_pag_freeze_gate": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_split_surprise": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_conjunction": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 4073.6676178709604,
+  "config": {
+    "arms": [
+      "ARM_DRIVE_OFF",
+      "ARM_DRIVE_ON"
+    ],
+    "eval_cap": 2.0,
+    "affinity_input_cap_train": 2.0,
+    "affinity_bound_mode": "clamp (coordinator default; 935a-identical, not the 2026-09-19 squash)",
+    "rails": "symmetric (enter/exit per-mode thresholds cleared) on every eval cell, as 935a",
+    "mode_eval_episodes": 15,
+    "probe_episodes": 2,
+    "checkpoints": [
+      "init",
+      "stage0",
+      "stage0b",
+      "p0",
+      "hazard",
+      "p1",
+      "p2"
+    ],
+    "into_ext_min": 3,
+    "leave_frac": 0.5,
+    "min_fraction": 0.6666666666666666,
+    "drive_engage_floor": 0.05,
+    "dacc_live_floor": 0.05,
+    "corr_min": 0.8,
+    "growth_min": 3.0,
+    "env_seed_base": 1107,
+    "seeds": [
+      47,
+      48,
+      49
+    ],
+    "train_steps": 200,
+    "p2_zgoal_gate": 0.4,
+    "contact_gate": 0.0,
+    "scaffold_curriculum": {
+      "stage0_budget": 20,
+      "stage0b_budget": 10,
+      "p0_budget": 100,
+      "hazard_stage_budget": 40,
+      "p1_budget": 50,
+      "p2_budget": 15,
+      "config_basis": "V3-EXQ-935a"
+    }
+  },
+  "seeds": [
+    47,
+    48,
+    49
+  ],
+  "z_goal_stream": {
+    "ticks_total": 11738,
+    "ticks_active": 11591,
+    "writer_calls": 4261,
+    "active_frac": 0.987476571818027,
+    "writer_defect": false,
+    "n_agents": 51,
+    "goal_state_present": true
+  }
+}
