@@ -1,0 +1,206 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1104_sd032b_effort_proxy_validation",
+  "run_id": "v3_exq_1104_sd032b_effort_proxy_validation_20260925T202059Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-25T20:20:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "2ea0e3c863db61af9ad39195457d75cbff95b2a5",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "effort_proxy_live_scale_inert",
+    "summary": "C1 3/3 seeds, C2 0/3 (best cost), C2_default 0/3, C3 0/3; ready=True",
+    "routing": "calibration: the effort term COULD reach the top-2 gap on some ticks yet the argmin did not respond at the pre-registered costs; puzzle (known rules)",
+    "preconditions": [
+      {
+        "name": "c2_denominator_min",
+        "measured": 425,
+        "threshold": 40,
+        "direction": "lower",
+        "offending_cell": "seed=42",
+        "control": "worst seed; C2's OWN denominator (ticks with a valid f-sweep, min over costs) -- the sample the load-bearing fraction is computed on",
+        "met": true
+      },
+      {
+        "name": "c1_c2_denominator_gap",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "offending_cell": "seed=45",
+        "control": "max over seeds; C1 ticks minus C2 ticks -- C1 and C2 must be read on the SAME fresh ticks (a dropped tick class would bias C2)",
+        "met": true,
+        "comparator": "<="
+      },
+      {
+        "name": "counterfactual_fidelity",
+        "measured": 1.0,
+        "threshold": 0.95,
+        "direction": "lower",
+        "offending_cell": "seed=42",
+        "control": "worst seed; an UNPATCHED deep copy must reproduce the real call's argmin",
+        "met": true
+      },
+      {
+        "name": "neg_control_horizon_flip_frac",
+        "measured": 0.0,
+        "threshold": 0.02,
+        "direction": "upper",
+        "offending_cell": "seed=45",
+        "control": "max over seeds; horizon effort is constant -> argmin-invariant by arithmetic; any flip means the counterfactual instrument is broken",
+        "met": true,
+        "comparator": "<="
+      },
+      {
+        "name": "pos_control_injected_flip_frac",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "direction": "lower",
+        "offending_cell": "seed=42",
+        "control": "worst seed; effort injected on the argmin candidate, sized from a measured unit shift to cross the runner-up gap between f_min and f=1, must flip the argmin",
+        "met": true
+      },
+      {
+        "name": "last_scores_bounded_growth_ratio",
+        "measured": 1.0081230385284468,
+        "threshold": 1.5,
+        "direction": "upper",
+        "offending_cell": "seed=43",
+        "control": "max over seeds; |e3.last_scores| last/first decile of P2 -- the payoff self-feedback must be at a stationary operating point, not integrating",
+        "met": true,
+        "comparator": "<="
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_effort_spread_live": true,
+      "C2_argmin_responsive_to_control": true,
+      "C2_default_cost_responsive": false,
+      "C3_effort_predicts_realised_harm": true
+    },
+    "what_a_null_does_not_mean": "C2 failing at every cost is a calibration finding (the effort term cannot compete with the E3 payoff range), not evidence against SD-032b; C3 failing says the proxy is live but not harm-predictive (expected under SD-PP-B9), not that a harm-forward cost is the wrong proxy.",
+    "dv_symmetry": "ON: f_sat x cost scales a per-candidate effort vector -> not a uniform shift, argmin not invariant. horizon control: constant effort -> broadcast scalar, argmin-invariant by arithmetic -> scoped out of scoring, used only as the negative-control precondition."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "e0ee15362cc68c6507eeb425b0ea85d901996bedb509cc3be2160f447391b8d8",
+  "substrate_commit": {
+    "commit": "2ea0e3c863db61af9ad39195457d75cbff95b2a5",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_affective_harm_stream": true,
+    "e3.goal_weight": 1.0,
+    "heartbeat.breath_period": 50,
+    "use_e2_harm_a": true,
+    "use_dacc": true,
+    "dacc_weight": 0.5,
+    "dacc_saturation_enabled": true,
+    "use_salience_coordinator": true,
+    "use_lateral_pfc_analog": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 8870.683631086955,
+  "config": {
+    "env": {
+      "size": 8,
+      "num_hazards": 8,
+      "num_resources": 3,
+      "num_waypoints": 0
+    },
+    "schedule": {
+      "p0": 5,
+      "p1": 30,
+      "p2": 60,
+      "steps_per_ep": 120
+    },
+    "behaviour": {
+      "dacc_candidate_effort_source": "harm_a_forward",
+      "dacc_effort_cost": 1.0,
+      "dacc_weight": 0.5,
+      "e2_harm_a_lr": 0.0005,
+      "saturation": [
+        8,
+        0.3,
+        2
+      ]
+    },
+    "thresholds": {
+      "SPREAD_EPS": 1e-06,
+      "C1_TICK_FRAC": 0.9,
+      "C2_FLIP_FRAC": 0.05,
+      "C3_RHO_MIN": 0.1,
+      "C3_N_MIN": 20,
+      "SEEDS_REQUIRED": 2,
+      "N_FRESH_MIN": 40,
+      "CF_FIDELITY_MIN": 0.95,
+      "POS_CONTROL_FLIP_MIN": 0.8,
+      "NEG_CONTROL_FLIP_MAX": 0.02,
+      "COST_GRID": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "SCORES_BOUNDED_RATIO_MAX": 1.5,
+      "DACC_WEIGHT": 0.5,
+      "F_GRID": [
+        1.0,
+        0.7692307692307692,
+        0.625,
+        0.5263157894736842,
+        0.45454545454545453,
+        0.4,
+        0.35714285714285715
+      ]
+    }
+  },
+  "seeds": [
+    42,
+    43,
+    45
+  ],
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 3,
+    "goal_state_present": false
+  }
+}
