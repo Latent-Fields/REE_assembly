@@ -1,6 +1,7 @@
 # SD-105 freeze/share API: converge the multiplier once, apply it as a shared constant
 
 **Status:** DESIGN NOTE / REGISTRATION ONLY (2026-09-09). Not a build authorisation.
+**Update 2026-09-25: IMPLEMENTED** in ree-v3 `c5d55ea` (IGW-20260923-219), after governance ratified the build 2026-09-23 (GFLAG-0331 item 6; reaffirmed rec-20260924-17600b54). Built as proposed here, including `freeze_after_ticks` (open question 4 answered: kept) and `REEAgent.freeze_selection_entropy_floor()`. Two departures: `continuity_note` is left unchanged (contract B5 pins it) and a separate `freeze_survives_reset` field is added instead; the two knobs are NOT registered in `test_flag_inertness.py` PROBED, because neither matches the `use_*`/`*_enabled` scan and PROBED registration would trip its stale-entry check. Contracts B11-B19 as named below. Open questions 1-3 and 5 remain for V3-EXQ-963c. Record: `ree-v3/docs/substrate/SD-105-frozen-shared-entropy-floor-multiplier.md`.
 **Owner claim:** SD-105 (`control_plane.selection_entropy_headroom_floor`), registered 2026-09-04.
 **Consumers:** V3-EXQ-963c (successor to V3-EXQ-963b, not yet authored), MECH-063 (ii), SD-069, SD-104.
 **Node class:** `complicated (buildable)` -- the API shape is fully specified; the residual scientific unknown belongs to 963c, not to this build.

@@ -25,6 +25,10 @@ Leg (b) of substrate_queue entry `sd_phasic_burst_decay_and_warmup_headroom`
 `REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-963a_2026-09-02.md`.
 Leg (a) is [SD-104](sd_104_phasic_burst_refractory_duty_bound.md).
 
+## Freeze/share API (IMPLEMENTED 2026-09-25, ree-v3 `c5d55ea`)
+
+The frozen-multiplier form that SD-105's `what_would_answer` precondition (b) requires now exists. `SelectionEntropyFloor.freeze()` / `REEAgent.freeze_selection_entropy_floor()` latch a converged multiplier (one-way, survives `reset()`, untouched by `simulation_mode`); `REEConfig.selection_entropy_floor_frozen_multiplier` (default None) builds every arm already frozen at the same literal value; `selection_entropy_floor_freeze_after_ticks` (default 0) auto-latches. `get_state()` and the agent `entropy_floor` control vector report `frozen` / `frozen_multiplier` / `frozen_at_tick` / `frozen_source`, so a contrast driver asserts cross-arm identity instead of measuring drift. Defaults are bit-identical to the live controller. Contracts B11-B19. Design: `evidence/planning/sd105_freeze_share_api_design_note_20260909.md`; validation: V3-EXQ-963c (not yet authored).
+
 ## Problem
 
 The SD-074 `probe_warmup` exists to bring the agent to a non-degenerate E3
