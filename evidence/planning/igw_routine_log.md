@@ -3717,3 +3717,9 @@ One line per hourly tick. ASCII only.
 2026-09-25T22:12:22Z workset committed (regen -- 258 items, 32 ready, 0 in flight)
 2026-09-25T22:09:45Z SPAWN IGW-20260925-243 skill=/lit-pull prio=40 uuid=489c1c11-2e28-45af-9ae3-ec5175b17eb8 pid=66127 worktree=igw-243-literature-proposal-for-mech-109
 2026-09-25T22:23:51Z auto-defer igw-243-literature-proposal-for-mech-109 hash=8b2543baa208 for 48h (complete)
+2026-09-25T22:25:04Z complete igw-243-literature-proposal-for-mech-109 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-109: 5 entries landed REE_assembly 1263824be8 (lit_conf 0.715); vo
+2026-09-25T23:18:26Z GC removed worktree igw-243-literature-proposal-for-mech-109 (removed; branch deleted)
+2026-09-25T23:16:35Z GC sweep removed 1 orphan worktree(s), kept 25
+2026-09-25T23:19:06Z workset published (regen -- 258 items, 32 ready, 0 in flight)
+2026-09-25T23:19:06Z workset committed (regen -- 258 items, 32 ready, 0 in flight)
+2026-09-25T23:16:35Z skip IGW-20260925-244: no fresh runner heartbeat (experiment-lane item would just sit in queue)
