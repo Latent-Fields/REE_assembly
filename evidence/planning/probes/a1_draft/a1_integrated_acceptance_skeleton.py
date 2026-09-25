@@ -112,7 +112,7 @@ FLOORS = {
 #   only because they share NATIVE's init (SHARED_INIT). The fallback is a flagged open item (O12b).
 STRATUM_RULE = "env_only_random_policy"
 STRATUM_FALLBACK = "native_pair_shared_init"
-# v3b (O12b, user 2026-09-25 ~18:50Z): the pair rule is DECIDED. The env-only classifier and its validity check are
+# v3b (O12b, user 2026-09-25, received by 18:36Z, rec-20260925-770c9b47): the pair rule is DECIDED. The env-only classifier and its validity check are
 # kept report-only (they document why); choose_stratum_rule returns the decided rule whatever the validity says.
 STRATUM_DECIDED: Optional[str] = STRATUM_FALLBACK
 CLS_STEPS = STRATUM_WINDOW
