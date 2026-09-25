@@ -7124,9 +7124,9 @@
       "summary": "V3-EXQ-308's KERNEL_CHAIN arm was not a planner: its E2WorldForward (:169-177) and HarmHead (:179-186) are both bare nn.Linear with no activation, so the action-selection score is affine in the one-hot action and its action-dependent term (v_z . W_a) is a fixed vector with no state dependence -- argmin_a is the SAME action in every state at every rollout depth. Verified 2026-09-25 on a trained stack (world_forward_r2 0.9320): the k=1 and k=3 selectors each chose one constant action on 400/400 on-trajectory states, and a constant move pins the agent against a wall (2 distinct cells over 1000 eval steps). 308's harm advantage over uniform random is therefore explained by wall-pinning, not by E2 seeding -- an explanation INDEPENDENT of, and stronger than, the ablation-confound already recorded by failure_autopsy_gflag0452-D2-cluster_2026-09-24. The same architecture is shared by V3-EXQ-171 and both V3-EXQ-184 runs, so it plausibly extends to all four of MECH-033's PASSes. Evidence and line citations: REE_assembly/evidence/planning/mech033_fanout_portfolio_design_blocked_20260925.md (Addendum, Consequence 2).",
       "raised_by_session": "metaworker-science-20260925-orchc-mech033-fanout",
       "raised_at": "2026-09-25T03:09:26Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T06:27:18Z",
+      "resolution_note": "Folded into the E-i re-measurement (user rec-20260925-e11d9838, gov2-20260925-answers, REE_assembly 1d50899e9d) and fully covered by it: the evidence consequence is already applied (V3-EXQ-308 and the 184-0401 run are non_contributory, 171 and 184-0404 superseded, per failure_autopsy_gflag0452-D2-cluster_2026-09-24), and the forward remedy -- a best-fixed-action floor that a state-independent (wall-pinning) policy cannot beat by construction, plus the rebuilt non-affine legs of the 03:32Z (N-iii)+(N-i) decision -- is now written into MECH-033 what_would_answer. The one residual that is NOT covered (055's supports weight) is GFLAG-0500's, carried by a separate new flag."
     },
     {
       "flag_id": "GFLAG-0500",
