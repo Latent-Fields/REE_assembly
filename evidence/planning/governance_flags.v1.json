@@ -6606,9 +6606,9 @@
       "summary": "Pre-flight (chip-20260915-sd024-standing-density-redesign) finds the benefit residue field has no bandwidth of its own: field.py:515 hard-codes kernel_bandwidth=1.0, but live z_world pairwise distances measured max ~0.07 (.scratch/orch-20260924/orch0924-sd024/redteam_findings.md, verify_geom.py), so the benefit map has no usable spatial structure at the trained operating point -- same defect class as SD-067/harm_field_bandwidth. No substrate_queue.json entry covers this specific gap (benefit-field bandwidth), though EXP-1391 is separately queueable per this pre-flight's AMBER verdict on the chip's other criteria.",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T11:01:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T12:07:33Z",
+      "resolution_note": "governance-20260925: SD-024 benefit-field bandwidth gap closed -- benefit-field-kernel-resolution built and landed (ree-v3 b0f7457b + 24dd5a15, ResidueConfig.benefit_field_bandwidth, default bit-identical; implemented_pending_validation). EXP-1391 authoring with the (bandwidth, da_jitter_radius) pair pre-registered per benefit_field_bandwidth_redteam_20260925.md F-1/F-2/F-3 is already owned by open chip chip-20260925-exp1391-requeue-on-benefit-bw -- no new chip."
     },
     {
       "flag_id": "GFLAG-0462",
@@ -7335,9 +7335,9 @@
       "summary": "EXP-0169 (OCD Layer 2, MECH-290 ablation) has had its sole prerequisite met since 2026-04-28 (V3-EXQ-498 FAIL confirmed) but manual_proposals.v1.json still shows it status gated, never queued; SD-046's pull-forward trigger has effectively fired unactioned. Recommend routing EXP-0169 to /queue-experiment.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:14Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T12:07:34Z",
+      "resolution_note": "governance-20260925: confirmed live (V3-EXQ-498 FAIL verified; EXP-0169 still gated, never queued). Routed to /queue-experiment as chip-20260925-exp0169-mech290-queue (task_354d22eb), carrying the mech290-committed-trajectory-predicted-states-one-way-gate substrate caveat."
     },
     {
       "flag_id": "GFLAG-0514",
@@ -7606,9 +7606,9 @@
       "summary": "ARC-138's notes frame the A/B/C discriminating experiment as future work, but it ran as V3-EXQ-1017 (2026-09-09, FAIL/non_contributory) and its chip closed done; pending_retest_after_substrate=true yet no retest is chipped or queued.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:47Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T12:07:37Z",
+      "resolution_note": "governance-20260925: retest owed since 2026-09-09 (confirmed failure_autopsy_V3-EXQ-1017_2026-09-09: two measurement defects, not science), never chipped or queued. Routed to /queue-experiment as chip-20260925-arc138-exq1017-retest (task_196c0679): lettered successor with the headroom gate on the criteria cells and the sense-path probe refit on-path."
     },
     {
       "flag_id": "GFLAG-0534",
