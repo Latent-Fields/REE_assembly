@@ -15986,6 +15986,8 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "targeted_probe",
       "exclude_broad_profile_sweeps": false,
+      "gated_by_session": "igw-250-proposal-for-mech-081",
+      "gating_reason": "No armable/severable E2-sufficiency training term on the E1/world encoder exists in ree-v3 (encoder optimiser holds only world_encoder params; E2 trains on detached z_world) -- both arms of MECH-081's required contrast are the same arm.",
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-081 via targeted experiment runs.",
       "priority": "medium",
@@ -15994,6 +15996,7 @@
       "refusal_route": "implement_substrate",
       "refused_by_session": "igw-250-proposal-for-mech-081",
       "refused_utc": "2026-09-24T20:32:44Z",
+      "release_condition": "An armable E2->world-encoder sufficiency objective is registered in substrate_queue.json and built IMPLEMENTED, OR governance narrows MECH-081 to a V4 design commitment.",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -16013,10 +16016,7 @@
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ],
-      "gating_reason": "No armable/severable E2-sufficiency training term on the E1/world encoder exists in ree-v3 (encoder optimiser holds only world_encoder params; E2 trains on detached z_world) -- both arms of MECH-081's required contrast are the same arm.",
-      "release_condition": "An armable E2->world-encoder sufficiency objective is registered in substrate_queue.json and built IMPLEMENTED, OR governance narrows MECH-081 to a V4 design commitment.",
-      "gated_by_session": "igw-250-proposal-for-mech-081"
+      ]
     },
     {
       "acceptance_checks": [
@@ -39872,6 +39872,10 @@
       ],
       "added_utc": "2026-09-06",
       "backlog_id": null,
+      "blocked_by": [
+        "benefit-field-kernel-resolution"
+      ],
+      "blocked_note": "SD-024's density falsifier was degenerate on the live manifold: the benefit-terrain RBF inherited the shared kernel_bandwidth 1.0 against a MAX pairwise z_world distance of 0.07 (180 states, 7 grid cells; measured 2026-09-24 orch0924-sd024, red-team BLOCKING F-1 on THIS proposal), so compute_benefit_density read ~11.5 at EVERY visited state with 23 active centers. A spatially constant density cannot vary with DA-driven cluster allocation whatever the mechanism does. THE BLOCKER IS ALREADY SATISFIED, in the same session that recorded this block: ResidueConfig.benefit_field_bandwidth landed on ree-v3 origin/main as b0f7457b (2026-09-25, default None -> kernel_bandwidth, bit-identical OFF, 22 contract cells). This refusal is recorded anyway because the blocked_by link is what makes the dependency auditable -- audit_blocked_proposal_unblockers.py reads substrate status implemented_pending_validation as SATISFIED and should surface this immediately as a RELEASE candidate for re-queue. WHAT REMAINS IS NOT SUBSTRATE: the OPERATING bandwidth is deliberately unchosen (user decision 2026-09-24 rec-20260924-3a88e1e9 was build-not-calibrate), so EXP-1391 must pre-register it from its own P0 measurement of the live manifold. Do not copy harm_field_bandwidth's 0.15 (tuned on a different 0.125 manifold; it exceeds this whole 0.07 one), and do not copy the 0.02 fixture in the contract file (a resolvability demonstration, not a recommendation). ALSO UNDISCHARGED, from orchestrate-20260924-breakthrough: proximity_approach_magnitude_tiebreak is required for any benefit channel to receive data; SD-070 P0 must run or the z_world encoder never trains; do not assume E3 picks by predicted consequence; R5b+R2 is not a validated regime (REE_assembly fc987f3b057). AND h2 IS LIVE: ~11.5-everywhere is equally consistent with encoder collapse, which this knob cannot distinguish from an unresolvable bandwidth -- report manifold extent and within-cell spread per run.",
       "claim_id": "SD-024",
       "design": "- title: `SD-024 live DA-expansion dose-response: does expansion FRACTION and the resulting\n  cross-candidate curiosity range scale with da_allocation_scale and drive_level?`\n- related_claims: `SD-024` (primary), `MECH-232`, `SD-025` (the consumer whose range is the\n  downstream DV), `ARC-057` (whose precondition (2) this discharges), `MECH-233`, `MECH-094`,\n  `SD-012` (the phasic-DA scaling rule `benefit_magnitude * drive_level`).\n- acceptance_checks: P0 sweep `rho >= 0.9` on both legs; `n_expansion_events >= 5` per sweep\n  cell (not just pooled -- 900's pooled-only floor is what makes its 6/57 hard to read);\n  `benefit_terrain_live_producer=True` and no driver-side `accumulate_benefit`; report expansion\n  FRACTION per cell, not only counts; report `curiosity_bonus_range` (max-min across candidates) as\n  a co-primary DV; `drive_level` swept as an independent axis from `da_allocation_scale`;\n  `experiment_purpose: evidence`; cloud machine class; >= 3 seeds per cell (900 used 3; more if the\n  fraction is noisy).\n- Reuse note: V3-EXQ-900's OFF/low-DA cells are the natural baseline; its arms were fingerprinted\n  (`arm_fp/v1`, `substrate_hash` recorded). Check\n  `reanalysis_query.py --claim SD-024` before queueing -- 900's own `notes` record that at\n  2026-08-08 the only prior manifest was 795 and reanalysis was not possible, but 900 itself is now\n  bankable and the dose axis may be partly recoverable from its `readiness_sweep`.",
       "dispatch_mode": "multi_arm_ablation",
@@ -39881,6 +39885,9 @@
       "priority": "medium",
       "proposal_id": "EXP-1391",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "metaworker-science-20260925-orchc-benefit-bw-build",
+      "refused_utc": "2026-09-25T01:33:54Z",
       "registered_utc": "2026-09-06",
       "related_claims": [
         "SD-024",
@@ -39889,7 +39896,7 @@
         "MECH-232"
       ],
       "source": "manual",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "target_repo": "ree-v3"
     },
     {
