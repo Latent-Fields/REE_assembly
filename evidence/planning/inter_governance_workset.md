@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-09-25T08:54:37Z`
+Generated: `2026-09-25T11:09:31Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -12,7 +12,7 @@ UI: http://localhost:8000/workset
 - Items: **254** (ready 29, in_flight 0, blocked 167)
 - By generation: clinical 11, governance 5, meta 4, process 7, v3 87, v4 76, v5 39, v6 25
 - Pending review: **0**
-- Queue pending (unclaimed): **1**
+- Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-1067, V3-EXQ-1090, V3-EXQ-1099, V3-EXQ-906c
 
@@ -1100,7 +1100,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-218 -- Queue depth low (1 pending)
+### IGW-20260925-218 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1109,7 +1109,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260925-218
-Title: Queue depth low (1 pending)
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2741,30 +2741,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-236 -- Literature proposal for EXT-009
-
-- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260925-236
-Title: Literature proposal for EXT-009
-Lane: lit | Skill: /lit-pull
-Status: ready
-Claims: EXT-009
-Proposal backlog id (stable): EVB-1254
-Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
-
-Instructions:
-- Use /lit-pull for the claim cluster named.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260925-237 -- Proposal for MECH-078
+### IGW-20260925-236 -- Proposal for MECH-078
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2772,7 +2749,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-237
+REE inter-governance work item: IGW-20260925-236
 Title: Proposal for MECH-078
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2788,7 +2765,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-238 -- Literature proposal for MECH-078
+### IGW-20260925-237 -- Literature proposal for MECH-078
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2796,7 +2773,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-238
+REE inter-governance work item: IGW-20260925-237
 Title: Literature proposal for MECH-078
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2811,7 +2788,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-239 -- Literature proposal for MECH-081
+### IGW-20260925-238 -- Literature proposal for MECH-081
 
 - **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2819,7 +2796,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-239
+REE inter-governance work item: IGW-20260925-238
 Title: Literature proposal for MECH-081
 Lane: lit | Skill: /lit-pull
 Status: ready
@@ -2834,7 +2811,7 @@ Instructions:
 
 </details>
 
-### IGW-20260925-240 -- Proposal for MECH-084
+### IGW-20260925-239 -- Proposal for MECH-084
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
@@ -2842,7 +2819,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260925-240
+REE inter-governance work item: IGW-20260925-239
 Title: Proposal for MECH-084
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2853,6 +2830,29 @@ Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_s
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
 - Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260925-240 -- Literature proposal for MECH-084
+
+- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260925-240
+Title: Literature proposal for MECH-084
+Lane: lit | Skill: /lit-pull
+Status: ready
+Claims: MECH-084
+Proposal backlog id (stable): EVB-1424
+Why now: missing_experimental_evidence; missing_literature_evidence; synthetic_signals_only
+
+Instructions:
+- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
