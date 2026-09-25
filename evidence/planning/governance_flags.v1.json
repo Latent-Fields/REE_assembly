@@ -7943,6 +7943,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0558",
+      "claim_ids": [
+        "ARC-065"
+      ],
+      "flag_type": "stale_note",
+      "summary": "SP-CEM floor token construction-loses-to-E3 finding (GFLAG-0555, F2/F3/F5) reproduces at deployed dims (self_dim=world_dim=32): native token rank 31/32, a majority-class token built the same way also rank 31, on-manifold class-c candidate rank 0 (n=1 firing observed). But the SP-CEM injector's firing RATE collapses from 71% of probed states at dim 16 (first probe) to 0.8% (1/120) at dim 32 across 3 seeds, independent of warmup depth (seed 11: 0/40 token states at both 20 and 150 warmup episodes). GFLAG-0555's fix priority should be weighed against this lower deployed-scale incidence, not the dim-16 numbers. See REE_assembly/evidence/planning/spcem_wd32_trained_repeat_20260925.md.",
+      "raised_by_session": "bt0925-spcem2",
+      "raised_at": "2026-09-25T21:29:10Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
