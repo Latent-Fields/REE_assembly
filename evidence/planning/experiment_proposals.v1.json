@@ -15788,6 +15788,12 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1428",
+      "blocked_by": [
+        "voluntary-breath-controller-api",
+        "mech108-breath-phase-rollout-initiation-instrument",
+        "MECH-108"
+      ],
+      "blocked_note": "Step 2.5d falsifier-runnability: ABSENT. MECH-109's falsifier needs a VOLUNTARY (agent-initiated, on-demand) breath-hold / single-sigh event against an independently measured plan-sweep clock; ree_core/heartbeat/clock.py BreathOscillator (MECH-108) is a fixed periodic sweep timer (breath_period/sweep_duration/sweep_amplitude) with no trigger/hold API, and nothing records plan-abandonment latency aligned to such an event. Audit falsifier_completion_and_runnability_audit_20260921 classes it R8 primary (physiological + exclusive-causation; a synthetic sweep timer cannot test it). Secondary INERT risk: GFLAG-0346 measured trained commit_variance ~1e-6..1.6e-5, so fractional sweep_amplitude opens no uncommitted window -- the sweep itself is inert at the trained operating point. Node: complicated (buildable) for the functional ANN restatement (on-demand sweep-trigger + hold API, voluntary-breath-controller-api, UNREGISTERED) on top of the registered mech108-breath-phase-rollout-initiation-instrument; the physiological 'one handle' exclusivity half is external-only.",
       "claim_id": "MECH-109",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -15798,6 +15804,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0832",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "igw-243-proposal-for-mech-109",
+      "refused_utc": "2026-09-25T21:09:41Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -15810,14 +15819,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_109",
       "target_repo": "ree-v3",
       "why_now": [
         "missing_experimental_evidence",
         "missing_literature_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-09-25T21:09:38Z",
+      "gated_by_session": "igw-243-proposal-for-mech-109",
+      "gating_reason": "MECH-109 falsifier ABSENT on V3: no voluntary/on-demand breath-hold or sigh controller (BreathOscillator is a fixed periodic sweep timer); plan-sweep sweep also INERT at trained commit_variance (GFLAG-0346). Audit class R8 primary.",
+      "release_condition": "An on-demand sweep-trigger + hold API (voluntary-breath-controller-api, to be registered via /implement-substrate) exists on top of mech108-breath-phase-rollout-initiation-instrument, AND a probe shows a triggered sweep measurably moves committed_step_fraction / plan-abandonment latency at the trained operating point. The physiological 'one handle' exclusivity half remains external-only (R8) even then."
     },
     {
       "acceptance_checks": [
