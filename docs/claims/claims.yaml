@@ -5248,6 +5248,20 @@
     uniform-random comparator that does not isolate the E2-kernel-to-hippocampal handoff (those runs
     are non_contributory; 184-0404 superseded). The confirming arm has been measured once, by
     V3-EXQ-055.
+
+    USER DECISION 2026-09-25 (option E-i, rec-20260925-e11d9838; applied by gov2-20260925-answers; GFLAG-0500 resolved with
+    it, GFLAG-0499 folded into the same re-measurement): the DV must have HEADROOM over the best zero-parameter
+    constant-action policy. harm_rate as used by 055/171/184/308 has almost none -- in the 308-lineage 8x8 env every
+    constant MOVE action reaches ~2e-4 (5 seeds, 1.58-2.69e-4) vs uniform random ~6e-2 and STAY ~1.8e-1, and in 055's own
+    env the best constant action is 0.00106-0.00134 while 055's AO planner recorded 0.001467 (1.09-1.38x that constant
+    action) -- so beating random or STAY measures 'not random, not STAY', not E2 kernel chaining. Any successor must (a)
+    measure the best-fixed-action floor (the best of all constant-action policies, same env and seeds) and pre-register
+    the chained-arm bar RELATIVE to it, with the margin set from a held-out pilot, and (b) use a DV/env pairing whose
+    constant-action floor leaves measurable headroom, verified at pilot before the bar is set (added to the
+    NON-DEGENERACY PRECONDITION above). A chained arm whose policy is state-independent cannot satisfy (a) by
+    construction (GFLAG-0499: 308's affine KERNEL_CHAIN chose one constant action on 400/400 states and wall-pinned).
+    The three unqueued portfolio legs (ree-v3 61b2ccf) are re-derived against this DV before queueing. V3-EXQ-055's
+    'supports' reading was NOT re-adjudicated by this pass (a separate flag carries it).
   evidence_quality_note: |
     [multi_sense_audit_2026_05_08] EXQ-124 evidence superseded 2026-05-08 due to warmup loop calls env.reset() inside the per-step inner loop, corrupting E2 world_forward training (E2 is taught z_world_t + a -> z_world_post_reset, a meaningless mapping); the KERNEL_CHAIN_ON arm uses the corrupted E2 for CEM kernels. Awaiting StepHarness re-run.
 
@@ -10787,6 +10801,7 @@
     FALSIFYING: Matched manipulations fail to dissociate premature commitment, over-withholding and perseveration, or all effects reduce to lost competence. A failure under unmet preconditions is not evidence against the claim.
     SUBSTRATE / INSTRUMENT REQUIREMENT: Hippocampal rollout and E3 commit traces expose computational proxies; no diagnostic ADHD/anxiety/OCD instrument. Consumer / boundary: Planning depth and commitment timing, then realised action. Existing ownership: MECH-080, MECH-027, ARC-014.
     DISPOSITION: R7 (primary); The behavioural-proxy experiment is undesigned and cannot test the clinical mapping in the full claim. R1; R8 secondary. Audit disposition only; status/confidence/phase are unchanged. Registration is not build authorisation. No experiment is queued. Source: evidence/planning/falsifier_completion_and_runnability_audit_20260921.json.
+    PENDING FOLD (user 2026-09-25, rec-20260925-7f4520df): the four design constraints in arm_mapping_revised_2026_09_25.design_constraints_for_any_future_test fold into this what_would_answer at the next EXP-0818 review, not before. The arm-3 mechanism rival is MECH-587.
   title: "Rollout truncation set-points as psychiatric individual differences substrate (ADHD/anxiety/OCD)."
   claim_type: mechanism_hypothesis
   subject: hippocampal.rollout_truncation_psychiatric_individual_differences
@@ -10805,6 +10820,8 @@
     - MECH-027
     - ARC-014
     - MECH-075
+  competes_with:
+    - MECH-587  # arm-3 mechanism rival: habit dominance with forward rollout bypassed (Voon 2015); registered 2026-09-25, rec-20260925-7f4520df
   location: docs/architecture/valenced_hippocampal_map.md#mech-080
   source:
     - docs/architecture/valenced_hippocampal_map.md
@@ -10891,6 +10908,29 @@
       Q3 arm-3 mechanism rival; Q4 arm-2 ownership overlap with MECH-434 / MECH-497 (and MECH-088
       downstream ADHD account); Q5 fold design constraints into what_would_answer; Q6 title;
       Q7 arm-1 drift vs starting-point bias. See synthesis doc section 7.
+    user_decisions_2026_09_25:
+      authority: >
+        User decision 2026-09-25 (live run-through via orchestrate-20260924-1707), rec-20260925-7f4520df;
+        applied by governance pass gov2-20260925-answers. Resolves GFLAG-0493 and supersedes open_for_user above.
+      Q1_split: >
+        No split. One claim keeps the strategy and the per-arm table; the arm-assignment half has no V3
+        what_would_answer.
+      Q2_anxiety: >
+        Stays unassigned. A targeted lit-pull is owed; one lit-pull covers Q2 and Q7.
+      Q3_arm3_mechanism: >
+        The Voon 2015 habit-dominance rival is registered as its own candidate claim, MECH-587 (competes_with
+        MECH-080). MECH-080 keeps the deep-basin account as its hypothesis.
+      Q4_arm2_ownership: >
+        Recorded as an explicit undirected edge MECH-434 <-> MECH-497 (coupled_with, GOV-EDGE-1). Both predict the
+        arm-2 compulsive over-withholding phenotype (Hauser 2017) by different mechanisms: MECH-434 through
+        urgency/threshold commitment timing, MECH-497 through self-degrading stopping confidence. MECH-080 arm 2 is
+        the rollout-level instance and cites both; MECH-088 stays downstream on ADHD.
+      Q5_design_constraints: >
+        Fold design_constraints_for_any_future_test (1)-(4) into what_would_answer at the next EXP-0818 review,
+        not before (it is a falsifier change).
+      Q6_title: unchanged
+      Q7_arm1: >
+        Drift vs starting-point bias stays open; covered by the same lit-pull as Q2.
   evidence_quality_note: |
     [2026-09-25, orchc0925-mech080] First literature evidence (5 entries, lit_conf 0.682,
     conflict_ratio 0.667). The conflict is structured, not noise: entries support the reductive
@@ -47426,7 +47466,7 @@
     SUBSTRATE / INSTRUMENT REQUIREMENT: ree-v3/ree_core/regulators/invalidation_trigger.py emits BroadcastEvents; module.py drains them via apply_invalidation_broadcasts_to_regions (gated on use_per_region_vs) and tick_anchor_set (gated on use_anchor_sets); V3-EXQ-478 already records anchor_reset_count, mean_staleness_peak and freeze_recommit per seed. No experiment records the four-arm cross. Consumer / boundary: The waking anchor-invalidation path: BoundaryEvent -> broadcast -> region-indexed staleness -> MECH-269 anchor reset -> hippocampal proposal source, not episode reward. Existing ownership: MECH-287, MECH-284, MECH-269, MECH-288, V3-EXQ-476, V3-EXQ-478.
     DISPOSITION: R5 (primary); Substrate and all four flags exist and are wired; the diagnostic that ran (V3-EXQ-478) used a two-arm design whose freeze_recommit DV sat at 1 in both arms, so the unlock comparison had no dynamic range. The four-arm dissociation (V3-EXQ-476) has never run on the Phase-3 substrate. Secondary classes: R1. Gap disposition: EXISTING SUBSTRATE, EXPERIMENT DOES NOT USE IT. Scope: v3_native. Audit disposition only; status/confidence/phase unchanged. Registration is not build authorisation. No experiment queued. History and evidence: evidence/planning/falsifier_completion_and_runnability_audit_20260921.json (resumed 2026-09-22).
 
-    ADDENDUM 2026-09-25 (governance-20260925-0548; GFLAG-0477 + GFLAG-0498). Wherever this text quotes 'freeze re-commit count per PAG release', '~12x re-commits per release' or a 'freeze re-commit count well above floor' precondition, read recommits_per_episode with PAG counters scoped per episode (see the functional_restatement correction). The per-release form is not instrumentable. The verdict-3 control (segmenter-off, trigger silent) and the trigger-lesioned-arm clause are TRUE BY CONSTRUCTION: with use_invalidation_trigger=False the trigger is never built (module.py:367-376), and an empty boundary list short-circuits before any increment (invalidation_trigger.py:187-188). They are wiring assertions and must not be load-bearing in a successor's PASS conjunction. EXP-0371's criteria still quote the old quantity and must be restated at /queue-experiment before it releases.
+    ADDENDUM 2026-09-25 (DV RE-SCOPED by the USER, option C, rec-20260925-b23d15b9; applied by gov2-20260925-answers together with GFLAG-0477 + GFLAG-0498. This REPLACES the addendum governance-20260925-0548 recorded here at 46e1b32ce8, which named recommits_per_episode (round-1 option A): the round-2 red-team showed that DV is pinned at exactly 0.0 in V3-EXQ-475's eval, because a re-commit needs a within-episode release and 475's eval had none -- REE_assembly a013fc3de7, evidence/planning/mech287_readout_redteam_findings_20260925.md sections 10-12.) DV: wherever this text quotes 'freeze re-commit count per PAG release', '~12x re-commits per release', 'a mode flip ... within a bounded re-commit budget' or 'freeze re-commit counts', read the LOCK-REGIME quantities V3-EXQ-475 actually exhibits: freeze duration (freeze-active steps per eval episode), lock persistence (fraction of eval episodes ending frozen) and time-to-first-release (eval steps to the first PAG release, right-censored at episode end; the censored fraction is reported as a cannot-determine category, never imputed). 475 recorded freeze_active_steps 1000/1000 on all three seeds (5 x 200 eval): every episode censored at the ceiling. CONFIRMING then reads: with trigger and accumulator intact the lock releases -- freeze duration and lock persistence fall materially below, and time-to-first-release becomes finite relative to, the both-lesioned arm. FALSIFYING reads: both-intact arms broadcast and integrate staleness yet the lock quantities are indistinguishable from the both-lesioned arm. NON-DEGENERACY PRECONDITION (replaces 'freeze re-commit count well above floor'), a RUNNABLE GATE: the comparator (both-lesioned) arm must reproduce the lock -- freeze-active fraction of eval steps at or near ceiling against a pre-registered floor (475 reference 1.0); a run whose comparator does not lock is PRECONDITION-FAILED, not evidence. releases_per_episode > 0 (recommit_opportunity_present) is required ONLY for a re-commit sub-question, where recommits_per_episode survives as a secondary readout; the lock DV needs the lock and is never gated on releases. STILL VALID from the replaced addendum: the per-release form is not instrumentable (bounded in [0,1] and pinned at 1.0 whenever every episode ends frozen), and 475-derived thresholds are void. The verdict-3 control (segmenter-off, trigger silent) and the trigger-lesioned-arm clause are TRUE BY CONSTRUCTION: with use_invalidation_trigger=False the trigger is never built (module.py:367-376), and an empty boundary list short-circuits before any increment (invalidation_trigger.py:187-188). They are wiring assertions and must not be load-bearing in a successor's PASS conjunction. EXP-0371's criteria still quote the old quantity and must be restated at /queue-experiment before it releases; it stays blocked until a redesigned experiment against the lock DV exists.
   title: "Dual-component online invalidation trigger: an UPSTREAM anchor-side comparator (CA1/CA3 mismatch flowing through subicular routing per Vinogradova 2001 + O'Mara 2009) coupled to a DOWNSTREAM broadcast event (LC phasic burst per Aston-Jones-Cohen 2005, with parallel signals from generalised dopaminergic prediction error per Schultz 1997 and lateral habenula negative-RPE per Matsumoto-Hikosaka 2007), wired together by the HC-VTA loop (Lisman & Grace 2005). The two components are coupled stages of one trigger event, not alternatives. Distinct from MECH-284 the accumulator: MECH-287 is the discrete trigger event (anchor-side mismatch + broadcast release) that drives accumulation. Triggered by latent-stream prediction failure (norm(z_pred(t-1) - z_obs(t)) > theta_trigger) OR strongly negative value-PE (value_PE(t) < -theta_value) OR exogenous surprise. Carries no schema-region credit on its own; downstream MECH-284 attributes the broadcast event to the active anchor set. Failure modes dissociate from MECH-284: trigger-loss produces single-event blindness (no anchor ever feels invalidated, but staleness map remains queryable); accumulator-loss produces V3-EXQ-475's phenotype directly (releases happen but never integrate). Failure modes also dissociate from MECH-285 sleep priority: trigger-loss prevents staleness from accruing, while sleep-priority loss prevents accrued staleness from being repaired. Within MECH-287 itself, anchor-side comparator failure dissociates from broadcast failure: comparator-loss = no upstream signal to broadcast (silent trigger, biologically a CA1/CA3 lesion); broadcast-loss = comparator fires but no global gain modulation downstream (silent invalidation, biologically an LC lesion)."
   claim_type: mechanism_hypothesis
   subject: regulators.broadcast_invalidation_trigger
@@ -47550,7 +47590,7 @@
     to single salient violations and is dissociable from the
     accumulator's slower integrative role.
 
-    [2026-09-25 governance-20260925-0548; GFLAG-0477 + GFLAG-0498; DV decision chip-20260925-mech287-dv-choice, ratified by orchestrate-20260924-1707 under standing delegation rec-20260924-fb429c72] INSTRUMENT CORRECTION. The '~12x re-commits per release' phenotype attributed to V3-EXQ-475 above is an instrument artifact, not a behavioural quantity. PAGFreezeGate.reset() (ree_core/pag/freeze_gate.py:145-150) does not clear _n_commits/_n_releases, so 475's counts are cumulative over all 65 warmup+eval episodes (71-6 = 70-5 = 65 exactly). A within-episode per-release re-commit ratio is bounded in [0,1] by construction (a commit fires only from inactive, a release only from active) and is pinned at 1.0 whenever every episode ends frozen. The DV for this claim and any successor is recommits_per_episode: unbounded, non-saturating, implemented in ree-v3 as dv_name/dv_value with contract tests/contracts/test_mech287_pag_episode_readout.py. Thresholds derived from 475's ~12.9 (LOCK_REGIME_FLOOR 8.0, EFFECT_FLOOR_ABS 4.0, MODE_FLIP_RECOMMIT_BUDGET 13) are void. Evidence: evidence/planning/mech287_dv_instrument_confound_20260924.md, evidence/planning/mech287_readout_redteam_findings_20260925.md.
+    [2026-09-25 INSTRUMENT CORRECTION by governance-20260925-0548 (GFLAG-0477 + GFLAG-0498); DV RE-SCOPED 2026-09-25 by the user, option C (rec-20260925-b23d15b9), applied by gov2-20260925-answers -- this supersedes the recommits_per_episode DV that chip-20260925-mech287-dv-choice / rec-20260924-fb429c72 had named here] The '~12x re-commits per release' phenotype attributed to V3-EXQ-475 above is an instrument artifact, not a behavioural quantity. PAGFreezeGate.reset() (ree_core/pag/freeze_gate.py:145-150) does not clear _n_commits/_n_releases, so 475's counts are cumulative over all 65 warmup+eval episodes (71-6 = 70-5 = 65 exactly). A within-episode per-release re-commit ratio is bounded in [0,1] by construction (a commit fires only from inactive, a release only from active) and is pinned at 1.0 whenever every episode ends frozen; the per-episode re-commit rate is pinned at 0.0 in 475's eval, because a re-commit needs a within-episode release and 475's eval had none (freeze_active_steps 1000/1000 on every seed; the 6/5/5 releases are warmup). What 475 measured is the LOCK itself, so the DV for this claim and any successor is the lock-regime quantities -- freeze duration, lock persistence, time-to-first-release (censored at episode end) -- and 'mode-flip ... NOT 1000/1000 freeze' in the primary falsifiable above reads as the lock releasing. recommits_per_episode (implemented in ree-v3 as dv_name/dv_value, contract tests/contracts/test_mech287_pag_episode_readout.py, with recommit_opportunity_present) survives only as a secondary readout for a re-commit sub-question, gated on releases_per_episode > 0. Thresholds derived from 475's ~12.9 (LOCK_REGIME_FLOOR 8.0, EFFECT_FLOOR_ABS 4.0, MODE_FLIP_RECOMMIT_BUDGET 13) are void. Evidence: evidence/planning/mech287_dv_instrument_confound_20260924.md, evidence/planning/mech287_readout_redteam_findings_20260925.md (sections 10-12).
   notes: >
     Discussion origin: 2026-04-22 SYNTHESIS of
     targeted_review_waking_v_s_invalidation/ literature pull (Wave 2
@@ -61258,6 +61298,7 @@
     premise that rule left implicit (a discriminative input is a harm-informed one) is measured false
     here, and GFLAG-0462 (919's DV 87% post-death harm) independently bars an unconditional reading.
     V3-EXQ-919's manifest evidence_direction is re-written weakens -> non_contributory in the same pass.
+    [2026-09-25 USER RATIFIED, rec-20260925-d5910bb9 (gov2-20260925-answers)]: the V3-EXQ-919 re-score weakens -> non_contributory (governance commits 3e6e411ad8 / b508e217b0) and its refinement of the 2026-09-24 two-branch rule are ratified by the user; no other change.
   digestion_note: >
     [2026-08-07, thought-digestion] The falsifier this claim needs (C1_TASK_OUTCOME_IMPROVES on
     harm-aware vs baseline redecomposition, matched at SD-029 hazard-tuned engagement) is not in
@@ -72639,6 +72680,8 @@
     - MECH-061   # commitment / action-arc beginning -- the act this times
     - MECH-090   # beta gate -- the commitment-gate the timing parameter would modulate
     - Q-044      # curiosity sub-flavour independence -- pragmatic-vs-epistemic balance depends on its adjudication
+  coupled_with:
+    - MECH-497  # MECH-080 arm 2 (compulsive over-withholding, Hauser 2017): same phenotype, different mechanism; explicit edge per user 2026-09-25 rec-20260925-7f4520df (GOV-EDGE-1)
   related_claims:
     - MECH-433   # LC-NE-analog explore/exploit gain control -- candidate neuromodulatory IMPLEMENTER of the anti-epistemic-panic pole (arousal collapses deliberation)
     - Q-070      # inference failure-mode register -- MECH-434 is the one register axis that did NOT reduce to MECH-126
@@ -93582,6 +93625,8 @@
     - MECH-080  # existing OCD/rollout-truncation account this claim is explicitly distinguished from
     - SD-034    # closure token whose firing this failure mode would corrupt/prevent, if present
     - ARC-128   # umbrella termination-taxonomy generality claim this is one failure mode of
+  coupled_with:
+    - MECH-434  # MECH-080 arm 2 (compulsive over-withholding, Hauser 2017): same phenotype, different mechanism; explicit edge per user 2026-09-25 rec-20260925-7f4520df (GOV-EDGE-1)
   location: docs/architecture/persistent_process_termination_taxonomy.md#mech-497
   notes: >
     Registered from thought-intake evidence/planning/thought_intake_2026-08-12_persistence_must_earn_continuation.md
@@ -107046,3 +107091,59 @@
     evidence/planning/thought_digestion_staged_2026-09-24_from_components_to_functional_organism.md
     Wave 1. epistemic_category stays substrate_conditional (unchanged). Registration is not
     build authorisation.'
+- id: MECH-587
+  title: 'Habit-dominance rival for compulsive lock-in (MECH-080 arm 3): perseveration after a contingency
+    reversal arises because a habit / model-free controller dominates action selection and forward rollout
+    stops contributing to the executed action (rollout-to-policy coupling lost), NOT because a deep attractor
+    basin inside the rollout keeps re-selecting the obsolete trajectory. The two accounts are behaviourally
+    convergent on post-reversal perseveration and dissociate only on a second measurement of rollout-to-policy
+    coupling (Voon 2015).'
+  claim_type: mechanism_hypothesis
+  subject: hippocampal.lock_in_habit_dominance_rival
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  version_relevance: v3_v4
+  registered_utc: '2026-09-25'
+  location: docs/architecture/valenced_hippocampal_map.md#mech-587
+  depends_on:
+  - MECH-163  # dual goal-directed pathways: the habit pathway whose dominance this claim asserts
+  - MECH-235  # vmPFC model-based vs model-free arbitration: the weighting whose collapse toward habit is the mechanism
+  competes_with:
+  - MECH-080  # arm 3 deep-basin-inside-rollout account; behaviourally convergent, discriminated only by rollout-to-policy coupling
+  source:
+  - evidence/planning/claim_synthesis_mech080_20260923.md
+  - evidence/literature/targeted_review_mech_080
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence against):
+      P1. The agent perseverates after a world-rule shift (world_rule_shift_* readout on the causal grid world)
+          while planning competently before it -- perseveration that is not lost competence.
+      P2. A rollout-to-policy coupling statistic exists with headroom in both directions (e.g. agreement between
+          the executed action and the rollout-best candidate, or the executed action's sensitivity to a
+          perturbation of rollout scores), validated on a positive control where coupling is known to be intact.
+          Caution from the 2026-09-25 breakthrough pass: E2 is action-blind and >98% of E3's across-candidate
+          score variance comes from rollout steps > 5, so a coupling statistic must be validated before it is read.
+    CONFIRMING: In perseverating episodes rollout-to-policy coupling is reduced relative to matched
+    non-perseverating controls (executed actions stop tracking rollout scores and follow a cached habit policy),
+    and restoring model-based weight at arbitration (MECH-235) abolishes the perseveration without changing
+    basin depth.
+    FALSIFYING: With P1-P2 met, perseverating agents keep intact rollout-to-policy coupling -- actions track
+    rollout scores and the rollout itself re-selects the obsolete trajectory, which is MECH-080 arm 3's
+    deep-basin account -- OR restoring model-based weight leaves the perseveration unchanged.
+    SUBSTRATE / INSTRUMENT REQUIREMENT: the perseveration DV exists (world_rule_shift_*); the habit pathway
+    exists (MECH-163). Missing: a validated rollout-to-policy coupling measurement, and for the contrast a
+    basin-depth lever (MECH-080 arm 3 / MECH-076 are unimplemented; EXP-0818 is blocked_substrate). Under the
+    conversion ceiling a rollout that has stopped contributing to selection is the likelier V3 failure mode,
+    so the coupling measurement is also a precondition check for MECH-080 itself. Registration is not build
+    authorisation. No experiment proposed.
+  notes: >
+    Registered 2026-09-25 by governance pass gov2-20260925-answers on the user's decision rec-20260925-7f4520df
+    (MECH-080 package, Q3: register Voon's habit-dominance rival as a new candidate claim). Source: Voon 2015
+    (OCD / binge eating / methamphetamine, two-step task; supports 0.60): contingency-insensitive,
+    model-free-dominant behaviour with a caudate/mOFC correlate. The effect is TRANSDIAGNOSTIC, so this claim
+    does not pick out OCD specifically -- it is a mechanism rival for the lock-in arm, not a disorder
+    assignment. Design constraint 4 of evidence/planning/claim_synthesis_mech080_20260923.md section 5 is the
+    discriminating measurement. Registration only; no status, confidence or evidence is asserted beyond the
+    one literature entry.

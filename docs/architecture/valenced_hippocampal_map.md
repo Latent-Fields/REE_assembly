@@ -253,6 +253,15 @@ Full re-derivation, design constraints and open questions: `evidence/planning/cl
 
 **Testable implication in REE:** varying the urgency/uncertainty balance in the rollout sampling algorithm should produce characteristic trajectory-commitment profiles that map onto the three conditions. EXQ experiments targeting rollout-parameter variation could provide model evidence for MECH-080.
 
+**User decisions 2026-09-25** (rec-20260925-7f4520df; record: `claims.yaml` MECH-080 `user_decisions_2026_09_25`): no split; anxiety stays unassigned pending a lit-pull that also covers the arm-1 drift-vs-starting-point question; arm-2 ownership is an explicit MECH-434 <-> MECH-497 `coupled_with` edge; the four design constraints fold into `what_would_answer` at the next EXP-0818 review; title unchanged; the arm-3 habit-dominance rival is registered as MECH-587 (below).
+
+<a id="mech-587"></a>
+### Habit-Dominance Rival for Compulsive Lock-In (MECH-587)
+
+**Claim ID:** MECH-587 (candidate, registered 2026-09-25)
+
+Rival to MECH-080's arm-3 mechanism. Post-reversal perseveration arises because a habit / model-free controller (MECH-163) dominates arbitration (MECH-235) and the forward rollout stops contributing to the executed action -- not because a deep basin inside the rollout keeps re-selecting the obsolete trajectory. Grounding: Voon 2015 (contingency-insensitive, model-free-dominant behaviour in OCD, binge eating and methamphetamine use; transdiagnostic). The two accounts give the same perseveration DV; only a second measurement of rollout-to-policy coupling separates them (design constraint 4, `evidence/planning/claim_synthesis_mech080_20260923.md`). Substrate: the DV and the habit pathway exist; a validated coupling statistic and a basin-depth lever do not.
+
 ---
 
 ## Open Questions
