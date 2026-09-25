@@ -23,8 +23,10 @@
     "MECH-321"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-321": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -226,5 +228,6 @@
     "writer_defect": null,
     "n_agents": 6,
     "goal_state_present": false
-  }
+  },
+  "evidence_direction_note": "non_contributory -- failure_autopsy_V3-EXQ-1087_2026-09-25 (REE_assembly f8fe743025); diagnostic, scoring_excluded. Ratified by /governance gov-20260925-orch1707 (REE_assembly 9994eea01e) under the user's standing delegation (orchestrate-20260924-1707). Prior value: unknown."
 }

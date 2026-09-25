@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-09-24T08:45:14Z",
+  "last_review_utc": "2026-09-25T05:21:26Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1350,7 +1350,12 @@
     "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation",
     "v3_exq_1012c_e3_commensurability_eligibility_stage_validation",
     "v3_exq_1077_sdppb9_harm_head_undertrain_probe",
-    "v3_v3_exq_1066_runner_error_20260920T150823Z_v3"
+    "v3_v3_exq_1066_runner_error_20260920T150823Z_v3",
+    "v3_exq_1083_sd081_adaptive_vs_fixed_allocation",
+    "v3_exq_1089_mech268_closure_cadence_mode_register",
+    "v3_exq_1085_mech365_provenance_gate_boundary_lesion",
+    "v3_exq_1087_mech321_perleaf_harm_discriminability",
+    "v3_exq_1093_mech428_parent_stat_ess_sweep"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -4362,7 +4367,12 @@
     "v3_exq_1078_inv069_zself_coherence_unsettled_20260923T182046Z_v3",
     "v3_exq_1082_sdppb5_alpha09_live_battery_revalidation_20260924T045004Z_v3",
     "v3_exq_1012c_e3_commensurability_eligibility_stage_validation_20260923T215322Z_v3",
-    "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3"
+    "v3_exq_1077_sdppb9_harm_head_undertrain_probe_20260923T184633Z_v3",
+    "v3_exq_1083_sd081_adaptive_vs_fixed_allocation_20260924T172346Z_v3",
+    "v3_exq_1089_mech268_closure_cadence_mode_register_20260924T180356Z_v3",
+    "v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3",
+    "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
+    "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -7243,6 +7253,40 @@
       ],
       "skim_outcome": "ERROR disposition, no re-run: V3-EXQ-1066 was queued by mistake (driver says DO NOT QUEUE AS-IS; burn-down 405cd5f ignored it); 2026-09-23 governance ruling (REE_assembly ca3f1dc15e; GFLAG-0421/0416/0354) found ARM_ALTERNATE's oscillator can never engage (episodes 8-14 steps < step-20 sweep start). No traceback reachable (ree-cloud-3 off). No successor, no supersession flag. Source: stalled session governance-20260924-workset handover finding 1.",
       "still_pending": []
+    },
+    {
+      "utc": "2026-09-25T05:21:26Z",
+      "session": "gov-20260925-orch1707",
+      "cycle": "governance 2026-09-25 bounded 5-item pass (orchestrate-20260924-1707, user standing delegation)",
+      "runs_reviewed": [
+        "v3_exq_1083_sd081_adaptive_vs_fixed_allocation_20260924T172346Z_v3",
+        "v3_exq_1089_mech268_closure_cadence_mode_register_20260924T180356Z_v3",
+        "v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3",
+        "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
+        "v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3"
+      ],
+      "skim_outcome": "V3-EXQ-1085 (MECH-365, the only claim-tagged EVIDENCE PASS) driver skim: criteria combine by AND on every seed (PASS = P1..P5 AND C1a AND C1b AND C2 AND C3); C2 threshold arithmetic attainable both ways (theta = max(3*SD(D_A3)=0, floor 0.05) vs measured min 1.76; a label-not-load-bearing lesion would read ~0); S4 correctly demoted to a structural audit. Finding: AUDIT-STRENGTH by the driver's own declaration (C1/C3 structurally determined once the label is honoured, C2 near-guaranteed given P3) -- not a defect, recorded as a MECH-365 evidence_quality_note caveat. 1083/1089 FAILs and 1087/1093 diagnostics adjudicated by confirmed failure_autopsy_V3-EXQ-<id>_2026-09-25 artifacts.",
+      "dispositions": {
+        "V3-EXQ-1083": "non_contributory (SD-081); autopsy applied; substrate_queue create e3-outcome-informative-planned-pathway",
+        "V3-EXQ-1089": "non_contributory (MECH-268); autopsy note applied; dec-20260923T185804-MECH-268 HELD for user; 1089a not queued",
+        "V3-EXQ-1085": "supports (MECH-365), audit-strength",
+        "V3-EXQ-1087": "non_contributory (diagnostic); re-adjudicates V3-EXQ-919 weakens -> non_contributory (refinement ratified); substrate_queue amend SD-hazard-aware-policy-decomposition",
+        "V3-EXQ-1093": "non_contributory (diagnostic); MECH-428 WWA corrections applied; GFLAG-0476 resolved"
+      },
+      "commits": [
+        "REE_assembly 90421cb767 (regen)",
+        "REE_assembly 9994eea01e (claims.yaml/claims.json/substrate_queue)"
+      ],
+      "still_pending": [
+        {
+          "run_id": "v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3",
+          "queue_id": "V3-EXQ-1095",
+          "claim_ids": [
+            "MECH-439"
+          ],
+          "why": "landed 2026-09-25T04:03Z during this cycle; OUT OF SCOPE for this bounded pass; FAIL with no confirmed autopsy (staging autopsy chip chip-autopsy-v3-exq-1095 open)."
+        }
+      ]
     }
   ]
 }

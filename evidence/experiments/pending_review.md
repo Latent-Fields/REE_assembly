@@ -1,33 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-09-25T05:13:34Z`  
-Last review: `2026-09-24T08:45:14Z`  
-Scanned: 2991 claim_evidence entries considered (3010 already reviewed), 4887 manifest file(s) on disk.  
-Pending: **6** item(s) -- 3 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
+Generated: `2026-09-25T05:21:43Z`  
+Last review: `2026-09-25T05:21:26Z`  
+Scanned: 2991 claim_evidence entries considered (3015 already reviewed), 4887 manifest file(s) on disk.  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_1083_sd081_adaptive_vs_fixed_allocation_20260924T172346Z_v3` | 2026-09-24T17:23 | SD-081 | — |
-| `v3_exq_1089_mech268_closure_cadence_mode_register_20260924T180356Z_v3` | 2026-09-24T18:03 | MECH-268 | — |
 | `v3_exq_1095_mech439_operator_on_conversion_falsifier_20260925T040330Z_v3` | 2026-09-25T04:03 | MECH-439 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_1085_mech365_provenance_gate_boundary_lesion_20260924T094117Z_v3` | 2026-09-24T09:41 | MECH-365 |
-| `v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3` | 2026-09-24T12:12 | MECH-321 |
-| `v3_exq_1093_mech428_parent_stat_ess_sweep_20260924T180739Z_v3` | 2026-09-24T18:07 | MECH-428 |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3` | PASS | stage2_discriminative_anti_harm_tracking__stage1_clamp_saturated | **vacuous_pass** |
 
 ## Evidence PASS/FAIL flagged degenerate (route to /failure-autopsy)
 
