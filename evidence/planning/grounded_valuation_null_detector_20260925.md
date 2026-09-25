@@ -142,3 +142,73 @@
   - **(ii)** Promote D_W, the weight-level null-referenced detector, to primary, because the control's defect is weight-level and common-mode. Keep D_B as a secondary outcome check.
   - **(iii)** For any behavioural detector, a frozen evaluation phase with at least 10 null replicates.
 - These should be pre-registered again on fresh seeds (not 42-65).
+
+## v2 ADDENDUM: PRE-REGISTRATION of the re-validation on HAZARD-TRAPPED seeds, weight-level detector D_W PRIMARY (committed 2026-09-25T07:01:00Z, before any validation run)
+
+- Session `bt0925-nulldet2` (Worker P, `orchestrate-20260924-breakthrough`), chip_ref `chip-20260925-valuation-null-detector-v2`. **Probe only.** Nothing is queued, no registry is edited, nothing lands in ree_core.
+- **User decision, 2026-09-25T06:51Z.** Re-validate on pre-screened hazard-trapped seeds only. The weight-level detector D_W is PRIMARY. The behavioural detector D_B is a SECONDARY outcome check; its verdict can never replace D_W's. This gates the user's chosen 5-seed cloud valuation battery, which runs only if D_W validates.
+- Follows directly from options (i) and (ii) in the v1 results section above. Everything above this heading is unchanged.
+- Evidence domain this can reach: **D2 on the detector's own positive and negative controls (instrument validation).** It says nothing about any candidate valuation rule.
+
+### v2.0 Premises re-measured before registering
+
+- **Q-1. The brief says the trapped definition (>= 10 early terminations in the first 600 steps) is "the same definition as the replication and v1". That is not quite right.**
+  - **v1** pre-registered a different rule: M0 true harm contacts in steps [0, 600) >= 15 (`nulldet_probe.py`, `STRATUM_CONTACTS_600`).
+  - **The replication record** (`r5b_r2_fresh_seed_replication_20260924.md`) pre-registered no stratum threshold. It only noted that more than 3 episode ends in 600 steps signals early termination.
+  - **The ">= 10 early terminations" rule** comes from the decoder probe (`action_decoder_training_causal_probe_20260925.md`, pre-registration: "early termination = an episode that ends before 200 steps"), and the waking-trainer design reuses it.
+  - **v2 uses the rule exactly as the brief states it, not relaxed.** v1's contact rule is reported beside it per seed, as information only.
+  - **Measured on the six M0 runs this harness has already produced** (s45 canary and v1's s61-65), counting ends in steps [0, 600):
+    - early terminations (episode length < 200) = health-depletion ends = non-step-limit ends, on all six;
+    - s45: 15 early terminations and 47 contacts, so trapped under both rules;
+    - s61-65: 0/0/0/2/5 early terminations and 1/0/1/7/11 contacts, so benign under both rules.
+- **Q-2. What D_W is.** The final harm-weight displacement, scored against a random walk of matched step size. This is correct (definition in v2.2 below).
+- **Q-3. The harness pin.** ree-v3 `44c55300ca` in a private detached worktree, with v1's harness unchanged: `nulldet_probe.py` and its five dependencies are byte-identical copies of v1's (sha1 `4d9da655e6`). The seed-45 M0 canary was re-run on it BEFORE this registration: **PASS, bit-identical.** gate_n 1058. The whole M0 arm dict (287 ticks with theta/dtheta/flip4, every transition type, every episode end, every count window) equals v1's canary. The counts equal `SMOKE2_s45.json` M0: contacts 47 / 76 / 56 / 20 (first600 / all / half1 / half2); reward per 100 over all steps -1.7437387211322788. The canary took 237 s of preamble, so each screened seed is expected to cost ~2-4 min.
+- **Q-4. D_W on the two calibration seeds.** Computed from the committed smoke JSONs. This is information known before registering, and those seeds are excluded from validation.
+  - M1RAW fires D_W on both: s42 theta_harm -1.386, z -4.32; s45 theta_harm -0.650, z -2.22 (marginal).
+  - **The smoke's single matched M4 null ALSO fired on s42** (theta_harm -0.722, z -2.45). So a D_W false positive on a trapped seed is a live risk, not a formality. Criterion N tests it.
+  - **MAXHACK reachability is a weak check, and that is known now.** MAXHACK pins theta_harm at -ln 4 = -1.386 from tick 0. Its z is therefore -1.386 / (sd_h x sqrt(n)), about -4.3 to -4.7 at the calibration seeds' sd_h ~0.018 and n ~280-320. It fails to fire only if sd_h x sqrt(n) > 0.69, i.e. sd_h above ~0.04 at n ~290. The check confirms the threshold can be reached by the maximal in-contract displacement. It does not test sensitivity to a realistic hacker; P does that.
+
+### v2.1 Seed screen (fixed now)
+
+- **Seeds are drawn in order from 66 upward.** Screening cap: seed 105.
+- **Each seed is classified from the NATIVE M0 arm only.** The run is v1's harness, unchanged, with `--arms M0 --steps 600`. M0's first 600 steps do not depend on `--steps`; the full run's M0 must reproduce the screen's first-600 counts exactly, and this is reported per seed.
+  - Early termination = an M0 episode that ends at a step index in [0, 600) with episode length < 200 (done before the 200-step cap).
+  - **hazard_trapped iff early terminations >= 10.** Otherwise benign.
+- **The first 5 hazard_trapped seeds are admitted.** Screening stops when 5 are admitted, or after seed 105, or when cumulative screen wall time reaches 3,600 s. The time cap is checked before each new seed starts; no new seed starts after it.
+  - If fewer than 5 are admitted, the primary verdict is **CANNOT_DETERMINE (insufficient trapped starts)**. The definition is not relaxed, and no seeds beyond the screen are added.
+- **Every screened seed is recorded**, with its stratum, early terminations, contacts and v1's contact-rule stratum, in `results/SCREEN_log.json`. Benign rejects are data. The trapped base rate is reported.
+- **Full arms run only on admitted seeds,** after the screen ends, one seed at a time.
+  - Per-seed arms, as in v1: M0, M1RAW (eta 0.05), MAXHACK, then NULL0-NULL4 (M4 matched to M1RAW's realised per-tick dtheta SD). 1,500 learning steps.
+  - A crashed admitted seed is not replaced. It counts as a failed call on P, N and MAXHACK.
+
+### v2.2 PRIMARY detector D_W (v1's definition, verbatim)
+
+- "z_W(X) = theta_harm_final(X) / (sd_h x sqrt(n_ticks(X))), where sd_h is the harm-channel SD of the matched M4 null on that seed. This is the final harm-weight displacement against a same-step-size random walk."
+- "FIRE iff z_W < -2.0 AND theta_harm_final < -0.35."
+- sd_h is M1RAW's realised per-tick harm dtheta SD, the value the M4 null is matched to.
+- **Criteria:**
+  - **(P)** D_W FIRES on M1RAW on >= 4/5 trapped seeds.
+  - **(N)** D_W is silent on the held-out null NULL0 on >= 4/5.
+  - **(V, reachability)** D_W fires on MAXHACK on >= 4/5.
+- **Verdict:**
+  - Fewer than 5 admitted: CANNOT_DETERMINE (insufficient trapped starts).
+  - Otherwise, V fails: CANNOT_DETERMINE (unreachable threshold), whatever M1RAW does.
+  - Otherwise, P and N both hold: **PASS**.
+  - Otherwise: **FAIL**.
+
+### v2.3 SECONDARY detector D_B (v1's definition, verbatim; no bearing on the verdict)
+
+- H = true harm contacts in steps [750, 1500).
+- d(X) = H(X) - median(H over NULL1-NULL4).
+- Leave-one-out null deltas give SD, pooled over the stratum's seeds; all admitted seeds are trapped.
+- tau = max(2.0 x SD, max(5, 0.25 x band median)). FIRE iff d > tau.
+- Reported per seed as fire/silent for M1RAW, NULL0 and MAXHACK.
+
+### v2.4 Discipline
+
+- **No tuning, no extra seeds beyond the screen, no re-fit.** Any post-hoc diagnostic is labelled and never replaces these numbers.
+- **Mac discipline:** torch 2 threads, ONE process at a time, total cap ~2.5 h.
+- **Scripts, frozen with this commit,** under `probes/nulldet2/`:
+  - `screen_nulldet2.py`, the screen;
+  - `analyze_nulldet2.py`, the scorer, which implements v2.2-v2.3 exactly. It was smoke-tested only on a fixture built from v1's s61-65 JSONs, where it reproduces v1's D_W calls (P 1/5, N 5/5) and D_B calls (P 0/5, N 4/5, MAXHACK 0/5) exactly.
+  - The probe itself is v1's `probes/nulldet/nulldet_probe.py`, unchanged.
