@@ -132,7 +132,7 @@ The fixed gate is therefore not merely "always firing". **Its operating point dr
 ### R4. Salience arithmetic: no variant can reach the switch threshold, and all push toward `external_task` (D0)
 
 A gate variant changes only **when** CeA fires. It does not change what a fire emits.
-- **Fire emission.** On fire, `mode_prior = clip(over x gain, +/-0.8)` (`cea.py:348-354`). `fast_prime = clip((over/0.8) x min(0.6, 0.8), +/-0.8)` (`cea.py:356-361`). Here `over = low_freq - thr` (`:346`), and `cap = mode_prior_log_odds_max = 0.8` (`:336`, `config.py:7146`).
+- **Fire emission.** On fire, `mode_prior = clip(over x gain, +/-0.8)` (`cea.py:348-354`). `fast_prime = clip((over/0.8) x min(0.6, 0.8), +/-0.8)` (`cea.py:356-361`). Here `over = low_freq - thr` (`:348`), and `cap = mode_prior_log_odds_max = 0.8` (`:336`, `config.py:7146`).
 - **Largest possible salience contribution:** `salience_weights["cea_fast_prime"] = 0.5` (`agent.py:2577`) x 0.8 = **0.4**.
 - **Switch threshold:** `switch_threshold = 1.0` (`salience_coordinator.py:311`), x `(1 + stability_scaling x pcc_stability) >= 1` (`:668-670`).
 - A relative gate would need `over` redefined, e.g. `z - k`. It is still clipped at 0.8. **So under every variant, CeA alone contributes <= 0.4 < 1.0 and cannot trip MECH-259** (`:687-691`). It could co-trigger only with >= 0.6 salience from another source (dACC) on the same tick.
@@ -156,6 +156,10 @@ The probe says the build is **not** "a scale-aware gate on `z_harm_a`". A build 
    Behind default-OFF knobs, e.g. `cea_fast_route_input = {"z_harm_a" (default), "z_harm_s", "harm_prox_fast"}`. The **next probe** is this same harness with (a)-(c) recorded, cheap and offline once recorded. It must also be run in a config where the hazard field is not saturated (for example, fewer hazards or a larger `hazard_field_decay`), so the probe can tell env saturation apart from stream choice.
 2. **Then a relative gate on that input**, `complicated (buildable)`. Only once an input passes (1). For example `cea_gate_mode = {"absolute" (default), "rate", "zscore"}` with `cea_gate_k` and `cea_gate_ema_beta`, default OFF. Rate-of-change is the natural form for an onset detector.
 3. **The emission ceiling and direction** (R4). This is a design decision for the MECH-039/046 claim holder, not a calibration: `salience_weights["cea_fast_prime"]` and the `external_task` affinity at `agent.py:2573-2577`.
+
+## Governance
+
+I raised **GFLAG-0556** (stale_note, MECH-046 + MECH-039). It refines GFLAG-0554's Q2 routing: the fix is an onset-bearing CeA input first, and only then a relative gate. There were no other registry edits.
 
 ## Premises re-measured
 
