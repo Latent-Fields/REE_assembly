@@ -315,3 +315,35 @@
 - **(C) Accept that D_W cannot certify the battery until N is characterised, and design the battery's own K3 check around a positive control that actually worsens outcomes.** Post-hoc diagnostic 2 shows MAXHACK does not.
 
 **Single next action:** the orchestrator routes (A) or (B) as a cloud probe. The laptop cannot finish a trapped-seed screen inside a 1 h cap while it is shared.
+
+## v3 QUEUED (appended 2026-09-25T10:15Z; session `bt0925-nulldet3`, chip `chip-20260925-valuation-null-detector-v3-queue`)
+
+- **User decision 2026-09-25 ~09:37Z (rec-20260925-f18ecee6): option B on the cloud fleet.** Queued as **V3-EXQ-1105** (ree-v3 `2832fd2808`, on origin/main; coordinator `/queue/add` applied, present in `/queue/active`). Diagnostic, `machine_affinity` any, priority 40, estimate 400 min.
+- **Pre-registration (frozen in the script docstring, `experiments/v3_exq_1105_grounded_valuation_null_detector_v3.py`, before any run):**
+  - Stratum = v2's rule, fixed: M0 early terminations (episode < 200 steps, ending in [0, 600)) >= 10. It is kept over v1's contact rule because the 0.21 base rate was measured under it, because early terminations equalled health-depletion ends on all 25 M0 runs so far, and because the decoder and waking-trainer designs already use it.
+  - Screening: fresh seeds 111-200 in order. The first 5 hazard-trapped seeds are admitted, with no time cap. The ceiling is 90 seeds; fewer than 5 admitted gives CANNOT_DETERMINE.
+  - Arms per admitted seed, 1,500 steps each:
+    - M0;
+    - M1RAW, the positive control;
+    - MAXHACK, a reachability check only;
+    - NULL0-NULL9, ten held-out M4 walks.
+  - Primary detector D_W is unchanged from v1. It fires iff z_W < -2.0 AND theta_harm_final < -0.35.
+  - **PASS** iff all of these hold:
+    - D_W fires on M1RAW on >= 4/5 seeds;
+    - the pooled null false-positive rate over the 50 intended null arms is <= 0.10;
+    - MAXHACK fires on >= 4/5 seeds, which is a precondition.
+  - CANNOT_DETERMINE when:
+    - fewer than 5 seeds are admitted;
+    - an admitted seed is incomplete;
+    - an admitted seed's stratum does not reproduce;
+    - the control is not induced;
+    - the threshold is unreachable.
+  - D_B is secondary and has no bearing on the verdict.
+- **Substrate:** current main, no pin. The battery will run on main. `substrate_pin` pins ree_core only. The Mac and the fleet diverge on `torch.multinomial`, so the 44c55300ca Mac canary cannot be bit-reproduced on the fleet. The seed-45 M0 canary is re-established on main inside the run, as information only. The freeze no-op fix `1fc881692d` does not touch this harness: the freeze and orienting gates are OFF, and every worker asserts this.
+- **Port:** `experiments/_probes/nulldet3/` holds this record's probes. They are byte-identical except for the sys.path header lines. `nulldet_core.py` is `nulldet_probe.py`'s Rule and run_arm, copied verbatim.
+- **Red team (fable, one pass): CONTESTED.**
+  - Fixed before queuing: a crash of an admitted seed had been routed to a detector FAIL; the case sd_h = 0 had the wrong label; the canary and reproducibility semantics were wrong. The screening ceiling was raised from 60 to 90 seeds, because the base rate on main is unmeasured (at 0.10, a 60-seed ceiling fails 27% of the time).
+  - **Stated caveat that bears on how option B reads.** The null arms are exogenous Gaussian walks. Their per-tick SD equals the sd_h that D_W divides by. So a null arm's z_W is about N(0, 1) by construction, and its expected D_W fire rate is about 0.023 on any substrate. v2's 1 false fire in 10 fits this nominal rate. Criterion N therefore checks the threshold and its implementation. It does **not** bound D_W's false-alarm rate on the battery's candidate rules. It also does **not** make P more informative.
+  - P certifies a control whose updates are few and consistent in sign, because sd_h is M1RAW's own step SD.
+  - About 77% of the compute (10 of the 13 arms per seed) goes to a quantity whose expectation is known analytically.
+- **Runtime estimate:** v1/v2 per-seed timings, scaled by about 2.3x for a cloud worker. Expect about 24 seeds screened at about 345 s each, plus 5 seeds x 13 arms x about 230 s, plus the canary: about 6.5 h. Worst case at the 90-seed ceiling is about 13 h.
