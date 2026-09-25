@@ -212,3 +212,154 @@ unpinned since it removes intra-op parallelism on an already CPU-bound job) -- o
 INV-109's owner that the dry-schedule + untrained-full-scale evidence already gathered here is
 sufficient operational support for a disposition, without the full named design. That is a call
 for whoever next works INV-109, not made here.
+
+## Appendix: driver source (for reproducing or resuming this spike)
+
+The driver ran from a throwaway `ree-v3` worktree, uncommitted (never landed to `ree-v3` -- this
+is a spike, not an experiment). Its source is reproduced here verbatim so a future session can
+resume the remaining cells (second unpinned reproduction, both pinned reproductions) without
+reconstructing it from this note's prose description.
+
+```python
+"""INV-109 endpoint-identity spike driver (chip-20260916-inv109-endpoint-hash-spike).
+
+Lives OUTSIDE ree-v3/experiments/ per the pre-flight's Named Change D. Deliberately NOT
+a queue-experiment script: this is a diagnostic spike, no experiment_queue.json entry.
+
+Named-change-A design: run this driver as an independent OS PROCESS, once per (seed,
+pin-mode) cell -- two invocations with the same --seed give the "2 independent processes
+x same machine_class x same clean commit" cell the pre-flight calls for. Compare the two
+output JSON files' `warmed_hash` field afterward.
+
+Named-change-D: imports x1010._warm_off_agent UNCHANGED and calls it directly. That
+bypasses the `with arm_cell(...):` wrapping that normally lives in x1010.run_cell's loop
+(see arm_fingerprint.py's 2026-09-17 chip-20260917-armcell-bypass-guard docstring: calling
+a driver's per-cell function directly, outside the loop that wraps it in arm_cell, skips
+the RNG reset with no error). This driver replaces that missing reset explicitly by calling
+reset_all_rng(seed) itself immediately before each agent-construction call below, mirroring
+exactly what _ArmCell.__enter__ would have done.
+
+Named-change-B: the untrained-agent hash (x1002._make_agent right after reset_all_rng(seed),
+no warmup) is captured as the instrument's positive control -- it must match across the two
+reproductions or the warmed-hash comparison is uninterpretable.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import platform
+import sys
+import time
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(REPO_ROOT))
+
+import numpy as np  # noqa: E402
+import torch  # noqa: E402
+
+import experiments.v3_exq_1010_zworld_overcapacity_decoder_sweep as x1010  # noqa: E402
+import experiments.v3_exq_1002_zworld_actor_adequacy_oracle_adapter as x1002  # noqa: E402
+import experiments.v3_exq_734_env_difficulty_competence_recovery_sweep as x734  # noqa: E402
+from experiments._lib.arm_fingerprint import reset_all_rng  # noqa: E402
+from experiments._lib.interface_probe import hash_tensor_state  # noqa: E402
+from experiments._lib.zworld_encoder_guard import (  # noqa: E402
+    latent_stack_snapshot,
+    latent_stack_weight_delta,
+)
+
+
+def _sched(dry_run: bool) -> dict:
+    return {
+        "zworld_p0": x1002.DRY_RUN_ZWORLD_P0 if dry_run else x1002.ZWORLD_P0_EPISODES,
+        "p0": x1002.DRY_RUN_P0 if dry_run else x1002.P0_WARMUP_EPISODES,
+        "p1": x1002.DRY_RUN_P1 if dry_run else x1002.P1_REINFORCE_EPISODES,
+        "steps": x1002.DRY_RUN_STEPS if dry_run else x1002.STEPS_PER_EPISODE,
+        "bc_eps": x1002.DRY_RUN_BC_EPISODES if dry_run else x1002.BC_EPISODES,
+        "bc_rand": x1002.DRY_RUN_BC_RANDOM_EPISODES if dry_run else x1002.BC_RANDOM_EPISODES,
+    }
+
+
+def run_reproduction(seed: int, dry_run: bool, skip_regime: bool) -> dict:
+    env_kwargs = x734._env_kwargs_for_rung(x1010.RUNG)
+    sched = _sched(dry_run)
+
+    # ---- untrained agent: the instrument's positive control (Named Change B) -----------
+    reset_all_rng(seed)
+    warm_env = x734._make_env(seed, env_kwargs)
+    untrained_agent = x1002._make_agent(warm_env)
+    untrained_hash = hash_tensor_state(untrained_agent)
+
+    # ---- warmed OFF agent: the recipe path, x1010._warm_off_agent unchanged ------------
+    reset_all_rng(seed)
+    t0 = time.time()
+    agent, wstats, guard = x1010._warm_off_agent(seed, env_kwargs, sched, dry_run)
+    warm_elapsed_s = time.time() - t0
+    warmed_hash = hash_tensor_state(agent)
+
+    result = {
+        "seed": seed,
+        "dry_run": dry_run,
+        "untrained_hash": untrained_hash,
+        "warmed_hash": warmed_hash,
+        "warm_guard": guard,
+        "warm_elapsed_s": warm_elapsed_s,
+        "torch_num_threads": torch.get_num_threads(),
+        "pythonhashseed": os.environ.get("PYTHONHASHSEED"),
+        "platform": platform.platform(),
+        "machine": platform.machine(),
+        "processor": platform.processor(),
+        "torch_version": torch.__version__,
+        "python_version": platform.python_version(),
+        "pid": os.getpid(),
+        "ree_v3_commit": os.environ.get("INV109_SPIKE_COMMIT"),
+    }
+
+    # ---- regime-level readout: OFF participation ratio, same recipe as x1002/x1008/x1010 --
+    if not skip_regime:
+        t1 = time.time()
+        torch.manual_seed(seed)
+        np.random.seed(seed)
+        oracle_eps = x1002._collect_episodes(seed, env_kwargs, "oracle", sched["bc_eps"],
+                                             sched["steps"])
+        tr, te = x1002._split_episodes(oracle_eps)
+        z_tr, _ = x1002._zworld_features(agent, tr)
+        result["zworld_participation_ratio"] = x1002._participation_ratio(z_tr)
+        result["zworld_train_rows"] = int(z_tr.shape[0])
+        result["regime_elapsed_s"] = time.time() - t1
+
+    return result
+
+
+if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed", type=int, required=True)
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--skip-regime", action="store_true",
+                    help="skip the participation-ratio readout (dry-run smoke only)")
+    ap.add_argument("--threads", type=int, default=None,
+                    help="torch.set_num_threads pin (Named Change A pinned cell)")
+    ap.add_argument("--out", type=str, required=True)
+    args = ap.parse_args()
+
+    if args.threads is not None:
+        torch.set_num_threads(args.threads)
+
+    result = run_reproduction(args.seed, args.dry_run, args.skip_regime)
+    Path(args.out).write_text(json.dumps(result, indent=2))
+    print(json.dumps(result, indent=2), flush=True)
+```
+
+Invocation used for the completed full-scale reproduction (process A, unpinned):
+```bash
+BASE=/Users/dgolden/REE_Working  # or the equivalent REE_Working root on the executing box
+WT="$BASE/.claude/worktrees/<this-worktree>/.scratch/ree-v3-spike-wt"
+git -C "$BASE/ree-v3" worktree add --detach "$WT" origin/main
+cd "$WT"
+export INV109_SPIKE_COMMIT=$(git rev-parse HEAD)
+/opt/local/bin/python3 inv109_hash_spike_driver.py --seed 42 --out out/full_unpinned_a.json
+# second unpinned reproduction (NOT YET RUN): same command, --out out/full_unpinned_b.json
+# pinned pair (NOT YET RUN): add --threads 1, and set PYTHONHASHSEED=0 in the environment
+#   before invoking python3, for both --out out/full_pinned_a.json and out/full_pinned_b.json
+```
