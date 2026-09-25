@@ -1,0 +1,18 @@
+/Users/dgolden/REE_Working/.scratch/breakthrough-20260924/n3pre/probes_src/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[s525 t=   5s] DATA L2 {"n": 2400, "class_counts": {"0": 491, "1": 453, "2": 488, "3": 429, "4": 539}, "entropy_nats": 1.60641200442465, "mean_run_length": 2.833530106257379}
+[s525 t=   8s] PRE REAL disc4=0.523 k=6 grad=True
+[s525 t=   9s] PRE SHUF disc4=0.240 k=7 grad=True
+[s525 t= 239s] POST REAL upd=9000 grad=True r/100=-18.65 harm/100=100.00 H=0.01
+[s525 t= 471s] POST SHUF upd=9000 grad=True r/100=-18.65 harm/100=100.00 H=0.01
+[s525 t= 473s] EVAL INIT disc4=0.283 k=0 disc5(te4)=0.283 disc5(tew)=0.196 k30=0 n_fid_depths=0 norm t1/t30/true=0.60/237.68/0.40
+[s525 t= 474s] EVAL REAL disc4=0.547 k=10 disc5(te4)=0.460 disc5(tew)=0.420 k30=17 n_fid_depths=17 norm t1/t30/true=0.44/0.74/0.40
+[s525 t= 475s] EVAL SHUF disc4=0.240 k=10 disc5(te4)=0.183 disc5(tew)=0.203 k30=17 n_fid_depths=17 norm t1/t30/true=0.44/0.74/0.40
+[s525 t= 476s] EVAL B0p disc4=0.240 k=0 disc5(te4)=0.000 disc5(tew)=0.174 k30=0 n_fid_depths=0 norm t1/t30/true=0.46/23.55/0.40
+[s525 t= 561s] PROBE {"n_states": 56, "n_informative_q": 56, "validation_maxabs_max": 0.0, "n_validated": 56, "pool_size_p50": 32.0, "pool_first_class_n_distinct_p50": 2.0, "harm_events_per_100": 100.0}
+[s525 t= 572s] AGG D1       rho 0.21785714285714283/-0.005357142857142854  Qbest 0.19642857142857142/0.16071428571428573 (n_inf=56 chance=0.19999999999999998)  flip 0.98/0.98  habit_agree=1.00
+[s525 t= 572s] AGG DISC_0.5 rho 0.08214285714285711/0.19821428571428568  Qbest 0.23214285714285715/0.17857142857142858 (n_inf=56 chance=0.19999999999999998)  flip 0.98/0.89  habit_agree=0.32
+[s525 t= 572s] AGG DISC_0.8 rho -0.20178571428571426/0.23214285714285707  Qbest 0.23214285714285715/0.2857142857142857 (n_inf=56 chance=0.19999999999999998)  flip 0.95/0.96  habit_agree=0.14
+[s525 t= 572s] AGG FIDW     rho -0.21785714285714283/0.2107142857142857  Qbest 0.23214285714285715/0.2857142857142857 (n_inf=56 chance=0.19999999999999998)  flip 1.00/1.00  habit_agree=0.14
+[s525 t= 572s] AGG FULL     rho -0.21071428571428566/0.03928571428571429  Qbest 0.23214285714285715/0.16071428571428573 (n_inf=56 chance=0.19999999999999998)  flip 1.00/1.00  habit_agree=0.12
+[s525 t= 572s] wrote results/N3_s525.json decomp_canary=0

@@ -1,0 +1,91 @@
+seeds present: [521, 522, 523, 524, 525]
+
+HEADS (TE4 disc4_h1 / k ; disc5 TEW ; k30 ; t1/t30/true norm)
+  s521 INIT     disc4=0.220 k=0 disc5(te4)=0.000 disc5(tew)=0.188 k30=0 norms 0.51/785.09/0.36
+  s521 REAL_pre disc4=0.440 k=10 disc5(te4)=0.360 
+  s521 REAL     disc4=0.483 k=10 disc5(te4)=0.417 disc5(tew)=0.422 k30=26 norms 0.38/0.44/0.36
+  s521 SHUF_pre disc4=0.257 k=9 disc5(te4)=0.187 
+  s521 SHUF     disc4=0.263 k=10 disc5(te4)=0.200 disc5(tew)=0.260 k30=17 norms 0.38/0.55/0.36
+  s521 B0p      disc4=0.300 k=1 disc5(te4)=0.250 disc5(tew)=0.253 k30=2 norms 0.38/7.77/0.36
+  s521 proxy_bar=True shuf_at_chance=True canaries_ok=True | states=47 informative=47 val=0.0 decomp=0.0 batch=3.814697265625e-06 | retention_vs_B0p=1.31 | fidw depths REAL=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] SHUF=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  s521 post REAL r/100=-0.78 harm/100=14.9 ben/100=0.25 H=0.78 early=7 counts={'0': 839, '1': 46, '3': 300, '4': 15}
+  s521 post SHUF r/100=-0.37 harm/100=9.9 ben/100=0.25 H=0.68 early=2 counts={'0': 891, '1': 29, '3': 271, '4': 9}
+  s522 INIT     disc4=0.247 k=0 disc5(te4)=0.247 disc5(tew)=0.189 k30=0 norms 0.66/915.37/0.35
+  s522 REAL_pre disc4=0.417 k=7 disc5(te4)=0.347 
+  s522 REAL     disc4=0.470 k=10 disc5(te4)=0.420 disc5(tew)=0.368 k30=30 norms 0.38/0.48/0.35
+  s522 SHUF_pre disc4=0.243 k=6 disc5(te4)=0.190 
+  s522 SHUF     disc4=0.290 k=10 disc5(te4)=0.273 disc5(tew)=0.274 k30=28 norms 0.39/0.53/0.35
+  s522 B0p      disc4=0.300 k=0 disc5(te4)=0.280 disc5(tew)=0.211 k30=1 norms 0.38/6.29/0.35
+  s522 proxy_bar=True shuf_at_chance=False canaries_ok=False | states=46 informative=46 val=0.0 decomp=0.0 batch=0.000244140625 | retention_vs_B0p=1.46 | fidw depths REAL=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] SHUF=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+  s522 post REAL r/100=-0.08 harm/100=2.7 ben/100=0.25 H=0.03 early=0 counts={'2': 4, '3': 1194, '4': 2}
+  s522 post SHUF r/100=-0.10 harm/100=3.1 ben/100=0.25 H=0.04 early=1 counts={'2': 4, '3': 1193, '4': 3}
+  s523 INIT     disc4=0.263 k=0 disc5(te4)=0.000 disc5(tew)=0.226 k30=0 norms 0.67/242.03/0.40
+  s523 REAL_pre disc4=0.460 k=10 disc5(te4)=0.397 
+  s523 REAL     disc4=0.477 k=10 disc5(te4)=0.430 disc5(tew)=0.365 k30=23 norms 0.43/0.60/0.40
+  s523 SHUF_pre disc4=0.247 k=9 disc5(te4)=0.180 
+  s523 SHUF     disc4=0.327 k=10 disc5(te4)=0.290 disc5(tew)=0.191 k30=25 norms 0.43/0.55/0.40
+  s523 B0p      disc4=0.297 k=1 disc5(te4)=0.293 disc5(tew)=0.278 k30=11 norms 0.43/2.87/0.40
+  s523 proxy_bar=True shuf_at_chance=False canaries_ok=False | states=46 informative=46 val=0.0 decomp=0.0 batch=1.52587890625e-05 | retention_vs_B0p=1.10 | fidw depths REAL=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] SHUF=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+  s523 post REAL r/100=-0.29 harm/100=5.4 ben/100=0.17 H=0.43 early=2 counts={'0': 8, '1': 142, '2': 1, '3': 1045, '4': 4}
+  s523 post SHUF r/100=-0.43 harm/100=7.4 ben/100=0.25 H=0.40 early=4 counts={'0': 10, '1': 119, '2': 2, '3': 1065, '4': 4}
+  s524 INIT     disc4=0.253 k=0 disc5(te4)=0.253 disc5(tew)=0.211 k30=0 norms 0.57/939.95/0.42
+  s524 REAL_pre disc4=0.400 k=9 disc5(te4)=0.347 
+  s524 REAL     disc4=0.527 k=10 disc5(te4)=0.467 disc5(tew)=0.378 k30=21 norms 0.43/0.48/0.42
+  s524 SHUF_pre disc4=0.253 k=8 disc5(te4)=0.217 
+  s524 SHUF     disc4=0.300 k=10 disc5(te4)=0.260 disc5(tew)=0.250 k30=18 norms 0.43/0.48/0.42
+  s524 B0p      disc4=0.313 k=1 disc5(te4)=0.307 disc5(tew)=0.261 k30=4 norms 0.43/2.46/0.42
+  s524 proxy_bar=True shuf_at_chance=True canaries_ok=True | states=47 informative=47 val=0.0 decomp=0.0 batch=0.0 | retention_vs_B0p=2.46 | fidw depths REAL=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21] SHUF=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+  s524 post REAL r/100=-0.41 harm/100=9.9 ben/100=0.33 H=0.50 early=3 counts={'0': 114, '1': 2, '2': 1038, '3': 36, '4': 10}
+  s524 post SHUF r/100=-0.94 harm/100=19.4 ben/100=0.42 H=0.58 early=8 counts={'0': 74, '1': 3, '2': 1022, '3': 77, '4': 24}
+  s525 INIT     disc4=0.283 k=0 disc5(te4)=0.283 disc5(tew)=0.196 k30=0 norms 0.60/237.68/0.40
+  s525 REAL_pre disc4=0.523 k=6 disc5(te4)=0.463 
+  s525 REAL     disc4=0.547 k=10 disc5(te4)=0.460 disc5(tew)=0.420 k30=17 norms 0.44/0.74/0.40
+  s525 SHUF_pre disc4=0.240 k=7 disc5(te4)=0.177 
+  s525 SHUF     disc4=0.240 k=10 disc5(te4)=0.183 disc5(tew)=0.203 k30=17 norms 0.44/0.74/0.40
+  s525 B0p      disc4=0.240 k=0 disc5(te4)=0.000 disc5(tew)=0.174 k30=0 norms 0.46/23.55/0.40
+  s525 proxy_bar=True shuf_at_chance=True canaries_ok=True | states=56 informative=56 val=0.0 decomp=0.0 batch=0.0 | retention_vs_B0p=1.08 | fidw depths REAL=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] SHUF=[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  s525 post REAL r/100=-18.65 harm/100=100.0 ben/100=0.00 H=0.01 early=174 counts={'1': 1, '3': 1, '4': 1198}
+  s525 post SHUF r/100=-18.65 harm/100=100.0 ben/100=0.00 H=0.01 early=174 counts={'1': 1, '4': 1199}
+
+PROXY BAR 5/5 ; SHUF AT CHANCE 3/5 ; CANARIES False
+
+GATES per aggregation (REAL / SHUF / diff) per seed
+  D1
+    s521 (a) 0.57/-0.08 d=0.65 P | (b) 0.36/0.34 d=0.02 - (chance 0.20, n_inf 47) | (c) 0.79/0.81 d=-0.02 - | habit agree 1.00 rho 1.00 | rho_native2 0.16/0.14
+    s522 (a) 0.71/0.04 d=0.67 P | (b) 0.00/0.00 d=0.00 - (chance 0.20, n_inf 46) | (c) 1.00/1.00 d=0.00 - | habit agree 1.00 rho 1.00 | rho_native2 -0.04/-0.03
+    s523 (a) 0.64/-0.17 d=0.80 P | (b) 0.52/0.04 d=0.48 P (chance 0.20, n_inf 46) | (c) 0.83/0.83 d=0.00 - | habit agree 1.00 rho 1.00 | rho_native2 0.01/-0.01
+    s524 (a) 0.60/-0.20 d=0.80 P | (b) 0.43/0.28 d=0.15 P (chance 0.20, n_inf 47) | (c) 0.89/0.68 d=0.21 P | habit agree 1.00 rho 1.00 | rho_native2 0.25/0.26
+    s525 (a) 0.22/-0.01 d=0.22 P | (b) 0.20/0.16 d=0.04 - (chance 0.20, n_inf 56) | (c) 0.98/0.98 d=0.00 - | habit agree 1.00 rho 1.00 | rho_native2 0.01/-0.01
+    -> (a) 5/5 (b) 2/5 (c) 1/5 : FAIL
+  DISC_0.5
+    s521 (a) 0.67/-0.15 d=0.81 P | (b) 0.17/0.38 d=-0.21 - (chance 0.20, n_inf 47) | (c) 0.89/0.87 d=0.02 - | habit agree 0.00 rho -0.26 | rho_native2 -0.03/-0.04
+    s522 (a) 0.60/0.05 d=0.54 P | (b) 0.00/0.00 d=0.00 - (chance 0.20, n_inf 46) | (c) 1.00/1.00 d=0.00 - | habit agree 0.57 rho 0.85 | rho_native2 0.02/0.01
+    s523 (a) 0.64/-0.16 d=0.80 P | (b) 0.52/0.04 d=0.48 P (chance 0.20, n_inf 46) | (c) 0.89/0.89 d=0.00 - | habit agree 0.02 rho 0.04 | rho_native2 0.04/0.02
+    s524 (a) 0.28/-0.13 d=0.41 P | (b) 0.45/0.32 d=0.13 P (chance 0.20, n_inf 47) | (c) 1.00/1.00 d=0.00 - | habit agree 0.00 rho -0.31 | rho_native2 0.10/0.13
+    s525 (a) 0.08/0.20 d=-0.12 - | (b) 0.23/0.18 d=0.05 - (chance 0.20, n_inf 56) | (c) 0.98/0.89 d=0.09 - | habit agree 0.32 rho 0.66 | rho_native2 0.02/0.01
+    -> (a) 4/5 (b) 2/5 (c) 0/5 : FAIL
+  DISC_0.8
+    s521 (a) 0.10/0.13 d=-0.03 - | (b) 0.34/0.04 d=0.30 P (chance 0.20, n_inf 47) | (c) 1.00/0.98 d=0.02 - | habit agree 0.00 rho -0.31 | rho_native2 -0.07/-0.07
+    s522 (a) 0.04/0.08 d=-0.04 - | (b) 0.02/0.00 d=0.02 - (chance 0.20, n_inf 46) | (c) 0.74/0.78 d=-0.04 - | habit agree 0.09 rho 0.25 | rho_native2 0.06/0.06
+    s523 (a) 0.33/0.16 d=0.17 P | (b) 0.13/0.04 d=0.09 - (chance 0.20, n_inf 46) | (c) 0.98/0.85 d=0.13 - | habit agree 0.00 rho -0.40 | rho_native2 0.01/0.02
+    s524 (a) 0.07/0.04 d=0.02 - | (b) 0.26/0.30 d=-0.04 - (chance 0.20, n_inf 47) | (c) 0.81/0.85 d=-0.04 - | habit agree 0.00 rho -0.12 | rho_native2 0.14/0.07
+    s525 (a) -0.20/0.23 d=-0.43 - | (b) 0.23/0.29 d=-0.05 - (chance 0.20, n_inf 56) | (c) 0.95/0.96 d=-0.02 - | habit agree 0.14 rho 0.50 | rho_native2 0.03/0.00
+    -> (a) 1/5 (b) 1/5 (c) 0/5 : FAIL
+  FIDW
+    s521 (a) -0.14/0.24 d=-0.38 - | (b) 0.17/0.02 d=0.15 P (chance 0.20, n_inf 47) | (c) 0.98/1.00 d=-0.02 - | habit agree 0.00 rho -0.25 | rho_native2 -0.06/-0.07
+    s522 (a) -0.50/0.38 d=-0.88 - | (b) 0.02/0.00 d=0.02 - (chance 0.20, n_inf 46) | (c) 1.00/1.00 d=0.00 - | habit agree 0.02 rho 0.03 | rho_native2 0.04/0.04
+    s523 (a) -0.01/0.04 d=-0.05 - | (b) 0.15/0.04 d=0.11 P (chance 0.20, n_inf 46) | (c) 1.00/1.00 d=0.00 - | habit agree 0.00 rho -0.20 | rho_native2 -0.00/0.01
+    s524 (a) -0.16/-0.01 d=-0.15 - | (b) 0.23/0.30 d=-0.06 - (chance 0.20, n_inf 47) | (c) 0.87/1.00 d=-0.13 - | habit agree 0.02 rho 0.06 | rho_native2 0.15/0.05
+    s525 (a) -0.22/0.21 d=-0.43 - | (b) 0.23/0.29 d=-0.05 - (chance 0.20, n_inf 56) | (c) 1.00/1.00 d=0.00 - | habit agree 0.14 rho 0.48 | rho_native2 0.03/0.00
+    -> (a) 0/5 (b) 2/5 (c) 0/5 : FAIL
+  FULL
+    s521 (a) -0.16/0.29 d=-0.45 - | (b) 0.17/0.00 d=0.17 P (chance 0.20, n_inf 47) | (c) 1.00/1.00 d=0.00 - | habit agree 0.00 rho -0.25 | rho_native2 -0.06/-0.07
+    s522 (a) -0.50/0.47 d=-0.97 - | (b) 0.02/0.00 d=0.02 - (chance 0.20, n_inf 46) | (c) 0.74/0.91 d=-0.17 - | habit agree 0.02 rho 0.03 | rho_native2 0.04/0.04
+    s523 (a) -0.08/0.03 d=-0.10 - | (b) 0.15/0.04 d=0.11 P (chance 0.20, n_inf 46) | (c) 1.00/0.98 d=0.02 - | habit agree 0.00 rho -0.21 | rho_native2 -0.00/0.01
+    s524 (a) -0.16/0.25 d=-0.41 - | (b) 0.02/0.19 d=-0.17 - (chance 0.20, n_inf 47) | (c) 0.98/0.98 d=0.00 - | habit agree 0.11 rho 0.18 | rho_native2 0.21/0.01
+    s525 (a) -0.21/0.04 d=-0.25 - | (b) 0.23/0.16 d=0.07 - (chance 0.20, n_inf 56) | (c) 1.00/1.00 d=0.00 - | habit agree 0.12 rho 0.48 | rho_native2 0.03/0.00
+    -> (a) 0/5 (b) 2/5 (c) 0/5 : FAIL
+
+SD-081 compat: {'D1': False, 'DISC_0.5': True, 'DISC_0.8': True, 'FIDW': True, 'FULL': True}
+canary (FULL SHUF flip >= 0.5): 5/5 seeds
+VERDICT: CANNOT_DETERMINE  (passes={'D1': False, 'DISC_0.5': False, 'DISC_0.8': False, 'FIDW': False, 'FULL': False})
