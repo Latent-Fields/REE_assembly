@@ -3692,3 +3692,6 @@ One line per hourly tick. ASCII only.
 2026-09-25T15:47:06Z workset published (regen -- 257 items, 32 ready, 0 in flight)
 2026-09-25T15:47:06Z workset committed (regen -- 257 items, 32 ready, 0 in flight)
 2026-09-25T15:43:24Z no eligible item (skipped 257): IGW-20260925-001:skill /governance not allowed; IGW-20260925-003:skill /governance not allowed; IGW-20260925-225:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
+2026-09-25T16:50:57Z workset published (regen -- 258 items, 32 ready, 0 in flight)
+2026-09-25T16:50:57Z workset committed (regen -- 258 items, 32 ready, 0 in flight)
+2026-09-25T16:48:38Z no eligible item (skipped 258): IGW-20260925-001:skill /governance not allowed; IGW-20260925-003:skill /governance not allowed; IGW-20260925-225:status=blocked blocked_by=ready=false (no ready_blocked_by detail); SD-070 [no-substrate-entry]: SD-070 encoder recipe (raise z_world entropy) -- named by this entry's OWN implementation_hint as the 'Secondary/complem
