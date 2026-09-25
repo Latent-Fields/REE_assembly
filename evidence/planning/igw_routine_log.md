@@ -3661,3 +3661,4 @@ One line per hourly tick. ASCII only.
 2026-09-25T06:28:34Z disposition IGW-20260925-229 hash=2b4c3b827f61 decision=REJECT: user 2026-09-25: off MECH-287 path under DV re-scope C (rec-20260925-ced5d392)
 2026-09-25T06:33:47Z LAUNCH (manual interactive) IGW-20260923-219 worktree=igw-219-substrate-ready-sd105-frozen-sha
 2026-09-25T06:35:20Z STAGE IGW-20260925-219 skill=/implement-substrate prio=25 worktree=igw-219-substrate-ready-dacc-pe-scale-no (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-09-25T07:37:49Z auto-defer igw-219-substrate-ready-sd105-frozen-sha hash=4df00b6a091d for 48h (complete)
