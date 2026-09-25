@@ -188,7 +188,24 @@ Source: `docs/thoughts/2026-06-07-language-affect-adaptor-slm-emotion-recognitio
 
 **Claim ID:** ARC-146 (`language.routing_vs_affect_separation`, registered 2026-09-16, candidate / substrate_conditional / v4)
 
-Dorsal high-fidelity structured symbolic routing is architecturally distinct from the affective-coupling system, and a ventral interface binds affect to symbol. The claim is limited to the clinical *dissociation* (conduction aphasia impairs structured repetition while preserving comprehension; right-hemisphere lesions impair affective prosody while sparing propositional language) and deliberately does not assert the broader "lateralisation = incompatible-regime separation" principle, which the source intake gates behind a lit-pull. Distinct from ARC-123 (language vs theory-of-mind separability, a different axis), from MECH-486 (the interference this separation predicts) and from MECH-373 (a V5 implementation candidate for the ventral binding interface). The companion mechanism claim (bilateral, right-biased temporal-limbic affective coupling) is **not** registered pending the dorsal/ventral + lateralisation literature pull. DO NOT build in V3.
+Dorsal high-fidelity structured symbolic routing is architecturally distinct from the affective-coupling system, and a ventral interface binds affect to symbol. The claim is limited to the clinical *dissociation* (conduction aphasia impairs structured repetition while preserving comprehension; right-hemisphere lesions impair affective prosody while sparing propositional language) and deliberately does not assert the broader "lateralisation = incompatible-regime separation" principle, which the source intake gates behind a lit-pull. Distinct from ARC-123 (language vs theory-of-mind separability, a different axis), from MECH-486 (the interference this separation predicts) and from MECH-373 (a V5 implementation candidate for the ventral binding interface). The companion mechanism claim is registered as MECH-594 (below) after the 2026-09-19 dorsal/ventral + lateralisation pull. DO NOT build in V3.
+
+Source: `docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md` via `evidence/planning/thought_intake_2026-04-16_language_lateralisation.md`.
+
+<a id="mech-594"></a>
+## Suprasegmental prosodic route (MECH-594) -- V4 candidate
+
+**Claim ID:** MECH-594 (`language.ventral_suprasegmental_prosodic_route`, registered 2026-09-25, candidate / substrate_conditional / v4)
+
+The affect-bearing route of ARC-146's ventral interface is a suprasegmental prosodic channel (rhythm, pitch contour,
+stress) carried separately from segmental symbolic content; affect and intent are read from it rather than being its
+content. Grounding (`evidence/literature/targeted_review_language_lateralisation_dorsal_ventral`): Hickok & Poeppel
+2007 (dorsal strongly left, ventral largely bilateral); Sihvonen et al. 2022 (right ventral stream / IFOF damage
+predicts aprosodia together with amusia); Catani et al. 2007 (arcuate lateralisation is a population parameter;
+symmetric individuals recall better) -- so the separation is the commitment and the asymmetry is tunable. Evidence is
+recognition-side only. Open: whether the route belongs to the language architecture or to the salience network
+(SD-032a) read through an auditory channel -- the claim's discriminating test. The broad "lateralisation =
+incompatible-regime separation" principle remains unregistered. DO NOT build in V3.
 
 Source: `docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md` via `evidence/planning/thought_intake_2026-04-16_language_lateralisation.md`.
 
@@ -208,6 +225,7 @@ None noted in preserved sources.
 - INV-007
 - MECH-373 (Language Affect Adaptor — V5+ candidate; depends_on ARC-009/ARC-010/Q-007/MECH-031)
 - ARC-146 (routing-vs-affect separation -- V4 candidate; depends_on ARC-009/ARC-010/MECH-112/ARC-123/MECH-486/MECH-373)
+- MECH-594 (suprasegmental prosodic route -- V4 candidate; depends_on ARC-146/ARC-009/MECH-486/SD-032a)
 
 ## References / Source Fragments
 

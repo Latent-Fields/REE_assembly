@@ -94,7 +94,7 @@ is changed by this pass. The following are proposed `depends_on` / distinguished
 - **ARC-011, ARC-020, MECH-030** -- refined (not superseded) by ARC-137. ARC-020 remains sole
   owner of the write-scope boundary; MECH-030 remains sole owner of the phase-family reading.
 - **ARC-020 specifically** -- flagged to `/governance` for the permissive-list residual above
-  (does the MAY-update list cover access-route quantities?). No edit proposed here.
+  (does the MAY-update list cover access-route quantities?). No edit proposed here. **RESOLVED 2026-09-10 (GFLAG-0128, user decision option (a), 5dc661badc3): sleep.md's MAY-update list and ARC-020's what_would_answer now name access-route quantities; offline access repair is PERMITTED; the MUST NOT list is unchanged.**
 - **MECH-462, SD-068, SD-071, SD-072, SD-073** -- ARC-137 generalises MECH-462's readout-order
   rule; the lesion harness is its existing partial instrument. Cross-ref, not amendment.
 - **ARC-130, ARC-131, ARC-120, INV-037, MECH-480** -- named as the existing owners of
@@ -124,7 +124,7 @@ is changed by this pass. The following are proposed `depends_on` / distinguished
 
 Registered into `docs/claims/claims.yaml` in this pass: **ARC-137** (typed offline-transformation taxonomy) and **MECH-533** (developmental co-maturation of offline scheduling and offline competence). Draft prepared by an Opus subagent, reviewed and landed by the session. The draft's third entry (the shared MECH-094 provenance question) was NOT registered separately: it was merged into **Q-102**, registered minutes earlier by the sibling counterfactual-world-models intake. The plan-of-record edit (Next steps 4) WAS applied to `evidence/planning/sleep_substrate_plan.md` in this pass. The draft YAML block below is retained as the record of what was proposed; the Q-102 entry in it is the un-registered draft.
 
-### Draft YAML as proposed (record only)
+### Draft YAML as proposed (record only) -- landed as ARC-137 and MECH-533; the third entry merged into Q-102
 
 Placeholder ids only: **the parent session assigns real ids at write time**, after re-checking
 `max(ARC-*)`, `max(MECH-*)` and `max(Q-*)` in `claims.yaml` immediately before the write (per
@@ -419,7 +419,7 @@ honestly:
   `epistemic_category: substrate_conditional` nonetheless, because the four operations it types are
   not all reachable in V3 today (GAP-2 blocked, MECH-276 unbuilt, SD-016 unresolved). This is a
   deliberate v3-scope deviation from the default v4 park -- **flagged for `/governance` to confirm
-  or re-park, not decided here.**
+  or re-park, not decided here.** **RESOLVED 2026-09-05 (GFLAG-0129): v3 CONFIRMED; substrate_conditional; hold_pending_v3_substrate.**
 - **MECH-533** -- `implementation_phase: v4`, `version_relevance: v3_v4`. Sleep FREQUENCY is
   manipulable in V3 today (K-cadence, and GAP-9's within-life trigger, both arms built 2026-08-14);
   offline COMPETENCE (replay sequence fidelity, ContextMemory content discrimination) is not. The

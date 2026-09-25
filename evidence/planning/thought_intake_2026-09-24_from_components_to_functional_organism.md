@@ -92,12 +92,12 @@ text was read, not token-matched.
 | **T9.** Adaptive recovery after an unannounced environment change (Q-108) | **Q-108** (`open_question`, `substrate_conditional`, v4). AR-1 cue remapping is the nearest V3-expressible class, already flagged for `/governance` routing. | **Confirmed. Cross-reference only.** |
 | **T10.** Separate the three ready items from the full organism path; the sequenced plan (sec 7) | A planning contribution, not claim-shaped. | **Not registered.** Carried into the orchestrator execution prompt, which is where a sequencing proposal belongs. |
 
-## 6. Candidate claims -- STAGED for registration (not applied; see header)
+## 6. Candidate claims -- REGISTERED as MECH-586 (2026-09-24; staged text below applied verbatim)
 
 One claim. Everything else in the thought is owned (section 5).
 
 ```yaml
-- id: MECH-586   # PROVISIONAL -- re-check max MECH id at write time
+- id: MECH-586   # REGISTERED 2026-09-24 as `MECH-586` (chip-20260924-mech586-register); record of the staged text
   title: 'Harm-forecast uncertainty redirects control but does not discount expected adverse cost in
     selection: low confidence in a hazard prediction may lower that prediction''s authority to update
     beliefs, and may route control toward investigation, a shorter trusted planning horizon, or

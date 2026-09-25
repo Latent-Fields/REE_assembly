@@ -8,7 +8,7 @@ nav_order: 9
 # Plasticity Write-Authority Gating (admission side)
 
 **Status:** candidate-claim home doc. NOT a substrate-design memo, NOT a V3 critical-path item.
-**Registered claims:** MECH-368, Q-062 (both `candidate / substrate_conditional / implementation_phase:v4 / version_relevance:v4_v5`).
+**Registered claims:** MECH-368, Q-062, MECH-431; plasticity-governance cluster (2026-09-25): ARC-151, ARC-152, MECH-592, MECH-593, ARC-153, ARC-154, Q-109 (all `candidate / substrate_conditional / implementation_phase:v4 / version_relevance:v4_v5`).
 **Seed:** [thought_intake_2026-06-06_learning_onset_single_connection_gate.md](../../evidence/planning/thought_intake_2026-06-06_learning_onset_single_connection_gate.md)
 → raw: [docs/thoughts/2026-06-06_learning_onset_single_connection_gate.md](../thoughts/2026-06-06_learning_onset_single_connection_gate.md)
 **Empirical anchor (compass only):** Schreiner, Brudner, Li, Pearson & Mooney, "A synaptic locus of song learning," *Nature* 2026, DOI 10.1038/s41586-026-10510-x — a cortico-basal-ganglia synapse class as the first-expression/maintenance locus of zebra-finch song learning. A genuine primary study but single-system/localisation in scope; it motivates the architecture, it does not supply citable mechanism evidence for any REE claim.
@@ -76,12 +76,84 @@ Reaped from the autobiographical_memory_v4:ABM-9 biology /lit-pull (2026-06-13).
 
 ---
 
+---
+
+## Plasticity-governance cluster (registered 2026-09-25)
+
+Seeded by [thought_intake_2026-05-21_gated_plasticity.md](../../evidence/planning/thought_intake_2026-05-21_gated_plasticity.md)
+and [thought_intake_2026-05-04_smoothened_da_ach.md](../../evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md),
+registered after the biology gate was met 2026-09-19 (`evidence/literature/targeted_review_gated_plasticity_biology`).
+Cites, does not restate: MECH-083 (ACh plasticity gain), INV-056 (selective neoteny), INV-074 (crystallization),
+ARC-093 / MECH-398..400 / Q-072 (cortical plasticity-gain side), MECH-453 (TAN-pause window). The 2026-08-24 intake
+already showed the signal -> eligibility -> permitted-update -> durable-commit cut is owned by this doc's claims plus
+MECH-261 / MECH-094 / MECH-067; this cluster adds only what the literature pull surfaced.
+
+Four wording decisions bind every claim below: gate **polarity is de-repression** (default blocked, fails closed --
+Vanevski & Xu 2015); permission is binary-by-condition but **write magnitude is a gain with an interior optimum**
+(Bolognani 2006); the striatal window is a **closed loop** (Kim 2019); and it is **not a learning-rate knob**
+(Uribe-Cano & Kottmann 2026). All striatal evidence is dorsolateral-striatal motor/effort -- a procedural locus.
+
+<a id="arc-151"></a>
+### ARC-151 -- gate polarity: default-blocked (de-repression)
+
+A teaching signal releases a write already staged at its target; it neither carries the content nor opens a window.
+Specificity lives on the target. MECH-261 / MECH-368 / MECH-431 / MECH-453 are read with this polarity, so controller
+faults fail closed. Folds the intake's signals-as-proposals and typed-controller candidates.
+
+<a id="arc-152"></a>
+### ARC-152 -- target-depth-graded release
+
+Release requirement grows monotonically with target depth; extends INV-020 / MECH-064 / MECH-067 / ARC-020
+stratification (actor, channel, phase) to ordinary experiential learning; generalises MECH-511's local-vs-deep E1
+routing. The eight-rung ladder is illustrative. Grading must not become hardening (INV-056).
+
+<a id="mech-592"></a>
+### MECH-592 -- developmental operators reused under restriction
+
+Adult reuse of a developmental operator is correct only as a de-repressed, target-restricted gain with an interior
+optimum; unrestricted reuse impairs learning (Bolognani 2006). INV-056's retained plasticity = capacity under a gate.
+
+<a id="mech-593"></a>
+### MECH-593 -- refused deep writes are retained, not discarded
+
+Real-provenance, ethically salient signals refused on depth grounds persist as unresolved records for offline
+integration. Provenance-refused simulated content (MECH-094 / INV-011) leaves no record. Not a definition of residue.
+
+<a id="arc-153"></a>
+### ARC-153 -- ethics governs self-modification
+
+Harm/residue signals (not an ethics module, INV-001) are inputs to deep-target release; runtime plasticity selection
+is how INV-093's floor is held during learning. Injection routes stay with INV-020 / MECH-064; rollback with
+MECH-392 / MECH-471.
+
+<a id="arc-154"></a>
+### ARC-154 -- E3 DA-ACh coordination layer
+
+Separable from the DA signal, the cholinergic window (MECH-453) and the selector; sets their coupling, and so which
+traces (MECH-452) are reinforced and how persistently. Interior-optimum setpoint trading acquisition against
+effort/persistence recalibration. Absorbs the persist + calibrate residual of the five-way separation candidate.
+
+<a id="q-109"></a>
+### Q-109 -- is the TAN-pause window the tag that sleep captures?
+
+Striatal procedural path only: is MECH-453's window the tag stage of MECH-431 tag-and-capture, captured offline via
+MECH-322 / MECH-285, or independent of it? Window membership and value tags are confounded by the closed loop.
+
+<a id="mech-453"></a>
+### MECH-453 (cross-reference; optional re-home)
+
+Owns the intake's striatal windowed-write candidate. Amended 2026-09-25 (closed loop; not a learning-rate knob;
+contrast vs admission; release-vs-credit level shift). Registered 2026-06-23 from the V3-EXQ-700 thought.
+
+Status of all entries: candidate / substrate_conditional / v4 / v4_v5. **DO NOT build in V3.**
+
 ## Relationship to the two adjacent notes (cross-reference, NOT conflation)
 
 | Note | Grain | Question |
 |---|---|---|
 | [2026-06-01 plasticity-window-neuromodulators](../thoughts/2026-06-01_plasticity_window_neuromodulators.md) | **window / global state** (ACh/PV/BDNF learning-rate gain) | when is the system in a high-plasticity regime? |
 | **This doc / MECH-368** | **event / local** | does *this* event earn durable write? |
+| **ARC-152 (this doc, 2026-09-25)** | **target depth** | how much release does a write into *this* target require? |
 | INV-074 / MECH-333 / MECH-334 closure side | **window closure** | when does plasticity crystallize / lock? |
 
 A window-level plasticity gain can be open while a given event still fails the event-level admission gate, and vice versa. The three are sequential complements, not substitutes — do not merge them.

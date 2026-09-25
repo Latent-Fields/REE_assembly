@@ -1,7 +1,7 @@
 # Thought intake: striatal dopamine-acetylcholine timing windows as E3 reinforcement write-gate
 
 **Date:** 2026-05-04 (raw); intake written 2026-06-05
-**Status:** intake / candidate (NOT yet registered). Folds into the plasticity-governance cluster.
+**Status:** intake / candidate -- REGISTERED 2026-09-25 with the plasticity-governance cluster (see Section 4 ids).
 **Raw thought file:** `docs/thoughts/2026-05-04_smoothened_modulation_ACh_Dopamine_learning.md`
 **Origin:** Uribe-Cano & Kottmann 2026 (iScience) -- Smoothened (a GPCR) on striatal cholinergic
 interneurons modulates dopamine-associated acetylcholine pauses, altering DA-ACh coordination,
@@ -49,16 +49,18 @@ replays/compresses/generalises/reassigns them.
 
 ## 4. Candidate claims
 
-- **MECH (striatal-DA-ACh-windowed-write)** -- striatal reinforcement is temporally coordinated
+> **Registration 2026-09-25** (chip `chip-20260919-intake-hygiene-registration`; gate met 2026-09-19): 4 candidates -> 2 new ids + 1 already-owned. The window is recorded as a closed loop (Kim 2019) and NOT as a learning-rate knob (Uribe-Cano & Kottmann 2026, Smo ablation promotes motor learning); dorsolateral-striatal motor scope. Full disposition: `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md` "Section 5 registration".
+
+- **MECH (striatal-DA-ACh-windowed-write) -> already owned by MECH-453 (amended 2026-09-25, no new id)** -- striatal reinforcement is temporally coordinated
   DA-ACh write-gating, not scalar DA update; CIN pauses create plasticity-permissive windows.
   *[lit-anchored; instance of MECH-083]*
-- **ARC (E3-DA-ACh-coordination-layer)** -- E3 BG commitment includes a DA-ACh layer determining
+- **ARC (E3-DA-ACh-coordination-layer) -> ARC-154** -- E3 BG commitment includes a DA-ACh layer determining
   which recently-active policy traces become eligible for reinforcement, separate from which action
   is selected. *[novel architectural update]*
-- **ARC (separate-select-mark-permit-persist-calibrate)** -- distinguish action selection /
+- **ARC (separate-select-mark-permit-persist-calibrate) -> merged into ARC-154** -- distinguish action selection /
   reinforcement marking / plasticity permission / persistence tuning / effort calibration as
   partially-separable operations. *[novel]*
-- **Q (ach-windows-tag-for-sleep)** -- do ACh-gated waking write-windows create trace-tags that
+- **Q (ach-windows-tag-for-sleep) -> Q-109** -- do ACh-gated waking write-windows create trace-tags that
   sleep/offline later uses for bucket refinement / compression / context reassignment? *[open;
   ties to SD-017 sleep]*
 

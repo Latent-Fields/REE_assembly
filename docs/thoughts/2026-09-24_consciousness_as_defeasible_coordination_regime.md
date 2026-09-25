@@ -1,3 +1,6 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-24_consciousness_as_defeasible_coordination_regime.md
+
 # Consciousness as a defeasible coordination regime
 
 **Date:** 2026-09-24  

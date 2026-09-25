@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-24_dynamic_coordination_repertoire_monostrategy.md
+Claims registered: MECH-588, MECH-589
+
 # Dynamic coordination, accessible repertoire, and monostrategy
 
 **Date:** 2026-09-24  
-**Status:** raw synthesis thought / assay-generative note; not yet claim-ingested  
+**Status:** raw synthesis thought / assay-generative note; claim-ingested 2026-09-25 (see top marker)  
 **Scope:** V3 monostrategy, V3/V4 phase-substrate boundary, dynamic routing, authority-field hypothesis, anaesthesia convergence, later social/ethical access  
 **Related internal material:** `docs/thoughts/2026-09-04_authority_field_analog_cognition_ephaptic_coupling.md`, `docs/thoughts/2026-09-10_dynamic_routing_as_experimental_information_governance.md`, `docs/thoughts/2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md`, `docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md`, `docs/architecture/dynamic_consensus_integration.md`, `docs/architecture/monostrategy_developmental_analysis.md`, `docs/architecture/v3_v4_phase_substrate_boundary.md`
 

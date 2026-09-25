@@ -196,6 +196,8 @@ None noted in preserved sources.
 - INV-004
 - MECH-034
 - MECH-056
+- MECH-595 (tonic mood regulator with return-to-baseline -- see residue_mood_regulation.md)
+- Q-110 (caregiver bond as a residue-metabolism channel -- see residue_mood_regulation.md)
 
 **See also:** [vmPFC](vmPFC.md) — the substrate that converts stored residue into an active anticipatory signal in the navigable state at trajectory evaluation time (ARC-035).
 

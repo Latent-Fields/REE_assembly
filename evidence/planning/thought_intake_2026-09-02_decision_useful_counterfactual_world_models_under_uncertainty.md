@@ -150,7 +150,7 @@ addenda are in `refinements_proposed.md` and are proposals for the parent, not a
   keep whichever draft is better and drop the other without losing coverage. If the sleep intake's version
   lands first, drop this one and add this thought's file to the surviving claim's `source_documents`.
 
-**No `MECH-NEW-1` was minted, deliberately.** The one genuinely new item (uncertainty non-dissipation
+**No new MECH claim was minted for this thread, deliberately.** The one genuinely new item (uncertainty non-dissipation
 across a blind rollout horizon) is a *measurable*, and the thought asks only that the check exist -- it
 proposes no mechanism for producing the property, explicitly denies the density-matrix construction any
 privileged status, and says the thread "may already be substantially covered." Minting a MECH here would
@@ -159,6 +159,8 @@ Flagged for `/governance` rather than decided unilaterally: if governance judges
 just the metric) claim-worthy, the natural shape is a `mechanism_hypothesis` at
 `docs/architecture/precision_control.md` with `depends_on: [MECH-510, MECH-059, SD-063, MECH-385]` -- but
 it is not registered here.
+
+**Resolved (back-filled 2026-09-25):** the contract-field addition LANDED 2026-09-08 (REE_assembly `af29d2a2d80`, chip `chip-20260903-impl022-uncertainty-nondissipation-field`): `docs/architecture/jepa_e1e2_integration_contract.md` now carries the required metric `latent_uncertainty_horizon_dissipation_rate` and the uncertainty non-dissipation required check. The user-approved v3-closure digestion (`thought_digestion_staged_2026-09-04_v3closure.md`, applied 2026-09-06 in `ada5d97af0`) independently concurred: no claim now, and not folded into SD-063's falsifier; revisit only when a partially-observable test bed with verified multi-modal hidden continuations exists.
 
 ## Next steps
 

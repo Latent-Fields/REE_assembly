@@ -1,7 +1,7 @@
 # Thought intake: hemispheric separation of affective coupling and symbolic routing
 
 **Date:** 2026-04-16 (raw); intake written 2026-06-05
-**Status:** intake / candidate (NOT yet registered)
+**Status:** intake / candidate -- REGISTERED (ARC-146 2026-09-16; MECH-594 2026-09-25)
 **Raw thought file:** `docs/thoughts/2026-04-16_language_system_development_and_affective_expression_lateralisation.md`
 **Origin:** user observation that the arcuate fasciculus lateralises with the symbolic-
 sequential language system (typically left), NOT with the affective-coupling system --
@@ -46,14 +46,14 @@ one small "separable social/language systems" cluster, not independently.
 
 ## 3. Candidate claims
 
-> **Registration status 2026-09-16** (intake-hygiene pass, `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md`): the Candidate ARC below is **REGISTERED as ARC-146** (`language.routing_vs_affect_separation`, candidate / substrate_conditional / v4). The Candidate MECH is **NOT registered -- GATE OPEN**: the dorsal/ventral stream + arcuate lateralisation + RH affective-prosody lit-pull this file's Sections 5-6 require has not landed (no `targeted_review_*` under `evidence/literature/` covers it); the pull is routed via chip `chip-20260916-intake-hygiene-litpull-gates`. The Candidate HYP is folded into ARC-009 per the verdict below; no id.
+> **Registration status 2026-09-16 / 2026-09-25** (intake-hygiene passes, `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md`): the Candidate ARC is **REGISTERED as ARC-146** (2026-09-16). The Candidate MECH is **REGISTERED 2026-09-25 as MECH-594** (`language.ventral_suprasegmental_prosodic_route`, candidate / substrate_conditional / v4) after its gate was met 2026-09-19 (`evidence/literature/targeted_review_language_lateralisation_dorsal_ventral`: Hickok & Poeppel 2007, Sihvonen 2022, Catani 2007), NARROWED from "affective coupling" to a suprasegmental prosodic route from which affect is read, right bias as a tunable parameter, input side only, salience-network placement open. The Candidate HYP is folded into ARC-009; no id.
 
-- **Candidate ARC** (language.routing_vs_affect_separation) -- dorsal high-fidelity structured
+- **Candidate ARC -> ARC-146** (language.routing_vs_affect_separation) -- dorsal high-fidelity structured
   routing is architecturally distinct from the affective-coupling system; a ventral interface
   binds affect to symbol. *[integrates existing pieces; the one claim worth registering]*
-- **Candidate MECH** (affect.bilateral_right_biased_coupling) -- affective coupling runs on
+- **Candidate MECH -> MECH-594** (affect.bilateral_right_biased_coupling; narrowed) -- affective coupling runs on
   bilateral temporal-limbic circuits, right-biased; supports prosody/intent. *[lit-pull first]*
-- **Candidate HYP** (language.emerges_from_social_latent_compression) -- language emerges where
+- **Candidate HYP -> folded into ARC-009 (no id)** (language.emerges_from_social_latent_compression) -- language emerges where
   socially-derived latents are compressed to discrete symbols and routed via a lateralised
   high-fidelity pathway. *[overlaps ARC-009; fold in rather than duplicate]*
 

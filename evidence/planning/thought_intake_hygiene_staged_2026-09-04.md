@@ -1,6 +1,6 @@
 # STAGED (not applied): thought-intake hygiene pass -- 2026-09-04
 
-**Status: PARTIALLY APPLIED 2026-09-16 -- 5 registered, 12 gated.** (Was: AWAITING USER REVIEW.) User decision 2026-09-16: "Housekeeping now; register after gate check". Housekeeping landed as REE_assembly `90e50e7e19` (9 files back-filled); registration + gate verdicts in **Section 5** at the end of this file.
+**Status: APPLIED 2026-09-25 -- 5 registered 2026-09-16; the 12 gated candidates disposed 2026-09-25 (8 registered, 4 merged or already-owned; see "Section 5 registration").** (Was: PARTIALLY APPLIED 2026-09-16; before that AWAITING USER REVIEW.) User decision 2026-09-16: "Housekeeping now; register after gate check". Housekeeping landed as REE_assembly `90e50e7e19` (9 files back-filled); registration + gate verdicts in **Section 5** at the end of this file.
 
 **Started:** 2026-09-04T21:02:59Z · **Session:** `thought-digestion-v3-20260904`
 **Input:** `docs/thoughts/thought_intake_audit.v1.json` (generated 2026-09-04T21:02:59Z-ish, same session) -- the 51
@@ -629,3 +629,43 @@ INV-074 `0.891 -> 0.914` (5), ARC-009 `0.816 -> 0.874` (5), ARC-010 `0.738 -> 0.
 MECH-090 `0.684 -> 0.718` (20). MECH-061 was named as an anchor but is **unchanged at 0.816** --
 no paper in either pull evidences commit-boundary error reclassification, and tagging it would have
 inflated its posterior for nothing.
+
+---
+
+## Section 5 registration -- 2026-09-25 (chip `chip-20260919-intake-hygiene-registration`)
+
+Both gates were MET on 2026-09-19 (addendum above). The 12 gated candidates were registered in ONE cluster pass
+via `/thought-ingestion` Step 6, citing MECH-083 / INV-056 / INV-074 / ARC-093 / MECH-453 rather than duplicating
+them, and reconciled with ARC-093 / MECH-398..400 / Q-072 (all four are the cortical ACh/NE GAIN side; nothing
+here re-registers a gain scalar). Each candidate's wording was decided explicitly against the four findings the
+pull raised: (1) gate polarity is DE-REPRESSION (Vanevski & Xu 2015); (2) permission is binary-by-condition but
+write MAGNITUDE is a gain with an interior optimum (Bolognani 2006); (3) the ACh-DA window is a CLOSED LOOP, not
+exogenous (Kim 2019); (4) the window is NOT a learning-rate knob (Uribe-Cano & Kottmann 2026). Scope limit
+recorded on every striatal claim: dorsolateral-striatal motor/effort evidence, a procedural locus.
+
+**Count: 12 candidates -> 8 new ids.** Merging is deliberate: two candidates restated a cut the 2026-08-24 intake
+had already found fully owned (MECH-368 / MECH-207 / INV-020 / MECH-067), and one (`striatal_da_ach_windowed_write`)
+is MECH-453.
+
+| cluster | candidate | verdict | id |
+|---|---|---|---|
+| gated_plasticity | `plasticity.signal_as_proposal_not_update` | merged (cut owned by MECH-368/MECH-207/INV-020/MECH-067; residual = polarity) | ARC-151 |
+| gated_plasticity | `plasticity.typed_gated_event_controller` | registered-narrowed (controller owned by MECH-368/431/261/067/511; residual = polarity + target-carried specificity) | ARC-151 |
+| gated_plasticity | `plasticity.target_depth_separation` | registered-narrowed | ARC-152 |
+| gated_plasticity | `plasticity.depth_ladder_eight_rungs` | merged (8 rungs illustrative, not committed) | ARC-152 |
+| gated_plasticity | `plasticity.developmental_reuse_stricter_permissions` | registered-narrowed as MECH child of INV-056/INV-074 | MECH-592 |
+| gated_plasticity | `plasticity.blocked_signal_residue_trace` | registered-narrowed (real-provenance depth refusals only; NOT V3-tractable -- corrects intake Section 6) | MECH-593 |
+| gated_plasticity | `ethics.plasticity_selection_governs_self_modification` | registered-narrowed (runtime mechanism for INV-093's floor; ARC, not governance_rule -- class flagged for /governance) | ARC-153 |
+| smoothened_da_ach | `plasticity.striatal_da_ach_windowed_write` | ALREADY OWNED by MECH-453 -- not registered; MECH-453 notes + what_would_answer amended (closed loop, not a learning-rate knob, contrast-vs-admission) | MECH-453 |
+| smoothened_da_ach | `e3.da_ach_coordination_layer` | registered (absorbs persist + calibrate) | ARC-154 |
+| smoothened_da_ach | `e3.select_mark_permit_persist_calibrate_separation` | merged (select/mark/permit owned by ARC-107/MECH-449, MECH-452, MECH-453/MECH-368) | ARC-154 |
+| smoothened_da_ach | `plasticity.ach_window_tags_for_sleep_reuse` | registered-narrowed (striatal procedural path) | Q-109 |
+| language_lateralisation | `affect.bilateral_right_biased_coupling` | registered-narrowed (suprasegmental prosodic route; asymmetry a parameter; input side; salience-network placement open) | MECH-594 |
+
+All eight are candidate / substrate_conditional / v4 / v4_v5; none is V3-tractable today (ree_core has no ACh,
+window, depth-indexed release, or POL/ID/CAPS store). Two routing questions are left for /governance, not decided:
+a MECH-453 window on the V3-live ARC-108 learned-gating update (would move MECH-453/ARC-154 earlier), and an
+INV-093-panel measurement of whether harm sensitivity erodes under ordinary refinement on REE (ARC-153's premise).
+Home doc: `docs/architecture/plasticity_write_authority_gating.md` (plasticity cluster), `docs/architecture/language.md`
+(MECH-594). The three intakes' candidate sections were back-filled with the ids in the same commit. With this,
+every `register` item in Batch A is disposed; Batch B/C/D items remain as stated in Section 5 above.

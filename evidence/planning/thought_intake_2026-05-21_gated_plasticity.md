@@ -1,7 +1,7 @@
 # Thought intake: plasticity governance -- learning as a governed write, not a reflex
 
 **Date:** 2026-05-21 (raw); intake written 2026-06-05
-**Status:** intake / candidate claim cluster (NOT yet registered in claims.yaml)
+**Status:** intake / candidate claim cluster -- REGISTERED 2026-09-25 as one cluster (see Section 4 ids)
 **Raw thought file:** `docs/thoughts/2026-05-21_Gated_plasticity.md`
 **Origin:** user convergence of two biological findings -- HuD/ELAVL4 developmental-reuse
 (adult plasticity reuses the embryonic molecular "playbook" with stage-specific target
@@ -65,33 +65,35 @@ MECH-083 already holds it; the cluster *cites* MECH-083, it does not restate it.
   `PlasticityController.process()` (dataclass-level, REE-v3-shaped) -- usable as a v4 design
   scaffold, NOT yet a substrate commitment.
 
-## 4. Candidate claims (for future governance registration -- NOT registered here)
+## 4. Candidate claims (registered 2026-09-25 as one cluster -- per-item ids below)
+
+> **Registration 2026-09-25** (chip `chip-20260919-intake-hygiene-registration`; gate met 2026-09-19, `evidence/literature/targeted_review_gated_plasticity_biology`): 7 candidates -> 5 ids. Wording decided against the pull: gate polarity is de-repression (Vanevski & Xu 2015), write magnitude is a gain with an interior optimum (Bolognani 2006). Full disposition: `evidence/planning/thought_intake_hygiene_staged_2026-09-04.md` "Section 5 registration".
 
 Naming will follow the registry's numeric convention at registration time; the thought's
 mnemonic IDs are kept here only for traceability.
 
-- **INV (signals-as-proposals)** -- RPE / harm PE / novelty / salience / social / affective
+- **INV (signals-as-proposals) -> merged into ARC-151** -- RPE / harm PE / novelty / salience / social / affective
   discrepancy are candidate plasticity events, not automatic updates. *[novel; gate on V4]*
-- **INV (target-depth separation)** -- a plasticity event must distinguish *target* from
+- **INV (target-depth separation) -> ARC-152** -- a plasticity event must distinguish *target* from
   *depth*; the same signal may update shallow salience yet be forbidden from identity /
   ethical-constraint structures. *[novel]*
-- **INV (developmental reuse)** -- adult adaptation reuses development-like plasticity
+- **INV (developmental reuse) -> MECH-592 (MECH child of INV-056/INV-074)** -- adult adaptation reuses development-like plasticity
   operators but with stricter target permissions than childhood world-model formation.
   *[overlaps INV-056 / INV-074; register as refinement or fold in, do not duplicate]*
-- **ARC (typed plasticity gating / plasticity controller)** -- learning implemented as
+- **ARC (typed plasticity gating / plasticity controller) -> ARC-151 (narrowed to gate polarity)** -- learning implemented as
   typed, gated events (source, type, target, timing, confidence, valence, expected
   benefit/harm, depth, governance-required?). *[novel; the central architectural commitment]*
-- **MECH (plasticity-depth ladder)** -- plasticity graded by 8 depth rungs; gating strength
+- **MECH (plasticity-depth ladder) -> merged into ARC-152** -- plasticity graded by 8 depth rungs; gating strength
   monotone in depth. *[novel]*
-- **MECH (blocked-signal residue)** -- a morally salient signal denied a write records a
+- **MECH (blocked-signal residue) -> MECH-593** -- a morally salient signal denied a write records a
   residue trace rather than being discarded. *[sharpens existing residue claims]*
-- **ETH / SAF (ethics-as-plasticity-selection + deep-plasticity-risk)** -- ethical cognition
+- **ETH / SAF (ethics-as-plasticity-selection + deep-plasticity-risk) -> ARC-153** -- ethical cognition
   governs which experiences may alter the agent; deep plasticity (self/other model, goals,
   ethical constraints, identity invariants) is safety-critical and requires gating + audit +
   (where possible) rollback. *[novel bridge; high value for reward-hacking / prompt-injection
   / identity-drift resistance]*
 
-Open questions worth carrying: target-class taxonomy (Q), mode-specific plasticity
+Open questions worth carrying (2026-09-25: none registered separately -- "depth at which governance becomes mandatory" is carried in ARC-152's what_would_answer; rollback is owned by MECH-392 / MECH-471): target-class taxonomy (Q), mode-specific plasticity
 permissions (Q), depth at which governance becomes mandatory (Q), expected-vs-irreducible-
 uncertainty discrimination (Q), rollback for high-depth events (Q).
 
@@ -121,7 +123,7 @@ uncertainty discrimination (Q), rollback for high-depth events (Q).
    ACh side partly overlaps the 2026-06-01 note's Berridge/Hasselmo territory -- check for an
    existing `targeted_review_*` first.
 2. **Governance triage**: decide V4 vs late-V3. The audit + memory both place this V4-leaning;
-   keep it off the V3 critical path. The one V3-tractable sliver is the *blocked-signal-residue*
+   keep it off the V3 critical path. The one V3-tractable sliver is the *blocked-signal-residue* (CORRECTED 2026-09-25: not V3-tractable -- the only V3 refusal site is MECH-094's provenance refusal, which MECH-593 excludes by INV-011)
    sharpening, which could attach to existing residue instrumentation without a new substrate.
 3. **Register as a cluster** (one governance pass) reconciled with the 2026-06-01 neuromodulator
    note, citing MECH-083 / INV-056 / INV-074 rather than duplicating them.

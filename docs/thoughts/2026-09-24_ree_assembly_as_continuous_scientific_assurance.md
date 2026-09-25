@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-24_ree_assembly_as_continuous_scientific_assurance.md
+Claims registered: GOV-DEFEAT-1
+
 # Thought: REE Assembly as continuous scientific assurance
 
 **Date:** 2026-09-24  
-**Status:** raw thought / methodology synthesis; no claim, governance, substrate, experiment, or confidence change is authorised by this document  
+**Status (original):** raw thought / methodology synthesis; this document itself authorises no claim, governance, substrate, experiment, or confidence change -- see the processed header above for what ingestion registered.  
 **Primary subject:** how REE is being assembled, what established methodologies it resembles, and which practices may improve the assembly machinery  
 **Related REE material:** organism-level validation doctrine; architectural causal-realisation graph; functional-organism path; workset / orchestrator / governance machinery; claim registry; experiment manifests; failure autopsies; governance flags; substrate queue; task ledger
 

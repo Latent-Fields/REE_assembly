@@ -1,18 +1,18 @@
 # Thought Sweep Report
 
-Generated: `2026-09-16T17:34:34.431269Z`
+Generated: `2026-09-25T11:05:37.656394Z`
 
 | metric | count |
 |---|---|
-| total thought files | 260 |
-| processed | 260 |
+| total thought files | 272 |
+| processed | 272 |
 | unprocessed | 0 |
 | processed missing back-links | 0 |
 
 Back-link forms among processed thoughts:
 
 - `legacy`: 179
-- `intake_header`: 78
+- `intake_header`: 90
 - `frontmatter`: 1
 - `superseded`: 2
 - `none`: 0
@@ -284,6 +284,18 @@ Back-link forms among processed thoughts:
 - `2026-09-10_dynamic_information_governance_propagating_causal_privilege.md` (1 link(s), form=`intake_header`)
 - `2026-09-10_dynamic_routing_as_experimental_information_governance.md` (1 link(s), form=`intake_header`)
 - `2026-09-10_phase_as_address_phase_conditioned_communication_subspaces.md` (1 link(s), form=`intake_header`)
+- `2026-09-16_local_mechanism_success_vs_organism_level_intelligence.md` (1 link(s), form=`intake_header`)
+- `2026-09-18_affordance_valuation_bridge_sensory_to_commitment.md` (1 link(s), form=`intake_header`)
+- `2026-09-18_fast_empathy_bootstraps_cognitive_empathy.md` (1 link(s), form=`intake_header`)
+- `2026-09-19_dynamic_consensus_post_translation_integration.md` (1 link(s), form=`intake_header`)
+- `2026-09-22_action_conditioned_world_model_and_arousal_gated_commitment.md` (1 link(s), form=`intake_header`)
+- `2026-09-22_behavioral_precision_provenance_and_sleep_plasticity_gain.md` (1 link(s), form=`intake_header`)
+- `2026-09-24_consciousness_as_defeasible_coordination_regime.md` (1 link(s), form=`intake_header`)
+- `2026-09-24_dynamic_coordination_repertoire_monostrategy.md` (1 link(s), form=`intake_header`)
+- `2026-09-24_experimental_learning_beyond_literature.md` (1 link(s), form=`intake_header`)
+- `2026-09-24_from_components_to_functional_organism.md` (1 link(s), form=`intake_header`)
+- `2026-09-24_ree_assembly_as_continuous_scientific_assurance.md` (1 link(s), form=`intake_header`)
+- `2026-09-25_error_as_information_error_as_threat.md` (1 link(s), form=`intake_header`)
 - `2028-08-10_REE_as_a_single_understandable_cognifold.md` (1 link(s), form=`superseded`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s), form=`legacy`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s), form=`legacy`)

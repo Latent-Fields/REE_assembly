@@ -2,6 +2,7 @@
 
 Status: processed
 Intake: evidence/planning/thought_intake_2026-07-09_residue_care_marker_mood_regulation.md
+Registered: INV-029 (candidate 1, folded); MECH-595, Q-110 (candidates 2-3, 2026-09-25)
 
 ## Source thoughts (verbatim)
 

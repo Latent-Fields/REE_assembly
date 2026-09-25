@@ -1,7 +1,7 @@
 # Thought Intake: Dynamic goal structure and relational possibility topology
 
 **Date:** 2026-08-07
-**Status:** Stage 2 structured analysis; no new claim IDs registered in this pass.
+**Status:** Stage 2 structured analysis; no new claim IDs registered in this pass. **Back-filled 2026-09-25:** all three Section 11 candidates were registered the same day, folded into ONE claim, **SD-097** (`goal.general_relational_possibility_topology`, `substrate_design`), after the Section 13 lit-pull (`evidence/literature/targeted_review_relational_possibility_topology/`). The 2026-08-08 sibling intake later added **SD-098** (per-node goal-ness computed relationally at read time).
 **Raw thought file:** `docs/thoughts/2026-08-07_dynamic_goal_structure_relational_possibility_topology.md`
 **Origin:** User, developed in conversation and then reconciled against the existing REE architecture.
 **Provenance rule:** Direct user quotations are primary evidence. Conceptual synthesis, literature comparison, repository reconciliation, and naming are secondary interpretation unless explicitly attributed otherwise.
@@ -133,13 +133,13 @@ The most immediate architectural interfaces are `SD-004`, `SD-039`, `MECH-292`, 
 
 No existing claim is edited or reinterpreted by this intake. The point of the repository reconciliation is to avoid duplicate claims and identify the narrower residual question that remains genuinely open.
 
-## 11. Candidate claim-shaped ideas — not registered in this pass
+## 11. Candidate claim-shaped ideas — registered after this pass as SD-097 (all three folded into one claim)
 
 No new claim IDs are created here. The following are prose-level candidates for later digestion and literature review:
 
-1. **General relational possibility topology:** REE may require a representation in which parent/subgoal is one relation among a wider family of learned relations between possible states/actions/purposes.
-2. **Context-dependent promotion:** represented possibilities may persist below active goal status and become candidates for pursuit when contextual relevance changes, without requiring rediscovery.
-3. **Topology revision during action:** goal pursuit may modify the represented topology upward, downward, and laterally rather than merely choosing a route through a fixed hierarchy.
+1. **SD-097 (folded) -- General relational possibility topology:** REE may require a representation in which parent/subgoal is one relation among a wider family of learned relations between possible states/actions/purposes.
+2. **SD-097 (folded) -- Context-dependent promotion:** represented possibilities may persist below active goal status and become candidates for pursuit when contextual relevance changes, without requiring rediscovery.
+3. **SD-097 (folded) -- Topology revision during action:** goal pursuit may modify the represented topology upward, downward, and laterally rather than merely choosing a route through a fixed hierarchy.
 
 These may turn out to be one architectural claim, several mechanisms, or an interpretation of existing hippocampal/goal machinery. Registration should wait for dedicated comparison against the literature and a concrete discriminative design.
 

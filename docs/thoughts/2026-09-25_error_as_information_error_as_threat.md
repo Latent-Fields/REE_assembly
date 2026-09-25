@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-25_error_as_information_error_as_threat.md
+Claims registered: MECH-590, MECH-591
+
 # Error as Information, Error as Threat: Learned Valence of Prediction Error
 
 **Date:** 2026-09-25  
-**Status:** raw thought / hypothesis seed; not yet claim-ingested  
+**Status:** processed 2026-09-25 -- see Intake link above (MECH-590, MECH-591)  
 **Scope:** developmental learning, prediction error, control-plane routing, curiosity, threat, correction, model revision  
 **Origin:** discussion prompted by the observation that schooling can sometimes make being wrong feel dangerous rather than interesting. The educational example is motivational, not evidence for the computational claim.  
 **Related internal material:** `docs/architecture/control_plane.md`, `docs/architecture/sd_020_harm_surprise_pe.md`, `docs/thoughts/2026-08-12_prediction_error_to_inferred_agency_and_gated_fast_empathy.md`, `docs/thoughts/2026-09-24_experimental_learning_beyond_literature.md`, `evidence/planning/loveability_ethical_agency_v5_plan.md`

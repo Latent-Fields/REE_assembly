@@ -1,7 +1,11 @@
+Status: processed
+Intake: evidence/planning/thought_intake_2026-09-24_experimental_learning_beyond_literature.md
+Claims registered: GOV-FRONTIER-1, GOV-INSERT-1
+
 # Experimental learning beyond the literature: a frontier-evidence doctrine for REE
 
 **Date:** 2026-09-24  
-**Status:** raw thought / methodology proposal; not yet claim-ingested  
+**Status:** processed 2026-09-25 (see header); original: raw thought / methodology proposal  
 **Scope:** REE-wide, with immediate relevance to V3 interface learning and later V5 ethical-development mechanisms  
 **Related internal material:** `docs/architecture/developmental_curriculum.md`, `docs/architecture/social.md`, `docs/architecture/agency_responsibility_flow.md`, `docs/thoughts/2026-09-02_sleep_as_deferred_reorganisation_and_behavioural_access_repair.md`, `evidence/planning/latent_interface_translation_campaign_20260907.md`, `evidence/planning/loveability_ethical_agency_v5_plan.md`
 
