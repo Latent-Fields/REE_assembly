@@ -7060,6 +7060,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0495",
+      "claim_ids": [
+        "MECH-181",
+        "MECH-180"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "EXP-1401 refused at /queue-experiment (2026-09-25, ree-v3 5e18e979): MECH-181 leg (i)'s CONFIRMING criterion -- 'cumulative offline-phase work (sws_n_writes + rem_n_rollouts) is monotone in MEASURED MEL' -- is a monotone non-decreasing function of measured MEL BY CONSTRUCTION, because that composition IS the SD-MEL-CONSUMER implementation (mel_consumer.py:253-283 duration_factor/scale_steps -> phase_manager.py:572-582 -> agent.py:13190-13197, :13315-13323, :13400, :13504). Its matching FALSIFYING clause (i) ('flat or non-monotone in MEASURED MEL') is therefore unreachable except via the [0.5,3.0] clamp, which gate (4) separately requires excluding; confirmed numerically in V3-EXQ-861i (mean_duration_factor 1.007 -> 31 writes over 6 cycles; 0.884 -> 27, i.e. round(5 x factor)). GOVERNANCE OWES a re-denomination of leg (i)'s CONFIRMING DV onto a non-identity readout (candidates already instrumented: the across-sleep frozen-battery delta V3-EXQ-1071 B1_infonce_delta/mse_delta; sws_slot_diversity / n_touched_slots under a non-degenerate write path; the cross_module_consolidation_* readouts). Until then leg (i) must not be scored as confirming MECH-181. Gate (1), the only empirical leg, is already recorded monotone 3/3 seeds by V3-EXQ-1069 (GOV-REUSE-1). Full measurement record: REE_assembly/evidence/planning/mech181_leg_i_dv_arithmetic_refusal_20260925.md (origin/master b006b7642b).",
+      "raised_by_session": "metaworker-science-20260925-orchc-mech181-maintenance",
+      "raised_at": "2026-09-25T02:22:26Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
