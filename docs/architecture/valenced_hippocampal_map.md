@@ -235,9 +235,19 @@ Rollout sampling depth and truncation set-points may be a substrate for individu
 
 | Condition | Rollout pattern | Mechanism |
 |---|---|---|
-| **ADHD** | Truncation-biased: sampling ends prematurely; commitment occurs before adequate trajectory exploration | Urgency signal (BG dopaminergic threshold, MECH-075) set too low; any emerging attractor captures commitment before alternatives are explored. Explore/exploit ratio biased toward exploit. |
-| **Anxiety** | Extension-biased: sampling continues beyond useful depth; commitment suppressed even when a viable attractor is clearly dominant | Uncertainty signal chronically elevated (from over-valenced unmapped territory, MECH-078); BG threshold set too high; system cannot commit despite adequate trajectory coverage. Explore/exploit ratio biased toward explore. |
-| **OCD** | Attractor lock-in: sampling is not extended but loops within a specific attractor region; system cannot exit a dominant aversive basin | Abnormally deep attractor basin (MECH-076) creates escape-proof region; uncertainty and urgency signals are normal in magnitude but basin geometry prevents transition. Characteristic pattern: repeated re-sampling of same trajectory class. |
+| **ADHD** *(2026-09-25: occupant and mechanism contested)* | Truncation-biased: sampling ends prematurely; commitment occurs before adequate trajectory exploration | Urgency signal (BG dopaminergic threshold, MECH-075) set too low; any emerging attractor captures commitment before alternatives are explored. Explore/exploit ratio biased toward exploit. |
+| **Anxiety** *(2026-09-25: unassigned pending evidence; this arm is now occupied by compulsivity/OCD)* | Extension-biased: sampling continues beyond useful depth; commitment suppressed even when a viable attractor is clearly dominant | Uncertainty signal chronically elevated (from over-valenced unmapped territory, MECH-078); BG threshold set too high; system cannot commit despite adequate trajectory coverage. Explore/exploit ratio biased toward explore. |
+| **OCD** *(2026-09-25: occupant retained, mechanism contested; OCD also occupies the extension arm)* | Attractor lock-in: sampling is not extended but loops within a specific attractor region; system cannot exit a dominant aversive basin | Abnormally deep attractor basin (MECH-076) creates escape-proof region; uncertainty and urgency signals are normal in magnitude but basin geometry prevents transition. Characteristic pattern: repeated re-sampling of same trajectory class. |
+
+
+**Arm mapping revised 2026-09-25.** The table above is the hypothesis as first registered. The record is now `claims.yaml` MECH-080 `arm_mapping_revised_2026_09_25`, re-derived from five literature entries (`evidence/literature/targeted_review_mech_080`). The reductive strategy is retained and supported: one set-point family gives dissociable commitment-timing phenotypes (Huys 2012; Hauser 2017a). The clinical assignment changes:
+- **Extension / over-withholding:** occupied by compulsivity/OCD, not anxiety. It loads on compulsivity specifically (Hauser 2017a), and diagnosed juvenile OCD over-samples with accuracy intact (Hauser 2017b). The mechanism is late-rising urgency, not only a raised bound.
+- **Truncation / premature commitment:** ADHD is contested. The diffusion signature is drift plus starting point, not boundary (Huang-Pollock 2017).
+- **Lock-in:** OCD is retained with its mechanism contested. Habit-system dominance is a behaviourally convergent rival (Voon 2015).
+- **Anxiety:** unassigned pending evidence. The MECH-078 uncertainty link is unexercised, not refuted.
+- **One disorder per arm:** the assumption is withdrawn.
+
+Full re-derivation, design constraints and open questions: `evidence/planning/claim_synthesis_mech080_20260923.md`. Applied under the user's standing delegation via orchestrate-20260924-1707.
 
 **Relationship to ARC-014 failure modes:** ARC-014 already identifies ADHD-like dynamics (premature default-mode intrusion into task-engaged operation) and rumination loops (replay within narrow curvature regions). MECH-080 extends these with a unified mechanistic account (rollout truncation set-points) that differentiates ADHD from anxiety from OCD at the parameter level.
 

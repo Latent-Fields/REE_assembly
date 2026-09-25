@@ -3410,7 +3410,7 @@
   },
   "INV-069": {
     "assembly_state": "remaining",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "sd_zself_training_path",
     "coupled_with": [],
     "epistemic_stance": "believed",
@@ -3662,7 +3662,7 @@
     "subject": "development.maturational_sequence",
     "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
     "type": "invariant",
-    "what_would_answer": "A frozen-representation curriculum-order contrast (onset including a genuinely immature anchor ~0, differentiation-IV moving in the predicted direction) in which (a) world-feature decodability from frozen z_world rises monotonically with E1/E2 maturation -- ALREADY ESTABLISHED by V3-EXQ-740a (world_feat_decode_r2 0.048 -> 0.245, PC_iv_moved passed) -- AND (b) the held-out quality of a re-initialised z_world-reading E3 evaluator (fixed training budget on frozen z_world) improves monotonically with that rising decodability. The remaining test is the DV coupling (evaluator quality tracks z_world differentiation); the IV leg is done. Falsified if evaluator quality is flat or non-monotone across a validly-moving z_world-differentiation gradient.\n"
+    "what_would_answer": "A frozen-representation curriculum-order contrast (onset including a genuinely immature anchor ~0, differentiation-IV moving in the predicted direction) in which (a) world-feature decodability from frozen z_world rises monotonically with E1/E2 maturation -- ALREADY ESTABLISHED by V3-EXQ-740a (world_feat_decode_r2 0.048 -> 0.245, PC_iv_moved passed) -- AND (b) the held-out quality of a re-initialised z_world-reading E3 evaluator (fixed training budget on frozen z_world) improves monotonically with that rising decodability. The remaining test is the DV coupling (evaluator quality tracks z_world differentiation); the IV leg is done. Falsified if evaluator quality is flat or non-monotone across a validly-moving z_world-differentiation gradient. GOV-ROTATE-1 addendum (2026-09-25, see evidence_quality_note): leg (b) must now be read against the V3-EXQ-1023a transfer shortfall (+0.1184 held-out R^2 for 3.3x the steps bought only +0.0081 agreement) -- decodability rising is not evaluator quality rising, and the 1023a shape is a candidate leg-(b) failure mode, not yet evidence against it.\n"
   },
   "INV-089": {
     "assembly_state": "mature",
@@ -5249,8 +5249,8 @@
   },
   "MECH-113": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
-    "awaiting": "mech114-zself-deff-read-at-e3-select",
+    "assembly_status": "built",
+    "awaiting": "sd_zself_training_path",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -8680,7 +8680,7 @@
     "assembly_status": "built",
     "awaiting": "mech423-sleep-integrated-e2-consolidation-hook",
     "coupled_with": [],
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "integration.cross_model_super_additivity",
     "title": "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable.",
@@ -9159,6 +9159,8 @@
   },
   "MECH-468": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "mech468-anchor-relational-dump",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -9169,6 +9171,8 @@
   },
   "MECH-469": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "mech468-anchor-relational-dump",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -9179,6 +9183,8 @@
   },
   "MECH-470": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "mech468-anchor-relational-dump",
     "coupled_with": [],
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -10391,7 +10397,8 @@
     "status": "candidate",
     "subject": "harm_stream.uncertainty_not_discount_asymmetry",
     "title": "Harm-forecast uncertainty redirects control but does not discount expected adverse cost in selection: low confidence in a hazard prediction may lower that prediction's authority to update beliefs, and may route control toward investigation, a shorter trusted planning horizon, or preservation of alternatives (MECH-485 orient/survey leg), but it must not by itself lower the weight that the predicted adverse outcome carries in E3 candidate ranking. Update-authority precision, prediction confidence, and adverse-outcome cost are three separable quantities at the E3 integration boundary.",
-    "type": "mechanism_hypothesis"
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence against):\n  P1. A harm-forward forecast exists that beats persistence on held-out opportunities (skill > 0 vs\n      the persistence baseline, the gate V3-EXQ-1062a introduced). V3-EXQ-1062a found 6/6 cells\n      WORSE than persistence and V3-EXQ-1077 returned cannot_determine -- P1 is currently UNMET.\n  P2. A per-candidate or per-stream confidence for that forecast varies across opportunities above a\n      permutation null (ARC-052 half B's V3-EXQ-977 standard), AND is not merely a relabelled harm\n      LEVEL (decorrelated from z_harm_a magnitude -- the SD-PP-B9 registered null).\n  P3. Hazard forecasts in the test world are genuinely uncertain in a way the organism can reduce by\n      acting (investigate / wait / sample), and avoidable harm is a scored outcome.\n\nCONFIRMING: At matched reward, matched exposure and matched training budget, an arm that routes low\nharm-forecast confidence to redirect consumers (MECH-485 orient/survey, shortened trusted horizon,\nalternative preservation) while leaving the expected-harm COST weight in E3 ranking undiscounted\nincurs LESS realised avoidable harm than an arm that discounts expected harm by the same confidence\n(ARC-052 half-A form, exp(-log_sigma) on the cost term), and the difference disappears when the\nforecast is made uninformative (mismatched-content control). Autonomous closed-loop evaluation (each\narm executes its own choices, GOV-JURIS-1 D3), not a yoked trace.\n\nFALSIFYING: With P1-P3 met, discount-by-confidence produces no more realised avoidable harm than\nredirect-without-discount, OR the redirect arm's harm advantage is bought entirely by starving reward\n(no harm benefit at matched reward). Either outcome says the asymmetry is unnecessary and ARC-052's\nhalf-A form is safe as written.\n\nSUBSTRATE / INSTRUMENT REQUIREMENT: Neither harm encoder emits (mu, log_sigma) (ARC-052 disposition\nnote), E3 has only the single ARC-016 running-variance precision term, and MECH-485's three-consumer\nfan-out is substrate_conditional. There is no producer and no consumer today.\n"
   },
   "Q-001": {
     "assembly_state": "mature",

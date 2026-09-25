@@ -10808,11 +10808,97 @@
     - docs/architecture/valenced_hippocampal_map.md
   notes: >
     Rollout sampling depth and truncation set-points as substrate for psychiatric individual
-    differences. ADHD = truncation-biased (BG urgency threshold too low, premature commitment);
-    anxiety = extension-biased (uncertainty chronically elevated, BG threshold too high,
-    suppressed commitment); OCD = attractor lock-in (abnormally deep basin, MECH-076, normal
-    signals cannot trigger basin exit). Extends MECH-027 (pathological modes = mis-tuned
-    control-plane regimes) and ARC-014 failure modes with unified rollout-parameter account.
+    differences. ARM MAPPING REVISED 2026-09-25 (see arm_mapping_revised_2026_09_25 below and
+    evidence/planning/claim_synthesis_mech080_20260923.md): the reductive STRATEGY (one set-point
+    family producing dissociable commitment-timing phenotypes; search depth as an
+    individual-difference dimension) is retained and literature-supported; the clinical ARM
+    ASSIGNMENT is revised -- the extension/over-withholding arm is occupied by compulsivity/OCD
+    (not anxiety); the truncation arm's ADHD occupant and mechanism are contested; the lock-in
+    arm keeps OCD as occupant with its mechanism contested; anxiety is unassigned pending
+    evidence; the one-disorder-per-arm assumption is withdrawn (OCD occupies arm 2 before
+    commitment and arm 3 after it). The V3 falsifier (what_would_answer) is label-free and is
+    unchanged. Original mapping, superseded in part: ADHD = truncation-biased (BG urgency
+    threshold too low, premature commitment); anxiety = extension-biased (uncertainty chronically
+    elevated, BG threshold too high, suppressed commitment); OCD = attractor lock-in (abnormally
+    deep basin, MECH-076, normal signals cannot trigger basin exit). Extends MECH-027
+    (pathological modes = mis-tuned control-plane regimes) and ARC-014 failure modes with unified
+    rollout-parameter account.
+  arm_mapping_revised_2026_09_25:
+    applied_by: orchc0925-mech080 (chip-20260923-mech080-arm-mapping-resynthesis)
+    authority: >
+      Applied under the user's standing delegation via orchestrate-20260924-1707 (faithful
+      re-derivation of the arm mapping from the landed literature; no split/merge; no status or
+      confidence change). Routed by governance-20260923-0717 (decision_log.v1.jsonl line 577)
+      from GFLAG-0431. Red-teamed on a different model (Fable) before apply; one over-reach
+      (arm 1 "withdrawn") corrected to "contested".
+    evidence: evidence/literature/targeted_review_mech_080 (5 entries, REE_assembly e363db1b52)
+    synthesis_doc: evidence/planning/claim_synthesis_mech080_20260923.md
+    strategy:
+      status: retained_supported
+      grounding: Huys 2012 (search depth is an individually varying, mood-linked parameter); Hauser 2017a (one graded threshold-like parameter gives over-withholding)
+    arms:
+      - arm: extension_over_withholding
+        registered_occupant: anxiety
+        revised_occupant: compulsivity/OCD
+        status: reassigned
+        mechanism_note: >
+          Late-rising urgency raises the effective decision threshold; the evidence is on the
+          urgency time course, not only a static bound. Accuracy preserved or improved in OCD.
+        grounding: Hauser 2017a (NSPN population cohort, specific to compulsivity not affective dimensions); Hauser 2017b (juvenile OCD, n=16/16, same group)
+        overlap: MECH-434 already cites Hauser 2017 OCD over-gathering as its epistemic-freezing pole; MECH-497 predicts the same phenotype via self-degrading confidence (open, see synthesis doc Q4)
+      - arm: lock_in_perseveration
+        registered_occupant: OCD
+        revised_occupant: OCD (retained; DV is transdiagnostic -- also binge eating, methamphetamine use)
+        status: occupant_retained_mechanism_contested
+        mechanism_note: >
+          Deep basin inside rollout (this claim) vs habit-system dominance with forward search
+          bypassed (Voon 2015 rival). Behaviourally convergent; no pulled evidence discriminates.
+        grounding: Voon 2015
+      - arm: truncation_premature_commitment
+        registered_occupant: ADHD
+        revised_occupant: ADHD (provisional)
+        status: occupant_and_mechanism_contested
+        mechanism_note: >
+          Boundary reading of "BG urgency threshold too low" found no difference; signature is
+          reduced drift (competence -- inside this claim's own lost-competence exclusion) plus
+          increased starting point (a set-point-like prior bias). Two readings survive; the
+          rollout-depth version is untested (go/no-go has no rollout).
+        grounding: Huang-Pollock 2017 (n=97/39, diffusion model)
+      - arm: anxiety_placement
+        registered_occupant: anxiety on extension arm (via MECH-078 uncertainty)
+        revised_occupant: none
+        status: unassigned_pending_evidence
+        mechanism_note: >
+          No pulled entry supports anxiety on any arm; Hauser 2017a's specificity result counts
+          against arm 2. Huys 2012 loss-triggered pruning (sub-clinical mood) hints at a
+          conditional-truncation variant but never measured anxiety. The MECH-078 grounding link
+          is unexercised, not refuted.
+    one_disorder_per_arm: withdrawn
+    design_constraints_for_any_future_test: >
+      Not folded into what_would_answer (falsifier change left to the user). (1) Arm 2:
+      manipulate the urgency time course, not only the static commit bound. (2) Arm 2 valid
+      positive = shifted draws-to-commit with accuracy held or improved; with an accuracy drop it
+      is the excluded competence-loss pattern. (3) Arm 1: separate drift from threshold/bias; note
+      rollout_horizon is an unconditional cap whereas Pavlovian pruning is loss-conditional, and
+      REE has no loss-triggered pruning knob. (4) Arm 3: add a second measurement of
+      rollout-to-policy coupling; world_rule_shift perseveration alone cannot separate the claim
+      from the habit-dominance rival. EXP-0818 stays blocked_substrate; no experiment proposed.
+    open_for_user: >
+      Q1 split into strategy + arm-assignment claims (recommend no: assignment half has no V3
+      what_would_answer); Q2 anxiety placement (recommend leave unassigned + targeted lit-pull);
+      Q3 arm-3 mechanism rival; Q4 arm-2 ownership overlap with MECH-434 / MECH-497 (and MECH-088
+      downstream ADHD account); Q5 fold design constraints into what_would_answer; Q6 title;
+      Q7 arm-1 drift vs starting-point bias. See synthesis doc section 7.
+  evidence_quality_note: |
+    [2026-09-25, orchc0925-mech080] First literature evidence (5 entries, lit_conf 0.682,
+    conflict_ratio 0.667). The conflict is structured, not noise: entries support the reductive
+    STRATEGY (Huys 2012, Hauser 2017a) and contradict the clinical ARM ASSIGNMENT (Hauser
+    2017a/b put over-withholding on compulsivity/OCD; Huang-Pollock 2017 puts ADHD prematurity on
+    drift + starting point, not boundary). Read the per-entry mapping-fidelity discounts
+    (0.50-0.60), not the headline directions: none of the tasks contains a forward rollout
+    except Huys 2012, which studied healthy adults. No experimental evidence exists; EXP-0818 is
+    blocked_substrate (arm 3 has no manipulation lever; ree_core does no waking gradient
+    learning at defaults, GFLAG-0491).
 - id: Q-020
   title: "Does ARC-007's no-value-computation constraint survive MECH-073 (valence intrinsic to hippocampal map)?"
   claim_type: open_question
