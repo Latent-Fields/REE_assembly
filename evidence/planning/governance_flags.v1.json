@@ -7929,6 +7929,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0557",
+      "claim_ids": [
+        "MECH-046",
+        "MECH-039"
+      ],
+      "flag_type": "stale_note",
+      "summary": "Refines GFLAG-0556's routing. Per REE_assembly 04fbe381e1b evidence/planning/cea_onset_input_reprobe_20260925.md (pre-registered, 3 seeds x 2 env configs, D1), env saturation is REFUTED as the cause of CeA's missing onset info: de-saturating the hazard field (nh=1, decay=2.0; on-trajectory hazard_at_agent mean 0.11-0.14 vs baseline 0.85-0.87) does not restore z_harm_a's onset-selectivity -- its relative-gate d' goes negative, below its own silent-floor. STREAM CHOICE is the dominant factor: the raw, un-encoded, un-smoothed hazard_at_agent scalar (candidate b) beats both z_harm_s (candidate a) and a fast EMA (candidate c) in both configs under a rate-of-change gate (baseline d'=1.00 H=33%, nonsat d'=0.73 H=28%), but none reach the pre-registered working bar (d'>=1.0 AND H>=0.5) at N=5 or N=10. This scalar is not currently exposed in obs_dict (harm_obs normalises it, harm_obs_a EMAs it) -- a build needs a new raw hazard-proximity field, not a rewire of an existing one. Do not gate a build on choosing a non-saturated env config.",
+      "raised_by_session": "bt0925-ceacal2",
+      "raised_at": "2026-09-25T20:28:38Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
