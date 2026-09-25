@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_109",
+  "entry_id": "2026-09-25_mech_109_instructed_sigh_reset_vlemincx2012",
+  "timestamp_utc": "2026-09-25T22:16:07Z",
+  "claim_ids_tested": [
+    "MECH-109"
+  ],
+  "source": {
+    "title": "A sigh following sustained attention and mental stress: effects on respiratory variability",
+    "authors": [
+      "Vlemincx, Elke",
+      "Van Diest, Ilse",
+      "Van den Bergh, Omer"
+    ],
+    "year": 2012,
+    "venue": "Physiology & Behavior",
+    "doi": "10.1016/j.physbeh.2012.05.013",
+    "pmid": "22634279",
+    "volume": "107",
+    "issue": "1",
+    "pages": "1-6"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.4,
+  "confidence_rationale": "The only paper in this pull with an INSTRUCTED (voluntary) sigh contrasted against a spontaneous sigh and a control manoeuvre after sustained attention and mental stress. An instructed sigh restored correlated variability after arithmetic and increased total variability after sustained attention, so a deliberate respiratory act can reset a state-compressed respiratory pattern. This supports the 'voluntary sigh = deliberately forced reset' leg of MECH-109 at the respiratory level. The DV is still respiratory, not planning, and the effect was conditional ('when physiologically appropriate').",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reset is demonstrated on respiratory variability only; no cognitive or planning consequence of the instructed sigh was measured.",
+    "The instructed sigh's effect depended on the preceding state (restoring correlated variability after stress, raising total variability after attention), so a voluntary sigh is not a uniform reset operator.",
+    "No voluntary breath-hold or slowed-breathing condition was tested, so only one of MECH-109's three voluntary levers (sigh) has any evidence."
+  ],
+  "tags": [
+    "mech_109",
+    "respiration",
+    "sigh",
+    "instructed_sigh",
+    "voluntary_breathing",
+    "reset",
+    "respiratory_variability",
+    "sustained_attention"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mental arithmetic and sustained attention decreased correlated and total breathing variability respectively; a spontaneous sigh restored correlated variability; an instructed sigh restored correlated variability after arithmetic and increased total variability after sustained attention.",
+    "ree_translation": "A deliberately executed sigh (the MECH-109 'voluntary sigh' lever) resets the respiratory clock out of a load-compressed regime -- the respiratory precondition for a forced single-cycle plan sweep.",
+    "mapping_caveat": "The reset is shown on the respiratory oscillator, not on the planning clock it is hypothesised to drive; effects are state-dependent; small lab sample; breath-hold and slow-breathing levers untested.",
+    "source_context": "Healthy adults; mental arithmetic (stress) and sustained attention blocks, followed by a spontaneous sigh, an instructed sigh, or a control manoeuvre; respiratory recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.42,
+    "transfer_risk": 0.4,
+    "notes": "Only voluntary-sigh manipulation found; lifts mapping fidelity above the spontaneous-sigh papers. Vlemincx, Severs & Ramirez 2022 (Biol Psychol, PMID 35803439) review frames sighs as a state-transition 'resetting mechanism' with a stochastic-resonance account, consistent with this reading but theoretical."
+  }
+}

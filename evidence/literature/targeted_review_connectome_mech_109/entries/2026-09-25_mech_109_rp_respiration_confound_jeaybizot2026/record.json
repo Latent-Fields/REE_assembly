@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_109",
+  "entry_id": "2026-09-25_mech_109_rp_respiration_confound_jeaybizot2026",
+  "timestamp_utc": "2026-09-25T22:16:07Z",
+  "claim_ids_tested": [
+    "MECH-109"
+  ],
+  "source": {
+    "title": "No evidence for modulation of the readiness potential by respiratory phase during natural breathing",
+    "authors": [
+      "Jeay-Bizot, Lucas",
+      "Chishti, Raniyah",
+      "Maoz, Uri",
+      "Schurger, Aaron"
+    ],
+    "year": 2026,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.3003982",
+    "pmid": "42685133",
+    "pmc": "PMC13561358",
+    "volume": "24",
+    "issue": "9",
+    "pages": "e3003982"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Careful re-analysis (original + new independent dataset + null simulations, Bayesian evidence for absence) that REPLICATES the behavioural expiration clustering of self-initiated actions but shows the neural leg -- respiration modulating the preparatory RP -- is a confound. Mixed for MECH-109: the breath-framed timing of endogenous action survives, but the proposed neural mechanism by which breath would gate preparation is removed, and the authors raise reverse causation (action preparation reshaping breathing).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Respiratory phase does not modulate readiness-potential amplitude during natural breathing once trials are grouped by phase at movement time; Bayesian analyses favour absence of the effect.",
+    "The authors suggest the onset clustering may reflect action preparation changing breathing (a greater I:E ratio, or a respiratory phase reset at trial start) rather than breathing gating preparation, which reverses the causal arrow MECH-109 needs.",
+    "Only natural breathing was tested; the paper explicitly leaves open effects under controlled or voluntary breathing, which is the condition MECH-109 is about."
+  ],
+  "tags": [
+    "mech_109",
+    "mech_108",
+    "respiration",
+    "readiness_potential",
+    "null_result",
+    "confound",
+    "replication"
+  ],
+  "mapping": {
+    "source_claim_statement": "The reported coupling between respiratory phase and RP amplitude arises because both are coupled to movement onset; controlling for this, the coupling disappears. Movements are nonetheless more frequent during expiration (replicated, 13/17 participants).",
+    "ree_translation": "Keeps the behavioural premise of MECH-108 (breath frames timing of endogenous actions) while withdrawing the one neural readout previously offered as the gating mechanism. For MECH-109 it sharpens what must be tested: an intervention on breathing, not a correlation with spontaneous phase.",
+    "mapping_caveat": "A null on scalp RP amplitude is not a null on respiratory gating of planning in general (hippocampal/limbic entrainment is untouched). Natural breathing only.",
+    "source_context": "Healthy adult humans; scalp EEG; Libet-style self-paced movement; re-analysis of Park et al. 2020 data plus a new independent dataset and simulated no-coupling data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.35,
+    "notes": "Strong methods paper (independent replication, simulation of the confound, Bayesian nulls). Mapping moderate: bears directly on the evidence base MECH-109 would rely on, not on the voluntary manipulation itself."
+  }
+}

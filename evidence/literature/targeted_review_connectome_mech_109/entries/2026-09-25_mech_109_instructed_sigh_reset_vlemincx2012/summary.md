@@ -1,0 +1,11 @@
+# Vlemincx et al. 2012 -- A sigh following sustained attention and mental stress
+
+**Claim tested:** MECH-109. Direction: **supports** (voluntary-sigh lever, respiratory level). Confidence 0.40.
+
+Among the papers I found, this is the one that actually puts a voluntary respiratory act in the design. After blocks of stressful mental arithmetic or sustained attention, participants either sighed spontaneously, sighed on instruction, or did a control manoeuvre. The earlier finding replicated: arithmetic reduced correlated breathing variability and attention reduced total variability. A spontaneous sigh restored correlated variability. The instructed sigh restored correlated variability after arithmetic and raised total variability after sustained attention. The authors conclude that spontaneous and instructed sighs, "when physiologically appropriate", reset respiratory variability disturbed by stress or attention.
+
+MECH-109 says the agent can deliberately sigh to force a plan-sweep cycle. What this paper shows is the first link in that chain: a deliberate sigh does reset a respiratory rhythm that concentration or stress has compressed. It is only one of the claim's three proposed levers, though. Slowed breathing and breath-hold are not tested here, and the "only handle" exclusivity is not addressed at all.
+
+The caveats are the same as for the 2011 paper, with some added nuance. What gets reset is the breathing pattern. No one measured whether anything in cognition was reset, so "the sigh restores the plan-abandonment sweep" remains REE's inference. The effect is also state-dependent: the instructed sigh did different things after stress and after attention, which warns against modelling the voluntary sigh as a single uniform trigger API, as the claim's ANN restatement does. A state-conditional reset may be the more faithful translation.
+
+For context, Vlemincx, Severs and Ramirez's 2022 review (Biol Psychol, PMID 35803439) generalises this into the view that sighs facilitate transitions between psychophysiological states through a resetting mechanism, and that sighing becomes maladaptive when excessive. That is consistent with MECH-109, but it is theory. Confidence 0.40. Of this set, it is the paper that best supports the voluntary-sigh lever, and it still says nothing about planning.

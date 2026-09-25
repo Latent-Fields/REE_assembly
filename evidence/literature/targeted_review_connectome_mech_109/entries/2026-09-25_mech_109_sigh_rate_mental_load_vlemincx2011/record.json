@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_109",
+  "entry_id": "2026-09-25_mech_109_sigh_rate_mental_load_vlemincx2011",
+  "timestamp_utc": "2026-09-25T22:16:07Z",
+  "claim_ids_tested": [
+    "MECH-109"
+  ],
+  "source": {
+    "title": "Sigh rate and respiratory variability during mental load and sustained attention",
+    "authors": [
+      "Vlemincx, Elke",
+      "Taelman, Joachim",
+      "De Peuter, Steven",
+      "Van Diest, Ilse",
+      "Van den Bergh, Omer"
+    ],
+    "year": 2011,
+    "venue": "Psychophysiology",
+    "doi": "10.1111/j.1469-8986.2010.01043.x",
+    "pmid": "20536901",
+    "volume": "48",
+    "issue": "1",
+    "pages": "117-120"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.35,
+  "confidence_rationale": "The empirical anchor already cited in MECH-109's evidence_quality_note (as LIT-0094 'Vlemincx 2010'; epub 2010, issue 2011) but never given its own record. Sustained attention compressed total respiratory variability and sighs rose during recovery after the attention task, which fits the claim's picture of a clock suppressed under concentrated load and then released by a reset. But sighs here are spontaneous, the DV is respiratory variability rather than planning, and the reading of 'compressed variability = suppressed plan sweeps' is REE's interpretation, not the paper's.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The study measures respiratory variability and spontaneous sigh counts only; no planning, deliberation or plan-abandonment variable was taken, so the 'suppressed plan-sweep' reading is interpretive.",
+    "Sigh rate rose DURING the stressful mental-arithmetic task (not only after), so sighs are not cleanly confined to a post-load release phase as the claim's timing story would suggest.",
+    "No breath-holding was observed or induced, so the predicted anxious breath-hold failure mode is not tested."
+  ],
+  "tags": [
+    "mech_109",
+    "respiration",
+    "sigh",
+    "sustained_attention",
+    "mental_load",
+    "respiratory_variability",
+    "reset"
+  ],
+  "mapping": {
+    "source_claim_statement": "During a non-stressful sustained attention task total respiratory variability (breath rate) is reduced; during stressful mental arithmetic correlated variability is reduced; sigh rate increases during mental load and during recovery from the attention task.",
+    "ree_translation": "Concentrated task engagement narrows the respiratory rhythm (fewer spontaneous breath-to-breath deviations), consistent with a suppressed respiratory sweep clock under commitment; sighs then appear as discrete reset events, consistent with MECH-109's reading of a sigh as a forced single-cycle sweep.",
+    "mapping_caveat": "Spontaneous not voluntary sighs; the DV is respiratory, not cognitive; the 'plan-sweep' interpretation is added by REE; small short-report study.",
+    "source_context": "Healthy young adults; baseline, stressful mental arithmetic, non-stressful sustained attention task, and recovery periods; respiratory recording."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.4,
+    "notes": "Short-report format with modest sample; well-established lab. Mapping fidelity low: supports the respiratory side of the story only."
+  }
+}
