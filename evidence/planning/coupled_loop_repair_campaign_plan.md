@@ -413,5 +413,6 @@ Decision log entries are appended below, newest last.
 | Benign reward-change floor | **1.44** (same harm-bearing-seed correction as the reward floor), not 0.92 | rec-20260925-aa066e96 |
 | Action-space proposals have no build/gate yet | **Hold A1 until both variants (INT-CODEC and INT-ACT) pass their member gates**; run them head to head. Design: `action_space_proposals_design_20260925.md` (`412882b845`), row W1-alt. | rec-20260925-38b81685 |
 | No-valuation diagnostic arms (~+20% cost) | **Add them**, so a PASS or FAIL can be attributed between grounded valuation and the other repairs | rec-20260925-c2519d92 |
+| Gate parity between the variants (action-space design U1, `412882b845`) | **Add the consumer-mediated leg to BOTH gates**: the codec's W1(e) keeps its pool-containment check AND gains the ASP-style check (E3's pick against env-Q, E3 and head held fixed, vs today's native pool, > 0.10 on >= 4/5 seeds), so INT-CODEC and INT-ACT are judged on the same readout. Recorded 2026-09-25T13:52Z. | rec-20260925-b9652a9b |
 
 Still open: whether the integrated preset ever goes default-ON after merge. Decide at merge time.
