@@ -1,0 +1,257 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-25T01:41:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmation_note": "confirmed under the user's standing delegation via orchestrate-20260924-1707 (session orchc0925-autopsyB-1087). PROVENANCE (red-team F1, accepted): the deciding branch -- 'T <= 0.20 and not harm-tracking -> 919 non_contributory' -- was pre-registered in the DRIVER at queue time (orchestrate-20260924 pre-flight CHANGE 3, red-team F1/F2, orchestrator decision Q-1087 = A). It REFINES the user-ratified two-branch rule of 2026-09-23/24 (rec-20260924-b52804ea: high tie rate -> non_contributory; low tie rate -> the conditional weakens becomes unconditional). Under that literal rule T = 0.078 would satisfy the condition. Even then, Option A and the open GFLAG-0462 (919's DV is 87% post-death) would leave 919 at best 'conditional stands', never unconditional. The refinement was fixed before data and closes a premise the ratified rule left implicit: low tie rate was taken to mean harm-informed, and this run measures that premise false. Confirmed on that basis. Governance must ratify the refinement explicitly at Step 2b.",
+  "session_id": "orchc0925-autopsyB-1087",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "dry_run_check_note": "check_dry_run_citations.py over v3_exq_1087 (run + family) and the re-adjudicated v3_exq_919 run: 0 dry, 3 clean.",
+  "coordination_note": "The autopsy-pause claim could not be opened: task_claim.py arbitration returned NOT OWNER on ree-v3/experiment_queue.json, substrate_queue.json and experiment_proposals.v1.json (owner metaworker-science-20260925-orchc-mech287-readout-build, an orchestrator-launched science worker). This autopsy writes none of those files; the pause is advisory and the orchestrator runs those workers deliberately. hypothesis_space_registry.v1.json is owned by the parallel autopsy session orchc0925-autopsyA-1083, so the Step 9b ledger change is recorded under hypothesis_space_ledger_pending for governance to apply together with the 919 direction change.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
+      "queue_id": "V3-EXQ-1087",
+      "claim_ids": [
+        "MECH-321"
+      ],
+      "bears_on": [
+        "MECH-321",
+        "SD-hazard-aware-policy-decomposition",
+        "V3-EXQ-919"
+      ],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "stage2_discriminative_anti_harm_tracking__stage1_clamp_saturated",
+      "indexer_adjudication": "vacuous_pass",
+      "indexer_adjudication_verdict": "FALSE FLAG. build_experiment_indexes.py check (3b) fires because C2_HARM_TRACKING is tagged load_bearing:true with passed:false under an overall PASS. C2 is a partition selector in this driver's pre-registered combination_rule (tracking / anti / neither pick the 919 re-adjudication branch); its passed:false selects the non_contributory branch, it does not leave a gate cleared on nothing. The driver omitted role:'selector' on C2. C1 (load-bearing gate) is decisive and non-degenerate: T = 0.0782 over n = 243 units, floor 30, exact-tie rate 0. The indexer honours role:'selector' (build_experiment_indexes.py check (3b), 'all' mode), so tagging would clear it mechanically.",
+      "failed_criterion": "none (diagnostic PASS; C2 is a branch selector that read anti-tracking)",
+      "facts": {
+        "C1_tolerance_tie_rate": 0.07818930041152264,
+        "C1_units": 243,
+        "exact_tie_rate": 0.0,
+        "penalty_spread_median": 0.8404388427734375,
+        "penalty_rel_spread_median": 0.026402131945209552,
+        "C2_excess_vs_chance": -0.07025411061285497,
+        "C2_z": -2.2255145019087803,
+        "C2_units": 223,
+        "C2_hit_rate": 0.31390134529147984,
+        "C2_chance_rate": 0.3841554559043348,
+        "C2_constant_index_null": 0.5112107623318386,
+        "C2_excess_vs_constant_index": -0.19730941704035876,
+        "penalty_vs_gt_spearman_median": -0.5,
+        "n_penalty_vs_gt_rho": 242,
+        "p_chosen_idx0": 0.1440329218106996,
+        "stage1_frac_saturated": 0.9917695473251029,
+        "kept_leaf_executed_rate": 0.29218106995884774,
+        "target_919_post_death_harm_share": 0.8666551882974266,
+        "post_done_ht_z_descriptive": -18.276466495397976,
+        "probe_control_action_mismatch": 0,
+        "replay_match_to_919_elementwise": {
+          "11": 0.667,
+          "23": 0.554,
+          "47": 0.601,
+          "71": 0.535,
+          "3": 0.989
+        },
+        "substrate_stable_across_run": false,
+        "substrate_stability_note": "all cells share one substrate_hash d6e55b77; the on-disk tree drifted to a3b09fcf during the run (process_snapshot_drift) and the stamped commit ea8ea74f does not describe the recorded hash. Per-cell hashes agree, so the run executed one substrate; the commit mapping is recording debt, not a validity defect.",
+        "C2_permutation_null_z": -2.76,
+        "C2_per_seed_hit_vs_chance": {
+          "11": [
+            0.367,
+            0.388
+          ],
+          "23": [
+            0.394,
+            0.394
+          ],
+          "47": [
+            0.171,
+            0.333
+          ],
+          "71": [
+            0.179,
+            0.363
+          ],
+          "3": [
+            0.46,
+            0.433
+          ]
+        },
+        "spearman_distribution": {
+          "-1.0": 42,
+          "-0.87": 18,
+          "-0.5": 69,
+          "0": 11,
+          "+0.5": 62,
+          "+0.87": 23,
+          "+1.0": 17,
+          "mean": -0.1
+        },
+        "executed_eq_discarded_leaf_rate": 0.163,
+        "pred_state_dist_end_over_mean_median": 4.74
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a for 1087 itself (diagnostic, emits no MECH-321 evidence). For the re-adjudicated 919 leg: unclear -- 919 did not test harm-aware selection with a harm-informed input, so it cannot weaken MECH-321's harm-aware-selection leg.",
+        "biological_reference": "partial -- the commissioned lit-pull (targeted_review_threat_modulated_defensive_path_selection: Fanselow PIC, Mobbs 2007, Evans/Branco 2018) grounds a graded bias plus a threshold categorical override. In biology both stages read a learned, outcome-grounded threat estimate for each candidate path. Here the per-leaf estimate comes from an untrained E2 and an occupancy-like residue channel. That is the signature of a missing prerequisite (a learned threat map), not of a failed mechanism.",
+        "prerequisites": "missing -- (a) a trained E2 world head. 919 and this replay are untrained, and E2 has no waking world objective (GFLAG-0485, GFLAG-0491: ree_core does no waking gradient learning at defaults). (b) A harm valence written from harm events. The residue harm channel is written with z_harm.norm() on every sense() tick (agent.py:5634-5650) from an untrained HarmEncoder, so it may be an occupancy map (driver CHANGE 3).",
+        "implementation": "partial -- inert-by-defect on the harm input. _decomposition_harm_penalty (hippocampal/module.py:1128-1153, unchanged since 919) averages the harm valence over ALL rollout_horizon predicted states, and all but the first are driven by zero-action padding (leaves are single primitives [0],[1],[2]). In this run, rollout_horizon = 30, so 29 of the 30 averaged states follow zero-action padding. The drift is measured here: the median end/mean pairwise predicted-state distance ratio is 4.74 over 243 units (red-team recompute). This is the same shape as GFLAG-0485 (>98% of E3 across-candidate variance comes from steps >5). Stage 1 harm_bias is clamped at harm_bias_scale on 99.2% of leaves (valence_bounding_enabled default False), so it is a constant offset: neutralising default. Stage 2 is discriminative (T = 0.078) but not harm-informed.",
+        "environment": "adequate for this diagnostic -- 919's HAZARD_TUNED overlay reproduced (config asserted equal to 919's _arm_flags); GT separates the leaves on 223 of 243 units",
+        "measurement": "adequate -- C1 is decisive and non-degenerate. The anti reading in C2 survives the misspecified chance null (the chosen index is non-uniform, P(idx0) = 0.144): a marginal-preserving permutation null (red-team recompute, 5000 draws) gives z = -2.76, p = 0.0026; the best-constant-index null gives -0.197; the harm-only-separated subset (219 units) gives z -2.63. Characterisation limit: the pooled anti signal is carried by 2 of 5 seeds (47: 0.171 vs chance 0.333; 71: 0.179 vs 0.363). Seeds 11/23/3 sit at chance. No seed tracks harm. Per-unit Spearman(penalty, GT key) is bimodal (129 negative / 11 zero / 102 positive, median -0.5, mean -0.10). Both anti and neither route 919 to non_contributory. F6 (penalty horizon vs GT horizon) is a property of the mechanism's input, not a defect of the GT, which scores what the leaf controls (1 executed step per single-primitive leaf).",
+        "integration": "partially coupled -- the executed action equals the Stage-2 kept leaf's first action on 29.2% of Stage-2-active units, against 16.3% for a discarded leaf (red-team recompute, n=486). Stage 2 reaches behaviour above the discarded rate, but on a minority of calls. Its input is coupled but not harm-informed (starved upstream plus defect).",
+        "scale": "adequate for the diagnostic (243 / 223 units vs floors of 30). The 919 target used an untrained agent by design."
+      },
+      "failure_location": {
+        "mechanism": "not_established",
+        "measures": "established",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MECHANISM (implementation partial: the harm-aware selection's per-leaf harm input is not harm-informed) -- not chargeable to REE; the 919 negative is re-read as a wiring/prerequisite gap, not a claim result"
+      },
+      "biological_reference_block": {
+        "closest_mechanism": "threat-imminence-gated defensive path selection (PAG/vmPFC categorical shift; SC-dPAG synaptic-threshold escape) reading a learned per-path threat estimate",
+        "dependencies": [
+          "learned threat/harm map from harm outcomes (amygdala/BLA-hippocampal)",
+          "a forward model that predicts the consequence of the candidate action",
+          "bounded threat valence"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE's per-path threat estimate is read off an untrained forward model and an occupancy-weighted valence channel. The mechanism's structure matches biology; its input does not yet carry threat.",
+        "lit_status": "present (targeted_review_threat_modulated_defensive_path_selection, 9 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "No category moves. 1087 is a diagnostic. Its finding re-reads V3-EXQ-919 as non_contributory for MECH-321: 919's harm-aware selection consumed a per-leaf harm input that is discriminative (Stage-2 tolerance-tie rate 0.078) but not harm-informed (anti-tracking vs ground truth). MECH-321 already carries epistemic_category standard.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "For 1087's OWN manifest: non_contributory. It is a diagnostic excluded from scoring (scoring_excluded: diagnostic_probe); the indexer currently reads its PASS as 'supports' at 0.75. For the RE-ADJUDICATED run v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3: weakens -> non_contributory, by the pre-registered branch 'T <= 0.20 and anti-tracking -> 919 non_contributory'.",
+      "readjudicated_runs": [
+        {
+          "run_id": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3",
+          "queue_id": "V3-EXQ-919",
+          "from_direction": "weakens",
+          "to_direction": "non_contributory",
+          "grounds": [
+            "pre-registered 1087 branch: Stage-2 discriminative (T = 0.078 <= 0.20) AND anti-tracking vs ground truth (excess -0.070, z -2.23; also -0.197 below the best-constant-index null; median rank correlation -0.5)",
+            "independent: 919's DV is post-death dominated (87% of harm accrues at health 0; GFLAG-0462), re-measured by 1087 at 0.867",
+            "supporting, not independent: Stage-1 clamp saturated on 99.2% of leaves; kept leaf reaches the executed action on 29% of Stage-2-active units"
+          ],
+          "supersedes_disposition_in": [
+            "failure_autopsy_V3-EXQ-919_2026-08-13",
+            "failure_autopsy_MECH-320-defect-cluster_2026-09-23 (919 'conditional weakens')"
+          ]
+        }
+      ],
+      "recommended_evidence_quality_note": "[2026-09-25 failure-autopsy V3-EXQ-1087, confirmed failure_autopsy_V3-EXQ-1087_2026-09-25 (orchestrate-20260924-1707, user standing delegation)]: V3-EXQ-1087 (diagnostic, excluded from scoring) is the successor the 2026-09-23 conditional required. It replays V3-EXQ-919's untrained ARM_SELECTION_ON regime (5 seeds, config asserted equal, probe-OFF control action mismatch 0) and records every Stage-2 call's per-leaf harm_penalty with a ground truth from executing each leaf in a deep-copied env. RESULT: the harm input is DISCRIMINATIVE but NOT HARM-INFORMED. The Stage-2 tolerance-tie rate is 0.078 (n=243; the high-tie route did not fire). But the kept leaf is a ground-truth-best leaf LESS often than chance: pooled excess -0.070, z -2.23 (marginal-preserving permutation z -2.76), n=223; -0.197 below the best-constant-index null. The anti signal is carried by 2 of 5 seeds. It tracks harm on no seed. Stage 1 sits at its clamp on 99.2% of leaves (a constant offset). The kept leaf's first action was the executed action on only 29% of Stage-2-active units. Cause, from the code: _decomposition_harm_penalty averages the residue harm valence over all rollout_horizon predicted states of a single-primitive leaf, and all but the first step are zero-action padding through an untrained E2 world head (GFLAG-0485: E2 has no waking world objective). The harm channel is written with z_harm.norm() on every tick, so it partly tracks occupancy. Under the driver's pre-registered refinement (T <= 0.20 and not harm-tracking -> non_contributory; queue-time CHANGE 3), V3-EXQ-919's weakens re-adjudicates to NON_CONTRIBUTORY. This REFINES the 2026-09-24 ratified two-branch rule, under which a low tie rate alone would have satisfied the condition. It closes the premise that rule left implicit, that a discriminative input is a harm-informed one, which this run measures false. This is independent of GFLAG-0462 (919's DV is 87% post-death harm), which by itself would bar an unconditional reading. MECH-321's harm-aware-selection leg therefore has NO valid negative test. 844's weakens (a competence_implementation_gap reading) is the only remaining one. A re-test is meaningful only after the per-leaf harm input is made harm-informed (see the SD-hazard-aware-policy-decomposition amend).",
+      "per_claim_recommendation": {
+        "MECH-321": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "V3-EXQ-919 manifest evidence_direction weakens -> non_contributory; append the V3-EXQ-1087 note to evidence_quality_note and set live_status.evidence.from to this artifact -> stamp this artifact",
+          "pending_retest_after_substrate": true,
+          "recommended_diagnostic_evidence_adjudicated": true,
+          "status_change": "none -- stays candidate"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-hazard-aware-policy-decomposition",
+        "title": "Make the per-leaf harm_penalty harm-informed before any harm-aware-selection re-test",
+        "implementation_hint": "V3-EXQ-1087 shows the built two-stage selection's per-leaf input discriminates the leaves but anti-tracks realised harm. (1) Read _decomposition_harm_penalty over the leaf-controlled rollout steps only, or roll leaves as multi-step sequences, not over zero-action-padded horizon states. (2) Require a harm/threat estimate that is trained or grounded in harm outcomes: the residue harm channel is written from z_harm.norm() on every tick, and E2's world head has no waking objective (GFLAG-0485/0491). (3) Enable or require valence bounding so Stage 1 does not sit at its clamp. This supersedes the 2026-08-13 amend's order of work: escapability or predictability channels added onto a non-harm-informed penalty would not be testable.",
+        "unblocks_claims": [
+          "MECH-321"
+        ],
+        "depends_on_unresolved": [
+          "native waking trainer / E2 world-head objective (GFLAG-0485, GFLAG-0491 -- governance-owned row not yet registered)"
+        ],
+        "priority_suggested": 1,
+        "severity": "corrupting",
+        "severity_note": "The selection fires on ~98% of decompositions and passes every 'engaged' readiness check, yet its harm input is not harm-informed. Any run reading harm-aware selection as harm-informed produces evidence that looks valid and is not. Blast radius: runs with decomposition_use_harm_aware_selection=True (default-off; the 844/867-lineage/919/1087 drivers).",
+        "substrate_paths": [
+          "ree_core/hippocampal/module.py::_decomposition_harm_penalty",
+          "ree_core/policy/policy_decomposition.py::harm_bias",
+          "ree_core/policy/policy_decomposition.py::select_harm_aware_leaves"
+        ],
+        "failure_record_entry": {
+          "run_id": "v3_exq_1087_mech321_perleaf_harm_discriminability_20260924T121217Z_v3",
+          "experiment_type": "v3_exq_1087_mech321_perleaf_harm_discriminability",
+          "metric": "Stage-2 tolerance-tie rate 0.078 (discriminative) but harm tracking excess -0.070 (z -2.23, n=223), -0.197 vs best-constant-index null, median Spearman(penalty, GT) -0.5; Stage-1 clamp saturated 99.2%; kept-leaf-executed rate 0.29",
+          "target": "chosen leaf is a ground-truth-best leaf more often than chance by >= 0.05 with z >= 2 over BOTH nulls, >= 2 distinct chosen indices",
+          "resolved": "open"
+        },
+        "resolves_prior_failure_record": [
+          {
+            "run_id": "v3_exq_919_mech321_harm_aware_selection_unconditional_wholeepisode_20260811T225107Z_v3",
+            "resolved": "superseded",
+            "resolved_note": "V3-EXQ-1087 (2026-09-24) shows 919's harm-aware selection consumed a per-leaf harm input that anti-tracks ground truth. 919's harm_delta therefore does not measure harm-aware selection, and its failure item is replaced by the 1087 item. Nothing was fixed."
+          }
+        ]
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-867_2026-08-02",
+          "failure_autopsy_V3-EXQ-938_2026-08-20"
+        ],
+        "literal_count_meets_threshold": true,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-hazard-aware-policy-decomposition",
+        "note": "Counted 2 prior hits for MECH-321 under R1-R3 before this autopsy. This target owes an amend with direction non_contributory, so it is a 3rd. REFUSE any same-claim harm-aware-selection re-test (a V3-EXQ-919 letter, a 1087 letter, or a new-number task-harm test on MECH-321) until the per-leaf harm input is harm-informed. A trained-agent diagnostic of the penalty input itself, or a different-mechanism test, is exempt."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": "none",
+        "note": "granularity_debt_cluster.py MECH-321: 10 targets; distribution weakened=4 (844 x2, 919 x2), intact=2, other=2, unclear=2. After this re-adjudication 919 reads unclear. The remaining weakened reading (844) is itself a competence_implementation_gap. The lineage (844/867/867a/867b/919/1087) circles ONE downstream leg with implementation and measurement defects. It does not fail structurally different aspects of MECH-321, so this is implementation debt, not granularity debt."
+      },
+      "learning_extracted": [
+        "existing dependency strengthened: harm-aware path selection needs a harm-informed per-candidate threat estimate. A discriminative but untrained estimate yields selection that looks engaged (98% firing, low tie rate) and does not track realised harm on any seed; pooled, it runs below chance (carried by 2 of 5 seeds).",
+        "implementation gap: _decomposition_harm_penalty averages over zero-action-padded rollout states. The per-leaf contrast is mostly action-uninformative untrained-E2 drift (GFLAG-0485 shape).",
+        "implementation gap: Stage-1 harm_bias is saturated at its clamp (99.2%) with valence bounding off, so it is a constant offset.",
+        "integration gap: the Stage-2 kept leaf determines the executed action on only 29% of units.",
+        "tooling: a driver whose load_bearing criterion is a partition selector must tag it role:'selector', or the indexer raises a false vacuous_pass (C2 here)."
+      ],
+      "routing": "implement-substrate",
+      "routing_note": "Governance must first ratify the refinement of the 2026-09-24 two-branch rule (see confirmation_note). Then governance applies: (1) V3-EXQ-919 evidence_direction weakens -> non_contributory. (2) V3-EXQ-1087 evidence_direction -> non_contributory. (3) The MECH-321 evidence_quality_note above plus a live_status.evidence stamp. (4) The SD-hazard-aware-policy-decomposition amend (the 919 failure item superseded, the 1087 item added, severity corrupting). (5) Resolve GFLAG-0462: its re-adjudication is delivered here. (6) The hypothesis_space_ledger_pending block. Follow-on build is NOT chipped by this autopsy. Governance chips /implement-substrate after ratification.",
+      "redteam_7c": {
+        "model": "fable (cross-model; session model Opus 5.5)",
+        "verdict": "CONTESTED",
+        "findings": {
+          "F1": "accepted -- the deciding branch is a driver-level pre-registered refinement (CHANGE 3; orchestrator Q-1087), not the user-ratified rule. Provenance corrected. The departure is disclosed to governance, and the routing is kept.",
+          "F2": "accepted (in the artifact's favour) -- the anti reading survives a marginal-preserving permutation null (z -2.76). The 'fragile' wording is removed.",
+          "F3": "accepted -- the pooled anti signal is carried by seeds 47/71, and there is no harm tracking on any seed. Wording narrowed.",
+          "hygiene": "blast radius stated (default-off flag); in-run drift ratio 4.74 cited; the indexer DOES read role:'selector' (build_experiment_indexes.py ~675-693, verified); the 1-step GT is not the GT for a trained-E2 re-test"
+        },
+        "record": ".scratch/orch-20260924-1707/autopsy/redteam_1087.md (not committed)"
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "qid": "mech321_harm_aware_selection_task_effect",
+    "hid": "H-harm-aware-reduces-task-harm",
+    "growth_restriction": null,
+    "action": "revise resolution: eliminated -> alive (Mode B, uninformative-run row of the state mapping)",
+    "new_resolution": {
+      "state": "alive",
+      "resolving_runs": [
+        "V3-EXQ-844",
+        "V3-EXQ-867",
+        "V3-EXQ-867a",
+        "V3-EXQ-867b",
+        "V3-EXQ-919",
+        "V3-EXQ-1087"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "stage2_discriminative_anti_harm_tracking__stage1_clamp_saturated",
+      "control_passed": true,
+      "non_degenerate": null,
+      "met_elimination_bar": false,
+      "resolved_utc": "2026-09-24T12:12:17Z",
+      "basis": "V3-EXQ-1087 re-adjudicates the only decisive run (V3-EXQ-919) to non_contributory. 919's harm-aware selection consumed a per-leaf harm input that discriminates the leaves but anti-tracks realised harm, and 919's DV is 87% post-death harm (GFLAG-0462). No run has yet tested harm-aware selection with a harm-informed input, so the elimination bar is no longer met."
+    },
+    "why_pending": "hypothesis_space_registry.v1.json is claimed by the parallel autopsy session orchc0925-autopsyA-1083. The ledger should also move in step with the 919 manifest direction change, which governance applies."
+  }
+}
