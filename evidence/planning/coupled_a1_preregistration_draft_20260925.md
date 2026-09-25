@@ -5,7 +5,9 @@
 - **Evidence domain of this document: D0 + one re-analysis.** The design is D0. The absolute floors in sec 6 come from a new re-analysis of existing raw probe data (`probes/a1_draft/floor_grounding.py`). No new agent run was made.
 - **Refs at writing:** ree-v3 `origin/main` @ `23714f0562`; `origin/integration/coupled-loop-repair` @ `cc20be5663` (= BR0, no branch commits yet). REE_assembly `origin/master` @ `eecdfe2e4d0`.
 - **Parent:** `coupled_loop_repair_campaign_plan.md` sec 5 (the A1 draft this refines), sec 6 (sequencing, merge gate), sec 9 and "User decisions on this plan". Where this document differs from plan sec 5, the difference is listed in sec 13 with its reason.
-- **Skeleton:** `probes/a1_draft/a1_integrated_acceptance_skeleton.py`. It has the arm wiring and I1 call sites, and it implements the whole scoring half (margins, criteria, verdict ladder, head-to-head). `--selftest` shows that every criterion can FAIL and that every CANNOT_DETERMINE and INVALID branch can be reached.
+- **Skeleton:** `probes/a1_draft/a1_integrated_acceptance_skeleton.py`. It has the arm wiring and I1 call sites, and it implements the whole scoring half (margins, criteria, verdict ladder, head-to-head). `--selftest` (14 cases) shows that every criterion can FAIL and that every CANNOT_DETERMINE and INVALID branch can be reached.
+  - The two red-team cases (RT-1, RT-2) were mutation-checked. With the pre-red-team rules restored (`>= 0` P1g, no balloon guard), both flip to BAD (sec 15).
+- **Red-team: CONTESTED.** An independent sonnet subagent reviewed it read-only. Its findings RT-1 through RT-4 and RT-6 are folded in; RT-5 stays open (sec 15).
 
 ## 0. Decisions already taken (implemented here, not reopened)
 
@@ -27,7 +29,7 @@
 | Q5 | "The ASP variant has a build path" | **no status-table row exists** for action-space proposals. Plan sec 2 has W1 (codec) and N4 only, and the user decision is recorded only in the decisions table | **gap.** A1 cannot run INT-ASP until an ASP build row exists and its member gate is defined. Flagged in sec 14 |
 | Q6 | The env's seed is independent of the agent's seed | `CausalGridWorldV2` draws only from `self._rng = np.random.default_rng(seed)` (`causal_grid_world.py:1604` @ `23714f0562`); a grep finds no global `np.random.` call. The probe harnesses call `seed_all(seed)` once and pass the same `seed` to the env (`probes/rollout/rollout_fidelity_probe.py` `build_B`) | holds for the env. **The A1 harness must split the two seeds** (sec 3). The existing harness pattern does not |
 | Q7 | "Env reward" measures grounded outcome | per-step reward is the env's `harm_signal`. With tie-break ON, that includes **approach shaping**: +`proximity_benefit_scale` (0.03) x resource-field on `benefit_approach` steps (`:2733-2745`, `:340`), and -0.05 x hazard-field on `hazard_approach` steps. Consumption is +0.3 (`resource_benefit`, `:275`, `:2367`); hazard contact is -0.5 (`:273`, `:2627-2635`). Resources do not respawn (`resource_respawn_on_consume=False`, `:336`), so consumption reward is capped at 3 x 0.3 per 200-step episode (0.45 per 100). In the T2 regime (tie-break ON), seed 64's native arm spent 112 of 1,500 steps on `benefit_approach` | **corrected.** Raw env reward can rise from hovering in resource fields without consuming anything, which K5/V2 excludes. A grounded-component criterion P1g is added (sec 8) |
-| Q8 | Plan sec 5 floors (reward 0.25 / 1.0 per 100; contacts 1.0; FIRST->LAST change 0.25) are adequate | re-derived from measured replicate spread (sec 6). The benign reward floor is 0.57 (plan: 0.25); the FIRST->LAST floor is 0.90 (plan: 0.25). **The plan's P4 floor sits at 0.3 x the measured replicate noise** | **corrected** (sec 6) |
+| Q8 | Plan sec 5 floors (reward 0.25 / 1.0 per 100; contacts 1.0; FIRST->LAST change 0.25) are adequate | re-derived from measured replicate spread (sec 6). The benign reward floor is 0.90 (plan: 0.25); the FIRST->LAST floor is 0.92 (plan: 0.25). **The plan's P4 floor sits at 0.3 x the measured replicate noise** | **corrected** (sec 6) |
 
 ## 2. The question and the domain
 
@@ -73,10 +75,11 @@
 | INT-CODEC | s | W6 preset, codec variant (W1), `valuation_mode` | ON | yes | tested |
 | INT-CODEC-SHUF | s | as INT-CODEC; every grounding target permuted (5.3) | ON | yes | grounding control (P3) |
 | INT-CODEC-FROZEN | s | as INT-CODEC | OFF in phase 3 | yes | learning control (P4) |
-| INT-ASP, -SHUF, -FROZEN | s | W6 preset, action-space proposal variant | as above | yes | as above |
+| INT-CODEC-R1 | s + 10k | as INT-CODEC | ON | **no** | INT-vs-INT margin calibration only (RT-2) |
+| INT-ASP, -SHUF, -FROZEN, -R1 | s (R1: s + 10k) | W6 preset, action-space proposal variant | as above | as above | as above |
 | INT-v-NOVAL (GROUNDED mode only; optional, sec 14) | s | INT-v with valuation ABSENT | ON | **no** | reported only: what valuation contributes |
 
-That is 10 arms per seed in ABSENT mode and 12 in GROUNDED mode with the NOVAL diagnostics.
+That is 12 arms per seed in ABSENT mode and 14 in GROUNDED mode with the NOVAL diagnostics.
 
 ### 5.2 `valuation_mode` (the with/without-valuation variant)
 
@@ -97,7 +100,7 @@ That is 10 arms per seed in ABSENT mode and 12 in GROUNDED mode with the NOVAL d
   - the action labels in the E2-world buffer, babbling replay included.
 - Inputs, architecture, learning rates and trainer schedule are unchanged.
 - **The permutation seed is `s + 7`**, drawn from a private generator, so SHUF does not consume the agent's RNG stream differently from INT beyond what the targets themselves cause.
-- **Self-supply check (red-team item RT-3).** SHUF must not supply its own asserted value. Two checks enforce this:
+- **Self-supply check (red-team Q2: OK).** SHUF must not supply its own asserted value. Two checks enforce this:
   - R2 requires SHUF's E2 head to FAIL the W3(a) disc bar, which shows the shuffle destroyed the label information;
   - SHUF's `outcome_decomposition` is computed by the same I1 function on the env's own `transition_type` stream, never on the permuted labels.
 
@@ -116,7 +119,9 @@ margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk
 
 - The RMS form matches the 1105 detector's leave-one-out SD.
 - A margin is CANNOT_DETERMINE when any admitted seed has fewer than 2 completed NATIVE-Rk arms, or the stratum has fewer than 8 deltas.
-- The same margin is used for every comparison on that metric and stratum (P1, P2, P3, P4). See RT-2 for the caveat that INT-vs-INT noise may exceed NATIVE reseed noise.
+- **Superiority vs non-inferiority (RT-2).**
+  - **Superiority criteria** (P1b, P3, P4) use max(the NATIVE margin above, 2 x RMS of the per-seed INT-v minus INT-v-R1 deltas). The INT-v-R1 arm measures INT-vs-INT noise directly, so a noisier tested preset cannot pass on NATIVE's smaller noise. The INT margin is CANNOT_DETERMINE when a stratum has fewer than 4 INT reseed deltas.
+  - **Non-inferiority criteria** (P1t, P2) use the NATIVE margin alone. A large margin makes them lenient, so there is a **balloon guard**: if the sampled 2 x RMS exceeds 3 x its floor for the trapped reward, benign contacts or trapped contacts, the verdict is `CANNOT_DETERMINE: margin_ballooned`. The non-inferiority test is then unfalsifiable at that noise, and it is never read as PASS. The factor 3 is a DRAFT constant.
 
 ### 6.3 Absolute floors: derivation and provenance
 
@@ -132,17 +137,21 @@ margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk
 
 | metric (per 100) | stratum | measured RMS(NULLj - M0) | n deltas (nonzero) | 2 x RMS | window corr. | **floor** | plan sec 5 draft |
 |---|---|---|---|---|---|---|---|
-| reward, LAST | benign | 0.257 (750-step half2) | 25 (15) | 0.514 | x1.118 | **0.57** | 0.25 |
+| reward, LAST | benign | **0.403 on the harm-bearing seeds 64-65** (pooled over all 5: 0.257) | 10 (10) (pooled: 25 (15)) | 0.807 (pooled: 0.514) | x1.118 | **0.90** (RT-3; pooled would be 0.57) | 0.25 |
 | reward, LAST | trapped | 1.056 (half2) | 10 (10) | 2.112 | x1.118 | **2.4** | 1.0 |
 | true contacts, LAST 600 | benign | 0.808 | 25 (10) | 1.617 | none (exact 600) | **1.6** | 1.0 |
 | true contacts, LAST 600 | trapped | 2.385 | 10 (9) | 4.769 | none | **4.8** | 1.0 |
-| reward change FIRST -> LAST (P4) | benign | 0.411 (half1 -> half2) | 25 (15) | 0.822 | x1.118 | **0.90** | 0.25 |
+| reward change FIRST -> LAST (P4) | benign | 0.411 (half1 -> half2, pooled) | 25 (15) | 0.822 | x1.118 | **0.92** (RT-4 arithmetic; harm-bearing-only would be 1.44, sec 14) | 0.25 |
 
-- **Why these are LOWER-BOUND noise estimates (so the floors are not over-strict):**
+- **Which estimate each floor uses (RT-3).** Superiority floors (reward, reward change) should err large, and non-inferiority floors (contacts) should err small.
+  - The benign reward floor is therefore taken from the harm-bearing seeds 64-65 only. On seeds 61-63, every NULL replicate reproduced M0 exactly, so pooling them in shrinks the SD artificially.
+  - The contacts floor keeps the pooled value (the conservative direction for P2).
+  - The P4 change floor keeps the pooled value, corrected to 0.92 per RT-4. The consistent harm-bearing value, 1.44, is left to the user (sec 14).
+- **The doc's claim that these are lower-bound noise estimates, and its basis (asserted, not shown; RT-5 open):**
   - (i) a matched-step weight walk perturbs less than a full agent reseed, which also changes the initial weights of every module;
   - (ii) 10 of the 25 benign deltas came from seeds 61-63, where every NULL replicate reproduced M0 exactly. Over the two harm-bearing benign seeds alone (64, 65), 2 x RMS is 0.81 for reward (0.90 after window correction) and 2.56 for contacts;
   - (iii) the benign population in the v2 screen (early terminations 0-8 per 600 steps, 12 of 15 seeds with >= 3) looks more like seeds 64-65 than 61-63.
-  - **So the runtime 2 x SD will probably exceed the floors in the benign stratum. The floors bind mainly when a stratum's reseeds happen to coincide (a degenerate SD), and preventing that is their purpose.**
+  - **Expected consequence:** the runtime 2 x SD will probably exceed the floors in the benign stratum. The floors bind mainly when a stratum's reseeds happen to coincide (a degenerate SD), and preventing that is their purpose. RT-5 notes that this ordering is argued, not measured. A floor that is itself an underestimate binds exactly when it is most needed. The INT-reseed term (6.2) and the balloon guard are the partial mitigations.
 - **Why they are not the NATIVE regime.** The T2 agent carried the R5b scaffold, the COV head, R2 depth 2 and trained evaluators. It was not NATIVE. There is no measurement of NATIVE-vs-reseeded-NATIVE spread with tie-break ON in any record (`r5b_r2_fresh_seed_replication` is tie-break OFF, and its arms differ in configuration, not in seed). **DRAFT flag:** the floors are grounded in the nearest measured analog, not in the target quantity. The runtime 2 x SD term measures the target quantity directly, and that term dominates wherever the reseeds actually vary.
 - **Floors not derived:**
   - consumptions (reported only). Measured 2 x RMS is 0.74 benign and 0.89 trapped;
@@ -152,7 +161,7 @@ margin(metric, stratum) = max( 2 x RMS of the per-seed deltas NATIVE - NATIVE-Rk
 
 - In the v2 screen, benign NATIVE-analog reward over the first 600 steps averaged -0.49 per 100 (between-seed SD 0.43, n = 15).
 - Consumption reward is capped at 0.45 per 100 (Q7).
-- Beating NATIVE by > 0.57 on a benign seed therefore needs roughly: most of the harm removed, plus some added consumption or approach shaping.
+- Beating NATIVE by > 0.90 on a benign seed therefore needs roughly: most of the harm removed, plus added consumption. Shaping alone cannot pass, because P1g is strict.
 - That is reachable, but it is not slack. P1g stops the approach shaping part from carrying the gain alone.
 - **A P1b FAIL with P1g, P2 and P3 all holding is a "gain too small for the margin" outcome.** The autopsy reports it as such. It is not "the loop did not close".
 
@@ -180,11 +189,15 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 | id | stratum | statement | kind |
 |---|---|---|---|
 | **P1b (PRIMARY)** | benign | reward_LAST(T) - reward_LAST(N) > m_reward on >= 4/5 | superiority |
-| **P1g** | benign | G_LAST(T) - G_LAST(N) >= 0 on >= 4/5 (the gain is not carried by approach shaping alone; Q7, K5/V2) | sign guard |
+| **P1g** | benign | G_LAST(T) - G_LAST(N) **> 0 (strict)** on >= 4/5. A tie, including 0 = 0 on a seed with no contacts or consumptions in either arm, does NOT hold (RT-1). The gain must include at least one fewer true contact or one more consumption; approach shaping alone cannot carry it (Q7, K5/V2) | strict sign guard |
 | P1t | trapped | reward_LAST(N) - reward_LAST(T) <= m_reward on >= 4/5 (gain reported) | non-inferiority |
 | P2 | each stratum separately | contacts_LAST(T) - contacts_LAST(N) <= m_contacts on >= 4/5 | non-inferiority |
 | P3 | each stratum separately | reward_LAST(T) - reward_LAST(S) > m_reward on >= 4/5 | superiority |
 | P4 | benign | [reward_LAST - reward_FIRST](T) - [same](F) > m_change on >= 4/5 | superiority |
+
+**Multiplicity (RT-6).** 2 variants x 8 sub-criteria (P1b, P1g, P1t, P2b, P2t, P3b, P3t, P4) are 16 tests.
+- The adopted control is the **conjunction**: a variant passes only if ALL 8 hold, each at >= 4/5 seeds. That family-wise AND is the whole multiplicity control. No alpha is split, and no single criterion is ever reported as a variant PASS.
+- The head-to-head adds no test. It only chooses between two variants that each passed the full conjunction.
 
 ### 8.1 Verdict ladder (per variant, evaluated in this order)
 
@@ -192,7 +205,8 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 2. **INVALID**: any precondition R0-R7 failed on any admitted seed. Fix and re-run under a lettered id. It is never scored as FAIL.
 3. **CANNOT_DETERMINE**:
    - a stratum has fewer than 5 admitted seeds after reserves (`under_admitted:<stratum>`);
-   - a margin is not computable (`margin_undetermined:<metric>:<stratum>`);
+   - a margin is not computable (`margin_undetermined:<metric>:<stratum>`), NATIVE or INT;
+   - a non-inferiority margin ballooned (`margin_ballooned`, 6.2);
    - the screen ceiling was reached (`screen_exhausted`).
 4. **PASS** iff P1b, P1g, P1t, P2 (both strata), P3 (both strata) and P4 all hold.
 5. **FAIL** otherwise. Named signatures are reported, not re-scored:
@@ -253,12 +267,12 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
   - trapped seeds 2,313-3,117 s -> about 0.18-0.24 s per step, since episode resets and gated ticks dominate there.
 - **Trainer overhead:** 0.07x an act tick at K = 1 for the design's members (`native_waking_trainer_design_20260925.md` sec 2). The W6 preset has more members (codec, prior, E2-world, encoder, valuation), so assume 0.2-0.4x on INT arms. DRAFT, ungrounded.
 - **Per seed:**
-  - about 6.4k steps per arm (2,400 dev + about 1,000 warmup + 3,000 closed loop), x 10 arms (ABSENT) or 12 (GROUNDED + NOVAL);
+  - about 6.4k steps per arm (2,400 dev + about 1,000 warmup + 3,000 closed loop), x 12 arms (ABSENT) or 14 (GROUNDED + NOVAL; the INT-R1 arms add 2);
   - benign: about 64-77k steps x 0.02 s x 1.2, i.e. roughly 0.5 h;
   - trapped: the same steps x 0.2 s x 1.2, i.e. roughly 4-5 h.
-- **10 admitted seeds:** about 2.5 CPU-h benign + about 22 CPU-h trapped, so **~25 CPU-h (ABSENT) to ~30 CPU-h (GROUNDED + NOVAL)**. Reserves add up to about 40% more if all four are used.
+- **10 admitted seeds:** about 3 CPU-h benign + about 26 CPU-h trapped, so **~30 CPU-h (ABSENT) to ~35 CPU-h (GROUNDED + NOVAL)**. Reserves add up to about 40% more if all four are used.
 - **Screen:** about 33 NATIVE-only seeds x about 5-10 min = **3-6 h**.
-- **Total:** about 30-45 CPU-h. That is consistent with plan sec 5 (35-45 CPU-h) and dominated by the trapped seeds.
+- **Total:** about 35-50 CPU-h. That is at or slightly above plan sec 5's 35-45 CPU-h, and dominated by the trapped seeds.
 - Per-seed items on the fleet, affinity "any". A trapped item at about 5 h fits the fleet's item budget but is long enough that `/queue-experiment` should set `estimated_minutes` from the smoke.
 
 ## 12. Stop rules
@@ -276,8 +290,9 @@ Every I1 instrument used here also carries its pinned canary (I1 contract tests)
 
 | item | plan sec 5 | this draft | reason |
 |---|---|---|---|
-| floors | reward 0.25 / 1.0, contacts 1.0, change 0.25 | 0.57 / 2.4, 1.6 / 4.8, 0.90 | derived from measured replicate spread (6.3). The plan's P4 floor was below the measured noise |
-| grounded-component guard | absent | P1g added | env reward includes approach shaping with tie-break ON (Q7). K5/V2 excludes approach steps as evidence of benefit |
+| floors | reward 0.25 / 1.0, contacts 1.0, change 0.25 | 0.90 / 2.4, 1.6 / 4.8, 0.92 | derived from measured replicate spread (6.3, RT-3/RT-4). The plan's P4 floor was below the measured noise |
+| margins | one NATIVE-reseed margin for every criterion | superiority uses max(NATIVE, INT-reseed); non-inferiority has a balloon guard; INT-v-R1 arms added | RT-2 |
+| grounded-component guard | absent | P1g added (strict > 0, RT-1) | env reward includes approach shaping with tie-break ON (Q7). K5/V2 excludes approach steps as evidence of benefit |
 | tested arms | one INTEGRATED | INT-CODEC and INT-ASP, each with SHUF and FROZEN | user decision rec-20260925-6a675285 |
 | valuation | "R4 only if W5 in preset" | explicit `valuation_mode`, fixed before admission; optional NOVAL diagnostics | user decision rec-20260925-805f605c |
 | env/agent seed | not stated | split (sec 3) | NATIVE-Rk must vary the agent only (Q6) |
@@ -291,6 +306,7 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
 ## 14. Decisions left for the user
 
 1. **Floors:** accept the re-derived floors in sec 6.3, or keep the plan's lower drafts. Keeping the drafts makes P1 and P3 easier to pass and P2 and P1t harder to pass wherever the floor binds.
+   - Sub-choice: the P4 change floor is 0.92 (pooled) vs 1.44 (harm-bearing seeds only). 1.44 would be consistent with RT-3's treatment of the reward floor.
 2. **P1g:** accept the grounded-component sign guard (recommended). The alternative is to score raw env reward alone and let approach shaping count.
 3. **ASP build path (Q5):** the head-to-head needs an ASP build row and an ASP member gate (the R1 analog). Until they exist, the options are:
    - (a) hold A1 until both exist; or
@@ -298,8 +314,31 @@ Unchanged and still ungrounded (DRAFT): the 2,400-step developmental epoch; the 
    Neither is recommended here, because the user asked for both in parallel. This is a planning gap for the orchestrator or `/governance` to route.
 4. **NOVAL diagnostics** in GROUNDED mode: +2 arms (about +20% cost) in exchange for a reported measure of what valuation contributes. Recommended, because it localises a FAIL.
 5. **Head-to-head tie rule:** "ASP wins within margin" (simplicity) vs "the user decides at merge".
-6. **An INT reseed arm (RT-2):** add INT-v-R1 per seed (about +20% cost) so the P3 margin is computed from INT-vs-INT noise, not NATIVE reseed noise. See sec 15.
+6. **INT reseed arms (RT-2, now in the design):** INT-v-R1 per seed adds 2 arms (about +17% cost). The user may remove them. Superiority margins would then fall back to NATIVE noise only, which RT-2 showed can make P1b and P3 too easy.
+7. **Balloon factor:** 3 x floor (DRAFT constant).
 
 ## 15. Red-team pass
 
-*(filled in below after the independent red-team review)*
+- **Reviewer:** an independent read-only sonnet subagent (a different model from this Opus author). It had the draft, the skeleton, the floor script, the plan, the null-detector record, the I1 draft and the env source on origin/main.
+- **Overall verdict: CONTESTED.**
+- **Questions judged OK:**
+  - Q2: SHUF does not supply its own asserted value;
+  - Q3: the stratum classifier is strictly read first, because `write_stratum_sidecar` and `require_stratum_sidecar` hard-raise;
+  - Q6: the verdict ladder has no CANNOT_DETERMINE -> PASS path;
+  - Q7: every `causal_grid_world.py` citation matches origin/main;
+  - the selftest ran 11/11 at review time.
+
+| id | severity | finding | disposition |
+|---|---|---|---|
+| RT-1 | MAJOR | P1g `>= 0` is vacuous on benign seeds where both arms have 0 contacts and 0 consumptions (seeds 61-63 pattern). A gain carried only by shaping passes | **FIXED.** Strict `> 0`; ties, 0 = 0 included, do not hold. Selftest case added; mutation-checked (the old rule makes it PASS) |
+| RT-2 | MAJOR | one NATIVE-reseed margin serves both non-inferiority (P1t, P2) and superiority (P1b, P3). Large noise makes P1t/P2 near-unfalsifiable; INT-vs-INT noise may exceed NATIVE's. The INT reseed arm was only a sec-14 suggestion | **FIXED.** INT-v-R1 arms implemented; superiority uses max(NATIVE, INT) noise; non-inferiority gets the balloon guard (CD, never PASS). Two selftest cases added; the balloon case is mutation-checked |
+| RT-3 | MAJOR | the benign reward floor 0.57 was pooled over seeds where 10/25 replicate deltas were exactly zero. The harm-bearing seeds give 0.90 | **FIXED.** Floor 0.90 |
+| RT-4 | MINOR | 2 x 0.411 x sqrt(1.25) = 0.919, i.e. 0.92, not 0.90 | **FIXED.** 0.92 (the consistent harm-bearing alternative, 1.44, goes to the user, sec 14) |
+| RT-5 | RISK | the floor noise comes from a T2 agent with a 4-channel weight walk, not NATIVE reseeded with tie-break ON; "lower bound" is asserted, not shown; a floor can bind exactly when most needed | **OPEN.** Disclosed in 6.3. Mitigations: the runtime 2 x SD term, the INT reseed term, the balloon guard. Closing it needs a measured NATIVE-reseed spread with tie-break ON. That is a cheap pre-A1 probe (5 seeds x 4 NATIVE agent seeds x 3,000 steps, NATIVE only), which could also serve as the Stage-S screen if run on the pinned sha |
+| RT-6 | MINOR | 16 tests with no named multiplicity control | **FIXED.** The AND-of-all-8-per-variant conjunction is stated as the adopted control (sec 8) |
+
+**Unresolved beyond RT-5 (this author's own open items, not raised by the reviewer):**
+- the ASP build path (Q5);
+- the 2,400-step developmental epoch and the warmup budget under W6a are ungrounded;
+- the trainer-ON cost multiplier is ungrounded;
+- the balloon factor of 3 is a DRAFT constant.

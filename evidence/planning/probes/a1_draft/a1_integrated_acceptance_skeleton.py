@@ -51,10 +51,15 @@ N_RESEED = 3
 MIN_RESEED_PER_SEED = 2
 MIN_DELTAS_PER_STRATUM = 8
 FRAC_REQUIRED = 4                                                   # ">= 4/5"
+MIN_INT_DELTAS_PER_STRATUM = 4                                      # INT-v vs INT-v-R1, one reseed per seed
+BALLOON_FACTOR = 3.0                                                # RT-2: sampled 2xRMS > 3x floor -> non-inferiority CD
 
 # Absolute floors (per 100 steps). Derivation + record in prereg sec 6 (floor_grounding.py).
+# Superiority floors (reward, reward_change) use the conservative (larger) estimate; the benign reward
+# floor is from the harm-bearing seeds 64-65 only (red-team RT-3). The non-inferiority floor (contacts)
+# keeps the pooled estimate, which is the conservative (smaller) direction for a non-inferiority test.
 FLOORS = {
-    "benign": {"reward": 0.57, "contacts": 1.6, "reward_change": 0.90},
+    "benign": {"reward": 0.90, "contacts": 1.6, "reward_change": 0.92},
     "hazard_trapped": {"reward": 2.4, "contacts": 4.8, "reward_change": None},  # P4 is benign-only
 }
 
@@ -76,8 +81,10 @@ def arm_table(valuation_mode: str, noval_diag: bool = True) -> List[Dict[str, An
         base = dict(preset="W6:%s:%s" % (v, valuation_mode), agent_seed_offset=0)
         arms.append(dict(name="INT-%s" % v, trainer=True, shuffle=False, role="tested", **base))
         arms.append(dict(name="INT-%s-SHUF" % v, trainer=True, shuffle=True, role="grounding control (P3)", **base))
-        arms.append(dict(name="INT-%s-FROZEN" % v, trainer="off_after_dev_epoch", shuffle=False,
+        arms.append(dict(name="INT-%s-FROZEN" % v, trainer="off_in_closed_loop", shuffle=False,
                          role="learning control (P4)", **base))
+        arms.append(dict(name="INT-%s-R1" % v, trainer=True, shuffle=False, preset=base["preset"],
+                         agent_seed_offset=AGENT_SEED_OFFSET, role="INT margin calibration ONLY (RT-2)"))
         if valuation_mode == "GROUNDED" and noval_diag:
             arms.append(dict(name="INT-%s-NOVAL" % v, trainer=True, shuffle=False,
                              preset="W6:%s:ABSENT" % v, agent_seed_offset=0,
@@ -167,7 +174,22 @@ def margins(seeds: List[Dict[str, Any]], stratum: str) -> Dict[str, Any]:
             continue
         sd = _rms(deltas)
         out[m] = {"verdict": "MEASURED", "rms": sd, "two_x": 2 * sd, "floor": floor,
-                  "margin": max(2 * sd, floor), "floor_binding": floor >= 2 * sd, "n_deltas": len(deltas)}
+                  "margin": max(2 * sd, floor), "floor_binding": floor >= 2 * sd, "n_deltas": len(deltas),
+                  "ballooned": 2 * sd > BALLOON_FACTOR * floor}
+    return out
+
+
+def int_margins(seeds: List[Dict[str, Any]], stratum: str, v: str) -> Dict[str, Any]:
+    """RT-2: INT-vs-INT noise from INT-v vs INT-v-R1 (agent reseed of the tested preset).
+    Superiority criteria use max(NATIVE margin, 2 x RMS of these deltas)."""
+    out: Dict[str, Any] = {}
+    for m, key in (("reward", "reward_LAST"), ("reward_change", "reward_change")):
+        ds = [window_stats(s["arms"]["INT-%s" % v])[key] - window_stats(s["arms"]["INT-%s-R1" % v])[key]
+              for s in seeds if "INT-%s-R1" % v in s["arms"]]
+        if len(ds) < MIN_INT_DELTAS_PER_STRATUM:
+            out[m] = {"verdict": CD, "reason": "%d INT reseed deltas" % len(ds)}
+        else:
+            out[m] = {"verdict": "MEASURED", "two_x": 2 * _rms(ds), "n_deltas": len(ds)}
     return out
 
 
@@ -193,25 +215,40 @@ def score_variant(v: str, strata: Dict[str, List[Dict[str, Any]]]) -> Dict[str, 
             return res
     M = {g: margins(strata[g], g) for g in (BENIGN, TRAPPED)}
     need = [(BENIGN, "reward"), (BENIGN, "contacts"), (BENIGN, "reward_change"), (TRAPPED, "reward"), (TRAPPED, "contacts")]
+    IM = {g: int_margins(strata[g], g, v) for g in (BENIGN, TRAPPED)}
     cdm = [(g, m) for g, m in need if M[g][m]["verdict"] == CD]
+    cdm += [("INT:" + g, m) for g, m in ((BENIGN, "reward"), (BENIGN, "reward_change"), (TRAPPED, "reward"))
+            if IM[g][m]["verdict"] == CD]
     if cdm:
         res.update(verdict=CD, reason="margin not computable: %s" % cdm, margins=M)
+        return res
+    # RT-2: a non-inferiority margin that balloons makes P1t / P2 near-unfalsifiable -> CD, never PASS.
+    bal = [(g, m) for g, m in ((TRAPPED, "reward"), (BENIGN, "contacts"), (TRAPPED, "contacts")) if M[g][m]["ballooned"]]
+    if bal:
+        res.update(verdict=CD, reason="margin_ballooned (non-inferiority unfalsifiable): %s" % bal, margins=M)
         return res
     W = lambda s, a: window_stats(s["arms"][a])  # noqa: E731
     b, t = strata[BENIGN], strata[TRAPPED]
     mb, mt = M[BENIGN], M[TRAPPED]
+    # superiority margins: the larger of NATIVE-reseed and INT-reseed noise (RT-2)
+    sup_b = max(mb["reward"]["margin"], IM[BENIGN]["reward"]["two_x"])
+    sup_t = max(mt["reward"]["margin"], IM[TRAPPED]["reward"]["two_x"])
+    sup_chg = max(mb["reward_change"]["margin"], IM[BENIGN]["reward_change"]["two_x"])
     c = res["criteria"]
-    c["P1b"] = _count(b, lambda s: W(s, T)["reward_LAST"] - W(s, "NATIVE")["reward_LAST"] > mb["reward"]["margin"])
-    c["P1g"] = _count(b, lambda s: W(s, T)["grounded_LAST"] - W(s, "NATIVE")["grounded_LAST"] >= 0.0)
+    c["P1b"] = _count(b, lambda s: W(s, T)["reward_LAST"] - W(s, "NATIVE")["reward_LAST"] > sup_b)
+    # RT-1: STRICT. A 0 = 0 tie (no contacts or consumptions in either arm) does NOT hold: a gain carried
+    # only by approach/proximity shaping must not pass.
+    c["P1g"] = _count(b, lambda s: W(s, T)["grounded_LAST"] - W(s, "NATIVE")["grounded_LAST"] > 0.0)
     c["P1t"] = _count(t, lambda s: W(s, "NATIVE")["reward_LAST"] - W(s, T)["reward_LAST"] <= mt["reward"]["margin"])
     c["P2b"] = _count(b, lambda s: W(s, T)["contacts_LAST"] - W(s, "NATIVE")["contacts_LAST"] <= mb["contacts"]["margin"])
     c["P2t"] = _count(t, lambda s: W(s, T)["contacts_LAST"] - W(s, "NATIVE")["contacts_LAST"] <= mt["contacts"]["margin"])
-    c["P3b"] = _count(b, lambda s: W(s, T)["reward_LAST"] - W(s, S)["reward_LAST"] > mb["reward"]["margin"])
-    c["P3t"] = _count(t, lambda s: W(s, T)["reward_LAST"] - W(s, S)["reward_LAST"] > mt["reward"]["margin"])
-    c["P4"] = _count(b, lambda s: W(s, T)["reward_change"] - W(s, F)["reward_change"] > mb["reward_change"]["margin"])
+    c["P3b"] = _count(b, lambda s: W(s, T)["reward_LAST"] - W(s, S)["reward_LAST"] > sup_b)
+    c["P3t"] = _count(t, lambda s: W(s, T)["reward_LAST"] - W(s, S)["reward_LAST"] > sup_t)
+    c["P4"] = _count(b, lambda s: W(s, T)["reward_change"] - W(s, F)["reward_change"] > sup_chg)
     held = {k: n >= FRAC_REQUIRED for k, n in c.items()}
     res["held"] = held
     res["margins"] = M
+    res["superiority_margins"] = {"benign_reward": sup_b, "trapped_reward": sup_t, "benign_change": sup_chg}
     res["gain_P1b_mean"] = sum(W(s, T)["reward_LAST"] - W(s, "NATIVE")["reward_LAST"] for s in b) / len(b)
     res["verdict"] = PASS if all(held.values()) else FAIL
     if res["verdict"] == FAIL:
@@ -241,7 +278,10 @@ def head_to_head(results: Dict[str, Dict[str, Any]], margin_benign_reward: Optio
         return {"verdict": PASS, "winner": passed[0]}
     g = {v: results[v]["gain_P1b_mean"] for v in passed}
     hi, lo = max(g, key=g.get), min(g, key=g.get)
-    if margin_benign_reward is not None and g[hi] - g[lo] > margin_benign_reward:
+    m = margin_benign_reward
+    if m is None:
+        m = max(results[v]["superiority_margins"]["benign_reward"] for v in passed)
+    if g[hi] - g[lo] > m:
         return {"verdict": PASS, "winner": hi, "note": "both PASS; larger mean benign gain by > margin"}
     return {"verdict": PASS, "winner": "ASP", "note": "both PASS within margin; simpler variant (ASP deletes the codec)"}
 
@@ -249,17 +289,20 @@ def head_to_head(results: Dict[str, Dict[str, Any]], margin_benign_reward: Optio
 # ----------------------------------------------------------------------------- self-test (synthetic)
 def _synthetic(stratum: str, seed: int, gain: float, *, shuf_gain: Optional[float] = None, frozen_learn: float = 0.0,
                contacts_up: float = 0.0, grounded_delta: float = 0.1, noise: float = 0.05, n_reseed: int = 3,
-               pre_ok: bool = True) -> Dict[str, Any]:
+               pre_ok: bool = True, int_noise: float = 0.05, g_tie: bool = False) -> Dict[str, Any]:
     base = -0.5 if stratum == BENIGN else -3.0
     def rec(r_last, r_first, c_last, g_last):
         return {"reward_LAST": r_last, "reward_FIRST": r_first, "contacts_LAST": c_last, "grounded_LAST": g_last}
-    arms = {"NATIVE": rec(base, base, 2.0, -0.2)}
+    g0 = 0.0 if g_tie else -0.2
+    arms = {"NATIVE": rec(base, base, 2.0, g0)}
     for k in range(1, n_reseed + 1):
         d = noise * (1 if (seed + k) % 2 else -1)
         arms["NATIVE-R%d" % k] = rec(base + d, base + d, 2.0 + d, -0.2)
     sg = gain / 2 if shuf_gain is None else shuf_gain
     for v in VARIANTS:
-        arms["INT-%s" % v] = rec(base + gain, base, 2.0 + contacts_up, -0.2 + grounded_delta)
+        arms["INT-%s" % v] = rec(base + gain, base, 2.0 + contacts_up, g0 if g_tie else -0.2 + grounded_delta)
+        d = int_noise * (1 if seed % 2 else -1)
+        arms["INT-%s-R1" % v] = rec(base + gain + d, base, 2.0 + contacts_up, -0.2 + grounded_delta)
         arms["INT-%s-SHUF" % v] = rec(base + sg, base, 2.0, -0.2)
         arms["INT-%s-FROZEN" % v] = rec(base + frozen_learn, base, 2.0, -0.2)
     return {"seed": seed, "stratum": stratum, "arms": arms,
@@ -298,8 +341,15 @@ def selftest() -> int:
     case("precondition failed -> INVALID", {BENIGN: [_synthetic(BENIGN, 0, 1.5, pre_ok=False)] + good(BENIGN)[1:],
                                             TRAPPED: good(TRAPPED)}, INVALID)
     # floor binding: zero reseed noise must not make the margin vacuous
-    z = {BENIGN: [_synthetic(BENIGN, s, 0.3, shuf_gain=-1.0, noise=0.0) for s in range(5)], TRAPPED: good(TRAPPED)}
-    case("zero reseed noise: floor binds (gain 0.3 < 0.57)", z, FAIL)
+    z = {BENIGN: [_synthetic(BENIGN, s, 0.6, shuf_gain=-1.0, noise=0.0) for s in range(5)], TRAPPED: good(TRAPPED)}
+    case("zero reseed noise: floor binds (gain 0.6 < 0.90)", z, FAIL)
+    case("RT-1 P1g tie 0=0 (shaping-only gain) fails", {BENIGN: [_synthetic(BENIGN, s, 1.5, shuf_gain=0.0, g_tie=True)
+                                                               for s in range(5)], TRAPPED: good(TRAPPED)}, FAIL)
+    case("RT-2 non-inferiority margin balloons -> CD", {BENIGN: good(BENIGN),
+                                                       TRAPPED: [_synthetic(TRAPPED, s, 0.0, shuf_gain=-40.0, noise=8.0)
+                                                                 for s in range(5)]}, CD)
+    case("RT-2 INT reseed noise large -> P1b fails", {BENIGN: [_synthetic(BENIGN, s, 1.5, shuf_gain=0.0, int_noise=2.0)
+                                                             for s in range(5)], TRAPPED: good(TRAPPED)}, FAIL)
     print("SELFTEST %s" % ("PASS" if ok else "FAIL"))
     return 0 if ok else 1
 
