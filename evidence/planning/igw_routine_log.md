@@ -3708,3 +3708,4 @@ One line per hourly tick. ASCII only.
 2026-09-25T21:04:24Z GC sweep removed 1 orphan worktree(s), kept 25
 2026-09-25T21:06:58Z workset published (regen -- 258 items, 32 ready, 0 in flight)
 2026-09-25T21:06:59Z workset committed (regen -- 258 items, 32 ready, 0 in flight)
+2026-09-25T21:04:24Z SPAWN IGW-20260925-243 skill=/queue-experiment prio=40 uuid=9353b38b-fe6d-4c83-91fb-42752f6cf5bf pid=18470 worktree=igw-243-proposal-for-mech-109
