@@ -3687,3 +3687,4 @@ One line per hourly tick. ASCII only.
 2026-09-25T12:20:34Z STAGE IGW-20260925-220 skill=/implement-substrate prio=25 worktree=igw-220-substrate-ready-mech288-slow-sca (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-09-25T13:36:07Z workset published via the coordinator (no local commit; verified on origin/master a324779856) (regen -- 257 items, 32 ready, 0 in flight)
 2026-09-25T13:36:07Z workset committed (regen -- 257 items, 32 ready, 0 in flight)
+2026-09-25T13:32:50Z STAGE IGW-20260925-221 skill=/implement-substrate prio=25 worktree=igw-221-substrate-ready-sd036-eval-repli (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
