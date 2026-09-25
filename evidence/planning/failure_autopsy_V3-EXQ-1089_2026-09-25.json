@@ -1,0 +1,186 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-09-25T01:54:53Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmation_note": "confirmed under the user's standing delegation via orchestrate-20260924-1707 (autopsy subagent A, session orchc0925-autopsyA-1089). The self-route substrate_not_ready_requeue is the driver's pre-registered branch and its cause re-derives from the manifest (latch-dominated seeds; one no-headroom ready seed). Routing is a same-question test-design re-queue: no claim status or scope moves (MECH-268 stays provisional, direction the pre-registered non_contributory). The sequencing question against the pending user decision dec-20260923T185804-MECH-268 is recorded as a recommendation and flagged in QUESTIONS.md, not decided here.",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "coordination_plane_pause": "NOT opened: task_claim.py check/open for the autopsy-pause resources returns NOT the owner (exit 3) -- orchestrate-20260924-1707 science workers hold experiment_queue.json / substrate_queue.json / experiment_proposals.v1.json. This autopsy writes none of those files.",
+  "targets": [
+    {
+      "run_id": "v3_exq_1089_mech268_closure_cadence_mode_register_20260924T180356Z_v3",
+      "queue_id": "V3-EXQ-1089",
+      "claim_ids": [
+        "MECH-268"
+      ],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "absolute (run-level readiness precondition n_seeds_ready_intended 2 < 4); C1 (load-bearing reset ON/OFF bracket) scored on the 2 ready seeds only and not met",
+      "facts": {
+        "machine": "ree-worker-3",
+        "substrate_hash": "da77a7739280583509d50cf6d1bcd19b82263db4d49283966230bd39df12c5c0 is authoritative (per-cell hashes agree). The stamped commit 5bf2f0c7c4 is the disk state at manifest-write time (commit_source manifest_write_disk_read, commit_describes_recorded_hash false, lag 18655 s), NOT the commit the process ran; that commit is unresolved here.",
+        "seeds": [
+          42,
+          43,
+          44,
+          45,
+          46
+        ],
+        "readiness": "ready 42, 44; not ready 43 (0 closure fires in every arm), 45 (S050/S030 K_LONG arms 1 fire < 5), 46 (K_LONG arms 2 fires < 5). Seed 43's reset-flag checks read false only because no fire occurred (vacuous), not a flag defect.",
+        "why_not_ready": "latch-dominated seeds: E3 re-selected (fresh dACC forward) on only 138 / 281-322 / 300-301 of 1200 env steps (seeds 43/45/46; latched 73-89%) vs 1160-1184 on 42/44 (latched 1-3%). The lateral-PFC rule_state and the closure detector are both denominated on FRESH ticks, and rule_delta follows the SAME decay curve on every seed (red-team recompute: median rule_delta by fresh-tick index is indistinguishable across 42/43/45/46), crossing the stability point at ~77-100 fresh ticks. Seed 43 has exactly 23 fresh ticks in every 200-step life (23 x 6 = 138), so it is cut off at index 22 and never stabilises (all 132 closure evaluations not_stable_yet(0/6)); seeds 45/46 fired only in the one or two lives that exceeded ~80-100 fresh ticks. The fixed 23-per-200 periodicity points at a fixed-length commitment hold (MECH-090 held-action stepping) rather than a stochastic latch.",
+        "C1_per_ready_seed": "occ_ip_argmax(S050_KS_ON) - occ_ip_argmax(S050_KS_OFF): seed 42 0.937-0.761 = 0.176; seed 44 1.000-1.000 = 0.000. Mean 0.088 vs margin max(2 x pstdev 0.088, 0.10) = 0.176 -> not met",
+        "headroom": "gate green 4/5, but counted over ALL seeds that ran: S050_KS_OFF release 0.239 (42), 0.790 (43), 0.000 (44), 0.861 (45), 0.867 (46). Among READY seeds only 1/2 has headroom (seed 44: pe_unsat p50 5.61 x floor 0.25 = 1.40 > ~1.0 critical, so nothing can release). The all-seeds denominator was a deliberate red-team F1 choice at authoring (driver line ~696: 'intended n, all seeds that ran, not only ready ones'); this autopsy's point is that it therefore cannot certify headroom on the seeds C1 is scored on.",
+        "pe_unsat_p50_per_seed": {
+          "42": 4.18,
+          "43": 2.12,
+          "44": 5.61,
+          "45": 3.21,
+          "46": 3.27
+        },
+        "discrete_register": "occ_ip_current 1.000 in every arm on every seed (discrete_register_pinned_all_arms 1) -- corroborates GFLAG-0466 on 5 seeds (the pilot was 1 seed)",
+        "pilot_overlap": "thresholds were pre-registered from a 1-seed pilot on seed 42, which is also an evaluation seed, and is the only seed that was both ready and had headroom",
+        "latched_definition": "n_latched_ticks = env steps on which select_action produced no fresh dACC forward (dacc._last_pe_unsaturated stayed None after the E3-latch clear; driver ~lines 442-458), i.e. E3 did not re-select"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- not fairly tested: the closure -> FIFO bracket never engaged on 3/5 seeds and 1 of the 2 ready seeds had no headroom, leaving one informative seed (42, delta 0.176, matching the pilot's 0.229 at K=6)",
+        "biological_reference": "clear -- dACC outcome/error signals adapt under repeated identical outcomes and the outcome signal fades in exploitation periods (Quilodran, Rothe & Procyk 2008; Behrens 2007; Shenhav 2013/2016; targeted_review_connectome_mech_268, 6 entries). The failure is not a biology mismatch; it is the operating regime of the trained agent.",
+        "prerequisites": "partial -- the closure-coupled FIFO reset needs a stream of fresh E3 ticks; in latch-dominated seeds (60% here) E3 re-selects on 11-27% of steps, starving both the dACC forward and the closure detector. Separately, dacc_pe's scale is uncalibrated to the register's critical value (pe_unsat p50 2.1-5.6 across seeds), the open calibration decision dec-20260923T185804-MECH-268.",
+        "implementation": "complete -- FIFO live-populated, n_rec matches the closed form (1.0) in every arm, reset flags correct on every seed where a closure fired, fire timing ON vs OFF agrees >= 0.877 (min over seeds). Caveat: on seed 44 fire-timing agreement S050_KS ON vs OFF is 0.877 (12% of fresh ticks differ in fire status), so there the bracket is not a pure FIFO contrast (harmless here: C1 = 0 by no-headroom); a 1089a should keep the agreement floor as a per-seed readiness check.",
+        "environment": "adequate -- 7x7 V3-EXQ-729 lineage bed with 6 eval hazards gives a constant harm outcome class (harm fraction 1.0), which is the pressure the bracket needs (scope note F6: silent on the class-transition half)",
+        "measurement": "partial -- the readiness gate correctly vacated the verdict, but (a) eval length is denominated in env steps, not fresh E3 ticks, so latch-dominated seeds cannot reach the fire floor; (b) the headroom gate is counted over all seeds including not-ready ones, so it certified headroom where C1 is not scored and missed its absence on ready seed 44; (c) thresholds came from a single-seed pilot on an evaluation seed that proved unrepresentative (1 of 5 seeds reproduces the pilot regime)",
+        "integration": "coupled but inert (STARVED UPSTREAM) on seeds 43/45/46 -- the closure -> reset_outcome_history -> FIFO coupling is wired (fires carry the right flag) but is almost never exercised because E3 is latched",
+        "scale": "likely insufficient -- 5 seeds with a ~40% ready rate and a seed-dependent headroom leave 1 informative seed"
+      },
+      "failure_location": {
+        "mechanism": "established",
+        "measures": "partial",
+        "environment": "established",
+        "ree": false,
+        "net_classification": "MEASURES (test design / calibration), not chargeable to REE or to MECH-268: the mechanism was live and worked on the one informative seed; the design could not reach readiness on the seed population it drew."
+      },
+      "biological_reference_detail": {
+        "closest_mechanism": "dACC outcome-error / conflict signal adaptation (habituation) under repeated identical outcomes, releasing control demand",
+        "dependencies": [
+          "a stream of outcome evaluations (fresh action-selection events) for the adaptation to act on",
+          "a downstream control/mode register whose threshold sits within the adapted signal's range"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing for this run",
+        "lit_status": "present (targeted_review_connectome_mech_268, 6 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "test_design / calibration defect (readiness not reachable on latch-dominated seeds; headroom gate mis-denominated; single-seed pilot on an evaluation seed). Owes no MECH-268 substrate build; the repair is a same-question re-run with a redesigned readiness schedule.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-268": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-1089 (2026-09-24, ree-worker-3, 5 seeds) -- closure-cadence dose, mode-register DV, reset ON/OFF bracket -- is non_contributory (substrate_not_ready_requeue): only 2/5 seeds were ready (4 required). Seeds 43/45/46 were latch-dominated (E3 fresh ticks on 11-27% of steps), so closures fired 0-2 times in the K_LONG arms and the closure -> FIFO bracket was never exercised; ready seed 44 had no headroom (pe_unsat p50 5.61, so the s=0.5 floor leaves pe 1.40 above the ~1.0 critical value). On the one informative seed (42) the bracket moved internal_planning occupancy by 0.176, matching the 1-seed pilot. The discrete register was pinned in every arm on every seed (GFLAG-0466, SD-032a exit deadlock). Post-hoc and NOT pre-registered: post-hoc floor-arm boundary (release S050_KS_OFF vs S030_KS_OFF, needs no closure fire): 3/5 replicate (42: 0.239 vs 0.000; 45: 0.861 vs 0.139; 46: 0.867 vs 0.040), 1/5 both-release (43: 0.790 vs 0.732, pe_unsat 2.12), 1/5 neither-release (44, pe_unsat 5.61); the two exceptions are the pe-scale dependence; pe_unsat p50 spans 2.1-5.6 across trained seeds, so any fixed saturation floor is seed-fragile -- evidence bearing on dec-20260923T185804-MECH-268, not a pre-registered replication. Re-test via a same-question re-run whose readiness is denominated on fresh E3 ticks and whose headroom is a per-seed readiness condition. failure_autopsy_V3-EXQ-1089_2026-09-25.",
+      "per_claim_recommendation": {
+        "MECH-268": {
+          "recommended_evidence_direction": "non_contributory",
+          "recommended_epistemic_category": "standard",
+          "change": "append the evidence_quality_note above (category already standard, status stays provisional) -> stamp this artifact",
+          "status_change": "none -- stays provisional"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No MECH-268 substrate build is owed by this run. If dec-20260923T185804-MECH-268 resolves to option B (normalise dacc_pe), that decision owns its own substrate_queue entry."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "narrow_supports_check": "MECH-268's standing supports are V3-EXQ-463/468 (synthetic mechanism level) and V3-EXQ-729 x2 (live wiring, narrowed 2026-09-14 to not-graded). This non_contributory run removes nothing from that set and adds nothing to it; the ecological mode-release purpose stays undemonstrated.",
+      "re_derive_brake": {
+        "fired": false,
+        "literal_count_meets_threshold": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_SD-034-closure-cluster_2026-06-12 | v3_exq_468c",
+          "failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 | v3_exq_468d",
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 | v3_exq_468b",
+          "failure_autopsy_V3-EXQ-468e_2026-06-18 | v3_exq_468e",
+          "failure_autopsy_V3-EXQ-468f_2026-06-20 | v3_exq_468f"
+        ],
+        "note": "Explicit producer release. MECH-268 has 5 prior counting hits, all from the SD-034 468 decommit-hold behavioural lineage (the closure's de-commitment authority face, co-tagged SD-034/MECH-090). THIS reading does not count (R3 clause 2: an instrument/test-design category that owes no substrate build), so the brake does not fire. 1089 is a different design (mode-register DV with a reset bracket, not decommit-hold behaviour), and the owed repair is readiness scheduling, not another letter against the 468 ceiling. The consumer gate (/queue-experiment Step 2.5 / validate_queue) makes its own call on a 1089a.",
+        "refused_requeue": false,
+        "route_to": "queue-experiment"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": "none",
+        "basis": "granularity_debt_cluster.py MECH-268: 7 tagging targets, none reads weakened (intact / other / unstamped); the 3 other/unstamped strings were read and none is a weakened reading (they say not fairly tested / exercised+passed / unstamped cluster). Measurement / implementation debt, not granularity debt."
+      },
+      "requeue_spec": {
+        "label": "V3-EXQ-1089a (same question, alphabetic suffix)",
+        "changes": [
+          "Denominate each arm's eval on FRESH E3 ticks (run lives until >= ~100 fresh ticks -- the measured rule-stability point is ~77-100 -- with an env-step cap sized for latch-dominated seeds: at 23 fresh per 200 steps a seed-43-like agent needs ~870 env steps per life, ~4x the current length); keep recording n_latched_ticks, and name the hold mechanism (the fixed 23-per-200 periodicity suggests MECH-090 held-action stepping).",
+          "Make headroom a PER-SEED readiness condition counted among ready seeds (S050_KS_OFF release >= 0.05 on the same seed), not a run-level count over every seed that ran.",
+          "Keep fire-timing agreement ON vs OFF (>= 0.9) as a PER-SEED readiness check (seed 44 was 0.877 at K=6).",
+          "Use >= 8 seeds; pilot on >= 3 seeds disjoint from the evaluation seeds, and pre-register the expected ready fraction.",
+          "Pre-register the floor-arm boundary contrast (release S050_KS_OFF - S030_KS_OFF) as scored on every seed with SATOFF occupancy >= 0.5, because it does not depend on closure fires.",
+          "Sequencing recommendation: take dec-20260923T185804-MECH-268 (calibration route) first; if it picks option B (normalise dacc_pe), run 1089a on that substrate, since a fixed floor against a 2.1-5.6 pe scale will lose seeds to no-headroom again."
+        ]
+      },
+      "bears_on_notes": [
+        "dec-20260923T185804-MECH-268 (proposed, waiting on a multi-seed s=0.5 replication): the PRE-REGISTERED C3 was scored on the 2 ready seeds only (1 of 2 shows the boundary) and is non_contributory. Not pre-registered: post-hoc floor-arm boundary (release S050_KS_OFF vs S030_KS_OFF, needs no closure fire): 3/5 replicate (42: 0.239 vs 0.000; 45: 0.861 vs 0.139; 46: 0.867 vs 0.040), 1/5 both-release (43: 0.790 vs 0.732, pe_unsat 2.12), 1/5 neither-release (44, pe_unsat 5.61); the two exceptions are the pe-scale dependence. pe_unsat p50 spans 2.1-5.6 across trained seeds. This is evidence about the calibration choice (a fixed floor is seed-fragile; favours a scale-normalising route), for the decision-maker to weigh; it is not a pre-registered replication.",
+        "GFLAG-0466 (SD-032a exit deadlock): corroborated on 5 seeds; the discrete register is pinned in every arm.",
+        "GFLAG-0467 (commitment_closure_plan GAP-4 rows possibly stale): the GAP-4 rows should record 1089 as non_contributory (readiness); post-hoc floor-arm boundary 3/5 replicate, 1/5 both-release, 1/5 neither-release -- not a pre-registered replication.",
+        "commitment-closure-control-plane (substrate_queue, amend_implemented_pending_validation; 7b C2 pointer): the not-ready seeds are a closure-cannot-fire-under-a-held-action regime, adjacent to that entry's items (1)-(2). But the red-team recompute shows the rule-stability detector is NOT independently broken there -- rule_delta decays identically and is simply truncated by the low fresh-tick count -- so a fresh-tick-denominated eval is expected to make those seeds ready without that build. No amend recommended."
+      ],
+      "non_outcome_observations": [
+        "Latch-dominated seeds respawned far less (6-21 vs 51-75 respawns in 1200 steps) -- the latched agents die less. Not adjudicated.",
+        "Saturation-on vs SATOFF releases the soft register on 4/5 seeds at s=0.5. On seeds 42/43/44 the env/pe stream and behaviour are bit-identical across all 9 arms (dacc_weight 0), so there the release is arithmetic given pe_unsat x 0.25 < 1 -- the pe -> register path is live, not an ecological effect. On the latch-dominated seeds 45/46 behaviour is NOT identical across arms (seed 45: SATOFF 322 fresh ticks / 17 respawns vs 281 / 21 in every sat arm; seed 46: K24 arms 300 / 15 vs K6 arms 301 / 18), so the saturation / cadence setting reaches behaviour there (plausibly via the driver's F4 path: soft operating_mode -> sd_033a write gate -> lateral-PFC EMA -> rule_state). The stream is shared WITHIN each ON/OFF bracket on every seed (fresh counts 1160/1160, 138/138, 1184/1184, 281/281, 301/301, 300/300), so the bracket's attribution is intact.",
+        "P0 nav_competence 0.0 at every probe on every seed while rv converged (1e-6)."
+      ],
+      "hypothesis_space_ledger_pending": {
+        "entries": [],
+        "note": "No fanout_recommendation. No registered question names MECH-268 or V3-EXQ-1089 (mech266_mode_arbitration_saturation carries MECH-266/SD-032a, not MECH-268). A readiness-vacated run discriminates no leg. Registry NOT written."
+      },
+      "learning_extracted": [
+        "test-design gap: an eval schedule denominated in env steps cannot guarantee a closure-coupled manipulation fires when E3 latches; denominate on fresh ticks",
+        "measurement gap: a headroom gate counted over all seeds certified headroom on seeds where C1 is not scored and missed it on a ready seed",
+        "a single-seed pilot on an evaluation seed was unrepresentative (1 of 5 seeds reproduced its regime); pilot on >= 3 disjoint seeds",
+        "recording is complete: every quantity this autopsy needed (fresh/latched ticks, per-arm fires, pe_unsat percentiles, reset flags) was in the manifest -- no recording gap",
+        "the seed population splits into free-selecting and held-action regimes after the same P0 training (seed 43: exactly 23 fresh E3 ticks per 200-step life, suggesting a fixed-length commitment hold); every fresh-tick-denominated detector (lateral-PFC rule_state, closure, dACC FIFO) is starved in the held regime -- bears on any closure- or dACC-cadence experiment on the 729 lineage"
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "queue-experiment: V3-EXQ-1089a same-question re-run per requeue_spec, recommended AFTER dec-20260923T185804-MECH-268. Not chipped by this autopsy (CLAUDE.md: a /failure-autopsy session does not chip follow-on that depends on its own not-yet-governance-reviewed finding); /governance ratifies and chips.",
+      "step7b": {
+        "as_of": "2026-09-25T01:48:47Z (explicit --as-of; draft generated_utc not yet stamped)",
+        "fires": [
+          {
+            "check": "C1",
+            "disposition": "dismissed",
+            "reason": "v3_exq_463_mech268_dacc_conflict_saturation is the mechanism-level synthetic falsifier (PASS 2026-04-21, run v3_exq_463_mech268_dacc_conflict_saturation_v3_20260421T202354Z_v3 per the experiments INDEX; the checker did not match that run_id shape). It is a different question (bounded pe under repeated outcomes), not the ecological mode-release question 1089 asks, so it is not an existing driver for the recommended 1089a."
+          },
+          {
+            "check": "C2",
+            "disposition": "acted_on",
+            "reason": "commitment-closure-control-plane (amend_implemented_pending_validation, unblocks MECH-268) is the closure operator's behavioural-authority build: its item (1) makes the rule-stability detector co-satisfy and item (2) adds a closure-coupled de-commitment hold. 1089's not-ready seeds are exactly a latch-dominated regime in which rule_state is rarely stable (0.0-0.22 of fresh ticks below the closure threshold), so closure cannot fire and cannot release the latch -- the same closure/latch face that the 468 lineage autopsies recorded. Recorded as a bears-on note; the red-team recompute showed rule_state is not independently broken on those seeds (truncated, not stuck), so no amend is recommended."
+          },
+          {
+            "check": "C6",
+            "disposition": "acted_on",
+            "reason": "the 'shared pe stream / behaviour unchanged across arms' premise holds on seeds 42/43/44 only; seeds 45/46 diverge SATOFF vs sat arms and K6 vs K24. Non-outcome observation corrected; the C1 ON/OFF pairs are identical within cadence on every seed, so C1's attribution is unaffected."
+          }
+        ]
+      },
+      "step7c": {
+        "model": "fable (cross-model; drafting session on Opus 5.5)",
+        "verdict": "CONFIRMED",
+        "framing_correction": "F-A: '4/5 seeds release more at s=0.5' counted seed 43's both-release 0.058 margin as a boundary replication; restated as 3/5 replicate, 1/5 both-release, 1/5 neither-release throughout (note, bears-on, GAP-4 note).",
+        "hygiene_applied": [
+          "H1 generated_utc stamped",
+          "H2 substrate commit attribution corrected (hash authoritative, commit unresolved)",
+          "H3 shared-stream absolute qualified to within-bracket",
+          "H4 requeue cost sized (~870 env steps per life for seed-43-like agents)",
+          "H5 seed-44 fire-timing 0.877 caveat + per-seed agreement readiness",
+          "H6 hold mechanism named as likely MECH-090 fixed-length stepping"
+        ],
+        "also_corrected": "this draft's own C2 bears-on claim that seed-43 agents would be lost 'whatever the eval length' was wrong: rule_delta decays identically on every seed and is only truncated.",
+        "findings_file": ".scratch/orch-20260924-1707/autopsy/redteam_1089.md"
+      }
+    }
+  ]
+}
