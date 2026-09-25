@@ -1,0 +1,661 @@
+{
+ "screen": {
+  "n_screened": 8,
+  "strata": {
+   "benign": 5,
+   "hazard_trapped": 3
+  },
+  "crashed": 0,
+  "stop_reason": "both quotas full",
+  "cum_compute_s": 5205.8
+ },
+ "admitted": {
+  "benign": [
+   2002,
+   2003,
+   2004
+  ],
+  "hazard_trapped": [
+   2001,
+   2007,
+   2008
+  ]
+ },
+ "strata": {
+  "benign": {
+   "seeds": [
+    2002,
+    2003,
+    2004
+   ],
+   "metrics": {
+    "reward_LAST": {
+     "two_rms": 1.6981802181331753,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      1.0827468202370012,
+      2.143663086817595
+     ],
+     "per_seed_rms2": [
+      2.504620424833216,
+      1.0670976257658964,
+      1.1133855326748163
+     ],
+     "floor": 0.9,
+     "verdict": "LOWER_BOUND",
+     "ratio_measured_over_floor": 1.8868669090368615
+    },
+    "contacts_LAST": {
+     "two_rms": 5.067446333773947,
+     "n": 9,
+     "n_nonzero": 7,
+     "boot90": [
+      2.182986967154278,
+      6.825876690403408
+     ],
+     "per_seed_rms2": [
+      8.105782115484212,
+      1.721325931647741,
+      2.8931592369536747
+     ],
+     "floor": 1.6,
+     "verdict": "LOWER_BOUND",
+     "ratio_measured_over_floor": 3.1671539586087163
+    },
+    "reward_change": {
+     "two_rms": 0.429107864966439,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      0.3644094206120481,
+      0.4852554932417589
+     ],
+     "per_seed_rms2": [
+      0.40986415411475463,
+      0.5188593529732815,
+      0.339406874314754
+     ],
+     "floor": 1.44,
+     "verdict": "NOT_LOWER_BOUND",
+     "ratio_measured_over_floor": 0.2979915728933604
+    },
+    "grounded_LAST": {
+     "two_rms": 1.9610914571110762,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      0.9171802726196062,
+      2.617353578297268
+     ],
+     "per_seed_rms2": [
+      3.0853919710024122,
+      0.7111001776906999,
+      1.2297690970357953
+     ]
+    },
+    "consume_LAST_per100": {
+     "two_rms": 0.693888666488711,
+     "n": 9,
+     "n_nonzero": 7,
+     "boot90": [
+      0.4581228472908512,
+      0.8678055195451839
+     ],
+     "per_seed_rms2": [
+      0.9428090415820634,
+      0.693888666488711,
+      0.2721655269759087
+     ]
+    },
+    "reward_FIRST": {
+     "two_rms": 1.5120862692500914,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      0.9454646706555914,
+      1.918047530133556
+     ],
+     "per_seed_rms2": [
+      2.163689600339187,
+      0.7099636328894798,
+      1.2936821906180827
+     ]
+    }
+   },
+   "per_seed": [
+    {
+     "seed": 2002,
+     "NATIVE": {
+      "reward_LAST": 0.04728174636761348,
+      "reward_FIRST": -0.11327380975087484,
+      "reward_change": 0.16055555611848832,
+      "contacts_LAST": 0.0,
+      "grounded_LAST": 0.05916666686534881,
+      "consume_LAST_per100": 0.16666666666666666
+     },
+     "NATIVE_modal_action": [
+      "1",
+      0.52
+     ],
+     "reps": [
+      {
+       "k": 1,
+       "metrics": {
+        "reward_LAST": -0.6266665415962538,
+        "reward_FIRST": -0.5885472491383553,
+        "reward_change": -0.03811929245789847,
+        "contacts_LAST": 3.0,
+        "grounded_LAST": -1.1328214287757876,
+        "consume_LAST_per100": 0.5
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        0.79
+       ]
+      },
+      {
+       "k": 2,
+       "metrics": {
+        "reward_LAST": -0.8214853289723397,
+        "reward_FIRST": -0.7417432560523352,
+        "reward_change": -0.07974207292000457,
+        "contacts_LAST": 3.1666666666666665,
+        "grounded_LAST": -1.0564788369337723,
+        "consume_LAST_per100": 0.8333333333333334
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "1",
+        0.735
+       ]
+      },
+      {
+       "k": 3,
+       "metrics": {
+        "reward_LAST": -1.8224455274144813,
+        "reward_FIRST": -1.81336375673612,
+        "reward_change": -0.009081770678361245,
+        "contacts_LAST": 5.5,
+        "grounded_LAST": -2.0560714286565798,
+        "consume_LAST_per100": 0.5
+       },
+       "own_stratum": "hazard_trapped",
+       "modal_action": [
+        "0",
+        0.872
+       ]
+      }
+     ],
+     "rep_own_strata": [
+      "benign",
+      "benign",
+      "hazard_trapped"
+     ]
+    },
+    {
+     "seed": 2003,
+     "NATIVE": {
+      "reward_LAST": -0.7408051999409994,
+      "reward_FIRST": -0.7231765269239743,
+      "reward_change": -0.017628673017025087,
+      "contacts_LAST": 2.0,
+      "grounded_LAST": -0.6237936518589655,
+      "consume_LAST_per100": 0.8333333333333334
+     },
+     "NATIVE_modal_action": [
+      "0",
+      0.818
+     ],
+     "reps": [
+      {
+       "k": 1,
+       "metrics": {
+        "reward_LAST": -0.057326716283957184,
+        "reward_FIRST": -0.15442713106671976,
+        "reward_change": 0.09710041478276257,
+        "contacts_LAST": 0.6666666666666666,
+        "grounded_LAST": -0.11704761842886609,
+        "consume_LAST_per100": 0.5
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        0.804
+       ]
+      },
+      {
+       "k": 2,
+       "metrics": {
+        "reward_LAST": -0.198908250729243,
+        "reward_FIRST": -0.4895960807800293,
+        "reward_change": 0.2906878300507863,
+        "contacts_LAST": 1.3333333333333333,
+        "grounded_LAST": -0.30465873042742414,
+        "consume_LAST_per100": 0.8333333333333334
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "1",
+        0.48
+       ]
+      },
+      {
+       "k": 3,
+       "metrics": {
+        "reward_LAST": -0.4354728138446809,
+        "reward_FIRST": -0.7239314510424932,
+        "reward_change": 0.28845863719781234,
+        "contacts_LAST": 2.0,
+        "grounded_LAST": -0.7673518510659534,
+        "consume_LAST_per100": 0.3333333333333333
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "2",
+        0.55
+       ]
+      }
+     ],
+     "rep_own_strata": [
+      "benign",
+      "benign",
+      "benign"
+     ]
+    },
+    {
+     "seed": 2004,
+     "NATIVE": {
+      "reward_LAST": 0.18273941785097123,
+      "reward_FIRST": 0.04307539602120718,
+      "reward_change": 0.13966402182976406,
+      "contacts_LAST": 0.0,
+      "grounded_LAST": 0.17069444477558138,
+      "consume_LAST_per100": 0.5
+     },
+     "NATIVE_modal_action": [
+      "2",
+      0.99
+     ],
+     "reps": [
+      {
+       "k": 1,
+       "metrics": {
+        "reward_LAST": -0.7671400899688404,
+        "reward_FIRST": -1.069879626731078,
+        "reward_change": 0.3027395367622375,
+        "contacts_LAST": 2.5,
+        "grounded_LAST": -0.8825515874226888,
+        "consume_LAST_per100": 0.5
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        0.877
+       ]
+      },
+      {
+       "k": 2,
+       "metrics": {
+        "reward_LAST": 0.023025130828221635,
+        "reward_FIRST": 0.05732347120841343,
+        "reward_change": -0.0342983403801918,
+        "contacts_LAST": 0.16666666666666666,
+        "grounded_LAST": 0.022595237493515007,
+        "consume_LAST_per100": 0.3333333333333333
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "3",
+        0.852
+       ]
+      },
+      {
+       "k": 3,
+       "metrics": {
+        "reward_LAST": 0.13868518511454267,
+        "reward_FIRST": 0.17089682390292482,
+        "reward_change": -0.03221163878838215,
+        "contacts_LAST": 0.0,
+        "grounded_LAST": 0.11602777779102326,
+        "consume_LAST_per100": 0.3333333333333333
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "1",
+        0.88
+       ]
+      }
+     ],
+     "rep_own_strata": [
+      "benign",
+      "benign",
+      "benign"
+     ]
+    }
+   ],
+   "reseed_stratum_concordance": [
+    8,
+    9
+   ],
+   "between_seed_sd_NATIVE_reward_LAST": 0.4987257891798265
+  },
+  "hazard_trapped": {
+   "seeds": [
+    2001,
+    2007,
+    2008
+   ],
+   "metrics": {
+    "reward_LAST": {
+     "two_rms": 12.676261804042054,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      8.37040322041126,
+      15.852809737613072
+     ],
+     "per_seed_rms2": [
+      17.014800841052818,
+      4.198994868258192,
+      13.226028671127866
+     ],
+     "floor": 2.4,
+     "verdict": "LOWER_BOUND",
+     "ratio_measured_over_floor": 5.281775751684189
+    },
+    "contacts_LAST": {
+     "two_rms": 35.39826319238046,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      23.62489793563426,
+      44.13545368074218
+     ],
+     "per_seed_rms2": [
+      47.26481739055979,
+      12.21717067324752,
+      37.09297627434187
+     ],
+     "floor": 4.8,
+     "verdict": "LOWER_BOUND",
+     "ratio_measured_over_floor": 7.374638165079263
+    },
+    "reward_change": {
+     "two_rms": 1.4820403787656726,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      1.07648121736256,
+      1.798353568475737
+     ],
+     "per_seed_rms2": [
+      1.9154383046945787,
+      1.5376666978138562,
+      0.7456596275906882
+     ]
+    },
+    "grounded_LAST": {
+     "two_rms": 13.933823463609903,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      9.193619550346655,
+      17.429292360666153
+     ],
+     "per_seed_rms2": [
+      18.701605231532817,
+      4.5676745287407075,
+      14.5547456215674
+     ]
+    },
+    "consume_LAST_per100": {
+     "two_rms": 1.077262190536962,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      0.8819171036881969,
+      1.2422599874998832
+     ],
+     "per_seed_rms2": [
+      0.6382847385042254,
+      1.2322818340454906,
+      1.247219128924647
+     ]
+    },
+    "reward_FIRST": {
+     "two_rms": 12.632488406031056,
+     "n": 9,
+     "n_nonzero": 9,
+     "boot90": [
+      8.544589398325334,
+      15.689152898453262
+     ],
+     "per_seed_rms2": [
+      17.0629035898497,
+      5.606550890601074,
+      12.496527444859298
+     ]
+    }
+   },
+   "per_seed": [
+    {
+     "seed": 2001,
+     "NATIVE": {
+      "reward_LAST": -10.244825142522654,
+      "reward_FIRST": -9.882041468818983,
+      "reward_change": -0.36278367370367093,
+      "contacts_LAST": 28.666666666666668,
+      "grounded_LAST": -11.346488094925865,
+      "consume_LAST_per100": 0.5
+     },
+     "NATIVE_modal_action": [
+      "4",
+      0.64
+     ],
+     "reps": [
+      {
+       "k": 1,
+       "metrics": {
+        "reward_LAST": 0.018170635402202602,
+        "reward_FIRST": -0.05324206382036209,
+        "reward_change": 0.07141269922256469,
+        "contacts_LAST": 0.0,
+        "grounded_LAST": 0.0,
+        "consume_LAST_per100": 0.0
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        1.0
+       ]
+      },
+      {
+       "k": 2,
+       "metrics": {
+        "reward_LAST": -0.4403558139006298,
+        "reward_FIRST": -0.33847186038891486,
+        "reward_change": -0.10188395351171492,
+        "contacts_LAST": 1.6666666666666667,
+        "grounded_LAST": -0.6630158726374309,
+        "consume_LAST_per100": 0.3333333333333333
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "2",
+        0.506
+       ]
+      },
+      {
+       "k": 3,
+       "metrics": {
+        "reward_LAST": -6.286178329288961,
+        "reward_FIRST": -4.3438115555048,
+        "reward_change": -1.942366773784161,
+        "contacts_LAST": 17.5,
+        "grounded_LAST": -6.938182540138549,
+        "consume_LAST_per100": 0.6666666666666666
+       },
+       "own_stratum": "hazard_trapped",
+       "modal_action": [
+        "3",
+        0.539
+       ]
+      }
+     ],
+     "rep_own_strata": [
+      "benign",
+      "benign",
+      "hazard_trapped"
+     ]
+    },
+    {
+     "seed": 2007,
+     "NATIVE": {
+      "reward_LAST": -2.711379511555036,
+      "reward_FIRST": -3.4015951041380568,
+      "reward_change": 0.6902155925830207,
+      "contacts_LAST": 8.333333333333334,
+      "grounded_LAST": -3.0099960311253877,
+      "consume_LAST_per100": 1.1666666666666667
+     },
+     "NATIVE_modal_action": [
+      "2",
+      0.614
+     ],
+     "reps": [
+      {
+       "k": 1,
+       "metrics": {
+        "reward_LAST": -1.3941744744777682,
+        "reward_FIRST": -1.467715118924777,
+        "reward_change": 0.07354064444700881,
+        "contacts_LAST": 4.833333333333333,
+        "grounded_LAST": -1.7203174597024922,
+        "consume_LAST_per100": 1.0
+       },
+       "own_stratum": "hazard_trapped",
+       "modal_action": [
+        "2",
+        0.711
+       ]
+      },
+      {
+       "k": 2,
+       "metrics": {
+        "reward_LAST": 0.16651190598805746,
+        "reward_FIRST": 0.038779100875059744,
+        "reward_change": 0.12773280511299773,
+        "contacts_LAST": 0.0,
+        "grounded_LAST": 0.05809523820877075,
+        "consume_LAST_per100": 0.16666666666666666
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "2",
+        0.969
+       ]
+      },
+      {
+       "k": 3,
+       "metrics": {
+        "reward_LAST": -0.9207426676154137,
+        "reward_FIRST": -0.5733459639549255,
+        "reward_change": -0.34739670366048814,
+        "contacts_LAST": 2.8333333333333335,
+        "grounded_LAST": -0.8719401160875956,
+        "consume_LAST_per100": 0.8333333333333334
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        0.488
+       ]
+      }
+     ],
+     "rep_own_strata": [
+      "hazard_trapped",
+      "benign",
+      "benign"
+     ]
+    },
+    {
+     "seed": 2008,
+     "NATIVE": {
+      "reward_LAST": -6.891562148829301,
+      "reward_FIRST": -6.6037788550555705,
+      "reward_change": -0.2877832937737308,
+      "contacts_LAST": 19.666666666666668,
+      "grounded_LAST": -7.60281613727409,
+      "consume_LAST_per100": 1.0
+     },
+     "NATIVE_modal_action": [
+      "4",
+      0.487
+     ],
+     "reps": [
+      {
+       "k": 1,
+       "metrics": {
+        "reward_LAST": -0.9044493746757507,
+        "reward_FIRST": -0.8982063382863998,
+        "reward_change": -0.0062430363893508645,
+        "contacts_LAST": 3.0,
+        "grounded_LAST": -0.9634232799212138,
+        "consume_LAST_per100": 0.8333333333333334
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        0.785
+       ]
+      },
+      {
+       "k": 2,
+       "metrics": {
+        "reward_LAST": -0.1000105840961139,
+        "reward_FIRST": -0.29193650851647057,
+        "reward_change": 0.19192592442035666,
+        "contacts_LAST": 0.5,
+        "grounded_LAST": -0.11329365074634552,
+        "consume_LAST_per100": 0.3333333333333333
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "0",
+        0.913
+       ]
+      },
+      {
+       "k": 3,
+       "metrics": {
+        "reward_LAST": 0.1245039697488149,
+        "reward_FIRST": 0.08423184196154276,
+        "reward_change": 0.04027212778727214,
+        "contacts_LAST": 0.0,
+        "grounded_LAST": 0.05916666686534881,
+        "consume_LAST_per100": 0.16666666666666666
+       },
+       "own_stratum": "benign",
+       "modal_action": [
+        "2",
+        0.732
+       ]
+      }
+     ],
+     "rep_own_strata": [
+      "benign",
+      "benign",
+      "benign"
+     ]
+    }
+   ],
+   "reseed_stratum_concordance": [
+    2,
+    9
+   ],
+   "between_seed_sd_NATIVE_reward_LAST": 3.7742792393733406
+  }
+ }
+}

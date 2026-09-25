@@ -1,0 +1,51 @@
+== SCREEN: 8 env seeds screened ({'benign': 5, 'hazard_trapped': 3}), stop=both quotas full, compute 5206s
+  s2001 stratum=hazard_trapped early600=58 admitted=True t=1083.3s
+  s2002 stratum=benign early600=0 admitted=True t=805.9s
+  s2003 stratum=benign early600=5 admitted=True t=707.5s
+  s2004 stratum=benign early600=0 admitted=True t=637.5s
+  s2005 stratum=benign early600=0 admitted=False t=70.3s
+  s2006 stratum=benign early600=0 admitted=False t=82.6s
+  s2007 stratum=hazard_trapped early600=22 admitted=True t=883.7s
+  s2008 stratum=hazard_trapped early600=40 admitted=True t=935.0s
+== STRATUM benign: admitted seeds [2002, 2003, 2004]
+  s2002 NATIVE: reward F -0.113 L 0.047 chg 0.161 contacts/100 L 0.00 grounded L 0.059 modal a1 0.52
+     R1 (own benign): reward F -0.589 L -0.627 chg -0.038 contacts/100 L 3.00 grounded L -1.133 modal a0 0.79
+     R2 (own benign): reward F -0.742 L -0.821 chg -0.080 contacts/100 L 3.17 grounded L -1.056 modal a1 0.73
+     R3 (own hazard_trapped): reward F -1.813 L -1.822 chg -0.009 contacts/100 L 5.50 grounded L -2.056 modal a0 0.87
+  s2003 NATIVE: reward F -0.723 L -0.741 chg -0.018 contacts/100 L 2.00 grounded L -0.624 modal a0 0.82
+     R1 (own benign): reward F -0.154 L -0.057 chg 0.097 contacts/100 L 0.67 grounded L -0.117 modal a0 0.80
+     R2 (own benign): reward F -0.490 L -0.199 chg 0.291 contacts/100 L 1.33 grounded L -0.305 modal a1 0.48
+     R3 (own benign): reward F -0.724 L -0.435 chg 0.288 contacts/100 L 2.00 grounded L -0.767 modal a2 0.55
+  s2004 NATIVE: reward F 0.043 L 0.183 chg 0.140 contacts/100 L 0.00 grounded L 0.171 modal a2 0.99
+     R1 (own benign): reward F -1.070 L -0.767 chg 0.303 contacts/100 L 2.50 grounded L -0.883 modal a0 0.88
+     R2 (own benign): reward F 0.057 L 0.023 chg -0.034 contacts/100 L 0.17 grounded L 0.023 modal a3 0.85
+     R3 (own benign): reward F 0.171 L 0.139 chg -0.032 contacts/100 L 0.00 grounded L 0.116 modal a1 0.88
+  reward_LAST          2xRMS=1.698 n=9 nz=9 boot90=[1.083, 2.144] floor=0.9 -> LOWER_BOUND
+  contacts_LAST        2xRMS=5.067 n=9 nz=7 boot90=[2.183, 6.826] floor=1.6 -> LOWER_BOUND
+  reward_change        2xRMS=0.429 n=9 nz=9 boot90=[0.364, 0.485] floor=1.44 -> NOT_LOWER_BOUND
+  grounded_LAST        2xRMS=1.961 n=9 nz=9 boot90=[0.917, 2.617] floor=None -> (reported)
+  consume_LAST_per100  2xRMS=0.694 n=9 nz=7 boot90=[0.458, 0.868] floor=None -> (reported)
+  reward_FIRST         2xRMS=1.512 n=9 nz=9 boot90=[0.945, 1.918] floor=None -> (reported)
+  reseed own-stratum concordance with NATIVE's: 8/9
+  between-seed SD of NATIVE reward_LAST: 0.499
+== STRATUM hazard_trapped: admitted seeds [2001, 2007, 2008]
+  s2001 NATIVE: reward F -9.882 L -10.245 chg -0.363 contacts/100 L 28.67 grounded L -11.346 modal a4 0.64
+     R1 (own benign): reward F -0.053 L 0.018 chg 0.071 contacts/100 L 0.00 grounded L 0.000 modal a0 1.00
+     R2 (own benign): reward F -0.338 L -0.440 chg -0.102 contacts/100 L 1.67 grounded L -0.663 modal a2 0.51
+     R3 (own hazard_trapped): reward F -4.344 L -6.286 chg -1.942 contacts/100 L 17.50 grounded L -6.938 modal a3 0.54
+  s2007 NATIVE: reward F -3.402 L -2.711 chg 0.690 contacts/100 L 8.33 grounded L -3.010 modal a2 0.61
+     R1 (own hazard_trapped): reward F -1.468 L -1.394 chg 0.074 contacts/100 L 4.83 grounded L -1.720 modal a2 0.71
+     R2 (own benign): reward F 0.039 L 0.167 chg 0.128 contacts/100 L 0.00 grounded L 0.058 modal a2 0.97
+     R3 (own benign): reward F -0.573 L -0.921 chg -0.347 contacts/100 L 2.83 grounded L -0.872 modal a0 0.49
+  s2008 NATIVE: reward F -6.604 L -6.892 chg -0.288 contacts/100 L 19.67 grounded L -7.603 modal a4 0.49
+     R1 (own benign): reward F -0.898 L -0.904 chg -0.006 contacts/100 L 3.00 grounded L -0.963 modal a0 0.78
+     R2 (own benign): reward F -0.292 L -0.100 chg 0.192 contacts/100 L 0.50 grounded L -0.113 modal a0 0.91
+     R3 (own benign): reward F 0.084 L 0.125 chg 0.040 contacts/100 L 0.00 grounded L 0.059 modal a2 0.73
+  reward_LAST          2xRMS=12.676 n=9 nz=9 boot90=[8.370, 15.853] floor=2.4 -> LOWER_BOUND
+  contacts_LAST        2xRMS=35.398 n=9 nz=9 boot90=[23.625, 44.135] floor=4.8 -> LOWER_BOUND
+  reward_change        2xRMS=1.482 n=9 nz=9 boot90=[1.076, 1.798] floor=None -> (reported)
+  grounded_LAST        2xRMS=13.934 n=9 nz=9 boot90=[9.194, 17.429] floor=None -> (reported)
+  consume_LAST_per100  2xRMS=1.077 n=9 nz=9 boot90=[0.882, 1.242] floor=None -> (reported)
+  reward_FIRST         2xRMS=12.632 n=9 nz=9 boot90=[8.545, 15.689] floor=None -> (reported)
+  reseed own-stratum concordance with NATIVE's: 2/9
+  between-seed SD of NATIVE reward_LAST: 3.774
