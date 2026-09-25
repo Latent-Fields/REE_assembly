@@ -1,0 +1,222 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1106_mech287b_stage0_lock_precondition",
+  "run_id": "v3_exq_1106_mech287b_stage0_lock_precondition_20260925T164510Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-25T16:45:10Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "c9612dd02a454a4bf9d343bf5c7af18e40172839",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-287"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-287": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "path_built_not_reached_in_regime",
+    "preconditions": [
+      {
+        "name": "pag_gate_ticked_in_eval",
+        "description": "every cell's PAG freeze gate ticked at least once in eval (the instrument all three criteria read is live)",
+        "measured": 30.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "offending_cell": "A_BOTH_OFF/seed=0",
+        "control": "the gate ticks on every E3 tick when use_pag_freeze_gate is on",
+        "met": true
+      },
+      {
+        "name": "reach_arm_path_constructed_at_alpha0",
+        "description": "D_BOTH_ON reports the descending-release path enabled with alpha 0 (so S0-3 reads a live counter at bit-identical behaviour)",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "use_pag_descending_release=True, pag_descending_release_alpha=0.0",
+        "met": true
+      },
+      {
+        "name": "lock_ratio_identity_holds",
+        "description": "exit_threshold == theta_freeze*gaba_tone on every frozen tick (override 0, alpha 0), so the ratio is the pre-registered one",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "control": "SD-037 not constructed; alpha_descending 0 (a consistency check, tautological at this config -- not evidence)",
+        "met": true
+      },
+      {
+        "name": "reach_arm_frozen_in_eval",
+        "description": "D_BOTH_ON froze (>= 1 frozen gate tick) in eval on >= 2 of 3 seeds; S0-3's counter increments only while frozen, so a zero with this unmet reads 'never frozen', not 'not reached'",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "red-team F1 (added pre-run)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "S0_1_lock_reproduces": true,
+      "S0_2_lock_ratio_bounded": true,
+      "S0_3_reach_in_regime": true
+    },
+    "routing": {
+      "precondition_failed_no_lock_comparator": "lock DV has no comparator on STAY substrate; MECH-287 lock falsifier routes back to the user (option A or C of the 2026-09-25 decision). Not a falsification.",
+      "inert_by_magnitude": "median lock ratio > 5: path cannot reach the lock at a bounded gain; Stage 1 does not run.",
+      "precondition_failed_no_lock_comparator_late_entry": "S0-1 per-step fraction < 0.80 but lock_persistence >= 0.80 on >= 2 seeds: the lock exists once entered, entry is late. Same route (user decision) but the fraction-after-entry readout is the lead.",
+      "reach_arm_never_frozen_in_eval": "D_BOTH_ON did not freeze in eval; S0-3 zero is uninformative about reach. Not a falsification.",
+      "stage0_pass_reach_arm_lock_weak": "Stage 0 passed as pre-registered, but D_BOTH_ON's lock is below 0.80 so Stage 1's P1 may lack headroom; flag before queuing Stage 1.",
+      "path_built_not_reached_in_regime": "no invalidation while frozen in eval; built but not reached. Not a falsification.",
+      "stage0_pass": "queue Stage 1 (2x2x3, path eval-only ON at alpha_selected).",
+      "lock_ratio_cannot_determine": "fewer than MIN_FROZEN_GATE_TICKS frozen gate ticks pooled.",
+      "substrate_not_ready_requeue": "PAG gate never ticked in eval."
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8407102ac7371b41d349c0a92ca34d2ee8a29e59af1b26e53018ed22870ce362",
+  "substrate_commit": {
+    "commit": "c9612dd02a454a4bf9d343bf5c7af18e40172839",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/arc019_curriculum_gating.py"
+    ],
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.harm_dim": 32,
+    "latent.gaba_harm_state_recurrence": true,
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.reafference_action_dim": 5,
+    "latent.use_resource_proximity_head": true,
+    "e3.benefit_eval_enabled": true,
+    "e3.goal_weight": 0.5,
+    "hippocampal.use_per_stream_vs": true,
+    "hippocampal.use_event_segmenter": true,
+    "hippocampal.use_anchor_sets": true,
+    "hippocampal.use_per_region_vs": true,
+    "hippocampal.use_vs_commit_release": true,
+    "heartbeat.breath_period": 50,
+    "heartbeat.beta_gate_bistable": true,
+    "goal.z_goal_enabled": true,
+    "harm_descending_mod_enabled": true,
+    "use_gabaergic_decay": true,
+    "use_pag_freeze_gate": true,
+    "hippocampal.use_invalidation_trigger": true,
+    "hippocampal.use_staleness_accumulator": true,
+    "hippocampal.use_mech284_hysteresis": true,
+    "use_pag_descending_release": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 3570.7119906849694,
+  "config": {
+    "env_kwargs": {
+      "size": 10,
+      "num_hazards": 3,
+      "num_resources": 5,
+      "hazard_harm": 0.05,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.1,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "use_proxy_fields": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "limb_damage_enabled": true,
+      "damage_increment": 0.15,
+      "failure_prob_scale": 0.3,
+      "heal_rate": 0.002,
+      "n_landmarks_b": 2
+    },
+    "arms": {
+      "A_BOTH_OFF": {
+        "trigger": false,
+        "accumulator": false,
+        "segmenter": true,
+        "path_on": false
+      },
+      "D_BOTH_ON": {
+        "trigger": true,
+        "accumulator": true,
+        "segmenter": true,
+        "path_on": true
+      }
+    },
+    "warmup_episodes": 60,
+    "eval_episodes": 5,
+    "steps_per_episode": 200,
+    "dims": {
+      "world": 32,
+      "self": 32,
+      "harm": 32,
+      "harm_a": 16
+    },
+    "substrate_operating": {
+      "use_gabaergic_decay": true,
+      "use_pag_freeze_gate": true,
+      "use_per_stream_vs": true,
+      "use_anchor_sets": true,
+      "use_per_region_vs": true,
+      "use_vs_commit_release": true,
+      "commitment_threshold": 0.5,
+      "beta_gate_bistable": true,
+      "harm_descending_mod_enabled": true,
+      "descending_attenuation_factor": 0.5
+    },
+    "path": {
+      "alpha_stage0": 0.0,
+      "decay": 0.95,
+      "source": "invalidation"
+    },
+    "dry_run": false
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "z_goal_stream": {
+    "ticks_total": 2923,
+    "ticks_active": 0,
+    "writer_calls": 2923,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
