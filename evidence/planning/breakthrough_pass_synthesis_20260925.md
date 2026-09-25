@@ -121,3 +121,135 @@ USER DECISION (rec-20260925-0ad0f56b): ADOPT, with L2R as the acceptance bar.
 - The L2R numbers are the member's acceptance bar.
 
 USER DECISION (rec-20260925-372b6ca9): V3-EXQ-1105 PULLED before it started (coordinator /queue/remove, ~10:19Z, status pending -> removed, reason recorded). Its criterion N was non-falsifiable by construction: each null is a random walk scaled by D_W's own divisor sd_h, so every null's z is ~N(0,1). A noisy candidate rule would shield itself the same way. It is to be redesigned as V3-EXQ-1105a, with candidate-shaped nulls and a noisy-hacker positive control. The orchestrator's earlier option-B recommendation missed this; the flaw was caught by the queueing worker's red-team.
+
+## 8. Afternoon 2026-09-25 (orchestrate-20260924-breakthrough-c2)
+
+Window: 2026-09-25T11:30Z to ~14:55Z. Sources: the orchestrator's live log (`.scratch/breakthrough-20260924/QUESTIONS.md`, umbrella, entries from 11:30Z) and the records it cites. Every sha below was checked as an ancestor of its repo's default branch on origin at 14:5xZ. Times are UTC. **Nothing here is a claim promotion.** Registry consequences go to /governance through the flags in 8.5.
+
+### 8.1 What landed (on origin)
+
+**ree-v3 `main`**
+- `e00d95da6a` (12:10Z): V3-EXQ-1105a queued. It supersedes 1105 and adds candidate-shaped M2 nulls plus a noisy-hacker positive control. Worker red-team fixes: F1 is a distinct both-missed label; F2 is a per-arm event-window floor of 20, a `null_identical_to_control` flag and CANNOT_DETERMINE branches. The primary, the nulls, the seeds and the thresholds are unchanged from the design. Record: REE_assembly `4f068a823a`.
+- `5f965cf` (13:14Z): commit-latency fix P2/R4. The validation-cache record no longer inherits the outer commit's git env (`GIT_INDEX_FILE`), and the cache commit runs `--no-verify`. Fail-before tests are included.
+- `1a61800c0c` (14:07Z): **MECH-157 option A**, mode-conditioned precision routing on z_world, default off. Contracts: 5742 pass / 0 fail; remainder: 1179 pass / 0 fail. The lander hit the R4 nested-gate bug live (12:08-12:41Z) and recovered index-only.
+- `aa14769` (14:46Z): **MECH-287 option B**, PAG descending release: hippocampal anchor invalidation raises the PAG freeze-exit threshold. Default off.
+- `67c7346` (14:51Z): V3-EXQ-1106 queued. It is the MECH-287b Stage-0 precondition gate, a diagnostic pre-registered in `mech287_anchor_freeze_exit_design_20260925.md` sec 6. Status at 14:52Z: on origin's queue file, not yet on the live-status board.
+- `integration/coupled-loop-repair` was cut at `cc20be5` (C1, WakingTrainer skeleton) at 11:35Z (BR0). It has **no branch commits yet** and is now 7 commits behind main.
+
+**REE_assembly `master`**
+- A1 pre-registration: draft `2028729662` (12:40Z); red-team fold `b92196db2c` (12:58Z); plan row `48adc07e5f`/`bac11d4085`. v2 (with the user decisions and the action-space edits): skeleton `6d1face27d`, draft `c0939a9b4e` + `8fd30619b3`, plan row `6e868f88b0`. O3 folded in at `a5fbbcac2b` (14:40Z).
+- Mode-switch + CeA mechanism trace: `e2bbd2a98e` (13:05Z).
+- Action-space proposals design (W1-alt): `412882b845` (13:09Z), plan row `8acf3a3a4d`.
+- N3-pre aggregation probe: pre-registration `7ba36ff63d` (13:35Z), results `d4bb6449b3` (14:17Z), plan row `2a01f4f849`, decision log `2ba75b0f60`.
+- SP-CEM zero-continuation check: `4e7c42c5d7` (D0 trace), `4004f56dd2` (horizon correction), final `847544ac8e` (14:41Z).
+- Coupled plan user-decision rows: `13f1ad5e7b`/`dc0bb0c1d2` (A1 answers), `5a761cf284` (U1), `a5fbc191d9` (O3). I1 status row: `c8a7569b6c`.
+
+**REE_Working (umbrella) `master`**, the commit-latency work:
+- Diagnosis `88f61a77b` (12:49Z): the full-suite box time is only ~16% used, and one full contracts run takes 32-37 min. Root causes R1-R6. R4 is a nested cache-record gate plus a `GIT_INDEX_FILE` leak, a trunk-contamination hazard that had not yet fired.
+- P2/P6 (+ half of P5): `c8a92ea83`, docs `4e679d830`.
+- P7, ree-cloud-5 as the resident test slot: `c80078035`.
+- P4, a FIFO wait queue instead of refusal: `8e9b736b5`.
+- P3, a short lane for targeted runs: `b6333dd25`.
+- Docs: `7df239185`.
+
+### 8.2 Findings (evidence domain per finding)
+
+1. **Headline: E3's own valuation is at chance even on TRUE next states, so grounded valuation (W5) is the binding root for choice quality.** N3-pre's oracle read scored E3 on the true next state of each action class, with no world head and no aggregation involved. That pick landed in the env-Q-best set at 0.09 / 0.20 / 0.22 / 0.19 / 0.12, against chance ~0.20 (5 fresh seeds, 521-525). Even perfect one-step prediction does not choose on env consequence under the default E3 valuation: F penalises displacement, `harm_eval_head` is untrained, and there is no benefit channel.
+   - Domain: **D1, post-hoc and not pre-registered.** It reproduces e3_evaluation ADDENDUM 3 point 3 on fresh seeds, now with an action-covered head.
+   - The probe's own pre-registered verdict is **CANNOT_DETERMINE**: the shuffled twin was at chance on 3/5 seeds, against the 4/5 required. The oracle read does not depend on the twin. (`d4bb6449b3`)
+   - Consequence: W4 gate (b) and the consumer-mediated (e) legs cannot pass before W5, whatever the aggregation or proposer.
+2. **N3-pre, other readings.** These are PROVISIONAL: the head was a harness-trained proxy of the W3 member, and the result must be re-confirmed by N3 proper.
+   - The proxy L2R head meets its bar on 5/5 seeds (disc4 0.470-0.547).
+   - Steep aggregations make E3 track its own one-step consequence with the real head and not with the shuffled one: D1 on 5/5 seeds, DISC_0.5 on 4/5. D1 equals the habit read, so SD-081 forbids it, which leaves **DISC_0.5 as the lead**. FULL anti-tracks with the real head.
+   - As specified, W4 gate (c) cannot discriminate: the INIT reference head diverges (t30 norm 238-940).
+   - FIDW is FULL in disguise.
+   - Domain: D1/D2 descriptive under a CANNOT_DETERMINE verdict.
+3. **Mode switching (MECH-157 / EXP-0861 premise).** The trace was run on untrained agents, 3 seeds, at ree-v3 `23714f0`. (`e2bbd2a98e`; GFLAG-0554)
+   - dACC off: the salience aggregate is identically 0, so no switch can happen. That is a **wiring** fault (D0 + D1).
+   - dACC on: one switch per life, then the mode locks. `dacc_pe` is both the only salience source and the dominant internal_planning affinity, so within-life reversals are 0/0/0.
+   - Adding the lineage's independent `use_external_task_drive` input raises reversals from 0/0/0 to 2/16/25 (**D2**).
+4. **CeA interrupt (MECH-039 / EXP-0787 premise).** Same trace record and flag as finding 3.
+   - CeA reads `affective_harm_encoder` (`|z_harm_a|`), not `harm_eval_head`. With the WakingTrainer ON, the encoder stayed bit-identical on 3/3 seeds, so training `harm_eval_head` cannot lift CeA (**D2**). This answers open question (a): NO.
+   - The gate is a fixed 0.5 threshold on an unanchored magnitude. At init the latent sits ~3x under that threshold. After SD-011 `harm_accum` training it sits 25-35x over, tonically.
+   - Even a forced fire cannot switch mode: 0.4 < 1.0, and switches stayed at 0/0/0 (**D2**).
+   - Shared upstream: `dacc_pe` falls back to `||z_harm_a||`, which plausibly explains the lineage's dacc_pe ~16-17 that needed the affinity cap. That link is D0 plus an analogy, not re-trained.
+5. **SP-CEM floor tokens lose on construction.** (`847544ac8e`; GFLAG-0555)
+   - The default-ON tokens are one-hot at t=0 with exact zeros at t=1..29 (the from_dims horizon is 30), and E3 scores all 31 states (**D0+D1**).
+   - They rank **last of 32 at 85/85 states** on 3 seeds (**D1**).
+   - A majority-class token built the same way also ranks last, so the construction is the cause, not the class (**D2**).
+   - Worker C's order-statistic mechanism is overturned; its descriptive finding stands.
+   - Closed-loop consequence: not reached, so there is no D3.
+   - The run used world_dim 16, not the deployed 32.
+6. **Action-space proposals (W1-alt), design only, D0.** ASP-E is a parameter-free stratified one-hot first action plus a per-class categorical CEM. It sidesteps all three codec defects and the zero-vector continuations.
+   - It does not fix W3, W4 or W5. Without them it is expected to reproduce R5b's undirected-noise signature.
+   - The literal pool-containment gate (e) is degenerate for this proposer (1.0 by construction), so a consumer-mediated form was proposed. (`412882b845`)
+7. **A1 noise floors (measured).** Per 100 steps: reward 0.90 benign / 2.4 trapped; harm contacts 1.6 / 4.8; benign reward change 0.92 (1.44 with the harm-bearing-seed correction); trapped rate 0.21.
+   - New rule P1g: a benign gain must include fewer harm contacts or more consumption.
+   - Open item RT-5: the floor came from a perturbed T2 agent, not a NATIVE reseed. (`2028729662`, `b92196db2c`)
+8. **Fleet/process (infrastructure, measured).** Landing latency was dominated by contracts run 2-6x per landing, the absence of a queue, and the R4 gate bug. The bug fired live once, in the MECH-157 lander, and was recovered. (`88f61a77b`)
+
+### 8.3 User decisions this afternoon (ledger rec-ids)
+
+| Time (Z) | Decision | Ledger |
+|---|---|---|
+| ~13:25 | Accept the measured A1 floors (0.90/2.4 reward; 1.6/4.8 contacts) and P1g | rec-20260925-5fc6c256 |
+| ~13:25 | Benign reward-change floor 1.44 (not 0.92) | rec-20260925-aa066e96 |
+| ~13:25 | Hold A1 until both INT-CODEC and INT-ACT pass their member gates; run them head to head | rec-20260925-38b81685 |
+| ~13:25 | Add the no-valuation diagnostic arms (~+20% cost) | rec-20260925-c2519d92 |
+| 13:52 | U1 gate parity: add the consumer-mediated leg to BOTH W1(e) and W1-alt(e) | rec-20260925-b9652a9b |
+| 13:52 | Capacity proposals P3 + P4 + P7 approved (built and landed, 8.1) | rec-20260925-01869834 |
+| 14:38 | O3: both variants' consumer-mediated (e) legs move after W5 (reported, not gating); add an env-Q oracle diagnostic | rec-20260925-a16786f5 |
+
+Spend directions, which have no rec-id:
+- 11:31Z: run toward 100% weekly before the 18:00Z reset. The orchestrator's operating target was ~97%.
+- 12:28Z and 14:28Z: keep work flowing and don't waste the last few percent.
+- 12:34Z: investigate why commits are slow. That request produced 8.1's latency work.
+
+The 10:4xZ plan decisions (tie-break ON rec-20260925-b4355023; codec and action space in parallel rec-20260925-6a675285; acceptance without valuation if 1105a fails rec-20260925-805f605c; draft numbers rec-20260925-7e7e9825) are recorded in the plan (`e469729d9b`) and are not repeated here.
+
+### 8.4 Orchestrator decisions under the standing delegation (rec-20260924-fb429c72)
+
+- **N3-pre follow-through** (plan decision log `2ba75b0f60`). These set gate definitions before the real N3 runs; no threshold was moved after a passing result.
+  - W4 gate (c) is re-referenced to a trained action-blind head, because the init head diverges.
+  - Gate (b) moves to after W5, because valuation caps it (8.2 finding 1).
+  - The N3 twin becomes a fixed permutation, because resampled labels could not destroy the correspondence on near-monostrategy seeds.
+- **Action-space design questions.**
+  - U2: ASP-0 wins a tie within 0.05, because it is simpler.
+  - U4: CEM elite window = W4's depth for both variants.
+  - U5: BRANCH placement.
+  - Reason for all three: the design's recommendations, all reversible. U1 went to the user (8.3). U6, the registry row, is held for /governance.
+- **Launch policy.** Kept ~6 workers against a ~2.5-3%/h burn. At 14:20Z weekly usage was 95% and a stop was called. The user then asked not to waste the remainder, so three items were launched early from the post-reset queue (spcem, a1v2, modeq), with workers told to commit incrementally.
+- **Queue write under contention.** 1105a was queued while the concurrent `governance-20260925` session held a whole-file claim on `experiment_queue.json`. The worker claimed only the queue id, per /queue-experiment, and it was uncontested.
+
+### 8.5 Governance flags raised this afternoon (reported, not acted on)
+
+- **GFLAG-0554** (stale_note, open; MECH-157, MECH-039, MECH-046, SD-032a). The premises used to park EXP-0861 and EXP-0787 are stale (8.2 findings 3-4). Raised by bt0925-modetrace (REE_assembly `0c0fa148c7`).
+- **GFLAG-0555** (stale_note, open; ARC-065). SP-CEM floor tokens lose on construction (8.2 finding 5). The floor-token rebuild options (a)/(b)/(c) go to /governance. Raised by bt0925-spcem (`c9314d51ea`).
+- Other 2026-09-25 flags still open on origin: GFLAG-0503, 0507, 0508 (this pass's no-op fix), 0515, 0531. The post-reset list (item 9) names this pass's governance-owned set.
+
+### 8.6 Not landed / in flight at ~14:55Z, and the post-reset queue
+
+In flight (active claims):
+- **I1** lander (bt0925-landi1). Instruments were built and contracts ran green (5745 on cloud), but they are not on main. F1 rides with them.
+- **T1 + W2a** (bt0925-t1w2a): not on main.
+- **MECH-039** veto readout (bt0925-land039): parked on remote branch `origin/bt0925-mech039` @ `1b8422d`; not on main.
+- **W1-alt** ASP-E build (bt0925-w1alt, + docs): no commits on the integration branch yet.
+- **V3-EXQ-1107**, the trained-agent mode-switch run (bt0925-modeq): not yet queued.
+- RT-5 native-reseed probe (bt0925-rt5).
+- CeA gate calibration probe (bt0925-ceacal).
+- bt0925-land287b is closing: build `aa14769` and queue entry `67c7346` are landed.
+
+Running on the fleet at 14:51Z: V3-EXQ-1105a (ree-cloud-4, ETA ~1.9h), 1090, 1099, 1104, 1067. **W5a stays gated on the 1105a verdict**: the battery is queued only on PASS; on FAIL, A1 runs without grounded valuation (rec-20260925-805f605c).
+
+The post-reset queue (after the 18:00Z weekly reset) is `.scratch/breakthrough-20260924/POST_RESET_20260925.md` (umbrella). Each premise gets re-measured first. In order:
+- (0) liveness and relaunch of the workers above;
+- (1) the I1 lander;
+- (2) the mode-switch follow-up (now bt0925-modeq);
+- (3) W3 on the branch after W2a, rebased onto main first;
+- (4) N3 proper;
+- (5) the W1 codec parts, with the consumer-mediated leg;
+- (6) the A1 edits and the RT-5 closer;
+- (7) the 1105a adjudication, then W5a only on PASS;
+- (8)/(11) SP-CEM follow-ups (confirmed; next is a repeat at world_dim 32 with the full 1061 warmup before any default change, plus the ASP pool-format homogeneity check);
+- (9) the governance-owned flags;
+- (10) worktree GC for this pass.
