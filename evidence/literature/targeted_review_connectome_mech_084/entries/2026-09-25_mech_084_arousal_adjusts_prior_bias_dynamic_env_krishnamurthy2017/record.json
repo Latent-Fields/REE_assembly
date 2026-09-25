@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_084",
+  "entry_id": "2026-09-25_mech_084_arousal_adjusts_prior_bias_dynamic_env_krishnamurthy2017",
+  "timestamp_utc": "2026-09-25T11:19:16Z",
+  "claim_ids_tested": [
+    "MECH-084"
+  ],
+  "source": {
+    "title": "Arousal-related adjustments of perceptual biases optimize perception in dynamic environments",
+    "authors": [
+      "Krishnamurthy, Kamesh",
+      "Nassar, Matthew R.",
+      "Sarode, Shilpa",
+      "Gold, Joshua I."
+    ],
+    "year": 2017,
+    "venue": "Nature Human Behaviour",
+    "doi": "10.1038/s41562-017-0107",
+    "pmid": "29034334",
+    "pmc": "PMC5638136",
+    "volume": "1",
+    "pages": "0107"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Directly addresses the top-down-prior-versus-current-input balance under changing predictability: arousal-linked adjustments set how much the prior biases perception of each stimulus, and larger stimulus-evoked pupil responses go with smaller prior-driven biases. This matches MECH-084's claim that the NA/arousal signal governs how strongly top-down expectation constrains current perception, and adds the normative framing (the adjustment is adaptive). Capped for the same reasons as the other pupil work: correlational, pupil is not NA-specific, and the DV is a perceptual report bias rather than a sampling ratio or reorientation latency.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Larger pupil responses correspond to smaller biases, but no NA manipulation is performed; a non-noradrenergic arousal source could produce the same pupil-bias relation.",
+    "Subjects adjust bias using both normative and idiosyncratic principles, so the arousal-bias link is not a clean readout of an optimal NA-driven gate."
+  ],
+  "tags": [
+    "mech_084",
+    "pupil",
+    "arousal",
+    "perceptual_prior",
+    "volatility",
+    "sound_localization",
+    "bayesian"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a sound-localisation task with changing stimulus predictability, subjects adjust the magnitude of prior-driven perceptual biases according to task-dependent changes in the relevance and reliability of prior expectations; these adjustments are reflected in pupil diameter, with larger stimulus-evoked pupil responses corresponding to smaller biases, consistent with the arousal system adjusting the strength of perceptual priors with respect to inferred environmental dynamics.",
+    "ree_translation": "The arousal response to a stimulus sets how much the top-down prior (E2 side) shapes what is perceived (E1 side). Bigger evoked arousal -> weaker prior -> perception closer to the raw input. That is MECH-084's E1/E2 ratio modulation written in Bayesian terms, and the dependence on predictability matches the claim's 'orient to bottom-up surprise'.",
+    "mapping_caveat": "The DV is a perceptual report bias toward the prior, not an E1/E2 sampling allocation or reorientation latency; pupil-linked arousal is not specific to NA; the result is correlational.",
+    "source_context": "Healthy human adults; auditory sound-localisation task with manipulated stimulus predictability (change-points); pupillometry; normative Bayesian and idiosyncratic model fits."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.3,
+    "notes": "Nat Hum Behav; single lab, one task. Mapping of prior-weight-vs-arousal onto E2-constraint-on-E1 is fairly faithful in form; NA specificity absent."
+  }
+}

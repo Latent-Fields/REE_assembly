@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_084",
+  "entry_id": "2026-09-25_mech_084_pupil_tracks_na_and_ach_axons_reimer2016",
+  "timestamp_utc": "2026-09-25T11:19:16Z",
+  "claim_ids_tested": [
+    "MECH-084"
+  ],
+  "source": {
+    "title": "Pupil fluctuations track rapid changes in adrenergic and cholinergic activity in cortex",
+    "authors": [
+      "Reimer, Jacob",
+      "McGinley, Matthew J.",
+      "Liu, Yang",
+      "Rodenkirch, Charles",
+      "Wang, Qi",
+      "McCormick, David A.",
+      "Tolias, Andreas S."
+    ],
+    "year": 2016,
+    "venue": "Nature Communications",
+    "doi": "10.1038/ncomms13289",
+    "pmid": "27824036",
+    "pmc": "PMC5105162",
+    "volume": "7",
+    "pages": "13289"
+  },
+  "evidence_class": "calcium_imaging_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Included as the instrument-validity anchor for the pupil evidence in this pull, and it cuts both ways. It supports the NA-timescale reading (rapid pupil dilations are tightly tied to phasic activity in noradrenergic cortical axons, which licenses reading phasic pupil as partly phasic NA) and it weakens NA-specificity (sustained dilations track cholinergic axon activity, so pupil is a mixed NA/ACh readout). For MECH-084, which separates the NA 'snap' from the ACh 'trace', the direction is mixed: the phasic/sustained split lines up with the claim's NA-phasic / ACh-sustained division, but it also means pupil-based support can never meet the falsifier's matched-arousal control on its own.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pupil diameter tracks cholinergic as well as noradrenergic axon activity, so human pupil-based evidence (de Gee 2017, Krishnamurthy 2017 in this pull) cannot by itself attribute bias reduction or prior down-weighting to NA rather than ACh.",
+    "Measured in head-fixed mice during quiet waking and locomotion, with no sensory surprise or top-down prediction; the paper establishes a readout relation, not any consequence for sampling allocation."
+  ],
+  "tags": [
+    "mech_084",
+    "pupil",
+    "noradrenergic_axons",
+    "cholinergic_axons",
+    "two_photon",
+    "instrument_validity",
+    "na_ach_dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rapid variations in pupil size during quiet waking and locomotion are highly correlated with fluctuations in corticopetal noradrenergic and cholinergic axon activity; rapid pupil dilations are tightly associated with phasic noradrenergic axon activity, whereas longer-lasting dilations (e.g. during locomotion) are accompanied by sustained cholinergic axon activity.",
+    "ree_translation": "Validates, and bounds, the instrument used by most human evidence for MECH-084. Fast pupil events ~ phasic NA, which is the 'snap' channel; slower pupil state ~ sustained ACh, which is the MECH-083 trace/learning channel. So the claim's NA/ACh division has a physiological correlate in timescale, but pupil-based support for MECH-084 is always confounded with ACh unless the timescale is resolved.",
+    "mapping_caveat": "This is a measurement-validity paper; it says nothing about E1/E2 sampling or orienting. The NA-phasic / ACh-sustained split is correlational and in mouse cortex; human pupil-LC coupling is weaker and less direct.",
+    "source_context": "Head-fixed awake mice; two-photon calcium imaging of noradrenergic and cholinergic axons in dorsal cortex with simultaneous pupillometry, quiet waking and locomotion."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.4,
+    "notes": "Nat Commun, direct axon imaging. Low mapping because it is an instrument-validity result, but it matters for how much weight the pupil entries in this pull can carry."
+  }
+}

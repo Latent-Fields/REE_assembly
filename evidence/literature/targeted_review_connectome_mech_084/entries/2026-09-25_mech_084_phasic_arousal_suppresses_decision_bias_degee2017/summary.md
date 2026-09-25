@@ -1,0 +1,11 @@
+# de Gee, Colizoli, Kloosterman, Knapen, Nieuwenhuis & Donner (2017) -- Phasic arousal suppresses decision bias
+
+**What they did.** Healthy adults made perceptual decisions across several sensory modalities and task protocols. The authors used the task-evoked pupil response on each trial as a proxy for phasic arousal and asked whether it predicted the observer's choice bias. In an fMRI dataset they looked at cortical choice-encoding patterns, and they also measured phasic responses in brainstem neuromodulatory nuclei, the LC among them.
+
+**What they found.** Trials with large pupil responses showed less decision bias, whatever direction the observer's bias happened to run. The reduction went along with changes in choice-encoding pattern signals in parietal and prefrontal cortex. It was predicted by phasic, pupil-linked responses of several brainstem centres, including the LC. The follow-up paper (de Gee et al. 2020, eLife) found the same suppression for conservative and liberal biases, in mice as well as humans, and for decisions drawn from memory. In both papers the effect was best explained as a reduced bias in how evidence is accumulated.
+
+**Mapping to MECH-084.** The claim says that too little NA leaves E2 in charge and produces confirmation bias, and that a phasic NA response loosens that grip in the moment. This paper reports the behavioural form of that: on the trials where phasic arousal fires, the standing prior counts for less and the current evidence counts for more. The timescale is trial by trial, which fits a phasic snap rather than a change in tonic state.
+
+**What it does not show.** The evidence is correlational. Pupil and fMRI covary with LC, but they also covary with other nuclei, and pupil tracks cholinergic activity as well (Reimer et al. 2016, also in this pull). So "phasic arousal" cannot be read as "phasic NA", and the falsifier's matched-arousal control is exactly the comparison this study cannot make. A second limit is that a choice bias is a prior on the *response*. MECH-084 is about the prior's constraint on *sampling*, and nothing in the paradigm involves an unexpected cue or a reorienting movement.
+
+**Confidence.** 0.58. It has the right direction and the right timescale, with robust replication. It is indirect on DV and not specific to NA.

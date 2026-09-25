@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_084",
+  "entry_id": "2026-09-25_mech_084_phasic_arousal_suppresses_decision_bias_degee2017",
+  "timestamp_utc": "2026-09-25T11:19:16Z",
+  "claim_ids_tested": [
+    "MECH-084"
+  ],
+  "source": {
+    "title": "Dynamic modulation of decision biases by brainstem arousal systems",
+    "authors": [
+      "de Gee, Jan Willem",
+      "Colizoli, Olympia",
+      "Kloosterman, Niels A.",
+      "Knapen, Tomas",
+      "Nieuwenhuis, Sander",
+      "Donner, Tobias H."
+    ],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.23232",
+    "pmid": "28383284",
+    "pmc": "PMC5409827",
+    "volume": "6",
+    "pages": "e23232"
+  },
+  "evidence_class": "neuroimaging_human",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Trial-by-trial human evidence that phasic (pupil-linked) arousal reduces the influence of a pre-existing bias on choice, with fMRI showing the bias reduction is predicted by phasic brainstem responses including LC. The follow-up (de Gee et al. 2020, eLife 9:e54014, PMID 32543372) generalises this to both liberal and conservative biases, to mice, and to memory-based decisions, and localises it to evidence-accumulation bias. That is the behavioural signature MECH-084 predicts (phasic NA weakens the prior's hold relative to current evidence). Capped because the evidence is correlational, pupil is not NA-specific (several brainstem nuclei covary), and 'decision bias' is a prior on choice rather than a top-down constraint on sampling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The bias reduction is predicted by phasic responses of several neuromodulatory brainstem centres, not LC alone, and pupil also tracks cholinergic activity (see Reimer et al. 2016 in this pull) -- the effect is not attributable specifically to NA.",
+    "The design is correlational (spontaneous trial-to-trial pupil variation); no NA manipulation establishes that NA causes the bias reduction or that a matched-arousal, non-NA control would fail to reproduce it."
+  ],
+  "tags": [
+    "mech_084",
+    "pupil",
+    "phasic_arousal",
+    "decision_bias",
+    "locus_coeruleus",
+    "fmri",
+    "prior_suppression"
+  ],
+  "mapping": {
+    "source_claim_statement": "Large task-evoked pupil responses (a proxy of phasic arousal) predict a reduction in decision bias across sensory modalities and task protocols; the pupil-linked bias reduction is accompanied by modulation of choice-encoding pattern signals in parietal and prefrontal cortex and is predicted by phasic, pupil-linked responses of several brainstem neuromodulatory centres including the noradrenergic LC. Phasic arousal suppresses decision bias trial by trial.",
+    "ree_translation": "If a standing bias is read as the E2-side prior pressing on how current evidence is weighed, then phasic arousal loosening that bias on the trials where it fires is the behavioural form of MECH-084's 'high NA reduces E2's constraining influence on E1'. The trial-by-trial (phasic) timescale matches the claim's phasic 'snap' rather than a tonic state effect.",
+    "mapping_caveat": "Decision/choice bias is a prior on the response, not a prior on where to sample; the paradigm has no unexpected cue or reorientation. Pupil-linked arousal is multi-transmitter, so the NA attribution is correlational and partial.",
+    "source_context": "Healthy human adults; visual and auditory detection/discrimination tasks with pupillometry; fMRI including brainstem nuclei (LC, VTA, SN, basal forebrain, superior colliculus)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.3,
+    "notes": "eLife, multiple datasets, replicated and extended across species in de Gee 2020. Mapping moderate: right direction and timescale, wrong DV (choice bias, not sampling allocation) and not NA-specific."
+  }
+}

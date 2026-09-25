@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_084",
+  "entry_id": "2026-09-25_mech_084_phasic_lc_opto_salience_encoding_vazey2018",
+  "timestamp_utc": "2026-09-25T11:19:16Z",
+  "claim_ids_tested": [
+    "MECH-084"
+  ],
+  "source": {
+    "title": "Phasic locus coeruleus activity regulates cortical encoding of salience information",
+    "authors": [
+      "Vazey, Elena M.",
+      "Moorman, David E.",
+      "Aston-Jones, Gary"
+    ],
+    "year": 2018,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America",
+    "doi": "10.1073/pnas.1803716115",
+    "pmid": "30232259",
+    "pmc": "PMC6176602",
+    "volume": "115",
+    "issue": "40",
+    "pages": "E9439-E9448"
+  },
+  "evidence_class": "electrophysiology_causal_intervention",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The only causal, cell-type-specific, phasic-versus-tonic manipulation in this pull: optogenetic phasic (not tonic) LC-NE activation produces a cortical ERP and lifts cortical responses to weak, non-salient stimuli to salient-stimulus levels when time-locked to the stimulus. That is close to MECH-084's required phasic-vs-tonic contrast and its 'pulse increases bottom-up weighting' prediction. Capped because it measures sensory encoding gain, not an allocation ratio between bottom-up and top-down, there is no top-down prediction to override, and it is anaesthetised/rodent physiology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The manipulation enhances the cortical response to a stimulus, but there is no established top-down prediction in the paradigm, so the result cannot distinguish 'NA increases bottom-up weight relative to top-down constraint' (MECH-084) from 'NA simply increases gain on whatever input arrives'.",
+    "No behavioural reorientation or latency measure is reported, so the orienting half of the claim is untested here."
+  ],
+  "tags": [
+    "mech_084",
+    "locus_coeruleus",
+    "optogenetics",
+    "phasic_vs_tonic",
+    "salience",
+    "cortical_encoding"
+  ],
+  "mapping": {
+    "source_claim_statement": "Phasic, but not tonic, optogenetic activation of LC-NE neurons generates a distinct cortical event-related potential; weak non-salient stimuli that normally produce limited cortical responses are elevated to salient-stimulus response levels when temporally locked with phasic LC photoactivation, via facilitation of long-latency signals in target regions.",
+    "ree_translation": "A causal demonstration that a phasic NA pulse, timed to an input, increases that input's weight in cortical encoding, while an equal tonic drive does not produce the same signature. In REE terms: the phasic channel, not mean NA level, is what transiently promotes a bottom-up E1 signal -- the 'snap' half of MECH-084, and a partial answer to the falsifier's 'matched mean NA with different temporal profile' control.",
+    "mapping_caveat": "Gain on sensory encoding is not the same as an E1/E2 sampling-allocation ratio; there is no top-down expectation being overridden and no reorientation behaviour. The phasic/tonic contrast is by stimulation pattern, and is not formally matched for total NE release.",
+    "source_context": "Rats; Cre-dependent optogenetic activation of LC-NE neurons with single-unit and field recordings in cortical targets; salient vs weak sensory stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "PNAS, cell-type-specific optogenetics with a phasic/tonic contrast -- the manipulation most like MECH-084's falsifier. Mapping held down because the DV is encoding gain, not an allocation ratio."
+  }
+}

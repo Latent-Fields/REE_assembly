@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_084",
+  "entry_id": "2026-09-25_mech_084_na_suppresses_intrinsic_over_afferent_hasselmo1997",
+  "timestamp_utc": "2026-09-25T11:19:16Z",
+  "claim_ids_tested": [
+    "MECH-084"
+  ],
+  "source": {
+    "title": "Noradrenergic suppression of synaptic transmission may influence cortical signal-to-noise ratio",
+    "authors": [
+      "Hasselmo, Michael E.",
+      "Linster, Christiane",
+      "Patil, Madhvi",
+      "Ma, Daveena",
+      "Cekic, Milos"
+    ],
+    "year": 1997,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.1997.77.6.3326",
+    "pmid": "9212278",
+    "pmc": null,
+    "volume": "77",
+    "issue": "6",
+    "pages": "3326-3339"
+  },
+  "evidence_class": "electrophysiology_causal_intervention",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "The cleanest cellular analogue in the pull of 'NA weakens internally generated constraint relative to incoming input': NE suppresses intrinsic (recurrent, associative) synapses more strongly than afferent synapses, and a model shows this shifts representations toward extrinsic input. Confidence is capped because the effect is shared with carbachol (so it does not separate NA from ACh, which MECH-084 explicitly does), because bath perfusion is a tonic manipulation rather than the phasic pulse MECH-084 is about, and because piriform intrinsic fibres are not the same thing as E2-to-E1 top-down feedback.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The laminar selectivity (intrinsic > afferent suppression) is reproduced by the cholinergic agonist carbachol with matching dose-response, and combined NE+carbachol behaves like a single agonist -- the mechanism does not by itself distinguish NA from ACh, whereas MECH-084 assigns the orienting role to NA and the map-trace role to ACh (MECH-083).",
+    "Norepinephrine was bath-perfused, a sustained (tonic-like) manipulation; the paper gives no evidence that a transient phasic pulse produces the same intrinsic/afferent rebalancing."
+  ],
+  "tags": [
+    "mech_084",
+    "noradrenaline",
+    "signal_to_noise",
+    "intrinsic_vs_afferent",
+    "piriform_cortex",
+    "top_down_suppression"
+  ],
+  "mapping": {
+    "source_claim_statement": "In rat piriform cortex slices, norepinephrine causes dose-dependent suppression of excitatory synaptic potentials at intrinsic (pyramidal-pyramidal, layer Ib) synapses with a weaker effect on afferent (layer Ia) synapses; in a model this reduces activity dependent on intrinsic spread of excitation ('interpretation or retrieval') relative to activity driven by direct afferent input, enhancing the influence of extrinsic input on cortical representations.",
+    "ree_translation": "A cellular candidate for MECH-084's 'high NA reduces E2's constraining influence on E1': NA preferentially weakens the internally generated, associative/predictive contribution to a representation while sparing the bottom-up afferent drive, so the representation is pulled toward the current input. The authors' own reframing of 'noise' as interpretation/retrieval is close to REE's top-down prior.",
+    "mapping_caveat": "Intrinsic associative fibres within olfactory cortex are a local recurrent pathway, not an inter-module E2-to-E1 feedback channel; the manipulation is tonic bath application, not a phasic pulse; and carbachol produces the same effect, so the NA/ACh division of labour in MECH-084 is not supported by this mechanism.",
+    "source_context": "Rat piriform cortex brain slices (extracellular synaptic potentials), plus a biophysical network model of piriform cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "J Neurophysiol, classic and repeatedly cited laminar result; slice + model. Mapping is architectural-analogue only; transfer from olfactory recurrent synapses to a cortical feedback hierarchy is uncertain."
+  }
+}
