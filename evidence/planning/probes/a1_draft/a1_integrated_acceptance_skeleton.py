@@ -19,7 +19,7 @@ v3:     bt0925-a1v3, chip_ref chip-20260925-coupled-a1-prereg-v3, 2026-09-25. Fo
           floor       rec-20260925-b89fe715: benign reward-change floor 0.43 (measured), superseding 1.44.
         v3 addendum (user direction 2026-09-25 ~18:20Z, via the orchestrator): REPORT-ONLY "init-dominance" readout
         (init_dominance) from the reseed arms A1 already runs; never gating (selftest shows it cannot flip a verdict).
-v3b:    bt0925-a1v3b, user answers 2026-09-25 ~18:50Z (relayed by the orchestrator): O12b stratum = the (env seed,
+v3b:    bt0925-a1v3b, user answers 2026-09-25 (relayed by the orchestrator, received by 18:36Z): O12b stratum = the (env seed,
         agent seed) PAIR classified from NATIVE's closed-loop steps 0-599, relying on shared init (STRATUM_DECIDED);
         O13 keep the reseed arms; O14 confirm the paired form for P1g / head-to-head / NOVAL attribution; O15 ADD the
         babble-attribution arms INT-v-NOBABBLE and INT-v-BABBLE-DATA with a pre-registered SECONDARY contrast
@@ -608,7 +608,7 @@ MODAL_SHARE_FLOOR = 0.05             # DRAFT SD floor (2 x 0.025) for modal-shar
 
 
 def babble_attribution(strata: Dict[str, List[Dict[str, Any]]], v: str) -> Dict[str, Any]:
-    """v3b O15 (user 2026-09-25 ~18:50Z). SECONDARY, pre-registered, own rule; never an A1 criterion.
+    """v3b O15 (user 2026-09-25). SECONDARY, pre-registered, own rule; never an A1 criterion.
     Arms (same agent seed, shared init): T = INT-v (behaviour babbling), D = INT-v-BABBLE-DATA (own phase 1 native,
     W3 member fed T's retained babbling transitions at the same phase-1 step indices), O = INT-v-NOBABBLE (no babbling).
     Init-dominance measure per arm: modal-action share over the closed loop (lower = weaker init attractor); under shared
