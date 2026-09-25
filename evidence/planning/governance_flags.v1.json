@@ -7019,6 +7019,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0492",
+      "claim_ids": [
+        "MECH-204"
+      ],
+      "flag_type": "contested_disposition",
+      "summary": "USER DECISION 2026-09-25T01:10Z (rec via orchestrate-20260924-1707, chip-20260924-sd076b-ou-refused-next-step): option (A) -- accept C1-only and CLOSE MECH-204's Option-A experimental question on the evidence in hand. SD-076b OU log-multiplier was built (ree-v3 integration/sd076b-ou-drift-source 40202482aa, NOT on main; 22 contracts) and delivers C1, but red-team found the 541d Option-A falsifier cannot fire under any stationary drift source (F1) and C2 reads exactly 0.0 at this write-site (F2); ARC-029 rider blocked (no ratified q). Record: REE_assembly c7581d6c34 evidence/planning/mech204_sd076b_ou_redteam_blocking_20260924.md. /governance to apply: close Option A, record C1 evidence, and decide the integration branch's fate (delete, or merge default-off).",
+      "raised_by_session": "orchestrate-20260924-1707",
+      "raised_at": "2026-09-25T01:10:35Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
