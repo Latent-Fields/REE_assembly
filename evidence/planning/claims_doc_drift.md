@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-24T17:40:07Z
+Generated: 2026-09-25T01:11:54Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -62,7 +62,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `developmental_governance_review.md` -- "Review document -- synthesis only, not a registered claim."
 - `dr10_z_self_in_e3_viability.md` -- "IMPLEMENTED 2026-07-01"
 - `dr12_pe_conditioned_e3_confidence.md` -- "IMPLEMENTED 2026-06-17"
-- `dr13_self_recurrence_temporal_depth.md` -- "IMPLEMENTED 2026-07-01"
+- `dr13_self_recurrence_temporal_depth.md` -- "IMPLEMENTED 2026-07-01; **training path REPAIRED 2026-09-24** -- the"
 - `dv_temporal_depth_v3_form.md` -- "candidate, implementation_phase: v3, v3_pending: true (V3 form);"
 - `dynamic_consensus_integration.md` -- "candidate. Registered from"
 - `e1.md` -- "stable"
