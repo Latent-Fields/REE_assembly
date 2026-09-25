@@ -6593,9 +6593,9 @@
       "summary": "Pre-flight (chip-20260911-arc021-h2-contextmemory-inplace-write) finds the chip's causal premise is false: ContextMemory.write (e1_deep.py:306-307) is never called in the probe config and its .data write does not bump the Parameter version counter (verified live, .scratch/orch-20260924/preflight/vc_check_arc021.py); the actual mutator is merged_opt.step() reached via the undetached _last_action carried into latent_stack.encode (agent.py:10451/7577/7630 -> :5093, SD-007 reafference). REE_assembly/evidence/planning/arc021_h2_leg_blocked_substrate_merged_arm_crash_20260908.md sec 1 and the probe docstring both still assert the wrong mechanism. A build campaign is already fixing this (ree-v3 b6f6733, default-off REEConfig.detach_carried_prev_action + tests/contracts/test_arc021_h2_merged_optimizer_backward.py, per .scratch/orch-20260924/buildcamp/registry_pending.md item 1) -- this flag is for the stale-prose correction only.",
       "raised_by_session": "orch0924-redroute",
       "raised_at": "2026-09-24T11:01:14Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:56Z",
+      "resolution_note": "governance-20260925 (rec-20260925-deedce42): already applied under GFLAG-0465's resolution (REE_assembly 46e1b32ce8) -- ARC-021 evidence_quality_note states the mutator was the merged Adam step via undetached prev_action (SD-007 reafference), not ContextMemory.write. Bookkeeping close."
     },
     {
       "flag_id": "GFLAG-0461",
@@ -6726,9 +6726,9 @@
       "summary": "The confirmed failure_autopsy_V3-EXQ-1082_2026-09-24 targets[0].fanout_recommendation.suggested_probes[0] specifies the inverted-action-map DV as cross-battery ratio MSE(inverted-map battery)/MSE(original battery) 'with a bar excluding the degenerate ~1.0' via action_sensitivity_gate.readiness_verdict. That 1.0 bar is the correct null only for the SAME-rows action_shuffle_ratio form; the sketch specifies the TWO-battery battery_pair_ratio form (_make_env(invert_action_map=True)), whose null is NOT 1.0 because the two row sets differ in intrinsic transition difficulty. V3-EXQ-1079 already measures that nuisance per cell as blind_null_1075_order on the same battery pair. On 1079's landed manifest (substrate_hash 17e203f335387880) the raw-1.0 bar and the blind-null bar disagree on 6 of 9 cells and route OPPOSITELY at alpha_world 0.9 -- raw: 2/3 seeds READ (1.2563, 1.2755) -> PASS; blind-null: 1/3 -> FAIL -- and that PASS is what the autopsy's routing_note says licenses the MECH-572 contradiction re-pose at alpha 0.9. No artifact in this lineage has ever routed on this ratio (1073 measured and self-routed unposeable; 1079 records it and states it 'does not gate', driver line 759). Queueing STOPPED before any EXQ id was consumed; criterion choice is a user call. Options + recommendation (record all three forms, load-bear the same-rows shuffle verdict where 1.0 IS the true null) staged at REE_assembly/evidence/planning/sdppb5_inverted_map_ratio_criterion_aliasing_staged_20260924.md (origin/master e9e37e46c2). Decision chip chip-20260924-sdppb5-invmap-ratio-bar-decision; science chip chip-20260924-sdppb5-inverted-map-probe left OPEN and unclaimed. Caveat: 1079's cells are post-death batteries and the probe uses 1082's live collector, so the numbers will differ -- the finding is structural (a cross-battery ratio carries a difficulty nuisance whatever the rows), and the 6-of-9 table shows that nuisance is large enough to flip verdicts in practice.",
       "raised_by_session": "metaworker-science-20260924-orchb-sdppb5-inverted-map",
       "raised_at": "2026-09-24T12:40:09Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-25T11:29:56Z",
+      "resolution_note": "governance-20260925: superseded by GFLAG-0482 F2 -- on live-battery rows the inverted action map is a bijection over i.i.d.-uniform actions so the action-blind null is 1 in population; raw >1.0 and blind-null bars agree (0.949/0.958). The aliasing was an artefact of V3-EXQ-1079's post-death batteries. Live decision carried by GFLAG-0482."
     },
     {
       "flag_id": "GFLAG-0471",
@@ -6766,9 +6766,9 @@
       "summary": "ARC-021 H2 (real-stack merge) leg refused at /queue-experiment Step 2.5d, NOT queued: the crash blocker is fixed (b6f6733), but on the current stack E1, E2 and harm losses reach pairwise-DISJOINT parameters (E1/E2 replay on detached buffered latents, agent.py:6171-6172/11252), so the spark driver's one-Adam-over-combined-loss MERGED arm is update-identical to SEPARATE except learning rates (unlisted confound: 1e-3 vs 1e-4/3e-4) and harm-into-encoder (= H1 axis); the topology manipulation is INERT. H2 needs a user decision on what the 'shared trunk' is (chip-20260924-decision-arc021-h2-shared-trunk-definition). Record: REE_assembly/evidence/planning/arc021_h2_leg_refused_merge_inert_disjoint_param_reach_20260924.md (785f065eaa); probe ree-v3 experiments/_scratch/arc021_h2_merged_leg_param_reach_probe.py (9cf61ce06a). Also discharges GFLAG-0465's 'H2 run owed' item into this decision.",
       "raised_by_session": "metaworker-science-20260924-arc021-h2-merged-leg",
       "raised_at": "2026-09-24T13:01:51Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:56Z",
+      "resolution_note": "governance-20260925: the shared-trunk decision was taken 2026-09-24 (chip-20260924-decision-arc021-h2-shared-trunk-definition, done: option A, build a real shared trunk for MERGED); build/queue follow-on claimed and in flight (chip-20260924-arc021-h2-merged-leg-queue). Also discharges GFLAG-0465's deferred H2 pointer."
     },
     {
       "flag_id": "GFLAG-0474",
@@ -6795,9 +6795,9 @@
       "summary": "V3-EXQ-1092 REFUSED at /queue-experiment Step 4.5 (red-team BLOCKING, fable, verified against source) and NOT queued; no EXQ consumed beyond the id. Under the user's option C the LOAD-BEARING criterion is the same-rows action_shuffle_ratio at floor 1.0, and that clause is d_act > 0 RESTATED: d_act := (S-T)/(S+T) makes (1+d_act)/(1-d_act) == S/T identically, and the gate's derangement estimates that same S/T (16-draw means within ~1% on the dry run). So the autopsy's declared null N1 ('the ratio stays <= ~1.0 despite d_act > 0') is self-contradictory in this form. Decisively, V3-EXQ-1092's alpha-0.9 arm is a BIT-EXACT replay of V3-EXQ-1082's ARM_OFF -- battery_hash 02ab0ea563a9f764 (s42) and 63f4eda43ca7ad0b (s123) identical across manifests, d_act equal to all 17 digits, per_row_se_true identical element-for-element -- and C1 = 'ready' on 3/3 seeds INCLUDING the unrun seed 456 (S/T 1.5858, skill +0.2149) is computable from 1082's landed manifest by one division. The queued outcome was therefore fixed at PASS before the run started. This is a GOV-REUSE-1 hit against the NEW load-bearing statistic: the Step 2.4 check was correct as run (it tested the cross-battery ratio, which genuinely is not recoverable -- 1082 collected no inverted-map battery), but moving which statistic is load-bearing moved recoverability with it. LESSON WORTH REGISTERING: when a decision changes the load-bearing statistic, Step 2.4 must be re-run against the NEW statistic, since recoverability is a property of the criterion rather than of the experiment. Two further verified findings: (F2) the alpha contrast belongs to the BATTERY not the head -- the ridge positive control's d_act shifts MORE than the head's across alpha (head delta minus PC delta = -0.0178 / -0.0113), so a C2 PASS is not attributable to the head as the label claims, and V3-EXQ-1079's PC-contrast attribution rule (1079 :84-91, :755-758) is absent; (F3) the label action_read_absent_at_operating_point_despite_d_act is reachable only via the skill clause, i.e. only with ratio > 1 and d_act CI > 0, so it is false in the only state it can fire. Incidental live-battery result: cross_blind_null measures 0.949/0.958 (BELOW 1.0) and the raw >1.0 and blind-null bars AGREE on both seeds, so GFLAG-0470's aliasing does not bite on LIVE rows -- the 1.09-2.41 blind nulls were an artefact of 1079's post-death batteries, exactly as staged. ROOT FINDING behind two stops on one chip: the confirmed 1082 autopsy's targets[0].fanout_recommendation.suggested_probes[0] is internally INCONSISTENT rather than under-specified -- it pairs the cross-battery inverted-map manipulation with the same-rows form's ~1.0 bar and with a null coherent only for the cross-battery form, so whichever form is chosen one of the three parts does not fit; the orchestrator pre-flight rated it GREEN with 'Unratified scientific choice: None found'. OWED at /governance: decide the path (recommended: emit a reanalysis artifact for the recoverable shuffle-form half citing 1082's run_id, then re-point the load-bearing criterion at the cross-battery ratio vs its action-blind null -- the original option B -- which is genuinely unmeasured on a live battery -- and add 1079's PC contrast), and amend the autopsy's suggested_probes[0] so it stops routing an inconsistent triple. Script is on ree-v3 origin/main 556b3831 INERT (no queue entry) with a DO-NOT-QUEUE banner; full verification tables and options at REE_assembly evidence/planning/sdppb5_inverted_map_ratio_criterion_aliasing_staged_20260924.md (origin/master 06ca014d5c, ADDENDUM). Read alongside open GFLAG-0470.",
       "raised_by_session": "metaworker-science-20260924-orchb-sdppb5-inverted-map",
       "raised_at": "2026-09-24T13:43:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:57Z",
+      "resolution_note": "governance-20260925: the redesign this flag asked for was carried out (reanalysis_sdppb5_off_head_action_read_alpha09_live_battery_20260924T171654Z landed; load-bearing criterion re-pointed, PC contrast added). The redesigned driver then hit new blockers F2/F3; all remaining V3-EXQ-1092 work is owned by GFLAG-0482."
     },
     {
       "flag_id": "GFLAG-0476",
@@ -6961,9 +6961,9 @@
       "summary": "Partitioned closed-loop chain, measured one factor at a time at world_dim=32 (REE_assembly e2_rollout_divergence_and_proposal_state_dependence_20260924.md addenda 1-3, e3_evaluation_edge_test_20260924.md addenda 1-3; D3 on env reward, 3 seeds, small Mac harness): the V3 action loop is a self-reinforcing monostrategy that instantiates INV-054's benefit-collapse loop via UNTRAINED compression/readout sites (MECH-523): an untrained action decoder collapses CEM proposals to one class -> one-action behaviour starves E2's world head of action coverage -> E3's 30-step aggregation washes out the only informative (depth-1) signal -> the env's benefit-approach shaping never fires (hazard wins the tie, causal_grid_world.py:2733) and the benefit channel never opens. Existing knobs R5b (action-class scaffold candidates) + R2 (_score_depth_limit=2) cut harm on 2/3 seeds; with benefit data supplied the benefit head trains and beats a shuffled control 3/3 but harm rises 3-5x because nothing CALIBRATES E3's main channels (harm/residue/benefit/F) against grounded outcome: commensurability only equalises spread (noise gets a vote), ARC-108 learned gating is unarmed here and reweights modulatory channels from an evaluator proxy. Earliest open edge: experienced consequence -> main-channel valuation weights (missing mechanism, buildable).",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T21:45:44Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-25T11:29:58Z",
+      "resolution_note": "governance-20260925: mechanism findings superseded by GFLAG-0501 (Q2) + evidence/planning/coupled_loop_repair_campaign_plan.md (nodes W1/W3/W4/W5a/W5b/T1). R5b/R2 framing corrected by GFLAG-0489 and never entered claims.yaml. The Q1 battery gate stays with the campaign (nodes C2/W5a), pending V3-EXQ-1105a queue-and-run (chip-20260925-nulldet-1105a-redesign)."
     },
     {
       "flag_id": "GFLAG-0488",
@@ -6975,9 +6975,9 @@
       "summary": "HippocampalModule.action_object_decoder (ree-v3 ree_core/hippocampal/module.py:178-182) is NEVER trained, natively or by any driver (REE_assembly/evidence/planning/action_decoder_training_trace_20260924.md, 622716398d4): ~13 drivers (v3_exq_042/043/044/046/053/054/055/190/397*/445a, 1061) put it in terrain_optimizer but the loss MSE(terrain_prior(...), selected_ao) never runs through it, so .grad is None and Adam silently skips it; ~9 more use it read-only under no_grad. It stays at random init and maps the CEM mean region to one action class -- the measured root of the V3 proposal collapse (GFLAG-0487 chain). SD-080 scopes only the ENCODER half (E2.action_object_head). Owed: /governance to register the DECODER half as its own substrate_queue row depends_on SD-080 (recommended over widening SD-080's scope), and to note that any evidence citing a 'trained' decoder via those drivers' optimizers is wrong (dead-optimizer pattern).",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T22:02:09Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-25T11:29:58Z",
+      "resolution_note": "governance-20260925: superseded by GFLAG-0501 (Q2 explicit disposition) + coupled_loop_repair_campaign_plan.md node W1 (whole-codec repair on integration/coupled-loop-repair, not a decoder-only row -- the decoder-only probe failed, a369f411ff8). SD-080/ARC-018 unchanged."
     },
     {
       "flag_id": "GFLAG-0489",
@@ -6989,9 +6989,9 @@
       "summary": "CORRECTION to GFLAG-0487: its statement that existing knobs R5b (use_action_class_scaffold_candidates) + R2 (_score_depth_limit=2) 'cut harm on 2/3 seeds' did NOT replicate. A pre-registered 5-fresh-seed replication (seeds 47-51, same harness unchanged; REE_assembly/evidence/planning/r5b_r2_fresh_seed_replication_20260924.md, fc987f3b057) FAILED both criteria: FULL beat NATIVE on reward 3/5 but on harm only 1/5 (more harm than NATIVE on 3/5); R5 necessary 2/5, R2 necessary 0/5 and REVERSES (dropping R2 alone beats FULL where FULL helped). The earlier 2/3 was driven by hazard-trapped starts. The mechanism findings in GFLAG-0487 stand (untrained action decoder -> proposal collapse, GFLAG-0488; one-action training data collapses E2's world head; deep rollout steps drive E3's pick; no grounded channel calibration); the knobs are NOT a general repair and should NOT be adopted as a default driver regime on this evidence.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T23:12:04Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:58Z",
+      "resolution_note": "governance-20260925: correction is live -- breakthrough_pass_synthesis_20260925.md sec 7 ('do not adopt R5b+R2 as a default regime'); the campaign plan never proposes those knobs; claims.yaml never encoded the stale 2/3-seeds framing (grep R5b: 0 hits)."
     },
     {
       "flag_id": "GFLAG-0490",
@@ -7003,9 +7003,9 @@
       "summary": "Follow-up to GFLAG-0488: a pre-registered causal probe (REE_assembly/evidence/planning/action_decoder_training_causal_probe_20260925.md, a369f411ff8; seeds 52-56, shuffled-label control) found training the action_object_decoder ALONE does not repair proposal generation -- both criteria FAILED: an honest inverse (held-out accuracy 1.000) moves the CEM pool no more than a shuffled decoder, minority classes stay < 1%, and on benign seeds the added diversity is undirected harm. Post-hoc diagnostic: the proposal edge is a CODEC with three COUPLED defects -- (1) untrained decoder, (2) the decoder's unbounded raw output is fed to E2 as the action vector (module.py:644-647, 2280; executed-action norm 321-1200 vs ~0.25 native once trained), (3) the first CEM iteration samples ~12x outside the encoder's range (module.py:2151 sigma=1). The untrained decoder's small weights MASKED (2)-(3). A decoder-half substrate row must therefore cover the whole codec (joint encoder/decoder training, bounded decode, matched sampling scale) or proposals should move to action space; a decoder-only row as GFLAG-0488 recommended would reproduce this failure.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T23:41:56Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "superseded",
+      "resolved_at": "2026-09-25T11:29:59Z",
+      "resolution_note": "governance-20260925: superseded by GFLAG-0501 (Q2) + coupled_loop_repair_campaign_plan.md node W1, scoped as the whole-codec repair this flag's causal probe (a369f411ff8) showed was necessary."
     },
     {
       "flag_id": "GFLAG-0491",
@@ -7016,9 +7016,9 @@
       "summary": "Gradient-reach census (REE_assembly/evidence/planning/gradient_reach_census_20260925.md, 940c690c9dd; canaries pass: action_object_decoder untrained 5/5 recipes, DR-13 GRU grad None 80/80 under E1/E2, positive controls move): at REEConfig defaults the agent does NO waking gradient learning (40 train-mode ticks: 0 optimizers built, 0/717k params changed except the non-gradient residue RBF). Every trained parameter is trained by a DRIVER-built optimizer and no recipe trains everything read at act time (>= 6 act-path modules at random init in each; never-moved share A 32%, B 30%, C 95%). NEW, unregistered: E3.harm_eval_head (read every E3 tick, e3_selector.py:1386<-1678, commented 'TRAINED') is untrained in 4/5 recipes incl. all-ON; the all-ON recipe (14 of 69 recent drivers) trains NO E1 and NO E2-self head (E2-self in optimizer, grad None 24/24) though both are read every tick; the beta/theta/delta depth stack + top-down links (22.6k params) are random in 4/5 and added into z_world/z_self on every sense(); terrain_prior untrained 5/5. Evidence from all-ON-family drivers that reads E1 prediction, E2-self or harm_eval as learned should be re-examined. Owed to /governance: register a native waking-trainer row (ree_core-owned per-module optimizer set with a grad-reach guard -- naive Adam(all) reproduces a 32% dead-optimizer share) or narrower rows per the census record Section 3.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-24T23:57:37Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:59Z",
+      "resolution_note": "governance-20260925: addressed -- native WakingTrainer design (REE_assembly 0c0f5b76ec), grad-reach guard instrument (ree-v3 ec1f569), WakingTrainer skeleton + HarmEvalMember default-OFF (ree-v3 cc20be56635f); registered as coupled_loop_repair_campaign_plan.md nodes C0/C1 (done), T1/W6a (owed, tracked there). MECH-523 unchanged (trainer OFF by default)."
     },
     {
       "flag_id": "GFLAG-0492",
@@ -7085,9 +7085,9 @@
       "summary": "V3-EXQ-1099 (1080-pattern contamination extension) REFUSED at /queue-experiment Step 4.5: red-team BLOCKING, both decisive findings re-verified from source. (F2, MECH-427) V3-EXQ-883's contamination exposure lands entirely on its NO_ATTAINMENT arm (dies health_depleted at step 7/40 on every seed, 82.5% window loss), but that arm's DV parent_goal_norm_final is exactly 0.0 in BOTH arms because STAY never attains a waypoint; both of 883's criteria depend only on the never-exposed ATTAINED arm, so its verdict is PASS/supports in both arms by construction while the 1080 taxonomy would label it truncated_verdict_robust (a PASSED sensitivity test) and clear MECH-427 on it -- the 904 'insensitive by construction' shape 1080's own autopsy flagged, with no taxonomy class for it. (F1, INV-054) V3-EXQ-435's landed evidence_direction non_contributory is a hand-applied 2026-04-22 reclassification; the driver's own _aggregate over the same per-seed rows returns does_not_support, so stock_reproduces_original is False for 435 by construction and would emit a phantom substrate-drift finding. GENERALISABLE: a landed manifest's evidence_direction is not necessarily the driver's own verdict, so any probe whose DV is verdict-change must re-aggregate the landed per-seed rows rather than read the amended field (435 is the only reclassified target among this probe's four and 1080's four). (F4/F5, INV-054) 278's recovery latency is already at its floor of 1 and the gate can only raise benefit exposure, so a flip to >50 is unreachable; and the depression the DV turns on is established in the 3-hazard phase-1 env where the gate is inert by design, so clearing INV-054 on this probe would be over-read. Script authored, smoke PASS x3, validate_experiments --strict OK, LANDED NOT QUEUED (ree-v3 902c82b1b9); no queue entry appended so it cannot run. Every available fix changes what gets measured, so none was applied unattended -- decision chip chip-20260925-exq1099-redteam-blocking carries the options. Full write-up: REE_assembly 3c3554a9c4 evidence/planning/v3_exq_1099_contamination_extension_redteam_blocking_staged_20260925.md",
       "raised_by_session": "metaworker-science-20260925-orchc-contamination-probe",
       "raised_at": "2026-09-25T02:44:06Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:57Z",
+      "resolution_note": "governance-20260925: chip-20260925-exq1099-redteam-blocking (done) applied option B+D under standing delegation rec-20260924-fb429c72 (insensitive_by_construction class; originals re-derived from driver _aggregate). V3-EXQ-1099 queued (ree-v3 1fdfd4e05e/236fb2d927). Residual 231a coupling tracked by chip-20260925-exq1099-231a-coupling-detector."
     },
     {
       "flag_id": "GFLAG-0497",
@@ -7153,9 +7153,9 @@
       "summary": "USER DECISIONS 2026-09-25T06:15Z on the breakthrough pass's held questions (REE_assembly evidence/planning/breakthrough_pass_synthesis_20260925.md section 7): Q4a hybrid WakingTrainer; Q4b skeleton+harm_eval loss on ree-v3 main default-OFF first, then the coupled repair on integration/<slug>; Q2 one coupled campaign (codec + E2 action coverage + grounded valuation + trainer ON); Q1 5-seed cloud valuation battery conditional on the relative-to-null detector validating. Disposition GFLAG-0491 (substrate row = WakingTrainer), GFLAG-0488/0490/0485 (fold into the coupled campaign, not a decoder-only row) and GFLAG-0487 (battery via /queue-experiment only if the detector passes) accordingly; GFLAG-0479/0481/0484/0486/0489 are unaffected.",
       "raised_by_session": "orchestrate-20260924-breakthrough",
       "raised_at": "2026-09-25T06:22:42Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:30:00Z",
+      "resolution_note": "governance-20260925: decisions Q4a/Q4b/Q2 implemented on ree-v3 main (cc20be56635f, ec1f569) and in coupled_loop_repair_campaign_plan.md; sibling flags 0487/0488/0489/0490/0491 closed this cycle, 0485 applied as a caveat. Q1 gate (V3-EXQ-1105a) and branch cut BR0 remain; ongoing status lives in the campaign plan's node table, not this flag."
     },
     {
       "flag_id": "GFLAG-0502",
@@ -7457,9 +7457,9 @@
       "summary": "ARC-081's DR-13 'validated' record rests on V4-EXQ-002's PASS, which was vacuous (untrained GRU; autopsy V3-EXQ-1078), and GFLAG-0481 shows z_self has zero causal reach into behaviour even after training was restored; the claim should not read as validated.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:57:55Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:57Z",
+      "resolution_note": "governance-20260925: already fixed by REE_assembly d95f7e37be4 -- ARC-081 what_would_answer carries the 2026-09-25 CURRENCY CHECK (V4-EXQ-002 PASS adjudicated vacuous by failure_autopsy_V3-EXQ-1078; DR-10/z_self zero causal reach per GFLAG-0481). No status was ever raised on the vacuous PASS."
     },
     {
       "flag_id": "GFLAG-0523",
@@ -7471,9 +7471,9 @@
       "summary": "ARC-082's title claim of 0.0 gradient is stale; the real blocker is a missing consumer edge (SD-016) plus SD-055's differentiable-CEM gradient path being severed on BOTH arms (agent.py detaches), so SD-055's falsifier is refused, not merely unqueued.",
       "raised_by_session": "thought-digest-registry-backlog-20260925",
       "raised_at": "2026-09-25T10:58:00Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T11:29:58Z",
+      "resolution_note": "governance-20260925: already fixed by REE_assembly d95f7e37be4 -- ARC-082 what_would_answer CURRENCY CHECK records SD-016 leg A passed, the real blocker is the missing MECH-151 action_bias consumer edge, and SD-055's gradient is severed on both arms (falsifier REFUSED, not merely unqueued). See also resolved GFLAG-0301."
     },
     {
       "flag_id": "GFLAG-0524",
