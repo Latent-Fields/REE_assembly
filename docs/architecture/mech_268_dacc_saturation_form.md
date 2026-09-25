@@ -447,6 +447,11 @@ Any future MECH-268 experiment must satisfy all four:
      proxy (harm-forward rollout cost, already named as the intended refinement in the
      `agent.py:7536` comment) is a known build, and its blast radius is SD-032b as a whole, not
      MECH-268.
+     **Update 2026-09-25: BUILT** (ree-v3 `4cce9b8`, default-off
+     `dacc_candidate_effort_source="harm_a_forward"`; record
+     `docs/substrate/SD-032b-amendment-candidate-effort-proxy.md`). Effort now varies within a
+     tick; argmin-responsiveness still needs a trained E2_harm_a and a `dacc_effort_cost` on the
+     payoff's scale (at the 0.1 default the effort term is ~1000x below the payoff range).
    - `dacc_pe`'s operating scale is uncalibrated against the mode register's critical value
      (~`external_task_bias`), measured at ~0.99 untrained, ~3.6 after a 120-episode P0 warmup,
      and ~16-17 on the V3-EXQ-464d/467d configuration. Because f_sat's floor is a fixed

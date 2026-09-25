@@ -82,7 +82,7 @@
     }
   },
   "last_seen_session": "gov-20260925-orch1707",
-  "last_updated_utc": "2026-09-25T05:20:12Z",
+  "last_updated_utc": "2026-09-25T07:34:03Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-08-21 (chip-20260821-substrate-queue-next-pointer-stale): the 2026-06-06 pointer was ~2.5 months stale -- it parked next-implement on a governance decision gated on 'the V3-EXQ-643 selection-authority validation', which has long since resolved (modulatory-bias-selection-authority and crf-availability-maintenance both READY/implemented in this queue). Honest re-audit of the queue as of 2026-08-21: of 161 entries, NONE of the not-yet-built candidates has ready:true. pending_implementation (2, both ready=False): SD-e1-rollout-consistency-training, SD-SLEEP-ENTRY-PRESSURE. proposed (1, ready=False): MECH122-SENSORY-GATING-OFFLINE-PROTECTION. explicitly DO_NOT_BUILD_YET (2): SD-083 (gated on the V3-EXQ-829 failure autopsy), mech151-action-bias-has-no-e3-ranking-channel (gated on an ARC-007 governance decision). probe_queued (1): sd_salience_contested_mode_occupancy -- a probe is owed before any build. candidate_v3_pending (6, all ready=False): MECH-256, MECH-257, ARC-064, MECH-316, MECH-317, SD-054. Cross-checked against inter_governance_workset.v1.json: all 9 items tagged skill '/implement-substrate' are status 'blocked' -- zero ready. CONCLUSION: there is no next implement-substrate build right now. Every pending/proposed/candidate entry is either explicitly gated on a named autopsy/governance decision, or awaiting a probe, or blocked in the IGW workset. This is a /governance disposition to re-open, not a dispatcher pick -- the next actual step is clearing one of the named gates (V3-EXQ-829 autopsy, ARC-007 decision, the salience-contested-mode probe, or a V3-pending validation), not selecting a substrate target directly. Re-check this pointer once any of those gates clears.",
     "sd_id": null,
@@ -13147,8 +13147,8 @@
       "sd_id": "sd032b-candidate-effort-proxy",
       "title": "SD-032b Shenhav-EVC consumer: replace the constant candidate_effort proxy with a real per-candidate effort cost. candidate_effort = c.actions.shape[1] (the physical rollout horizon, identical for every candidate in a select_action call), so control_req * candidate_effort is a uniform shift (argmin-invariant) and the Croxson harm_interaction term is identically zero -- the whole EVC effort term cannot change E3 selection in any regime.",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": true,
+      "status": "implemented_pending_validation",
+      "ready": false,
       "design_doc": "docs/architecture/mech_268_dacc_saturation_form.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -13160,7 +13160,8 @@
           "experiment_type": "fsat-form-vs-gradedness investigation (chip-20260918-fsat-form-vs-gradedness)",
           "metric": "distinct candidate_effort values within a tick = 1 (30.0) on 120/120 ticks; ticks where the E3 argmin changes across all 7 reachable f_sat values = 0/120 (REEConfig.from_dims use_dacc, affective harm stream, salience coordinator, lateral PFC, dacc_saturation_enabled; CausalGridWorldV2 8x8 / 8 hazards; dacc_weight 0.0 and 1.0)",
           "target": "candidate_effort spread > 0 within a tick on most ticks, and the E3 argmin responsive to control_req / f_sat on a non-trivial fraction of ticks",
-          "resolved": "open"
+          "resolved": "partial",
+          "resolved_note": "Structural half resolved by ree-v3 4cce9b8: candidate_effort now varies within a tick (80/80 ticks) under dacc_candidate_effort_source='harm_a_forward'. Argmin-responsiveness half OPEN: not yet measured on a trained agent at a cost scale where the effort term can compete with the payoff."
         }
       ],
       "implementation_hint": "ree_core/agent.py builds effort = torch.tensor([float(c.actions.shape[1]) for c in candidates]) (~line 7537); the adjacent comment already names the intended refinement: a harm-forward rollout cost per candidate. Blast radius is SD-032b as a whole (every Shenhav-EVC consumer), not MECH-268. Do not scale the scoring window -- MECH-267 deliberately leaves config.horizon fixed.",
@@ -13172,7 +13173,11 @@
       "added_session": "governance-flags-20260923b",
       "added_utc": "2026-09-23T18:57:30Z",
       "last_seen_session": "governance-flags-20260923b",
-      "provenance": "GFLAG-0330 residual (D half 1), user decision 2026-09-23 in governance-flags-20260923b; owed per docs/architecture/mech_268_dacc_saturation_form.md 'Two substrate_queue entries are owed' item 4."
+      "provenance": "GFLAG-0330 residual (D half 1), user decision 2026-09-23 in governance-flags-20260923b; owed per docs/architecture/mech_268_dacc_saturation_form.md 'Two substrate_queue entries are owed' item 4.",
+      "implemented_utc": "2026-09-25T07:34:03Z",
+      "implemented_commit": "ree-v3 4cce9b8",
+      "implemented_session": "igw-222-substrate-ready-sd032b-candidate",
+      "implementation_note": "Landed ree-v3 main 4cce9b8 (IGW-20260923-222). REEConfig.dacc_candidate_effort_source 'horizon' (default, bit-identical) | 'harm_a_forward' (E2_harm_a rolled over each candidate's own actions, effort_k = mean_t ||z_harm_a_pred_t||); dacc_effort_rollout_steps (0 = full horizon). Contract tests/contracts/test_sd032b_candidate_effort_proxy.py; record docs/substrate/SD-032b-amendment-candidate-effort-proxy.md. Liveness (untrained agent, 8x8/8 hazards, dacc_weight=1.0): effort spread >0 on 80/80 ticks (was 0/80), max |harm_interaction| 4.70 (was 0). INERT-BY-SCALE at default dacc_effort_cost=0.1: effort-term range ~0.02 vs E3 payoff range ~25 -> committed actions unchanged 0/60; at dacc_effort_cost=10 they change 10/60 ticks (horizon source: 0/60 at any cost). Validation owed: trained E2_harm_a (P0) + a dacc_effort_cost / dacc_bias_max_abs setting that puts the effort term on the payoff's scale; acceptance = failure_record target."
     },
     {
       "sd_id": "commit-readiness-gate-no-behavioural-consumer",
