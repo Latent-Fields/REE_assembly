@@ -1,4 +1,9 @@
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml, experiment_queue.json, or substrate_queue.json.**
+**Status: RESOLVED AND APPLIED 2026-09-25. Nothing in this file has been written to claims.yaml or substrate_queue.json; the experiment IS now queued (see section 6).**
+
+*(This file was staged AWAITING USER REVIEW when the design was refused at red-team pass 1. The
+decision came back the same day and has been applied -- section 6 records what was chosen, what was
+built, and what the second red-team pass then found. Read section 6 before sections 1-5, which
+describe the pre-decision state.)*
 
 # V3-EXQ-1099 contamination-truncation extension probe -- red-team BLOCKING, design NOT queued
 
@@ -149,3 +154,87 @@ monostrategy caveats already recorded per target.
   at full scale under both arms through the probe's own instrument.
 - Pre-flight gate results, the three smokes, and the measured runtimes are in the driver's module
   docstring and in this session's `TASK_CLAIMS` completion note.
+
+
+---
+
+## 6. RESOLUTION -- decision applied, experiment queued (2026-09-25)
+
+**Decision** by `orchestrate-20260924-1707` under the user's standing delegation
+(`rec-20260924-fb429c72`) on `chip-20260925-exq1099-redteam-blocking`: this session's recommendation
+**(B) + (D)**, plus two additions -- pre-register INV-054 as phase-2-only and explicitly not cleared
+on phase-1 grounds (F4/F5), and make the routing grid READ `stock_reproduces_original` and
+`monostrategy_suspect` so drift and contamination-sensitivity are separable (F6).
+
+**Queued: V3-EXQ-1099**, `ree-v3` `1fdfd4e05e` (entry) on top of `236fb2d927` (final script).
+Verified reconciled into the coordinator DB by snapshot survival: the phase3 queue writer's
+snapshot `58e33c21` re-materialised `experiment_queue.json` from the DB *after* the entry commit and
+V3-EXQ-1099 survived it, so it will be claimed by a runner. `estimated_minutes` 360 is an upper
+bound measured on a contended 2-core box.
+
+### What was implemented
+
+| Decision | Implementation |
+|---|---|
+| (B) `insensitive_by_construction` class | `dv_exposure_coupling` is **measured** per target (`coupled`/`decoupled`/`unknown`; `unknown` deliberately does not trigger the class). A material exposure that is `decoupled` classifies `insensitive_by_construction`: determinable, an informative negative, `can_clear_its_claim = False`, excluded from readiness. Verified at FULL scale for 883: `n_exposed_and_dv_moved = 0`, 3 moved-but-unexposed -> `decoupled`, so MECH-427 lands in `claims_not_covered` as NOT ANSWERABLE BY THIS INSTRUMENT. |
+| (D) driver-derived baselines | `_resolve_original()` uses each driver's own `_aggregate` over the landed per-seed rows, else a manifest with no amendment note, else **None** (never False). 435 now resolves via `driver_aggregate` to `does_not_support`, killing the phantom drift entry. |
+| INV-054 phase-2 scoping | `CLAIM_SCOPE` pre-registers it before any run and the scope string travels with any clearance into `direct_claims_clearance_scope`, so a bare id cannot be read as an unconditional clear. |
+| Drift/monostrategy-aware routing | Sensitivity splits into `attributable` / `confounded`; an all-confounded set routes to `contamination_sensitivity_present_but_not_attributable_adjudicate_drift_first`. A not-ready run whose only uncovered claims are non-reproducing routes to `historical_verdicts_not_reproduced_adjudicate_drift_first` rather than reading as an instrument fault. |
+
+### Two bugs the new machinery found in itself, before any real run
+
+Both were caught by reading the detector's own per-cell output, not by review -- which is the case
+for recording that detail rather than a bare verdict:
+
+1. **Positional pairing of DV rows to episodes was wrong.** A dying episode is recorded at its own
+   `done` tick while a survivor is only recorded by `_flush_live()` at the end of the cell, so the
+   episode list is in COMPLETION order, not creation order. It mis-attributed NO_ATTAINMENT's
+   step-7 death to ATTAINED. Now paired BY NAME via a per-cell `phase` tag, asserted, and returns
+   `unknown` rather than a wrong answer if it stops holding. It had failed *safe* (reported
+   `coupled`, so the class did not fire), but it was wrong.
+2. **The readiness bar became unsatisfiable.** With MECH-427 permanently unanswerable, a 3-of-3
+   claim-coverage bar was unreachable by construction. The remedy is to **scope the gate, never
+   lower it**: an unanswerable claim is scoped out of the denominator with its reason recorded, and
+   `MIN_ANSWERABLE_CLAIMS = 2` keeps the gate falsifiable -- it still fails if 231a or both of
+   278/435 go degenerate.
+
+### Red-team pass 2 (fable, on the revised causal chain): CONTESTED
+
+It confirmed every pass-1 fix from source and independently re-verified the four `intended_units`
+literals. Four live findings, all **fixed**:
+
+- **P2-1 (the real one).** Attribution was one-sided -- applied only to SENSITIVE targets. A target
+  whose verdict was ROBUST but which never reproduced its driver-derived baseline could still clear
+  its claim and drive `outcome: PASS`, while the same manifest listed it under
+  `historical_verdict_not_reproduced`. Asserting a claim's historical evidence is contamination-safe
+  is unsupportable when that historical verdict did not reproduce at all. Clearance now requires
+  STOCK reproduction and no monostrategy collapse.
+- **P2-2.** A gate-RESTORES-history outcome (STOCK fails, OPTOUT reproduces the baseline) is the
+  strongest contamination attribution available and was routed `not_attributable`, because only
+  STOCK was ever examined. Attribution now accepts either arm, and
+  `optout_restores_historical_verdict` is recorded.
+- **P2-3.** `reruns` could name an unanswerable claim (a re-run of this design cannot decide it), and
+  a claim could land in no run-level bucket at all, visible only in `per_claim_disposition`.
+- **P2-5.** `criteria_non_degenerate` was keyed on `determinable` alone, so an
+  `insensitive_by_construction` target's two non-discriminating criteria were labelled
+  NON-degenerate -- the opposite of the finding, in the one field built to report it.
+
+Two **dismissed with reasons**, recorded in the manifest at
+`interpretation.residual_caveats_pass2`:
+
+- **P2-6.** Coupling is measurable only for 883, so it is `unknown` for 231a -- the sole load-bearing
+  input to C_PREV -- and the F2-style vacuity cannot be positively *ruled out* there. Accepted as a
+  stated limitation rather than silently: the risk is bounded by the P2-1 fix (231a cannot clear
+  MECH-106 unless it reproduced its baseline), and a derivable 231a coupling detector (per-seed
+  `da_pos` plus the same per-cell tagging 883 uses) is **named follow-on**. Separately, `coupled`
+  tests DV movement rather than reach-to-criterion.
+- **P2-4.** If 435 is `cannot_determine`, INV-054's clearance rests on 278 alone, whose
+  recovery-latency criterion is pinned at its floor of 1. `CLAIM_SCOPE` already states this.
+
+### The generalisable lesson, restated because it outlives this probe
+
+**A landed manifest's `evidence_direction` is not necessarily the driver's own verdict** --
+governance amends that field in place. Any probe whose DV is "does the target's own verdict change"
+must re-aggregate the landed per-seed rows rather than read the amended field. Checked across this
+probe's four targets and V3-EXQ-1080's four: 435 is the only amended one, so 1080's readings are not
+retroactively suspect, but the exposure was structural rather than bad luck.
