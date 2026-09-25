@@ -6659,9 +6659,9 @@
       "summary": "ARC-021 H2 merged-arm crash is FIXED by default-off REEConfig.detach_carried_prev_action (ree-v3 b6f6733; contract tests/contracts/test_arc021_h2_merged_optimizer_backward.py). The mutator was the merged Adam step reached through the undetached carried _last_action -> prev_action (SD-007 reafference), not ContextMemory.write, which confirms GFLAG-0460's premise correction. At REEConfig.large the merged arm now runs 40/40 clean steps. Owed: claims.yaml ARC-021 implementation_note, and the H2 merged-vs-separate validation run with the flag ON in BOTH arms.",
       "raised_by_session": "orchestrate-20260924-0808",
       "raised_at": "2026-09-24T12:00:33Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T06:16:03Z",
+      "resolution_note": "Applied (REE_assembly 46e1b32ce8, /governance 2026-09-25 governance-20260925-0548 (rec-20260925-1797c758)): ARC-021 evidence_quality_note records the b6f6733 detach_carried_prev_action fix and that the mutator was the merged Adam step via prev_action, not ContextMemory.write (confirming GFLAG-0460). The H2 flag-ON-both-arms validation is still owed via GFLAG-0473 / chip-20260924-arc021-h2-merged-leg-queue."
     },
     {
       "flag_id": "GFLAG-0466",
