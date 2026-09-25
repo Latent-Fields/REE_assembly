@@ -1,6 +1,6 @@
 # N3 proper: which E3 horizon aggregation tracks true consequence with the REAL W3 member head? (pre-registered probe)
 
-- **STATUS: PRE-REGISTERED (no registered seed has run).** Results will be appended below this pre-registration without editing it; only this status line changes.
+- **STATUS: FINAL (2026-09-25T22:11Z). RESULTS appended below; the pre-registration (committed 21:32Z as `78820b45c7`) is unchanged apart from this line. Pre-registered verdict: NONE_PASS.** Preconditions all hold (W3 head L2R bar 4/5, missed only on s532 at 0.467; twin at chance 5/5; every canary PASS), so this is a real verdict, not CANNOT_DETERMINE. **Gate (a) passes for DISC_0.5 (4/5), DISC_0.8 (4/5) and D1 (4/5, excluded by SD-081). Gate (c) passes for no aggregation (DISC_0.5 0/5; best 1/5).** The literal action-blind reference was degenerate on 100% of states, as predicted, so (c) was read against the pre-registered BLINDR fallback. Against it, real and twin move E3's pick about equally often (0.59-1.00 vs 0.79-1.00), because the fixed-permutation twin is anti-mapped, not blank (premise 4). **W4 is not buildable on the gate as written. It is buildable on DISC_0.5 if the gate owner re-specifies (c)** (options in the last section).
 - Session `bt0925-n3` (orchestrate-20260924-breakthrough-c2), chip_ref `chip-20260925-coupled-n3-proper`. Brief: `.scratch/breakthrough-20260924/Z_n3proper.md`. Plan of record: `coupled_loop_repair_campaign_plan.md` sec 3 (W3, W4), sec 4 (N3 row), decision log 2026-09-25T14:19Z.
 - **Design = N3-pre** (`n3_pre_e3_aggregation_probe_20260925.md`, `d4bb6449b3`) **with the proxy head REPLACED by the W3 member** (`E2WorldMember`, ree-v3 `integration/coupled-loop-repair` @ `042895a`), trained natively by the W3 member-gate protocol (`w3_e2_world_member_build_20260925.md`, `f82cb986c5`; `probes/w3/w3_l2r_member_probe.py`), and with the three gate-definition fixes of the 14:19Z decision log entry.
 - Code: ree-v3 @ `042895a3a2` in a throwaway detached worktree (`/Users/dgolden/REE_Working/.scratch/wt-n3`). **No ree_core edits.** Instruments: `experiments/_lib/coupled_acceptance.py` (I1, on the branch via main `c9612dd`): `collect_probe_states`, `env_q_values`, `probe_state_validation`, `e3_score_fn`, `e3_choice_quality`, `spearman`, and its pinned canaries `canary_e3_structure` / `canary_action_discrimination`. Probe script: `probes/n3/n3_probe.py`.
@@ -70,3 +70,74 @@ Per seed and per aggregation, differences REAL minus SHUF:
 **No tuning, and no extra arms or seeds after seeing results.** Post-hoc diagnostics, if any, are labelled as such.
 
 **Known limits, in advance.** J_true is E3's own one-step score (F favours small moves; `harm_eval_head` untrained), so (a) is partly self-consistency; (b) is capped by valuation until W5 (N3-pre oracle 0.09-0.22 vs chance 0.20). Encoder random-init and frozen (W6a not built). 5 seeds, ~40 states each. The probe agent's residue field is the one at the end of the probe run.
+
+## RESULTS (2026-09-25T22:11Z; full tables in `probes/n3/results/SUMMARY.txt`, raw `N3_s53{1..5}.json` / `.log`)
+
+### Run log (resources only; `results/decisions.log`)
+- The Mac probe lock was held by `bt0925-spcem2` from 20:50Z to 21:27Z, so this probe waited. Then: smoke s530 (attempt 1 crashed on the BLIND guard; attempt 2 passed), pre-registration commit at 21:32Z, and seeds 531-535 one per lock hold from 21:45Z to 22:10Z (4.2-6.7 min each).
+- Available memory was 1,754-2,078 MB at each start, with no waits. Every seed gave 40-43 probe states, so the re-run rule never fired. Nothing else changed.
+
+### Preconditions (all hold)
+
+| seed | REAL disc4 / k (TE4) | REAL disc5 (TEW) | SHUF disc4 / disc5 | BLIND disc4 (tie-fair disc5) | BLINDR disc4 | REAL t1 / t30 / true norm | BLINDR t30 | INIT t30 |
+|---|---|---|---|---|---|---|---|---|
+| 531 | **0.510 / 10** | 0.396 | 0.187 / 0.151 | 0.213 (0.200) | 0.207 | 0.39 / 0.63 / 0.34 | 8.4 | 117 |
+| 532 | **0.467** / 10 (miss) | 0.385 | 0.163 / 0.154 | 0.283 (0.200) | 0.283 | 0.40 / 0.49 / 0.38 | 6.0 | 1033 |
+| 533 | **0.483 / 10** | 0.374 | 0.147 / 0.113 | 0.243 (0.200) | 0.307 | 0.48 / 0.55 / 0.46 | 32.6 | 205 |
+| 534 | **0.473 / 10** | 0.292 | 0.227 / 0.149 | 0.227 (0.200) | 0.227 | 0.36 / 0.43 / 0.34 | 13.7 | 154 |
+| 535 | **0.477 / 10** | 0.476 | 0.170 / 0.157 | 0.247 (0.200) | 0.303 | 0.42 / 0.49 / 0.40 | 21.9 | 432 |
+
+- **W3 head L2R bar: 4/5.** Only s532 misses, at 0.467 against the 0.47 bar (the W3 gate's own s108 missed at 0.460). Under the pre-registered rule this is not CANNOT_DETERMINE; s532 is named, and a sensitivity reading without it is given below. The member guard PASSed for REAL and SHUF on 5/5 seeds.
+- **Twin at chance: 5/5.** It is below chance (disc4 0.147-0.227), i.e. anti-mapped, as in the W3 gate.
+- **BLIND is exactly action-blind.** Its `world_action_encoder.weight` is byte-identical to init on 5/5 seeds, its tie-fair disc5 is exactly 0.200, and it is trained and bounded (t30 0.41-0.61).
+- **BLINDR** is action-uninformative (disc4 0.207-0.307) but diverges moderately (t30 6-33, true norm ~0.4). That is far below INIT (117-1033), but it is not bounded.
+- **Canaries, 5/5 seeds:**
+  - cloned-env validation max |diff| 0.0 (40-43 states validated);
+  - depth decomposition 0.0;
+  - batched-vs-single scorer at most 8.5e-8 relative;
+  - I1 `canary_e3_structure` and `canary_action_discrimination` reproduced.
+- **Behaviour, for context:** post-phase actions stay concentrated (modal class 57-92%). Native pools carry a median of 3-4 distinct first-action classes.
+
+### Gates per aggregation (REAL / SHUF, with REAL minus SHUF)
+
+| agg | (a) Spearman diff > 0.15 | (c) flip vs BLINDR, diff > 0.15 | (b) pick in env-Q-best, report only | habit-pick agreement | SD-081 |
+|---|---|---|---|---|---|
+| D1 | 4/5 (+0.74 / +0.61 / +0.11 / +1.00 / +0.70) | 0/5 (-0.21 to +0.03) | 5/5 | 1.00 (by definition) | **incompatible** (reference only) |
+| **DISC_0.5** | **4/5** (+0.75 / +0.57 / +0.10 / +0.95 / +0.23); REAL 0.50 / 0.31 / 0.11 / 0.49 / -0.01 vs SHUF -0.24 / -0.26 / 0.02 / -0.47 / -0.24 | **0/5** (-0.20 / +0.02 / +0.07 / +0.10 / -0.05); REAL 0.59-1.00, SHUF 0.79-0.98 | 5/5 (REAL 0.21-0.33 vs SHUF 0.02-0.07; chance 0.20) | 0.35-0.60 (not degenerate) | compatible |
+| DISC_0.8 | 4/5 (+0.76 / +0.19 / -0.05 / +0.94 / +0.25) | 1/5 (s534 +0.24) | 4/5 | 0.07-0.28 | compatible |
+| FIDW | 3/5 | 0/5 | 1/5 | 0.02-0.10 | compatible (REAL weights depths 2-21..30 on 5/5) |
+| FULL | 3/5 (s532 -0.91: REAL anti-tracks) | 1/5 (s533 +0.17) | 1/5 | 0.05-0.14 | compatible |
+
+- **The gate (c) reference rule fired as pre-registered.** BLIND was degenerate (all 32 candidates tied) on 100% of states on 5/5 seeds, and BLINDR on 0%, so (c) was read against BLINDR on every seed. The plain np.argmin flip rates (index tie-break) agree with the tie-fair ones within 0.05. For reference, flip vs INIT is 0.82-1.00 for both heads under every aggregation, which is N3-pre's non-discriminating reading, reproduced.
+- **Sensitivity without s532** (the bar-miss seed): DISC_0.5 (a) is 3/4, (c) 0/4. The verdict is unchanged.
+- **Pre-registered verdict: NONE_PASS.** No SD-081-compatible aggregation passes (a) and (c) on >= 4/5 seeds. The simplest (a) passer is DISC_0.5; DISC_0.8 also passes (a).
+
+### Reading (not a gate change)
+
+1. **What the W3 member head buys E3 (D2):**
+   - With the real head and DISC_0.5, E3's ranking of the five first actions tracks its own score of the TRUE next state (Spearman 0.31-0.50 on 3/5 seeds; ~0.1 on s533 and s535).
+   - With the twin, the ranking anti-tracks (-0.24 to -0.47 on 4/5 seeds).
+   - Steep aggregations keep this and deep ones wash it out: FULL anti-tracks on s532 (-0.40). This replicates N3-pre and ADDENDUM 2 Measure 2 with the real member.
+   - DISC_0.5's planned pick differs from the habit pick at 40-65% of states, so the SD-081 contrast is real, not nominal.
+2. **Gate (c) cannot separate a correctly mapped head from a permuted one.** A pick-flip rate measures whether the head's action map changes E3's choice, not whether the map is right. The fixed-permutation twin has a full, wrong action map, so it flips the pick as often as the real head does, as predicted in premise 4.
+   - The strictly action-blind reference is degenerate by construction (premise 2: E3 reads z_world only).
+   - Against the action-uninformative BLINDR, both heads flip at 0.6-1.0.
+   - The descriptive "toward-better" reading does not separate them either (DISC_0.5 REAL minus SHUF: +0.09 / -0.07 / -0.10 / +0.20 / -0.20), because J_true of the first-action class is a noisy one-step proxy for a 30-step candidate.
+   - So (c) as specified is a gate-design defect for this twin. It is not evidence that the head fails to reach E3: (a) already shows reach in the predicted direction.
+3. **Gate (b) passes 5/5 for DISC_0.5, but mostly because of the twin.** REAL's pick lands in the env-Q-best set 0.21-0.33 of the time, against chance 0.20 (a small excess on 4/5 seeds). The anti-mapped twin lands there 0.02-0.07, well below chance. REAL minus SHUF > 0.10 therefore does not show grounded choice quality. (b) stays after W5, as decided at 14:19Z.
+
+### Options for the W4 gate owner (the orchestrator decides; none taken here)
+- **(i) Re-specify (c) as a contrast against the action-blind head on choice QUALITY, not on flip rate.** For example: under DISC_0.5, "REAL's pick has a better env-grounded outcome than the BLIND reference's tie-fair pick". Reading it by env-Q waits on W5 for the same reason as (b). Reading it by J_true is noisy (reading 2 above).
+- **(ii) Drop (c) from W4's member gate and gate W4 on (a) alone.** (a) is the head-vs-twin D2 contrast that aggregation can actually affect. On that reading **DISC_0.5 is selected** (4/5, the simplest compatible aggregation), W4 is buildable now, and the choice-quality check moves to the integrated gate after W5 together with (b).
+- **(iii) Keep (c) with a twin that is action-blind rather than permuted.** "Real minus BLIND" flip is then 1 - 1/32 for any head, by construction, so this option only moves the defect.
+
+Recommendation, as analysis and not as a decision: (ii). The plan's own rationale for (c) was to stop "any trained head flips the pick" from passing. Against a matched twin, (a) already does that job: the twin anti-tracks where the real head tracks.
+
+### Domains and limits
+- D2 for (a): swapping the head changes the native consumer's ranking, in the predicted direction against cloned-env consequence. (c) is a degenerate or non-discriminating instrument here, not evidence. No D3.
+- J_true is E3's own one-step score, so (a) is partly self-consistency. Q is noisy.
+- The encoder is random-init and frozen (W6a is not built); world_dim 32; size-12 Phase-0 env; 5 seeds with 40-43 states each.
+
+### Reproduction
+- `probes/n3/n3_probe.py` (one seed; it expects a detached ree-v3 worktree @ `042895a` at `/Users/dgolden/REE_Working/.scratch/wt-n3`, and imports `probes/babble` and `probes/rollout` read-only).
+- `run_one.sh` (Mac probe lock and memory gate); `summarize_n3.py` produces `results/SUMMARY.txt`.

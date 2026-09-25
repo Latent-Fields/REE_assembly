@@ -1,0 +1,18 @@
+[n3 s533 t=   3s] I1 canaries e3_structure=True action_discrimination=True
+/Users/dgolden/REE_Working/REE_assembly/evidence/planning/probes/rollout/rollout_fidelity_probe.py:101: UserWarning: REEConfig.from_dims() called without an explicit alpha_world= kwarg: defaulting to alpha_world=0.3. SD-008 requires alpha_world >= 0.9 for a stable operating point (encoder EMA double-smoothing suppresses event responses below that floor). This does not change behaviour -- pass alpha_world= explicitly (0.3 to keep current behaviour, >= 0.9 for the SD-008 floor) to silence this warning.
+  cfg = REEConfig.from_dims(**kw)
+[n3 s533 t=  86s] MEMBER real retained 2286 guard {'e2_world': 'PASS'} post_actions {'0': 1110, '1': 0, '2': 5, '3': 26, '4': 59} r/100 -0.82
+[n3 s533 t= 166s] MEMBER shuf retained 2286 guard {'e2_world': 'PASS'} post_actions {'0': 1000, '1': 0, '2': 7, '3': 130, '4': 63} r/100 -0.81
+[n3 s533 t= 247s] MEMBER blind retained 2286 guard {} post_actions {'0': 1093, '1': 0, '2': 5, '3': 31, '4': 71} r/100 -0.99
+[n3 s533 t= 249s] EVAL INIT   disc4=0.230 k=0 disc5(tew)=0.226 fair=0.226 k30=0 norm t1/t30/true=0.63/204.47/0.46
+[n3 s533 t= 250s] EVAL REAL   disc4=0.483 k=10 disc5(tew)=0.374 fair=0.374 k30=21 norm t1/t30/true=0.48/0.55/0.46
+[n3 s533 t= 251s] EVAL SHUF   disc4=0.147 k=10 disc5(tew)=0.113 fair=0.113 k30=20 norm t1/t30/true=0.48/0.56/0.46
+[n3 s533 t= 252s] EVAL BLIND  disc4=0.243 k=10 disc5(tew)=0.209 fair=0.200 k30=19 norm t1/t30/true=0.48/0.61/0.46
+[n3 s533 t= 253s] EVAL BLINDR disc4=0.307 k=0 disc5(tew)=0.174 fair=0.174 k30=0 norm t1/t30/true=0.52/32.58/0.46
+[n3 s533 t= 282s] PROBE n=41 validation=PASS maxdiff=0.0
+[n3 s533 t= 296s] AGG D1       rho 0.0975609756097561/-0.014634146341463428  Qbest 0.2682926829268293/0.0975609756097561  flipBLIND 0.97/0.97 (deg 1.00) flipBLINDR 0.97/0.96 (deg 0.00) habit_agree=1.00
+[n3 s533 t= 296s] AGG DISC_0.5 rho 0.1121951219512195/0.017073170731707304  Qbest 0.2926829268292683/0.04878048780487805  flipBLIND 0.97/0.97 (deg 1.00) flipBLINDR 1.00/0.93 (deg 0.00) habit_agree=0.41
+[n3 s533 t= 296s] AGG DISC_0.8 rho 0.21463414634146338/0.2658536585365853  Qbest 0.21951219512195122/0.0  flipBLIND 0.97/0.97 (deg 1.00) flipBLINDR 0.88/0.79 (deg 0.00) habit_agree=0.07
+[n3 s533 t= 296s] AGG FIDW     rho 0.2121951219512195/0.35365853658536583  Qbest 0.17073170731707318/0.0  flipBLIND 0.97/0.97 (deg 1.00) flipBLINDR 0.98/0.99 (deg 0.00) habit_agree=0.02
+[n3 s533 t= 296s] AGG FULL     rho 0.13902439024390242/0.28536585365853656  Qbest 0.2926829268292683/0.0  flipBLIND 0.97/0.97 (deg 1.00) flipBLINDR 0.93/0.76 (deg 0.00) habit_agree=0.05
+[n3 s533 t= 296s] wrote results/N3_s533.json decomp=0 batch_rel=6.16e-08

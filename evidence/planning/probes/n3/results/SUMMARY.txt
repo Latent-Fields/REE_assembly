@@ -1,0 +1,58 @@
+N3 proper summary; seeds present: [531, 532, 533, 534, 535]
+
+-- preconditions --
+seed | REAL disc4/k | REAL disc5 | SHUF disc4/disc5 | BLIND disc4 fair5 | BLINDR disc4 | INIT disc4 | REAL t1/t30/true | bar | twin | canaries
+531 | 0.510/10 | 0.396 | 0.187/0.151 | 0.213 0.200 | 0.207 | 0.237 | 0.39/0.63/0.34 | True | True | ok
+     n_states 43  maxdiff 0.0  decomp 0  batch_rel 0  BLIND w unchanged True  guards R/S/B {'e2_world': 'PASS'} / {'e2_world': 'PASS'} / {}
+     post actions R {'0': 159, '1': 0, '2': 139, '3': 805, '4': 97} S {'0': 151, '1': 0, '2': 201, '3': 731, '4': 117} B {'0': 109, '1': 0, '2': 82, '3': 920, '4': 89} ; t30 SHUF 0.51 BLIND 0.54 BLINDR 8.42 INIT 116.9
+532 | 0.467/10 | 0.385 | 0.163/0.154 | 0.283 0.200 | 0.283 | 0.283 | 0.40/0.49/0.38 | False | True | ok
+     n_states 41  maxdiff 0.0  decomp 0  batch_rel 0  BLIND w unchanged True  guards R/S/B {'e2_world': 'PASS'} / {'e2_world': 'PASS'} / {}
+     post actions R {'0': 823, '1': 0, '2': 320, '3': 4, '4': 53} S {'0': 824, '1': 1, '2': 324, '3': 6, '4': 45} B {'0': 812, '1': 0, '2': 343, '3': 4, '4': 41} ; t30 SHUF 0.51 BLIND 0.48 BLINDR 5.97 INIT 1033.3
+533 | 0.483/10 | 0.374 | 0.147/0.113 | 0.243 0.200 | 0.307 | 0.230 | 0.48/0.55/0.46 | True | True | ok
+     n_states 41  maxdiff 0.0  decomp 0  batch_rel 6.2e-08  BLIND w unchanged True  guards R/S/B {'e2_world': 'PASS'} / {'e2_world': 'PASS'} / {}
+     post actions R {'0': 1110, '1': 0, '2': 5, '3': 26, '4': 59} S {'0': 1000, '1': 0, '2': 7, '3': 130, '4': 63} B {'0': 1093, '1': 0, '2': 5, '3': 31, '4': 71} ; t30 SHUF 0.56 BLIND 0.61 BLINDR 32.58 INIT 204.5
+534 | 0.473/10 | 0.292 | 0.227/0.149 | 0.227 0.200 | 0.227 | 0.257 | 0.36/0.43/0.34 | True | True | ok
+     n_states 40  maxdiff 0.0  decomp 0  batch_rel 7.4e-08  BLIND w unchanged True  guards R/S/B {'e2_world': 'PASS'} / {'e2_world': 'PASS'} / {}
+     post actions R {'0': 10, '1': 513, '2': 677, '3': 0, '4': 0} S {'0': 8, '1': 548, '2': 644, '3': 0, '4': 0} B {'0': 14, '1': 423, '2': 763, '3': 0, '4': 0} ; t30 SHUF 0.42 BLIND 0.41 BLINDR 13.70 INIT 154.2
+535 | 0.477/10 | 0.476 | 0.170/0.157 | 0.247 0.200 | 0.303 | 0.247 | 0.42/0.49/0.40 | True | True | ok
+     n_states 40  maxdiff 0.0  decomp 0  batch_rel 8.5e-08  BLIND w unchanged True  guards R/S/B {'e2_world': 'PASS'} / {'e2_world': 'PASS'} / {}
+     post actions R {'0': 0, '1': 771, '2': 395, '3': 0, '4': 34} S {'0': 0, '1': 627, '2': 533, '3': 0, '4': 40} B {'0': 0, '1': 820, '2': 339, '3': 0, '4': 41} ; t30 SHUF 0.49 BLIND 0.51 BLINDR 21.87 INIT 431.5
+L2R bar misses: [532] -> ok ; twin at chance 5/5 -> ok ; canary failures: none
+
+-- gates per aggregation (REAL / SHUF, diff) --
+D1: (a) 4/5  (c) 0/5 (CD seeds 0)  (b, report) 5/5  habit-pick agreement ['1.00', '1.00', '1.00', '1.00', '1.00']
+  s531 a 0.50/-0.23 d=0.74 P | b 0.21/0.02 d=0.19 | c[BLINDR] 0.63/0.84 d=-0.21 - (plain 0.63/0.84; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.98/0.88 | toward[BLINDR] 0.28/0.21 | n3pre-form rho 0.50/-0.23
+  s532 a 0.34/-0.27 d=0.61 P | b 0.32/0.02 d=0.29 | c[BLINDR] 1.00/0.99 d=0.01 - (plain 1.00/1.00; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.82/0.98 | toward[BLINDR] -0.61/-0.44 | n3pre-form rho 0.34/-0.27
+  s533 a 0.10/-0.01 d=0.11 - | b 0.27/0.10 d=0.17 | c[BLINDR] 0.97/0.96 d=0.00 - (plain 0.98/0.98; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.94/0.96 | toward[BLINDR] -0.46/-0.24 | n3pre-form rho 0.10/-0.01
+  s534 a 0.52/-0.47 d=1.00 P | b 0.30/0.03 d=0.27 | c[BLINDR] 0.94/1.00 d=-0.06 - (plain 0.93/1.00; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 1.00/0.59 | toward[BLINDR] 0.47/0.25 | n3pre-form rho 0.52/-0.47
+  s535 a 0.31/-0.39 d=0.70 P | b 0.33/0.10 d=0.23 | c[BLINDR] 1.00/0.97 d=0.03 - (plain 1.00/0.95; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.83/1.00 | toward[BLINDR] 0.15/0.38 | n3pre-form rho 0.31/-0.39
+DISC_0.5: (a) 4/5  (c) 0/5 (CD seeds 0)  (b, report) 5/5  habit-pick agreement ['0.47', '0.54', '0.41', '0.60', '0.35']
+  s531 a 0.50/-0.24 d=0.75 P | b 0.21/0.05 d=0.16 | c[BLINDR] 0.59/0.79 d=-0.20 - (plain 0.58/0.81; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.93/0.83 | toward[BLINDR] 0.14/0.05 | n3pre-form rho 0.50/-0.24
+  s532 a 0.31/-0.26 d=0.57 P | b 0.29/0.02 d=0.27 | c[BLINDR] 1.00/0.98 d=0.02 - (plain 0.98/0.95; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 1.00/0.97 | toward[BLINDR] -0.22/-0.15 | n3pre-form rho 0.31/-0.26
+  s533 a 0.11/0.02 d=0.10 - | b 0.29/0.05 d=0.24 | c[BLINDR] 1.00/0.93 d=0.07 - (plain 1.00/0.93; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.96/0.95 | toward[BLINDR] -0.39/-0.29 | n3pre-form rho 0.11/0.02
+  s534 a 0.49/-0.47 d=0.95 P | b 0.30/0.03 d=0.27 | c[BLINDR] 0.95/0.85 d=0.10 - (plain 0.95/0.88; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 1.00/0.96 | toward[BLINDR] 0.50/0.30 | n3pre-form rho 0.49/-0.47
+  s535 a -0.01/-0.24 d=0.23 P | b 0.33/0.07 d=0.25 | c[BLINDR] 0.93/0.97 d=-0.05 - (plain 0.88/0.97; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.88/1.00 | toward[BLINDR] -0.20/0.00 | n3pre-form rho -0.01/-0.24
+DISC_0.8: (a) 4/5  (c) 1/5 (CD seeds 0)  (b, report) 4/5  habit-pick agreement ['0.28', '0.27', '0.07', '0.23', '0.15']
+  s531 a 0.53/-0.23 d=0.76 P | b 0.21/0.05 d=0.16 | c[BLINDR] 0.79/0.84 d=-0.05 - (plain 0.79/0.84; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.95/0.91 | toward[BLINDR] 0.21/0.16 | n3pre-form rho 0.53/-0.23
+  s532 a 0.15/-0.04 d=0.19 P | b 0.32/0.02 d=0.29 | c[BLINDR] 0.96/0.95 d=0.02 - (plain 0.98/0.93; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.89/1.00 | toward[BLINDR] -0.05/-0.02 | n3pre-form rho 0.15/-0.04
+  s533 a 0.21/0.27 d=-0.05 - | b 0.22/0.00 d=0.22 | c[BLINDR] 0.88/0.79 d=0.09 - (plain 0.90/0.80; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.98/0.85 | toward[BLINDR] -0.07/-0.02 | n3pre-form rho 0.21/0.27
+  s534 a 0.49/-0.45 d=0.94 P | b 0.33/0.03 d=0.30 | c[BLINDR] 1.00/0.76 d=0.24 P (plain 1.00/0.75; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.98/0.94 | toward[BLINDR] 0.42/0.23 | n3pre-form rho 0.49/-0.45
+  s535 a 0.02/-0.23 d=0.25 P | b 0.12/0.07 d=0.05 | c[BLINDR] 0.88/1.00 d=-0.12 - (plain 0.88/1.00; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.93/1.00 | toward[BLINDR] -0.03/0.00 | n3pre-form rho 0.02/-0.23
+FIDW: (a) 3/5  (c) 0/5 (CD seeds 0)  (b, report) 1/5  habit-pick agreement ['0.09', '0.05', '0.02', '0.10', '0.05']
+  s531 a 0.43/-0.02 d=0.44 P | b 0.23/0.33 d=-0.09 | c[BLINDR] 0.91/0.93 d=-0.02 - (plain 0.91/0.93; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.97/1.00 | toward[BLINDR] 0.09/-0.02 | n3pre-form rho 0.43/-0.02
+  s532 a -0.40/0.36 d=-0.76 - | b 0.10/0.10 d=0.00 | c[BLINDR] 0.98/0.94 d=0.04 - (plain 0.98/0.95; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.93/0.98 | toward[BLINDR] -0.51/-0.44 | n3pre-form rho -0.40/0.36
+  s533 a 0.21/0.35 d=-0.14 - | b 0.17/0.00 d=0.17 | c[BLINDR] 0.98/0.99 d=-0.01 - (plain 0.98/0.98; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.98/0.96 | toward[BLINDR] -0.07/-0.12 | n3pre-form rho 0.21/0.35
+  s534 a 0.55/0.05 d=0.50 P | b 0.35/0.35 d=0.00 | c[BLINDR] 0.93/0.91 d=0.01 - (plain 0.93/0.93; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.93/0.86 | toward[BLINDR] 0.33/0.10 | n3pre-form rho 0.55/0.05
+  s535 a 0.31/-0.22 d=0.53 P | b 0.12/0.07 d=0.05 | c[BLINDR] 1.00/0.99 d=0.01 - (plain 1.00/1.00; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.95/1.00 | toward[BLINDR] 0.62/0.65 | n3pre-form rho 0.31/-0.22
+FULL: (a) 3/5  (c) 1/5 (CD seeds 0)  (b, report) 1/5  habit-pick agreement ['0.14', '0.05', '0.05', '0.12', '0.05']
+  s531 a 0.29/-0.02 d=0.31 P | b 0.19/0.33 d=-0.14 | c[BLINDR] 0.91/0.78 d=0.13 - (plain 0.91/0.77; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 1.00/1.00 | toward[BLINDR] 0.12/0.07 | n3pre-form rho 0.29/-0.02
+  s532 a -0.40/0.51 d=-0.91 - | b 0.10/0.10 d=0.00 | c[BLINDR] 0.98/1.00 d=-0.02 - (plain 0.98/1.00; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.98/1.00 | toward[BLINDR] -0.12/-0.24 | n3pre-form rho -0.40/0.51
+  s533 a 0.14/0.29 d=-0.15 - | b 0.29/0.00 d=0.29 | c[BLINDR] 0.93/0.76 d=0.17 P (plain 0.93/0.76; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.98/0.98 | toward[BLINDR] 0.10/0.12 | n3pre-form rho 0.14/0.29
+  s534 a 0.33/0.03 d=0.30 P | b 0.35/0.35 d=0.00 | c[BLINDR] 1.00/0.90 d=0.10 - (plain 1.00/0.93; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.94/0.93 | toward[BLINDR] 0.42/0.15 | n3pre-form rho 0.33/0.03
+  s535 a 0.18/-0.26 d=0.43 P | b 0.10/0.05 d=0.05 | c[BLINDR] 0.66/0.95 d=-0.29 - (plain 0.68/0.95; BLINDdeg 1.00 BLINDRdeg 0.00) | vsINIT 0.91/1.00 | toward[BLINDR] -0.15/-0.15 | n3pre-form rho 0.18/-0.26
+FIDW REAL weighted depths >= 2 per seed: {531: (2, 24, 23), 532: (2, 30, 29), 533: (2, 21, 20), 534: (2, 22, 21), 535: (2, 22, 21)} -> SD-081 compatible
+
+-- verdict --
+descriptive selection (simplest passing (a)+(c), compatible): NONE_PASS
+(a)-only passers: ['D1', 'DISC_0.5', 'DISC_0.8'] ; (c) CD overall for any simple agg: False
+sensitivity without bar-miss seeds [532]: recompute by hand from per-seed lines above
