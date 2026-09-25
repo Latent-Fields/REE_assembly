@@ -7101,6 +7101,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0498",
+      "claim_ids": [
+        "MECH-287"
+      ],
+      "flag_type": "stale_note",
+      "summary": "MECH-287's DV should be re-pointed to recommits_per_episode: its registered wording, 'freeze re-commit count per PAG release', is NOT INSTRUMENTABLE. A commit fires only from the inactive state and a release only from the active state (ree-v3 ree_core/pag/freeze_gate.py), so within an episode every re-commit is preceded by exactly one release -- recommits <= releases ALWAYS, any per-release ratio is bounded in [0,1], and it is PINNED at exactly 1.0 with zero variance whenever every episode ends frozen, which is V3-EXQ-475's phenotype (1000/1000 freeze-active steps) and precisely the comparator regime MECH-287's own non-degeneracy precondition demands. Measured 1.0000 at 1, 2, 5 and 10 re-commit cycles per episode and never above 1.0 across 400 random freeze/release shapes. So the thresholds derived from V3-EXQ-475's confounded ~12.9 (LOCK_REGIME_FLOOR 8.0, EFFECT_FLOOR_ABS 4.0, MODE_FLIP_RECOMMIT_BUDGET 13) sit ABOVE a 1.0 ceiling and are unreachable rather than merely confounded. OWED EDIT (claims.yaml deliberately not touched by this session): amend functional_restatement and what_would_answer to name recommits_per_episode -- unbounded, non-saturating, and now implemented as the DV in ree-v3 (dv_name/dv_value, contract tests/contracts/test_mech287_pag_episode_readout.py) -- and to record that the '~12x re-commits per release' figure is an instrument artifact. This EXTENDS GFLAG-0477, which already owes an amendment to the same two fields for the original episode-count confound; both should be applied together. Until that amendment lands, experiment_proposals EXP-0371 must STAY blocked_substrate: its criteria would still quote the uninstrumentable quantity. Decision: chip-20260925-mech287-dv-choice, ratified by orchestrate-20260924-1707 under standing delegation rec-20260924-fb429c72. Evidence: evidence/planning/mech287_readout_redteam_findings_20260925.md; substrate_queue entry pag_freeze_gate_phase_scoped_recommit_readout.",
+      "raised_by_session": "metaworker-science-20260925-orchc-mech287-readout-build",
+      "raised_at": "2026-09-25T02:56:54Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
