@@ -341,3 +341,39 @@ Every loss relied on has a producer that runs, and every consumer is real.
 2. Run `/opt/local/bin/python3 guard_canary_probe.py {A_all|A_e1|A_stale|allon|zselfp0|vacuous} <seed>`, and `trainer_cost_probe.py`.
 
 Each case takes < 1 min on the Mac.
+
+## Addendum 2026-09-25: guard landed as an instrument (M1 only)
+
+- **Session:** `bt0925-guard` (Worker M, `orchestrate-20260924-breakthrough`), chip_ref `chip-20260925-grad-reach-guard-instrument`. **Evidence domain: D1** (a reach instrument). It shows that gradient reaches a tensor and the tensor moves. It does not show influence on any consumer.
+- **Landed on ree-v3 `main` @ `ec1f5697f1`.** Two new files; no other file is touched:
+  - `ree_core/utils/grad_reach_guard.py`: `check_grad_reach()`, `GradReachGuard`, `GradReachResult` / `TensorReach`, and `FROZEN_BY_DESIGN`.
+    - The allowlist cites census 940c690c9dd plus this record's section 1b. Anchors were re-verified at ree-v3 `dbc6db8`.
+    - **This is a pure instrument.** Nothing imports it, it raises nothing (it returns the verdict), no default changes, and there is no trainer and no call site.
+    - Its observations run under `fork_rng`, so calling it does not change the RNG state (tested).
+    - `optimizers=None` observes every optimizer that steps, through torch's global step pre-hook. That covers recipes that build their optimizer internally, for example `ZSelfP0Trainer.train()`.
+  - `tests/contracts/test_grad_reach_guard.py`: 8 tests on the real `REEAgent` (dims 16, 6x6 grid).
+    - (a) **Canary:** the V3-EXQ-1078 naive `Adam(agent.parameters())` recipe returns FAIL, naming `hippocampal.action_object_decoder`. The result matches the section 3b A_all row: 101 dead of 137 checked.
+    - (b) **Canary:** the all-ON e2 optimizer plus `_e2_contrastive_step`, used verbatim from `experiments/_lib/allon_training.py` on a native-config agent. This is the smallest recipe that reproduces the E2-self dead entry. It returns FAIL, naming `e2.self_transition` and `e2.self_action_encoder` (and `e2.action_object_head`).
+    - (c) `ZSelfP0Trainer` returns PASS on 17 tensors. The G5 leak onto the depth stack and `world_obs_encoder` is reported and pinned.
+    - (d) The vacuous cases (zero steps, no optimizers, a global hook with nothing stepping, a short window, an all-allowlisted group) return CANNOT_DETERMINE and are asserted to be not PASS.
+    - (e) The allowlist is necessary and specific: without it the check FAILs on exactly `write_gate`, and a planted wrong entry FAILs as stale.
+    - (f) Byte-neutral.
+    - The status-quo check "some weight in the optimizer moved" is pinned **green** on both canaries.
+- **Tests ran on the hub, not the Mac.** All runs are from a worktree at base `dbc6db8` plus the two files:
+  - `remote_pytest.sh tests/contracts/test_grad_reach_guard.py -q`: **8 passed in 8.72s**.
+  - preflight plus the six ree_core/corpus-scanning lints: 129 passed.
+  - `tests/contracts -q -k "import or config or lint"`: 1104 passed, 4 skipped.
+  - The ree-v3 pre-commit gate (`precommit_contracts.sh`, full `tests/contracts` on the hub): **5670 passed, 50 skipped, 1 xfailed** (rc 0, 31 min).
+- **Blind-spot measurement.** Three deliberately broken guards were each run against the unchanged test bodies. The runner (`.scratch/breakthrough-20260924/guard/guard_direct_runner.py`) calls the bodies directly, without pytest, on the Mac. None of the broken variants was committed.
+  - grad `None` treated as nonzero: **5/8 tests fail**.
+  - `result()` always returns PASS: **4/8 fail**.
+  - CANNOT_DETERMINE removed: **1/8 fail**, which is test (d).
+  - The restored guard passes 8/8, and its sha is unchanged.
+  - The old guard is the status-quo "weights moved" check, and it stays green on both canaries, as asserted inside (a) and (b).
+- **Still open. Nothing here decides these:**
+  - **Q4a / D1:** the trainer architecture, and whether a trainer ships at all.
+  - **Q4b / D2:** cadence and driver.
+  - **Q4c / D3:** `world_obs_encoder`. It is deliberately **not** allowlisted, so its untrained state stays visible, reported as G5 leak or dead.
+  - **Q4d / D4:** raise vs warn on a FAIL. The guard only returns the verdict.
+  - M2 and M3, the `_lib` retro-audit wrapper, and the section 3c coverage test are not built.
+  - GFLAG-0491 is untouched.
