@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-25T11:33:13Z",
+  "generated_at": "2026-09-25T12:06:16Z",
   "counts": {
-    "total": 1207,
-    "reading_drift": 52,
-    "unstamped": 20,
+    "total": 1208,
+    "reading_drift": 55,
+    "unstamped": 21,
     "needs_review": 2,
-    "never_reviewed": 1186,
-    "provenance_drift": 44
+    "never_reviewed": 1187,
+    "provenance_drift": 45
   },
   "reading_drift": [
     {
@@ -55,6 +55,14 @@
       "derived_reading": "superseded",
       "diffs": [
         "reading: stored='retiring' derived='superseded'"
+      ]
+    },
+    {
+      "claim": "MECH-100",
+      "stored_reading": "stable",
+      "derived_reading": "provisional",
+      "diffs": [
+        "reading: stored='stable' derived='provisional'"
       ]
     },
     {
@@ -354,6 +362,14 @@
       ]
     },
     {
+      "claim": "SD-045",
+      "stored_reading": "candidate",
+      "derived_reading": "retired",
+      "diffs": [
+        "reading: stored='candidate' derived='retired'"
+      ]
+    },
+    {
       "claim": "SD-046",
       "stored_reading": "candidate",
       "derived_reading": "candidate/substrate_conditional",
@@ -410,6 +426,14 @@
       ]
     },
     {
+      "claim": "MECH-372",
+      "stored_reading": "candidate/substrate_conditional",
+      "derived_reading": "retired/substrate_conditional",
+      "diffs": [
+        "reading: stored='candidate/substrate_conditional' derived='retired/substrate_conditional'"
+      ]
+    },
+    {
       "claim": "MECH-374",
       "stored_reading": "candidate/substrate_conditional",
       "derived_reading": "candidate",
@@ -427,6 +451,10 @@
     }
   ],
   "unstamped": [
+    {
+      "claim": "MECH-270a",
+      "would_derive": "candidate/substrate_conditional"
+    },
     {
       "claim": "ARC-150",
       "would_derive": "candidate/substrate_conditional"
@@ -1048,6 +1076,7 @@
     "MECH-268",
     "MECH-269",
     "MECH-270",
+    "MECH-270a",
     "MECH-456",
     "MECH-271",
     "MECH-272",
@@ -1877,6 +1906,11 @@
       "claim": "MECH-479",
       "stored_from": null,
       "derived_from": "decision:MECH-479@2026-09-25T06:05:22.131286Z"
+    },
+    {
+      "claim": "Q-087",
+      "stored_from": "decision:Q-087@2026-08-08T08:30:41.696515Z",
+      "derived_from": "decision:Q-087@2026-09-25T11:59:00Z"
     },
     {
       "claim": "SD-092",

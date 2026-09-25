@@ -1298,12 +1298,12 @@
     },
     "MECH-100": {
       "actor": "user",
-      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_needed": "GFLAG-0545: does MECH-100's stable status survive GOV-MATCHAUX-1's matched-auxiliary / scaffold-removal conditions?",
       "decision_status": "applied",
-      "rationale": "User confirmed. V3 evidence crosses provisional threshold. Event-contrastive CE auxiliary loss required for z_world encoder discrimination. Promoted candidate \u2192 provisional.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Promote to provisional",
-      "timestamp_utc": "2026-03-19T19:52:00Z"
+      "rationale": "Promoted on the auxiliary objective's own probe accuracy with no matched-arbitrary-auxiliary control or scaffold-removal eval; V3-EXQ-897 re-measure reads the other way.",
+      "recommendation": "demote_to_provisional",
+      "selected_option": "Demote MECH-100 stable -> provisional pending a matched-auxiliary re-measure; GOV-MATCHAUX-1 stays candidate (held-out case ii adjudicated, 1 of 3)",
+      "timestamp_utc": "2026-09-25T11:51:32.901018Z"
     },
     "MECH-102": {
       "actor": "user",
@@ -1722,11 +1722,11 @@
     "MECH-268": {
       "actor": "dgolden",
       "decision_needed": "Which calibration route should MECH-268's dACC saturation use so it actually releases the SD-032a mode register? Decide AFTER the closure-cadence successor experiment (chip-20260917-mech268-closure-cadence-dose) has replicated the strength-0.5 effect across seeds.",
-      "decision_status": "approved",
+      "decision_status": "applied",
       "rationale": "User decision 2026-09-25 (live run-through via orchestrate-20260924-1707, rec-20260925-02281b11): option 2/B. The multi-seed replication this decision waited on did NOT land pre-registered; the confirmed V3-EXQ-1089 autopsy (REE_assembly 402ea96099) measured the post-hoc floor-arm boundary on all 5 seeds: 3/5 replicate, 1/5 both-release, 1/5 neither, and pe_unsat p50 spans 2.1-5.6 across trained seeds -- so any FIXED floor (including raising the default to 0.5) is seed-fragile. Normalising dacc_pe at source removes the scale drift the floor cannot track. Default dacc_saturation_strength stays 0.3 (no fleet-wide default change). Build is design-first: substrate_queue entry dacc-pe-scale-normalisation. V3-EXQ-1089a waits on it and is to be designed against the normalised signal. Applied by governance pass gov2-20260925-answers.",
       "recommendation": "Wait for multi-seed replication at dacc_saturation_strength >= 0.5, then choose; do not change the fleet-wide default on one seed (user decision 2026-09-23, GFLAG-0330).",
       "selected_option": "Leave the default at 0.3 and normalise dacc_pe instead, fixing the scale drift at its source (needs a design and a substrate_queue entry).",
-      "timestamp_utc": "2026-09-25T06:17:26Z"
+      "timestamp_utc": "2026-09-25T12:01:48Z"
     },
     "MECH-269": {
       "actor": "governance-2026-04-25T15:15",
@@ -3097,13 +3097,13 @@
       "timestamp_utc": "2026-07-30T19:42:18.081672Z"
     },
     "Q-087": {
-      "actor": "governance",
-      "decision_needed": "Question narrowing review",
+      "actor": "user",
+      "decision_needed": "V3-closure definition for GOV-V3FREEZE-1 / GOV-OPACITY-1",
       "decision_status": "applied",
-      "rationale": "Claim status is already resolved with a full decision recorded 2026-08-01 (session cool-sutherland-623d3f); the automated narrow_open_question recommendation is stale against that resolution, no further narrowing needed",
-      "recommendation": "narrow_open_question",
-      "selected_option": "Already resolved 2026-08-01 (resolution: governance_acceptance)",
-      "timestamp_utc": "2026-08-08T08:30:41.696515Z"
+      "rationale": "V3 is closed when a governance decision records it, with a decision_log entry, INDEPENDENT of residual closure-node count. Chosen over strict green board (9 nodes currently blocked and the 2026-07-19 target already slipped, so that event may never fire and would make GOV-V3FREEZE-1 permanently inert) and over green-board-plus-reproducibility (inherits that risk and partly duplicates the gate's own PASS criterion). Robust to substrate-blocked V4/V5 nodes and makes the gate trigger on a controllable date.",
+      "recommendation": "governance_acceptance",
+      "selected_option": "governance_acceptance",
+      "timestamp_utc": "2026-09-25T11:59:00Z"
     },
     "Q-089": {
       "actor": "governance",
@@ -3628,7 +3628,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-09-25T07:45:47.573744Z",
+  "generated_at_utc": "2026-09-25T12:03:18.533199Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

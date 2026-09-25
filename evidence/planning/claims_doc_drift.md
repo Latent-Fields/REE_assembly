@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-09-25T05:53:47Z
+Generated: 2026-09-25T12:12:49Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (149)
+## Unresolved with a hand status line -- INFO (154)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -75,10 +75,12 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `ephaptic_hippocampal_now_construction.md` -- "candidate (both claims)"
 - `established_ethical_systems.md` -- "architecture derivation note"
 - `ethical_agency_derivation.md` -- "architecture note"
+- `evidence_defeaters.md` -- "candidate governance rule, registered 2026-09-25 from"
 - `externalised_dmn_play_private_speech.md` -- "V4+ developmental-architecture cluster (candidate). Off the REE-v3 critical"
 - `formal_ancestor_mapping.md` -- "first pass (WS-4 of `evidence/planning/ree_ai_design_critique_plan.md`)"
 - `founder_ontology.md` -- "plan-of-record for *intent* (how the architecture was meant to be read)."
 - `frontal_cue_integration.md` -- "candidate"
+- `frontier_evidence_doctrine.md` -- "candidate governance rules, registered 2026-09-25 (user-confirmed registration) from"
 - `ghost_goal_search.md` -- "design sketch (2026-04-26) + **Retrieval-Cue Reframe (2026-05-19)** -- see Section 0"
 - `goal_wanting_signal_chain.md` -- "Diagnostic / architectural note"
 - `hippocampal_anchor_selection.md` -- "candidate"
@@ -89,17 +91,19 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `infant_substrate_expansion.md` -- "SD-049 `multi_resource_heterogeneity_enabled` with `resource_introduction_schedule`"
 - `interface_reference_frames_and_temporal_gates.md` -- "candidate, registered 2026-09-15 from"
 - `invariant_types.md` -- "architecture doc, 2026-04-17"
-- `jepa_e1e2_integration_contract.md` -- "stable"
+- `jepa_e1e2_integration_contract.md` -- "legacy-with-live-requirement"
 - `jepa_ree_hybrid_diagram_spec.md` -- "stable"
 - `l_space.md` -- "stable"
 - `landing_integration_worker_investigation.md` -- "investigated, decided — no dedicated worker; one narrow follow-on chipped"
 - `language.md` -- "stable"
 - `learned_cross_loop_arbitration.md` -- "IMPLEMENTED 2026-07-01. PROMOTES NOTHING. Behind a no-op-default flag, byte-identical OFF."
+- `learned_error_routing.md` -- "candidate, substrate_conditional. DO NOT build in V3; DO NOT queue an experiment."
 - `lens_predictive_sensorimotor_transformation.md` -- "conceptual lens. Registers **no** REE claim and changes no architecture,"
 - `mode_manager.md` -- "legacy"
 - `modes_of_cognition.md` -- "provisional"
 - `modulatory_bias_selection_authority.md` -- "IMPLEMENTED 2026-06-03 (substrate-readiness validation pending V3-EXQ)."
 - `monostrategy_developmental_analysis.md` -- "Analysis document — not a registered claim. Findings feed into developmental register, experiment design, and governance"
+- `monostrategy_etiology_typology.md` -- "candidate claims, registered 2026-09-25 from"
 - `natural_commit_occupancy_release.md` -- "IMPLEMENTED 2026-06-20 (substrate; PROMOTES NOTHING)"
 - `neuromodulatory_control_planes.md` -- "candidate"
 - `non_deficit_action_drives.md` -- "family slot registered 2026-05-10 (ARC-066 + ARC-067 + ARC-068 candidate / pending_design)."
@@ -124,6 +128,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `ree_v2_spec.md` -- "candidate"
 - `replay_development_analysis.md` -- "Analysis document — not a registered claim. Proposals feed into experiment design and register maintenance."
 - `residue_geometry.md` -- "stable"
+- `residue_mood_regulation.md` -- "candidate claims, registered 2026-09-25 from"
 - `reusable_computational_motifs.md` -- "candidate, v3_pending, epistemic_category substrate_conditional. Compass registration only --"
 - `rule_apprehension_layer.md` -- "registered architectural slot. Weak reading (ARC-062) at implementation_phase=v3 candidate, **BLOCKED** (GAP-B status=bl"
 - `rule_distinguishability_maintenance.md` -- "architecture stub for candidate claims MECH-437 / MECH-438 (candidate / substrate_conditional / implementation_phase v4 "

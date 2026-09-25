@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-09-25T11:32:26Z
+Generated: 2026-09-25T12:05:14Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -479,7 +479,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | meta | ree_ai_design_critique_plan.md | `WS-14` | Bottleneck fan-out escalation rule (new GOV-* claim: escalate a discri | done | high |  | 2026-07-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-5` | z_self-domain goal representation (DR-11): self-state goals representa | blocked | high | V3 WIRING AUDIT (MECH-214, 2026-04-07): z_goal lives purely in z_world; V3 grid world conf | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-6` | Proxy/hedonic dissociating environment (DR-14): substrate that surface | blocked | high | V3 LIMIT: the grid world makes proxy == hedonic by construction; you cannot show a goal pu | 2026-06-10 |
-| v4 | self_model_v4_plan.md | `self_model_v4:SELF-7` | Maturational-sequence honesty gate (INV-064): self-stability must prec | blocked | high | INV-064 is emergent on ARC-001/002/003/ARC-019 and carries pending_substrate_reconfirmatio | 2026-06-10 |
+| v4 | self_model_v4_plan.md | `self_model_v4:SELF-7` | Maturational-sequence honesty gate (self-before-social ordering, DEV-N | blocked | high | INV-064 is emergent on ARC-001/002/003/ARC-019 and carries pending_substrate_reconfirmatio | 2026-06-10 |
 | process | task_claim_chip_coordinator_migration_plan.md | `PHASE-1` | Shadow: coordinator mirrors TASK_CLAIMS/TASK_CHIPS state read-only; gi | done | high |  | 2026-09-06 |
 | process | task_claim_chip_coordinator_migration_plan.md | `PHASE-2` | Claim-authority cutover: task_claim.py/chip_ledger.py call the coordin | done | high |  | 2026-09-06 |
 | process | task_claim_chip_coordinator_migration_plan.md | `PHASE-4` | Hub-serialised commit intake for the REMAINING coordination files (WOR | in_progress | high |  | 2026-09-06 |

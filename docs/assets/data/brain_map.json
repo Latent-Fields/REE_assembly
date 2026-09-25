@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T05:53:40Z",
+  "generated_at": "2026-09-25T12:12:32Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -29,7 +29,7 @@
         "docs/architecture/hippocampal_braid.md"
       ],
       "notes": "Rollouts, path memory, terrain / residue navigation.",
-      "claim_count": 106,
+      "claim_count": 108,
       "claim_ids": [
         "ARC-007",
         "Q-011",
@@ -58,6 +58,7 @@
         "MECH-242",
         "MECH-243",
         "MECH-270",
+        "MECH-270a",
         "MECH-271",
         "MECH-272",
         "MECH-325",
@@ -105,6 +106,7 @@
         "MECH-518",
         "MECH-524",
         "Q-098",
+        "MECH-587",
         "SD-001",
         "SD-002",
         "SD-004",
@@ -292,11 +294,11 @@
         "quadrant_counts": {
           "plausible_unproven": 60,
           "confirmed_established": 11,
-          "unknown": 34,
+          "unknown": 36,
           "speculative": 1
         }
       },
-      "v3_pending_count": 28,
+      "v3_pending_count": 29,
       "v3_pending_ids": [
         "MECH-271",
         "MECH-325",
@@ -313,11 +315,11 @@
         "MECH-340",
         "MECH-518",
         "MECH-524",
+        "MECH-587",
         "MECH-458",
         "MECH-269",
         "ARC-092",
-        "MECH-525",
-        "MECH-526"
+        "MECH-525"
       ],
       "leading_edge": true,
       "queued_exqs": [],
@@ -645,7 +647,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.763
+          "overall_confidence": 0.762
         },
         {
           "id": "MECH-074b",
@@ -1107,7 +1109,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.873
+          "overall_confidence": 0.872
         },
         {
           "id": "MECH-264",
@@ -1518,7 +1520,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.677
+          "overall_confidence": 0.676
         },
         {
           "id": "MECH-261",
@@ -1939,7 +1941,7 @@
         "docs/architecture/rule_apprehension_layer.md"
       ],
       "notes": "Three-gate candidacy; beta propagation; action-chunk cache (SD-045 dorsolateral loop). Not a named BG package.",
-      "claim_count": 27,
+      "claim_count": 28,
       "claim_ids": [
         "Q-019",
         "ARC-021",
@@ -1967,7 +1969,8 @@
         "MECH-465",
         "MECH-516",
         "MECH-536",
-        "MECH-558"
+        "MECH-558",
+        "MECH-589"
       ],
       "claims_sample": [
         {
@@ -2004,7 +2007,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.792
+          "overall_confidence": 0.791
         },
         {
           "id": "ARC-108",
@@ -2064,7 +2067,7 @@
           "pass_runs": 0,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.512
+          "overall_confidence": 0.511
         },
         {
           "id": "MECH-335",
@@ -2123,7 +2126,7 @@
         "quadrant_counts": {
           "plausible_unproven": 17,
           "confirmed_established": 4,
-          "unknown": 5,
+          "unknown": 6,
           "speculative": 1
         }
       },
@@ -2523,11 +2526,11 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.809
+          "overall_confidence": 0.808
         },
         {
           "id": "MECH-544",
-          "title": "Permeability pathology and source-tag decay: the same selective permeability that enables cultural learning (MECH-542) necessarily creates its failure modes, and this is NOT an accidental weakness but plausibly the unavoidable price of a system that can learn from counterfactual experience -- a fully impermeable hypothetical system learns nothing from imagination, a fully permeable one cannot distinguish imagination from reality, and the useful system lies between. Predicted routes: repeated fictional trajectories distorting perceived likelihood; emotionally powerful narratives acquiring inappropriate precision; propaganda altering other-agent models without adequate evidence; humour gradually reducing the effective cost of previously prohibited representations; imagined threats modifying expectations of groups never directly encountered; cultural availability mistaken for environmental frequency. REGISTERED SIGNATURE -- SOURCE-TAG DECAY: source information degrades while narrative structure is retained, producing characteristic errors in which retained narrative becomes progressively harder to distinguish from experienced or testified information. The architectural requirement is therefore NOT to prevent hypothetical material from influencing cognition, but to keep the KIND and MAGNITUDE of update appropriate to the epistemic status of the representation.",
+          "title": "Permeability pathology and source-fidelity loss: the same selective permeability that enables cultural learning (MECH-542) necessarily creates its failure modes, and this is NOT an accidental weakness but plausibly the unavoidable price of a system that can learn from counterfactual experience -- a fully impermeable hypothetical system learns nothing from imagination, a fully permeable one cannot distinguish imagination from reality, and the useful system lies between. Predicted routes: repeated fictional trajectories distorting perceived likelihood; emotionally powerful narratives acquiring inappropriate precision; propaganda altering other-agent models without adequate evidence; humour gradually reducing the effective cost of previously prohibited representations; imagined threats modifying expectations of groups never directly encountered; cultural availability mistaken for environmental frequency. REGISTERED SIGNATURE -- SOURCE-FIDELITY LOSS: source information becomes less reliable while narrative structure is retained, producing characteristic errors in which retained narrative becomes progressively harder to distinguish from experienced or testified information; the underlying mechanism (stored-tag decay vs reconstructed-at-retrieval misattribution, per Johnson, Hashtroudi and Lindsay 1993) is left open pending the D6 discriminating test. The architectural requirement is therefore NOT to prevent hypothetical material from influencing cognition, but to keep the KIND and MAGNITUDE of update appropriate to the epistemic status of the representation.",
           "subject": "default_mode.permeability_pathology_source_tag_decay",
           "status": "candidate",
           "v3_pending": false,
@@ -3368,7 +3371,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.837
+          "overall_confidence": 0.836
         },
         {
           "id": "MECH-489",
@@ -3676,7 +3679,7 @@
         "docs/architecture/serotonin.md"
       ],
       "notes": "Serotonin plane; dopamine as selection gain; ACh meta-plasticity gain (MECH-083); NE attentional snap (MECH-084); orexin drive-arousal coupling (MECH-281); GABAergic cross-stream decay regulator (SD-036).",
-      "claim_count": 19,
+      "claim_count": 24,
       "claim_ids": [
         "MECH-085",
         "MECH-186",
@@ -3695,10 +3698,39 @@
         "MECH-368",
         "Q-062",
         "MECH-431",
+        "ARC-151",
+        "ARC-152",
+        "MECH-592",
+        "MECH-593",
+        "Q-109",
         "SD-075",
         "SD-104"
       ],
       "claims_sample": [
+        {
+          "id": "ARC-151",
+          "title": "Plasticity gates in REE are DEFAULT-BLOCKED (de-repression polarity), not admission windows: a teaching signal of any kind (reward prediction error, harm prediction error, novelty, salience, social or affective discrepancy) is a proposal whose only effect is to RELEASE a write that is already staged at, and carried by, its target -- it neither carries the write's content nor opens a window through which writes flow -- so the gate's specificity lives on the TARGET (what is staged there and what release it requires) rather than on a type assigned to the event. The gate family REE already registers at channel, event, tag and window grain (MECH-261, MECH-368, MECH-431, MECH-453, MECH-067) is to be read with this polarity, so that any gate-controller failure -- a missing, late or malformed release -- fails CLOSED (the write stays blocked), whereas an admission-phrased gate of the same nominal permeability can fail OPEN.",
+          "subject": "plasticity.gate_polarity_default_blocked_derepression",
+          "status": "candidate",
+          "v3_pending": false,
+          "genuine_exp_count": 0,
+          "pass_runs": 0,
+          "fail_runs": 0,
+          "evidence_quadrant": "",
+          "overall_confidence": null
+        },
+        {
+          "id": "ARC-152",
+          "title": "Plasticity release in REE is indexed on the DEPTH of the write target, not only on the teaching signal, the actor or channel, or the phase: the same admitted, real-provenance teaching signal may be released into a shallow target (transient activation, salience weight, local transition model) while its write into a deep target (self/other model, goal structure, ethical constraint, identity invariant) stays blocked, and the RELEASE REQUIREMENT grows monotonically with depth -- deeper targets need more independent release conditions (corroboration across episodes, offline integration, verifier-mediated commit) before a write is released. This extends REE's existing authority stratification (INV-020, MECH-064, MECH-067, ARC-020), which is keyed on actor, channel and phase, to ORDINARY EXPERIENTIAL LEARNING, and generalises MECH-511's two-level local-vs-deep E1 routing to an ordered target index. It does NOT make deep targets less plastic: write magnitude once released is governed separately (MECH-592), and INV-056's retained plasticity of social, goal and epistemic-ethical substrates must survive the grading.",
+          "subject": "plasticity.target_depth_graded_release",
+          "status": "candidate",
+          "v3_pending": false,
+          "genuine_exp_count": 0,
+          "pass_runs": 0,
+          "fail_runs": 0,
+          "evidence_quadrant": "",
+          "overall_confidence": null
+        },
         {
           "id": "MECH-083",
           "title": "Acetylcholine as meta-level plasticity gain governing durable-write vs read-through.",
@@ -3720,8 +3752,8 @@
           "genuine_exp_count": 0,
           "pass_runs": 0,
           "fail_runs": 0,
-          "evidence_quadrant": "",
-          "overall_confidence": null
+          "evidence_quadrant": "plausible_unproven",
+          "overall_confidence": 0.775
         },
         {
           "id": "MECH-085",
@@ -3818,30 +3850,6 @@
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
           "overall_confidence": 0.863
-        },
-        {
-          "id": "MECH-204",
-          "title": "Serotonergic withdrawal during REM actively defines the precision recalibration zero-point by removing the benefit gradient, not merely permitting recalibration",
-          "subject": "serotonin.rem_gate_zero_point",
-          "status": "candidate",
-          "v3_pending": false,
-          "genuine_exp_count": 5,
-          "pass_runs": 1,
-          "fail_runs": 4,
-          "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.643
-        },
-        {
-          "id": "MECH-281",
-          "title": "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy).",
-          "subject": "orexin.drive_arousal_coupling",
-          "status": "candidate",
-          "v3_pending": true,
-          "genuine_exp_count": 0,
-          "pass_runs": 0,
-          "fail_runs": 0,
-          "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.836
         }
       ],
       "implementation": "full",
@@ -3850,9 +3858,9 @@
         "pass_runs": 6,
         "fail_runs": 5,
         "quadrant_counts": {
-          "plausible_unproven": 13,
+          "plausible_unproven": 14,
           "confirmed_established": 2,
-          "unknown": 3,
+          "unknown": 7,
           "novel_discovery": 1
         }
       },
@@ -4175,7 +4183,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.644
+          "overall_confidence": 0.643
         },
         {
           "id": "Q-005",
@@ -4531,7 +4539,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.809
+          "overall_confidence": 0.808
         },
         {
           "id": "ARC-058",
@@ -5751,7 +5759,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.662
+          "overall_confidence": 0.661
         },
         {
           "id": "MECH-154",
@@ -6300,7 +6308,7 @@
         "docs/architecture/founder_ontology.md"
       ],
       "notes": "Founder experiment loop arbiter; partners with basal_ganglia region.",
-      "claim_count": 16,
+      "claim_count": 17,
       "claim_ids": [
         "MECH-071",
         "MECH-136",
@@ -6308,6 +6316,7 @@
         "SD-081",
         "SD-084",
         "MECH-530",
+        "ARC-154",
         "ARC-003",
         "MECH-152",
         "MECH-160",
@@ -6333,6 +6342,18 @@
           "overall_confidence": 0.619
         },
         {
+          "id": "ARC-154",
+          "title": "E3's basal-ganglia commitment includes a DA-ACh COORDINATION layer that is separable both from the signals it coordinates (the dopaminergic teaching signal and the cholinergic TAN-pause window, MECH-453) and from action selection: it sets the temporal coupling between the two, and thereby which recently-active policy traces (MECH-452) are reinforced and how PERSISTENTLY the reinforced write sticks. Its setpoint is a GAIN WITH AN INTERIOR OPTIMUM that trades acquisition speed against effort and persistence recalibration -- it is NOT tuned to maximise learning rate, and a design that tunes it for fastest learning optimises a quantity the biology declines to optimise. With action selection (ARC-107/MECH-449), reinforcement marking (MECH-452) and plasticity permission (MECH-453, MECH-368) already registered as separate operations, this layer supplies the two not yet owned: write-persistence (flexibility) tuning and effort recalibration of the written policy. Scoped to E3/BG procedural policy writes.",
+          "subject": "e3.da_ach_coordination_layer",
+          "status": "candidate",
+          "v3_pending": false,
+          "genuine_exp_count": 0,
+          "pass_runs": 0,
+          "fail_runs": 0,
+          "evidence_quadrant": "",
+          "overall_confidence": null
+        },
+        {
           "id": "MECH-071",
           "title": "E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions.",
           "subject": "e3.harm_eval_calibration_gradient_asymmetry",
@@ -6342,7 +6363,7 @@
           "pass_runs": 10,
           "fail_runs": 22,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.722
+          "overall_confidence": 0.721
         },
         {
           "id": "MECH-136",
@@ -6451,18 +6472,6 @@
           "fail_runs": 0,
           "evidence_quadrant": "",
           "overall_confidence": null
-        },
-        {
-          "id": "MECH-475",
-          "title": "uninformative_value_baseline_makes_optimisation_iatrogenic. In REE's MECH-457 actor-critic pathway the value baseline is UNINFORMATIVE on the policy's own state distribution, so the advantage carries variance rather than signal and ADDED OPTIMISATION PRESSURE IS IATROGENIC: policy capacity, training budget, an earned intrinsic approach drive, environmental reward-coupling and post-installation RL refinement each drive competence BELOW THEIR OWN CONTROLS rather than plateauing beneath a ceiling, and the magnitude of the loss tracks baseline uninformativeness rather than the identity of the intervention. Measured mechanism: V3-EXQ-782 R-(b) reads the shared CTRL critic at std(V)/std(G) = 0.041 against a 0.25 collapse threshold and a pre-reward-vs-far separation ratio of 0.016 against a 0.25 floor -- an unbaselined high-variance advantage. A ceiling plateaus; this does not.",
-          "subject": "f_dominance_conversion_ceiling.baseline_informativeness",
-          "status": "retired",
-          "v3_pending": true,
-          "genuine_exp_count": 1,
-          "pass_runs": 0,
-          "fail_runs": 1,
-          "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.646
         }
       ],
       "implementation": "full",
@@ -6472,7 +6481,7 @@
         "fail_runs": 29,
         "quadrant_counts": {
           "plausible_unproven": 10,
-          "unknown": 6
+          "unknown": 7
         }
       },
       "v3_pending_count": 7,
@@ -6762,7 +6771,7 @@
         "docs/architecture/control_plane_signal_map.md"
       ],
       "notes": "Heartbeat, regulators, commit gate (MECH-114), hypothesis tag (MECH-094/115), broadcast override (SD-037), theta-gamma multi-content packet (MECH-294).",
-      "claim_count": 75,
+      "claim_count": 76,
       "claim_ids": [
         "ARC-005",
         "MECH-001",
@@ -6813,6 +6822,7 @@
         "SD-105",
         "Q-106",
         "MECH-580",
+        "MECH-590",
         "INV-008",
         "MECH-002",
         "MECH-003",
@@ -6851,7 +6861,7 @@
           "pass_runs": 1,
           "fail_runs": 4,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.847
+          "overall_confidence": 0.846
         },
         {
           "id": "ARC-008",
@@ -6971,7 +6981,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.718
+          "overall_confidence": 0.717
         },
         {
           "id": "MECH-004",
@@ -6993,7 +7003,7 @@
         "fail_runs": 17,
         "quadrant_counts": {
           "confirmed_established": 7,
-          "unknown": 24,
+          "unknown": 25,
           "plausible_unproven": 44
         }
       },
@@ -7384,7 +7394,7 @@
           "id": "MECH-070",
           "title": "E2 is a conceptual-sensorium motor model with a planning horizon that exceeds E1.",
           "subject": "latent_stack.e2_conceptual_sensorium_motor_model",
-          "status": "retiring",
+          "status": "superseded",
           "v3_pending": false,
           "genuine_exp_count": 2,
           "pass_runs": 0,
@@ -7414,7 +7424,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.697
+          "overall_confidence": 0.696
         },
         {
           "id": "MECH-221",
@@ -7736,7 +7746,7 @@
         "docs/architecture/trajectory_selection.md"
       ],
       "notes": "",
-      "claim_count": 39,
+      "claim_count": 40,
       "claim_ids": [
         "MECH-309",
         "ARC-062",
@@ -7776,7 +7786,8 @@
         "MECH-444",
         "Q-085",
         "MECH-483",
-        "MECH-527"
+        "MECH-527",
+        "MECH-588"
       ],
       "claims_sample": [
         {
@@ -7789,7 +7800,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.57
+          "overall_confidence": 0.569
         },
         {
           "id": "ARC-063",
@@ -7932,7 +7943,7 @@
         "quadrant_counts": {
           "plausible_unproven": 22,
           "confirmed_established": 7,
-          "unknown": 10
+          "unknown": 11
         }
       },
       "v3_pending_count": 24,
@@ -8326,7 +8337,7 @@
           "pass_runs": 0,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.625
+          "overall_confidence": 0.624
         },
         {
           "id": "ARC-041",
@@ -8422,7 +8433,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.723
+          "overall_confidence": 0.722
         }
       ],
       "implementation": "claim_only",

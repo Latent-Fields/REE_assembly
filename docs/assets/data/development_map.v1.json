@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-09-25T05:50:23Z",
+  "generated_at": "2026-09-25T12:05:17Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -9,8 +9,8 @@
     "docs/roadmap.md"
   ],
   "frontier": {
-    "headline": "The live front is the encoder side of the observation -> z_world interface: H-F \"content discarded at encode\" is the one alive hypothesis on `zworld_actor_adequacy_locus`",
-    "gate": "V3-EXQ-1010 \u2014 the H-F over-capacity decoder sweep on `zworld_actor_adequacy_locus` \u2014 is queued and running; it is the one live gate on the conversion-ceiling root, and nothing needs queueing",
+    "headline": "The live front is the native learning loop itself: at REEConfig defaults ree_core does no waking gradient learning, so the closed loop is not closed inside ree_core",
+    "gate": "The gate is a ree_core-owned native waking trainer with a grad-reach guard, the root that the other broken edges hang off, and its architecture and sequencing (Q4a-d) are held for the user and /governance",
     "questions": [
       {
         "id": "conversion_ceiling_root",
@@ -846,7 +846,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "164 / 261",
+      "value": "166 / 265",
       "detail": "modules recorded as built"
     },
     {
@@ -952,7 +952,7 @@
               "claim_class": "invariant_or_foundation",
               "lifecycle": "experiment_planned",
               "attention_rank": 2,
-              "incoming_dependencies": 13,
+              "incoming_dependencies": 14,
               "depends_on": [],
               "additional_dependencies": 0
             },
@@ -1076,7 +1076,7 @@
               "claim_class": "invariant_or_foundation",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 10,
+              "incoming_dependencies": 11,
               "depends_on": [
                 "INV-020",
                 "INV-024",
@@ -1127,6 +1127,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-088",
+              "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "INV-064",
+                "ARC-001",
+                "ARC-003",
+                "ARC-019"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-086",
               "title": "goal_maintenance_feedback_necessity",
               "status": "candidate",
@@ -1142,23 +1159,6 @@
                 "MECH-217",
                 "ARC-030",
                 "SD-014"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-088",
-              "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "INV-064",
-                "ARC-001",
-                "ARC-003",
-                "ARC-019"
               ],
               "additional_dependencies": 0
             },
@@ -1248,13 +1248,13 @@
       "id": "architecture",
       "title": "Architecture",
       "summary": "System commitments and mechanism-level design.",
-      "total": 254,
+      "total": 246,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 72,
-          "more_count": 62,
+          "count": 69,
+          "more_count": 59,
           "nodes": [
             {
               "id": "ARC-005",
@@ -1360,7 +1360,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 21,
+              "incoming_dependencies": 22,
               "depends_on": [
                 "INV-006",
                 "INV-004",
@@ -1436,7 +1436,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 87,
+              "incoming_dependencies": 89,
               "depends_on": [
                 "ARC-014",
                 "INV-011",
@@ -1470,7 +1470,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 22,
+              "incoming_dependencies": 23,
               "depends_on": [
                 "MECH-033",
                 "ARC-018"
@@ -1594,8 +1594,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 156,
-          "more_count": 146,
+          "count": 151,
+          "more_count": 141,
           "nodes": [
             {
               "id": "MECH-062",
@@ -1624,6 +1624,20 @@
               "incoming_dependencies": 7,
               "depends_on": [
                 "ARC-001"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "GOV-BEHADJ-1",
+              "title": "REE Assembly needs a dedicated behavioural-adjudication methodology/skill for organism-level behavioural experiment design and interpretation (\"umpire, not ruler\": observe, preserve the observation without embedding an explanation, generate competing explanations, derive predictions, construct discriminating perturbations, blind condition labels where practical, apply pre-specified hypothesis-directed measures, also run discovery-oriented analysis for structure not anticipated in advance, adjudicate across the pattern of evidence, replicate, and test generalisation under environmental change) -- because a fixed, pre-specified scalar-metric approach risks conflating stochasticity/exploration/noise with the behavioural organisation actually of interest, and risks Goodharting once a convenient metric becomes the de facto definition of the phenomenon.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "Q-092"
               ],
               "additional_dependencies": 0
             },
@@ -1680,20 +1694,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "GOV-BEHADJ-1",
-              "title": "REE Assembly needs a dedicated behavioural-adjudication methodology/skill for organism-level behavioural experiment design and interpretation (\"umpire, not ruler\": observe, preserve the observation without embedding an explanation, generate competing explanations, derive predictions, construct discriminating perturbations, blind condition labels where practical, apply pre-specified hypothesis-directed measures, also run discovery-oriented analysis for structure not anticipated in advance, adjudicate across the pattern of evidence, replicate, and test generalisation under environmental change) -- because a fixed, pre-specified scalar-metric approach risks conflating stochasticity/exploration/noise with the behavioural organisation actually of interest, and risks Goodharting once a convenient metric becomes the de facto definition of the phenomenon.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "other",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "Q-092"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "MECH-065",
               "title": "Reality-coherence conflict lane modulates loop precision and commitment thresholds before execution lock-in.",
               "status": "candidate",
@@ -1730,6 +1730,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "GOV-INTERVENE-1",
+              "title": "Diagnostic interventions used to localise a broken causal edge must be classified along two independent dimensions rather than one flat implemented/not-implemented judgment. (1) EPISTEMIC CONTENT: an ORACLE intervention imports privileged, target-correct information or competence under investigation (establishing achievable ceilings and downstream usability, as a positive control / ceiling test) versus a NON-ORACLE injection that perturbs a suspected causal variable without supplying the task's answer (establishing causal sensitivity/identification). (2) CONSTRUCTION: a SILKY intervention is a minimally disruptive, distribution-preserving perturbation of one suspected variable (diagnostic for threshold, scale, and timing failures) versus an ODDLY COMPOSED intervention that deliberately combines individually-plausible states that rarely co-occur naturally (a stress test for shortcut-dependence, hidden conjunctions, and factorisation, not evidence of ordinary competence). These axes are orthogonal -- a silky nudge can still be oracle-informed, and an oddly composed state can be wholly non-oracular -- and must not be collapsed into one enum. Provenance (which stage/variable/relation was altered, along both axes) must be recorded, and any effect demonstrated only under such an intervention must be attributed to that intervention condition, never silently treated as endogenous REE competence.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "GOV-PATHVALID-1",
+                "GOV-BEHADJ-1",
+                "GOV-DIAG-1"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-047",
               "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
               "status": "candidate",
@@ -1743,20 +1759,6 @@
                 "INV-045"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-019",
-              "title": "Control plane shapes modes of cognition, not discrete choices.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "mechanism_general",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 4,
-              "depends_on": [
-                "ARC-005"
-              ],
-              "additional_dependencies": 0
             }
           ]
         }
@@ -1766,13 +1768,13 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 259,
+      "total": 272,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 25,
-          "more_count": 15,
+          "count": 28,
+          "more_count": 18,
           "nodes": [
             {
               "id": "SD-005",
@@ -1809,7 +1811,7 @@
               "claim_class": "substrate_gap_marked",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 29,
+              "incoming_dependencies": 31,
               "depends_on": [
                 "INV-026",
                 "INV-028",
@@ -1825,7 +1827,7 @@
               "claim_class": "substrate_gap_marked",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 28,
+              "incoming_dependencies": 29,
               "depends_on": [
                 "INV-003",
                 "INV-007",
@@ -2017,8 +2019,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 229,
-          "more_count": 219,
+          "count": 239,
+          "more_count": 229,
           "nodes": [
             {
               "id": "INV-049",
@@ -2111,7 +2113,7 @@
               "claim_class": "substrate_gap_marked",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 8,
+              "incoming_dependencies": 9,
               "depends_on": [
                 "INV-029",
                 "INV-041",
@@ -2119,6 +2121,24 @@
                 "ARC-019",
                 "MECH-052",
                 "INV-042"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-074",
+              "title": "Plasticity crystallization necessity: any model-building agent whose internal scoring is dominated by a high-variance predictive pathway will converge to monostrategy under Hebbian-equivalent learning unless a time-bounded plasticity asymmetry allows competing diversity circuits to establish competitive weight before winner-take-all dynamics close off the option space; without this crystallization window, behavioral diversity is permanently suppressed regardless of diversity-signal magnitude.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "INV-075",
+                "INV-073",
+                "ARC-065",
+                "MECH-120",
+                "MECH-165"
               ],
               "additional_dependencies": 0
             },
@@ -2139,6 +2159,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-020",
+              "title": "Offline consolidation is protected by typed authority/write boundaries.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "ARC-011",
+                "INV-010",
+                "INV-021",
+                "INV-023"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-046",
               "title": "Dementia is computationally a progressive failure of contextual attribution rather than primarily a memory storage failure: episodic memory loss is downstream of progressive collapse of the offline consolidation pipeline that maintains the context attribution scaffold.",
               "status": "candidate",
@@ -2152,39 +2189,6 @@
                 "INV-044",
                 "MECH-166",
                 "SD-017"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-048",
-              "title": "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "substrate_gap_marked",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "INV-045",
-                "INV-046",
-                "MECH-120",
-                "MECH-121",
-                "MECH-123"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "INV-058",
-              "title": "Play is a structurally necessary behavioral mode: without a bounded low-stakes learning context, strategy acquisition requires accepting real harm risk or forgoing novel exploration entirely.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "substrate_gap_marked",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 7,
-              "depends_on": [
-                "INV-049",
-                "SD-012"
               ],
               "additional_dependencies": 0
             }
@@ -2324,6 +2328,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "ARC-107",
+              "title": "Basal-ganglia-like E3 selector constitution: committed-action selection should be governed by an explicit BG-mirroring eligibility-gating CONSTITUTION -- candidate actions pass through an eligibility mask, bounded Go (direct-pathway promotion) and No-Go (indirect-pathway suppression) pressures, a conflict-sensitive hold / threshold-raise / candidate-set widening (hyperdirect-STN), striatal-like parallel channel competition (rather than one scalar monarch), a pallidal-like permission-to-commit gate (rather than bare argmax), and a stable post-commit latch / de-commit -- so that an upstream signal's STRENGTH is necessary but not sufficient: it also needs LAWFUL ACCESS to committed action. The translation target is functional (a divergence-ledgered, falsifier-validated BG analogue), NOT anatomical mimicry.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 9,
+              "depends_on": [
+                "ARC-106",
+                "MECH-439",
+                "MECH-260",
+                "SD-034"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-272",
               "title": "MECH-271 routing is state-gated. In waking, the anchor channel dominates the hippocampal fan-out: replay preferentially reaches consolidation and viability-map consumers to support decision-making. In sleep, the probe channel dominates: replay preferentially seeds Bayesian schema restructuring -- testing which action-outcome attributions held up across episodes, creating new buckets for non-fitting experiences, revising causal graphs. The informational needs of sleep (schema revision) and waking (decision support) are distinct, and the routing bias reflects that.",
               "status": "provisional",
@@ -2354,29 +2375,14 @@
                 "ARC-018"
               ],
               "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-314",
-              "title": "structured_curiosity_bonus (frontopolar_uncertainty_driven_exploration_expected_free_energy_analog). A reward bonus on action-selection that rewards information-gain or uncertainty-reduction, distinct from a state-independent noise floor (MECH-313). Biological substrate: rostrolateral prefrontal exploration bonus (Daw et al. 2006 Nature) operating jointly with striatal novelty (Wittmann et al. 2008 Neuron). Three sub-flavours (MECH-314a/b/c) that the lit-pull recommended NOT to collapse prematurely: striatal novelty (Wittmann anchor), frontopolar uncertainty-driven curiosity (Daw anchor), learning-progress / intrinsic-motivation curiosity (Schmidhuber/Pathak tradition). Active-inference (Friston 2010/2015 expected free energy) provides the formal-level unification. Q-044 captures the open question of whether the three sub-flavours are distinct substrates or three readings of one mechanism with different upstream inputs.",
-              "status": "candidate_substrate_landed",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 9,
-              "depends_on": [
-                "ARC-065",
-                "MECH-313"
-              ],
-              "additional_dependencies": 0
             }
           ]
         },
         {
           "key": "closed",
           "label": "Closed record",
-          "count": 16,
-          "more_count": 6,
+          "count": 15,
+          "more_count": 5,
           "nodes": [
             {
               "id": "SD-011",
@@ -2401,7 +2407,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 33,
+              "incoming_dependencies": 34,
               "depends_on": [],
               "additional_dependencies": 0
             },
@@ -2413,7 +2419,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 27,
+              "incoming_dependencies": 28,
               "depends_on": [
                 "MECH-092",
                 "ARC-038",
@@ -2430,7 +2436,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 23,
+              "incoming_dependencies": 26,
               "depends_on": [
                 "SD-032a",
                 "MECH-094",
@@ -2456,6 +2462,21 @@
               "additional_dependencies": 0
             },
             {
+              "id": "SD-032a",
+              "title": "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 13,
+              "depends_on": [
+                "SD-032",
+                "SD-032b"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-205",
               "title": "Hippocampal replay is surprise-gated and generative: episodes with high unexplained prediction error are prioritized, replayed with counterfactual variations via E2, and deprioritized only when forward models can account for the surprise.",
               "status": "stable",
@@ -2470,21 +2491,6 @@
                 "MECH-121",
                 "INV-049",
                 "MECH-256"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "SD-032a",
-              "title": "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger.",
-              "status": "stable",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 11,
-              "depends_on": [
-                "SD-032",
-                "SD-032b"
               ],
               "additional_dependencies": 0
             },
@@ -2529,7 +2535,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 4,
+              "incoming_dependencies": 5,
               "depends_on": [
                 "SD-032",
                 "SD-011",
@@ -2542,8 +2548,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 271,
-          "more_count": 261,
+          "count": 272,
+          "more_count": 262,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2553,7 +2559,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 39,
+              "incoming_dependencies": 40,
               "depends_on": [
                 "ARC-007",
                 "ARC-018",
@@ -2602,6 +2608,23 @@
               "additional_dependencies": 0
             },
             {
+              "id": "MECH-439",
+              "title": "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 23,
+              "depends_on": [
+                "ARC-065",
+                "MECH-309",
+                "ARC-062",
+                "MECH-294"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "MECH-256",
               "title": "Self-attribution is implemented by a forward-model comparator: for any reafferent latent stream z_x with an efference-copy-driven forward model E2_x, the residual (z_x_observed - E2_x(z_x_{t-1}, a_actual)) is the agency signal on that stream.",
               "status": "candidate",
@@ -2613,23 +2636,6 @@
               "depends_on": [
                 "ARC-033",
                 "SD-013"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "MECH-439",
-              "title": "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced.",
-              "status": "candidate",
-              "phase": "v3",
-              "claim_class": "active_v3_closure",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 22,
-              "depends_on": [
-                "ARC-065",
-                "MECH-309",
-                "ARC-062",
-                "MECH-294"
               ],
               "additional_dependencies": 0
             },
@@ -2692,7 +2698,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 18,
+              "incoming_dependencies": 19,
               "depends_on": [
                 "INV-104",
                 "MECH-517",
@@ -2724,7 +2730,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 289,
+      "total": 303,
       "buckets": [
         {
           "key": "active",
@@ -2772,15 +2778,49 @@
         {
           "key": "closed",
           "label": "Closed record",
-          "count": 0,
+          "count": 2,
           "more_count": 0,
-          "nodes": []
+          "nodes": [
+            {
+              "id": "MECH-372",
+              "title": "Modality-heterogeneity / adaptor-depth gradient: senses differ in how much transformation they need before world-model entry -- smell is a near-raw gradient primitive, sight needs a deep perceptual-manifold adaptor; gradient-like (low-adaptor-depth) senses enter earliest developmentally.",
+              "status": "retired",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 0,
+              "depends_on": [
+                "ARC-087",
+                "ARC-017",
+                "ARC-019",
+                "MECH-103"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-045",
+              "title": "Action-chunk cache stores frequently-traversed action sequences as cached lookups, indexed by (state-signature, expected-outcome-signature). Sits in the dorsolateral-loop slot of ARC-021. Provides the model-free habit pathway missing from V3 and the runaway-chunking failure mode underlying OCD compulsions and rituals (Graybiel 2008).",
+              "status": "retired",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 0,
+              "depends_on": [
+                "ARC-021",
+                "SD-004",
+                "MECH-290"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
         },
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 287,
-          "more_count": 277,
+          "count": 299,
+          "more_count": 289,
           "nodes": [
             {
               "id": "ARC-053",
@@ -2935,20 +2975,25 @@
               "additional_dependencies": 0
             },
             {
-              "id": "MECH-095",
-              "title": "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change.",
+              "id": "ARC-145",
+              "title": "Dynamic information governance: a complete inter-engine interface in REE requires THREE properties, not two -- (1) the decision-relevant content survives the sender's encoding, (2) sender and receiver are mutually legible so a constrained transformation between frozen endpoints exists (ARC-139 / MECH-537 / MECH-538), and (3) the exchange occurs under a routing state that grants the sender causal privilege over that receiver AT THAT MOMENT. Property (3) -- jurisdiction, or temporal/state ACCESS -- is a separate organisational level from content and from legibility, so a representation can be present, decodable, structurally connected to a downstream system, and still unable to affect it; and the corresponding repair is different in kind from an encoder fix or a bridge. The architectural consequence is that REE's effective interface graph is CONSTRUCTED rather than possessed: G_eff(t) is a function of wiring, representational geometry, control state and history, so the same computational substrate can belong to different effective networks at different times. SEPARABILITY FALSIFIER, which is the whole content of the commitment: if a static bridge between frozen endpoints restores the full behavioural phenotype irrespective of when the message is made available, level (3) is unnecessary and this commitment should be withdrawn in favour of ARC-139 plus MECH-539 alone.",
               "status": "candidate",
-              "phase": "v5",
-              "claim_class": "horizon_v5",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
               "incoming_dependencies": 5,
               "depends_on": [
-                "SD-005",
-                "MECH-069",
-                "ARC-021"
+                "ARC-139",
+                "MECH-537",
+                "MECH-538",
+                "MECH-539",
+                "MECH-534",
+                "MECH-547",
+                "SD-091",
+                "MECH-481"
               ],
-              "additional_dependencies": 0
+              "additional_dependencies": 3
             }
           ]
         }
@@ -2957,8 +3002,8 @@
   ],
   "record_counts": {
     "active": 175,
-    "closed": 50,
-    "planned": 964
+    "closed": 51,
+    "planned": 982
   },
   "archive": {
     "snapshot_count": 116,

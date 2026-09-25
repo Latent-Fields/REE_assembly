@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-25T11:30:03.493942Z",
+  "generated_at_utc": "2026-09-25T12:03:18.533199Z",
   "items": [
     {
       "backlog_id": "EVB-0009",
@@ -2558,25 +2558,6 @@
       "proposal_type": "experimental",
       "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_q_064",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "lit_only_above_cap",
-        "low_exp_conf",
-        "missing_experimental_evidence",
-        "synthetic_signals_only"
-      ]
-    },
-    {
-      "backlog_id": "EVB-0398",
-      "claim_id": "SD-045",
-      "dispatch_mode": "targeted_probe",
-      "objective": "Reduce uncertainty for SD-045 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-0327",
-      "proposal_type": "experimental",
-      "status": "gated",
-      "suggested_experiment_type": "claim_probe_sd_045",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
@@ -7000,6 +6981,21 @@
       "objective": "Improve literature grounding and confidence for MECH-255.",
       "priority": "medium",
       "proposal_id": "LIT-0937",
+      "proposal_type": "literature_review",
+      "status": "proposed",
+      "target_repo": "REE_assembly",
+      "why_now": [
+        "missing_experimental_evidence",
+        "missing_literature_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
+      "backlog_id": "EVB-1837",
+      "claim_id": "MECH-270a",
+      "objective": "Improve literature grounding and confidence for MECH-270a.",
+      "priority": "medium",
+      "proposal_id": "LIT-0421",
       "proposal_type": "literature_review",
       "status": "proposed",
       "target_repo": "REE_assembly",
@@ -14299,6 +14295,25 @@
       "target_repo": "ree-v3"
     },
     {
+      "backlog_id": "EVB-0398",
+      "claim_id": "SD-045",
+      "dispatch_mode": "targeted_probe",
+      "objective": "Reduce uncertainty for SD-045 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-0327",
+      "proposal_type": "experimental",
+      "status": "gated",
+      "suggested_experiment_type": "claim_probe_sd_045",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication",
+        "lit_only_above_cap",
+        "low_exp_conf",
+        "missing_experimental_evidence",
+        "synthetic_signals_only"
+      ]
+    },
+    {
       "backlog_id": "EVB-1249",
       "claim_id": "EXT-004",
       "dispatch_mode": "discriminative_pair",
@@ -17323,7 +17338,7 @@
   ],
   "n_executed": 248,
   "n_proposed_exp": 135,
-  "n_proposed_lit": 443,
+  "n_proposed_lit": 444,
   "note": "Lightweight surfacing index -- no acceptance_checks or pack_contract. For full proposal detail use experiment_proposals.v1.json via bash.",
   "schema_version": "experiment_proposals_index/v1"
 }
