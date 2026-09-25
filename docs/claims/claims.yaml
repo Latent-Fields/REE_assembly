@@ -3970,6 +3970,8 @@
     DISPOSITION: R1 (primary); The old missing WRITEBACK call is repaired. A matched geometry/consumer assay is still needed; fixed neural capacity and unchanged RBF centres do not instantiate a literal centre-compression manipulation. Readout (iii) COMPRESSION is NARROWED (USER DECISION 2026-09-19, GFLAG-0356/0366): it is scored as approximation error (integration_loss) at a declared representation budget only. No centre-merge operation is required or commissioned, and active-centre count is not a DV (6 -> 6 by construction). Secondary classes: R7. Corrected 2026-09-21 against current code and autopsies; previous text preserved verbatim in the audit JSON history. No status/confidence change, build authorisation or experiment queueing.
 
     DISPOSITION UPDATE (USER DECISION 2026-09-24, GFLAG-0442, rec-20260924-a2275588): readouts (ii)/(iv) are substrate-blocked on substrate_queue mech018-contextualisation-objective (REGISTRATION_ONLY, complex (probe-gated)) -- the current integrate() objective cannot contextualise (read ~1.1x rbf, ratio/rank-invariant; no harmless-context input). Readouts are NOT narrowed. The sampling fix residue-integrate-sampling-collapse-world-dim-32 (GFLAG-0441) is authorised as the foundation either path needs.
+
+    [2026-09-25 governance-20260925; GFLAG-0479] CONSUMER-REACH CAVEAT (residue_consumer_reach_world_dim32_20260924.md, 82819a1058, dated 2026-09-24): the GFLAG-0441 sampling fix is a D1 instrument fix only -- at world_dim=32 the native consumers (E3 scoring, hippocampal CEM elites) query E2-rollout states at 12-18 (bw 1.0) / 81-121 (bw 0.15) kernel widths from harm centres, outside the ~1-width shell the fix trains on; at the native 10-step budget the flag ON perturbs consumers like a shuffled-target control (7/7 cells) and weakens-or-reverses CEM residue avoidance (7/7 cells). Do NOT enable in drivers or count toward a MECH-018 consumer readout; support must be consumer-queried states.
   source:
     - docs/processed/legacy_tree/architecture/sleep/residue_integration.md
 - id: IMPL-017
@@ -4747,6 +4749,8 @@
     distinct harm outcomes between modes) remains the separate open question and is NOT promoted
     by this. Manifest evidence_direction already 'supports'; unverified flag (legacy, no
     preconditions block) decided at the walk, not blocked.
+
+    [2026-09-25 governance-20260925; GFLAG-0486] CAVEAT: this claim's commit gate (E3.post_action_update, ree_core/predictors/e3_selector.py:4785-4790) runs on E2's one-step world-prediction error via update_running_variance. Per the gradient-reach census (gradient_reach_census_20260925.md, 940c690c9dd) and e2_rollout_divergence_and_proposal_state_dependence_20260924.md (f300ebf64d), the E2 world head has no native waking training objective and is untrained in >=half of recent drivers. The promoting run V3-EXQ-818's training state for the E2 world head at run time has not been confirmed against this finding. Evidence reading running_variance/commit rate as epistemic confidence (including this claim's own) should state the E2-world-head training state it ran under.
   heterogeneity_note: "Substrate-version confound: the FAILs predate the relative-threshold implementation (EXQ-018) or are confounded by V_s monostrategy lock (EXQ-396a/396b, EXQ-454) rather than reflecting a circuit failure; the core mechanism is validated by EXQ-018b and EXQ-060."
   depends_on:
     - ARC-005
@@ -5358,6 +5362,8 @@
     reconfirmed non-degenerate in production on 2026-08-02 (V3-EXQ-876/671b,
     same mechanism family). Recategorized from the note's implied
     substrate-blocked reading to standard/testable-now accordingly.
+
+    [2026-09-25 governance-20260925; GFLAG-0472] CORRECTED: V3-EXQ-876's cited 165-216 'uncommitted steps'/seed were NOT genuine fresh E3 selections -- they counted every env step under a held commitment flag that defaults False until the first E3 tick, not SelectionResult.committed per live selection. A corrected driver using the live, non-latched field found 11/12 committed in a smoke run, i.e. near-total commitment saturation, not the uncommitted-rich picture 876 implied. Re-testing needs a decision on e3.use_variance_tracking_commit_threshold's quantile/window parameters (deliberately un-defaulted, config.py) before a new run can be pre-registered. USER DECISION (governance-20260925): the quantile/window parameter choice for use_variance_tracking_commit_threshold is DEFERRED to a dedicated science session, not decided in this governance cycle; MECH-029 re-test stays unqueued until that session sets the parameters.
   evidence_quality_note: |
     EXQ-065 FAIL (2026-03-23): passive observation -- agent stayed locked in
     committed mode throughout eval (uncommitted_step_count=0). No uncommitted
@@ -16038,7 +16044,7 @@
   depends_on:
     - MECH-069
     - ARC-030
-  location: docs/architecture/approach_avoidance_symmetry.md#mech-111
+  location: docs/architecture/learned_error_routing.md#mech-111
   source:
     - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
   notes: >
@@ -16063,6 +16069,8 @@
     reward *variance* (uncertainty), needs own latent channel or modulator. Acts on commit
     threshold (lowering for novel states) rather than through goal attractor channel.
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+
+    [2026-09-25 governance-20260925; GFLAG-0542] Cross-reference: MECH-590 (learned error-routing significance) generalises the alarm-surprise vs curiosity-surprise split this claim leaves open ("may route through z_beta") -- MECH-590 makes the split at least partly LEARNED from consequence history; see docs/architecture/learned_error_routing.md. location field re-homed to that doc (the previous target, approach_avoidance_symmetry.md, does not exist on disk).
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict): the novelty/
     curiosity signal must be wired into E3 candidate scoring as a PER-CANDIDATE weighting,
@@ -16272,6 +16280,8 @@
     results. Weakening evidence accumulating.
 
     [2026-09-23 governance, GFLAG-0400 option A (user-accepted)] EVIDENCE-VALIDITY NOTE from falsifier_completion_and_runnability_audit_20260921 (REE_assembly 02caebd047): the D_eff family shares a DETACHED-z_self defect: agent.py stores _current_latent detached (audit cite agent.py:5585; the .detach() sites have since drifted to ~4122/4125/4191), so compute_self_maintenance_loss has no gradient path and the in-source '# keep in graph' comment is false. EXQ-142's ON and ABLATED arms are byte-identical, and the defect affects every driver calling compute_self_maintenance_loss (075, 075d, 084, 084d, 143, 144, 146, 051b) -- the signature of an unapplied manipulation. The 'two consistent FAIL results, weakening evidence accumulating' reading is therefore NOT admissible: a failed test under unmet preconditions is not evidence against the claim. No status, confidence or evidence_direction change is made here; any direction downgrade is routed to /failure-autopsy (report-only).
+
+    [2026-09-25 governance-20260925; GFLAG-0481] z_self has zero measured causal reach into action selection (0/68 E3 ticks, 0/12 whole episodes changed action under swap/zero/noise/permute of z_self); E3 scores world rollouts only, z_self rollouts are computed and discarded (zself_causal_reach_trace_20260924.md, REE_assembly 884a6b1ca3). Consistent with this claim's own DISPOSITION (no live consumer).
   depends_on:
     - SD-005
     - SD-007
@@ -24095,6 +24105,7 @@
     - ARC-007
     - MECH-163
     - SD-011
+    - MECH-479  # prosocial-planning leg this claim's notes describe (split from MECH-163, 2026-07-22, GFLAG-0521)
   notes: >
     Registered 2026-04-04 from philosophical discussion about the mechanistic
     instantiation of Axiom V (Synthese/Minds+Machines paper).
@@ -24148,6 +24159,8 @@
     z_world is already structured as a residue field -- not a fixed self-centred
     map. Agent-indexing is a matter of whose context seeds the terrain model.
     The substrate is architecturally compatible; V4 is the implementation target.
+
+    [2026-09-25 governance-20260925; GFLAG-0521] STRUCTURE VS WEIGHT (approved annotation): "same motivational force" (component 2 above) is a STRUCTURAL claim -- that other-agent gradients enter E3 selection through the same mechanism as self gradients, not a separate ethics circuit -- and is not a claim of unconditional full-magnitude symmetry. The regulated WEIGHT of that structural channel is governed by MECH-404 (the window/regulation mechanism, targeting the DEV-NEED-022 [0.05, 0.65] band) and MECH-410 (the developmental schedule). Depends_on repointed: the prosocial-planning leg described above (sustaining another agent's goal trajectory / reducing their harm accumulation over time) was split from MECH-163 into MECH-479 on 2026-07-22; MECH-163 is kept as the general dual-system dependency.
   evidence: []
   evidence_quality_note: >
     Registered 2026-04-04. No experiments yet -- V4 implementation_phase.
@@ -36649,10 +36662,7 @@
     decorative), or an agent whose beta_j has collapsed shows no differential willingness to
     sacrifice that target's D_{V,j}.
 
-    GOVERNANCE FLAG (2026-08-08 digestion, not resolved here): ARC-096 and ARC-097
-    (registered 2026-06-10, same day as this claim's v4 -> v5 push) each already carry
-    possible_overlap_with: ARC-056 -- review for merge -- pre-existing and unresolved;
-    a claims.yaml disposition call for governance, not digestion.
+    [2026-09-25 governance-20260925; GFLAG-0524] GOVERNANCE FLAG for ARC-096 CLOSED: reviewed and kept distinct (ARC-096 = typed causal-attribution ontology, ARC-056 = the coherence-optimisation architecture that consumes such attributions -- complementary, not duplicate), wired via ARC-096's existing depends_on edge. ARC-097's possible_overlap_with: ARC-056 (registered the same day, 2026-06-10) is a separate open item, not addressed by this disposition.
   notes: >
     The 10-axiom ethical system maps directly onto D_V mechanics, producing unified
     computational ethics: J_ethical(pi) = beta_self * D_V_self + sum_j beta_j * D_V_j,
@@ -39579,7 +39589,6 @@
   registered: "2026-04-15"
   implementation_phase: v4
   depends_on:
-    - MECH-155
     - MECH-238
     - ARC-007
   literature_evidence: |
@@ -54993,6 +55002,8 @@
     support in either direction; flagged for ARC-065 / MECH-341 (evidence_direction_per_claim
     currently supports/supports). Consequence for SD-056: the t=1 representation signature stands;
     NO behavioural evidence for the claim survives until EXP-0585 runs on the armed substrate.
+
+    [2026-09-25 governance-20260925; GFLAG-0485] CAVEAT: e2_rollout_divergence_and_proposal_state_dependence_20260924.md (f300ebf64d) measured that the E2 world head has no native waking training objective and is untrained in >=half of the 60 most recent drivers (norm grows x1.21/step, 0.49 -> 326 over 30 steps), and even when trained (up to 10k steps) predicts the executed action's consequence at chance. Evidence for this claim measured on an E3/E2 configuration where the world head's training state was not confirmed should be read with this caveat until re-measured on a production-trained agent (tracked by the coupled-repair campaign, coupled_loop_repair_campaign_plan.md).
   digestion_note: >
     [2026-08-07, thought-digestion] The falsifier this claim needs already exists in full
     (V3-EXQ-569e's own script + the three script-side acceptance-criteria fixes named in its
@@ -65701,6 +65712,7 @@
     - MECH-292   # ghost-goal bank -- the V3 spatial-indexed approximation
     - MECH-293   # ghost-goal waking probes -- the V3 spatial-indexed approximation
     - ARC-072    # the architectural gap cluster naming the requirement
+    - MECH-242  # finer-grained specification of MECH-242's pattern-completion mechanism (1), per MECH-242's own notes (GFLAG-0525)
   lit_conf: 0.82
   literature_anchors:
     - "Buckner (2010) Annual Review of Psychology -- hippocampus as prediction/simulation
@@ -72217,7 +72229,7 @@
     knob); NOT MECH-545's five-way contract-lesion assay and NOT MECH-271's differential-routing test.
     Governance PASS skim: criteria combine by AND on every seed, the C2 bar is attainable in both
     directions (floor 0.05, sham SD 0), no defect found.
-  notes: "Assembles into one concrete token schema the provenance fields that REE already enforces in pieces -- MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation), MECH-037 (Papez-like provenance gating / reality filtering), INV-011 (imagination must be possible without belief update). This claim does NOT re-assert that safety property (already owned by those three); it specifies the DATA STRUCTURE that carries it on the ARC-085 unified event substrate and makes the committed_vs_imagined label a first-class, load-bearing field rather than an implicit mode bit. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094; SD-026 (prospective precision-template write channel) is the nearest existing write-side mechanism. V4/V5; off the V3 critical path. substrate_conditional on the ARC-085 event-token store not yet built. DO NOT build in V3 until routed by experiment."
+  notes: "Assembles into one concrete token schema the provenance fields that REE already enforces in pieces -- MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation), MECH-037 (Papez-like provenance gating / reality filtering), INV-011 (imagination must be possible without belief update). This claim does NOT re-assert that safety property (already owned by those three); it specifies the DATA STRUCTURE that carries it on the ARC-085 unified event substrate and makes the committed_vs_imagined label a first-class, load-bearing field rather than an implicit mode bit. The one-way committed-status gate is the autobiographical-memory phrasing of INV-011 + MECH-094; SD-026 (prospective precision-template write channel) is the nearest existing write-side mechanism. [2026-09-25 governance-20260925; GFLAG-0548] CORRECTED: V3 half of the 2026-09-24 split (5a3ac2aa0bc): the committed_vs_imagined one-way gate, landed via the provenance-gate substrate and V3-EXQ-1085. The ARC-085 unified-store schema and the v4/v5 caveat now apply to MECH-365a only, not to this claim."
   phase_leak_resolution_2026_09_24: >
     [2026-09-24, /governance session governance-20260924, V3-necessity phase-leak walk (claim_phase_provenance.md sec. 1, resolution (b)); user decision, rec-20260924-ce7aa5a8] SPLIT (resolution (b), CONFLICT with phase_locked ARC-085): MECH-545 needs only the committed_vs_imagined gate, which already exists in V3, not the ARC-085 unified store. This id keeps the V3 gate half (depends_on ARC-085 removed; epistemic_category substrate_conditional -> standard, since its substrate_conditional reading was 'on the ARC-085 store not yet built'; version_relevance v4_v5 -> v3). The full event-token schema on the unified store -- including the prior notes' 'V4/V5; off the V3 critical path; DO NOT build in V3' guidance -- moves to child MECH-365a (v4). Prior title preserved in title_prior_2026_09_24.
   implementation_note_2026_09_24: >
@@ -75859,9 +75871,7 @@
     arbitration uses convergent-weak-channel summation rather than
     single-strong-channel authority. This is the AE-8 bridge between the
     developmental-pruning compass and the affect substrate.
-    possible_overlap_with: MECH-362 -- review for merge (MECH-362 is the general
-    principle; MECH-390 is its affect-specific specialisation, kept distinct and
-    wired via depends_on). substrate_conditional on a V4 affect substrate not yet
+    overlap_reviewed_2026-09-25 (GFLAG-0526): MECH-362 -- kept distinct (MECH-362 is the general principle; MECH-390 is its affect-specific specialisation), wired via depends_on. Not a merge. substrate_conditional on a V4 affect substrate not yet
     built. DO NOT build in V3.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: BOTH MECH-359 (per-candidate multi-channel affect vector) AND
@@ -76821,6 +76831,8 @@
     SD-063's own P0-trained configuration; under-coverage of a quantile head on an untrained encoder
     is weakly informative and must not be read as a calibration verdict. Settle it in SD-063's own C1
     arm.
+
+    [2026-09-25 governance-20260925; GFLAG-0485] CAVEAT: e2_rollout_divergence_and_proposal_state_dependence_20260924.md (f300ebf64d) measured that the E2 world head has no native waking training objective and is untrained in >=half of the 60 most recent drivers (norm grows x1.21/step, 0.49 -> 326 over 30 steps), and even when trained (up to 10k steps) predicts the executed action's consequence at chance. Evidence for this claim measured on an E3/E2 configuration where the world head's training state was not confirmed should be read with this caveat until re-measured on a production-trained agent (tracked by the coupled-repair campaign, coupled_loop_repair_campaign_plan.md).
   implementation_note: >
     Substrate IMPLEMENTED 2026-07-05 (/implement-substrate, session
     implement-sd063-20260705T1724Z), disabled-by-default. Module
@@ -80321,7 +80333,7 @@
   depends_on:
     - ARC-015    # causal-attribution substrate
     - MECH-256   # SD-003 -> MECH-256 2026-09-01 (sd003-groupB-remaining-20260901): SD-003 superseded 2026-04-18; the typed ontology's self-caused category is built on the self-attribution OUTPUT (causal_sig), which MECH-256's successor comparator still produces -- like-for-like repoint (retrospective attribution, not evaluation, so MECH-256 not MECH-257).
-    - ARC-056    # ethics/coherence substrate -- possible overlap, see notes
+    - ARC-056    # ethics/coherence substrate -- reviewed 2026-09-25 (GFLAG-0524), kept distinct (complementary: attribution ontology vs coherence optimisation)
     - ARC-083    # represented-other pillar (OTHER/SHARED ownership classes need it)
   location: evidence/planning/ethics_as_coherence_v5_plan.md
   functional_restatement: >
@@ -81867,6 +81879,8 @@
     specialisation of INV-007 and grounds in the Q-007 constructionist reframe (Barrett: emotions are
     constructed categories, not natural kinds). epistemic_category substrate_conditional only because
     the language interface it audits is not yet built. DO NOT build in V3.
+
+    [2026-09-25 governance-20260925; GFLAG-0532] Same absolute-override family as ARC-103/ARC-104 (GFLAG-0388, 2026-09-23): grounded harm/threat streams must always be able to override a parsed affect label, no exception. Not separately re-ruled since this claim's own wording already asserts this; recorded here only to close the GFLAG-0532 scope gap. epistemic_category (substrate_conditional, vs INV-007's derivational) reviewed and left as-is -- it reflects a real precondition difference (this claim needs the specific MECH-373 adaptor; INV-007 needs only a generic language channel), not an inconsistency.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: requires MECH-373 (the LanguageAffectAdaptor) to exist and be producing
     affect estimates from language -- confirmed ABSENT (see group preamble and MECH-373 below).
@@ -87054,7 +87068,7 @@
     the confirming experiments it seeds move claims candidate->provisional through the
     normal /governance path, not through this rule. EXEMPT: claims with no built substrate
     (nothing to confirm yet) and claims already covered by a queued/proposed run.
-  notes: "Plan of record: evidence/planning/gov_confirm_1_plan.md (P0 done -- this claim + plan; P1 shadow detector + P2 low-priority autospawn build after user review). GENERATIVE-DISCOVERY complement to GOV-CEIL-1 / GOV-DIAG-1 (detection), GOV-FANOUT-1 (response), GOV-REUSE-1 (reanalysis consumer). Reuses existing workset predicates -- adds only the generative iteration + a lit_conf floor + a location-exists substrate-built gate. First-application seed set (2026-07-14 subagent scan, chips spawned this session): MECH-304, MECH-288, MECH-287, MECH-303, MECH-284; borderline MECH-271 (substrate unconfirmed) / MECH-292 (scope-risky). PROMOTES/DEMOTES NOTHING on registration. Cross-ref the IGW auto-spawn routine, ree_ai_design_critique_plan.md (WS family), and the work_graph_debt_vocabulary complex(probe-gated) token (the wall-independent-DV judgement stays a per-item /queue-experiment probe)."
+  notes: "Plan of record: evidence/planning/gov_confirm_1_plan.md (P0 done -- this claim + plan; P1 shadow detector done since 2026-07-14, P2 low-priority autospawn done since 2026-07-14, both applied per REE_assembly 2e6fe97c4bd -- 2026-09-25 governance-20260925, GFLAG-0529; a separate confirmer-authoring template defect at V3-EXQ-757/761/762, per_claim fixes already applied 2e6fe97c4bd, remains open and is routed as a chip). GENERATIVE-DISCOVERY complement to GOV-CEIL-1 / GOV-DIAG-1 (detection), GOV-FANOUT-1 (response), GOV-REUSE-1 (reanalysis consumer). Reuses existing workset predicates -- adds only the generative iteration + a lit_conf floor + a location-exists substrate-built gate. First-application seed set (2026-07-14 subagent scan, chips spawned this session): MECH-304, MECH-288, MECH-287, MECH-303, MECH-284; borderline MECH-271 (substrate unconfirmed) / MECH-292 (scope-risky). PROMOTES/DEMOTES NOTHING on registration. Cross-ref the IGW auto-spawn routine, ree_ai_design_critique_plan.md (WS family), and the work_graph_debt_vocabulary complex(probe-gated) token (the wall-independent-DV judgement stays a per-item /queue-experiment probe)."
   what_would_answer: |
     NOT an empirical pass/fail falsifier -- governance_rule (generative-discovery member of
     the warn-only routing-standard family: GOV-CEIL-1/GOV-DIAG-1 detection, GOV-FANOUT-1
@@ -87234,7 +87248,7 @@
     the registry is a derive-only INPUT that never mutates claims.yaml, closure weights,
     or claim status. Do not cite GOV-FROZEN-1 as though the rule were enforced by its
     own registration.
-  notes: "Registered 2026-07-18 by the /governance 2026-07-18 cycle session's request; deliberately deferred by the session that BUILT the machinery because claims.yaml is governance-owned and high-contention. DOCUMENTATION / CITABILITY ONLY -- registers no new enforcement; the machinery was already fully built and landed. Wiring (all pre-existing): evidence/planning/hypothesis_space_registry.v1.json (the FROZEN append-only ledger, invariants block: elimination_bar, frozen_initial_set, labelled_fanout_growth, human_owns_decided, non_contributory_unchanged), scripts/check_hypothesis_space_integrity.py (advisory audit buckets a/b/c/d plus advisory e_labelled_growth / f_unverifiable / g_witnessed), scripts/build_hypothesis_space.py (derives hypothesis_space.v1.json + hypothesis_space_timeseries.v1.jsonl), scripts/governance.sh Step 3c-bis-6b (warn-only), /failure-autopsy SKILL.md Step 9b Frozen-set invariants 1-7 (SINGLE producer; 3a is the fan-out case), /governance SKILL.md Step 5c (derive-only consumer). Landed as REE_assembly master 9d26f2be5f (fan-out contract + honest-pair dashboard) and bd9674dd44 (git-witnessed pre-registration). ESCALATION CLAUSE added 2026-07-18 (same day as registration): the structural contract is now paired with a count-based recurrence overlay, FANOUT_RECURRENCE_N=3 distinct fanout_source portfolios on one question, matching GOV-CEIL-1 CEILING_EXHAUSTION_N / GOV-DIAG-1 DIAG_RECURRENCE_N -- the original entry had NO threshold while both siblings did, which left the rule exposed to the exact alarm-fatigue vector it warns about. Wiring: check_hypothesis_space_integrity.py bucket `h_fanout_recurrence` (ADVISORY_BUCKETS member -- ACTIONABLE overlay, never counted as a flag, never gates), its own report section, a stdout routing block, and 4 self-test discriminations (fires at N>=3; NOT a (b) violation since every portfolio was legitimate; keyed on fanout_source not recorded_utc, pinned by two synthetic events sharing a timestamp; quiet below N). Live state at landing: competence_floor sits at 2 portfolios (7 -> 12 legs), so the overlay is armed but correctly silent -- one more portfolio fires it. PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref GOV-FANOUT-1 (the fan-out routing whose portfolios are the sanctioned growth source), GOV-CEIL-1 / GOV-DIAG-1 (sibling warn-only detection rules), and the work_graph_debt_vocabulary aleatoric(irreducible) token for the unverifiable provenance state (no git history is not a reducible unknown -- it is hedged, not researched)."
+  notes: "Registered 2026-07-18 by the /governance 2026-07-18 cycle session's request; deliberately deferred by the session that BUILT the machinery because claims.yaml is governance-owned and high-contention. DOCUMENTATION / CITABILITY ONLY -- registers no new enforcement; the machinery was already fully built and landed. Wiring (all pre-existing): evidence/planning/hypothesis_space_registry.v1.json (the FROZEN append-only ledger, invariants block: elimination_bar, frozen_initial_set, labelled_fanout_growth, human_owns_decided, non_contributory_unchanged), scripts/check_hypothesis_space_integrity.py (advisory audit buckets a/b/c/d plus advisory e_labelled_growth / f_unverifiable / g_witnessed), scripts/build_hypothesis_space.py (derives hypothesis_space.v1.json + hypothesis_space_timeseries.v1.jsonl), scripts/governance.sh Step 3c-bis-6b (warn-only), /failure-autopsy SKILL.md Step 9b Frozen-set invariants 1-7 (SINGLE producer; 3a is the fan-out case), /governance SKILL.md Step 5c (derive-only consumer). Landed as REE_assembly master 9d26f2be5f (fan-out contract + honest-pair dashboard) and bd9674dd44 (git-witnessed pre-registration). ESCALATION CLAUSE added 2026-07-18 (same day as registration): the structural contract is now paired with a count-based recurrence overlay, FANOUT_RECURRENCE_N=3 distinct fanout_source portfolios on one question, matching GOV-CEIL-1 CEILING_EXHAUSTION_N / GOV-DIAG-1 DIAG_RECURRENCE_N -- the original entry had NO threshold while both siblings did, which left the rule exposed to the exact alarm-fatigue vector it warns about. Wiring: check_hypothesis_space_integrity.py bucket `h_fanout_recurrence` (ADVISORY_BUCKETS member -- ACTIONABLE overlay, never counted as a flag, never gates), its own report section, a stdout routing block, and 4 self-test discriminations (fires at N>=3; NOT a (b) violation since every portfolio was legitimate; keyed on fanout_source not recorded_utc, pinned by two synthetic events sharing a timestamp; quiet below N). Live state at landing: competence_floor sits at 2 portfolios (7 -> 12 legs), so the overlay is armed but correctly silent -- one more portfolio fires it. [2026-09-25 governance-20260925; GFLAG-0534] FORWARD POINTER: the escalation clause subsequently fired and WAS acted on -- competence_floor was CLOSED TO FURTHER FAN-OUT 2026-08-08 (competence_floor_recurrence_repose_2026-08-08.md, chip-20260808-competence-floor-refpose), four days after the third crossing (mech476-mech475-cluster, 2026-07-29), and is now ACKNOWLEDGED with 0 legs alive. PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref GOV-FANOUT-1 (the fan-out routing whose portfolios are the sanctioned growth source), GOV-CEIL-1 / GOV-DIAG-1 (sibling warn-only detection rules), and the work_graph_debt_vocabulary aleatoric(irreducible) token for the unverifiable provenance state (no git history is not a reducible unknown -- it is hedged, not researched)."
   what_would_answer: |
     NOT an empirical pass/fail falsifier -- GOV-FROZEN-1 is a governance_rule (warn-only, anti-Goodhart
     denominator-integrity rule), so this specifies the REASSESSMENT TRIGGER, not an experiment result.
@@ -87254,7 +87268,7 @@
     2026-07-26, and the rule's own prescribed reading ("the question may be MIS-POSED rather than
     under-enumerated; re-pose the operationalization before opening another portfolio") does not appear
     to have been acted on -- competence_floor gained a further labelled portfolio
-    (mech476-mech475-cluster) on 2026-07-29, AFTER the third crossing.
+    (mech476-mech475-cluster) on 2026-07-29, AFTER the third crossing. [2026-09-25 governance-20260925; GFLAG-0534] CORRECTED: the escalation WAS acted on -- competence_floor was CLOSED TO FURTHER FAN-OUT 2026-08-08 (competence_floor_recurrence_repose_2026-08-08.md, chip-20260808-competence-floor-refpose), four days after the third crossing, and is now ACKNOWLEDGED with 0 legs alive.
 
     EVIDENCE RELEVANT AT REASSESSMENT: once surfaced, did the escalation firing lead to a re-posed
     operationalization that reduced further fan-out on this qid, or did labelled growth continue
@@ -91717,6 +91731,8 @@
     docs/substrate/MECH-468-anchor-relational-dump.md. This claim's own
     ablation series is unaffected (still gated on the same recording, now
     available for A/C/D/E but not B); status/confidence unchanged.
+
+    [2026-09-25 governance-20260925; GFLAG-0484] relational_edge_consumer_reach_20260924.md (410e589ce1): the only native relational consumer is SD-097 (PossibilityTopology via GhostGoalBank._admit_relational_successors), carrying ONE edge type, default-off, never enabled by any experiment -- the four recorded edge types (MECH-468) have ZERO production callers outside instrumentation. A typed-vs-collapsed discrimination (this claim) is therefore NOT RUNNABLE; the prior question is whether the single-type consumer changes CEM seeding/E3 selection at all when enabled (D2 probe, chipped to /queue-experiment).
   notes: >
     THE DIRECT ABLATION FROM MECH-468, registered separately because it is the leg that
     distinguishes "topology helps" from "TYPED topology helps" -- a single-adjacency win
@@ -91770,6 +91786,8 @@
     docs/substrate/MECH-468-anchor-relational-dump.md. This claim's own
     consumer (GhostGoalBank / _propose_ghost_seeded) is unchanged by this
     landing; status/confidence unchanged.
+
+    [2026-09-25 governance-20260925; GFLAG-0484] relational_edge_consumer_reach_20260924.md (410e589ce1): the only native relational consumer is SD-097 (PossibilityTopology via GhostGoalBank._admit_relational_successors), carrying ONE edge type, default-off, never enabled by any experiment -- the four recorded edge types (MECH-468) have ZERO production callers outside instrumentation. A typed-vs-collapsed discrimination (MECH-469, context only for this claim) is therefore NOT RUNNABLE; the prior question is whether the single-type consumer this claim owns changes CEM seeding/E3 selection at all when enabled (D2 probe, chipped to /queue-experiment).
   notes: >
     THE APPLIED CLAIM, AND THE ONE WITH A BUILT CONSUMER. MECH-292/293's ghost-goal bank
     already ranks inactive anchors on payload match, so a topological term is a DROP-IN
@@ -105274,9 +105292,7 @@
     + checkpoints, a panel of mechanistic lesions and developmental variants, an ecological passport per
     retained preparation, and an ecology-adapter contract for bounded external simulations -- these are
     engineering/documentation deliverables that follow FROM adopting this rule, not additional governance
-    commitments; see the companion intake''s Next Steps for the chip-worthy follow-on. The `location`
-    stub file does not yet exist on disk; drafting it is part of landing this claim, not part of this
-    intake pass.
+    commitments; see the companion intake''s Next Steps for the chip-worthy follow-on. The `location` file (docs/architecture/bridge_organism_lineage.md) was created in the same registering commit (d791e404f4b) and exists on disk.
 
     '
   evidence: []
@@ -105878,13 +105894,7 @@
     ("This does not presently justify a new sleep module"). (b) NOT a restatement of the authority boundary:
     the thought''s companion invariant ("sleep may repair access to competition but cannot mint authority")
     was duplication-audited during intake and found DERIVABLE from ARC-020 + ARC-120 + ARC-130 + INV-024,
-    and was deliberately NOT registered. (c) NOT an amendment to ARC-020: the audit did surface a residual
-    -- ARC-020''s permissive MAY-update list (representational parameters, residue/viability structures,
-    precision priors, replay prioritization) does not name the access-route quantities the fourth operation
-    targets (retrieval-cue mappings, model-to-policy readouts, proposal distributions, eligibility / competitive-gain
-    mappings), so access repair is today neither explicitly permitted nor explicitly forbidden. That residual
-    is FLAGGED FOR /governance as a question about ARC-020''s scope; nothing here resolves it and ARC-020
-    is untouched. (d) NOT ownership of any of the four operations: reorganisation is MECH-529/MECH-513/ARC-132/MECH-514''s;
+    and was deliberately NOT registered. [2026-09-25 governance-20260925; GFLAG-0539] (c) NOT an amendment to ARC-020: the audit surfaced a residual (ARC-020 MAY-update list did not name the access-route quantities the fourth operation targets) that /governance has since RESOLVED (GFLAG-0128, 2026-09-10, REE_assembly c8116c399b, option a) -- ARC-020 what_would_answer and sleep.md MAY-update list (lines 81-86) now explicitly enumerate retrieval-cue mappings, model-to-policy readouts, proposal distributions and eligibility/competitive-gain mappings. ARC-020 is no longer untouched; nothing further owed here. (d) NOT ownership of any of the four operations: reorganisation is MECH-529/MECH-513/ARC-132/MECH-514''s;
     recalibration is MECH-273/MECH-275/MECH-204''s; retention is SD-083/MECH-475/MECH-457''s (with MECH-476
     RETIRED 2026-08-01 on its own falsifier); behavioural-access failure is INV-037/ARC-130/ARC-131/ MECH-480''s.
     This claim types the family; it takes nothing from its members.
@@ -106192,7 +106202,7 @@
     and the *consumer's* design is the problem, and that must be recorded as such rather than charged
     back to SD-105.
   digestion_note: >
-    [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] DEFERRED (f) -- remove this note once resolved. Registered 2026-09-04 naming V3-EXQ-963b as validation; the SAME DAY ree-v3 d2104f8 recorded a BLOCKING red-team verdict (F1, CONFIRMED / NOT FIXED): a live closed-loop set-point controller cannot be validated in a difference-of-arms design whose DV is the quantity it regulates, and the fix needs a freeze/share API (converge the multiplier once, apply as a shared constant to every arm) that SD-105 does not have. Neither this block nor its design doc records the verdict, and 963b was NEVER queued (substrate_queue.json says it was). Resolve first: (1) governance ratifies the frozen-multiplier design in what_would_answer or picks the autopsy's second branch; (2) the freeze/share API is built or explicitly waived; (3) the committed-fraction coupling via last_precommit_probs to MECH-104/106/234/250 is pinned in any run. The what_would_answer below is written for the frozen-multiplier form.
+    [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] DEFERRED (f) -- remove this note once resolved. Registered 2026-09-04 naming V3-EXQ-963b as validation; the SAME DAY ree-v3 d2104f8 recorded a BLOCKING red-team verdict (F1, CONFIRMED / NOT FIXED): a live closed-loop set-point controller cannot be validated in a difference-of-arms design whose DV is the quantity it regulates, and the fix needs a freeze/share API (converge the multiplier once, apply as a shared constant to every arm) that SD-105 does not have. Neither this block nor its design doc records the verdict, and 963b was NEVER queued (substrate_queue.json says it was). Resolve first: (1) DONE 2026-09-23, GFLAG-0331 item 6 -- frozen-multiplier design ratified. (2) DONE 2026-09-25 -- freeze/share API built (ree-v3 c5d55ea: SelectionEntropyFloor.freeze(), selection_entropy_floor_frozen_multiplier/freeze_after_ticks, contracts B11-B19; substrate_queue sd105_frozen_shared_entropy_floor_multiplier implemented_pending_validation, REE_assembly 2e802df77e). REMAINING: (3) the committed-fraction coupling via last_precommit_probs to MECH-104/106/234/250 must still be pinned in any run -- owed to V3-EXQ-963c (chip-20260910-gflag0119-963-lineage-validation-retest). The what_would_answer below is written for the frozen-multiplier form.
   notes: >
     [2026-09-06 thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group)] Registered 2026-09-04 by session campaign-c2c-20260904-registry; this session added only what_would_answer and a digestion_note (category untouched) after user review. Group-level finding: SD-105 couples to MECH-104/106/234/250 through last_precommit_probs (written inside select()) and manufactures the DV that MECH-294/341/442 read out -- never arm SD-105 together with any of those in a scoring run without pinning it.
   source:
@@ -106222,6 +106232,8 @@
     integrator SURVIVE reset() -- the opposite of SD-069's default and deliberate, since a set-point
     re-converging from cold each episode measures episode LENGTH rather than the policy's confidence.
     Contracts B1-B10 in ree-v3/tests/contracts/test_sd104_sd105_burst_decay_and_entropy_headroom.py.
+
+    [2026-09-25 governance-20260925; GFLAG-0505] Frozen/shared entropy-floor multiplier landed ree-v3 c5d55ea (2026-09-25): SelectionEntropyFloor.freeze(), selection_entropy_floor_frozen_multiplier / freeze_after_ticks, frozen-field reporting, contracts B11-B19. substrate_queue.json sd105_frozen_shared_entropy_floor_multiplier flipped to implemented_pending_validation the same day (REE_assembly 2e802df77e). digestion_note above narrowed accordingly -- only the committed-fraction pinning (V3-EXQ-963c) remains outstanding.
 - id: ARC-138
   title: 'Regulation-first representational organisation: the developmental ordering is machine ->
     regulation -> interaction -> organised experience -> knowledge -- a mature, detached, portable world
@@ -107589,8 +107601,9 @@
   version_relevance: v3_v4
   registered_utc: '2026-09-08'
   depends_on:
-    - MECH-529  # sleep consolidation of a newly recruited substitute
     - MECH-537  # an interface-level compensation route, if compensation proves interfacial
+  related_claims:
+    - MECH-529  # sleep consolidation of a newly recruited substitute -- moved from depends_on 2026-09-25 (GFLAG-0553): this claim needs only the general consolidation function, not MECH-529's ARC-134-gated rebucketing/index-continuity specifics
   location: docs/architecture/compensatory_realizability.md#arc-140
   notes: >
     Registered 2026-09-08 from thought 2026-09-06_recovery_without_restoration_compensatory_realizability.md
@@ -107601,7 +107614,7 @@
     neuroplasticity, precision readiness, activity selectivity). ONLY THE PUBLIC PREVIEW WAS
     AVAILABLE to the source thought -- the framework is established by it, the authors' full
     argument is not, and this registration is a DERIVED REE hypothesis, not a claim about what
-    that paper demonstrates. A lit-pull for the full text is owed before it is cited as support.
+    that paper demonstrates. [2026-09-25 governance-20260925; GFLAG-0553] A lit-pull ran 2026-09-08 (targeted_review_compensatory_realizability) and confirmed the RN/CA framework attribution from the abstract; the FULL TEXT remains paywalled and the "precision readiness" definition -- the term this claim's terminological-trap warning is about -- is still unread. The warning stands unmodified.
     TERMINOLOGICAL TRAP, recorded deliberately: the source's "precision readiness" must NOT be
     equated with REE's own precision/gain machinery -- the overlap is suggestive and the
     technical meanings may differ. The testable residue is the question "what previously
@@ -107616,6 +107629,8 @@
     build in V3. DO NOT queue an experiment from this entry -- the assay is a five-phase
     programme against substrate maturity REE does not yet have, and /governance owns whether
     and when it starts.
+
+    [2026-09-25 governance-20260925; GFLAG-0553] A parallel split-like-MECH-365 question (V3 method-standard half vs v4 organism half of this claim, via GOV-CONTRACT-2) was also raised and is DEFERRED to a dedicated governance pass -- it re-opens this claim's whole phase story rather than being a one-line fix.
   phase_leak_resolution_2026_09_24: >
     [2026-09-24, /governance session governance-20260924, hold follow-up (claim_phase_provenance.md sec. 1, resolution (b)); user decision rec-20260924-c5c4613e] depends_on edge ARC-140 -> ARC-139 SEVERED: ARC-140's own text says 'DISTINCT FROM ARC-139' (reallocation after damage vs coordination in the intact organism).
   what_would_answer: |
@@ -107693,8 +107708,7 @@
     over-consolidated repair. It bears on REE's standing interest in attractor confidence,
     precision/gain regulation, perception and psychiatric-like failure modes, and the
     corresponding clinical intuition (a defence that outlives the threat it was built for) is
-    the user's own domain -- worth checking against the clinical literature in a later
-    lit-pull rather than asserted here. The experiment is the MIRROR IMAGE of ARC-140's
+    the user's own domain -- confirmed by a targeted lit-pull that ran 2026-09-08 (targeted_review_compensatory_realizability: Grover 2026 restorative-normalization/compensatory-amplification, Faity 2026 learned-nonuse), which covers this claim's general compensation-pathology framing. [2026-09-25 governance-20260925; GFLAG-0553] The experiment is the MIRROR IMAGE of ARC-140's
     recovery assay: progressively amplify an initially useful substitute and locate the point
     at which compensation stops being adaptive. DO NOT build in V3, DO NOT queue an
     experiment -- it is downstream of ARC-140's assay, which is itself downstream of a stable
@@ -107741,8 +107755,9 @@
   depends_on:
     - INV-011   # the ACTIVE invariant this refines; deliberately NOT amended -- see notes
     - ARC-065   # commitment boundary / precommit architecture
-    - MECH-467  # precommit machinery
     - ARC-141   # the cultural framing whose empirical content this discharges
+    - MECH-248  # source-monitoring readout gap this claim's P2 restates (GFLAG-0527)
+    - MECH-430  # source-vector-not-a-bit gap this claim's P2 restates (GFLAG-0527)
   location: docs/architecture/culture_distributed_precommit.md#mech-542
   notes: >
     Registered 2026-09-08 from the 2026-09-07 culture-as-distributed-precommit package (thought +
@@ -107983,6 +107998,8 @@
     - MECH-542  # the permeability whose failure mode this is
     - INV-011   # the protection that source-tag decay erodes
     - ARC-141   # cultural transmission as the exposure route
+    - MECH-248  # source-monitoring readout gap this claim's P5 restates (GFLAG-0527)
+    - MECH-430  # source-vector-not-a-bit gap this claim's P5 restates (GFLAG-0527)
   location: docs/architecture/culture_distributed_precommit.md#mech-544
   notes: >
     Registered 2026-09-08 from the 2026-09-07 culture package. WHY SEPARATE FROM MECH-542: they
@@ -111669,9 +111686,7 @@
     COUNTERWEIGHT: one line per upward promotion; its failure mode is a boilerplate stamp, mitigated by
     requiring the SPECIFIC untested domains. DO NOT BUILD A HOOK, GATE OR SCORE FOR THIS -- manual
     interpretive discipline, same counterweight as GOV-HELDOUT-1; a scalar "organism-level score" is the
-    doctrine's own stop condition. Implementation surface when governance ratifies: the progress-report
-    template (doctrine section 12) into /governance's headline step and generate_current_front.py's
-    front block; proposed, NOT applied here. DO NOT queue an experiment from this entry.
+    doctrine's own stop condition. Implementation surface APPLIED: /governance SKILL.md Step 7a + generate_current_front.py surface the stamp into docs/CURRENT_FRONT.md (landed 0026b722232, 2026-09-16); restated 3x as of 2026-09-25 (V3-EXQ-1010, then flagged STALE, then re-stated against V3-EXQ-1078). DO NOT queue an experiment from this entry.
   what_would_answer: |
     NOT an empirical pass/fail falsifier. GOV-JURIS-1 is a governance_rule, the parent D0-D7 profile of
     GOV-ECOL-1 (D4), GOV-DELETE-1 (D6) and Q-108 (D7). This states the REASSESSMENT TRIGGER and
@@ -111889,11 +111904,7 @@
     this protects a QUESTION from being closed by exhaustion of a wrong partition. COST COUNTERWEIGHT:
     the failure mode is H-other used lazily after every null, which the title forbids by requiring a
     pattern-level signal; the doctrine's section 14 lists "H-other routinely converted into try the same
-    hypothesis with more compute" as a stop condition in the other direction. IMPLEMENTATION SURFACE,
-    proposed and NOT applied: (a) failure-autopsy SKILL.md Step 9b gains a Mode D / H-other check run
-    BEFORE the state mapping; (b) hypothesis_space_registry.v1.json questions gain an `h_other_events[]`
-    list parallel to fanout_growth_events[]; (c) check_hypothesis_space_integrity.py counts them. Each is
-    a standing-rule change and carries its own GOV-HELDOUT-1 check when applied. DO NOT queue an
+    hypothesis with more compute" as a stop condition in the other direction. IMPLEMENTATION SURFACE, APPLIED 2026-09-16 (REE_assembly 0026b722232): (a) failure-autopsy SKILL.md Step 9b Mode D / H-other check landed (mirrored to .agents/skills, identical); (b) hypothesis_space_registry.v1.json carries h_other_route + h_other_events[] (3 events as of 2026-09-25: q43/q61/q66, all routed before any rescue run); (c) check_hypothesis_space_integrity.py counts them via p_h_other_events / q_h_other_candidate, confirmed live 2026-09-25. DO NOT queue an
     experiment from this entry.
   what_would_answer: |
     NOT an empirical pass/fail falsifier. GOV-HOTHER-1 is a governance_rule over the hypothesis-space
@@ -112065,6 +112076,7 @@
     - GOV-CAPCONTRACT-1 # preconditions 1 and 3 (baseline competence; plasticity live) are this rule's declared-capability contract
     - GOV-BEHADJ-1     # the adjudication methodology for the behavioural readouts
     - INV-107          # perturbation class AR-4 (memory / provenance corruption) tests whether internal evidence is revisable rather than self-confirming
+    - MECH-523      # untrained beta->theta->delta cascade -- the mechanistic reason AR-1 has no lever and AR-3 is nearest (GFLAG-0536)
   location: docs/architecture/organism_level_validation_doctrine.md#q-108
   notes: >-
     Registered 2026-09-16 from sections 8 and 9 of the source thought and sections 10 and 11 of
@@ -112080,9 +112092,7 @@
     prediction) and V3-EXQ-223 (whether the core loop is a complete minimal mind on a FAMILIAR world): this
     is about recovery from being WRONG, not competence on a known world. Substrate reality as of
     2026-09-16: AR-5 is blocked by Q-107's missing controlled-drift intervention; AR-4 needs the
-    provenance-genealogy substrate MECH-552..554 say is absent; AR-1 (cue remapping) is the nearest
-    V3-expressible class if CausalGridWorldV2's cue semantics can be remapped mid-life without a mode
-    flag -- flagged for /governance routing, NOT decided here. DO NOT build in V3 and DO NOT queue an
+    provenance-genealogy substrate MECH-552..554 say is absent; [2026-09-25 governance-20260925; GFLAG-0536] CORRECTED: AR-1 (cue remapping) has no lever in code; the nearest V3-expressible class is AR-3 (built world_rule_shift action-map reshuffle with a built no-change control) -- matches the already-updated what_would_answer 'ANSWER TO THE WHICH CLASS LEG'. DO NOT build in V3 and DO NOT queue an
     experiment from this entry.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION (all required; the doctrine section 11 gate items 1-3 made measurable):
