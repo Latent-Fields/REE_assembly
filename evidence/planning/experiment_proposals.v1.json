@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-25T04:02:21.015619Z",
+  "generated_at_utc": "2026-09-25T04:07:00.230396Z",
   "items": [
     {
       "acceptance_checks": [
@@ -32527,90 +32527,6 @@
     },
     {
       "acceptance_checks": [
-        "At least 2 additional runs with distinct seeds.",
-        "Experiment Pack validates against v1 schema.",
-        "Result links to claim_ids_tested and updates matrix direction counts."
-      ],
-      "backlog_id": "EVB-0661",
-      "claim_id": "MECH-219",
-      "decision_deadline_utc": "",
-      "decision_required_outcomes": [],
-      "dispatch_mode": "targeted_probe",
-      "exclude_broad_profile_sweeps": false,
-      "min_shared_seeds": 0,
-      "objective": "Reduce uncertainty for MECH-219 via targeted experiment runs.",
-      "priority": "medium",
-      "proposal_id": "EXP-1246",
-      "proposal_type": "experimental",
-      "require_pre_registered_thresholds": false,
-      "required_pack_contract": {
-        "manifest": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction"
-        ],
-        "metrics": "stable numeric keys only",
-        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
-        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
-      },
-      "seed_policy": "distinct_seeds",
-      "status": "proposed",
-      "suggested_experiment_type": "claim_probe_mech_219",
-      "target_repo": "ree-v3",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
-        "At least 1 structured literature entry linked to claim_ids_tested.",
-        "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
-        "Confidence explicitly justified in confidence_rationale and confidence_components.",
-        "Direction is supports/weakens/mixed/unknown and reflected in matrix.",
-        "Preserve source wording, REE translation, and mapping caveat for each record."
-      ],
-      "backlog_id": "EVB-0661",
-      "claim_id": "MECH-219",
-      "decision_deadline_utc": "",
-      "disconfirming_evidence_required": 1,
-      "mapping_quality_weighting_required": true,
-      "objective": "Improve literature grounding and confidence for MECH-219.",
-      "priority": "medium",
-      "proposal_id": "LIT-1247",
-      "proposal_type": "literature_review",
-      "required_record_contract": {
-        "confidence_component_fields": [
-          "confidence_components.source_quality",
-          "confidence_components.mapping_fidelity",
-          "confidence_components.transfer_risk"
-        ],
-        "mapping_fields": [
-          "mapping.source_claim_statement",
-          "mapping.ree_translation",
-          "mapping.mapping_caveat"
-        ],
-        "record": [
-          "claim_ids_tested",
-          "evidence_class",
-          "evidence_direction",
-          "confidence",
-          "confidence_rationale",
-          "mapping",
-          "confidence_components"
-        ],
-        "summary": "include caveats, disconfirming evidence, and mapping limits"
-      },
-      "status": "proposed",
-      "suggested_literature_type": "targeted_review_mech_219",
-      "target_repo": "REE_assembly",
-      "why_now": [
-        "insufficient_experimental_replication",
-        "missing_literature_evidence"
-      ]
-    },
-    {
-      "acceptance_checks": [
         "At least 1 structured literature entry linked to claim_ids_tested.",
         "Include at least 1 disconfirming/mixed source(s) alongside supporting sources.",
         "Confidence explicitly justified in confidence_rationale and confidence_components.",
@@ -36085,6 +36001,42 @@
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
+      ]
+    },
+    {
+      "acceptance_checks": [
+        "At least 2 additional runs with distinct seeds.",
+        "Experiment Pack validates against v1 schema.",
+        "Result links to claim_ids_tested and updates matrix direction counts."
+      ],
+      "backlog_id": "EVB-0661",
+      "claim_id": "MECH-219",
+      "decision_deadline_utc": "",
+      "decision_required_outcomes": [],
+      "dispatch_mode": "targeted_probe",
+      "exclude_broad_profile_sweeps": false,
+      "min_shared_seeds": 0,
+      "objective": "Reduce uncertainty for MECH-219 via targeted experiment runs.",
+      "priority": "medium",
+      "proposal_id": "EXP-1246",
+      "proposal_type": "experimental",
+      "require_pre_registered_thresholds": false,
+      "required_pack_contract": {
+        "manifest": [
+          "claim_ids_tested",
+          "evidence_class",
+          "evidence_direction"
+        ],
+        "metrics": "stable numeric keys only",
+        "registered_thresholds": "required when dispatch_mode=discriminative_pair",
+        "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
+      },
+      "seed_policy": "distinct_seeds",
+      "status": "proposed",
+      "suggested_experiment_type": "claim_probe_mech_219",
+      "target_repo": "ree-v3",
+      "why_now": [
+        "insufficient_experimental_replication"
       ]
     },
     {
