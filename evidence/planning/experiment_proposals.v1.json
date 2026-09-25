@@ -40253,15 +40253,24 @@
       ],
       "added_utc": "2026-09-06",
       "backlog_id": null,
+      "blocked_by": [
+        "SD-MECH181-MATCHED-INSULT-HARNESS",
+        "contextmemory-write-path-addressing-degeneracy"
+      ],
+      "blocked_note": "REFUSED 2026-09-25 at /queue-experiment Steps 2.5c/2.5d (ree-v3 5e18e979). TWO blocks. (1) Leg (ii) RESERVE -- MECH-181's only content over MECH-180 -- needs a matched-insult harness (ContextMemory slot ablation OR E3 attribution-noise injection, per the claim's own OR) with a paired per-seed retention delta. ABSENT: grep -rn 'ablat|attribution_noise|slot_ablation' ree_core/*.py returns only unrelated comments, and NO substrate_queue.json entry owns it -- SD-MECH181-MATCHED-INSULT-HARNESS is named here as an UNOWNED gap needing registration. complicated (buildable), not probe-gated. (2) Leg (i) MAINTENANCE cannot be queued as specified: its CONFIRMING criterion (sws_n_writes + rem_n_rollouts monotone in MEASURED MEL) is a monotone non-decreasing function of measured MEL BY CONSTRUCTION -- mel_consumer.py:253-283 -> phase_manager.py:572-582 -> agent.py:13190-13197/:13315-13323/:13400/:13504 -- so its FALSIFYING clause (i) is unreachable (Step 2.5d INERT / Step 4.5 BLOCKING). Owed to /governance as GFLAG-0495. Separately, contextmemory-write-path-addressing-degeneracy (open, corrupting, e1_deep.py::ContextMemory.write) is reproduced live in this lineage: V3-EXQ-861i under the default argmin path records per_cycle_n_touched_slots [1,1,1,1,1,1] and mean_sws_new_slot_diversity 0.0, so sws_n_writes counts a representationally inert write. Gate (1), the only empirical leg, is already recorded monotone 3/3 seeds by V3-EXQ-1069 (GOV-REUSE-1). NOTE the chip's AMBER pre-flight caveat is FALSE as written: e2.world_forward IS trained in P0 across 798a/861i/1071 (861i:629-650 + :830, conv_rel_drop 0.959) and neither named remedy (SD-031 E2WorldForward, SD-070 ZWorldP0Trainer) is on the MEL PE path. Full record: REE_assembly/evidence/planning/mech181_leg_i_dv_arithmetic_refusal_20260925.md (origin/master b006b7642b).",
       "claim_id": "MECH-181",
       "design": "- title: \"MECH-181/MECH-180 ecological cognitive-reserve chain: graded world-rule-shift novelty ->\n  above-reference waking MEL -> graded offline-phase work -> differential retention at matched insult\"\n- related_claims: MECH-181 (primary), MECH-180, INV-050, INV-049, SD-017, MECH-204\n- acceptance_checks: all five preconditions above emitted as explicit P0 gates (producer\n  supra-reference with the decay check; the matched-PE noise negative control; consumer un-pinned;\n  saturation fraction reported; consumer-OFF attribution arm); `claim_ids` naming MECH-181 and MECH-180\n  with per-claim direction; monotonicity scored against MEASURED MEL not the novelty label;\n  `>= 5` seeds; leave-one-out reported in-line.\n- Sequencing note: leg (i) is runnable TODAY with zero new build (both substrates validated, all\n  knobs present). Leg (ii) needs a small insult harness (slot ablation / E3 noise injection), which is\n  `complicated (buildable)`, not probe-gated. Do not mint this as a fresh lineage if the\n  \"still-gated, separately-queued MECH-180 ecological end-to-end run\" is scheduled -- MECH-181's leg (i)\n  IS that run plus a per-claim tag, and leg (ii) is one extra phase on the same driver.",
       "dispatch_mode": "multi_arm_ablation",
+      "governance_flag": "GFLAG-0495",
       "machine_affinity": "any",
       "notes": "Minted by thought-digestion v3-closure 2026-09-04 (applied 2026-09-06, session thought-digestion-v3-20260904-apply, user-approved group-by-group). Non-degeneracy precondition, CONFIRMING and FALSIFYING are the what_would_answer field on MECH-181 in claims.yaml -- the design here is the agent sketch, to be turned into a driver via /queue-experiment. Digestion proposes; it does not queue.",
       "objective": "Test MECH-181 per its what_would_answer (digested thought-digestion v3-closure 2026-09-04; applied 2026-09-06). - title: \"MECH-181/MECH-180 ecological cognitive-reserve chain: graded world-rule-shift novelty ->\n  above-reference waking MEL -> graded offline-phase work -> differential retention at matched insult\"\n- related_claims: MECH-181 (primary), MECH-180, INV-050, INV-049, SD-017, MECH-204\n- acceptance_checks: all five preconditions above emitted as explicit P0 gates (producer\n  supra-reference with the decay check; the matched-PE noise negative control; consumer un-pinned;\n  saturation fraction reported; consumer-OFF attribution arm); `claim_ids` naming MECH-181 and MECH-180\n  with per-claim direction; monotonicity scored against MEASURED MEL not the novelty label;\n  `>= 5` seeds; leave-one-out r",
       "priority": "medium",
       "proposal_id": "EXP-1401",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "metaworker-science-20260925-orchc-mech181-maintenance",
+      "refused_utc": "2026-09-25T02:22:48Z",
       "registered_utc": "2026-09-06",
       "related_claims": [
         "MECH-181",
@@ -40271,7 +40280,7 @@
         "SD-017"
       ],
       "source": "manual",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "target_repo": "ree-v3"
     },
     {
