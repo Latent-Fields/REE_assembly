@@ -7759,6 +7759,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0545",
+      "claim_ids": [
+        "MECH-100",
+        "GOV-MATCHAUX-1"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "Demotion-direction review under GOV-MATCHAUX-1 (first audit, thought-digestion 2026-09-25 draft D3): MECH-100 (status stable, 'z_world encoder requires event-type cross-entropy auxiliary loss') appears to have been promoted on the auxiliary objective's own probe accuracy with no matched-auxiliary control and no scaffold-removal evaluation, and the one re-measure since the SD-070 fix (V3-EXQ-897) reads the other way. Governance to check MECH-100's promotion evidence against GOV-MATCHAUX-1 conditions (1)-(2). Softer candidates under the offline-mechanism clause: MECH-205 (promoted on the mechanism firing) and SD-017 (V3-EXQ-691 shows sleep-OFF ending with higher policy diversity).",
+      "raised_by_session": "thought-backlog-20260925",
+      "raised_at": "2026-09-25T11:09:21Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
