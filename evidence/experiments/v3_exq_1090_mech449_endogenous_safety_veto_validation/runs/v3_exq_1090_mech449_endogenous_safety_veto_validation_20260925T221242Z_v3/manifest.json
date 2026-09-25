@@ -1,0 +1,244 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_1090_mech449_endogenous_safety_veto_validation",
+  "run_id": "v3_exq_1090_mech449_endogenous_safety_veto_validation_20260925T221242Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-09-25T22:12:42Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "07b5fe688da1f3f2bde96f059a1df9eb50bb18a2",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-449"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-449": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "unknown",
+    "env_version": "unknown",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "unknown"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "endogenous_veto_fires_candidate_specificity_unmeasured",
+    "preconditions": [
+      {
+        "name": "harm_on_seeds_meeting_harm_range_precondition",
+        "kind": "readiness",
+        "description": "Count of ARM_HARM_ON seeds whose post-training harm_eval_range (scheduler _measure_harm_discriminativeness, before arming) >= 0.02. Seeds below it are precondition_unmet and unscored. Fewer than MIN_OK_SEEDS -> substrate_not_ready_requeue.",
+        "control": "603q/866b regime: 3/3 seeds 0.115-0.470 on 2026-08-03.",
+        "measured": 3.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "harm_off_control_scored",
+        "kind": "readiness",
+        "description": "At least one ARM_HARM_OFF_CONTROL seed reached the eval phase (else C4 is unmeasured).",
+        "control": "same curriculum, harm pathway untrained.",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": false,
+      "C4": true
+    },
+    "criteria": [
+      {
+        "name": "C1_release_safety_nogo_applied_gt0",
+        "load_bearing": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "n_scored_seeds": 3,
+        "per_seed_statistic": "n_safety_nogo_applied > 0",
+        "passed": true
+      },
+      {
+        "name": "C2_candidate_fire_rate_below_ceiling",
+        "load_bearing": true,
+        "measured": 3.0,
+        "threshold": 2.0,
+        "n_scored_seeds": 3,
+        "rate_ceiling": 0.25,
+        "worst_scored_seed_rate": 0.05219889064976228,
+        "passed": true
+      },
+      {
+        "name": "C3_vetoed_carry_more_ground_truth_hazard",
+        "load_bearing": true,
+        "measured": 1.0,
+        "threshold": 2.0,
+        "n_scored_seeds": 3,
+        "n_seeds_evaluable": 1,
+        "min_qualifying_ticks": 5,
+        "passed": false
+      },
+      {
+        "name": "C4_harm_off_control_fire_rate_near_zero",
+        "load_bearing": true,
+        "measured": 5.0,
+        "threshold": 5.0,
+        "rate_ceiling": 0.01,
+        "worst_control_seed_rate": 0.0,
+        "passed": true
+      }
+    ],
+    "combination_rule": "PASS iff readiness AND C1 AND C2 AND C3 AND C4; C1-C3 each on >= ceil(2/3 * n_precondition_met_ON_seeds); C4 on every scored control seed.",
+    "grid": {
+      "substrate_not_ready_requeue": "< MIN_OK_SEEDS ON seeds with a discriminative harm head, OR no control seed scored, OR the gate never armed on any scored seed: not a verdict on the producer.",
+      "endogenous_veto_does_not_fire": "precondition-met head (real-state range), gate armed, but the +2 SD running-scale veto never removes an eligible candidate. READ WITH predicted_state_max_excursion_above_running_mean vs min_veto_excursion (red-team F2): below it, the predicted-state landscape the veto reads never offered a 0.02 excursion (instrument headroom), above it the calibration is too conservative.",
+      "endogenous_veto_fires_candidate_specificity_unmeasured": "C1/C2/C4 hold but fewer than the needed seeds had >= MIN_QUALIFYING_TICKS mixed ticks, so C3 was not measured (veto fires on whole ticks); read per_seed_on_within_tick_range_median.",
+      "endogenous_veto_nonspecific": "fires, but too often, or not on the ground-truth-more-hazardous candidates, or on a flat landscape.",
+      "endogenous_veto_fires_specifically": "EVB-1409 release_condition (b) met."
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "fb2832b1795d44d032b245312c8b12962767d96d7aff80a7b4786203bee70ab7",
+  "substrate_commit": {
+    "commit": "07b5fe688da1f3f2bde96f059a1df9eb50bb18a2",
+    "dirty": false,
+    "branch": "main"
+  },
+  "enabled_default_off_flags": {
+    "latent.use_harm_stream": true,
+    "latent.use_affective_harm_stream": true,
+    "latent.harm_history_len": 10,
+    "latent.use_e2_harm_s_forward": true,
+    "latent.use_resource_encoder": true,
+    "e2.e2_action_contrastive_enabled": true,
+    "e3.goal_weight": 1.0,
+    "e3.use_f_eligibility_demotion": true,
+    "e3.use_f_eligibility_adaptive_floor": true,
+    "e3.use_go_nogo_constitution": true,
+    "e3.use_gng_endogenous_safety": true,
+    "residue.safety_terrain_enabled": true,
+    "heartbeat.breath_period": 50,
+    "goal.drive_floor": 0.9,
+    "goal.z_goal_enabled": true,
+    "goal.use_incentive_token_bank": true,
+    "goal.use_cue_recall": true,
+    "use_suffering_derivative_comparator": true,
+    "use_conditioned_safety_store": true,
+    "use_contextual_safety_terrain": true,
+    "use_instrumental_avoidance": true,
+    "escape_use_trained_safety_signal": true,
+    "use_pag_freeze_gate": true,
+    "use_mech295_liking_bridge": true,
+    "use_mech307_split_surprise": true,
+    "use_mech307_schema_multichannel": true,
+    "use_mech307_predicted_location_write": true,
+    "use_mech307_conjunction": true
+  },
+  "recording_schema": "rec/v1",
+  "elapsed_seconds": 103596.686721709,
+  "config": {
+    "base": "V3-EXQ-603q ARM_BASE_IA_ONLY (constants copied via V3-EXQ-866b)",
+    "budgets": {
+      "stage0": 20,
+      "stage0b": 10,
+      "p0": 100,
+      "hazard": 40,
+      "p1": 50,
+      "steps_per_episode": 200,
+      "eval_episodes": 10,
+      "eval_steps": 200
+    },
+    "hazard_stage": {
+      "num_hazards": 6,
+      "num_resources": 2,
+      "hazard_food_attraction": 0.0,
+      "proximity_harm_scale": 0.1
+    },
+    "harm_pathway": {
+      "lr": 0.001,
+      "encoder_lr": 0.0003,
+      "warmup_steps": 250
+    },
+    "producer": {
+      "z_threshold": 2.0,
+      "ema_decay": 0.999,
+      "sd_floor": 0.01,
+      "warmup_samples": 200,
+      "gate_safety_floor": 0.5
+    },
+    "thresholds": {
+      "harm_range_precondition": 0.02,
+      "min_ok_seeds": 3,
+      "min_seed_fraction": 0.6666666666666666,
+      "veto_rate_ceiling": 0.25,
+      "min_qualifying_ticks": 5,
+      "off_fire_rate_ceiling": 0.01
+    },
+    "arms": [
+      {
+        "label": "ARM_HARM_ON",
+        "train_harm": true,
+        "seeds": [
+          42,
+          43,
+          45,
+          46,
+          47
+        ]
+      },
+      {
+        "label": "ARM_HARM_OFF_CONTROL",
+        "train_harm": false,
+        "seeds": [
+          42,
+          43,
+          45,
+          46,
+          47
+        ]
+      }
+    ]
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46,
+    47
+  ],
+  "z_goal_stream": {
+    "ticks_total": 220321,
+    "ticks_active": 220311,
+    "writer_calls": 68469,
+    "active_frac": 0.9999546116802303,
+    "writer_defect": false,
+    "n_agents": 10,
+    "goal_state_present": true
+  }
+}
