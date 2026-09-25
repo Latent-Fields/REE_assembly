@@ -7127,6 +7127,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0500",
+      "claim_ids": [
+        "MECH-033"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MECH-033's DV (harm_rate) has almost no headroom above a zero-parameter constant policy, so its whole evidence base measures 'not random and not STAY' rather than E2 kernel chaining. Measured 2026-09-25 at full eval scale: in the V3-EXQ-308-lineage 8x8 env every constant MOVE action reaches harm_rate ~2e-4 (5 seeds, 1.58-2.69e-4) while uniform random is ~6e-2 (300x worse) and STAY ~1.8e-1; in V3-EXQ-055's own env (size 12) the best constant action is 0.00106-0.00134 vs random 0.064-0.074, and 055's OWN recorded harm_per_step_ao of 0.001467 is 1.09-1.38x that constant action -- i.e. the full hippocampal CEM planner did NOT beat a constant action at its full 600-episode budget. A live pilot (held-out seed 101, E2 world_forward_r2 0.9787) additionally found AO_CHAIN 0.0701 WORSE than uniform random 0.0638 and 56x worse than a constant action, with the UNTRAINED-E2 arm beating it (0.0473), though that pilot ran 150 of 600 warmup episodes and is budget-limited; the 055-at-full-budget comparison is not. This SUBSUMES both prior diagnoses -- the ablation confound in failure_autopsy_gflag0452-D2-cluster_2026-09-24 and the affine-collapse finding in GFLAG-0499 -- and implies no MECH-033 experiment on this DV/environment pairing can discriminate its hypotheses. Three portfolio legs are landed on ree-v3 main and deliberately NOT queued. Options and recommendation (E-i a DV with headroom / E-ii an env with movement pressure / E-iii record as probe-gated): REE_assembly/evidence/planning/mech033_fanout_portfolio_design_blocked_20260925.md ADDENDUM 3.",
+      "raised_by_session": "metaworker-science-20260925-orchc-mech033-fanout",
+      "raised_at": "2026-09-25T03:51:29Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
