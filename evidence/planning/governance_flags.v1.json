@@ -7074,6 +7074,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0496",
+      "claim_ids": [
+        "MECH-427",
+        "INV-054"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "V3-EXQ-1099 (1080-pattern contamination extension) REFUSED at /queue-experiment Step 4.5: red-team BLOCKING, both decisive findings re-verified from source. (F2, MECH-427) V3-EXQ-883's contamination exposure lands entirely on its NO_ATTAINMENT arm (dies health_depleted at step 7/40 on every seed, 82.5% window loss), but that arm's DV parent_goal_norm_final is exactly 0.0 in BOTH arms because STAY never attains a waypoint; both of 883's criteria depend only on the never-exposed ATTAINED arm, so its verdict is PASS/supports in both arms by construction while the 1080 taxonomy would label it truncated_verdict_robust (a PASSED sensitivity test) and clear MECH-427 on it -- the 904 'insensitive by construction' shape 1080's own autopsy flagged, with no taxonomy class for it. (F1, INV-054) V3-EXQ-435's landed evidence_direction non_contributory is a hand-applied 2026-04-22 reclassification; the driver's own _aggregate over the same per-seed rows returns does_not_support, so stock_reproduces_original is False for 435 by construction and would emit a phantom substrate-drift finding. GENERALISABLE: a landed manifest's evidence_direction is not necessarily the driver's own verdict, so any probe whose DV is verdict-change must re-aggregate the landed per-seed rows rather than read the amended field (435 is the only reclassified target among this probe's four and 1080's four). (F4/F5, INV-054) 278's recovery latency is already at its floor of 1 and the gate can only raise benefit exposure, so a flip to >50 is unreachable; and the depression the DV turns on is established in the 3-hazard phase-1 env where the gate is inert by design, so clearing INV-054 on this probe would be over-read. Script authored, smoke PASS x3, validate_experiments --strict OK, LANDED NOT QUEUED (ree-v3 902c82b1b9); no queue entry appended so it cannot run. Every available fix changes what gets measured, so none was applied unattended -- decision chip chip-20260925-exq1099-redteam-blocking carries the options. Full write-up: REE_assembly 3c3554a9c4 evidence/planning/v3_exq_1099_contamination_extension_redteam_blocking_staged_20260925.md",
+      "raised_by_session": "metaworker-science-20260925-orchc-contamination-probe",
+      "raised_at": "2026-09-25T02:44:06Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
