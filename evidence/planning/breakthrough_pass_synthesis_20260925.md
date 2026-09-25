@@ -80,3 +80,29 @@ Consequences for the coupled campaign:
 1. The WakingTrainer's E2-world member takes its developmental training data from a Phase-0 babbling epoch.
 2. The babbling epoch becomes a ree_core-owned developmental stage (or at minimum a trainer-consumed source), not a driver-only scheduler setting.
 3. OPEN puzzle, being measured now (campaign-20260925-bt0925-babble): does a babbling-trained E2 head STAY action-discriminative once the agent's own on-policy behaviour collapses to one action? The answer decides between a one-off developmental epoch, a retained babbling replay (developmental memory), or a standing babbling floor.
+
+### 7c. User direction, 2026-09-25 ~09:37Z: retained developmental memory needs ACh-gated freeze/unfreeze
+
+Context (INTERIM, not verdicts): the babbling probe (campaign-20260925-bt0925-babble, record babbling_e2_action_coverage_probe_20260925.md when it lands) has three seeds in so far (106-108).
+- Before the post-babbling phase, structured high-diversity babbling (L2) gives the E2 world head the best action discrimination.
+- Continued on-policy (near one-action) training mostly erases that lead.
+- Retaining 25% babbling replay (L2R) PRESERVES it: retention 1.31 and 1.38 on the two seeds run so far.
+- The native Phase-0 generator was near-monostrategy on 2 of 3 seeds (entropy 0.23-0.36), so "babbling" as implemented is not reliably diverse.
+Final verdicts are pending.
+
+The user's direction: the retained developmental memory should be FROZEN (protected from being overwritten by later one-action experience) but able to be UNFROZEN and updated later. The user identified this with acetylcholine's control of plasticity.
+
+This maps onto existing claims (D0; code read 09:37Z):
+- MECH-083 (candidate): ACh as the meta-level plasticity gain governing durable write vs read-through.
+- MECH-398 (candidate; implementation_phase v4, v3_pending): an ACh-analog basal-forebrain plasticity-gain scalar in [0,1] multiplying encoder learning rates and residue write magnitudes. NOT implemented anywhere in ree_core (grep 09:37Z).
+- MECH-207 (candidate, v4): ACh as a permissive write gate. Prediction error destabilises and updates a stored hippocampal trace only when cholinergic activation co-occurs. This is the reconsolidation or "unfreeze" half.
+- MECH-453 (candidate, v4): cholinergic TAN-pause plasticity windows.
+
+Consequence for the coupled campaign (Q2) and the WakingTrainer (Q4a):
+- The WakingTrainer (skeleton building, campaign-20260925-bt0925-wtrainer) is the first ree_core component that OWNS learning rates, so it is the natural native host for MECH-398's gain.
+- A retained developmental replay (babbling memory) needs two states: FROZEN (retained, low or zero plasticity) and UNFROZEN (reopened when surprise and the ACh-analog gain coincide, per MECH-207).
+- Without the unfreeze, retained memory cannot be revised as the world changes. Without the freeze, one-action behaviour overwrites it (the L2 result above).
+- This becomes a design requirement of the coupled campaign, not a separate build: the trainer's replay member carries a per-memory frozen flag and an ACh-gated destabilisation rule.
+- /governance should consider whether MECH-398 (and MECH-207's destabilisation rule) should be re-phased from v4 to v3 now that a v3 host exists (GFLAG raised).
+
+Evidence domain: D0 (mapping) plus interim D1 (babbling probe). No ACh mechanism has been built or tested.
