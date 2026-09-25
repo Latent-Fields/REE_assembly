@@ -39,7 +39,7 @@ Current evidence (2026-09-24/25): the sharpest measured V3 monostrategy (V3-EXQ-
 (`evidence/planning/monostrategy_type_a_vs_b_discrimination_20260924.md`, 948d58cd3e4; reproduced at
 world_dim 32 in `e2_rollout_divergence_and_proposal_state_dependence_20260924.md`, f300ebf64d6). The Type-A
 root is owned by GFLAG-0487 / GFLAG-0488 (untrained compression/readout sites; `action_object_decoder`)
-and SD-080. The assay is RED as a whole today, AMBER for Stage 0.
+and SD-080 -- but GFLAG-0490 (a369f411ff8) found decoder training ALONE does not repair proposal generation (codec with three coupled defects), and GFLAG-0501 (user decision 2026-09-25) folds the Type-A repair into one coupled campaign (codec + E2 action coverage + grounded valuation + WakingTrainer ON); Stage 0 follows that campaign. The assay is RED as a whole today, AMBER for Stage 0.
 
 <a id="mech-589"></a>
 ## MECH-589 -- Type C (consensus over-stabilisation)

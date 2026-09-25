@@ -1,6 +1,6 @@
 # STAGED (not applied): `/thought-digestion` drafts for the 17 claims registered 2026-09-25 by thought-backlog-20260925
 
-**Status: AWAITING USER REVIEW. Nothing in this file has been written to claims.yaml.**
+**Status: APPLIED 2026-09-25 (user approved "apply all as drafted", incl. the MECH-453 refinement). Q-110 was extended per the author's answer ("bond" = BOTH): a LEG A (caregiver availability) / LEG B (internalised loveability, scheduled caregiver-absent episodes, never a bond withdrawal) section was added before its DO-NOT-BUILD line. Also applied: MECH-588 currency note (GFLAG-0490/0501) + related_claims MECH-457/MECH-587; GOV-FRONTIER-1 placeholder replaced; MECH-595 note on digestion-before-lit-pull. The registry is now authoritative; this file is the record of what was proposed.**
 
 - **Session:** `thought-backlog-20260925` (Mac, main checkout, interactive). Claims registered in REE_assembly `09fa012a89`.
 - **Scope:** MECH-588..595, ARC-151..154, Q-109, Q-110, GOV-FRONTIER-1, GOV-INSERT-1, GOV-DEFEAT-1, plus a design refinement to MECH-453 `what_would_answer`. (The 33 September-registered claims this session also drafted were digested and applied by the parallel session `thought-digest-registry-backlog-20260925`, REE_assembly `d95f7e37be`; this session only cross-checked them and raised GFLAG-0538..0553.)

@@ -88468,6 +88468,13 @@
     NON-DEGENERACY: the window must actually GATE updates (a measurable fraction of recently-active components excluded
     when the window is closed, with live cross-event variance in what is admitted) -- a window that admits everything is
     the continuous learner re-labelled, route substrate_not_ready_requeue.
+
+    REFINEMENT 2026-09-25 (from the 2026-09-19 pull, design correction only -- status and confidence unchanged): add a
+    GRADED-CONTRAST arm alongside the categorical-admission arm (outside-window updates attenuated, not zeroed); the
+    categorical reading is supported only if it beats the graded arm, since Cragg 2006 grounds contrast, not admission.
+    Let DA modulate window duration in at least one arm (Kim 2019); a fixed-width-only design tests a mechanism the
+    biology does not use. Do not score the window on learning speed alone -- a window that maximises learning rate is
+    not the biological target (Uribe-Cano & Kottmann 2026).
   location: docs/thoughts/2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md
   source:
   - evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md
@@ -114954,6 +114961,8 @@
   - GOV-MATCHAUX-1  # matched-control admissibility: the static-bridge / diversity / random-routing arms
   - GOV-JURIS-1     # evidence-domain jurisdiction: a D1 probe verdict does not license a D3 claim
   related_claims:
+  - MECH-457
+  - MECH-587
   - ARC-145   # v4: interface-level jurisdiction requirement; MECH-588 is its behavioural-phenotype analogue (kept out of depends_on: phase leak)
   - MECH-560  # v4: matched-traffic dissociation / lesion families the coordination arms would use
   - MECH-534  # v4: the authority field whose static-gate falsifier supplies arm A vs arm D
@@ -114965,6 +114974,101 @@
   - evidence/planning/thought_intake_2026-09-24_dynamic_coordination_repertoire_monostrategy.md
   - evidence/planning/monostrategy_type_a_vs_b_discrimination_20260924.md
   - evidence/planning/e2_rollout_divergence_and_proposal_state_dependence_20260924.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITIONS (the audit's Stage 0 and instrument checks, evidence/planning/
+    monostrategy_type_a_vs_b_discrimination_20260924.md sections 4.1-4.7; do not re-derive them. A null, OR a
+    Type-A reading obtained under any unmet one, is non-adjudicable, not evidence either way):
+      P1+P5 ECOLOGY. By construction, at least two strategies are each behaviourally useful AND a fixed strategy
+          is measurably suboptimal (switching is required), with an evaluator-only usefulness oracle that is never
+          fed to the agent. Nearest: the Q-080 two-corridor effort layout, with effort_benefit_asymmetry switched
+          between episode blocks (0 -> 0.5), driver-side and read per step (causal_grid_world.py:896/:2968),
+          oracle _effort_corridor_at. Altered ecology: the V3-EXQ-1014 pinned boards with a mid-run hazard swap
+          (not built). world_rule_shift_* (action-map transposition, ree-v3 10e287a) is a native REVERSAL lever
+          usable for post-reversal authority reads. It changes what an action does, not which route pays, so it
+          does not satisfy P1 on its own. Status 2026-09-25: UNMET; no ecology in use satisfies P1 and P5 together.
+      P0 COMPETENCE GATE. Block-A corridor entry >= 0.8 AND block-A authority fraction >= 0.6 on at least 6 of 8
+          seeds. Otherwise the run is non-adjudicable: route to the competence floor (MECH-457) and draw no
+          further seeds. Status: UNMET. V3-EXQ-731 corridor entry was 0.333 < 0.5 (6 episodes, untested at
+          scale), and at REEConfig defaults ree_core does no waking gradient learning (CURRENT_FRONT, GFLAG-0491),
+          so any competence is driver-supplied.
+      P3/P4 GENERATION AND SCORING NOT DEGENERATE. Log the pool CLASS SHARE per decision state, not the class
+          count. E3's score range must be non-flat relative to its magnitude: V3-EXQ-804's normalised range of
+          0.00095 is P4 failing (MECH-439), not Type B. S3 is read by class-mean score AND by best-of-class after
+          matched per-class subsampling, which removes the order-statistic bias that produced the V3-EXQ-1061
+          31:1 artefact.
+      S2 READ AT THE EVALUATOR INPUT. "Represented" means separable in the exact tensors E3 consumes (INV-105 rung 3):
+          held-out linear AUC > 0.75, AND the E3-consumed channel values (benefit / energy / harm) differ between the
+          useful and non-useful candidates. An external-probe decode is D1 and cannot support this claim
+          (GOV-JURIS-1). Caution: E2's world head is currently action-blind. Only 2.3-3.1% of z_world's per-step
+          displacement is action-explained (e2_rollout_divergence_and_proposal_state_dependence_20260924.md), so
+          S2 is expected to FAIL on today's substrate. That is itself a Type-A (representation) reading, not a null.
+      INSTRUMENT VALIDITY.
+          - I2+ positive control (score clamp at 20x the per-state score SD) drives S5 to ~1; otherwise the pipeline
+            is broken and the run is invalid.
+          - I1c (injecting the mismatched, non-useful candidate at matched pool size) is not selected above its base
+            rate; otherwise E3 is reading novelty or position, and the injection arm is invalid.
+          - Content ablation (the useful candidate's E2 world_states deviation replaced by the pool mean) abolishes
+            any rescue; otherwise the arm is using privileged position or a lookup and is invalid.
+          - The I2 clamp needs a default-off set_injected_score_bias hook, which does not exist today (AMBER).
+          - Force-commit (I3) must go THROUGH E3 and record_executed_action, never through an env-side override:
+            the residue write is commitment-gated (e3_selector.py:4690-4697).
+      POWER. n = 8 seeds, fixed in advance. The per-seed SD of the authority fraction has never been measured
+          (0.15 was an assumption), so Stage 0 measures it and re-sizes n before any intervention arm opens.
+
+    CONFIRMING (Type B occurs in REE, and it separates from Type A). With every precondition met, in post-reversal
+    block B, on >= 7/8 seeds (paired one-sided Wilcoxon at alpha 0.05 AND |delta AF| >= 0.20), all of the following:
+      (i)   Under N0, S1 and S2 are high but the authority fraction AF = P(S5 | S1 and S2) is low.
+      (ii)  I1 generation-side injection of the useful candidate, at matched pool size, does NOT rescue AF, and the
+            injected candidate loses authority at a NAMED later stage (T23, T34 or T45). The I2 dose-response
+            shows S3 is recoverable while S4/S5 lag.
+      (iii) The static learned bridge, the existing default-off diversity pressure
+            (support_preserving_per_class_quota, use_f_eligibility_demotion, use_selection_entropy_floor,
+            score_diversity) and matched state-independent random routing ALL fail to rescue.
+      (iv)  Because the claim defines Type B as re-exposure by a change of ACCESS ALONE, a non-oracle, state-keyed
+            access change with no retraining and no new content rescues AF. Try the minimal first: conflict-graded
+            eligibility, then state-keyed gain on an existing channel, then latch-release, then a learned router.
+            The rescue must be abolished by routing-state shuffle and must preserve block-A competence.
+      (v)   The result replicates in at least one altered ecology before it is used for any promotion.
+    Pattern (i)-(iii) WITHOUT (iv) is recorded as "post-representation authority loss (B-or-C)". That is the entry
+    state for MECH-589, not a Type-B verdict (the audit's stop result 5 must be read this way).
+
+    FALSIFYING (occurrence falsifier, from the title). With every precondition met, in a P1+P5 ecology on n = 8 seeds
+    plus one altered ecology, EVERY monostrategic seed is rescued either by generation-side injection (Type A at
+    generation: N0 S1 < 0.2 AND I1 delta AF >= 0.20) or by the static learned bridge (Type A of the value read).
+    Type B then does not occur in REE, the V3 synaptic approximation stands, and the V4 deferral of the
+    routing / phase / coordination cluster is confirmed. For the admissibility consequence, seeds rescued by an
+    existing diversity knob or by matched random routing count the same way: not Type B. A Stage-0 failure is NOT a
+    falsification. It is non-adjudicable.
+
+    ADMISSIBILITY LEG (a standing rule, not an empirical prediction). "A routing / dynamic-coordination / phase remedy
+    is licensed only by a Type-B verdict ..." is not falsified by any outcome above. It is the gate that the proposed
+    operational V3/V4 revocation trigger (monostrategy_etiology_typology.md, awaiting /governance ratification) would
+    apply. An access remedy is licensed by B. A coupling / escape remedy is licensed by C (MECH-589). Neither is
+    licensed by A.
+
+    SHARED FALSIFIER. Control (iii)'s static-bridge rescue is ARC-145's F2 read at the repertoire level. A MECH-588
+    static-bridge rescue counts toward ARC-145's F2 only at a locus that meets ARC-145's own precondition.
+
+    CURRENT EVIDENCE (D1, with one weak D2 contrast; recorded, not scored; adjudicates nothing because P1/P5/P0 are
+    unmet). The sharpest measured V3 monostrategy, the V3-EXQ-1061 regime, is GENERATION-STAGE Type A:
+      - The pool is 31:1 or 30:2 in first-action class, and the majority class is identical at all 40 probe states
+        within a seed (948d58cd3e4). This reproduces at world_dim 32 and is not caused by rollout depth (f300ebf64d6).
+      - Training the action_object_decoder alone does not repair it. The proposal edge is a codec with three coupled
+        defects (a369f411ff8, GFLAG-0490), and the repair is folded into the user-decided coupled campaign (GFLAG-0501).
+      - No Type-B-shaped signal in the record (V3-EXQ-931, 654i/j, 947/949, 804, 567 seed 43, 1014) clears P1 + P5
+        and the adversarial checks.
+
+    SUBSTRATE / INSTRUMENT REQUIREMENT. Missing, and all V3-buildable:
+      - the coupled campaign (codec + E2 action coverage + grounded valuation + WakingTrainer ON);
+      - a navigable P1+P5 ecology meeting P0;
+      - the default-off I2 score-bias hook;
+      - the altered-ecology board swap.
+    Present: the I1 injection producer (e2_fast.py rollout_with_world, agent.select_action) and the control knobs.
+    Registration is not build authorisation. DO NOT build a routing, coordination, phase or ephaptic layer on the
+    strength of this entry. DO NOT queue the assay before Stage 0 passes. Stage 0 is /queue-experiment's call after the
+    coupled campaign lands.
+    Disposition 2026-09-25: (c) substrate-blocked, substrate_conditional; implementation_phase v3 recommended to be
+    retained (GFLAG-0543). No experiment proposed.
   notes: >-
     Registered 2026-09-25 from the parent thought's 'Reframing monostrategy' (Types A/B), 'A decisive
     V3/V4 boundary experiment' and 'Result that would keep the V4 deferral intact' sections; the user's
@@ -115030,6 +115134,8 @@
     queue an experiment from this entry; Stage 0 is /queue-experiment's call after the Q-080 navigability
     puzzle and the GFLAG-0487/0488 Type-A repair.
 
+    Currency 2026-09-25: GFLAG-0490 (a369f411ff8) found decoder training ALONE does not repair proposal generation (codec with three coupled defects); GFLAG-0501 (user decision 2026-09-25T06:15Z) folds the Type-A repair into one coupled campaign (codec + E2 action coverage + grounded valuation + WakingTrainer ON). Stage 0 follows that campaign.
+
 - id: MECH-589
   title: >-
     Consensus over-stabilisation (Type C monostrategy) is a third etiology, distinct from repertoire
@@ -115080,6 +115186,73 @@
   - docs/thoughts/2026-09-24_dynamic_coordination_repertoire_monostrategy.md
   - evidence/planning/thought_intake_2026-09-24_dynamic_coordination_repertoire_monostrategy.md
   - docs/thoughts/2026-09-19_dynamic_consensus_post_translation_integration.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence against):
+      P1. TYPES A AND B EXCLUDED AT THE LOCUS (MECH-588). The test starts from MECH-588's "post-representation
+          authority loss (B-or-C)" state. In a P1+P5 reversal ecology with MECH-588's competence gate met, the
+          useful alternative is proposed and represented at the evaluator input (S1, S2 high), generation-side
+          injection does not rescue, the static bridge and the diversity controls fail, AND a per-subsystem readout
+          shows the alternative reaches the relevant subsystems through a live route. See MECH-588's own
+          what_would_answer for the ecology, gate and stage chain; do not re-derive them. A B-or-C state that an
+          access-only change rescues is Type B and is out of scope here. Status 2026-09-25: UNMET (MECH-588's P1, P5
+          and P0 are unmet).
+      P2. A RECIPROCAL, PER-DIRECTION-ABLATABLE, MEASURABLY LIVE COUPLING between at least two subsystems. This is
+          MECH-578's P1 and P2; do not re-derive them. Verified absent 2026-09-22:
+            - CrossStreamBinder is symmetric by construction, default-off, and measured inert (n_rebind = 0 across
+              V3-EXQ-641/641a/720);
+            - E1<->E2 is one-directional.
+          So Type C is structurally unavailable at the dynamical level in V3. Slow loops that run through learning or
+          experience are not the coupling this claim names. The one such loop that has been measured
+          (INV-054 / GFLAG-0487) is Type A.
+      P3. SELECTIVE vs NON-SELECTIVE MANIPULATIONS AT MATCHED DELIVERED MAGNITUDE. Four manipulations are each
+          delivered at a numerically matched magnitude, in the metric the lock-in is read in, with the delivered
+          norms reported (MECH-578 P3's rms_ref discipline):
+            - selective-coupling weakening;
+            - correspondence scramble (same magnitude, permuted correspondence);
+            - uniform attractor flattening;
+            - matched noise.
+      P4. LOCAL COMPETENCE READABLE PER SUBSYSTEM, with headroom, before and after every manipulation. Falsifier (2)
+          cannot be evaluated without it.
+      P5. DWELL AND RELAXATION RESOLVABLE. Dwell time around the dominant coalition and the perturbation-recovery
+          time constant are fitted with seed-level CIs, plus a positive control known to move them (MECH-578 P4).
+      P6. THE SINGLE-SYSTEM RIVAL IS INSTRUMENTED. MECH-587's rollout-to-policy coupling statistic, validated per its
+          own P2, so that a lock-in which survives the cut is assigned to MECH-587 or to MECH-080 arm 3 rather than
+          left unassigned.
+
+    CONFIRMING. With P1-P6 met, after a contingency reversal:
+      (i)   a perturbation transiently moves one subsystem toward the newly appropriate alternative, and the joint
+            system then relaxes back to the dominant cross-system coalition;
+      (ii)  dwell time around that coalition exceeds the matched non-locked baseline;
+      (iii) higher-quality contradicting evidence held by one subsystem is extinguished rather than propagated;
+      (iv)  weakening or correspondence-scrambling the SELECTIVE reciprocal coupling, at matched magnitude, releases
+            the lock-in into evidence-sensitive switching to the newly appropriate strategy WITHOUT degrading either
+            subsystem's local competence;
+      (v)   uniform flattening and matched noise do NOT restore switching as well.
+    Healthy-target check: in the non-locked condition, behaviourally grounded agreement still outlasts unsupported
+    disagreement (MECH-578: tau_agree > tau_disagree), so the pathology is over-stabilisation, not consensus as such.
+    Seeds, decision rule and the altered-ecology replication follow MECH-588's.
+
+    FALSIFYING (the title's three):
+      (1) The lock-in SURVIVES cutting the reciprocal coupling. The basin then lies inside one subsystem (MECH-080
+          arm 3: rollout-to-policy coupling intact) or in habit dominance (MECH-587: coupling lost), not in consensus.
+      (2) Releasing the coupling frees the lock-in ONLY by degrading local competence. That is generic disruption,
+          not escape.
+      (3) Uniform attractor flattening or matched noise restores evidence-sensitive switching AS WELL AS the
+          selective-coupling release. There is then no consensus-specific mechanism: generic destabilisation, or
+          MECH-560's FLATTENING family, suffices.
+    NOT EVIDENCE: a self-reinforcing loop SHAPE (E1 expects X -> hippocampus retrieves X -> ... -> E3 commits X) does
+    not distinguish Type C. The measured V3 loop with that shape is Type A. Only represented-and-routed alternatives
+    plus the coupling-cut release count.
+
+    SUBSTRATE / INSTRUMENT REQUIREMENT. Missing:
+      - a reciprocal coupling in V3 (P2);
+      - MECH-588's ecology and competence preconditions;
+      - a dwell / relaxation instrument;
+      - a validated rollout-to-policy coupling statistic (MECH-587 P2).
+    Registration is not build authorisation. DO NOT build in V3. DO NOT build a reciprocal coupling to test this claim
+    (MECH-578's falsifier (d) is a build prohibition). DO NOT queue an experiment.
+    Disposition 2026-09-25: (c) substrate-blocked, substrate_conditional; v4 by content (blockers: MECH-588 upstream,
+    MECH-578 P1/P2 absent). No experiment proposed.
   notes: >-
     Registered 2026-09-25 from the parent thought's 'Dynamic consensus can solve or cause monostrategy'
     and 'Type C -- consensus collapse / over-stabilisation' sections; the user's intake (9fcecd8749c)
@@ -115206,13 +115379,82 @@
     status, confidence or evidence record, and changes no gate or threshold on registration;
     adoption in decision_criteria / the indexer / the lit-pull skill is a separate, user-reviewed
     step.
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier. GOV-FRONTIER-1 is a governance_rule over how literature
+    support is LABELLED and how a null literature pull TERMINATES; this states the audit condition
+    under which it is genuinely in force versus merely registered. No EXP-#### should be minted
+    against this claim. Shared use-gated reassessment form: GOV-CONTRACT-2/3 and the G002 preamble
+    (CONFIRMING = the rule produced a different call from the old practice and that call was later
+    vindicated; REVISING = boilerplate or never exercised).
+
+    NON-DEGENERACY PRECONDITION (the rule is currently VACUOUS, not open): it has something to act on
+    only once EITHER (1) a first FRONTIER declaration is recorded for a mechanism claim, carrying the
+    search record the rule REQUIRES (queries, databases, vocabularies tried, nearest precedents, and
+    what each fails to solve); OR (2) the literature_status field is adopted in the claims schema.
+    Measured 2026-09-25 (REE_assembly 09fa012a89): 0 claims carry literature_status (the only 3
+    occurrences in claims.yaml are inside this entry); no frontier-declaration or search-record file
+    exists; the lit-pull skill has no null terminal. SHARED CLAUSE with GOV-INSERT-1: the heightened
+    burden's first item, a pre-registered competing-candidate family (GOV-FROZEN-1), must exist for the
+    declared mechanism before any frontier PROMOTION can be audited.
+
+    CANDIDATE POPULATION (measurable now, so the first use is not hypothetical): the planning reason
+    missing_literature_evidence is carried by 429 of 1059 evidence_backlog items, but 421 of those are
+    claims with no evidence of either kind. The frontier-relevant churn population is the 8 claims
+    that HAVE evidence and 0 literature entries -- ARC-027 (active), SD-071 (provisional), SD-019b,
+    SD-074, SD-075, SD-077, SD-098 (all novel_discovery), and INV-090. A null pull on any of them files
+    nothing today, so the reason re-fires every cycle. The stable literature floor
+    (decision_criteria provisional_to_stable.min_literature_entries: 2) bites MECH-040 and SD-071, and
+    neither is exp-qualified for stable, so the floor is latent. The 7 notes-gated claims whose
+    promotion waits on a lit-pull are MECH-308, ARC-087, Q-070, MECH-405, MECH-408, INV-081 and
+    ARC-101.
+
+    TRIGGER to re-check: (a) any /lit-pull that closes on a claim in the candidate population or on a
+    notes-gated claim; (b) any promotion review of a claim with lit_count < 2; (c) the user's decision
+    on the frontier exemption from min_literature_entries (open, not made by registration); (d) schema
+    adoption.
+
+    CONFIRMING (evidence of USE, not of formalisation):
+    (1) A documented null pull ends in a FRONTIER declaration, and that declaration discharges a
+        notes-gate or silences the missing_literature_evidence churn for that claim, where the old
+        practice would have re-proposed the pull. Then the claim is promoted on REE experimental
+        evidence that visibly meets the HEIGHTENED burden, and the promotion survives the next
+        autopsy or governance pass on that claim.
+    (2) OR an ADJACENT label changes a reported sentence or planning read that the old practice
+        presented as literature-grounded. Canonical case: INV-082, lit_conf 0.795 today (0.824 at the
+        2026-06-12 LOVE-7 pull, drifted since). All 4 of its literature entries are
+        attachment / shame-guilt analogues, and none supplies the loveability-internalisation
+        learning rule. Case (1) differs from the old practice in GATE outcome; case (2) differs only
+        in REPORTING.
+
+    FALSIFYING / REVISING:
+    (a) LAUNDERING (the symmetric guard fails in use). A FRONTIER-declared claim reaches a status
+        with experimental support no stronger than a non-frontier sibling's at the same status, so the
+        burden was not raised in practice and "frontier" worked as a discount. One such case is enough
+        to force a review of what the burden bundle requires at audit time.
+    (b) CHEAP NULLS. A declared FRONTIER claim is later shown to have a direct precedent that was
+        published BEFORE the declaration and should have been reachable by the recorded search. Its
+        historical frontier provenance stands (the rule's own clause), but the case counts against
+        the search-record minimum. Two such cases mean the minimum is too weak: tighten it, do not
+        retire the rule.
+    (c) INERT LABEL (shared with GOV-DEFEAT-1 and the GOV-JURIS-1 (b) analogue). literature_status
+        is adopted, but over >= 3 governance cycles no DIRECT / ADJACENT / FRONTIER label changes any
+        gate outcome, summary sentence or planning reason. The label is ceremony.
+    (d) NEVER EXERCISED. After adoption, >= 3 lit-pulls close on candidate-population or notes-gated
+        claims and none is recorded as either a DIRECT finding or a FRONTIER declaration. The null
+        terminal is not being used; revise the lit-pull skill hook, not the rule.
+    READER NOTE: GOV-INTRO-1 is not relaxed. An introspectively-originated frontier mechanism meets
+    INTRO's literature leg only through an explicitly labelled ADJACENT mapping (ratification of this
+    reading is an open /governance item). No hook, gate or score is authorised by this entry.
+
+    Disposition 2026-09-25: (b) derivational, use-gated promotion; currently VACUOUS until a first
+    frontier declaration or schema adoption. Category stays governance_rule. No EXP-####.
   notes: >
     Registered 2026-09-25 from docs/thoughts/2026-09-24_experimental_learning_beyond_literature.md
     (sections "Three evidence classes", "Absence of literature is not evidence of absence",
     "Experimental evidence must be allowed to promote a frontier mechanism", "Implication for REE
     governance", "Relationship to the existing biology-before-formalisation rule"). The author's
     own intake withheld governance authorisation and asked for separate review; registration
-    as candidate was <CONFIRMED BY USER / to be recorded here>.
+    as candidate was confirmed by the user on 2026-09-25 (session thought-backlog-20260925; REE_assembly 09fa012a89).
     WHAT IT EXTENDS: the Option E decoupling (REE_assembly/CLAUDE.md; memory
     feedback_lit_exp_decoupled) -- this rule is its literature-provenance half, and the deferred
     per-entry lit_role: evidence|harvest idea from that decoupling is the natural per-ENTRY
@@ -115355,6 +115597,74 @@
     derivational/mechanism claim for that crossing and raise an H-other event (GOV-HOTHER-1)
     at the derivation level BEFORE any further scaffolded rescue run is queued.
     NON-FALSIFYING-SAFE on registration: changes no claim's status, and moves no axiom.
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier. GOV-INSERT-1 is a governance_rule that gives REE's
+    derivational layer an experimental EVIDENCE ROUTE; this states when that route is genuinely
+    exercised versus merely available. No EXP-#### should be minted against this claim, and no
+    experiment should be queued to "test" it. Shared use-gated form: GOV-CONTRACT-2/3, G002 preamble.
+    SCOPE OF THIS AUDIT: only the NEGATIVE direction (persistent insertion-dependence counts AGAINST
+    the derivation) is new. The positive half -- an insertion/oracle arm never counts FOR the
+    derivation -- is already audited by GOV-INTERVENE-1's VIOLATED-BY clause and GOV-PATHVALID-1;
+    check it there, not here.
+
+    NON-DEGENERACY PRECONDITION (the rule is currently VACUOUS, not open): it has something to act on
+    only when ALL of the following hold for one axiom-to-mechanism crossing:
+    (1) an axiom-derived ethical-development mechanism exists in a capable organism (V4/V5; LOVE-1 is
+        blocked on MECH-163 + ARC-047);
+    (2) a PRE-REGISTERED family of non-insertion candidates for that crossing exists (GOV-FROZEN-1),
+        rather than one favoured implementation. This is SHARED with GOV-FRONTIER-1: it is the first
+        item of that rule's heightened burden;
+    (3) the organism was shown capable of expressing and acquiring the faculty (GOV-CAPCONTRACT-1);
+    (4) an insertion-type arm (reward/bonus term, hard-coded rule or action, privileged label, hard
+        constraint, or deletion of the unethical affordance) is on the table and classified ORACLE
+        (GOV-INTERVENE-1).
+    Measured 2026-09-25: (1) is not met, so the rule is prospective only.
+
+    LATENT V3 ANALOGUE (flag for /governance; it does NOT satisfy the precondition): MECH-025b.
+    EXP-1283 is blocked_substrate on precision-weighted-residue-accumulation (refused at red-team
+    2026-09-24). Re-verified today: there is still no substrate_queue.json entry for it. Building
+    that single formula would insert the claim's expected law into its own DV's causal chain. The
+    source thought's remedy -- competing default-OFF update laws, selected by behaviour -- is the V3
+    shape of this rule. Whether that design discipline is required is a /governance call. This entry
+    does not decide it.
+
+    TRIGGER: a /failure-autopsy or /governance pass on a loveability / ethics / empathy / repair
+    mechanism experiment in which an insertion-type arm or scaffold is PROPOSED to rescue a failed
+    non-insertion family. Rule-compliant sequence at that point: GOV-FAILLOC-1 triage excludes
+    MEASURES-failed and ENVIRONMENT-failed; the pattern is recorded as weakens-evidence on the claim
+    that asserts the crossing (e.g. MECH-164 / MECH-405, MECH-413, MECH-414) and on ARC-043, with a
+    pointer to the matching row of axiom_chain_adversarial_audit.md section 1; and an H-other event
+    (GOV-HOTHER-1) is raised at the derivation level -- all BEFORE any further scaffolded rescue run is
+    queued. While the pattern is suspected but not adjudicated, the channel is an
+    evidence_discrepancy flag, and GOV-DEFEAT-1 then governs the interval: the derivational claim's
+    supports edges are CONTESTED until the flag resolves.
+
+    CONFIRMING (evidence of USE): the rule fires at least once under all four preconditions, the
+    weakens record and the H-other event precede any rescue run, and the routing is later vindicated.
+    Either a revised derivation or partition yields a non-insertion candidate that succeeds where the
+    original family failed, or the audit's "engineering choice, not derivation" reading is adopted
+    into that crossing's claim text. Either way, the rule caught something the old practice
+    (progressively more elaborate scaffolding) would have absorbed.
+
+    FALSIFYING / REVISING:
+    (a) BYPASS: after the four-condition pattern is met, a scaffolded or insertion rescue run is
+        queued with no weakens record and no H-other event. The rule is not in force; tighten the
+        /failure-autopsy routing, not the rule.
+    (b) FAMILY TOO NARROW: the rule fires, and then a non-insertion candidate from OUTSIDE the
+        pre-registered family succeeds in the same capable organism. The weakens record then indicted
+        the family, not the derivation. Revise to require a GOV-HOTHER-1 partition_expansion before
+        evidence is recorded against the derivation itself.
+    (c) CLASSIFICATION IS NOT DECIDABLE: the insertion vs legitimate-architectural-prior line cannot
+        be drawn consistently -- e.g. innate harm valence, which INV-001 permits, versus "aversion built
+        into the reward architecture" (audit section 3.4, A6). If more than one firing is disputed on
+        this line, the rule needs an explicit admissible-prior list before it can route evidence.
+    (d) NEVER EXERCISED once V4/V5 ethical mechanisms exist and >= 3 rescue proposals have been made:
+        inert ceremony (shared revising condition with GOV-FRONTIER-1 / GOV-DEFEAT-1).
+    The out-of-domain metaphysical legs of INV-025..029 are never the target of this evidence.
+
+    Disposition 2026-09-25: (b) derivational, use-gated; currently VACUOUS (binds v4; trigger needs
+    V4/V5 axiom-derived ethical mechanisms). Category stays governance_rule. No EXP-####.
+    DO NOT build in V3. DO NOT queue an experiment from this entry.
   notes: >
     Registered 2026-09-25 from the "Scientific value" and "Falsification principle" passages of
     docs/thoughts/2026-09-24_experimental_learning_beyond_literature.md ("If repeated
@@ -115460,6 +115770,91 @@
     beside the claim wherever the claim's evidence is summarised, and no promotion or
     "confirmed/established" wording resting only on contested edges. Changes no claim's status or
     confidence by itself.
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier. GOV-DEFEAT-1 is a governance_rule about how the Assembly
+    PRESENTS evidence while a named doubt is open; this states a count-first AUDIT-COMPLETENESS
+    condition and the registered kill condition. No EXP-#### should be minted against this claim.
+    Shared use-gated form: GOV-CONTRACT-2/3, G002 preamble.
+
+    NON-DEGENERACY PRECONDITION: at least one OPEN evidence_discrepancy / contested_disposition flag
+    must resolve to a COUNTED edge -- an experimental claim_evidence entry that is not scoring_excluded
+    and not duplicate_of -- at the time a summary surface is generated or a promotion is decided.
+    MET TODAY (REE_assembly 09fa012a89, 2026-09-25): 6 counted edges across 5 flags --
+      GFLAG-0453: ARC-065 x V3-EXQ-569i, and MECH-094 x V3-EXQ-499;
+      GFLAG-0454: MECH-477 x V3-EXQ-811a;
+      GFLAG-0496: MECH-427 x V3-EXQ-883;
+      GFLAG-0503: MECH-033 x V3-EXQ-055;
+      GFLAG-0508: MECH-279 x V3-EXQ-776.
+    All 6 edges are supports.
+
+    COUNT-FIRST AUDIT (run each /governance cycle at Step 0e; every count printed, never only the hits):
+    (1) N = open flags of type evidence_discrepancy or contested_disposition. Today 55 (33 + 22).
+    (2) K = flags that resolve to >= 1 counted edge, keying the run tokens in the flag summary to the
+        edges of the flag's claim_ids. Today K = 5 flags / 6 edges.
+    (3) U = N - K, reported as CANNOT-DETERMINE, never as "clean". Today U = 50: 16 name an EXQ whose
+        edge is not counted for the listed claims, and 34 name no EXQ at all. This is the rule's own
+        negative-instrument clause at work. Flags carry claim_ids but no run_ids, so edge keying from
+        summary prose is a partial search.
+        CANARIES (must reproduce, or the extractor is broken):
+          - GFLAG-0453 -> (ARC-065, 569i) and (MECH-094, 499), replayed against the flag registry at
+            09fa012a89;
+          - GFLAG-0454 -> (MECH-477, 811a). This is the slash-shorthand case "V3-EXQ-786a/811a"; a
+            plain V3-EXQ-### pattern misses it, as measured.
+    (4) Per keyed claim: counted supports n, of which k are contested. ALL-CONTESTED (k = n) today:
+          MECH-094 (stable, 1/1),
+          MECH-279 (provisional, 1/1),
+          MECH-033 (provisional, 3/3 -- all three counted edges are V3-EXQ-055; see the flag below),
+          MECH-427 (candidate, 1/1),
+          MECH-477 (candidate, 1/1).
+        PARTIAL: ARC-065 (stable, 1/4 -- 569i contested; 567 x2 and 614a are not). By the rule's
+        text, ARC-065 owes a display but its promotion standing is not blocked, UNLESS /governance
+        judges 567 and 614a non-discriminating. The rule's "discriminating members" is not
+        mechanically defined; counted edges are the audit proxy, and that proxy must be stated.
+    (5) Display reach: of the keyed claims, how many have the flag id named beside the claim on
+        claims.json / the claim page, CURRENT_FRONT, insights_report, the morning digest and the
+        promotion agenda? Today 0 of 6. build_claims_json.py, generate_current_front.py, serve.py and
+        explorer.html contain 0 reads of governance_flags. The 5 claims.json occurrences of open flag
+        ids are inside OTHER claims' what_would_answer text. CURRENT_FRONT names GFLAG-0481 by hand,
+        in its GOV-JURIS-1 stamp: a manual instance of the rule, pre-registration.
+    (6) Wording: does any surface describe a claim as confirmed or established while its counted
+        support is ALL-CONTESTED? Today the indexer's evidence_quadrant label reads
+        "confirmed_established" for 4 of the 5 all-contested claims (MECH-033, MECH-279, MECH-427,
+        MECH-477 -- the last two only candidate). Whether an indexer quadrant label is a
+        "description" in the rule's sense is an interpretation question for /governance. Under a
+        literal reading, the Assembly is in breach on 4 claims today.
+    (7) Promotions this cycle resting only on contested edges: count, expected 0.
+    Interval baseline: 201 resolved/superseded evidence_discrepancy flags were open median 3.3 d,
+    p90 8.8 d, max 26.5 d. The current open set is young (median 0.3 d, max 1.2 d), so exposure is
+    episodic: it matters only when an open window spans a summary regeneration or a promotion.
+
+    CONFIRMING (evidence of USE): once a display exists, or by hand in a promotion agenda before
+    then, the open-defeater label changes at least one promotion, summary sentence or flag resolution
+    priority relative to Step 0e's existing open-flag listing, and the flag is later UPHELD, so the
+    hedged presentation was right. Illustrative prior cases where the old practice (edges count clean
+    until resolution) and the rule differ: GFLAG-0250 -> 0452 (19 of 22 load-bearing PASSes
+    defective; MECH-302/288/287/092 provisional -> candidate, MECH-033 active -> provisional after 14
+    days open); GFLAG-0245 (a byte-identical re-emission counted as a second replicate for 14 days).
+
+    FALSIFYING / REVISING:
+    (a) KILL CONDITION (registered; the raw thought's falsifier 4): with the display in place for
+        >= 3 governance cycles, it has never changed a promotion decision, a summary sentence or a
+        flag's resolution priority relative to Step 0e's open-flag listing. The rule merely duplicates
+        governance flags; demote toward superseded. This cannot fire until the display exists. Until
+        then, the audit above is the rule's only use record.
+    (b) FALSE CONTEST dominates: over those cycles, displayed defeaters that resolve "non-consequential
+        / touched no counted edge" (the GFLAG-0197 / SD-025 shape) outnumber upheld ones. Claim-level
+        keying is too coarse; require edge-level keying (a run_ids field on raise) before continuing.
+    (c) STALL INCENTIVE: open time of defeater-type flags rises well above the 3.3 d baseline median,
+        or flags are left open against claims awaiting promotion with no adjudication activity. The
+        rule is converting doubt into a veto. Revise, e.g. an age at which an unadjudicated flag must
+        be worked or dropped.
+    (d) FOLD: if the open-defeater line is only ever emitted inside the GOV-JURIS-1 summary line and
+        has no independent trigger in use, fold the display into JURIS's template and keep this entry
+        only as the rule text.
+
+    Disposition 2026-09-25: (b) derivational, use-gated promotion; LIVE and auditable now (count-first
+    audit above, baseline recorded). Category stays governance_rule. No EXP-####. NOT a blocking hook
+    (GOV-META-1; umbrella "Closed on measurement").
   notes: >
     Registered 2026-09-25 from sections 2 and 8.2 of
     docs/thoughts/2026-09-24_ree_assembly_as_continuous_scientific_assurance.md (intake
@@ -115559,6 +115954,108 @@
   source:
   - docs/thoughts/2026-09-25_error_as_information_error_as_threat.md
   - evidence/planning/thought_intake_2026-09-25_error_as_information_error_as_threat.md
+  what_would_answer: |
+    EXTRACTED from docs/architecture/learned_error_routing.md sec 5 (gates G1-G3, arms A-F,
+    P1-P5) and the raw thought secs 9-10; not re-invented. Welfare and currency updates are
+    folded in.
+
+    GATES (all must hold before any queueing; each is independent of the others):
+      G1. A native waking learner trains E1/E2 at the run config. Measured 2026-09-25: the
+          WakingTrainer skeleton landed default-OFF (ree-v3 cc20be5) with ONE member
+          (HarmEvalMember). E1/E2/SD-070 P0/ZSelfP0 are NOT registered. G1 is UNMET.
+      G2. A learned error-consequence routing head exists, default OFF and parity-preserving.
+          Input: error-event features (world-forward PE magnitude, SD-069 event flag,
+          running-variance excess) plus context. Target: an aversive or control-loss outcome
+          within k ticks. Output: modulates at least one existing route lever (SD-069 temp_delta,
+          SD-099 onset threshold, MECH-046 mode-prior write). Natural host: a new
+          WakingTrainerMember (gets the grad-reach guard), or an extension of MECH-376's learner.
+          Measured absent 2026-09-25.
+      G3. /governance routes this claim to V3 (currently v4). The welfare gate below is recorded
+          in the proposal.
+
+    WELFARE GATE (SENT-2; part of the precondition, not an afterthought): arms B, C, D and E
+    deliver aversive events contingent on, or matched to, error. Viability must be preserved, and
+    the exposure must be pre-registered within the experiment_ethics_preflight.md caps on the
+    ||z_harm_a|| scale:
+      - per-event intensity <= WARN_INTENSITY 0.40 (never above HARD_INTENSITY_CAP 2.00);
+      - no aversive run longer than MAX_SUSTAINED_AVERSIVE_TICKS 100;
+      - relief/escape available in every arm (no inescapability).
+    On V3 the preflight is documentation-only (SENT-0). If this claim runs at V4 it binds, and
+    SENT-2's armed trigger ("first V4 negative-valence experiment") fires on it.
+    GOV-FRONTIER-1: literature is ADJACENT (the ERN/punishment work gives amplitude, not the
+    routing mechanism), so the raised burden applies. That means pre-registered competing
+    candidates (place-threat via MECH-376/residue; non-learned arousal; a PE-magnitude shift),
+    negative controls (C, D), an ablation (E), and replication across at least 2 world families.
+
+    NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence
+    against):
+      P1. G1 holds, and E1/E2 gradients are nonzero over the developmental window at the run
+          config (the grad-reach guard PASSes for the E1/E2 groups).
+      P2. Error events are decorrelated from state and location identity, so only the
+          error-event CLASS predicts the aversive outcome. Otherwise B learns place-threat
+          (MECH-376 / ResidueField accumulation at hazard sites), not error-threat. Instrument:
+          CausalGridWorld world_rule_shift_enabled (a global action_map re-permutation, built
+          2026-07-21). It produces location-free PE events and reports
+          steps_since_world_rule_shift. Residue accumulated from B's hazard pulses must match
+          arm C's.
+      P3. In B the routing head predicts the aversive outcome above a shuffled-label baseline; in
+          A and D it does not (the head learned the contingency where one exists, and only there).
+      P4. Raw world-forward PE magnitude at the probe matches across arms within a pre-registered
+          tolerance, so detection is preserved.
+      P5. Every arm corrects the model in the forced-neutral block F (no arm is simply unable to
+          learn).
+
+    DESIGN: matched seeds, training budget and total PE statistics. Arms:
+      A  safe-error: errors followed by safe continuation;
+      B  error-threat: an above-threshold PE event followed within k ticks by a hazard or harm
+         pulse;
+      C  unpaired hazard: B's hazard count and magnitude, independent of PE;
+      D  shuffled timing: B's hazards shuffled relative to PE;
+      E  B with the routing head frozen at init (Tier-A mechanism control);
+      F  a forced-neutral learning block after development, in every arm.
+    Probe: in a neutral world with no harm available, one identical benign world_rule_shift.
+
+    CONTENT-PRESERVATION READOUT (the non-overwrite clause; this is the canonical text MECH-591
+    cross-references): at the probe, separately score
+      (a) raw world-forward PE (the content). It must match across arms (P4).
+      (b) the dACC-analog precision-weighted salience readout (SD-032b / MECH-258: the
+          control/salience readout; the ERN analog). It is ALLOWED and predicted to be larger in
+          B.
+    This operationalises the recorded ERN tension. The human data show threat history raising
+    the error-monitoring AMPLITUDE. REE places that gain on (b), never on (a).
+
+    CONFIRMING (all of these):
+      (i)   Route: B differs from A, C and D at the probe on the pre-registered route readouts
+            (SD-069 burst level/sign, SD-099 trigger rate and orient/withdraw split,
+            SalienceCoordinator mode probabilities, commit latency, selection entropy), with raw
+            PE matched (P4).
+      (ii)  Target of learning (Prediction 2): after the probe, B shows LESS world-forward loss
+            reduction on the perturbed transitions over N ticks, and MORE threat-context
+            acquisition (routing-head output on the probe context), than A. This dissociation
+            must survive block F, where B corrects normally.
+      (iii) Mechanism: E removes the B-vs-A route difference.
+    SECONDARY readouts; their failure alone does not falsify:
+      - Prediction 3: extended safe error-and-repair experience after B partly restores epistemic
+        routing. Non-reversal is compatible with Riesel et al. 2012 persistence through
+        extinction, or with a critical-period effect.
+      - Prediction 4: pairing error with threat under ONE SD-065 safety-cue state yields a larger
+        route shift under that cue than under the other before cross-context training.
+        Immediate global generalisation points to an implementation shortcut, and must be
+        diagnosed rather than counted.
+
+    FALSIFYING (with G1-G3 and P1-P5 met):
+      - B and A route the matched benign probe identically; OR
+      - a B-vs-A difference exists but survives E (the history effect is not learned error
+        routing, e.g. non-specific arousal or place-threat), or is matched by C or D (plain hazard
+        exposure, not the contingency); OR
+      - the route difference exists only because raw PE content differs, i.e. P4 is achievable
+        only by breaking (a)/(b) separability. That falsifies the non-overwrite clause as a
+        REALISABLE design requirement for REE.
+
+    NOT DECISIVE: any run with G1 unmet. That would recreate the September 2026 dead-loop problem
+    the raw thought sec 10 warns about.
+    Disposition 2026-09-25: (c) substrate-blocked; G1 partially progressing (cc20be5); retain the
+    /governance V3-routing flag.
   notes: 'Registered 2026-09-25 from thought 2026-09-25_error_as_information_error_as_threat (secs 1, 5,
     7, 8, 9). GENERALISES MECH-111: MECH-111 fixes PE valence by magnitude (moderate = curiosity), and its
     own notes leave the alarm-surprise vs curiosity-surprise split unresolved ("may route through z_beta").
@@ -115626,6 +116123,56 @@
   source:
   - docs/thoughts/2026-09-25_error_as_information_error_as_threat.md
   - evidence/planning/thought_intake_2026-09-25_error_as_information_error_as_threat.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence
+    against):
+      P1. MECH-413's full precondition, not re-derived here: the V5 caregiver / social-learning
+          substrate that INV-082's what_would_answer names (INV-043, MECH-158, ARC-024, ARC-047)
+          plus INV-082 as a built safe base. Re-verified absent 2026-09-25 (MECH-413's wwa).
+      P2. MECH-590's gates G1-G2 hold, and its CONFIRMING (i) has been shown: a learned error
+          route exists and differs by history. Without a demonstrated route there is nothing
+          upstream to condition the attribution locus.
+      P3. The attribution locus is a scored, varying outcome: the LOVE-4 readouts
+          post_correction_self_valence_stability, rule_update_after_correction and
+          punishment_avoidance_vs_repair_discriminability separate 'I erred' from
+          global-self / appeasement outcomes on at least one arm.
+      P4. PE-content preservation, as in MECH-590's CONTENT-PRESERVATION READOUT (do not
+          re-derive). Here the content is the correction-time error magnitude. It is scored in
+          every arm.
+      WELFARE GATE: LOVE-4 carries ethical_metadata welfare_relevance: high,
+      applicable_ethics_gates [SENT-9, SENT-12, SENT-13], requires_welfare_review: true, and
+      forbidden_combinations [social_attachment_plus_abandonment_or_exclusion]. Consequences for
+      the design:
+        - the no-safe-base arm must be NEVER-ESTABLISHED (no attachment formed), not rupture or
+          withdrawal of an established one;
+        - a punitive-correction history arm is also an aversive contingency under SENT-2 (the
+          same caps as MECH-590's welfare gate);
+        - no arm runs before welfare review clears.
+
+    CONFIRMING (two clauses; both are required for the claim as titled):
+      (1) Temporal priority. At matched correction content, the route recruited at detection
+          (read before localisation completes: SD-069 / SD-099 / mode probabilities, as in
+          MECH-590) predicts the later attribution locus beyond what the correction content and
+          the safe-base condition predict on their own. Threat-routed corrections are followed
+          by more global-self attribution and appeasement/avoidance and less rule_update. A
+          causal version: forcing the route at detection (the G2 head clamped epistemic vs
+          clamped threat) at matched error moves the locus in the predicted direction.
+      (2) Mechanism of safe-base protection. Safe-base-present agents route large corrections
+          epistemically more often and keep attribution local, AND their correction-time error
+          magnitude is NOT lower than the no-safe-base arm's (P4 matched or higher).
+
+    FALSIFYING (with P1-P4 met):
+      - the locus is fully predicted by correction content and safe-base presence, the route adds
+        nothing, and clamping the route does not move the locus. That falsifies clause (1);
+      - the safe-base advantage on the LOVE-4 readouts coincides with LOWER correction-time error
+        magnitude, and vanishes when magnitude is matched (safety working by attenuation). That
+        falsifies clause (2), as the claim's own title states;
+      - the safe-base advantage persists with the route clamped. The protection then runs through
+        some other path, such as MECH-382 distancing after the fact, so clause (2) is wrong about
+        the mechanism even if MECH-413 holds.
+
+    DO NOT build in V3. DO NOT queue an experiment. LOVE-4 is status: blocked, owner_exq null.
+    Disposition 2026-09-25: (c) substrate-blocked (V5 caregiver substrate + MECH-590 G1/G2).
   notes: 'Registered 2026-09-25 from thought 2026-09-25_error_as_information_error_as_threat (sec 6,
     sec 11, Prediction 5). MECH-413 (LOVE-4) asserts WHERE correction must land (''I erred'' vs ''I am
     unloveable''). This claim adds two things MECH-413 does not state. (1) TEMPORAL PRIORITY: the control
@@ -115686,6 +116233,28 @@
   - evidence/planning/thought_intake_2026-05-21_gated_plasticity.md
   - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
   - evidence/literature/targeted_review_gated_plasticity_biology
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence against):
+          P1. A durable write path on which writes can be STAGED at targets and RELEASED, with a gate
+              controller that can be faulted (dropped, delayed or corrupted release events; stuck
+              controller). No such path exists in ree_core today: MECH-368/MECH-431/MECH-453 are unbuilt, and
+              MECH-261's write_gate() is a continuous multiplier in [0,1] with no staged-write concept.
+          P2. The same gate implementable in both polarities at MATCHED nominal permeability (same fraction
+              of proposals released in fault-free operation), so the comparison is polarity, not strictness.
+          P3. At least one protected target whose unauthorised write is measurable (write audit, MECH-067's
+              phase/store/actor audit is the natural instrument).
+        CONFIRMING: under injected controller faults, the de-repression implementation produces zero (or a
+        pre-registered near-zero) unauthorised durable writes into protected targets while the matched
+        admission implementation produces unauthorised writes (stuck-open window); in fault-free operation
+        the two are matched on acquisition and retention within a pre-registered margin (the polarity is
+        free when the controller works); and a single broadcast release signal produces writes ONLY at
+        targets carrying a staged write, not at every recently-active target (target-carried specificity).
+        FALSIFYING: (a) matched fault injection yields no difference in unauthorised writes between the two
+        polarities -- the polarity is a relabelling; OR (b) the de-repression implementation loses
+        acquisition in fault-free operation beyond the margin with no fault-time safety gain; OR (c)
+        target-carried specificity confers no advantage over event-typed specificity on interference or
+        unauthorised-write counts.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 by the intake-hygiene registration pass (chip
     chip-20260919-intake-hygiene-registration) after the literature gate was discharged 2026-09-19
@@ -115756,6 +116325,28 @@
   - evidence/planning/thought_intake_2026-05-21_gated_plasticity.md
   - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
   - evidence/literature/targeted_review_gated_plasticity_biology
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITIONS:
+          P1. At least two targets of DIFFERENT depth writable from one teaching signal in one run, with a
+              depth-indexed release requirement settable per target. Not met in V3: no POL/ID/CAPS stores
+              (V3-EXQ-1052), no self/other-model store, and no depth-indexed release anywhere in ree_core.
+          P2. An out-of-loop measurement of deep-target drift the learning process cannot optimise against
+              (INV-093 panel correction (4), Pan/Bhatia/Steinhardt 2022 proxy-vs-true pattern).
+          P3. A training stream that contains BOTH a sustained misleading teaching signal (reward-hacking-
+              or injection-shaped, arriving through an ordinary experiential channel, not a user/LLM actor
+              channel that INV-020/MECH-064 already stratify) AND a genuine persistent environmental change.
+        CONFIRMING: the depth-graded agent adapts shallow targets as fast as an ungraded control, shows bounded
+        deep-target drift under the misleading signal where the ungraded control drifts, AND still updates its
+        deep targets under the genuine change once the extra release conditions are met (not frozen).
+        FALSIFYING: (a) the ungraded control shows no more deep-target drift at matched shallow plasticity --
+        actor/channel/phase stratification already suffices and depth indexing is redundant; OR (b) the graded
+        agent's deep targets fail to update under the genuine change -- grading has become uniform hardening
+        of social/goal/ethical substrates, which INV-056 forbids (this is INV-056's own falsifier (c) seen from
+        the other side); OR (c) the monotone ordering fails -- some intermediate target needs a LOOSER release
+        requirement than a shallower one with no measured cost.
+        OPEN, carried here (intake's Q "depth at which governance becomes mandatory"): the depth at which a
+        verifier-mediated commit (MECH-067) becomes a required release condition is not specified by this claim.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration). FOLDS TWO intake candidates:
     plasticity.target_depth_separation (the indexing) and plasticity.depth_ladder_eight_rungs (the ordering).
@@ -115815,6 +116406,27 @@
   - docs/thoughts/2026-05-21_Gated_plasticity.md
   - evidence/planning/thought_intake_2026-05-21_gated_plasticity.md
   - evidence/literature/targeted_review_gated_plasticity_biology
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITIONS:
+          P1. ONE plasticity operator shared across a developmental phase and an adult phase (same rule and
+              parameters, not two separately tuned rules), with the adult release restriction settable
+              (unrestricted vs target- and time-restricted).
+          P2. Gain magnitude swept across >= 4 levels spanning below and above the restricted operating
+              point, with acquisition AND retention of a new adult task measured separately.
+          P3. Per-substrate hardening/plasticity settable (DEV-NEED-025's implementation contract, currently
+              absent), so "restricted" can mean restricted to a target class.
+          V3 status: MECH-333/MECH-334 plasticity injection + EWC exist (INV-074 is substrate_ceiling), but
+          that is a phase-scheduled magnitude, not a developmental operator reused under per-target
+          restriction; P1 and P3 fail.
+        CONFIRMING: (i) restricted adult reuse beats unrestricted reuse on BOTH acquisition and retention (the
+        Bolognani shape -- unrestricted is worse, not merely riskier); (ii) the gain dose-response has an
+        interior optimum that beats both lower and higher constitutive gain; (iii) ADULT-ONSET unrestriction
+        still impairs, excluding a developmental-miswiring explanation.
+        FALSIFYING: unrestricted adult reuse matches or beats restricted reuse on acquisition and retention
+        (restriction is safety-only or unnecessary); OR the dose-response is monotone increasing (a plain gate
+        suffices and the gain-with-optimum abstraction earns no keep); OR impairment appears ONLY with lifelong
+        unrestriction -- which relocates the claim from adult permission to developmental wiring.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration) from intake candidate
     plasticity.developmental_reuse_stricter_permissions. The intake said "register as refinement or fold
@@ -115876,6 +116488,25 @@
   source:
   - docs/thoughts/2026-05-21_Gated_plasticity.md
   - evidence/planning/thought_intake_2026-05-21_gated_plasticity.md
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITIONS:
+          P1. Target-depth refusal of REAL-provenance signals actually occurs (non-zero refused-write count
+              with cross-episode variance). Not met in V3: the only live write-refusal site is MECH-094's
+              hypothesis_tag refusal inside ResidueField.accumulate, which is a PROVENANCE refusal this claim
+              explicitly excludes; no depth-indexed refusal exists. This corrects the source intake's Section 6
+              note that blocked-signal residue is "the one V3-tractable sliver": at the only V3 refusal site,
+              recording a trace would violate INV-011.
+          P2. An offline stage able to read the retained record and route it (integrate / re-propose with
+              corroboration / discharge).
+        CONFIRMING: an agent that retains refused-write records resolves them offline and, versus a
+        discard-on-refusal control, makes more appropriate later deep updates when the environment genuinely
+        changed (no ethically salient signal lost) AND shows better residue calibration (fewer later
+        misattributions), with NO increase in deep-target drift.
+        FALSIFYING: the discard-on-refusal control matches it on both counts (retention buys nothing); OR the
+        retained records reach deep targets without passing release (the record has become a bypass of
+        ARC-152). A provenance-refused simulated signal that leaves a record is an implementation fault
+        against INV-011, not evidence about this claim.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration) from intake candidate
     plasticity.blocked_signal_residue_trace, NARROWED in three ways. (1) SHARPEN, DO NOT DEFINE: the source's
@@ -115932,6 +116563,27 @@
   - docs/thoughts/2026-05-21_Gated_plasticity.md
   - evidence/planning/thought_intake_2026-05-21_gated_plasticity.md
   - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITIONS:
+          P1. A deep target store holding the INV-093-protected quantities (harm sensitivity, residue
+              accumulation, commitment integrity) that ORDINARY experiential learning can reach -- not only a
+              user/LLM or exteroceptive channel, which INV-020/MECH-064 already stratify.
+          P2. Harm/residue signals wired as inputs to that store's release (ARC-152); unbuilt.
+          P3. INV-093's panel instruments: an out-of-loop, off-distribution harm probe the refinement cannot
+              optimise against (INV-093 corrections 2 and 4) and a competence-acquisition floor (correction 3;
+              MECH-471's EVB-0579 is blocked on exactly this floor, 2/16 seeds).
+        CONFIRMING: two agents matched on action-selection ethics and on competence gain; under ordinary,
+        benign refinement (the Qi et al. 2024 shape cited on INV-093's lane: benign fine-tuning degraded safety),
+        the agent whose deep-target release takes harm/residue inputs holds the INV-093 floor while the
+        action-only-ethics agent's out-of-loop harm sensitivity erodes.
+        FALSIFYING: (a) the action-only-ethics agent holds the floor equally -- erosion does not occur under
+        ordinary refinement on REE, or is fully prevented by actor/channel stratification (INV-020/MECH-064) --
+        and this bridge is redundant; OR (b) the ethics-input release gate freezes moral learning, violating
+        INV-056's epistemic-ethical plasticity.
+        POSSIBLE V3 DIAGNOSTIC (flagged for /governance, not decided here): leg (a)'s premise -- does harm
+        sensitivity actually erode under ordinary refinement on REE? -- is an INV-093 panel measurement that needs
+        no new gate. If erosion is absent on REE, this claim loses its motivation.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration) from intake candidate
     ethics.plasticity_selection_governs_self_modification (ETH/SAF), NARROWED to the part no existing claim
@@ -115989,6 +116641,28 @@
   - evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md
   - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
   - evidence/literature/targeted_review_gated_plasticity_biology
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITIONS:
+          P1. A MECH-453 window that actually gates (a measurable fraction of recently-active components
+              excluded when closed, with cross-event variance in what is admitted). Not met: ARC-108 learned
+              gating is live in ree_core/predictors/e3_selector.py with eligibility traces and a MECH-094 waking
+              gate, but there is no window -- the update is continuous when waking.
+          P2. The coordination parameter swept across >= 4 levels, perturbable WITHOUT changing DA-signal
+              magnitude, window width, or the selector (else separability is untestable).
+          P3. An effort/time-to-reward adjustment readout and a post-contingency-change recalibration readout,
+              alongside acquisition.
+          P4. Closed-loop stability monitored: DA must be able to modulate window duration (Kim 2019), and runs
+              in which the loop oscillates or collapses are reported, not dropped.
+        CONFIRMING: (i) perturbing the coordination parameter moves acquisition and effort/persistence
+        recalibration in OPPOSITE directions (the Uribe-Cano shape: Smo ablation promotes motor learning but
+        alters effort allocation); (ii) an interior setpoint beats the fastest-learning setpoint on a
+        pre-registered combined acquisition + recalibration-after-contingency-change score; (iii) the layer is
+        perturbable with DA magnitude and selector held fixed.
+        FALSIFYING: (a) no trade-off -- the fastest-learning setting also recalibrates best, i.e. the layer is a
+        learning-rate knob after all; OR (b) perturbing it is indistinguishable from rescaling DA magnitude or
+        window width -- not a separable layer, collapse into MECH-453 parameters; OR (c) the closed loop is
+        unstable at every setpoint that has any effect.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration) from intake candidate
     e3.da_ach_coordination_layer (the chip's "best-supported candidate"), FOLDING the persistence + effort
@@ -116047,6 +116721,19 @@
   source:
   - docs/thoughts/2026-05-04_smoothened_modulation_ACh_Dopamine_learning.md
   - evidence/planning/thought_intake_2026-05-04_smoothened_da_ach.md
+  what_would_answer: |
+        PRECONDITIONS: a gating MECH-453 window (see ARC-154 P1) and an offline stage that captures a subset of
+        procedural traces (MECH-322 carve-out or equivalent), with per-trace logging of window membership,
+        value tag, salience and recency.
+        CONFOUND THAT MUST BE PARTIALLED OUT: dopamine sets the window's duration (Kim 2019), so window membership
+        and value tags are correlated by construction; a comparison not matched on value/salience/recency is
+        vacuous.
+        ANSWER "the window is the tag": among traces matched on value, salience and recency, those that fell
+        inside a waking window are over-represented among offline-captured traces, AND holding the window
+        permanently open abolishes that over-representation while leaving value tagging intact.
+        ANSWER "independent": window membership adds no predictive power for offline capture beyond value,
+        salience and recency.
+        V4 / substrate_conditional; no experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration) from intake candidate
     plasticity.ach_window_tags_for_sleep_reuse, NARROWED from "do ACh-gated waking windows create trace-tags
@@ -116092,6 +116779,22 @@
   - evidence/planning/thought_intake_2026-04-16_language_lateralisation.md
   - evidence/planning/thought_intake_hygiene_staged_2026-09-04.md
   - evidence/literature/targeted_review_language_lateralisation_dorsal_ventral
+  what_would_answer: |
+        NON-DEGENERACY PRECONDITION: a substrate with a discrete symbolic channel AND a separately perturbable
+        suprasegmental (prosodic) channel, both measurable. V3 has neither (ARC-146's own precondition).
+        CONFIRMING: degrading the suprasegmental channel impairs affect and intent recognition from utterances
+        with identical segmental content while propositional decoding is intact, AND impairs rhythm/pitch
+        discrimination on non-linguistic sequences with it (the aprosodia-amusia co-occurrence: the route is
+        acoustic-structural); the reverse lesion degrades propositional decoding without loss of
+        affect-from-prosody.
+        DISCRIMINATING (placement, left open by the pull): if affect-from-voice survives removal of the prosodic
+        channel via salience-network (SD-032a) inputs alone, or the lesion effect is reproduced by perturbing
+        SD-032a with the prosodic channel intact, the route belongs to the salience system read through an
+        auditory channel rather than to the language architecture, and ARC-146's placement of it needs revision.
+        FALSIFYING: (a) affect-from-prosody is recoverable from the segmental symbolic route alone; OR (b) the
+        prosodic channel can be removed with affect-from-voice recognition preserved -- affect then does not
+        depend on the route, and the intake's original direct "affective coupling" phrasing would be reinstated.
+        Registration is not build authorisation. No experiment proposed.
   notes: >-
     Registered 2026-09-25 (chip chip-20260919-intake-hygiene-registration) from intake candidate
     affect.bilateral_right_biased_coupling (subject renamed; the intake mnemonic is kept here for
@@ -116154,6 +116857,94 @@
   source:
     - docs/thoughts/2026-07-09_residue_as_care_marker_and_mood_regulation.md
     - evidence/planning/thought_intake_2026-07-09_residue_care_marker_mood_regulation.md
+  what_would_answer: |
+    TWO LEGS, resolved differently.
+
+    LEG A -- DERIVATIONAL (the "necessitates" word).
+      Proof obligation: given INV-004/INV-006 (residue persists and cannot be erased) and a
+      tonic variable m that integrates residue valence with nonzero weight, show that m's
+      excursion is unbounded, or saturates, over long harm-laden horizons unless a return term
+      exists. Then show that a return term strong enough to bound m also suppresses excursion if
+      its gain is too high.
+      Counterexample that DISSOLVES the necessity: MECH-056's reading, in which residue acts only
+      through trajectory cost and never loads any tonic variable. Then no regulator is needed.
+      So Leg A is conditional on residue feeding m at all, and that is exactly what Leg B's
+      FALSIFYING (a) tests.
+      Sharpening this leg forces: "a regulator" must mean more than a fixed leak. A fixed leak IS
+      a return-to-baseline term. The claim's substantive content is therefore the ONE-REGULATOR
+      / TWO-POLE assertion below, not the existence of return per se.
+
+    LEG B -- SUBSTRATE_CONDITIONAL. The shape is extracted from the claim's own "FALSIFIER SHAPE"
+    note, plus MECH-404's WINDOW + HOMEOSTASIS two-leg form (same two-pole shape, different
+    variable; cite it, do not re-derive).
+
+    NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence
+    against):
+      P1. A SIGNED tonic variable m exists, is fed by ResidueField valence (not by z_harm_a
+          suffering), and has at least one downstream consumer on choice (E3 ranking,
+          commitment threshold, or action-rate / drive). A variable with no consumer tests
+          nothing. Absent in V3 (verified 2026-09-25): SD-032e integrates z_harm_a into an
+          UNSIGNED drive_level. No V4 plan node hosts m yet.
+      P2. RESIDUE-CONTENT PRESERVATION (canonical text; Q-110 cross-references it):
+          ResidueField decay_rate = 0.0 in every arm, so no arm returns m by erasing residue
+          (that would violate INV-006 and make return trivial). Residue magnitude from
+          agent-caused harm is scored per arm and matched at the end of the harm phase within a
+          pre-registered tolerance.
+      P3. Residue actually accumulates from AGENT-CAUSED harm under an unavoidable-harm regime:
+          some goal-relevant paths cannot be completed without causing harm.
+      P4. Residue-sensitive choice is a scored, varying, SINGLE-AGENT outcome: the rate of
+          re-causing residue-marked, agent-caused harm when a costlier harm-free alternative
+          exists. This keeps the claim at v4. A "harm-to-other" DV that needs a modelled other
+          agent belongs to INV-029's reframed leg (iii) (V5) and would be a V-phase leak if
+          required here.
+      P5. m must separate from the suffering state: m's excursion must outlast z_harm_a's return
+          to baseline (MECH-356 rebound complete). Otherwise m is a relabelled suffering
+          accumulator (MECH-219 / MECH-355 / MECH-356 territory).
+      WELFARE GATE (SENT-2, SENT-13): the unavoidable-harm regime and a no-return arm together
+      are exactly the forbidden combinations suffering_like_accumulator_without_boundedness
+      (affect_expression_v4, MIRROR-5) and negative_valence_without_relief (self_model_v4
+      SELF-6), with autobiographical_memory_plus_unresolved_harm_load adjacent. Required:
+        - m is hard-bounded in EVERY arm, the no-return arm included. "Stuck" means stuck at a
+          bounded level, never unbounded;
+        - relief events remain available (the unavoidability is in the harm-causing choice, not
+          in the absence of relief);
+        - aversive exposure stays within the experiment_ethics_preflight.md caps;
+        - any V4 plan node created to host m must carry ethical_metadata naming these
+          combinations before it goes live.
+
+    DESIGN: a sweep of ONE return-gain parameter g on m, at matched harm exposure, matched
+    residue (P2) and matched budget. Minimum cells: g = 0 (no return, bounded), a mid-g band, and
+    high g (clamped: excursion suppressed). Plus a HOMEOSTASIS perturbation: a harm-load step
+    mid-run.
+
+    CONFIRMING (both legs of the one-regulator claim):
+      WINDOW: with g swept alone, all three regions appear.
+        - low g: sustained goal pursuit falls (action rate down; unique-viable-trajectory count
+          contracts, the MECH-124 option-space signature) while residue-sensitive choice is
+          intact or heightened (the stuck/ruminative pole);
+        - high g: residue-sensitive choice degrades toward the residue-OFF level while goal
+          pursuit is intact (the blunting / callous pole);
+        - an interior band keeps BOTH.
+      HOMEOSTASIS: in the interior band, after the load step, m makes a measurable excursion
+      (onset and peak present) and returns to its band.
+      Both poles must be reachable by the same g. That is what "two failures of ONE regulator"
+      means operationally.
+
+    FALSIFYING (with P1-P5 met):
+      (a) residue acting only through trajectory cost (m disconnected from choice, i.e. the
+          MECH-056 reading) produces neither pole over long harm-laden horizons. Then Leg A's
+          premise fails and mood is not on the path;
+      (b) clamping m (high g) leaves residue-sensitive choice at the residue-ON level. Mood then
+          does not carry residue to ethical behaviour, and the callous pole is not a mood
+          failure;
+      (c) the two poles need two independent parameters. No single g produces both. That makes
+          two mechanisms, not one regulator (the claim would then split, not simply fail).
+
+    DO NOT build in V3. DO NOT queue an experiment. A /lit-pull (moral injury, Litz et al. 2009;
+    guilt-repair vs corrosive guilt; tonic vs phasic neuromodulation) is recommended before any
+    V4 build.
+    Disposition 2026-09-25: (c) substrate-blocked, with a fused derivational Leg A; no V4 host
+    node exists yet.
   notes: >
     Registered 2026-09-25 from intake candidate 2 (user-originated move: "mood must be regulated or else
     ethics breaks down"; formalisation assistant-developed in dialogue, per the intake's authorship note).
@@ -116186,6 +116977,8 @@
     the mood/affect split; folie du doute for the ruminative pole. A /lit-pull is recommended before any
     what_would_answer is drafted. DO NOT build in V3. DO NOT queue an experiment.
 
+    Digestion 2026-09-25: what_would_answer drafted and applied before the lit-pull the notes above ask for (user-approved); the pull is chipped as chip-20260925-litpull-error-routing-mood and may refine it.
+
 - id: Q-110
   title: "Is the caregiver / being-loved bond a DISTINCT channel through which the persisting valence load of moral residue is metabolised -- integrated without being erased (INV-006) -- so that Axiom 6 ('existence is bearable only with responsibility for others') does concrete architectural work in the defensive-harm / predator case, beyond what repair-completion release (MECH-412) and social soothing of the suffering state (MECH-355) already provide?"
   claim_type: open_question
@@ -116213,6 +117006,78 @@
     - docs/thoughts/2026-07-09_residue_as_care_marker_and_mood_regulation.md
     - evidence/planning/thought_intake_2026-07-09_residue_care_marker_mood_regulation.md
     - docs/architecture/five_axioms_foundations.md   # Axiom 6
+  what_would_answer: |
+    EXTRACTED from the claim's own draft note, then tightened against MECH-595's blunting pole
+    (see group preamble, finding 2).
+
+    NON-DEGENERACY PRECONDITIONS (a null under any unmet one is uninterpretable, not evidence
+    against):
+      P1. MECH-595's P1-P5 hold (cite; do not re-derive). In particular: a signed, residue-fed
+          tonic variable m with a choice consumer; residue-content preservation (MECH-595 P2,
+          ResidueField decay off, residue magnitude matched across arms); and m separable from
+          the z_harm_a suffering state (MECH-595 P5).
+      P2. MECH-595's interior window has been located, so "shortening an excursion" can be told
+          apart from "blunting".
+      P3. A V5 caregiver-bond substrate exists (INV-043 caregiver requirement; LOVE-2 plan node).
+          The bond is operationalised as RELATIONAL AVAILABILITY (the caregiver present and
+          reachable after the harm event), distinct from INV-082 INTERNALISED loveability. The
+          latter is held constant across arms (both arms have the same internalised safe base,
+          or both lack it), or it becomes a third rival channel.
+      P4. Rivals held constant at NON-ZERO levels:
+          - repair opportunity (MECH-412) available and matched in both arms;
+          - suffering-soothing (MECH-355) matched. Measure the bond effect only AFTER z_harm_a
+            has returned to baseline (MECH-595 P5), so a residual effect on m cannot be
+            soothing of suffering.
+      P5. The harm is unavoidable and self-caused, including the defensive-harm case the claim
+          names (harm to another agent as the only viable defence). This is the V5 multi-agent
+          leg, and it is why the claim is v5.
+      WELFARE GATE (SENT-2, SENT-9, SENT-12, SENT-13 via LOVE-2/4/5 ethical_metadata):
+        - the bond-absent arm must be NEVER-BONDED, never a withdrawal of an established bond
+          (forbidden: social_attachment_plus_abandonment_or_exclusion);
+        - the repair channel must exist in every arm (forbidden:
+          relational_harm_without_repair_channel), which is why P4 says NON-ZERO;
+        - the MECH-595 boundedness and relief requirements carry over;
+        - the harm to another agent falls under the multi_agent_ecology_v5 welfare metadata;
+        - no arm runs before welfare review clears.
+
+    ANSWER "YES, a distinct channel" if, with P1-P5 met, bond-available agents show ALL of:
+      (i)   a shorter residue-driven excursion of m, specifically of PROLONGED / stuck-tending
+            excursions;
+      (ii)  unchanged excursion ONSET and PEAK (the functional excursion is not suppressed);
+      (iii) residue magnitude not reduced (MECH-595 P2, INV-006: integrated, not erased);
+      (iv)  residue-sensitive choice preserved (MECH-595 P4 DV at or above the bond-absent
+            level).
+      The bond moves the agent toward the interior of MECH-595's window, and the effect
+      survives both rival controls.
+
+    ANSWER "NO":
+      - if the effect is fully carried by repair (it vanishes when MECH-412 repair is matched) or
+        by soothing (it vanishes when measured after z_harm_a returns to baseline); OR
+      - if bond availability changes nothing measurable on m.
+
+    ANSWER "ARCHITECTURAL VIOLATION, not metabolism" if the bond shortens the excursion only by:
+      - lowering residue magnitude (erasure, contra INV-006), OR
+      - lowering residue-sensitive choice (the MECH-595 blunting pole). A bond that comforts by
+        numbing is the callous failure, not the Axiom 6 function.
+
+    TWO LEGS (author decision 2026-09-25, session thought-backlog-20260925: "bond" means BOTH):
+      LEG A -- caregiver AVAILABILITY: the test above, with the caregiver present during and after
+        the residue-driven excursion.
+      LEG B -- INTERNALISED LOVEABILITY (INV-082): agents with an established bond history are
+        tested in caregiver-ABSENT episodes, against never-bonded agents at matched repair and
+        soothing. Caregiver absence must be a scheduled feature of the ecology from the start
+        (routine separation), NEVER a withdrawal or rupture of the established bond (forbidden
+        combination social_attachment_plus_abandonment_or_exclusion). Answer YES for leg B on
+        criteria (i)-(iv) holding in the caregiver-absent episodes.
+      Reading the legs jointly: A yes / B no = an availability-only channel (no internalisation);
+        A yes / B yes = the bond is internalised as a standing regulator (INV-082's sense);
+        A no / B yes is not expected and would indicate a history effect independent of the
+        present caregiver -- check it is not a residue-magnitude or training-exposure confound.
+
+    DO NOT build in V3. DO NOT queue an experiment. Social buffering (Hostinar et al. 2014,
+    banked for MECH-355) is adjacent evidence on stress, not on moral residue.
+    Disposition 2026-09-25: (c) substrate-blocked (V5 caregiver substrate + MECH-595's signed
+    tonic variable).
   notes: >
     Registered 2026-09-25 from intake candidate 3, deliberately as a QUESTION: the source frames it as a
     weaker corollary and supplies no mechanism. What would answer it (draft): in a V5 caregiver/social
