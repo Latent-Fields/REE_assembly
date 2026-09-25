@@ -7731,6 +7731,19 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0543",
+      "claim_ids": [
+        "MECH-588"
+      ],
+      "flag_type": "promotion_review",
+      "summary": "ROUTING confirmation, not a promotion: MECH-588 (monostrategy Type A repertoire absence vs Type B access collapse; admissibility gate for any coordination remedy) was registered 2026-09-25 at implementation_phase v3 / v3_v4, substrate_conditional, with the V3 route explicitly flagged for /governance. Its assay (monostrategy_type_a_vs_b_discrimination_20260924.md) is RED today (no P1+P5 ecology; Q-080 corridor entry 0.333 < 0.5; generation-stage Type A root open under GFLAG-0487/0488). Confirm v3, or park at v4 until Stage 0 passes.",
+      "raised_by_session": "thought-backlog-20260925",
+      "raised_at": "2026-09-25T11:09:10Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
