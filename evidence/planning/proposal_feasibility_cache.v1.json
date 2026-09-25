@@ -147,6 +147,20 @@
     "verdict": "RED"
    }
   ],
+  "MECH-003": [
+   {
+    "chip_ref": "chip-20260909-mech003-tau-scoped-precision-substrate",
+    "producer_paths": [
+     "ree_core/latent/stack.py"
+    ],
+    "reason": "The design's per-tau error source (LatentStack.predict() per-channel predictors) has no training path at defaults (GFLAG-0491; zself_p0 excludes self_predictor), so tau-scoped precision would read random-projection noise; needs a trained predictor first",
+    "recorded_by": "orchestrate-20260924-1707",
+    "recorded_utc": "2026-09-25T01:30:31Z",
+    "ree_v3_sha": "24dd5a150a598453adc283b9c303ebbaab40451d",
+    "substrate_queue_route": null,
+    "verdict": "RED"
+   }
+  ],
   "MECH-019": [
    {
     "chip_ref": "chip-proposal-exp-0800-paced",
