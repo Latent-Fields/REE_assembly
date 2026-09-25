@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-25_mech_080_anxiety_information_sampling_valuation_rapp2024",
+  "timestamp_utc": "2026-09-25T07:40:30Z",
+  "claim_ids_tested": ["MECH-080"],
+  "source": {
+    "title": "Transdiagnostic Anxiety-Related Increases in Information Sampling are Associated With Altered Valuation",
+    "authors": ["Anna M. Rapp", "Brandon K. Ashinoff", "Sara Baker", "H. Blair Simpson", "Guillermo Horga"],
+    "year": 2024,
+    "venue": "Computational Psychiatry",
+    "doi": "10.5334/cpsy.100",
+    "pmid": "39524300",
+    "pmc": "PMC11545924",
+    "volume": "8",
+    "issue": "1",
+    "pages": "202-216"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Directly on point for Q2: trait anxiety in a transdiagnostic anxious/compulsive adult sample (n=35) vs controls (n=23) produces MORE draws-to-decision on a beads task, the same information-sampling paradigm as the already-banked Hauser 2017a/b entries. That is the arm-2 (over-withholding) phenotype MECH-080 originally assigned to anxiety and then reassigned to compulsivity on Hauser's specificity finding. This paper complicates rather than resolves that reassignment: it finds the over-sampling effect loads on trait anxiety (continuous, across a combined anxious/compulsive sample), not on compulsivity uniquely, and traces it to a computational valuation parameter (subjective cost of an incorrect decision, C(0.9)) rather than an inferential/belief-updating difference. Confidence held at 0.62: sample is transdiagnostic and modest (n=58 total), so it cannot itself adjudicate anxiety vs compulsivity specificity the way a clean between-group design could, and it measures a valuation parameter rather than a drift-diffusion threshold, so its parameter does not map one-to-one onto either Hauser's urgency-emergence account or MECH-080's rollout_horizon.",
+  "failure_signatures": [
+    "If arm 2's occupant is compulsivity because the effect is compulsivity-SPECIFIC (Hauser 2017a's reading), a REE result in which anxiety-only agents also show the over-withholding signature would undercut that specificity claim rather than confirm compulsivity as the correct sole occupant.",
+    "The mechanism here is a valuation/cost parameter (subjective cost of error), not a time-varying urgency signal (Hauser's account) or a static threshold -- a REE manipulation that raises rollout_horizon or the E3 commit threshold uniformly would not reproduce a valuation-driven, ratio-dependent sampling increase (strongest at 90:10, not at easier ratios)."
+  ],
+  "tags": ["mech-080", "anxiety", "information-sampling", "beads-task", "valuation", "transdiagnostic", "intolerance-of-uncertainty"],
+  "mapping": {
+    "source_claim_statement": "In a transdiagnostic adult sample with anxiety and/or compulsive symptoms, higher trait anxiety predicted more draws-to-decision on a probabilistic beads task, most robustly at the hardest (90:10) ratio; computational modelling attributed this to a lower subjective cost threshold for an incorrect decision (altered valuation) rather than to altered belief-updating from the evidence itself.",
+    "ree_translation": "Bears on MECH-080's arm 2 (extension-biased over-withholding under uncertainty) and on Q2 (where anxiety belongs). If REE's commit threshold or rollout_horizon is read as a stand-in for 'how much apparent cost is attached to committing wrong', this paper supports anxiety loading on the SAME extension-biased phenotype the claim originally assigned it, via a valuation channel rather than a raw uncertainty-threshold channel.",
+    "mapping_caveat": "The modelled parameter is a subjective-cost weight inside a POMDP-style valuation model, not a diffusion-model boundary or REE's rollout_horizon; sample is small (n=58) and transdiagnostic (anxiety and compulsivity symptoms co-occur within the same clinical group rather than being cleanly separated arms), so it cannot itself decide whether anxiety and compulsivity share one arm-2 mechanism or occupy dissociable ones. No loss-conditional (Huys-style) truncation is tested here at all.",
+    "source_context": "Adults with a range of anxiety and/or compulsive disorders (n=35) vs healthy controls (n=23); beads task at three evidence-strength ratios; Bayesian belief-updating model plus a POMDP valuation model with subjective-cost parameters."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good (purpose-built computational psychiatry design, peer-reviewed, open-access) but modest N and a mixed clinical group rather than an anxiety-only arm. Mapping fidelity moderate: same information-sampling paradigm as the banked Hauser entries, which is the main reason to bank it, but the modelled parameter (valuation) is one further translation step from rollout_horizon than Hauser's urgency-emergence account already was. Transfer risk moderate-high: transdiagnostic sample does not let this paper alone discriminate anxiety-specific from compulsivity-specific loading."
+  }
+}

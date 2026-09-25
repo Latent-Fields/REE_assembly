@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-25_mech_080_adhd_sustained_attention_diffusion_huangpollock2020",
+  "timestamp_utc": "2026-09-25T07:40:30Z",
+  "claim_ids_tested": ["MECH-080"],
+  "source": {
+    "title": "A diffusion model analysis of sustained attention in children with attention deficit hyperactivity disorder",
+    "authors": ["Cynthia Huang-Pollock", "Roger Ratcliff", "Gail McKoon", "Amanda Roule", "Taylor Warner", "Joseph Feldman", "Sarah Wise"],
+    "year": 2020,
+    "venue": "Neuropsychology",
+    "doi": "10.1037/neu0000636",
+    "pmid": "32324003",
+    "pmc": "PMC7957836",
+    "volume": "34",
+    "issue": "6",
+    "pages": "641-653"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.6,
+  "confidence_rationale": "A large (three independent samples, N=128 ADHD / 59 control), same-lab follow-up to the already-banked Huang-Pollock 2017 go/no-go study, using a different task (sustained-attention continuous performance task) and again finding ADHD's deficit concentrated in evidence-quality/sensitivity terms -- reduced target-nontarget discriminability that worsens with time on task -- rather than isolating an independent starting-point or boundary effect. This continues to weaken the pure-threshold reading of arm 1 by replicating the drift/competence signature across a second task and three samples, but the abstract text obtained here does not report a clean starting-point comparison, so it does NOT independently confirm (or contest) 2017's starting-point-bias finding -- it neither adjudicates Q7 in favour of starting-point-bias nor rules it out. Held at 0.60 rather than higher for exactly that reason: it strengthens the competence side of the picture without touching the set-point side Q7 is asking about.",
+  "failure_signatures": [
+    "The vigilance-decrement finding (no-go drift rate rising over time, biasing children with ADHD against engagement) is a TIME-ON-TASK effect, not a standing set-point -- a REE rollout_horizon read as a fixed individual-difference parameter would not reproduce a signature that changes within a session as attention depletes.",
+    "Reduced sensitivity to discriminate targets from nontargets, replicated across three independent samples, is squarely inside MECH-080's own 'reduces to lost competence' exclusion for arm 1 -- the more robustly this drift/sensitivity effect replicates, the harder it is to argue arm 1's premature-commitment phenotype is really a threshold phenomenon rather than a competence one."
+  ],
+  "tags": ["mech-080", "adhd", "drift-diffusion", "sustained-attention", "sensitivity", "competence-confound", "replication"],
+  "mapping": {
+    "source_claim_statement": "Across three independent samples (N=128 ADHD, N=59 control, school-age children), a continuous-performance sustained-attention task decomposed with signal detection theory and diffusion modelling found children with ADHD showed reduced target-nontarget discriminability at all time points, with the no-go drift rate increasing over time on task -- a pattern the authors read as a secondary, vigilance-related bias against engagement layered on top of a primary sensitivity deficit.",
+    "ree_translation": "Bears on Q7 by replicating the DIRECTION of the already-banked 2017 finding (evidence-quality/drift deficit as the dominant ADHD signature) in a different task and much larger combined sample, without independently testing the starting-point-bias half of that finding. Read together with the 2017 entry, drift/sensitivity is now the more robustly cross-task-replicated component; starting-point bias currently rests on the single 2017 sample.",
+    "mapping_caveat": "Abstract-level extraction did not surface a reported starting-point or boundary-separation comparison, so this entry cannot be used to say starting-point bias failed to replicate -- only that this particular paper does not speak to it either way. Continuous-performance task, like go/no-go, has no forward rollout, so rollout DEPTH remains untested by either Huang-Pollock paper.",
+    "source_context": "School-age children with ADHD (N=128 across three samples) vs typically developing controls (N=59); continuous performance task with manipulated event rate and discrimination difficulty; signal detection theory plus diffusion model decomposition."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: same authorship group as the 2017 canonical entry, large combined N across three independent samples, peer-reviewed. Mapping fidelity moderate: strengthens the drift/competence side but is silent on the starting-point side Q7 specifically asks about, so it only partially adjudicates. Transfer risk as for the 2017 entry: paediatric sample, one further step to a REE agent."
+  }
+}

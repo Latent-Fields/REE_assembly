@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-25_mech_080_beads_task_intolerance_uncertainty_jacoby2014",
+  "timestamp_utc": "2026-09-25T07:40:30Z",
+  "claim_ids_tested": ["MECH-080"],
+  "source": {
+    "title": "How is the Beads Task related to intolerance of uncertainty in anxiety disorders?",
+    "authors": ["Ryan J. Jacoby", "Jonathan S. Abramowitz", "Blair E. Buck", "Laurel E. Fabricant"],
+    "year": 2014,
+    "venue": "Journal of Anxiety Disorders",
+    "doi": "10.1016/j.janxdis.2014.05.005",
+    "pmid": "24930046",
+    "volume": "28",
+    "issue": "6",
+    "pages": "495-503"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Secondary support for Q2: a diagnosed-anxiety-disorder sample (mixed anxiety diagnoses, not GAD-only) shows more subjective distress during the beads task than non-anxious controls, and within the anxious group self-reported intolerance of uncertainty correlates with draws-to-decision and distress. This links the same information-sampling paradigm to IU, the construct MECH-080's original arm-2 mechanism (MECH-078, chronically high uncertainty) most directly names. Held to 0.45 because the reported group-level result is about DISTRESS during the task, not draws-to-decision itself; the draws-to-decision/IU link is a within-group correlation in the anxious sample only, not a clean between-group behavioural dissociation, and no computational model is fit.",
+  "failure_signatures": [
+    "If MECH-080's arm 2 needs a behavioural (draws-to-decision) group difference between anxious and non-anxious people and this paper's own between-group comparison is on distress rather than draws-to-decision, citing it as behavioural support for anxiety on arm 2 overstates what was actually shown.",
+    "IU correlating with draws-to-decision only within the already-anxious group (not as a between-group predictor) is consistent with IU being a severity marker within anxiety rather than a general population-wide driver of over-sampling, which would matter for any REE manipulation trying to model IU as a continuous set-point."
+  ],
+  "tags": ["mech-080", "anxiety", "intolerance-of-uncertainty", "beads-task", "information-sampling"],
+  "mapping": {
+    "source_claim_statement": "Individuals with anxiety disorders reported greater distress during a beads uncertainty-induction task than non-anxious controls; within the anxious group, self-reported intolerance of uncertainty correlated with both draws-to-decision and task-related distress.",
+    "ree_translation": "Supports the construct link between IU and the arm-2 information-sampling paradigm that MECH-080's original arm-2 mechanism (MECH-078, chronically high uncertainty) was built around, giving Q2 option (c) -- commissioning a targeted pull on anxiety/IU in information-sampling tasks -- a modest positive lead rather than a null result.",
+    "mapping_caveat": "No computational model; the headline group difference is on subjective distress, not draws-to-decision, and the draws-to-decision/IU correlation is within-group only. Clinical anxiety-disorder sample mixes diagnoses (not GAD-specific), so it cannot itself separate anxiety from compulsivity the way Hauser's specificity claim requires.",
+    "source_context": "Adults with a primary anxiety disorder diagnosis vs non-anxious controls; beads task; self-report Intolerance of Uncertainty Scale correlated post hoc with task behaviour and distress."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Older (2014), modest clinical sample, self-report-heavy design with no computational decomposition. Included as corroborating context for Rapp 2024 rather than as a standalone strong entry -- it establishes the IU-anxiety-sampling link has prior independent support, not only the 2024 valuation-model result."
+  }
+}

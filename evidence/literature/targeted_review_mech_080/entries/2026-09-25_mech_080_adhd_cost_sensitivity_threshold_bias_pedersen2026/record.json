@@ -1,0 +1,40 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_080",
+  "entry_id": "2026-09-25_mech_080_adhd_cost_sensitivity_threshold_bias_pedersen2026",
+  "timestamp_utc": "2026-09-25T07:40:30Z",
+  "claim_ids_tested": ["MECH-080"],
+  "source": {
+    "title": "Selective enhancement of cost sensitivity by methylphenidate in adult ADHD: a randomized placebo-controlled trial",
+    "authors": ["Mathias L. Pedersen", "Athanasia M. Mowinckel", "Sabrina Ziegler", "Mats Fredriksen", "Atle Bjørnerud", "Tor Endestad", "Guido Biele"],
+    "year": 2026,
+    "venue": "Psychological Medicine",
+    "doi": "10.1017/S0033291726104954",
+    "pmid": "42516082",
+    "pmc": "PMC13439260",
+    "volume": "56",
+    "pages": "e234"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.65,
+  "confidence_rationale": "Directly on point for Q7: a well-powered adult ADHD trial (61 ADHD, 63 controls) fitting a three-parameter DDM to a cost-benefit accept/reject task reports ADHD differs from controls on ALL THREE parameters this pull is trying to separate -- reduced sensitivity to costs/benefits (drift-like), narrower decision thresholds (boundary), AND premature responding attributed to starting-point bias -- not a clean single-parameter dissociation. This complicates rather than resolves Q7: it gives starting-point bias independent, well-powered adult support (strengthening the set-point reading Huang-Pollock 2017 first reported) while ALSO reporting a genuine boundary/threshold effect that the 2017 go/no-go study explicitly did NOT find, so the two papers disagree on whether ADHD narrows the boundary. Confidence 0.65: strong design (RCT, DDM, large adult N, methylphenidate as a pharmacological probe) but the task (economic cost-benefit accept/reject) is a different decision type from both Huang-Pollock's go/no-go and MECH-080's forward-rollout framing, and full parameter-level abstract detail was extracted via automated summarisation rather than the primary text.",
+  "failure_signatures": [
+    "If MECH-080's arm 1 requires a threshold/starting-point-only account (competence excluded), this paper's finding of REDUCED cost/benefit sensitivity (a drift-like competence parameter) alongside the threshold and starting-point effects means the same competence-confound risk Huang-Pollock 2017 raised is present here too -- ADHD's premature responding is not parameter-pure in either study.",
+    "This paper's narrower-boundary finding directly contradicts Huang-Pollock 2017's 'not a lowered boundary' finding in a different task and age group -- a REE result that reproduces one paper's parameter pattern but not the other's is not adjudicated as right or wrong by either alone; the two together show the threshold reading is task-dependent, not a settled fact about ADHD.",
+    "Methylphenidate improved cost sensitivity specifically and did not (per the abstract) resolve the threshold or starting-point differences -- if a REE manipulation is meant to model a 'treatable' set-point, this paper's own pharmacological probe suggests the drift/competence component is the one that responds to the closest REE analog of stimulant treatment, not the threshold component."
+  ],
+  "tags": ["mech-080", "adhd", "drift-diffusion", "drift-rate", "boundary-separation", "starting-point-bias", "competence-confound", "methylphenidate"],
+  "mapping": {
+    "source_claim_statement": "In a randomized placebo-controlled trial, 61 adults with ADHD (on and off methylphenidate) and 63 controls performed a cost-benefit accept/reject decision task; a three-parameter DDM found ADHD associated with reduced cost/benefit sensitivity, narrower decision thresholds, and premature responding (starting-point bias) relative to controls. Methylphenidate selectively improved cost sensitivity.",
+    "ree_translation": "Bears directly on Q7 and on arm 1's mechanism (MECH-075, BG urgency threshold too low). Unlike Huang-Pollock 2017, this adult, economic-decision study DOES find a threshold effect, alongside the starting-point bias and a reduced-sensitivity (drift-like) effect -- so in this task ADHD's prematurity looks jointly produced by all three channels rather than isolable to one.",
+    "mapping_caveat": "Abstract-level extraction via automated summarisation, not full-text read -- parameter labels ('narrower decision thresholds', 'premature responding') are as reported in the source summary and should be re-verified against the published methods before being used to argue a specific REE parameter mapping. Cost-benefit accept/reject is a single-step valuation decision, not a forward rollout, so as with Huang-Pollock 2017 the task cannot speak to rollout DEPTH directly, only to the commit-threshold analog.",
+    "source_context": "Adults with clinically diagnosed ADHD (n=61, tested on and off methylphenidate) vs healthy controls (n=63, tested twice unmedicated); cost-benefit accept/reject task; three-parameter DDM (drift/sensitivity, threshold, starting point)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: 2026 RCT, well-powered adult sample, pharmacological manipulation as a mechanistic probe, published in a strong venue. Mapping fidelity moderate: directly relevant DDM parameters but a different task family from the already-banked ADHD entry, and the paper's disagreement with Huang-Pollock 2017 on the boundary parameter needs to be read as unresolved tension, not resolution. Transfer risk moderate-low: adult ADHD sample (closer to a REE agent's abstraction level than paediatric samples) but full-text verification of the parameter claims is still owed."
+  }
+}
