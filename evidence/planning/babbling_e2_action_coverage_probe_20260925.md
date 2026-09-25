@@ -89,3 +89,19 @@ Let disc(X) = the h = 1 executed-closest rate over 4 classes on the test set (z_
   - If DR itself fails, the developmental claim is not supported at this scale.
 - **No tuning, and no extra arms or seeds after seeing results.** Any post-hoc diagnostic will be labelled as such.
 - **Unmeasurable here:** whether babbled data carries any value signal; nothing about valuation; D3 beyond the 600-step BEH window.
+
+## PRE-REGISTRATION AMENDMENT 1 (2026-09-25T08:00Z, committed before any registered seed ran)
+
+- **Why.** A smoke run on **non-registered seed 99** (`results/SMOKE_s99.log`; N = 400, P = 400) validated the pipeline end to end:
+  - every head gets gradient (`grad_nonnull` True, 9,000 post updates done);
+  - the probe states validate;
+  - D2 and depth-1 are computed.
+
+  It also measured the step cost under the current laptop contention (load average ~17, two other probes running): **0.14-0.19 s** per native waking step, against 0.063 s in the pilot. At N = 5,000 with all six post arms, that is ~2.5-3 h of compute for 5 seeds, which exceeds the cap.
+- **Changes, fixed before any registered seed:**
+  1. **N = 2,400** transitions per dataset (Phase-0 episodes k = 0..11 for the babbling doses; k = 25..36 for D_POL). P stays at 1,200 and POST_UPD at 9,000, so the forgetting exposure is now 3x the babbling training exposure in updates, and 0.5x N in distinct on-policy transitions.
+  2. **B3 is dropped from the start**, per the orchestrator's stated drop order ("drop B3 first, keep B2"). R3 therefore reports CANNOT_DETERMINE (dropped for budget) whenever its precondition holds.
+     - In disclosure: on the smoke seed the native generator emitted class 1 on 400/400 steps, so a 25% replay of it would add no action coverage.
+     - **L2R is kept**: it is the only arm that tests retained replay of a diverse babble source.
+     - NB is kept. If the running time exceeds ~22 min per seed, NB is dropped for the remaining seeds, and the record will say which.
+  3. Nothing else changes: criteria, margins, seeds, metric and the interpretation rule are all as above.
