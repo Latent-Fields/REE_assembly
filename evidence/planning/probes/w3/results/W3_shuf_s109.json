@@ -1,0 +1,75 @@
+{
+ "seed": 109,
+ "arm": "shuf",
+ "hazard_class": "hazard-trapped",
+ "init": {
+  "n_starts": 300,
+  "disc4_h1": 0.29,
+  "disc4_h3": 0.25333333333333335,
+  "disc4_h5": 0.2833333333333333,
+  "disc5_h1": 0.29,
+  "k": 0,
+  "err_over_pers_h1": 25.77190114066182,
+  "err_over_pers_h5": 48.36834426438479
+ },
+ "init_match_published": true,
+ "B0_published": 0.31333333333333335,
+ "pre": {
+  "n_starts": 300,
+  "disc4_h1": 0.16,
+  "disc4_h3": 0.16333333333333333,
+  "disc4_h5": 0.18666666666666668,
+  "disc5_h1": 0.1,
+  "k": 5,
+  "err_over_pers_h1": 0.8795745137142589,
+  "err_over_pers_h5": 0.9625401018520829
+ },
+ "post": {
+  "n_starts": 300,
+  "disc4_h1": 0.12666666666666668,
+  "disc4_h3": 0.14666666666666667,
+  "disc4_h5": 0.17,
+  "disc5_h1": 0.10333333333333333,
+  "k": 9,
+  "err_over_pers_h1": 0.853686373543727,
+  "err_over_pers_h5": 0.8370311891755629
+ },
+ "retention": 1.217391304347826,
+ "gate_a": false,
+ "guard": {
+  "e2_world": "PASS"
+ },
+ "frozen_retained_unchanged_after_post": true,
+ "retained_n": 2290,
+ "retained_dropped": 0,
+ "babble_class_counts": [
+  482,
+  458,
+  512,
+  480,
+  468
+ ],
+ "onpol_n": 1190,
+ "updates": {
+  "e2_world": 12600
+ },
+ "drawn_retained": 178944,
+ "drawn_on_policy": 224256,
+ "n_reencoded": 3535,
+ "n_cache_hits": 399665,
+ "reencode_window": 26,
+ "rollout_t30_over_t0_median": 1.1643668739116055,
+ "rollout_late_step_growth_median": 1.0076777130923908,
+ "rollout_late_step_growth_max": 1.0188408165637919,
+ "post_reward_per_100": -0.6594520633171002,
+ "post_action_counts": {
+  "0": 10,
+  "1": 444,
+  "2": 64,
+  "3": 671,
+  "4": 11
+ },
+ "e3_running_variance_end": 1.480468463102742e-05,
+ "commit_rate": 0.0,
+ "t_total_s": 112.82929801940918
+}

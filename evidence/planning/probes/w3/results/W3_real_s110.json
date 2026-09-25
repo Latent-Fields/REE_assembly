@@ -1,0 +1,75 @@
+{
+ "seed": 110,
+ "arm": "real",
+ "hazard_class": "hazard-trapped",
+ "init": {
+  "n_starts": 300,
+  "disc4_h1": 0.24333333333333335,
+  "disc4_h3": 0.23666666666666666,
+  "disc4_h5": 0.24,
+  "disc5_h1": 0.24333333333333335,
+  "k": 0,
+  "err_over_pers_h1": 32.29168838542195,
+  "err_over_pers_h5": 77.59280627817724
+ },
+ "init_match_published": true,
+ "B0_published": 0.38333333333333336,
+ "pre": {
+  "n_starts": 300,
+  "disc4_h1": 0.47333333333333333,
+  "disc4_h3": 0.42333333333333334,
+  "disc4_h5": 0.41,
+  "disc5_h1": 0.4533333333333333,
+  "k": 9,
+  "err_over_pers_h1": 0.7488159799515229,
+  "err_over_pers_h5": 0.7790701176047993
+ },
+ "post": {
+  "n_starts": 300,
+  "disc4_h1": 0.51,
+  "disc4_h3": 0.48333333333333334,
+  "disc4_h5": 0.4266666666666667,
+  "disc5_h1": 0.48,
+  "k": 10,
+  "err_over_pers_h1": 0.7138922214529494,
+  "err_over_pers_h5": 0.7005073007567509
+ },
+ "retention": 1.4074074074074077,
+ "gate_a": true,
+ "guard": {
+  "e2_world": "PASS"
+ },
+ "frozen_retained_unchanged_after_post": true,
+ "retained_n": 2293,
+ "retained_dropped": 0,
+ "babble_class_counts": [
+  479,
+  482,
+  512,
+  493,
+  434
+ ],
+ "onpol_n": 1181,
+ "updates": {
+  "e2_world": 12600
+ },
+ "drawn_retained": 179136,
+ "drawn_on_policy": 224064,
+ "n_reencoded": 3542,
+ "n_cache_hits": 399658,
+ "reencode_window": 26,
+ "rollout_t30_over_t0_median": 1.2040599514822605,
+ "rollout_late_step_growth_median": 1.0120400118227226,
+ "rollout_late_step_growth_max": 1.0276540398575742,
+ "post_reward_per_100": -1.2448435547699532,
+ "post_action_counts": {
+  "0": 974,
+  "1": 0,
+  "2": 101,
+  "3": 26,
+  "4": 99
+ },
+ "e3_running_variance_end": 0.00013985687455462267,
+ "commit_rate": 0.0,
+ "t_total_s": 118.68863725662231
+}

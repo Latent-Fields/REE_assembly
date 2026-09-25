@@ -1,0 +1,13 @@
+w3_l2r_small.py (contract-sized fixed dataset: CausalGridWorldV2 size 8, 3 hazards, 2 resources, alpha_world 0.9,
+world_dim 32; 2400 W2a babbling transitions -> 3000 member updates -> 1200 monostrategy (90% one class) on-policy
+steps x 8 member updates at the 25% retained mix; held-out 1500 uniform-random {0..3} steps, 150 starts).
+Run on wt-w3 (origin/main 2ea0e3c + W3 diff), 2026-09-25 ~20:05-20:25Z.
+
+seed 3 obj=mse      real      : pre disc4 0.560 k 9 | post disc4 0.673 disc5 0.600 k 10 PASS
+seed 3 obj=mse      shuffled  : pre disc4 0.173 k 3 | post disc4 0.213 disc5 0.180 k 10 FAIL
+seed 3 obj=mse      no-replay : pre disc4 0.560 k 9 | post disc4 0.480 disc5 0.360 k 2  (fails k)
+seed 4 obj=mse      real      : pre disc4 0.487 k 6 | post disc4 0.653 disc5 0.553 k 10 PASS
+seed 4 obj=mse      shuffled  : pre disc4 0.133 k 5 | post disc4 0.313 disc5 0.260 k 10 FAIL
+seed 3 obj=infonce  real      : pre disc4 0.380 k 0 | post disc4 0.407 disc5 0.307 k 0  FAIL
+seed 4 obj=infonce  real      : pre disc4 0.447 k 0 | post disc4 0.407 disc5 0.407 k 0  FAIL
+Re-encode cache check: seed 3 mse real/shuffled numbers identical with and without the read-path cache (0.673 / 0.213).
