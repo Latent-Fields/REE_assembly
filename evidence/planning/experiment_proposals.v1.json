@@ -5649,6 +5649,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-1424",
+      "blocked_by": [
+        "NA-E1E2-SAMPLING-ALLOCATION-CONSUMER",
+        "MECH-081"
+      ],
+      "blocked_note": "Step 2.5d falsifier-runnability ABSENT: no NA-dependent E1/E2 sampling-allocation consumer and no sampling-ratio recorder in ree_core. SD-069 phasic_surprise_burst (LC-NE phasic) routes only to E3 softmax temperature; MECH-157 mode_precision_routing (obs/prior/E2-pred weights in latent/stack.py) is operating-mode-driven, not NA-driven; MECH-313 is tonic noise floor on E3 temperature. Node is complicated (buildable): wire phasic/tonic NA into E2-constraint-on-E1 weighting (MECH-081 boundary) + cue-locked sampling-ratio/reorientation-latency recorder, via /implement-substrate. release_condition: NA consumer on E1/E2 sampling allocation IMPLEMENTED with a recorded ratio DV that moves under a phasic pulse. (IGW-20260925-240, EVB-1424)",
       "claim_id": "MECH-084",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -5659,6 +5664,9 @@
       "priority": "medium",
       "proposal_id": "EXP-0825",
       "proposal_type": "experimental",
+      "refusal_route": "implement_substrate",
+      "refused_by_session": "igw-240-proposal-for-mech-084",
+      "refused_utc": "2026-09-25T20:04:55Z",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
         "manifest": [
@@ -5671,7 +5679,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_084",
       "target_repo": "ree-v3",
       "why_now": [
