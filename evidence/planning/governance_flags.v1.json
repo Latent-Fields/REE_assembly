@@ -6808,9 +6808,9 @@
       "summary": "MECH-428 DISPOSITION attributes 884c's at-chance parent statistic S (pct 78/63/86.5, one control draw) to an EMA effective-sample-size ceiling (~20); the V3-EXQ-1093 pilot (held-out seeds 101/102, K=32-averaged controls, circular time-shift null, random-credit negative control 0/52 separations) finds the DEFAULT cell (alpha 0.05, decay 0.005, N=400, ESS ~24) separating at pct 100 on both seeds, so the at-chance reading is more likely a single-control-draw instrument limitation than an ESS ceiling (n=2, lead not verdict). Record: REE_assembly/evidence/planning/exq1093_mech428_parent_stat_redteam_blocking_20260924.md section 3.",
       "raised_by_session": "metaworker-science-20260924-mech428-alpha-diag",
       "raised_at": "2026-09-24T13:50:36Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-09-25T05:24:05Z",
+      "resolution_note": "Resolved by /governance gov-20260925-orch1707 (user standing delegation, orchestrate-20260924-1707) on confirmed failure_autopsy_V3-EXQ-1093_2026-09-25. The flag's lead is RIGHT on the default cell (alpha 0.05, decay 0.005, N=400, ESS ~24 separates on 4/5 seeds under the matched K=32 / circular time-shift instrument vs 1/5 under 884c's unmatched form) but OVERSTATES it: separation is still ordered by ESS (Spearman 0.96), the crossover is ESS ~15-24 and strongly seed-dependent, so the default is marginal (0.6 at N=1600). Both MECH-428 what_would_answer DISPOSITION replacements and the V3-EXQ-1093 evidence_quality_note applied in claims.yaml (REE_assembly 9994eea01e); 1093 marked reviewed (3e6e411ad8). Operating-point guidance for any consumer test: ESS >= ~36, report ESS."
     },
     {
       "flag_id": "GFLAG-0477",
