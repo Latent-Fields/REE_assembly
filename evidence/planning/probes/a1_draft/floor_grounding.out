@@ -1,0 +1,39 @@
+== benign (v1, T2, tiebreak ON, 1500 steps): seeds [61, 62, 63, 64, 65]
+  s61 M0: reward_all 0.019 half2 0.126 LAST600 contacts/100 0.00 consum/100 0.00 FIRST600 contacts/100 0.17
+  s62 M0: reward_all 0.124 half2 0.103 LAST600 contacts/100 0.17 consum/100 0.17 FIRST600 contacts/100 0.00
+  s63 M0: reward_all 0.052 half2 0.147 LAST600 contacts/100 0.00 consum/100 0.17 FIRST600 contacts/100 0.17
+  s64 M0: reward_all -0.447 half2 -0.687 LAST600 contacts/100 3.33 consum/100 1.17 FIRST600 contacts/100 1.17
+  s65 M0: reward_all -0.586 half2 -0.485 LAST600 contacts/100 1.67 consum/100 0.33 FIRST600 contacts/100 1.83
+  reward_all                   rms(NULLj-M0)=0.099  2x=0.198  n=25 nonzero=15
+  reward_half2                 rms(NULLj-M0)=0.257  2x=0.513  n=25 nonzero=15
+  reward_half1                 rms(NULLj-M0)=0.195  2x=0.390  n=25 nonzero=13
+  reward_change_h1_h2          rms(NULLj-M0)=0.411  2x=0.822  n=25 nonzero=15
+  LAST600_contacts_per100      rms(NULLj-M0)=0.808  2x=1.617  n=25 nonzero=10
+  LAST600_consum_per100        rms(NULLj-M0)=0.368  2x=0.736  n=25 nonzero=10
+  LAST600_prox_per100          rms(NULLj-M0)=2.078  2x=4.156  n=25 nonzero=12
+  FIRST600_contacts_per100     rms(NULLj-M0)=0.433  2x=0.867  n=25 nonzero=11
+== trapped (v2, T2, tiebreak ON, 1500 steps): seeds [66, 69]
+  s66 M0: reward_all -2.205 half2 -1.763 LAST600 contacts/100 5.33 consum/100 1.17 FIRST600 contacts/100 9.17
+  s69 M0: reward_all -4.315 half2 -3.069 LAST600 contacts/100 3.67 consum/100 0.17 FIRST600 contacts/100 17.33
+  reward_all                   rms(NULLj-M0)=0.588  2x=1.177  n=10 nonzero=10
+  reward_half2                 rms(NULLj-M0)=1.056  2x=2.112  n=10 nonzero=10
+  reward_half1                 rms(NULLj-M0)=0.636  2x=1.272  n=10 nonzero=10
+  reward_change_h1_h2          rms(NULLj-M0)=1.286  2x=2.572  n=10 nonzero=10
+  LAST600_contacts_per100      rms(NULLj-M0)=2.385  2x=4.769  n=10 nonzero=9
+  LAST600_consum_per100        rms(NULLj-M0)=0.447  2x=0.894  n=10 nonzero=8
+  LAST600_prox_per100          rms(NULLj-M0)=1.738  2x=3.475  n=10 nonzero=10
+  FIRST600_contacts_per100     rms(NULLj-M0)=1.288  2x=2.576  n=10 nonzero=9
+== benign seeds with harm (s64, s65): seeds [64, 65]
+  s64 M0: reward_all -0.447 half2 -0.687 LAST600 contacts/100 3.33 consum/100 1.17 FIRST600 contacts/100 1.17
+  s65 M0: reward_all -0.586 half2 -0.485 LAST600 contacts/100 1.67 consum/100 0.33 FIRST600 contacts/100 1.83
+  reward_all                   rms(NULLj-M0)=0.155  2x=0.310  n=10 nonzero=10
+  reward_half2                 rms(NULLj-M0)=0.403  2x=0.807  n=10 nonzero=10
+  reward_half1                 rms(NULLj-M0)=0.303  2x=0.607  n=10 nonzero=10
+  reward_change_h1_h2          rms(NULLj-M0)=0.643  2x=1.286  n=10 nonzero=10
+  LAST600_contacts_per100      rms(NULLj-M0)=1.278  2x=2.556  n=10 nonzero=10
+  LAST600_consum_per100        rms(NULLj-M0)=0.532  2x=1.065  n=10 nonzero=8
+  LAST600_prox_per100          rms(NULLj-M0)=3.284  2x=6.568  n=10 nonzero=10
+  FIRST600_contacts_per100     rms(NULLj-M0)=0.669  2x=1.337  n=10 nonzero=9
+== SCREEN (v2 rule = A1 rule: >=10 early terms <200 steps in first 600): 19 screened, 4 trapped (rate 0.21)
+  trapped M0 first600 reward/100 mean -2.998 between-seed SD 1.751 (n=4); early terms [10, 13, 20, 35]
+  benign M0 first600 reward/100 mean -0.487 between-seed SD 0.431 (n=15); early terms [0, 0, 0, 3, 3, 3, 3, 4, 4, 5, 5, 6, 6, 7, 8]
