@@ -186,7 +186,7 @@ closure_plan:
       last_updated: 2026-06-10
       completion_note: "DR-14 from v4_spec V4-2. This is the measurement substrate that makes MECH-214's central clinical prediction (anhedonia/incoherent-wanting as E1-self poverty, not pure dopaminergic disorder) experimentally surfaceable. Env work, not core-model work; sequenced last because it presupposes the DR-11 goal channel."
     - id: "self_model_v4:SELF-7"
-      title: "Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar"
+      title: "Maturational-sequence honesty gate (self-before-social ordering, DEV-NEED-021-style; narrowed from INV-064 2026-09-25 GFLAG-0550, see GFLAG-0309): self-stability must precede the social/other pillar"
       status: blocked
       ethical_metadata:
         welfare_relevance: low
@@ -216,7 +216,7 @@ closure_plan:
         - "MECH-163 multi-step hippocampal planning PASS is the V3 full-completion gate that also gates the others-as-object pillar (object_representation_v4:OBJ-5 / DEV-NEED-021)"
         - "Sequencing rule: the self-object cutover (SELF-1..SELF-6) must be demonstrably stable before others-as-object work begins -- a stable self is a DEV-NEED-021 prerequisite for otherness inference"
       last_updated: 2026-06-10
-      completion_note: "INV-064 is not a substrate step but a sequencing invariant: it pins the order self -> world -> others and forbids building the social pillar before the self is stable. This node is the honesty gate between this plan and the social roadmap; it depends on the shared MECH-163 V4-entry gate, not on new self-model code beyond SELF-1/SELF-3."
+      completion_note: "[2026-09-25 governance-20260925; GFLAG-0550] CORRECTED: this node's self-before-social ordering is NOT INV-064 (INV-064's claims.yaml registration is E1->E2->E3 information-bottleneck maturational-sequence necessity, a distinct claim). The self-before-social honesty gate is a DEV-NEED-021-style ordering, weakened from a hard prerequisite to an ordering per GFLAG-0309 (2026-09-23). This node is the honesty gate between this plan and the social roadmap; it depends on the shared MECH-163 V4-entry gate, not on new self-model code beyond SELF-1/SELF-3. Prior text (before this correction): 'INV-064 is not a substrate step but a sequencing invariant: it pins the order self -> world -> others and forbids building the social pillar before the self is stable.'"
     - id: "self_model_v4:SELF-8"
       title: "Biology grounding completion (self-as-object body-ownership, agency/forward-model self, interoceptive self lit-pulls + completion-set harvest)"
       status: done

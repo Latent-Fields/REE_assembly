@@ -135,7 +135,7 @@ closure_plan:
       readiness_gate:
         - "EMP-3 stream-binding in place for MULTIPLE streams (suffering/threat AND liking/wanting) so the ordering is manipulable"
         - "Proposed ordering: other-bound suffering/threat come online BEFORE other-bound liking/wanting, because early positive other-reward is destabilising/exploitable (a safety-relevant ordering claim)"
-        - "ARC-059 three-stage maturational spine (self -> objects -> others) is the ordering authority; INV-064 (maturational-sequence honesty, self_model_v4 SELF-7) forbids running social binding ahead of a stable self"
+        - "ARC-059 three-stage maturational spine (self -> objects -> others) is the ordering authority; self_model_v4:SELF-7 (maturational-sequence honesty gate, self-before-social ordering -- narrowed from INV-064 2026-09-25 GFLAG-0550/GFLAG-0309) forbids running social binding ahead of a stable self"
       last_updated: 2026-06-10
       completion_note: "Safety-relevant developmental ordering: an other-model that learns to want another's reward before it can register another's suffering/threat is exploitable. Carries an OPEN question (the delay_positive_other_reward_q) about WHY protective streams should precede appetitive ones (protection vs exploitation-vulnerability). Per feedback_biology_before_formal_definitions this ordering claim needs a social-development lit-pull before promotion beyond candidate."
     - id: "fast_empathy_v5:EMP-7"

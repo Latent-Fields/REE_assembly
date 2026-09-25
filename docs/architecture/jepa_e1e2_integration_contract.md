@@ -10,7 +10,7 @@ nav_order: 3
 **Claim Type:** implementation_note  
 **Scope:** Interface contract for using JEPA-like world-model patterns as E1/E2 representational reference architecture (JEPA project remains external)  
 **Depends On:** IMPL-020, IMPL-021, ARC-001, ARC-002, ARC-005, ARC-015, MECH-057  
-**Status:** stable  
+**Status:** legacy-with-live-requirement  
 **Claim ID:** IMPL-022
 <a id="impl-022"></a>
 

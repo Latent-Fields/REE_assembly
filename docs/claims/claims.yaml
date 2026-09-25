@@ -1015,6 +1015,16 @@
     hypothesis_tag call sites for drift as new write-capable consumers
     land, and to confirm any future MECH-322-style carve-out registers its
     own bounded conditions rather than loosening the MECH-094 default.
+
+    [2026-09-25 governance-20260925; GFLAG-0546] SCOPE RULING: adopting thought-digestion draft D6's
+    narrowing, consistent with MECH-066's 2026-09-23 narrowing of the same question (GFLAG-0361 option
+    A, excluding policy/actor-critic durable writes from MECH-066's protected scope). INV-011's AUDIT is
+    narrowed to belief/world-model stores -- residue/phi(z) accumulation, valence update, hippocampal
+    RBF/MEL write, chunk formation, novelty/visitation state -- i.e. the write sites already traced
+    above. MECH-542's source-sensitive selective permeability is the account of what OTHER content
+    simulated/imagined material may legitimately shape (possibility estimates, causal expectations,
+    other-agent models) while these belief/world-model stores stay protected; this is NOT a merge of
+    INV-011 and MECH-542, and MECH-542 remains its own separate claim.
   location: docs/invariants.md#inv-011
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -2986,12 +2996,14 @@
     - ARC-010
     - ARC-007
     - ARC-018
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/REE_failure_modes.md#impl-005
   source:
     - docs/processed/legacy_tree/docs/REE_failure_modes.md
     - docs/thoughts/FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md
     - docs/thoughts/2026-02-12_DEPRESSIVE-PATH-PRUNING-HIPPOCAMPAL-ROLLBACK.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     Answered by a documentation/registry consistency check, not a trained-agent experiment: does
     docs/REE_failure_modes.md's `depends_on` list (as printed in the doc's own front-matter and in
@@ -3053,11 +3065,13 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/roadmap.md#impl-008
   source:
     - docs/roadmap.md
     - docs/processed/legacy_tree/roadmap.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     NOT AN EMPIRICAL FALSIFIER: this is a claim_type: implementation_note / polarity: records claim
     documenting the roadmap.md program-phase / repository-role / phase-gate schema, not a testable
@@ -3206,10 +3220,12 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/README.md#impl-013
   source:
     - docs/processed/legacy_tree/docs/README.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     Recommend `/governance` decide, analogous to the 2026-09-05 C5 schema decision on IMPL-026/027,
     whether IMPL-013 (and its sibling IMPL-014, and plausibly IMPL-002/IMPL-017 and other
@@ -3234,10 +3250,12 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/changelog.md#impl-014
   source:
     - docs/processed/legacy_tree/docs/changelog.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     Same recommendation as IMPL-013's note -- route both together to the same governance scoping
     decision rather than deciding IMPL-014 alone; they are the two most structurally identical members
@@ -3271,11 +3289,13 @@
     - ARC-003
     - ARC-004
     - ARC-013
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/architecture/trajectory_selection.md#impl-016
   source:
     - docs/processed/legacy_tree/architecture/trajectory_selection.md
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     DEFER: docs/architecture/trajectory_selection.md needs a content refresh (via /update-docs or a
     dedicated pass) against ree_core/predictors/e3_selector.py before a what_would_answer can be
@@ -3988,6 +4008,7 @@
     - Q-008
     - Q-009
     - Q-011
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/conflicts/README.md#impl-017
   source:
     - docs/processed/legacy_tree/docs/conflicts/ethics_module_vs_cost_term.md
@@ -3996,6 +4017,7 @@
     - docs/conflicts/rollout_entropy_floor_vs_residue_persistence.md
     - docs/conflicts/resolutions/2026-02-08_ethics-module-vs-cost-term.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     DEFER: IMPL-017 is navigation/registry scaffolding (a closed index of resolved conflicts
     docs/conflicts/*.md + docs/conflicts/resolutions/*.md), not an empirical or derivational claim
@@ -4021,10 +4043,12 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/claims/claim_index.md#impl-018
   source:
     - docs/processed/legacy_tree/docs/claims/claim_index.md
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     DEFERRED -- see digestion note. No falsifier drafted. IMPL-018 as currently written and
     located is registry/navigation scaffolding, not an assertion about REE's architecture or
@@ -7454,7 +7478,17 @@
     FALSIFYING: Any spoofed external payload changes a privileged store without a trusted authority transition; blocking every write is a failed positive control, not support. A failure under unmet preconditions is not evidence against the claim.
     SUBSTRATE / INSTRUMENT REQUIREMENT: A typed phase/store/actor write audit; V3-EXQ-1052 confirms no POL/ID/CAPS or actor vocabulary in the current substrate. Consumer / boundary: External-input to privileged durable-store write boundary. Existing ownership: MECH-064, MECH-067, INV-020.
     DISPOSITION: R4 (primary); Claimed typed stores and permission boundary are not implemented; residue-only gating does not instantiate the full test. R2 secondary. Audit disposition only; status/confidence/phase are unchanged. Registration is not build authorisation. No experiment is queued. Source: evidence/planning/falsifier_completion_and_runnability_audit_20260921.json.
-  title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
+
+    [2026-09-25 governance-20260925; GFLAG-0463] ADAPTIVE-ATTACK FALSIFIER (option A narrowing): an
+    attacker that optimises against the deployed denial gate (adaptively varying the spoofed authority
+    label against the gate's own decision boundary, not a fixed static payload) achieves an
+    unauthorised durable write to a POL/ID/CAPS store -- this falsifies the claim even if the
+    static-payload test above continues to pass. COMPETENCE-COST NOTE: the guarantee's cost to
+    legitimate throughput (false-positive denial rate on genuine authorised writes under the same
+    boundary enumeration) is an owed measurement, not yet taken; a denial mechanism that blocks all
+    writes indiscriminately would pass the FALSIFYING clause above trivially without being a working
+    gate.
+  title: "Runtime provenance-keyed denial blocks unauthorised durable writes to typed policy/identity/capability (POL/ID/CAPS) stores at the store-write boundary, conditional on the boundary enumeration being complete."
   claim_type: mechanism_hypothesis
   subject: control_plane.typed_authority_control_store_separation
   polarity: asserts
@@ -7470,6 +7504,11 @@
     - INV-014
     - INV-007
     - MECH-062
+  notes: |
+    [2026-09-25 governance-20260925; GFLAG-0463] The path table at
+    docs/architecture/control_plane_signal_map.md#mech-064 is unchecked prose, not a verified
+    implementation, until typed POL/ID/CAPS stores exist (EXP-0804 blocked_substrate; V3-EXQ-1052
+    confirms no POL/ID/CAPS vocabulary in ree_core as of this pass).
   location: docs/architecture/control_plane_signal_map.md#mech-064
   source:
     - docs/architecture/control_plane_signal_map.md
@@ -8207,11 +8246,13 @@
     - MECH-061
     - MECH-062
     - MECH-063
+  experiment_gate: {gated: true, release_condition: "registry/process document -- no experiment is defined for it; do not mint experiment proposals", set_by: "governance-20260925 (GFLAG-0512)"}
   location: docs/architecture/hook_surface_contract.md#impl-025
   source:
     - docs/architecture/hook_surface_contract.md
     - docs/architecture/hook_registry.v1.json
   digestion_note: |
+    [2026-09-25 governance-20260925; GFLAG-0512] CLASS RULING APPLIED (the deferred note below is kept for its non-experiment remedies): experiment_gate.gated=true stamped (IMPL-026/027 C5 convention). Full reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     [2026-09-25 thought-digestion, session thought-digest-registry-backlog-20260925] DEFERRED -- do not draft a what_would_answer until this is resolved; remove this note once resolved. Full draft and reasoning: evidence/planning/thought_digestion_staged_2026-09-25_registry_backlog.md.
     NOT AN EMPIRICAL FALSIFIER: implementation_note / records claim documenting the cross-version hook
     envelope, compatibility rules and registry at docs/architecture/hook_surface_contract.md#impl-025
@@ -35722,6 +35763,13 @@
     responses until harm is very high; discrete mode-transitions allow abrupt escalation.
     Likely V4-scope for full three-mode test; V3 can test binary presence/absence of
     mode transitions in harm_eval output distribution.
+
+    [2026-09-25 governance-20260925; GFLAG-0535] Queue-experiment ask for the V3-scoped output-shape
+    leg is already chipped (chip-20260925-queue-exp1407-mech224, open, unclaimed; EXP-1407 in
+    manual_proposals.v1.json) -- no new chip spawned. SPLIT QUESTION (v3-scoped output-shape claim vs
+    v4-scoped behavioural-strategy claim) DEFERRED until EXP-1407's result is in hand: a FAIL there
+    would change what, if anything, is left to split. Recommendation (a) -- leave MECH-224 whole for
+    now -- adopted pending that result.
   registered: "2026-04-12"
   location: evidence/planning/thought_intake_2026-03-28_harm_gradient.md
   what_would_answer: |
@@ -46536,9 +46584,8 @@
       from: "decision:MECH-270@2026-04-25T15:42:09.107859Z"
       as_of: 2026-04-25
       verdict: hold_pending_v3_substrate/applied
-  implementation_phase: v3
-  phase_provenance: derived
-  phase_derived_from: MECH-456
+  implementation_phase: v4
+  phase_provenance: assigned
   claim_level: mechanistic
   registered_utc: 2026-04-21
   depends_on:
@@ -46581,6 +46628,16 @@
     biological-grounding claim, not an implementation requirement.
     Registered primarily to keep the function/substrate distinction
     auditable and to give the ephaptic-coupling literature a home.
+
+    [2026-09-25 governance-20260925; GFLAG-0518] SPLIT (option c, precedent MECH-365/365a): this claim
+    reverts to v4/out_of_domain and keeps the biological-grounding (ephaptic) content only. The
+    in-silico V_s-computation content that MECH-456 actually needs -- 'the binder substrate the
+    rebinding probe reads' -- is split out to NEW claim MECH-270a (v3, phase_provenance: derived,
+    phase_derived_from: MECH-456). MECH-456's depends_on is repointed from MECH-270 to MECH-270a. This
+    stops conflating 'V_s is computable now' (MECH-270a, v3) with 'ephaptic coupling is REE's
+    mechanism' (MECH-270, v4, out_of_domain). check_claim_phase_consistency.py must be re-run after
+    this edit lands and MECH-270a is inserted; the new graph has no v3->v4 edge (MECH-456 v3 ->
+    MECH-270a v3).
   evidence_quality_note: >
     Candidate, no direct experimental support yet in this project.
     External biology literature on ephaptic coupling in hippocampus
@@ -46637,7 +46694,35 @@
     Current support is 4 lit entries that establish field effects exist (Anastassiou 2011 et al.).
     None of them tests the coherence-to-verisimilitude mapping. That mapping is the open gap for a
     lit-pull.
-    LEG 2 (REE in-silico sufficiency, substrate_conditional):
+    LEG 2 (REE in-silico sufficiency) SPLIT OUT 2026-09-25 (GFLAG-0518) to MECH-270a: the
+    in-silico V_s-computation content MECH-456 actually reads is no longer tested under this
+    claim. See MECH-270a's own what_would_answer for that leg.
+
+- id: MECH-270a
+  title: "In-silico V_s computation for hippocampal anchor selection: the per-stream verisimilitude readout MECH-269 requires can be computed directly from per-stream prediction/realization alignment, without depending on MECH-270's ephaptic-field-coherence biological mechanism. V3 half of the 2026-09-25 split (GFLAG-0518); MECH-270 keeps the biological-grounding content."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.insilico_verisimilitude_readout
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  phase_provenance: derived
+  phase_derived_from: MECH-456
+  claim_level: mechanistic
+  split_from: MECH-270
+  registered_utc: "2026-09-25"
+  depends_on:
+    - MECH-269   # the function this is the substrate for
+  related_claims:
+    - MECH-270   # parent split (lineage only, non-pulling): MECH-270 keeps the biological (ephaptic) half at v4
+    - MECH-456   # downstream consumer whose rebinding probe reads this claim's V_s (it depends_on this claim; phase_derived_from source)
+  location: docs/architecture/hippocampal_anchor_selection.md#mech-270a
+  what_would_answer: |
+    SCOPE: this is the v3 in-silico half of the 2026-09-25 MECH-270 split (GFLAG-0518). MECH-270
+    itself keeps the biological ephaptic-field-coherence mechanism (out_of_domain, v4) -- see its
+    own what_would_answer LEG 1. This claim does NOT test ephaptic coupling; it tests whether a
+    coherence-derived V_s computed directly in silico (without the biological mechanism) is
+    sufficient for MECH-269's anchor-selection function.
     NON-DEGENERACY PRECONDITION:
     - MECH-269's own precondition must hold: a real per-stream eligibility gate consumed by
       propose_trajectories, and V_s with dynamic range. Today the proposer takes a single z_world, the
@@ -46649,11 +46734,23 @@
     what_would_answer; do not re-derive) at least as well as direct-alignment V_s, AND it carries
     anchor-selection information beyond direct alignment under a contrast-matched shuffle.
     FALSIFYING: the coherence-derived V_s is a monotone transform of direct alignment, or it
-    underperforms. Either way, MECH-270 adds nothing in silico. That outcome is consistent with the
-    claim's own note and does NOT refute Leg 1.
+    underperforms. Either way, this claim adds nothing in silico. That outcome is consistent with
+    MECH-270's own note and does NOT refute MECH-270's LEG 1 (the biological claim).
     PRIOR: the closest in-silico test already run (641a -> 725a) settled coherence-specificity as
-    NO-CLAIM (725a: SPEC 1/6 against a 4/6 gate).
-
+    NO-CLAIM (725a: SPEC 1/6 against a 4/6 gate). Registration is not build authorisation. No
+    experiment queued from this entry.
+  notes: >
+    [2026-09-25 governance-20260925; GFLAG-0518] SPLIT from MECH-270 (option c, precedent
+    MECH-365/365a -- see both). MECH-270's own notes disclaim being a V3 build requirement ("Not a
+    substrate the V3 implementation needs to simulate biologically... MECH-270 is the
+    biological-grounding claim, not an implementation requirement"), while MECH-456's depends_on
+    comment cites MECH-270 for its FUNCTIONAL V_s concept, not its biological (ephaptic) mechanism.
+    This claim carries that functional half at v3, phase_derived_from MECH-456 (the claim that
+    actually needs it -- "the binder substrate the rebinding probe reads"). MECH-270 reverts to
+    v4/out_of_domain and keeps only the biological content. This stops conflating "V_s is
+    computable now" with "ephaptic coupling is REE's mechanism".
+  source:
+    - docs/architecture/hippocampal_anchor_selection.md
 - id: MECH-456
   title: "Entity binding is continuously re-evaluated, not fixed: an established self-anchor <-> world-configuration binding is re-bound to a competing configuration when that competitor overtakes the currently-bound one under perturbation of the shared anchor. Rebinding is the ENTITY-LAYER analogue of MECH-269(b) anchor-reset -- it operates over self<->world-config bindings rather than proposer stream-anchors. The rebinding trigger is prediction-error / competitor-overtake driven (object-file updating; serial-dependence hysteresis; PE-driven perceptual switching), NOT a coherence-specific selection factor C(tau) (that coherence-SPECIFICITY question is settled NO-CLAIM by V3-EXQ-725a and is explicitly excluded from this claim)."
   claim_type: mechanism_hypothesis
@@ -46678,7 +46775,7 @@
     - INV-002   # coherence includes temporal/phase binding (the coherence a binding maintains)
     - MECH-045  # object-file persistence (the buffer whose binding is re-evaluated)
     - MECH-269  # proposer anchor-reset -- the sibling mechanism at a DIFFERENT locus (stream-anchor, not entity binding)
-    - MECH-270  # ephaptic verisimilitude readout (the binder substrate the rebinding probe reads)
+    - MECH-270a  # in-silico V_s computation, split from MECH-270 2026-09-25 (GFLAG-0518) -- the binder substrate the rebinding probe reads
   functional_restatement: >
     Mechanism hypothesis (entity-binding layer). ARC-006 asserts entities
     are bindable/persistent and INV-002 that coherence includes temporal
@@ -51770,7 +51867,7 @@
   claim_type: design_decision
   subject: bg.action_chunk_cache_dorsolateral_loop
   polarity: asserts
-  status: candidate
+  status: retired
   live_status:
     reading: candidate
     as_of: 2026-07-11
@@ -51830,6 +51927,19 @@
     `targeted_review_action_policy_decomposition/` (Graybiel 2008,
     Daw 2005, Dolan & Dayan 2013, Botvinick 2009). No substrate
     implementation yet.
+  lifecycle_stage: superseded
+  superseded_by: ARC-071
+  superseded_at_utc: 2026-09-25T00:00:00Z
+  supersession_note: |
+    [2026-09-25 governance-20260925; GFLAG-0510] SD-045 (action-chunk cache, dorsolateral-loop slot
+    of ARC-021) merged into ARC-071: ARC-071 already builds the chunk-cache substrate SD-045
+    proposed (MECH-323 formation + MECH-324 maintenance, ree-v3/ree_core/policy/policy_chunking.py,
+    landed 2026-07-22, default OFF). SD-045's falsifiable OCD/SD-034 residual is retained on
+    ARC-071's notes (see there): in OCD-modelling tasks, runaway chunking should produce compulsive
+    ritual-like trajectory repetition that the goal-release machinery (SD-034 closure operator)
+    fails to terminate -- not yet tested, owed as a falsifier once ARC-071's substrate is exercised.
+    Reverse-deps MECH-370 and MECH-299 repointed to ARC-071 (MECH-370 already listed it; MECH-299 did
+    not and gains the edge).
   location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
 
 - id: SD-046
@@ -52857,7 +52967,7 @@
     - MECH-294   # sibling claim on theta burst as packet for E3
     - SD-040     # type-encoder substrate that supplies type-instance unit
     - SD-042     # option library substrate that supplies option-invocation unit
-    - SD-045     # action-chunk cache that supplies chunk unit
+    - ARC-071    # action-chunk cache substrate SD-045 proposed, merged into ARC-071 2026-09-25 (GFLAG-0510)
   functional_restatement: >
     Theta sequence path length scales with running speed and theta cycle
     length / number of gamma cycles within it (Gupta, van der Meer,
@@ -62112,6 +62222,14 @@
     narrow-repertoire follow-up V3-EXQ-810b both supports/standard. Readiness preconditions
     non-vacuous (worst-seed margins 2.4x-7.0x floors); load-bearing C1 clears 7/8 seeds vs a
     pre-registered 0.75 bar; C7 credit-rule separation 5x. Detail on MECH-323/MECH-324.
+
+    [2026-09-25 governance-20260925; GFLAG-0510] SD-045 (action-chunk cache, dorsolateral-loop slot of
+    ARC-021) merged into this claim: this substrate already builds the chunk-cache concept SD-045
+    proposed. SD-045's falsifiable OCD/SD-034 residual is retained here: in OCD-modelling tasks,
+    runaway chunking should produce compulsive ritual-like trajectory repetition that the goal-release
+    machinery (SD-034 closure operator) fails to terminate -- this failure-mode prediction has not been
+    tested and remains owed as a falsifier once LEG 3's chunk-boundary instrument (see WWA DISPOSITION)
+    exists.
   location: docs/architecture/policy_primitive_granularity.md
 
   governance_2026_09_01: |
@@ -72635,7 +72753,6 @@
   implementation_phase: v4
   version_relevance: v4_v5
   depends_on:
-    - SD-045
     - ARC-071
     - MECH-268
     - IMPL-005
@@ -73444,7 +73561,7 @@
   claim_type: mechanism_hypothesis
   subject: perception.modality_heterogeneity_adaptor_depth
   polarity: asserts
-  status: candidate
+  status: retired
   live_status:
     reading: candidate/substrate_conditional
     as_of: 2026-07-11
@@ -73457,6 +73574,17 @@
     - ARC-017
     - ARC-019
     - MECH-103
+  lifecycle_stage: superseded
+  superseded_by: ARC-087
+  superseded_at_utc: 2026-09-25T00:00:00Z
+  supersession_note: |
+    [2026-09-25 governance-20260925; GFLAG-0511] MECH-372 (modality-heterogeneity / adaptor-depth
+    gradient) merged into ARC-087: ARC-087's PA-1 resolution (2026-06-14, Option C) already structures
+    the SAME two-regime continuum this claim asserts (thalamocortical metric-manifold family plus a
+    distinct, phylogenetically older gradient/chemical regime), and MECH-372's own 2026-06-14 amendment
+    already points to ARC-087 'for the full decision rationale'. Reverse-deps Q-065, MECH-396, MECH-397
+    already list ARC-087 independently; the MECH-372 line is deleted from each (edge deletion only, no
+    new edge needed).
   location: docs/architecture/sense_specific_perceptual_manifolds.md#mech-372
   source:
     - docs/thoughts/2026-06-07_sight_specific_perceptual_manifolds.md
@@ -73532,7 +73660,6 @@
   version_relevance: v4_v5
   depends_on:
     - ARC-087
-    - MECH-372
   location: docs/architecture/sense_specific_perceptual_manifolds.md#q-065
   source:
     - docs/thoughts/2026-06-07_sight_specific_perceptual_manifolds.md
@@ -76958,6 +77085,16 @@
     (F4) SD-031 GUARD BREACHED -- the E2WorldForward agency residual (`cf_gap`) drops below 0.75 of its
     head-OFF value under joint training (716a's `c3_preserve_frac`). Structurally defended (separate module,
     detached inputs and target) but still empirically required on every scoring run.
+
+    [2026-09-25 governance-20260925; GFLAG-0538] CROSS-REFERENCE: this claim's E2WorldUncertaintyHead
+    is the producer of the signal that docs/architecture/jepa_e1e2_integration_contract.md's
+    'latent_uncertainty_horizon_dissipation_rate' metric and uncertainty non-dissipation check (added
+    af29d2a2d80, 2026-09-08) gate on. That contract doc is filed under the legacy claim IMPL-022 and its
+    header still read Status: stable despite IMPL-022 itself being status: legacy (corrected separately,
+    see other_edits). As of this pass the metric has ZERO ree-v3 code consumers (repo-wide grep, zero
+    hits) -- a live required check with no code consumer and, until this cross-reference, no producer
+    cross-link either. Whether 'live required' is itself still warranted with zero consumers may be
+    worth re-examining separately.
   location: docs/architecture/sd_063_e2_conditional_uncertainty_head.md
 
 - id: SD-064
@@ -79086,7 +79223,6 @@
   registered_utc: 2026-06-10
   depends_on:
     - ARC-087    # sense-specific perceptual manifolds
-    - MECH-372   # adaptor-depth gradient
     - MECH-103   # multi-source precision-weighted fusion (which this underwrites)
     - ARC-005    # control plane (natural home for the precision-arbitration layer)
     - Q-065      # the open question this answers part (2) of
@@ -79151,7 +79287,6 @@
   version_relevance: v4_v5
   registered_utc: 2026-06-10
   depends_on:
-    - MECH-372   # adaptor-depth gradient whose developmental-ordering corollary this concretises
     - ARC-019    # staged developmental curriculum this specialises
     - ARC-087    # sense-specific perceptual manifolds
   location: evidence/planning/perceptual_adaptors_v4_plan.md
@@ -79869,13 +80004,21 @@
     as_of: 2026-07-11
     needs_review: false
   epistemic_category: derivational
-  implementation_phase: v5
+  implementation_phase: v3
   v3_pending: true
-  version_relevance: v4_v5
+  version_relevance: v3_v4_v5
   claim_level: architectural
   registered_utc: 2026-06-10
   depends_on:
     - SD-011     # dual nociceptive streams (the V3 harm-only register this generalises)
+  notes: |
+    [2026-09-25 governance-20260925; GFLAG-0528] implementation_phase reclassified v5 -> v3: the
+    register-openness AUDIT (does the taxonomy stay open under inspection, per this claim's own
+    what_would_answer) is answerable NOW by doc/code audit and already carries partial CONFIRMING
+    evidence (the 2026-06-05 Extension Register addition) -- it is not gated on the V5 social-binding
+    substrate. version_relevance set to v3_v4_v5 to keep this distinction visible: the taxonomy's
+    fast-empathy USE (routing streams through EMP-3/4/5's binding mechanism) stays V5-scoped and
+    DO NOT build in V3; only the openness AUDIT itself is v3-answerable.
   location: evidence/planning/fast_empathy_v5_plan.md
   functional_restatement: >
     Sharpens docs/architecture/affect_primitives.md (a V3 harm-only three-way
@@ -80124,22 +80267,23 @@
   registered_utc: 2026-06-10
   depends_on:
     - ARC-059    # social maturational spine
-    - INV-064    # maturational-sequence honesty gate
+    - INV-064    # maturational-sequence necessity (E1->E2->E3); the self-before-social ordering this claim discusses is self_model_v4:SELF-7's honesty gate, not INV-064's own content -- see GFLAG-0550 (2026-09-25)
     - SD-011     # other-bound suffering/threat stream
     - MECH-112   # other-bound liking/wanting stream
   location: evidence/planning/fast_empathy_v5_plan.md
   notes: >
     Flagged NOVEL and safety-relevant in the intake. An other-model that learns to
     want another's reward before registering another's suffering/threat is
-    exploitable. Sits on the ARC-059 maturational spine, gated by INV-064
-    (maturational-sequence honesty). Replaces
+    exploitable. Sits on the ARC-059 maturational spine, gated by the self_model_v4:SELF-7 honesty gate
+    (self-before-social ordering; not INV-064's own content, see GFLAG-0550). Replaces
     NEWCLAIM:other_bound_stream_developmental_order; needs the EMP-7 social-
     development lit-pull before promotion. substrate_conditional on the unbuilt V5
     social substrate. DO NOT build in V3.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: Requires (i) MECH-405's stream-binding mechanism live for AT LEAST TWO
     other-bound streams (suffering/threat AND liking/wanting) so an ordering is manipulable at all --
-    EMP-3 status: blocked; (ii) INV-064's maturational-sequence-honesty gate satisfied (the self-stage
+    EMP-3 status: blocked; (ii) self_model_v4:SELF-7's maturational-sequence-honesty gate satisfied (not INV-064's own
+    content, see GFLAG-0550) (the self-stage
     must genuinely precede the social stage, not merely be labelled so); (iii) a maturational training
     regime in which per-stream onset timing is independently controllable. None of these exist in
     ree_core today (same substrate gap as MECH-405, verified 2026-09-25).
@@ -80308,7 +80452,7 @@
     kept distinct and wired via depends_on). substrate_conditional on the unbuilt V5
     social substrate. DO NOT build in V3.
   what_would_answer: |
-    READING ADOPTED (pending governance, see G008 flag): "inferred-terrain confidence" means precision of the
+    READING RATIFIED 2026-09-25 (governance-20260925, GFLAG-0520): "inferred-terrain confidence" means precision of the
     inferred CONTENT of B's terrain (what B wants / fears), NOT confidence that B is a mind at all. The latter
     is EXT-009's care criterion, which must stay liberal (MECH-032). Under the other reading this claim would
     implement the dehumanization channel EXT-009 red-teams.
@@ -88552,6 +88696,9 @@
     Scope: all three entries are dorsolateral-striatal motor/effort assays. Coordination/persistence content lives in
     ARC-154; the sleep-tag question in Q-109.
 
+    [2026-09-25 governance-20260925; GFLAG-0544] RULED: stays v4 this cycle -- no pull-forward of
+    MECH-453/ARC-154, per ARC-153's GFLAG-0544 ruling question (1).
+
 - id: MECH-454
   title: "Foreclosing the SELF's own future reachable-option space carries a decision cost in E3 trajectory scoring, GATED BY FORECAST UNCERTAINTY -- the non-harm, self-directed analog of INV-026 (which scopes foreclosure-of-reachable-state-space as a harm to OTHERS). E3 today scores harm + benefit + goal + residue + the modulatory stack; nothing represents the option-value / reversibility of an action for the agent's OWN reachable futures. REE's irreversibility-awareness is HARM-scoped (residue cannot be erased; No-Go gates; INV-026 foreclosure-of-others); there is no INFORMATION/RESOURCE-scoped analog (don't cheaply foreclose your own options). The claim: an uncertainty-gated reachable-option-preservation cost should change committed action -- preferring the reversible/option-preserving branch MORE when the forecast that justifies foreclosure is UNCERTAIN, and not at all when it is confident (a generalization of DR-12's PE-conditioned E3 confidence from object-rollouts to a foreclosure cost)."
   claim_type: mechanism_hypothesis
@@ -94428,11 +94575,13 @@
     ree-v4* repo, and CURRENT_FRONT.md puts the live front inside V3 (72.3% weighted, 34 nodes).
 
     DECIDABILITY PRECONDITION: the V3-closure leg is definition_ready (Q-087 = governance
-    acceptance). The "substantial V4 expansion" leg is still definition_not_ready: no operational
-    threshold exists anywhere in docs/ or evidence/planning/. Until one is adopted, audit that leg as
-    definition_not_ready, not FAIL. Candidate threshold (for /governance to adopt, not applied here):
-    the earlier of the GOV-V4CUT-1 cutover-review entry or the first commit of V4-labelled capability
-    code.
+    acceptance). The "substantial V4 expansion" leg is now definition_ready: ADOPTED 2026-09-25
+    (governance-20260925, GFLAG-0537) -- the earlier of the GOV-V4CUT-1 cutover-review entry or the
+    first commit of V4-labelled capability code. Both legs of the shared generation-boundary trigger
+    are therefore definition_ready as of this ruling. GOV-UMPIRE-1's detector
+    (scripts/generate_canonical_readiness.py, landed 2026-09-01, c87c2e56817) is still NOT wired into
+    governance.sh and has not been re-run since 2026-09-01 -- that wiring gap is routed separately as
+    a chip, it does not block this threshold adoption.
 
     AUDIT (extracted from functional_restatement):
       PASS = every minimum-package item exists at a named path (entry point, frozen V3 spec, flagship
@@ -94506,6 +94655,14 @@
     explain; or (b) compliance was insufficient -- the boundary was kept on time yet V3 was not
     reproducible or inspectable there, meaning a date alone is too weak and the rule needs a content
     requirement (GOV-V3FREEZE-1's closure package) rather than just a deadline.
+
+    [2026-09-25 governance-20260925; GFLAG-0519] Confirmed: no V3-closure decision_log entry exists
+    (grep of decision_log.v1.jsonl for Q-087/v3_closure finds only the 2026-08-08 governance restatement
+    of the 2026-08-01 decision, not a dated closure entry) and no target date has been set since the
+    2026-07-19 target slipped. The user has NOT been asked to declare V3-closure this cycle;
+    event-ready/date-not-ready stands. A decision_log row backfilling the original 2026-08-01 Q-087
+    decision (actor: user) is drafted separately to complete Q-087's own audit trail (see
+    other_edits.md) -- that backfill does not itself set the V3-closure date.
 - id: GOV-SUBTRACT-1
   title: 'Legibility by subtraction: the V3 closure package is produced by curating and compressing existing material, not by rewriting the research history. Separate the primary reader path (current work) from supporting research and from operational archaeology; retain audit history but remove it from the reader path; mark human vs agent provenance in the public account.'
   claim_type: governance_rule
@@ -98221,6 +98378,13 @@
     requires the claim note to say which. Cost counterweight: one classification
     sentence per progress narration; failure mode is boilerplate, mitigated by
     requiring the specific changed component to be named.
+
+    [2026-09-25 governance-20260925; GFLAG-0530] Exercise-count precondition CONFIRMED MET: 151
+    failure_autopsy_*.json files carry failure_location as of 2026-09-25 (2026-08-10 through
+    2026-09-24), satisfying this claim's own self-imposed promotion bar of >=1 real (not
+    retrospectively-applied) autopsy. The second half of that bar -- record whether failure_location
+    ever changed a verdict -- is still undone; status HELD at candidate pending a sampling audit of a
+    subset of the 151 autopsies (routed as a chip), rather than promoting on exercise-count alone.
   what_would_answer: |
     NOT an empirical falsifier in the usual sense -- this is a DESIGN-VALIDITY / REPORTING rule (like
     its dependency GOV-PATHVALID-1), checkable by inspecting an autopsy's failure_location field and
@@ -104918,6 +105082,15 @@
     entries carry neither and default to the implicit not-yet-run bucket, so coverage grows as
     those fields are populated rather than being retrofitted. Design:
     evidence/planning/substrate_defect_gate_plan_2026-08-07.md.
+
+    [2026-09-25 governance-20260925; GFLAG-0551] Confirmed live re-run 2026-09-25:
+    check_substrate_path_overlap.py's current ACTIONABLE rows (17+, growing) come almost entirely from
+    one substrate_queue entry (SD-PP-B5-z-world-per-step-displacement-range) whose footprint includes
+    ree_core/utils/config.py; one open corrupting entry lacks a parseable added_utc and is skipped,
+    confirming a coverage gap. The specific '0/19 adjudicated' and '3 open corrupting entries with no
+    code footprint' figures in the raising flag were NOT independently re-verified this pass (unverified,
+    not contradicted). Routed to the same shared process-tooling chip as GOV-GRAN-1 and GOV-SKILL-1;
+    warn-only, exit 0, does not currently gate or mislead.
   what_would_answer: |
     NOT an empirical pass/fail falsifier -- GOV-SUBPATH-1 is a governance_rule (policy
     assertion about re-review coverage), so this specifies the REASSESSMENT TRIGGER and
@@ -105009,6 +105182,14 @@
     off a note field on the CLAIM; GOV-DIAG-1 later borrowed the pattern in work-stream shape
     (diagnostic_recurrence_metabolized on a plan node) precisely because it touches no claim
     and so had no claim-side field to key on.
+
+    [2026-09-25 governance-20260925; GFLAG-0551] Confirmed: no governance.sh / SKILL.md step
+    consumes this rule's ACTIONABLE output (grep of .claude/skills/governance/SKILL.md for 'GOV-GRAN-1'
+    returns zero hits; the granularity-debt step is owned by GOV-FANOUT-1) and no test file exists
+    (sibling scripts GOV-SKILL-1/GOV-SUBPATH-1 do have one). The scan runs and produces live output
+    (confirmed by a companion digestion pass) but nothing acts on it. Routed to one shared
+    process-tooling chip together with GOV-SKILL-1 and GOV-SUBPATH-1's gaps below; warn-only, exit 0,
+    does not currently gate or mislead.
   what_would_answer: |
     NOT an empirical pass/fail falsifier -- GOV-GRAN-1 is a governance_rule (policy assertion
     about registry granularity hygiene), so this specifies the REASSESSMENT TRIGGER and
@@ -105096,6 +105277,12 @@
     skill HAS absorbed stays visible with its landing site named. Sits in deliberate tension
     with GOV-HELDOUT-1: this rule surfaces candidate skill edits, and GOV-HELDOUT-1 is the
     discipline that must be run BEFORE any such edit ships as a general rule.
+
+    [2026-09-25 governance-20260925; GFLAG-0551] Confirmed: this rule's output
+    (check_skill_improvement_recurrence.py / skill_improvement_audit_pointer.json) is referenced by no
+    .claude/skills/*/SKILL.md (grep, zero hits) -- nothing currently consumes its ACTIONABLE bucket
+    besides a human reading stdout. Routed to the same shared process-tooling chip as GOV-GRAN-1 and
+    GOV-SUBPATH-1; warn-only, exit 0, does not currently gate or mislead.
   what_would_answer: |
     NOT an empirical pass/fail falsifier -- GOV-SKILL-1 is a governance_rule (policy assertion
     about process/methodology debt surfaced by failure-autopsies), so this specifies the
@@ -106090,6 +106277,13 @@
     replay-fidelity manipulation knob is built. This is the SHALLOWEST blocker in this batch -- Leg A
     of its main dependency is already fixed; only the consumer wiring (a described, scoped fix per
     SD-016's own DISPOSITION) and the fidelity knob remain.
+
+    [2026-09-25 governance-20260925; GFLAG-0540] ROUTING CONFIRMED: v4/v3_v4 park as registered.
+    This claim's own analysis already argues against a frequency-only split ('NOT a scheduler
+    proposal'; 'A frequency-only developmental sleep experiment is precisely the degenerate design
+    this claim names') -- same shape as the ARC-137/GFLAG-0129 precedent. No prior flag had been raised
+    despite 'flagged for governance' language in the notes/intake; this ruling is that missing flag,
+    now closed.
 
 - id: SD-104
   what_would_answer: |
@@ -108013,7 +108207,7 @@
     which this human study did not.
 
 - id: MECH-544
-  title: "Permeability pathology and source-tag decay: the same selective permeability that enables cultural learning (MECH-542) necessarily creates its failure modes, and this is NOT an accidental weakness but plausibly the unavoidable price of a system that can learn from counterfactual experience -- a fully impermeable hypothetical system learns nothing from imagination, a fully permeable one cannot distinguish imagination from reality, and the useful system lies between. Predicted routes: repeated fictional trajectories distorting perceived likelihood; emotionally powerful narratives acquiring inappropriate precision; propaganda altering other-agent models without adequate evidence; humour gradually reducing the effective cost of previously prohibited representations; imagined threats modifying expectations of groups never directly encountered; cultural availability mistaken for environmental frequency. REGISTERED SIGNATURE -- SOURCE-TAG DECAY: source information degrades while narrative structure is retained, producing characteristic errors in which retained narrative becomes progressively harder to distinguish from experienced or testified information. The architectural requirement is therefore NOT to prevent hypothetical material from influencing cognition, but to keep the KIND and MAGNITUDE of update appropriate to the epistemic status of the representation."
+  title: "Permeability pathology and source-fidelity loss: the same selective permeability that enables cultural learning (MECH-542) necessarily creates its failure modes, and this is NOT an accidental weakness but plausibly the unavoidable price of a system that can learn from counterfactual experience -- a fully impermeable hypothetical system learns nothing from imagination, a fully permeable one cannot distinguish imagination from reality, and the useful system lies between. Predicted routes: repeated fictional trajectories distorting perceived likelihood; emotionally powerful narratives acquiring inappropriate precision; propaganda altering other-agent models without adequate evidence; humour gradually reducing the effective cost of previously prohibited representations; imagined threats modifying expectations of groups never directly encountered; cultural availability mistaken for environmental frequency. REGISTERED SIGNATURE -- SOURCE-FIDELITY LOSS: source information becomes less reliable while narrative structure is retained, producing characteristic errors in which retained narrative becomes progressively harder to distinguish from experienced or testified information; the underlying mechanism (stored-tag decay vs reconstructed-at-retrieval misattribution, per Johnson, Hashtroudi and Lindsay 1993) is left open pending the D6 discriminating test. The architectural requirement is therefore NOT to prevent hypothetical material from influencing cognition, but to keep the KIND and MAGNITUDE of update appropriate to the epistemic status of the representation."
   claim_type: mechanism_hypothesis
   subject: default_mode.permeability_pathology_source_tag_decay
   polarity: asserts
@@ -108050,6 +108244,13 @@
     measurable first. NOT independently verified in this pass; lit-pull owed. Clinically
     adjacent to the user's own domain and worth a targeted review alongside MECH-541's. DO NOT
     build in V3, DO NOT queue an experiment.
+
+    [2026-09-25 governance-20260925; GFLAG-0547] Title generalised from 'source-tag decay' to
+    'source-fidelity loss': the claim's own literature note already flags an unreconciled tension with
+    Johnson, Hashtroudi and Lindsay 1993 (source RECONSTRUCTED at retrieval, not stored-and-decaying).
+    Both mechanisms are substrate_conditional/unbuilt (no V4 language substrate exists) and predict
+    different failure signatures; rather than pre-commit to 'decay' now, the title stays agnostic and
+    the drafted D6 discriminating test decides once the substrate exists.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: MECH-542's P1-P3 apply unchanged (the permeability whose failure mode
     this is) -- see MECH-542's what_would_answer; not re-derived here. ADDITIONALLY:
@@ -111719,6 +111920,17 @@
     requiring the SPECIFIC untested domains. DO NOT BUILD A HOOK, GATE OR SCORE FOR THIS -- manual
     interpretive discipline, same counterweight as GOV-HELDOUT-1; a scalar "organism-level score" is the
     doctrine's own stop condition. Implementation surface APPLIED: /governance SKILL.md Step 7a + generate_current_front.py surface the stamp into docs/CURRENT_FRONT.md (landed 0026b722232, 2026-09-16); restated 3x as of 2026-09-25 (V3-EXQ-1010, then flagged STALE, then re-stated against V3-EXQ-1078). DO NOT queue an experiment from this entry.
+
+    [2026-09-25 governance-20260925; GFLAG-0552] SCOPE EXTENDED: claim-status PROMOTION
+    decision_log entries are ruled to be summary-layer artifacts and now carry the GOV-JURIS-1
+    evidence-domain stamp requirement, per this rule's own existing 'the rule binds the SUMMARY layer'
+    wording (raw manifests and per-run autopsies stay exempt) -- this closes an unnoticed wiring gap in
+    an already-adopted rule rather than opening new policy. Confirmed not yet applied: ARC-107
+    (candidate->provisional, V3-EXQ-926a, 2026-08-16) and SD-071 (promote_to_provisional/applied,
+    2026-09-20T12:17:02Z, resting on 8/8 seeds V3-EXQ-778g) both promoted with no world_family field or
+    GOV-JURIS-1 domain-stamp on the promotion note. Retro-stamping MECH-117 / INV-053 / ARC-107 / SD-071
+    is owed (routed as a chip). GOV-JURIS-1's own promotion to provisional stays HELD at candidate
+    (GFLAG-0517: no live over-claim catch yet, only retrospective analogues).
   what_would_answer: |
     NOT an empirical pass/fail falsifier. GOV-JURIS-1 is a governance_rule, the parent D0-D7 profile of
     GOV-ECOL-1 (D4), GOV-DELETE-1 (D6) and Q-108 (D7). This states the REASSESSMENT TRIGGER and
@@ -111821,6 +112033,11 @@
     `perturbation_class` field in the recording standard's core block, so the indexer can count it. DO
     NOT build the frozen suite from this entry and DO NOT queue an experiment from it; the suite is
     designed under /queue-experiment once the interface campaign yields something worth transferring.
+
+    [2026-09-25 governance-20260925; GFLAG-0552] SCOPE EXTENDED alongside GOV-JURIS-1: claim-status
+    PROMOTION decision_log entries now also carry GOV-ECOL-1's world-family replication requirement
+    (GOV-ECOL-1 is a D4 member of GOV-JURIS-1's profile). Retro-stamping MECH-117 / INV-053 / ARC-107 /
+    SD-071 is owed (routed as a chip, same as GOV-JURIS-1).
   what_would_answer: |
     NOT an empirical pass/fail falsifier. GOV-ECOL-1 is a governance_rule (D4 member of GOV-JURIS-1).
     This states the REASSESSMENT TRIGGER and revising evidence. Shared use-gated form: see the G002
@@ -112810,7 +113027,7 @@
     - ARC-094    # the prohibition whose self-term starting condition this questions
     - MECH-405   # the routing mechanism that presupposes accessible own-affect streams
     - SD-011     # the suffering stream that must become self-accessible before it is other-bindable
-    - INV-064    # maturational-sequence necessity -- forbids running social binding ahead of a stable self
+    - INV-064    # maturational-sequence necessity (E1->E2->E3); the self-before-social ORDERING this claim discusses is self_model_v4:SELF-7's honesty gate, not INV-064's own content -- see GFLAG-0550 (2026-09-25)
   location: evidence/planning/fast_empathy_v5_plan.md
   notes: >
     REGISTERED AS A LOAD-BEARING BIOLOGY-VS-DESIGN DIVERGENCE, per
@@ -112822,8 +113039,9 @@
     condition - infants become sensitised to their own categorical emotion states THROUGH the
     caregiver's marked (exaggerated, pretend-like) reflections of them, via contingency
     detection. The direction is OTHER -> SELF. THE RECONCILIATION THIS CLAIM ASSERTS - the
-    substrate has primitive affect states from the outset (so ARC-059's ordering and INV-064
-    both survive), but the REPRESENTATION that makes them routable is acquired socially. If
+    substrate has primitive affect states from the outset (so ARC-059's ordering and the
+    self_model_v4:SELF-7 honesty gate both survive; INV-064 itself is a distinct E1->E2->E3 claim,
+    see GFLAG-0550), but the REPRESENTATION that makes them routable is acquired socially. If
     true, a V5 social substrate cannot assume own-affect is introspectively available at
     initialisation; an affect-self-access acquisition step is a prerequisite of, not an
     afterthought to, stream-binding. Second consequence, and an independent route to
@@ -115113,6 +115331,15 @@
     coupled campaign lands.
     Disposition 2026-09-25: (c) substrate-blocked, substrate_conditional; implementation_phase v3 recommended to be
     retained (GFLAG-0543). No experiment proposed.
+
+    [2026-09-25 governance-20260925; GFLAG-0543] ROUTING CONFIRMED: v3/v3_v4 as registered. The
+    discriminating assay runs on native V3 producers (E2 rollout_with_world injection, E3 score_bias
+    clamp) and the generation-stage D1 probe already ran on V3, so 'v3' tracks where the
+    evidence-gathering actually happens -- matching the ARC-137/GOV-CONTRACT-2 precedent this claim's
+    own notes cite. DO NOT BUILD/QUEUE stays in force until Stage 0 (Q-080 navigability +
+    GFLAG-0487/0488 Type-A repair) clears; the v4/v4_v5 fallback this claim's notes also name is not
+    invoked, since the depends_on/related_claims edge typing was deliberately chosen non-pulling (no
+    V3-necessity leak either way, confirmed by check_claim_phase_consistency.py: 0 CONFLICT/ROOT).
   notes: >-
     Registered 2026-09-25 from the parent thought's 'Reframing monostrategy' (Types A/B), 'A decisive
     V3/V4 boundary experiment' and 'Result that would keep the V4 deferral intact' sections; the user's
@@ -116648,6 +116875,14 @@
     literature lane and transfer here by analogy only.
     DO NOT build in V3. DO NOT queue an experiment from this entry.
 
+    [2026-09-25 governance-20260925; GFLAG-0544] RULED, three questions: (1) pull-forward timing --
+    MECH-453/ARC-154 stay v4 this cycle, no pull-forward, per ARC-154's own notes ('PHASE: v4 because
+    MECH-453 is v4'). (2) whether an existing INV-093-panel measurement already tests this claim's leg
+    (a) premise (does harm sensitivity erode under ordinary refinement on REE) is left OPEN --
+    investigation owed, not yet checked this cycle. (3) CLASS RATIFIED: architectural_commitment, per
+    this claim's own registering-session recommendation; the 2026-09-04 staging doc's class-ruling
+    question is closed.
+
 - id: ARC-154
   title: >-
     E3's basal-ganglia commitment includes a DA-ACh COORDINATION layer that is separable both from the
@@ -116736,6 +116971,9 @@
     PHASE: v4 because MECH-453 is v4. ARC-108's learned-gating substrate exists in V3, so a MECH-453 window on
     it is a small build -- a routing question for /governance, not decided here.
     DO NOT build in V3. DO NOT queue an experiment from this entry.
+
+    [2026-09-25 governance-20260925; GFLAG-0544] RULED: stays v4 this cycle -- no pull-forward of
+    MECH-453/ARC-154, per ARC-153's GFLAG-0544 ruling question (1).
 
 - id: Q-109
   title: >-
