@@ -7211,6 +7211,20 @@
       "status": "open",
       "resolved_at": null,
       "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0506",
+      "claim_ids": [
+        "MECH-287",
+        "MECH-279"
+      ],
+      "flag_type": "evidence_discrepancy",
+      "summary": "MECH-287 option-C lock DV (rec-20260925-b23d15b9) REFUSED at /queue-experiment Step 2.5d as INERT: PAG exit reads only ||z_harm_a|| (env-observation encoder), constant gaba_tone and a never-built SD-037 override, and the frozen action is forced to the no-op class after E3 selection, so trigger/accumulator/anchor-reset has no path to freeze duration/lock persistence/time-to-first-release; a user decision is owed (re-anchor the DV on commitment/avoid-mode, build a broadcast->PAG-exit path, or withdraw the 475-unlock falsifier). Separately for MECH-279: pag_freeze_noop_action_class defaults to 0 = UP in CausalGridWorldV2 (stay is 4), so every default freeze drives the agent up into the top wall (V3-EXQ-475 eval log shows exactly this), which bears on how any freeze/catatonic-lock result is read. Analysis: REE_assembly evidence/planning/mech287_lock_dv_inert_pag_path_20260925.md (dd0a0ef864); EXP-0371 write-back 7adafa4286.",
+      "raised_by_session": "orch0925-mech287-lockdv",
+      "raised_at": "2026-09-25T07:54:16Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
