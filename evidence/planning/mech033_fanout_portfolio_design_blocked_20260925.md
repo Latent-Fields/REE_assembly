@@ -158,3 +158,144 @@ coarse whole-file claims for several concurrent science sessions in the same bat
 moot here** -- this session stops before queueing and never touches the queue file. Flagged because
 the next batch will hit it again: the coarse claim is what collides, and the granular
 `experiment_queue.json/<QUEUE_ID>` form the peers used is what avoids it.
+
+---
+
+# ADDENDUM 2026-09-25T02:5xZ -- portfolio BUILT, then BLOCKED AGAIN by a red-team finding that also invalidates V3-EXQ-308's PASS
+
+**Status of this addendum: AWAITING USER REVIEW. Nothing has been queued. Three
+experiment scripts are landed on `ree-v3` `main` but have NO `experiment_queue.json`
+entry, by design.**
+
+The 3-leg portfolio recommended in sections 4-5 above was ratified on 2026-09-25
+by `orchestrate-20260924-1707` under the user's standing delegation
+(`rec-20260924-fb429c72`): legs 2 and 3 as specified, leg 4 with comparator
+(A-i), leg 1 dropped. All three legs were authored, smoke-tested and landed.
+A foreground red-team review of leg 2 then returned **REFUSE**, and its central
+finding was independently verified by this session. It is correct.
+
+## THE FINDING: the inline 308-lineage architecture cannot rank actions at ANY depth
+
+`V3-EXQ-308`'s two act-path modules are both bare `nn.Linear` with **no
+activation** (`experiments/v3_exq_308_mech033_kernel_chain_discriminative.py`
+`:169-177` `E2WorldForward`, `:179-186` `HarmHead`). The action-selection score is
+therefore an affine function of the one-hot action:
+
+```
+harm(z, z_self, a) = v_z . (W_z z + W_a a + b) + v_s . z_self + c
+                   = (v_z . W_a) a  +  [ terms with no a in them ]
+```
+
+`v_z . W_a` is a **fixed 5-vector with no dependence on the state**. So
+`argmin_a` is the SAME action in every state, at every rollout depth (the deeper
+terms are `v_z . W_z^k W_a a`, still state-free). Verified two independent ways
+this session:
+
+| check | result |
+|---|---|
+| Algebraic: print `v_z @ W_a` at random init | `[0.02791, 0.06271, -0.04168, -0.01004, -0.02583]` -- constant; `argmin = 2` |
+| Empirical, random init, 500 random states, depth 1 | action `2` chosen **500/500** (matches the algebra) |
+| Empirical, GENUINELY TRAINED stack (40 warmup eps, `world_forward_r2 = 0.9320`), 400 on-trajectory states | K1 -> action `3` **400/400**; K3 -> action `3` **400/400**. BOTH CONSTANT |
+
+The red-team additionally measured, over 1000 eval steps on the trained stack,
+that a constant move action walks into a wall and pins there: K1 visited **2
+distinct cells**, standing on one cell for 99.8% of eval.
+
+## CONSEQUENCE 1 -- legs 2 and 3 as landed are INVALID
+
+Both use that architecture verbatim (deliberately, for lineage comparability with
+308). So `K1`/`K3_POLICY` (leg `V3-EXQ-1103`) and `INTACT`/`REINIT_E2`/
+`PERMUTED_E2` (leg `V3-EXQ-1101`) are all constant-action policies. On one smoke
+seed K1 and K3 were *literally the same policy* (identical `harm_rate` to 5 dp and
+identical `n_harm_events`). The leg would have compared a wall-pinned agent to
+itself and, with all four instrument gates green, emitted `weakens` against
+MECH-033. **That is worse than V3-EXQ-308**: 308 produced a false positive behind
+a visibly weak comparator; this would have produced a false NEGATIVE wearing a
+negative-instrument audit.
+
+Note what this says about the guard set I built: C3 (E2 r2 0.93), C4 (competence
+floor, cleared by ~400x *because* wall-pinning is low-harm), C5 (data quality) and
+C6 (action-discrimination canary) ALL PASS on a constant-action policy. None of
+them looks at **what the arms actually did**. The `_selfcheck_manipulation` guard
+is worse than useless here: its part (2) substitutes a hand-built nonlinear
+action-sensitive pair (`_DeltaE2` + `_StayIsWorstHarmHead`) for the real modules,
+so it *supplies* the action-dependence whose presence it certifies -- exactly the
+"guard that supplies the thing it asserts" failure CLAUDE.md names. It then writes
+`"forced_stay_defect_present": false` into the manifest, which is a false
+statement about the run.
+
+Leg 4 (`V3-EXQ-1102`) is **NOT affected**: it uses the real substrate, whose
+modules are nonlinear -- `e2.world_transition` is Linear->ReLU->Linear
+(`ree_core/predictors/e2_fast.py:132-136`) and `e3.harm_eval_head` is
+Linear->ReLU->Linear->Sigmoid (`ree_core/predictors/e3_selector.py:436-441`).
+
+## CONSEQUENCE 2 -- V3-EXQ-308's PASS has a second, independent explanation
+
+This is a NEW finding about a landed run, beyond the autopsy's ablation-confound
+diagnosis, and it is the more damaging of the two. The autopsy concluded 308's
+comparator could not ATTRIBUTE its delta to E2. The algebra above says something
+stronger: **308's `KERNEL_CHAIN` arm was never a planner at all.** It was a
+constant-action policy, and its harm advantage over uniform random is explained by
+a fixed move pinning the agent against a wall (away from drifting hazards) rather
+than by any use of E2's predictions. 308's own forced-STAY rollout does not rescue
+this -- every term stays affine in the first action.
+
+The same architecture is shared by `V3-EXQ-171` and both `V3-EXQ-184` runs, so the
+reading plausibly extends to all four of MECH-033's PASSes. Raised for
+`/governance` as an `evidence_discrepancy` flag rather than acted on here.
+
+## THE DECISION THIS NEEDS (second and final stop on this item)
+
+Making legs 2 and 3 valid requires changing **what gets measured**, so it is not
+mine to choose. Options, with costs:
+
+- **(N-i) Add a hidden layer + nonlinearity** to `HarmHead` and `E2WorldForward`
+  (e.g. `Linear(w+s, 32) -> ReLU -> Linear(32, 1)`). Cheapest, keeps the legs
+  fast (~18-21 min each). COST: the architecture is no longer 308's, so the
+  deliberate lineage comparability is gone -- which, given Consequence 2, may be a
+  feature rather than a loss.
+- **(N-ii) Move legs 2 and 3 onto the full REEAgent substrate**, like leg 4. No
+  bespoke architecture and no affine-collapse risk. COST: a much larger build and
+  roughly 4 h per leg instead of ~20 min; the depth manipulation also becomes
+  harder to control cleanly, which is why they were inline in the first place.
+- **(N-iii) Ship leg 4 ALONE now** and defer legs 2 and 3. Leg 4 is verified
+  unaffected, is the leg that answers the autopsy's "integration: isolated"
+  finding, and carries the only non-confounded H1 test. COST: H2 (depth) and H3
+  (E2 content) go untested for now; the portfolio is 1 leg, not 3.
+
+**Independently of that choice, C1's bar needs re-deriving from a pilot.** The
+0.01 absolute harm-rate bar is ~50x the entire measured `harm_rate` of the k=1 arm
+(~2e-4), so the PASS branch is unreachable in this regime and the run could only
+ever emit `weakens`. A bar expressed relative to the achievable range -- e.g.
+`>= 0.10 * (harm_RANDOM_REF - harm_K1)` -- is the fix, but changing a
+pre-registered threshold is a criteria change and needs ratification.
+
+**Recommendation: (N-iii) + (N-i).** Queue leg 4 now, since it is verified sound
+and is the highest-value leg; then rebuild legs 2 and 3 under (N-i) with two added
+GATING criteria that would have failed today -- executed-action entropy and
+distinct-cells-visited per arm per seed -- and a pilot-derived relative C1 bar.
+Reason: it lands the non-confounded H1 test without waiting on a redesign, and it
+fixes the inline legs with the cheap option while adding the behavioural gate
+whose absence is the actual root cause here (every existing guard inspected the
+MODEL; none inspected the BEHAVIOUR).
+
+## Other red-team findings worth carrying into the rebuild (not blocking on their own)
+
+- `C6`'s action-discrimination canary measures prediction SPREAD, not accuracy, and
+  is ~5x free at untrained init (measured 0.2416 untrained vs 0.1689 trained) -- so
+  training LOWERS it and it cannot separate trained from untrained E2. It catches
+  only total `W_a -> 0` collapse. Replace with an accuracy measure.
+- `C4`'s competence floor uses RANDOM_REF as its reference, which the design
+  forbids for the null but then relies on for the gate that decides whether the
+  null is interpretable. A near-stationary policy clears it by ~400x. A
+  best-fixed-single-action reference is the floor actually needed -- and would have
+  caught this defect directly.
+- `_arm_disagreement_rate` is measured on a uniform-random walk in a DIFFERENT env
+  seed (`seed + 2000`) from the eval env (`seed + 1000`), so it does not describe
+  the states the arms occupy. Measure on-policy, and treat a rate of exactly 0.0 or
+  exactly 1.0 as a degeneracy alarm rather than a reassurance.
+- "50 eval episodes" is really one ~5000-step run with ~10 resets: `env.reset()` is
+  called once before the loop and thereafter only on `done`, so the per-seed result
+  rests on ~10 hazard layouts with no error bars. Inherited from 308.
+- `C1`-passes-`C2`-fails is routed to `weakens` with a note asserting the null
+  HOLDS, which would contradict its own printed mean delta. Split that branch.
