@@ -4,7 +4,7 @@ closure_plan:
   title: "ARC-070 / MECH-321 decomposition trigger operationalization"
   owner_claim: ARC-070
   registered: 2026-08-14
-  last_updated: 2026-08-21
+  last_updated: 2026-09-25
   scope_claims: [ARC-070, MECH-321, MECH-288]
   sibling_plans: [mech303_safety_threshold]
   registered_note: "NEW plan doc (session metaworker-chip-20260812-govdiag1-repose-mech321-chain, 2026-08-14), created to home the GOV-DIAG-1 metabolized marker for the six-hit ARC-070 / MECH-321 / MECH-288 pure-diagnostic chain (816b, 816c, 816d, 830 x2, 839) routed by /governance 2026-08-12 (session sd-016-h3-algorithm-3370cd). No *_plan.md closure-plan node owned this work-stream, so the marker -- which by design lives on the plan node whose status row records the re-operationalization -- had nowhere to live; this is the same closure-graph gap mech303_safety_threshold_plan.md was registered to close on 2026-08-13. The full re-pose is evidence/planning/govdiag1_repose_mech321_chain_2026-08-12.md. This plan doc promotes and demotes nothing, queues no experiment, and writes no hypothesis-space resolution."
